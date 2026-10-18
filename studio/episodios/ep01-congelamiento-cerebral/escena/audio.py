@@ -279,15 +279,21 @@ for k in range(16):
 for k in range(14):
     add(fx, thud(), t_e + (k * 1.2 + 6) / 30, 0.35)
 add(fx, pop(), T(25, 0.2), 0.4)
-add(fx, fizz(), T(25, 0.9), 0.5)
+add(fx, fizz(), T(25, 0.3), 0.5)
+add(fx, pop(), T(34, 0.2), 0.4)
+add(fx, whoosh(0.3, True), T(31) - 0.1, 0.4)
+add(fx, whoosh(0.3, True), T(32) - 0.1, 0.4)
+for k in range(2):
+    add(fx, heartbeat(), T(33, 0.1 + k * 0.45), 0.7)
+add(fx, pop(), T(35, 0.2), 0.4)
 add(fx, slurp(), T(26, 0.5), 0.6)
-for k in range(8):
+for k in range(4):
     add(fx, tick(), T(27, 0.3 + k * 0.45), 0.5)
-add(fx, ding(1760), T(27, 2.4), 0.4)
+add(fx, ding(1760), T(35, 0.1), 0.4)
 add(fx, pop(), T(27, 0.2), 0.4)
 add(fx, chomp(), T(30, 0.3), 0.9)
 
-mix = v * 1.0 + m * 0.16 + fx * 0.45
+mix = v * 1.0 + m * 0.30 + fx * 0.45
 mix = np.tanh(mix * 1.1) / 1.1
 mix = mix / (np.abs(mix).max() + 1e-9) * 0.9
 tmp = os.path.join(OUT, "ep01_pre.wav")
@@ -296,5 +302,5 @@ dst = os.path.join(OUT, "ep01_mix.wav")
 subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", tmp, "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "48000", dst], check=True)
 # diferencia voz/música (dB) para el QA
 vr = np.sqrt(np.mean(v[np.abs(v) > 0.02] ** 2))
-mr = np.sqrt(np.mean((m * 0.16)[(m != 0)] ** 2) + 1e-12)
+mr = np.sqrt(np.mean((m * 0.30)[(m != 0)] ** 2) + 1e-12)
 print("ok audio", dst, "voz/música dB:", round(20 * np.log10(vr / mr), 1))

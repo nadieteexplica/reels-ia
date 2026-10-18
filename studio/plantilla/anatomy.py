@@ -97,12 +97,21 @@ def frost_layer(skin_mat, mask_img):
     crk.inputs["From Min"].default_value = 0.0
     crk.inputs["From Max"].default_value = 0.12
     crk.inputs["To Min"].default_value = 1.0
-    crk.inputs["To Max"].default_value = 0.55
+    crk.inputs["To Max"].default_value = 0.85
     nt.links.new(vor.outputs["Distance"], crk.inputs["Value"])
+    cr0 = nt.nodes.new("ShaderNodeMath")
+    cr0.operation = "MULTIPLY"
+    nt.links.new(cl.outputs["Result"], cr0.inputs[0])
+    nt.links.new(crk.outputs["Result"], cr0.inputs[1])
+    # sólo en la frente (canal B de la máscara, ampliado)
+    fb = nt.nodes.new("ShaderNodeMapRange")
+    fb.inputs["From Min"].default_value = 0.0
+    fb.inputs["From Max"].default_value = 0.35
+    nt.links.new(sep.outputs["Blue"], fb.inputs["Value"])
     cr = nt.nodes.new("ShaderNodeMath")
     cr.operation = "MULTIPLY"
-    nt.links.new(cl.outputs["Result"], cr.inputs[0])
-    nt.links.new(crk.outputs["Result"], cr.inputs[1])
+    nt.links.new(cr0.outputs[0], cr.inputs[0])
+    nt.links.new(fb.outputs["Result"], cr.inputs[1])
     mixc = nt.nodes.new("ShaderNodeMix")
     mixc.data_type = "RGBA"
     mixc.inputs["B"].default_value = (0.42, 0.72, 1.0, 1)

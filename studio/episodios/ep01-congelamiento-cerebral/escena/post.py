@@ -22,6 +22,9 @@ FONTS = os.path.abspath(os.path.join(HERE, "../../../plantilla/fonts"))
 FONT = os.path.join(FONTS, "Inter-Black.otf")
 FONT_B = os.path.join(FONTS, "Inter-ExtraBold.otf")
 YELLOW = (255, 210, 63)
+CYAN = (92, 225, 230)
+KEYWORDS = {"HELADO", "FRENTE", "CEREBRO", "CALOR", "CARRITO", "PALADAR", "VASOS", "SANGUÍNEOS", "CALIENTE", "TRIGÉMINO", "CARA",
+            "HARVARD", "2012", "TRECE", "ARTERIA", "DOLOR", "NERVIOS", "LENGUA", "TIBIO", "PELIGROSO", "LENTO", "MINUTOS", "FRÍO"}
 BOX = (120, 888, 1000, 1250)  # x0, x1, y0, y1 de la zona de subtítulos
 
 
@@ -135,7 +138,7 @@ def draw_subs(img, f):
                 SUB_LOG.append((f, tok, x - ox, y - oy, x - ox + fnt.getlength(tok), y - oy + fnt.size))
             else:
                 d.text((x + 3, y + 5), tok, font=font, fill=(0, 0, 0, 110))
-                d.text((x, y), tok, font=font, fill=(255, 255, 255), stroke_width=6, stroke_fill=(0, 0, 0))
+                d.text((x, y), tok, font=font, fill=CYAN if tok in KEYWORDS else (255, 255, 255), stroke_width=6, stroke_fill=(0, 0, 0))
                 SUB_LOG.append((f, tok, x, y, x + tw, y + font.size))
             x += tw + font.getlength(" ")
 
@@ -144,8 +147,8 @@ def draw_subs(img, f):
 PILLS = {  # plano: [(texto, estilo)]
     10: [("PALADAR", "blanca")], 11: [("VASOS SANGUÍNEOS", "blanca")], 13: [("NERVIO TRIGÉMINO", "amarilla")],
     17: [("HARVARD · 2012", "blanca")], 18: [("13 VOLUNTARIOS", "blanca")], 19: [("ARTERIA", "blanca")],
-    21: [("0 RECEPTORES DE DOLOR", "coral")], 25: [("EL TRUCO", "amarilla")],
-    27: [("DURA ≤ 2 MIN", "blanca"), ("NO ES PELIGROSO", "verde")],
+    21: [("0 RECEPTORES DE DOLOR", "coral")], 34: [("EL TRUCO", "amarilla")],
+    27: [("DURA ≤ 2 MIN", "blanca")], 35: [("NO ES PELIGROSO", "verde")],
 }
 STY = {"blanca": ((255, 255, 255), (20, 24, 30)), "amarilla": (YELLOW, (20, 24, 30)), "coral": ((255, 92, 75), (255, 255, 255)), "verde": ((60, 200, 120), (255, 255, 255))}
 PILL_FONT = ImageFont.truetype(FONT_B, 52)
