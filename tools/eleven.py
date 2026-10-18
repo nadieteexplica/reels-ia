@@ -46,14 +46,16 @@ def job_voices(job):
                                                 "usage_character_count_1y", "cloned_by_count")})
     found = [f for f in found if "voice_id" in f]
     found.sort(key=lambda v: -(v.get("usage_character_count_1y") or 0))
-    top = found[: job.get("top", 8)]
-    for i, v in enumerate(top, 1):
+    off = job.get("offset", 0)
+    top = found[off: off + job.get("top", 8)]
+    for i, v in enumerate(top, off + 1):
         if v.get("preview_url"):
             try:
                 urllib.request.urlretrieve(v["preview_url"], out / f"{i:02d}_{(v['name'] or 'voz').replace(' ', '_')[:30]}.mp3")
             except Exception as e:  # noqa
                 v["preview_error"] = str(e)
-    (out / "voces.json").write_text(json.dumps({"top": top, "total_encontradas": len(found)}, ensure_ascii=False, indent=1))
+    name = job.get("out_name", "voces.json")
+    (out / name).write_text(json.dumps({"top": top, "total_encontradas": len(found)}, ensure_ascii=False, indent=1))
     return {"voces_encontradas": len(found), "previews": len(top)}
 
 

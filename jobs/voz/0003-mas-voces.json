@@ -1,0 +1,53 @@
+{
+ "mode": "voices",
+ "offset": 8,
+ "top": 12,
+ "out_name": "voces_2.json",
+ "queries": [
+  {
+   "language": "es",
+   "accent": "latin american",
+   "use_cases": "narrative_story",
+   "sort": "usage_character_count_1y"
+  },
+  {
+   "language": "es",
+   "accent": "latin american",
+   "use_cases": "informative_educational",
+   "sort": "usage_character_count_1y"
+  },
+  {
+   "language": "es",
+   "accent": "latin american",
+   "use_cases": "conversational",
+   "sort": "usage_character_count_1y"
+  },
+  {
+   "language": "es",
+   "accent": "mexican",
+   "use_cases": "narrative_story",
+   "sort": "usage_character_count_1y"
+  },
+  {
+   "language": "es",
+   "accent": "latin american",
+   "use_cases": "social_media",
+   "sort": "usage_character_count_1y"
+  },
+  {
+   "language": "es",
+   "accent": "chilean",
+   "sort": "usage_character_count_1y"
+  },
+  {
+   "language": "es",
+   "accent": "argentine",
+   "sort": "usage_character_count_1y"
+  },
+  {
+   "language": "es",
+   "accent": "colombian",
+   "sort": "usage_character_count_1y"
+  }
+ ]
+}
