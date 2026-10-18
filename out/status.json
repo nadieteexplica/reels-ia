@@ -1,11 +1,17 @@
 {
  "elevenlabs": "OK",
- "plan": "free",
+ "plan": "starter",
  "creditos_usados": 0,
- "creditos_limite": 10000,
+ "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
   "previews": 8
  },
- "0002-prueba-fernando.json": "error 402: {\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Free users cannot use library voices via the API. Please upgrade your subscription to use this voice.\",\"status\":\"payment_required\",\"request_id\":\"a2b0c275046ed459baa4d3712704cb05\"}}"
+ "0002-prueba-fernando.json": {
+  "tts": "prueba-fernando"
+ },
+ "0003-mas-voces.json": {
+  "voces_encontradas": 240,
+  "previews": 12
+ }
 }
