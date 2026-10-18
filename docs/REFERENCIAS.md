@@ -18,6 +18,7 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 | R4 | El clavo en la cabeza (`zackdfilms`) | Fábula absurda con moraleja, 3D | 243 mil | 48,1 mil | 35,7 mil | 20 % | 15 % | **~1,2** |
 | R5 | Hoyo en el patio → estanque (`hiddenhome.3d`) | Corte del terreno que se transforma, 3D | 382 mil | 39,2 mil | **75,3 mil** | 10 % | 20 % | casi plano fijo |
 | R6 | Por qué las ventanas de avión son redondas (cuenta 2D, nombre no legible) | "¿Sabías que…?" con dato histórico, 2D | 25,6 mil | 7.951 | 5.280 | **31 %** | **21 %** | 4 cortes en 44 s |
+| R7 | Cómo ganarle al arquero en un mano a mano (`admir_footy`) | Análisis de datos propio, visualización 2D | 62,6 mil | 25,7 mil | 12 mil | **41 %** | 19 % | 0 cortes |
 
 ---
 
@@ -92,9 +93,26 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 - **No tomar:** el 2D (lo nuestro es 3D sí o sí).
 - **Alcanzable:** **sí** en 3D. El tema es historia conocida y va al banco contado a nuestra manera.
 
+### R7 · Mano a mano con el arquero (`admir_footy`)
+- **Qué es:** "Encontré 1.945 mano a mano": cada tiro es un punto en pantalla, un contador sube hasta 1.945, revela que el arquero gana 2 de cada 3 y después pregunta: ¿picarla, colocarla o reventarla? Con barras por opción. Fondo oscuro, 2D, en inglés.
+- **Por qué funciona:**
+  - contradice lo que uno cree ("la oportunidad más fácil del fútbol"… no lo es);
+  - **datos propios**: "yo los conté" da autoridad y es 100 % original;
+  - deja adivinar antes de revelar, lo que invita a comentar y discutir;
+  - tiene un destinatario clarísimo: el amigo futbolero. Por eso el ratio de envíos es el segundo más alto.
+- **Tomar:**
+  - **"lo conté yo"**: análisis propio con datos abiertos, verificable por construcción;
+  - **un punto = un caso**: los números grandes se vuelven tangibles;
+  - contador que sube + revelación + opciones para adivinar;
+  - **código de color fijo** por opción (celeste, amarillo, rojo), repetido en texto y gráficos;
+  - palabra clave en color en el subtítulo (igual que R6);
+  - cero cortes, pero algo cambia todo el rato.
+- **No tomar:** el 2D; su tema (definiciones de fútbol) contado igual.
+- **Alcanzable:** **sí**. En 3D, los puntos pueden ser objetos reales (1.945 pelotas, 1.000 temblores sobre un mapa de Chile), con instancias en Blender y sin personajes. Tomás sabe Python y R: el análisis de datos es terreno propio.
+
 ---
 
-## 3. Conclusiones (al 18-oct-2026, con 6 referencias)
+## 3. Conclusiones (al 18-oct-2026, con 7 referencias)
 
 1. **Cada video se diseña para una acción: enviar o guardar.**
    - Se **envía** lo que tiene un destinatario: humor (R1, 46 %), dato sorpresa (R6, 31 %) o moraleja "esto es para ti" (R4, 20 %).
@@ -109,6 +127,9 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 7. **Subtítulos:** todos van al medio, con 1–3 palabras. Confirma nuestra regla. Se suma **la palabra clave en color o más grande** (R6).
 8. **El personaje no necesita ser detallado** (R3): luz, cámara y expresión hacen el trabajo. El look de R4 es nuestro objetivo.
 9. **Las series por partes** (R1) generan seguidores: la Parte 2 la ve gente que nunca vio la 1 (coincide con `investigacion-formatos-virales.md`).
+10. **Los datos propios son originalidad y autoridad a la vez** (R7). "Conté 1.945 casos" no se puede copiar y se verifica solo.
+11. **Dejar adivinar antes de revelar** (R7) genera comentarios y retención.
+12. **Código de color fijo** (R6, R7): un color por idea u opción, repetido en subtítulos y gráficos. Se lee sin pensar.
 
 ---
 
@@ -116,7 +137,7 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 
 | Nivel | Qué | Referencias | Estado |
 |---|---|---|---|
-| **Ya alcanzable** | Corte o transformación sin personaje; objetos con metáforas visuales; números animados | R5, R6 en 3D | Solo falta la plantilla |
+| **Ya alcanzable** | Corte o transformación sin personaje; objetos con metáforas visuales; números animados; datos propios con objetos 3D | R5, R6, R7 en 3D | Solo falta la plantilla |
 | **Con trabajo** | Fábulas y story time con personajes semi-realistas y look pastel | R2, R3, R4 | Protagonista borrador 1 en `studio/personaje/`. Faltan piel, mirada, boca y personajes secundarios (variaciones de MakeHuman) |
 | **Fuera de alcance** | Caras tipo Pixar con esa expresividad | R1 | Requiere IA de video: fuera de presupuesto |
 
@@ -129,6 +150,7 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 | **Corte que se transforma** ("¿qué pasa si…?", "¿cómo se hace…?") | Datos | R5 | Guardar |
 | **Dato histórico con metáfora visual** | Datos | R6 | Enviar y guardar |
 | **Concepto armado frente a ti** (filosofía, experimentos mentales) | Datos | R3 | Guardar |
+| **"Lo conté yo"** (análisis propio con datos abiertos: fútbol, temblores, metro…) | Datos | R7 | Enviar y comentar |
 | **Fábula absurda con moraleja** | Historias | R4 | Enviar |
 | **Story time ficticio en primera persona** | Historias | R2 | Retención (alcance) |
 | **Serie por partes** (cualquiera de los anteriores) | Ambas | R1 | Seguir |
@@ -153,9 +175,11 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
   - §1: estructura de guion para la línea historias.
   - §2: la verificación aplica a todo lo que se presenta como real.
   - §5: look de referencia R4 (pastel saturado) y luz de una sola fuente para momentos dramáticos (R3).
+  - §5: código de color fijo por idea u opción (R6, R7).
 - **`CONTEXTO.md`:** dos líneas de contenido; referencias de look; color de marca por definir.
 - **`IDEAS.md`:**
   - criterio nuevo **Guardable** junto a Compartible, y la pregunta "¿a quién se lo mandan / por qué lo guardarían?";
   - banco de historias;
-  - temas nuevos: experimentos mentales, filosofía, historia de la ingeniería (ventanas del Comet).
+  - temas nuevos: experimentos mentales, filosofía, historia de la ingeniería (ventanas del Comet), **fútbol y deportes**, **datos propios** (temblores en Chile, metro de Santiago, etc.).
+  - fuentes de datos abiertos para la línea "lo conté yo" (la licencia de cada base se revisa antes de usarla).
 - **`PUBLICADOS.md`:** columna **Línea** (datos / historias) y **Formato**.
