@@ -105,8 +105,10 @@ def job_compare(job):
 
 
 def main(files):
+    """Devuelve la cantidad de trabajos con error (el workflow falla si es > 0)."""
     if not KEY:
-        write_status({"elevenlabs": "FALTA EL SECRETO ELEVENLABS_API_KEY"}); print("sin clave"); return
+        write_status({"elevenlabs": "FALTA EL SECRETO ELEVENLABS_API_KEY"}); print("sin clave"); return 1
+    errors = 0
     try:
         me = req("GET", "/user/subscription")
         write_status({"elevenlabs": "OK", "plan": me.get("tier"), "creditos_usados": me.get("character_count"), "creditos_limite": me.get("character_limit")})
@@ -118,10 +120,11 @@ def main(files):
             r = job_voices(job) if job["mode"] == "voices" else (job_compare(job) if job["mode"] == "compare" else job_tts(job))
             write_status({pathlib.Path(f).name: r})
         except urllib.error.HTTPError as e:
-            write_status({pathlib.Path(f).name: f"error {e.code}: {e.read().decode()[:400]}"})
+            errors += 1; write_status({pathlib.Path(f).name: f"error {e.code}: {e.read().decode()[:400]}"})
         except Exception as e:  # noqa
-            write_status({pathlib.Path(f).name: f"error: {e}"})
+            errors += 1; write_status({pathlib.Path(f).name: f"error: {e}"})
+    return errors
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    sys.exit(1 if main(sys.argv[1:]) else 0)

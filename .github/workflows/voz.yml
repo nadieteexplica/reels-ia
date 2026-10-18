@@ -3,6 +3,10 @@ on:
   push:
     paths: ["jobs/voz/**.json"]
   workflow_dispatch:
+    inputs:
+      files:
+        description: "Trabajos de jobs/voz a correr (rutas separadas por espacio)"
+        required: true
 permissions:
   contents: write
 concurrency: voz
@@ -12,18 +16,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - name: Trabajos de voz
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+          INPUT_FILES: ${{ github.event.inputs.files }}
         run: |
-          FILES=$(git diff --name-only HEAD~1 HEAD -- 'jobs/voz/*.json' || true)
-          [ -z "$FILES" ] && FILES=$(ls jobs/voz/*.json)
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            FILES="$INPUT_FILES"
+          else
+            if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then BEFORE=$(git rev-parse "$SHA~1"); fi
+            FILES=$(git diff --name-only --diff-filter=AM "$BEFORE" "$SHA" -- 'jobs/voz/*.json')
+          fi
+          echo "Trabajos: $FILES"
+          if [ -z "$FILES" ]; then echo "nada que correr"; exit 0; fi
           python3 tools/eleven.py $FILES
       - name: Guardar resultados
+        if: always()
         run: |
           git config user.name "reels-bot"
           git config user.email "reels-bot@users.noreply.github.com"
           git add out
-          git commit -m "voz: resultados" || echo "nada que guardar"
-          git push
+          git commit -m "voz: resultados" || { echo "nada que guardar"; exit 0; }
+          for i in 1 2 3; do git pull --rebase -q origin main && git push && exit 0; sleep 5; done
+          exit 1

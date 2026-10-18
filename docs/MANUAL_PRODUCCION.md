@@ -5,8 +5,9 @@ Este es el estándar de cada video. Si algo de acá no se cumple, el video no sa
 ---
 
 ## 0. Estructura de archivos por episodio
+Cada episodio tiene un **id único `epNN-slug`** (por ejemplo `ep02-dedos-arrugados`). El mismo id se usa en la carpeta, en el trabajo de voz (`jobs/voz/NNNN-epNN-slug.json` → `out/tts/epNN-slug.mp3`) y en el tag del release (`epNN`).
 ```
-episodios/<NN>-<slug>/
+studio/episodios/epNN-slug/
   guion.md          guion final + fuentes + tiempos por frase
   storyboard.md     tabla plano por plano
   words.json        tiempos por palabra (salen de la alineación de ElevenLabs)
@@ -14,8 +15,10 @@ episodios/<NN>-<slug>/
   audio/            sound.py y mezcla (los .wav no se suben al repo)
   entrega/caption.md   textos por red + comentario fijado + hashtags
 ```
-- **El MP4 final** va como asset de GitHub Release (tag `epNN`) o en `out/videos/` si Metricool no acepta la URL del release. Esto se prueba en la Fase 0.
-- **El slug** va en minúsculas, sin tildes y con guiones, por ejemplo `01-congelamiento-cerebral`.
+- **Por qué dentro de `studio/`:** el servidor de render corre desde `studio/` y ahí está `node_modules`.
+- **El MP4 final** va como asset de GitHub Release (tag `epNN`). No se commitean MP4 al repo. Solo si Metricool no acepta la URL del release (se prueba en la Fase 0), se usa `out/videos/` con `raw.githubusercontent.com`.
+- **El slug** va en minúsculas, sin tildes, con guiones y sin el número.
+- **Ep. 1:** es la excepción histórica. Su voz quedó como `out/tts/ep1-helado.*`.
 
 ---
 
@@ -23,7 +26,7 @@ episodios/<NN>-<slug>/
 
 ### Duración y largo
 - **62–75 s**, porque TikTok solo monetiza videos de más de 1 minuto.
-- Fernando habla a unas **2,97 palabras por segundo**, así que el guion tiene **185–215 palabras**.
+- Fernando habla a unas **2,97 palabras por segundo**, así que el guion tiene **190–215 palabras** (185 palabras dan apenas ~62 s, sin margen).
 - Mide siempre con los tiempos reales de la alineación, no con la estimación.
 
 ### Estructura (tiempos aproximados)
@@ -59,20 +62,24 @@ episodios/<NN>-<slug>/
 ---
 
 ## 3. Voz
-Se crea `jobs/voz/NNNN-<slug>.json` con este contenido:
+Se crea `jobs/voz/NNNN-epNN-slug.json` (NNNN es correlativo, mira el último en la carpeta) con este contenido:
 ```json
-{"mode":"tts","id":"<slug>","voice_id":"dlGxemPxFMTY7iXagmOj","model_id":"eleven_multilingual_v2",
+{"mode":"tts","id":"epNN-slug","voice_id":"dlGxemPxFMTY7iXagmOj","model_id":"eleven_multilingual_v2",
  "voice_settings":{"stability":0.4,"similarity_boost":0.8,"style":0.32,"use_speaker_boost":true},
  "text":"<guion>"}
 ```
 - **Generación:** al hacer push se dispara Actions. Espera con `git fetch` hasta que cambie `origin/main` y después haz pull.
-- **Archivos que salen:** `out/tts/<slug>.mp3` y `<slug>.json`, con la alineación por carácter. De ahí se arma `words.json`, una lista de `{w, s, e}` partida por espacios.
+- **Revisar el resultado:** en `out/status.json["NNNN-epNN-slug.json"]`. Si dice `error`, es falla aunque el commit haya llegado. Además, el workflow queda en rojo.
+- **Archivos que salen:** `out/tts/epNN-slug.mp3` y `epNN-slug.json`, con la alineación por carácter.
+- **`words.json`:** se arma con `python3 tools/words.py out/tts/epNN-slug.json studio/episodios/epNN-slug/words.json [pantalla.txt]`.
+  - Usa `alignment`, no `normalized_alignment`.
+  - Si escribiste palabras fonéticamente para la voz, pasa `pantalla.txt` con el guion tal como debe verse. Debe tener el mismo número de palabras.
 - **Control:**
   - La duración total debe quedar entre 62 y 75 s.
   - Ninguna palabra puede durar más de 1,2 s (salvo pausas).
   - El conteo de palabras tiene que coincidir con el guion.
   - Si algo falla, se regenera solo esa versión, porque cada intento cuesta créditos.
-- **Varios episodios:** van varios JSON en un solo commit, y Actions los procesa todos.
+- **Varios episodios:** van varios JSON en un solo push, y Actions procesa solo los JSON nuevos o modificados de ese push. Nunca edites jobs viejos, porque se volverían a correr y gastarían créditos.
 
 ---
 
@@ -102,7 +109,7 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 - **Fondo:** cielo o degradado celeste/turquesa, o escenario simple y saturado.
 - **Luz:** suave de estudio, con luz principal, de relleno y de contorno.
 - **Exposición:** nunca sobreexpuesto.
-  - Control automático: menos del 3% de píxeles por sobre 250 en cada hoja de contacto.
+  - Control automático: menos del 3% de píxeles por sobre 250 en cada cuadro de muestra, **medido sin subtítulos ni gráficos**. Se renderiza el cuadro con `?nocap=1` o se excluye la zona de subtítulos.
   - Tone mapping: Neutral o AgX, no ACES fuerte.
 
 ### Encuadre vertical 1080×1920
@@ -129,9 +136,9 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 
 ## 6. Subtítulos
 - **Agrupación:** palabra por palabra en grupos de 1 a 3 palabras, que se cortan en la puntuación.
-- **Tipografía:** Inter 900, en mayúsculas, a 84–90 px, blanca con borde negro de unos 5 px y sombra suave.
+- **Tipografía:** Inter 900, en mayúsculas, a 76–88 px, blanca con borde negro de unos 5 px y sombra suave.
 - **Palabra activa:** amarilla `#FFD23F`, con un pop de escala de 1,12 que dura 0,12 s.
-- **Posición:** la parte de arriba del bloque va en y≈1100–1180, dentro de x 100–980. Nunca encima de la cara del personaje ni en el 35% inferior.
+- **Posición:** una o dos líneas, con la caja completa dentro de **x 120–888 · y 1000–1250**. Si una palabra no cabe (por ejemplo, GANGLIONEURALGIA), la fuente baja hasta 60 px. Nunca encima de la cara del personaje ni en el 35% inferior.
 - **Limpieza:** sin puntos suspensivos ni signos de puntuación en pantalla, y con tildes correctas.
 - **Silencio del título:** los subtítulos se ocultan cuando aparece un texto grande en pantalla, como un nombre científico.
 
@@ -160,7 +167,7 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 - [ ] Dura 62–75 s, a 1080×1920 y 30 fps, en H.264 yuv420p y pesa menos de 100 MB.
 - [ ] El volumen integrado está en −14 ±1 LUFS y el true peak en ≤ −1 dBTP (`ffmpeg -af ebur128`).
 - [ ] No hay negros ni congelados (`blackdetect`, `freezedetect` > 0,5 s).
-- [ ] Menos del 3% de píxeles quemados (>250) en cada cuadro de muestra.
+- [ ] Menos del 3% de píxeles quemados (>250) en cada cuadro de muestra, medido sin subtítulos.
 - [ ] Los subtítulos coinciden palabra por palabra con `words.json`, y sus cajas quedan dentro de la zona segura (se miden en el DOM durante el render).
 
 ### 9.2 Visual (hoja de contacto con 1 cuadro por segundo y cuadros de cada plano)
@@ -175,11 +182,13 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 
 ### 9.3 Revisión independiente (obligatoria)
 - **Quién revisa:** un subagente que no participó del video.
+- **Cómo se lanza:** como subagente, con los materiales y sin tu opinión ni tu autoevaluación.
 - **Qué recibe:**
-  - el guion,
-  - las fuentes,
-  - la hoja de contacto,
-  - las estadísticas de audio,
+  - el guion con sus fuentes,
+  - la hoja de contacto (1 cuadro por segundo),
+  - una **tira de 6 cuadros por plano**, para juzgar movimiento y actuación,
+  - la tabla de subtítulos contra `words.json` (palabra, inicio, fin, posición de la caja),
+  - las estadísticas de audio: LUFS, true peak y dB de diferencia entre voz y música,
   - este manual.
 - **Cómo puntúa:** de 1 a 10, cada uno con un comentario concreto, en:
   1. **Gancho:** ¿alguien deja de hacer scroll en 1 s?
@@ -205,16 +214,25 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 - **YouTube Shorts:**
   - título de 60 caracteres o menos, con la palabra clave al inicio (p. ej. "Por qué te duele la cabeza con el helado 🍦"),
   - descripción de 2 líneas con las fuentes.
-- **Comentario fijado:**
+- **Primer comentario** (`firstCommentText` de Metricool):
   - "Fuentes: …",
   - "¿Qué quieres que te explique la próxima?".
+
+  Metricool no lo fija; Tomás puede fijarlo a mano. En YouTube, las fuentes van también en la descripción.
 - **Portada:** el cuadro 0, o el más fuerte, en `portada.jpg`.
-- **Etiqueta IA:** se marca si el estilo es realista o donde la plataforma lo exija.
+- **Etiqueta IA:** siempre en Instagram (`isAiGenerated`) y TikTok (`isAigc`), porque la voz es sintética. En YouTube (`isAiGeneratedContent`), solo si el estilo es realista.
 - **Palabras clave:** en el texto, lo que la gente buscaría ("dolor de cabeza helado"). En TikTok, 1 de cada 4 usuarios busca algo en los primeros 30 s de un video.
 
 ---
 
 ## 11. Publicación (solo con OK de Tomás)
-- **Herramienta:** Metricool `createScheduledPost`, que necesita una URL pública del MP4. Se publica en las 3 redes, cada una con su texto.
+- **Herramienta:** Metricool `createScheduledPost`, con `blogId` 7499838 y `publicationDate` en America/Santiago.
+- **Un post por red** (3 por video), porque cada post lleva un solo texto. Cada uno lleva:
+  - `media:[URL pública del MP4]`,
+  - `autoPublish:true`,
+  - `firstCommentText` y `videoCoverMilliseconds` (el cuadro de portada).
+- **Instagram:** `instagramData:{type:"REEL", isAiGenerated:true}`.
+- **TikTok:** `tiktokData:{isAigc:true}`.
+- **YouTube:** `youtubeData:{type:"short", title, madeForKids:<decisión de Tomás en CONTEXTO>, category:"EDUCATION", isAiGeneratedContent:<true solo si es realista>}`.
 - **Horario:** según `getBestTimeToPostByNetwork`, con zona America/Santiago.
 - **Registro:** después de publicar, se agrega una fila en `docs/PUBLICADOS.md`.

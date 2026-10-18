@@ -55,7 +55,7 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 | pendiente | ¿Por qué no te puedes hacer cosquillas a ti mismo? | El cerebelo predice tu propio movimiento y "apaga" la sorpresa | Cerebro anticipando la mano | Con un intermediario (un robot) sí funciona |
 | pendiente | ¿Por qué se te duerme la pierna? | Presión sobre nervios y vasos → señales cortadas → hormigueo al volver | Nervio aplastado como manguera | Cómo despertarla rápido |
 | pendiente | ¿Por qué estornudas al mirar el sol? | Reflejo fótico, que tiene una parte importante de la población | Cables del ojo y de la nariz que se cruzan | Si te pasa, es genético |
-| pendiente | ¿Por qué te suena la guata con hambre? | Borborigmos: el intestino "barre" cada cierto tiempo aunque esté vacío | Intestino haciendo ola | Ese ruido es limpieza, no hambre |
+| pendiente | ¿Por qué te suena el estómago con hambre? | Borborigmos: el intestino "barre" cada cierto tiempo aunque esté vacío | Intestino haciendo ola | Ese ruido es limpieza, no hambre |
 | pendiente | ¿Por qué ves estrellitas al pararte rápido? | Baja la presión al cerebro por unos segundos | Sangre que "se cae" a las piernas | Párate en 2 tiempos |
 | pendiente | ¿Por qué se te pone la piel de gallina? | Músculos diminutos que paran cada pelo: un vestigio de cuando teníamos pelaje | Pelos que se paran | Por qué pasa también con música |
 | pendiente | ¿Cuánta energía gasta tu cerebro? | Cerca del 20% de tu energía, siendo ~2% de tu peso | Cerebro como ampolleta gigante | Por qué pensar cansa |

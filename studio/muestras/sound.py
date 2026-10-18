@@ -1,5 +1,5 @@
 """Audio de las muestras: voz (0-5.1 s) + efectos de caricatura + musiquita de ukelele que se corta en el ¡zas!"""
-import subprocess, numpy as np
+import subprocess, pathlib, numpy as np
 from scipy.io import wavfile
 from scipy.signal import butter, sosfilt
 
@@ -8,7 +8,7 @@ rng = np.random.default_rng(4)
 t_all = np.arange(N) / SR
 
 def voice():
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", "/home/claude/reels/ep1-helado/voz.mp3", "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"], capture_output=True).stdout
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(pathlib.Path(__file__).resolve().parents[2] / "out/tts/ep1-helado.mp3"), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"], capture_output=True).stdout
     v = np.frombuffer(raw, np.float32)[:N].copy()
     v = np.pad(v, (0, N - len(v)))
     f = int(0.08 * SR); v[-f:] *= np.linspace(1, 0, f)
@@ -130,5 +130,5 @@ env_v = np.convolve(np.abs(v), np.ones(int(0.05 * SR)) / (0.05 * SR), mode="same
 duck = 1 - 0.55 * np.clip(env_v / 0.08, 0, 1)
 mix = v + 0.55 * sfx + 0.22 * m * duck
 mix /= np.abs(mix).max() / 0.95
-wavfile.write("/home/claude/reels/muestras/audio.wav", SR, (mix * 32767).astype(np.int16))
+wavfile.write(str(pathlib.Path(__file__).resolve().parent / "audio.wav"), SR, (mix * 32767).astype(np.int16))
 print("ok", len(mix) / SR)

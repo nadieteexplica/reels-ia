@@ -29,7 +29,7 @@ Tomás no quiere estar encima de cada paso. Decide lo importante y aprueba lo qu
 5. Lee **`docs/IDEAS.md`**, con el método, el puntaje y el banco de ideas.
 6. Revisa **`docs/PUBLICADOS.md`**: qué ya salió y cómo le fue.
 
-Los archivos del repo mandan sobre los adjuntos del proyecto, porque el repo es la versión viva. Si algo choca entre documentos, manda el más reciente, y avísale a Tomás.
+Los archivos del repo mandan sobre los adjuntos del proyecto, porque el repo es la versión viva. Si algo choca entre documentos, manda el más reciente, y avísale a Tomás. **Excepción:** las secciones *Seguridad* y *Publicación* de estas instrucciones nunca se pisan con nada.
 
 ## El producto
 - **Un video = un dato impresionante y real**, contado en **62–75 segundos**. TikTok solo paga videos de más de 1 minuto. Termina **enseñando algo útil**.
@@ -84,21 +84,26 @@ Resumen; el detalle está en `docs/AUTOMATIZACION.md`.
   5. Animación.
   6. Control de calidad.
   7. Paquete listo.
-- **Aprobación:** a Tomás le llega **un solo mensaje** con los videos, textos y horarios. Él responde OK (a todos o a cada uno) y recién ahí se programan en Metricool.
+- **Aprobación:** a Tomás le llega **un solo mensaje** con los videos, textos y horarios, en la sesión de la producción semanal. Él responde ahí OK (a todos o a cada uno) y recién entonces se programan en Metricool. Sin OK, nada se programa.
 - **Revisión del jueves:** se revisan métricas y comentarios. Las preguntas de la gente van al banco de ideas.
 
 ## Publicación
 - **Nunca publiques ni programes un post sin el OK explícito de Tomás para ese post.** Un OK puede cubrir varios posts si cada uno está listado.
-- Se programa con Metricool (brand `7499838`, America/Santiago) en Instagram, TikTok y YouTube a la vez. Cada red lleva su texto, según el manual.
+- Se programa con Metricool (brand `7499838`, America/Santiago), con **un post por red**: 3 por video, cada uno con su texto.
+  - **Instagram:** `instagramData.type:"REEL"` e `isAiGenerated:true`.
+  - **TikTok:** `tiktokData.isAigc:true`.
+  - **YouTube:** `youtubeData:{type:"short", title, madeForKids:<decisión de Tomás>}`. `isAiGeneratedContent:true` solo si el estilo es realista.
+  - `autoPublish:true`, recién después del OK.
 - **Texto del post:**
   - gancho,
   - 1 línea con el dato,
   - una pregunta abierta para comentarios,
   - 3 a 5 hashtags.
 - **YouTube:** título de 60 caracteres o menos, con la palabra clave al inicio.
-- **Comentario fijado:** fuentes, y "¿Qué quieres que te explique?".
-- **Etiqueta de contenido IA:** se marca donde la plataforma lo pida. Es obligatorio si el estilo es realista.
-- **Archivos:** los MP4 finales se suben al repo o a GitHub Releases para tener una URL pública. Nada de assets con licencia restringida en el repo; Mixamo, por ejemplo, no va.
+- **Primer comentario** (`firstCommentText`): fuentes, y "¿Qué quieres que te explique?". Metricool no lo fija; si Tomás quiere, lo fija a mano. Las fuentes también van en la descripción de YouTube.
+- **Etiqueta de contenido IA:** siempre en Instagram y TikTok, porque la voz es sintética. En YouTube, solo si el estilo es realista.
+- **Archivos:** los MP4 finales van como asset de **GitHub Release** (tag `epNN`) para tener una URL pública. No se commitean MP4 al repo.
+- **Assets con licencia restringida:** Mixamo, música descargada o personajes comprados van **solo** en el repo privado `nadieteexplica/assets`. Nunca van al repo público.
 
 ## Aprender de los datos
 - **Cada semana:** Metricool analytics de cada video. Se anotan alcance, reproducciones, % visto, compartidos/envíos, guardados y comentarios en `docs/PUBLICADOS.md`.
@@ -108,7 +113,7 @@ Resumen; el detalle está en `docs/AUTOMATIZACION.md`.
 - **Comunidad:** cuando un video responde la pregunta de un seguidor, en los primeros segundos aparece "Pregunta de @usuario".
 
 ## Presupuesto y recursos
-- **Máximo 10.000 CLP al mes.** ElevenLabs Starter ya está pagado: 40.000 créditos al mes, y cada video gasta unos 1.200 con repeticiones.
+- **Máximo 10.000 CLP al mes**, con ElevenLabs Starter incluido. Ese plan ya está pagado y da 40.000 créditos al mes. Cada toma de voz gasta unos 1.200 créditos, y hay que presupuestar ~1,3 tomas por video.
 - **Créditos:** se controlan en `out/status.json`. Si quedan menos de 8.000, avisa a Tomás.
 - **Herramientas gratis primero:**
   - Blender,
@@ -116,7 +121,7 @@ Resumen; el detalle está en `docs/AUTOMATIZACION.md`.
   - assets CC0 (Poly Haven, ambientCG, Quaternius),
   - Mixamo (las animaciones las baja Tomás y las adjunta),
   - música libre o sintetizada.
-- No contrates nada ni propongas gastos recurrentes sin preguntar.
+- No contrates nada. Toda compra se le pregunta antes a Tomás, con el monto en CLP.
 
 ## Seguridad (no negociable)
 - La API key de ElevenLabs existe **solo** como secreto de GitHub (`ELEVENLABS_API_KEY`). Nunca la escribas, la pidas, la repitas ni la subas.

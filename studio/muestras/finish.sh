@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd /home/claude/reels/muestras
+cd "$(dirname "$0")"
 enc() { # $1 framerate  $2 frames dir  $3 out
   ffmpeg -hide_banner -loglevel error -y -framerate "$1" -i "$2/f%05d.jpg" -i audio.wav \
     -vf "fps=30,format=yuv420p" -c:v libx264 -preset slow -crf 18 -profile:v high \

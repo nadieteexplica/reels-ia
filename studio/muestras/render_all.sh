@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd /home/claude/reels
+cd "$(dirname "$0")/.."   # carpeta studio/ (el servidor http debe correr desde ahí)
 for S in a b; do
   rm -rf muestras/frames_$S; mkdir -p muestras/frames_$S
   python3 capture.py muestras/$S.html muestras/frames_$S 0 77 30 1 > muestras/log_${S}1.txt 2>&1 &

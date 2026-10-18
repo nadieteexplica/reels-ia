@@ -26,6 +26,7 @@ bash mux.sh <dir> salida.mp4                # usa <dir>/frames y <dir>/audio.wav
 
 - Cada página expone `window.renderAt(t)` y marca `window.READY = true` cuando terminó de cargar.
 - Todo es determinista: una semilla fija (mulberry32) y la animación calculada en función de `t`.
+- `episodios/epNN-slug/` contiene un episodio cada uno (guion, storyboard, words.json, escena, audio, entrega).
 - `muestras/` contiene las 3 muestras de estilo (A/B/C) del gancho del Ep. 1.
   - `main.js` es común a las tres; el estilo sale de `window.STYLE`.
   - `sound.py` arma el audio de las muestras: voz, efectos y ukelele sintetizado.

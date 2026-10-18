@@ -1,13 +1,13 @@
 # Nadie te explica — contexto del proyecto
 
-Leer esto entero antes de trabajar. Es la fuente de verdad de lo decidido hasta ahora (18-oct-2026).
+Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus secciones *Seguridad* y *Publicación* mandan sobre todo. Es la fuente de verdad de lo decidido hasta ahora (18-oct-2026).
 
 ## La cuenta
 - **Nombre:** Nadie te explica. Cuenta faceless de videos cortos hechos con Claude.
 - **Redes:** Instagram `nadie_te_explica` · TikTok "Nadie te explica" · YouTube Shorts (canal `UCFvRAW_exW4MgXEwQqCD1Fw`).
 - **Metricool:** brand id `7499838`, zona horaria America/Santiago. Ya están conectadas las tres redes.
 - **Dueño:** Tomás (Santiago, Chile). Habla en español chileno casual y directo, y quiere respuestas cortas.
-- **Meta: automatización total.** Claude investiga qué subir, escribe el guion, genera la voz, anima, publica a diario (vía Metricool) y revisa los datos.
+- **Meta: automatización total.** Claude investiga qué subir, escribe el guion, genera la voz, anima, deja todo listo, publica **3 veces por semana** (lun/mié/vie) vía Metricool con el OK de Tomás por post, y revisa los datos.
 
 ## Formato (brief vigente)
 - **Temas de todo el mundo**, no solo animales. Los ganchos son:
@@ -33,7 +33,7 @@ Leer esto entero antes de trabajar. Es la fuente de verdad de lo decidido hasta 
   - Tomás aún no elige.
 
 ## Voz
-- **ElevenLabs**, plan Starter (pagado), con **40.000 créditos al mes**. Cada video gasta unos 1.200 con repeticiones, y el saldo se ve en `out/status.json`.
+- **ElevenLabs**, plan Starter (pagado), con **40.000 créditos al mes**. Cada toma gasta unos 1.200 créditos (hay que presupuestar ~1,3 tomas por video), y el saldo se ve en `out/status.json`.
 - La voz elegida es **Fernando Martínez**: `voice_id dlGxemPxFMTY7iXagmOj`. Habla a unas 2,97 palabras por segundo.
 - Modelo `eleven_multilingual_v2`.
 - Settings: stability 0.4, similarity 0.8, style 0.32, speaker boost activado.
@@ -50,7 +50,7 @@ Leer esto entero antes de trabajar. Es la fuente de verdad de lo decidido hasta 
 - **Subtítulos:**
   - Palabra por palabra, de 1 a 3 palabras a la vez, en mayúsculas gruesas.
   - Blancos con borde negro, y la palabra activa en amarillo (#FFD23F).
-  - Ubicados en y≈1000–1250 dentro de la zona segura x 120–888. Nunca en el 35% inferior.
+  - Una o dos líneas, con la caja dentro de **x 120–888 · y 1000–1250**. Fuente de 76–88 px, que baja hasta 60 px si una palabra larga no cabe. Nunca en el 35% inferior.
 - **Llamados en pantalla:** mínimos (flechas finas, etiquetas tipo píldora). Sin logo encima.
 - **Audio:**
   - Música 15–20 dB bajo la voz, con ducking.
@@ -101,10 +101,11 @@ Leer esto entero antes de trabajar. Es la fuente de verdad de lo decidido hasta 
     - C (a 12 fps): ~8 s por cuadro.
   - Todas tienen el mismo personaje: niño con polera coral y estrella, pelo café en mechones, ojos grandes, cara pintada (boca, mejillas) y efecto de congelamiento azul.
 - **Ep. 1 — Congelamiento cerebral (helado):**
-  - Guion, voz (`out/tts/ep1-helado.mp3`) y tiempos (`studio/ep1-helado/words.json`) listos. Guion y fuentes en `studio/ep1-helado/guion.md`.
+  - Guion, voz (`out/tts/ep1-helado.mp3`, id antiguo `ep1-helado`) y tiempos (`studio/episodios/ep01-congelamiento-cerebral/words.json`) listos. Guion y fuentes en `studio/episodios/ep01-congelamiento-cerebral/guion.md`.
   - **Dura 55 s:** hay que alargarlo a 62 s o más (sumar un dato) y regenerar la voz.
   - Falta animarlo en el estilo elegido.
 - **Mixamo:** cuenta creada. Falta que Tomás baje el personaje y las animaciones, y las adjunte en el chat.
+  - **Dónde van:** al repo **privado** `nadieteexplica/assets`, que crea Tomás en la Fase 0. El render los clona con el secreto `ASSETS_TOKEN`. Nunca van al repo público.
   - Configuración: FBX Binary, 30 fps, keyframe reduction none, y "In Place" marcado cuando exista.
   - **Personaje:** joven o niño con ropa casual, con la animación `Breathing Idle` en **With Skin**.
   - **Animaciones en Without Skin:**
@@ -128,6 +129,11 @@ Leer esto entero antes de trabajar. Es la fuente de verdad de lo decidido hasta 
   5. Ep. 1 de punta a punta.
   6. Tareas programadas (A: domingo de producción; B: jueves de revisión).
 
+## Decisiones pendientes de Tomás
+1. **Estilo:** A, B o C del monito, o semi-realista con Mixamo.
+2. **Audiencia de YouTube (`madeForKids`):** se recomienda **no**, porque el contenido es de curiosidades para público general, aunque el protagonista sea un niño. La decisión es de Tomás.
+3. Si va Mixamo: crear el repo **privado** `nadieteexplica/assets` y un token de solo lectura como secreto `ASSETS_TOKEN` en `reels-ia`. Claude le da los pasos.
+
 ## Aprendizajes
 (Se llenan con los datos de cada semana. Ver `docs/PUBLICADOS.md`.)
 
@@ -137,5 +143,5 @@ Leer esto entero antes de trabajar. Es la fuente de verdad de lo decidido hasta 
 - `docs/AUTOMATIZACION.md`: cadencia, fases, ciclo semanal, prompts de las tareas programadas y manejo de fallas.
 - `docs/IDEAS.md`: dónde buscar, puntaje, lista negra y banco de unas 40 ideas.
 - `docs/PUBLICADOS.md`: registro de videos y métricas.
-- `docs/investigacion-formatos-virales.md`: investigación de formatos virales (qué funciona y por qué).
+- `docs/investigacion-formatos-virales.md`: investigación de formatos virales. **Es histórica**: sus datos de plataformas sirven, pero sus propuestas (noticiero low-poly, publicar diario) **no están vigentes**.
 - `docs/banco-ideas-antiguo.md`: banco viejo, de la época low-poly.

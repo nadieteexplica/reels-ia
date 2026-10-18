@@ -5,7 +5,7 @@ import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 const STYLE=window.STYLE||'A';
 const LABEL={A:'MUESTRA A · PIXAR SUAVE',B:'MUESTRA B · CARICATURA',C:'MUESTRA C · PLASTILINA'}[STYLE];
 const W=1080,H=1920,DUR=5.1;
-const WORDS=(await (await fetch('../ep1-helado/words.json')).json()).filter(w=>w.s<DUR-0.05);
+const WORDS=(await (await fetch('../episodios/ep01-congelamiento-cerebral/words.json')).json()).filter(w=>w.s<DUR-0.05);
 
 // ---------- utilidades ----------
 const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),lerp=(a,b,t)=>a+(b-a)*t;
