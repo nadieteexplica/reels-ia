@@ -104,10 +104,13 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - Pendiente: piel menos plástica, bordes de manga, mirada, sincronía de boca, contacto mano–cara (`Thinking` no llega al mentón).
 - **Mixamo:** 14 FBX en los archivos del proyecto de Claude (no en el repo). `Talking` bajó la versión **sentado**: falta "General Conversation" (de pie). `Drinking` está repetida.
 - **Muestras de estilo A/B/C** (`studio/muestras/`): históricas, ya no se usan.
-- **Ep. 1 — Congelamiento cerebral (helado):**
-  - Guion, voz (`out/tts/ep1-helado.mp3`, id antiguo `ep1-helado`) y tiempos (`studio/episodios/ep01-congelamiento-cerebral/words.json`) listos. Guion y fuentes en `studio/episodios/ep01-congelamiento-cerebral/guion.md`.
-  - **Dura 55 s:** hay que alargarlo a 62 s o más (sumar un dato) y regenerar la voz.
-  - Falta animarlo en el estilo elegido.
+- **Ep. 1 — Congelamiento cerebral (helado), v2 (idea de Tomás: carrito de helado):**
+  - Guion de 209 palabras con fuentes (`guion.md`), voz `out/tts/ep01-congelamiento-cerebral.mp3` (**71,7 s**), `words.json` y `storyboard.md`.
+  - Escena completa en `escena/build_ep01.py`: 34 planos (plaza con carrito, interior de la cabeza con piel de vidrio, macro del paladar, laboratorio con 13 voluntarios, arteria, letras gigantes), cortes cada ~2 s, loop final.
+  - Post (`escena/post.py`): subtítulos palabra por palabra con palabras clave en cian, etiquetas, medidor de dolor y rebobinado VHS. Audio (`escena/audio.py`): voz + marimba sintetizada con ducking (~19 dB bajo la voz) + efectos, −14 LUFS.
+  - Textos del post en `entrega/caption.md`.
+  - **Falta:** render final en Actions (`.github/workflows/render.yml`), QA y revisión independiente. Bloqueado hasta que exista el repo privado `nadieteexplica/assets` con el secreto `ASSETS_TOKEN`.
+  - Tiempos de render medidos en el workspace (2 núcleos): un cuadro 1080×1920 con 24 muestras tarda ~7 min.
 - **Mixamo (referencia):**
   - **Dónde van las FBX:** al repo **privado** `nadieteexplica/assets`, que crea Tomás en la Fase 0. El render los clona con el secreto `ASSETS_TOKEN`. Nunca van al repo público.
   - Configuración: FBX Binary, 30 fps, keyframe reduction none, y "In Place" marcado cuando exista.
