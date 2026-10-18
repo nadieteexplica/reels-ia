@@ -19,6 +19,7 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 | R5 | Hoyo en el patio → estanque (`hiddenhome.3d`) | Corte del terreno que se transforma, 3D | 382 mil | 39,2 mil | **75,3 mil** | 10 % | 20 % | casi plano fijo |
 | R6 | Por qué las ventanas de avión son redondas (cuenta 2D, nombre no legible) | "¿Sabías que…?" con dato histórico, 2D | 25,6 mil | 7.951 | 5.280 | **31 %** | **21 %** | 4 cortes en 44 s |
 | R7 | Cómo ganarle al arquero en un mano a mano (`admir_footy`) | Análisis de datos propio, visualización 2D | 62,6 mil | 25,7 mil | 12 mil | **41 %** | 19 % | 0 cortes |
+| R8 | ¿Por qué el gancho del metro está suelto? (`resultaaquee`) | Objeto cotidiano en primer plano, 3D, con etiqueta de IA | 290 mil | 50,3 mil | 29,7 mil | 17 % | 10 % | ~1,8 |
 
 ---
 
@@ -110,9 +111,26 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 - **No tomar:** el 2D; su tema (definiciones de fútbol) contado igual.
 - **Alcanzable:** **sí**. En 3D, los puntos pueden ser objetos reales (1.945 pelotas, 1.000 temblores sobre un mapa de Chile), con instancias en Blender y sin personajes. Tomás sabe Python y R: el análisis de datos es terreno propio.
 
+### R8 · El gancho del metro (`resultaaquee`)
+- **Qué es:** "¿Por qué el gancho del metro está suelto? No, no está roto." Se mueve justo lo que mide su grosor, así que el cero queda bien si lo enganchas en una tabla o si lo empujas contra una pared. Si lo aprietas, la medida te sale siempre mal. Cierra con "Sí, está suelto, pero a propósito. Envíaselo a ese amigo", con un celular animado mostrando cómo se comparte. En español y con la etiqueta "Contenido de IA".
+- **Por qué funciona:**
+  - todos tienen un metro en la casa y todos pensaron que estaba malo: **parece un defecto, pero es a propósito**;
+  - la respuesta se entiende en 20 s y te deja con algo que contar;
+  - pide el envío explícitamente y con destinatario.
+- **Tomar:**
+  - **un solo objeto en primer plano**, render limpio tipo comercial de producto, fondo oscuro cálido con partículas desenfocadas;
+  - **colores con significado:** gris normal, rojo/rosado cuando está mal, celeste para la línea del cero;
+  - planos translúcidos y flechas para mostrar lo invisible (dónde queda el cero);
+  - utilería para el "error" (el alicate que aprieta el gancho);
+  - **subtítulos arriba** cuando el objeto ocupa el centro: texto gris con la palabra activa en blanco dentro de un recuadro;
+  - **llamado a enviar al final, con destinatario** ("envíaselo a ese amigo"). Es distinto de un "sígueme": empuja nuestra métrica principal.
+- **No tomar:** el gráfico del celular con la interfaz de Instagram (es de la app); el tema contado igual.
+- **Alcanzable:** **sí, es de lo más fácil**: un objeto, un par de materiales, una tabla y una pared. Sin personajes.
+- **Dato extra:** la etiqueta "Contenido de IA" no le impidió llegar a 290 mil.
+
 ---
 
-## 3. Conclusiones (al 18-oct-2026, con 7 referencias)
+## 3. Conclusiones (al 18-oct-2026, con 8 referencias)
 
 1. **Cada video se diseña para una acción: enviar o guardar.**
    - Se **envía** lo que tiene un destinatario: humor (R1, 46 %), dato sorpresa (R6, 31 %) o moraleja "esto es para ti" (R4, 20 %).
@@ -129,7 +147,11 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 9. **Las series por partes** (R1) generan seguidores: la Parte 2 la ve gente que nunca vio la 1 (coincide con `investigacion-formatos-virales.md`).
 10. **Los datos propios son originalidad y autoridad a la vez** (R7). "Conté 1.945 casos" no se puede copiar y se verifica solo.
 11. **Dejar adivinar antes de revelar** (R7) genera comentarios y retención.
-12. **Código de color fijo** (R6, R7): un color por idea u opción, repetido en subtítulos y gráficos. Se lee sin pensar.
+12. **Código de color fijo** (R6, R7, R8): un color por idea u opción, repetido en subtítulos y gráficos. Se lee sin pensar.
+13. **"Parece un error, pero es a propósito"** (R8, R6) es una familia de temas muy compartible: objetos que todos tienen y todos creen que están malos o mal diseñados.
+14. **Pedir el envío con destinatario al final** ("envíaselo a ese amigo que…") puede subir la métrica principal (R8). Se prueba en algunos videos y se compara.
+15. **La etiqueta de IA no frena el alcance** (R8: 290 mil con "Contenido de IA").
+16. **El subtítulo puede ir arriba** cuando el objeto ocupa el centro (R8). La zona fija al medio sirve para personajes, no para todo.
 
 ---
 
@@ -137,7 +159,7 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 
 | Nivel | Qué | Referencias | Estado |
 |---|---|---|---|
-| **Ya alcanzable** | Corte o transformación sin personaje; objetos con metáforas visuales; números animados; datos propios con objetos 3D | R5, R6, R7 en 3D | Solo falta la plantilla |
+| **Ya alcanzable** | Corte o transformación sin personaje; objeto cotidiano en primer plano; objetos con metáforas visuales; números animados; datos propios con objetos 3D | R5, R6, R7, R8 | Solo falta la plantilla |
 | **Con trabajo** | Fábulas y story time con personajes semi-realistas y look pastel | R2, R3, R4 | Protagonista borrador 1 en `studio/personaje/`. Faltan piel, mirada, boca y personajes secundarios (variaciones de MakeHuman) |
 | **Fuera de alcance** | Caras tipo Pixar con esa expresividad | R1 | Requiere IA de video: fuera de presupuesto |
 
@@ -151,6 +173,7 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 | **Dato histórico con metáfora visual** | Datos | R6 | Enviar y guardar |
 | **Concepto armado frente a ti** (filosofía, experimentos mentales) | Datos | R3 | Guardar |
 | **"Lo conté yo"** (análisis propio con datos abiertos: fútbol, temblores, metro…) | Datos | R7 | Enviar y comentar |
+| **"Parece un error, pero es a propósito"** (objeto cotidiano en primer plano) | Datos | R8 | Enviar |
 | **Fábula absurda con moraleja** | Historias | R4 | Enviar |
 | **Story time ficticio en primera persona** | Historias | R2 | Retención (alcance) |
 | **Serie por partes** (cualquiera de los anteriores) | Ambas | R1 | Seguir |
@@ -171,7 +194,8 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 
 - **`MANUAL_PRODUCCION.md`:**
   - §4: reemplazar "plano de 2–3 s" y "ningún plano estático de más de 3 s" por "**nunca más de 2 s sin un cambio en pantalla**" (corte o transformación). Planos de 1,2–2,5 s.
-  - §6: sumar **palabra clave** destacada además de la palabra activa.
+  - §6: sumar **palabra clave** destacada además de la palabra activa; permitir **subtítulos arriba** cuando el protagonista es un objeto centrado.
+  - §1 y §10: probar un cierre con **llamado a enviar con destinatario** ("envíaselo a…") en algunos videos, sin romper el loop.
   - §1: estructura de guion para la línea historias.
   - §2: la verificación aplica a todo lo que se presenta como real.
   - §5: look de referencia R4 (pastel saturado) y luz de una sola fuente para momentos dramáticos (R3).
@@ -182,4 +206,5 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
   - banco de historias;
   - temas nuevos: experimentos mentales, filosofía, historia de la ingeniería (ventanas del Comet), **fútbol y deportes**, **datos propios** (temblores en Chile, metro de Santiago, etc.).
   - fuentes de datos abiertos para la línea "lo conté yo" (la licencia de cada base se revisa antes de usarla).
+  - familia "parece un error, pero es a propósito" en el banco de objetos cotidianos.
 - **`PUBLICADOS.md`:** columna **Línea** (datos / historias) y **Formato**.
