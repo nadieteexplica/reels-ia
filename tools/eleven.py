@@ -70,6 +70,40 @@ def job_tts(job):
     return {"tts": job["id"]}
 
 
+def job_compare(job):
+    """Genera el mismo texto con varias voces (las indicadas + las mejores de una búsqueda)."""
+    out = ROOT / "out" / "comparar"; out.mkdir(parents=True, exist_ok=True)
+    picks = list(job.get("voices", []))
+    sq = job.get("search")
+    if sq:
+        seen = set(v["voice_id"] for v in picks) | set(sq.get("exclude", []))
+        cands = []
+        for q in sq["queries"]:
+            try:
+                res = req("GET", "/shared-voices", {"page_size": 30, **q})
+            except urllib.error.HTTPError:
+                continue
+            for v in res.get("voices", []):
+                if v.get("voice_id") in seen: continue
+                seen.add(v.get("voice_id")); cands.append(v)
+        cands.sort(key=lambda v: -(v.get("usage_character_count_1y") or 0))
+        picks += [{"voice_id": v["voice_id"], "name": v.get("name"), "accent": v.get("accent"), "locale": v.get("locale"),
+                   "usage": v.get("usage_character_count_1y"), "description": v.get("description")} for v in cands[: sq.get("top", 4)]]
+    done = []
+    for i, v in enumerate(picks, 1):
+        try:
+            res = req("POST", f"/text-to-speech/{v['voice_id']}/with-timestamps", {"output_format": "mp3_44100_128"},
+                      {"text": job["text"], "model_id": job.get("model_id", "eleven_multilingual_v2"),
+                       "voice_settings": job.get("voice_settings", {"stability": 0.42, "similarity_boost": 0.8, "style": 0.3, "use_speaker_boost": True})})
+            fn = f"{i:02d}_{(v.get('name') or 'voz').split(' - ')[0].replace(' ', '_')}.mp3"
+            (out / fn).write_bytes(base64.b64decode(res["audio_base64"]))
+            done.append({**v, "file": fn})
+        except urllib.error.HTTPError as e:
+            done.append({**v, "error": f"{e.code} {e.read().decode()[:200]}"})
+    (out / "comparar.json").write_text(json.dumps(done, ensure_ascii=False, indent=1))
+    return {"comparadas": len([d for d in done if "file" in d])}
+
+
 def main(files):
     if not KEY:
         write_status({"elevenlabs": "FALTA EL SECRETO ELEVENLABS_API_KEY"}); print("sin clave"); return
@@ -81,7 +115,7 @@ def main(files):
     for f in files:
         job = json.loads(pathlib.Path(f).read_text())
         try:
-            r = job_voices(job) if job["mode"] == "voices" else job_tts(job)
+            r = job_voices(job) if job["mode"] == "voices" else (job_compare(job) if job["mode"] == "compare" else job_tts(job))
             write_status({pathlib.Path(f).name: r})
         except urllib.error.HTTPError as e:
             write_status({pathlib.Path(f).name: f"error {e.code}: {e.read().decode()[:400]}"})

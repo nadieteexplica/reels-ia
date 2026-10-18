@@ -1,0 +1,89 @@
+{
+ "mode": "compare",
+ "text": "El pulpo tiene tres corazones. Y su sangre no es roja... es azul. Dos de esos corazones solo empujan la sangre por las branquias. El tercero, el más grande, la reparte por todo el cuerpo.",
+ "voices": [
+  {
+   "voice_id": "dlGxemPxFMTY7iXagmOj",
+   "name": "Fernando Martínez - Rapid, Persuasive",
+   "accent": "latin american",
+   "locale": "es-AR",
+   "usage": 10531112234
+  },
+  {
+   "voice_id": "l1zE9xgNpUTaQCZzpNJa",
+   "name": "Alberto Rodríguez - Serious, Narrative",
+   "accent": "latin american",
+   "locale": "es-AR",
+   "usage": 4583602116
+  },
+  {
+   "voice_id": "iDEmt5MnqUotdwCIVplo",
+   "name": "Enrique Mondragón - Elegant and Dynamic",
+   "accent": "mexican",
+   "locale": "es-MX",
+   "usage": 1520982299
+  },
+  {
+   "voice_id": "sKgg4MPUDBy69X7iv3fA",
+   "name": "Alejandro Duràn - Warm, Deep and Hoarse",
+   "accent": "latin american",
+   "locale": "es-AR",
+   "usage": 1341273702
+  },
+  {
+   "voice_id": "htFfPSZGJwjBv1CL0aMD",
+   "name": "Antonio - Confident, Gentle and Clear",
+   "accent": "latin american",
+   "locale": "es-AR",
+   "usage": 1077357439
+  }
+ ],
+ "search": {
+  "top": 4,
+  "exclude": [
+   "dlGxemPxFMTY7iXagmOj",
+   "l1zE9xgNpUTaQCZzpNJa",
+   "iDEmt5MnqUotdwCIVplo",
+   "sKgg4MPUDBy69X7iv3fA",
+   "htFfPSZGJwjBv1CL0aMD"
+  ],
+  "queries": [
+   {
+    "language": "es",
+    "gender": "male",
+    "accent": "latin american",
+    "sort": "usage_character_count_1y"
+   },
+   {
+    "language": "es",
+    "gender": "male",
+    "accent": "mexican",
+    "sort": "usage_character_count_1y"
+   },
+   {
+    "language": "es",
+    "gender": "male",
+    "accent": "colombian",
+    "sort": "usage_character_count_1y"
+   },
+   {
+    "language": "es",
+    "gender": "male",
+    "accent": "argentine",
+    "sort": "usage_character_count_1y"
+   },
+   {
+    "language": "es",
+    "gender": "male",
+    "accent": "chilean",
+    "sort": "usage_character_count_1y"
+   },
+   {
+    "language": "es",
+    "gender": "male",
+    "use_cases": "social_media",
+    "sort": "usage_character_count_1y"
+   }
+  ]
+ }
+}
