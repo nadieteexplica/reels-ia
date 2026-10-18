@@ -6,6 +6,8 @@ P = "mixamorig:"
 
 
 DAMP = {"Neck": 0.7, "Head": 0.7}  # la captura de Mixamo exagera la cabeza: se suaviza un 30 %
+# por animación: Drinking echa la cabeza atrás (tomar de botella); para comer helado la cabeza va derecha
+DAMP_ACT = {"Drinking": {"Neck": 0.15, "Head": 0.15, "Spine2": 0.5, "Spine1": 0.6}}
 
 
 def damp_rotations(act, damp=DAMP):
@@ -48,7 +50,8 @@ def load_action(fbx_path, rig, name=None, damp=True):
                 kp.handle_left.y *= scale
                 kp.handle_right.y *= scale
     if damp:
-        damp_rotations(act)
+        base = os.path.splitext(os.path.basename(fbx_path))[0]
+        damp_rotations(act, DAMP_ACT.get(base, DAMP))
     for o in new_objs:
         bpy.data.objects.remove(o)
     for a in set(bpy.data.actions) - acts_before - {act}:

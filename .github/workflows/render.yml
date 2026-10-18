@@ -1,0 +1,151 @@
+name: render
+# Renderiza un episodio en paralelo y publica el MP4 como asset de Release (tag = epNN).
+# Las animaciones de Mixamo vienen del repo privado nadieteexplica/assets (secreto ASSETS_TOKEN):
+# nunca se suben a este repo ni a los artefactos.
+on:
+  workflow_dispatch:
+    inputs:
+      episodio:
+        description: "Carpeta del episodio en studio/episodios"
+        default: "ep01-congelamiento-cerebral"
+      partes:
+        description: "Trabajos en paralelo"
+        default: "20"
+      res:
+        description: "Resolución de render (se escala a 1080x1920 al final)"
+        default: "1080x1920"
+      samples:
+        description: "Muestras de Cycles"
+        default: "20"
+      cuadros:
+        description: "Rango opcional a-b (pruebas). Vacío = todo"
+        default: ""
+      publicar:
+        description: "Subir el MP4 al Release"
+        default: "true"
+permissions:
+  contents: write
+concurrency: render-${{ github.event.inputs.episodio }}
+env:
+  EP: ${{ github.event.inputs.episodio }}
+  MH_DATA: ${{ github.workspace }}/mh/makehuman/data
+  MIXAMO_DIR: ${{ github.workspace }}/assets/mixamo
+  OUT: ${{ github.workspace }}/_ep
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: m
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json, os
+          ep = os.environ["EP"]
+          words = json.load(open(f"studio/episodios/{ep}/words.json"))
+          end = int(round((words[-1]["e"] + 0.45) * 30)) + 1
+          rng = "${{ github.event.inputs.cuadros }}".strip()
+          a, b = (int(x) for x in rng.split("-")) if rng else (1, end)
+          n = max(1, int("${{ github.event.inputs.partes }}"))
+          step = -(-(b - a + 1) // n)
+          parts = [{"parte": i, "a": a + i * step, "b": min(b, a + (i + 1) * step - 1)} for i in range(n) if a + i * step <= b]
+          print("matrix=" + json.dumps({"include": parts}))
+          EOF
+
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Animaciones de Mixamo (repo privado)
+        uses: actions/checkout@v4
+        with:
+          repository: nadieteexplica/assets
+          token: ${{ secrets.ASSETS_TOKEN }}
+          path: assets
+      - name: MakeHuman (CC0)
+        run: |
+          git clone -q --depth 1 --filter=blob:none --sparse https://github.com/makehumancommunity/makehuman mh
+          cd mh && git sparse-checkout set makehuman/data/3dobjs makehuman/data/targets makehuman/data/eyes
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Blender y librerías
+        run: pip install -q bpy==5.2.0 numpy scipy pillow
+      - name: Personaje
+        run: |
+          cd studio/personaje
+          python build_body.py && python rig.py && python dress.py && python hair.py
+      - name: Escena del episodio
+        run: |
+          cd "studio/episodios/$EP/escena"
+          python build_*.py
+      - name: Render ${{ matrix.a }}-${{ matrix.b }}
+        run: |
+          BLEND=$(ls "$OUT"/ep*.blend | head -1) FRAMES=${{ matrix.a }}-${{ matrix.b }} RES=${{ github.event.inputs.res }} \
+          SAMPLES=${{ github.event.inputs.samples }} DIR="$OUT/frames" SKIP="$(python -c "import json,glob; m=json.load(open(glob.glob('$OUT/*_planos.json')[0])); a,b=m['FR']['6']; print(json.dumps(list(range(a,b))))")" \
+          python studio/plantilla/render_frames.py
+          cp "$OUT"/*_planos.json "$OUT/frames/"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuadros-${{ matrix.parte }}
+          path: ${{ env.OUT }}/frames
+          retention-days: 3
+
+  armar:
+    needs: render
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: |
+          sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg fonts-inter fonts-dejavu-core > /dev/null
+          pip install -q numpy scipy pillow
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cuadros-*
+          path: ${{ env.OUT }}/frames
+          merge-multiple: true
+      - name: Post, audio y video
+        run: |
+          set -e
+          cp "$OUT"/frames/*_planos.json "$OUT/"
+          cd "studio/episodios/$EP/escena"
+          python post.py "$OUT/frames" "$OUT/final"
+          python audio.py
+          TAG=$(echo "$EP" | cut -d- -f1)
+          ffmpeg -y -v error -framerate 30 -i "$OUT/final/%05d.png" -i "$OUT"/*_mix.wav \
+            -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -profile:v high -crf 18 -preset slow \
+            -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT/$EP.mp4"
+          ffprobe -v error -show_entries format=duration:stream=width,height,r_frame_rate -of compact "$OUT/$EP.mp4"
+          ffmpeg -hide_banner -i "$OUT/$EP.mp4" -af ebur128=peak=true -f null - 2>&1 | grep -E "I:|Peak:" | tail -2
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+      - name: QA automático
+        run: python tools/qa.py "$OUT/$EP.mp4" "$OUT/frames" "$OUT/subs_log.json" | tee "$OUT/qa.txt"
+      - name: Hoja de contacto (1 cuadro por segundo)
+        run: |
+          ffmpeg -y -v error -i "$OUT/$EP.mp4" -vf "fps=1,scale=216:384,tile=12x7" -frames:v 1 "$OUT/contacto.jpg"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: video
+          path: |
+            ${{ env.OUT }}/*.mp4
+            ${{ env.OUT }}/contacto.jpg
+            ${{ env.OUT }}/subs_log.json
+            ${{ env.OUT }}/qa.txt
+          retention-days: 7
+      - name: Publicar en el Release
+        if: github.event.inputs.publicar == 'true' && github.event.inputs.cuadros == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "$EP" --notes "Video final de $EP"
+          gh release upload "$TAG" "$OUT/$EP.mp4" "$OUT/contacto.jpg" --clobber
+          echo "URL: https://github.com/${{ github.repository }}/releases/download/$TAG/$EP.mp4"
