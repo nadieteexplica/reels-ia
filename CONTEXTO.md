@@ -150,5 +150,6 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - `docs/AUTOMATIZACION.md`: cadencia, fases, ciclo semanal, prompts de las tareas programadas y manejo de fallas.
 - `docs/IDEAS.md`: dónde buscar, puntaje, lista negra y banco de unas 40 ideas.
 - `docs/PUBLICADOS.md`: registro de videos y métricas.
+- `docs/REFERENCIAS.md`: estudio de videos virales de referencia (por qué funcionan, qué tomar, qué tan alcanzable). Documento vivo.
 - `docs/investigacion-formatos-virales.md`: investigación de formatos virales. **Es histórica**: sus datos de plataformas sirven, pero sus propuestas (noticiero low-poly, publicar diario) **no están vigentes**.
 - `docs/banco-ideas-antiguo.md`: banco viejo, de la época low-poly.
