@@ -1,0 +1,29 @@
+name: voz
+on:
+  push:
+    paths: ["jobs/voz/**.json"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: voz
+jobs:
+  voz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Trabajos de voz
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: |
+          FILES=$(git diff --name-only HEAD~1 HEAD -- 'jobs/voz/*.json' || true)
+          [ -z "$FILES" ] && FILES=$(ls jobs/voz/*.json)
+          python3 tools/eleven.py $FILES
+      - name: Guardar resultados
+        run: |
+          git config user.name "reels-bot"
+          git config user.email "reels-bot@users.noreply.github.com"
+          git add out
+          git commit -m "voz: resultados" || echo "nada que guardar"
+          git push

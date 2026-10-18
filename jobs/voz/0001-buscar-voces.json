@@ -1,0 +1,11 @@
+{
+ "mode": "voices",
+ "top": 8,
+ "queries": [
+  {"language": "es", "accent": "latin american", "use_cases": "narrative_story", "sort": "usage_character_count_1y"},
+  {"language": "es", "accent": "latin american", "use_cases": "informative_educational", "sort": "usage_character_count_1y"},
+  {"language": "es", "accent": "mexican", "use_cases": "narrative_story", "sort": "usage_character_count_1y"},
+  {"language": "es", "accent": "chilean", "sort": "usage_character_count_1y"},
+  {"language": "es", "accent": "latin american", "use_cases": "social_media", "sort": "usage_character_count_1y"}
+ ]
+}
