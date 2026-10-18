@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "id": "ep1-helado",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "text": "Te comes un helado muy rápido... y de repente: ¡zas! Te duele la frente. Pero el frío nunca tocó tu cerebro. Entonces, ¿qué pasó? Cuando el helado toca el techo de tu boca, el paladar se enfría de golpe. Los vasos sanguíneos que hay ahí se encogen... y después se abren de golpe para mandar sangre caliente. Ese cambio brusco lo detecta el trigémino, el nervio más grande de tu cabeza, que tiene ramas por toda la cara... incluida la frente. Las señales llegan juntas, tu cerebro se confunde, y cree que el dolor viene de la frente. Y lo más loco: tu cerebro no siente dolor. No tiene receptores de dolor. Lo que te duele son los vasos y nervios que lo rodean. Su nombre científico es ganglioneuralgia esfenopalatina. Sí, en serio. El truco para cortarlo: aprieta la lengua contra el paladar para calentarlo, o toma algo tibio. Y la próxima vez, come más lento... aunque, seamos honestos, nadie come helado lento.",
+ "voice_settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.32,
+  "use_speaker_boost": true
+ }
+}
