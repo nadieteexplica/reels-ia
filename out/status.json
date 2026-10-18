@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 825,
+ "creditos_usados": 1190,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -19,5 +19,8 @@
  },
  "0005-ep1-helado.json": {
   "tts": "ep1-helado"
+ },
+ "0006-ep01-congelamiento-cerebral.json": {
+  "tts": "ep01-congelamiento-cerebral"
  }
 }
