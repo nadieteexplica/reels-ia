@@ -108,19 +108,24 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - **Dónde van:** al repo **privado** `nadieteexplica/assets`, que crea Tomás en la Fase 0. El render los clona con el secreto `ASSETS_TOKEN`. Nunca van al repo público.
   - Configuración: FBX Binary, 30 fps, keyframe reduction none, y "In Place" marcado cuando exista.
   - **Personaje:** joven o niño con ropa casual, con la animación `Breathing Idle` en **With Skin**.
-  - **Animaciones en Without Skin:**
-    - `Talking` (2–3),
-    - `Surprised`,
-    - `Terrified`,
-    - `Thinking`,
-    - `Pointing`,
-    - `Drinking` (sirve para llevarse algo a la boca),
-    - `Shaking Head No`,
-    - `Head Nod Yes`,
-    - `Excited`,
-    - `Shrugging`,
-    - alguna con las manos en la cabeza (buscar `head`),
-    - `Happy Idle`.
+  - **Animaciones en Without Skin** (elegidas mirando el catálogo el 18-oct; nombre de búsqueda → descripción en Mixamo):
+    - Ep. 1 y base de la biblioteca:
+      - `Drinking` → "Male Drinking" (se lleva el helado a la boca; también "toma algo tibio"),
+      - `Focus` → "Shake Off Head Pain And Focus" (manos a la cabeza: el "¡zas!"),
+      - `Thinking` → "Thinking While Standing",
+      - `Shrugging` → "Shoulder Shrug",
+      - `Arm Gesture` → "Gesturing With Arm To The Side" (presenta el corte de la cabeza),
+      - `Pointing` → "Pointing With Arm Bent",
+      - `Talking` → "General Conversation" y "Asking A Question With Two Hands",
+      - `Surprised` → "Finding Something And Wiggling Fingers" ("y lo más loco"),
+      - `Head Nod Yes` → "Nodding Head Yes" ("sí, en serio"),
+      - `Relieved Sigh` → "Sighing In Relief" (cuando se pasa el dolor),
+      - `Shaking Head No` → "Shaking Head No Dismissively",
+      - `Laughing` → "Laughing Standing" (cierre),
+      - `Happy Idle` → "Happy Idle Variation 1" (entre planos).
+    - Para otros episodios: `Terrified` ("Being Terrified While Standing") y `Excited` ("Super Excited").
+    - Descartadas: `Agony` (demasiado dramática).
+    - Con personajes cabezones (Timmy, Ty), subir "Character Arm-Space" para que las manos no atraviesen la cabeza.
 - **Próximos pasos:**
   1. Que Tomás elija el estilo.
   2. Plantilla de producción.
