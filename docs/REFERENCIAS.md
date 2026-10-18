@@ -20,6 +20,7 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 | R6 | Por qué las ventanas de avión son redondas (cuenta 2D, nombre no legible) | "¿Sabías que…?" con dato histórico, 2D | 25,6 mil | 7.951 | 5.280 | **31 %** | **21 %** | 4 cortes en 44 s |
 | R7 | Cómo ganarle al arquero en un mano a mano (`admir_footy`) | Análisis de datos propio, visualización 2D | 62,6 mil | 25,7 mil | 12 mil | **41 %** | 19 % | 0 cortes |
 | R8 | ¿Por qué el gancho del metro está suelto? (`resultaaquee`) | Objeto cotidiano en primer plano, 3D, con etiqueta de IA | 290 mil | 50,3 mil | 29,7 mil | 17 % | 10 % | ~1,8 |
+| R9 | Hacer girar el monte Fuji como un trompo (`zackdfilms`) | Megaproyecto absurdo paso a paso, 3D | **5,8 mill.** | **1,4 mill.** | 243 mil | 24 % | 4 % | ~1,4 |
 
 ---
 
@@ -128,9 +129,25 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 - **Alcanzable:** **sí, es de lo más fácil**: un objeto, un par de materiales, una tabla y una pared. Sin personajes.
 - **Dato extra:** la etiqueta "Contenido de IA" no le impidió llegar a 290 mil.
 
+### R9 · El monte Fuji girando como trompo (Zack D. Films)
+- **Qué es:** un megaproyecto absurdo explicado paso a paso: amarrar un cable a la base del Fuji, perforar miles de pozos, anclarlo, envolverlo en malla de acero, darlo vuelta con cohetes, montarlo sobre un rodamiento gigante y tirar del cable con miles de aviones de combate hasta que gira. Tiene 5,8 millones de likes, 1,4 millones de envíos y 85 mil comentarios.
+- **Por qué funciona:**
+  - premisa absurda y gigante, que se entiende en el título;
+  - la ingeniería suena seria (anclas, lechada, rodamiento), lo que lo hace "creíble" y divertido a la vez;
+  - **escala épica:** miles de anclas, cohetes y aviones;
+  - invita a discutir ("eso no funcionaría"), por eso los comentarios son muchísimos (1,5 % de los likes, 10 veces más que el resto).
+- **Tomar:**
+  - **premisa absurda a escala gigante** con un lugar real y conocido;
+  - **repetición masiva** (miles de objetos iguales) para dar escala;
+  - planos aéreos amplios alternados con detalles de máquinas;
+  - ritmo de ~1,4 s por plano.
+- **No tomar:** es **el formato insignia de Zack** (megaproyecto + narración en imperativo). Hacerlo igual es imitarlo. La referencia a Beyblade (una marca) tampoco.
+- **Cómo hacerlo nuestro:** la premisa absurda, pero **con el cálculo real** de si funcionaría ("¿Cuántos aviones harían falta para hacer girar el Aconcagua? Lo calculé"). Cruza la escala de R9 con los datos propios de R7, y es algo que Zack no hace.
+- **Alcanzable:** **sí, con trabajo**. El terreno sale de datos de elevación abiertos y los miles de objetos son instancias en Blender. Faltan modelos semi-realistas de máquinas (cohetes, aviones, grúas), y el render de paisajes es pesado.
+
 ---
 
-## 3. Conclusiones (al 18-oct-2026, con 8 referencias)
+## 3. Conclusiones (al 18-oct-2026, con 9 referencias)
 
 1. **Cada video se diseña para una acción: enviar o guardar.**
    - Se **envía** lo que tiene un destinatario: humor (R1, 46 %), dato sorpresa (R6, 31 %) o moraleja "esto es para ti" (R4, 20 %).
@@ -152,6 +169,8 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 14. **Pedir el envío con destinatario al final** ("envíaselo a ese amigo que…") puede subir la métrica principal (R8). Se prueba en algunos videos y se compara.
 15. **La etiqueta de IA no frena el alcance** (R8: 290 mil con "Contenido de IA").
 16. **El subtítulo puede ir arriba** cuando el objeto ocupa el centro (R8). La zona fija al medio sirve para personajes, no para todo.
+17. **El mayor alcance lo da lo absurdo a escala gigante** (R9: 5,8 millones). Una premisa imposible con un lugar real.
+18. **Los comentarios explotan cuando la premisa invita a discutir** (R9: "eso no funcionaría"). Para comentarios: dejar algo que la gente quiera corregir o completar.
 
 ---
 
@@ -160,6 +179,7 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 | Nivel | Qué | Referencias | Estado |
 |---|---|---|---|
 | **Ya alcanzable** | Corte o transformación sin personaje; objeto cotidiano en primer plano; objetos con metáforas visuales; números animados; datos propios con objetos 3D | R5, R6, R7, R8 | Solo falta la plantilla |
+| **Con trabajo** | Megaproyectos absurdos con paisajes reales y miles de objetos | R9 | Terreno con datos de elevación abiertos; faltan modelos de máquinas |
 | **Con trabajo** | Fábulas y story time con personajes semi-realistas y look pastel | R2, R3, R4 | Protagonista borrador 1 en `studio/personaje/`. Faltan piel, mirada, boca y personajes secundarios (variaciones de MakeHuman) |
 | **Fuera de alcance** | Caras tipo Pixar con esa expresividad | R1 | Requiere IA de video: fuera de presupuesto |
 
@@ -174,11 +194,12 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 | **Concepto armado frente a ti** (filosofía, experimentos mentales) | Datos | R3 | Guardar |
 | **"Lo conté yo"** (análisis propio con datos abiertos: fútbol, temblores, metro…) | Datos | R7 | Enviar y comentar |
 | **"Parece un error, pero es a propósito"** (objeto cotidiano en primer plano) | Datos | R8 | Enviar |
+| **Megaproyecto absurdo + "lo calculé"** (¿cuántos aviones para girar el Aconcagua?) | Ambas | R9 + R7 | Enviar y comentar |
 | **Fábula absurda con moraleja** | Historias | R4 | Enviar |
 | **Story time ficticio en primera persona** | Historias | R2 | Retención (alcance) |
 | **Serie por partes** (cualquiera de los anteriores) | Ambas | R1 | Seguir |
 
-**Firmas ajenas que no se copian:** la narración en imperativo de Zack D. Films; la casa con patio de `hiddenhome.3d`; las frutas humanizadas.
+**Firmas ajenas que no se copian:** la narración en imperativo de Zack D. Films y sus megaproyectos contados igual; la casa con patio de `hiddenhome.3d`; las frutas humanizadas.
 
 ---
 
