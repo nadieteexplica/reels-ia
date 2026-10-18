@@ -1,0 +1,10 @@
+{
+ "elevenlabs": "OK",
+ "plan": "free",
+ "creditos_usados": 0,
+ "creditos_limite": 10000,
+ "0001-buscar-voces.json": {
+  "voces_encontradas": 150,
+  "previews": 8
+ }
+}
