@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "id": "prueba-fernando",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "text": "El pulpo tiene tres corazones. Y su sangre no es roja... es azul. Dos de esos corazones solo empujan la sangre por las branquias. El tercero, el más grande, la reparte por todo el cuerpo.",
+ "voice_settings": {
+  "stability": 0.42,
+  "similarity_boost": 0.8,
+  "style": 0.3,
+  "use_speaker_boost": true
+ }
+}
