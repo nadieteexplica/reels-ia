@@ -94,21 +94,23 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Estado actual (18-oct-2026)
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
-- **Muestras de estilo A/B/C** (`studio/muestras/`):
-  - Renderizadas y entregadas a Tomás. Él todavía no elige.
-  - Tiempos de render en el workspace (2 procesos en paralelo):
-    - A: ~9 s por cuadro.
-    - B: ~3 s por cuadro.
-    - C (a 12 fps): ~8 s por cuadro.
-  - Todas tienen el mismo personaje: niño con polera coral y estrella, pelo café en mechones, ojos grandes, cara pintada (boca, mejillas) y efecto de congelamiento azul.
+- **Estilo decidido:** semi-realista con Mixamo y personaje propio (ver "Formato").
+- **Protagonista (borrador 1, aprobado en dirección por Tomás):** `studio/personaje/` (ver su README).
+  - Base MakeHuman CC0, hombre joven, 1,77 m, polera coral con estrella amarilla, jeans, zapatillas blancas, pelo café corto con jopo.
+  - Riggeado por Claude con esqueleto `mixamorig:*`: las FBX de Mixamo se aplican directo (no hay que subir nada a Mixamo).
+  - 34 shape keys de expresión (párpados, cejas, boca).
+  - Cabeza y cuello de Mixamo suavizados un 30 % (la captura exagera; Tomás notó el cuello torcido).
+  - Render de prueba en el workspace: ~9 s por cuadro a 405×720 con 12 muestras (2 núcleos). El render final va a Actions.
+  - Pendiente: piel menos plástica, bordes de manga, mirada, sincronía de boca, contacto mano–cara (`Thinking` no llega al mentón).
+- **Mixamo:** 14 FBX en los archivos del proyecto de Claude (no en el repo). `Talking` bajó la versión **sentado**: falta "General Conversation" (de pie). `Drinking` está repetida.
+- **Muestras de estilo A/B/C** (`studio/muestras/`): históricas, ya no se usan.
 - **Ep. 1 — Congelamiento cerebral (helado):**
   - Guion, voz (`out/tts/ep1-helado.mp3`, id antiguo `ep1-helado`) y tiempos (`studio/episodios/ep01-congelamiento-cerebral/words.json`) listos. Guion y fuentes en `studio/episodios/ep01-congelamiento-cerebral/guion.md`.
   - **Dura 55 s:** hay que alargarlo a 62 s o más (sumar un dato) y regenerar la voz.
   - Falta animarlo en el estilo elegido.
-- **Mixamo:** las 14 animaciones (Without Skin) están en los archivos del proyecto de Claude, no en el repo. No se bajó personaje de Mixamo: el protagonista es propio.
-  - **Dónde van:** al repo **privado** `nadieteexplica/assets`, que crea Tomás en la Fase 0. El render los clona con el secreto `ASSETS_TOKEN`. Nunca van al repo público.
+- **Mixamo (referencia):**
+  - **Dónde van las FBX:** al repo **privado** `nadieteexplica/assets`, que crea Tomás en la Fase 0. El render los clona con el secreto `ASSETS_TOKEN`. Nunca van al repo público.
   - Configuración: FBX Binary, 30 fps, keyframe reduction none, y "In Place" marcado cuando exista.
-  - **Personaje:** joven o niño con ropa casual, con la animación `Breathing Idle` en **With Skin**.
   - **Animaciones en Without Skin** (elegidas mirando el catálogo el 18-oct; nombre de búsqueda → descripción en Mixamo):
     - Ep. 1 y base de la biblioteca:
       - `Drinking` → "Male Drinking" (se lleva el helado a la boca; también "toma algo tibio"),
@@ -126,14 +128,12 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
       - `Happy Idle` → "Happy Idle Variation 1" (entre planos).
     - Para otros episodios: `Terrified` ("Being Terrified While Standing") y `Excited` ("Super Excited").
     - Descartadas: `Agony` (demasiado dramática).
-    - Con personajes cabezones (Timmy, Ty), subir "Character Arm-Space" para que las manos no atraviesen la cabeza.
 - **Próximos pasos:**
-  1. ~~Que Tomás elija el estilo~~ (hecho).
-  2. Personaje propio (MakeHuman + Blender) riggeado con el esqueleto de Mixamo.
-  3. Plantilla de producción.
-  3. Render en Actions.
+  1. Pulir el protagonista (piel, mangas, mirada, boca).
+  2. Plantilla de producción (escenarios, biblioteca de acciones y expresiones, subtítulos, SFX y música).
+  3. Render en Actions (necesita el repo privado de assets para las FBX).
   4. Hosting y prueba con Metricool.
-  5. Ep. 1 de punta a punta.
+  5. Ep. 1 de punta a punta (alargar a 62 s o más y regenerar la voz).
   6. Tareas programadas (A: domingo de producción; B: jueves de revisión).
 
 ## Decisiones pendientes de Tomás
