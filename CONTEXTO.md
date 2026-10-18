@@ -30,7 +30,8 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **Estilo en evaluación:**
   - **Monito animado 3D.** Muestras de 5 s en tres estilos: A · Pixar suave, B · caricatura con contorno, C · plastilina.
   - **Semi-realista tipo Zack D. Films.** Él lo mostró como referencia. Usarlo como referencia de *calidad*, pero con personaje, colores y escenario propios. Nunca su marca.
-  - Tomás aún no elige.
+  - **DECIDIDO (18-oct-2026):** semi-realista con Mixamo y **personaje propio de cuerpo normal**, hombre joven de ~18–20 años, con el look del niño de las muestras (polera coral con estrella, pelo café en mechones). Se descartó el cabezón: las animaciones de Mixamo son captura de movimiento real y en cabezones las manos atraviesan la cabeza. Las reacciones van en primer plano para que la cara se lea en vertical.
+  - Base del personaje: MakeHuman (CC0), armado en Blender. Las muestras A/B/C quedan como referencia histórica.
 
 ## Voz
 - **ElevenLabs**, plan Starter (pagado), con **40.000 créditos al mes**. Cada toma gasta unos 1.200 créditos (hay que presupuestar ~1,3 tomas por video), y el saldo se ve en `out/status.json`.
@@ -104,7 +105,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - Guion, voz (`out/tts/ep1-helado.mp3`, id antiguo `ep1-helado`) y tiempos (`studio/episodios/ep01-congelamiento-cerebral/words.json`) listos. Guion y fuentes en `studio/episodios/ep01-congelamiento-cerebral/guion.md`.
   - **Dura 55 s:** hay que alargarlo a 62 s o más (sumar un dato) y regenerar la voz.
   - Falta animarlo en el estilo elegido.
-- **Mixamo:** cuenta creada. Falta que Tomás baje el personaje y las animaciones, y las adjunte en el chat.
+- **Mixamo:** las 14 animaciones (Without Skin) están en los archivos del proyecto de Claude, no en el repo. No se bajó personaje de Mixamo: el protagonista es propio.
   - **Dónde van:** al repo **privado** `nadieteexplica/assets`, que crea Tomás en la Fase 0. El render los clona con el secreto `ASSETS_TOKEN`. Nunca van al repo público.
   - Configuración: FBX Binary, 30 fps, keyframe reduction none, y "In Place" marcado cuando exista.
   - **Personaje:** joven o niño con ropa casual, con la animación `Breathing Idle` en **With Skin**.
@@ -127,15 +128,16 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
     - Descartadas: `Agony` (demasiado dramática).
     - Con personajes cabezones (Timmy, Ty), subir "Character Arm-Space" para que las manos no atraviesen la cabeza.
 - **Próximos pasos:**
-  1. Que Tomás elija el estilo.
-  2. Plantilla de producción.
+  1. ~~Que Tomás elija el estilo~~ (hecho).
+  2. Personaje propio (MakeHuman + Blender) riggeado con el esqueleto de Mixamo.
+  3. Plantilla de producción.
   3. Render en Actions.
   4. Hosting y prueba con Metricool.
   5. Ep. 1 de punta a punta.
   6. Tareas programadas (A: domingo de producción; B: jueves de revisión).
 
 ## Decisiones pendientes de Tomás
-1. **Estilo:** A, B o C del monito, o semi-realista con Mixamo.
+1. ~~Estilo~~: decidido el 18-oct (semi-realista con Mixamo, personaje propio de cuerpo normal, ~18–20 años).
 2. **Audiencia de YouTube (`madeForKids`):** se recomienda **no**, porque el contenido es de curiosidades para público general, aunque el protagonista sea un niño. La decisión es de Tomás.
 3. Si va Mixamo: crear el repo **privado** `nadieteexplica/assets` y un token de solo lectura como secreto `ASSETS_TOKEN` en `reels-ia`. Claude le da los pasos.
 
