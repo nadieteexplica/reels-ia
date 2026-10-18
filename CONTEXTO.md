@@ -16,7 +16,8 @@ Leer esto entero antes de trabajar. Es la fuente de verdad de lo decidido hasta 
   - "¿Por qué no podemos…?"
   - "¿Qué pasa dentro de…?"
   - "¿Sabías que…?"
-- **Un dato impresionante** por video, de unos 60 s, que **termina enseñando algo**.
+- **Un dato impresionante** por video, de **62–75 s**, que **termina enseñando algo**. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días.
+- **Cadencia:** se parte con **3 videos por semana** (lunes, miércoles y viernes) y se sube a 5 si la calidad se mantiene. Diario no cabe en los créditos de voz. Detalle en `docs/AUTOMATIZACION.md`.
 - **Solo información real y verificada**, con fuentes. Nada de desinformar.
 - **Animación 3D "sí o sí".**
 - **Edición:** limpia, amigable, llamativa, entretenida y bonita de ver.
@@ -32,7 +33,8 @@ Leer esto entero antes de trabajar. Es la fuente de verdad de lo decidido hasta 
   - Tomás aún no elige.
 
 ## Voz
-- **ElevenLabs**, plan Starter (pagado). La voz elegida es **Fernando Martínez**: `voice_id dlGxemPxFMTY7iXagmOj`.
+- **ElevenLabs**, plan Starter (pagado), con **40.000 créditos al mes**. Cada video gasta unos 1.200 con repeticiones, y el saldo se ve en `out/status.json`.
+- La voz elegida es **Fernando Martínez**: `voice_id dlGxemPxFMTY7iXagmOj`. Habla a unas 2,97 palabras por segundo.
 - Modelo `eleven_multilingual_v2`.
 - Settings: stability 0.4, similarity 0.8, style 0.32, speaker boost activado.
 - Se genera **con timestamps por carácter** para armar subtítulos palabra por palabra.
@@ -88,17 +90,52 @@ Leer esto entero antes de trabajar. Es la fuente de verdad de lo decidido hasta 
 - No crear cuentas ni usar contraseñas por Tomás.
 - **Publicar en redes solo con su OK explícito, post por post.**
 
-## Estado actual
+## Estado actual (18-oct-2026)
+**Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
+
+- **Muestras de estilo A/B/C** (`studio/muestras/`):
+  - Renderizadas y entregadas a Tomás. Él todavía no elige.
+  - Tiempos de render en el workspace (2 procesos en paralelo):
+    - A: ~9 s por cuadro.
+    - B: ~3 s por cuadro.
+    - C (a 12 fps): ~8 s por cuadro.
+  - Todas tienen el mismo personaje: niño con polera coral y estrella, pelo café en mechones, ojos grandes, cara pintada (boca, mejillas) y efecto de congelamiento azul.
 - **Ep. 1 — Congelamiento cerebral (helado):**
-  - Guion final, voz generada (`out/tts/ep1-helado.mp3`, 55 s) y tiempos por palabra (`studio/ep1-helado/words.json`). Guion y fuentes en `studio/ep1-helado/guion.md`.
-  - **Falta animarlo** en el estilo que elija Tomás.
-- **Muestras de estilo A/B/C:** renderizadas el 18-oct, en espera de que Tomás elija.
-- **Mixamo:** cuenta creada. Falta que baje el personaje y las animaciones.
-- **Después:**
-  1. Pipeline Blender + Actions.
-  2. Hostear el MP4 y programar con Metricool (con su OK).
-  3. Tarea programada diaria y skill de producción.
+  - Guion, voz (`out/tts/ep1-helado.mp3`) y tiempos (`studio/ep1-helado/words.json`) listos. Guion y fuentes en `studio/ep1-helado/guion.md`.
+  - **Dura 55 s:** hay que alargarlo a 62 s o más (sumar un dato) y regenerar la voz.
+  - Falta animarlo en el estilo elegido.
+- **Mixamo:** cuenta creada. Falta que Tomás baje el personaje y las animaciones, y las adjunte en el chat.
+  - Configuración: FBX Binary, 30 fps, keyframe reduction none, y "In Place" marcado cuando exista.
+  - **Personaje:** joven o niño con ropa casual, con la animación `Breathing Idle` en **With Skin**.
+  - **Animaciones en Without Skin:**
+    - `Talking` (2–3),
+    - `Surprised`,
+    - `Terrified`,
+    - `Thinking`,
+    - `Pointing`,
+    - `Drinking` (sirve para llevarse algo a la boca),
+    - `Shaking Head No`,
+    - `Head Nod Yes`,
+    - `Excited`,
+    - `Shrugging`,
+    - alguna con las manos en la cabeza (buscar `head`),
+    - `Happy Idle`.
+- **Próximos pasos:**
+  1. Que Tomás elija el estilo.
+  2. Plantilla de producción.
+  3. Render en Actions.
+  4. Hosting y prueba con Metricool.
+  5. Ep. 1 de punta a punta.
+  6. Tareas programadas (A: domingo de producción; B: jueves de revisión).
+
+## Aprendizajes
+(Se llenan con los datos de cada semana. Ver `docs/PUBLICADOS.md`.)
 
 ## Documentos
-- `docs/investigacion-formatos-virales.md`: investigación de formatos virales originales (qué funciona y por qué).
-- `docs/banco-ideas-antiguo.md`: banco de ideas viejo, de la época low-poly. Sirve como lista de temas.
+- `proyecto/INSTRUCCIONES.md`: instrucciones del proyecto en Claude.
+- `docs/MANUAL_PRODUCCION.md`: estándar de cada video (guion, verificación, voz, storyboard, look, subtítulos, audio, render, QA, entrega, publicación).
+- `docs/AUTOMATIZACION.md`: cadencia, fases, ciclo semanal, prompts de las tareas programadas y manejo de fallas.
+- `docs/IDEAS.md`: dónde buscar, puntaje, lista negra y banco de unas 40 ideas.
+- `docs/PUBLICADOS.md`: registro de videos y métricas.
+- `docs/investigacion-formatos-virales.md`: investigación de formatos virales (qué funciona y por qué).
+- `docs/banco-ideas-antiguo.md`: banco viejo, de la época low-poly.
