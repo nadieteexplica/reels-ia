@@ -1,0 +1,5 @@
+node_modules/
+studio/**/frames*/
+studio/**/*.mp4
+studio/**/*.wav
+studio/**/log_*.txt

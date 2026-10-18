@@ -1,0 +1,17 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Muestra B</title>
+<style>
+@font-face{font-family:'InterX';src:url('/node_modules/@fontsource/inter/files/inter-latin-900-normal.woff2') format('woff2');font-weight:900;}
+@font-face{font-family:'InterX';src:url('/node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2') format('woff2');font-weight:700;}
+html,body{margin:0;background:#000;}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:'InterX',sans-serif;}
+#gl{position:absolute;inset:0;}
+#svg{position:absolute;inset:0;}
+#cap{position:absolute;left:100px;right:100px;top:1150px;text-align:center;font-weight:900;font-size:88px;line-height:1.05;letter-spacing:-1px;text-transform:uppercase;color:#fff;
+ text-shadow:5px 0 0 #000,-5px 0 0 #000,0 5px 0 #000,0 -5px 0 #000,4px 4px 0 #000,-4px 4px 0 #000,4px -4px 0 #000,-4px -4px 0 #000,0 9px 0 #000,0 14px 26px rgba(0,0,0,.35);}
+#cap span{display:inline-block;margin:0 20px;}
+#cap .on{color:#ffd23f;}
+#label{position:absolute;top:80px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.92);color:#16324a;font-weight:700;font-size:34px;letter-spacing:.04em;padding:14px 30px;border-radius:40px;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.15);}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;}
+</style></head><body><div id="stage"><canvas id="gl" width="1080" height="1920"></canvas><svg id="svg" width="1080" height="1920"></svg><div id="label"></div><div id="cap"></div><div id="flash"></div></div>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script>window.STYLE='B';</script><script type="module" src="main.js"></script></body></html>
