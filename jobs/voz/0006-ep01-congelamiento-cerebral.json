@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "id": "ep01-congelamiento-cerebral",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.32,
+  "use_speaker_boost": true
+ },
+ "text": "Te comes un helado rápido y... ¡zas! Te duele la frente. Pero el frío nunca tocó tu cerebro. ¿Qué pasó? Rebobinemos. Día de calor. Pides el helado más grande del carrito... y te lo comes como si alguien te lo fuera a quitar. El helado toca el techo de tu boca y lo enfría de golpe. Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente. Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara. Una de sus ramas llega a la frente, y tu cerebro se confunde: cree que el dolor viene de ahí. En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada. Justo cuando les dolía, una arteria de su cerebro se ensanchaba. Al volver a su tamaño, el dolor se iba. Y lo más loco: tu cerebro no siente dolor. Lo que duele son los vasos y nervios que lo rodean. Su nombre científico es ganglioneuralgia esfenopalatina. Sí, en serio. El truco: aprieta la lengua contra el paladar para calentarlo, o toma algo tibio. Dura de segundos a un par de minutos, y no es peligroso. La próxima vez, come más lento... aunque, seamos honestos, nadie come helado lento."
+}

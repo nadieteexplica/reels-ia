@@ -1,44 +1,38 @@
 # Ep. 1 — ¿Por qué te duele la cabeza al comer helado?
 
-**Voz:** Fernando Martínez.
-**Archivos:** audio en `out/tts/ep1-helado.mp3` (54,99 s); tiempos por palabra en `words.json`.
+**Versión 2 (18-oct-2026).** Reemplaza a la v1 de 55 s (`out/tts/ep1-helado.*`, queda como histórica).
+**Voz:** Fernando Martínez · job `jobs/voz/0006-ep01-congelamiento-cerebral.json` → `out/tts/ep01-congelamiento-cerebral.mp3`.
+**Gancho:** "¿Qué pasa dentro de…?" · **Área:** cuerpo humano.
+**Idea de Tomás:** contarlo con una escena: carrito de helado, compra, se lo come rápido y le da el congelamiento.
 
-## Guion (163 palabras)
-Te comes un helado muy rápido... y de repente: ¡zas! Te duele la frente. Pero el frío nunca tocó tu cerebro. Entonces, ¿qué pasó? Cuando el helado toca el techo de tu boca, el paladar se enfría de golpe. Los vasos sanguíneos que hay ahí se encogen... y después se abren de golpe para mandar sangre caliente. Ese cambio brusco lo detecta el trigémino, el nervio más grande de tu cabeza, que tiene ramas por toda la cara... incluida la frente. Las señales llegan juntas, tu cerebro se confunde, y cree que el dolor viene de la frente. Y lo más loco: tu cerebro no siente dolor. No tiene receptores de dolor. Lo que te duele son los vasos y nervios que lo rodean. Su nombre científico es ganglioneuralgia esfenopalatina. Sí, en serio. El truco para cortarlo: aprieta la lengua contra el paladar para calentarlo, o toma algo tibio. Y la próxima vez, come más lento... aunque, seamos honestos, nadie come helado lento.
+## Guion (209 palabras, ~70 s)
+Te comes un helado rápido y... ¡zas! Te duele la frente. Pero el frío nunca tocó tu cerebro. ¿Qué pasó?
+Rebobinemos. Día de calor. Pides el helado más grande del carrito... y te lo comes como si alguien te lo fuera a quitar.
+El helado toca el techo de tu boca y lo enfría de golpe. Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente.
+Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara. Una de sus ramas llega a la frente, y tu cerebro se confunde: cree que el dolor viene de ahí.
+En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada. Justo cuando les dolía, una arteria de su cerebro se ensanchaba. Al volver a su tamaño, el dolor se iba.
+Y lo más loco: tu cerebro no siente dolor. Lo que duele son los vasos y nervios que lo rodean.
+Su nombre científico es ganglioneuralgia esfenopalatina. Sí, en serio.
+El truco: aprieta la lengua contra el paladar para calentarlo, o toma algo tibio. Dura de segundos a un par de minutos, y no es peligroso.
+La próxima vez, come más lento... aunque, seamos honestos, nadie come helado lento.
 
-## Tiempos por frase (s)
-| Tiempo | Frase |
+## Verificación por afirmación
+| Afirmación del guion | Fuente(s) |
 |---|---|
-| 0.00–3.41 | Te comes un helado muy rápido... y de repente: ¡zas! |
-| 3.47–4.76 | Te duele la frente. |
-| 5.14–7.35 | Pero el frío nunca tocó tu cerebro. |
-| 7.86–9.27 | Entonces, ¿qué pasó? |
-| 9.51–13.42 | Cuando el helado toca el techo de tu boca, el paladar se enfría de golpe. |
-| 13.75–19.38 | Los vasos sanguíneos… se encogen… y después se abren de golpe… |
-| 19.55–26.93 | Ese cambio brusco lo detecta el trigémino… incluida la frente. |
-| 27.05–31.89 | Las señales llegan juntas… cree que el dolor viene de la frente. |
-| 31.96–34.88 | Y lo más loco: tu cerebro no siente dolor. |
-| 34.95–36.64 | No tiene receptores de dolor. |
-| 36.76–39.46 | Lo que te duele son los vasos y nervios que lo rodean. |
-| 39.53–43.45 | Su nombre científico es ganglioneuralgia esfenopalatina. |
-| 43.54–44.59 | Sí, en serio. |
-| 44.68–49.91 | El truco para cortarlo: aprieta la lengua contra el paladar… o toma algo tibio. |
-| 49.94–54.94 | Y la próxima vez, come más lento… nadie come helado lento. |
+| El frío del paladar provoca el dolor; no es el cerebro el que se enfría | Cleveland Clinic; Popular Science |
+| Los vasos se contraen con el frío y luego se dilatan para traer sangre tibia | Cleveland Clinic (vasos que se expanden para calentar); Popular Science (contracción y luego dilatación) |
+| El trigémino detecta el cambio; sus ramas llegan a la frente y el dolor se "refiere" ahí | Popular Science (Dr. Kristofer Rau) |
+| 2012, Harvard (Jorge Serrador), 13 voluntarios, agua helada con bombilla contra el paladar; la arteria cerebral anterior se dilata justo cuando aparece el dolor y al contraerse el dolor se va | LiveScience (2012), presentado en Experimental Biology 2012. Estudio chico y preliminar: el guion no lo presenta como definitivo |
+| El cerebro no tiene receptores de dolor propios; duelen las estructuras que lo rodean | LiveScience |
+| Nombre: ganglioneuralgia esfenopalatina | Cleveland Clinic (sphenopalatine ganglioneuralgia) |
+| Truco: lengua o pulgar contra el paladar, o tomar algo tibio | Cleveland Clinic |
+| Dura de segundos a unos 2 minutos y no es peligroso | Cleveland Clinic |
 
-## Fuentes verificadas
-- **Cleveland Clinic — Brain freeze.**
-  - Nombre: sphenopalatine ganglioneuralgia.
-  - Los vasos se dilatan para traer sangre tibia.
-  - Dura de segundos a unos 2 minutos.
-  - Truco: lengua o pulgar contra el paladar, o tomar algo tibio. No es peligroso.
-  - https://my.clevelandclinic.org/health/diseases/21478-brain-freeze
-- **LiveScience (2012) — Jorge Serrador (Harvard Medical School), Experimental Biology 2012.**
-  - 13 voluntarios.
-  - Aumenta el flujo y se dilata la arteria cerebral anterior; después se contrae.
-  - https://www.livescience.com/19834-brain-freeze-blood-flow-migraines.html
-- **Popular Science — Dr. Kristofer Rau.**
-  - Los vasos del paladar se contraen y luego se dilatan.
-  - Las ramas del trigémino convergen, y el dolor se refiere a la frente.
-  - https://www.popsci.com/science/what-is-brain-freeze/
-- **LiveScience — el cerebro no tiene receptores de dolor propios.**
-  - https://www.livescience.com/if-the-brain-doesnt-feel-pain-why-do-headaches-hurt
+## Fuentes
+- Cleveland Clinic — Brain freeze: https://my.clevelandclinic.org/health/diseases/21478-brain-freeze
+- LiveScience (2012) — Brain freeze explained (Serrador, Harvard Medical School): https://www.livescience.com/19834-brain-freeze-blood-flow-migraines.html
+- Popular Science — What is brain freeze: https://www.popsci.com/science/what-is-brain-freeze/
+- LiveScience — If the brain doesn't feel pain, why do headaches hurt?: https://www.livescience.com/if-the-brain-doesnt-feel-pain-why-do-headaches-hurt
+
+## Tiempos por frase
+(Se completan con la alineación de la voz.)
