@@ -1,0 +1,78 @@
+[
+ {
+  "voice_id": "dlGxemPxFMTY7iXagmOj",
+  "name": "Fernando Martínez - Rapid, Persuasive",
+  "accent": "latin american",
+  "locale": "es-AR",
+  "usage": 10531112234,
+  "file": "01_Fernando_Martínez.mp3"
+ },
+ {
+  "voice_id": "l1zE9xgNpUTaQCZzpNJa",
+  "name": "Alberto Rodríguez - Serious, Narrative",
+  "accent": "latin american",
+  "locale": "es-AR",
+  "usage": 4583602116,
+  "file": "02_Alberto_Rodríguez.mp3"
+ },
+ {
+  "voice_id": "iDEmt5MnqUotdwCIVplo",
+  "name": "Enrique Mondragón - Elegant and Dynamic",
+  "accent": "mexican",
+  "locale": "es-MX",
+  "usage": 1520982299,
+  "file": "03_Enrique_Mondragón.mp3"
+ },
+ {
+  "voice_id": "sKgg4MPUDBy69X7iv3fA",
+  "name": "Alejandro Duràn - Warm, Deep and Hoarse",
+  "accent": "latin american",
+  "locale": "es-AR",
+  "usage": 1341273702,
+  "file": "04_Alejandro_Duràn.mp3"
+ },
+ {
+  "voice_id": "htFfPSZGJwjBv1CL0aMD",
+  "name": "Antonio - Confident, Gentle and Clear",
+  "accent": "latin american",
+  "locale": "es-AR",
+  "usage": 1077357439,
+  "file": "05_Antonio.mp3"
+ },
+ {
+  "voice_id": "9F4C8ztpNUmXkdDDbz3J",
+  "name": "Dan - Upbeat, Dynamic and Friendly",
+  "accent": "american",
+  "locale": "es-US",
+  "usage": 3154746944,
+  "description": "An upbeat and modulate voice. Great for shorts and social media.",
+  "file": "06_Dan.mp3"
+ },
+ {
+  "voice_id": "sDh3eviBhiuHKi0MjTNq",
+  "name": "Alejandro - Corporate and Elegant",
+  "accent": "mexican",
+  "locale": "es-MX",
+  "usage": 1836250324,
+  "description": "Middle aged Spanish elegant and corporate voice for your institutional videos.",
+  "file": "07_Alejandro.mp3"
+ },
+ {
+  "voice_id": "gbTn1bmCvNgk0QEAVyfM",
+  "name": "Enrique M. Nieto - Credible and Rich",
+  "accent": "mexican",
+  "locale": "es-MX",
+  "usage": 1117563631,
+  "description": "Middle aged male with a Mexican Spanish accent. Great for Narrations.",
+  "file": "08_Enrique_M._Nieto.mp3"
+ },
+ {
+  "voice_id": "k8cFOyAg7B9qwBlDDNTC",
+  "name": "Miguel - Deep, Rich and Cinematic",
+  "accent": "latin american",
+  "locale": "es-AR",
+  "usage": 908829562,
+  "description": "Miguel's deep, rich voice is reminiscent of famous movie trailers. His voice is currently one of the most prominent on social media worldwide.",
+  "file": "09_Miguel.mp3"
+ }
+]
