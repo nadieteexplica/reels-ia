@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 75,
+ "creditos_usados": 825,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -16,5 +16,8 @@
  },
  "0004-comparar-hombres.json": {
   "comparadas": 9
+ },
+ "0005-ep1-helado.json": {
+  "tts": "ep1-helado"
  }
 }
