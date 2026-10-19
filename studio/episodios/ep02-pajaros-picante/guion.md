@@ -37,7 +37,7 @@ Mándaselo al que se cree inmune al picante. Para el ají... es un ratón más.
 
 **Matices (para no exagerar):**
 - En el estudio de Penn State la leche entera, la descremada y el Kool-Aid (jugo en polvo) quedaron en el grupo de los mejores; por eso el guion dice "de lo que más bajó" y no "lo que más". Se habla de la leche porque es la enseñanza útil (los autores creen que importan las proteínas, no la grasa).
-- "Inmune de verdad... solo el pájaro" es el remate: la tupaya "casi no lo siente" (las fuentes hablan de sensibilidad reducida), así que no se la iguala al pájaro.
+- La tupaya "casi no lo siente" (las fuentes hablan de sensibilidad reducida): no se la iguala al pájaro. "Echa fuego" y "para el ají, es un ratón más" son humor sobre una sensación real, no datos.
 - No es tema de salud: no hay indicación médica (la leche es un truco de cocina con estudio detrás).
 
 ## Fuentes
@@ -46,8 +46,8 @@ Mándaselo al que se cree inmune al picante. Para el ají... es un ratón más.
 - NOVA (PBS) — Why Hot Peppers Set Your Mouth on Fire: https://www.pbs.org/video/why-hot-peppers-set-your-mouth-on-fire-utik9u
 - University of Florida (2001) — For peppers, "hot" quite literally the spice of life: https://archive.news.ufl.edu/articles/2001/07/for-peppers-hot-quite-literally-the-spice-of-life-uf-research-shows.html
 - Harvard SITN (2012) — The complicated evolutionary history of spicy chili peppers: https://sites.harvard.edu/sitn/2012/11/29/issue131b
-- Tewksbury y Nabhan (2001), *Nature* 412 — Directed deterrence by capsaicin in chillies: https://ideas.repec.org/a/nat/nature/v412y2001i6845d10.1038_35086653.html
-- Han et al. (2018), *PLOS Biology* — Molecular mechanism of the tree shrew's insensitivity to spiciness: https://escholarship.org/uc/item/79z5f54v
+- Tewksbury y Nabhan (2001), *Nature* 412 — Directed deterrence by capsaicin in chillies: https://doi.org/10.1038/35086653
+- Han et al. (2018), *PLOS Biology* — Molecular mechanism of the tree shrew's insensitivity to spiciness: https://pmc.ncbi.nlm.nih.gov/articles/PMC6042686
 - Smithsonian Magazine (2018) — Tree shrews love hot peppers because they don't feel the burn: https://www.smithsonianmag.com/smart-news/tree-shrews-peppers-feel-the-burn-180969702/
 - Penn State (2019) — Milk is the best drink to reduce burn from chili peppers: https://www.psu.edu/news/research/story/milk-best-drink-reduce-burn-chili-peppers
 - Nolden, Lenart y Hayes (2019), *Physiology & Behavior* — Putting out the fire: https://pmc.ncbi.nlm.nih.gov/articles/PMC6620146
@@ -56,6 +56,8 @@ Mándaselo al que se cree inmune al picante. Para el ají... es un ratón más.
 1. El ratón muerde el ají (parte con el ají en el suelo, frente a él).
 2. Reacción del ratón: ojos llorosos, se abanica la boca con las patas.
 3. El ratón toma leche (de una tapita o un vaso chico apoyado en el suelo).
+
+**Puerta 1:** APROBADO en la r2 (notas 9/9/8/9). De sus arreglos de prioridad 3 se aplicaron sólo los que no tocan el texto de la voz (nota de matices y 2 enlaces de fuentes); "¿Por qué?" y "La tupaya, de China" quedan como se aprobaron (la tupaya sale con su etiqueta en pantalla).
 
 ## Tiempos por frase
 (Se completan con la alineación de la voz.)
