@@ -12,7 +12,8 @@ API = "https://rest.runpod.io/v1"
 
 def req(method, path, body=None):
     r = urllib.request.Request(API + path, method=method, data=json.dumps(body).encode() if body is not None else None,
-                               headers={"Authorization": f"Bearer {os.environ['RUNPOD_API_KEY']}", "Content-Type": "application/json"})
+                               headers={"Authorization": f"Bearer {os.environ['RUNPOD_API_KEY']}", "Content-Type": "application/json",
+                                        "User-Agent": "reels-ia-render/1.0"})  # Cloudflare bloquea el agente por defecto de urllib (error 1010)
     try:
         with urllib.request.urlopen(r, timeout=60) as resp:
             t = resp.read().decode()
