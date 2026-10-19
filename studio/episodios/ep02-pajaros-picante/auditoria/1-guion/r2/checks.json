@@ -1,0 +1,22 @@
+{
+ "fallas": [],
+ "avisos": [],
+ "datos": {
+  "palabras": 214,
+  "duracion_estimada_s": 72.1,
+  "pausas": 3,
+  "fuentes": [
+   "archive.news.ufl.edu",
+   "escholarship.org",
+   "ideas.repec.org",
+   "nobelprize.org",
+   "pbs.org",
+   "pmc.ncbi.nlm.nih.gov",
+   "psu.edu",
+   "scholars.duke.edu",
+   "sites.harvard.edu",
+   "smithsonianmag.com"
+  ],
+  "afirmaciones_verificadas": 12
+ }
+}

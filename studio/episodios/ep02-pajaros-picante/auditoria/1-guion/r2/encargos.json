@@ -1,0 +1,17 @@
+[
+ {
+  "id": "guion",
+  "prompt": "tools/auditor/prompts/1-guion.md",
+  "alcance": "guion completo",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/guion.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "docs/IDEAS.md",
+   "docs/PUBLICADOS.md"
+  ],
+  "salida": "guion.json"
+ }
+]
