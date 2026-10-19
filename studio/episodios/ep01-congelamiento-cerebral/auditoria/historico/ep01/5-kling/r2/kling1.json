@@ -1,0 +1,136 @@
+{
+ "encargo": "kling1",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "manos": {
+   "nota": 8,
+   "por_que": "p18: en los zooms de 0,4/1,8/3,2/4,6 s los dedos rodean el vaso y entre 4,3 y 5,0 s la palma se apoya en la frente sin atravesarla; p17: en los zooms de 3,2 y 4,6 s las seis manos rodean los vasos y ningún vaso flota."
+  },
+  "objeto": {
+   "nota": 5,
+   "por_que": "p17_vasos_a: los vasos pasan de negros (líquido oscuro) a transparentes con hielo entre 2,1 y 2,8 s; p17_vasos_b: pasan de blancos opacos a transparentes facetados con hielo entre 0,7 y 2,1 s; p18: el vaso es blanco lechoso con forma de botella, así que no se lee como agua helada y no calza con los vasos transparentes de p17_vasos_b."
+  },
+  "personaje": {
+   "nota": 5,
+   "por_que": "p18_vol_a: entre 3,5 y 4,3 s el pelo pasa de corto y ordenado a largo, desordenado y con mechones parados, y la cara se vuelve más realista (parece otra persona); en p17 el pelo gana flequillo respecto del cuadro de partida desde los 0,7–1,4 s y las caras terminan en muecas exageradas (a) o en sonrisas (b)."
+  },
+  "estabilidad": {
+   "nota": 8,
+   "por_que": "p17: el paneo pedido es parejo (los tubos de luz se corren de a poco en los 8 cuadros) y no hay cortes, texto ni saltos de luz; p18: la cámara está fija y el fondo y el vecino de polera blanca se quedan quietos en los 8 cuadros."
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_a",
+   "segundo": "2,1–2,8 s",
+   "que": "los vasos cambian de color y de material: de 0,0 a 2,1 s son negros, con un líquido oscuro que se lee como bebida cola y no como agua helada, y a los 2,8 s son transparentes con hielo. Queda fuera del tramo usable (2,8–5,0 s).",
+   "arreglo": "usar sólo 2,8–5,0 s; si se necesita el sorbo, regenerar desde un cuadro de partida con vasos ya transparentes y con hielo visible"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_a",
+   "segundo": "3,5–5,0 s",
+   "que": "dentro del tramo usable las caras terminan en una mueca exagerada, con dientes apretados, ojos muy abiertos y arrugas que no tiene el cuadro de partida: se lee como susto, no como el 'wince slightly' pedido",
+   "arreglo": "preferir p17_vasos_b 2,1–3,9 s; si se usa a, cortar en 2,8–3,9 s"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_b",
+   "segundo": "0,7–2,1 s",
+   "que": "los vasos cambian de material: a los 0,7 s son cilindros blancos opacos, a los 1,4 s el del rosado ya se ve transparente y a los 2,1 s todos son transparentes, facetados y con hielo. Queda fuera del tramo usable (2,1–5,0 s).",
+   "arreglo": "partir el clip en 2,1 s; para la próxima, usar un cuadro de partida con el vaso transparente con hielo que Kling termina dibujando"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_b",
+   "segundo": "4,3–5,0 s",
+   "que": "al final los tres sonríen tímidamente con las cejas arriba; eso se lee como gusto o vergüenza y no como frío (se pidió 'frown slightly')",
+   "arreglo": "cortar el tramo en 3,9 s: de 2,1 a 3,9 s están tomando con cara de molestia y los vasos están estables"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_a, p17_vasos_b",
+   "segundo": "0,7–5,0 s",
+   "que": "el pelo de los voluntarios no es el del cuadro de partida: el corte parejo y corto gana flequillo y volumen arriba (se nota en el de polera calipso, cuadros 0,7 y 1,4 s) y no calza con el pelo corto del cuadro de partida de p18",
+   "arreglo": "aceptarlo sólo si p18 se regenera con el mismo peinado; si no, regenerar p17 agregando 'same short neat haircut' a la instrucción"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_a, p17_vasos_b, p18_vol_a",
+   "segundo": "p17 1,4–5,0 s / p18 0,0 s",
+   "que": "el paneo de p17 muestra a un cuarto voluntario a la derecha del de polera calipso, con polera rosada en a y amarilla en b, pero en p18 su vecino de la derecha tiene polera blanca: hay un salto de continuidad entre planos seguidos",
+   "arreglo": "hacer el cuadro de partida de p18 con el vecino del mismo color que aparece en el clip de p17 elegido, o regenerar p17 con la cámara fija y sin paneo"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p18_vol_a",
+   "segundo": "3,5–4,3 s",
+   "que": "el personaje cambia: el pelo corto y ordenado pasa a ser largo, con volumen, desordenado y con mechones parados en la coronilla, y la cara se vuelve más realista, con mandíbula más ancha y arrugas; parece otra persona. Queda fuera del tramo usable (0,0–3,3 s), pero justo ahí ocurre la acción central (la mano en la frente).",
+   "arreglo": "regenerar con imagen final (tail/last_frame): el mismo personaje de pelo corto con la palma en la frente, y agregar 'same short neat hair, same face' a la instrucción"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p18_vol_a",
+   "segundo": "0,0–3,3 s",
+   "que": "el tramo usable no trae lo que pide la instrucción ('presses his free hand flat against his forehead'), y entre 2,8 y 3,5 s la cara, con la boca hacia abajo y el ceño de pena, se lee como llanto y no como congelamiento cerebral",
+   "arreglo": "en la misma regeneración, pedir 'funny brain freeze, squeezes eyes shut' y sacar 'pain', que checks.json marca como gatillo del filtro"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p18_vol_a",
+   "segundo": "0,0–5,0 s",
+   "que": "el vaso es blanco lechoso y entre 0,4 y 3,5 s tiene los hombros redondeados como una botella de leche: no se ve agua ni hielo, aunque la instrucción pide 'clear plastic cup of ice water', y en el plano anterior (p17_vasos_b) el vaso es transparente con hielo",
+   "arreglo": "cuadro de partida de p18 con el mismo vaso transparente con hielo de p17_vasos_b"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": "p18_vol_a",
+   "segundo": "3,5 s",
+   "que": "la mano libre entra por el borde izquierdo como un puño borroso a la altura del pecho",
+   "arreglo": "cerrar el tramo en 3,3 s"
+  }
+ ],
+ "eventos": [],
+ "clips": [
+  {
+   "clip": "p17_vasos_a",
+   "usable": [
+    2.8,
+    5.0
+   ],
+   "sirve": true,
+   "por_que": "2,2 s con vasos transparentes estables, bien agarrados y sin bloqueantes; de 0,0 a 2,1 s los vasos son negros y entre 2,1 y 2,8 s cambian. No hay cuadros entre 2,1 y 2,8 s: confirmar a 30 fps que el cambio termina antes de 2,8 s. Las muecas finales bajan la nota (P2)."
+  },
+  {
+   "clip": "p17_vasos_b",
+   "usable": [
+    2.1,
+    5.0
+   ],
+   "sirve": true,
+   "por_que": "2,9 s con vasos transparentes con hielo estables y dedos alrededor en todos los cuadros; el cambio de material termina antes de 2,1 s. Se recomienda usar 2,1–3,9 s para no mostrar la sonrisa final."
+  },
+  {
+   "clip": "p18_vol_a",
+   "usable": [
+    0.0,
+    3.3
+   ],
+   "sirve": true,
+   "por_que": "3,3 s con el mismo personaje, el mismo vaso y la mano bien agarrada: sorbo y gesto de molestia. Después de 3,5 s el pelo y la cara cambian (bloqueante). El tramo no incluye la mano en la frente."
+  }
+ ],
+ "resumen": "Los tres clips sirven sólo recortados (p17_vasos_a 2,8–5,0 s, p17_vasos_b 2,1–3,9 s, p18_vol_a 0,0–3,3 s). Fuera de esos tramos, los vasos de p17 cambian de material y el voluntario de p18 cambia de pelo y de cara justo al llevarse la mano a la frente, que es la acción central. No se aprueba hasta regenerar p18 (con imagen final, sin 'pain') y alinear el vaso y el vecino entre p17 y p18."
+}
