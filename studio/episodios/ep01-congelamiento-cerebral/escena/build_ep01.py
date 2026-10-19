@@ -483,7 +483,7 @@ T = {  # (inicio, fin) en segundos, según words.json
     7: (8.74, 9.86), 8: (9.86, 12.10), 9: (12.10, 14.98), 10: (14.98, 16.85), 31: (16.85, 18.86), 11: (18.86, 21.48),
     12: (21.48, 24.62), 13: (24.62, 27.31), 14: (27.31, 30.12), 15: (30.12, 32.05), 32: (32.05, 33.65), 16: (33.65, 35.65),
     17: (35.65, 37.90), 18: (37.90, 40.69), 33: (40.69, 42.04), 19: (42.04, 44.27), 20: (44.27, 46.64), 21: (46.64, 49.32),
-    22: (49.32, 52.13), 23: (52.13, 55.74), 24: (55.74, 56.84), 34: (56.84, 58.54), 25: (58.54, 60.55), 26: (60.55, 62.50),
+    22: (49.32, 52.85), 23: (52.85, 55.74), 24: (55.74, 56.84), 34: (56.84, 58.54), 25: (58.54, 60.55), 26: (60.55, 62.50),
     27: (62.50, 64.55), 35: (64.55, 66.10), 28: (66.10, 68.42), 29: (68.42, 70.90), 30: (70.90, 72.10),
 }
 FR = {k: (F(a), F(b)) for k, (a, b) in T.items()}
@@ -791,8 +791,9 @@ for t, row, k in letters:
     pass
 for t, row, k in letters:
     base = t.location.copy()
-    tstart = F(t_g if row == 0 else t_e) + k * 1.2
-    for f, dz, s_ in ((1, 4.5, 1.0), (int(tstart), 4.5, 1.0), (int(tstart) + 7, 0.0, 1.0), (int(tstart) + 9, 0.06, 1.0), (int(tstart) + 12, 0.0, 1.0)):
+    tstart = F(t_g if row == 0 else t_e) - 6 + k * 1.2  # cae 8 cuadros y aterriza justo al empezar la palabra
+    dz0 = 5.0 - (t.location.z - TXT_O.z)  # todas parten justo sobre el borde superior del cuadro
+    for f, dz, s_ in ((1, dz0, 1.0), (int(tstart), dz0, 1.0), (int(tstart) + 8, 0.0, 1.0), (int(tstart) + 10, 0.06, 1.0), (int(tstart) + 13, 0.0, 1.0)):
         t.delta_location = (0, 0, dz)
         t.keyframe_insert("delta_location", frame=f)
 
@@ -960,5 +961,17 @@ sc.camera = cams[0]
 
 meta = {"FR": FR, "T": T, "END": END, "interior": INTERIOR}
 json.dump(meta, open(os.path.join(OUT, "ep01_planos.json"), "w"), indent=1)
+# letras del plano 23: caída visible (key_vis las había dejado en CONSTANT y aparecían de golpe)
+for t, row, k in letters:
+    for fc in anim._fcurves(t.animation_data.action):
+        if fc.data_path == "delta_location":
+            kps = list(fc.keyframe_points)
+            for j, kp in enumerate(kps):
+                kp.interpolation = "BEZIER"
+            if len(kps) >= 3:
+                kps[1].interpolation, kps[1].easing = "QUAD", "EASE_IN"   # cae acelerando
+                kps[2].interpolation = "BEZIER"                            # rebote chico
+            fc.update()
+
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, "ep01.blend"))
 print("ok ep01", END, "cuadros")

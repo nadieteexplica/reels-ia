@@ -275,9 +275,9 @@ add(fx, whoosh(0.4, True), T(22) - 0.1, 0.4)
 # letras que caen: un golpe por letra
 t_g, t_e = W("gangli"), W("esfeno")
 for k in range(16):
-    add(fx, thud(), t_g + (k * 1.2 + 6) / 30, 0.35)
+    add(fx, thud(), t_g + (k * 1.2 + 2) / 30, 0.35)
 for k in range(14):
-    add(fx, thud(), t_e + (k * 1.2 + 6) / 30, 0.35)
+    add(fx, thud(), t_e + (k * 1.2 + 2) / 30, 0.35)
 add(fx, pop(), T(25, 0.2), 0.4)
 add(fx, fizz(), T(25, 0.3), 0.5)
 add(fx, pop(), T(34, 0.2), 0.4)

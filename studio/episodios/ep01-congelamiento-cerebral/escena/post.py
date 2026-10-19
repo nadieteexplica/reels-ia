@@ -83,7 +83,7 @@ def fit_font(texts, maxw, size=84, min_size=60):
 
 def layout(g):
     toks = [clean(words[i]["w"]) for i in g]
-    maxw = BOX[1] - BOX[0]
+    maxw = (BOX[1] - BOX[0]) / 1.12  # margen para el pop de 1,12 de la palabra activa (no salirse de la zona segura)
     f = fit_font([" ".join(toks)], maxw)
     lines = [toks]
     if f.getlength(" ".join(toks)) > maxw and len(toks) > 1:
