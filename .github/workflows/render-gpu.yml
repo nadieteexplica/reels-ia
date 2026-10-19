@@ -57,7 +57,12 @@ jobs:
           NUBE: ${{ github.event.inputs.nube }}
           UPLOAD_URL: ${{ steps.rel.outputs.up }}
         run: |
-          ID=$(python studio/plantilla/runpod_pod.py crear)
+          set +e
+          ID=$(python studio/plantilla/runpod_pod.py crear 2> crear.log)
+          RC=$?
+          cat crear.log
+          GH_REPO=${{ github.repository }} gh release upload "${{ steps.rel.outputs.tag }}" crear.log --clobber || true
+          [ $RC -eq 0 ] || exit $RC
           echo "id=$ID" >> "$GITHUB_OUTPUT"
       - name: Esperar al pod
         env:
