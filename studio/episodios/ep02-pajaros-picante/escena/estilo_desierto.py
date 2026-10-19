@@ -66,7 +66,7 @@ for pv in pj["parpados"]:
     for ch in pv.children:
         ch.rotation_euler.x = math.radians(float(os.environ.get("PARPADO", -30)))   # media asta: "ni lo siente"
 pj["cabeza"].rotation_euler = (math.radians(-4), 0, math.radians(10))
-pj["root"].location = (0.03, -0.16, TOP)
+pj["root"].location = (0.0, -0.16, TOP)
 pj["root"].rotation_euler.z = math.radians(float(os.environ.get("PAJ_ROT", -8)))
 
 # --- ratón detrás, en una roca más alta, echando fuego ---
@@ -84,8 +84,14 @@ for k, ob in enumerate(rt["orejas"]):
 for k, br in enumerate(rt["brazos"]):
     br.rotation_euler = (math.radians(-60), 0, math.radians(35 * (1 if k else -1)))   # patitas arriba, sin tocar nada
 rt["cabeza"].rotation_euler = (math.radians(-16), 0, 0)
-rt["root"].location = (0.16, 0.20, TOP2)
+rt["root"].location = (0.19, 0.20, TOP2)
 rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", 28)))
+# causa de la llama: un ají mordido junto al ratón, y los lentes de sol caídos (detalle del loop)
+aj_m = E.aji("AjiMordido", largo=0.10, grosor=0.012, coll=CP, seed=11, curva=0.3)
+aj_m.rotation_euler = (math.radians(90), 0, math.radians(-30))
+aj_m.location = (0.11, 0.15, TOP2 + 0.012)
+E.morder(aj_m, Vector((0.0, 0.0, -0.075)), r=0.013)
+lc = PJ.lentes("LentesCaidos", (0.30, 0.13, TOP2 + 0.004), 0.05, CP, mirando=(0.3, -0.2, 1.0))
 bpy.context.view_layer.update()
 boca_w = rt["boca"].matrix_world.translation
 frente_rt = (rt["cabeza"].matrix_world.to_3x3() @ Vector((0, -1, 0.0))).normalized()

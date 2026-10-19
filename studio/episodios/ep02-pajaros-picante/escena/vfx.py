@@ -32,10 +32,10 @@ def mat_llama():
     e.color = (1.0, 0.10, 0.04, 1)
     nt.links.new(sep.outputs["Z"], ramp.inputs["Fac"])
     em = nt.nodes.new("ShaderNodeEmission")
-    em.inputs["Strength"].default_value = 4.0
+    em.inputs["Strength"].default_value = 1.6
     nt.links.new(ramp.outputs["Color"], em.inputs["Color"])
     lw = nt.nodes.new("ShaderNodeLayerWeight")
-    lw.inputs["Blend"].default_value = 0.45
+    lw.inputs["Blend"].default_value = 0.22
     tr = nt.nodes.new("ShaderNodeBsdfTransparent")
     mix = nt.nodes.new("ShaderNodeMixShader")
     nt.links.new(lw.outputs["Facing"], mix.inputs["Fac"])
@@ -68,7 +68,7 @@ def lengua_de_fuego(name, largo, ancho, coll, seed=0, curva=0.25, sube=0.0):
     return ob
 
 
-def llamarada(name, origen, direccion, coll, escala=1.0, seed=3, n=6):
+def llamarada(name, origen, direccion, coll, escala=1.0, seed=3, n=7):
     """Llamarada que sale de una boca hacia `direccion` y cuyas puntas se curvan hacia arriba, como fuego de dibujo animado.
     Siempre la misma forma para el mismo seed (es "la llama" del video). Devuelve la raíz (empty)."""
     rnd = random.Random(seed)
@@ -78,8 +78,8 @@ def llamarada(name, origen, direccion, coll, escala=1.0, seed=3, n=6):
     q = d.to_track_quat("Z", "Y")          # +Z local = salida; +Y local ≈ arriba del mundo
     root.rotation_euler = q.to_euler()
     for k in range(n):
-        L = escala * (0.12 if k == 0 else rnd.uniform(0.07, 0.11))
-        f = lengua_de_fuego(f"{name}_{k}", L, escala * (0.030 if k == 0 else rnd.uniform(0.016, 0.024)), coll, seed=seed + k,
+        L = escala * (0.11 if k == 0 else rnd.uniform(0.06, 0.09))
+        f = lengua_de_fuego(f"{name}_{k}", L, escala * (0.040 if k == 0 else rnd.uniform(0.022, 0.032)), coll, seed=seed + k,
                             curva=rnd.uniform(-0.2, 0.2), sube=rnd.uniform(0.15, 0.4))
         f.parent = root
         f.rotation_euler = (rnd.uniform(-0.25, 0.1), rnd.uniform(-0.35, 0.35), 0)

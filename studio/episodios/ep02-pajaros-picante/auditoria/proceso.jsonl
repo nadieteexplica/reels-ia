@@ -34,3 +34,7 @@
 {"tipo": "trabajo", "id": "auditor storyboard r2", "estado": "inicio", "n": 34, "ts": "2026-10-19T20:27:26-03:00"}
 {"tipo": "trabajo", "id": "auditor storyboard r2", "estado": "fin", "n": 35, "ts": "2026-10-19T20:36:47-03:00"}
 {"tipo": "trabajo", "id": "auditor storyboard r3", "estado": "inicio", "n": 36, "ts": "2026-10-19T20:46:28-03:00"}
+{"tipo": "trabajo", "id": "auditor storyboard r3", "estado": "caido", "nota": "cortado por el mensaje de Tomás 20:55; se relanza el mismo encargo", "n": 37, "ts": "2026-10-19T20:56:02-03:00"}
+{"tipo": "trabajo", "id": "auditor storyboard r3b", "estado": "inicio", "n": 38, "ts": "2026-10-19T20:56:02-03:00"}
+{"tipo": "trabajo", "id": "auditor storyboard r3", "estado": "fin", "nota": "corrección: NO se había caído; escribió su resultado a las 20:55:57, justo después de mi chequeo de las 20:55", "n": 39, "ts": "2026-10-19T20:56:26-03:00"}
+{"tipo": "trabajo", "id": "auditor storyboard r3b", "estado": "fin", "nota": "relanzamiento innecesario, detenido a los ~2 min sin escribir nada", "n": 40, "ts": "2026-10-19T20:56:26-03:00"}

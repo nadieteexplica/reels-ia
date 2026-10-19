@@ -236,3 +236,28 @@ def terraza(coll=None):
     frente.location = (0, -0.42, (H - 0.05) / 2)
     P.bevel(frente, 0.01, 2)
     return H
+
+
+def morder(aji_ob, centro_local, r=0.012):
+    """Mordida en un ají: resta una esfera (forma fija) en coordenadas locales del ají."""
+    bm = bmesh.new()
+    bmesh.ops.create_icosphere(bm, subdivisions=3, radius=r)
+    me = bpy.data.meshes.new(aji_ob.name + "_mordida")
+    bm.to_mesh(me)
+    bm.free()
+    cort = bpy.data.objects.new(aji_ob.name + "_mordida", me)
+    for c in aji_ob.users_collection:
+        c.objects.link(cort)
+    cort.parent = aji_ob
+    cort.location = centro_local
+    cort.hide_render = True
+    cort.display_type = "WIRE"
+    b = aji_ob.modifiers.new("Mordida", "BOOLEAN")
+    b.operation = "DIFFERENCE"
+    b.object = cort
+    # la mordida deja ver el interior claro del ají
+    blanco = P.mat("AjiInterior", (0.95, 0.85, 0.62), rough=0.6, sss=0.3)
+    aji_ob.data.materials.append(blanco)
+    b.material_mode = "TRANSFER"
+    cort.data.materials.append(blanco)
+    return cort

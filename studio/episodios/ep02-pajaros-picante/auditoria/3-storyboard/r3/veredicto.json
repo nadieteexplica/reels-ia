@@ -1,0 +1,140 @@
+{
+ "etapa": "3-storyboard",
+ "ronda": 3,
+ "veredicto": "APROBADO",
+ "notas": {
+  "foco": {
+   "nota": 8,
+   "por_que": "Las 40 frases tienen imagen propia y una idea por plano: la misma campanita suena naranja con la sopa (9, 16), roja con la molécula (11), queda celeste en el pájaro (15) y parpadea apenas en la tupaya (31); interiores con un solo foco (7 sensores, 23 ventanita de muelas sin hueso); baja a 8 porque 6 ('mamíferos'), 24 ('enteras') y 36 (dos vasos sin rótulo) no muestran lo que dice la voz.",
+   "de": "storyboard"
+  },
+  "ritmo": {
+   "nota": 8,
+   "por_que": "Los 40 cortes caen en el inicio de frase de words.json, cambio de escala cada ≤9 s (I 9.64, P 18.60, G 27.79, G 49.88, G 61.84), una sola transición especial (whip del 28), y los planos de más de 2,5 s (5, 23, 26, 29, 38) se transforman por dentro; seis planos bajo 1,2 s por el largo de la frase (4, 6, 17, 28, 33, 39), y el 4 y el 22 están sobrecargados.",
+   "de": "storyboard"
+  },
+  "viabilidad": {
+   "nota": 8,
+   "por_que": "0 clips de Kling, Origen en los 40 planos y ninguna pata con objeto (pico con ají y frutitos, hocico con ají y vaso, baliza como gorro, guardia con brazos cruzados, tupaya con la boca en la punta de la espiga), con los 4 escenarios nuevos listados para cuadro de estilo; el 34 (llama saliendo de la boca mientras bebe del vaso) queda con el fuego cruzando el vidrio.",
+   "de": "storyboard"
+  },
+  "gancho_visual": {
+   "nota": 8,
+   "por_que": "El cuadro 0 es absurdo y sin fundido (pájaro impasible con el ají como puro y el ratón echando fuego detrás), la llama y la campanita se repiten como símbolo y el 40 termina exacto en C0; las píldoras tienen ≤4 palabras; baja a 8 porque la utilería del loop (lentes y medalla) y la posición de las caras en C0 frente a los subtítulos no están definidas.",
+   "de": "storyboard"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 40,
+   "segundo": "72.28",
+   "que": "Utilería del ratón sin definir entre 38, 40, C0 y 3–6: el 38 pone al ratón 'inmune' con lentes Y medalla; el 40 sólo dice que cayeron los lentes (la medalla no aparece) y tiene que terminar exacto en C0, que en el plano 1 se describe sin medalla. Además, el 3 es 'momentos antes' de C0, pero los lentes que en C0 están junto al ají mordido no se mencionan en 3–6, y el 5 muestra ese ají en primer plano. Tal como está, o la medalla desaparece entre 38 y 40 (o salta en el loop 40→1), o el ratón de C0 no se ve igual al del 3.",
+   "arreglo": "En el 40, que los lentes y la medalla caigan juntos a la roca (sin accesorios queda igual al ratón común: 'un ratón más' literal) y que C0 los tenga en el mismo lugar. Agregar una tabla de utilería con posición fija para los planos del set (1, 3, 4, 5, 6, 33, 34, 40): ajíes mordidos, lentes, medalla, vaso y cajita. En 3–6, dejarlos en ese lugar o encuadrar para que no entren.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 34,
+   "segundo": "59.44",
+   "que": "El ratón bebe con la llama 'todavía encendida' saliéndole de la boca mientras el hocico toca el borde del vaso: la malla de fuego atravesaría el vidrio y la leche. Además, si la leche baja y el hocico sigue en el borde, ya no la alcanza.",
+   "arreglo": "Que la llama salga doblada hacia arriba por la comisura del lado contrario al vaso y se achique a medida que baja la leche, y que el hocico entre al vaso al bajar el nivel (o usar un vaso bajo, tipo platito). El hilo de humo sale recién al levantar la cabeza.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "C0 es la portada y tiene dos caras (el pájaro adelante en la roca, el ratón atrás y más arriba), pero no fija dónde caen. Con el pájaro en primer plano, su cabeza puede quedar en la franja de subtítulos (y 1000–1250), y 'ESTE PÁJARO…' sale desde el cuadro 0: cara tapada en la portada y en el cierre (40). Tampoco hay línea de encuadre en los primeros planos de caras 4, 14, 17, 33 y 39.",
+   "arreglo": "Fijar en C0/40 la cabeza del pájaro y el ají en y≈620–950, y la cara del ratón con la llama en y≈380–650, todo sobre y 1000. Agregar la línea 'Encuadre' en 4, 14, 17, 33 y 39, como ya la tienen 5, 12 y 30.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "4.83",
+   "que": "En 1,08 s encadena tres estados (la llama crece en 6 cuadros, ojos enormes sostenidos 8, ojos apretados con lágrimas) más las orejas, contra la regla del propio storyboard de una sola acción en los planos de menos de 1,2 s.",
+   "arreglo": "Dejar sólo la llama y los ojos abiertos sostenidos; las lágrimas pasan al 5, que ya las tiene.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "8.74",
+   "que": "'Mamíferos' no tiene imagen propia: el suspiro con humo no muestra la idea. Además, el ardor se apaga solo con un suspiro, lo que le quita fuerza a la enseñanza de la leche (34) y no calza con el ratón sudando con la baliza del 12.",
+   "arreglo": "Mantener la píldora TÚ = RATÓN del 5 y teñirla canela en 'mamíferos' (el mismo color de la palabra clave). Que se vaya la llama visible, pero el ratón siga con la cara roja y lágrimas (el ardor sigue).",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 18,
+   "segundo": "27.79",
+   "que": "Faltan tiempos y posiciones de los llamados. ARIZONA no dice cuándo entra: si entra al inicio, el subtítulo oculto se come '¿POR QUÉ?'. CHILTEPÍN entra en el 20, cuando la palabra ya se dijo en el 19. REC y la hora van en la 'esquina de arriba' sin coordenada y pueden caer bajo la barra de la app (y<280) en el 21–22.",
+   "arreglo": "ARIZONA entra justo en la palabra 'Arizona' y '¿POR QUÉ?' se ve en subtítulo. CHILTEPÍN entra al decirse en el 19, pegada a la mata. REC y la hora van en y 280–330, dentro de x 120–888.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 22,
+   "segundo": "35.11",
+   "que": "Un aterrizaje y 3 tragos en 1,64 s (49 cuadros) dan ~12 cuadros por glup, sin poses sostenidas de 6 cuadros: se ve atropellado.",
+   "arreglo": "Que el pájaro ya esté posado al empezar el plano, o dejar 2 tragos.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 24,
+   "segundo": "39.54",
+   "que": "'Se las traga enteras' se ve igual que el 2, el 17 y el 22 (un glup). No se muestra la semilla entera en contraste con las migas del 23.",
+   "arreglo": "Repetir el recuadro punteado del 23 en espejo: una ventanita en el cuello que deja ver las semillas enteras bajando.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 36,
+   "segundo": "63.91",
+   "que": "Dos vasos de leche iguales sin rótulo: no se distingue la entera de la descremada, que es justamente el punto ('aunque sea descremada').",
+   "arreglo": "Poner la cajita DESCREMADA del 34 junto a un vaso y una cajita ENTERA junto al otro, o una píldora pegada a cada vaso.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "1.71",
+   "que": "'Atravesado en el pico (como un puro)' es ambiguo: atravesado es cruzado, mientras que un puro sale hacia adelante, y el 2 necesita que el ají entre por la punta. El 14 tampoco dice si el pájaro sigue con el ají ya acortado del 2, que en el 17 vuelve a tragar.",
+   "arreglo": "En 1 y 40, escribir 'ají saliendo del pico hacia adelante, en su eje'. En el 14, 'con el ají ya acortado del 2', con el largo fijo hasta el 17.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "9.64",
+   "que": "El dolly del 7 y la cámara S del 8 son dos cámaras distintas dentro del mismo interior (la lengua). La regla del propio storyboard es no cambiar de ángulo dentro de un interior.",
+   "arreglo": "Que el dolly del 7 termine en el eje de la cámara S, para que el 8 sea el mismo eje, más cerca.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 31,
+   "segundo": "54.49",
+   "que": "Hay especificaciones que chocan. El 8 dice 'cámara S fija para los planos 8–11', pero el 10 (ají en corte) no es cámara S. En el 31, 'el resto sigue celeste' supone que la campanita de la tupaya parte celeste, cuando el código dice que el reposo es blanco neutro/plateado.",
+   "arreglo": "Corregir el 8 a 'planos 8, 9 y 11'. En el 31, que la campanita parta plateada y pase a celeste cuando salta la pieza.",
+   "de": "storyboard"
+  }
+ ],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}
