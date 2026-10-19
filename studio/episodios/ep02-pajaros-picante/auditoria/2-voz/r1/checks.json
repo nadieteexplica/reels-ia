@@ -1,0 +1,24 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ritmo de 2.1 palabras/s en 'En Arizona, científicos filmaron un chiltepín, un ají silves'",
+   "evidencia": "27.99 s"
+  },
+  {
+   "que": "ritmo de 2.2 palabras/s en 'La tupaya, de China.'",
+   "evidencia": "52.06 s"
+  },
+  {
+   "que": "ritmo de 2.0 palabras/s en 'Toma leche, aunque sea descremada.'",
+   "evidencia": "58.78 s"
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 72.91,
+  "palabras_por_s": 2.94,
+  "creditos_restantes": 38362,
+  "asr_coincidencia": 1.0,
+  "asr_diferencias": []
+ }
+}

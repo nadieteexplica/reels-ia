@@ -23,3 +23,5 @@
 {"tipo": "chequeo", "id": "auditor guion r2", "estado": "r2 rehecha: el revisor murió sin escribir nada; se vuelve a preparar con los extractos de fuentes.yml", "n": 23, "ts": "2026-10-19T19:42:39-03:00"}
 {"tipo": "trabajo", "id": "auditor guion r2b", "estado": "inicio", "nota": "con extractos de fuentes", "n": 24, "ts": "2026-10-19T19:42:54-03:00"}
 {"tipo": "trabajo", "id": "auditor guion r2b", "estado": "fin", "n": 25, "ts": "2026-10-19T19:48:29-03:00"}
+{"tipo": "gasto", "servicio": "eleven", "monto": 448.0, "nota": "voz ep02 (out/status.json: 1190 → 1638 usados)", "n": 26, "ts": "2026-10-19T19:53:20-03:00"}
+{"tipo": "trabajo", "id": "auditor voz r1", "estado": "inicio", "n": 27, "ts": "2026-10-19T19:53:44-03:00"}

@@ -70,10 +70,11 @@ def blob(name, elipsoides, coll, voxel=0.0007, suave=24):
     r.mode = "VOXEL"
     r.voxel_size = voxel
     r.adaptivity = 0.0
-    sm = ob.modifiers.new("Suave", "LAPLACIANSMOOTH")
+    sm = ob.modifiers.new("Suave", "SMOOTH")
+    sm.factor = 1.0
     sm.iterations = suave
-    sm.lambda_factor = 0.9
-    sm.use_volume_preserve = True
+    sd = ob.modifiers.new("Sub", "SUBSURF")
+    sd.levels = sd.render_levels = 1
     bpy.context.view_layer.update()
     dg = bpy.context.evaluated_depsgraph_get()
     me2 = bpy.data.meshes.new_from_object(ob.evaluated_get(dg))
@@ -354,3 +355,158 @@ def pajaro(coll, nombre="Cuitlacoche"):
             colgar(dedo, root)
     return {"root": root, "cuerpo": cuerpo, "cabeza": piv_cab, "pico": piv_pico, "mandibula": piv_inf, "ojos": ojos, "parpados": parps,
             "alas": alas, "cola": piv_cola, "punta_pico": pb + Vector((0, -0.068, -0.022))}
+
+
+# ---------------- ratón del cactus ----------------
+def mat_pelaje():
+    """Pelaje canela con guata blanca (máscara por la normal del objeto: adelante/abajo = blanco)."""
+    m = bpy.data.materials.get("Pelaje")
+    if m:
+        return m
+    m = bpy.data.materials.new("Pelaje")
+    m.use_nodes = True
+    nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]
+    b.inputs["Roughness"].default_value = 0.7
+    b.inputs["Sheen Weight"].default_value = 0.9
+    b.inputs["Sheen Roughness"].default_value = 0.3
+    b.inputs["Subsurface Weight"].default_value = 0.12
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    nt.links.new(tc.outputs["Normal"], sep.inputs[0])
+    vm = nt.nodes.new("ShaderNodeMath")
+    vm.operation = "MULTIPLY_ADD"          # -Ny*1.0 + (-Nz)*0.9
+    vm.inputs[1].default_value = -1.0
+    nz = nt.nodes.new("ShaderNodeMath")
+    nz.operation = "MULTIPLY"
+    nz.inputs[1].default_value = -0.35
+    nt.links.new(sep.outputs["Z"], nz.inputs[0])
+    nt.links.new(sep.outputs["Y"], vm.inputs[0])
+    nt.links.new(nz.outputs[0], vm.inputs[2])
+    mr = nt.nodes.new("ShaderNodeMapRange")
+    mr.inputs["From Min"].default_value = 0.72
+    mr.inputs["From Max"].default_value = 0.95
+    nt.links.new(vm.outputs[0], mr.inputs["Value"])
+    mix = nt.nodes.new("ShaderNodeMix")
+    mix.data_type = "RGBA"
+    mix.inputs["A"].default_value = (0.42, 0.20, 0.08, 1)     # canela
+    mix.inputs["B"].default_value = (0.86, 0.82, 0.76, 1)     # guata blanca
+    nt.links.new(mr.outputs["Result"], mix.inputs["Factor"])
+    nt.links.new(mix.outputs["Result"], b.inputs["Base Color"])
+    nz2 = nt.nodes.new("ShaderNodeTexNoise")
+    nz2.inputs["Scale"].default_value = 400.0
+    nz2.inputs["Detail"].default_value = 2.0
+    nt.links.new(tc.outputs["Object"], nz2.inputs["Vector"])
+    bump = nt.nodes.new("ShaderNodeBump")
+    bump.inputs["Strength"].default_value = 0.08
+    bump.inputs["Distance"].default_value = 0.0005
+    nt.links.new(nz2.outputs["Fac"], bump.inputs["Height"])
+    nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
+    return m
+
+
+def raton(coll, nombre="Raton"):
+    """Ratón del cactus de dibujo animado, sentado sobre las patas traseras (pose de comer). ~0,16 m de alto sentado.
+    Construido en el origen mirando a -Y. Devuelve la raíz y los pivotes animables: cabeza, orejas, ojos, párpados, boca, brazos, cola."""
+    root = P.empty(nombre, coll=coll)
+    pel = mat_pelaje()
+    canela = mat_simple("Canela", (0.42, 0.20, 0.08), rough=0.7, sheen=0.9)
+    rosado = mat_simple("RosadoRaton", (0.85, 0.42, 0.42), rough=0.5, sss=0.5)
+    oreja_in = mat_simple("OrejaDentro", (0.80, 0.30, 0.32), rough=0.55, sss=0.15)
+    nariz_m = mat_simple("NarizRaton", (0.75, 0.22, 0.26), rough=0.25, coat=0.6)
+    boca_m = mat_simple("BocaRaton", (0.12, 0.02, 0.02), rough=0.6)
+    diente_m = mat_simple("Diente", (0.95, 0.90, 0.78), rough=0.3)
+    bigote_m = mat_simple("Bigote", (0.9, 0.88, 0.84), rough=0.4)
+    cuerpo = blob(nombre + "_cuerpo", [
+        ((0, 0.010, 0.050), (0.042, 0.040, 0.048), (12, 0, 0)),     # caderas
+        ((0, -0.002, 0.090), (0.034, 0.032, 0.040), (12, 0, 0)),    # pecho
+        ((0, -0.006, 0.118), (0.026, 0.026, 0.022), (0, 0, 0)),     # cuello
+    ], coll)
+    cuerpo.data.materials.append(pel)
+    colgar(cuerpo, root)
+    cab_c = Vector((0, -0.016, 0.150))
+    piv_cab = P.empty(nombre + "_piv_cabeza", loc=(0, -0.006, 0.120), coll=coll)
+    colgar(piv_cab, root)
+    cabeza = blob(nombre + "_cabeza", [
+        (tuple(cab_c), (0.036, 0.034, 0.033), (0, 0, 0)),
+        (tuple(cab_c + Vector((0, -0.034, -0.010))), (0.020, 0.030, 0.018), (12, 0, 0)),   # hocico
+        (tuple(cab_c + Vector((0, -0.024, -0.020))), (0.018, 0.018, 0.012), (0, 0, 0)),    # mejillas/mentón
+    ], coll)
+    cabeza.data.materials.append(pel)
+    colgar(cabeza, piv_cab)
+    nariz = esfera(nombre + "_nariz", cab_c + Vector((0, -0.064, -0.004)), 0.0068, coll, nariz_m)
+    colgar(nariz, piv_cab)
+    # boca: abertura oscura (se escala para abrirla) + dos incisivos
+    piv_boca = P.empty(nombre + "_piv_boca", loc=cab_c + Vector((0, -0.050, -0.022)), coll=coll)
+    colgar(piv_boca, piv_cab)
+    boca = esfera(nombre + "_boca", cab_c + Vector((0, -0.050, -0.022)), 0.010, coll, boca_m, escala=(1.0, 0.45, 0.35))
+    colgar(boca, piv_boca)
+    for s in (-1, 1):
+        d = P.prim("cube", f"{nombre}_diente{'LR'[s > 0]}", coll, diente_m)
+        d.scale = (0.0028, 0.0014, 0.0042)
+        d.location = cab_c + Vector((s * 0.0016, -0.0565, -0.0185))
+        colgar(d, piv_boca)
+    # ojos grandes, negros con brillo (cartoon), y párpados
+    ojos, parps = [], []
+    for s in (-1, 1):
+        oc = cab_c + Vector((s * 0.019, -0.026, 0.010))
+        o = ojo(f"{nombre}_ojo{'LR'[s > 0]}", oc, 0.0118, oc + Vector((s * 0.35, -1.0, 0.0)), coll, (0.16, 0.08, 0.04), iris_frac=0.88, pupila_frac=0.48)
+        colgar(o, piv_cab)
+        pv = P.empty(f"{nombre}_piv_parpado{'LR'[s > 0]}", loc=oc, coll=coll)
+        pv.rotation_euler = o.rotation_euler.copy()
+        colgar(pv, piv_cab)
+        parpado(f"{nombre}_parpado{'LR'[s > 0]}", pv, 0.0118, coll, pel)
+        ojos.append(o)
+        parps.append(pv)
+    # orejas enormes (rasgo del ratón del cactus)
+    orejas = []
+    for s in (-1, 1):
+        base = cab_c + Vector((s * 0.022, 0.006, 0.022))
+        piv = P.empty(f"{nombre}_piv_oreja{'LR'[s > 0]}", loc=base, coll=coll)
+        colgar(piv, piv_cab)
+        ext = esfera(f"{nombre}_oreja{'LR'[s > 0]}", base + Vector((s * 0.014, 0.002, 0.016)), 0.026, coll, canela, escala=(1.0, 0.22, 1.0))
+        ext.rotation_euler = (math.radians(-10), math.radians(s * 35), 0)
+        colgar(ext, piv)
+        inn = esfera(f"{nombre}_orejaDentro{'LR'[s > 0]}", base + Vector((s * 0.014, -0.0040, 0.016)), 0.020, coll, oreja_in, escala=(1.0, 0.16, 1.0))
+        inn.rotation_euler = (math.radians(-10), math.radians(s * 35), 0)
+        colgar(inn, piv)
+        orejas.append(piv)
+    # bigotes
+    for s in (-1, 1):
+        for k, (dz, ang) in enumerate([(0.003, 10), (0.0, 0), (-0.003, -12)]):
+            o = cab_c + Vector((s * 0.008, -0.058, -0.008 + dz))
+            dirv = Vector((s * math.cos(math.radians(ang)) * 0.9, -0.25, math.sin(math.radians(ang)) * 0.6)).normalized()
+            w = P.tube(f"{nombre}_bigote{'LR'[s > 0]}{k}", [tuple(o), tuple(o + dirv * 0.022 + Vector((0, 0, 0.002))), tuple(o + dirv * 0.042)], 0.0004, coll, bigote_m)
+            colgar(w, piv_cab)
+    # brazos (patitas delanteras) con pivote en el hombro
+    brazos = []
+    for s in (-1, 1):
+        hom = Vector((s * 0.022, -0.020, 0.105))
+        piv = P.empty(f"{nombre}_piv_brazo{'LR'[s > 0]}", loc=hom, coll=coll)
+        colgar(piv, root)
+        br = blob(f"{nombre}_brazo{'LR'[s > 0]}", [
+            (tuple(hom + Vector((s * 0.004, -0.010, -0.012))), (0.009, 0.010, 0.016), (30, 0, 0)),
+            (tuple(hom + Vector((s * 0.004, -0.022, -0.026))), (0.008, 0.009, 0.007), (0, 0, 0)),
+        ], coll, voxel=0.0006, suave=10)
+        br.data.materials.append(canela)
+        colgar(br, piv)
+        mano = esfera(f"{nombre}_mano{'LR'[s > 0]}", hom + Vector((s * 0.004, -0.028, -0.030)), 0.0062, coll, rosado, escala=(1.1, 0.9, 0.8))
+        colgar(mano, piv)
+        brazos.append(piv)
+    # patas traseras grandes
+    for s in (-1, 1):
+        pie = esfera(f"{nombre}_pie{'LR'[s > 0]}", (s * 0.030, -0.022, 0.006), 0.011, coll, rosado, escala=(0.85, 2.0, 0.6))
+        colgar(pie, root)
+        muslo = blob(f"{nombre}_muslo{'LR'[s > 0]}", [((s * 0.034, 0.002, 0.034), (0.020, 0.030, 0.026), (-20, 0, 0))], coll, voxel=0.0007, suave=10)
+        muslo.data.materials.append(canela)
+        colgar(muslo, root)
+    # cola larga
+    piv_cola = P.empty(nombre + "_piv_cola", loc=(0, 0.045, 0.020), coll=coll)
+    colgar(piv_cola, root)
+    pts = [(0, 0.045, 0.020), (0.02, 0.09, 0.006), (0.07, 0.12, 0.004), (0.12, 0.11, 0.010), (0.15, 0.08, 0.020)]
+    cola = P.tube(nombre + "_cola", pts, 0.0035, coll, rosado)
+    cola.data.bevel_factor_mapping_end = "SPLINE"
+    cola.data.use_fill_caps = True
+    colgar(cola, piv_cola)
+    return {"root": root, "cuerpo": cuerpo, "cabeza": piv_cab, "boca": piv_boca, "ojos": ojos, "parpados": parps, "orejas": orejas,
+            "brazos": brazos, "cola": piv_cola, "boca_pos": cab_c + Vector((0, -0.056, -0.022))}
