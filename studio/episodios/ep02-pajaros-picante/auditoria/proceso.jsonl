@@ -1,0 +1,5 @@
+{"tipo": "trabajo", "id": "ep02 inicio sesión", "estado": "inicio", "nota": "repo clonado 4f6e0c7, docs leídos", "n": 1, "ts": "2026-10-19T19:16:04-03:00"}
+{"tipo": "trabajo", "id": "ep02 inicio sesión", "estado": "fin", "nota": "arranque: carpeta y bitácora creadas", "n": 2, "ts": "2026-10-19T19:16:09-03:00"}
+{"tipo": "trabajo", "id": "subagente busca-pajaro", "estado": "inicio", "nota": "investigación web de modelos CC0 de aves", "n": 3, "ts": "2026-10-19T19:16:44-03:00"}
+{"tipo": "trabajo", "id": "subagente busca-mamiferos", "estado": "inicio", "nota": "modelos CC0 de ratón y tupaya", "n": 4, "ts": "2026-10-19T19:19:11-03:00"}
+{"tipo": "trabajo", "id": "auditor guion r1", "estado": "inicio", "nota": "subagente revisor de la puerta 1", "n": 5, "ts": "2026-10-19T19:22:37-03:00"}
