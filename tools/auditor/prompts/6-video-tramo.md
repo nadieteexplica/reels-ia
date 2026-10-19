@@ -8,7 +8,7 @@ Revisas un **tramo de planos** del video final. Otro revisor mira el video compl
 - `contacto.jpg`: 1 cuadro por segundo del video entero (para ubicarte).
 - `eventos/E*.jpg` y `eventos.json`: lo que marcaron los detectores automáticos en tu tramo (antes | después).
 - `planos.json`: inicio, fin y origen de cada plano (render o kling).
-- `ficha.jpg`: el protagonista aprobado (cara, pelo, ropa).
+- `ficha.jpg`: los personajes aprobados de este episodio (forma, cara, colores; pelo y ropa si son humanos).
 - Contexto: `guion.md` (qué dice la voz) y el manual.
 
 ## Por cada plano de tu tramo

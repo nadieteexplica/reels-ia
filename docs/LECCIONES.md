@@ -73,3 +73,11 @@ Resultado: se publicó el 19-oct a las 16:35 en Instagram, TikTok y YouTube, per
 | 33 | Los artefactos de Actions (renders viejos) no se pueden bajar desde el espacio de trabajo | Se sirven desde un host bloqueado | `traer-artefacto.yml` los copia a una prerelease | Para revisar una versión vieja, traerla a una prerelease |
 | 34 | En planos generales (fila de voluntarios) el revisor no alcanzaba a ver los dedos | Grilla de 8 cuadros chicos | Zoom automático donde hay movimiento (`*_detalle.jpg`) | Si el revisor dice "material insuficiente", se mejora el material, no se aprueba |
 | 35 | En la calibración, además de las versiones viejas, se auditó el video ya publicado y se largó una segunda ronda sobre él. Tomás no lo había pedido y no había nada que arreglar ahí | Se amplió el alcance sin preguntar | Se detuvo; lo útil quedó como regla para el Ep. 2 | No ampliar el alcance de un pedido sin preguntar; lo publicado no se re-audita salvo que Tomás lo pida |
+
+## Ep. 2 — Los pájaros no sienten el picante (19-oct-2026)
+
+| # | Qué pasó | Causa | Solución | Regla que queda |
+|---|---|---|---|---|
+| 36 | Partí armando el set con el protagonista de siempre (mesón, el mismo personaje llorando) y Tomás lo paró: "no el mismo personaje" | Arrastré la fórmula del Ep. 1 en vez de pensar qué necesitaba esta idea | Concepto nuevo hecho para la idea: comedia 3D con animales en el desierto de Arizona, el ratón hace de "tú" | **Cada idea se diseña desde cero** (¿humano o no?, personajes, fondo, cámara, estilo) pensando en la viralidad de esa idea. Está en `CONTEXTO.md` (Formato) y en el manual §4 |
+| 37 | Los 3 subagentes que corrían (2 búsquedas y el revisor del guion r2) murieron cuando Tomás escribió a mitad de turno, igual que en el Ep. 1 (#13) | Los subagentes se cortan con cada mensaje de Tomás | Se anotaron como caídos en la bitácora; la r2 del guion se canceló con nota (`r2-cancelada/NOTA.md`) porque el guion cambió | Búsquedas largas, en Actions (`buscar-objaverse.yml`, `descargar.yml`); los subagentes, sólo para revisiones cortas que se relanzan |
+

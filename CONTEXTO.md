@@ -32,10 +32,11 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - Look lavado o sobreexpuesto con cámara pegada (primer intento del helado).
   - Copiar formatos de otras cuentas tal cual.
   - El pulpo como tema (no engancha).
-- **Estilo en evaluación:**
+- **Estilo por idea (DECIDIDO por Tomás, 19-oct-2026, manda sobre lo de abajo):** cada idea nueva se diseña **desde cero para esa idea y su viralidad**, sin arrastrar cómo se hizo el video anterior: si hace falta un humano o no, qué personajes, qué fondo, qué cámara y qué estilo 3D (puede ser totalmente otro). El protagonista humano es una opción más, no la cara obligatoria de la cuenta. Siguen vigentes: 3D sí o sí, verdad con fuentes y los estilos rechazados. Cada episodio deja sus personajes en `studio/episodios/<ep>/ficha.jpg`.
+- **Estilo en evaluación (historia, hasta el Ep. 1):**
   - **Monito animado 3D.** Muestras de 5 s en tres estilos: A · Pixar suave, B · caricatura con contorno, C · plastilina.
   - **Semi-realista tipo Zack D. Films.** Él lo mostró como referencia. Usarlo como referencia de *calidad*, pero con personaje, colores y escenario propios. Nunca su marca.
-  - **DECIDIDO (18-oct-2026):** semi-realista con Mixamo y **personaje propio de cuerpo normal**, hombre joven de ~18–20 años, con el look del niño de las muestras (polera coral con estrella, pelo café en mechones). Se descartó el cabezón: las animaciones de Mixamo son captura de movimiento real y en cabezones las manos atraviesan la cabeza. Las reacciones van en primer plano para que la cara se lea en vertical.
+  - **Usado en el Ep. 1 (18-oct-2026):** semi-realista con Mixamo y **personaje propio de cuerpo normal**, hombre joven de ~18–20 años, con el look del niño de las muestras (polera coral con estrella, pelo café en mechones). Se descartó el cabezón: las animaciones de Mixamo son captura de movimiento real y en cabezones las manos atraviesan la cabeza. Las reacciones van en primer plano para que la cara se lea en vertical.
   - Base del personaje: MakeHuman (CC0), armado en Blender. Las muestras A/B/C quedan como referencia histórica.
 - **Referencias de look** (fichas en `docs/REFERENCIAS.md`; son referencias de calidad, nunca de marca):
   - **R4** (el clavo, Zack D. Films): escenas con personajes. Paredes celestes, luz suave de estudio y ropa en pastel saturado.

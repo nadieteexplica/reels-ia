@@ -24,10 +24,10 @@ Tu trabajo es que **ningún error llegue a Tomás (el dueño) ni a las redes**. 
 1. **Dedos** que flotan, no tocan o atraviesan el objeto o la cara; **objeto** que flota, atraviesa la mano o no está agarrado.
 2. Algo que **aparece, desaparece o cambia de forma o de color de golpe** sin que sea un efecto buscado.
 3. **Pantalla vacía** o imagen que no acompaña a la voz (fondo liso, plano "muerto") por más de 0,2 s.
-4. **Personaje distinto** al de la ficha (`studio/personaje/ficha.jpg`: pelo café oscuro en mechones, polera coral con estrella amarilla, jeans) o deformado.
+4. **Personaje distinto** a su ficha o deformado. Cada episodio tiene sus propios personajes y estilo (decisión de Tomás, 19-oct-2026): la ficha es `ficha.jpg` del episodio (la que viene en tus materiales); si el episodio no tiene, es la del protagonista humano (`studio/personaje/ficha.jpg`: pelo café oscuro en mechones, polera coral con estrella amarilla, jeans). Un personaje que cambia de forma, color o proporciones entre planos es este bloqueante.
 5. **Cara tapada** por subtítulos o gráficos; subtítulo ilegible, fuera de la zona o desfasado de la voz.
 6. **Dato o cifra sin respaldo**, o una fuente que no dice lo que afirma el guion.
-7. **Interior del cuerpo confuso:** más de un foco brillando a la vez, cortes con parches, cráneo partido, órganos inventados o de caricatura, ojos de caricatura, cámaras que cambian de ángulo en el mismo interior. La regla es "cabeza de vidrio": siempre de perfil, fondo azul noche, anatomía real y **sólo brilla lo que nombra la voz**.
+7. **Interior del cuerpo confuso:** más de un foco brillando a la vez, cortes con parches, cráneo partido, cámaras que cambian de ángulo en el mismo interior. En episodios de estilo semi-realista la regla es "cabeza de vidrio": siempre de perfil, fondo azul noche, anatomía real y **sólo brilla lo que nombra la voz** (órganos inventados o de caricatura = bloqueante). En episodios de dibujo animado se permite una **metáfora estilizada** (p. ej. sensores como alarmas) si tiene un solo foco, se entiende al tiro, calza con el estilo del video y no se presenta como anatomía real.
 8. **Lista negra:** retos que alguien pueda imitar y salir herido, tragedias recientes, política, religión, salud dicha como indicación médica, personajes o marcas con derechos, imitar a otra cuenta.
 9. **Estilo rechazado:** sobreexpuesto o lavado, low-poly, rayos X o neón 2D.
 10. **Faltas de ortografía** o tildes malas en cualquier texto en pantalla o de publicación.

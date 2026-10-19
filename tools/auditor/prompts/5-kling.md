@@ -1,14 +1,14 @@
 # Etapa 5 — Clips de Kling
 
 **Criterios:** `manos`, `objeto`, `personaje`, `estabilidad`.
-**Materiales:** por clip, una grilla de **8 cuadros** en orden de tiempo (`<clip>.jpg`) y su **cuadro de partida** (`<clip>_inicio.jpg`); `clips.json` (duración, resolución y la instrucción en inglés que se le dio a Kling); la ficha del protagonista.
+**Materiales:** por clip, una grilla de **8 cuadros** en orden de tiempo (`<clip>.jpg`) y su **cuadro de partida** (`<clip>_inicio.jpg`); `clips.json` (duración, resolución y la instrucción en inglés que se le dio a Kling); la ficha de los personajes del episodio.
 
 Cada clip reemplaza un plano del video. Un clip con un defecto visible en cualquiera de sus cuadros **no sirve** (salvo que el defecto quede fuera del tramo usado, y eso no lo sabes: juzga el clip entero y di desde qué segundo es usable).
 
 ## Revisa cada clip, cuadro por cuadro
 1. **Manos:** dedos que rodean el objeto o se apoyan en la cara de verdad; ninguno atraviesa, ninguno flota; cantidad de dedos correcta; la mano no se deforma.
 2. **Objeto:** pegado a la mano mientras se mueve; no cambia de forma, tamaño, **color ni material** entre cuadros; no aparecen objetos nuevos ni desaparecen los que estaban.
-3. **Personaje:** la cara, el pelo y la ropa son los del cuadro de partida y de la ficha en los 8 cuadros (Kling tiende a "derretir" caras y cambiar ropa al final).
+3. **Personaje:** la cara, la forma, los colores (y el pelo o la ropa, si tiene) son los del cuadro de partida y de la ficha en los 8 cuadros (Kling tiende a "derretir" caras y cambiar ropa al final).
 4. **Estabilidad:** cámara fija como se pidió, fondo que no se deforma, sin texto, sin cortes, sin cambios de luz bruscos.
 5. **Acción:** ¿hace lo que pide la instrucción y lo que necesita el plano? ¿Se ve natural (sin cámara lenta rara ni movimientos de goma)?
 

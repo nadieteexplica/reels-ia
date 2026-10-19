@@ -125,7 +125,7 @@ Se arma una tabla en `storyboard.md`:
 - **Construir frente al espectador:** cuando se pueda, la escena se arma o se transforma paso a paso, para que quieran ver cómo termina (R3, R5, R6).
 - **Escala con repetición:** para cifras grandes, un objeto por caso (1.945 pelotas, miles de aviones) con instancias (R7, R9).
 - **Cada afirmación del guion tiene su imagen.** Si algo es invisible (nervios, ondas, átomos), se muestra con una metáfora visual clara en 3D: un corte del objeto, un zoom hacia adentro o flechas de flujo.
-- **Personaje recurrente:** es la cara de la cuenta y aparece en el gancho, en la reacción y en la enseñanza. Los formatos de objeto o corte (R5, R8) pueden ir sin él.
+- **Personajes hechos para la idea (decisión de Tomás, 19-oct-2026):** cada video se diseña desde cero para su idea y su viralidad: si lleva humano o no, qué personajes, qué fondo, qué cámara y qué estilo 3D. El protagonista humano (`studio/personaje/`) es una opción, no una obligación. Los personajes de cada episodio quedan en su `ficha.jpg` (la usa el auditor) y se mantienen iguales dentro del video.
 - **Final:** conecta visualmente con el cuadro 0 para que el loop se sienta continuo.
 
 ---

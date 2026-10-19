@@ -43,6 +43,15 @@ def ronda_dir(ep, etapa, ronda=None, crear=False):
     return d, ronda
 
 
+def ficha(ep_d):
+    """Ficha de personajes del episodio (studio/episodios/<ep>/ficha.jpg); si no tiene, la del protagonista humano.
+    Desde el 19-oct-2026 cada idea define su estilo y sus personajes (decisión de Tomás)."""
+    for p in (os.path.join(ep_d, "ficha.jpg"), os.path.join(RAIZ, "studio", "personaje", "ficha.jpg")):
+        if os.path.exists(p):
+            return p
+    return None
+
+
 def guardar(path, obj):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:

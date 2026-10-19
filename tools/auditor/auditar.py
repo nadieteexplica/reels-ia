@@ -86,7 +86,7 @@ def preparar(a):
         imgs = sorted(sum((glob.glob(g) for g in a.imagenes), []))
         if not imgs:
             sys.exit("--imagenes no encontró archivos")
-        ficha = a.ficha or os.path.join(comun.RAIZ, "studio", "personaje", "ficha.jpg")
+        ficha = a.ficha or comun.ficha(ep_d)
         lista = materiales.cuadros(md, imgs, ficha)
         res = checks.cuadros(lista)
         # pedidos de Kling que parten de estos cuadros: la instrucción se revisa ANTES de gastar unidades
@@ -130,8 +130,8 @@ def preparar(a):
                 if c["inicio"]:
                     mats.append(R(os.path.join(md, c["inicio"])))
             mats.append(R(os.path.join(md, "clips.json")))
-            if os.path.exists(os.path.join(comun.RAIZ, "studio", "personaje", "ficha.jpg")):
-                mats.append("studio/personaje/ficha.jpg")
+            if comun.ficha(ep_d):
+                mats.append(R(comun.ficha(ep_d)))
             encs.append(encargo(rd, f"kling{k // 3 + 1}", "5-kling.md", ", ".join(c["clip"] for c in parte), mats,
                                 ctx_base + ["docs/MANUAL_PRODUCCION.md"]))
     elif et == "6-video":
@@ -143,8 +143,8 @@ def preparar(a):
         res = checks.video(a.video, mat, a.subs)
         P = mat["planos"]
         comunes = [R(os.path.join(md, "contacto.jpg"))]
-        ficha = os.path.join(comun.RAIZ, "studio", "personaje", "ficha.jpg")
-        if os.path.exists(ficha):
+        ficha = comun.ficha(ep_d)
+        if ficha:
             import shutil
             shutil.copy(ficha, os.path.join(md, "ficha.jpg"))
             comunes.append(R(os.path.join(md, "ficha.jpg")))
