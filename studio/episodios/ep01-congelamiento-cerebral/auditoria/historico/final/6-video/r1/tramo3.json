@@ -1,0 +1,246 @@
+{
+ "encargo": "tramo3",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 7,
+   "por_que": "P21–P22 cabeza de vidrio limpia con bloom bien medido y P24 cara bien iluminada, pero en P17 los vasos cambian de material a mitad del plano, P23 abre con un fondo liso vacío y sus letras se cruzan unas con otras, y P19–P20 son un tubo rosado genérico sobre fondo granate."
+  },
+  "animacion": {
+   "nota": 7,
+   "por_que": "P18→P33 actúa bien (cejas preocupadas a 40.11, mueca a 40.65, mano a la frente con los dedos apoyados de 41.24 a 42.00), pero en P17 son clones idénticos con las piernas abiertas y arqueadas, todos con el mismo gesto y con vasos que se deforman, y en P24 casi no hay actuación en 1,1 s."
+  },
+  "claridad": {
+   "nota": 6,
+   "por_que": "En P23 el nombre aparece partido en 4 palabras sin guion y PALATINA queda bajo y=1250. P19–P20 muestran una arteria sin ninguna referencia de dónde está. En P22 los vasos que nombra la voz quedan mayormente bajo la franja de subtítulos, y en P21 el cerebro, que es lo que se nombra, no se destaca."
+  },
+  "ritmo": {
+   "nota": 7,
+   "por_que": "Hay un corte cada 1,1–3,5 s con la cámara en movimiento y las píldoras entrando a tiempo, pero 52.85–53.53 es tiempo muerto (pantalla vacía, E44) y P22 dura 3,53 s; desde 51.43 sólo deriva la cámara."
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 23,
+   "segundo": "52.89",
+   "que": "Pantalla vacía de 52.87 a 53.53 (0,66 s, E44). A 52.89 sólo se ve el fondo turquesa liso con el subtítulo SU NOMBRE CIENTÍFICO, y a 53.45 sólo una G cortada por el borde superior. La voz sigue hablando y la imagen no la acompaña.",
+   "arreglo": "Alargar P22 (la cabeza de vidrio) hasta 53.40 y cortar al título cuando GANGLIO ya esté a medio armar, o arrancar la caída de letras en el cuadro 1 del plano (52.85) para que desde el primer cuadro haya letras grandes en el centro."
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 17,
+   "segundo": "36.99",
+   "que": "Los vasos de todos los voluntarios cambian de golpe. Entre 35.69 y 36.56 son cilindros blancos opacos; desde 36.99 hasta 37.86 son vasos transparentes con hielo y forma de frasco con la boca más angosta. En P18 y P33 vuelven a ser blancos opacos. Es una deformación de Kling.",
+   "arreglo": "Regenerar el clip de Kling con un cuadro de partida donde el vaso ya sea el definitivo (el mismo blanco opaco de P18 y P33) y el prompt 'same opaque white cup throughout, never changes material or shape', o usar sólo 35.65–36.60 del clip y estirar el plano con un push-in."
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 23,
+   "segundo": "55.70",
+   "que": "Las palabras están partidas sin guion: GANGLIO / NEURALGIA / ESFENO / PALATINA se lee como cuatro palabras ('ganglio neuralgia esfeno palatina'). El término es 'ganglioneuralgia esfenopalatina', y partir una palabra entre líneas sin guion es una falta de ortografía.",
+   "arreglo": "Poner guion al final de la línea (GANGLIO- / NEURALGIA / ESFENO- / PALATINA) o escribir cada palabra entera en una línea (GANGLIONEURALGIA / ESFENOPALATINA), bajando el tamaño para que entre en x 60–1020."
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "55.14",
+   "que": "PALATINA queda en y≈1320–1470, debajo de y=1250, en la zona donde Instagram y TikTok ponen el usuario y el texto. La palabra final del nombre científico, que es el remate del plano, quedaría tapada.",
+   "arreglo": "Subir el bloque de 4 líneas ~250 px (GANGLIO de y≈555 a y≈320) o achicarlo para que todo quepa entre y 300 y 1200."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "54.01",
+   "que": "Las letras que caen atraviesan las palabras que ya están puestas. A 54.01 hay una letra encima de 'LI' en GANGLIO, a 54.74 una N blanca cruza NEURALGIA (se lee NEURALNGIA) y a 54.94 una A blanca pasa por delante de NEURALGIA (E45, E46). Durante 1 s el texto se ve desordenado.",
+   "arreglo": "Que cada letra caiga sólo desde 100–150 px sobre su lugar final, o que las líneas de abajo (ESFENO, PALATINA) entren desde abajo o con escala, sin cruzar las líneas de arriba."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 22,
+   "segundo": "50.05",
+   "que": "Cuando la voz dice 'son los vasos', el vaso rojo dominante es la carótida del cuello (y≈870–1620), cruzada por el subtítulo y más de la mitad bajo y=1250. Los vasos que 'rodean' el cerebro son líneas finas a la derecha. La imagen muestra sobre todo un vaso del cuello, no algo que rodea el cerebro.",
+   "arreglo": "Subir el encuadre o hacer un push-in hacia el cerebro para que los vasos y nervios que lo rodean (arterias de la superficie y nervios de las meninges) queden entre y 300 y 1000, con la carótida baja apagada."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 22,
+   "segundo": "49.36",
+   "que": "Ya a 49.36, con 'lo que duele' y antes de que la voz los nombre, brillan a la vez los nervios amarillos y las arterias rojas, y además siguen en color el paladar azul hielo y la lengua rosada. Son cuatro focos de color y la regla es que sólo brilla lo que nombra la voz.",
+   "arreglo": "A 49.36 dejar todo en vidrio neutro, encender las arterias justo en 'vasos' (≈50.05) y los nervios en 'nervios' (≈50.74). Paladar y lengua, apagados."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 21,
+   "segundo": "47.72",
+   "que": "La voz dice 'tu cerebro no siente dolor', pero el cerebro no se destaca: tiene el mismo tono que todo lo demás y la parte de atrás (lóbulo occipital y cerebelo) queda cortada por el borde derecho de 46.68 a 49.28. Lo más llamativo del cuadro es el ojo blanco y el paladar azul hielo, que la voz no nombra.",
+   "arreglo": "Hacer que la corteza brille suave cuando dice 'cerebro' (≈47.7), dejar el paladar y el ojo en vidrio neutro y abrir el encuadre para que el cerebro entero quepa en el ancho."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 19,
+   "segundo": "42.08",
+   "que": "En P19 y P20 (42.04–46.64) la arteria es un tubo rosado genérico sobre fondo granate. Queda fuera de la regla 'cabeza de vidrio' (de perfil, fondo azul noche, anatomía real) y no da ninguna referencia de dónde está: sólo la píldora dice 'ARTERIA DEL CEREBRO'.",
+   "arreglo": "Mostrar la arteria cerebral anterior real dentro de la cabeza de vidrio de perfil, ensanchándose y volviendo a su tamaño, con la barra de DOLOR, o abrir P19 con 0,5 s de la cabeza de vidrio y hacer zoom hasta la arteria."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 24,
+   "segundo": "55.78",
+   "que": "En los 6 cuadros (55.78–56.80) el borde superior corta la parte de arriba del pelo y no queda aire sobre la cabeza, cosa que pide el manual (sección 5, encuadre).",
+   "arreglo": "Alejar la cámara ~10 % o inclinarla hacia arriba para dejar ~60 px sobre el pelo, manteniendo la cara entre y 350 y 900."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 18,
+   "segundo": "38.48",
+   "que": "El vaso de agua helada, que es el objeto que ilustra la frase, queda justo en la franja de subtítulos y lo tapan 'LO MIDIERON CON' (37.94–38.48) y 'VOLUNTARIOS' (39.02–39.57).",
+   "arreglo": "Encuadrar algo más abajo del cuerpo o subir el vaso para que quede sobre y≈1000, sin tapar la cara."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 18,
+   "segundo": "38.48",
+   "que": "Error de continuidad con P17. En P17 (37.86), a la derecha del voluntario turquesa hay uno con polera amarilla; en P18 y P33 (38.48–42.00) hay uno con polera blanca.",
+   "arreglo": "Mantener el mismo orden del grupo o cambiar la polera blanca por la amarilla."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "35.69",
+   "que": "Los voluntarios son clones del mismo modelo (misma cara y pelo que el protagonista) y hacen el mismo gesto al mismo tiempo, parados con las piernas muy abiertas y arqueadas y los pies hacia afuera. Se ve tieso y artificial.",
+   "arreglo": "Cambiar la postura (pies a la altura de los hombros), desfasar cuándo toma cada uno y darles otro pelo y otro tono de piel para que no parezcan copias del protagonista."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 33,
+   "segundo": "40.73",
+   "que": "Entre dos tomas casi iguales de la misma persona, la píldora '13 VOLUNTARIOS' desaparece de golpe en el corte P18→P33 (E33) y se nota el salto. Pasa lo mismo con 'ARTERIA DEL CEREBRO' en el corte P19→P20 (44.27), donde la arteria sigue igual.",
+   "arreglo": "Animar la salida de las píldoras (fade o escala de 0,15 s) o mantenerlas hasta el cambio real de escena."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 22,
+   "segundo": "50.74",
+   "que": "Un nervio amarillo perfectamente recto cruza el cerebro en diagonal hacia arriba a la derecha (50.74–52.81). Parece una línea suelta, no un nervio que sigue la superficie.",
+   "arreglo": "Curvarlo siguiendo la duramadre o sacarlo si no corresponde a un nervio de Z-Anatomy."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 20,
+   "segundo": "46.14",
+   "que": "En 46.14 y 46.60 aparecen rayitas blancas finas en el borde izquierdo de la arteria que parecen artefacto de brillo especular. Con 6 cuadros no alcanza para saber si es un destello que entra con un glóbulo o un defecto del render.",
+   "arreglo": "Revisar esos cuadros en el video. Si es artefacto, bajar el especular o la intensidad del bloom en ese borde."
+  }
+ ],
+ "eventos": [
+  {
+   "id": "E30",
+   "es_defecto": false,
+   "por_que": "Es la píldora 'HARVARD · 2012', que entra a propósito a 36.0."
+  },
+  {
+   "id": "E31",
+   "es_defecto": false,
+   "por_que": "P18 dura 2,79 s, pero algo cambia: entra la píldora a 38.27, toma por la bombilla a 38.48, la expresión pasa a preocupada a 40.11 y a mueca a 40.65, y la cámara se mueve un poco."
+  },
+  {
+   "id": "E32",
+   "es_defecto": false,
+   "por_que": "Es la píldora '13 VOLUNTARIOS', que entra a propósito a 38.27."
+  },
+  {
+   "id": "E33",
+   "es_defecto": false,
+   "por_que": "Es el corte P18→P33: la píldora era del plano anterior. Se nota el salto porque las dos tomas son casi iguales (problema de prioridad 3)."
+  },
+  {
+   "id": "E34",
+   "es_defecto": false,
+   "por_que": "El brillo sube porque la arteria se ensancha y llena el cuadro de rosado claro, que es lo que dice la voz."
+  },
+  {
+   "id": "E35",
+   "es_defecto": false,
+   "por_que": "Entra la píldora 'ARTERIA DEL CEREBRO' y la barra de DOLOR pasa de verde a oliva: es buscado."
+  },
+  {
+   "id": "E36",
+   "es_defecto": false,
+   "por_que": "Es el cambio de subtítulo de 'UNA ARTERIA DE' a 'SU CEREBRO SE'."
+  },
+  {
+   "id": "E37",
+   "es_defecto": false,
+   "por_que": "El brillo baja porque la arteria vuelve a su tamaño ('al volver a su tamaño'): es buscado."
+  },
+  {
+   "id": "E38",
+   "es_defecto": false,
+   "por_que": "Es la barra de DOLOR vaciándose de rojo a verde a propósito."
+  },
+  {
+   "id": "E39",
+   "es_defecto": false,
+   "por_que": "P21 dura 2,68 s, pero hay push-in continuo de la cámara y la píldora entra a 47.0."
+  },
+  {
+   "id": "E40",
+   "es_defecto": false,
+   "por_que": "Es la píldora '0 RECEPTORES DE DOLOR', que entra a propósito a 47.0."
+  },
+  {
+   "id": "E41",
+   "es_defecto": false,
+   "por_que": "P22 dura 3,53 s. Las arterias van apareciendo hasta ~51.4 y la cámara sigue con push y giro, así que nunca pasan 2 s sin cambio, aunque desde 51.43 el cambio es poco."
+  },
+  {
+   "id": "E42",
+   "es_defecto": false,
+   "por_que": "El brillo sube porque entran las letras del título (de fondo vacío a letras claras)."
+  },
+  {
+   "id": "E43",
+   "es_defecto": false,
+   "por_que": "P23 dura 2,89 s con letras cayendo sin parar desde 53.4; el problema real es el arranque vacío (E44)."
+  },
+  {
+   "id": "E44",
+   "es_defecto": true,
+   "por_que": "Pantalla vacía real de 52.87 a 53.53: fondo liso con sólo el subtítulo y después una G cortada en el borde. Es bloqueante."
+  },
+  {
+   "id": "E45",
+   "es_defecto": true,
+   "por_que": "La caída de letras es buscada, pero la letra que cae cruza GANGLIO ya armado (a 54.01 hay una letra encima de 'LI'). Es defecto no bloqueante, de prioridad 2."
+  },
+  {
+   "id": "E46",
+   "es_defecto": true,
+   "por_que": "Las letras blancas N y A caen por delante de NEURALGIA (se lee NEURALNGIA). Es defecto no bloqueante, de prioridad 2."
+  },
+  {
+   "id": "E47",
+   "es_defecto": false,
+   "por_que": "Es el corte seco del título a la cara del protagonista ('Sí, en serio')."
+  }
+ ],
+ "resumen": "No aprobado por tres bloqueantes: 0,66 s de pantalla vacía al inicio de P23 (E44), vasos que cambian de material y forma en P17 (Kling) y el nombre científico partido en 4 palabras sin guion. Además, PALATINA queda bajo y=1250 y en P21–P22 el foco anatómico no sigue lo que nombra la voz."
+}
