@@ -484,9 +484,13 @@ def camera(name, f0, f1, keys, lens=50, fstop=2.8, focus_obj=None, shake=None):
     cd.dof.focus_object = focus_obj or focus
     cam = bpy.data.objects.new(name, cd)
     P.link(cam)
+    prev_e = None
     for f, loc, tgt in keys:
         cam.location = loc
-        cam.rotation_euler = (Vector(tgt) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
+        q_ = (Vector(tgt) - Vector(loc)).to_track_quat("-Z", "Y")
+        # euler compatible con la clave anterior: si no, al girar puede dar la vuelta larga (pasaba al entrar a la cabeza)
+        prev_e = q_.to_euler("XYZ", prev_e) if prev_e is not None else q_.to_euler()
+        cam.rotation_euler = prev_e
         cam.keyframe_insert("location", frame=f)
         cam.keyframe_insert("rotation_euler", frame=f)
     if cam.animation_data:
@@ -1142,7 +1146,7 @@ for k_ in list(kit):
     ks_ = VIS_INT.get(k_, [])
     if k_ in LADO:
         halves[k_] = AR.split_half(kit[k_])
-        key_vis(halves[k_][0], [], END)
+        key_vis(halves[k_][0], frames_of([4]) if k_ == "Ojos" else [], END)  # de frente (entrada) se ven los dos ojos
         key_vis(halves[k_][1], frames_of(ks_), END)
     else:
         key_vis(kit[k_], frames_of(ks_), END)
@@ -1375,7 +1379,7 @@ ICAM = {
     31: (0.38, 0.33, (0, 0.004, -0.075), -0.05),   # el paladar se escarcha
     13: (0.46, 0.40, (0, 0.02, -0.045), 0.0),      # el trigémino detecta el cambio
     14: (0.62, 0.56, (0, 0.0, -0.035), 0.0),       # el nervio que siente toda la cara
-    15: (0.56, 0.48, (0, -0.035, 0.030), 0.0),     # una rama llega a la frente
+    15: (0.52, 0.45, (0, 0.015, 0.045), 0.0),      # una rama llega a la frente (la frente y su brillo arriba al centro)
     32: (0.52, 0.47, (0, 0.05, 0.02), 0.02),       # el cerebro se confunde
     21: (0.56, 0.64, (0, 0.05, 0.0), 0.02),        # el cerebro no siente dolor
     22: (0.62, 0.55, (0, 0.04, -0.02), 0.0),       # lo que duele: vasos y nervios que lo rodean
