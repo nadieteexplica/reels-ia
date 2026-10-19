@@ -28,7 +28,7 @@ on:
         default: ""
 permissions:
   contents: write
-concurrency: render-${{ github.event.inputs.episodio }}
+concurrency: render-${{ github.event.inputs.episodio }}${{ github.event.inputs.lista != '' && '-lista' || '' }}
 env:
   EP: ${{ github.event.inputs.episodio }}
   MH_DATA: ${{ github.workspace }}/mh/makehuman/data
@@ -103,6 +103,24 @@ jobs:
           path: ${{ env.OUT }}/frames
           retention-days: 3
 
+  muestras:
+    # Modo "lista": sube los cuadros sueltos a la prerelease "pruebas" para revisarlos.
+    needs: render
+    if: github.event.inputs.lista != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cuadros-*
+          path: m
+          merge-multiple: true
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release view pruebas >/dev/null 2>&1 || gh release create pruebas --prerelease --title "Pruebas de render" --notes "Cuadros de prueba internos. No publicar."
+          gh release upload pruebas m/*.png --clobber
+
   armar:
     needs: render
     if: github.event.inputs.lista == ''
@@ -152,6 +170,14 @@ jobs:
             ${{ env.OUT }}/subs_log.json
             ${{ env.OUT }}/qa.txt
           retention-days: 7
+      - name: Borrador para revisión (prerelease)
+        if: always() && env.TAG != '' && github.event.inputs.cuadros == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          B="$TAG-borrador"
+          gh release view "$B" >/dev/null 2>&1 || gh release create "$B" --prerelease --title "$EP (borrador para revisión)" --notes "Borrador interno para la revisión. No publicar."
+          gh release upload "$B" "$OUT/$EP.mp4" "$OUT/contacto.jpg" "$OUT/qa.txt" "$OUT/subs_log.json" --clobber
       - name: Publicar en el Release
         if: steps.qa.outcome == 'success' && github.event.inputs.publicar == 'true' && github.event.inputs.cuadros == ''
         env:
