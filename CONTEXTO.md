@@ -96,37 +96,28 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **vidIQ (plan gratis):** pocos créditos. Ver un video cuesta 10 y una búsqueda de outliers cuesta 5.
 
 ## Presupuesto
-- **Máximo 10.000 CLP al mes** en total. ElevenLabs Starter ya está pagado.
-- La calidad se sube con cosas gratis (Blender, Actions, assets CC0, Mixamo).
-- Si se gasta algo: una compra única de un buen personaje protagonista, después de elegir el estilo.
-- No gastar en planes de video con IA ni en suscripciones de música.
+- **Tope: 10.000 CLP al mes.** ElevenLabs Starter ya está pagado.
+- **Octubre 2026 (excepción aprobada por Tomás el 19-oct):** compró el paquete Trial de la **API de Kling** (USD 9,80 = 100 unidades, vence a los 30 días) y cargó **USD 10 en RunPod** (sin Auto-Pay). ~19.400 CLP extra este mes.
+  - Kling: 4 unidades por clip de 5 s a 1080p. Después del Trial, el paquete oficial más barato cuesta USD 700: si se sigue usando, hay que evaluar un intermediario con pago por clip (decisión de Tomás).
+  - RunPod: ~USD 0,22–0,30 la hora (RTX A5000/A4000, community/secure); un video completo ~USD 0,3–0,5.
+- Gratis primero: Blender, Actions, assets CC0, Mixamo. Toda compra nueva se pregunta antes con el monto en CLP.
 
 ## Seguridad (obligatorio)
 - La API key de ElevenLabs vive **solo** en el secreto del repo. Nunca escribirla, repetirla ni commitearla.
 - No crear cuentas ni usar contraseñas por Tomás.
 - **Publicar en redes solo con su OK explícito, post por post.**
 
-## Estado actual (18-oct-2026)
+## Estado actual (19-oct-2026)
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
 - **Estilo decidido:** semi-realista con Mixamo y personaje propio (ver "Formato").
-- **Estudio de referencias virales** (18-oct, en curso): 9 videos analizados en `docs/REFERENCIAS.md`. Sus conclusiones ya están en este archivo, el manual, `IDEAS.md`, `AUTOMATIZACION.md` y `PUBLICADOS.md` (19-oct). Tomás sigue mandando videos: cada uno suma una ficha.
-- **Protagonista (borrador 1, aprobado en dirección por Tomás):** `studio/personaje/` (ver su README).
-  - Base MakeHuman CC0, hombre joven, 1,77 m, polera coral con estrella amarilla, jeans, zapatillas blancas, pelo café corto con jopo.
-  - Riggeado por Claude con esqueleto `mixamorig:*`: las FBX de Mixamo se aplican directo (no hay que subir nada a Mixamo).
-  - 34 shape keys de expresión (párpados, cejas, boca).
-  - Cabeza y cuello de Mixamo suavizados un 30 % (la captura exagera; Tomás notó el cuello torcido).
-  - Render de prueba en el workspace: ~9 s por cuadro a 405×720 con 12 muestras (2 núcleos). El render final va a Actions.
-  - Pendiente: piel menos plástica, bordes de manga, mirada, sincronía de boca, contacto mano–cara (`Thinking` no llega al mentón).
-- **Mixamo:** 13 FBX en el repo privado `nadieteexplica/assets` (`mixamo/`); copia en `tomasnaser20-star/assets`. `Talking` bajó la versión **sentado**: falta "General Conversation" (de pie). `Drinking` está repetida.
-- **Muestras de estilo A/B/C** (`studio/muestras/`): históricas, ya no se usan.
-- **Ep. 1 — Congelamiento cerebral (helado), v2 (idea de Tomás: carrito de helado):**
-  - Guion de 209 palabras con fuentes (`guion.md`), voz `out/tts/ep01-congelamiento-cerebral.mp3` (**71,7 s**), `words.json` y `storyboard.md`.
-  - Escena completa en `escena/build_ep01.py`: 34 planos (plaza con carrito, interior de la cabeza con piel de vidrio, macro del paladar, laboratorio con 13 voluntarios, arteria, letras gigantes), cortes cada ~2 s, loop final.
-  - Post (`escena/post.py`): subtítulos palabra por palabra con palabras clave en cian, etiquetas, medidor de dolor y rebobinado VHS. Audio (`escena/audio.py`): voz + marimba sintetizada con ducking (~19 dB bajo la voz) + efectos, −14 LUFS.
-  - Textos del post en `entrega/caption.md`.
-  - **Falta:** render final en Actions (`.github/workflows/render.yml`), QA y revisión independiente. El acceso a las FBX ya funciona (18-oct).
-  - Tiempos de render medidos en el workspace (2 núcleos): un cuadro 1080×1920 con 24 muestras tarda ~7 min.
+- **Interior del cuerpo ("cabeza de vidrio"), aprobado por Tomás el 19-oct:** perfil fijo, fondo azul noche, anatomía real de Z-Anatomy; se ve y brilla sólo lo que nombra la voz. Reglas en el manual §8.
+- **Manos con objetos y reacciones → Kling** (API oficial, secreto `KILING_SECRET`, workflow `kling.yml`). En Blender los dedos flotaban; Tomás lo rechazó dos veces. Kling parte de cuadros nuestros y no se usa para anatomía.
+- **Render en GPU → RunPod** (secreto `RUNPOD_API_KEY`, workflow `render-gpu.yml`). Probado el 19-oct: RTX A5000, ~1,4 s por cuadro a 720p/16 muestras, el pod se borra solo.
+- **Proceso (desde el 19-oct):** cuadros de estilo → OK de Tomás → render → revisión propia plano a plano + auditor → OK de Tomás. Claude revisa su trabajo antes de mostrarlo y vigila cada 15 min lo que corre en paralelo (el 19-oct dos trabajos en paralelo murieron una hora sin que nadie lo notara).
+- **Estudio de referencias virales:** `docs/REFERENCIAS.md` (Tomás sigue mandando videos).
+- **Protagonista:** `studio/personaje/` (MakeHuman CC0 + esqueleto `mixamorig:*`, 34 shape keys de expresión).
+- **Ep. 1 — Congelamiento cerebral (helado):** guion v2 con fuentes, voz de 71,7 s, escena `escena/build_ep01.py`, post `escena/post.py`, audio `escena/audio.py`, clips de Kling en `kling/`, textos en `entrega/caption.md`. Estado de la entrega: ver el final de esta sección.
 - **Mixamo (referencia):**
   - **Dónde van las FBX:** repo **privado** `nadieteexplica/assets`, carpeta `mixamo/`. El render los clona con el secreto `TOKEN` (token fino "render" de la organización, solo lectura de ese repo, vence el 17-nov-2026: hay que renovarlo). Nunca van al repo público.
   - Configuración: FBX Binary, 30 fps, keyframe reduction none, y "In Place" marcado cuando exista.
