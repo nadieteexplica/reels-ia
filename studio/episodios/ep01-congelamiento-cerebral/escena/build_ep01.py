@@ -1014,7 +1014,7 @@ for o in [cone_m] + [c for c in cone_m.children_recursive]:
         key_vis(o, frames_of(BITE), END)
 for o in [cone_h] + [c for c in cone_h.children_recursive]:
     if o.type in ("MESH", "CURVE"):
-        key_vis(o, frames_of([8, 29]), END)
+        key_vis(o, [], END)  # en el 8 aparecía de golpe en la mano al final del plano; en el 29 no se ve
 for o in [cone_cart] + [c for c in cone_cart.children_recursive]:
     if o.type in ("MESH", "CURVE"):
         key_vis(o, frames_of([7, 28]), END)
