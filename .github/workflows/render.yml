@@ -1,6 +1,6 @@
 name: render
 # Renderiza un episodio en paralelo y publica el MP4 como asset de Release (tag = epNN).
-# Las animaciones de Mixamo vienen del repo privado tomasnaser20-star/assets (secreto ASSETS_TOKEN):
+# Las animaciones de Mixamo vienen del repo privado tomasnaser20-star/assets (secreto ASSETS_TOKEN o TOKEN):
 # nunca se suben a este repo ni a los artefactos.
 on:
   workflow_dispatch:
@@ -66,7 +66,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: tomasnaser20-star/assets
-          token: ${{ secrets.ASSETS_TOKEN }}
+          token: ${{ secrets.ASSETS_TOKEN || secrets.TOKEN }}
           path: assets
       - name: MakeHuman (CC0)
         run: |
