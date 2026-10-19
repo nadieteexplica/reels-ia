@@ -1,5 +1,5 @@
 {
- "nota": "Errores conocidos del Ep. 1 (docs/LECCIONES.md) y dónde están. Se escribió ANTES de leer los veredictos. calibrar.py comprueba si el auditor los encontró (plano o clip + palabras clave). Las carpetas 'base' están en studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/.",
+ "nota": "Errores conocidos del Ep. 1 (docs/LECCIONES.md) y dónde están. Se escribió ANTES de leer los veredictos. calibrar.py comprueba si el auditor los encontró (plano o clip + palabras clave). Las carpetas 'base' están en studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/. 'grave' (por defecto true): el revisor tiene que marcarlo como bloqueante o prioridad 1.",
  "casos": [
   {
    "id": "L1-v3",
@@ -210,7 +210,9 @@
     "material",
     "color",
     "cambia"
-   ]
+   ],
+   "grave": false,
+   "nota": "en la ronda 2 el cambio queda fuera del tramo usable (2,8–5,0 s), así que va como prioridad 2: cuenta si lo ubica en el clip"
   },
   {
    "id": "L4-cuadro",

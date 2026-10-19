@@ -143,6 +143,11 @@ def preparar(a):
         res = checks.video(a.video, mat, a.subs)
         P = mat["planos"]
         comunes = [R(os.path.join(md, "contacto.jpg"))]
+        ficha = os.path.join(comun.RAIZ, "studio", "personaje", "ficha.jpg")
+        if os.path.exists(ficha):
+            import shutil
+            shutil.copy(ficha, os.path.join(md, "ficha.jpg"))
+            comunes.append(R(os.path.join(md, "ficha.jpg")))
         for k in range(0, len(P), TRAMO):
             parte = P[k:k + TRAMO]
             ids = {p["plano"] for p in parte}

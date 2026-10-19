@@ -44,6 +44,9 @@ def problemas(base, etapa):
 
 
 def coincide(caso, p):
+    if caso.get("grave", True) and not (p.get("bloqueante") or p.get("automatico") or p.get("_de") == "checks"
+                                        or (p.get("prioridad") or 9) <= 1):
+        return False      # tiene que haberlo marcado como bloqueante o prioridad 1, no como detalle
     txt = norm(" ".join(str(p.get(k, "")) for k in ("que", "arreglo", "plano", "segundo", "donde")))
     if not any(norm(w) in txt for w in caso["palabras"]):
         return False
@@ -60,7 +63,7 @@ def coincide(caso, p):
         pl = int(pl)
     except (TypeError, ValueError):
         pl = None
-    en_plano = pl in caso["planos"] or any(re.search(rf"\bplano {n}\b", txt) for n in caso["planos"])
+    en_plano = pl in caso["planos"] or any(re.search(rf"\b(plano |p){n}\b", txt) for n in caso["planos"])
     if "t" in caso:
         ts = segundos(p.get("segundo")) + segundos(p.get("donde"))
         en_t = any(caso["t"][0] <= t <= caso["t"][1] for t in ts)
