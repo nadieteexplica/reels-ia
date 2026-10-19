@@ -999,6 +999,9 @@ for L_ in (ikl, ikl2):
     for k in sorted(FR):
         L_.energy = (60 if L_ is ikl else 40) if k in INTERIOR + [14] else 0.0
         L_.keyframe_insert("energy", frame=FR[k][0])
+    for fc in anim._fcurves(L_.animation_data.action):   # cambio seco en el corte (con Bezier se apagaba durante el plano)
+        for kp in fc.keyframe_points:
+            kp.interpolation = "CONSTANT"
 SAG = []                    # sin cortes: cabeza de vidrio de perfil, se ve sólo lo que nombra la voz
 FULL = list(INTERIOR)
 for n in ("Ojo.L", "Ojo.R"):
@@ -1320,6 +1323,9 @@ sun = bpy.data.objects["Sol"]
 for k in sorted(FR):
     sun.data.energy = (3.3 if k not in INTERIOR else 0.0) if k in plaza_shots else 0.4
     sun.data.keyframe_insert("energy", frame=FR[k][0])
+for fc in anim._fcurves(sun.data.animation_data.action):
+    for kp in fc.keyframe_points:
+        kp.interpolation = "CONSTANT"
 
 # --- cámaras ---
 def cam_face(k, d0, d1, side=0.0, up=0.02, down=None, lens=50, fstop=4.0, shake=None, f_eval=None, frac=0.32, foco=None):
