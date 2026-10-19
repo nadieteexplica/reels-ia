@@ -163,14 +163,14 @@ def draw_subs(img, f):
 
 # ---------- píldoras ----------
 PILLS = {  # plano: [(texto, estilo)]
-    10: [("PALADAR", "blanca")], 31: [("PALADAR", "blanca")], 11: [("VASOS SANGUÍNEOS", "blanca")], 13: [("NERVIO TRIGÉMINO", "amarilla")],
+    10: [("PALADAR", "blanca")], 31: [("PALADAR", "blanca")], 25: [("PALADAR", "blanca")], 11: [("VASOS SANGUÍNEOS", "blanca")], 13: [("NERVIO TRIGÉMINO", "amarilla")],
     15: [("EXPLICACIÓN MÁS ACEPTADA", "blanca")], 32: [("CORTEZA SENSITIVA", "amarilla")],
     17: [("HARVARD · 2012", "blanca")], 18: [("13 VOLUNTARIOS", "blanca")], 19: [("ARTERIA DEL CEREBRO", "blanca")],
     21: [("0 RECEPTORES DE DOLOR", "coral")], 34: [("EL TRUCO", "amarilla")],
     27: [("DURA ≤ 2 MIN", "blanca")], 35: [("NO ES PELIGROSO", "verde")],
 }
 PILL_POS = {34: "lado", 35: "lado"}                 # primeros planos: al costado de la cara, nunca encima
-ARROW_TO = {10: (560, 740), 31: (540, 760)}         # la flecha apunta al paladar en el corte de perfil
+ARROW_TO = {int(k): tuple(v) for k, v in meta.get("flechas", {}).items()}  # la flecha apunta a lo que se nombra (calculado en Blender)
 STY = {"blanca": ((255, 255, 255), (20, 24, 30)), "amarilla": (YELLOW, (20, 24, 30)), "coral": ((255, 92, 75), (255, 255, 255)), "verde": ((60, 200, 120), (255, 255, 255))}
 PILL_FONT = ImageFont.truetype(FONT_B, 52)
 
@@ -237,13 +237,20 @@ def draw_pain_meter(img, f):
 
 def draw_question(img, f):
     k = shot_of(f)
-    if k != 5:
+    if k not in (5, 32):
         return
-    age = (f - FR[5][0]) / FPS
+    age = (f - FR[k][0]) / FPS
     s = min(1.0, age / 0.12) * (1 + 0.2 * math.exp(-age * 8))
-    fnt = ImageFont.truetype(FONT, int(220 * s) + 1)
+    fnt = ImageFont.truetype(FONT, int((220 if k == 5 else 170) * s) + 1)
     d = ImageDraw.Draw(img, "RGBA")
-    d.text((760, 360), "?", font=fnt, fill=YELLOW, stroke_width=10, stroke_fill=(0, 0, 0), anchor="mm")
+    if k == 5:
+        d.text((760, 360), "?", font=fnt, fill=YELLOW, stroke_width=10, stroke_fill=(0, 0, 0), anchor="mm")
+        return
+    # el cerebro "se confunde": dos signos que titilan junto a la corteza que se enciende
+    tx, ty = ARROW_TO.get(32, (860, 730))
+    for i, (dx, dy) in enumerate(((150, -40), (-170, -120))):
+        if age > 0.15 + 0.25 * i and int(age * 6 + i) % 3 != 0:
+            d.text((min(980, tx + dx), max(470, ty + dy)), "?", font=fnt, fill=YELLOW, stroke_width=9, stroke_fill=(0, 0, 0), anchor="mm")
 
 
 # ---------- rebobinado (plano 6) ----------
@@ -293,6 +300,19 @@ def load(f):
     return im
 
 
+def bloom(rgb):
+    """Resplandor de lo que brilla dentro de la cabeza (lo que se está explicando)."""
+    from PIL import ImageFilter
+    a = np.asarray(rgb).astype(np.float32) / 255.0
+    lum = a.max(axis=2, keepdims=True)
+    hi = np.clip((lum - 0.62) / 0.38, 0, 1) * a
+    hi_im = Image.fromarray((hi * 255).astype(np.uint8))
+    b1 = np.asarray(hi_im.filter(ImageFilter.GaussianBlur(14))).astype(np.float32) / 255.0
+    b2 = np.asarray(hi_im.filter(ImageFilter.GaussianBlur(48))).astype(np.float32) / 255.0
+    out = 1 - (1 - a) * (1 - 0.75 * b1) * (1 - 0.55 * b2)   # screen: no quema los blancos
+    return Image.fromarray((np.clip(out, 0, 1) * 255).astype(np.uint8))
+
+
 def process(f):
     k = shot_of(f)
     if k == 6:
@@ -303,8 +323,8 @@ def process(f):
         return False
     if k in INTERIOR_SET:
         from PIL import ImageEnhance
-        rgb = ImageEnhance.Color(ImageEnhance.Contrast(im.convert("RGB")).enhance(1.10)).enhance(1.18)
-        im = rgb.convert("RGBA")
+        rgb = ImageEnhance.Color(ImageEnhance.Contrast(im.convert("RGB")).enhance(1.08)).enhance(1.12)
+        im = bloom(rgb).convert("RGBA")
     draw_question(im, f)
     draw_pills(im, f)
     draw_pain_meter(im, f)

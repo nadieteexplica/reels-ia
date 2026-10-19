@@ -111,8 +111,9 @@ def derm_mask(p):
     nose = (1 - _ss(0.010, 0.018, np.abs(x))) * _ss(E.z - 0.035, E.z - 0.025, z) * (1 - _ss(E.z + 0.004, E.z + 0.016, z)) * (1 - _ss(E.y - 0.03, E.y - 0.01, y))
     v1 = np.maximum(_ss(E.z + 0.004, E.z + 0.016, z) * (1 - _ss(E.z + 0.11, E.z + 0.13, z)) * front, nose)
     v2 = _ss(E.z - 0.066, E.z - 0.054, z) * (1 - _ss(E.z + 0.004, E.z + 0.016, z)) * front * (1 - nose)
-    v3 = _ss(E.z - 0.14, E.z - 0.12, z) * (1 - _ss(E.z - 0.066, E.z - 0.054, z)) * front
-    yield np.c_[v1, v2, v3], np.ones(len(p))
+    v3 = _ss(E.z - 0.125, E.z - 0.110, z) * (1 - _ss(E.z - 0.066, E.z - 0.054, z)) * front * (1 - _ss(E.y - 0.005, E.y + 0.015, y))
+    cerca = _ss(-0.004, 0.006, x)  # sólo el lado que mira a la cámara de perfil (+x): si no, las dos mejillas se suman
+    yield np.c_[v1 * cerca, v2 * cerca, v3 * cerca], np.ones(len(p))
 
 
 dimg = ub.rasterize(Pm[sel], Um[sel], 1024, derm_mask, np.zeros((1024, 1024, 3)))
@@ -368,8 +369,8 @@ emi = nt_.new("ShaderNodeEmission")
 tc_ = nt_.new("ShaderNodeTexCoord")
 sep_ = nt_.new("ShaderNodeSeparateXYZ")
 rmp = nt_.new("ShaderNodeValToRGB")
-rmp.color_ramp.elements[0].color = (0.005, 0.08, 0.12, 1)
-rmp.color_ramp.elements[1].color = (0.03, 0.42, 0.55, 1)
+rmp.color_ramp.elements[0].color = (0.002, 0.006, 0.016, 1)   # azul noche: lo que brilla resalta
+rmp.color_ramp.elements[1].color = (0.012, 0.045, 0.10, 1)
 lk_.new(tc_.outputs["Generated"], sep_.inputs[0])
 lk_.new(sep_.outputs["Z"], rmp.inputs["Fac"])
 lk_.new(rmp.outputs["Color"], emi.inputs["Color"])
@@ -398,7 +399,15 @@ def key_vis(obj, intervals, total):
     """Visible sólo en los intervalos [f0, f1)."""
     obj.hide_render = True
     obj.keyframe_insert("hide_render", frame=1)
-    for f0, f1 in intervals:
+    # se ordenan y se juntan los intervalos pegados o repetidos: si no, el "ocultar" del final de un plano
+    # puede pisar el "mostrar" del plano siguiente en el mismo cuadro (pasaba con el domo en el plano 15)
+    merged = []
+    for f0, f1 in sorted((int(a), int(b)) for a, b in intervals):
+        if merged and f0 <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], f1)
+        else:
+            merged.append([f0, f1])
+    for f0, f1 in merged:
         obj.hide_render = False
         obj.keyframe_insert("hide_render", frame=f0)
         obj.hide_render = True
@@ -470,8 +479,8 @@ def camera(name, f0, f1, keys, lens=50, fstop=2.8, focus_obj=None, shake=None):
     """keys: lista de (f, loc, target)."""
     cd = bpy.data.cameras.new(name)
     cd.lens, cd.sensor_fit, cd.sensor_height = lens, "VERTICAL", 24.0
-    cd.dof.use_dof = True
-    cd.dof.aperture_fstop = fstop
+    cd.dof.use_dof = fstop > 0          # fstop=0: todo nítido (interior: se tiene que entender)
+    cd.dof.aperture_fstop = max(fstop, 0.1)
     cd.dof.focus_object = focus_obj or focus
     cam = bpy.data.objects.new(name, cd)
     P.link(cam)
@@ -857,7 +866,8 @@ for i, qob in enumerate(org["preguntas"]):
     for f, s_ in ((FR[32][0], 0.001), (FR[32][0] + 5 + 3 * i, 1.2), (FR[32][0] + 10 + 3 * i, 1.0)):
         qob.scale = (s_, s_, s_)
         qob.keyframe_insert("scale", frame=f)
-    for f, rz in ((FR[32][0], 0), (FR[32][1], 4.0)):
+    qob.rotation_euler = (math.pi / 2, 0, math.pi / 2)  # de frente a la cámara de perfil (+x)
+    for f, rz in ((FR[32][0], -0.3), (FR[32][1], 0.3)):  # vaivén
         qob.delta_rotation_euler = (0, 0, rz)
         qob.keyframe_insert("delta_rotation_euler", frame=f)
 # cerebro "tibio" (4)
@@ -895,7 +905,7 @@ for f, off in ((f4a, (0.05, -0.55, 0.25)), (f4a + 28, (0.0, -0.035, 0.07)), (f4a
     flake.location = hw + Vector(off)
     flake.keyframe_insert("location", frame=f)
 for f, r in ((f4a, 0), (f4b, 9)):
-    flake.rotation_euler = (1.2, r, r * 0.3)
+    flake.rotation_euler = (0.25 + r * 0.05, 1.35, r)   # de cara a la cámara de perfil (+x), girando
     flake.keyframe_insert("rotation_euler", frame=f)
 
 # cristales de hielo que estallan (2)
@@ -966,7 +976,8 @@ for ob in [o for o in list(C_PAL.all_objects) if o is not None]:
 char_parts = ["Cuerpo", "Polera", "Jeans", "Zapatillas", "Ojo.L", "Ojo.R"]
 for n in char_parts:
     if not n.startswith("Ojo"):
-        key_vis(bpy.data.objects[n], frames_of(plaza_shots), END)
+        # dentro de la cabeza sólo queda la piel de vidrio: sin ropa
+        key_vis(bpy.data.objects[n], frames_of(plaza_shots if n == "Cuerpo" else [k for k in plaza_shots if k not in INTERIOR]), END)
 for n in ("Dientes", "Lengua"):
     key_vis(bpy.data.objects[n], frames_of([k for k in plaza_shots if k not in INTERIOR and k != 14]), END)
 key_vis(hair, frames_of([k for k in plaza_shots if k not in INTERIOR]), END)
@@ -977,27 +988,17 @@ for key, ks in SHOW.items():
         key_vis(ob, frames_of(ks), END)
 key_vis(org["bocado"], frames_of([10, 31]), END)
 for qob in org["preguntas"]:
-    key_vis(qob, frames_of([32]), END)
+    key_vis(qob, [], END)  # el "?" lo dibuja el post junto a la corteza (en 3D quedaba cortado arriba)
 key_vis(flake, frames_of([4]), END)
 key_vis(dome, frames_of(INTERIOR + [14]), END)
 for L_ in (ikl, ikl2):
     for k in sorted(FR):
         L_.energy = (60 if L_ is ikl else 40) if k in INTERIOR + [14] else 0.0
         L_.keyframe_insert("energy", frame=FR[k][0])
-SAG = [10, 31, 25]          # corte de perfil de la boca (sólo la mitad x<0)
-FULL = [4, 13, 14, 15, 32, 21, 22]
+SAG = []                    # sin cortes: cabeza de vidrio de perfil, se ve sólo lo que nombra la voz
+FULL = list(INTERIOR)
 for n in ("Ojo.L", "Ojo.R"):
-    o_ = bpy.data.objects[n]
-    key_vis(o_, frames_of([k for k in plaza_shots if k not in SAG]), END)
-    for k in sorted(FR):
-        inside = k in INTERIOR
-        o_.delta_location = (0, 0.007, 0) if inside else (0, 0, 0)
-        o_.delta_scale = (0.9, 0.9, 0.9) if inside else (1, 1, 1)
-        o_.keyframe_insert("delta_location", frame=FR[k][0])
-        o_.keyframe_insert("delta_scale", frame=FR[k][0])
-    for fc in anim._fcurves(o_.animation_data.action):
-        for kp in fc.keyframe_points:
-            kp.interpolation = "CONSTANT"
+    key_vis(bpy.data.objects[n], frames_of([k for k in plaza_shots if k not in INTERIOR]), END)
 for sh in shards:
     key_vis(sh, frames_of([2]), END)
 for o in [cone_m] + [c for c in cone_m.children_recursive]:
@@ -1024,9 +1025,9 @@ TK = kinfo["T"]
 _v1 = [v.co.copy() for v in kit["TrigeminoV1"].data.vertices if v.co.x > 0]
 G_ATLAS = max(_v1, key=lambda c: c.y)
 mat = {
-    "Cerebro": AR.mat_cerebro("CerebroReal", (0.93, 0.62, 0.62), (0.55, 0.25, 0.30)),
-    "CortezaSensitiva": AR.mat_cerebro("CortezaSensitivaMat", (0.93, 0.62, 0.62), (0.55, 0.25, 0.30)),
-    "Cerebelo": AR.mat_cerebro("CerebeloReal", (0.88, 0.55, 0.57), (0.50, 0.22, 0.27)),
+    "Cerebro": AR.mat_cerebro("CerebroReal", (0.93, 0.66, 0.64), (0.74, 0.44, 0.46)),   # porcelana rosada: surcos suaves
+    "CortezaSensitiva": AR.mat_cerebro("CortezaSensitivaMat", (0.93, 0.66, 0.64), (0.74, 0.44, 0.46)),
+    "Cerebelo": AR.mat_cerebro("CerebeloReal", (0.88, 0.58, 0.58), (0.70, 0.40, 0.42)),
     "TroncoEncefalico": AR.mat_simple("TroncoReal", (0.92, 0.75, 0.68), rough=0.4, sss=0.2, cut=(0.85, 0.70, 0.62)),
     "CraneoBase": AR.mat_simple("Hueso", (0.86, 0.80, 0.68), rough=0.55, sss=0.1, cut=(0.93, 0.86, 0.72)),
     "Boveda": AR.mat_simple("HuesoBoveda", (0.86, 0.80, 0.68), rough=0.55),
@@ -1034,7 +1035,7 @@ mat = {
     "Lengua": AR.mat_simple("LenguaReal", (0.80, 0.30, 0.33), rough=0.3, sss=0.3, coat=0.5, cut=(0.72, 0.24, 0.27)),
     "PaladarBlando": AR.mat_simple("PaladarBlandoReal", (0.85, 0.36, 0.40), rough=0.3, sss=0.3, coat=0.5, cut=(0.75, 0.28, 0.32)),
     "PaladarMucosa": AR.mat_mucosa("PaladarMucosaMat"),
-    "Ojos": AR.mat_simple("OjoAtlas", (0.95, 0.94, 0.92)),
+    "Ojos": AR.mat_simple("OjoAtlas", (0.70, 0.74, 0.80), rough=0.3),  # ojo tenue: orienta, no se roba la mirada
     "TrigeminoV1": AR.mat_nervio("NervioV1", G_ATLAS),
     "TrigeminoV2": AR.mat_nervio("NervioV2", G_ATLAS),
     "TrigeminoV3": AR.mat_nervio("NervioV3", G_ATLAS),
@@ -1049,6 +1050,33 @@ for k_, o_ in kit.items():
     if k_ in ("Lengua", "PaladarBlando"):
         o_.modifiers.new("Sub", "SUBSURF").render_levels = 2
     if k_ == "PaladarMucosa":
+        # sólo el techo de la boca: se botan los pedacitos sueltos (piso de la nariz, senos) que salían flotando
+        import bmesh as _bm
+        bmm_ = _bm.new()
+        bmm_.from_mesh(o_.data)
+        bmm_.faces.ensure_lookup_table()
+        seen_, comps_ = set(), []
+        for f0_ in bmm_.faces:
+            if f0_.index in seen_:
+                continue
+            st_, comp_ = [f0_], []
+            seen_.add(f0_.index)
+            while st_:
+                fa_ = st_.pop()
+                comp_.append(fa_)
+                for e_ in fa_.edges:
+                    for fb_ in e_.link_faces:
+                        if fb_.index not in seen_:
+                            seen_.add(fb_.index)
+                            st_.append(fb_)
+            comps_.append(comp_)
+        area_ = [sum(f_.calc_area() for f_ in c_) for c_ in comps_]
+        amax_ = max(area_)
+        kill_ = [f_ for c_, a_ in zip(comps_, area_) if a_ < 0.12 * amax_ for f_ in c_]
+        _bm.ops.delete(bmm_, geom=kill_, context="FACES")
+        bmm_.to_mesh(o_.data)
+        bmm_.free()
+        print("mucosa: componentes", len(comps_), "se quedan", sum(1 for a_ in area_ if a_ >= 0.12 * amax_))
         so_ = o_.modifiers.new("Grosor", "SOLIDIFY")
         so_.thickness, so_.offset = 0.0025 / kinfo["s"], -1
         o_.modifiers.new("Sub", "SUBSURF").render_levels = 1
@@ -1074,28 +1102,52 @@ pal_solid = AR.paladar_medio("PaladarCorteSolido", PAL_F, PAL_S, C_ANAT, mat["Pa
 _t = 0.38
 _pb = PAL_F.lerp(PAL_S, _t) + Vector((0, 0, 0.006 * 0.95 - 0.0045 - 0.0099 - 0.004))
 bc_ = org["bocado"]
+bc_.data.materials.clear()
+bc_.data.materials.append(P.mat("BocadoVainilla", "vainilla", rough=0.35, coat=0.4, sss=0.2))  # la bola de arriba del cono; no se confunde con la lengua
 bc_.parent = None
 bc_.matrix_world = Matrix.Translation(_pb) @ Matrix.Diagonal((0.68, 0.68, 0.52, 1))
 AR._parent_bone(bc_, rig, B + "Head")
 rig.data.pose_position = prev_
 bpy.context.view_layer.update()
-key_vis(pal_solid, frames_of(SAG), END)
-key_vis(kit["PaladarMucosa"], [], END)
-# mitades para el corte de perfil
+# "arriba" del mundo expresado en el espacio del hueso de la cabeza (delta_location vive ahí, no en el mundo)
+UPB = (rig.matrix_world.to_3x3() @ rig.data.bones[B + "Head"].matrix_local.to_3x3()).inverted() @ Vector((0, 0, 1))
+if bc_.animation_data and bc_.animation_data.action:
+    for fc in anim._fcurves(bc_.animation_data.action):
+        if fc.data_path == "delta_location":
+            fc.mute = True
+bc_.delta_location = (0, 0, 0)
+for f, dz in ((1, -0.010), (FR[10][0], -0.010), (FR[10][0] + 24, 0.0), (FR[31][1], 0.0)):
+    bc_.delta_location = UPB * dz
+    bc_.keyframe_insert("delta_location", frame=f)
+# paladar duro limpio y completo (el sólido de media boca + espejo): la mucosa del atlas trae pedazos sueltos
+pal_solid.data.materials[1] = mat["PaladarMucosa"]
+mi_ = pal_solid.modifiers.new("Espejo", "MIRROR")
+mi_.use_axis[0], mi_.use_mirror_merge, mi_.merge_threshold = True, True, 0.0004
+pal_solid.modifiers.new("Sub", "SUBSURF").render_levels = 2
+key_vis(pal_solid, frames_of(INTERIOR), END)
+# Cabeza de vidrio de perfil (cámara a +x): sin cráneo, sin ojos, sin cortes. Siempre se ve el cerebro y la boca
+# (lengua, paladar, dientes); nervios y arterias sólo cuando la voz los nombra, y sólo del lado que mira a la cámara.
+NERV = ("TrigeminoV1", "TrigeminoV2", "TrigeminoV3", "TrigeminoRaiz")
+LADO = NERV + ("Arterias", "ArteriaCerebralAnterior", "Ojos")
+N_SHOTS = [13, 14, 15, 32, 22]
+BOCA = [10, 31, 25]   # en los planos de la boca no se ve el cerebro: sólo boca, paladar, lengua y helado
+SIN_BOCA = [k for k in INTERIOR if k not in BOCA]
+VIS_INT = {"Cerebro": SIN_BOCA, "CortezaSensitiva": SIN_BOCA, "Cerebelo": SIN_BOCA, "TroncoEncefalico": SIN_BOCA,
+           "Lengua": INTERIOR, "PaladarBlando": INTERIOR, "Ojos": INTERIOR,
+           "Arterias": [22]}
+for n_ in NERV:
+    VIS_INT[n_] = N_SHOTS
 halves = {}
 for k_ in list(kit):
-    if k_ in ("Boveda", "Ojos", "PaladarMucosa"):
-        key_vis(kit[k_], [], END)
-        continue
-    halves[k_] = AR.split_half(kit[k_])
-NERV = ("TrigeminoV1", "TrigeminoV2", "TrigeminoV3", "TrigeminoRaiz")
-SAG_HIDE = NERV + ("Arterias", "ArteriaCerebralAnterior", "Cerebro", "CortezaSensitiva", "Cerebelo", "TroncoEncefalico",
-                  "CraneoBase", "Mandibula", "Dientes")  # el corte muestra sólo la boca: lengua, paladar y helado
-for k_, (der, izq) in halves.items():
-    key_vis(der, frames_of(FULL + ([] if k_ in SAG_HIDE else SAG)), END)
-    key_vis(izq, frames_of(FULL), END)
-for o_ in supra:
-    key_vis(o_, frames_of([13, 14, 15]), END)
+    ks_ = VIS_INT.get(k_, [])
+    if k_ in LADO:
+        halves[k_] = AR.split_half(kit[k_])
+        key_vis(halves[k_][0], [], END)
+        key_vis(halves[k_][1], frames_of(ks_), END)
+    else:
+        key_vis(kit[k_], frames_of(ks_), END)
+key_vis(supra[0], [], END)
+key_vis(supra[1], frames_of([13, 14, 15]), END)
 # relleno plano del corte sólo en los planos de corte de la boca
 for m_ in set(mat.values()) | {cap_m}:
     if m_.node_tree and "Corte" in m_.node_tree.nodes:
@@ -1108,10 +1160,11 @@ for m_ in set(mat.values()) | {cap_m}:
                 for kp in fc.keyframe_points:
                     kp.interpolation = "CONSTANT"
 # el helado y la lengua en el corte: la lengua real sube al paladar (25)
-for o_ in halves["Lengua"]:
-    for f, dz in ((FR[25][0], 0.0), (FR[25][0] + 25, 0.006), (FR[25][1], 0.006)):
-        o_.delta_location = (0, 0, dz)
-        o_.keyframe_insert("delta_location", frame=f)
+# la lengua baja mientras el helado toca el paladar (10, 31: así se ve el paladar) y sube a calentarlo (25)
+o_ = kit["Lengua"]
+for f, dz in ((1, -0.009), (FR[25][0], -0.009), (FR[25][0] + 25, 0.004), (FR[25][1], 0.004)):
+    o_.delta_location = UPB * dz
+    o_.keyframe_insert("delta_location", frame=f)
 
 
 def keys(sock, pairs, interp="BEZIER"):
@@ -1313,23 +1366,33 @@ camera("Cam07", f0, f1, [(f0, (-2.3, -5.2, 2.8), (0.3, 0.7, 1.0)), (f1 - 1, (-1.
 f0, f1 = FR[8]
 camera("Cam08", f0, f1, [(f0, (0.4, -2.8, 1.55), (-0.35, 0.5, 1.25)), (f1 - 1, (0.45, -2.5, 1.45), (0.0, 0.4, 1.2))], lens=40)
 cam_face(9, 1.05, 0.92, side=0.15, up=0.0, frac=0.28, shake=(FR[9][0], FR[9][1], 6.0, 0.012))
-ICAM = {  # plano: (cámara inicio, objetivo inicio, cámara fin, objetivo fin) relativos a los ojos (E), lente — anatomía real
-    4: ((-0.07, -0.62, 0.15), (0, 0.03, 0.045), (-0.04, -0.40, 0.11), (0, 0.03, 0.045), 50),     # entramos por la frente
-    10: ((0.27, 0.0, -0.045), (0, 0.012, -0.052), (0.22, 0.004, -0.048), (0, 0.012, -0.053), 45),  # corte de perfil de la boca
-    31: ((0.17, 0.01, -0.045), (0, 0.016, -0.05), (0.145, 0.012, -0.046), (0, 0.016, -0.05), 45),  # la escarcha se extiende
-    13: ((0.30, -0.26, 0.02), (0, 0.03, -0.01), (0.36, -0.36, 0.05), (0, 0.03, -0.005), 50),       # el trigémino se enciende
-    14: ((0.17, -0.44, 0.03), (0, 0.0, -0.005), (0.13, -0.38, 0.035), (0, 0.0, -0.005), 50),       # toda la cara
-    15: ((0.25, -0.31, 0.06), (0, -0.01, 0.035), (0.20, -0.26, 0.09), (0, -0.01, 0.04), 50),       # la rama V1 llega a la frente
-    32: ((0.30, -0.30, 0.22), (0, 0.06, 0.07), (0.26, -0.25, 0.27), (0, 0.06, 0.075), 50),        # el cerebro se confunde
-    21: ((0.30, -0.27, 0.21), (0, 0.07, 0.055), (0.40, -0.06, 0.20), (0, 0.07, 0.055), 50),       # el cerebro no siente dolor
-    22: ((-0.34, -0.24, 0.12), (0, 0.05, 0.03), (-0.30, -0.33, 0.16), (0, 0.05, 0.035), 50),      # vasos y nervios que lo rodean
-    25: ((0.25, 0.0, -0.05), (0, 0.012, -0.056), (0.20, 0.004, -0.052), (0, 0.012, -0.056), 45),  # la lengua calienta el paladar
+# Interior: SIEMPRE de perfil desde +x (lado izquierdo del personaje; la cara mira a la izquierda del cuadro), con un leve
+# 3/4 hacia adelante y un push-in lento. Lo que se explica queda sobre la franja de subtítulos (52–65 % del alto).
+# plano: (distancia inicio, distancia fin, objetivo relativo a los ojos, altura de la cámara sobre el objetivo a 0,3 m)
+ICAM = {
+    4: (0.72, 0.60, (0, 0.04, -0.02), 0.0),        # cabeza entera: el cerebro tibio, el frío nunca lo tocó
+    10: (0.44, 0.38, (0, 0.000, -0.075), -0.05),   # la boca: el helado toca el paladar
+    31: (0.38, 0.33, (0, 0.004, -0.075), -0.05),   # el paladar se escarcha
+    13: (0.46, 0.40, (0, 0.02, -0.045), 0.0),      # el trigémino detecta el cambio
+    14: (0.62, 0.56, (0, 0.0, -0.035), 0.0),       # el nervio que siente toda la cara
+    15: (0.56, 0.48, (0, -0.035, 0.030), 0.0),     # una rama llega a la frente
+    32: (0.52, 0.47, (0, 0.05, 0.02), 0.02),       # el cerebro se confunde
+    21: (0.56, 0.64, (0, 0.05, 0.0), 0.02),        # el cerebro no siente dolor
+    22: (0.62, 0.55, (0, 0.04, -0.02), 0.0),       # lo que duele: vasos y nervios que lo rodean
+    25: (0.42, 0.36, (0, 0.000, -0.075), -0.05),   # la lengua calienta el paladar
 }
-for k, (c0, t0, c1, t1, lens) in ICAM.items():
+for k, (d0, d1, tg, dz) in ICAM.items():
     f0, f1 = FR[k]
     h0, h1 = head_world(f0), head_world(f1 - 1)
-    ef = P.empty(f"FocoInt{k}", loc=h0 + Vector(t0))
-    camera(f"Cam{k:02d}", f0, f1, [(f0, h0 + Vector(c0), h0 + Vector(t0)), (f1 - 1, h1 + Vector(c1), h1 + Vector(t1))], lens=lens, fstop=22.0 if k in (10, 31, 25) else 11.0, focus_obj=ef)
+    t_ = Vector(tg)
+    cpos = [t_ + Vector((d * 0.98, -0.20 * d, dz * d / 0.3)) for d in (d0, d1)]
+    ef = P.empty(f"FocoInt{k}", loc=h0 + t_)
+    ks_ = [(f0, h0 + cpos[0], h0 + t_), (f1 - 1, h1 + cpos[1], h1 + t_)]
+    if k == 4:  # entrada a la cabeza: parte de frente (como el plano anterior) y gira a perfil mientras se ve el interior
+        fm_ = f0 + 34
+        hm_ = head_world(fm_)
+        ks_ = [(f0, h0 + t_ + Vector((0.0, -d0, 0.03)), h0 + t_), (fm_, hm_ + t_ + Vector((d0 * 0.75, -d0 * 0.62, 0.02)), hm_ + t_)] + ks_[1:]
+    camera(f"Cam{k:02d}", f0, f1, ks_, lens=50, fstop=0, focus_obj=ef)
 cam_face(16, 1.1, 0.95, side=-0.2, up=0.03, lens=45, frac=0.45)
 f0, f1 = FR[17]
 camera("Cam17", f0, f1, [(f0, LAB_O + Vector((-2.5, -4.2, 1.8)), LAB_O + Vector((-0.8, 0.4, 1.3))), (f1 - 1, LAB_O + Vector((1.2, -4.0, 1.7)), LAB_O + Vector((0.6, 0.4, 1.3)))], lens=35, fstop=5.6, focus_obj=bpy.data.objects["RigVol6"])
@@ -1362,7 +1425,24 @@ cam_face(34, 0.95, 0.85, side=0.18, up=0.02, frac=0.28)
 cam_face(35, 1.0, 0.9, side=-0.22, up=0.02, frac=0.28)
 sc.camera = cams[0]
 
-meta = {"FR": FR, "T": T, "END": END, "interior": INTERIOR}
+# flechas de las píldoras: posición en pantalla (1080x1920) de lo que se nombra, a mitad de cada plano
+from bpy_extras.object_utils import world_to_camera_view
+_cs = [TK @ v.co for v in kit["CortezaSensitiva"].data.vertices if v.co.x > 0]
+_xm = max(c.x for c in _cs)
+_cs = [c for c in _cs if c.x > _xm - 0.012]
+P_COR = sum(_cs, Vector()) / len(_cs)
+P_PAL = PAL_F.lerp(PAL_S, 0.40)
+P_GAN = TK @ G_ATLAS
+flechas = {}
+for k_, p_ in ((10, P_PAL), (31, P_PAL), (25, P_PAL), (13, P_GAN), (32, P_COR)):
+    fm = (FR[k_][0] + FR[k_][1]) // 2
+    cam_ = bpy.data.objects[f"Cam{k_:02d}"]
+    w_ = head_world(fm, p_ - E)
+    sc.frame_set(fm)
+    v_ = world_to_camera_view(sc, cam_, w_)
+    flechas[k_] = [round(v_.x * 1080), round((1 - v_.y) * 1920)]
+print("flechas", flechas)
+meta = {"FR": FR, "T": T, "END": END, "interior": INTERIOR, "flechas": flechas}
 json.dump(meta, open(os.path.join(OUT, "ep01_planos.json"), "w"), indent=1)
 # letras del plano 23: caída visible (key_vis las había dejado en CONSTANT y aparecían de golpe)
 for t, row, k in letters:

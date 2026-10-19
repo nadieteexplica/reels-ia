@@ -225,8 +225,8 @@ def mat_mucosa(name):
     veins = _math(nt, "SUBTRACT", 1.0, _math(nt, "MINIMUM", _math(nt, "DIVIDE", vor.outputs["Distance"], 0.06), 1.0))
     ice = nt.nodes.new("ShaderNodeMix")
     ice.data_type = "RGBA"
-    ice.inputs["A"].default_value = (0.55, 0.80, 1.0, 1)
-    ice.inputs["B"].default_value = (0.95, 0.98, 1.0, 1)
+    ice.inputs["A"].default_value = (0.30, 0.62, 1.0, 1)   # azul hielo (no blanco: tiene que leerse "frío")
+    ice.inputs["B"].default_value = (0.80, 0.93, 1.0, 1)
     nt.links.new(veins, ice.inputs["Factor"])
     mixc = nt.nodes.new("ShaderNodeMix")
     mixc.data_type = "RGBA"
@@ -236,11 +236,11 @@ def mat_mucosa(name):
     _cut(nt, b, mixc.outputs["Result"], (0.70, 0.22, 0.26))
     emc = nt.nodes.new("ShaderNodeMix")
     emc.data_type = "RGBA"
-    emc.inputs["A"].default_value = (0.5, 0.8, 1.0, 1)
+    emc.inputs["A"].default_value = (0.20, 0.55, 1.0, 1)
     emc.inputs["B"].default_value = (1.0, 0.45, 0.1, 1)
     nt.links.new(_math(nt, "MINIMUM", tib.outputs[0], 1.0), emc.inputs["Factor"])
     nt.links.new(emc.outputs["Result"], b.inputs["Emission Color"])
-    nt.links.new(_math(nt, "ADD", _math(nt, "MULTIPLY", cov, 0.6), _math(nt, "MULTIPLY", tib.outputs[0], 2.0)), b.inputs["Emission Strength"])
+    nt.links.new(_math(nt, "ADD", _math(nt, "MULTIPLY", cov, 1.3), _math(nt, "MULTIPLY", tib.outputs[0], 3.0)), b.inputs["Emission Strength"])  # brilla: es lo que se explica
     return m
 
 
