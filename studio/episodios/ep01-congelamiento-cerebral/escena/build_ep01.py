@@ -625,8 +625,14 @@ for fb in (FR[7][0] + 20, FR[8][0] + 30, FR[27][0] + 70, FR[28][0] + 25):
 
 # --- materiales animados: escarcha, dolor, fantasma ---
 fs = frost.outputs[0]
-for f, v in ((1, 0.25), (FR[1][1] - 2, 0.50), (FR[2][0] + 3, 0.78), (FR[3][0], 0.78), (FR[3][0] + 1, 0.0), (FR[30][0], 0.25), (END, 0.40)):
+# 0 entre el plano 3 y el 30 (antes subía sola durante todo el video y dejaba un punto azul en la frente).
+# El plano 30 termina en 0,25 = valor del cuadro 1, para que el loop empalme.
+for f, v in ((1, 0.25), (FR[1][1] - 2, 0.50), (FR[2][0] + 3, 0.78), (FR[3][0] - 1, 0.78), (FR[3][0], 0.0), (FR[30][0] - 1, 0.0), (FR[30][0], 0.06), (END, 0.25)):
     set_val(fs, f, v)
+for fc in anim._fcurves(skin.node_tree.animation_data.action):
+    if fc.data_path.endswith('nodes["Escarcha"].outputs[0].default_value'):
+        for kp in fc.keyframe_points:
+            kp.interpolation = "LINEAR"
 ps = pain.outputs[0]
 set_val(ps, 1, 0.0)
 for k_ in (3, 16, 33):

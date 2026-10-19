@@ -78,45 +78,64 @@ def frost_layer(skin_mat, mask_img):
     fr.name = fr.label = "Escarcha"
     pa = nt.nodes.new("ShaderNodeValue")
     pa.name = pa.label = "Dolor"
-    # la escarcha crece desde el centro de la frente: umbral sobre la máscara (R = distancia, G = cristales)
+    # la escarcha crece desde el centro de la frente: umbral sobre la máscara (R = distancia, G = ruido, B = frente suave).
+    # El borde avanza en zigzag (ruido G + celdas de cristal) y la capa tiene cristales con vetas, relieve y brillo.
+    def m(op, a, b=None, v=None):
+        n = nt.nodes.new("ShaderNodeMath")
+        n.operation = op
+        for i, x in enumerate((a, b)):
+            if x is None:
+                continue
+            if isinstance(x, (int, float)):
+                n.inputs[i].default_value = x
+            else:
+                nt.links.new(x, n.inputs[i])
+        return n.outputs[0]
+
+    def mr(x, f0, f1, t0, t1):
+        n = nt.nodes.new("ShaderNodeMapRange")
+        n.inputs["From Min"].default_value, n.inputs["From Max"].default_value = f0, f1
+        n.inputs["To Min"].default_value, n.inputs["To Max"].default_value = t0, t1
+        n.clamp = True
+        nt.links.new(x, n.inputs["Value"])
+        return n.outputs["Result"]
+
     sep = nt.nodes.new("ShaderNodeSeparateColor")
     nt.links.new(tex.outputs["Color"], sep.inputs[0])
-    thr = nt.nodes.new("ShaderNodeMath")
-    thr.operation = "SUBTRACT"
-    nt.links.new(fr.outputs[0], thr.inputs[0])
-    nt.links.new(sep.outputs["Red"], thr.inputs[1])
-    cl = nt.nodes.new("ShaderNodeMapRange")
-    cl.inputs["From Min"].default_value = 0.0
-    cl.inputs["From Max"].default_value = 0.08
-    nt.links.new(thr.outputs[0], cl.inputs["Value"])
-    vor = nt.nodes.new("ShaderNodeTexVoronoi")
-    vor.feature = "DISTANCE_TO_EDGE"
-    vor.inputs["Scale"].default_value = 900.0
-    nt.links.new(uvn.outputs["UV"], vor.inputs["Vector"])
-    crk = nt.nodes.new("ShaderNodeMapRange")
-    crk.inputs["From Min"].default_value = 0.0
-    crk.inputs["From Max"].default_value = 0.12
-    crk.inputs["To Min"].default_value = 1.0
-    crk.inputs["To Max"].default_value = 0.85
-    nt.links.new(vor.outputs["Distance"], crk.inputs["Value"])
-    cr0 = nt.nodes.new("ShaderNodeMath")
-    cr0.operation = "MULTIPLY"
-    nt.links.new(cl.outputs["Result"], cr0.inputs[0])
-    nt.links.new(crk.outputs["Result"], cr0.inputs[1])
-    # sólo en la frente (canal B de la máscara, ampliado)
-    fb = nt.nodes.new("ShaderNodeMapRange")
-    fb.inputs["From Min"].default_value = 0.0
-    fb.inputs["From Max"].default_value = 0.35
-    nt.links.new(sep.outputs["Blue"], fb.inputs["Value"])
-    cr = nt.nodes.new("ShaderNodeMath")
-    cr.operation = "MULTIPLY"
-    nt.links.new(cr0.outputs[0], cr.inputs[0])
-    nt.links.new(fb.outputs["Result"], cr.inputs[1])
+    cells = nt.nodes.new("ShaderNodeTexVoronoi")
+    cells.inputs["Scale"].default_value = 320.0
+    nt.links.new(uvn.outputs["UV"], cells.inputs["Vector"])
+    edges = nt.nodes.new("ShaderNodeTexVoronoi")
+    edges.feature = "DISTANCE_TO_EDGE"
+    edges.inputs["Scale"].default_value = 320.0
+    nt.links.new(uvn.outputs["UV"], edges.inputs["Vector"])
+    csep = nt.nodes.new("ShaderNodeSeparateColor")
+    nt.links.new(cells.outputs["Color"], csep.inputs[0])
+    cell_r = csep.outputs["Red"]
+    front = m("ADD", m("ADD", m("SUBTRACT", fr.outputs[0], sep.outputs["Red"]), m("MULTIPLY", m("SUBTRACT", sep.outputs["Green"], 0.55), 0.30)), m("MULTIPLY", m("SUBTRACT", cell_r, 0.5), 0.10))
+    cov = mr(front, 0.0, 0.025, 0.0, 1.0)
+    cr = m("MULTIPLY", cov, mr(sep.outputs["Blue"], 0.0, 0.35, 0.0, 1.0))
+    veins = mr(edges.outputs["Distance"], 0.0, 0.07, 1.0, 0.0)
+    ice = nt.nodes.new("ShaderNodeMix")
+    ice.data_type = "RGBA"
+    ice.inputs["A"].default_value = (0.50, 0.78, 1.0, 1)
+    ice.inputs["B"].default_value = (0.93, 0.97, 1.0, 1)
+    nt.links.new(m("MINIMUM", m("ADD", m("MULTIPLY", veins, 0.9), m("MULTIPLY", cell_r, 0.35)), 1.0), ice.inputs["Factor"])
     mixc = nt.nodes.new("ShaderNodeMix")
     mixc.data_type = "RGBA"
-    mixc.inputs["B"].default_value = (0.42, 0.72, 1.0, 1)
-    nt.links.new(cr.outputs[0], mixc.inputs["Factor"])
+    nt.links.new(m("MULTIPLY", cr, 0.93), mixc.inputs["Factor"])
     nt.links.new(base_link, mixc.inputs["A"])
+    nt.links.new(ice.outputs["Result"], mixc.inputs["B"])
+    # capa brillante tipo hielo y relieve de cristales
+    if "Coat Weight" in b.inputs:
+        nt.links.new(m("MULTIPLY", cr, 0.9), b.inputs["Coat Weight"])
+    bump = nt.nodes.new("ShaderNodeBump")
+    bump.inputs["Distance"].default_value = 0.0015
+    nt.links.new(m("MULTIPLY", cr, 0.7), bump.inputs["Strength"])
+    nt.links.new(m("ADD", edges.outputs["Distance"], m("MULTIPLY", cell_r, 0.05)), bump.inputs["Height"])
+    if b.inputs["Normal"].links:
+        nt.links.new(b.inputs["Normal"].links[0].from_socket, bump.inputs["Normal"])
+    nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
     # dolor: rojo pulsante en la frente (canal B = máscara de frente suave)
     pm = nt.nodes.new("ShaderNodeMath")
     pm.operation = "MULTIPLY"
@@ -137,8 +156,8 @@ def frost_layer(skin_mat, mask_img):
     # escarcha más brillante y menos rugosa
     rr = nt.nodes.new("ShaderNodeMapRange")
     rr.inputs["To Min"].default_value = 0.48
-    rr.inputs["To Max"].default_value = 0.12
-    nt.links.new(cr.outputs[0], rr.inputs["Value"])
+    rr.inputs["To Max"].default_value = 0.10
+    nt.links.new(cr, rr.inputs["Value"])
     nt.links.new(rr.outputs["Result"], b.inputs["Roughness"])
     return fr, pa
 
