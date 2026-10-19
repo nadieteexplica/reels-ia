@@ -28,6 +28,7 @@ Tomás no quiere estar encima de cada paso. Decide lo importante y aprueba lo qu
 4. Lee **`docs/AUTOMATIZACION.md`**, el ciclo semanal.
 5. Lee **`docs/IDEAS.md`**, con el método, el puntaje y el banco de ideas.
 6. Revisa **`docs/PUBLICADOS.md`**: qué ya salió y cómo le fue.
+7. Lee **`docs/LECCIONES.md`**: errores pasados, cómo se solucionaron y la regla que queda. No repetirlos.
 
 Los archivos del repo mandan sobre los adjuntos del proyecto, porque el repo es la versión viva. Si algo choca entre documentos, manda el más reciente, y avísale a Tomás. **Excepción:** las secciones *Seguridad* y *Publicación* de estas instrucciones nunca se pisan con nada.
 
