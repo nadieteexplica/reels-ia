@@ -67,7 +67,9 @@ for g in groups:
     else:
         g2.append(g)
 groups = g2
-NO_SUBS = set(range(FR[23][0], FR[23][1]))  # el nombre científico ya está en letras gigantes
+# el nombre científico ya está en letras gigantes: sin subtítulos desde que se empieza a decir
+_t_g = next(w["s"] for w in words if w["s"] >= 52.0 and w["w"].lower().startswith("gangli"))
+NO_SUBS = set(range(int(round(_t_g * 30)) + 1, FR[23][1]))
 
 
 def fit_font(texts, maxw, size=84, min_size=60):

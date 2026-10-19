@@ -792,7 +792,7 @@ for t, row, k in letters:
 for t, row, k in letters:
     base = t.location.copy()
     tstart = F(t_g if row == 0 else t_e) + k * 1.2
-    for f, dz, s_ in ((1, 3.0, 1.0), (int(tstart), 3.0, 1.0), (int(tstart) + 6, 0.0, 1.0), (int(tstart) + 8, 0.06, 1.0), (int(tstart) + 11, 0.0, 1.0)):
+    for f, dz, s_ in ((1, 4.5, 1.0), (int(tstart), 4.5, 1.0), (int(tstart) + 7, 0.0, 1.0), (int(tstart) + 9, 0.06, 1.0), (int(tstart) + 12, 0.0, 1.0)):
         t.delta_location = (0, 0, dz)
         t.keyframe_insert("delta_location", frame=f)
 
@@ -942,7 +942,7 @@ for k, (a, b) in {11: (((0.9, -1.4, 0.15), (0, 0.2, 1.55)), ((0.6, -1.1, 0.25), 
            shake=(f0 + 40, f1, 4.0, 0.004) if k == 12 else None)
 f0, f1 = FR[23]
 et = P.empty("FocoTexto", loc=TXT_O + Vector((0, 0, 1.5)))
-camera("Cam23", f0, f1, [(f0, TXT_O + Vector((0, -5.4, 1.55)), TXT_O + Vector((0, 0, 1.52))), (f1 - 1, TXT_O + Vector((0, -4.9, 1.55)), TXT_O + Vector((0, 0, 1.52)))], lens=30, fstop=8, focus_obj=et,
+camera("Cam23", f0, f1, [(f0, TXT_O + Vector((0, -6.0, 1.55)), TXT_O + Vector((0, 0, 1.52))), (f1 - 1, TXT_O + Vector((0, -5.5, 1.55)), TXT_O + Vector((0, 0, 1.52)))], lens=30, fstop=8, focus_obj=et,
        shake=(f0, f1, 3.0, 0.008))
 cam_face(24, 0.62, 0.58, side=0.0, up=0.0, down=0.10)
 cam_face(26, 0.9, 0.78, side=-0.25, up=0.02, down=0.15)

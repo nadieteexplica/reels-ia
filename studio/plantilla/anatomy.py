@@ -113,7 +113,8 @@ def frost_layer(skin_mat, mask_img):
     nt.links.new(cells.outputs["Color"], csep.inputs[0])
     cell_r = csep.outputs["Red"]
     front = m("ADD", m("ADD", m("SUBTRACT", fr.outputs[0], sep.outputs["Red"]), m("MULTIPLY", m("SUBTRACT", sep.outputs["Green"], 0.55), 0.30)), m("MULTIPLY", m("SUBTRACT", cell_r, 0.5), 0.10))
-    cov = mr(front, 0.0, 0.025, 0.0, 1.0)
+    # sin escarcha cuando el valor es 0 (el ruido del borde dejaba motas sueltas en la frente)
+    cov = m("MULTIPLY", mr(front, 0.0, 0.025, 0.0, 1.0), m("GREATER_THAN", fr.outputs[0], 0.015))
     cr = m("MULTIPLY", cov, mr(sep.outputs["Blue"], 0.0, 0.35, 0.0, 1.0))
     veins = mr(edges.outputs["Distance"], 0.0, 0.07, 1.0, 0.0)
     ice = nt.nodes.new("ShaderNodeMix")
@@ -137,10 +138,11 @@ def frost_layer(skin_mat, mask_img):
         nt.links.new(b.inputs["Normal"].links[0].from_socket, bump.inputs["Normal"])
     nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
     # dolor: rojo pulsante en la frente (canal B = máscara de frente suave)
+    # dolor: brillo redondo que se difumina desde el centro de la frente (canal R = distancia)
     pm = nt.nodes.new("ShaderNodeMath")
     pm.operation = "MULTIPLY"
     nt.links.new(pa.outputs[0], pm.inputs[0])
-    nt.links.new(sep.outputs["Blue"], pm.inputs[1])
+    nt.links.new(mr(sep.outputs["Red"], 0.08, 0.72, 1.0, 0.0), pm.inputs[1])
     mixp = nt.nodes.new("ShaderNodeMix")
     mixp.data_type = "RGBA"
     mixp.inputs["B"].default_value = (0.9, 0.05, 0.03, 1)
