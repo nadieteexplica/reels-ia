@@ -25,14 +25,14 @@ def mat_llama():
     ramp = nt.nodes.new("ShaderNodeValToRGB")
     cr = ramp.color_ramp
     cr.elements[0].position = 0.0
-    cr.elements[0].color = (1.0, 0.95, 0.55, 1)
+    cr.elements[0].color = (1.0, 0.80, 0.18, 1)
     cr.elements[1].position = 1.0
-    cr.elements[1].color = (0.9, 0.08, 0.01, 1)
+    cr.elements[1].color = (0.75, 0.04, 0.0, 1)
     e = cr.elements.new(0.45)
-    e.color = (1.0, 0.45, 0.04, 1)
+    e.color = (1.0, 0.30, 0.01, 1)
     nt.links.new(sep.outputs["Z"], ramp.inputs["Fac"])
     em = nt.nodes.new("ShaderNodeEmission")
-    em.inputs["Strength"].default_value = 9.0
+    em.inputs["Strength"].default_value = 3.2
     nt.links.new(ramp.outputs["Color"], em.inputs["Color"])
     lw = nt.nodes.new("ShaderNodeLayerWeight")
     lw.inputs["Blend"].default_value = 0.45

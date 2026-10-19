@@ -358,12 +358,12 @@ def pajaro(coll, nombre="Cuitlacoche"):
 
 
 # ---------------- ratón del cactus ----------------
-def mat_pelaje():
-    """Pelaje canela con guata blanca (máscara por la normal del objeto: adelante/abajo = blanco)."""
-    m = bpy.data.materials.get("Pelaje")
+def mat_pelaje(nombre="Pelaje", lomo=(0.42, 0.20, 0.08), guata=(0.86, 0.82, 0.76)):
+    """Pelaje con guata clara (máscara por la normal del objeto: adelante/abajo = guata)."""
+    m = bpy.data.materials.get(nombre)
     if m:
         return m
-    m = bpy.data.materials.new("Pelaje")
+    m = bpy.data.materials.new(nombre)
     m.use_nodes = True
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
@@ -389,8 +389,8 @@ def mat_pelaje():
     nt.links.new(vm.outputs[0], mr.inputs["Value"])
     mix = nt.nodes.new("ShaderNodeMix")
     mix.data_type = "RGBA"
-    mix.inputs["A"].default_value = (0.42, 0.20, 0.08, 1)     # canela
-    mix.inputs["B"].default_value = (0.86, 0.82, 0.76, 1)     # guata blanca
+    mix.inputs["A"].default_value = (*lomo, 1)
+    mix.inputs["B"].default_value = (*guata, 1)
     nt.links.new(mr.outputs["Result"], mix.inputs["Factor"])
     nt.links.new(mix.outputs["Result"], b.inputs["Base Color"])
     nz2 = nt.nodes.new("ShaderNodeTexNoise")
@@ -405,12 +405,12 @@ def mat_pelaje():
     return m
 
 
-def raton(coll, nombre="Raton"):
+def raton(coll, nombre="Raton", lomo=(0.42, 0.20, 0.08), guata=(0.86, 0.82, 0.76), oreja=0.026, hocico=1.0):
     """Ratón del cactus de dibujo animado, sentado sobre las patas traseras (pose de comer). ~0,16 m de alto sentado.
     Construido en el origen mirando a -Y. Devuelve la raíz y los pivotes animables: cabeza, orejas, ojos, párpados, boca, brazos, cola."""
     root = P.empty(nombre, coll=coll)
-    pel = mat_pelaje()
-    canela = mat_simple("Canela", (0.42, 0.20, 0.08), rough=0.7, sheen=0.9)
+    pel = mat_pelaje(nombre + "_pelaje", lomo, guata)
+    canela = mat_simple(nombre + "_lomo", lomo, rough=0.7, sheen=0.9)
     rosado = mat_simple("RosadoRaton", (0.85, 0.42, 0.42), rough=0.5, sss=0.5)
     oreja_in = mat_simple("OrejaDentro", (0.80, 0.30, 0.32), rough=0.55, sss=0.15)
     nariz_m = mat_simple("NarizRaton", (0.75, 0.22, 0.26), rough=0.25, coat=0.6)
@@ -429,12 +429,12 @@ def raton(coll, nombre="Raton"):
     colgar(piv_cab, root)
     cabeza = blob(nombre + "_cabeza", [
         (tuple(cab_c), (0.036, 0.034, 0.033), (0, 0, 0)),
-        (tuple(cab_c + Vector((0, -0.034, -0.010))), (0.020, 0.030, 0.018), (12, 0, 0)),   # hocico
+        (tuple(cab_c + Vector((0, -0.034 * hocico, -0.010))), (0.020, 0.030 * hocico, 0.018), (12, 0, 0)),   # hocico
         (tuple(cab_c + Vector((0, -0.024, -0.020))), (0.018, 0.018, 0.012), (0, 0, 0)),    # mejillas/mentón
     ], coll)
     cabeza.data.materials.append(pel)
     colgar(cabeza, piv_cab)
-    nariz = esfera(nombre + "_nariz", cab_c + Vector((0, -0.064, -0.004)), 0.0068, coll, nariz_m)
+    nariz = esfera(nombre + "_nariz", cab_c + Vector((0, -0.034 * hocico - 0.030, -0.004)), 0.0068, coll, nariz_m)
     colgar(nariz, piv_cab)
     # boca: abertura oscura (se escala para abrirla) + dos incisivos
     piv_boca = P.empty(nombre + "_piv_boca", loc=cab_c + Vector((0, -0.050, -0.022)), coll=coll)
@@ -464,10 +464,10 @@ def raton(coll, nombre="Raton"):
         base = cab_c + Vector((s * 0.022, 0.006, 0.022))
         piv = P.empty(f"{nombre}_piv_oreja{'LR'[s > 0]}", loc=base, coll=coll)
         colgar(piv, piv_cab)
-        ext = esfera(f"{nombre}_oreja{'LR'[s > 0]}", base + Vector((s * 0.014, 0.002, 0.016)), 0.026, coll, canela, escala=(1.0, 0.22, 1.0))
+        ext = esfera(f"{nombre}_oreja{'LR'[s > 0]}", base + Vector((s * 0.014, 0.002, 0.016)), oreja, coll, canela, escala=(1.0, 0.22, 1.0))
         ext.rotation_euler = (math.radians(-10), math.radians(s * 35), 0)
         colgar(ext, piv)
-        inn = esfera(f"{nombre}_orejaDentro{'LR'[s > 0]}", base + Vector((s * 0.014, -0.0040, 0.016)), 0.020, coll, oreja_in, escala=(1.0, 0.16, 1.0))
+        inn = esfera(f"{nombre}_orejaDentro{'LR'[s > 0]}", base + Vector((s * 0.014, -0.0040, 0.016)), oreja * 0.77, coll, oreja_in, escala=(1.0, 0.16, 1.0))
         inn.rotation_euler = (math.radians(-10), math.radians(s * 35), 0)
         colgar(inn, piv)
         orejas.append(piv)
@@ -510,3 +510,122 @@ def raton(coll, nombre="Raton"):
     colgar(cola, piv_cola)
     return {"root": root, "cuerpo": cuerpo, "cabeza": piv_cab, "boca": piv_boca, "ojos": ojos, "parpados": parps, "orejas": orejas,
             "brazos": brazos, "cola": piv_cola, "boca_pos": cab_c + Vector((0, -0.056, -0.022))}
+
+
+
+def lentes(name, centro, ancho, coll, mirando=(0, -1, 0)):
+    """Lentes de sol de dibujo animado (rígidos): dos micas redondeadas oscuras y un puente. Origen = centro del puente."""
+    mica = mat_simple("Mica", (0.01, 0.01, 0.015), rough=0.05, coat=1.0)
+    marco = mat_simple("MarcoLentes", (0.02, 0.02, 0.02), rough=0.3)
+    root = P.empty(name, loc=centro, coll=coll)
+    for s in (-1, 1):
+        m_ = P.prim("cyl", f"{name}_mica{'LR'[s > 0]}", coll, mica, r=ancho * 0.27, r2=ancho * 0.27, h=ancho * 0.06, seg=40)
+        m_.scale = (1.15, 1.0, 1.0)
+        m_.rotation_euler = (math.radians(90), 0, 0)
+        m_.location = (s * ancho * 0.27, 0, 0)
+        P.bevel(m_, ancho * 0.02, 2)
+        m_.parent = root
+    pu = P.prim("cube", name + "_puente", coll, marco)
+    pu.scale = (ancho * 0.12, ancho * 0.04, ancho * 0.03)
+    pu.location = (0, 0, ancho * 0.06)
+    pu.parent = root
+    root.rotation_euler = Vector(mirando).to_track_quat("-Y", "Z").to_euler()
+    return root
+
+
+def medalla(name, centro, r, coll):
+    """Medalla dorada rígida con cinta (sin tela)."""
+    oro = mat_simple("Oro", (0.95, 0.66, 0.15), rough=0.2)
+    oro.node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 1.0
+    cinta = mat_simple("Cinta", (0.85, 0.08, 0.10), rough=0.5)
+    root = P.empty(name, loc=centro, coll=coll)
+    d = P.prim("cyl", name + "_disco", coll, oro, r=r, r2=r, h=r * 0.25, seg=40)
+    d.rotation_euler = (math.radians(90), 0, 0)
+    P.bevel(d, r * 0.08, 2)
+    d.parent = root
+    for s in (-1, 1):
+        c = P.prim("cube", f"{name}_cinta{s}", coll, cinta)
+        c.scale = (r * 0.5, r * 0.08, r * 2.2)
+        c.location = (s * r * 0.6, r * 0.05, r * 2.0)
+        c.rotation_euler = (0, math.radians(-s * 22), 0)
+        c.parent = root
+    return root
+
+
+def aji_guardia(coll, nombre="AjiGuardia", alto=0.32):
+    """El ají guardia: ají rojo grande parado sobre la punta, con lentes de sol, cejas serias y brazos cruzados (fijos).
+    Origen = punta en el suelo; mira hacia -Y."""
+    import props_ep02 as E
+    root = P.empty(nombre, coll=coll)
+    cuerpo = E.aji(nombre + "_cuerpo", largo=alto, grosor=alto * 0.17, coll=coll, seed=9, curva=0.25)
+    cuerpo.location = (0, 0, alto * 0.80)
+    for ch in cuerpo.children:
+        if ch.name.endswith("_tallo"):
+            ch.scale = (1, 1, 0.45)
+    colgar(cuerpo, root)
+    piv_cab = P.empty(nombre + "_piv_cabeza", loc=(0, 0, alto * 0.78), coll=coll)
+    colgar(piv_cab, root)
+    yf = -alto * 0.165
+    lt = lentes(nombre + "_lentes", (0.0, yf, alto * 0.80), alto * 0.30, coll)
+    colgar(lt, piv_cab)
+    negro = mat_simple("BocaGuardia", (0.05, 0.01, 0.01), rough=0.6)
+    boca = P.tube(nombre + "_boca", [(-alto * 0.05, yf * 0.99, alto * 0.66), (0.0, yf * 1.02, alto * 0.655), (alto * 0.05, yf * 0.97, alto * 0.672)], alto * 0.006, coll, negro)
+    colgar(boca, piv_cab)
+    rojo = cuerpo.data.materials[0]
+    brazos = []
+    for s in (-1, 1):
+        z0 = alto * (0.50 if s < 0 else 0.46)
+        pts = [(s * alto * 0.15, -alto * 0.01, z0 + alto * 0.04), (s * alto * 0.11, yf * 1.30, z0), (-s * alto * 0.08, yf * 1.30, z0 - alto * 0.01)]
+        b = P.tube(f"{nombre}_brazo{'LR'[s > 0]}", pts, alto * 0.03, coll, rojo)
+        colgar(b, root)
+        mano = esfera(f"{nombre}_mano{'LR'[s > 0]}", pts[-1], alto * 0.035, coll, rojo)
+        colgar(mano, root)
+        brazos.append(b)
+    for s in (-1, 1):
+        pie = esfera(f"{nombre}_pie{'LR'[s > 0]}", (s * alto * 0.05, -alto * 0.03, alto * 0.015), alto * 0.04, coll, mat_simple("PieGuardia", (0.08, 0.20, 0.05), rough=0.5), escala=(1, 1.5, 0.5))
+        colgar(pie, root)
+    return {"root": root, "cabeza": piv_cab, "lentes": lt}
+
+
+def tupaya(coll, nombre="Tupaya"):
+    """Tupaya (Tupaia belangeri) de dibujo animado, en cuatro patas sobre una rama: café oliva, raya clara en el hombro,
+    hocico largo, orejas chicas, ojos grandes y cola peluda. ~0,30 m con cola. Mira hacia -Y."""
+    root = P.empty(nombre, coll=coll)
+    pel = mat_pelaje(nombre + "_pelaje", (0.22, 0.17, 0.08), (0.72, 0.60, 0.42))
+    lomo = mat_simple(nombre + "_lomo", (0.22, 0.17, 0.08), rough=0.7, sheen=0.9)
+    nariz_m = mat_simple(nombre + "_nariz", (0.06, 0.04, 0.035), rough=0.25, coat=0.6)
+    cuerpo = blob(nombre + "_cuerpo", [
+        ((0, 0.010, 0.060), (0.032, 0.060, 0.032), (6, 0, 0)),
+        ((0, -0.045, 0.072), (0.028, 0.030, 0.030), (0, 0, 0)),
+    ], coll)
+    cuerpo.data.materials.append(pel)
+    colgar(cuerpo, root)
+    for s in (-1, 1):
+        raya = esfera(f"{nombre}_raya{'LR'[s > 0]}", (s * 0.030, -0.040, 0.080), 0.012, coll, mat_simple(nombre + "_raya", (0.80, 0.72, 0.55), rough=0.7, sheen=0.8), escala=(0.25, 1.4, 0.6))
+        colgar(raya, root)
+    cab_c = Vector((0, -0.080, 0.092))
+    piv_cab = P.empty(nombre + "_piv_cabeza", loc=(0, -0.060, 0.080), coll=coll)
+    colgar(piv_cab, root)
+    cab = blob(nombre + "_cabeza", [
+        (tuple(cab_c), (0.025, 0.026, 0.023), (0, 0, 0)),
+        (tuple(cab_c + Vector((0, -0.030, -0.006))), (0.012, 0.030, 0.012), (8, 0, 0)),
+    ], coll)
+    cab.data.materials.append(pel)
+    colgar(cab, piv_cab)
+    nz = esfera(nombre + "_naricita", cab_c + Vector((0, -0.060, -0.009)), 0.0055, coll, nariz_m)
+    colgar(nz, piv_cab)
+    for s in (-1, 1):
+        oc = cab_c + Vector((s * 0.016, -0.014, 0.008))
+        o = ojo(f"{nombre}_ojo{'LR'[s > 0]}", oc, 0.0095, oc + Vector((s * 0.6, -1.0, 0.0)), coll, (0.18, 0.09, 0.03), iris_frac=0.9, pupila_frac=0.5)
+        colgar(o, piv_cab)
+        orj = esfera(f"{nombre}_oreja{'LR'[s > 0]}", cab_c + Vector((s * 0.020, 0.006, 0.018)), 0.0085, coll, lomo, escala=(1.0, 0.4, 1.0))
+        colgar(orj, piv_cab)
+    for (x, y) in ((-1, -1), (1, -1), (-1, 1), (1, 1)):
+        pata = blob(f"{nombre}_pata{x}{y}", [((x * 0.020, y * 0.035 - 0.005, 0.028), (0.008, 0.009, 0.026), (0, 0, 0)),
+                                            ((x * 0.021, y * 0.035 - 0.010, 0.004), (0.008, 0.012, 0.005), (0, 0, 0))], coll, voxel=0.0006, suave=10)
+        pata.data.materials.append(lomo)
+        colgar(pata, root)
+    cola = blob(nombre + "_cola", [((0, 0.070 + 0.012 * k, 0.055 + 0.006 * k), (0.015 + 0.0008 * k, 0.018, 0.015 + 0.0008 * k), (0, 0, 0)) for k in range(12)], coll, voxel=0.0008, suave=20)
+    cola.data.materials.append(lomo)
+    colgar(cola, root)
+    return {"root": root, "cabeza": piv_cab}

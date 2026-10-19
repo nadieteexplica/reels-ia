@@ -30,3 +30,5 @@
 {"tipo": "trabajo", "id": "auditor voz r2", "estado": "fin", "n": 30, "ts": "2026-10-19T20:08:25-03:00"}
 {"tipo": "chequeo", "id": "voz", "estado": "puerta 2 APROBADO r2; el arreglo p3 de '¿Por qué?' no se aplicó: el silencio real medido es 0,29 s (la alineación lo mete dentro de '¿Por')", "n": 31, "ts": "2026-10-19T20:09:05-03:00"}
 {"tipo": "trabajo", "id": "auditor storyboard r1", "estado": "inicio", "n": 32, "ts": "2026-10-19T20:09:28-03:00"}
+{"tipo": "trabajo", "id": "auditor storyboard r1", "estado": "fin", "n": 33, "ts": "2026-10-19T20:15:37-03:00"}
+{"tipo": "trabajo", "id": "auditor storyboard r2", "estado": "inicio", "n": 34, "ts": "2026-10-19T20:27:26-03:00"}

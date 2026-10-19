@@ -66,13 +66,14 @@ for pv in pj["parpados"]:
     for ch in pv.children:
         ch.rotation_euler.x = math.radians(float(os.environ.get("PARPADO", -30)))   # media asta: "ni lo siente"
 pj["cabeza"].rotation_euler = (math.radians(-4), 0, math.radians(10))
-pj["root"].location = (0.0, -0.16, TOP)
-pj["root"].rotation_euler.z = math.radians(float(os.environ.get("PAJ_ROT", -22)))
+pj["root"].location = (0.03, -0.16, TOP)
+pj["root"].rotation_euler.z = math.radians(float(os.environ.get("PAJ_ROT", -8)))
 
 # --- ratón detrás, en una roca más alta, echando fuego ---
-roca2 = D.roca("RocaAtras", (0.12, 0.32, 0), (0.50, 0.30, 0.36), C, seed=3)
+roca2 = D.roca("RocaAtras", (0.12, 0.30, 0), (0.50, 0.30, 0.36), C, seed=3)
 TOP2 = 0.36
 rt = PJ.raton(CP)
+rt["root"].scale = (1.15, 1.15, 1.15)
 rt["boca"].scale = (1.6, 1.4, 3.2)
 for pv in rt["parpados"]:
     for ch in pv.children:
@@ -82,12 +83,12 @@ for k, ob in enumerate(rt["orejas"]):
 for k, br in enumerate(rt["brazos"]):
     br.rotation_euler = (math.radians(-60), 0, math.radians(35 * (1 if k else -1)))   # patitas arriba, sin tocar nada
 rt["cabeza"].rotation_euler = (math.radians(-16), 0, 0)
-rt["root"].location = (0.17, 0.24, TOP2)
+rt["root"].location = (0.16, 0.20, TOP2)
 rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", 28)))
 bpy.context.view_layer.update()
 boca_w = rt["boca"].matrix_world.translation
-frente_rt = (rt["cabeza"].matrix_world.to_3x3() @ Vector((-0.25, -1, 0.45))).normalized()
-V.llamarada("Llamarada", boca_w + frente_rt * 0.004, frente_rt, CP, escala=float(os.environ.get("FUEGO", 1.7)))
+frente_rt = Vector(tuple(float(x) for x in os.environ.get("FUEGO_DIR", "-1,-0.45,0.35").split(","))).normalized()
+V.llamarada("Llamarada", boca_w + frente_rt * 0.010, frente_rt, CP, escala=float(os.environ.get("FUEGO", 1.4)))
 for o in rt["ojos"]:
     ow = o.matrix_world.translation
     abajo = (rt["cabeza"].matrix_world.to_3x3() @ Vector((0, -0.3, -1))).normalized()
@@ -102,8 +103,8 @@ cam.data.sensor_height = 24
 cam.data.lens = float(os.environ.get("LENS", 33))
 bpy.context.view_layer.update()
 foco = pj["cabeza"].matrix_world.translation + Vector((0, -0.03, 0.02))
-cam.location = foco + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "0.02,-0.60,-0.04").split(",")))
-mira = foco + Vector(tuple(float(x) for x in os.environ.get("MIRA", "0.05,0.10,-0.035").split(",")))
+cam.location = foco + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.03,-0.62,-0.12").split(",")))
+mira = foco + Vector(tuple(float(x) for x in os.environ.get("MIRA", "0.03,0.10,0.03").split(",")))
 cam.rotation_euler = (mira - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (foco - cam.location).length

@@ -85,8 +85,10 @@ def preparar(a):
     elif et == "3-storyboard":
         W = comun.leer(os.path.join(ep_d, "words.json"), [])
         res = checks.storyboard(ep_d, W[-1]["e"] if W else None)
-        encs.append(encargo(rd, "storyboard", "3-storyboard.md", "storyboard completo",
-                            [R(os.path.join(ep_d, "storyboard.md")), R(os.path.join(ep_d, "guion.md"))],
+        mats = [R(os.path.join(ep_d, "storyboard.md")), R(os.path.join(ep_d, "guion.md"))]
+        if os.path.exists(os.path.join(ep_d, "ficha.jpg")):    # personajes propios del episodio
+            mats.append(R(os.path.join(ep_d, "ficha.jpg")))
+        encs.append(encargo(rd, "storyboard", "3-storyboard.md", "storyboard completo", mats,
                             ctx_base + ["docs/MANUAL_PRODUCCION.md", "CONTEXTO.md"]))
     elif et == "4-cuadros":
         import materiales

@@ -29,10 +29,35 @@ sc.world.use_nodes = True
 sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.25, 0.62, 0.70, 1)
 sc.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.6
 C = P.collection("Ficha")
-piso = P.prim("cyl", "Piso", C, P.mat("PisoFicha", (0.80, 0.55, 0.32), rough=0.8), r=0.6, r2=0.6, h=0.02, seg=64)
+piso = P.prim("cyl", "Piso", C, P.mat("PisoFicha", (0.80, 0.55, 0.32), rough=0.8), r=1.6, r2=1.6, h=0.02, seg=64)
 piso.location = (0, 0, -0.01)
 
 QUIEN = os.environ.get("QUIEN", "pajaro")
+if QUIEN == "elenco":
+    # ficha del episodio: todos los personajes en fila (lo que usa el auditor para comparar)
+    pj = PJ.pajaro(C)
+    pj["root"].location = (-0.33, 0.0, 0)
+    pj["root"].rotation_euler.z = math.radians(-15)
+    rt = PJ.raton(C)
+    rt["root"].location = (-0.12, 0.02, 0)
+    rata = PJ.raton(C, "Rata", lomo=(0.20, 0.17, 0.14), guata=(0.62, 0.58, 0.52), oreja=0.019, hocico=1.35)
+    rata["root"].scale = (1.3, 1.3, 1.3)
+    rata["root"].location = (0.08, 0.06, 0)
+    inm = PJ.raton(C, "RatonInmune")
+    inm["root"].location = (0.30, 0.02, 0)
+    bpy.context.view_layer.update()
+    for o in inm["ojos"]:
+        pass
+    cab = inm["cabeza"]
+    lt = PJ.lentes("LentesInmune", cab.matrix_world @ Vector((0, -0.045, 0.040)), 0.05, C)
+    PJ.colgar(lt, cab)
+    md = PJ.medalla("MedallaInmune", (0.30, -0.035, 0.085), 0.012, C)
+    tp = PJ.tupaya(C)
+    tp["root"].location = (0.52, 0.04, 0)
+    tp["root"].rotation_euler.z = math.radians(35)
+    gd = PJ.aji_guardia(C)
+    gd["root"].location = (0.74, 0.08, 0)
+
 if QUIEN in ("pajaro", "ambos"):
     pj = PJ.pajaro(C)
     if QUIEN == "ambos":
@@ -63,8 +88,8 @@ sc.camera = cam
 cam.data.lens = 60
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
-tgt = Vector((0, -0.01, 0.12)) if QUIEN != "ambos" else Vector((0.01, -0.01, 0.10))
-dist = float(os.environ.get("DIST", 0.95 if QUIEN != "ambos" else 1.25))
+tgt = {"ambos": Vector((0.01, -0.01, 0.10)), "elenco": Vector((0.20, 0.0, 0.12))}.get(QUIEN, Vector((0, -0.01, 0.12)))
+dist = float(os.environ.get("DIST", {"ambos": 1.25, "elenco": 2.6}.get(QUIEN, 0.95)))
 VISTAS = {"3q": (-35, 8), "frente": (0, 6), "perfil": (-90, 4), "atras": (150, 12)}
 for v in os.environ.get("VISTAS", "3q,frente,perfil").split(","):
     az, el = VISTAS[v]
