@@ -11,6 +11,7 @@ El frío nunca toca tu cerebro: el dolor nace en el paladar y tu cerebro se conf
 **Descripción:**
 El frío del helado no toca tu cerebro: los vasos del paladar se encogen y se abren de golpe, y el nervio trigémino manda el dolor a la frente.
 Fuentes: Cleveland Clinic · LiveScience (Harvard, 2012) · Popular Science.
+Modelos anatómicos: Z-Anatomy (CC BY-SA 4.0) · BodyParts3D, DBCLS (CC BY-SA 2.1 JP).
 
 ## Primer comentario (firstCommentText)
 Fuentes:
@@ -18,6 +19,7 @@ Fuentes:
 • LiveScience (2012, Harvard Medical School): https://www.livescience.com/19834-brain-freeze-blood-flow-migraines.html
 • Popular Science: https://www.popsci.com/science/what-is-brain-freeze/
 • LiveScience — el cerebro no tiene receptores de dolor: https://www.livescience.com/if-the-brain-doesnt-feel-pain-why-do-headaches-hurt
+Modelos anatómicos: Z-Anatomy (CC BY-SA 4.0) · BodyParts3D, DBCLS (CC BY-SA 2.1 JP)
 ¿Qué quieres que te explique la próxima? 🤔
 
 ## Datos para Metricool

@@ -17,6 +17,7 @@ FPS = 30
 words = json.load(open(os.path.join(EPI, "words.json")))
 meta = json.load(open(os.path.join(OUT, "ep01_planos.json")))
 FR = {int(k): tuple(v) for k, v in meta["FR"].items()}
+INTERIOR_SET = set(int(k) for k in meta.get("interior", []))
 END = meta["END"]
 FONTS = os.path.abspath(os.path.join(HERE, "../../../plantilla/fonts"))
 FONT = os.path.join(FONTS, "Inter-Black.otf")
@@ -81,15 +82,29 @@ def fit_font(texts, maxw, size=84, min_size=60):
     return ImageFont.truetype(FONT, min_size)
 
 
+def gap(font, a, b):
+    """Espacio entre dos palabras: el normal más lo que crece cada una con el pop (6 % de su ancho por lado)."""
+    return font.getlength(" ") + 0.07 * (font.getlength(a) + font.getlength(b))
+
+
+def line_w(font, toks):
+    return sum(font.getlength(t) for t in toks) + sum(gap(font, toks[i], toks[i + 1]) for i in range(len(toks) - 1))
+
+
 def layout(g):
     toks = [clean(words[i]["w"]) for i in g]
     maxw = (BOX[1] - BOX[0]) / 1.12  # margen para el pop de 1,12 de la palabra activa (no salirse de la zona segura)
-    f = fit_font([" ".join(toks)], maxw)
-    lines = [toks]
-    if f.getlength(" ".join(toks)) > maxw and len(toks) > 1:
-        lines = [toks[:len(toks) // 2 + len(toks) % 2], toks[len(toks) // 2 + len(toks) % 2:]]
-        f = fit_font([" ".join(l) for l in lines], maxw)
-    return f, lines
+    splits = [[toks]]
+    if len(toks) > 1:
+        c = len(toks) // 2 + len(toks) % 2
+        splits.append([toks[:c], toks[c:]])
+    for lo in (76, 60):                       # primero tamaño normal (76-88), en 1 o 2 líneas; recién después más chico
+        for lines in splits:
+            for size in range(84, lo - 1, -4):
+                f = ImageFont.truetype(FONT, size)
+                if all(line_w(f, l) <= maxw for l in lines):
+                    return f, lines
+    return ImageFont.truetype(FONT, 60), splits[-1]
 
 
 SUB_LOG = []
@@ -110,6 +125,8 @@ def draw_subs(img, f):
             break
     if g is None:
         return
+    if any(clean(words[i]["w"]).startswith(("GANGLI", "ESFENO")) for i in g):
+        return
     font, lines = layout(g)
     d = ImageDraw.Draw(img, "RGBA")
     lh = font.size * 1.12
@@ -119,11 +136,10 @@ def draw_subs(img, f):
     flat = [i for i in g]
     k = 0
     for li, line in enumerate(lines):
-        txt = " ".join(line)
-        lw = font.getlength(txt)
+        lw = line_w(font, line)
         x = cx - lw / 2
         y = y0 + li * lh
-        for tok in line:
+        for ti, tok in enumerate(line):
             wi = flat[k]
             k += 1
             active = words[wi]["s"] - 0.02 <= t < max(words[wi]["e"], words[wi]["s"] + 0.12)
@@ -142,16 +158,19 @@ def draw_subs(img, f):
                 d.text((x + 3, y + 5), tok, font=font, fill=(0, 0, 0, 110))
                 d.text((x, y), tok, font=font, fill=CYAN if tok in KEYWORDS else (255, 255, 255), stroke_width=6, stroke_fill=(0, 0, 0))
                 SUB_LOG.append((f, tok, x, y, x + tw, y + font.size))
-            x += tw + font.getlength(" ")
+            x += tw + (gap(font, tok, line[ti + 1]) if ti + 1 < len(line) else 0)
 
 
 # ---------- píldoras ----------
 PILLS = {  # plano: [(texto, estilo)]
-    10: [("PALADAR", "blanca")], 11: [("VASOS SANGUÍNEOS", "blanca")], 13: [("NERVIO TRIGÉMINO", "amarilla")],
-    17: [("HARVARD · 2012", "blanca")], 18: [("13 VOLUNTARIOS", "blanca")], 19: [("ARTERIA", "blanca")],
+    10: [("PALADAR", "blanca")], 31: [("PALADAR", "blanca")], 11: [("VASOS SANGUÍNEOS", "blanca")], 13: [("NERVIO TRIGÉMINO", "amarilla")],
+    15: [("EXPLICACIÓN MÁS ACEPTADA", "blanca")], 32: [("CORTEZA SENSITIVA", "amarilla")],
+    17: [("HARVARD · 2012", "blanca")], 18: [("13 VOLUNTARIOS", "blanca")], 19: [("ARTERIA DEL CEREBRO", "blanca")],
     21: [("0 RECEPTORES DE DOLOR", "coral")], 34: [("EL TRUCO", "amarilla")],
     27: [("DURA ≤ 2 MIN", "blanca")], 35: [("NO ES PELIGROSO", "verde")],
 }
+PILL_POS = {34: "lado", 35: "lado"}                 # primeros planos: al costado de la cara, nunca encima
+ARROW_TO = {10: (560, 740), 31: (540, 760)}         # la flecha apunta al paladar en el corte de perfil
 STY = {"blanca": ((255, 255, 255), (20, 24, 30)), "amarilla": (YELLOW, (20, 24, 30)), "coral": ((255, 92, 75), (255, 255, 255)), "verde": ((60, 200, 120), (255, 255, 255))}
 PILL_FONT = ImageFont.truetype(FONT_B, 52)
 
@@ -183,7 +202,18 @@ def draw_pills(img, f):
     s = 1.0 + 0.25 * math.exp(-t * 9) * math.cos(t * 22) if t < 0.5 else 1.0
     s = min(s, 1.25) * min(1.0, t / 0.08)
     for i, (txt, sty) in enumerate(PILLS[k]):
-        pill(img, txt, sty, 504, 330 + i * 118, s)
+        cx, cy = 504, 330 + i * 118
+        if PILL_POS.get(k) == "lado":
+            pw = ImageFont.truetype(FONT_B, 52).getlength(txt) + 64
+            cx, cy = 120 + pw / 2, 600
+        if k in ARROW_TO and s > 0.5:
+            tx, ty = ARROW_TO[k]
+            lay = Image.new("RGBA", img.size, (0, 0, 0, 0))
+            d = ImageDraw.Draw(lay)
+            d.line((cx, cy + 50, tx, ty - 24), fill=(255, 255, 255, 235), width=7)
+            d.polygon(((tx, ty), (tx - 18, ty - 34), (tx + 18, ty - 34)), fill=(255, 255, 255, 235))
+            img.alpha_composite(lay)
+        pill(img, txt, sty, cx, cy, s)
 
 
 def draw_pain_meter(img, f):
@@ -271,6 +301,10 @@ def process(f):
         im = load(f)
     if im is None:
         return False
+    if k in INTERIOR_SET:
+        from PIL import ImageEnhance
+        rgb = ImageEnhance.Color(ImageEnhance.Contrast(im.convert("RGB")).enhance(1.10)).enhance(1.18)
+        im = rgb.convert("RGBA")
     draw_question(im, f)
     draw_pills(im, f)
     draw_pain_meter(im, f)

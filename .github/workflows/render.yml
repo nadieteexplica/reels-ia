@@ -12,11 +12,11 @@ on:
         description: "Trabajos en paralelo"
         default: "20"
       res:
-        description: "Resolución de render (se escala a 1080x1920 al final)"
-        default: "1080x1920"
+        description: "Resolución de render (se amplía a 1080x1920 al armar; 720x1280 se ve igual en el celular y es ~3x más rápido)"
+        default: "720x1280"
       samples:
-        description: "Muestras de Cycles"
-        default: "20"
+        description: "Muestras de Cycles (con eliminación de ruido)"
+        default: "12"
       cuadros:
         description: "Rango opcional a-b (pruebas). Vacío = todo"
         default: ""
@@ -90,6 +90,22 @@ jobs:
           python-version: "3.13"
       - name: Blender y librerías
         run: pip install -q bpy==5.2.0 numpy scipy pillow
+      - name: Kit de anatomía (caché)
+        id: kit
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.OUT }}/anatomia_cabeza.blend
+            ${{ env.OUT }}/anatomia_cabeza.json
+          key: anatomia-${{ hashFiles('studio/plantilla/anatomia_kit.py') }}
+      - name: Anatomía real (Z-Anatomy, CC BY-SA 4.0)
+        if: steps.kit.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p zanat "$OUT"
+          curl -sSL -o zanat/z.zip https://github.com/Z-Anatomy/The-blend/raw/main/Z-Anatomy.zip
+          unzip -q zanat/z.zip -d zanat
+          ZANAT=zanat/Z-Anatomy/Startup.blend python studio/plantilla/anatomia_kit.py
+          rm -rf zanat
       - name: Personaje
         run: |
           cd studio/personaje
