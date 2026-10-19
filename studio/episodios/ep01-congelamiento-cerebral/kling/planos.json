@@ -1,9 +1,10 @@
 [
  {"plano": 1, "clip": "p1_cono_a.mp4", "desde": 0.0, "velocidad": 1.3},
+ {"plano": 3, "clip": "p3_frente_b.mp4", "desde": 1.9, "velocidad": 1.0},
  {"plano": 9, "clip": "p9_cono_a.mp4", "desde": 0.6, "velocidad": 1.0},
  {"plano": 17, "clip": "p17_vasos_b.mp4", "desde": 1.0, "velocidad": 1.0},
  {"plano": 18, "clip": "p18_vol_a.mp4", "desde": 0.5, "velocidad": 1.0},
- {"plano": 33, "clip": "p18_vol_a.mp4", "desde": 3.3, "velocidad": 1.0},
  {"plano": 26, "clip": "p26_taza_d.mp4", "desde": 1.2, "velocidad": 1.15},
- {"plano": 30, "clip": "p30_cono_a.mp4", "desde": 1.24, "velocidad": 1.5}
+ {"plano": 30, "clip": "p30_cono_a.mp4", "desde": 1.24, "velocidad": 1.5},
+ {"plano": 33, "clip": "p18_vol_a.mp4", "desde": 3.3, "velocidad": 1.0}
 ]

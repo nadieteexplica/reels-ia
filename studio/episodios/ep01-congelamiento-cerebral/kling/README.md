@@ -7,6 +7,7 @@ Nunca se usa para anatomía.
 - Pedidos enviados: `pedido*.json` (workflow `kling.yml`). Clips en la prerelease `ep01-kling`.
 - `planos.json`: qué clip reemplaza qué plano (`desde` = segundo del clip donde parte, `velocidad`). Lo aplica el armado.
 - Elegidos (revisión cuadro a cuadro):
+  - 3 `p3_frente_b` (las manos llegan a la frente; `a` lo rechazó el filtro de Kling por la palabra "pain": usar "brain freeze", "funny").
   - 1 `p1_cono_a` (mordida grande, ×1,3) · 9 `p9_cono_a` (mano rodeando el cono, come con ansiedad) · 30 `p30_cono_a`
     (termina en el cuadro 1 → el loop empalma).
   - 17 `p17_vasos_b` (vasos transparentes desde el inicio; la versión `a` cambiaba de negro a transparente).
