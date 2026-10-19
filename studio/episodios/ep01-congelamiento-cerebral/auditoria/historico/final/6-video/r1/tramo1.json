@@ -1,0 +1,176 @@
+{
+ "encargo": "tramo1",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 7,
+   "por_que": "Lo bueno: la cabeza de vidrio de P4 se ve limpia y P1, P3 y P9 tienen buena luz y color, sin zonas quemadas (≤0,6 % de píxeles >250). Lo que baja la nota: en P7 el suelo es un plano liso sin textura, el letrero 'HELADOS' del carrito choca con el subtítulo, en P4 los ojos parecen pelotas blancas que compiten con el cerebro, en P2 los cristales se apagan de golpe y los hombros de la polera muestran una franja oscura (P5, P8)."
+  },
+  "animacion": {
+   "nota": 7,
+   "por_que": "Los planos de Kling actúan bien: en P9 13.26 mira de reojo como si le fueran a quitar el helado, y en P3 los dedos se apoyan en el pelo en los 6 cuadros. En cambio, en P5 dice '¿qué pasó?' con la cara neutra, en P7 el personaje queda parado sin hacer nada, y la cara cambia entre los planos de render (cejas finas) y los de Kling (cejas gruesas, ojos grandes)."
+  },
+  "claridad": {
+   "nota": 6,
+   "por_que": "En P4 (5.63) el copo de nieve se monta sobre el cerebro justo cuando la voz dice 'nunca tocó tu cerebro', o sea, la imagen contradice el dato. En P7 nada muestra el 'día de calor', y en P8 el carrito queda fuera de cuadro cuando se dice 'carrito'."
+  },
+  "ritmo": {
+   "nota": 8,
+   "por_que": "Hay 9 planos en 15 s y ninguno pasa de 2,5 s, salvo P9 (2,88 s), donde el gesto cambia cada ~0,5 s (12.14 boca abierta, 12.70 mordida, 13.26 mira de reojo, 13.82 muerde otra vez). La cámara se mueve en P4, P7 y P8, y P6 rebobina con montaje rápido."
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "5.63",
+   "que": "Mientras la voz dice 'nunca tocó tu CEREBRO', el copo de nieve aparece encima del cerebro y sus brazos de abajo lo tapan (también en E5, 5.74). La imagen dice lo contrario que la voz. Después el copo desaparece en un solo cuadro (5.74→5.94), sin animación de salida.",
+   "arreglo": "Dejar el copo fuera de la cabeza de vidrio y hacerlo rebotar en el cráneo o detenerse en el paladar, que se pone azul hielo. El cerebro debe quedar intacto y sin contacto durante todo 'nunca tocó tu cerebro'. La salida se hace achicando y desvaneciendo el copo en 6–8 cuadros."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "6.11",
+   "que": "La voz sólo nombra el cerebro, pero los dos globos oculares son esferas blancas opacas, lo más claro del cuadro, y un resplandor naranjo bajo el lóbulo frontal (4.68–6.11) compite con el cerebro. El naranjo, además, sugiere calor cuando se habla de frío. En 6.11 los dos ojos se superponen a la altura de la nariz y parecen dos pelotas pegadas.",
+   "arreglo": "Bajar los ojos al nivel del vidrio (apagados, como pide 'lo demás apagado u oculto') y quitar el resplandor naranjo o dejarlo en azul frío."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "2.30",
+   "que": "Unos 15 cristales hexagonales de hielo que salen de la frente desaparecen todos en un cuadro (E3: 2.27 llenos, 2.47 ya no están). Se ve un parpadeo.",
+   "arreglo": "Que las partículas se achiquen a 0 y se desvanezcan en 6–8 cuadros, con tiempos de vida escalonados."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "7.06",
+   "que": "En '¿Qué pasó?' la cara queda neutra en los 6 cuadros: no sube las cejas, no ladea la cabeza y mantiene la boca cerrada. Sólo suben los hombros, así que la duda no se lee.",
+   "arreglo": "Agregar cejas arriba y juntas, cabeza ladeada y palmas hacia arriba (Shrugging), y sostener la pose 6–10 cuadros en 'pasó'."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "7.06",
+   "que": "La cara del personaje cambia entre render y Kling. En render (P5 7.06, P8 10.76) tiene cejas finas y arqueadas, ojos chicos y cara angosta. En Kling (P1 1.53, P9 13.26) tiene cejas gruesas, ojos grandes y cara ancha. Como el montaje alterna render y Kling cada 1–2 s, el cambio se nota.",
+   "arreglo": "Unificar la cara con la ficha: retocar cejas y ojos del modelo de render, o regenerar los clips de Kling con 'keep exact face proportions and eyebrows' a partir del mismo cuadro de render."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "9.20",
+   "que": "La voz dice 'Día de calor', pero nada en pantalla muestra calor: no hay sol fuerte, reverberación ni sudor. Además, el personaje está parado con los brazos abajo durante todo el plano y sólo se mueve la cámara.",
+   "arreglo": "Agregar un sol cálido con destello o reverberación en el suelo, darle al plano un tono más cálido y que el personaje se abanique con la mano o se seque la frente."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "8.78",
+   "que": "El letrero 3D 'HELADOS' del carrito queda detrás del subtítulo 'CALOR' y se lee un enredo ('CALOR…DOS') en los 6 cuadros.",
+   "arreglo": "Subir la cámara o mover el carrito para que el letrero quede sobre y=1000, o girarlo para que no quede bajo la franja de subtítulos."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "10.76",
+   "que": "Justo cuando la voz dice 'MÁS GRANDE DEL', la mano que apunta y el letrero XL salen por el borde izquierdo (10.76, 11.20). Luego, en 'CARRITO' (11.63, 12.06), el carrito no aparece; sólo asoma un borde a la derecha.",
+   "arreglo": "Usar un encuadre más abierto o un paneo más lento para que el letrero XL y la mano sigan en cuadro durante 'más grande', y terminar el paneo sobre el carrito en 'carrito'."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "8.51",
+   "que": "El ícono ◀◀ del rebobinado queda sobre la sien y la punta de la ceja izquierda del personaje (8.51, y otra vez sobre el pelo y la frente en 8.70). No tapa ojos ni boca, pero se monta sobre la cara.",
+   "arreglo": "Fijar el ícono en la esquina superior izquierda (x 80–260, y 300–400), lejos de la cara en todos los cuadros del rebobinado."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "6.66",
+   "que": "En el borde de las mangas se ve una franja oscura irregular, que parece el interior de la manga (P5 6.66 brazo izquierdo; P8 10.33–12.06).",
+   "arreglo": "Cerrar el dobladillo con solidify o dar a la cara interior el mismo material coral."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "9.40",
+   "que": "En el plano general, el suelo es un plano café liso sin textura y los árboles son bultos simples. La escena se ve sin terminar.",
+   "arreglo": "Ponerle al suelo una textura de adoquín o baldosa CC0 (ambientCG), bordes de pasto y algún detalle de utilería."
+  }
+ ],
+ "eventos": [
+  {
+   "id": "E1",
+   "es_defecto": false,
+   "por_que": "Es el cambio de subtítulo 'TE COMES UN' → 'HELADO RÁPIDO Y'. El helado y la cara siguen iguales."
+  },
+  {
+   "id": "E2",
+   "es_defecto": false,
+   "por_que": "Es la mordida rápida del clip de Kling: la cabeza sube y muerde. La escarcha, la polera y el helado mantienen la continuidad."
+  },
+  {
+   "id": "E3",
+   "es_defecto": true,
+   "por_que": "Los cristales hexagonales desaparecen todos en un cuadro (2.27→2.47), sin desvanecerse."
+  },
+  {
+   "id": "E4",
+   "es_defecto": false,
+   "por_que": "Entra el copo de nieve, un gráfico buscado en 'nunca', mientras la cámara orbita. El segundo ojo aparece por la rotación."
+  },
+  {
+   "id": "E5",
+   "es_defecto": true,
+   "por_que": "El copo, montado sobre el cerebro, desaparece en un cuadro sin animación de salida. Va con el problema de P4 5.63."
+  },
+  {
+   "id": "E6",
+   "es_defecto": false,
+   "por_que": "Es el corte de P4 a P5 y el '?' que entra creciendo (6.66 chico, 6.86 grande)."
+  },
+  {
+   "id": "E7",
+   "es_defecto": false,
+   "por_que": "Es el montaje de rebobinado con glitch: los saltos entre planos anteriores son buscados."
+  },
+  {
+   "id": "E8",
+   "es_defecto": false,
+   "por_que": "El plano dura 2.88 s, pero el gesto cambia cada ~0,5 s (mordida, mirada de reojo, otra mordida)."
+  },
+  {
+   "id": "E9",
+   "es_defecto": false,
+   "por_que": "Reagarra rápido el cono al llevarlo a la boca. Desde 12.40 los dedos rodean el cono en todos los cuadros."
+  },
+  {
+   "id": "E10",
+   "es_defecto": false,
+   "por_que": "Retira el helado después de morder, y la mordida se ve en la bola de vainilla."
+  },
+  {
+   "id": "E11",
+   "es_defecto": false,
+   "por_que": "El cono sube hacia la boca: la vainilla sale del recorte del detector y el chocolate queda arriba. Es el mismo helado."
+  },
+  {
+   "id": "E12",
+   "es_defecto": false,
+   "por_que": "Muerde y gira el cono, y los dedos siguen rodeándolo."
+  }
+ ],
+ "resumen": "El tramo tiene buen ritmo y los planos de Kling actúan bien, pero la imagen de P4 contradice la voz (el copo toca el cerebro en 'nunca tocó tu cerebro'). Además, P7 y P8 no muestran el calor ni el carrito, P5 está tieso, la cara cambia entre render y Kling, y hay partículas y gráficos que desaparecen de golpe."
+}
