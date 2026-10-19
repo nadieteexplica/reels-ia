@@ -5,7 +5,8 @@
 
 ## Revisa, en este orden
 1. **Precisión (lo más importante).** Comprueba **cada afirmación con cifra o dato duro** de la tabla de verificación, empezando por el dato central:
-   - Usa primero **WebSearch** con la cifra y el nombre de la fuente (p. ej. `NOAA lightning 30,000 degrees`): un resultado **del mismo sitio** que confirme la cifra cuenta como verificado. WebFetch sólo si la búsqueda no alcanza; si WebFetch pide un permiso o no responde, no esperes: sigue con WebSearch.
+   - Parte por **`fuentes.md`** (si está en tus materiales): son extractos de cada fuente bajados de una vez por un workflow. Si el extracto confirma la cifra, cuenta como verificado.
+   - Sólo para lo que `fuentes.md` no cubre (fuente que falló o extracto insuficiente): **WebSearch** con la cifra y el nombre de la fuente; un resultado **del mismo sitio** que la confirme cuenta. **WebFetch: máximo 2 en todo el encargo** y sólo para una fuente puntual (regla de Tomás: nada de consultas web en serie). Si igual no se puede verificar, es un problema prioridad 1.
    - ¿La fuente dice eso, con esa cifra? Anota en una frase propia qué dice la fuente.
    - ¿El dato central tiene **2 fuentes independientes** (no una copiando a la otra, no Wikipedia)?
    - Si la ciencia no está segura (estudio chico, preliminar), ¿el guion lo dice ("los científicos creen…")?

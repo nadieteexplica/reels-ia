@@ -1,0 +1,43 @@
+name: fuentes
+# Baja de una vez todas las fuentes de un guion (tools/fuentes.py) y sube los extractos a la prerelease <epNN>-fuentes.
+# Regla de Tomás (19-oct-2026): las consultas web van en un solo workflow; desde el espacio de trabajo se lee el resultado.
+on:
+  workflow_dispatch:
+    inputs:
+      episodio:
+        description: "Carpeta del episodio en studio/episodios"
+        required: true
+      claves:
+        description: "Palabras clave (inglés y español) separadas por coma para elegir los párrafos"
+        default: ""
+      extra:
+        description: "URLs extra separadas por espacio (opcional)"
+        default: ""
+permissions:
+  contents: write
+jobs:
+  bajar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests trafilatura beautifulsoup4 pypdf
+      - name: Fuentes
+        env:
+          EP: ${{ github.event.inputs.episodio }}
+          CLAVES: ${{ github.event.inputs.claves }}
+          EXTRA: ${{ github.event.inputs.extra }}
+        run: |
+          mkdir -p f
+          python3 tools/fuentes.py "studio/episodios/$EP/guion.md" "f/fuentes_$EP.md" --claves "$CLAVES" --extra $EXTRA
+      - name: Subir
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          EP: ${{ github.event.inputs.episodio }}
+        run: |
+          TAG="$(echo "$EP" | cut -d- -f1)-fuentes"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$TAG" --notes "Extractos de fuentes para el auditor. No publicar."
+          gh release upload "$TAG" f/* --clobber

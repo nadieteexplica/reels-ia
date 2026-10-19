@@ -53,7 +53,14 @@ def preparar(a):
     encs = []
     if et == "1-guion":
         res = checks.guion(ep_d)
-        encs.append(encargo(rd, "guion", "1-guion.md", "guion completo", [R(os.path.join(ep_d, "guion.md"))],
+        mats = [R(os.path.join(ep_d, "guion.md"))]
+        if a.fuentes:   # extractos bajados por el workflow fuentes.yml (regla: nada de consultas web en serie)
+            import shutil
+            shutil.copy(a.fuentes, os.path.join(md, "fuentes.md"))
+            mats.append(R(os.path.join(md, "fuentes.md")))
+        else:
+            res["avisos"].append({"que": "sin extractos de fuentes (workflow fuentes.yml): el revisor tendrá que buscar en la web", "evidencia": ""})
+        encs.append(encargo(rd, "guion", "1-guion.md", "guion completo", mats,
                             ctx_base + ["docs/MANUAL_PRODUCCION.md", "docs/IDEAS.md", "docs/PUBLICADOS.md"]))
     elif et == "2-voz":
         words = a.words or os.path.join(ep_d, "words.json")
@@ -313,6 +320,7 @@ if __name__ == "__main__":
     ap.add_argument("--mp3", help="locución (por defecto out/tts/<ep>.mp3)")
     ap.add_argument("--job")
     ap.add_argument("--url")
+    ap.add_argument("--fuentes", help="extractos de fuentes_<ep>.md (prerelease <epNN>-fuentes, workflow fuentes.yml)")
     ap.add_argument("--desde")
     ap.add_argument("--hasta")
     a = ap.parse_args()

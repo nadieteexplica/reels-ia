@@ -8,3 +8,4 @@ studio/**/log_*.txt
 *.blend1
 assets/
 __pycache__/
+studio/**/materiales/fuentes*.md
