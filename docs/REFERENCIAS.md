@@ -211,21 +211,12 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 
 ---
 
-## 7. Cambios propuestos a otros documentos (se aplican al cerrar el estudio)
+## 7. Cambios aplicados a otros documentos (19-oct-2026)
 
-- **`MANUAL_PRODUCCION.md`:**
-  - §4: reemplazar "plano de 2–3 s" y "ningún plano estático de más de 3 s" por "**nunca más de 2 s sin un cambio en pantalla**" (corte o transformación). Planos de 1,2–2,5 s.
-  - §6: sumar **palabra clave** destacada además de la palabra activa; permitir **subtítulos arriba** cuando el protagonista es un objeto centrado.
-  - §1 y §10: probar un cierre con **llamado a enviar con destinatario** ("envíaselo a…") en algunos videos, sin romper el loop.
-  - §1: estructura de guion para la línea historias.
-  - §2: la verificación aplica a todo lo que se presenta como real.
-  - §5: look de referencia R4 (pastel saturado) y luz de una sola fuente para momentos dramáticos (R3).
-  - §5: código de color fijo por idea u opción (R6, R7).
-- **`CONTEXTO.md`:** dos líneas de contenido; referencias de look; color de marca por definir.
-- **`IDEAS.md`:**
-  - criterio nuevo **Guardable** junto a Compartible, y la pregunta "¿a quién se lo mandan / por qué lo guardarían?";
-  - banco de historias;
-  - temas nuevos: experimentos mentales, filosofía, historia de la ingeniería (ventanas del Comet), **fútbol y deportes**, **datos propios** (temblores en Chile, metro de Santiago, etc.).
-  - fuentes de datos abiertos para la línea "lo conté yo" (la licencia de cada base se revisa antes de usarla).
-  - familia "parece un error, pero es a propósito" en el banco de objetos cotidianos.
-- **`PUBLICADOS.md`:** columna **Línea** (datos / historias) y **Formato**.
+- **`CONTEXTO.md`:** dos líneas de contenido; formatos candidatos; regla de verdad para lo que se presenta como real; referencias de look (R3, R4, R8); reglas de edición (cuadro 0, nunca 2 s sin cambio, palabra clave, subtítulos arriba con objetos, código de color, símbolo que se repite, prueba del cierre con envío); proporción datos/historias como decisión pendiente.
+- **`MANUAL_PRODUCCION.md`:** §1 filtro "¿para qué acción?", estructura de la línea historias, adivinar antes de revelar y cierre con envío en prueba; §2 alcance de la verificación; §4 ritmo de 1,2–2,5 s y nunca 2 s sin cambio, símbolo recurrente, construir frente al espectador, escala con repetición; §5 referencias de look, código de color y lo invisible; §6 palabra clave y excepción de posición; §9.2 checklist.
+- **`IDEAS.md`:** fuentes nuevas (datos abiertos, referencias), criterio "compartible o guardable", filtro previo, puntaje de la línea historias, lista negra de firmas ajenas y bancos nuevos (parece un error, lo conté yo, historia e ingeniería, megaproyecto + lo calculé, historias).
+- **`AUTOMATIZACION.md`:** elección de temas por línea y formato.
+- **`PUBLICADOS.md`:** columnas Línea, Formato y Cierre.
+
+Las conclusiones de videos nuevos se suman acá y se pasan a esos documentos en la misma sesión.

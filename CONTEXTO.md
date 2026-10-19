@@ -10,15 +10,20 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **Meta: automatización total.** Claude investiga qué subir, escribe el guion, genera la voz, anima, deja todo listo, publica **3 veces por semana** (lun/mié/vie) vía Metricool con el OK de Tomás por post, y revisa los datos.
 
 ## Formato (brief vigente)
-- **Temas de todo el mundo**, no solo animales. Los ganchos son:
+- **Dos líneas de contenido (decidido por Tomás, 18-oct-2026):**
+  - **Datos:** un dato impresionante por video, que termina enseñando algo, con fuentes. Usa los ganchos de abajo.
+  - **Historias:** ficción (inventadas, absurdas o sin sentido: fábulas, story time). Si sale un híbrido historia + dato de forma natural, bien, pero no es requisito.
+  - La proporción entre líneas está pendiente (ver "Decisiones pendientes").
+- **Temas de todo el mundo**, no solo animales. Los ganchos de la línea datos son:
   - "¿Qué pasaría si…?"
   - "¿Cómo funciona por dentro?"
   - "¿Por qué no podemos…?"
   - "¿Qué pasa dentro de…?"
   - "¿Sabías que…?"
-- **Un dato impresionante** por video, de **62–75 s**, que **termina enseñando algo**. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días.
+- **Formatos candidatos** (del estudio de referencias, sin probar todavía; fichas en `docs/REFERENCIAS.md` §5): corte que se transforma, objeto cotidiano "parece un error, pero es a propósito", "lo conté yo" con datos propios, concepto armado frente a ti, megaproyecto absurdo + "lo calculé", fábula absurda y story time.
+- **Duración: 62–75 s** en las dos líneas. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días.
 - **Cadencia:** se parte con **3 videos por semana** (lunes, miércoles y viernes) y se sube a 5 si la calidad se mantiene. Diario no cabe en los créditos de voz. Detalle en `docs/AUTOMATIZACION.md`.
-- **Solo información real y verificada**, con fuentes. Nada de desinformar.
+- **Lo que se presenta como real es real y verificado**, con fuentes. Nada de desinformar. La ficción de la línea historias puede ser todo lo loca que se quiera, pero no se disfraza de dato.
 - **Animación 3D "sí o sí".**
 - **Edición:** limpia, amigable, llamativa, entretenida y bonita de ver.
 - **Rechazado:**
@@ -32,6 +37,10 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - **Semi-realista tipo Zack D. Films.** Él lo mostró como referencia. Usarlo como referencia de *calidad*, pero con personaje, colores y escenario propios. Nunca su marca.
   - **DECIDIDO (18-oct-2026):** semi-realista con Mixamo y **personaje propio de cuerpo normal**, hombre joven de ~18–20 años, con el look del niño de las muestras (polera coral con estrella, pelo café en mechones). Se descartó el cabezón: las animaciones de Mixamo son captura de movimiento real y en cabezones las manos atraviesan la cabeza. Las reacciones van en primer plano para que la cara se lea en vertical.
   - Base del personaje: MakeHuman (CC0), armado en Blender. Las muestras A/B/C quedan como referencia histórica.
+- **Referencias de look** (fichas en `docs/REFERENCIAS.md`; son referencias de calidad, nunca de marca):
+  - **R4** (el clavo, Zack D. Films): escenas con personajes. Paredes celestes, luz suave de estudio y ropa en pastel saturado.
+  - **R3** (la caverna): momentos dramáticos. Una sola fuente de luz fuerte y cálida, sombras profundas y contraluz.
+  - **R8** (gancho del metro): objetos en primer plano. Render tipo producto, fondo oscuro cálido con partículas desenfocadas.
 
 ## Voz
 - **ElevenLabs**, plan Starter (pagado), con **40.000 créditos al mes**. Cada toma gasta unos 1.200 créditos (hay que presupuestar ~1,3 tomas por video), y el saldo se ve en `out/status.json`.
@@ -40,10 +49,11 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - Settings: stability 0.4, similarity 0.8, style 0.32, speaker boost activado.
 - Se genera **con timestamps por carácter** para armar subtítulos palabra por palabra.
 
-## Reglas de edición (del estudio de formatos virales)
-- **Gancho** en los primeros 0–2 s.
+## Reglas de edición (del estudio de formatos virales y de `docs/REFERENCIAS.md`)
+- **Gancho** en los primeros 0–2 s. El cuadro 0 es una imagen absurda o una pregunta: algo que todavía no tiene sentido.
 - **Planos:**
-  - Una idea por plano, de unos 2–3 s cada uno (20–25 por minuto).
+  - Una idea por plano, de 1,2–2,5 s cada uno.
+  - **Nunca más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece o se transforma dentro del cuadro. Con transformación continua un plano puede durar más.
   - Cortes secos sincronizados con la voz.
   - La cámara siempre se mueve (acercamientos lentos u órbitas).
   - Cambio de escala cada 8–12 s.
@@ -52,12 +62,17 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - Palabra por palabra, de 1 a 3 palabras a la vez, en mayúsculas gruesas.
   - Blancos con borde negro, y la palabra activa en amarillo (#FFD23F).
   - Una o dos líneas, con la caja dentro de **x 120–888 · y 1000–1250**. Fuente de 76–88 px, que baja hasta 60 px si una palabra larga no cabe. Nunca en el 35% inferior.
+  - **Palabra clave** (1–3 por video: la cifra, el objeto, el giro) en el color de su idea y un poco más grande.
+  - **Excepción:** si el protagonista del plano es un objeto centrado, los subtítulos pueden ir arriba (y 280–480).
 - **Llamados en pantalla:** mínimos (flechas finas, etiquetas tipo píldora). Sin logo encima.
+- **Código de color fijo:** un color por idea u opción (correcto/incorrecto, opción A/B/C), igual en objetos, gráficos y subtítulos.
+- **Símbolo que se repite:** un objeto o detalle que vuelve durante el video y sirve de portada.
 - **Audio:**
   - Música 15–20 dB bajo la voz, con ducking.
   - Un efecto de sonido en cada evento visual.
   - −14 LUFS, true peak ≤ −1 dBTP.
 - **Final en loop.** Nada de "sígueme" en el video: eso va en el texto del post o en un comentario fijado.
+- **En prueba:** cierre que pide el envío con destinatario concreto ("mándaselo a ese amigo que…"). Se usa en algunos videos y se compara en `PUBLICADOS.md`.
 
 ## Pipeline técnico
 - **Repo** público `nadieteexplica/reels-ia`:
@@ -95,6 +110,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
 - **Estilo decidido:** semi-realista con Mixamo y personaje propio (ver "Formato").
+- **Estudio de referencias virales** (18-oct, en curso): 9 videos analizados en `docs/REFERENCIAS.md`. Sus conclusiones ya están en este archivo, el manual, `IDEAS.md`, `AUTOMATIZACION.md` y `PUBLICADOS.md` (19-oct). Tomás sigue mandando videos: cada uno suma una ficha.
 - **Protagonista (borrador 1, aprobado en dirección por Tomás):** `studio/personaje/` (ver su README).
   - Base MakeHuman CC0, hombre joven, 1,77 m, polera coral con estrella amarilla, jeans, zapatillas blancas, pelo café corto con jopo.
   - Riggeado por Claude con esqueleto `mixamorig:*`: las FBX de Mixamo se aplican directo (no hay que subir nada a Mixamo).
@@ -143,9 +159,11 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 1. ~~Estilo~~: decidido el 18-oct (semi-realista con Mixamo, personaje propio de cuerpo normal, ~18–20 años).
 2. **Audiencia de YouTube (`madeForKids`):** se recomienda **no**, porque el contenido es de curiosidades para público general, aunque el protagonista sea un niño. La decisión es de Tomás.
 3. ~~Repo privado de assets y token~~: listo el 18-oct (`nadieteexplica/assets` + secreto `TOKEN`). **Renovar el token antes del 17-nov-2026.**
+4. **Proporción datos/historias.** Propuesta de Claude: ~2 de datos por cada historia en el piloto; a las 4 semanas se ajusta según envíos/alcance de cada línea.
 
 ## Aprendizajes
 (Se llenan con los datos de cada semana. Ver `docs/PUBLICADOS.md`.)
+- Antes de publicar, los aprendizajes vienen de videos ajenos: `docs/REFERENCIAS.md` §3. Se confirman o se descartan con nuestros datos.
 
 ## Documentos
 - `proyecto/INSTRUCCIONES.md`: instrucciones del proyecto en Claude.

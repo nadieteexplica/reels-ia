@@ -16,7 +16,9 @@
    - Halloween, Navidad y Año Nuevo,
    - eclipses y lluvias de estrellas,
    - temblores y volcanes (siempre con respeto).
-5. **Objetos cotidianos:** mira alrededor (cocina, baño, celular, calle, metro) y pregúntate "¿cómo funciona esto por dentro?".
+5. **Objetos cotidianos:** mira alrededor (cocina, baño, celular, calle, metro) y pregúntate "¿cómo funciona esto por dentro?" o "¿por qué parece mal hecho?".
+6. **Datos abiertos** para el formato "lo conté yo" (deportes, sismos, transporte). Se revisa la licencia de cada base antes de usarla.
+7. **Referencias virales** que manda Tomás: fichas y conclusiones en `docs/REFERENCIAS.md`.
 
 ## 2. Puntaje (de 0 a 5 en cada criterio)
 | Criterio | Pregunta | Peso |
@@ -27,9 +29,11 @@
 | Visual 3D | ¿Se puede mostrar con imágenes, sin explicar con texto? | ×1,3 |
 | Enseñanza | ¿Deja algo útil o algo que contarle a otro? | ×1,0 |
 | Verificable | ¿Hay 2 fuentes sólidas? (si es 0, se descarta) | ×1,0 |
-| Compartible | ¿Dan ganas de mandárselo a alguien? | ×1,5 |
+| Compartible o guardable | ¿Dan ganas de mandárselo a alguien, o de guardarlo para después? | ×1,5 |
 
-- **Puntaje máximo:** 45. **Para producir hacen falta 32 o más.** Una idea con Verificable = 0 se descarta aunque sume.
+- **Filtro previo:** antes de puntuar, responder *¿a quién se lo mandan?* o *¿por qué lo guardarían?*. Sin respuesta, no se puntúa.
+- **Línea datos:** puntaje máximo 45. **Para producir hacen falta 32 o más.** Una idea con Verificable = 0 se descarta aunque sume.
+- **Línea historias:** se puntúa solo con Curiosidad (¿engancha el cuadro 0?), Universalidad, Sorpresa (¿sorprende el giro?), Visual 3D y Compartible. Máximo 35; **para producir hacen falta 25 o más.**
 - **Ajuste mensual:** los pesos se ajustan con los datos de `PUBLICADOS.md`. Por ejemplo, si los temas del cuerpo rinden el doble en envíos, sube su prioridad.
 - **Variedad:** nunca 2 videos seguidos con el mismo gancho o la misma área (cuerpo, tecnología, planeta…).
 
@@ -40,6 +44,7 @@
 - Personajes, marcas o franquicias con derechos de autor como protagonistas.
 - Temas ya publicados: se revisa `PUBLICADOS.md` antes de elegir.
 - El pulpo, que a Tomás no le gustó como tema.
+- Firmas de otras cuentas contadas igual: los megaproyectos narrados en imperativo de Zack D. Films, la casa con patio de `hiddenhome.3d`, las frutas humanizadas.
 
 ## 4. Banco de ideas
 Todos los datos están por **verificar** al producir; acá solo van como pista.
@@ -104,6 +109,40 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 | pendiente | Un rayo es más caliente que el Sol | Unos 30.000 °C contra ~5.500 °C de la superficie del Sol | Rayo en cámara lenta | Por qué suena el trueno |
 | pendiente | Los plátanos son radiactivos | Tienen potasio-40, pero la dosis es mínima | Plátano con átomos brillando | Qué es la radiación de verdad |
 | pendiente | Hay más árboles en la Tierra que estrellas en la Vía Láctea | ~3 billones de árboles (estudio de 2015) | Bosque vs galaxia | Escala |
+
+### Parece un error, pero es a propósito (objeto en primer plano)
+| Estado | Gancho | Dato central (verificar) | Imagen 3D clave | Enseñanza |
+|---|---|---|---|---|
+| pendiente | ¿Por qué la tapa del lápiz tiene un agujero? | Para que pase aire si alguien se la traga | Tapa en corte con el flujo de aire | Por qué no hay que morder tapas |
+| pendiente | ¿Por qué la ventana del avión tiene un agujerito? | Iguala la presión entre los vidrios para que la carga la tome el vidrio exterior | Ventana en corte con las capas | Qué pasa si se tapa |
+| pendiente | ¿Para qué es el bolsillo chico de los jeans? | Nació para guardar el reloj de bolsillo | Jeans con el reloj entrando | De dónde vienen los diseños de la ropa |
+| pendiente | ¿Por qué la F y la J del teclado tienen una rayita? | Para ubicar los índices sin mirar | Manos llegando al teclado a ciegas | Cómo escribir sin mirar |
+
+### Lo conté yo (datos propios)
+| Estado | Gancho | Fuente de datos (confirmar acceso y licencia) | Imagen 3D clave | Acción buscada |
+|---|---|---|---|---|
+| pendiente | ¿Cuántas veces tembló en Chile este año? Los conté | Catálogo del Centro Sismológico Nacional | Cada sismo es una esfera que cae sobre el mapa de Chile | Enviar |
+| pendiente | ¿Cuál es la estación de metro más usada de Santiago? | Datos de afluencia de Metro | Una persona por cada mil pasajeros, apilándose en cada estación | Enviar |
+| pendiente | ¿De qué minuto salen más goles? | Base abierta de partidos (por definir) | Cada gol es una pelota que cae en su minuto | Enviar y comentar |
+
+### Historia e ingeniería · experimentos mentales
+| Estado | Gancho | Dato central (verificar) | Imagen 3D clave | Enseñanza |
+|---|---|---|---|---|
+| pendiente | ¿Por qué las ventanas de los aviones son redondas? | El Comet (1954): las esquinas cuadradas concentraban la tensión y se agrietaban | Avión en un tanque de agua, grieta en la esquina | Por qué las esquinas redondas aguantan más |
+| pendiente | Con 23 personas en una pieza, hay 50 % de que dos estén de cumpleaños el mismo día | La paradoja del cumpleaños | Pieza que se llena y parejas que se conectan | Por qué la intuición falla con las probabilidades |
+
+### Megaproyecto absurdo + "lo calculé"
+| Estado | Gancho | Cálculo (supuestos explícitos en `guion.md`) | Imagen 3D clave | Acción buscada |
+|---|---|---|---|---|
+| pendiente | ¿Cuántos aviones harían falta para hacer girar el Aconcagua? | Momento de inercia del cerro vs empuje de un avión | El cerro con un cable y una nube de aviones | Enviar y comentar |
+| pendiente | ¿Cuántos globos de helio harían falta para levantar un auto? | Empuje por globo vs peso del auto | Auto que se despega del suelo | Enviar |
+
+### Historias (ficción)
+| Estado | Premisa (cuadro 0) | Giro o remate | Set principal | Acción buscada |
+|---|---|---|---|---|
+| pendiente (borrador) | Un tipo pone 12 alarmas para despertarse | Aprende a apagarlas todas dormido | Pieza | Enviar |
+| pendiente (borrador) | Un niño entrena 10 años para el récord de no pestañear | El día del récord estornuda | Pieza y estadio | Enviar |
+| pendiente (borrador) | Un genio le concede a alguien no volver a elegir la fila lenta del súper | Ahora el súper entero tiene una sola fila | Supermercado | Enviar |
 
 ## 5. Ideas de la comunidad
 | Fecha | @usuario | Pregunta | Red | Puntaje | Estado |

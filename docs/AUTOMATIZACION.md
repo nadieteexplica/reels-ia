@@ -47,7 +47,7 @@ Ya hecho: el workflow de voz procesa solo los jobs nuevos de cada push, falla en
    - Escribir 2–3 aprendizajes en `CONTEXTO.md`.
 3. **Ideas:**
    - Buscar según `IDEAS.md` §1.
-   - Puntuar y elegir **3 temas** con 32 puntos o más, variados (distinto gancho y distinta área).
+   - Puntuar y elegir **3 temas** con el umbral de su línea (`IDEAS.md` §2: 32 en datos, 25 en historias), en la proporción datos/historias de `CONTEXTO.md`, variados (distinto gancho, área y formato).
    - Darle prioridad a las preguntas de la comunidad.
 4. **Guiones:** verificar con 2 fuentes, escribir en 190–215 palabras y guardar en `studio/episodios/epNN-slug/guion.md`.
 5. **Voces:** 3 jobs en un solo push. Esperar a Actions, revisar `out/status.json`, armar `words.json` con `tools/words.py` y controlar duraciones (62–75 s).

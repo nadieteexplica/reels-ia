@@ -29,7 +29,10 @@ studio/episodios/epNN-slug/
 - Fernando habla a unas **2,97 palabras por segundo**, así que el guion tiene **190–215 palabras** (185 palabras dan apenas ~62 s, sin margen).
 - Mide siempre con los tiempos reales de la alineación, no con la estimación.
 
-### Estructura (tiempos aproximados)
+### Antes de escribir: ¿para qué acción?
+Cada video se diseña para que lo **envíen** (tiene destinatario: humor, dato sorpresa, "esto es para ti") o para que lo **guarden** (sirve después: cómo se hace, algo que enseña). Si no se puede responder *¿a quién se lo mandan?* o *¿por qué lo guardarían?*, la idea no sale. Base: `docs/REFERENCIAS.md` §3.
+
+### Estructura de la línea datos (tiempos aproximados)
 | Tramo | Qué pasa | Ejemplo (Ep. 1) |
 |---|---|---|
 | **0–3 s · Gancho** | Situación cotidiana o pregunta imposible, con una imagen fuerte desde el cuadro 0 | "Te comes un helado muy rápido… y de repente: ¡zas! Te duele la frente." |
@@ -39,17 +42,35 @@ studio/episodios/epNN-slug/
 | **55–68 s · Enseñanza** | Qué hacer, cómo usarlo o cómo explicárselo a alguien | "Aprieta la lengua contra el paladar…" |
 | **Cierre en loop** | Frase que conecta con el inicio y deja ganas de verlo otra vez | "…nadie come helado lento." |
 
+- **Con cifras:** dejar adivinar antes de revelar (opciones o pregunta en pantalla y después la respuesta).
+
+### Estructura de la línea historias (ficción)
+| Tramo | Qué pasa |
+|---|---|
+| **0–3 s · Cuadro absurdo** | Una imagen que todavía no tiene sentido, o la frase que abre el conflicto |
+| **3–15 s · Conflicto** | Quién es, qué quiere y qué sale mal |
+| **15–55 s · Escalada** | Cada 5–10 s algo empeora o sorprende; un símbolo que se repite amarra la historia |
+| **55–70 s · Giro o remate** | El chiste, la revelación o la moraleja que apunta al que mira ("esto es para ti") |
+| **Cierre en loop** | Conecta con el cuadro 0 |
+
+- Una sola voz (Fernando), en primera persona o como narrador.
+- Un set principal por historia, con muchos ángulos de cámara.
+- No se copian fábulas, premisas ni firmas de otras cuentas.
+
 ### Reglas de escritura
 - **Persona y registro:** segunda persona ("tú") y español latino neutro y cercano. Nada de chilenismos fuertes, porque el público es toda Latam.
 - **Frases:** cortas (14 palabras o menos), una idea por frase y números concretos.
 - **Pausas:** los `...` marcan pausas dramáticas, y ElevenLabs las respeta. Úsalos 2 a 4 veces por guion, no más.
 - **Prohibido en el guion:** "en este video", "sígueme", "dale like", "no vas a creer", promesas falsas o exageración sin respaldo.
+- **Cierre con envío (en prueba):** en algunos videos, la última frase pide el envío con un destinatario concreto ("mándaselo a ese amigo que siempre…"). Se marca en `PUBLICADOS.md` para comparar.
 - **Palabras difíciles:** si la voz pronuncia mal un nombre raro, escríbelo fonéticamente en el texto que va a ElevenLabs (no en los subtítulos).
 - **Ciencia incierta:** si la ciencia no está segura, dilo: "los científicos creen que…".
 
 ---
 
 ## 2. Verificación (antes de generar la voz)
+Aplica a todo lo que el video presenta como real, en las dos líneas. En la línea historias, solo a los datos reales que aparezcan.
+
 1. **El dato central** necesita 2 fuentes independientes y confiables:
    - instituciones (NASA, NIH, Cleveland Clinic, Mayo Clinic, servicios geológicos),
    - universidades,
@@ -90,14 +111,18 @@ Se arma una tabla en `storyboard.md`:
 |---|---|---|---|---|---|---|---|
 
 ### Ritmo
-- Cada plano dura 2–3 s, con 20–25 planos por minuto.
+- Cada plano dura 1,2–2,5 s (25–50 planos por minuto).
+- **Nunca pasan más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece, se transforma o se arma dentro del cuadro. Con transformación continua un plano puede durar más (R5: 13 s sin cortar).
 - Los cortes son secos, justo en el inicio de una frase o palabra clave.
 - Cambia la escala cada 8–12 s (general → medio → detalle → interior del cuerpo u objeto).
 
 ### Imagen
-- **Cuadro 0:** tiene que ser una imagen fuerte, porque es la portada en la grilla de Instagram. Nada de fade desde negro.
+- **Cuadro 0:** tiene que ser una imagen fuerte, absurda o con pregunta, porque es la portada en la grilla de Instagram. Nada de fade desde negro.
+- **Símbolo recurrente:** un objeto o detalle que vuelve durante el video y sirve de portada (el clavo de R4, la ventana de R6).
+- **Construir frente al espectador:** cuando se pueda, la escena se arma o se transforma paso a paso, para que quieran ver cómo termina (R3, R5, R6).
+- **Escala con repetición:** para cifras grandes, un objeto por caso (1.945 pelotas, miles de aviones) con instancias (R7, R9).
 - **Cada afirmación del guion tiene su imagen.** Si algo es invisible (nervios, ondas, átomos), se muestra con una metáfora visual clara en 3D: un corte del objeto, un zoom hacia adentro o flechas de flujo.
-- **Personaje recurrente:** es la cara de la cuenta y aparece en el gancho, en la reacción y en la enseñanza.
+- **Personaje recurrente:** es la cara de la cuenta y aparece en el gancho, en la reacción y en la enseñanza. Los formatos de objeto o corte (R5, R8) pueden ir sin él.
 - **Final:** conecta visualmente con el cuadro 0 para que el loop se sienta continuo.
 
 ---
@@ -106,7 +131,8 @@ Se arma una tabla en `storyboard.md`:
 El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier estilo.
 
 ### Luz y color
-- **Fondo:** cielo o degradado celeste/turquesa, o escenario simple y saturado.
+- **Fondo:** cielo o degradado celeste/turquesa, o escenario simple y saturado. Para objetos en primer plano, fondo oscuro cálido con partículas desenfocadas (R8).
+- **Referencias de look** (`docs/REFERENCIAS.md`): R4 para personajes (paredes celestes, ropa pastel saturada), R3 para momentos dramáticos (una sola fuente fuerte y cálida, contraluz) y R8 para objetos.
 - **Luz:** suave de estudio, con luz principal, de relleno y de contorno.
 - **Exposición:** nunca sobreexpuesto.
   - Control automático: menos del 3% de píxeles por sobre 250 en cada cuadro de muestra, **medido sin subtítulos ni gráficos**. Se renderiza el cuadro con `?nocap=1` o se excluye la zona de subtítulos.
@@ -130,6 +156,8 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 ### Transiciones y estética
 - **Transiciones:** corte seco por defecto. Máximo 2 transiciones especiales por video (whip o zoom).
 - **Gráficos:** limpios y amigables. Flechas finas y etiquetas tipo píldora (texto oscuro sobre blanco, o blanco sobre color), con un máximo de 4 palabras.
+- **Código de color fijo:** un color por idea u opción (correcto/incorrecto, opción A/B/C), igual en objetos, gráficos y subtítulos (R6, R7, R8).
+- **Lo invisible se muestra:** planos translúcidos, flechas y números grandes que cuentan hacia arriba (R6, R8).
 - **Nunca:** logos, marcas de agua, marcas de terceros, ni texto que tape la cara.
 
 ---
@@ -138,7 +166,9 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 - **Agrupación:** palabra por palabra en grupos de 1 a 3 palabras, que se cortan en la puntuación.
 - **Tipografía:** Inter 900, en mayúsculas, a 76–88 px, blanca con borde negro de unos 5 px y sombra suave.
 - **Palabra activa:** amarilla `#FFD23F`, con un pop de escala de 1,12 que dura 0,12 s.
+- **Palabra clave:** 1–3 por video (la cifra, el objeto, el giro), en el color de su idea según el código de color y un 10 % más grande. Cuando se dice, hace el mismo pop.
 - **Posición:** una o dos líneas, con la caja completa dentro de **x 120–888 · y 1000–1250**. Si una palabra no cabe (por ejemplo, GANGLIONEURALGIA), la fuente baja hasta 60 px. Nunca encima de la cara del personaje ni en el 35% inferior.
+- **Excepción de posición:** si el protagonista del plano es un objeto centrado (formato objeto, R8), los subtítulos pueden ir arriba, en y 280–480, bajo la barra de Instagram.
 - **Limpieza:** sin puntos suspensivos ni signos de puntuación en pantalla, y con tildes correctas.
 - **Silencio del título:** los subtítulos se ocultan cuando aparece un texto grande en pantalla, como un nombre científico.
 
@@ -191,7 +221,7 @@ Regla nacida del Ep. 1 (19-oct-2026): **nunca se renderiza el video completo sin
 - [ ] El personaje se ve igual en todo el video (pelo, ropa, colores).
 - [ ] Cada frase del guion tiene su imagen.
 - [ ] Hay un cambio de escala cada 8–12 s.
-- [ ] Ningún plano estático dura más de 3 s.
+- [ ] Nunca pasan más de 2 s sin un cambio en pantalla (corte o transformación).
 - [ ] El final empalma con el inicio.
 
 ### 9.3 Revisión independiente (obligatoria)
