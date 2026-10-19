@@ -1,0 +1,32 @@
+{
+ "encargo": "tramo4",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 7, "por_que": "P25 (cabeza de vidrio, paladar que pasa de azul a tibio) y P26 (taza con vapor, luz suave) se ven bien, pero en P34 y P35 una píldora queda encima del ojo izquierdo durante más de 1 s y rompe el retrato, y en P28 la polera se abulta en la cintura (67.04–67.93)."},
+  "animacion": {"nota": 7, "por_que": "P26 (toma, cierra los ojos aliviado) y P29 (inclina la cabeza en 'seamos honestos', abre la boca en 70.86) actúan bien, pero P34 mantiene la misma sonrisa con la boca cerrada en los 6 cuadros y en P28 el brazo salta del cuello a cruzar el pecho entre 68.20 y 68.40, justo antes del corte."},
+  "claridad": {"nota": 8, "por_que": "Cada frase tiene su imagen: en P25 la lengua sube y toca el paladar (58.58→59.74) con la etiqueta PALADAR apuntándolo, en P26 bebe una taza con vapor en 'tibio', en P27 aparece 'DURA ≤ 2 MIN' en 'un par de minutos' y en P35 'NO ES PELIGROSO'."},
+  "ritmo": {"nota": 8, "por_que": "Los 8 planos duran entre 1,20 y 2,48 s, la escala cambia en casi todos los cortes (primer plano → interior → plano medio → plano general) y siempre algo cambia en menos de 2 s (píldoras, sorbo, gestos, mordida)."}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "plano": 34, "segundo": "57.20", "que": "la píldora amarilla 'EL TRUCO' queda encima del ojo izquierdo del personaje (lado izquierdo de la pantalla) desde 57.20 hasta 58.50; con la cámara a la deriva lo tapa entero en 57.53, 57.85, 58.18 y 58.50 (cara tapada por un gráfico)", "arreglo": "quitar la píldora de este primer plano (el subtítulo ya dice EL TRUCO) o abrir a plano medio y ponerla sobre el pelo como en P27; agregar al chequeo automático que la caja de cada píldora no se cruce con la caja de la cara"},
+  {"prioridad": 1, "bloqueante": true, "plano": 35, "segundo": "64.88", "que": "la píldora verde 'NO ES PELIGROSO' tapa el ojo izquierdo y el puente de la nariz desde 64.88 hasta 66.06 (cara tapada por un gráfico, ~1,2 s)", "arreglo": "abrir el plano a plano medio y poner la píldora sobre el pelo (y≈300) o reemplazarla por un ícono de check junto al hombro; nunca a la altura de los ojos"},
+  {"prioridad": 1, "bloqueante": true, "plano": 28, "segundo": "68.38", "que": "el brazo derecho pasa de agarrar el cuello de la polera (68.20) a cruzar todo el pecho con la mano en el hombro contrario (68.40) en ≤0,2 s; el detector marca un cambio de 1 cuadro que el movimiento no explica (E53, puntaje 101) y el corte a P29 (68.42) interrumpe el gesto. Con 6 cuadros no se puede descartar que sea un salto de pose entre clips de Mixamo", "arreglo": "revisar cuadro a cuadro 68.20–68.42; mantener la mano en el pecho hasta el corte (cortar P28 en ~68.15) o mezclar los clips con ≥8 cuadros de transición"},
+  {"prioridad": 2, "bloqueante": false, "plano": 34, "segundo": "56.88", "que": "personaje tieso: la misma sonrisa con la boca cerrada y sin gesto en los 6 cuadros (56.88–58.50), mientras la voz presenta 'El truco: aprieta la lengua'; la imagen no muestra el truco hasta P25", "arreglo": "agregar anticipación y una pose clara en 'el truco' (cejas arriba, índice levantado) y en 'aprieta la lengua' un gesto de presionar (mandíbula o mejilla), o cortar a P25 en la palabra 'aprieta'"},
+  {"prioridad": 3, "bloqueante": false, "plano": 25, "segundo": "59.74", "que": "al calentarse, el paladar pasa de azul hielo a blanco crema con brillo (59.35–60.51) en vez de naranjo; se puede leer como más escarcha y no como calor", "arreglo": "llevar el estado tibio a naranjo saturado, según el código de color del manual (azul hielo → naranjo), y bajar el bloom para que no se vea blanco"},
+  {"prioridad": 3, "bloqueante": false, "plano": 27, "segundo": "62.93", "que": "la píldora usa el símbolo '≤' ('DURA ≤ 2 MIN'), que a un niño de 12 años le cuesta leer de un vistazo", "arreglo": "cambiarla por 'MÁXIMO 2 MIN' (3 palabras)"},
+  {"prioridad": 3, "bloqueante": false, "plano": 26, "segundo": "61.34", "que": "la parte de arriba del pelo toca el borde superior en 60.96, 61.34 y 62.46, sin aire sobre la cabeza", "arreglo": "reencuadrar el clip con unos 60–80 px de aire sobre el pelo (bajar o achicar el encuadre en el armado)"},
+  {"prioridad": 3, "bloqueante": false, "plano": 28, "segundo": "67.48", "que": "en 3/4 la polera se abulta en la cintura del lado izquierdo de la pantalla (silueta de panza en 67.04, 67.48 y 67.93), cuando en P27 y P29 el torso se ve recto", "arreglo": "revisar el skinning y la deformación de la polera con el brazo levantado; corregir la forma o cambiar el ángulo"},
+  {"prioridad": 3, "bloqueante": false, "plano": 30, "segundo": "71.61", "que": "material insuficiente para verificar el agarre del cono: la mano queda bajo y≈1800 y cortada por el borde inferior en 71.39–71.84 (en 70.94 no se ve), así que no se puede confirmar que los dedos lo rodeen", "arreglo": "confirmar el agarre en los cuadros completos del clip de Kling o subir un poco el cono para que se vea la mano rodeándolo"}
+ ],
+ "eventos": [
+  {"id": "E48", "es_defecto": true, "por_que": "la píldora 'EL TRUCO' entra a propósito, pero cae encima del ojo izquierdo: cara tapada"},
+  {"id": "E49", "es_defecto": false, "por_que": "es la píldora PALADAR que entra con su flecha apuntando al paladar; no tapa nada importante"},
+  {"id": "E50", "es_defecto": false, "por_que": "es la píldora 'DURA ≤ 2 MIN' que entra sobre la cabeza, sin tapar la cara"},
+  {"id": "E51", "es_defecto": true, "por_que": "la píldora 'NO ES PELIGROSO' entra a propósito, pero tapa el ojo izquierdo y el puente de la nariz"},
+  {"id": "E52", "es_defecto": false, "por_que": "es el corte de P35 (primer plano, 66.07) a P28 (plano general, 66.27) en 66.10"},
+  {"id": "E53", "es_defecto": true, "por_que": "el brazo salta del cuello a cruzar el pecho en ≤0,2 s, 0,1 s antes del corte; parece un salto de pose y no un gesto buscado"},
+  {"id": "E54", "es_defecto": false, "por_que": "el cono sube hacia la boca detrás del subtítulo 'LENTO' (movimiento del clip de Kling); el subtítulo no cambia"}
+ ],
+ "resumen": "NO APROBADO por dos píldoras que tapan el ojo del personaje (P34 'EL TRUCO', P35 'NO ES PELIGROSO') y un probable salto de pose del brazo al final de P28. El interior del paladar, el sorbo de P26 y el cierre de P29–P30 están bien."
+}
