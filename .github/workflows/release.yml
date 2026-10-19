@@ -1,0 +1,25 @@
+name: release
+# Copia el MP4 aprobado desde la prerelease epNN-borrador al Release epNN (URL pública estable para Metricool).
+# Se corre sólo después del OK de Tomás al video.
+on:
+  workflow_dispatch:
+    inputs:
+      episodio:
+        default: "ep01-congelamiento-cerebral"
+permissions:
+  contents: write
+jobs:
+  copiar:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          EP: ${{ github.event.inputs.episodio }}
+        run: |
+          TAG="$(echo "$EP" | cut -d- -f1)"
+          mkdir -p r && cd r
+          gh release download "$TAG-borrador" -p "$EP.mp4" -p "contacto.jpg"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "$EP" --notes "Video final de $EP"
+          gh release upload "$TAG" "$EP.mp4" contacto.jpg --clobber
+          echo "URL: https://github.com/${{ github.repository }}/releases/download/$TAG/$EP.mp4"
