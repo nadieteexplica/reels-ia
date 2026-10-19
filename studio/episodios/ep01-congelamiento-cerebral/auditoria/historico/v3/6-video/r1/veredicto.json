@@ -1,0 +1,866 @@
+{
+ "etapa": "6-video",
+ "ronda": 1,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 5,
+   "por_que": "P13–P15 y P32 muestran tapas de corte de hueso en gris plano (sin sombreado, bordes dentados) tapando media cara, ojos saltones, P10 termina desenfocado entero (16.45–16.81), el fondo salta de turquesa a azul acero en P15 y en P16 la cara queda casi negra a 35.61.",
+   "de": "tramo2"
+  },
+  "animacion": {
+   "nota": 5,
+   "por_que": "Hay buena actuación en P8 (apunta al letrero sonriendo, 10.33–10.76) y en P2 (aprieta los ojos con el ZAS), pero hay manos que flotan o no agarran en P3, P8 y P9, un salto de pose en P9 (13.40→13.60) y el personaje queda tieso en P5 y P7.",
+   "de": "tramo1"
+  },
+  "claridad": {
+   "nota": 5,
+   "por_que": "Nunca se señala cuál es el trigémino (todos los nervios iguales, píldora sin flecha, nada pulsa en 'trigémino' a 26.75); P11–P12 es un macro de tubos lila sin relación visible con el paladar; 'lo enfría de golpe' no se ve hasta 18.43; en P32 el cerebro se vuelve gris azulado, como si se congelara.",
+   "de": "tramo2"
+  },
+  "ritmo": {
+   "nota": 7,
+   "por_que": "Casi todos los planos cambian algo antes de 2 s (píldoras a 15.38, 19.41, 25.18, 30.53, 32.39; vasos a 20.40 y 21.80), pero P12 queda 2,5 s quieto (22.13–24.58) y P14 gira la cámara de ida y vuelta sin motivo.",
+   "de": "tramo2"
+  },
+  "gancho": {
+   "nota": 8,
+   "por_que": "El cuadro 0 muestra al personaje (polera coral con estrella) con un helado de 3 bolas en la boca y escarcha en la frente. La voz parte a los 0,00 s, hace la mueca con los ojos cerrados a los 1,90 s y en el ZAS (2,5 s) la escarcha crece. Se entiende de inmediato y sirve de portada.",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 8,
+   "por_que": "Según checks.json salen 205 de 207 palabras, con 0 desfase y 0 fuera de zona; las 2 que faltan las cubre el título grande, como pide el manual. Las tildes visibles están bien (RÁPIDO, TOCÓ, PASÓ, DÍA, TRIGÉMINO, SANGUÍNEOS, ENFRÍA, CIENTÍFICO, PRÓXIMA) y ningún subtítulo tapa la cara en los 72 cuadros.",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8,
+   "por_que": "No puedo escucharlo; juzgo con las cifras. Da −14,2 LUFS y −1,5 dBTP, ambos en rango. La voz queda 14,1 dB sobre las pausas (música más efectos); como en las pausas la música sube sin ducking, la diferencia real bajo la voz es mayor y muy probablemente queda en 15 dB o más.",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 7,
+   "por_que": "Las cifras en pantalla calzan con las fuentes (HARVARD · 2012, 13 VOLUNTARIOS, DURA ≤ 2 MIN, 0 RECEPTORES DE DOLOR). Pero la etiqueta CORTEZA SENSITIVA no tiene fuente, y la escarcha en la frente y el copo junto al cerebro contradicen 'el frío nunca tocó tu cerebro'.",
+   "de": "global"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 0,
+   "bloqueante": true,
+   "que": "[automático] E41 fondo liso sin contenido fuera de los subtítulos",
+   "donde": "52.87–53.53 s, plano 23",
+   "arreglo": "cumplir la regla",
+   "de": "checks"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 3,
+   "segundo": "2.87",
+   "que": "La mano izquierda (de pantalla) flota al lado de la cabeza con la palma abierta y no toca el pelo ni la sien. Se ve un espacio de fondo entre la palma y la cabeza en 2.87, 3.12, 3.37, 3.63 y 3.88; recién en 4.13 se acerca. Los dedos de la mano derecha apoyados en la coronilla no permiten confirmar si tocan o se hunden en el pelo.",
+   "arreglo": "Según el manual, una reacción con las manos en la cabeza va con Kling, partiendo de un cuadro con las manos libres y con 'palms pressed on the temples, never floating'. Si se hace en Blender, hay que pegar las palmas a las sienes con restricción IK o de contacto y revisar los 6 cuadros.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 4,
+   "segundo": "6.11",
+   "que": "Interior confuso. (1) La vista es frontal todo el plano (4.21–6.58) y nunca gira a perfil. (2) Se ve el cráneo completo con dientes. (3) Hay cortes con parches grises planos: la mitad izquierda del cerebro es una superficie lisa gris malva y la mitad derecha de la cara del cráneo es un panel gris plano. (4) Los globos oculares son saltones, de caricatura. (5) El fondo es turquesa, no azul noche. (6) En 6.11–6.58, cuando la voz dice 'cerebro', brillan a la vez la corteza (naranja) y las arterias de la base (rojo intenso), y los nervios amarillos se ven durante todo el plano aunque nadie los nombra. Además, el copo de nieve (5.16) entra cortado por el borde derecho y sale antes de 0,5 s (5.63).",
+   "arreglo": "Rehacer con la regla 'cabeza de vidrio': cámara que parte de frente y gira a perfil, fondo azul noche, piel de vidrio, sin cráneo ni cortes y con la anatomía Z-Anatomy completa. En 'cerebro' se enciende solo el cerebro; arterias y nervios quedan apagados u ocultos. El copo debe quedar entero dentro del cuadro: se acerca a la frente y rebota en el vidrio sin llegar al cerebro, para que se lea 'nunca lo tocó'.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 6,
+   "segundo": "7.93",
+   "que": "El montaje del rebobinado vuelve a mostrar el interior defectuoso de P4 (cráneo frontal con parches y ojos saltones) en 7.93 y 8.12.",
+   "arreglo": "Volver a armar el rebobinado con los cuadros del P4 corregido.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 8,
+   "segundo": "11.63",
+   "que": "El cono con 3 bochas aparece de la nada en la mano derecha (E7: mano vacía en 11.54, cono completo en 11.74) sin vendedor ni gesto de recibirlo. La mano sigue relajada con los dedos hacia abajo, igual que antes, así que no lo agarra: el cono queda montado sobre la palma abierta (11.74 y 12.06).",
+   "arreglo": "Hacer el plano con Kling: cuadro de partida con la mano libre junto al carrito y que el personaje tome el cono del carrito con 'fingers wrapped around the cone'. Otra opción es un corte seco en 'carrito' a un plano donde ya lo tiene bien agarrado.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 9,
+   "segundo": "13.26",
+   "que": "La mano no agarra el cono. En 12.70, 12.87 (E10), 13.26 y 14.38 los dedos están estirados y planos en horizontal, con la palma hacia abajo, y la punta del cono descansa sobre el dorso de la mano o pasa por detrás de los dedos. Ningún dedo rodea el cono.",
+   "arreglo": "El manual exige Kling para un cono en la mano: cuadro de partida con la mano libre, 'fingers wrapped around the cone, never floats, never passes through'. Revisar el clip en 8 cuadros antes de armarlo.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 9,
+   "segundo": "13.82",
+   "que": "Salto de golpe dentro del plano (E11, 13.40→13.60): en un cuadro el cono pasa de estar inclinado a la izquierda a vertical al centro (gira unos 45° y se desplaza), la cabeza gira de mirar a la derecha a mirar abajo y la luz de la cara se oscurece. No hay movimiento intermedio que lo explique.",
+   "arreglo": "Mezclar las dos acciones con al menos 6 cuadros de transición (NLA o crossfade de Mixamo). Si es un cambio de ángulo buscado, convertirlo en un corte real al inicio de 'alguien' y registrarlo como plano aparte en planos.json.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 13,
+   "segundo": "24.66",
+   "que": "Interior con cráneo completo a la vista (dientes, mandíbula, órbitas) y ojos saltones que sobresalen del hueso en P13, P14 (27.35) y P15 (30.16). La regla de la cabeza de vidrio dice sin cráneo y sin ojos de caricatura.",
+   "arreglo": "Ocultar los huesos del cráneo y la mandíbula, o dejarlos a menos de 10 % de opacidad sin caras de corte, y quitar los globos oculares o dejarlos apagados. Que se vean sólo la piel de vidrio, el cerebro y el nervio que se nombra.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 10,
+   "segundo": "15.38",
+   "que": "Tapas de corte de hueso en gris plano, sin sombreado y con bordes dentados (parches), en la parte de arriba de P10 y P31 (16.89) y bajo el cerebro en P32 (32.09). Detrás del cerebro en P15 y P32 se ve una superficie plana gris malva (corte de la cavidad).",
+   "arreglo": "Quitar las caras de corte (sin booleanos sobre el hueso) o tapar con material de vidrio, y dejar el fondo azul noche detrás del cerebro.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 14,
+   "segundo": "28.44",
+   "que": "La cámara cambia de ángulo dentro del mismo interior. P13 va en 3/4 frontal bajo (24.66), P14 gira de casi frontal (27.35) a perfil (28.44) y vuelve a 3/4 con los dos ojos (30.08), P15 pasa a perfil alto sobre la frente (30.16) y P32 a una vista alta casi cenital (32.09).",
+   "arreglo": "Usar una sola cámara lateral con leve 3/4 y push-in lento para P13, P14, P15 y P32. Los cambios de escala se hacen sólo con push-in desde ese mismo ángulo.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 13,
+   "segundo": "24.66",
+   "que": "Hay más de un foco encendido a la vez. Mientras la voz habla del trigémino (P13 a P15), la carótida roja del cuello y el ramillete de arterias detrás del ojo siguen en rojo saturado, junto a todos los nervios amarillos. En P15 (30.90) se suman la frente roja, las arterias y los nervios.",
+   "arreglo": "Apagar u ocultar las arterias en P13, P14 y P15. Que se vean sólo el trigémino del lado de la cámara y, en P15, sólo su rama frontal y la frente roja.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 11,
+   "segundo": "18.90",
+   "que": "P11 y P12 son un macro esquemático: tubos lila lisos sobre un plano rosado con un borde granate ondulado. Son órganos inventados, no la anatomía real, no están en la cabeza de vidrio ni de perfil, y nada muestra que esos vasos son los del paladar de P31.",
+   "arreglo": "Hacer push-in desde el paladar de P31, con la misma cámara de perfil y el mismo fondo, hasta los vasos palatinos reales (Z-Anatomy), y encogerlos y dilatarlos ahí. Si se mantiene el macro, que nazca de ese zoom continuo para que se entienda dónde estamos.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 10,
+   "segundo": "16.00",
+   "que": "La bola de helado salta hacia la izquierda en un solo cuadro (E14, entre 15.87 y 16.07) con la cámara, el paladar y la flecha quietos. Después queda cortada por el borde izquierdo (16.81).",
+   "arreglo": "Animar el desplazamiento con easing en 8–10 cuadros o dejar la bola apoyada en el paladar todo el plano, dentro del cuadro.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 16,
+   "segundo": "33.69",
+   "que": "Las manos no tocan la cabeza. Entre 33.69 y 34.84 los dedos de la mano derecha quedan sobre el pelo, sin contacto visible. La mano izquierda queda en el aire junto a la sien todo el plano (hasta 35.61), sin tocar, y cortada por el borde izquierdo. Con 6 cuadros no se puede confirmar contacto en ningún momento antes de 35.23.",
+   "arreglo": "Hacer la reacción con manos en la cabeza con Kling desde un cuadro con las manos libres (como manda el manual para manos en la cara), con las yemas apoyadas en el pelo o la frente. Si no, rehacer el plano sin manos en la cabeza.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 23,
+   "segundo": "52.89",
+   "que": "Pantalla vacía de 52.85 a 53.53 (0,66 s, E41): sólo hay fondo azul liso y el subtítulo 'SU NOMBRE CIENTÍFICO' mientras la voz sigue hablando; la primera letra ('G') recién asoma en el borde superior a 53.45.",
+   "arreglo": "Que las letras ya vayan cayendo dentro del cuadro en el primer fotograma del plano: adelantar la animación ~0,6 s o alargar P22 hasta 53.45 y cortar al título con 'GANGLIO' ya entrando.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 19,
+   "segundo": "42.08",
+   "que": "P19 y P20 (42.04–46.64) muestran el interior del cuerpo fuera de la regla 'cabeza de vidrio': un tubo rosado genérico con discos rojos sobre fondo granate, sin anatomía real ni ubicación en la cabeza, con otra cámara y otro fondo distintos del interior de perfil.",
+   "arreglo": "Mostrar la arteria cerebral anterior real (Z-Anatomy) dentro de la cabeza de vidrio, de perfil y sobre fondo azul noche, que se ensanche y vuelva a su tamaño, latiendo en rojo, con el resto apagado. Mantener la barra DOLOR arriba.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 21,
+   "segundo": "48.24",
+   "que": "Bajo el cerebro se ven tapas de corte planas grises (huesos seccionados) y fragmentos de hueso dentados durante todo el plano (46.68–49.28): son cortes con parches.",
+   "arreglo": "Ocultar los huesos de la base del cráneo y sus tapas de corte. Dejar sólo la piel de vidrio y el cerebro de perfil, con el cerebro como único foco para 'tu cerebro no siente dolor'.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 22,
+   "segundo": "50.05",
+   "que": "Se ve el cráneo completo con dientes, mandíbula y globos oculares saltones; la parte superior de la cabeza es un plano de corte beige liso. Además, la cámara orbita de perfil (49.36) a casi frente (52.12) dentro del mismo interior.",
+   "arreglo": "Cámara fija de perfil con un push-in lento. Ocultar cráneo, dientes y ojos y dejar el cerebro entero. Que brillen sólo los vasos ('son los vasos') y después los nervios ('y nervios') alrededor del cerebro.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 18,
+   "segundo": "39.02",
+   "que": "El brazo del voluntario salta de la mejilla a la cintura en ~4 cuadros (entre 39.02 y 39.14, E30) y la bombilla rosada aparece de golpe junto con el vaso: es un salto de pose, no un movimiento.",
+   "arreglo": "Rehacer la bajada del brazo con un arco de al menos 10–12 cuadros o cortar antes de que baje. Si el vaso sigue en la mano, hacerlo con Kling partiendo de la mano libre.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 18,
+   "segundo": "39.02",
+   "que": "El vaso no está agarrado: visto desde la base se lee como una bola negra pegada a la mandíbula, y los dedos asoman estirados a la izquierda sin rodearlo (también en E30, 38.94).",
+   "arreglo": "Plano con mano y objeto, así que va por Kling según el manual ('fingers wrapped around the glass'). Si no, rehacerlo sin vaso en la mano, con el vaso apoyado.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 35,
+   "segundo": "64.88",
+   "que": "La píldora verde 'NO ES PELIGROSO' queda encima de los ojos: tapa entero el ojo izquierdo (lado izquierdo de la pantalla) y el puente de la nariz desde 64.88 hasta 66.06 (también en E51).",
+   "arreglo": "Subir la píldora sobre la cabeza (y≈280–380, como 'DURA ≤ 2 MIN' en P27) o correrla al costado, sobre el fondo, sin tocar la cara.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 34,
+   "segundo": "57.85",
+   "que": "La píldora 'EL TRUCO' entra sobre la mejilla izquierda (57.20, E47) y desde 57.85 hasta 58.50 tapa la mitad del ojo izquierdo.",
+   "arreglo": "Poner la píldora sobre la cabeza o sobre el fondo, fuera de la cara, igual que la de P27.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 27,
+   "segundo": "63.72",
+   "que": "El pasto y el suelo detrás del personaje se vuelven una franja negra en 63.72 y vuelven a verse verdes en 63.94 (E50): el fondo cambia de color de golpe sin corte.",
+   "arreglo": "Re-renderizar 63.5–64.0 y revisar la luz/sombra animada o la visibilidad del plano del suelo en esos cuadros.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 26,
+   "segundo": "61.07",
+   "que": "La taza salta en un cuadro desde la barbilla hasta la boca (E48, 60.87→61.07) y el agarre cambia: antes los dedos van bajo el asa; después el asa desaparece y la taza queda pellizcada por las yemas por delante.",
+   "arreglo": "Rehacer el plano con Kling desde un cuadro con la mano libre (el manual exige Kling para mano con objeto y planos.json lo marca 'render'), o animar la subida continua y con el mismo agarre.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 26,
+   "segundo": "62.46",
+   "que": "En el último cuadro antes del corte, la taza baja de golpe desde la boca (62.34, E49 antes) hasta el pecho, con otro agarre (62.46).",
+   "arreglo": "Cortar P26 en ≤62.40, con la taza todavía en la boca, o animar la bajada completa dentro del plano.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 30,
+   "segundo": "71.16",
+   "que": "El cono no está agarrado. En 70.94 está frente al pecho sin mano visible. En 71.16 y 71.39 la punta se apoya sobre los dedos, que quedan horizontales debajo sin rodearla. En 71.84 la mano está borrosa y no se puede verificar. Además el cono salta del pecho a la boca en un cuadro (E55).",
+   "arreglo": "Hacer el plano con Kling desde un cuadro con la mano libre y los dedos rodeando el cono ('fingers wrapped around the cone'), con last_frame = cuadro 1 para el loop, y encuadrar para que la mano que agarra quede dentro.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 28,
+   "segundo": "68.38",
+   "que": "En los últimos cuadros antes del corte, el antebrazo salta del cuello a cruzar el pecho con el puño en el hombro contrario y el torso gira (E53, 68.20→68.40; el detector lo da en 1 cuadro).",
+   "arreglo": "Cortar P28 en ~68.20 o suavizar la mezcla entre las dos animaciones de Mixamo para que el brazo viaje en ≥8 cuadros.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 25,
+   "segundo": "60.51",
+   "que": "Hay más de un foco. Además del paladar (pasa de azul hielo a naranjo), una franja roja a la derecha (arteria) se enciende rojo-naranjo entre 59.74 y 60.51, y la banda rosada sobre el paladar cambia a azul marino. La voz sólo nombra el paladar.",
+   "arreglo": "Apagar el brillo de la arteria y dejar la banda con color fijo o oculta; sólo el paladar cambia de color.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 25,
+   "segundo": "59.74",
+   "que": "Arriba del cuadro se ve el cráneo (maxilar y huesos de la cara) como placas blancas con bordes dentados y líneas de grieta, entre 58.58 y 60.51. Parece un cráneo partido y la regla 'cabeza de vidrio' pide sin cráneo y sin cortes.",
+   "arreglo": "Ocultar las piezas óseas del cráneo en este plano o reencuadrar bajo ellas, y dejar sólo la piel de vidrio, la lengua y el paladar.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 23,
+   "segundo": "52.87–53.53",
+   "que": "Pantalla vacía durante 0,66 s: queda solo el fondo liso azul mientras la voz dice 'científico es'. A los 53,5 s apenas entran las letras 'A' y 'G' del título, cuando la voz ya empezó 'ganglioneuralgia' (53,45 s). Es el evento E41 del chequeo automático.",
+   "arreglo": "Que las letras del título ya estén entrando desde el primer cuadro del plano 23 (52,85 s), o alargar el plano 22 hasta 53,45 s y cortar al título con 'GANGLIO' ya armándose.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 34,
+   "segundo": "57.5–58.5",
+   "que": "La píldora amarilla 'EL TRUCO' tapa el ojo del personaje del lado izquierdo de la pantalla (x≈120–450, y≈555–645, a la altura del ojo) en los dos cuadros del contacto.",
+   "arreglo": "Subir la píldora sobre el pelo (y≈250–320) o moverla al costado fuera de la cara, como se hizo con 'DURA ≤ 2 MIN'.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 35,
+   "segundo": "65.5",
+   "que": "La píldora verde 'NO ES PELIGROSO' cruza el ojo izquierdo y el puente de la nariz del personaje en primer plano.",
+   "arreglo": "Poner la píldora sobre la cabeza o abrir el encuadre para que quede en el espacio libre junto a la cara, nunca sobre ojos, nariz ni boca.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 4,
+   "segundo": "4.17–6.62",
+   "que": "El interior no cumple la regla 'cabeza de vidrio'. La vista es frontal y no de perfil, el cráneo está partido a la mitad con caras de corte grises (parches) y se ven dientes y globos oculares enormes y saltones. Además brillan a la vez las arterias rojas, los nervios amarillos y un resplandor naranjo en la frente, mientras la voz dice 'el frío nunca tocó tu cerebro'. El fondo es turquesa medio, no azul noche.",
+   "arreglo": "Rehacer con la cabeza de vidrio de perfil sobre fondo azul noche, sin cráneo, sin ojos y sin cortes, mostrando solo el cerebro (sin brillo de frío) y con todo lo demás apagado.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 13,
+   "segundo": "24.62–32.05",
+   "que": "En el mismo interior (planos 13, 14 y 15) la cámara cambia de ángulo: 3/4 desde la izquierda a los 25,5 s, frontal con dientes a los 27,5 s y 3/4 desde la derecha a los 29,5–30,5 s. Hay cráneo con parches grises y ojos saltones, y las carótidas rojas del cuello brillan al mismo tiempo que el trigémino amarillo, aunque la voz solo nombra el trigémino.",
+   "arreglo": "Una sola cámara lateral con push-in lento, sin cráneo ni ojos. Que se encienda solo el trigémino y, en 'una de sus ramas llega a la frente', solo la rama oftálmica. Las arterias, apagadas.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 22,
+   "segundo": "46.64–52.85",
+   "que": "En los planos 21 y 22 vuelven el cráneo con caras de corte grises y los globos oculares, y el ángulo cambia en cada cuadro del mismo interior (49,5 s perfil, 50,5 s 3/4 con ojo, 51,5 s frontal izquierdo, 52,5 s frontal con los dos ojos).",
+   "arreglo": "Mismo perfil fijo de la cabeza de vidrio, sin cráneo ni ojos. En 'tu cerebro no siente dolor', solo el cerebro; en 'los vasos y nervios que lo rodean', se encienden vasos y nervios.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 10,
+   "segundo": "14.98–18.86 y 58.54–60.55",
+   "que": "El interior del paladar (planos 10, 31 y 25) muestra fragmentos de hueso gris dentados con caras de corte planas en toda la parte de arriba del cuadro: cráneo partido y cortes con parches.",
+   "arreglo": "Rehacer el paladar en la cabeza de vidrio de perfil, sin hueso cortado: piel de vidrio, paladar azul hielo o naranjo y lengua, sin fragmentos de cráneo.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 18,
+   "segundo": "38.5",
+   "que": "El voluntario de polera turquesa tiene el brazo deformado, como un tubo largo y gomoso que sube del pecho a la cara, y sostiene el vaso negro sobre el ojo y la nariz en vez de la boca.",
+   "arreglo": "Rehacer el plano con Kling partiendo de la mano libre, con el vaso y la bombilla en la boca, o mostrar a los voluntarios sin el vaso en la mano.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 33,
+   "segundo": "40.69–42.04",
+   "que": "El primer plano a los 41,5 s es un 'voluntario' con la misma cara y el mismo pelo del protagonista, pero con polera turquesa sin estrella: se lee como el protagonista con otra ropa. Además, la parte de arriba de la cabeza queda cortada por el borde superior.",
+   "arreglo": "Usar al protagonista (polera coral con estrella) como el voluntario de este primer plano, o darles a los voluntarios otra cara y otro pelo. Encuadrar dejando aire sobre el pelo.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.41",
+   "que": "No se puede verificar el agarre del cono: material insuficiente. En 0.41 la mano entra por abajo con los dedos estirados en horizontal bajo la punta del cono, el mismo defecto de P9. Entre 0.78 y 1.90 la mano queda cortada por el borde inferior y desenfocada, así que no se ve si los dedos rodean el cono.",
+   "arreglo": "Rehacer con Kling o reencuadrar para que se vean los dedos rodeando el cono, con 'fingers wrapped around the cone', y revisar los 6 cuadros.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 32,
+   "segundo": "33.61",
+   "que": "En 'se confunde' el cerebro pasa de rosado (33.00) a gris azulado (33.31–33.61) y parece que se congela, lo contrario del giro del video ('el frío nunca tocó tu cerebro'). La píldora 'CORTEZA SENSITIVA' no tiene flecha, y la franja de corteza apenas se distingue (crema pálido a 32.09–33.00).",
+   "arreglo": "Mantener el cerebro rosado, encender sólo la franja de corteza sensitiva de la cara (giro poscentral) en amarillo o naranjo, con flecha calculada desde la píldora, y mostrar la confusión con los signos ? sin cambiar el color del cerebro.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 28,
+   "segundo": "66.27",
+   "que": "No hay material suficiente para verificar E52. El par antes/después cruza el corte P35→P28 (66.07 es P35), así que no muestra el salto marcado en 66.20. En la tira los brazos aparecen en posiciones incoherentes: en 66.14 la mano izquierda de pantalla está en la cintura, en 66.27 hay una mano a la altura del pecho del lado derecho y en 66.59 el puño está en el pecho y el otro brazo colgando.",
+   "arreglo": "Revisar cuadro a cuadro 66.10–66.40, suavizar la mezcla de animaciones y regenerar el par del evento dentro del plano.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "7.06",
+   "que": "El personaje está tieso en '¿Qué pasó?': la misma cara neutra, la boca cerrada, las cejas planas y los brazos colgando en los 6 cuadros (6.66–7.66). Solo crece el signo '?'.",
+   "arreglo": "Usar Shrugging.fbx o Thinking.fbx (están en los archivos del proyecto) con anticipación, cejas arriba, cabeza ladeada y una pose sostenida de 6–10 cuadros.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "9.40",
+   "que": "El personaje queda congelado en una pose de paso a medio camino (pies en la misma posición de 8.78 a 9.82) con los brazos colgando: no camina ni reacciona. Y nada en la imagen dice 'calor' (no hay sol, sudor ni aire caliente).",
+   "arreglo": "Agregar una acción de calor: se abanica con la mano o se seca la frente, con el sol visible o un destello cálido, mientras camina de verdad hacia el carrito.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "14.94",
+   "que": "La piel del personaje cambia de tono dentro del plano: café en 12.14 (igual que en P1, P5 y P8) y durazno claro y plástico en 14.38–14.94, mientras el fondo se oscurece a azul. El personaje no se ve igual en todo el video.",
+   "arreglo": "Mantener fijas la luz principal y la exposición sobre el personaje. Si se quiere oscurecer antes del interior, oscurecer solo el fondo o cortar en seco.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "13.26",
+   "que": "Las bochas desaparecen enteras entre muestras: la de vainilla está en 12.70 y ya no en 13.26, y la de chocolate está en 14.38 y ya no en 14.94. Material insuficiente para verificar que cada una se va con un mordisco animado y no de golpe.",
+   "arreglo": "Confirmar cuadro a cuadro que cada bocha se va con un mordisco visible (boca que cierra y bocha que se encoge). Si salta, animarla en al menos 4 cuadros.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 31,
+   "segundo": "17.28",
+   "que": "En 'lo enfría de golpe' (17.28–18.05) el paladar sigue rosado. El frío llega recién a 18.43, cuando la voz ya dice 'los vasos', y tiñe de turquesa todo el cuadro (huesos incluidos). A 18.82 el paladar queda casi negro y parece un hueco, no hielo.",
+   "arreglo": "Pasar sólo el paladar a azul hielo brillante justo en 'enfría' (17.28), con un pulso en 'golpe' (17.66), sin teñir el resto.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 13,
+   "segundo": "26.75",
+   "que": "En 'lo detecta el trigémino' no pasa nada en pantalla. Todos los nervios son del mismo amarillo, ninguno pulsa ni se destaca, y la píldora 'NERVIO TRIGÉMINO' (desde 25.18) no tiene flecha. En P15 ('una de sus ramas llega a la frente') tampoco se destaca la rama.",
+   "arreglo": "Mostrar un pulso amarillo que viaja del paladar al ganglio en 'lo detecta', con flecha de la píldora al tronco del nervio. En P15, encender sólo la rama frontal (V1) mientras sube a la frente.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "22.13",
+   "que": "Entre 22.13 y 24.58 (2,5 s) no cambia nada salvo una deriva mínima de cámara. 'Mandar sangre caliente' no tiene imagen: no se ve flujo ni calor.",
+   "arreglo": "Agregar flujo cálido (partículas o pulsos naranjos) que corre por los vasos desde 'mandar' (23.36), o cortar a un plano nuevo antes de los 2 s.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "16.45",
+   "que": "Desde 16.09 todo el cuadro se desenfoca (paladar, lengua y bola borrosos a 16.45 y 16.81) justo cuando la voz dice 'el techo de tu boca', el elemento clave.",
+   "arreglo": "Dejar el foco fijo en el paladar todo el plano, o desenfocar sólo el fondo.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 15,
+   "segundo": "30.16",
+   "que": "El fondo del interior cambia de color entre cortes: turquesa en P13, P14 y P32, azul acero en P15. Ninguno es el azul noche de la regla de la cabeza de vidrio.",
+   "arreglo": "Unificar un solo fondo azul noche para todos los planos interiores (P10, P31, P13, P14, P15, P32).",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 16,
+   "segundo": "35.61",
+   "que": "La luz baja 50 % dentro del plano (E25). A 35.23–35.61 la cara del personaje queda casi negra y la expresión no se lee. Sólo se ve la franja roja de la frente.",
+   "arreglo": "Mantener la luz principal en la cara y oscurecer sólo el fondo (viñeta), o subir la intensidad de la frente roja sin bajar la exposición.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 16,
+   "segundo": "34.07",
+   "que": "El personaje está tieso y con la expresión equivocada: en los 6 cuadros casi no cambia de pose, tiene los ojos cerrados y la boca en media sonrisa (33.69, 34.07) mientras la voz habla del dolor.",
+   "arreglo": "Ceño fruncido, ojos apretados, boca tensa con dientes, un estremecimiento de hombros con anticipación y una pose de dolor sostenida 6–10 cuadros en 'ahí'.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "28.99",
+   "que": "En 'siente toda tu cara' la cara del cráneo queda bajo la franja de subtítulos: 'SIENTE TODA TU' tapa el ojo (28.44–28.99) y 'CARA' tapa la mejilla (29.53). Las ramas del nervio de la mejilla y la mandíbula quedan bajo y=1250.",
+   "arreglo": "Alejar o subir el encuadre para que la cara entera quede entre y≈350 y y≈1000, sobre los subtítulos.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 18,
+   "segundo": "38.48",
+   "que": "Los voluntarios se aprietan el vaso contra la mejilla o la mandíbula (P17 37.43–37.86, P18 37.94–39.02). El estudio usó agua helada con bombilla contra el paladar, y el video ya explicó que el frío actúa en el paladar, así que la imagen sugiere un mecanismo equivocado.",
+   "arreglo": "Mostrar a los voluntarios sorbiendo por la bombilla, con un destello azul hielo en el paladar o en la boca.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 33,
+   "segundo": "40.73",
+   "que": "Los voluntarios son clones exactos del protagonista (misma cara y pelo; sólo cambia el color de la polera). En P33, el de polera turquesa con la frente roja se lee como el protagonista con otra ropa.",
+   "arreglo": "Diferenciar a los voluntarios (otro pelo, otra piel o bata de laboratorio) o hacer la reacción de dolor con el protagonista de polera coral.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 33,
+   "segundo": "40.73",
+   "que": "Las manos en la cabeza y el vaso de la mano derecha quedan cortados por el borde superior durante todo el plano, así que no se puede verificar que los dedos toquen la cabeza ni que agarren el vaso. La cara mira hacia abajo, sin mueca de dolor visible, y en el borde izquierdo hay una mancha rosada (hombro del vecino) cortada.",
+   "arreglo": "Abrir el encuadre para que entren manos y cabeza con aire arriba, y mostrar una mueca (cejas juntas, ojos apretados). Manos en la cabeza = Kling según el manual.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 18,
+   "segundo": "40.11",
+   "que": "Cuando la voz dice 'agua helada', el vaso queda en y≈1530–1710, bajo la línea 1250 (zona de interfaz de la app), y el agarre no se alcanza a verificar.",
+   "arreglo": "Subir el vaso a la altura del pecho o de la boca (y<1250) en ese momento, o encuadrar más bajo.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 22,
+   "segundo": "51.43",
+   "que": "El brillo naranja de la frente, que es lo que nombra 'lo rodean', queda justo detrás del subtítulo 'LO RODEAN' (y≈1000–1050).",
+   "arreglo": "Encuadrar la cabeza más arriba para que el brillo quede sobre y=1000.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "54.01",
+   "que": "Las letras que caen atraviesan las ya colocadas: la 'A' cruza 'GANGLIO' (53.94), una 'O' cruza la 'I' (54.01), la 'N' cruza 'NEURALGIA' (54.74) y la 'T' pasa entre NEURALGIA y ESFENO (55.00). Se ve desordenado.",
+   "arreglo": "Que cada letra caiga en su propia línea desde atrás o desde arriba sin cruzar las otras líneas, o que entre con pop de escala en su lugar.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "55.14",
+   "que": "Las palabras se parten sin guion: 'GANGLIO / NEURALGIA' y 'ESFENO / PALATINA' se leen como 4 palabras, pero el término es 'ganglioneuralgia esfenopalatina'.",
+   "arreglo": "Poner guion al final de línea ('GANGLIO-', 'ESFENO-') o achicar la letra para que cada palabra entre en su línea.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 28,
+   "segundo": "67.04",
+   "que": "La voz dice 'La próxima vez, come más lento', pero la imagen muestra al personaje con el puño en el pecho y nada que muestre comer lento.",
+   "arreglo": "Mostrar al personaje lamiendo el cono muy despacio (con Kling, por la mano con objeto) o un detalle del cono con una lamida lenta.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 27,
+   "segundo": "63.33",
+   "que": "El personaje está tieso: los brazos cuelgan rectos y el cuerpo no se mueve en 2 s. Sólo cambian los párpados y una leve inclinación de cabeza. Ningún gesto acompaña 'de segundos a un par de minutos'.",
+   "arreglo": "Agregar un gesto claro (encogerse de hombros, palma abierta de 'tranquilo') o un push-in de cámara, sin manos con objetos.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 29,
+   "segundo": "69.42",
+   "que": "La cámara está fija en P27, P28 y P29: el tronco del árbol del fondo queda en la misma x en los 6 cuadros de cada plano. El manual pide cámara siempre en movimiento.",
+   "arreglo": "Agregar un acercamiento lento o una órbita leve en los tres planos.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 30,
+   "segundo": "70.94",
+   "que": "El borde superior corta la parte de arriba del pelo en 70.94, 71.16 y 71.39. No queda aire sobre la cabeza.",
+   "arreglo": "Abrir o bajar el encuadre para que la cara quede entre y≈350 y 900, con aire sobre el pelo.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 28,
+   "segundo": "66.59",
+   "que": "La polera se infla bajo el pecho (66.59, 67.04, 67.48) y el torso se ve abultado como un globo, distinto del torso delgado de P27 en el mismo tramo.",
+   "arreglo": "Revisar el skinning de la polera con la pose de brazo cruzado o cambiar el ángulo de cámara.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 32,
+   "segundo": "32.05–33.65",
+   "que": "La etiqueta 'CORTEZA SENSITIVA' no aparece en el guion ni en la tabla de verificación: agrega una afirmación anatómica sin fuente.",
+   "arreglo": "Quitar la etiqueta o cambiarla por 'CEREBRO'; si se quiere mantener, agregar una fuente en guion.md.",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00–2.83 y 71–72.1",
+   "que": "La escarcha sobre la frente (cuadro 0, crece en el ZAS) y el copo de nieve junto al cerebro a los 6,5 s muestran el frío llegando a la frente y al cerebro, lo contrario de lo que explica el video ('el frío nunca tocó tu cerebro'; el dolor es referido).",
+   "arreglo": "Cambiar la escarcha por el brillo rojo de dolor en la frente que ya se usa a los 3,5 y 34,5 s, y tachar el copo o mostrarlo quedándose en el paladar.",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "53.5–55.7",
+   "que": "El título divide 'GANGLIO / NEURALGIA' y 'ESFENO / PALATINA' en dos líneas sin guion, así que se lee como dos palabras, cuando 'ganglioneuralgia' y 'esfenopalatina' son una sola. Además, 'ESFENO PALATINA' recién se ve completo a los 55,5 s, casi al final de la palabra (54,58–55,65 s).",
+   "arreglo": "Agregar guion de corte ('GANGLIO-', 'ESFENO-') o bajar el tamaño para que cada palabra quepa en una línea, y adelantar la entrada de cada palabra para que esté armada cuando la voz empieza a decirla.",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "18.86–24.62",
+   "que": "Los vasos sanguíneos (planos 11 y 12) se muestran como superficies rosadas curvas gigantes con líneas azules sobre fondo granate. Durante 5,8 s no hay referencia del paladar ni de la boca, así que un niño no sabe dónde está ni qué se encoge o se abre.",
+   "arreglo": "Partir desde la cabeza de vidrio con el paladar y hacer zoom a sus vasos: que se vea cómo se encogen (azul) y luego se abren (rojo), a una escala reconocible.",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 28,
+   "segundo": "55.7–58.5 y 62.5–70.9",
+   "que": "El personaje mantiene la misma media sonrisa casi sin gestos: no hace nada en 'dura de segundos a un par de minutos', no encoge los hombros en 'seamos honestos' y no se ríe en 'nadie come helado lento'.",
+   "arreglo": "Agregar un gesto con la mano en 'par de minutos', Shrugging en 'seamos honestos', Laughing en el cierre y Head Nod Yes en 'en serio' (todos de Mixamo, ya en el proyecto).",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "35.65–40.69",
+   "que": "La escena de los voluntarios es una sala turquesa vacía con luz plana y 5 copias del protagonista que solo cambian el color de la polera. A los 36,5 y 37,5 s hay una barra blanca flotando en el borde superior.",
+   "arreglo": "Variar caras y pelos de los voluntarios, darle a la sala luz de estudio con contorno y algún elemento de laboratorio, y quitar la barra blanca o sacarla del cuadro.",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 24,
+   "segundo": "55.77–56.13",
+   "que": "El material no alcanza para verificar el subtítulo 'Sí' de 'Sí, en serio': ningún cuadro del contacto cae en esa ventana, y si sale 'SI' sin tilde es una falta de ortografía.",
+   "arreglo": "Confirmar en words.json o en el registro de subtítulos que se muestra 'SÍ' con tilde.",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "10.76",
+   "que": "La mano que apunta y el letrero 'XL' (lo 'más grande' que nombra la voz) quedan cortados por el borde izquierdo en 10.76 y 11.20.",
+   "arreglo": "Abrir o orbitar la cámara para que la mano y el letrero completo queden dentro del cuadro cuando dice 'más grande'.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "8.78",
+   "que": "El subtítulo 'CALOR' tapa el letrero 'HELADOS' del carrito (solo se lee 'ELADOS' o 'DOS'), justo en el plano que presenta el carrito.",
+   "arreglo": "Mover el carrito o la cámara para que el letrero quede sobre y=1000 o fuera de la caja de subtítulos.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "8.51",
+   "que": "El ícono de rebobinar (◀◀) queda encima del pelo y del borde de la frente del personaje en 8.51 y 8.70.",
+   "arreglo": "Fijar el ícono en una posición sin cara (arriba, centrado, como en 8.12).",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "1.98",
+   "que": "La escarcha sobre la frente (P1–P2) da a entender que el frío llegó a la cabeza, y 2 s después la voz dice 'el frío nunca tocó tu cerebro'. Puede confundir a un niño de 12 años.",
+   "arreglo": "Mantener la escarcha como símbolo, pero en P4 mostrar con claridad que el frío se queda afuera: el copo rebota en el vidrio, o la escarcha se rompe al cortar al interior.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "9.82",
+   "que": "Hay demasiadas palabras clave en celeste para el tramo: HELADO (2 veces), FRENTE, FRÍO, CALOR y CARRITO, 6 en 15 s contra un máximo de 1–3 por video. Además 'CALOR' va en el color del frío. Esto es del criterio subtítulos (revisor global); lo dejo anotado.",
+   "arreglo": "Dejar 1–3 palabras clave en todo el video y usar el celeste solo para frío.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 31,
+   "segundo": "16.89",
+   "que": "La píldora 'PALADAR' desaparece en el corte de P10 a P31 y vuelve a entrar 0,35 s después (E15). Parpadea sin necesidad.",
+   "arreglo": "Mantener la píldora fija a través del corte (es la misma estructura) o quitarla en P31.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 31,
+   "segundo": "17.66",
+   "que": "La flecha de 'PALADAR' apunta a la banda roja oscura de la derecha y no a la banda rosada que en P10 era el paladar. No queda claro cuál de las dos es.",
+   "arreglo": "Que la flecha apunte a la misma superficie del paladar que en P10, y diferenciar por color la otra banda o apagarla.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "20.42",
+   "que": "Los vasos se encogen en un solo cuadro (E18). Va sincronizado con 'encogen', pero se ve como un salto y no como una contracción.",
+   "arreglo": "Contraer en 6–8 cuadros con easing y un leve rebote.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 32,
+   "segundo": "32.70",
+   "que": "Los signos ? 3D quedan cortados por los bordes izquierdo y derecho (32.39, 32.70, 33.31, 33.61).",
+   "arreglo": "Ubicar los signos ? dentro del cuadro, entre x 120 y 960.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "35.69",
+   "que": "Hay barras blancas flotando y cortadas en el borde superior (¿lámparas?), y el estudio es plano: pared turquesa lisa y piso gris.",
+   "arreglo": "Sacar las barras o encuadrarlas enteras como lámparas, y dar profundidad al set (luz de contorno, algún elemento de laboratorio).",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "55.70",
+   "que": "Bajo 'PALATINA' hay manchas oscuras borrosas (sombras o reflejos de las letras en el piso) que parecen suciedad.",
+   "arreglo": "Suavizar o eliminar las sombras proyectadas en el piso, o levantar las letras para que no se lean como manchas.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 25,
+   "segundo": "59.35",
+   "que": "Desde 59.35 aparece un punto oscuro sobre la lengua que no está en 58.58 ni en 58.97 (también en 59.74, 60.12 y 60.51).",
+   "arreglo": "Revisar si es un agujero de malla o un defecto de textura en la lengua y corregirlo.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 26,
+   "segundo": "60.59",
+   "que": "El subtítulo 'O TOMA ALGO' tapa la mano y la base de la taza (la acción clave) en 60.59 y 60.96.",
+   "arreglo": "Encuadrar la taza sobre y=1000 al inicio del plano.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 26,
+   "segundo": "61.34",
+   "que": "Nada muestra que la bebida esté tibia: no hay vapor ni color de bebida caliente.",
+   "arreglo": "Agregar un vapor sutil saliendo de la taza en 60.6–61.3.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 25,
+   "segundo": "58.58",
+   "que": "El fondo del interior es turquesa petróleo, no el azul noche de la regla 'cabeza de vidrio', y las rugosidades del paladar se leen como dientes. Sin la etiqueta 'PALADAR' cuesta saber qué se calienta.",
+   "arreglo": "Oscurecer el fondo a azul noche y poner la píldora 'PALADAR' con flecha al área que pasa de azul a naranjo.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 27,
+   "segundo": "63.72",
+   "que": "La píldora 'DURA ≤ 2 MIN' toca el borde superior del pelo (63.72–64.51).",
+   "arreglo": "Subirla unos 30 px o bajar el encuadre del personaje.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "todo el video",
+   "que": "El color cian de palabra clave se usa en unas 7 palabras distintas (HELADO, VASOS, FRENTE, CEREBRO, DOLOR, LENGUA, LENTO). El manual pide de 1 a 3 por video.",
+   "arreglo": "Dejar el cian solo para 1–3 claves (por ejemplo HELADO, TRIGÉMINO, LENGUA) y el resto con el amarillo de la palabra activa.",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "11.37–12.10",
+   "que": "Cuando la voz dice 'carrito' (11,5 s), el carrito no está en cuadro: solo se ve al personaje parado en la plaza.",
+   "arreglo": "Encuadrar el carrito detrás del personaje o hacer un paneo hacia él en esa palabra.",
+   "de": "global"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "'ganglioneuralgia esfenopalatina.' no sale en subtítulos (plano 23): confirmar que está como título grande en pantalla",
+   "evidencia": "53.45 s"
+  }
+ ],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}
