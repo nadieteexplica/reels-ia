@@ -3,6 +3,7 @@
 ## Cadencia
 | Fase | Videos | Días | Créditos de voz al mes (aprox.) |
 |---|---|---|---|
+| **Meta de Tomás (19-oct-2026)** | **2 cada 3 días** (~20 al mes) | cada 3 días, en tandas | ~31.000 de 40.000 |
 | **Piloto (primeras 4 semanas)** | 3 por semana | lunes, miércoles, viernes | ~20.000 de 40.000 |
 | **Crecimiento** (si la calidad se mantiene y Tomás lo pide) | 5 por semana | lunes a viernes | ~34.000 de 40.000 (justo) |
 | Diario | 7 por semana | todos | ~47.000: no cabe en Starter, así que **no** |

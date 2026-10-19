@@ -153,11 +153,11 @@ def draw_subs(img, f):
                 # sombra suave
                 d.text((x - ox + 3, y - oy + 5), tok, font=fnt, fill=(0, 0, 0, 110))
                 d.text((x - ox, y - oy), tok, font=fnt, fill=YELLOW, stroke_width=6, stroke_fill=(0, 0, 0))
-                SUB_LOG.append((f, tok, x - ox, y - oy, x - ox + fnt.getlength(tok), y - oy + fnt.size))
+                SUB_LOG.append((f, tok, x - ox, y - oy, x - ox + fnt.getlength(tok), y - oy + fnt.size, wi))
             else:
                 d.text((x + 3, y + 5), tok, font=font, fill=(0, 0, 0, 110))
                 d.text((x, y), tok, font=font, fill=CYAN if tok in KEYWORDS else (255, 255, 255), stroke_width=6, stroke_fill=(0, 0, 0))
-                SUB_LOG.append((f, tok, x, y, x + tw, y + font.size))
+                SUB_LOG.append((f, tok, x, y, x + tw, y + font.size, wi))
             x += tw + (gap(font, tok, line[ti + 1]) if ti + 1 < len(line) else 0)
 
 

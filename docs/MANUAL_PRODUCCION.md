@@ -154,10 +154,24 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 
 ---
 
-## 8. Render
-1. **Prueba primero:** 1 cuadro por plano y una hoja de contacto, que se revisa *antes* del render completo.
-2. **Render completo a 30 fps.** Si el workspace es lento (unos 4–8 s por cuadro), va a GitHub Actions en una matriz paralela de 10–20 jobs.
-3. **Encode:** H.264 High, yuv420p, CRF 18 y `+faststart`.
+## 8. Render (con dos OK de Tomás antes de gastar horas)
+Regla nacida del Ep. 1 (19-oct-2026): **nunca se renderiza el video completo sin que Tomás haya aprobado el look.**
+1. **Cuadros de estilo (≈30 min):** un cuadro HD por escenario nuevo (plaza, interior del cuerpo, etc.). Tomás los aprueba o pide cambios. Cambiar acá es barato.
+2. **Hoja de contacto propia:** 1 cuadro por plano a baja resolución, revisada por Claude (encuadre, manos, objetos, caras) antes de mandar el render.
+3. **Render completo** en GitHub Actions: **720×1280, 12 muestras con eliminación de ruido**, se amplía a 1080×1920 al armar (en el celular se ve igual; ~4× más rápido que HD). 40 partes en paralelo: ~1–1,5 h.
+4. **Revisión independiente + OK de Tomás** sobre el MP4. Si algo se corrige, se re-renderizan **sólo esos planos** (`lista` con rangos + `base_run`) y se rearma.
+5. **Encode:** H.264 High, yuv420p, CRF 18 y `+faststart`.
+- **EEVEE** (motor en tiempo real) sólo sirve con tarjeta gráfica; en los servidores gratis es 3× más lento que Cycles (probado el 19-oct).
+
+### Objetos en la mano (obligatorio)
+- Todo lo que el personaje sostiene va **dentro del puño** (entre pulgar y dedos, `cup_matrix`), nunca flotando ni pegado a la palma.
+- Lo que va a la boca (taza, vaso, bombilla, cono) **llega a los labios**: con IK hacia una meta en la boca durante el sorbo o la mordida.
+- Se revisa en la hoja de contacto con un cuadro **en el momento del contacto** de cada objeto.
+
+### Interior del cuerpo (obligatorio)
+- Nada de órganos inventados con formas simples: se usa el **kit de anatomía real** (`studio/plantilla/anatomia_kit.py` → Z-Anatomy, CC BY-SA 4.0) montado en la cabeza del personaje (`anatomia_real.py`).
+- Las explicaciones se **animan con activaciones**: pulsos de luz que viajan por los nervios, zonas que se encienden, vasos que laten.
+- Crédito obligatorio en descripción y primer comentario (ver `studio/plantilla/LICENCIAS_ANATOMIA.md`).
 
 ---
 
