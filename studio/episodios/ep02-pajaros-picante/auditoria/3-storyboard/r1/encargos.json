@@ -1,0 +1,17 @@
+[
+ {
+  "id": "storyboard",
+  "prompt": "tools/auditor/prompts/3-storyboard.md",
+  "alcance": "storyboard completo",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/storyboard.md",
+   "studio/episodios/ep02-pajaros-picante/guion.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "CONTEXTO.md"
+  ],
+  "salida": "storyboard.json"
+ }
+]

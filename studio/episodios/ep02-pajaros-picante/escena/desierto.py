@@ -216,16 +216,22 @@ def cielo(sc, sol_elev=11.0, sol_azim=-150.0, fuerza=3.2):
     nt.links.new(tc.outputs["Generated"], sep.inputs[0])
     ramp = nt.nodes.new("ShaderNodeValToRGB")
     cr = ramp.color_ramp
-    cr.interpolation = "EASE"
+    cr.interpolation = "LINEAR"
     cr.elements[0].position = 0.0
     cr.elements[0].color = (0.40, 0.18, 0.08, 1)
-    cr.elements[1].position = 0.75
-    cr.elements[1].color = (0.03, 0.30, 0.55, 1)
+    cr.elements[1].position = 0.80
+    cr.elements[1].color = (0.02, 0.22, 0.48, 1)
     e = cr.elements.new(0.50)
-    e.color = (1.00, 0.55, 0.28, 1)
-    e = cr.elements.new(0.56)
-    e.color = (0.45, 0.62, 0.70, 1)
-    nt.links.new(sep.outputs["Z"], ramp.inputs["Fac"])
+    e.color = (1.00, 0.52, 0.25, 1)
+    e = cr.elements.new(0.54)
+    e.color = (0.85, 0.60, 0.45, 1)
+    e = cr.elements.new(0.62)
+    e.color = (0.12, 0.48, 0.66, 1)
+    mr = nt.nodes.new("ShaderNodeMapRange")          # dirección del rayo: z de -1 (abajo) a 1 (cenit) → 0..1
+    mr.inputs["From Min"].default_value = -1.0
+    mr.inputs["From Max"].default_value = 1.0
+    nt.links.new(sep.outputs["Z"], mr.inputs["Value"])
+    nt.links.new(mr.outputs["Result"], ramp.inputs["Fac"])
     nt.links.new(ramp.outputs["Color"], bg.inputs["Color"])
     bg.inputs["Strength"].default_value = 0.9
     nt.links.new(bg.outputs[0], nt.nodes["World Output"].inputs["Surface"])
