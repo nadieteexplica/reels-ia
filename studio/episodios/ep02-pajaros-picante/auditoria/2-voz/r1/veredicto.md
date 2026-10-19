@@ -1,0 +1,21 @@
+# 2-voz · ronda 1 · **NO APROBADO**
+
+| criterio | nota | por qué |
+|---|---|---|
+| pronunciacion | 9 | La transcripción automática coincide 1.0 con el guion, con 0 diferencias en 214 palabras, incluidas las difíciles: 'capsaicina' (15.62 s y 23.67 s), 'chiltepín' (30.08 s), 'Arizona' (28.25 s), 'tupaya' (52.55 s), '72' (62.48 s) y 'Mándaselo' (67.99 s). Las duraciones de esas palabras son coherentes entre sí (capsaicina 0.81/0.64 s). No es 10 porque sin escuchar no se puede verificar acento ni entonación. |
+| ritmo | **7** | La duración (72.91 s), la velocidad media (2.94 palabras/s) y las palabras (ninguna pasa de 1.2 s; la más larga es 'capsaicina', 0.81 s) están bien. Pero 3 de los 4 '...' dan un silencio real menor a 0.3 s (0.21, 0.23 y 0.25 s), justo en el gancho y en el remate final. Además, la pausa más larga del audio (0.74 s) cae en un punto normal ('silvestre.'): el orden de las pausas queda invertido. |
+
+## Arreglos (en orden)
+
+1. 'Este ratón lo prueba... y echa fuego': el '...' deja sólo 0.21 s de silencio real (mínimo 0.3), menos que el punto normal que viene después ('fuego.', 0.26 s). El chiste del gancho llega sin su pausa. — 4.50 s. **Arreglo:** Insertar 0.20 s de silencio en el mp3 en 4.50 s (la pausa queda en ~0.41 s) y correr +0.20 s todos los tiempos de words.json desde la palabra 14 ('y'). No hay que regenerar la voz: 0 créditos.
+2. 'Sienten el calor... no el picante': el '...' deja sólo 0.23 s de silencio real (mínimo 0.3). El contraste calor/picante, la idea central del video, no tiene su pausa. — 26.40 s. **Arreglo:** Insertar 0.18 s de silencio en 26.40 s (la pausa queda en ~0.41 s) y correr los tiempos de words.json desde la palabra 80 ('no').
+3. Remate 'Para el ají... es un ratón más': el '...' deja sólo 0.25 s de silencio real (mínimo 0.3), menos que el punto anterior ('picante.', 0.27 s). La frase que debería hacer que compartan el video pierde su pausa cómica. — 71.50 s. **Arreglo:** Insertar 0.25 s de silencio en 71.50 s (la pausa queda en ~0.50 s) y correr los tiempos de words.json desde la palabra 210 ('es').
+4. Después de 'un ají silvestre.' hay 0.74 s de silencio real: es la pausa más larga del audio, más larga que cualquier '...', y está en un punto normal (en los demás puntos hay 0.17–0.53 s). Queda un hueco antes de 'Ratones y ratas ni lo tocaban'. — 32.24 s. **Arreglo:** Recortar 0.30 s de ese silencio (queda en ~0.44 s) y correr −0.30 s los tiempos de words.json desde la palabra 94 ('Ratones'). Compensa parte del tiempo que se agrega en los otros arreglos.
+5. Entre 'no el picante.' y '¿Por qué?' hay sólo 0.08 s de silencio real, el final de oración más corto del audio. La pregunta que abre la explicación queda pegada a la frase anterior. — 27.39 s. **Arreglo:** Insertar 0.20 s de silencio en 27.39 s y correr los tiempos de words.json desde la palabra 83 ('¿Por').
+6. 'En un estudio con 72 personas, fue de lo que más bajó el ardor' dura 3.83 s. Dicho en voz alta son 16 palabras ('setenta y dos'), o sea 4.2 palabras/s, sobre el límite de ~3.8 y la frase más rápida del video. '72' dura 0.56 s y no hay silencio después de 'personas,' (0.00 s). La única cifra del video pasa apurada. El chequeo automático no lo detectó porque cuenta '72' como una sola palabra. — 61.55 s. **Arreglo:** Insertar 0.15 s de silencio después de 'personas,' (63.61 s) y correr los tiempos de words.json desde la palabra 185 ('fue').
+
+## Avisos automáticos (mirados por el revisor)
+
+- ritmo de 2.1 palabras/s en 'En Arizona, científicos filmaron un chiltepín, un ají silves' · 27.99 s
+- ritmo de 2.2 palabras/s en 'La tupaya, de China.' · 52.06 s
+- ritmo de 2.0 palabras/s en 'Toma leche, aunque sea descremada.' · 58.78 s
