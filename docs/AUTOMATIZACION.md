@@ -40,7 +40,7 @@ Ya hecho: el workflow de voz procesa solo los jobs nuevos de cada push, falla en
 ## Ciclo semanal (tareas programadas)
 
 ### A) Producción semanal — domingo ~09:50 (America/Santiago)
-1. Actualizar el repo y leer los docs, primero `proyecto/INSTRUCCIONES.md` y después `CONTEXTO.md`, el manual, `IDEAS.md` y `PUBLICADOS.md`.
+1. Actualizar el repo y leer los docs, primero `proyecto/INSTRUCCIONES.md` y después `CONTEXTO.md`, **`docs/LECCIONES.md`**, el manual, `IDEAS.md` y `PUBLICADOS.md`.
 2. **Métricas:**
    - Bajar de Metricool los datos de los videos de las últimas semanas.
    - Actualizar `PUBLICADOS.md`.
@@ -51,19 +51,21 @@ Ya hecho: el workflow de voz procesa solo los jobs nuevos de cada push, falla en
    - Darle prioridad a las preguntas de la comunidad.
 4. **Guiones:** verificar con 2 fuentes, escribir en 190–215 palabras y guardar en `studio/episodios/epNN-slug/guion.md`.
 5. **Voces:** 3 jobs en un solo push. Esperar a Actions, revisar `out/status.json`, armar `words.json` con `tools/words.py` y controlar duraciones (62–75 s).
-6. **Storyboards:** uno por episodio.
-7. **Animación y render:** con la plantilla del estilo, en Actions.
-8. **QA:** automático, visual y revisión independiente (8 o más en todo). Se corrige hasta 3 rondas; si no pasa, ese video se cambia o se entregan 2.
-9. **Paquete:** MP4 con URL pública, `caption.md` y portada.
-10. **Un solo mensaje a Tomás:**
+6. **Storyboards:** uno por episodio. Marcar qué planos van con Kling (máx. 2–3 por video: manos con objetos o reacciones con las manos en la cara) y cuáles salen de la biblioteca de reacciones.
+7. **Cuadros de estilo** de lo nuevo (si hay escenario nuevo) y revisión propia.
+8. **Kling:** cuadros de partida con la mano libre → `kling.yml` → revisión de cada clip en 8 cuadros → `kling/planos.json`.
+9. **Render:** en GPU (`render-gpu.yml`, RunPod); de respaldo, `render.yml` en Actions con 16 partes. Los planos de Kling no se renderizan. Mientras corre, **revisar el avance cada 15 min** (`progreso.txt` en la prerelease) y dar horas solo con esos datos.
+10. **QA:** automático, revisión propia plano por plano y revisión independiente (8 o más en todo). Se corrige hasta 3 rondas; si no pasa, ese video se cambia o se entregan 2.
+11. **Paquete:** MP4 con URL pública (`release.yml` lo copia al Release `epNN`), versión liviana de 720p para el mensaje, `caption.md` y portada.
+12. **Un solo mensaje a Tomás:**
     - los 3 videos (como archivos),
     - para cada uno: gancho, horario propuesto (mejor hora de Metricool por red) y texto del post,
     - la pregunta: "¿OK a los 3? (o dime cuál no)".
-11. **Programar:** con OK, crear los posts programados en Metricool (lun, mié y vie, en las 3 redes) y anotarlos en `PUBLICADOS.md`.
+13. **Programar:** con OK, crear los posts programados en Metricool (en las 3 redes; TikTok exige `tiktokData.title`) y anotarlos en `PUBLICADOS.md`. Después de la hora, confirmar en Metricool que quedaron "Published".
     - **El OK se da en esta misma sesión. Sin OK no se programa nada.**
     - Si Tomás responde tarde, los videos se programan desde el siguiente día hábil, manteniendo la separación de 1 día entre posts.
     - Si no responde, la revisión del jueves se lo recuerda en una línea. Los videos sin publicar quedan para la semana siguiente y esa semana se producen menos videos nuevos.
-12. Hacer commit y push de todo.
+14. Anotar en `docs/LECCIONES.md` cualquier error nuevo con su regla. Hacer commit y push de todo.
 
 ### B) Revisión de mitad de semana — jueves ~18:50
 - Métricas tempranas de los videos de lunes y miércoles.
@@ -102,3 +104,7 @@ Clona github.com/nadieteexplica/reels-ia. Lee primero proyecto/INSTRUCCIONES.md 
 | Metricool rechaza la URL o el post | Probar el hosting alternativo y avisar |
 | vidIQ sin créditos | Seguir con la web y los comentarios. vidIQ no es imprescindible |
 | Duda sobre un dato | El tema no sale hasta tener 2 fuentes. Se cambia por otro del banco |
+| Un trabajo en paralelo se cae o no avanza | Se detecta en la revisión de cada 15 min; se relanza en Actions/RunPod (no en subagentes) y se avisa a Tomás en 1 línea |
+| Kling rechaza un clip ("risk control") o el clip deforma algo | Reescribir la instrucción sin palabras de dolor/violencia o cambiar el cuadro de partida; máx. 2 intentos, si no el plano se hace sin objeto en la mano |
+| RunPod sin stock o error al crear el pod | El workflow prueba secure y otras GPU; si igual falla, render en Actions (16 partes) |
+| Unidades de Kling bajo 15 | Avisar a Tomás: usar solo la biblioteca de reacciones hasta que decida si compra más |

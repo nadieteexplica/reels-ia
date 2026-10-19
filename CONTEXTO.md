@@ -138,26 +138,28 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
       - `Happy Idle` → "Happy Idle Variation 1" (entre planos).
     - Para otros episodios: `Terrified` ("Being Terrified While Standing") y `Excited` ("Super Excited").
     - Descartadas: `Agony` (demasiado dramática).
+- **Ep. 1 publicado** el 19-oct-2026 a las 16:35 en Instagram, TikTok y YouTube (links en `docs/PUBLICADOS.md`). Métricas a las 48 h (21-oct) y a los 7 días (26-oct).
 - **Próximos pasos:**
-  1. Pulir el protagonista (piel, mangas, mirada, boca).
-  2. Plantilla de producción (escenarios, biblioteca de acciones y expresiones, subtítulos, SFX y música).
-  3. Render en Actions (acceso a las FBX listo).
-  4. Hosting y prueba con Metricool.
-  5. Ep. 1 de punta a punta (alargar a 62 s o más y regenerar la voz).
-  6. Tareas programadas (A: domingo de producción; B: jueves de revisión).
+  1. Auditor que revise cada etapa mientras se trabaja (Tomás lo diseña en un chat nuevo partiendo de `docs/LECCIONES.md`).
+  2. Biblioteca de reacciones del protagonista con Kling (una vez; después se reusa sin gastar unidades).
+  3. RunPod con 2–3 pods en paralelo (video completo en ~20–30 min).
+  4. Ep. 2 con el proceso nuevo: guion pensado para 2–3 planos de Kling como máximo, cuadros de estilo, render en GPU, revisión propia + auditor.
+  5. Tareas programadas (A: producción; B: revisión del jueves) cuando el Ep. 2 salga sin intervención.
 
 ## Decisiones pendientes de Tomás
 1. ~~Estilo~~: decidido el 18-oct (semi-realista con Mixamo, personaje propio de cuerpo normal, ~18–20 años).
-2. **Audiencia de YouTube (`madeForKids`):** se recomienda **no**, porque el contenido es de curiosidades para público general, aunque el protagonista sea un niño. La decisión es de Tomás.
+2. ~~Audiencia de YouTube (`madeForKids`)~~: decidido el 19-oct → **no es para niños**.
 3. ~~Repo privado de assets y token~~: listo el 18-oct (`nadieteexplica/assets` + secreto `TOKEN`). **Renovar el token antes del 17-nov-2026.**
 4. **Proporción datos/historias.** Propuesta de Claude: ~2 de datos por cada historia en el piloto; a las 4 semanas se ajusta según envíos/alcance de cada línea.
 
 ## Aprendizajes
 (Se llenan con los datos de cada semana. Ver `docs/PUBLICADOS.md`.)
 - Antes de publicar, los aprendizajes vienen de videos ajenos: `docs/REFERENCIAS.md` §3. Se confirman o se descartan con nuestros datos.
+- **Errores de producción y sus reglas: `docs/LECCIONES.md`** (se lee antes de cada video). Del Ep. 1: interior "cabeza de vidrio" con un solo foco; manos con objetos → Kling partiendo con la mano libre; nunca mostrarle nada a Tomás sin revisión propia; horas solo con datos medidos; revisar cada 15 min lo que corre en paralelo.
 
 ## Documentos
 - `proyecto/INSTRUCCIONES.md`: instrucciones del proyecto en Claude.
+- `docs/LECCIONES.md`: errores de producción, cómo se solucionaron y la regla que queda (leer antes de cada video).
 - `docs/MANUAL_PRODUCCION.md`: estándar de cada video (guion, verificación, voz, storyboard, look, subtítulos, audio, render, QA, entrega, publicación).
 - `docs/AUTOMATIZACION.md`: cadencia, fases, ciclo semanal, prompts de las tareas programadas y manejo de fallas.
 - `docs/IDEAS.md`: dónde buscar, puntaje, lista negra y banco de ideas.
