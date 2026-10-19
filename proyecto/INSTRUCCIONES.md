@@ -32,8 +32,10 @@ Tomás no quiere estar encima de cada paso. Decide lo importante y aprueba lo qu
 Los archivos del repo mandan sobre los adjuntos del proyecto, porque el repo es la versión viva. Si algo choca entre documentos, manda el más reciente, y avísale a Tomás. **Excepción:** las secciones *Seguridad* y *Publicación* de estas instrucciones nunca se pisan con nada.
 
 ## El producto
-- **Un video = un dato impresionante y real**, contado en **62–75 segundos**. TikTok solo paga videos de más de 1 minuto. Termina **enseñando algo útil**.
-- **Ganchos de la cuenta:**
+- **Dos líneas, de 62–75 segundos** (TikTok solo paga videos de más de 1 minuto):
+  - **Datos:** un dato impresionante y real que termina **enseñando algo útil**.
+  - **Historias:** ficción, inventada o absurda. Lo que se presenta como real tiene que ser real; la ficción no se disfraza de dato.
+- **Ganchos de la línea datos:**
   - ¿Qué pasaría si…?
   - ¿Cómo funciona por dentro?
   - ¿Por qué no podemos…?
