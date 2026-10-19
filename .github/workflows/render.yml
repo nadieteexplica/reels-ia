@@ -24,10 +24,14 @@ on:
         description: "Subir el MP4 al Release (solo si pasa el QA)"
         default: "true"
       lista:
-        description: "Cuadros sueltos separados por coma, uno por trabajo (medir tiempos). Vacío = normal"
+        description: "Cuadros o rangos separados por coma (p. ej. 30,441-447), uno por trabajo. Vacío = normal"
+        default: ""
+      base_run:
+        description: "ID de un run anterior cuyos cuadros se reutilizan al armar (los de este run los reemplazan)"
         default: ""
 permissions:
   contents: write
+  actions: read
 concurrency: render-${{ github.event.inputs.episodio }}${{ github.event.inputs.lista != '' && '-lista' || '' }}
 env:
   EP: ${{ github.event.inputs.episodio }}
@@ -55,7 +59,10 @@ jobs:
           step = -(-(b - a + 1) // n)
           parts = [{"parte": i, "a": a + i * step, "b": min(b, a + (i + 1) * step - 1)} for i in range(n) if a + i * step <= b]
           if lista:
-              parts = [{"parte": i, "a": int(f), "b": int(f)} for i, f in enumerate(lista.split(","))]
+              parts = []
+              for i, tok in enumerate(t.strip() for t in lista.split(",")):
+                  x, y = (tok.split("-") + [tok])[:2] if "-" in tok else (tok, tok)
+                  parts.append({"parte": i, "a": int(x), "b": int(y)})
           print("matrix=" + json.dumps({"include": parts}))
           EOF
 
@@ -106,7 +113,7 @@ jobs:
   muestras:
     # Modo "lista": sube los cuadros sueltos a la prerelease "pruebas" para revisarlos.
     needs: render
-    if: github.event.inputs.lista != ''
+    if: github.event.inputs.lista != '' && github.event.inputs.base_run == ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -123,7 +130,7 @@ jobs:
 
   armar:
     needs: render
-    if: github.event.inputs.lista == ''
+    if: github.event.inputs.lista == '' || github.event.inputs.base_run != ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -133,6 +140,15 @@ jobs:
       - run: |
           sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg fonts-inter fonts-dejavu-core > /dev/null
           pip install -q numpy scipy pillow
+      - name: Cuadros del run base
+        if: github.event.inputs.base_run != ''
+        uses: actions/download-artifact@v4
+        with:
+          pattern: cuadros-*
+          path: ${{ env.OUT }}/frames
+          merge-multiple: true
+          run-id: ${{ github.event.inputs.base_run }}
+          github-token: ${{ github.token }}
       - uses: actions/download-artifact@v4
         with:
           pattern: cuadros-*
