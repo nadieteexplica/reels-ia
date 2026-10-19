@@ -21,8 +21,8 @@ on:
         description: "Rango opcional a-b (pruebas). Vacío = todo"
         default: ""
       publicar:
-        description: "Subir el MP4 al Release (solo si pasa el QA)"
-        default: "true"
+        description: "Subir el MP4 al Release público (sólo con el auditor APROBADO y el OK de Tomás; lo normal es release.yml)"
+        default: "false"
       lista:
         description: "Cuadros o rangos separados por coma (p. ej. 30,441-447), uno por trabajo. Vacío = normal"
         default: ""
@@ -222,6 +222,7 @@ jobs:
             ${{ env.OUT }}/contacto.jpg
             ${{ env.OUT }}/subs_log.json
             ${{ env.OUT }}/qa.txt
+            ${{ env.OUT }}/*_planos.json
           retention-days: 7
       - name: Borrador para revisión (prerelease)
         if: always() && env.TAG != '' && github.event.inputs.cuadros == ''
@@ -230,7 +231,8 @@ jobs:
         run: |
           B="$TAG-borrador"
           gh release view "$B" >/dev/null 2>&1 || gh release create "$B" --prerelease --title "$EP (borrador para revisión)" --notes "Borrador interno para la revisión. No publicar."
-          gh release upload "$B" "$OUT/$EP.mp4" "$OUT/contacto.jpg" "$OUT/qa.txt" "$OUT/subs_log.json" --clobber
+          cp "$OUT"/*_planos.json "$OUT/planos.json"
+          gh release upload "$B" "$OUT/$EP.mp4" "$OUT/contacto.jpg" "$OUT/qa.txt" "$OUT/subs_log.json" "$OUT/planos.json" --clobber
       - name: Publicar en el Release
         if: steps.qa.outcome == 'success' && github.event.inputs.publicar == 'true' && github.event.inputs.cuadros == ''
         env:

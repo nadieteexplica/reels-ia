@@ -1,0 +1,37 @@
+name: asr
+# Transcripción automática de las locuciones (auditor, etapa 2 · voz): out/tts/<id>.mp3 → out/asr/<id>.json.
+# Corre sola cuando termina el workflow de voz, o a mano con los ids.
+on:
+  workflow_run:
+    workflows: ["voz"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: "ids de out/tts separados por espacio (vacío = los que no tienen transcripción)"
+        default: ""
+permissions:
+  contents: write
+concurrency: asr
+jobs:
+  asr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q faster-whisper==1.1.1
+      - name: Transcribir
+        run: python tools/auditor/asr.py ${{ github.event.inputs.ids }}
+      - name: Guardar
+        run: |
+          git config user.name "reels-bot"
+          git config user.email "reels-bot@users.noreply.github.com"
+          git add out/asr
+          git commit -m "asr: transcripciones" || { echo "nada que guardar"; exit 0; }
+          for i in 1 2 3; do git pull --rebase -q origin main && git push && exit 0; sleep 5; done
+          exit 1

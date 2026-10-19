@@ -105,6 +105,7 @@ ffmpeg -y -v error -framerate 30 -i "$OUT/final/%05d.png" -i "$OUT"/*_mix.wav \
 python repo/tools/qa.py "$OUT/$EP.mp4" "$OUT/frames" "$OUT/subs_log.json" > "$OUT/qa.txt" 2>&1; echo "qa: $?" >> "$OUT/qa.txt"
 ffmpeg -y -v error -i "$OUT/$EP.mp4" -vf "fps=1,scale=216:384,tile=12x7" -frames:v 1 "$OUT/contacto.jpg"
 paso "subiendo"
-for f in "$OUT/$EP.mp4" "$OUT/contacto.jpg" "$OUT/qa.txt" "$OUT/subs_log.json"; do subir "$f"; done
+cp "$PLANOS" "$OUT/planos.json"   # cortes por plano: los usa el auditor (tools/auditor)
+for f in "$OUT/$EP.mp4" "$OUT/contacto.jpg" "$OUT/qa.txt" "$OUT/subs_log.json" "$OUT/planos.json"; do subir "$f"; done
 paso "listo"
 exit 0

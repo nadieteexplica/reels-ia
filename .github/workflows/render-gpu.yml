@@ -96,5 +96,6 @@ jobs:
           B="$(echo "$EP" | cut -d- -f1)-borrador"
           mkdir -p b && cd b
           gh release download "$T" -p "$EP.mp4" -p "contacto.jpg" -p "qa.txt" -p "subs_log.json"
+          gh release download "$T" -p "planos.json" 2>/dev/null || true
           gh release view "$B" >/dev/null 2>&1 || gh release create "$B" --prerelease --title "$EP (borrador para revisión)" --notes "Borrador interno para la revisión. No publicar."
           gh release upload "$B" * --clobber

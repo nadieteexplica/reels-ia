@@ -31,5 +31,7 @@ jobs:
           TAG: ${{ github.event.inputs.tag }}
         run: |
           ls -la kling_out || exit 0
+          # copia con el número de run: el auditor de proceso suma el gasto real de todos los pedidos
+          [ -f kling_out/kling_resultados.json ] && cp kling_out/kling_resultados.json "kling_out/kling_resultados_${{ github.run_id }}.json"
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "Clips de Kling ($TAG)" --notes "Clips internos generados con Kling a partir de cuadros propios. No publicar sueltos."
           gh release upload "$TAG" kling_out/* --clobber
