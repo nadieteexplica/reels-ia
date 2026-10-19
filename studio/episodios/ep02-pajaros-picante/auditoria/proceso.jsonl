@@ -20,3 +20,5 @@
 {"tipo": "aviso", "que": "Tomás 19:32: cada idea con su propio estilo y personajes; no usar el protagonista humano. Se rehace el concepto visual y el guion pasa a v2", "n": 20, "ts": "2026-10-19T19:34:06-03:00"}
 {"tipo": "trabajo", "id": "auditor guion r2", "estado": "inicio", "nota": "guion v2", "n": 21, "ts": "2026-10-19T19:35:21-03:00"}
 {"tipo": "trabajo", "id": "auditor guion r2", "estado": "caido", "nota": "cortado por el mensaje de Tomás 19:36; se relanza con las fuentes bajadas por workflow", "n": 22, "ts": "2026-10-19T19:37:11-03:00"}
+{"tipo": "chequeo", "id": "auditor guion r2", "estado": "r2 rehecha: el revisor murió sin escribir nada; se vuelve a preparar con los extractos de fuentes.yml", "n": 23, "ts": "2026-10-19T19:42:39-03:00"}
+{"tipo": "trabajo", "id": "auditor guion r2b", "estado": "inicio", "nota": "con extractos de fuentes", "n": 24, "ts": "2026-10-19T19:42:54-03:00"}

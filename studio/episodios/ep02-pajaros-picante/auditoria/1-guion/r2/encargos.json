@@ -4,7 +4,8 @@
   "prompt": "tools/auditor/prompts/1-guion.md",
   "alcance": "guion completo",
   "materiales": [
-   "studio/episodios/ep02-pajaros-picante/guion.md"
+   "studio/episodios/ep02-pajaros-picante/guion.md",
+   "studio/episodios/ep02-pajaros-picante/auditoria/1-guion/r2/materiales/fuentes.md"
   ],
   "contexto": [
    "docs/AUDITOR.md",
