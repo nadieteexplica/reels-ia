@@ -1,10 +1,15 @@
 {
  "fallas": [],
- "avisos": [],
+ "avisos": [
+  {
+   "que": "tema de salud sin 'si te pasa seguido, consulta' (revisar si corresponde)",
+   "evidencia": ""
+  }
+ ],
  "datos": {
   "palabras": 214,
   "duracion_estimada_s": 72.1,
-  "pausas": 3,
+  "pausas": 4,
   "fuentes": [
    "archive.news.ufl.edu",
    "escholarship.org",
@@ -17,6 +22,6 @@
    "sites.harvard.edu",
    "smithsonianmag.com"
   ],
-  "afirmaciones_verificadas": 12
+  "afirmaciones_verificadas": 14
  }
 }
