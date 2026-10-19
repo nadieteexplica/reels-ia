@@ -104,6 +104,7 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 ### ¿Sabías que…? (planeta, naturaleza, espacio, Chile)
 | Estado | Gancho | Dato central (verificar) | Imagen 3D clave | Enseñanza |
 |---|---|---|---|---|
+| siguiente (Ep. 2, ficha abajo) | Los pájaros no sienten el picante | El receptor que nos hace arder con la capsaicina no reacciona en las aves; el ají "eligió" a quién quemar | Pájaro tranquilo comiendo ají al lado del protagonista que llora con el mismo ají | Si te pica: leche (aunque sea descremada); las bebidas con gas, peor |
 | pendiente | ¿Por qué Chile tiembla tanto? | La placa de Nazca se mete bajo Sudamérica varios cm por año | Placas chocando bajo Chile | Qué hacer en un temblor |
 | pendiente | ¿Por qué el desierto de Atacama es el más seco del mundo? | Corriente de Humboldt + cordillera + alta presión | Nubes que no pasan | Por qué hay observatorios ahí |
 | pendiente | ¿Por qué el cielo es azul y el atardecer naranjo? | La luz azul se dispersa más (dispersión de Rayleigh) | Rayos de luz rebotando | Por qué en Marte es al revés |
@@ -111,6 +112,20 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 | pendiente | Un rayo es más caliente que el Sol | Unos 30.000 °C contra ~5.500 °C de la superficie del Sol | Rayo en cámara lenta | Por qué suena el trueno |
 | pendiente (quemado: solo con ángulo nuevo) | Los plátanos son radiactivos | Tienen potasio-40, pero la dosis es mínima | Plátano con átomos brillando | Qué es la radiación de verdad |
 | pendiente (quemado: solo con ángulo nuevo) | Hay más árboles en la Tierra que estrellas en la Vía Láctea | ~3 billones de árboles (estudio de 2015) | Bosque vs galaxia | Escala |
+
+#### Ficha Ep. 2 — Los pájaros no sienten el picante (caza del 19-oct-2026)
+- **Dato central (verificado, 2 fuentes independientes):**
+  - El receptor de la capsaicina (vanilloide/TRPV1) de las aves no responde a la capsaicina; sí responde al calor real. Jordt y Julius, *Cell* 108(3), 2002 ([Duke Scholars](https://scholars.duke.edu/publication/1003152)).
+  - En el chiltepín (ají silvestre de México/Arizona) solo comían los frutos los cuitlacoches (*curve-billed thrasher*); ratas de campo y ratones del cactus los evitaban. Las semillas salen enteras del pájaro y germinan; las que mastica el roedor no. Tewksbury y Nabhan, *Nature* 2001 ([U. of Florida](https://archive.news.ufl.edu/articles/2001/07/for-peppers-hot-quite-literally-the-spice-of-life-uf-research-shows.html) · [Harvard SITN](https://sites.harvard.edu/sitn/2012/11/29/issue131b)).
+  - Decirlo como "los científicos creen que" el picante evolucionó para alejar a los mamíferos (hipótesis de la disuasión dirigida).
+- **"Y lo más loco" (verificado):** hay un mamífero que tampoco lo siente: la tupaya china (*Tupaia belangeri chinensis*, pariente lejano de los primates) come una planta picante (*Piper boehmeriaefolium*) porque una mutación en su TRPV1 le quita un aminoácido. Han et al., *PLOS Biology* 2018 ([PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC6042686) · [Smithsonian](https://www.smithsonianmag.com/smart-news/tree-shrews-peppers-feel-the-burn-180969702/)).
+- **Enseñanza (verificada, con matiz):** en un estudio con 72 personas, la leche (entera o descremada) fue lo que más bajó el ardor; las bebidas con gas rindieron peor y el alcohol lo empeora. No decir "el agua no sirve": todas las bebidas bajaron algo el ardor. Nolden, Lenart y Hayes, *Physiology & Behavior* 2019 ([Penn State](https://www.psu.edu/news/research/story/milk-best-drink-reduce-burn-chili-peppers) · [ScienceDaily](https://www.sciencedaily.com/releases/2019/06/190625133526.htm)).
+- **Por qué esta idea (simulación del chat de caza, 19-oct):** salió #1 de 10 (34 % de probabilidad de ser la más vista). Lo que la empuja:
+  - nadie ha contado el dato en español (revisión en vidIQ, IG + TikTok desde 2023);
+  - la imagen "pájaro + ají" ya está probada: una animación de humor con pájaros comiendo ají hizo 2,1 M en español, y los videos 3D de pájaros andan bien (1,6 M). **No copiarla:** en esa los pájaros sufren; lo nuestro es justo lo contrario y con personaje propio;
+  - tiene destinatario clarísimo: "mándaselo al que se cree inmune al picante". Sin ese destinatario, la ventaja sobre la #2 (plantas) desaparece.
+- **No perder:** pájaro + ají en el cuadro 0; cierre con envío a ese amigo (marcarlo en `PUBLICADOS.md`); la enseñanza de la leche.
+- **Producción:** el pájaro es el protagonista visual y no hay anatomía de aves en Z-Anatomy → modelo CC0 con licencia revisada. El interior de la lengua y el nervio del humano puede usar la "cabeza de vidrio" (§8 del manual). Máximo 2–3 planos con Kling (morder el ají, reacción, tomar leche).
 
 ### Parece un error, pero es a propósito (objeto en primer plano)
 | Estado | Gancho | Dato central (verificar) | Imagen 3D clave | Enseñanza |

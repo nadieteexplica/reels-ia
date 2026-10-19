@@ -144,7 +144,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   1. ~~Auditor por etapas~~: listo el 19-oct (`docs/AUDITOR.md`, `tools/auditor/`, calibración en `docs/AUDITOR_CALIBRACION.md`).
   2. Biblioteca de reacciones del protagonista con Kling (una vez; después se reusa sin gastar unidades).
   3. RunPod con 2–3 pods en paralelo (video completo en ~20–30 min).
-  4. Ep. 2 con el proceso nuevo: guion pensado para 2–3 planos de Kling como máximo, storyboard con columna `Origen`, cuadros de estilo, render en GPU y las 8 puertas del auditor con bitácora desde el primer minuto.
+  4. Ep. 2 = **"Los pájaros no sienten el picante"** (elegido por Tomás el 19-oct; ficha con fuentes en `docs/IDEAS.md`, tabla "¿Sabías que…?"), con el proceso nuevo: guion pensado para 2–3 planos de Kling como máximo, storyboard con columna `Origen`, cuadros de estilo, render en GPU y las 8 puertas del auditor con bitácora desde el primer minuto.
   5. Tareas programadas (A: producción; B: revisión del jueves) cuando el Ep. 2 salga sin intervención.
 
 ## Decisiones pendientes de Tomás
