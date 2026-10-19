@@ -1,0 +1,35 @@
+name: kling
+# Genera clips con la API oficial de Kling (image-to-video) a partir de cuadros nuestros y los sube a una prerelease.
+# La clave vive sólo en el secreto KILING_SECRET (nombre tal cual lo creó Tomás); nunca se imprime.
+on:
+  workflow_dispatch:
+    inputs:
+      pedido:
+        description: "Ruta del pedido JSON en el repo (lista de clips)"
+        default: "studio/episodios/ep01-congelamiento-cerebral/kling/pedido.json"
+      tag:
+        description: "Prerelease donde quedan los clips"
+        default: "ep01-kling"
+permissions:
+  contents: write
+concurrency: kling-${{ github.event.inputs.tag }}
+jobs:
+  clips:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generar clips
+        env:
+          KLING_API_KEY: ${{ secrets.KILING_SECRET }}
+        run: python studio/plantilla/kling.py pedido "${{ github.event.inputs.pedido }}" kling_out
+      - name: Subir a la prerelease
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.event.inputs.tag }}
+        run: |
+          ls -la kling_out || exit 0
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "Clips de Kling ($TAG)" --notes "Clips internos generados con Kling a partir de cuadros propios. No publicar sueltos."
+          gh release upload "$TAG" kling_out/* --clobber

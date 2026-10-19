@@ -170,6 +170,16 @@ jobs:
           pattern: cuadros-*
           path: ${{ env.OUT }}/frames
           merge-multiple: true
+      - name: Clips de Kling (manos con objetos y reacciones)
+        run: |
+          M="studio/episodios/$EP/kling/planos.json"
+          [ -f "$M" ] || { echo "sin clips de Kling"; exit 0; }
+          TAGK="$(echo "$EP" | cut -d- -f1)-kling"
+          mkdir -p kclips
+          for c in $(python3 -c "import json,sys; print(' '.join(sorted({i['clip'] for i in json.load(open(sys.argv[1]))})))" "$M"); do
+            curl -fsSL -o "kclips/$c" "https://github.com/${{ github.repository }}/releases/download/$TAGK/$c"
+          done
+          python studio/plantilla/kling_insert.py "$M" kclips "$OUT/frames" "$(ls "$OUT"/frames/*_planos.json | head -1)"
       - name: Post, audio y video
         run: |
           set -e
