@@ -1,0 +1,41 @@
+[
+ {
+  "id": "cuadros1",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "p17_inicio, p17_inicio_b, p18_inicio, p1_inicio, p26_inicio, p26_inicio_b",
+  "materiales": [
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/p17_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/p17_inicio_b.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/p18_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/p1_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/p26_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/p26_inicio_b.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "cuadros1.json",
+  "notas_de_uso": "Son cuadros de partida para Kling (image-to-video): Kling anima desde este cuadro. p1/p9/p30: comer un cono; p3: llevarse las manos a la frente; p17: fila de voluntarios con vasos de agua helada y bombilla; p18: un voluntario toma por la bombilla; p26: tomar de una taza con algo tibio. Las versiones _b son alternativas del mismo plano."
+ },
+ {
+  "id": "cuadros2",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "p30_inicio, p3_inicio, p9_inicio",
+  "materiales": [
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/p30_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/p3_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/p9_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/4-cuadros/r1/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "cuadros2.json",
+  "notas_de_uso": "Son cuadros de partida para Kling (image-to-video): Kling anima desde este cuadro. p1/p9/p30: comer un cono; p3: llevarse las manos a la frente; p17: fila de voluntarios con vasos de agua helada y bombilla; p18: un voluntario toma por la bombilla; p26: tomar de una taza con algo tibio. Las versiones _b son alternativas del mismo plano."
+ }
+]

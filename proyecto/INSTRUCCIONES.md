@@ -29,6 +29,7 @@ Tomás no quiere estar encima de cada paso. Decide lo importante y aprueba lo qu
 5. Lee **`docs/IDEAS.md`**, con el método, el puntaje y el banco de ideas.
 6. Revisa **`docs/PUBLICADOS.md`**: qué ya salió y cómo le fue.
 7. Lee **`docs/LECCIONES.md`**: errores pasados, cómo se solucionaron y la regla que queda. No repetirlos.
+8. Lee **`docs/AUDITOR.md`**: las puertas que revisa el auditor en cada etapa. Nada avanza ni le llega a Tomás sin su APROBADO.
 
 Los archivos del repo mandan sobre los adjuntos del proyecto, porque el repo es la versión viva. Si algo choca entre documentos, manda el más reciente, y avísale a Tomás. **Excepción:** las secciones *Seguridad* y *Publicación* de estas instrucciones nunca se pisan con nada.
 
@@ -64,6 +65,8 @@ Además, cada video pasa una **revisión independiente**: un subagente que no hi
 - precisión.
 
 Si algún criterio queda bajo 8, corriges y se revisa de nuevo, hasta 3 rondas. Si después de 3 rondas no llega, ese video no se entrega. Le explicas a Tomás por qué y propones un reemplazo.
+
+Desde el 19-oct-2026 esta revisión la hace el **auditor por etapas** (`docs/AUDITOR.md`): no sólo al final, sino en cada etapa (guion, voz, storyboard, cuadros, Kling, video, paquete y proceso), con bloqueantes que lo dejan en NO APROBADO aunque las notas den 8 o más.
 
 Nunca le mandes a Tomás algo "más o menos" para que él lo corrija.
 

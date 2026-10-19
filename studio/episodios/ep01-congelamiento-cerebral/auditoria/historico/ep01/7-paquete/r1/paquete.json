@@ -1,0 +1,59 @@
+{
+ "encargo": "paquete",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "textos": {
+   "nota": 7,
+   "por_que": "Gancho IG/TikTok (línea 4) calza con la primera frase del guion ('te duele la frente'), el dato de la línea 5 es fiel al guion, la pregunta abierta y los 5 hashtags están bien y no hay faltas de ortografía; pero la descripción de YouTube (línea 12) cambia el mecanismo del guion ('el trigémino manda el dolor a la frente' en vez de 'tu cerebro se confunde de lugar') y ningún texto nombra el fenómeno ('congelamiento cerebral'), que es lo que la gente busca."
+  },
+  "cumplimiento": {
+   "nota": 4,
+   "por_que": "El primer comentario tiene las 4 fuentes del guion con las mismas URL exactas, el crédito Z-Anatomy/BodyParts3D y las etiquetas IA correctas (IG true, TikTok true, YouTube false por estilo no realista); pero quedan las 2 fallas bloqueantes de checks.json (madeForKids 'pendiente de Tomás' y TikTok sin título) y la descripción de YouTube trae las fuentes sin enlaces y sin la 4.ª fuente, cosa que el chequeo automático no pescó."
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": null,
+   "que": "caption.md línea 13 (descripción de YouTube): 'Fuentes: Cleveland Clinic · LiveScience (Harvard, 2012) · Popular Science.' van sólo los nombres, sin ningún enlace, y falta la 4.ª fuente del guion (LiveScience — el cerebro no tiene receptores de dolor). El prompt de la etapa exige las mismas fuentes del guion con enlaces también en YouTube. checks.json no lo marcó (se le pasó).",
+   "arreglo": "Reemplazar la línea 13 por 'Fuentes:' y las 4 líneas con URL tal cual están en el primer comentario (líneas 18-21), que coinciden con guion.md líneas 32-35. Revisar el chequeo automático para que mida enlaces dentro de la sección YouTube y no en todo el archivo."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": null,
+   "que": "caption.md línea 12 (descripción de YouTube): 'el nervio trigémino manda el dolor a la frente' no es lo que dice el guion (línea 12 del guion: el trigémino detecta el cambio y 'tu cerebro se confunde: cree que el dolor viene de ahí'). Atribuye el traslado del dolor al nervio y contradice el texto de IG/TikTok ('tu cerebro se confunde de lugar').",
+   "arreglo": "Cambiar a: 'El frío del helado no toca tu cerebro: los vasos del paladar se encogen y se abren de golpe, el nervio trigémino lo detecta y tu cerebro se confunde y siente el dolor en la frente.'"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": null,
+   "que": "Ningún texto (IG/TikTok líneas 4-7, título y descripción de YouTube líneas 10-12) nombra el fenómeno: no aparece 'congelamiento cerebral' (ni 'brain freeze'), que es la búsqueda más común y el propio slug del episodio; el texto de IG/TikTok tampoco dice 'dolor de cabeza' (dice 'frente').",
+   "arreglo": "Línea 5: 'Se llama congelamiento cerebral: el frío nunca toca tu cerebro, el dolor nace en el paladar y tu cerebro se confunde de lugar.' Cambiar #ciencia por #congelamientocerebral (sigue en 5 hashtags) y empezar la descripción de YouTube con 'Congelamiento cerebral:'."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": null,
+   "que": "Material insuficiente para verificar la URL pública del MP4: checks.json guarda 'url_mp4': '206' (parece el código HTTP, no la URL) y caption.md, en 'Datos para Metricool' (líneas 25-29), no lista el 'media' que irá en los 3 posts, así que no se puede comprobar que sea el asset del release 'ep01'.",
+   "arreglo": "Agregar en 'Datos para Metricool' la línea 'media: <URL del asset MP4 del release ep01>' y que el chequeo guarde la URL y el código por separado."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": null,
+   "que": "caption.md líneas 14 y 22: el crédito 'Z-Anatomy (CC BY-SA 4.0) · BodyParts3D, DBCLS (CC BY-SA 2.1 JP)' nombra las licencias pero no trae el enlace a la licencia ni a la fuente, que CC BY-SA pide cuando es razonablemente posible.",
+   "arreglo": "En el primer comentario y en la descripción de YouTube agregar los enlaces de las licencias (creativecommons.org/licenses/by-sa/4.0 y creativecommons.org/licenses/by-sa/2.1/jp) y de Z-Anatomy/BodyParts3D, según studio/plantilla/LICENCIAS_ANATOMIA.md."
+  }
+ ],
+ "eventos": [],
+ "resumen": "Los textos de IG/TikTok y el primer comentario son fieles al guion y no tienen faltas, pero el paquete no pasa: siguen las 2 fallas bloqueantes de checks.json (madeForKids pendiente y TikTok sin título), y la descripción de YouTube no tiene enlaces, le falta una fuente y cambia el mecanismo del dolor. Se confirmó con búsqueda que las 4 URL existen; su contenido no se volvió a leer (WebFetch bloqueado) porque eso se revisa en la etapa 1."
+}

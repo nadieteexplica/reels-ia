@@ -107,8 +107,11 @@ Se crea `jobs/voz/NNNN-epNN-slug.json` (NNNN es correlativo, mira el último en 
 ## 4. Storyboard (antes de animar)
 Se arma una tabla en `storyboard.md`:
 
-| # | Tiempo | Frase de la voz | Plano (tipo) | Acción / actuación | Cámara | SFX | Llamado en pantalla |
-|---|---|---|---|---|---|---|---|
+| # | Tiempo | Frase de la voz | Plano (tipo) | Acción / actuación | Cámara | SFX | Llamado en pantalla | Origen |
+|---|---|---|---|---|---|---|---|---|
+
+- **Origen** (obligatorio, lo revisa el auditor): `render` (Blender), `kling` (máx. 3 por video: manos con objetos o en la cara) o `biblioteca` (reacción ya hecha). Una mano con objeto marcada `render` no pasa la puerta 3.
+- **Plano (tipo)** empieza con la escala: G, M, P, D o I (interior).
 
 ### Ritmo
 - Cada plano dura 1,2–2,5 s (25–50 planos por minuto).
@@ -187,11 +190,11 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 ## 8. Render (con dos OK de Tomás antes de gastar horas)
 Regla nacida del Ep. 1 (19-oct-2026): **nunca se renderiza el video completo sin que Tomás haya aprobado el look.**
 1. **Cuadros de estilo (≈30 min):** un cuadro HD por escenario nuevo (plaza, interior del cuerpo, etc.). Tomás los aprueba o pide cambios. Cambiar acá es barato.
-2. **Hoja de contacto propia:** 1 cuadro por plano a baja resolución, revisada por Claude (encuadre, manos, objetos, caras) antes de mandar el render.
+2. **Hoja de contacto propia:** 1 cuadro por plano a baja resolución, revisada por Claude (encuadre, manos, objetos, caras) antes de mandar el render. Los cuadros de estilo y los de partida para Kling pasan además la **puerta 4 del auditor** (`docs/AUDITOR.md`).
 3. **Render completo**, dos caminos (720×1280 con eliminación de ruido, se amplía a 1080×1920 al armar):
    - **GPU arrendada (RunPod, preferido):** `render-gpu.yml`. El pod arma la escena, renderiza con OptiX (~1,4 s por cuadro en una RTX A5000), mete los clips de Kling, hace post/audio/video y sube el MP4 a la prerelease `gpu-<run>` y a `epNN-borrador`. ~1 h por video, ~USD 0,3–0,5. El pod se borra solo y el workflow lo borra igual. Saldo cargado por Tomás, sin Auto-Pay.
    - **GitHub Actions (gratis, de respaldo):** `render.yml`, 16 partes (deja 4 máquinas libres para Kling y RunPod; con 20 se bloquea todo lo demás). ~1,5–2 h.
-4. **Revisión independiente + OK de Tomás** sobre el MP4. Las correcciones se re-renderizan en la GPU (rápido) o, en Actions, sólo esos planos (`lista` + `base_run`).
+4. **Puerta 6 del auditor + OK de Tomás** sobre el MP4. Las correcciones se re-renderizan en la GPU (rápido) o, en Actions, sólo esos planos (`lista` + `base_run`).
 5. **Encode:** H.264 High, yuv420p, CRF 18 y `+faststart`.
 - **EEVEE** (motor en tiempo real) sólo sirve con tarjeta gráfica; en los servidores gratis es 3× más lento que Cycles (probado el 19-oct).
 - Los logs de Actions no se pueden leer desde el espacio de trabajo: todo lo que haya que revisar (errores, log del pod) se sube a la prerelease del run.
@@ -233,14 +236,16 @@ Regla nacida del Ep. 1 (19-oct-2026): **nunca se renderiza el video completo sin
 - [ ] Nunca pasan más de 2 s sin un cambio en pantalla (corte o transformación).
 - [ ] El final empalma con el inicio.
 
-### 9.3 Revisión independiente (obligatoria)
-- **Quién revisa:** un subagente que no participó del video.
+### 9.3 Revisión independiente (obligatoria) → el auditor
+Desde el 19-oct-2026 la revisión independiente la hace el **auditor por etapas** (`docs/AUDITOR.md`, `tools/auditor/`): revisa guion, voz, storyboard, cuadros, clips de Kling, video final, paquete y proceso, cada uno como puerta. Lo de abajo es lo que mira en el video final (puerta 6).
+- **Quién revisa:** subagentes que no participaron del video: uno por tramo de ≤9 planos y uno global.
 - **Cómo se lanza:** como subagente, con los materiales y sin tu opinión ni tu autoevaluación.
 - **Qué recibe:**
   - el guion con sus fuentes,
   - la hoja de contacto (1 cuadro por segundo),
   - una **tira de 6 cuadros por plano**, para juzgar movimiento y actuación,
   - la tabla de subtítulos contra `words.json` (palabra, inicio, fin, posición de la caja),
+  - los eventos de los detectores automáticos (pantalla vacía, algo que aparece o desaparece de golpe, cambios de luz dentro del plano), con su "antes | después",
   - las estadísticas de audio: LUFS, true peak y dB de diferencia entre voz y música,
   - este manual.
 - **Cómo puntúa:** de 1 a 10, cada uno con un comentario concreto, en:
@@ -253,7 +258,8 @@ Regla nacida del Ep. 1 (19-oct-2026): **nunca se renderiza el video completo sin
   7. **Audio:** ¿la mezcla y el volumen están bien?
   8. **Precisión:** ¿cada dato está respaldado?
 - **Regla de aprobación:**
-  - Si algún criterio queda bajo 8, se corrige y se revisa otra vez, hasta 3 rondas.
+  - Todas las notas ≥8 y **ningún bloqueante** (dedos u objetos que flotan o atraviesan, algo que aparece de golpe, pantalla vacía, personaje distinto, cara tapada, dato sin respaldo, interior confuso, lista negra, estilo rechazado, faltas de ortografía).
+  - Si no pasa, se corrige en el orden de la lista de arreglos y se revisa otra vez, hasta 3 rondas.
   - Si sigue sin llegar, se descarta y se explica por qué.
 
 ---

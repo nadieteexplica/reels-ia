@@ -1,0 +1,16 @@
+[
+ {
+  "id": "voz",
+  "prompt": "tools/auditor/prompts/2-voz.md",
+  "alcance": "voz completa",
+  "materiales": [
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/2-voz/r2/materiales/voz.md",
+   "studio/episodios/ep01-congelamiento-cerebral/guion.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "voz.json"
+ }
+]

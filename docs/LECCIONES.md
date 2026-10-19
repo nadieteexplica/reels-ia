@@ -54,7 +54,21 @@ Resultado: se publicó el 19-oct a las 16:35 en Instagram, TikTok y YouTube, per
 
 ### Pendiente para el próximo video
 1. **Biblioteca de reacciones** del protagonista (sorpresa, dolor, risa, pensar, tomar algo, señalar), hecha una vez con Kling y reusada sin gastar unidades.
-2. **Auditor** que revise cada etapa mientras se trabaja (lo diseña Tomás en un chat nuevo, partiendo de este documento).
+2. ~~**Auditor** que revise cada etapa mientras se trabaja~~: listo el 19-oct (`docs/AUDITOR.md`). Ver la sección siguiente.
 3. **Guiones pensados para la herramienta:** máximo 2–3 planos con objetos en la mano; el resto, anatomía o planos sin objetos.
 4. **RunPod con 2–3 pods en paralelo**, para que un video completo tome ~20–30 min.
 5. Medir las métricas del Ep. 1 a las 48 h y a los 7 días (`PUBLICADOS.md`).
+
+## Auditor — lo que salió al construirlo y calibrarlo con el Ep. 1 (19-oct-2026)
+
+| # | Qué pasó | Causa | Solución | Regla que queda |
+|---|---|---|---|---|
+| 26 | La v3 (interior "asqueroso", dedos flotando, cono que aparece) **pasó el QA automático completo** (`qa.txt`: PASA) | `tools/qa.py` sólo mide formato, volumen, negros y congelados | Auditor por etapas: detectores + revisores independientes | El QA técnico no es control de calidad; nada avanza sin la puerta del auditor |
+| 27 | El video **publicado** tiene 0,6 s de pantalla vacía (52,9–53,5 s: fondo azul y sólo el subtítulo, antes de que caigan las letras) y nadie lo vio | Las letras del plano 23 parten fuera de cuadro | El detector de pantalla vacía lo marca como bloqueante | Ningún plano parte vacío: el título 3D entra desde el primer cuadro |
+| 28 | Los clips de Kling que se usaron en el Ep. 1 tienen defectos dentro del tramo usado (cara que se "derrite" y ojos de caricatura en el plano 9, vasos que cambian de material en el 17) | La revisión de clips no se hizo cuadro por cuadro con la ficha al lado | Puerta 5: 8 cuadros + zoom donde hay movimiento + tramo usable por clip | Un clip sólo entra con su tramo usable aprobado |
+| 29 | `entrega/caption.md` del repo quedó con `madeForKids: pendiente` y sin título de TikTok, aunque lo publicado sí los llevaba | Se arregló directo en las llamadas a Metricool y no en el archivo | La puerta 7 lee el archivo | Lo que se publica sale de `caption.md`; si se cambia algo al publicar, se cambia ahí primero |
+| 30 | El 18-oct a las 22:45 corrían **40 máquinas** de Actions a la vez (dos renders de 20) | Se lanzó un render sin cancelar el anterior | El auditor de proceso cuenta las máquinas con la API de GitHub | Máx. 16 máquinas; antes de lanzar un render, cancelar el anterior |
+| 31 | `render.yml` subía el MP4 al Release público solo, apenas pasaba el QA | `publicar: true` por defecto | Ahora `false`; el Release público lo llena `release.yml` después del OK | Al Release `epNN` sólo llega lo aprobado por el auditor y por Tomás |
+| 32 | La primera revisión de la voz dijo que los "..." no hacían pausa (0,12 s) y era falso: el silencio real era 0,43 s | La alineación de ElevenLabs mete el silencio dentro de la palabra | `voz.md` lleva el silencio real medido con `silencedetect` | Las pausas se miden en el audio, no en la alineación |
+| 33 | Los artefactos de Actions (renders viejos) no se pueden bajar desde el espacio de trabajo | Se sirven desde un host bloqueado | `traer-artefacto.yml` los copia a una prerelease | Para revisar una versión vieja, traerla a una prerelease |
+| 34 | En planos generales (fila de voluntarios) el revisor no alcanzaba a ver los dedos | Grilla de 8 cuadros chicos | Zoom automático donde hay movimiento (`*_detalle.jpg`) | Si el revisor dice "material insuficiente", se mejora el material, no se aprueba |

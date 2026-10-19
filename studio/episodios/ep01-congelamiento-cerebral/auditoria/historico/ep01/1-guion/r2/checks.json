@@ -1,0 +1,30 @@
+{
+ "fallas": [
+  {
+   "que": "guion.md no anota el puntaje de la idea (IDEAS.md §2, mínimo 32 en datos)",
+   "evidencia": "",
+   "bloqueante": false
+  }
+ ],
+ "avisos": [
+  {
+   "que": "tema de salud sin 'si te pasa seguido, consulta' (revisar si corresponde)",
+   "evidencia": ""
+  },
+  {
+   "que": "cifra 'trece' sin fuente al lado en la verificación",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "palabras": 207,
+  "duracion_estimada_s": 69.7,
+  "pausas": 4,
+  "fuentes": [
+   "livescience.com",
+   "my.clevelandclinic.org",
+   "popsci.com"
+  ],
+  "afirmaciones_verificadas": 8
+ }
+}

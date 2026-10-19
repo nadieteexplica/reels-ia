@@ -1,0 +1,79 @@
+{
+ "fallas": [
+  {
+   "que": "falta la columna 'Origen' (render / kling / biblioteca) en el storyboard",
+   "evidencia": "",
+   "bloqueante": false
+  },
+  {
+   "que": "8 planos con manos y objetos o manos en la cara ([1, 3, 8, 9, 16, 18, 26, 29]): máximo 2–3 de Kling, el resto de la biblioteca o sin objeto",
+   "evidencia": "",
+   "bloqueante": false
+  },
+  {
+   "que": "plano 4: interior con corte/cráneo (la regla es 'cabeza de vidrio' de perfil, sin cortes)",
+   "evidencia": "Entramos por la frente: cerebro tibio; un copo de nieve rebota en el cráneo",
+   "bloqueante": false
+  },
+  {
+   "que": "plano 10: interior con corte/cráneo (la regla es 'cabeza de vidrio' de perfil, sin cortes)",
+   "evidencia": "Corte de la cabeza: el helado toca el paladar, escarcha azul se expande",
+   "bloqueante": false
+  }
+ ],
+ "avisos": [
+  {
+   "que": "plano 10 dura 3.9 s sin transformación escrita (nunca más de 2 s sin cambio)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 11 dura 2.6 s sin transformación escrita (nunca más de 2 s sin cambio)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 12 dura 3.1 s sin transformación escrita (nunca más de 2 s sin cambio)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 14 dura 2.8 s sin transformación escrita (nunca más de 2 s sin cambio)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 18 dura 2.8 s sin transformación escrita (nunca más de 2 s sin cambio)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 21 dura 2.7 s sin transformación escrita (nunca más de 2 s sin cambio)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 23 dura 3.6 s sin transformación escrita (nunca más de 2 s sin cambio)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 27 dura 3.6 s sin transformación escrita (nunca más de 2 s sin cambio)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 29 dura 3.2 s sin transformación escrita (nunca más de 2 s sin cambio)",
+   "evidencia": ""
+  },
+  {
+   "que": "4 menciones de transiciones especiales (máximo 2)",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "planos": 29,
+  "planos_con_manos_estimados": [
+   1,
+   3,
+   8,
+   9,
+   16,
+   18,
+   26,
+   29
+  ]
+ }
+}

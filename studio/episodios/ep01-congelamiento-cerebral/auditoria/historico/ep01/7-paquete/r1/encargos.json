@@ -1,0 +1,16 @@
+[
+ {
+  "id": "paquete",
+  "prompt": "tools/auditor/prompts/7-paquete.md",
+  "alcance": "textos de publicación",
+  "materiales": [
+   "studio/episodios/ep01-congelamiento-cerebral/entrega/caption.md",
+   "studio/episodios/ep01-congelamiento-cerebral/guion.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "paquete.json"
+ }
+]

@@ -7,3 +7,4 @@ studio/**/log_*.txt
 *.blend
 *.blend1
 assets/
+__pycache__/

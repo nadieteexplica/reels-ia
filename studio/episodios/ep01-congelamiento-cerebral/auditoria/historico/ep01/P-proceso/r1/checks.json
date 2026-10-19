@@ -1,0 +1,351 @@
+{
+ "fallas": [
+  {
+   "que": "no hay bitácora del proceso (auditoria/proceso.jsonl): no se puede comprobar ninguna hora prometida, ningún chequeo de 15 min ni el gasto",
+   "evidencia": "",
+   "bloqueante": true
+  },
+  {
+   "que": "'render 39296381979' corrió 97 min y nadie lo revisó cada 15 min",
+   "evidencia": "14:42–16:18",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-gpu 39293827883' corrió 111 min y nadie lo revisó cada 15 min",
+   "evidencia": "14:24–16:14",
+   "bloqueante": false
+  },
+  {
+   "que": "'render 39289119147' corrió 132 min y nadie lo revisó cada 15 min",
+   "evidencia": "13:51–16:04",
+   "bloqueante": false
+  },
+  {
+   "que": "'render 39267362199' corrió 62 min y nadie lo revisó cada 15 min",
+   "evidencia": "11:15–12:17",
+   "bloqueante": false
+  },
+  {
+   "que": "'render 39254716198' corrió 113 min y nadie lo revisó cada 15 min",
+   "evidencia": "09:46–11:39",
+   "bloqueante": false
+  },
+  {
+   "que": "'render 39228037449' corrió 41 min y nadie lo revisó cada 15 min",
+   "evidencia": "06:10–06:51",
+   "bloqueante": false
+  },
+  {
+   "que": "'render 39223447490' corrió 29 min y nadie lo revisó cada 15 min",
+   "evidencia": "05:32–06:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'render 39188758540' corrió 409 min y nadie lo revisó cada 15 min",
+   "evidencia": "23:11–05:59",
+   "bloqueante": false
+  },
+  {
+   "que": "'render 39183934647' corrió 45 min y nadie lo revisó cada 15 min",
+   "evidencia": "22:08–22:53",
+   "bloqueante": false
+  },
+  {
+   "que": "'render 39183924558' corrió 44 min y nadie lo revisó cada 15 min",
+   "evidencia": "22:08–22:51",
+   "bloqueante": false
+  },
+  {
+   "que": "40 máquinas de Actions corriendo a la vez a las 22:45 (máx. 16: deja 4 libres para Kling y RunPod)",
+   "evidencia": "18-10 22:45",
+   "bloqueante": false
+  }
+ ],
+ "avisos": [
+  {
+   "que": "'kling 39294443189' terminó en failure a las 14:30 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render-gpu 39293827883' terminó en cancelled a las 16:14 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render-gpu 39290485467' terminó en failure a las 14:01 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render-gpu 39290325620' terminó en failure a las 14:00 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39289119147' terminó en cancelled a las 16:04 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39286993114' terminó en cancelled a las 13:52 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39253275639' terminó en failure a las 09:37 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39223447490' terminó en cancelled a las 06:01 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39187713252' terminó en cancelled a las 23:07 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39183934647' terminó en cancelled a las 22:53 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39183924558' terminó en cancelled a las 22:51 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39183013178' terminó en failure a las 21:57 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39180369639' terminó en failure a las 21:21 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render 39178842212' terminó en failure a las 21:00 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "trabajos": [
+   {
+    "id": "release 39310635437",
+    "desde": "19-10 16:23",
+    "hasta": "19-10 16:24",
+    "estado": "success"
+   },
+   {
+    "id": "release 39310612716",
+    "desde": "19-10 16:23",
+    "hasta": "19-10 16:23",
+    "estado": "success"
+   },
+   {
+    "id": "render 39296381979",
+    "desde": "19-10 14:42",
+    "hasta": "19-10 16:18",
+    "estado": "success"
+   },
+   {
+    "id": "kling 39294723739",
+    "desde": "19-10 14:30",
+    "hasta": "19-10 14:32",
+    "estado": "success"
+   },
+   {
+    "id": "kling 39294443189",
+    "desde": "19-10 14:28",
+    "hasta": "19-10 14:30",
+    "estado": "failure"
+   },
+   {
+    "id": "render-gpu 39293827883",
+    "desde": "19-10 14:24",
+    "hasta": "19-10 16:14",
+    "estado": "cancelled"
+   },
+   {
+    "id": "kling 39293103189",
+    "desde": "19-10 14:19",
+    "hasta": "19-10 14:23",
+    "estado": "success"
+   },
+   {
+    "id": "kling 39292821788",
+    "desde": "19-10 14:17",
+    "hasta": "19-10 14:20",
+    "estado": "success"
+   },
+   {
+    "id": "kling 39291026472",
+    "desde": "19-10 14:04",
+    "hasta": "19-10 14:06",
+    "estado": "success"
+   },
+   {
+    "id": "render-gpu 39290639291",
+    "desde": "19-10 14:02",
+    "hasta": "19-10 14:07",
+    "estado": "success"
+   },
+   {
+    "id": "render-gpu 39290485467",
+    "desde": "19-10 14:01",
+    "hasta": "19-10 14:01",
+    "estado": "failure"
+   },
+   {
+    "id": "kling 39290400429",
+    "desde": "19-10 14:00",
+    "hasta": "19-10 14:02",
+    "estado": "success"
+   },
+   {
+    "id": "render-gpu 39290325620",
+    "desde": "19-10 13:59",
+    "hasta": "19-10 14:00",
+    "estado": "failure"
+   },
+   {
+    "id": "render 39289119147",
+    "desde": "19-10 13:51",
+    "hasta": "19-10 16:04",
+    "estado": "cancelled"
+   },
+   {
+    "id": "kling 39288131628",
+    "desde": "19-10 13:45",
+    "hasta": "19-10 13:55",
+    "estado": "success"
+   },
+   {
+    "id": "render 39286993114",
+    "desde": "19-10 13:37",
+    "hasta": "19-10 13:52",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render 39267362199",
+    "desde": "19-10 11:15",
+    "hasta": "19-10 12:17",
+    "estado": "success"
+   },
+   {
+    "id": "render 39254716198",
+    "desde": "19-10 09:46",
+    "hasta": "19-10 11:39",
+    "estado": "success"
+   },
+   {
+    "id": "render 39253275639",
+    "desde": "19-10 09:35",
+    "hasta": "19-10 09:37",
+    "estado": "failure"
+   },
+   {
+    "id": "render 39228037449",
+    "desde": "19-10 06:10",
+    "hasta": "19-10 06:51",
+    "estado": "success"
+   },
+   {
+    "id": "render 39223447490",
+    "desde": "19-10 05:32",
+    "hasta": "19-10 06:01",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render 39188758540",
+    "desde": "18-10 23:11",
+    "hasta": "19-10 05:59",
+    "estado": "success"
+   },
+   {
+    "id": "render 39187713252",
+    "desde": "18-10 22:57",
+    "hasta": "18-10 23:07",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render 39183934647",
+    "desde": "18-10 22:08",
+    "hasta": "18-10 22:53",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render 39183924558",
+    "desde": "18-10 22:08",
+    "hasta": "18-10 22:51",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render 39183421463",
+    "desde": "18-10 22:01",
+    "hasta": "18-10 22:05",
+    "estado": "success"
+   },
+   {
+    "id": "render 39183013178",
+    "desde": "18-10 21:56",
+    "hasta": "18-10 21:57",
+    "estado": "failure"
+   },
+   {
+    "id": "render 39180369639",
+    "desde": "18-10 21:20",
+    "hasta": "18-10 21:21",
+    "estado": "failure"
+   },
+   {
+    "id": "secretos 39179064593",
+    "desde": "18-10 21:03",
+    "hasta": "18-10 21:03",
+    "estado": "action_required"
+   },
+   {
+    "id": "secretos 39179017168",
+    "desde": "18-10 21:03",
+    "hasta": "18-10 21:03",
+    "estado": "action_required"
+   },
+   {
+    "id": "render 39178842212",
+    "desde": "18-10 21:00",
+    "hasta": "18-10 21:00",
+    "estado": "failure"
+   },
+   {
+    "id": "voz 39173438551",
+    "desde": "18-10 19:42",
+    "hasta": "18-10 19:43",
+    "estado": "success"
+   },
+   {
+    "id": "voz 39162262189",
+    "desde": "18-10 17:12",
+    "hasta": "18-10 17:13",
+    "estado": "success"
+   },
+   {
+    "id": "voz 39160277174",
+    "desde": "18-10 16:46",
+    "hasta": "18-10 16:47",
+    "estado": "success"
+   },
+   {
+    "id": "voz 39160087079",
+    "desde": "18-10 16:43",
+    "hasta": "18-10 16:44",
+    "estado": "success"
+   },
+   {
+    "id": "voz 39159813895",
+    "desde": "18-10 16:40",
+    "hasta": "18-10 16:40",
+    "estado": "success"
+   },
+   {
+    "id": "voz 39159631980",
+    "desde": "18-10 16:37",
+    "hasta": "18-10 16:37",
+    "estado": "success"
+   }
+  ],
+  "maquinas_pico": 40,
+  "gasto": {},
+  "kling_unidades_restantes": 54
+ }
+}

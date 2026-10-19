@@ -1,0 +1,94 @@
+[
+ {
+  "id": "kling1",
+  "prompt": "tools/auditor/prompts/5-kling.md",
+  "alcance": "p17_vasos_a, p17_vasos_b, p18_vol_a",
+  "materiales": [
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p17_vasos_a.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p17_vasos_a_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p17_vasos_a_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p17_vasos_b.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p17_vasos_b_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p17_vasos_b_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p18_vol_a.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p18_vol_a_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p18_vol_a_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/clips.json",
+   "studio/personaje/ficha.jpg"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "kling1.json"
+ },
+ {
+  "id": "kling2",
+  "prompt": "tools/auditor/prompts/5-kling.md",
+  "alcance": "p1_cono_a, p26_taza_a, p26_taza_b",
+  "materiales": [
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p1_cono_a.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p1_cono_a_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p1_cono_a_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_a.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_a_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_a_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_b.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_b_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_b_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/clips.json",
+   "studio/personaje/ficha.jpg"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "kling2.json"
+ },
+ {
+  "id": "kling3",
+  "prompt": "tools/auditor/prompts/5-kling.md",
+  "alcance": "p26_taza_c, p26_taza_d, p26_taza_e",
+  "materiales": [
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_c.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_c_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_c_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_d.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_d_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_d_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_e.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_e_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p26_taza_e_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/clips.json",
+   "studio/personaje/ficha.jpg"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "kling3.json"
+ },
+ {
+  "id": "kling4",
+  "prompt": "tools/auditor/prompts/5-kling.md",
+  "alcance": "p30_cono_a, p3_frente_b, p9_cono_a",
+  "materiales": [
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p30_cono_a.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p30_cono_a_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p30_cono_a_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p3_frente_b.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p3_frente_b_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p3_frente_b_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p9_cono_a.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p9_cono_a_detalle.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/p9_cono_a_inicio.jpg",
+   "studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/ep01/5-kling/r2/materiales/clips.json",
+   "studio/personaje/ficha.jpg"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "kling4.json"
+ }
+]

@@ -114,7 +114,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **Interior del cuerpo ("cabeza de vidrio"), aprobado por Tomás el 19-oct:** perfil fijo, fondo azul noche, anatomía real de Z-Anatomy; se ve y brilla sólo lo que nombra la voz. Reglas en el manual §8.
 - **Manos con objetos y reacciones → Kling** (API oficial, secreto `KILING_SECRET`, workflow `kling.yml`). En Blender los dedos flotaban; Tomás lo rechazó dos veces. Kling parte de cuadros nuestros y no se usa para anatomía.
 - **Render en GPU → RunPod** (secreto `RUNPOD_API_KEY`, workflow `render-gpu.yml`). Probado el 19-oct: RTX A5000, ~1,4 s por cuadro a 720p/16 muestras, el pod se borra solo.
-- **Proceso (desde el 19-oct):** cuadros de estilo → OK de Tomás → render → revisión propia plano a plano + auditor → OK de Tomás. Claude revisa su trabajo antes de mostrarlo y vigila cada 15 min lo que corre en paralelo (el 19-oct dos trabajos en paralelo murieron una hora sin que nadie lo notara).
+- **Proceso (desde el 19-oct):** cada etapa pasa una puerta del **auditor** (`docs/AUDITOR.md`) antes de avanzar: guion → voz → storyboard → cuadros (los de estilo nuevos van a Tomás ya aprobados) → Kling → render → video final → paquete, más el proceso (bitácora). A Tomás le llegan sólo los cuadros de estilo de escenarios nuevos y el video final, los dos con APROBADO. Claude revisa su trabajo antes de mostrarlo y vigila cada 15 min lo que corre en paralelo (el 19-oct dos trabajos en paralelo murieron una hora sin que nadie lo notara).
 - **Estudio de referencias virales:** `docs/REFERENCIAS.md` (Tomás sigue mandando videos).
 - **Protagonista:** `studio/personaje/` (MakeHuman CC0 + esqueleto `mixamorig:*`, 34 shape keys de expresión).
 - **Ep. 1 — Congelamiento cerebral (helado):** guion v2 con fuentes, voz de 71,7 s, escena `escena/build_ep01.py`, post `escena/post.py`, audio `escena/audio.py`, clips de Kling en `kling/`, textos en `entrega/caption.md`. Estado de la entrega: ver el final de esta sección.
@@ -140,10 +140,10 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
     - Descartadas: `Agony` (demasiado dramática).
 - **Ep. 1 publicado** el 19-oct-2026 a las 16:35 en Instagram, TikTok y YouTube (links en `docs/PUBLICADOS.md`). Métricas a las 48 h (21-oct) y a los 7 días (26-oct).
 - **Próximos pasos:**
-  1. Auditor que revise cada etapa mientras se trabaja (Tomás lo diseña en un chat nuevo partiendo de `docs/LECCIONES.md`).
+  1. ~~Auditor por etapas~~: listo el 19-oct (`docs/AUDITOR.md`, `tools/auditor/`, calibración en `docs/AUDITOR_CALIBRACION.md`).
   2. Biblioteca de reacciones del protagonista con Kling (una vez; después se reusa sin gastar unidades).
   3. RunPod con 2–3 pods en paralelo (video completo en ~20–30 min).
-  4. Ep. 2 con el proceso nuevo: guion pensado para 2–3 planos de Kling como máximo, cuadros de estilo, render en GPU, revisión propia + auditor.
+  4. Ep. 2 con el proceso nuevo: guion pensado para 2–3 planos de Kling como máximo, storyboard con columna `Origen`, cuadros de estilo, render en GPU y las 8 puertas del auditor con bitácora desde el primer minuto.
   5. Tareas programadas (A: producción; B: revisión del jueves) cuando el Ep. 2 salga sin intervención.
 
 ## Decisiones pendientes de Tomás
@@ -160,6 +160,8 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Documentos
 - `proyecto/INSTRUCCIONES.md`: instrucciones del proyecto en Claude.
 - `docs/LECCIONES.md`: errores de producción, cómo se solucionaron y la regla que queda (leer antes de cada video).
+- `docs/AUDITOR.md`: el auditor independiente por etapas (puertas, chequeos, bloqueantes, formato del veredicto, bitácora del proceso). Código y prompts en `tools/auditor/`.
+- `docs/AUDITOR_CALIBRACION.md`: el auditor corrido a ciegas sobre las versiones del Ep. 1 y qué errores detectó.
 - `docs/MANUAL_PRODUCCION.md`: estándar de cada video (guion, verificación, voz, storyboard, look, subtítulos, audio, render, QA, entrega, publicación).
 - `docs/AUTOMATIZACION.md`: cadencia, fases, ciclo semanal, prompts de las tareas programadas y manejo de fallas.
 - `docs/IDEAS.md`: dónde buscar, puntaje, lista negra y banco de ideas.

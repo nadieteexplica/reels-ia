@@ -1,0 +1,58 @@
+{
+ "fallas": [
+  {
+   "que": "E42 fondo liso sin contenido fuera de los subtítulos",
+   "evidencia": "52.87–53.53 s, plano 23",
+   "bloqueante": true
+  }
+ ],
+ "avisos": [
+  {
+   "que": "'ganglioneuralgia esfenopalatina.' no sale en subtítulos (plano 23): confirmar que está como título grande en pantalla",
+   "evidencia": "53.45 s"
+  }
+ ],
+ "datos": {
+  "qa": [
+   "✅ duración 62–75 s 72.10 s",
+   "✅ 1080×1920 1080×1920",
+   "✅ 30 fps 30.00",
+   "✅ H.264 yuv420p h264 yuv420p",
+   "✅ pesa < 100 MB 57.4 MB",
+   "✅ volumen −14 ±1 LUFS -14.2 LUFS",
+   "✅ true peak ≤ −1 dBTP -1.5 dBTP",
+   "✅ sin negros > 0,5 s []",
+   "✅ sin congelados > 0,5 s []",
+   "RESULTADO: PASA"
+  ],
+  "subtitulos": {
+   "palabras": 207,
+   "en_pantalla": 205,
+   "faltan": 2,
+   "desfase": 0,
+   "fuera_de_zona": 0,
+   "sobran": 0,
+   "tiempos": {
+    "163": [
+     53.45,
+     54.51,
+     "ganglioneuralgia"
+    ],
+    "164": [
+     54.58,
+     55.65,
+     "esfenopalatina."
+    ]
+   }
+  },
+  "audio": {
+   "lufs": -14.2,
+   "true_peak": -1.5,
+   "voz_db": -13.2,
+   "pausas_db": -27.3,
+   "voz_menos_pausas_db": 14.1,
+   "nota": "pausas = música + efectos sin voz; con ducking la música sube en las pausas, así que esto es un mínimo"
+  },
+  "planos": 35
+ }
+}

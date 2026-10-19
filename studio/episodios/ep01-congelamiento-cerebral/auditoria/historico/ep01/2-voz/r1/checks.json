@@ -1,0 +1,49 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ritmo de 4.5 palabras/s en 'y te lo comes como si alguien te lo fuera a quitar.'",
+   "evidencia": "11.92 s"
+  },
+  {
+   "que": "ritmo de 3.8 palabras/s en 'Al volver a su tamaño, el dolor se iba.'",
+   "evidencia": "44.15 s"
+  },
+  {
+   "que": "ritmo de 3.9 palabras/s en 'Lo que duele son los vasos y nervios que lo rodean.'",
+   "evidencia": "49.19 s"
+  },
+  {
+   "que": "ritmo de 1.6 palabras/s en 'Su nombre científico es ganglioneuralgia esfenopalatina.'",
+   "evidencia": "51.98 s"
+  },
+  {
+   "que": "ritmo de 2.0 palabras/s en 'aunque, seamos honestos, nadie come helado lento.'",
+   "evidencia": "68.21 s"
+  },
+  {
+   "que": "se escucha 'sas' donde el guion dice 'zas'",
+   "evidencia": ""
+  },
+  {
+   "que": "se escucha 'rebovinemos' donde el guion dice 'rebobinemos'",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 71.66,
+  "palabras_por_s": 2.89,
+  "creditos_restantes": 38810,
+  "asr_coincidencia": 0.99,
+  "asr_diferencias": [
+   [
+    "zas",
+    "sas"
+   ],
+   [
+    "rebobinemos",
+    "rebovinemos"
+   ]
+  ]
+ }
+}

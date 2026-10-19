@@ -1,0 +1,11 @@
+{
+ "nota": "Topes por video y saldos de paquetes. Los cambia sólo Tomás (o Claude con su OK).",
+ "por_video": {"kling_unidades": 8, "runpod_usd": 0.5, "eleven_creditos": 2600},
+ "paquetes": {
+  "kling": {"total": 100, "compra": "2026-10-19", "vence": "2026-11-18", "usado_antes_de_bitacora": 46,
+            "nota": "46 unidades en el Ep. 1 (LECCIONES #20), antes de que existiera la bitácora"},
+  "runpod": {"saldo_inicial_usd": 10, "auto_pay": false, "usado_antes_de_bitacora": null,
+             "nota": "gasto del Ep. 1 no quedó medido; revisar el saldo en la consola de RunPod (lo ve Tomás)"},
+  "eleven": {"creditos_mes": 40000, "fuente": "out/status.json"}
+ }
+}

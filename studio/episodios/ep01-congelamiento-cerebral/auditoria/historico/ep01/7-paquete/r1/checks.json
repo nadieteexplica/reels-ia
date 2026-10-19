@@ -1,0 +1,26 @@
+{
+ "fallas": [
+  {
+   "que": "madeForKids no está en 'no' (decidido por Tomás el 19-oct)",
+   "evidencia": "madeforkids`: **pendiente de tomas**, `isaigeneratedcontent: false` (estilo no realista).",
+   "bloqueante": true
+  },
+  {
+   "que": "falta tiktokData.title (Metricool rechaza TikTok sin título)",
+   "evidencia": "",
+   "bloqueante": true
+  }
+ ],
+ "avisos": [],
+ "datos": {
+  "hashtags": [
+   "#curiosidades",
+   "#cerebro",
+   "#helado",
+   "#ciencia",
+   "#nadieteexplica"
+  ],
+  "titulo_youtube": "Por qué te duele la cabeza con el helado 🍦",
+  "url_mp4": "206"
+ }
+}

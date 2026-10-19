@@ -25,7 +25,8 @@ Antes de encender las tareas programadas, todo esto tiene que estar hecho y prob
    Tiene que ser reutilizable: un episodio nuevo solo cambia el guion, el storyboard y los planos especiales.
 3. [ ] **Render en GitHub Actions**: un workflow `render.yml` con matriz paralela que toma `studio/episodios/epNN-slug/` y devuelve el MP4 (si usa assets privados, clona `nadieteexplica/assets` con el secreto `TOKEN`). Hay que medir el tiempo por video.
 4. [ ] **Hosting del MP4**: probar si Metricool acepta la URL de GitHub Release. Si no, usar `raw.githubusercontent.com` desde `out/videos/`.
-5. [ ] **Script de QA automático**: `tools/qa.py` con los checks de la sección 9.1 del manual.
+5. [x] **Script de QA automático**: `tools/qa.py` con los checks de la sección 9.1 del manual.
+5b. [x] **Auditor por etapas** (`docs/AUDITOR.md`, `tools/auditor/`), calibrado a ciegas con las versiones del Ep. 1 (`docs/AUDITOR_CALIBRACION.md`). Listo el 19-oct-2026.
 6. [ ] **Decisiones de Tomás** (ver "Decisiones pendientes" en `CONTEXTO.md`): `madeForKids`, (el repo privado `nadieteexplica/assets` con el secreto `TOKEN` ya está listo).
 7. [ ] **Metricool:** revisar que el plan de Tomás permita ~39 posts al mes (3 videos × 3 redes × ~4,3 semanas) y la programación vía API. Si no, se le avisa.
 8. [ ] **Ep. 1 de punta a punta**:
@@ -49,23 +50,24 @@ Ya hecho: el workflow de voz procesa solo los jobs nuevos de cada push, falla en
    - Buscar según `IDEAS.md` §1.
    - Puntuar y elegir **3 temas** con el umbral de su línea (`IDEAS.md` §2: 32 en datos, 25 en historias), en la proporción datos/historias de `CONTEXTO.md`, variados (distinto gancho, área y formato).
    - Darle prioridad a las preguntas de la comunidad.
-4. **Guiones:** verificar con 2 fuentes, escribir en 190–215 palabras y guardar en `studio/episodios/epNN-slug/guion.md`.
-5. **Voces:** 3 jobs en un solo push. Esperar a Actions, revisar `out/status.json`, armar `words.json` con `tools/words.py` y controlar duraciones (62–75 s).
-6. **Storyboards:** uno por episodio. Marcar qué planos van con Kling (máx. 2–3 por video: manos con objetos o reacciones con las manos en la cara) y cuáles salen de la biblioteca de reacciones.
-7. **Cuadros de estilo** de lo nuevo (si hay escenario nuevo) y revisión propia.
-8. **Kling:** cuadros de partida con la mano libre → `kling.yml` → revisión de cada clip en 8 cuadros → `kling/planos.json`.
-9. **Render:** en GPU (`render-gpu.yml`, RunPod); de respaldo, `render.yml` en Actions con 16 partes. Los planos de Kling no se renderizan. Mientras corre, **revisar el avance cada 15 min** (`progreso.txt` en la prerelease) y dar horas solo con esos datos.
-10. **QA:** automático, revisión propia plano por plano y revisión independiente (8 o más en todo). Se corrige hasta 3 rondas; si no pasa, ese video se cambia o se entregan 2.
-11. **Paquete:** MP4 con URL pública (`release.yml` lo copia al Release `epNN`), versión liviana de 720p para el mensaje, `caption.md` y portada.
-12. **Un solo mensaje a Tomás:**
+4. **Guiones:** verificar con 2 fuentes, escribir en 190–215 palabras y guardar en `studio/episodios/epNN-slug/guion.md` (con el puntaje de la idea y para qué acción es). → **Puerta 1 del auditor** (`auditar.py preparar <ep> guion` → `lanzar` → `cerrar`). Sin APROBADO no se genera la voz.
+5. **Voces:** 3 jobs en un solo push. Esperar a Actions, revisar `out/status.json`, armar `words.json` con `tools/words.py` y controlar duraciones (62–75 s). `asr.yml` transcribe cada voz sola al terminar `voz.yml`. → **Puerta 2** (voz).
+6. **Storyboards:** uno por episodio, con la columna `Origen` (render / kling / biblioteca). Máx. 2–3 planos de Kling (manos con objetos o reacciones con las manos en la cara); el resto, biblioteca o sin objeto. → **Puerta 3** (storyboard), antes de gastar en cuadros, Kling o render.
+7. **Cuadros de estilo** de lo nuevo (si hay escenario nuevo) → **Puerta 4** → recién aprobados se le muestran a Tomás (es el único mensaje intermedio, y sólo si hay escenario nuevo).
+8. **Kling:** cuadros de partida con la mano libre → **Puerta 4** (`--nota` con el plano y la acción) → `kling.yml` → **Puerta 5** (8 cuadros por clip) → `kling/planos.json` sólo con clips aprobados.
+9. **Render:** en GPU (`render-gpu.yml`, RunPod); de respaldo, `render.yml` en Actions con 16 partes. Los planos de Kling no se renderizan. Mientras corre, **revisar el avance cada 15 min** (`progreso.txt` en la prerelease) y dar horas solo con esos datos. Todo va a la **bitácora** (`tools/auditor/bitacora.py`): cada hora prometida con su dato, cada chequeo de 15 min, cada aviso y cada gasto.
+10. **QA = Puerta 6 del auditor** sobre el borrador (`--video`, `--planos`, `--subs` de la prerelease `epNN-borrador`): QA técnico + detectores + revisores por tramo + revisor global, 8 o más en los 8 criterios y ningún bloqueante. Se corrige en el orden de la lista de arreglos, hasta 3 rondas; si no pasa, ese video se cambia o se entregan 2.
+11. **Paquete:** versión liviana de 720p para el mensaje, `caption.md` (con `madeForKids` no y título de TikTok) y portada → **Puerta 7** (paquete) y **Puerta P** (proceso: bitácora, horas, chequeos, máquinas, gasto).
+12. **Un solo mensaje a Tomás** (sólo con las puertas 1–7 y P en APROBADO):
     - los 3 videos (como archivos),
+    - para cada uno, una línea del auditor: rondas que necesitó y qué se arregló (el `veredicto.md` queda en el repo),
     - para cada uno: gancho, horario propuesto (mejor hora de Metricool por red) y texto del post,
     - la pregunta: "¿OK a los 3? (o dime cuál no)".
-13. **Programar:** con OK, crear los posts programados en Metricool (en las 3 redes; TikTok exige `tiktokData.title`) y anotarlos en `PUBLICADOS.md`. Después de la hora, confirmar en Metricool que quedaron "Published".
+13. **Programar:** con OK, `release.yml` copia el MP4 al Release `epNN`; `auditar.py preparar <ep> paquete --url <URL>` comprueba que la URL responde; recién ahí se crean los posts programados en Metricool (en las 3 redes; TikTok exige `tiktokData.title`) y anotarlos en `PUBLICADOS.md`. Después de la hora, confirmar en Metricool que quedaron "Published".
     - **El OK se da en esta misma sesión. Sin OK no se programa nada.**
     - Si Tomás responde tarde, los videos se programan desde el siguiente día hábil, manteniendo la separación de 1 día entre posts.
     - Si no responde, la revisión del jueves se lo recuerda en una línea. Los videos sin publicar quedan para la semana siguiente y esa semana se producen menos videos nuevos.
-14. Anotar en `docs/LECCIONES.md` cualquier error nuevo con su regla. Hacer commit y push de todo.
+14. Anotar en `docs/LECCIONES.md` cualquier error nuevo con su regla; si fue un error que el auditor dejó pasar, ajustar su prompt o chequeo y volver a calibrar (`docs/AUDITOR.md` → Mantenimiento). Hacer commit y push de todo (incluidos los `veredicto.*` de cada puerta).
 
 ### B) Revisión de mitad de semana — jueves ~18:50
 - Métricas tempranas de los videos de lunes y miércoles.
@@ -87,7 +89,7 @@ Cinco líneas para Tomás:
 
 **Tarea A — "Nadie te explica · producción semanal"** (domingo 09:52, CRON_TZ=America/Santiago)
 ```
-Eres el productor de la cuenta "Nadie te explica". Clona github.com/nadieteexplica/reels-ia. Lee primero proyecto/INSTRUCCIONES.md: sus secciones Seguridad y Publicación mandan sobre todo. Después lee CONTEXTO.md, docs/MANUAL_PRODUCCION.md, docs/AUTOMATIZACION.md, docs/IDEAS.md y docs/PUBLICADOS.md. Ejecuta el "Ciclo semanal A) Producción semanal" de AUTOMATIZACION.md completo: métricas → 3 ideas → guiones verificados → voces → storyboards → animación y render → QA con revisión independiente → paquete. Mándale a Tomás un solo mensaje con los 3 videos y los textos, y pídele OK. Solo con su OK explícito programa los posts en Metricool. Nunca programes un post sin el OK explícito de Tomás en esta sesión. Al final actualiza CONTEXTO.md, IDEAS.md y PUBLICADOS.md y haz push. Háblale en español chileno, corto y directo.
+Eres el productor de la cuenta "Nadie te explica". Clona github.com/nadieteexplica/reels-ia. Lee primero proyecto/INSTRUCCIONES.md: sus secciones Seguridad y Publicación mandan sobre todo. Después lee CONTEXTO.md, docs/LECCIONES.md, docs/MANUAL_PRODUCCION.md, docs/AUTOMATIZACION.md, docs/AUDITOR.md, docs/IDEAS.md y docs/PUBLICADOS.md. Ejecuta el "Ciclo semanal A) Producción semanal" de AUTOMATIZACION.md completo: métricas → 3 ideas → guiones → voces → storyboards → cuadros y Kling → render → paquete, pasando cada puerta del auditor (tools/auditor/auditar.py, subagentes en segundo plano) antes de avanzar, y anotando la bitácora del proceso. Nada le llega a Tomás sin APROBADO. Mándale a Tomás un solo mensaje con los 3 videos y los textos, y pídele OK. Solo con su OK explícito programa los posts en Metricool. Nunca programes un post sin el OK explícito de Tomás en esta sesión. Al final actualiza CONTEXTO.md, IDEAS.md y PUBLICADOS.md y haz push. Háblale en español chileno, corto y directo.
 ```
 
 **Tarea B — "Nadie te explica · revisión jueves"** (jueves 18:52, CRON_TZ=America/Santiago)
@@ -101,6 +103,8 @@ Clona github.com/nadieteexplica/reels-ia. Lee primero proyecto/INSTRUCCIONES.md 
 | Actions falla (voz o render): workflow en rojo o `error` en `out/status.json` | Reintentar 2 veces (con `workflow_dispatch`, sin crear jobs nuevos). Si sigue, avisar en 1 línea con la causa y la propuesta |
 | Créditos de ElevenLabs bajo 8.000 | Avisar a Tomás y bajar a 2 videos esa semana |
 | Un video no pasa el QA en 3 rondas | Entregar 2 videos y explicar. Nunca mandar uno malo |
+| Un revisor del auditor se corta (Tomás escribió a mitad de turno, error) | `auditar.py estado` muestra qué encargo falta; `lanzar` da el texto para relanzarlo. No se pierde nada: cada encargo escribe su resultado una sola vez al final |
+| Se cree que el auditor se equivocó | Nunca se edita un veredicto. Se corrige el prompt o el chequeo, se anota en `LECCIONES.md` y se corre una ronda nueva |
 | Metricool rechaza la URL o el post | Probar el hosting alternativo y avisar |
 | vidIQ sin créditos | Seguir con la web y los comentarios. vidIQ no es imprescindible |
 | Duda sobre un dato | El tema no sale hasta tener 2 fuentes. Se cambia por otro del banco |

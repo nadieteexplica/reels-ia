@@ -1,0 +1,28 @@
+{
+ "fallas": [
+  {
+   "que": "8 planos del video salen de Kling [1, 3, 9, 17, 18, 26, 30, 33] (máximo 3)",
+   "evidencia": "",
+   "bloqueante": false
+  }
+ ],
+ "avisos": [
+  {
+   "que": "p18_vol_a: la instrucción usa 'pain' (Kling la puede rechazar)",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "planos_kling": [
+   1,
+   3,
+   9,
+   17,
+   18,
+   26,
+   30,
+   33
+  ],
+  "clips": 12
+ }
+}
