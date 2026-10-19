@@ -215,9 +215,10 @@ def parent_bone(ob, rig_, bone):
 clone_parts = ["Cuerpo", "Polera", "Jeans", "Zapatillas", "Ojo.L", "Ojo.R", "Dientes", "Lengua"]
 shirt_cols = [(0.95, 0.95, 0.92), (0.05, 0.45, 0.85), (0.95, 0.75, 0.05), (0.2, 0.7, 0.3), (0.6, 0.2, 0.8), (0.95, 0.4, 0.6), (0.1, 0.6, 0.6)]
 clones = []
-glass_m = P.mat("Vidrio", (0.95, 0.98, 1.0), rough=0.02, transmission=1.0)
-water_m = P.mat("Agua", (0.75, 0.9, 1.0), rough=0.0, transmission=1.0)
-ice_m = P.mat("Hielo", (0.9, 0.97, 1.0), rough=0.08, transmission=0.9)
+# vaso plástico transparente con agua helada: con transmisión pura a 12 muestras se veía negro; con alfa se lee claro
+glass_m = P.mat("Vidrio", (0.88, 0.95, 1.0), rough=0.12, alpha=0.38, coat=0.6)
+water_m = P.mat("Agua", (0.55, 0.80, 1.0), rough=0.05, alpha=0.45)
+ice_m = P.mat("Hielo", (0.92, 0.97, 1.0), rough=0.1, alpha=0.8)
 straw_m = P.stripes_mat("Bombilla", "coral", "blanco", n=14, mode="z")
 for i in range(13):
     x = (i - 6) * 0.62

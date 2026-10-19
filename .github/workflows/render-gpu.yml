@@ -1,0 +1,95 @@
+name: render-gpu
+# Render en GPU arrendada (RunPod): el pod arma la escena, renderiza, hace el post y el video, y sube el resultado a la
+# prerelease gpu-<run_id>. Este job sólo crea el pod, lo vigila y lo BORRA siempre al final (también si algo falla).
+# Secretos: RUNPOD_API_KEY (RunPod) y TOKEN (repo privado de animaciones). Ninguno se imprime.
+on:
+  workflow_dispatch:
+    inputs:
+      episodio:
+        default: "ep01-congelamiento-cerebral"
+      res:
+        default: "720x1280"
+      samples:
+        default: "16"
+      cuadros:
+        description: "Rango a-b para pruebas. Vacío = video completo"
+        default: ""
+      gpus:
+        description: "GPUs aceptadas, en orden de preferencia"
+        default: "NVIDIA GeForce RTX 4090,NVIDIA GeForce RTX 3090,NVIDIA RTX A5000,NVIDIA L4,NVIDIA RTX A4000"
+      nube:
+        description: "COMMUNITY (más barata) o SECURE"
+        default: "COMMUNITY"
+permissions:
+  contents: write
+concurrency: render-gpu-${{ github.event.inputs.episodio }}
+env:
+  EP: ${{ github.event.inputs.episodio }}
+jobs:
+  gpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 130
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prerelease del run
+        id: rel
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          TAG="gpu-${{ github.run_id }}"
+          gh release create "$TAG" --prerelease --target "${{ github.sha }}" --title "Render GPU ${{ github.run_id }}" --notes "Interno. No publicar."
+          UP=$(gh api "repos/${{ github.repository }}/releases/tags/$TAG" --jq .upload_url | sed 's/{.*}//')
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "up=$UP" >> "$GITHUB_OUTPUT"
+      - name: Crear pod
+        id: pod
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+          ASSETS_TOKEN: ${{ secrets.TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+          RES: ${{ github.event.inputs.res }}
+          SAMPLES: ${{ github.event.inputs.samples }}
+          CUADROS: ${{ github.event.inputs.cuadros }}
+          GPUS: ${{ github.event.inputs.gpus }}
+          NUBE: ${{ github.event.inputs.nube }}
+          UPLOAD_URL: ${{ steps.rel.outputs.up }}
+        run: |
+          ID=$(python studio/plantilla/runpod_pod.py crear)
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+      - name: Esperar al pod
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: python studio/plantilla/runpod_pod.py esperar "${{ steps.pod.outputs.id }}" "${{ steps.rel.outputs.tag }}" "${{ github.repository }}"
+      - name: Borrar pod (siempre)
+        if: always() && steps.pod.outputs.id != ''
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+        run: python studio/plantilla/runpod_pod.py borrar "${{ steps.pod.outputs.id }}"
+      - name: Resultado
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          T="${{ steps.rel.outputs.tag }}"
+          mkdir -p r && cd r
+          gh release download "$T" -p "pod.log" -p "estado.txt" -p "qa.txt" 2>/dev/null || true
+          echo "--- últimas líneas del pod ---"; tail -40 pod.log 2>/dev/null || echo "(sin log)"
+          echo "--- qa ---"; cat qa.txt 2>/dev/null || true
+          test "$(cat estado.txt 2>/dev/null)" = "0"
+      - name: Borrador para revisión
+        if: success() && github.event.inputs.cuadros == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          T="${{ steps.rel.outputs.tag }}"
+          B="$(echo "$EP" | cut -d- -f1)-borrador"
+          mkdir -p b && cd b
+          gh release download "$T" -p "$EP.mp4" -p "contacto.jpg" -p "qa.txt" -p "subs_log.json"
+          gh release view "$B" >/dev/null 2>&1 || gh release create "$B" --prerelease --title "$EP (borrador para revisión)" --notes "Borrador interno para la revisión. No publicar."
+          gh release upload "$B" * --clobber
