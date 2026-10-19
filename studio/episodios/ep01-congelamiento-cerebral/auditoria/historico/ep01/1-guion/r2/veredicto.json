@@ -1,0 +1,121 @@
+{
+ "etapa": "1-guion",
+ "ronda": 2,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "precision": {
+   "nota": 8,
+   "por_que": "LiveScience 2012 confirma 13 voluntarios, Jorge Serrador (Harvard Medical School), agua helada con bombilla contra el paladar, arteria cerebral anterior que se dilata con el dolor y al contraerse el dolor se va; Cleveland Clinic confirma 'sphenopalatine ganglioneuralgia', 'unos segundos a dos minutos', 'not serious', lengua o pulgar contra el paladar y bebida tibia; Popular Science confirma contracción y luego dilatación y la rama del trigémino a la frente con dolor referido; LiveScience confirma que el cerebro no tiene receptores de dolor propios. El aviso automático de 'trece' es falso positivo: la fila 4 de la tabla tiene '13 voluntarios' con LiveScience. Ninguna cifra redondeada ni exagerada.",
+   "de": "guion"
+  },
+  "gancho": {
+   "nota": 8,
+   "por_que": "Las primeras 7 palabras ('Te comes un helado rápido y... ¡zas!') ponen una sensación física universal antes de los 2 s, y el giro 'Pero el frío nunca tocó tu cerebro' a los ~3–5 s contradice el nombre popular ('se me congeló el cerebro'); no llega a 9 porque es una situación cotidiana y un tema muy cubierto, no una imagen absurda.",
+   "de": "guion"
+  },
+  "claridad": {
+   "nota": 7,
+   "por_que": "El trigémino se explica al decirlo y el loop cierra bien, pero el guion se contradice ('tu cerebro se confunde: cree que el dolor viene de ahí' y 20 s después 'tu cerebro no siente dolor'), mezcla los vasos del paladar con 'una arteria de su cerebro' sin decir cómo se conectan, y usa 'techo de tu boca' y 'paladar' para lo mismo sin unirlos.",
+   "de": "guion"
+  },
+  "compartible": {
+   "nota": 8,
+   "por_que": "Tiene destinatario claro (el amigo o el hijo con el que comes helado, justo antes del verano en Chile), un truco guardable (lengua contra el paladar) y un nombre absurdo para repetir ('ganglioneuralgia esfenopalatina'), más el remate de humor 'nadie come helado lento'.",
+   "de": "guion"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "encabezado de guion.md (no hay línea de puntaje)",
+   "que": "guion.md no anota el puntaje de la idea (IDEAS.md §2, línea datos, mínimo 32/45), así que no se puede comprobar la regla dura; es la falla automática de checks.json",
+   "arreglo": "agregar una línea 'Puntaje: NN/45' con el desglose de los 7 criterios y sus pesos (Curiosidad ×1,5, Universalidad ×1,2, Sorpresa ×1,5, Visual 3D ×1,3, Enseñanza ×1,0, Verificable ×1,0, Compartible ×1,5) y la respuesta a '¿a quién se lo mandan?'",
+   "de": "guion"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "que": "[automático] guion.md no anota el puntaje de la idea (IDEAS.md §2, mínimo 32 en datos)",
+   "donde": "",
+   "arreglo": "cumplir la regla",
+   "de": "checks"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Y lo más loco: tu cerebro no siente dolor.",
+   "que": "se contradice con 'tu cerebro se confunde: cree que el dolor viene de ahí' (el cerebro sí percibe y ubica el dolor); LiveScience dice que el cerebro siente el dolor de todo el cuerpo pero no tiene receptores de dolor propios",
+   "arreglo": "cambiar a 'Y lo más loco: tu cerebro no tiene sensores de dolor.' (10 palabras, total 208)",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada. Justo cuando les dolía, una arteria de su cerebro se ensanchaba.",
+   "que": "el paso anterior habla de los vasos del paladar ('de ahí') y aquí aparece de golpe una arteria del cerebro; 'lo midieron' no deja claro qué midieron ni cómo se conecta con el paladar, y el espectador no sabe qué vaso es el que duele",
+   "arreglo": "unir los dos pasos: p. ej. 'Esa sangre caliente también sube a tu cabeza.' antes del estudio, y 'una arteria detrás de tus ojos se ensanchaba' (LiveScience la ubica detrás de los ojos), manteniendo 190–215 palabras",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Ese cambio brusco lo detecta el trigémino... Una de sus ramas llega a la frente, y tu cerebro se confunde: cree que el dolor viene de ahí.",
+   "que": "la respuesta central al título (por qué duele la frente: trigémino y dolor referido) tiene una sola fuente citada (Popular Science); Cleveland Clinic no menciona nervios. Además, la fila 1 de la tabla atribuye a Cleveland Clinic y Popular Science que 'no es el cerebro el que se enfría', y ninguna lo dice explícitamente",
+   "arreglo": "agregar Johns Hopkins Medicine 'How to Ease Brain Freeze' (https://www.hopkinsmedicine.org/health/articles-and-answers/wellbeing/how-to-ease-brain-freeze: trigémino con rama alta a la frente, dolor referido, contracción y 'rebound dilation', frío en el techo de la boca) a la tabla y a Fuentes, y reescribir la fila 1 como 'el frío actúa en el paladar' citando Hopkins y Cleveland Clinic",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Una de sus ramas llega a la frente, y tu cerebro se confunde: cree que el dolor viene de ahí.",
+   "que": "frase de 20 palabras con dos ideas (también 'Pides el helado más grande del carrito... y te lo comes como si alguien te lo fuera a quitar', 19, y 'Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente', 16, que superan 14 aunque tengan la pausa)",
+   "arreglo": "partir en dos sin cambiar palabras: 'Una de sus ramas llega a la frente. Y tu cerebro se confunde: cree que el dolor viene de ahí.'",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "El helado toca el techo de tu boca y lo enfría de golpe. / aprieta la lengua contra el paladar",
+   "que": "se usan 'techo de tu boca' y 'paladar' para lo mismo sin decir que son lo mismo; un niño de 12 puede no unirlos en el truco final",
+   "arreglo": "presentar los dos términos juntos una vez: 'El helado toca tu paladar, el techo de la boca, y lo enfría.' (13 palabras)",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Dura de segundos a un par de minutos, y no es peligroso.",
+   "que": "aviso automático de salud: Cleveland Clinic dice que el congelamiento no necesita atención médica, pero que si tienes dolores de cabeza frecuentes que duran, hables con un profesional; el guion no lo dice en ningún lado",
+   "arreglo": "no hace falta en la voz; poner 'Si te duele la cabeza seguido, consulta.' en el texto del post o en el primer comentario",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "## Guion (209 palabras, ~70 s)",
+   "que": "el encabezado dice 209 palabras y el guion tiene 207 (checks.json: 207 palabras, 69,7 s)",
+   "arreglo": "corregir el encabezado con el conteo real después de los cambios",
+   "de": "guion"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "tema de salud sin 'si te pasa seguido, consulta' (revisar si corresponde)",
+   "evidencia": ""
+  },
+  {
+   "que": "cifra 'trece' sin fuente al lado en la verificación",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}

@@ -1,0 +1,28 @@
+{
+ "encargo": "kling3",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "manos": {"nota": 4, "por_que": "p26_taza_c: en los 8 cuadros la mano sostiene la taza en garra/pinza desde la base con los dedos abiertos (1,4-2,1 s mano enorme tipo araña), ningún dedo en el asa; d (9: ambas manos envuelven taza y asa, 5 dedos contables en 1,8/3,2/4,6 s) y e (8: puño enganchado al asa con pulgar arriba en 1,4-4,6 s) están bien"},
+  "objeto": {"nota": 5, "por_que": "p26_taza_c: la taza queda apoyada sobre las yemas con el asa libre (0,7 s, 3,5 s, 5,0 s), se lee equilibrada y no agarrada; p26_taza_d: aparece vapor sobre la taza desde 3,5 s pese a 'No steam'; tamaño, color y lado del asa constantes en d y e"},
+  "personaje": {"nota": 6, "por_que": "p26_taza_c 3,5 s: los ojos pasan a redondos y grandes, más caricatura que el cuadro de partida, y un mechón parado aparece en la coronilla y desaparece a 4,3 s; en d y e pelo café oscuro en mechones, polera coral con estrella amarilla y cara iguales a la ficha en los 8 cuadros"},
+  "estabilidad": {"nota": 8, "por_que": "en los 3 clips el fondo del parque queda fijo (árboles y edificio azul en la misma posición en los 8 cuadros), sin texto, sin cortes ni saltos de luz; el personaje se acerca a cámara en c pero la cámara no se mueve"}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "plano": "p26_taza_c", "segundo": "0,0-2,8 s", "que": "agarre en garra desde la base: dedos abiertos (la instrucción pedía 'never spread'), yemas tocando sólo el fondo y el frente de la taza, índice y medio NO pasan por el asa; a 1,4-2,1 s la mano se ve sobredimensionada y la taza se sostiene sólo por las puntas, sin pulgar opuesto: no está agarrada de verdad. El cuadro de partida ya trae este agarre", "arreglo": "descartar p26_taza_c y usar p26_taza_d (0,0-3,2 s). Si se quiere el agarre por asa, rehacer con un cuadro de inicio nuevo donde los dedos ya estén enganchados en el asa"},
+  {"prioridad": 1, "bloqueante": true, "plano": "p26_taza_c", "segundo": "3,5-5,0 s", "que": "al bajar la taza ésta descansa sobre las yemas con el asa libre a la derecha (3,5 s y 5,0 s): se ve balanceada en la punta de los dedos, no tomada", "arreglo": "mismo arreglo: descartar el clip, usar d o e"},
+  {"prioridad": 1, "bloqueante": true, "plano": "p26_taza_c", "segundo": "3,5 s", "que": "un mechón de pelo parado aparece en la coronilla a 3,5 s y desaparece a 4,3 s; en el mismo cuadro los ojos se vuelven grandes y redondos (cara distinta a la del cuadro de partida y la ficha)", "arreglo": "descartar el clip (no hay tramo usable)"},
+  {"prioridad": 2, "bloqueante": false, "plano": "p26_taza_c", "segundo": "3,5-5,0 s", "que": "la expresión final es de susto/preocupación (cejas levantadas, ojos muy abiertos, boca abierta), no de alivio como pide la instrucción y el plano", "arreglo": "usar d, que sí cierra los ojos y exhala con alivio (3,5-5,0 s)"},
+  {"prioridad": 2, "bloqueante": false, "plano": "p26_taza_d", "segundo": "3,5-5,0 s", "que": "aparece vapor sobre la taza (visible a 3,5 s, 4,3 s y 5,0 s) aunque la instrucción decía 'No steam'; queda fuera del tramo usable 0,0-3,2 s", "arreglo": "cortar el clip en 3,2 s; si el plano necesita el exhalar con alivio, rehacer pidiendo 'no steam, no vapor' o borrar el vapor en post"},
+  {"prioridad": 3, "bloqueante": false, "plano": "p26_taza_d", "segundo": "1,8-2,8 s", "que": "con la taza inclinada se ve el fondo como un disco beige hundido con borde blanco; un espectador atento podría leerlo como té (taza abierta abajo)", "arreglo": "dejarlo; en un rehacer pedir 'white glazed bottom' o bajar un poco la saturación del fondo en post"},
+  {"prioridad": 2, "bloqueante": false, "plano": "p26_taza_e", "segundo": "5,0 s", "que": "vapor tenue sobre el borde de la taza (prohibido en la instrucción); fuera del tramo usable 0,0-4,6 s", "arreglo": "cortar en 4,6 s"},
+  {"prioridad": 3, "bloqueante": false, "plano": "p26_taza_e", "segundo": "4,3-5,0 s", "que": "al bajar la taza la cara es de sorpresa (ojos abiertos, boca abierta mostrando dientes) más que de alivio; además toma la taza por el asa y no por el cuerpo como pedía la instrucción (el agarre igual se ve natural)", "arreglo": "si el plano necesita alivio claro, preferir d; e sirve como alternativa hasta 4,3 s"}
+ ],
+ "eventos": [],
+ "clips": [
+  {"clip": "p26_taza_c", "usable": null, "sirve": false, "por_que": "no hay tramo de 1,5 s sin bloqueante: el agarre en garra/pinza sin asa está en los 8 cuadros (viene del cuadro de partida) y a 3,5 s salta un mechón y cambia la cara"},
+  {"clip": "p26_taza_d", "usable": [0.0, 3.2], "sirve": true, "por_que": "la taza entra desde abajo ya tomada con ambas manos (0,7 s), dedos envolviendo cuerpo y asa en 0,7/1,4/1,8/2,1/2,8/3,2 s, sorbo real con el borde en la boca, cara y polera iguales a la ficha; el vapor empieza a 3,5 s"},
+  {"clip": "p26_taza_e", "usable": [0.0, 4.6], "sirve": true, "por_que": "la taza entra desde abajo enganchada al asa (0,7 s) y no se suelta: puño en el asa con pulgar arriba en 1,4/1,8/2,1/2,8/3,2/3,5/4,3/4,6 s, sorbo a 2,1-3,5 s, personaje estable; vapor tenue a 5,0 s"}
+ ],
+ "resumen": "p26_taza_c no sirve (agarre en garra desde la base heredado del cuadro de partida, taza balanceada en las yemas y mechón/cara que cambian a 3,5 s). d sirve 0,0-3,2 s (mejor opción: dos manos y sorbo limpio) y e sirve 0,0-4,6 s; ambos traen vapor al final pese a 'No steam'."
+}
