@@ -1,4 +1,4 @@
 [
- {"nombre": "p3_dolor_a", "inicio": "cuadros/p3_inicio.jpg", "modelo": "kling-3.0", "duracion": 5, "resolucion": "1080p",
-  "prompt": "3D animated cartoon style, exactly the same young man, same orange t-shirt with a yellow star, same sunny park background, static camera. Sudden brain freeze: his hands come down and he presses both palms flat against his forehead, fingers on his skin, rubbing it, eyes squeezed shut, teeth clenched in sharp pain, bending forward a little. The hands really touch the forehead and never pass through the head or the hair. Keep the reddish glow on his forehead. Same character, no text, no new objects, no cuts."}
+ {"nombre": "p3_frente_b", "inicio": "cuadros/p3_inicio.jpg", "modelo": "kling-3.0", "duracion": 5, "resolucion": "1080p",
+  "prompt": "3D animated cartoon style, exactly the same young man, same orange t-shirt with a yellow star, same sunny park background, static camera. Funny brain freeze moment after eating ice cream too fast: he lowers his hands and places both palms gently on his forehead, fingers resting on the skin, scrunching his face with eyes shut, then rubs his forehead. The hands really touch the forehead and never pass through the head or the hair. Same character, no text, no new objects, no cuts."}
 ]
