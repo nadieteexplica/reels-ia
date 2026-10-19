@@ -102,17 +102,17 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - Cabeza y cuello de Mixamo suavizados un 30 % (la captura exagera; Tomás notó el cuello torcido).
   - Render de prueba en el workspace: ~9 s por cuadro a 405×720 con 12 muestras (2 núcleos). El render final va a Actions.
   - Pendiente: piel menos plástica, bordes de manga, mirada, sincronía de boca, contacto mano–cara (`Thinking` no llega al mentón).
-- **Mixamo:** 14 FBX en los archivos del proyecto de Claude (no en el repo). `Talking` bajó la versión **sentado**: falta "General Conversation" (de pie). `Drinking` está repetida.
+- **Mixamo:** 13 FBX en el repo privado `nadieteexplica/assets` (`mixamo/`); copia en `tomasnaser20-star/assets`. `Talking` bajó la versión **sentado**: falta "General Conversation" (de pie). `Drinking` está repetida.
 - **Muestras de estilo A/B/C** (`studio/muestras/`): históricas, ya no se usan.
 - **Ep. 1 — Congelamiento cerebral (helado), v2 (idea de Tomás: carrito de helado):**
   - Guion de 209 palabras con fuentes (`guion.md`), voz `out/tts/ep01-congelamiento-cerebral.mp3` (**71,7 s**), `words.json` y `storyboard.md`.
   - Escena completa en `escena/build_ep01.py`: 34 planos (plaza con carrito, interior de la cabeza con piel de vidrio, macro del paladar, laboratorio con 13 voluntarios, arteria, letras gigantes), cortes cada ~2 s, loop final.
   - Post (`escena/post.py`): subtítulos palabra por palabra con palabras clave en cian, etiquetas, medidor de dolor y rebobinado VHS. Audio (`escena/audio.py`): voz + marimba sintetizada con ducking (~19 dB bajo la voz) + efectos, −14 LUFS.
   - Textos del post en `entrega/caption.md`.
-  - **Falta:** render final en Actions (`.github/workflows/render.yml`), QA y revisión independiente. Bloqueado hasta que exista el repo privado `nadieteexplica/assets` con el secreto `ASSETS_TOKEN`.
+  - **Falta:** render final en Actions (`.github/workflows/render.yml`), QA y revisión independiente. El acceso a las FBX ya funciona (18-oct).
   - Tiempos de render medidos en el workspace (2 núcleos): un cuadro 1080×1920 con 24 muestras tarda ~7 min.
 - **Mixamo (referencia):**
-  - **Dónde van las FBX:** al repo **privado** `nadieteexplica/assets`, que crea Tomás en la Fase 0. El render los clona con el secreto `ASSETS_TOKEN`. Nunca van al repo público.
+  - **Dónde van las FBX:** repo **privado** `nadieteexplica/assets`, carpeta `mixamo/`. El render los clona con el secreto `TOKEN` (token fino "render" de la organización, solo lectura de ese repo, vence el 17-nov-2026: hay que renovarlo). Nunca van al repo público.
   - Configuración: FBX Binary, 30 fps, keyframe reduction none, y "In Place" marcado cuando exista.
   - **Animaciones en Without Skin** (elegidas mirando el catálogo el 18-oct; nombre de búsqueda → descripción en Mixamo):
     - Ep. 1 y base de la biblioteca:
@@ -134,7 +134,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **Próximos pasos:**
   1. Pulir el protagonista (piel, mangas, mirada, boca).
   2. Plantilla de producción (escenarios, biblioteca de acciones y expresiones, subtítulos, SFX y música).
-  3. Render en Actions (necesita el repo privado de assets para las FBX).
+  3. Render en Actions (acceso a las FBX listo).
   4. Hosting y prueba con Metricool.
   5. Ep. 1 de punta a punta (alargar a 62 s o más y regenerar la voz).
   6. Tareas programadas (A: domingo de producción; B: jueves de revisión).
@@ -142,7 +142,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Decisiones pendientes de Tomás
 1. ~~Estilo~~: decidido el 18-oct (semi-realista con Mixamo, personaje propio de cuerpo normal, ~18–20 años).
 2. **Audiencia de YouTube (`madeForKids`):** se recomienda **no**, porque el contenido es de curiosidades para público general, aunque el protagonista sea un niño. La decisión es de Tomás.
-3. Si va Mixamo: crear el repo **privado** `nadieteexplica/assets` y un token de solo lectura como secreto `ASSETS_TOKEN` en `reels-ia`. Claude le da los pasos.
+3. ~~Repo privado de assets y token~~: listo el 18-oct (`nadieteexplica/assets` + secreto `TOKEN`). **Renovar el token antes del 17-nov-2026.**
 
 ## Aprendizajes
 (Se llenan con los datos de cada semana. Ver `docs/PUBLICADOS.md`.)

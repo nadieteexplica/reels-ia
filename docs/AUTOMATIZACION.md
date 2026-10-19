@@ -22,10 +22,10 @@ Antes de encender las tareas programadas, todo esto tiene que estar hecho y prob
    - generador de SFX y música.
 
    Tiene que ser reutilizable: un episodio nuevo solo cambia el guion, el storyboard y los planos especiales.
-3. [ ] **Render en GitHub Actions**: un workflow `render.yml` con matriz paralela que toma `studio/episodios/epNN-slug/` y devuelve el MP4 (si usa assets privados, clona `nadieteexplica/assets` con `ASSETS_TOKEN`). Hay que medir el tiempo por video.
+3. [ ] **Render en GitHub Actions**: un workflow `render.yml` con matriz paralela que toma `studio/episodios/epNN-slug/` y devuelve el MP4 (si usa assets privados, clona `nadieteexplica/assets` con el secreto `TOKEN`). Hay que medir el tiempo por video.
 4. [ ] **Hosting del MP4**: probar si Metricool acepta la URL de GitHub Release. Si no, usar `raw.githubusercontent.com` desde `out/videos/`.
 5. [ ] **Script de QA automático**: `tools/qa.py` con los checks de la sección 9.1 del manual.
-6. [ ] **Decisiones de Tomás** (ver "Decisiones pendientes" en `CONTEXTO.md`): `madeForKids`, y el repo privado `nadieteexplica/assets` con el secreto `ASSETS_TOKEN` si se usa Mixamo.
+6. [ ] **Decisiones de Tomás** (ver "Decisiones pendientes" en `CONTEXTO.md`): `madeForKids`, (el repo privado `nadieteexplica/assets` con el secreto `TOKEN` ya está listo).
 7. [ ] **Metricool:** revisar que el plan de Tomás permita ~39 posts al mes (3 videos × 3 redes × ~4,3 semanas) y la programación vía API. Si no, se le avisa.
 8. [ ] **Ep. 1 de punta a punta**:
    - alargar el guion a 62 s o más (sumar un dato, por ejemplo el estudio de Harvard de 2012 o cuánto dura),
