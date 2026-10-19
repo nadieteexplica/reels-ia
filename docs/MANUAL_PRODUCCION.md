@@ -188,19 +188,28 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 Regla nacida del Ep. 1 (19-oct-2026): **nunca se renderiza el video completo sin que Tomás haya aprobado el look.**
 1. **Cuadros de estilo (≈30 min):** un cuadro HD por escenario nuevo (plaza, interior del cuerpo, etc.). Tomás los aprueba o pide cambios. Cambiar acá es barato.
 2. **Hoja de contacto propia:** 1 cuadro por plano a baja resolución, revisada por Claude (encuadre, manos, objetos, caras) antes de mandar el render.
-3. **Render completo** en GitHub Actions: **720×1280, 12 muestras con eliminación de ruido**, se amplía a 1080×1920 al armar (en el celular se ve igual; ~4× más rápido que HD). 40 partes en paralelo: ~1–1,5 h.
-4. **Revisión independiente + OK de Tomás** sobre el MP4. Si algo se corrige, se re-renderizan **sólo esos planos** (`lista` con rangos + `base_run`) y se rearma.
+3. **Render completo**, dos caminos (720×1280 con eliminación de ruido, se amplía a 1080×1920 al armar):
+   - **GPU arrendada (RunPod, preferido):** `render-gpu.yml`. El pod arma la escena, renderiza con OptiX (~1,4 s por cuadro en una RTX A5000), mete los clips de Kling, hace post/audio/video y sube el MP4 a la prerelease `gpu-<run>` y a `epNN-borrador`. ~1 h por video, ~USD 0,3–0,5. El pod se borra solo y el workflow lo borra igual. Saldo cargado por Tomás, sin Auto-Pay.
+   - **GitHub Actions (gratis, de respaldo):** `render.yml`, 16 partes (deja 4 máquinas libres para Kling y RunPod; con 20 se bloquea todo lo demás). ~1,5–2 h.
+4. **Revisión independiente + OK de Tomás** sobre el MP4. Las correcciones se re-renderizan en la GPU (rápido) o, en Actions, sólo esos planos (`lista` + `base_run`).
 5. **Encode:** H.264 High, yuv420p, CRF 18 y `+faststart`.
 - **EEVEE** (motor en tiempo real) sólo sirve con tarjeta gráfica; en los servidores gratis es 3× más lento que Cycles (probado el 19-oct).
+- Los logs de Actions no se pueden leer desde el espacio de trabajo: todo lo que haya que revisar (errores, log del pod) se sube a la prerelease del run.
 
-### Objetos en la mano (obligatorio)
-- Todo lo que el personaje sostiene va **dentro del puño** (entre pulgar y dedos, `cup_matrix`), nunca flotando ni pegado a la palma.
-- Lo que va a la boca (taza, vaso, bombilla, cono) **llega a los labios**: con IK hacia una meta en la boca durante el sorbo o la mordida.
-- Se revisa en la hoja de contacto con un cuadro **en el momento del contacto** de cada objeto.
+### Objetos en la mano y reacciones (obligatorio) → Kling
+- Desde el 19-oct, los planos donde alguien **agarra algo** (cono, taza, vasos) o **reacciona con las manos en la cara** se hacen con **Kling** (API oficial image-to-video 3.0, 1080p, 5 s, sin audio) partiendo de un cuadro nuestro. En Blender los dedos flotaban o atravesaban los objetos (Tomás lo rechazó dos veces).
+- **Cuadro de partida con la mano libre** (o el objeto apoyado) y que Kling traiga el objeto: si el cuadro trae un agarre malo, Kling lo copia.
+- Prompt en inglés: mismo estilo/personaje/fondo, cámara fija, acción exacta, "fingers wrapped around…", "never floats, never passes through…", sin texto ni objetos nuevos.
+- Se revisa cada clip en 8 cuadros: dedos, objeto pegado a la mano, cara/personaje igual, nada que cambie de forma o color. Si no pasa, se repite (máx. 2) o el plano se rehace sin objeto en la mano.
+- `kling/planos.json` dice qué clip reemplaza qué plano (`desde`, `velocidad`); el armado lo aplica antes del post. Para el loop, el último plano usa `last_frame` = cuadro 1.
+- **Nunca** para anatomía ni para inventar datos visuales. Costo: 4 unidades por clip de 5 s (paquete de 100).
 
-### Interior del cuerpo (obligatorio)
-- Nada de órganos inventados con formas simples: se usa el **kit de anatomía real** (`studio/plantilla/anatomia_kit.py` → Z-Anatomy, CC BY-SA 4.0) montado en la cabeza del personaje (`anatomia_real.py`).
-- Las explicaciones se **animan con activaciones**: pulsos de luz que viajan por los nervios, zonas que se encienden, vasos que laten.
+### Interior del cuerpo (obligatorio) — "cabeza de vidrio", aprobado por Tomás el 19-oct
+- **Anatomía real** (`studio/plantilla/anatomia_kit.py` → Z-Anatomy, CC BY-SA 4.0) montada en la cabeza del personaje (`anatomia_real.py`). Nada de órganos inventados.
+- **Siempre de perfil** (misma cámara lateral con leve 3/4 y push-in lento), fondo azul noche, piel de vidrio. Sin cráneo, sin cortes, sin ojos de caricatura.
+- **Se ve y brilla sólo lo que la voz nombra en ese momento** (paladar azul hielo/naranjo, nervio amarillo con pulso, arterias rojas que laten, corteza que se enciende, frente roja); lo demás apagado u oculto. Nervios y arterias sólo del lado que mira a la cámara.
+- Lo importante queda **sobre la franja de subtítulos**; la etiqueta (píldora) apunta con flecha calculada desde Blender (`flechas` en `*_planos.json`). Resplandor (bloom) en el post.
+- Entrada a la cabeza: la cámara parte de frente y gira a perfil mientras se ve el interior.
 - Crédito obligatorio en descripción y primer comentario (ver `studio/plantilla/LICENCIAS_ANATOMIA.md`).
 
 ---
