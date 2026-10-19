@@ -117,7 +117,7 @@ jobs:
       - name: Render ${{ matrix.a }}-${{ matrix.b }}
         run: |
           BLEND=$(ls "$OUT"/ep*.blend | head -1) FRAMES=${{ matrix.a }}-${{ matrix.b }} RES=${{ github.event.inputs.res }} \
-          SAMPLES=${{ github.event.inputs.samples }} DIR="$OUT/frames" SKIP="$(python -c "import json,glob; m=json.load(open(glob.glob('$OUT/*_planos.json')[0])); a,b=m['FR']['6']; print(json.dumps(list(range(a,b))))")" \
+          SAMPLES=${{ github.event.inputs.samples }} DIR="$OUT/frames" SKIP="$(python studio/plantilla/saltar.py "$OUT" "studio/episodios/$EP/kling/planos.json")" \
           python studio/plantilla/render_frames.py
           cp "$OUT"/*_planos.json "$OUT/frames/"
       - uses: actions/upload-artifact@v4

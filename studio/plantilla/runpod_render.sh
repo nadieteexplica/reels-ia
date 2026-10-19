@@ -59,11 +59,23 @@ paso "escena"
 PLANOS=$(ls "$OUT"/*_planos.json | head -1)
 END=$(python -c "import json; print(json.load(open('$PLANOS'))['END'] - 1)")
 RANGO=${CUADROS:-1-$END}
-SKIP=$(python -c "import json; m=json.load(open('$PLANOS')); a,b=m['FR']['6']; print(json.dumps(list(range(a,b))))")
+SKIP=$(python repo/studio/plantilla/saltar.py "$OUT" "repo/studio/episodios/$EP/kling/planos.json")
 
 paso "render GPU $RANGO a $RES, $SAMPLES muestras"
 BLEND=$(ls "$OUT"/ep*.blend | head -1) FRAMES=$RANGO RES=$RES SAMPLES=$SAMPLES DIR="$OUT/frames" SKIP="$SKIP" DEVICE=OPTIX \
-  python repo/studio/plantilla/render_frames.py > /tmp/render.log 2>&1 || { tail -40 /tmp/render.log; exit 22; }
+  python repo/studio/plantilla/render_frames.py > /tmp/render.log 2>&1 &
+RPID=$!
+TOTAL=$(python -c "import json,sys; a,b='$RANGO'.split('-'); print(int(b)-int(a)+1-len(json.loads(sys.argv[1])))" "$SKIP")
+PREV=""
+while kill -0 $RPID 2>/dev/null; do   # avance cada 3 min en la prerelease (progreso.txt), para dar horas con datos reales
+  sleep 180
+  N=$(ls "$OUT"/frames/*.png 2>/dev/null | wc -l)
+  echo "$(date -u +%H:%M) UTC · $N de $TOTAL cuadros · $(( ($(date +%s) - T0) / 60 )) min" > /tmp/progreso.txt
+  [ -n "$PREV" ] && curl -s -X DELETE -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/$REPO/releases/assets/$PREV" -o /dev/null
+  PREV=$(curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Content-Type: text/plain" --data-binary @/tmp/progreso.txt \
+    "${UPLOAD_URL}?name=progreso.txt" | python -c "import json,sys; print(json.load(sys.stdin).get('id',''))" 2>/dev/null)
+done
+wait $RPID || { tail -40 /tmp/render.log; exit 22; }
 grep -E "^dispositivo|Fra:1 " /tmp/render.log | head -3
 cp "$PLANOS" "$OUT/frames/"
 paso "render listo: $(ls "$OUT"/frames/*.png | wc -l) cuadros"
