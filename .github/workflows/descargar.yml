@@ -1,0 +1,56 @@
+name: descargar
+# Baja archivos públicos (modelos CC0, texturas) desde sitios que el espacio de trabajo no alcanza y los deja en una prerelease
+# para revisarlos. Sólo para material con licencia revisada (CC0 / CC-BY con crédito); nunca para Mixamo ni nada de pago.
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "URLs separadas por espacio. Opcional: nombre=URL para fijar el nombre del archivo"
+        required: true
+      tag:
+        description: "Prerelease destino"
+        default: "modelos"
+      objaverse:
+        description: "UIDs de Objaverse separados por espacio (se baja el .glb y su ficha con licencia)"
+        default: ""
+permissions:
+  contents: write
+jobs:
+  bajar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar
+        env:
+          URLS: ${{ github.event.inputs.urls }}
+          UIDS: ${{ github.event.inputs.objaverse }}
+        run: |
+          mkdir -p d
+          for item in $URLS; do
+            case "$item" in
+              *=http*) n="${item%%=*}"; u="${item#*=}";;
+              *) u="$item"; n="$(basename "${u%%\?*}")";;
+            esac
+            echo "→ $n  ($u)"
+            curl -fsSL --retry 3 -A "Mozilla/5.0 (nadieteexplica)" -o "d/$n" "$u" || echo "FALLÓ $u" >> d/errores.txt
+          done
+          if [ -n "$UIDS" ]; then
+            pip install -q objaverse
+            python3 - <<'EOF'
+          import json, os, shutil, objaverse
+          uids = os.environ["UIDS"].split()
+          ann = objaverse.load_annotations(uids)
+          json.dump({u: {k: ann[u].get(k) for k in ("name", "license", "uri", "viewerUrl", "user", "faceCount", "animationCount", "tags")} for u in ann},
+                    open("d/objaverse_fichas.json", "w"), ensure_ascii=False, indent=1, default=str)
+          for u, p in objaverse.load_objects(uids=uids, download_processes=4).items():
+              shutil.copy(p, f"d/{u}.glb")
+          EOF
+          fi
+          ls -la d
+      - name: Subir a la prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.event.inputs.tag }}
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$TAG" --notes "Material descargado para revisar (licencias en la ficha del episodio). No publicar."
+          gh release upload "$TAG" d/* --clobber
