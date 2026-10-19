@@ -1,0 +1,6 @@
+[
+ {"nombre": "p26_taza_a", "inicio": "cuadros/p26_inicio.jpg", "modelo": "kling-3.0", "duracion": 5, "resolucion": "1080p",
+  "prompt": "3D animated cartoon style, exactly the same young man, same orange t-shirt with a yellow star, same blurred park background. Static close-up camera. His hand holds the white ceramic mug firmly by its handle, fingers hooked through the handle. He slowly raises the mug to his lips and takes a careful sip of warm tea, then lowers it a little and exhales with relief, closing his eyes for a moment. The mug always stays attached to his hand: it never floats and never passes through the fingers or the face. No steam, no text, no new objects, no cuts."},
+ {"nombre": "p17_vasos_a", "inicio": "cuadros/p17_inicio.jpg", "modelo": "kling-3.0", "duracion": 5, "resolucion": "1080p",
+  "prompt": "3D animated cartoon style, the same group of young men in colorful t-shirts standing in a row in a teal laboratory. The camera slowly pans to the right. Each man holds a small plastic cup of ice water with a straw, fingers wrapped around the cup. They raise the cups and sip ice water through the straws, then lower the cups and wince slightly from the cold. The cups always stay in their hands: they never float and never pass through the fingers. Same characters, same clothes, same lab, no text, no new objects, no cuts."}
+]
