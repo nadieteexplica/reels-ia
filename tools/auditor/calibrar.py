@@ -25,7 +25,9 @@ def problemas(base, etapa):
     rondas = sorted(glob.glob(os.path.join(d, "r*")), key=lambda p: int(p.rsplit("r", 1)[1]))
     for rd in reversed(rondas):
         outs = [f for f in glob.glob(os.path.join(rd, "*.json")) if os.path.basename(f) not in ("checks.json", "encargos.json", "veredicto.json")]
-        if outs or os.path.exists(os.path.join(rd, "checks.json")):
+        encs = comun.leer(os.path.join(rd, "encargos.json"), []) or []
+        completa = all((comun.leer(os.path.join(rd, e["salida"]), {}) or {}).get("completo") for e in encs)
+        if (outs or os.path.exists(os.path.join(rd, "checks.json"))) and (completa or rd == rondas[0]):
             ps = []
             for f in outs:
                 o = comun.leer(f, {})
