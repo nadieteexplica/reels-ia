@@ -57,6 +57,10 @@ if QUIEN == "elenco":
     tp["root"].rotation_euler.z = math.radians(35)
     gd = PJ.aji_guardia(C)
     gd["root"].location = (0.74, 0.08, 0)
+    gd2 = PJ.aji_guardia(C, "AjiGuardiaB")
+    gd2["root"].location = (0.98, 0.08, 0)
+    gd2["root"].rotation_euler.z = math.radians(-20)
+    gd2["lentes"].location.z -= gd2["alto"] * 0.075      # lentes deslizados hasta la nariz: asoman los ojos
 
 if QUIEN in ("pajaro", "ambos"):
     pj = PJ.pajaro(C)
@@ -88,8 +92,8 @@ sc.camera = cam
 cam.data.lens = 60
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
-tgt = {"ambos": Vector((0.01, -0.01, 0.10)), "elenco": Vector((0.20, 0.0, 0.12))}.get(QUIEN, Vector((0, -0.01, 0.12)))
-dist = float(os.environ.get("DIST", {"ambos": 1.25, "elenco": 2.6}.get(QUIEN, 0.95)))
+tgt = {"ambos": Vector((0.01, -0.01, 0.10)), "elenco": Vector((0.32, 0.0, 0.12))}.get(QUIEN, Vector((0, -0.01, 0.12)))
+dist = float(os.environ.get("DIST", {"ambos": 1.25, "elenco": 3.0}.get(QUIEN, 0.95)))
 VISTAS = {"3q": (-35, 8), "frente": (0, 6), "perfil": (-90, 4), "atras": (150, 12)}
 for v in os.environ.get("VISTAS", "3q,frente,perfil").split(","):
     az, el = VISTAS[v]

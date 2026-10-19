@@ -52,12 +52,53 @@ Mándaselo al que se cree inmune al picante. Para el ají... es un ratón más.
 - Penn State (2019) — Milk is the best drink to reduce burn from chili peppers: https://www.psu.edu/news/research/story/milk-best-drink-reduce-burn-chili-peppers
 - Nolden, Lenart y Hayes (2019), *Physiology & Behavior* — Putting out the fire: https://pmc.ncbi.nlm.nih.gov/articles/PMC6620146
 
-## Plan de Kling (máx. 3 planos, decisión de Tomás)
-1. El ratón muerde el ají (parte con el ají en el suelo, frente a él).
-2. Reacción del ratón: ojos llorosos, se abanica la boca con las patas.
-3. El ratón toma leche (de una tapita o un vaso chico apoyado en el suelo).
+## Plan de Kling
+**0 clips** (storyboard v3): el ratón muerde el ají y toma la leche con el hocico, con el ají y el vaso apoyados en la roca, y la reacción es render. Así la llama, el ají y el ratón son los mismos modelos en todos los planos. Tomás había dado un máximo de 3 (morder, reacción, leche).
 
 **Puerta 1:** APROBADO en la r2 (notas 9/9/8/9). De sus arreglos de prioridad 3 se aplicaron sólo los que no tocan el texto de la voz (nota de matices y 2 enlaces de fuentes); "¿Por qué?" y "La tupaya, de China" quedan como se aprobaron (la tupaya sale con su etiqueta en pantalla).
 
 ## Tiempos por frase
-(Se completan con la alineación de la voz.)
+De `words.json` (voz final de 73,6 s, pausas ajustadas). Un renglón por plano del storyboard.
+
+| Plano | Tiempo (s) | Frase |
+|---|---|---|
+| 1 | 0.00–1.71 | Este pájaro se come un ají |
+| 2 | 1.71–3.11 | y ni lo siente. |
+| 3 | 3.11–4.83 | Este ratón lo prueba... |
+| 4 | 4.83–5.91 | y echa fuego. |
+| 5 | 5.91–8.74 | Para el ají, tú y este ratón son lo mismo: |
+| 6 | 8.74–9.64 | mamíferos. |
+| 7 | 9.64–11.51 | Tu lengua tiene sensores de calor, |
+| 8 | 11.51–13.10 | como alarmas de incendio. |
+| 9 | 13.10–15.08 | Suenan con lo que quema de verdad. |
+| 10 | 15.08–16.71 | El ají trae capsaicina, |
+| 11 | 16.71–18.60 | una molécula que las hace sonar. |
+| 12 | 18.60–20.17 | Tu cerebro cree que te quemas, |
+| 13 | 20.17–21.83 | aunque nada esté caliente. |
+| 14 | 21.83–23.56 | Los pájaros tienen la misma alarma, |
+| 15 | 23.56–25.46 | pero la capsaicina no la activa. |
+| 16 | 25.46–26.90 | Sienten el calor... |
+| 17 | 26.90–27.79 | no el picante. |
+| 18 | 27.79–29.30 | ¿Por qué? En Arizona, |
+| 19 | 29.30–31.62 | científicos filmaron un chiltepín, |
+| 20 | 31.62–33.12 | un ají silvestre. |
+| 21 | 33.12–35.11 | Ratones y ratas ni lo tocaban. |
+| 22 | 35.11–36.75 | Los pájaros se lo devoraban. |
+| 23 | 36.75–39.54 | Si se lo comiera, el ratón molería las semillas. |
+| 24 | 39.54–41.37 | El pájaro se las traga enteras, |
+| 25 | 41.37–43.77 | y salen en su caca listas para brotar. |
+| 26 | 43.77–46.61 | Los científicos creen que el picante es un guardia. |
+| 27 | 46.61–48.83 | Espanta a los que destruyen semillas. |
+| 28 | 48.83–49.88 | Y lo más loco: |
+| 29 | 49.88–52.66 | hay un mamífero que casi no lo siente. |
+| 30 | 52.66–54.49 | La tupaya, de China. |
+| 31 | 54.49–56.20 | Un solo cambio en su alarma... |
+| 32 | 56.20–58.42 | y come plantas picantes como si nada. |
+| 33 | 58.42–59.44 | ¿Y tú? |
+| 34 | 59.44–61.84 | Toma leche, aunque sea descremada. |
+| 35 | 61.84–63.91 | En un estudio con 72 personas, |
+| 36 | 63.91–66.19 | fue de lo que más bajó el ardor. |
+| 37 | 66.19–68.42 | Las bebidas con gas funcionaron mal. |
+| 38 | 68.42–71.11 | Mándaselo al que se cree inmune al picante. |
+| 39 | 71.11–72.28 | Para el ají... |
+| 40 | 72.28–73.99 | es un ratón más. |

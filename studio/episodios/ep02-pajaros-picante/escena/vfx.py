@@ -25,14 +25,14 @@ def mat_llama():
     ramp = nt.nodes.new("ShaderNodeValToRGB")
     cr = ramp.color_ramp
     cr.elements[0].position = 0.0
-    cr.elements[0].color = (1.0, 0.80, 0.18, 1)
+    cr.elements[0].color = (1.0, 0.92, 0.70, 1)
     cr.elements[1].position = 1.0
-    cr.elements[1].color = (0.75, 0.04, 0.0, 1)
-    e = cr.elements.new(0.45)
-    e.color = (1.0, 0.30, 0.01, 1)
+    cr.elements[1].color = (0.50, 0.0, 0.02, 1)
+    e = cr.elements.new(0.30)
+    e.color = (1.0, 0.10, 0.04, 1)
     nt.links.new(sep.outputs["Z"], ramp.inputs["Fac"])
     em = nt.nodes.new("ShaderNodeEmission")
-    em.inputs["Strength"].default_value = 3.2
+    em.inputs["Strength"].default_value = 4.0
     nt.links.new(ramp.outputs["Color"], em.inputs["Color"])
     lw = nt.nodes.new("ShaderNodeLayerWeight")
     lw.inputs["Blend"].default_value = 0.45
@@ -45,18 +45,19 @@ def mat_llama():
     return m
 
 
-def lengua_de_fuego(name, largo, ancho, coll, seed=0, curva=0.25):
-    """Una lengua de fuego: gota alargada, ondulada, con base ancha en z=0 y punta en z=largo (eje +Z local)."""
-    rnd = random.Random(seed)
+def lengua_de_fuego(name, largo, ancho, coll, seed=0, curva=0.25, sube=0.0):
+    """Una lengua de fuego de dibujo animado: gota con base redonda en z=0 que se afina en una punta que se curva
+    (eje +Z local; `sube` dobla la punta hacia +Y local, que se orienta hacia arriba del mundo)."""
     bm = bmesh.new()
-    n, seg = 26, 20
+    n, seg = 30, 22
     rings = []
     for i in range(n + 1):
         t = i / n
-        r = ancho * (math.sin(min(1, t * 3.2) * math.pi / 2)) * (1 - t) ** 1.1 + 0.0003
-        cx = curva * largo * math.sin(t * math.pi * 0.8 + seed) * t
-        cy = 0.15 * largo * noise.noise(Vector((t * 2.0, seed, 0)))
-        ring = [bm.verts.new((cx + r * math.cos(2 * math.pi * j / seg), cy + r * math.sin(2 * math.pi * j / seg) * 0.8, largo * t)) for j in range(seg)]
+        r = ancho * (math.sin(min(1, t * 2.4) * math.pi / 2)) * (1 - t) ** 1.35 + 0.0002
+        ondita = 0.06 * largo * math.sin(t * math.pi * 2.2 + seed) * t
+        cx = curva * largo * t * t + ondita
+        cy = sube * largo * t * t
+        ring = [bm.verts.new((cx + r * math.cos(2 * math.pi * j / seg), cy + r * math.sin(2 * math.pi * j / seg) * 0.85, largo * t * (1 - 0.25 * sube * t))) for j in range(seg)]
         rings.append(ring)
     for i in range(n):
         for j in range(seg):
@@ -67,23 +68,27 @@ def lengua_de_fuego(name, largo, ancho, coll, seed=0, curva=0.25):
     return ob
 
 
-def llamarada(name, origen, direccion, coll, escala=1.0, seed=3, n=5):
-    """Llamarada que sale de una boca: varias lenguas de fuego en abanico + luz naranja. Devuelve la raíz (empty)."""
+def llamarada(name, origen, direccion, coll, escala=1.0, seed=3, n=6):
+    """Llamarada que sale de una boca hacia `direccion` y cuyas puntas se curvan hacia arriba, como fuego de dibujo animado.
+    Siempre la misma forma para el mismo seed (es "la llama" del video). Devuelve la raíz (empty)."""
     rnd = random.Random(seed)
     root = P.empty(name, loc=origen, coll=coll)
     d = Vector(direccion).normalized()
-    root.rotation_euler = d.to_track_quat("Z", "Y").to_euler()
+    up = Vector((0, 0, 1))
+    q = d.to_track_quat("Z", "Y")          # +Z local = salida; +Y local ≈ arriba del mundo
+    root.rotation_euler = q.to_euler()
     for k in range(n):
-        L = escala * rnd.uniform(0.07, 0.13) * (1.3 if k == 0 else 1.0)
-        f = lengua_de_fuego(f"{name}_{k}", L, escala * rnd.uniform(0.012, 0.02), coll, seed=seed + k, curva=rnd.uniform(-0.3, 0.3))
+        L = escala * (0.12 if k == 0 else rnd.uniform(0.07, 0.11))
+        f = lengua_de_fuego(f"{name}_{k}", L, escala * (0.030 if k == 0 else rnd.uniform(0.016, 0.024)), coll, seed=seed + k,
+                            curva=rnd.uniform(-0.2, 0.2), sube=rnd.uniform(0.15, 0.4))
         f.parent = root
-        f.rotation_euler = (rnd.uniform(-0.35, 0.35), rnd.uniform(-0.35, 0.35), rnd.uniform(0, math.pi))
+        f.rotation_euler = (rnd.uniform(-0.25, 0.1), rnd.uniform(-0.35, 0.35), 0)
     luz = bpy.data.lights.new(name + "_luz", "POINT")
-    luz.energy, luz.color, luz.shadow_soft_size = 6.0 * escala, (1.0, 0.45, 0.10), 0.03
+    luz.energy, luz.color, luz.shadow_soft_size = 2.5 * escala, (1.0, 0.25, 0.15), 0.03
     lo = bpy.data.objects.new(name + "_luz", luz)
     coll.objects.link(lo)
     lo.parent = root
-    lo.location = (0, 0, 0.04 * escala)
+    lo.location = (0, 0, 0.05 * escala)
     return root
 
 
@@ -109,4 +114,25 @@ def lagrimas(name, ojo_world, abajo, coll, largo=0.03, r=0.0022, gotas=2, seed=0
         g.scale = (1, 1, 1.4)
         g.location = pts[-1] + Vector((rnd.uniform(-1, 1) * 0.01, -0.006 - 0.008 * k, -0.006 * k))
         out.append(g)
+    return out
+
+
+def mat_vapor():
+    m = bpy.data.materials.get("Vapor")
+    if m:
+        return m
+    m = P.mat("Vapor", (0.95, 0.95, 0.95), rough=0.9, alpha=0.75)
+    return m
+
+
+def vapor(name, origen, direccion, coll, escala=1.0, n=4, seed=0):
+    """Bocanadas de vapor de dibujo animado (esferitas blancas que crecen a lo largo de `direccion`)."""
+    rnd = random.Random(seed)
+    d = Vector(direccion).normalized()
+    out = []
+    for k in range(n):
+        r = escala * (0.006 + 0.004 * k)
+        b = P.prim("sphere", f"{name}_{k}", coll, mat_vapor(), r=r, u=24, v=12)
+        b.location = Vector(origen) + d * escala * (0.008 + 0.014 * k) + Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), 0)) * 0.002
+        out.append(b)
     return out

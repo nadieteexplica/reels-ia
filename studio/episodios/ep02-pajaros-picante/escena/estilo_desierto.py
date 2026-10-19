@@ -77,7 +77,8 @@ rt["root"].scale = (1.15, 1.15, 1.15)
 rt["boca"].scale = (1.6, 1.4, 3.2)
 for pv in rt["parpados"]:
     for ch in pv.children:
-        ch.rotation_euler.x = math.radians(70)          # ojos apretados
+        ch.rotation_euler.x = math.radians(-115)        # ojos muy abiertos (de susto)
+PJ.cara_roja(rt)
 for k, ob in enumerate(rt["orejas"]):
     ob.rotation_euler = (math.radians(30), 0, math.radians(15 * (1 if k else -1)))
 for k, br in enumerate(rt["brazos"]):
@@ -87,8 +88,12 @@ rt["root"].location = (0.16, 0.20, TOP2)
 rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", 28)))
 bpy.context.view_layer.update()
 boca_w = rt["boca"].matrix_world.translation
-frente_rt = Vector(tuple(float(x) for x in os.environ.get("FUEGO_DIR", "-1,-0.45,0.35").split(","))).normalized()
+frente_rt = (rt["cabeza"].matrix_world.to_3x3() @ Vector((0, -1, 0.0))).normalized()
+frente_rt = (frente_rt + Vector((0, 0, float(os.environ.get("FUEGO_SUBE", 0.25))))).normalized()
 V.llamarada("Llamarada", boca_w + frente_rt * 0.010, frente_rt, CP, escala=float(os.environ.get("FUEGO", 1.4)))
+for k, ore in enumerate(rt["orejas"]):
+    base = ore.matrix_world.translation
+    V.vapor(f"VaporOreja{k}", base + Vector((0, 0, 0.012)), Vector(((-1 if k == 0 else 1) * 0.6, 0, 1)), CP, escala=1.0, seed=k)
 for o in rt["ojos"]:
     ow = o.matrix_world.translation
     abajo = (rt["cabeza"].matrix_world.to_3x3() @ Vector((0, -0.3, -1))).normalized()

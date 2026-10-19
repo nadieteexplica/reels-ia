@@ -212,7 +212,7 @@ def mat_plumas():
     nt.links.new(vm.outputs[0], add.inputs[0])
     nt.links.new(vm2.outputs[0], add.inputs[1])
     pecho = nt.nodes.new("ShaderNodeMapRange")
-    pecho.inputs["From Min"].default_value = 0.35
+    pecho.inputs["From Min"].default_value = 0.25
     pecho.inputs["From Max"].default_value = 0.85
     nt.links.new(add.outputs[0], pecho.inputs["Value"])
     base = nt.nodes.new("ShaderNodeMix")
@@ -222,7 +222,7 @@ def mat_plumas():
     nt.links.new(pecho.outputs["Result"], base.inputs["Factor"])
     # motas del pecho (voronoi)
     vor = nt.nodes.new("ShaderNodeTexVoronoi")
-    vor.inputs["Scale"].default_value = 55.0
+    vor.inputs["Scale"].default_value = 38.0
     vor.inputs["Randomness"].default_value = 0.8
     nt.links.new(tc.outputs["Object"], vor.inputs["Vector"])
     mot = nt.nodes.new("ShaderNodeMapRange")
@@ -237,7 +237,7 @@ def mat_plumas():
     nt.links.new(pecho.outputs["Result"], mm.inputs[1])
     mm2 = nt.nodes.new("ShaderNodeMath")
     mm2.operation = "MULTIPLY"
-    mm2.inputs[1].default_value = 0.55
+    mm2.inputs[1].default_value = 0.9
     nt.links.new(mm.outputs[0], mm2.inputs[0])
     spots = nt.nodes.new("ShaderNodeMix")
     spots.data_type = "RGBA"
@@ -508,8 +508,16 @@ def raton(coll, nombre="Raton", lomo=(0.42, 0.20, 0.08), guata=(0.86, 0.82, 0.76
     cola.data.bevel_factor_mapping_end = "SPLINE"
     cola.data.use_fill_caps = True
     colgar(cola, piv_cola)
-    return {"root": root, "cuerpo": cuerpo, "cabeza": piv_cab, "boca": piv_boca, "ojos": ojos, "parpados": parps, "orejas": orejas,
-            "brazos": brazos, "cola": piv_cola, "boca_pos": cab_c + Vector((0, -0.056, -0.022))}
+    return {"root": root, "cuerpo": cuerpo, "cabeza": piv_cab, "cabeza_malla": cabeza, "boca": piv_boca, "ojos": ojos, "parpados": parps,
+            "orejas": orejas, "brazos": brazos, "cola": piv_cola, "boca_pos": cab_c + Vector((0, -0.056, -0.022)), "nombre": nombre}
+
+
+def cara_roja(rt, lomo=(0.62, 0.07, 0.04), guata=(0.95, 0.52, 0.48)):
+    """Cara roja de picante: cambia el material de la cabeza del ratón por una versión enrojecida."""
+    m = mat_pelaje(rt["nombre"] + "_pelaje_rojo", lomo, guata)
+    me = rt["cabeza_malla"].data
+    me.materials.clear()
+    me.materials.append(m)
 
 
 
@@ -566,8 +574,25 @@ def aji_guardia(coll, nombre="AjiGuardia", alto=0.32):
     piv_cab = P.empty(nombre + "_piv_cabeza", loc=(0, 0, alto * 0.78), coll=coll)
     colgar(piv_cab, root)
     yf = -alto * 0.165
-    lt = lentes(nombre + "_lentes", (0.0, yf, alto * 0.80), alto * 0.30, coll)
-    colgar(lt, piv_cab)
+    nariz = esfera(nombre + "_nariz", (0.0, yf * 1.10, alto * 0.735), alto * 0.032, coll, bpy.data.materials.get("Aji") or E.mat_aji())
+    colgar(nariz, piv_cab)
+    blanco = mat_simple("OjoGuardia", (0.95, 0.94, 0.90), rough=0.2, coat=0.5)
+    negro_o = mat_simple("PupilaGuardia", (0.01, 0.01, 0.01), rough=0.2)
+    ceja_m = mat_simple("CejaGuardia", (0.05, 0.02, 0.01), rough=0.5)
+    for sx in (-1, 1):
+        oj = esfera(f"{nombre}_ojo{'LR'[sx > 0]}", (sx * alto * 0.075, yf * 0.92, alto * 0.815), alto * 0.042, coll, blanco, escala=(1.0, 0.45, 0.8))
+        colgar(oj, piv_cab)
+        pu = esfera(f"{nombre}_pupila{'LR'[sx > 0]}", (sx * alto * 0.070, yf * 1.00, alto * 0.805), alto * 0.016, coll, negro_o, escala=(1.0, 0.5, 1.0))
+        colgar(pu, piv_cab)
+        cj = P.prim("cube", f"{nombre}_ceja{'LR'[sx > 0]}", coll, ceja_m)
+        cj.scale = (alto * 0.07, alto * 0.012, alto * 0.012)
+        cj.location = (sx * alto * 0.075, yf * 0.97, alto * 0.872)
+        cj.rotation_euler = (0, math.radians(sx * 12), 0)
+        colgar(cj, piv_cab)
+    piv_lentes = P.empty(nombre + "_piv_lentes", loc=(0.0, yf * 1.05, alto * 0.80), coll=coll)
+    colgar(piv_lentes, piv_cab)
+    lt = lentes(nombre + "_lentes", (0.0, yf * 1.18, alto * 0.80), alto * 0.30, coll)
+    colgar(lt, piv_lentes)
     negro = mat_simple("BocaGuardia", (0.05, 0.01, 0.01), rough=0.6)
     boca = P.tube(nombre + "_boca", [(-alto * 0.05, yf * 0.99, alto * 0.66), (0.0, yf * 1.02, alto * 0.655), (alto * 0.05, yf * 0.97, alto * 0.672)], alto * 0.006, coll, negro)
     colgar(boca, piv_cab)
@@ -581,10 +606,16 @@ def aji_guardia(coll, nombre="AjiGuardia", alto=0.32):
         mano = esfera(f"{nombre}_mano{'LR'[s > 0]}", pts[-1], alto * 0.035, coll, rojo)
         colgar(mano, root)
         brazos.append(b)
-    for s in (-1, 1):
-        pie = esfera(f"{nombre}_pie{'LR'[s > 0]}", (s * alto * 0.05, -alto * 0.03, alto * 0.015), alto * 0.04, coll, mat_simple("PieGuardia", (0.08, 0.20, 0.05), rough=0.5), escala=(1, 1.5, 0.5))
-        colgar(pie, root)
-    return {"root": root, "cabeza": piv_cab, "lentes": lt}
+    # la punta del ají queda apoyada en el suelo (z = 0)
+    bpy.context.view_layer.update()
+    dg = bpy.context.evaluated_depsgraph_get()
+    ev = cuerpo.evaluated_get(dg)
+    mev = ev.to_mesh()
+    zmin = min((cuerpo.matrix_world @ v.co).z for v in mev.vertices)
+    ev.to_mesh_clear()
+    for ch in list(root.children):
+        ch.location.z -= zmin
+    return {"root": root, "cabeza": piv_cab, "lentes": piv_lentes, "alto": alto}
 
 
 def tupaya(coll, nombre="Tupaya"):
@@ -625,7 +656,10 @@ def tupaya(coll, nombre="Tupaya"):
                                             ((x * 0.021, y * 0.035 - 0.010, 0.004), (0.008, 0.012, 0.005), (0, 0, 0))], coll, voxel=0.0006, suave=10)
         pata.data.materials.append(lomo)
         colgar(pata, root)
-    cola = blob(nombre + "_cola", [((0, 0.070 + 0.012 * k, 0.055 + 0.006 * k), (0.015 + 0.0008 * k, 0.018, 0.015 + 0.0008 * k), (0, 0, 0)) for k in range(12)], coll, voxel=0.0008, suave=20)
-    cola.data.materials.append(lomo)
+    pts = [(0, 0.060, 0.058), (0, 0.095, 0.066), (0, 0.130, 0.080), (0, 0.165, 0.100), (0, 0.192, 0.126), (0, 0.205, 0.150)]
+    cola = P.tube(nombre + "_cola", pts, 0.017, coll, lomo, res=16)
+    for pt, r in zip(cola.data.splines[0].points, (0.55, 0.85, 1.0, 1.05, 0.95, 0.55)):
+        pt.radius = r
+    cola.data.bevel_resolution = 8
     colgar(cola, root)
     return {"root": root, "cabeza": piv_cab}

@@ -32,3 +32,5 @@
 {"tipo": "trabajo", "id": "auditor storyboard r1", "estado": "inicio", "n": 32, "ts": "2026-10-19T20:09:28-03:00"}
 {"tipo": "trabajo", "id": "auditor storyboard r1", "estado": "fin", "n": 33, "ts": "2026-10-19T20:15:37-03:00"}
 {"tipo": "trabajo", "id": "auditor storyboard r2", "estado": "inicio", "n": 34, "ts": "2026-10-19T20:27:26-03:00"}
+{"tipo": "trabajo", "id": "auditor storyboard r2", "estado": "fin", "n": 35, "ts": "2026-10-19T20:36:47-03:00"}
+{"tipo": "trabajo", "id": "auditor storyboard r3", "estado": "inicio", "n": 36, "ts": "2026-10-19T20:46:28-03:00"}
