@@ -107,10 +107,11 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - No crear cuentas ni usar contraseñas por Tomás.
 - **Publicar en redes solo con su OK explícito, post por post.**
 
-## Estado actual (19-oct-2026)
+## Estado actual (19-oct-2026, noche)
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
 - **Estilo decidido:** semi-realista con Mixamo y personaje propio (ver "Formato").
+- **Auditor por etapas listo (19-oct):** `docs/AUDITOR.md` + `tools/auditor/`. Corre como subagentes (gratis), umbral 8 + bloqueantes, máx. 3 rondas, y a Tomás le llegan sólo los cuadros de estilo nuevos y el video final ya aprobados. Calibrado a ciegas con las versiones viejas del Ep. 1: detecta 20 de 22 errores conocidos (`docs/AUDITOR_CALIBRACION.md`). Desde el Ep. 2 es obligatorio, junto con la bitácora del proceso.
 - **Interior del cuerpo ("cabeza de vidrio"), aprobado por Tomás el 19-oct:** perfil fijo, fondo azul noche, anatomía real de Z-Anatomy; se ve y brilla sólo lo que nombra la voz. Reglas en el manual §8.
 - **Manos con objetos y reacciones → Kling** (API oficial, secreto `KILING_SECRET`, workflow `kling.yml`). En Blender los dedos flotaban; Tomás lo rechazó dos veces. Kling parte de cuadros nuestros y no se usa para anatomía.
 - **Render en GPU → RunPod** (secreto `RUNPOD_API_KEY`, workflow `render-gpu.yml`). Probado el 19-oct: RTX A5000, ~1,4 s por cuadro a 720p/16 muestras, el pod se borra solo.
