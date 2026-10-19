@@ -6,7 +6,7 @@ Por fuente: estado HTTP, título y los párrafos que contienen alguna clave o al
 caracteres): lo justo para comprobar cada afirmación, no el artículo entero. Las páginas que piden captcha (PMC) se leen
 por la API de Europe PMC (resumen). El archivo no va al repo (es material de la auditoría): va a una prerelease.
 """
-import argparse, json, re, sys
+import argparse, json, re, sys, time
 import requests
 
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36 nadieteexplica-verificador"}
@@ -87,12 +87,16 @@ if __name__ == "__main__":
          f"Claves: {', '.join(claves) or '—'} · Cifras del guion: {', '.join(cifras) or '—'}", ""]
     resumen = []
     for i, u in enumerate(urls, 1):
-        try:
-            st, tit, txt = bajar(u)
-            ex = extractos(txt, claves, cifras)
-            ok = st == 200 and bool(ex)
-        except Exception as e:
-            st, tit, ex, ok = "error", str(e)[:200], [], False
+        for intento in range(3):   # algunos sitios responden 202/429 o cortan a la primera
+            try:
+                st, tit, txt = bajar(u)
+                ex = extractos(txt, claves, cifras)
+                ok = st == 200 and bool(ex)
+            except Exception as e:
+                st, tit, ex, ok = "error", str(e)[:200], [], False
+            if ok:
+                break
+            time.sleep(6 * (intento + 1))
         resumen.append({"n": i, "url": u, "estado": st, "ok": ok, "extractos": len(ex)})
         L += [f"## {i}. {tit or u}", f"- URL: {u}", f"- Estado: {st}" + ("" if ok else " · **FALLÓ o sin texto útil**"), ""]
         L += [f"> {p}" + "\n" for p in ex]
