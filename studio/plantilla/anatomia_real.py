@@ -111,8 +111,9 @@ def _cut(nt, b, base_socket_or_col, cut_col):
     em = nt.nodes.new("ShaderNodeEmission")
     em.inputs["Color"].default_value = (*cut_col, 1)
     em.inputs["Strength"].default_value = 0.85
+    corte = _val(nt, "Corte", 0.0)        # 1 sólo en los planos de corte (si no, el interior de los huesos se ve plano)
     mix = nt.nodes.new("ShaderNodeMixShader")
-    nt.links.new(geo.outputs["Backfacing"], mix.inputs[0])
+    nt.links.new(_math(nt, "MULTIPLY", geo.outputs["Backfacing"], corte.outputs[0]), mix.inputs[0])
     nt.links.new(b.outputs[0], mix.inputs[1])
     nt.links.new(em.outputs[0], mix.inputs[2])
     nt.links.new(mix.outputs[0], out.inputs["Surface"])

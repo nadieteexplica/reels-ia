@@ -1069,10 +1069,10 @@ cap_m = AR.mat_simple("PaladarCorte", (0.66, 0.20, 0.25), rough=0.5)
 prev_ = rig.data.pose_position
 rig.data.pose_position = "REST"
 bpy.context.view_layer.update()
-pal_solid = AR.paladar_medio("PaladarCorteSolido", PAL_F, PAL_S, C_ANAT, mat["PaladarMucosa"], cap_m, rig, B + "Head")
+pal_solid = AR.paladar_medio("PaladarCorteSolido", PAL_F, PAL_S, C_ANAT, mat["PaladarMucosa"], cap_m, rig, B + "Head", vault=0.006)
 # el helado queda bajo la bóveda, a un tercio del paladar
 _t = 0.38
-_pb = PAL_F.lerp(PAL_S, _t) + Vector((0, 0, 0.011 * 0.95 - 0.0045 - 0.0099 - 0.004))
+_pb = PAL_F.lerp(PAL_S, _t) + Vector((0, 0, 0.006 * 0.95 - 0.0045 - 0.0099 - 0.004))
 bc_ = org["bocado"]
 bc_.parent = None
 bc_.matrix_world = Matrix.Translation(_pb) @ Matrix.Diagonal((0.68, 0.68, 0.52, 1))
@@ -1089,12 +1089,24 @@ for k_ in list(kit):
         continue
     halves[k_] = AR.split_half(kit[k_])
 NERV = ("TrigeminoV1", "TrigeminoV2", "TrigeminoV3", "TrigeminoRaiz")
-SAG_HIDE = NERV + ("Arterias", "ArteriaCerebralAnterior", "Cerebro", "CortezaSensitiva", "Cerebelo", "TroncoEncefalico")  # el corte se centra en la boca
+SAG_HIDE = NERV + ("Arterias", "ArteriaCerebralAnterior", "Cerebro", "CortezaSensitiva", "Cerebelo", "TroncoEncefalico",
+                  "CraneoBase", "Mandibula", "Dientes")  # el corte muestra sólo la boca: lengua, paladar y helado
 for k_, (der, izq) in halves.items():
     key_vis(der, frames_of(FULL + ([] if k_ in SAG_HIDE else SAG)), END)
     key_vis(izq, frames_of(FULL), END)
 for o_ in supra:
     key_vis(o_, frames_of([13, 14, 15]), END)
+# relleno plano del corte sólo en los planos de corte de la boca
+for m_ in set(mat.values()) | {cap_m}:
+    if m_.node_tree and "Corte" in m_.node_tree.nodes:
+        sock = m_.node_tree.nodes["Corte"].outputs[0]
+        for k in sorted(FR):
+            sock.default_value = 1.0 if k in SAG else 0.0
+            sock.keyframe_insert("default_value", frame=FR[k][0])
+        for fc in anim._fcurves(m_.node_tree.animation_data.action):
+            if 'nodes["Corte"]' in fc.data_path:
+                for kp in fc.keyframe_points:
+                    kp.interpolation = "CONSTANT"
 # el helado y la lengua en el corte: la lengua real sube al paladar (25)
 for o_ in halves["Lengua"]:
     for f, dz in ((FR[25][0], 0.0), (FR[25][0] + 25, 0.006), (FR[25][1], 0.006)):
