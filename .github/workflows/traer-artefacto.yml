@@ -1,0 +1,40 @@
+name: traer-artefacto
+# Copia el artefacto "video" de un run anterior de render a una prerelease, para poder bajarlo desde el espacio de trabajo
+# (los artefactos de Actions se sirven desde un host bloqueado; los assets de Release no).
+# Uso: auditar versiones viejas (calibración del auditor) o recuperar un borrador pisado.
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "ID del run de render que tiene el artefacto"
+        required: true
+      prefijo:
+        description: "Prefijo para los archivos en la prerelease (p. ej. v3)"
+        required: true
+      tag:
+        description: "Prerelease destino"
+        default: "calibracion"
+permissions:
+  contents: write
+  actions: read
+jobs:
+  copiar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: video
+          run-id: ${{ github.event.inputs.run_id }}
+          github-token: ${{ github.token }}
+          path: a
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.event.inputs.tag }}
+          PRE: ${{ github.event.inputs.prefijo }}
+        run: |
+          ls -la a
+          mkdir -p s
+          for f in a/*; do cp "$f" "s/${PRE}_$(basename "$f")"; done
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$TAG" --notes "Versiones viejas para auditar (no publicar)"
+          gh release upload "$TAG" s/* --clobber
