@@ -102,7 +102,7 @@ jobs:
         if: steps.kit.outputs.cache-hit != 'true'
         run: |
           mkdir -p zanat "$OUT"
-          curl -sSL -o zanat/z.zip https://github.com/Z-Anatomy/The-blend/raw/main/Z-Anatomy.zip
+          curl -fsSL -o zanat/z.zip https://github.com/Z-Anatomy/The-blend/raw/master/Z-Anatomy.zip
           unzip -q zanat/z.zip -d zanat
           ZANAT=zanat/Z-Anatomy/Startup.blend python studio/plantilla/anatomia_kit.py
           rm -rf zanat
