@@ -240,6 +240,8 @@ def cerrar(a):
             if not c:
                 continue
             a0 = float(k.get("desde", 0))
+            if "dur" not in k:
+                ch.setdefault("avisos", []).append({"que": f"kling/planos.json no dice cuánto dura el plano {k['plano']} ('dur'): se supuso 2 s", "evidencia": ""})
             dur = float(k.get("dur", 2.0)) * float(k.get("velocidad", 1.0))
             u = c.get("usable") or [0, 0]
             if not c.get("sirve") or a0 < u[0] - 0.05 or a0 + dur > u[1] + 0.05:

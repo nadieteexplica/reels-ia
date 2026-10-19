@@ -58,6 +58,7 @@ python3 tools/auditor/auditar.py estado <ep> <etapa>
 python3 tools/auditor/auditar.py cerrar <ep> <etapa>
 ```
 - Los archivos del borrador (`planos.json`, `subs_log.json`, MP4) se bajan de la prerelease `epNN-borrador`; los renders los suben solos.
+- `kling/planos.json` lleva, por plano, `desde`, `velocidad` y **`dur`** (segundos que dura el plano en el video): con eso la puerta 5 comprueba que el tramo usado cae dentro del tramo usable del clip.
 - **Prohibido** escribir o editar a mano un `<encargo>.json` o un `veredicto.*`. Si el auditor se equivoca, se corrige el prompt o el chequeo y se corre una ronda nueva.
 - Con NO APROBADO: se arregla en orden la lista de arreglos y se corre `preparar` otra vez (ronda siguiente). En la 3.ª ronda sin aprobar, se propone un reemplazo.
 
