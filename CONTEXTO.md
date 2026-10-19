@@ -169,7 +169,8 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - `proyecto/INSTRUCCIONES.md`: instrucciones del proyecto en Claude.
 - `docs/MANUAL_PRODUCCION.md`: estándar de cada video (guion, verificación, voz, storyboard, look, subtítulos, audio, render, QA, entrega, publicación).
 - `docs/AUTOMATIZACION.md`: cadencia, fases, ciclo semanal, prompts de las tareas programadas y manejo de fallas.
-- `docs/IDEAS.md`: dónde buscar, puntaje, lista negra y banco de unas 40 ideas.
+- `docs/IDEAS.md`: dónde buscar, puntaje, lista negra y banco de ideas.
+- `docs/CAZA_DATOS.md`: método del chat de caza de datos (qué buscamos, familias, métodos, dónde verificar, datos quemados, ángulos y gustos de Tomás).
 - `docs/PUBLICADOS.md`: registro de videos y métricas.
 - `docs/REFERENCIAS.md`: estudio de videos virales de referencia (por qué funcionan, qué tomar, qué tan alcanzable). Documento vivo.
 - `docs/investigacion-formatos-virales.md`: investigación de formatos virales. **Es histórica**: sus datos de plataformas sirven, pero sus propuestas (noticiero low-poly, publicar diario) **no están vigentes**.

@@ -1,6 +1,8 @@
 # Ideas — método, puntaje y banco
 
 ## 1. Dónde buscar (cada semana, en este orden)
+El método completo para encontrar datos (pruebas, familias, métodos de caza, datos quemados y ángulos) está en `docs/CAZA_DATOS.md`. Hay un chat dedicado a eso; sus datos aprobados llegan a §4.
+
 1. **Comentarios y DMs de nuestros videos.** Las preguntas de la gente son oro: si se produce, se acredita en pantalla con "Pregunta de @usuario".
 2. **Outliers con vidIQ** (plan gratis, con pocos créditos):
    - Máximo **1 búsqueda de outliers por semana** (5 créditos), con términos como "qué pasaría si", "cómo funciona", "por qué no podemos", "what happens if" o "how does it work".
@@ -107,8 +109,8 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 | pendiente | ¿Por qué el cielo es azul y el atardecer naranjo? | La luz azul se dispersa más (dispersión de Rayleigh) | Rayos de luz rebotando | Por qué en Marte es al revés |
 | pendiente | ¿Por qué el hielo flota? | El agua se expande al congelarse, y eso salva a los peces en invierno | Moléculas formando una red | Por qué revientan las botellas en el congelador |
 | pendiente | Un rayo es más caliente que el Sol | Unos 30.000 °C contra ~5.500 °C de la superficie del Sol | Rayo en cámara lenta | Por qué suena el trueno |
-| pendiente | Los plátanos son radiactivos | Tienen potasio-40, pero la dosis es mínima | Plátano con átomos brillando | Qué es la radiación de verdad |
-| pendiente | Hay más árboles en la Tierra que estrellas en la Vía Láctea | ~3 billones de árboles (estudio de 2015) | Bosque vs galaxia | Escala |
+| pendiente (quemado: solo con ángulo nuevo) | Los plátanos son radiactivos | Tienen potasio-40, pero la dosis es mínima | Plátano con átomos brillando | Qué es la radiación de verdad |
+| pendiente (quemado: solo con ángulo nuevo) | Hay más árboles en la Tierra que estrellas en la Vía Láctea | ~3 billones de árboles (estudio de 2015) | Bosque vs galaxia | Escala |
 
 ### Parece un error, pero es a propósito (objeto en primer plano)
 | Estado | Gancho | Dato central (verificar) | Imagen 3D clave | Enseñanza |
