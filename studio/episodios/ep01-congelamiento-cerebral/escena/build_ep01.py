@@ -24,7 +24,8 @@ os.makedirs(OUT, exist_ok=True)
 FPS = 30
 B = "mixamorig:"
 
-bpy.ops.wm.open_mainfile(filepath=os.environ.get("PERSONAJE", os.path.join(PJ, "out", "personaje.blend")))
+_PJB = [os.environ.get("PERSONAJE", ""), os.path.join(OUT, "personaje.blend"), os.path.join(PJ, "out", "personaje.blend")]
+bpy.ops.wm.open_mainfile(filepath=next(p for p in _PJB if p and os.path.exists(p)))  # Actions deja el personaje en OUT
 sc = bpy.context.scene
 sc.render.fps = FPS
 sc.render.engine = "CYCLES"
