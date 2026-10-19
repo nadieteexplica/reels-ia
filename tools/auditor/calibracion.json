@@ -367,6 +367,65 @@
    "palabras": [
     "madeforkids"
    ]
+  },
+  {
+   "id": "N3-final",
+   "leccion": null,
+   "que": "publicado, plano 1 (Kling): la cara cambia (ojos de caricatura, otra cara) a 1,5–1,9 s",
+   "base": "final",
+   "etapa": "6-video",
+   "planos": [
+    1
+   ],
+   "palabras": [
+    "cara",
+    "personaje",
+    "ojo",
+    "caricatura",
+    "deform",
+    "pelo",
+    "ficha"
+   ],
+   "nota": "verificado por Claude después de la revisión de clips"
+  },
+  {
+   "id": "N4-final",
+   "leccion": null,
+   "que": "publicado, plano 9 (Kling): la cara del protagonista cambia de estilo",
+   "base": "final",
+   "etapa": "6-video",
+   "planos": [
+    9
+   ],
+   "palabras": [
+    "cara",
+    "personaje",
+    "ojo",
+    "caricatura",
+    "deform",
+    "pelo",
+    "ficha"
+   ],
+   "nota": "verificado por Claude después de la revisión de clips"
+  },
+  {
+   "id": "N5-final",
+   "leccion": null,
+   "que": "publicado, plano 17 (Kling): los vasos pasan de blancos opacos a transparentes",
+   "base": "final",
+   "etapa": "6-video",
+   "planos": [
+    17
+   ],
+   "palabras": [
+    "vaso",
+    "material",
+    "transparent",
+    "blanco",
+    "opaco",
+    "cambia"
+   ],
+   "nota": "verificado por Claude después de la revisión de clips"
   }
  ]
 }

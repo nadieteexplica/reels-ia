@@ -1,0 +1,157 @@
+{
+ "etapa": "1-guion",
+ "ronda": 1,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "precision": {
+   "nota": 7,
+   "por_que": "Lo duro está respaldado por fuentes independientes: 13 voluntarios, agua helada con bombilla contra el paladar, arteria cerebral anterior que se dilata al empezar el dolor y se contrae cuando se va (ScienceDaily/comunicado APS 2012 y MedicalNewsToday); cerebro sin receptores de dolor (BBC Science Focus); truco de la lengua y duración de segundos a 1-2 min (Healthline, Johns Hopkins vía Mental Floss). Baja porque el mecanismo se cuenta como seguro cuando las fuentes dicen que no se sabe del todo, 'no es peligroso' va sin matiz y no se pudo abrir ninguna de las 4 fuentes citadas.",
+   "de": "guion"
+  },
+  "gancho": {
+   "nota": 8,
+   "por_que": "'Te comes un helado rápido y... ¡zas! Te duele la frente' es una sensación que conoce todo el mundo, con imagen y sonido desde la primera palabra, y el giro de los segundos 3-8 ('el frío nunca tocó tu cerebro') contradice justo lo que uno cree.",
+   "de": "guion"
+  },
+  "claridad": {
+   "nota": 7,
+   "por_que": "El trigémino se explica al nombrarlo y la estructura del manual está completa (gancho, giro, mecanismo de 5 pasos, 'lo más loco', truco, cierre en loop). Pero la frase clave del dolor referido tiene 20 palabras y 3 ideas, y aparecen dos vasos distintos (los del paladar y una arteria del cerebro) sin conectarlos: un niño de 12 no sabe cuál duele.",
+   "de": "guion"
+  },
+  "compartible": {
+   "nota": 8,
+   "por_que": "Tiene a quién mandárselo (el amigo que se come el helado 'como si alguien te lo fuera a quitar', y el cierre 'nadie come helado lento'), un motivo para guardarlo (el truco de la lengua) y una palabra para repetir ('ganglioneuralgia esfenopalatina, sí, en serio').",
+   "de": "guion"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Fuentes (las 4 URL de guion.md)",
+   "que": "No se pudo verificar que las fuentes citadas digan lo que afirma el guion: WebFetch quedó bloqueado por permisos en my.clevelandclinic.org/health/diseases/21478-brain-freeze, livescience.com/19834-brain-freeze-blood-flow-migraines.html, popsci.com/science/what-is-brain-freeze/ y livescience.com/if-the-brain-doesnt-feel-pain-why-do-headaches-hurt. Las búsquedas confirman que las páginas existen y tratan el tema, y cada afirmación se confirmó con otras fuentes independientes, pero el texto de las fuentes citadas no se leyó.",
+   "arreglo": "Correr otra ronda con permiso de WebFetch para esos 4 dominios, o agregar en la tabla de verificación las fuentes que sí se leyeron: ScienceDaily 120422231742 (APS), BBC Science Focus (cerebro sin receptores), Healthline (duración y truco).",
+   "de": "guion"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara. / En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+   "que": "El mecanismo (vasos que se encogen y se abren, el trigémino, el dolor referido) se cuenta como hecho seguro. Healthline dice 'Scientists aren't exactly sure what specifically causes brain freeze', y el estudio de 2012 es chico (13 personas) y era un resumen de congreso. En el texto hablado no hay ningún 'los científicos creen'. La tabla de verificación dice que 'el guion no lo presenta como definitivo', y eso no se cumple.",
+   "arreglo": "'Los científicos creen que ese cambio lo detecta el trigémino...' y 'En 2012, un estudio chico encontró una pista:...'. Recortar en otra parte para no pasar de 215 palabras (por ejemplo, quitar 'Día de calor.').",
+   "de": "guion"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "(cabecera de guion.md)",
+   "que": "guion.md no anota el puntaje de la idea (falla automática en checks.json). Sin el puntaje no se puede comprobar que la idea supera el mínimo de 32 de la línea datos. Mi estimación da unos 39/45, pero tiene que quedar escrita.",
+   "arreglo": "Agregar la tabla de IDEAS.md §2 con los 7 criterios, sus pesos y el total, y la respuesta a '¿a quién se lo mandan?'.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "que": "[automático] guion.md no anota el puntaje de la idea (IDEAS.md §2, mínimo 32 en datos)",
+   "donde": "",
+   "arreglo": "cumplir la regla",
+   "de": "checks"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+   "que": "'lo midieron' viene justo después del mecanismo paladar → trigémino → frente, y da a entender que el estudio comprobó eso. El estudio midió el flujo de sangre en las arterias del cerebro (la arteria cerebral anterior), no los vasos del paladar ni el nervio.",
+   "arreglo": "'En 2012, científicos midieron la sangre del cerebro de trece voluntarios que tomaban agua helada.' (14 palabras).",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Justo cuando les dolía, una arteria de su cerebro se ensanchaba.",
+   "que": "Aparece un segundo vaso (una arteria del cerebro) sin conectarlo con los vasos del paladar de la frase 3. Quien ve no sabe si duele la boca, la frente o la arteria del cerebro.",
+   "arreglo": "Agregar un puente antes: 'Y no solo en la boca: ...', o decir 'una arteria detrás de tu frente' para amarrarlo con el dolor en la frente.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Una de sus ramas llega a la frente, y tu cerebro se confunde: cree que el dolor viene de ahí.",
+   "que": "Tiene 20 palabras y 3 ideas en la frase que explica el concepto central (dolor referido). El manual pone el máximo en 14 palabras y una idea por frase.",
+   "arreglo": "Separarla: 'Una de sus ramas llega a la frente. Y tu cerebro se confunde: cree que el dolor viene de ahí.'",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Dura de segundos a un par de minutos, y no es peligroso.",
+   "que": "'no es peligroso' es absoluto. Healthline dice 'isn't usually a serious condition' y recomienda ir al médico si dura más de 5 minutos o si aparece sin haber comido nada frío. Falta el 'consulta' que exige la regla de salud (aviso de checks.json).",
+   "arreglo": "'Dura de segundos a un par de minutos y no suele ser grave. Si te dura más, consulta.'",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Pides el helado más grande del carrito... y te lo comes como si alguien te lo fuera a quitar.",
+   "que": "Tiene 19 palabras. La pausa la parte en dos al oído, pero en el texto pasa el máximo de 14.",
+   "arreglo": "'Pides el helado más grande del carrito. Y te lo comes como si te lo fueran a quitar.'",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente.",
+   "que": "Tiene 16 palabras y dos acciones en una frase.",
+   "arreglo": "'Los vasos sanguíneos de ahí se encogen... De repente se abren y mandan sangre caliente.'",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "el nervio que siente toda tu cara",
+   "que": "'toda' exagera: el trigémino da la sensibilidad de casi toda la cara, no de toda (el ángulo de la mandíbula no es suyo).",
+   "arreglo": "'el nervio que siente casi toda tu cara' o 'el gran nervio de tu cara'.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "En 2012, científicos de Harvard...",
+   "que": "El autor principal (Jorge Serrador) era de Harvard Medical School y del VA de New Jersey, y los coautores eran del VA de New Jersey y de NUI Galway. 'científicos de Harvard' simplifica de más. Además, la fila del estudio cita una sola fuente (LiveScience).",
+   "arreglo": "'un equipo liderado desde Harvard', o no nombrar Harvard. En la tabla, sumar el comunicado de la APS (ScienceDaily) como segunda fuente del estudio.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "El truco: aprieta la lengua contra el paladar para calentarlo, o toma algo tibio.",
+   "que": "Antes se dijo 'el techo de tu boca' y acá aparece 'paladar' sin unirlo. Es la palabra técnica de la enseñanza útil.",
+   "arreglo": "'aprieta la lengua contra el techo de la boca', o presentar 'el paladar, el techo de tu boca' en la frase 3.",
+   "de": "guion"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "tema de salud sin 'si te pasa seguido, consulta' (revisar si corresponde)",
+   "evidencia": ""
+  },
+  {
+   "que": "cifra 'trece' sin fuente al lado en la verificación",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}

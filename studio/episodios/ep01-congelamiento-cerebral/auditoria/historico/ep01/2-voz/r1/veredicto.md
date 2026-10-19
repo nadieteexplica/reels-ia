@@ -1,0 +1,24 @@
+# 2-voz · ronda 1 · **NO APROBADO**
+
+| criterio | nota | por qué |
+|---|---|---|
+| pronunciacion | 9 | asr_coincidencia 0,99 y las 2 únicas diferencias son homófonos del español (zas/sas por seseo, rebobinemos/rebovinemos por b/v); los términos difíciles 'trigémino', 'sanguíneos', 'Harvard', '2012', 'trece' y 'ganglioneuralgia esfenopalatina' salen igual que en el guion. No es 10 porque sin escuchar no se puede verificar acento ni entonación (p. ej. cómo suena 'Harvard'). |
+| ritmo | **7** | 71,66 s (dentro de 62–75), ninguna palabra pasa 1,2 s (máx. 'esfenopalatina' 1,07 s), ninguna pausa pasa 1 s (máx. 0,70 s) y las frases van a 5,2–6,8 sílabas/s; pero los 4 '...' dejan huecos de sólo 0,12–0,25 s, más cortos que los cortes de frase normales (0,38–0,70 s), el del gancho 'y... ¡zas!' es el más corto (0,12 s) y 'Y lo más loco:' entra pegado (0,02 s) al segundo dato sorpresa. |
+
+## Arreglos (en orden)
+
+1. Gancho 'y... ¡zas!': el hueco medido entre 'y...' (fin 1,82) y '¡zas!' (inicio 1,94) es 0,12 s, bajo el rango 0,3–0,9 s que deben producir los '...'. 'y...' dura 0,40 s para una sola vocal y la tabla no permite saber si eso es silencio o una 'y' estirada: material insuficiente para verificar la pausa dramática del momento más importante del video. — 1.82 s. **Arreglo:** Medir el silencio real con ffmpeg silencedetect (-35 dB, d=0.1) entre 1,43 y 1,94 s del MP3. Si es menor a 0,3 s, insertar silencio en edición en ~1,88 s hasta dejar 0,4–0,5 s de pausa y desplazar words.json desde '¡zas!' en el mismo delta (gratis y conserva esta toma, que pronuncia bien). Sólo si eso suena cortado, regenerar con <break time="0.4s" /> después de 'y' (~1.200 créditos; hay 38.810).
+2. Los otros tres '...' tampoco muestran pausa en rango: 'carrito...' → 'y' 0,18 s; 'encogen...' → 'y' 0,25 s; 'lento...' → 'aunque' 0,21 s. Son pausas más cortas que cortes de frase comunes como 'golpe.' → 'Los' (0,60 s) o 'tibio.' → 'Dura' (0,70 s), así que el '...' no se distingue de un punto. — 11.92 / 21.23 / 68.21 s. **Arreglo:** Mismo método: silencedetect en 11,34–12,10, 20,43–21,48 y 67,56–68,42 s; donde el silencio sea < 0,35 s, insertar silencio hasta ~0,45 s y desplazar words.json. Total queda bajo 73 s.
+3. 'Y lo más loco:' (4 palabras en 0,82 s) entra a 'tu cerebro no siente dolor' con 0,02 s de pausa, y 'loco:' dura 0,34 s para 2 sílabas (sin silencio escondido): el segundo dato sorpresa llega sin el respiro que pide el ':' y suena apurado. — 47.46 s. **Arreglo:** Insertar ~0,3 s de silencio en 47,47 s y desplazar words.json desde 'tu'. No cambiar el texto a '...' porque el guion ya tiene 4 (el máximo del manual).
+4. '...un par de minutos, y no es peligroso': 0,02 s de pausa tras la coma y 'y no es' en 0,28 s ('no' dura 0,07 s). La transcripción lo entendió, pero el mensaje que tranquiliza pasa muy rápido. — 64.53 s. **Arreglo:** Opcional en la misma pasada de edición: 0,15–0,2 s de silencio en 64,54 s.
+5. El encabezado dice 'Guion (209 palabras, ~70 s)' pero el texto tiene 207 palabras (las mismas 207 que la voz), y la sección 'Tiempos por frase' sigue vacía aunque la alineación ya existe. — guion.md líneas 8 y 37–38 s. **Arreglo:** Corregir a '207 palabras, 71,7 s' y llenar 'Tiempos por frase' con los tiempos de voz.md (después de insertar los silencios, con los tiempos nuevos).
+
+## Avisos automáticos (mirados por el revisor)
+
+- ritmo de 4.5 palabras/s en 'y te lo comes como si alguien te lo fuera a quitar.' · 11.92 s
+- ritmo de 3.8 palabras/s en 'Al volver a su tamaño, el dolor se iba.' · 44.15 s
+- ritmo de 3.9 palabras/s en 'Lo que duele son los vasos y nervios que lo rodean.' · 49.19 s
+- ritmo de 1.6 palabras/s en 'Su nombre científico es ganglioneuralgia esfenopalatina.' · 51.98 s
+- ritmo de 2.0 palabras/s en 'aunque, seamos honestos, nadie come helado lento.' · 68.21 s
+- se escucha 'sas' donde el guion dice 'zas'
+- se escucha 'rebovinemos' donde el guion dice 'rebobinemos'

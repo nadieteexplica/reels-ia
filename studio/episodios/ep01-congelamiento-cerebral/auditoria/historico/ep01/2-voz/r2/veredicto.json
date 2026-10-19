@@ -1,0 +1,96 @@
+{
+ "etapa": "2-voz",
+ "ronda": 2,
+ "veredicto": "APROBADO",
+ "notas": {
+  "pronunciacion": {
+   "nota": 9,
+   "por_que": "Coincidencia ASR 0,99 y las 2 únicas diferencias son homófonos ortográficos ('zas'→'sas' por seseo, 'rebobinemos'→'rebovinemos' por b/v), mientras los términos de riesgo salen idénticos en la transcripción ('trigémino' 26.39, 'Harvard' 37.34, '2012' 35.86, 'sanguíneos' 19.38, 'ganglioneuralgia esfenopalatina' 53.45–55.65 con 1,06 y 1,07 s, sin truncar); no es 10 porque sin escuchar no se puede verificar el acento de 'trigémino' ni si Whisper corrigió por contexto un término raro.",
+   "de": "voz"
+  },
+  "ritmo": {
+   "nota": 8,
+   "por_que": "71,66 s (dentro de 62–75), 2,89 pal/s promedio (~5,8 sílabas/s, igual al 2,97 esperado del manual), ninguna palabra sobre 1,2 s (máx. 1,07), ningún silencio sobre 0,9 s (máx. 0,82), los '...' dan 0,33/0,29/0,46/0,38 s con la palabra alargada antes, y las frases 'lentas' del chequeo son palabras largas (5,7 síl/s) o el remate final (5,25 síl/s); baja de 9 porque el concepto central (30.12–35.27) va sin respiro y hay pausas de 0,8 s en puntos comunes, más largas que todos los '...'.",
+   "de": "voz"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "30.12-35.27",
+   "que": "'Una de sus ramas llega a la frente, y tu cerebro se confunde: cree que el dolor viene de ahí.' son 20 palabras en 5,15 s de habla (3,9 pal/s; la cola 'cree que el dolor viene de ahí' a 4,3 pal/s, 6,8 síl/s, lo más rápido del mecanismo), con 0,00 s de silencio en 'frente,' y sólo 0,20 s en 'confunde:' (parte es el cierre de la /k/ de 'cree'). Es la idea clave del video (dolor referido) y queda sin pausa, justo después de la pausa más larga del audio (0,82 s tras 'cara.' en 29.51).",
+   "arreglo": "Sin gastar créditos: en el MP3, recortar 0,3 s del silencio tras 'cara.' (29.51) e insertar 0,3 s de silencio tras 'confunde:' (33.55), y correr los tiempos de words.json en la misma cantidad. Si se regenera la voz por otra razón, escribir en el texto para ElevenLabs 'se confunde. Cree que el dolor viene de ahí.' (pantalla.txt igual, mismo número de palabras) y verificar que 'confunde.' quede con 0,3–0,6 s de silencio real.",
+   "de": "voz"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "11.92",
+   "que": "El '...' de 'carrito...' da 0,29 s de silencio real, 0,01 s bajo el mínimo de 0,3 s; lo compensa en parte el alargue de 'carrito' (0,58 s para 3 sílabas), pero el remate cómico 'y te lo comes como si alguien te lo fuera a quitar' entra casi pegado.",
+   "arreglo": "En el mismo pase de edición del audio, alargar ese silencio a ~0,4 s y correr words.json.",
+   "de": "voz"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "47.46",
+   "que": "'Y lo más loco:' entra al segundo dato sorpresa con 0,11 s de silencio, que es sólo el cierre de la /t/ de 'tu'; no hay pausa antes de 'tu cerebro no siente dolor'.",
+   "arreglo": "Insertar ~0,3 s de silencio en 47.46 en el mismo pase de edición y correr words.json.",
+   "de": "voz"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "18.25, 29.51, 61.80",
+   "que": "Los silencios a mitad de párrafo tras 'golpe.' (0,75 s), 'cara.' (0,82 s) y 'tibio.' (0,82 s) son más largos que cualquier '...' (máx. 0,46 s), así que las pausas dramáticas no se distinguen de un punto común, y en un short son 0,8 s sin voz.",
+   "arreglo": "Recortar cada uno a ~0,5 s en el pase de edición (se ganan ~0,9 s; la duración queda ~71 s, dentro de rango). Si se dejan, el storyboard debe tener acción visual en esos tres huecos (nada de plano quieto más de 0,2 s).",
+   "de": "voz"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": null,
+   "que": "guion.md dice 'Guion (209 palabras, ~70 s)', pero el texto y la voz tienen 207 palabras, y la sección 'Tiempos por frase' sigue vacía.",
+   "arreglo": "Corregir el encabezado a '207 palabras, 71,7 s' y llenar 'Tiempos por frase' con la alineación final (después de la edición de silencios, si se hace).",
+   "de": "voz"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "ritmo de 4.5 palabras/s en 'y te lo comes como si alguien te lo fuera a quitar.'",
+   "evidencia": "11.92 s"
+  },
+  {
+   "que": "ritmo de 3.8 palabras/s en 'Al volver a su tamaño, el dolor se iba.'",
+   "evidencia": "44.15 s"
+  },
+  {
+   "que": "ritmo de 3.9 palabras/s en 'Lo que duele son los vasos y nervios que lo rodean.'",
+   "evidencia": "49.19 s"
+  },
+  {
+   "que": "ritmo de 1.6 palabras/s en 'Su nombre científico es ganglioneuralgia esfenopalatina.'",
+   "evidencia": "51.98 s"
+  },
+  {
+   "que": "ritmo de 2.0 palabras/s en 'aunque, seamos honestos, nadie come helado lento.'",
+   "evidencia": "68.21 s"
+  },
+  {
+   "que": "se escucha 'sas' donde el guion dice 'zas'",
+   "evidencia": ""
+  },
+  {
+   "que": "se escucha 'rebovinemos' donde el guion dice 'rebobinemos'",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}

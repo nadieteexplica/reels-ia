@@ -1,0 +1,284 @@
+{
+ "etapa": "4-cuadros",
+ "ronda": 1,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 6,
+   "por_que": "p1, p26 y p26_b se ven bien: luz cálida, parque saturado y desenfocado, 0 % quemado. Pero p17, p17_b y p18 se ven como maniquíes: pared turquesa vacía, piso gris liso, luz plana sin contorno, saturación 108 contra 116-125 de los otros, poses clonadas y zapatillas como bloques; además, los helados de p1 parecen de plástico.",
+   "de": "cuadros1"
+  },
+  "personaje": {
+   "nota": 6,
+   "por_que": "p1, p26 y p26_b coinciden con la ficha (pelo oscuro en mechones, polera coral con estrella amarilla, misma cara), pero en p1 y p26_b el pelo queda cortado por el borde superior, sin aire. En p17 y p18 los voluntarios son clones de la cara del protagonista con otras poleras y piel más clara, así que se leen como el protagonista cambiado de ropa.",
+   "de": "cuadros1"
+  },
+  "manos": {
+   "nota": 3,
+   "por_que": "De 6 cuadros de partida, 5 traen un agarre a medias: dedos estirados que se salen del borde del vaso (p17, p17_b, p18), un dedo colgando bajo la taza sin tocarla (p26) y la mano del cono cortada por el borde (p1). Sólo p26_b tiene las manos libres, como pide la regla.",
+   "de": "cuadros1"
+  },
+  "anatomia": {
+   "nota": null,
+   "por_que": "no aplica",
+   "de": "cuadros1"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "p1_inicio: la bola de vainilla atraviesa la cara. Su borde superior entra en la piel justo bajo la nariz (x 250-450, y 480-560 de 720x1280), no se ven los labios ni la boca abierta, y Kling copiaría esa intersección en todo el clip.",
+   "arreglo": "Rehacer el cuadro de partida con la boca cerrada y visible y el cono lejos de la cara: apoyado en el soporte del carrito o fuera de cuadro, con las manos libres. Que Kling acerque el cono con 'lips close on the scoop, never passes through the face'.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "p1_inicio: agarre a medias del cono pegado al borde inferior. La mano queda cortada por el borde (y 1150-1280) y sólo se ve un dedo a la izquierda del barquillo y un bulto de palma a la derecha, así que no se puede verificar que los dedos rodeen el barquillo (material insuficiente). Además, la mano queda bajo y=1250 de 1920.",
+   "arreglo": "Usar el mismo cuadro nuevo del problema anterior, con las manos libres o el cono apoyado, y dejar que Kling traiga el agarre.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 17,
+   "segundo": "0.00",
+   "que": "p17_inicio y p17_inicio_b: en las 3 manos completas (polera lila, rosa y celeste) los dedos cruzan el vaso estirados, sin envolverlo, y las puntas sobresalen 10-20 px del borde izquierdo del vaso y quedan en el aire (x≈205, 425 y 645; y≈680-700). Es un agarre a medias en un cuadro de partida, y la mano de la polera verde queda cortada en el borde izquierdo (x 40-70, y 690-720).",
+   "arreglo": "Rehacer con los vasos apoyados en una mesa o mesón frente a la fila, a la altura del pecho, y las manos libres a los lados; Kling hace que los tomen. Si no, sacar los vasos del cuadro.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 18,
+   "segundo": "0.00",
+   "que": "p18_inicio: el voluntario de polera celeste tiene el índice y el medio estirados sobre el frente del vaso, con las puntas fuera de su borde izquierdo (x≈185-215, y≈840-910). No se ve el pulgar y el vaso queda inclinado, como apoyado sobre los dedos y no agarrado.",
+   "arreglo": "Rehacer el cuadro con el vaso apoyado en una mesa frente a él y la mano libre, o con la mano vacía y el vaso fuera de cuadro; el prompt de Kling debe pedir 'fingers wrapped around the glass, never floats'.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 26,
+   "segundo": "0.00",
+   "que": "p26_inicio: la taza no está agarrada. Dos dedos quedan por delante del cuerpo de la taza y la punta del índice cuelga bajo la base sin tocarla (x≈380, y≈800-840). Ningún dedo pasa por el asa ni la rodea por detrás, así que la taza flota frente a la mano.",
+   "arreglo": "Usar p26_inicio_b (manos libres) como cuadro de partida, o rehacerlo con la taza apoyada en una mesa o baranda a la altura del pecho; Kling hace que la tome por el asa.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 9,
+   "segundo": "inicio (cuadro de partida)",
+   "que": "Agarre a medias del cono: en x≈75–300, y≈1080–1280 (de 1280) hay 3 dedos rectos y abiertos en diagonal; sólo el de arriba se apoya en el cono, los otros dos quedan fuera del cono flotando delante del brazo y la polera, y no hay pulgar visible. El cono queda sostenido por la yema de un dedo. Kling va a copiar este agarre roto en todo el clip.",
+   "arreglo": "Rehacer el cuadro con la mano libre (cono aún no en la mano, p. ej. apoyado en el carrito o fuera de cuadro) y que Kling traiga el cono con 'fingers wrapped around the cone'; o, si el cono debe estar en la mano, que los 4 dedos lo rodeen curvados y el pulgar quede visible del otro lado.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 30,
+   "segundo": "inicio (cuadro de partida)",
+   "que": "Mismo agarre a medias: en x≈340–720, y≈1030–1280 cuatro dedos rectos y paralelos; el índice apoyado sobre el cono, el medio cruza el borde izquierdo del cono y el de abajo queda entero fuera, flotando sobre la estrella de la polera; sin pulgar visible. Además el cuadro arranca con la bola de vainilla ya metida en la boca (tapa el labio inferior), así que no se puede verificar si atraviesa la cara.",
+   "arreglo": "Igual que p9: cuadro con la mano libre o cono apoyado y la boca cerrada o separada del helado; que Kling haga el gesto completo de acercar y morder.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "0.00",
+   "que": "Los vasos de 'agua helada' no se ven como agua helada. En p17_inicio el vaso es casi negro con un bloque blanco y se lee como bebida cola; en p17_inicio_b y p18_inicio es blanco opaco, como leche o vaso de papel. Además, p17_inicio (oscuro) no empalma con p18 (blanco). Kling copiará o 'corregirá' ese material a mitad del clip.",
+   "arreglo": "Usar en p17 y p18 el mismo vaso de vidrio transparente con agua clara, 2-3 cubos de hielo visibles y gotas de condensación.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "inicio (también p30)",
+   "que": "El cono no parece de barquillo: es liso, brillante y dorado-metálico, sin la textura de rejilla. Se lee como una copa de metal o plástico. Kling suele 'corregir' a barquillo real a mitad del clip, lo que haría que el cono cambie de aspecto en pantalla.",
+   "arreglo": "Cambiar el material del cono a barquillo mate color galleta con rejilla en relieve (textura CC0 de waffle en ambientCG o Poly Haven) en p9 y p30 antes de mandar a Kling.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "0.00",
+   "que": "El objeto clave queda en la franja de subtítulos (y 1000-1250 de 1920). Vasos de p17 y p17_b: y≈665-720 de 1280, o sea, 1000-1080 de 1920. Vaso de p18: y 700-950, o sea, 1050-1425. Taza de p26: y 600-790, o sea, 900-1185. Los subtítulos los van a tapar.",
+   "arreglo": "Encuadrar más cerrado o subir la cámara para que vasos y taza queden sobre y≈950 de 1920 en el cuadro de partida.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "p1_inicio y p26_inicio_b: el pelo toca el borde superior (y=0), sin aire sobre la cabeza. En p26_b, además, el mentón llega a y≈650 de 1280 (≈975 de 1920), fuera del rango 350-900.",
+   "arreglo": "Alejar la cámara o bajar el encuadre unos 80-120 px (de 1280) para que el tope del pelo quede en y≥40 y la cara entre 350 y 900 de 1920.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "0.00",
+   "que": "p17, p17_b y p18: todos los voluntarios tienen la misma cara y el mismo pelo del protagonista, sólo cambian la polera (verde, lila, rosa, celeste, blanca) y la piel es más clara que en la ficha. Se leen como el protagonista clonado o cambiado de ropa, y el protagonista (coral con estrella) no aparece. Kling puede mezclar identidades.",
+   "arreglo": "Darle a cada voluntario otro peinado, color de pelo, tono de piel y rasgos. Si el protagonista está en la fila, ponerle su polera coral con estrella.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "0.00",
+   "que": "p17, p17_b y p18 se ven planos y sin vida. Hay pared turquesa vacía en el 35-40 % superior del cuadro (y 0-460 en p17, y 0-340 en p18), piso gris liso, luz plana sin contorno y saturación 108. Las 4 figuras tienen exactamente la misma pose, las zapatillas parecen bloques blancos y los jeans se ven como calzas. No están al nivel de p1 y p26.",
+   "arreglo": "Agregar luz de contorno y una luz principal cálida, darle detalle al fondo (sala de estudio con mesa, jarras o afiches), variar las poses de cada voluntario, subir la saturación y cerrar el encuadre para que no sobre pared.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "0.00",
+   "que": "Hay cuerpos cortados por el borde. En p17 y p17_b la figura de polera verde no tiene cabeza (x 0-70, y 580-1160) y a la derecha sólo asoma una pierna (x 700-720). En p18 la persona de polera blanca tiene la cabeza fuera del borde derecho (sólo asoma pelo en x≈715, y 420-490) y el brazo cortado abajo. Kling puede inventarles caras a medias.",
+   "arreglo": "Encuadrar para que cada figura entre con la cabeza completa o quede claramente fuera. En p18, sacar a la persona de blanco del cuadro o mostrar su cabeza.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "p1_inicio: el parche blanco de escarcha en la frente y la línea del pelo (x 310-450, y 175-270) tiene bordes irregulares y facetas triangulares visibles. Se lee como mancha o pintura, no como frío, y Kling puede borrarlo o deformarlo durante el clip (cambio de forma de golpe).",
+   "arreglo": "Sacar la escarcha del cuadro de partida y agregarla en post sobre el clip ya animado. Si se deja, que sea escarcha fina con textura, sin facetas.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": null,
+   "que": "Fuera de esta etapa: las notas de uso piden 7 planos con Kling (p1, p3, p9, p17, p18, p26 y p30). AUDITOR.md fija un máximo de 3 planos de Kling, y el presupuesto, 8 unidades por video (4 por clip, o sea 2 clips). 7 clips son 28 unidades, 3,5 veces el tope.",
+   "arreglo": "Dejar 2-3 planos de Kling (por ejemplo p1, p18 y p26). Hacer p17 como render sin agarre (vasos apoyados en una mesa) y resolver p9 y p30 reusando el clip de p1 o sin objeto en la mano.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "inicio (también p30)",
+   "que": "Los bordes de 'derretido' de las tres bolas son cáscaras delgadas separadas de la bola: hay huecos entre la bola y el borde por donde se ve la polera coral (p. ej. bajo la bola de chocolate a la derecha y en el borde rosado, x≈470–560, y≈780–1000 en p9). Es un artefacto de render y Kling lo puede deformar.",
+   "arreglo": "Unir la geometría del borde a la bola (sin hueco) o quitar el borde y dejar bolas con goteo modelado en la misma malla.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "inicio (también p30)",
+   "que": "Toda la mano y el agarre quedan bajo y≈1080 de 1280 (≈1620 de 1920), cortados por el borde inferior, en la zona donde no debe ir nada importante; y la franja de subtítulos (y 1000–1250 de 1920 = 667–833 de 1280) cae justo sobre las bolas de helado.",
+   "arreglo": "Subir el cono y la mano: encuadre algo más abierto con la mano completa entre y≈700–1000 de 1280 o mover el agarre fuera de la franja de subtítulos, dejando la mano entera dentro del cuadro.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 30,
+   "segundo": "inicio",
+   "que": "Motas blancas irregulares en la frente (x≈330–390, y≈185–230 de 1280). Si es escarcha, a este tamaño se ve como sal, caspa o ruido de render; Kling probablemente las haga parpadear o desaparecer entre cuadros.",
+   "arreglo": "Quitarlas del cuadro de partida; si la escarcha es necesaria para el guion, agregarla en post como efecto que entra con animación propia, más grande y claramente de hielo.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "inicio",
+   "que": "Parche rojo-anaranjado emisivo en la frente (x≈260–450, y≈440–530) con borde duro bajo el pelo; se lee como quemadura o error de luz. Como la acción es llevarse las manos a la frente, Kling va a pasar las manos por encima y el brillo puede saltar a las manos o desaparecer de golpe.",
+   "arreglo": "Renderizar el cuadro de partida sin el brillo rojo y agregar el 'dolor en la frente' en post sobre el clip ya animado, o suavizar el degradado si es indispensable.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "inicio",
+   "que": "La cara no se ve: cabeza agachada, ojos cerrados y la cara en sombra (sólo se distingue la punta de la nariz). No se puede verificar que sea el personaje de la ficha, y Kling tendrá que inventar la cara si el personaje levanta la cabeza.",
+   "arreglo": "Cuadro de partida con la cabeza más levantada (cara visible, ojos entre y≈350–900 de 1920) y que Kling haga el gesto de agacharse y llevarse las manos a la frente.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "inicio",
+   "que": "Brazo izquierdo (lado izquierdo de la imagen) en pose forzada: el codo queda en y≈900, muy por debajo del hombro (y≈650), mientras la mano está sobre la cabeza (y≈200); el antebrazo se ve ~1,5 veces más largo que el brazo. Kling tiende a deformar brazos con proporciones así.",
+   "arreglo": "Reponer el brazo con el codo a la altura del hombro o más arriba (manos sobre la cabeza con codos abiertos hacia los lados), o partir con las manos bajas y libres.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "p1_inicio: las tres bolas de helado tienen brillos duros y una superficie lisa sin textura; parecen juguetes de plástico, no helado.",
+   "arreglo": "Subir la rugosidad del material (≈0,5-0,7), agregar irregularidades de crema y algo de subsuperficie.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 26,
+   "segundo": "0.00",
+   "que": "p26_inicio: nada indica que lo de la taza está tibio. No hay vapor y no se ve el contenido.",
+   "arreglo": "Agregar un hilo de vapor tenue en post o en el render (no pedírselo a Kling, que podría hacerlo aparecer y desaparecer).",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "0.00",
+   "que": "p17 y p17_b: las dos barras blancas de luz (y 40-75 a la izquierda, y 75-115 a la derecha) flotan frente a la pared cortadas por los bordes, sin soporte visible.",
+   "arreglo": "Quitarlas o mostrar a qué techo o pared están fijadas.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 30,
+   "segundo": "inicio (también p9)",
+   "que": "El pelo casi toca el borde superior (y≈35–40 de 1280): no queda aire sobre el pelo como pide el encuadre.",
+   "arreglo": "Bajar la cámara o abrir un poco el plano para dejar ~60–80 px de aire sobre el pelo.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 30,
+   "segundo": "inicio",
+   "que": "La cara se ve más ancha en mejillas y mandíbula que en la ficha (cara más redonda), probablemente por una focal corta en primer plano.",
+   "arreglo": "Usar una focal más larga (como en el panel 'cara' de la ficha) para mantener las proporciones.",
+   "de": "cuadros2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "inicio (también p30 y p3)",
+   "que": "La estrella amarilla de la polera tiene bordes en escalera (textura de baja resolución), visible en p9 x≈420–550, y≈1150–1280 y en p3 x≈465–615, y≈800–930; al ampliar a 1080×1920 se nota más.",
+   "arreglo": "Reemplazar la textura de la estrella por una de mayor resolución o vectorial.",
+   "de": "cuadros2"
+  }
+ ],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}

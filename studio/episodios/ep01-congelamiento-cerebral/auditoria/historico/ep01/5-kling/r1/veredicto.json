@@ -1,0 +1,450 @@
+{
+ "etapa": "5-kling",
+ "ronda": 1,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "manos": {
+   "nota": 3,
+   "por_que": "p26_taza_a y p26_taza_b: en ningún cuadro hay dedos por el asa ni la mano envolviendo la taza; la taza va apoyada en yemas bajo la base (0,0 s, 3,5-5,0 s) y en 1,4-2,8 s los dedos se abren en garra sobre la base; p1_cono_a: la mano casi no se ve en 6 de 8 cuadros.",
+   "de": "kling2"
+  },
+  "objeto": {
+   "nota": 3,
+   "por_que": "En los tres clips el vaso cambia de material o de forma a mitad del clip: en p17_vasos_a pasa de oscuro a transparente (2,1→2,8 s), en p17_vasos_b de blanco opaco a transparente (1,4→2,1 s) y en p18_vol_a de blanco opaco con tapa redondeada a vaso traslúcido abierto (3,5→4,3 s).",
+   "de": "kling1"
+  },
+  "personaje": {
+   "nota": 3,
+   "por_que": "p1_cono_a se derrite: en 2,1 s la frente crece y los ojos se desorbitan, en 2,8 s cambia el pelo y en 3,5-5,0 s es otra cara (redonda, cejas gruesas, nariz más grande, piel plástica); las tazas mantienen pelo y polera coral con estrella, con deriva leve de cejas y nariz.",
+   "de": "kling2"
+  },
+  "estabilidad": {
+   "nota": 5,
+   "por_que": "Fondo de parque estable en los 3 clips y cámara fija en las tazas, pero en p1_cono_a el encuadre salta en 2,1 s (la cabeza sale por arriba) y la piel cambia a brillo plástico desde 3,5 s; en p26_taza_a 5,0 s aparece una mancha blanca junto al pelo.",
+   "de": "kling2"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p17_vasos_a",
+   "segundo": "2,8 s",
+   "que": "Los vasos de los tres voluntarios cambian de golpe: de 0,0 a 2,1 s son oscuros, con líquido negro que parece bebida cola y no agua helada, y a los 2,8 s ya son transparentes, con hielo y sin líquido oscuro. El color oscuro viene del cuadro de partida.",
+   "arreglo": "Descartar el clip. Ningún tramo sirve, porque de 0,0 a 2,1 s el vaso no se ve como agua helada. Rehacer el cuadro de partida con vasos transparentes de agua con hielo y regenerar.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p17_vasos_b",
+   "segundo": "2,1 s",
+   "que": "Los vasos pasan de blanco opaco (0,0–1,4 s, igual que en el cuadro de partida) a plástico transparente con hielo (2,1–5,0 s) en los tres voluntarios. La causa es que el prompt pide 'clear plastic cup… stay clear' y el cuadro de partida trae vasos opacos.",
+   "arreglo": "Igualar el prompt y el cuadro: renderizar el cuadro de partida con vasos transparentes, o cambiar el prompt a 'the same white opaque cups'. Regenerar. Si no se regenera, sólo se podría usar 2,1–5,0 s, y ese tramo tiene el problema siguiente.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p18_vol_a",
+   "segundo": "4,3 s",
+   "que": "El vaso cambia de forma y de material: de 0,0 a 2,8 s es blanco opaco con la parte de arriba redondeada como tapa; a los 3,5 s es un cilindro; y de 4,3 a 5,0 s es un vaso traslúcido abierto, con el borde visible y más grande. La causa es la misma: el prompt dice 'clear plastic cup' y el cuadro de partida trae un vaso opaco.",
+   "arreglo": "Regenerar con un prompt que describa el vaso del cuadro ('the same white opaque cup with a lid'), o renderizar el cuadro de partida con un vaso transparente. El tramo 0,0–3,5 s se salva, pero ahí falta la mano en la frente, que es la acción del plano.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p18_vol_a",
+   "segundo": "4,3–5,0 s",
+   "que": "El personaje se deforma al final: el pelo, que era un casco corto y ordenado, queda despeinado con mechones largos y más volumen, y la cara se ve más ancha, con arrugas y piel realistas. Ya no tiene el estilo liso de 0,0–3,5 s. Es la cara que Kling 'derrite' al final.",
+   "arreglo": "Regenerar agregando 'same neat short hair that does not change, same face proportions and smooth cartoon skin', y una reacción más corta para que la mano llegue a la frente cerca de los 3 s.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p1_cono_a",
+   "segundo": "2,1 s",
+   "que": "cara deformada: la frente se agranda, el nacimiento del pelo retrocede y los ojos quedan desorbitados; no es la cara del cuadro de partida ni de la ficha",
+   "arreglo": "no usar el clip; repetir en Kling con una acción más corta y menos exagerada (un mordisco, sin 'greedy'), y con last_frame = cuadro de partida para que Kling no se aleje del personaje",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p1_cono_a",
+   "segundo": "2,8 s",
+   "que": "el pelo cambia de forma: mechones más largos y espesos caen sobre la frente, distintos al corte corto del cuadro de partida",
+   "arreglo": "el mismo de arriba; si no se logra en 2 intentos, rehacer el plano sin morder (sólo reacción)",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p1_cono_a",
+   "segundo": "3,5-5,0 s",
+   "que": "personaje distinto: cara redonda e hinchada con papada, cejas gruesas y oscuras fruncidas, nariz más grande y piel brillante tipo plástico; las mejillas llenas se pidieron, pero cambia toda la cara",
+   "arreglo": "usable sólo 0,0-1,4 s, y en ese tramo no come rápido (aleja el cono y lo mira): el clip no sirve para el plano; regenerar",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_a",
+   "segundo": "0,0-0,7 s",
+   "que": "la taza descansa sobre yemas curvadas bajo la base y ningún dedo pasa por el asa (la instrucción pedía los dedos en el asa); el cuadro de partida ya trae ese agarre malo y Kling lo copia",
+   "arreglo": "nuevo cuadro de partida con la mano libre y la taza apoyada o fuera de cuadro (manual §8), y que Kling traiga la taza",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_a",
+   "segundo": "1,4-2,1 s",
+   "que": "dedos abiertos en garra sobre la base de la taza, sólo tocan las yemas y una parece hundirse en el aro de la base; un dedo llega a la ceja y al ojo; el asa no se ve en ningún lado, así que no se puede verificar que siga ahí",
+   "arreglo": "regenerar desde un cuadro de partida con la mano libre; si falla de nuevo, rehacer el plano sin taza en la mano",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_a",
+   "segundo": "3,5-5,0 s",
+   "que": "la taza va apoyada desde abajo sobre la punta de los dedos; en 4,3 s sólo toca la esquina inferior izquierda y el cuerpo de la taza queda en voladizo, sin agarre",
+   "arreglo": "regenerar; no hay tramo usable con agarre correcto",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_a",
+   "segundo": "5,0 s",
+   "que": "aparece una mancha blanca difusa junto al pelo, arriba a la derecha de la cabeza, que no existe en los cuadros anteriores",
+   "arreglo": "regenerar; agregar 'no breath vapor, no smoke, no mist' a la instrucción",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_b",
+   "segundo": "0,0-0,7 s",
+   "que": "mismo cuadro de partida malo: yemas bajo la base cerca del asa; en ningún cuadro hay 'cuatro dedos alrededor del cuerpo y pulgar al otro lado' como pide la instrucción",
+   "arreglo": "nuevo cuadro de partida con la mano libre (manual §8) antes de volver a gastar unidades",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_b",
+   "segundo": "2,1-2,8 s",
+   "que": "dedos abiertos y rígidos en garra apoyando sólo las yemas en la base (justo lo que la instrucción prohibía); en 2,8 s una yema parece entrar en el interior o aro de la taza y en 2,1 s un dedo toca la ceja",
+   "arreglo": "regenerar desde cuadro con mano libre; si falla, plano sin taza",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_b",
+   "segundo": "4,3-5,0 s",
+   "que": "la taza queda en equilibrio sobre las yemas: en 4,3 s sólo la toca la esquina inferior izquierda y en 5,0 s la mano, cortada por el borde derecho, la sostiene desde abajo",
+   "arreglo": "regenerar; usable a lo más 1,4 s (yemas sobre el frente de la taza), que no alcanza para el plano",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_c",
+   "segundo": "0,0 s (y 0,7 / 3,5 / 4,3 / 5,0 s)",
+   "que": "El cuadro de partida ya trae un mal agarre: la taza descansa sobre las yemas del índice y del medio por debajo, y ningún dedo pasa por el asa (queda libre a la derecha). Kling lo copia todo el clip: la taza va pellizcada por el borde inferior, no agarrada, al contrario de la instrucción ('index and middle fingers hooked through the handle').",
+   "arreglo": "Ningún tramo sirve: descartar p26_taza_c. Si se rehace, partir de un cuadro con la mano libre y sin taza, como en d y e.",
+   "de": "kling3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_c",
+   "segundo": "1,4 s y 2,1 s",
+   "que": "Mano deformada: dedos largos y abiertos en garra, mano desproporcionada frente a la cara y dos puntas de dedo sueltas sobre la cara frontal de la taza, sin unión visible con la palma. Parecen dedos que atraviesan la taza o que flotan delante de ella.",
+   "arreglo": "No usable. Descartar el clip y usar p26_taza_e o una versión corregida de p26_taza_d.",
+   "de": "kling3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_c",
+   "segundo": "1,4 s y 2,1 s",
+   "que": "La taza cambia de forma: a los 0,0 y 2,8 s es un cilindro recto con asa, y a los 1,4–2,1 s se ve como un vaso cónico, más angosto en la base y sin asa visible.",
+   "arreglo": "No usable. Descartar el clip.",
+   "de": "kling3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p26_taza_d",
+   "segundo": "3,5–5,0 s",
+   "que": "Aparece vapor, un hilo blanco tenue sobre la taza y frente al mentón, más visible a los 4,3 s. No está a los 0,7 s, cuando la taza ya se ve a la altura del pecho, y la instrucción decía 'No steam'. El material no alcanza para ver si aparece de golpe: entre 2,8 y 3,5 s la taza tapa la boca.",
+   "arreglo": "Usar 0,0–2,8 s si el plano sólo necesita el sorbo. Si necesita el suspiro de alivio (4,3–5,0 s), regenerar el prompt sin 'warm tea' ('takes a slow sip from a plain white mug', 'no steam, no vapor, no smoke') o usar p26_taza_e. Las manos de este clip son las mejores del encargo.",
+   "de": "kling3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p30_cono_a",
+   "segundo": "0,0–0,9 s",
+   "que": "El dedo apoyado sobre la cara del barquillo se ve pálido y translúcido, como un fantasma pegado al cono (a los 0,9 s se ve la textura del barquillo a través de él); los otros dedos son salchichas sueltas que no rodean el cono. Ya viene así desde el cuadro de partida.",
+   "arreglo": "Rehacer el cuadro de partida con la mano bien cerrada alrededor del barquillo (4 dedos por delante, pulgar detrás), sin dedos acostados sobre el cono, y volver a pasarlo por Kling.",
+   "de": "kling4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p30_cono_a",
+   "segundo": "0,9 → 1,3 s",
+   "que": "La escarcha de la frente cambia de tamaño de golpe: es un brillo chico (como en el cuadro de partida) hasta 0,9 s y a los 1,3 s ya es una mancha blanca grande que se queda así hasta 3,0 s. Además rompe la continuidad con el plano anterior, que termina con la escarcha chica.",
+   "arreglo": "Pedirle a Kling que la escarcha se mantenga 'exactly the same small frost spot, same size' o, mejor, generar el clip sin escarcha y ponerla encima en el montaje para que tenga el mismo tamaño en todos los planos.",
+   "de": "kling4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p3_frente_b",
+   "segundo": "2,8 → 3,5 s",
+   "que": "La mancha roja de la frente, presente desde el cuadro de partida hasta 2,8 s, desaparece sin explicación a los 3,5 s y no vuelve (4,3 y 5,0 s sin mancha). A los 2,8 s la mancha tiene vetas claras con forma de dedos, como si los dedos se fundieran con el brillo.",
+   "arreglo": "Si el plano necesita la mancha, generar el clip sin ella y componerla en el montaje sobre la frente, o pedir en la instrucción que la mancha roja se mantenga igual. Si el plano no la necesita, usar sólo 3,5–5,0 s y verificar que el plano anterior tampoco la muestre.",
+   "de": "kling4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p3_frente_b",
+   "segundo": "1,4 s",
+   "que": "La cara cambia a caricatura: ojos redondos enormes con el blanco a la vista y pupilas chicas, más grandes que a los 0,7 s y que los de la ficha. Además las dos manos quedan abiertas en el aire, lejos de la cabeza; la instrucción pedía bajarlas a la frente.",
+   "arreglo": "Cortar antes de 1,4 s o rehacer con 'same realistic eyes as the start frame, no exaggerated cartoon eyes' y la acción directa: las manos bajan a la frente sin el gesto de sorpresa.",
+   "de": "kling4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p9_cono_a",
+   "segundo": "0,0–0,7 s",
+   "que": "La mano está abierta, con los dedos separados hacia abajo a la izquierda. Sólo un dedo roza el costado del barquillo, nada lo rodea y el cono parece flotar (el cuadro de partida ya viene así). Recién a los 1,4 s los dedos se cierran alrededor del cono.",
+   "arreglo": "Rehacer el cuadro de partida con el agarre cerrado (dedos curvados alrededor del barquillo y pulgar detrás). Si no, el tramo de mano usable empieza en 1,4 s.",
+   "de": "kling4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": "p9_cono_a",
+   "segundo": "0,7; 1,4; 2,1; 3,5 s",
+   "que": "El personaje se 'derrite' y cambia. A 0,7 y 2,1 s tiene ojos de caricatura, grandes y redondos. A 1,4 s el pelo es más tupido y cambia la línea de nacimiento. A 3,5 s el pelo es más alto, en punta y con los lados rapados, la cara más ancha y las cejas más gruesas: parece otra persona comparado con el de 0,0 s y la ficha (pelo café oscuro en mechones). Los cachetes inflados sí se pidieron.",
+   "arreglo": "Rehacer con un clip más corto (3 s) y menos acción ('one big bite, then chewing'), y agregar 'same face, same hair, same eyes as the start frame'. 4,3–5,0 s es el único tramo con mano y cara estables entre sí, pero no se parece al cuadro de partida.",
+   "de": "kling4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": "p26_taza_a",
+   "segundo": "4,3 s",
+   "que": "sale vaho blanco de la boca al exhalar pese a 'no steam'; en un parque soleado se lee como frío o humo",
+   "arreglo": "agregar 'no visible breath, no vapor' a la instrucción",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": "p26_taza_b",
+   "segundo": "4,3 s",
+   "que": "sale vaho blanco de la boca al exhalar pese a 'no steam'",
+   "arreglo": "agregar 'no visible breath, no vapor' a la instrucción",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": "p26_taza_c",
+   "segundo": "3,5–5,0 s",
+   "que": "La cara cambia y actúa lo contrario a lo pedido: ojos mucho más grandes y redondos que al inicio, con blanco alrededor del iris, cejas arqueadas y boca abierta. Se lee como miedo o preocupación, no como el alivio que pedía la instrucción ('exhales with relief').",
+   "arreglo": "No usable. Descartar el clip.",
+   "de": "kling3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": "p30_cono_a",
+   "segundo": "1,3–3,0 s",
+   "que": "No hay mordisco: la bola de vainilla queda entera, lisa y redonda, aplastada contra los labios y bajo la nariz en los 5 cuadros. Entre 1,3 y 1,7 s el cono está vertical y ninguna mano lo sostiene; la mano recién aparece a los 2,1 s, apretando la punta en el borde inferior.",
+   "arreglo": "Rehacer el clip. Ningún tramo sirve completo: 0,0–0,9 s tiene el dedo fantasma y 1,3–3,0 s tiene la escarcha grande y no muestra el mordisco.",
+   "de": "kling4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "que": "[automático] 8 planos del video salen de Kling [1, 3, 9, 17, 18, 26, 30, 33] (máximo 3)",
+   "donde": "",
+   "arreglo": "cumplir la regla",
+   "de": "checks"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_a",
+   "segundo": "0,7–1,4 s",
+   "que": "Los tres abren la boca como si bostezaran y meten la bombilla en la boca abierta, sin cerrar los labios sobre ella. No parece que estén tomando por bombilla.",
+   "arreglo": "Agregar al prompt 'lips closed around the straw, small sip'.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_a",
+   "segundo": "3,5–5,0 s",
+   "que": "Se pidió 'wince slightly' y salió una mueca exagerada, igual en los tres y sincronizada, con dientes apretados y cejas muy marcadas. Las caras se ven más caricaturescas que a los 0,0 s y el corte del flequillo queda más marcado.",
+   "arreglo": "Pedir 'subtle wince, natural faces, each reacts at a slightly different moment, same hairstyle'.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_a",
+   "segundo": "0,0–5,0 s",
+   "que": "No hay material suficiente para verificar los dedos: en la grilla cada mano mide unos 5 px y no se ve si los dedos rodean el vaso o lo atraviesan.",
+   "arreglo": "En la próxima ronda, incluir en los materiales un recorte de las manos a resolución completa (1080x1920) en los 8 cuadros.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_b",
+   "segundo": "2,8–4,3 s",
+   "que": "El vaso del voluntario de polera rosada parece un frasco angosto arriba entre 2,8 y 3,5 s, y un vaso recto entre 4,3 y 5,0 s. Es un cambio de forma, aunque a la resolución de la grilla no es concluyente.",
+   "arreglo": "Verificar en el clip a resolución completa. Si se confirma, es bloqueante y hay que regenerar junto con el arreglo anterior.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_b",
+   "segundo": "0,7 s",
+   "que": "Los tres tienen la boca muy abierta, con la bombilla apuntando a la boca sin que los labios la toquen. Parece un bostezo, no un sorbo.",
+   "arreglo": "Pedir 'lips closed around the straw', o usar el clip desde 1,4 s.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p17_vasos_b",
+   "segundo": "0,0–5,0 s",
+   "que": "No hay material suficiente para verificar los dedos: en la grilla las manos miden unos 5 px y no se puede confirmar el contacto con el vaso.",
+   "arreglo": "Incluir en los materiales un recorte de las manos a resolución completa.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p1_cono_a",
+   "segundo": "0,7-1,4 s y 3,5-5,0 s",
+   "que": "material insuficiente para verificar el agarre: el cono entra por el borde inferior sin mano visible; en 0,0 s y 2,8 s sólo asoman yemas en el borde y en 2,1 s la mano aparece por la derecha",
+   "arreglo": "cuadro de partida un poco más abierto para que la mano completa quede en cuadro, o aceptar mano fuera de cuadro en los 8 cuadros (que nunca asome a medias)",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p1_cono_a",
+   "segundo": "0,0-2,8 s",
+   "que": "la acción no es la pedida: un solo mordisco (2,1-2,8 s) en vez de dos rápidos; de 0,0 a 1,4 s aleja el cono y lo mira con cara triste, no come con avidez",
+   "arreglo": "en el reintento pedir un solo mordisco y cortar el clip apenas termina",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p1_cono_a",
+   "segundo": "2,1 s",
+   "que": "el encuadre salta: la cabeza sube y el pelo sale completo por el borde superior, con la cámara supuestamente fija",
+   "arreglo": "reforzar 'locked-off camera, head stays in the same place in frame' en el reintento",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p26_taza_b",
+   "segundo": "1,4-2,1 s",
+   "que": "deriva leve de la cara: cejas más oscuras y fruncidas, nariz más angosta que en el cuadro de partida",
+   "arreglo": "se corrige al regenerar; revisar contra la ficha",
+   "de": "kling2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p26_taza_c",
+   "segundo": "3,5 s",
+   "que": "Aparece un mechón levantado en la coronilla que no está a los 2,8 s ni a los 4,3 s: la silueta del pelo cambia entre cuadros.",
+   "arreglo": "Se resuelve al descartar el clip.",
+   "de": "kling3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p26_taza_e",
+   "segundo": "4,3–5,0 s",
+   "que": "La expresión final es de sorpresa o duda, no de alivio: ojos muy abiertos, cejas altas y boca abierta mirando abajo a la izquierda. La instrucción pedía 'exhales with relief'. El personaje sigue siendo el mismo (pelo, polera coral con estrella, piel).",
+   "arreglo": "Si el guion pide alivio en este plano, usar 0,0–3,8 s, o p26_taza_d regenerado sin vapor, que cierra con los ojos cerrados y un suspiro. Si el plano sólo necesita el sorbo, e sirve entero.",
+   "de": "kling3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p30_cono_a",
+   "segundo": "0,9 s",
+   "que": "La cabeza se ve más grande y redonda, con más volumen de pelo y cara más hinchada que en 0,0 s y en el cuadro de partida.",
+   "arreglo": "Al rehacer, agregar 'same face proportions, same hair volume' y revisar el cuadro de 0,9–1,3 s.",
+   "de": "kling4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": "p9_cono_a",
+   "segundo": "1,4 s y 3,5 s",
+   "que": "De la estrella amarilla de la polera sólo se ve una aguja larga y delgada (a los 3,5 s mide unas 5 veces lo que mide de ancho) en vez de una punta de estrella. Puede ser que el brazo la tape en parte, pero se lee como estrella deformada.",
+   "arreglo": "Al rehacer, verificar la estrella en la hoja de contacto. Si se usa un tramo donde se ve la aguja, encuadrar más arriba.",
+   "de": "kling4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": "p17_vasos_b",
+   "segundo": "4,3–5,0 s",
+   "que": "La expresión final junta una sonrisa con cejas de pena. Se lee como una sonrisa incómoda y no como la molestia por el frío que pide el prompt ('frown slightly').",
+   "arreglo": "Pedir 'slight frown, no smile'.",
+   "de": "kling1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": "p26_taza_e",
+   "segundo": "2,1 s y 2,8 s",
+   "que": "Hay un punto oscuro en el centro de la base de la taza cuando se inclina. Se mantiene igual en los dos cuadros, así que no parpadea.",
+   "arreglo": "Aceptable. Si se nota en el video, retocar la base en esos cuadros.",
+   "de": "kling3"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": "p9_cono_a",
+   "segundo": "2,1 s",
+   "que": "La bola de vainilla mordida queda como una cáscara hueca con borde dentado (una corona) en vez de una bola con un mordisco.",
+   "arreglo": "Detalle: aceptable en estilo cartoon, pero al rehacer conviene pedir 'a bite mark in the scoop'.",
+   "de": "kling4"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "p18_vol_a: la instrucción usa 'pain' (Kling la puede rechazar)",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}

@@ -108,7 +108,7 @@ def auditar(ep, desde=None, hasta=None):
     for w in trabajos:
         dur = (w["t1"] - w["t0"]).total_seconds() / 60
         clave = str(w["run"] or w["id"])
-        marcas = sorted(e["_t"] for e in chequeos if clave in json.dumps(e, ensure_ascii=False) and w["t0"] <= e["_t"] <= w["t1"] + datetime.timedelta(minutes=20))
+        marcas = sorted(e["_t"] for e in chequeos if clave in json.dumps({k: v for k, v in e.items() if k != "_t"}, ensure_ascii=False) and w["t0"] <= e["_t"] <= w["t1"] + datetime.timedelta(minutes=20))
         if dur > 15:
             puntos = [w["t0"]] + [m for m in marcas if m <= w["t1"]] + [w["t1"]]
             huecos = [(x, y) for x, y in zip(puntos, puntos[1:]) if (y - x).total_seconds() > 17 * 60]
