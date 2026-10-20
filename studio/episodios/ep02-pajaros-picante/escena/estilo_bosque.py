@@ -61,7 +61,7 @@ if os.environ.get("BOSQUE", "v2") == "v2":
     area("Contorno", (-0.35, 0.45, 0.55), float(os.environ.get("RIM", 40)), 0.25, (1.0, 0.80, 0.50))  # borde cálido en la tupaya
     # mancha de sol sobre la tupaya y la rama (luz principal cálida que "se cuela" entre las hojas)
     Ls = bpy.data.lights.new("RayoSol", "SPOT")
-    Ls.energy, Ls.color = float(os.environ.get("RAYO", 130)), (1.0, 0.84, 0.58)
+    Ls.energy, Ls.color = float(os.environ.get("RAYO", 70)), (1.0, 0.88, 0.70)
     Ls.spot_size, Ls.spot_blend, Ls.shadow_soft_size = math.radians(22), 0.6, 0.02
     os_ = bpy.data.objects.new("RayoSol", Ls)
     sc.collection.objects.link(os_)

@@ -433,7 +433,7 @@ def armar_v2(coll, seed=11):
     RAMA = [(-0.9, 0.05, 0.08), (-0.3, 0.02, 0.12), (0.2, 0.0, 0.10), (0.7, 0.05, 0.16)]
     rama = P.tube("Rama", RAMA, 0.035, coll, corteza, res=24)
     capa_musgo("MantoRama", coll, RAMA, 0.035)
-    musgo_en_rama("MusgoRama", coll, RAMA, 0.035, rnd, n=90, excluir=(-0.14, 0.10))
+    # (sin matas sueltas en la rama principal: de cerca se veían como huevos verdes; el manto basta)
     # ramita que sale de la rama principal hacia atrás-arriba, con hojas
     ramita_con_hojas("RamitaA", coll, [(0.35, 0.03, 0.13), (0.42, 0.12, 0.25), (0.50, 0.22, 0.42)], 7, h_med, tallo_m, rnd)
     # --- Piper con espigas colgando cerca del hocico (como en v1) ---
@@ -512,8 +512,8 @@ def armar_v2(coll, seed=11):
     pv.inputs["Anisotropy"].default_value = 0.55
     nt.links.new(pv.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
     caja = P.prim("cube", "CajaNiebla", coll, vol, smooth=False)
-    caja.scale = (4.0, 4.4, 3.0)
-    caja.location = (0, 1.6, 0.6)
+    caja.scale = (4.0, 2.95, 3.0)      # empieza detrás de la tupaya: adelante nítido, el fondo con aire
+    caja.location = (0, 3.1, 0.6)
     return {"rama": rama, "espigas": espigas}
 
 
