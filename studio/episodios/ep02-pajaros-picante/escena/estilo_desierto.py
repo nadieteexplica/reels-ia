@@ -111,16 +111,18 @@ for k, ob in enumerate(rt["orejas"]):
 for k, br in enumerate(rt["brazos"]):
     br.rotation_euler = (math.radians(-60), 0, math.radians(35 * (1 if k else -1)))   # patitas arriba, sin tocar nada
 rt["cabeza"].rotation_euler = (math.radians(-16), 0, 0)
+# c3: la cola salía por una grieta de la repisa, lejos del cuerpo. Va hacia atrás (lejos de la cámara), tapada por el cuerpo
+rt["cola"].rotation_euler = (math.radians(float(os.environ.get("COLA_X", 0))), 0, math.radians(float(os.environ.get("COLA_Z", 75))))
 rt["root"].location = (0.19, 0.20, TOP2)          # tabla de utilería del storyboard
 rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", -60)))
 # causa de la llama: un ají mordido junto al ratón, y los lentes de sol caídos (detalle del loop)
-aj_m = E.aji("AjiMordido", largo=float(os.environ.get("AJM_LARGO", 0.09)), grosor=0.0155, coll=CP, seed=11, curva=0.25)
+aj_m = E.aji("AjiMordido", largo=float(os.environ.get("AJM_LARGO", 0.10)), grosor=float(os.environ.get("AJM_GROSOR", 0.017)), coll=CP, seed=11, curva=0.25)
 # acostado de lado a lo largo del borde delantero de la repisa (tallo a la izquierda, junto al ratón): el mordisco queda en la
 # silueta de arriba y se lee desde la cámara, que está más abajo
-AJM = tuple(float(v) for v in os.environ.get("AJM", "0.232,0.181,-86").split(","))
+AJM = tuple(float(v) for v in os.environ.get("AJM", "0.241,0.181,-86").split(","))
 aj_m.rotation_euler = (math.radians(90), 0, math.radians(AJM[2]))
 aj_m.location = (AJM[0], AJM[1], 0.0)
-E.mordisco_media_luna(aj_m, CP, t=0.55, lado=(0.45, 0.89, 0), r=0.0118)   # media luna en la silueta de arriba, un poco hacia la cámara (x local = -y del mundo): se ve la muesca y la pulpa
+E.mordisco_media_luna(aj_m, CP, t=0.55, lado=tuple(float(v) for v in os.environ.get("BOCADO_LADO", "0.62,0.78,0").split(",")), r=float(os.environ.get("BOCADO", 0.0165)), semillas=5, pulpa=False, en_corte=True)   # media luna en la silueta de arriba, un poco hacia la cámara (x local = -y del mundo): se ve la muesca y la pulpa
 # la cámara (z≈0,32) queda más abajo que la cima de la roca de atrás: lo que está tirado plano arriba no se ve, y lo que
 # está bajo la altura de la cámara cae en la franja de subtítulos (y > 990). Por eso las pistas van en dos repisas
 # escalonadas a la derecha del ratón: el ají mordido en el borde de la de abajo, la medalla colgando de ese borde con la
@@ -146,7 +148,7 @@ def frente(ob, x, z):
     hit, loc, *_ = ob.evaluated_get(dg).ray_cast(Mi @ Vector((x, -0.4, z)), (Mi.to_3x3() @ Vector((0, 1, 0))).normalized())
     return (ob.matrix_world @ loc).y if hit else None
 # el ají se apoya en el punto más alto bajo él (muestras a lo largo y a lo ancho)
-_r_aji = 0.0155 * 0.77
+_r_aji = float(os.environ.get("AJM_GROSOR", 0.017)) * 0.77
 _ex = (Vector((math.cos(math.radians(AJM[2] + 90)), math.sin(math.radians(AJM[2] + 90)), 0)))
 _apoyo = max(cima(*(Vector((AJM[0], AJM[1], 0)) + _ex * d).xy[:]) for d in (0.015, 0.03, 0.045, 0.06, 0.075))
 aj_m.location.z = _apoyo + _r_aji + 0.0014        # + grosor de la cinta de la medalla, que pasa por debajo

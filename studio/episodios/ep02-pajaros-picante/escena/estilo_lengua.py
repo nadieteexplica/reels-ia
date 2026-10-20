@@ -132,7 +132,7 @@ def area(name, loc, energy, size, color, target=(0, 0.02, 0.03)):
     ob.location = loc
     ob.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
 
-area("Key", (-0.25, -0.30, 0.35 + ZC), 5, 0.35, (1.0, 0.92, 0.85), target=(0, 0.02, 0.03 + ZC))
+area("Key", (-0.25, -0.30, 0.35 + ZC), float(os.environ.get("KEY", 4)), 0.35, (1.0, 0.92, 0.85), target=(0, 0.02, 0.03 + ZC))
 area("Rim", (0.25, 0.35, 0.25 + ZC), 7, 0.3, (1.0, 0.6, 0.6), target=(0, 0.02, 0.03 + ZC))
 cam = bpy.data.objects.new("CamS", bpy.data.cameras.new("CamS"))
 sc.collection.objects.link(cam)

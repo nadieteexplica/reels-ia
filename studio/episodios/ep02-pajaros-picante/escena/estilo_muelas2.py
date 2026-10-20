@@ -8,10 +8,12 @@ NOMBRE = os.environ.get("NOMBRE", "estilo_muelas2")
 RES = os.environ.get("RES", "720x1280")
 W = int(RES.split("x")[0])
 env = dict(os.environ)
-env.update({"MODO": "cara", "NOMBRE": NOMBRE + "_cara", "TGT_Y": os.environ.get("TGT_Y", "-0.014"), "TGT_Z": os.environ.get("TGT_Z", "-0.0005"),
-            "CAMOFF": os.environ.get("CAMOFF", "1.0,0.0,0.0"), "LENS": os.environ.get("LENS", "50")})
+env.update({"MODO": "cara", "NOMBRE": NOMBRE + "_cara", "TGT_Y": os.environ.get("TGT_Y", "-0.0252"), "TGT_Z": os.environ.get("TGT_Z", "-0.0371"),
+            "CAMOFF": os.environ.get("CAMOFF", "1.075,0.0,0.0"), "LENS": os.environ.get("LENS", "50")})
 # puerta 4 c2 r2: el ratón entero y sentado como en la ficha (a la derecha, mirando a la izquierda), la lupa arriba a la
-# izquierda, delante del hocico (no tapa las orejas), y la ✕ abajo al centro de la lupa (niega la escena entera)
+# izquierda, delante del hocico (no tapa las orejas), y la ✕ abajo al centro de la lupa (niega la escena entera).
+# c3: ratón un 7 % más chico y 140 px más arriba (el mentón quedaba en la franja de subtítulos) y 50 px a la derecha
+# (el hocico no se acerca a la ✕); las líneas de la lupa pasan por detrás del ratón (no cruzan ojo ni bigotes)
 r = subprocess.run([sys.executable, os.path.join(HERE, "estilo_muelas.py")], env=env, capture_output=True, text=True)
 m = re.search(r"mejilla en pantalla (\d+) (\d+)", r.stdout)
 if not m:
@@ -24,7 +26,7 @@ if r2.returncode:
     print(r2.stdout[-2000:], r2.stderr[-2000:])
     sys.exit("no salió el render de la lupa")
 comp = os.path.join(OUT, NOMBRE + "_comp.png")
-envc = dict(os.environ, LUPA_ZOOM=os.environ.get("LUPA_ZOOM", "0.55"), LUPA_CX=os.environ.get("LUPA_CX", "300"), LUPA_CY=os.environ.get("LUPA_CY", "540"),
+envc = dict(os.environ, LINEA_TENUE=os.environ.get("LINEA_TENUE", "1.0"), LUPA_ZOOM=os.environ.get("LUPA_ZOOM", "0.55"), LUPA_CX=os.environ.get("LUPA_CX", "300"), LUPA_CY=os.environ.get("LUPA_CY", "540"),
             LUPA_DIAM=os.environ.get("LUPA_DIAM", "420"))
 subprocess.run([sys.executable, os.path.join(HERE, "compone_muelas.py"), os.path.join(OUT, NOMBRE + "_cara.png"), os.path.join(OUT, NOMBRE + "_lupa.png"), comp, mx, my], env=envc, check=True)
 envm = dict(os.environ, MARCA_XY=os.environ.get("MARCA_XY", "300,752"))

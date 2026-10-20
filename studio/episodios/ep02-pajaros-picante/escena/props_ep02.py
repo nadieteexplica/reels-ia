@@ -1,5 +1,6 @@
 """Utilería y set del Ep. 2 (pájaros y picante). Todo procedural, sin assets externos (salvo los animales, que se importan aparte)."""
-import math, random
+import math, random, os
+_os_ok = True
 import bmesh
 import bpy
 from mathutils import Vector, Matrix, noise
@@ -274,7 +275,7 @@ def morder(aji_ob, centro_local, r=0.012):
     return cort
 
 
-def mordisco_media_luna(aji_ob, coll, t=0.62, lado=(0, 1, 0), r=0.010, semillas=4, seed=2):
+def mordisco_media_luna(aji_ob, coll, t=0.62, lado=(0, 1, 0), r=0.010, semillas=4, seed=2, pulpa=True, en_corte=False):
     """Mordisco que se lee en la silueta: corta el ají con 3 esferas en arco (media luna) en el costado `lado`
     (coordenadas locales del ají), a la altura `t` de su largo, y deja 3–4 semillas claras a la vista en el corte.
     El ají de props_ep02.aji crece hacia -Z local."""
@@ -282,6 +283,15 @@ def mordisco_media_luna(aji_ob, coll, t=0.62, lado=(0, 1, 0), r=0.010, semillas=
     rnd = _r.Random(seed)
     L = None
     me = aji_ob.data
+    # el boolean necesita una malla cerrada: si no, corta sin tapar y se ve el revés rojo de la cáscara (puerta 4 c3)
+    _bm = bmesh.new()
+    _bm.from_mesh(me)
+    bmesh.ops.remove_doubles(_bm, verts=_bm.verts, dist=1e-5)
+    bmesh.ops.dissolve_degenerate(_bm, edges=_bm.edges, dist=1e-6)
+    bmesh.ops.holes_fill(_bm, edges=[e for e in _bm.edges if not e.is_manifold], sides=0)
+    bmesh.ops.recalc_face_normals(_bm, faces=_bm.faces)
+    _bm.to_mesh(me)
+    _bm.free()
     zs = [v.co.z for v in me.vertices]
     L = -min(zs)
     zc = -L * t
@@ -311,20 +321,38 @@ def mordisco_media_luna(aji_ob, coll, t=0.62, lado=(0, 1, 0), r=0.010, semillas=
         b = aji_ob.modifiers.new(f"Bocado{j}", "BOOLEAN")
         b.operation = "DIFFERENCE"
         b.object = c
-        b.material_mode = "INDEX"
+        b.material_mode = os.environ.get("BOCADO_MAT", "TRANSFER") if _os_ok else "INDEX"
         cortes.append(c)
     # pulpa clara rellena el hueco por dentro y semillas planas a la vista
-    pulpa = P.prim("sphere", aji_ob.name + "_pulpa2", coll, blanco, r=rad_local * 0.80)
-    pulpa.scale = (1.0, 1.0, 2.2)
-    pulpa.parent = aji_ob
-    pulpa.location = (0, 0, zc)
-    sem = P.mat("SemillaAji", (0.97, 0.90, 0.62), rough=0.45, coat=0.3)
+    if pulpa:
+        pulpa_ob = P.prim("sphere", aji_ob.name + "_pulpa2", coll, blanco, r=rad_local * 0.80)
+        pulpa_ob.scale = (1.0, 1.0, 2.2)
+        pulpa_ob.parent = aji_ob
+        pulpa_ob.location = (0, 0, zc)
     perp = d.cross(Vector((0, 0, 1))).normalized()
-    for i in range(semillas):
-        g = P.prim("cyl", f"{aji_ob.name}_semilla{i}", coll, sem, r=rad_local * 0.20, r2=rad_local * 0.20, h=rad_local * 0.06, seg=24)
-        g.parent = aji_ob
-        off = perp * rnd.uniform(-0.5, 0.5) * rad_local + Vector((0, 0, zc + rnd.uniform(-0.8, 0.8) * r))
-        g.location = off + d * (rad_local * 0.45)
-        g.rotation_euler = (d.to_track_quat("Z", "Y").to_euler())
-        g.rotation_euler.rotate_axis("X", rnd.uniform(-0.5, 0.5))
+    if en_corte:
+        # semillas amarillas (más oscuras que la pulpa) apoyadas EN la superficie del corte: sobre la esfera del
+        # bocado del medio, con la cara mirando hacia afuera del corte (se leen desde el lado del mordisco)
+        sem = P.mat("SemillaAjiCorte", (0.92, 0.74, 0.30), rough=0.5, coat=0.2, emit=0.12)
+        c_med = d * (rad_local + r * 0.35) + Vector((0, 0, zc))
+        for i in range(semillas):
+            a = 2 * math.pi * i / semillas + rnd.uniform(-0.3, 0.3)
+            q = r * rnd.uniform(0.15, 0.55)
+            lat = perp * (q * math.cos(a)) + Vector((0, 0, q * math.sin(a) * 1.4))
+            prof = math.sqrt(max(r * r - lat.length_squared, 1e-9))
+            pto = c_med + lat - d * prof                   # punto de la superficie del corte
+            nrm = (c_med - pto).normalized()               # hacia afuera del corte (hacia el hueco)
+            g = P.prim("cyl", f"{aji_ob.name}_semilla{i}", coll, sem, r=rad_local * 0.17, r2=rad_local * 0.17, h=rad_local * 0.05, seg=24)
+            g.parent = aji_ob
+            g.location = pto + nrm * (rad_local * 0.01)
+            g.rotation_euler = nrm.to_track_quat("Z", "Y").to_euler()
+    else:
+        sem = P.mat("SemillaAji", (0.97, 0.90, 0.62), rough=0.45, coat=0.3)
+        for i in range(semillas):
+            g = P.prim("cyl", f"{aji_ob.name}_semilla{i}", coll, sem, r=rad_local * 0.20, r2=rad_local * 0.20, h=rad_local * 0.06, seg=24)
+            g.parent = aji_ob
+            off = perp * rnd.uniform(-0.5, 0.5) * rad_local + Vector((0, 0, zc + rnd.uniform(-0.8, 0.8) * r))
+            g.location = off + d * (rad_local * 0.45)
+            g.rotation_euler = (d.to_track_quat("Z", "Y").to_euler())
+            g.rotation_euler.rotate_axis("X", rnd.uniform(-0.5, 0.5))
     return cortes

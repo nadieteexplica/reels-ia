@@ -56,7 +56,7 @@ def sobre_rama(x, y):
     return (_rama.matrix_world @ loc).z if hit else 0.135
 TX = float(os.environ.get("TUP_X", -0.02))
 tp["root"].location = (TX, 0.0, sobre_rama(TX, 0.0) - 0.002)
-tp["root"].rotation_euler.z = math.radians(float(os.environ.get("TUP_ROT", 55)))   # de costado, girada hacia cámara: se ve la garganta clara de la ficha
+tp["root"].rotation_euler.z = math.radians(float(os.environ.get("TUP_ROT", 50)))   # de costado, girada hacia cámara: se ve la garganta clara de la ficha
 # luz manchada de sol entre las hojas (de lado, cálida) + contorno
 def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
     L = bpy.data.lights.new(name, "AREA")
@@ -68,7 +68,11 @@ def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
     ob.visible_volume_scatter = False      # las luces de relleno/contorno no iluminan la niebla (la dejaban lechosa); sólo el sol hace rayos
 if os.environ.get("BOSQUE", "v2") == "v2":
     area("Relleno", (0.4, -0.9, 0.5), float(os.environ.get("FILL", 9)), 0.8, (0.70, 0.85, 1.0))       # relleno frío y suave desde cámara
-    area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 60)), 0.22, (1.0, 0.86, 0.66), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza
+    area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 30)), 0.22, (1.0, 0.86, 0.66), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza (c3: con 60 quemaba la cola)
+    # c3: luz principal neutra sobre la tupaya (con sólo el ambiente verde el pelaje salía oliva oscuro, lejos del beige de la ficha)
+    # la pata trasera lejana quedaba a la sombra del cuerpo y sólo la iluminaba el rebote del musgo (salía amarillo verdosa)
+    area("RellenoPatas", tuple(float(v) for v in os.environ.get("PATAS_POS", "-0.05,-0.40,0.12").split(",")), float(os.environ.get("PATAS", 2.5)), 0.25, (1.0, 0.96, 0.90), target=(-0.02, 0.0, 0.17))
+    area("KeyTupaya", tuple(float(v) for v in os.environ.get("KEY_TUP_POS", "-0.35,-0.50,0.50").split(",")), float(os.environ.get("KEY_TUP", 8)), 0.35, (1.0, 0.95, 0.88), target=(0.0, 0.0, 0.20))
     # mancha de sol sobre la tupaya y la rama (luz principal cálida que "se cuela" entre las hojas)
     Ls = bpy.data.lights.new("RayoSol", "SPOT")
     Ls.energy, Ls.color = float(os.environ.get("RAYO", 40)), (1.0, 0.94, 0.84)   # menos cálido: con 70 y naranjo la tupaya se veía beige, no café oliva
@@ -91,7 +95,7 @@ cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
 bpy.context.view_layer.update()
 cab_w = tp["cabeza"].matrix_world.translation
-tgt = cab_w + Vector(tuple(float(x) for x in os.environ.get("TGT", "-0.05,0.0,-0.035").split(",")))
+tgt = cab_w + Vector(tuple(float(x) for x in os.environ.get("TGT", "-0.06,0.0,-0.035").split(",")))
 cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.05,-0.62,0.0").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
@@ -112,6 +116,23 @@ Rinv = pc.matrix_world.to_3x3().normalized().inverted()
 for o in tp["ojos"]:
     d = Rinv @ (cam.location - o.matrix_world.translation)
     o.rotation_euler = d.to_track_quat("-Y", "Z").to_euler()
+if os.environ.get("RAYO_PIX"):
+    # qué objeto se ve en cada píxel (coordenadas de 1080x1920): "x,y;x,y"
+    bpy.context.view_layer.update()
+    _dg2 = bpy.context.evaluated_depsgraph_get()
+    _fr = [cam.matrix_world @ v for v in cam.data.view_frame(scene=sc)]
+    for _p in os.environ["RAYO_PIX"].split(";"):
+        _u, _v = (float(t) for t in _p.split(","))
+        _q = _fr[3].lerp(_fr[0], _u / 1080).lerp(_fr[2].lerp(_fr[1], _u / 1080), _v / 1920)
+        _o, _d = cam.location.copy(), (_q - cam.location).normalized()
+        for _k in range(8):                                   # atraviesa la caja de niebla y el gobo
+            _hit, _loc, _n, _i, _ob, _m = sc.ray_cast(_dg2, _o, _d)
+            if not _hit or not (_ob.name.startswith("CajaNiebla") or _ob.name.startswith("Copa")):
+                break
+            _o = _loc + _d * 1e-4
+        print("pixel", _p, "->", _ob.name if _hit else None, [m.name for m in _ob.data.materials] if _hit and _ob.type == "MESH" else "")
+    if os.environ.get("SOLO_POS"):
+        raise SystemExit
 sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", "estilo_bosque") + ".png")
 bpy.ops.render.render(write_still=True)
 print("ok", sc.render.filepath)
