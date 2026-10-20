@@ -67,3 +67,5 @@
 {"tipo": "trabajo", "id": "estilos 39429531804", "estado": "inicio", "nota": "HD de los arreglos de la puerta 4 r2", "n": 67, "ts": "2026-10-20T10:21:03-03:00"}
 {"tipo": "chequeo", "id": "estilos 39429531804", "estado": "3/4 listos, lengua en curso", "n": 68, "ts": "2026-10-20T10:27:55-03:00"}
 {"tipo": "trabajo", "id": "estilos 39429531804", "estado": "fin", "n": 69, "ts": "2026-10-20T10:33:24-03:00"}
+{"tipo": "aviso", "que": "puerta 4 NO APROBADO en r3 (bosque, belleza 7): no se mandan cuadros; se le pide a Tomás elegir reemplazo del bosque", "n": 70, "ts": "2026-10-20T10:37:03-03:00"}
+{"tipo": "trabajo", "id": "sesión nube 20-oct: puerta 4 cuadros", "estado": "fin", "n": 71, "ts": "2026-10-20T10:37:03-03:00"}

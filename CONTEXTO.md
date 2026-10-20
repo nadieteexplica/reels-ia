@@ -109,7 +109,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - No crear cuentas ni usar contraseñas por Tomás.
 - **Publicar en redes solo con su OK explícito, post por post.**
 
-## Estado actual (19-oct-2026, noche)
+## Estado actual (20-oct-2026)
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
 - **Estilo decidido:** semi-realista con Mixamo y personaje propio (ver "Formato").
@@ -144,7 +144,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **Ep. 2 — "Los pájaros no sienten el picante" (en producción, `studio/episodios/ep02-pajaros-picante/`):**
   - Concepto hecho para la idea (decisión de Tomás): comedia 3D de dibujo animado **sin humanos**, en el desierto de Arizona; el ratón hace de "tú" (mamíferos) y el cierre lo manda al que se cree inmune. Personajes propios en `ficha.jpg` (cuitlacoche, ratón del cactus, rata, tupaya, ají guardia), todos procedurales (`escena/personajes.py`), sin modelos externos.
   - Puertas: **guion APROBADO (r2)** · **voz APROBADO (r2**, 73,6 s; pausas ajustadas con `tools/pausas.py`, 0 créditos extra) · **storyboard APROBADO (r3**, 40 planos, **0 clips de Kling**: todo render para que la llama y los personajes sean siempre los mismos).
-  - Siguiente: cuadros de estilo de los 4 escenarios nuevos (desierto/cuadro 0, lengua con alarmas, ventanita de muelas, bosque) → puerta 4 → Tomás. Después, animación y render.
+  - **Puerta 4 (cuadros de estilo), 20-oct: NO APROBADO en la r3** (sin bloqueantes; belleza 7 por el bosque). Desierto, lengua y muelas quedaron bien; el bosque no. No se le mostraron a Tomás; se le pidió elegir reemplazo del bosque (propuesta: rediseñar el set con luz filtrada y follaje en capas, y una puerta 4 nueva). Detalle en `studio/episodios/ep02-pajaros-picante/PENDIENTE.md`.
 - **Ep. 1 publicado** el 19-oct-2026 a las 16:35 en Instagram, TikTok y YouTube (links en `docs/PUBLICADOS.md`). Métricas a las 48 h (21-oct) y a los 7 días (26-oct).
 - **Próximos pasos:**
   1. ~~Auditor por etapas~~: listo el 19-oct (`docs/AUDITOR.md`, `tools/auditor/`, calibración en `docs/AUDITOR_CALIBRACION.md`).
