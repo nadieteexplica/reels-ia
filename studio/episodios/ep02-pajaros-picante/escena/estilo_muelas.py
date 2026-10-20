@@ -1,6 +1,11 @@
 """Cuadro de estilo del plano 23 ("y si…"): la mejilla del ratón de perfil con una ventanita translúcida que deja ver
 sus muelas moliendo semillas. Sin hueso, sin cráneo, sin cortar la piel: la piel se vuelve transparente en un círculo.
-El borde punteado del recuadro y la ✕ se agregan en 2D (post)."""
+El borde punteado del recuadro y la ✕ se agregan en 2D (post).
+
+Puerta 4 c2: la ventanita sola se leía como "una segunda boca". Ahora el cuadro se arma con DOS renders:
+  MODO=cara   → el ratón de perfil, mejilla con una marca chica (sin ventana);
+  MODO=lupa   → primer plano de las muelas aplastando las semillas (cuadrado), para una lupa 2D grande al lado.
+compone_muelas.py junta los dos (lupa redonda con líneas a la mejilla, recuadro punteado y ✕)."""
 import math, os, sys, random
 HERE = os.path.dirname(os.path.abspath(__file__))
 STUDIO = os.path.abspath(os.path.join(HERE, "../../.."))
@@ -66,7 +71,8 @@ for pv in rt["parpados"]:
 # ventanita: en la mejilla, bajo el ojo y detrás del hocico, la piel pasa a ser transparente dentro de un círculo
 # chico (coordenadas del objeto = mundo, el ratón se arma en el origen). Borde con un anillo crema para que se lea "ventana".
 centro_loc = Vector((0.0165, -0.036, 0.1355))   # delante del cuello (el cuello tapaba la muela de atrás)
-R_VEN = float(os.environ.get("R_VEN", 0.0116))
+MODO = os.environ.get("MODO", "cara")
+R_VEN = float(os.environ.get("R_VEN", 0.045 if MODO == "lupa" else 0.0138))
 m = cab.data.materials[0].copy()
 m.name = "PelajeVentana"
 nt = m.node_tree
@@ -99,10 +105,13 @@ nt.links.new(dist.outputs["Value"], dentro_c.inputs["Value"])
 anillo_a = nt.nodes.new("ShaderNodeMapRange")          # 1 dentro del borde exterior del anillo
 anillo_a.inputs["From Min"].default_value = R_VEN * 1.10
 anillo_a.inputs["From Max"].default_value = R_VEN * 1.02
-anillo_a.inputs["To Max"].default_value = float(os.environ.get("ANILLO", 0.75))   # anillo fino crema: se lee "ventana" y no hoyo
+anillo_a.inputs["To Max"].default_value = float(os.environ.get("ANILLO", 0.0))   # la marca de la mejilla se dibuja en 2D
 nt.links.new(dist.outputs["Value"], anillo_a.inputs["Value"])
 ven = nt.nodes.new("ShaderNodeMath"); ven.operation = "MULTIPLY"
 nt.links.new(dentro_c.outputs["Result"], ven.inputs[0]); nt.links.new(lado.outputs[0], ven.inputs[1])
+if MODO == "cara":
+    ven.inputs[1].default_value = 0.0                   # sin ventana: la piel queda entera
+    nt.links.remove(ven.inputs[1].links[0])
 ani = nt.nodes.new("ShaderNodeMath"); ani.operation = "MULTIPLY"
 nt.links.new(anillo_a.outputs["Result"], ani.inputs[0]); nt.links.new(lado.outputs[0], ani.inputs[1])
 transp = nt.nodes.new("ShaderNodeBsdfTransparent")
@@ -123,10 +132,10 @@ nt.links.new(mix2.outputs[0], out.inputs["Surface"])
 cab.data.materials.clear()
 cab.data.materials.append(m)
 # interior: todo cabe dentro de la cabeza (x 0.000–0.012) y dentro del círculo de la ventana
-diente = P.mat("Muela", (0.80, 0.70, 0.48), rough=0.35, coat=0.3, emit=float(os.environ.get("BRILLO", 0.0)))   # bajo el umbral del brillo del post (si no, se queman)
-encia = P.mat("Encia", (0.60, 0.20, 0.26), rough=0.5, sss=0.3)
-semilla = P.mat("Semilla", (0.42, 0.24, 0.10), rough=0.45)   # semilla café oscura: contrasta con las muelas
-miga_m = P.mat("Miga", (0.50, 0.30, 0.13), rough=0.6)
+diente = P.mat("Muela", (0.78, 0.62, 0.36), rough=0.35, coat=0.3, emit=float(os.environ.get("BRILLO", 0.0)))   # marfil amarillento de roedor   # bajo el umbral del brillo del post (si no, se queman)
+encia = P.mat("Encia", (0.10, 0.05, 0.07), rough=0.6)   # encía oscura: con rosado arriba y abajo se leía como una sonrisa de frente
+semilla = P.mat("SemillaAji", (0.97, 0.90, 0.62), rough=0.45, coat=0.3)   # las mismas semillas crema del ají mordido
+miga_m = P.mat("MigaSemilla", (0.88, 0.78, 0.50), rough=0.7)
 M = cab.matrix_world
 X_M = 0.0070                                           # plano de las muelas, bien adentro de la piel
 # fondo del interior: una cápsula oscura (azul noche, como la "cabeza de vidrio") que tapa el revés de la piel
@@ -144,21 +153,20 @@ def muela(name, centro, ancho, alto, arriba):
     ob = PJ.blob(name, el, C, voxel=0.00016, suave=5)
     ob.data.materials.append(diente)
     return ob
-ANCHO, ALTO, GAP = 0.0066, 0.0039, 0.0025        # las muelas llenan la ventanita
+ANCHO, ALTO, GAP = 0.0092, 0.0042, 0.0042        # 2 muelas grandes por fila (con 3 chicas se leía como dientes de persona)
 for fila, arriba in (("sup", True), ("inf", False)):
     zc = centro_loc.z + (1 if arriba else -1) * (GAP / 2 + ALTO / 2)
     zg = zc + (1 if arriba else -1) * (ALTO / 2 + 0.0004)
     base = PJ.blob(f"Encia_{fila}", [((X_M - 0.0016, centro_loc.y, zg), (0.0022, 0.0105, 0.0008), (0, 0, 0))], C, voxel=0.0002, suave=4)
     base.data.materials.append(encia)
-    for k in range(3):
-        muela(f"Muela_{fila}{k}", (X_M, centro_loc.y - ANCHO * 1.0 + ANCHO * 1.0 * k, zc), ANCHO, ALTO, arriba)
+    for k in range(2):
+        muela(f"Muela_{fila}{k}", (X_M, centro_loc.y - ANCHO * 0.52 + ANCHO * 1.04 * k, zc), ANCHO, ALTO, arriba)
 rnd = random.Random(1)
 # semillas enteras entrando por delante (hacia el hocico) y migas saliendo por detrás, entre las dos filas
-for k in range(2):
-    g = P.prim("sphere", f"Semilla{k}", C, semilla, r=0.0036)
-    g.scale = (0.55, 1.15, 0.42)
-    g.location = Vector((X_M + 0.0008, centro_loc.y - 0.0072 + 0.0030 * k, centro_loc.z))
-    g.rotation_euler.x = math.radians(rnd.uniform(-20, 20))
+for k in range(3):                                        # 3 semillas enteras, planas y redondas, de canto a la cámara no: de frente
+    g = P.prim("cyl", f"Semilla{k}", C, semilla, r=0.0026, r2=0.0026, h=0.0008, seg=32)
+    g.rotation_euler = (math.radians(rnd.uniform(-20, 20)), math.radians(90 - 35), 0)   # disco inclinado: se lee plano (semilla), no bolita
+    g.location = Vector((X_M + 0.0022, centro_loc.y - 0.0108 + 0.0042 * k, centro_loc.z + rnd.uniform(-0.0005, 0.0005)))
 for k in range(10):
     g = P.prim("ico", f"Miga{k}", C, miga_m, r=rnd.uniform(0.0008, 0.0012), sub=1)
     g.location = Vector((X_M + 0.0010, centro_loc.y + 0.0030 + rnd.uniform(0, 0.0055), centro_loc.z + rnd.uniform(-0.0007, 0.0007)))
@@ -176,12 +184,29 @@ lo.rotation_euler = (Vector((0, 0, 0.13)) - lo.location).to_track_quat("-Z", "Y"
 cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
 sc.collection.objects.link(cam)
 sc.camera = cam
-cam.data.lens = 65
+cam.data.lens = float(os.environ.get("LENS", 65))
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
 tgt = M @ (centro_loc + Vector((0.0, float(os.environ.get("TGT_Y", 0.004)), float(os.environ.get("TGT_Z", -0.008)))))
 cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "0.71,-0.053,0.02").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
-sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", "estilo_muelas") + ".png")
+if MODO == "lupa":
+    # primer plano de las muelas: fondo oscuro del interior, nada de cara alrededor
+    sc.render.resolution_x = sc.render.resolution_y = int(os.environ.get("LADO", 1080))
+    sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.02, 0.03, 0.06, 1)
+    for ob in bpy.data.objects:
+        if ob.type == "MESH" and ob.name.startswith("Raton") and ob.name != "Raton_cabeza":
+            ob.hide_render = True
+    cavidad.scale = (0.0035, 0.030, 0.022)
+    tgt = M @ Vector((X_M, centro_loc.y - 0.0015, centro_loc.z))
+    cam.location = tgt + Vector((float(os.environ.get("LUPA_D", 0.12)), 0.0, 0.0))
+    cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
+    luz_in.energy = float(os.environ.get("LUZ_LUPA", 0.03))
+    lo_in.location = M @ Vector((0.02, centro_loc.y - 0.004, centro_loc.z + 0.008))
+from bpy_extras.object_utils import world_to_camera_view as _w2c
+bpy.context.view_layer.update()
+_v = _w2c(sc, cam, M @ Vector((0.0165, centro_loc.y, centro_loc.z)))
+print("mejilla en pantalla", round(_v.x * sc.render.resolution_x), round((1 - _v.y) * sc.render.resolution_y))
+sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", "estilo_muelas" + ("_lupa" if MODO == "lupa" else "")) + ".png")
 bpy.ops.render.render(write_still=True)
 print("ok", sc.render.filepath)

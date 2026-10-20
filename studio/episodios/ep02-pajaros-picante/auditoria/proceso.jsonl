@@ -81,3 +81,4 @@
 {"tipo": "aviso", "que": "COORDINACIÓN: desde las 10:40 la sesión de chat con Tomás lleva el Ep. 2 (bosque v2, puerta 4 ciclo 2, envío a Tomás). La sesión de la tarea programada no toca más el repo ni lanza runs; si sigue abierta, que termine sin hacer cambios.", "n": 81, "ts": "2026-10-20T11:03:48-03:00"}
 {"tipo": "trabajo", "id": "estilos 39437144108", "estado": "inicio", "nota": "bosque v2.2", "n": 82, "ts": "2026-10-20T11:12:37-03:00"}
 {"tipo": "trabajo", "id": "auditor cuadros c2 r1", "estado": "inicio", "n": 83, "ts": "2026-10-20T11:21:13-03:00"}
+{"tipo": "trabajo", "id": "auditor cuadros c2 r1", "estado": "fin", "n": 84, "ts": "2026-10-20T11:30:56-03:00"}

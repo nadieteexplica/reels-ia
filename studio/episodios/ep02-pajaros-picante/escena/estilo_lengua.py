@@ -29,7 +29,7 @@ sc.world.use_nodes = True
 sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.20, 0.03, 0.05, 1)
 sc.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.6
 C = P.collection("Lengua")
-LG.lengua(C)
+LG.lengua(C, largo=1.0, y0=-0.62)        # llega hasta la cámara: abajo no queda el borde oscuro
 # paladar al fondo (cueva rosada oscura)
 pal = P.prim("sphere", "Paladar", C, P.mat("Paladar", (0.35, 0.05, 0.07), rough=0.5, sss=0.3), r=0.6)
 pal.scale = (1.0, 1.4, 0.7)
@@ -40,19 +40,31 @@ ESTADO = os.environ.get("ESTADO", "roja")
 col = {"roja": LG.ROJO, "naranja": LG.NARANJO, "celeste": LG.CELESTE, "reposo": None}[ESTADO]
 rnd = random.Random(2)
 # filas de sensores en reposo (blanco neutro)
-for j in range(9):
-    for i in range(-5, 6):
+# papilas (sensores en reposo) por toda la lengua, también en primer plano; cada una apoyada con un rayo en la superficie
+bpy.context.view_layer.update()
+_lg = bpy.data.objects["Lengua"]
+_dg = bpy.context.evaluated_depsgraph_get()
+_Mi = _lg.matrix_world.inverted()
+def _sobre(x, y):
+    hit, loc, nor, _ = _lg.evaluated_get(_dg).ray_cast(_Mi @ Vector((x, y, 0.5)), Vector((0, 0, -1)))
+    return (loc.z, nor) if hit else (None, None)
+for j in range(-12, 10):
+    for i in range(-7, 8):
         x = i * 0.026 + (0.013 if j % 2 else 0) + rnd.uniform(-0.004, 0.004)
         y = 0.03 + j * 0.03 + rnd.uniform(-0.004, 0.004)
-        if abs(x) < 0.03 and y < 0.07:
+        if (x ** 2 + (y - 0.02) ** 2) ** 0.5 < 0.05:      # nada pegado a la campanita
             continue
-        z = -abs(x / 0.32) ** 2 * 0.35 * 0.32 * 0 - (x ** 2) * 1.1
-        LG.cupula(f"Sensor{i}_{j}", (x, y, z), 0.0055, C)
-camp, domo = LG.campana(C, loc=(0, 0.02, 0.0), r=0.035, color=col, brillo=float(os.environ.get("BRILLO", 0.45)) if col else 0.0)   # con 1.2 el centro se quemaba a blanco
+        z, nor = _sobre(x, y)
+        if z is None:
+            continue
+        cp = LG.cupula(f"Sensor{i}_{j}", (x, y, z - 0.0006), 0.0055 * (1.0 + 0.25 * max(0, -j) / 12), C)
+        cp.rotation_euler = Vector(nor).to_track_quat("Z", "Y").to_euler()
+# la campanita es plateada (neutra) siempre; cuando suena, lo dicen la luz y las ondas del color del estímulo (puerta 4 c2: rojo sobre rojo no se leía)
+camp, domo = LG.campana(C, loc=(0, 0.02, 0.0), r=0.035, color=None)
 if col:
     LG.ondas(C, (0, 0.02, 0.050), 0.040, col)
     luz = bpy.data.lights.new("LuzCampana", "POINT")
-    luz.energy, luz.color, luz.shadow_soft_size = float(os.environ.get("LUZ", 0.35)), col, 0.02
+    luz.energy, luz.color, luz.shadow_soft_size = float(os.environ.get("LUZ", 0.9)), col, 0.02
     lo = bpy.data.objects.new("LuzCampana", luz)
     C.objects.link(lo)
     lo.location = (0, -0.03, 0.05)

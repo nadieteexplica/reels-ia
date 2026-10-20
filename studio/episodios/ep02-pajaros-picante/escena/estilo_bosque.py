@@ -56,9 +56,10 @@ def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
     sc.collection.objects.link(ob)
     ob.location = loc
     ob.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
+    ob.visible_volume_scatter = False      # las luces de relleno/contorno no iluminan la niebla (la dejaban lechosa); sólo el sol hace rayos
 if os.environ.get("BOSQUE", "v2") == "v2":
     area("Relleno", (0.4, -0.9, 0.5), float(os.environ.get("FILL", 6)), 0.8, (0.70, 0.85, 1.0))       # relleno frío y suave desde cámara
-    area("Contorno", (-0.35, 0.45, 0.55), float(os.environ.get("RIM", 40)), 0.25, (1.0, 0.80, 0.50))  # borde cálido en la tupaya
+    area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 90)), 0.22, (1.0, 0.78, 0.48), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza
     # mancha de sol sobre la tupaya y la rama (luz principal cálida que "se cuela" entre las hojas)
     Ls = bpy.data.lights.new("RayoSol", "SPOT")
     Ls.energy, Ls.color = float(os.environ.get("RAYO", 70)), (1.0, 0.88, 0.70)
@@ -67,6 +68,7 @@ if os.environ.get("BOSQUE", "v2") == "v2":
     sc.collection.objects.link(os_)
     os_.location = (-0.55, -0.35, 1.25)
     os_.rotation_euler = (Vector((0.0, 0.0, 0.20)) - os_.location).to_track_quat("-Z", "Y").to_euler()
+    os_.visible_volume_scatter = os.environ.get("RAYO_NIEBLA", "1") == "1"   # el rayo de sol sí se ve en la niebla (con poca densidad)
     sc.cycles.volume_step_rate = 4.0
     sc.cycles.volume_max_steps = 256
 else:

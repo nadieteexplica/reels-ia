@@ -196,7 +196,7 @@ def mat_musgo():
     m = bpy.data.materials.get("Musgo")
     if m:
         return m
-    m = P.mat("Musgo", (0.12, 0.30, 0.04), rough=0.95, sss=0.15)
+    m = P.mat("Musgo", (0.12, 0.30, 0.04), rough=0.95, sss=0.0)   # sin SSS: en la sombra se veía una mancha naranja (óxido)
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
     b.inputs["Sheen Weight"].default_value = 0.5
@@ -208,8 +208,8 @@ def mat_musgo():
     nz.inputs["Detail"].default_value = 6.0
     nt.links.new(tc.outputs["Object"], nz.inputs["Vector"])
     ramp = nt.nodes.new("ShaderNodeValToRGB")
-    ramp.color_ramp.elements[0].color = (0.025, 0.09, 0.012, 1)
-    ramp.color_ramp.elements[1].color = (0.20, 0.36, 0.05, 1)
+    ramp.color_ramp.elements[0].color = (0.03, 0.12, 0.01, 1)
+    ramp.color_ramp.elements[1].color = (0.24, 0.48, 0.04, 1)
     nz_g = nt.nodes.new("ShaderNodeTexNoise")
     nz_g.inputs["Scale"].default_value = 25.0
     nt.links.new(tc.outputs["Object"], nz_g.inputs["Vector"])
@@ -436,26 +436,49 @@ def armar_v2(coll, seed=11):
     # (sin matas sueltas en la rama principal: de cerca se veían como huevos verdes; el manto basta)
     # ramita que sale de la rama principal hacia atrás-arriba, con hojas
     ramita_con_hojas("RamitaA", coll, [(0.35, 0.03, 0.13), (0.42, 0.12, 0.25), (0.50, 0.22, 0.42)], 7, h_med, tallo_m, rnd)
-    # --- Piper con espigas colgando cerca del hocico (como en v1) ---
+    # --- Piper (pimienta picante): rama con nudos en zigzag; en cada nudo una hoja ovalada con nervaduras y, del lado
+    #     opuesto, la espiga colgando de un pedúnculo corto. Las espigas quedan junto al hocico, como en v1 ---
     espigas = []
     POS_ESP = [(0.085, -0.03, 0.33), (0.125, 0.0, 0.36), (0.045, 0.02, 0.38)]
-    tallo_p = P.mat("TalloPiper", (0.05, 0.18, 0.04), rough=0.5)
-    P.tube("TalloPiperMadre", [(0.30, 0.10, 0.75), (0.18, 0.04, 0.55), (0.10, 0.0, 0.45)], 0.004, coll, tallo_p)
-    for k, (x, y, z) in enumerate(POS_ESP):
-        P.tube(f"TalloPiper{k}", [(0.10, 0.0, 0.45), (x + 0.01, y, z + 0.07), (x, y, z)], 0.0018, coll, tallo_p)
+    tallo_p = P.mat("TalloPiper", (0.07, 0.20, 0.05), rough=0.5)
+    nudo_m = P.mat("NudoPiper", (0.10, 0.17, 0.05), rough=0.6)
+    h_piper = mat_hoja2("HojaPiper2", (0.05, 0.25, 0.04), (0.08, 0.32, 0.05))
+    orden = sorted(range(3), key=lambda k: -POS_ESP[k][2])          # de arriba hacia abajo
+    nudos = [Vector(POS_ESP[k]) + Vector((0.0, 0.0, 0.035)) for k in orden]
+    tope = Vector((0.22, 0.06, 0.95))
+    camino = [tope, Vector((0.14, 0.04, 0.62))] + nudos + [nudos[-1] + Vector((-0.03, -0.01, -0.05))]
+    P.tube("TalloPiperMadre", [tuple(p) for p in camino], 0.0042, coll, tallo_p, res=12)
+    for n_i, (k, nd) in enumerate(zip(orden, nudos)):
+        anillo = P.prim("sphere", f"NudoPiper{k}", coll, nudo_m, r=0.0062)
+        anillo.scale = (1, 1, 0.7)
+        anillo.location = nd
+        # espiga con pedúnculo corto (2 cm), colgando
+        x, y, z = POS_ESP[k]
+        P.tube(f"Peduncolo{k}", [tuple(nd), tuple(nd + Vector((0.004, 0, -0.016))), (x, y, z)], 0.0020, coll, tallo_p, res=8)
         e = espiga(f"Espiga{k}", coll, largo=rnd.uniform(0.08, 0.11), seed=k)
-        e.data.materials[0].node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.45, 0.55, 0.10, 1)
+        _b = e.data.materials[0].node_tree.nodes["Principled BSDF"]
+        _b.inputs["Base Color"].default_value = (0.45, 0.55, 0.10, 1)
+        _b.inputs["Subsurface Weight"].default_value = 0.0      # con SSS se veían rosadas a contraluz
         e.location = (x, y, z)
         espigas.append(e)
-    ramita_con_hojas("PiperHojas", coll, [(0.30, 0.10, 0.75), (0.18, 0.04, 0.55), (0.10, 0.0, 0.45)], 6, h_piper, tallo_p, rnd,
-                     L=(0.09, 0.12), W=(0.05, 0.07), radio=0.004)
+        # hoja ovalada al lado opuesto, apuntando hacia afuera y arriba (no tapa el hocico de la tupaya)
+        lado = 1 if n_i % 2 == 0 else -1
+        h = hoja2(f"HojaPiperN{k}", coll, 0.115, 0.075, h_piper, curva=0.22, torsion=0.1, grosor=0.0014)
+        h.location = nd
+        dir_h = Vector((0.55 * lado + 0.35, 0.35, 0.55)).normalized()
+        h.rotation_euler = dir_h.to_track_quat("Y", "Z").to_euler()
+    # dos hojas más en el tramo de arriba de la rama
+    for q, (pa, pb) in enumerate(((camino[0], camino[1]), (camino[1], camino[2]))):
+        h = hoja2(f"HojaPiperA{q}", coll, 0.12, 0.08, h_piper, curva=0.25, grosor=0.0014)
+        h.location = pa.lerp(pb, 0.6)
+        h.rotation_euler = Vector((0.6 if q else -0.4, 0.3, 0.45)).normalized().to_track_quat("Y", "Z").to_euler()
     # --- primer plano: dos ramitas que entran desde los bordes, con hojas oscuras desenfocadas ---
     ramita_con_hojas("FrenteIzq", coll, [(-0.55, -0.30, 0.55), (-0.32, -0.26, 0.42), (-0.20, -0.24, 0.30)], 5, h_osc, tallo_m, rnd,
                      L=(0.12, 0.18), W=(0.06, 0.09), radio=0.006)
     ramita_con_hojas("FrenteDer", coll, [(0.60, -0.28, -0.20), (0.36, -0.24, -0.06), (0.24, -0.22, 0.02)], 4, h_osc, tallo_m, rnd,
                      L=(0.12, 0.18), W=(0.06, 0.09), radio=0.006)
     # --- plano medio: helechos que suben desde abajo y lianas que bajan desde arriba ---
-    m_hel = mat_hoja2("Helecho", (0.06, 0.24, 0.04), (0.12, 0.34, 0.05))
+    m_hel = mat_hoja2("Helecho", (0.05, 0.30, 0.03), (0.14, 0.45, 0.04))
     for k in range(9):
         bx, by = rnd.uniform(-0.9, 0.9), rnd.uniform(0.35, 1.1)
         for j in range(3):
@@ -508,7 +531,7 @@ def armar_v2(coll, seed=11):
     nt.nodes.remove(nt.nodes["Principled BSDF"])
     pv = nt.nodes.new("ShaderNodeVolumePrincipled")
     pv.inputs["Color"].default_value = (0.90, 0.92, 0.75, 1)
-    pv.inputs["Density"].default_value = float(__import__("os").environ.get("NIEBLA", 0.045))
+    pv.inputs["Density"].default_value = float(__import__("os").environ.get("NIEBLA", 0.032))
     pv.inputs["Anisotropy"].default_value = 0.55
     nt.links.new(pv.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
     caja = P.prim("cube", "CajaNiebla", coll, vol, smooth=False)
@@ -523,9 +546,9 @@ def luz_bosque(sc, fondo=(0.02, 0.065, 0.03)):
     nt = w.node_tree
     bg = nt.nodes["Background"]
     bg.inputs["Color"].default_value = (*fondo, 1)
-    bg.inputs["Strength"].default_value = 1.0
+    bg.inputs["Strength"].default_value = float(__import__("os").environ.get("AMBIENTE", 1.5))
     L = bpy.data.lights.new("SolBosque", "SUN")
-    L.energy, L.color, L.angle = float(__import__("os").environ.get("SOL", 14.0)), (1.0, 0.80, 0.52), math.radians(1.0)
+    L.energy, L.color, L.angle = float(__import__("os").environ.get("SOL", 11.0)), (1.0, 0.80, 0.52), math.radians(1.0)
     ob = bpy.data.objects.new("SolBosque", L)
     sc.collection.objects.link(ob)
     # desde arriba, a la izquierda y detrás de la tupaya (los rayos vienen hacia la cámara)

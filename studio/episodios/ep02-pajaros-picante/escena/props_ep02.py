@@ -272,3 +272,59 @@ def morder(aji_ob, centro_local, r=0.012):
     pulpa.parent = aji_ob
     pulpa.location = (centro_local.x * 0.25, centro_local.y, centro_local.z)
     return cort
+
+
+def mordisco_media_luna(aji_ob, coll, t=0.62, lado=(0, 1, 0), r=0.010, semillas=4, seed=2):
+    """Mordisco que se lee en la silueta: corta el ají con 3 esferas en arco (media luna) en el costado `lado`
+    (coordenadas locales del ají), a la altura `t` de su largo, y deja 3–4 semillas claras a la vista en el corte.
+    El ají de props_ep02.aji crece hacia -Z local."""
+    import random as _r
+    rnd = _r.Random(seed)
+    L = None
+    me = aji_ob.data
+    zs = [v.co.z for v in me.vertices]
+    L = -min(zs)
+    zc = -L * t
+    rad_local = max((Vector((v.co.x, v.co.y, 0)).length for v in me.vertices if abs(v.co.z - zc) < L * 0.03), default=0.01)
+    d = Vector(lado).normalized()
+    blanco = P.mat("AjiInterior", (0.95, 0.85, 0.62), rough=0.6, emit=0.35)
+    if blanco.name not in [m.name for m in aji_ob.data.materials]:
+        aji_ob.data.materials.append(blanco)
+    k = [m.name for m in aji_ob.data.materials].index(blanco.name)
+    cortes = []
+    for j, dz in enumerate((-0.9, 0.0, 0.9)):
+        bm = bmesh.new()
+        bmesh.ops.create_icosphere(bm, subdivisions=3, radius=r * (0.85 if j != 1 else 1.0))
+        mesh = bpy.data.meshes.new(f"{aji_ob.name}_bocado{j}")
+        bm.to_mesh(mesh)
+        bm.free()
+        c = bpy.data.objects.new(mesh.name, mesh)
+        coll.objects.link(c)
+        c.parent = aji_ob
+        c.location = d * (rad_local + r * (0.35 if j == 1 else 0.55)) + Vector((0, 0, zc + dz * r * 0.95))
+        c.hide_render = True
+        c.display_type = "WIRE"
+        for mm in aji_ob.data.materials:
+            c.data.materials.append(mm)
+        for pl in c.data.polygons:
+            pl.material_index = k
+        b = aji_ob.modifiers.new(f"Bocado{j}", "BOOLEAN")
+        b.operation = "DIFFERENCE"
+        b.object = c
+        b.material_mode = "INDEX"
+        cortes.append(c)
+    # pulpa clara rellena el hueco por dentro y semillas planas a la vista
+    pulpa = P.prim("sphere", aji_ob.name + "_pulpa2", coll, blanco, r=rad_local * 0.80)
+    pulpa.scale = (1.0, 1.0, 2.2)
+    pulpa.parent = aji_ob
+    pulpa.location = (0, 0, zc)
+    sem = P.mat("SemillaAji", (0.97, 0.90, 0.62), rough=0.45, coat=0.3)
+    perp = d.cross(Vector((0, 0, 1))).normalized()
+    for i in range(semillas):
+        g = P.prim("cyl", f"{aji_ob.name}_semilla{i}", coll, sem, r=rad_local * 0.20, r2=rad_local * 0.20, h=rad_local * 0.06, seg=24)
+        g.parent = aji_ob
+        off = perp * rnd.uniform(-0.5, 0.5) * rad_local + Vector((0, 0, zc + rnd.uniform(-0.8, 0.8) * r))
+        g.location = off + d * (rad_local * 0.45)
+        g.rotation_euler = (d.to_track_quat("Z", "Y").to_euler())
+        g.rotation_euler.rotate_axis("X", rnd.uniform(-0.5, 0.5))
+    return cortes

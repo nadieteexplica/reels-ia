@@ -222,7 +222,7 @@ def mat_plumas():
     nt.links.new(pecho.outputs["Result"], base.inputs["Factor"])
     # motas del pecho (voronoi)
     vor = nt.nodes.new("ShaderNodeTexVoronoi")
-    vor.inputs["Scale"].default_value = 60.0
+    vor.inputs["Scale"].default_value = 95.0
     vor.inputs["Randomness"].default_value = 0.8
     nt.links.new(tc.outputs["Object"], vor.inputs["Vector"])
     mot = nt.nodes.new("ShaderNodeMapRange")
@@ -237,7 +237,7 @@ def mat_plumas():
     nt.links.new(pecho.outputs["Result"], mm.inputs[1])
     mm2 = nt.nodes.new("ShaderNodeMath")
     mm2.operation = "MULTIPLY"
-    mm2.inputs[1].default_value = 0.45
+    mm2.inputs[1].default_value = 0.22
     nt.links.new(mm.outputs[0], mm2.inputs[0])
     spots = nt.nodes.new("ShaderNodeMix")
     spots.data_type = "RGBA"
@@ -464,18 +464,15 @@ def raton(coll, nombre="Raton", lomo=(0.42, 0.20, 0.08), guata=(0.86, 0.82, 0.76
         base = cab_c + Vector((s * 0.022, 0.006, 0.022))
         piv = P.empty(f"{nombre}_piv_oreja{'LR'[s > 0]}", loc=base, coll=coll)
         colgar(piv, piv_cab)
-        ext = esfera(f"{nombre}_oreja{'LR'[s > 0]}", base + Vector((s * 0.014, 0.002, 0.016)), oreja, coll, canela, escala=(1.0, 0.22, 1.0))
+        ext = oreja_ahuecada(f"{nombre}_oreja{'LR'[s > 0]}", base + Vector((s * 0.014, 0.002, 0.016)), oreja, coll, canela, oreja_in)
         ext.rotation_euler = (math.radians(-10), math.radians(s * 35), 0)
         colgar(ext, piv)
-        inn = esfera(f"{nombre}_orejaDentro{'LR'[s > 0]}", base + Vector((s * 0.014, -0.0040, 0.016)), oreja * 0.77, coll, oreja_in, escala=(1.0, 0.16, 1.0))
-        inn.rotation_euler = (math.radians(-10), math.radians(s * 35), 0)
-        colgar(inn, piv)
         orejas.append(piv)
     # bigotes
     for s in (-1, 1):
         for k, (dz, ang) in enumerate([(0.003, 10), (0.0, 0), (-0.003, -12)]):
-            o = cab_c + Vector((s * 0.008, -0.058, -0.008 + dz))
-            dirv = Vector((s * math.cos(math.radians(ang)) * 0.9, -0.25, math.sin(math.radians(ang)) * 0.6)).normalized()
+            o = cab_c + Vector((s * 0.011, -0.049 * hocico - 0.002, -0.009 + dz))
+            dirv = Vector((s * math.cos(math.radians(ang)), 0.30, math.sin(math.radians(ang)) * 0.6)).normalized()
             w = P.tube(f"{nombre}_bigote{'LR'[s > 0]}{k}", [tuple(o), tuple(o + dirv * 0.022 + Vector((0, 0, 0.002))), tuple(o + dirv * 0.042)], 0.0004, coll, bigote_m)
             colgar(w, piv_cab)
     # brazos (patitas delanteras) con pivote en el hombro
@@ -520,6 +517,71 @@ def cara_roja(rt, lomo=(0.62, 0.07, 0.04), guata=(0.95, 0.52, 0.48)):
     me.materials.clear()
     me.materials.append(m)
 
+
+
+def oreja_ahuecada(name, centro, r, coll, m_fuera, m_dentro):
+    """Oreja de ratón de una sola pieza: disco grueso con la cara de adelante hundida (cuenco) y el interior rosado.
+    Se modela como esfera aplastada; el cuenco es un desplazamiento hacia atrás de los vértices de la cara frontal."""
+    bm = bmesh.new()
+    bmesh.ops.create_uvsphere(bm, u_segments=48, v_segments=24, radius=1.0)
+    for v in bm.verts:
+        x, y, z = v.co
+        rad = math.sqrt(x * x + z * z)
+        y *= 0.24
+        if y < 0 and rad < 0.82:                       # cara de adelante: se hunde en el centro
+            y += 0.16 * (1 - (rad / 0.82) ** 2)
+        v.co = Vector((x * r, y * r, z * r))
+    ob = P.mesh_obj(name, bm, coll)
+    ob.data.materials.append(mat_oreja(m_fuera, m_dentro, r))
+    ob.location = centro
+    return ob
+
+
+def mat_oreja(m_fuera, m_dentro, r):
+    """Interior rosado con borde suave: mezcla por la normal (cara de adelante) y la distancia al centro, en coordenadas del objeto."""
+    nombre = f"Oreja_{m_fuera.name}_{m_dentro.name}_{int(r * 10000)}"
+    m = bpy.data.materials.get(nombre)
+    if m:
+        return m
+    m = bpy.data.materials.new(nombre)
+    m.use_nodes = True
+    nt = m.node_tree
+    out = nt.nodes["Material Output"]
+    nt.nodes.remove(nt.nodes["Principled BSDF"])
+    def bsdf(src):
+        b = nt.nodes.new("ShaderNodeBsdfPrincipled")
+        sb = src.node_tree.nodes["Principled BSDF"]
+        for k in ("Base Color", "Roughness", "Sheen Weight", "Subsurface Weight"):
+            b.inputs[k].default_value = sb.inputs[k].default_value
+        return b
+    bf, bd = bsdf(m_fuera), bsdf(m_dentro)
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    nt.links.new(tc.outputs["Object"], sep.inputs[0])
+    sepn = nt.nodes.new("ShaderNodeSeparateXYZ")
+    nt.links.new(tc.outputs["Normal"], sepn.inputs[0])
+    x2 = nt.nodes.new("ShaderNodeMath"); x2.operation = "POWER"; x2.inputs[1].default_value = 2.0
+    z2 = nt.nodes.new("ShaderNodeMath"); z2.operation = "POWER"; z2.inputs[1].default_value = 2.0
+    nt.links.new(sep.outputs["X"], x2.inputs[0]); nt.links.new(sep.outputs["Z"], z2.inputs[0])
+    sm = nt.nodes.new("ShaderNodeMath"); sm.operation = "ADD"
+    nt.links.new(x2.outputs[0], sm.inputs[0]); nt.links.new(z2.outputs[0], sm.inputs[1])
+    sq = nt.nodes.new("ShaderNodeMath"); sq.operation = "SQRT"
+    nt.links.new(sm.outputs[0], sq.inputs[0])
+    rad = nt.nodes.new("ShaderNodeMapRange")          # 1 dentro del círculo, 0 en el borde (transición suave)
+    rad.inputs["From Min"].default_value = 0.80 * r
+    rad.inputs["From Max"].default_value = 0.70 * r
+    nt.links.new(sq.outputs[0], rad.inputs["Value"])
+    frente = nt.nodes.new("ShaderNodeMapRange")       # 1 en la cara de adelante (normal -Y)
+    frente.inputs["From Min"].default_value = -0.10
+    frente.inputs["From Max"].default_value = -0.45
+    nt.links.new(sepn.outputs["Y"], frente.inputs["Value"])
+    mul = nt.nodes.new("ShaderNodeMath"); mul.operation = "MULTIPLY"
+    nt.links.new(rad.outputs["Result"], mul.inputs[0]); nt.links.new(frente.outputs["Result"], mul.inputs[1])
+    mix = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(mul.outputs[0], mix.inputs["Fac"])
+    nt.links.new(bf.outputs[0], mix.inputs[1]); nt.links.new(bd.outputs[0], mix.inputs[2])
+    nt.links.new(mix.outputs[0], out.inputs["Surface"])
+    return m
 
 
 def lentes(name, centro, ancho, coll, mirando=(0, -1, 0)):

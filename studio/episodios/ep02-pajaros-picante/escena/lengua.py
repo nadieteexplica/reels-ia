@@ -17,10 +17,11 @@ def mat_lengua():
     m = bpy.data.materials.get("Lengua")
     if m:
         return m
-    m = P.mat("Lengua", (0.72, 0.16, 0.24), rough=0.55, sss=0.45, coat=0.08)
+    # plastilina lisa, rosado apagado (menos saturado que la molécula y la llama: así el rojo de la capsaicina resalta)
+    m = P.mat("Lengua", (0.46, 0.20, 0.25), rough=0.6, sss=0.12, coat=0.0)
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
-    b.inputs["Subsurface Radius"].default_value = (1.0, 0.25, 0.2)
+    b.inputs["Subsurface Radius"].default_value = (1.0, 0.45, 0.4)
     tc = nt.nodes.new("ShaderNodeTexCoord")
     vor = nt.nodes.new("ShaderNodeTexVoronoi")
     vor.inputs["Scale"].default_value = 140.0
@@ -30,14 +31,14 @@ def mat_lengua():
     inv.inputs[0].default_value = 1.0
     nt.links.new(vor.outputs["Distance"], inv.inputs[1])
     bump = nt.nodes.new("ShaderNodeBump")
-    bump.inputs["Strength"].default_value = 0.35
-    bump.inputs["Distance"].default_value = 0.002
+    bump.inputs["Strength"].default_value = 0.06
+    bump.inputs["Distance"].default_value = 0.001
     nt.links.new(inv.outputs[0], bump.inputs["Height"])
     nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
     return m
 
 
-def lengua(coll, largo=0.5, ancho=0.32):
+def lengua(coll, largo=0.5, ancho=0.32, y0=None):
     """Superficie de la lengua (vista de cerca): plano curvo y ondulado, con el surco central."""
     bm = bmesh.new()
     nx, ny = 60, 80
@@ -46,7 +47,7 @@ def lengua(coll, largo=0.5, ancho=0.32):
         row = []
         for i in range(nx + 1):
             u, v = i / nx - 0.5, j / ny
-            x, y = u * ancho, v * largo - largo * 0.3
+            x, y = u * ancho, v * largo + (-largo * 0.3 if y0 is None else y0)
             z = -abs(u) ** 2 * 0.35 - 0.01 * math.exp(-(u / 0.04) ** 2) + 0.006 * noise.noise(Vector((x * 30, y * 30, 0)))
             row.append(bm.verts.new((x, y, z)))
         vs.append(row)
@@ -124,7 +125,7 @@ def capsaicina(coll, escala=0.012, color=ROJO, nombre="Capsaicina"):
     """Molécula de capsaicina (C18H27NO3) en bolitas y palitos, sin hidrógenos: anillo vanilílico (OH y OCH3),
     CH2–NH–C(=O) y la cadena de 8-metilnon-6-enoílo con su doble enlace trans. Coordenadas en un plano en zigzag."""
     root = P.empty(nombre, coll=coll)
-    mC = P.mat(nombre + "_C", color, rough=0.25, coat=0.6, emit=0.3)
+    mC = P.mat(nombre + "_C", color, rough=0.25, coat=0.6, emit=0.9)
     mO = P.mat(nombre + "_O", (1.0, 0.55, 0.50), rough=0.25, coat=0.6, emit=0.3)
     mN = P.mat(nombre + "_N", (0.95, 0.80, 0.80), rough=0.25, coat=0.6, emit=0.3)
     mB = P.mat(nombre + "_enlace", (0.92, 0.88, 0.86), rough=0.4)
@@ -187,13 +188,22 @@ def gota_sopa(coll, loc, r=0.02):
 
 
 def ondas(coll, centro, r0, color, n=3, nombre="Ondas"):
-    """Arcos de \"está sonando\" alrededor de la campanita (dibujo animado)."""
-    m = P.mat(nombre + "_m", color, rough=0.5, emit=1.5)
+    """Arcos concéntricos de "está sonando" a los dos lados de la campanita: sólo emisión (sin sombreado ni brillo de tubo),
+    cada arco más tenue que el anterior hacia afuera."""
     out = []
     for k in range(n):
+        m = bpy.data.materials.new(f"{nombre}_m{k}")
+        m.use_nodes = True
+        nt = m.node_tree
+        nt.nodes.remove(nt.nodes["Principled BSDF"])
+        em = nt.nodes.new("ShaderNodeEmission")
+        em.inputs["Color"].default_value = (*color, 1)
+        em.inputs["Strength"].default_value = 2.2 * (0.62 ** k)
+        nt.links.new(em.outputs[0], nt.nodes["Material Output"].inputs["Surface"])
         for s in (-1, 1):
-            R = r0 * (1.5 + 0.45 * k)
-            pts = [Vector(centro) + Vector((s * R * math.cos(math.radians(a)), 0, R * math.sin(math.radians(a)))) for a in (-25, 0, 25)]
-            t = P.tube(f"{nombre}{k}{s}", [tuple(p) for p in pts], r0 * 0.05, coll, m, res=6)
+            R = r0 * (1.25 + 0.42 * k)
+            pts = [Vector(centro) + Vector((s * R * math.cos(math.radians(a)), 0, R * math.sin(math.radians(a)))) for a in range(-50, 51, 10)]
+            t = P.tube(f"{nombre}{k}{s}", [tuple(p) for p in pts], r0 * 0.035 * (1 - 0.2 * k), coll, m, res=10)
+            t.visible_shadow = False
             out.append(t)
     return out
