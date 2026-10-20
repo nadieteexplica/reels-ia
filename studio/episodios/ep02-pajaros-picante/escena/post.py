@@ -397,7 +397,7 @@ PILDORAS[12] = _pil(12, "¡FUEGO!", "coral", clave_y="baliza_y", pieza="12")
 PILDORAS[13] = _pil(13, "NORMAL", "verde", clave_y="termo_y", pieza="13")
 PILDORAS[18] = _pil(18, "ARIZONA", "amarilla", desde=T_ARIZ)
 PILDORAS[30] = _pil(30, "TUPAYA · CHINA", "amarilla", clave_y="cabeza_y", pieza="30")
-PILDORAS[37] = _pil(37, "CON GAS ✕", "coral")
+PILDORAS[37] = _pil(37, "CON GAS ×", "coral")          # × (U+00D7): Inter no trae ✕
 
 
 def pildora_19(im, f, age):

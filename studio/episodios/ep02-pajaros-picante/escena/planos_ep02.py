@@ -1277,8 +1277,8 @@ def p36(sc, a, b):
         cj.location = (x - 0.035, c.y + 0.075, S["suelo"](x - 0.035, c.y + 0.075) - 0.001)
         ar, ll = ardorometro(f"Ardor36_{k}", S["CP"], (x + 0.045, c.y - 0.01, S["suelo"](x + 0.045, c.y - 0.01) - 0.001))
         cosas.append(ll)
-    cam = E2.camara(sc, "Cam36", lens=34, fstop=8)
-    pos = c + Vector((0.0, -0.62, 0.17))
+    cam = E2.camara(sc, "Cam36", lens=30, fstop=8)
+    pos = c + Vector((0.0, -0.98, 0.24))
     tgt = c + Vector((0.0, 0.02, 0.07))
     n = b - a
 

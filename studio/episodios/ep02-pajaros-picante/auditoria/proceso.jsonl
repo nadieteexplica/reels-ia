@@ -126,3 +126,4 @@
 {"tipo": "trabajo", "id": "render-planos muestras 39502165879", "estado": "fin", "n": 126, "ts": "2026-10-20T18:48:52-03:00"}
 {"tipo": "trabajo", "id": "render-planos completo 39503977911", "estado": "inicio", "n": 127, "ts": "2026-10-20T18:53:58-03:00"}
 {"tipo": "chequeo", "id": "render-planos completo 39503977911", "estado": "queued, 0/15 trabajos de render listos", "n": 128, "ts": "2026-10-20T18:54:08-03:00"}
+{"tipo": "aviso", "que": "reporte 19:15: render completo corriendo (15 máquinas desde 18:53), borrador ~21:00", "n": 129, "ts": "2026-10-20T19:06:23-03:00"}
