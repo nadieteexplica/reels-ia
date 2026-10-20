@@ -141,6 +141,10 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
       - `Happy Idle` → "Happy Idle Variation 1" (entre planos).
     - Para otros episodios: `Terrified` ("Being Terrified While Standing") y `Excited` ("Super Excited").
     - Descartadas: `Agony` (demasiado dramática).
+- **Ep. 2 — "Los pájaros no sienten el picante" (en producción, `studio/episodios/ep02-pajaros-picante/`):**
+  - Concepto hecho para la idea (decisión de Tomás): comedia 3D de dibujo animado **sin humanos**, en el desierto de Arizona; el ratón hace de "tú" (mamíferos) y el cierre lo manda al que se cree inmune. Personajes propios en `ficha.jpg` (cuitlacoche, ratón del cactus, rata, tupaya, ají guardia), todos procedurales (`escena/personajes.py`), sin modelos externos.
+  - Puertas: **guion APROBADO (r2)** · **voz APROBADO (r2**, 73,6 s; pausas ajustadas con `tools/pausas.py`, 0 créditos extra) · **storyboard APROBADO (r3**, 40 planos, **0 clips de Kling**: todo render para que la llama y los personajes sean siempre los mismos).
+  - Siguiente: cuadros de estilo de los 4 escenarios nuevos (desierto/cuadro 0, lengua con alarmas, ventanita de muelas, bosque) → puerta 4 → Tomás. Después, animación y render.
 - **Ep. 1 publicado** el 19-oct-2026 a las 16:35 en Instagram, TikTok y YouTube (links en `docs/PUBLICADOS.md`). Métricas a las 48 h (21-oct) y a los 7 días (26-oct).
 - **Próximos pasos:**
   1. ~~Auditor por etapas~~: listo el 19-oct (`docs/AUDITOR.md`, `tools/auditor/`, calibración en `docs/AUDITOR_CALIBRACION.md`).

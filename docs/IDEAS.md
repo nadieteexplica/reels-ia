@@ -104,7 +104,7 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 ### ¿Sabías que…? (planeta, naturaleza, espacio, Chile)
 | Estado | Gancho | Dato central (verificar) | Imagen 3D clave | Enseñanza |
 |---|---|---|---|---|
-| siguiente (Ep. 2, ficha abajo) | Los pájaros no sienten el picante | El receptor que nos hace arder con la capsaicina no reacciona en las aves; el ají "eligió" a quién quemar | Pájaro tranquilo comiendo ají al lado del protagonista que llora con el mismo ají | Si te pica: leche (aunque sea descremada); las bebidas con gas, peor |
+| en producción (Ep. 2, ficha abajo) | Los pájaros no sienten el picante | El receptor que nos hace arder con la capsaicina no reacciona en las aves; el ají "eligió" a quién quemar | Pájaro tranquilo comiendo ají al lado del protagonista que llora con el mismo ají | Si te pica: leche (aunque sea descremada); las bebidas con gas, peor |
 | pendiente | ¿Por qué Chile tiembla tanto? | La placa de Nazca se mete bajo Sudamérica varios cm por año | Placas chocando bajo Chile | Qué hacer en un temblor |
 | pendiente | ¿Por qué el desierto de Atacama es el más seco del mundo? | Corriente de Humboldt + cordillera + alta presión | Nubes que no pasan | Por qué hay observatorios ahí |
 | pendiente | ¿Por qué el cielo es azul y el atardecer naranjo? | La luz azul se dispersa más (dispersión de Rayleigh) | Rayos de luz rebotando | Por qué en Marte es al revés |
