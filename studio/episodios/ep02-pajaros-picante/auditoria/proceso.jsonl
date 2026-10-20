@@ -104,3 +104,6 @@
 {"tipo": "aviso", "que": "puerta 4 c3 r1 se corre a ~15:30: revisión propia cazó 3 detalles más (campana quemada, tallo tocando al ratón, líneas de la lupa en el ojo → ratón espejado)", "n": 104, "ts": "2026-10-20T14:58:31-03:00"}
 {"tipo": "trabajo", "id": "estilos 39469261093", "estado": "fin", "n": 105, "ts": "2026-10-20T14:58:40-03:00"}
 {"tipo": "trabajo", "id": "auditor cuadros c3 r1", "estado": "inicio", "n": 106, "ts": "2026-10-20T15:13:51-03:00"}
+{"tipo": "trabajo", "id": "auditor cuadros c3 r1", "estado": "fin", "n": 107, "ts": "2026-10-20T15:21:33-03:00"}
+{"tipo": "cumplida", "id": "99", "n": 108, "ts": "2026-10-20T15:22:59-03:00"}
+{"tipo": "promesa", "hora": "17:15", "que": "veredicto puerta 4 c3 r2", "dato": "11 arreglos ~75 min + HD 10 min + auditor 10 min", "n": 109, "ts": "2026-10-20T15:22:59-03:00"}
