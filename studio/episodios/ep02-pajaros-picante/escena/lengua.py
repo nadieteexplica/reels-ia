@@ -60,8 +60,8 @@ def lengua(coll, largo=0.5, ancho=0.32):
 
 
 def cupula(name, loc, r, coll, m=None):
-    """Sensor en reposo: cúpula chiquita, blanco neutro brillante."""
-    m = m or P.mat("SensorReposo", (0.92, 0.92, 0.95), rough=0.15, coat=0.8, emit=0.15)
+    """Papila (textura de la lengua): cúpula chiquita rosada clara."""
+    m = m or P.mat("SensorReposo", (0.95, 0.62, 0.62), rough=0.35, coat=0.4)   # papilas del color de la lengua (no se confunden con la campanita)
     bm = bmesh.new()
     bmesh.ops.create_uvsphere(bm, u_segments=24, v_segments=12, radius=r)
     bmesh.ops.delete(bm, geom=[v for v in bm.verts if v.co.z < -r * 0.1], context="VERTS")
@@ -84,14 +84,21 @@ def mat_campana(color=None, brillo=0.0):
 
 
 def campana(coll, loc=(0, 0, 0), r=0.035, color=None, brillo=0.0, nombre="Campanita"):
-    """Campanita de alarma de incendio: domo + aro + base + badajo. Origen = base, sobre la lengua."""
+    """Campanita de alarma: campana clásica (boca abierta hacia abajo, con el labio ensanchado) montada sobre un pie,
+    con el badajo colgando a la vista bajo el labio. Origen = base, sobre la lengua. Se lee "campana", no cúpula."""
     root = P.empty(nombre, loc=loc, coll=coll)
     m = mat_campana(color, brillo)
-    base = P.prim("cyl", nombre + "_base", coll, P.mat("BaseCampana", (0.25, 0.25, 0.28), rough=0.4, metal=0.6), r=r * 0.45, r2=r * 0.5, h=r * 0.25, seg=32)
-    base.location = (0, 0, r * 0.12)
+    metal = P.mat("BaseCampana", (0.25, 0.25, 0.28), rough=0.4, metal=0.6)
+    base = P.prim("cyl", nombre + "_base", coll, metal, r=r * 0.55, r2=r * 0.45, h=r * 0.14, seg=32)
+    base.location = (0, 0, r * 0.07)
     base.parent = root
+    Z0 = r * 0.55                                          # altura del labio: se ve la boca y el badajo
+    poste = P.prim("cyl", nombre + "_poste", coll, metal, r=r * 0.07, r2=r * 0.07, h=Z0 + r * 0.5, seg=16)
+    poste.location = (0, 0, (Z0 + r * 0.5) / 2)
+    poste.parent = root
     bm = bmesh.new()
-    prof = [(r * 0.98, 0.0), (r * 1.02, r * 0.06), (r * 0.95, r * 0.25), (r * 0.80, r * 0.55), (r * 0.55, r * 0.78), (r * 0.25, r * 0.88), (0.0001, r * 0.9)]
+    prof = [(r * 1.08, 0.0), (r * 1.02, r * 0.07), (r * 0.84, r * 0.25), (r * 0.70, r * 0.50), (r * 0.64, r * 0.75),
+            (r * 0.56, r * 0.95), (r * 0.36, r * 1.08), (0.0001, r * 1.12)]
     segs = 48
     rings = [[bm.verts.new((rr * math.cos(2 * math.pi * k / segs), rr * math.sin(2 * math.pi * k / segs), z)) for k in range(segs)] for rr, z in prof]
     for i in range(len(rings) - 1):
@@ -102,13 +109,13 @@ def campana(coll, loc=(0, 0, 0), r=0.035, color=None, brillo=0.0, nombre="Campan
     sol.thickness = r * 0.06
     sub = domo.modifiers.new("Sub", "SUBSURF")
     sub.levels = sub.render_levels = 2
-    domo.location = (0, 0, r * 0.25)
+    domo.location = (0, 0, Z0)
     domo.parent = root
-    perilla = P.prim("sphere", nombre + "_perilla", coll, m, r=r * 0.12)
-    perilla.location = (0, 0, r * 1.18)
+    perilla = P.prim("sphere", nombre + "_perilla", coll, m, r=r * 0.13)
+    perilla.location = (0, 0, Z0 + r * 1.15)
     perilla.parent = root
-    badajo = P.prim("sphere", nombre + "_badajo", coll, P.mat("Badajo", (0.15, 0.15, 0.17), rough=0.3, metal=0.8), r=r * 0.14)
-    badajo.location = (r * 0.55, -r * 0.55, r * 0.32)
+    badajo = P.prim("sphere", nombre + "_badajo", coll, P.mat("Badajo", (0.15, 0.15, 0.17), rough=0.3, metal=0.8), r=r * 0.17)
+    badajo.location = (r * 0.25, -r * 0.30, Z0 - r * 0.02)    # asoma bajo el labio, colgando del poste
     badajo.parent = root
     return root, domo
 

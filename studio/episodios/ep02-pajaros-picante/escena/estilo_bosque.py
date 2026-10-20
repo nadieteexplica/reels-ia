@@ -26,11 +26,28 @@ sc.world = bpy.data.worlds.new("Bosque")
 sc.world.use_nodes = True
 C = P.collection("Bosque")
 S = BQ.armar(C)
+bpy.context.view_layer.update()
+_r = S["rama"]
+_me = bpy.data.meshes.new_from_object(_r.evaluated_get(bpy.context.evaluated_depsgraph_get()))
+_rm = bpy.data.objects.new("RamaMalla", _me)
+C.objects.link(_rm)
+_rm.matrix_world = _r.matrix_world
+_rm.hide_render = True
+S["rama"] = _rm
 BQ.cielo_bosque(sc)
 tp = PJ.tupaya(C)
-tp["root"].location = (0.0, 0.0, 0.135)
-tp["root"].rotation_euler.z = math.radians(float(os.environ.get("TUP_ROT", 40)))
-tp["cabeza"].rotation_euler = (math.radians(14), 0, math.radians(-35))
+# parada ENCIMA de la rama: altura sacada con un rayo contra la rama (las patas apoyan, no cuelgan por delante)
+bpy.context.view_layer.update()
+_dg = bpy.context.evaluated_depsgraph_get()
+_rama = S["rama"]
+def sobre_rama(x, y):
+    Mi = _rama.matrix_world.inverted()
+    me = _rama.evaluated_get(_dg)
+    hit, loc, *_ = me.ray_cast(Mi @ Vector((x, y, 1.0)), (Mi.to_3x3() @ Vector((0, 0, -1))).normalized())
+    return (_rama.matrix_world @ loc).z if hit else 0.135
+TX = float(os.environ.get("TUP_X", -0.02))
+tp["root"].location = (TX, 0.0, sobre_rama(TX, 0.0) - 0.002)
+tp["root"].rotation_euler.z = math.radians(float(os.environ.get("TUP_ROT", 72)))   # de costado (como la ficha), un poco hacia cámara
 # luz manchada de sol entre las hojas (de lado, cálida) + contorno
 def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
     L = bpy.data.lights.new(name, "AREA")
@@ -44,20 +61,22 @@ area("Contorno", (0.5, 0.7, 0.6), 30, 0.4, (1.0, 0.85, 0.55))
 cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
 sc.collection.objects.link(cam)
 sc.camera = cam
-cam.data.lens = 40
+cam.data.lens = float(os.environ.get("LENS", 28))
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
-tgt = Vector((0.04, 0.0, 0.26))
-cam.location = tgt + Vector((-0.20, -0.62, -0.02))
+bpy.context.view_layer.update()
+cab_w = tp["cabeza"].matrix_world.translation
+tgt = cab_w + Vector(tuple(float(x) for x in os.environ.get("TGT", "-0.05,0.0,0.07").split(",")))
+cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.05,-0.62,0.03").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
-cam.data.dof.focus_distance = (Vector((0.0, 0.0, 0.22)) - cam.location).length
+cam.data.dof.focus_distance = (cab_w - cam.location).length
 cam.data.dof.aperture_fstop = 2.8
 # la tupaya mira a cámara (storyboard plano 30): giro de la cabeza calculado hacia la cámara
 bpy.context.view_layer.update()
 pc = tp["cabeza"]
 loc_cam = (pc.parent.matrix_world.inverted() @ cam.location) - pc.location
-yaw = math.atan2(loc_cam.x, -loc_cam.y) + math.radians(float(os.environ.get("TUP_34", 10)))   # tres cuartos: mira a cámara y se le ve el hocico
+yaw = math.atan2(loc_cam.x, -loc_cam.y) * float(os.environ.get("MIRA_CAM", 0.75))   # gira 3/4 de lo necesario: mira a cámara y el hocico largo se sigue viendo de lado
 pitch = -math.atan2(loc_cam.z, Vector((loc_cam.x, loc_cam.y)).length)
 pc.rotation_mode = "XYZ"   # R = Rz·Rx: primero cabecea, después gira
 pc.rotation_euler = (pitch, 0, yaw)

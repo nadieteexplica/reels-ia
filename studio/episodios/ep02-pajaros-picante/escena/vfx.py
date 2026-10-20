@@ -24,18 +24,21 @@ def mat_llama():
     # a lo largo de la llama (Z generado: 0 base → 1 punta): amarillo → naranjo → rojo
     ramp = nt.nodes.new("ShaderNodeValToRGB")
     cr = ramp.color_ramp
+    # (con AgX, un rojo puro emisivo se iba a rosado/salmón: la llama se lee como fuego con base amarilla y cuerpo naranjo)
     cr.elements[0].position = 0.0
-    cr.elements[0].color = (1.0, 0.92, 0.70, 1)
+    cr.elements[0].color = (1.0, 0.82, 0.22, 1)
     cr.elements[1].position = 1.0
-    cr.elements[1].color = (0.50, 0.0, 0.02, 1)
-    e = cr.elements.new(0.30)
-    e.color = (1.0, 0.10, 0.04, 1)
+    cr.elements[1].color = (0.70, 0.03, 0.0, 1)
+    e = cr.elements.new(0.38)
+    e.color = (1.0, 0.36, 0.02, 1)
+    e = cr.elements.new(0.78)
+    e.color = (0.95, 0.10, 0.0, 1)
     nt.links.new(sep.outputs["Z"], ramp.inputs["Fac"])
     em = nt.nodes.new("ShaderNodeEmission")
-    em.inputs["Strength"].default_value = 1.6
+    em.inputs["Strength"].default_value = 3.0
     nt.links.new(ramp.outputs["Color"], em.inputs["Color"])
     lw = nt.nodes.new("ShaderNodeLayerWeight")
-    lw.inputs["Blend"].default_value = 0.22
+    lw.inputs["Blend"].default_value = 0.08     # bordes casi opacos: el cielo azul mezclado con rojo daba rosado
     tr = nt.nodes.new("ShaderNodeBsdfTransparent")
     mix = nt.nodes.new("ShaderNodeMixShader")
     nt.links.new(lw.outputs["Facing"], mix.inputs["Fac"])
@@ -100,11 +103,11 @@ def llamarada(name, origen, direccion, coll, escala=1.0, seed=3, n=7):
         f.parent = root
         f.location = (0, 0, escala * 0.004)
         f.rotation_euler = (rnd.uniform(-0.15, 0.05), rnd.uniform(-0.2, 0.2), 0)
-    chispa = P.mat("Chispa", (1.0, 0.55, 0.2), emit=6.0)
-    for k in range(7):
-        c = P.prim("sphere", f"{name}_chispa{k}", coll, chispa, r=escala * rnd.uniform(0.0015, 0.0028), u=12, v=6)
+    chispa = P.mat("Chispa", (1.0, 0.42, 0.04), emit=2.2)        # naranjas (con 6 se veían motas blancas en el cielo)
+    for k in range(5):
+        c = P.prim("sphere", f"{name}_chispa{k}", coll, chispa, r=escala * rnd.uniform(0.0012, 0.0022), u=12, v=6)
         c.parent = root
-        c.location = (rnd.uniform(-1, 1) * 0.03 * escala, 0.02 * escala + rnd.uniform(0, 0.05) * escala, rnd.uniform(0.04, 0.13) * escala)
+        c.location = (rnd.uniform(-1, 1) * 0.018 * escala, 0.015 * escala + rnd.uniform(0, 0.03) * escala, rnd.uniform(0.08, 0.125) * escala)   # junto a las puntas
         c.visible_shadow = False
     luz = bpy.data.lights.new(name + "_luz", "POINT")
     luz.energy, luz.color, luz.shadow_soft_size = 2.5 * escala, (1.0, 0.25, 0.15), 0.03

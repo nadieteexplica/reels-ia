@@ -67,6 +67,11 @@ def espiga(name, coll, largo=0.09, r=0.0065, seed=0):
         nt.links.new(bump.outputs["Normal"], nt.nodes["Principled BSDF"].inputs["Normal"])
     pts = [(0, 0, 0), (0.004, 0, -largo * 0.35), (0.002, 0.003, -largo * 0.7), (-0.003, 0.002, -largo)]
     t = P.tube(name, pts, r, coll, m, res=16)
+    for k, pt in enumerate(t.data.splines[0].points):          # se afina hacia la punta
+        pt.radius = (1.0, 1.0, 0.9, 0.55)[k]
+    punta = P.prim("sphere", name + "_punta", coll, m, r=r * 0.55)   # punta redondeada (no cortada plana)
+    punta.location = pts[-1]
+    punta.parent = t
     return t
 
 
@@ -78,8 +83,10 @@ def armar(coll, seed=4):
     hoja_piper = P.mat("HojaPiper", (0.07, 0.30, 0.06), rough=0.35, sss=0.2, coat=0.3)
     # mata de Piper colgando sobre la rama (a la derecha de la tupaya)
     espigas = []
-    for k, (x, y, z) in enumerate([(0.09, -0.02, 0.36), (0.13, 0.01, 0.40), (0.05, 0.02, 0.42)]):
-        tallo = P.tube(f"TalloPiper{k}", [(x, y, z + 0.15), (x + 0.01, y, z + 0.07), (x, y, z)], 0.0025, coll, verde)
+    tallo_m = P.mat("TalloPiper", (0.05, 0.18, 0.04), rough=0.5)
+    POS_ESP = [(0.085, -0.03, 0.33), (0.125, 0.0, 0.36), (0.045, 0.02, 0.38)]     # cerca del hocico de la tupaya
+    for k, (x, y, z) in enumerate(POS_ESP):
+        tallo = P.tube(f"TalloPiper{k}", [(x, y, z + 0.15), (x + 0.01, y, z + 0.07), (x, y, z)], 0.0018, coll, tallo_m)   # sin SSS (en un tubo tan fino se veía amarillo)
         e = espiga(f"Espiga{k}", coll, largo=rnd.uniform(0.08, 0.11), seed=k)
         e.data.materials[0].node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.45, 0.55, 0.10, 1)
         e.location = (x, y, z)
@@ -89,10 +96,24 @@ def armar(coll, seed=4):
             h.location = (x, y, z + 0.05 + 0.04 * j)
             h.rotation_euler = (math.radians(rnd.uniform(-40, -10)), 0, math.radians(rnd.uniform(0, 360)))
     # follaje de fondo (se ve desenfocado)
-    for k in range(70):
+    for k in range(110):
         h = hoja(f"Fondo{k}", coll, rnd.uniform(0.15, 0.35), rnd.uniform(0.08, 0.16), rnd.choice([verde, verde2]))
         h.location = (rnd.uniform(-1.2, 1.2), rnd.uniform(0.4, 2.5), rnd.uniform(-0.3, 1.4))
         h.rotation_euler = (math.radians(rnd.uniform(-60, 60)), math.radians(rnd.uniform(-30, 30)), math.radians(rnd.uniform(0, 360)))
+    # profundidad: troncos a distintas distancias (desenfocados), follaje bajo la rama y hojas en primer plano
+    corteza = mat_corteza()
+    for k, (x, y, r) in enumerate([(-0.60, 1.5, 0.07), (0.55, 1.9, 0.10), (-0.10, 2.6, 0.13), (1.05, 2.7, 0.14), (-1.20, 2.2, 0.11)]):
+        tr = P.prim("cyl", f"Tronco{k}", coll, corteza, r=r, r2=r * 0.85, h=4.0, seg=24)
+        tr.location = (x, y, 0.8)
+        tr.rotation_euler = (math.radians(rnd.uniform(-4, 4)), math.radians(rnd.uniform(-5, 5)), 0)
+    for k in range(40):
+        h = hoja(f"FondoBajo{k}", coll, rnd.uniform(0.12, 0.30), rnd.uniform(0.07, 0.14), rnd.choice([verde, verde2]))
+        h.location = (rnd.uniform(-1.0, 1.0), rnd.uniform(0.25, 1.6), rnd.uniform(-0.9, 0.05))
+        h.rotation_euler = (math.radians(rnd.uniform(-60, 60)), math.radians(rnd.uniform(-30, 30)), math.radians(rnd.uniform(0, 360)))
+    for k in range(5):
+        h = hoja(f"Frente{k}", coll, rnd.uniform(0.10, 0.16), rnd.uniform(0.06, 0.09), verde2)
+        h.location = (rnd.choice([-0.30, -0.22, 0.30, 0.36, 0.26]), rnd.uniform(-0.30, -0.22), rnd.uniform(-0.05, 0.50))
+        h.rotation_euler = (math.radians(rnd.uniform(-70, 70)), math.radians(rnd.uniform(-30, 30)), math.radians(rnd.uniform(0, 360)))
     fondo = P.prim("cube", "FondoNiebla", coll, P.mat("Niebla", (0.16, 0.42, 0.24), rough=1.0, emit=0.25), smooth=False)
     fondo.scale = (8, 0.05, 6)
     fondo.location = (0, 3.0, 0.5)

@@ -50,7 +50,7 @@ for j in range(9):
         LG.cupula(f"Sensor{i}_{j}", (x, y, z), 0.0055, C)
 camp, domo = LG.campana(C, loc=(0, 0.02, 0.0), r=0.035, color=col, brillo=1.2 if col else 0.0)
 if col:
-    LG.ondas(C, (0, 0.02, 0.045), 0.035, col)
+    LG.ondas(C, (0, 0.02, 0.050), 0.040, col)
     luz = bpy.data.lights.new("LuzCampana", "POINT")
     luz.energy, luz.color, luz.shadow_soft_size = 0.8, col, 0.02
     lo = bpy.data.objects.new("LuzCampana", luz)
@@ -59,31 +59,38 @@ if col:
 if ESTADO == "roja":
     # la cabeza vanilílica (anillo con el OH) calza sobre la perilla de la campanita, de cara a la cámara;
     # la cadena se va hacia arriba a la izquierda (por donde entró). Nada atraviesa el domo: se apoya encima.
-    ESC_MOL = float(os.environ.get("ESC_MOL", 0.0062))
+    ESC_MOL = float(os.environ.get("ESC_MOL", 0.0058))
     mol = LG.capsaicina(C, escala=ESC_MOL)
-    mol.rotation_euler = (math.radians(90), math.radians(float(os.environ.get("MOL_INCL", -24))), 0)
+    mol.rotation_euler = (math.radians(90 + float(os.environ.get("MOL_X", 0))), math.radians(float(os.environ.get("MOL_INCL", -66))), math.radians(float(os.environ.get("MOL_Z", 0))))
     bpy.context.view_layer.update()
     oh = bpy.data.objects["Capsaicina_Oh"]
     r_at = 0.48 * ESC_MOL
-    tope = Vector((0, 0.02, 0.035 * 1.30))                    # cima de la perilla (campana r=0.035 en (0, 0.02, 0))
-    mol.location = mol.location + (tope + Vector((0, 0, r_at * 0.85)) - oh.matrix_world.translation)
+    # se apoya ENCIMA de la campana: cada átomo se compara con la superficie real (rayo hacia abajo contra la campana)
+    piezas = [o for o in bpy.data.objects if o.name.startswith("Campanita") and o.type == "MESH"]
+    dg = bpy.context.evaluated_depsgraph_get()
+    def techo(p):
+        best = None
+        for o in piezas:
+            Mi = o.matrix_world.inverted()
+            hit, loc, *_ = o.evaluated_get(dg).ray_cast(Mi @ Vector((p.x, p.y, 1.0)), (Mi.to_3x3() @ Vector((0, 0, -1))).normalized())
+            if hit:
+                z = (o.matrix_world @ loc).z
+                best = z if best is None else max(best, z)
+        return best
+    perilla_w = bpy.data.objects["Campanita_perilla"].matrix_world.translation
+    mol.location = mol.location + (perilla_w + Vector((0, 0, 0.035 * 0.13 + r_at * 0.85)) - oh.matrix_world.translation)
     bpy.context.view_layer.update()
-    # comprobación: ningún átomo dentro del domo (perfil de revolución) salvo el que toca la perilla
-    def h_domo(rho, r=0.035):
-        prof = [(r * 0.98, 0.0), (r * 0.95, r * 0.25), (r * 0.80, r * 0.55), (r * 0.55, r * 0.78), (r * 0.25, r * 0.88), (0.0, r * 0.9)]
-        if rho >= prof[0][0]:
-            return -1
-        for (r0, z0), (r1, z1) in zip(prof, prof[1:]):
-            if r1 <= rho <= r0:
-                return r * 0.25 + z0 + (z1 - z0) * (r0 - rho) / (r0 - r1)
-        return r * 0.25 + r * 0.9
-    for a in mol.children:
-        if "_e_" in a.name:
-            continue
-        w = a.matrix_world.translation - Vector((0, 0.02, 0))
-        rho = Vector((w.x, w.y)).length
-        assert w.z - r_at > h_domo(rho) - 1e-4 or a.name == "Capsaicina_Oh", ("átomo dentro del domo", a.name)
-    print("molécula: ningún átomo atraviesa el domo")
+    atomos = [a for a in mol.children if "_e_" not in a.name]
+    alza, quien = 0.0, None
+    for a in atomos:
+        w = a.matrix_world.translation
+        for dx, dy in ((0, 0), (r_at * 0.7, 0), (-r_at * 0.7, 0), (0, r_at * 0.7), (0, -r_at * 0.7)):
+            t = techo(w + Vector((dx, dy, 0)))
+            if t is not None and t + r_at * 0.9 - w.z > alza:
+                alza, quien = t + r_at * 0.9 - w.z, (a.name, round(t, 4))
+    mol.location.z += alza
+    bpy.context.view_layer.update()
+    print("molécula alzada", round(alza * 1000, 2), "mm: apoyada sobre la campana, sin atravesarla", quien)
 if ESTADO == "naranja":
     LG.gota_sopa(C, (0.05, -0.01, 0.03), r=0.012)
 
@@ -101,15 +108,16 @@ area("Rim", (0.25, 0.35, 0.25), 7, 0.3, (1.0, 0.6, 0.6))
 cam = bpy.data.objects.new("CamS", bpy.data.cameras.new("CamS"))
 sc.collection.objects.link(cam)
 sc.camera = cam
-cam.data.lens = 35
+cam.data.lens = float(os.environ.get("LENS", 30))
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
-cam.location = (0.0, -0.36, 0.13)            # cámara S: siempre la misma
-tgt = Vector((0, 0.05, 0.035))
+cam.location = Vector(tuple(float(x) for x in os.environ.get("CAM", "0.0,-0.36,0.17").split(",")))   # cámara S: siempre la misma
+tgt = Vector(tuple(float(x) for x in os.environ.get("TGT", "0,0.05,-0.012").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (Vector((0, 0.02, 0.04)) - cam.location).length
 cam.data.dof.aperture_fstop = 3.5
 sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", f"estilo_lengua_{ESTADO}") + ".png")
-bpy.ops.render.render(write_still=True)
+if not os.environ.get("SOLO_POSE"):
+    bpy.ops.render.render(write_still=True)
 print("ok", sc.render.filepath)

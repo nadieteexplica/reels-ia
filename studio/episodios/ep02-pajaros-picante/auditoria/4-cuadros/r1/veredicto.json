@@ -1,0 +1,131 @@
+{
+ "etapa": "4-cuadros",
+ "ronda": 1,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 6,
+   "por_que": "lengua (dramática, fondo oscuro, un brillo cálido) y desierto (atardecer suave, cactus, rocas) se ven bien, pero muelas es un fondo azul gris liso con saturación 85 y brillo 129 (se ve lavado y plástico) y bosque es un telón verde plano con un borde duro bajo la rama.",
+   "de": "cuadros1"
+  },
+  "personaje": {
+   "nota": 4,
+   "por_que": "la tupaya de bosque no es la de la ficha (cuerpo de osito rechoncho, hocico corto y redondo, sin mancha clara en el hombro), y el ratón de muelas tiene un ojo de iris café con esclerótica blanca y párpado, mientras que la ficha tiene ojos negros brillantes.",
+   "de": "cuadros1"
+  },
+  "manos": {
+   "nota": 6,
+   "por_que": "en desierto las patas del ratón están libres y limpias, pero en muelas los brazos son globos que se atraviesan entre ellos (x≈630–700, y≈1180–1290) y en bosque las patas delanteras de la tupaya no muestran contacto ni sombra sobre la rama.",
+   "de": "cuadros1"
+  },
+  "anatomia": {
+   "nota": 6,
+   "por_que": "la lengua tiene un solo foco, y la molécula muestra la estructura real de la capsaicina (anillo, amida, cadena de 4 CH2, doble enlace y punta isopropilo), pero el sensor es una cúpula que no se lee como 'campanita' y queda en la franja de subtítulos. Además, las muelas del ratón son dientes humanos (incisivos planos con encías rosadas arriba y abajo).",
+   "de": "cuadros1"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 30,
+   "segundo": "cuadro estilo_bosque_HD",
+   "que": "La tupaya no calza con la ficha. Tiene cuerpo grueso de osito, un hocico corto y romo con nariz de bola, patas cilíndricas gruesas y no tiene la mancha clara del hombro. La ficha muestra un animal delgado, de hocico largo y puntudo y patas finas.",
+   "arreglo": "Re-renderizar con el modelo exacto de la ficha (mismo .blend o malla de la tupaya), conservando la proporción del hocico, la mancha del hombro y la cola larga levantada.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 23,
+   "segundo": "cuadro estilo_muelas_HD",
+   "que": "El ojo del ratón tiene un iris café, esclerótica blanca grande y párpado grueso, y la ficha tiene ojos negros brillantes con un brillito chico. También tiene un reflejo blanco cuadrado como un parche (x≈520–550, y≈470–500) y líneas finas que cruzan la córnea (x≈450–540, y≈510–590).",
+   "arreglo": "Usar el material de ojo de la ficha (esfera negra brillante con un reflejo redondo) y sacar los bigotes o reflejos que se cuelan dentro del ojo.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "cuadro estilo_lengua_HD",
+   "que": "El evento clave, la molécula calzando en el sensor que brilla, queda en y≈960–1280 (de 1920). Eso está en la franja de subtítulos, así que el subtítulo lo va a tapar.",
+   "arreglo": "Subir la cámara o el encuadre para que la cúpula y el punto de contacto queden en y≈550–900, y dejar la lengua desenfocada abajo para los subtítulos.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "cuadro estilo_lengua_HD",
+   "que": "El sensor es una cúpula lisa de gelatina, no una campanita de alarma. Si la voz dice 'campanitas', no se entiende al tiro. Además, las papilas blancas tienen la misma forma (cúpulas) y se confunden con más sensores.",
+   "arreglo": "Modelar el sensor con forma de campana (boca abierta abajo y badajo) y diferenciar las papilas en forma o color.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "cuadro estilo_muelas_HD",
+   "que": "Por la ventanita se ven dientes humanos: incisivos anchos y planos en fila, con encías rosadas arriba y abajo, como una sonrisa de persona. No parecen muelas de ratón, y el dato es que los ratones muelen semillas con las muelas.",
+   "arreglo": "Cambiar a muelas de roedor (chicas, con crestas, en fila hacia atrás) y mostrar menos encía. Mantener la semilla entera adelante y las migas atrás.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "cuadro estilo_muelas_HD",
+   "que": "El recuadro punteado no enmarca nada. El ratón se sale por todos lados: las orejas cortadas por el borde superior del cuadro, el cuerpo cortado a la derecha y las patas que cruzan el borde inferior del recuadro (y≈1440–1650). El ✕ queda encima de la oreja. Así se lee como un error y no como un inserto 'y si…'.",
+   "arreglo": "Recortar el render dentro del recuadro (máscara) sobre un fondo propio, o alejar la cámara para que cabeza y mejilla queden enteras dentro del borde, con el ✕ sobre el fondo.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "cuadro estilo_muelas_HD",
+   "que": "Se ve lavado y plano: fondo azul gris liso, saturación 85 (la más baja de los 4) y brillo 129. Además, los bigotes nacen dentro de la bola de la nariz y la atraviesan (x≈30–170, y≈640–870), y los brazos son globos que se atraviesan (x≈630–700, y≈1180–1290).",
+   "arreglo": "Subir la saturación y bajar la exposición, poner un fondo con degradado o luz de borde, sacar los bigotes a los costados del hocico como en la ficha y separar o achicar los brazos para que no se atraviesen.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 30,
+   "segundo": "cuadro estilo_bosque_HD",
+   "que": "El fondo es un telón verde liso con unas pocas hojas borrosas, y bajo la rama hay un borde duro con verde plano (y≈1770–1920). No se lee como bosque del sur de China. Las patas delanteras de la tupaya (y≈1560–1620) bajan por el frente de la rama sin sombra de contacto, como si flotaran delante. Las espigas de Piper cuelgan lejos de la tupaya (y≈60–900), con las puntas cortadas planas.",
+   "arreglo": "Agregar fondo de bosque con profundidad (troncos, follaje en capas, luz filtrada), sombra de contacto y patas apoyadas sobre la rama, espigas más cerca de la tupaya y puntas redondeadas.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "cuadro estilo_desierto_HD",
+   "que": "La llama del ratón se lee como una pluma o una hoja color salmón, del mismo tono que su cara roja, y no como fuego. Para la portada y el loop, el chiste visual (ratón echando fuego) pierde fuerza.",
+   "arreglo": "Dar a la llama un núcleo amarillo-blanco y bordes naranjos con emisión y forma de lengüetas que salgan de la boca, y separarla en color de la cara.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "cuadro estilo_desierto_HD",
+   "que": "Hay 6 puntos blancos brillantes flotando en el cielo (x≈230–530, y≈160–410) sin relación clara con la llama. Se ven como motas o polvo en el lente.",
+   "arreglo": "Sacarlos o convertirlos en chispas naranjas que salgan de la punta de la llama.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "cuadro estilo_desierto_HD",
+   "que": "La medalla caída en la roca (x≈890–940, y≈1040–1110) es un disco verdoso y una cinta rosada de pocos píxeles. En el celular no se reconoce como medalla.",
+   "arreglo": "Agrandarla un poco y darle un material dorado brillante para que se lea en el loop.",
+   "de": "cuadros1"
+  }
+ ],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}

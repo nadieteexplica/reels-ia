@@ -544,8 +544,8 @@ def lentes(name, centro, ancho, coll, mirando=(0, -1, 0)):
 
 def medalla(name, centro, r, coll):
     """Medalla dorada rígida con cinta (sin tela)."""
-    oro = mat_simple("Oro", (0.95, 0.66, 0.15), rough=0.2)
-    oro.node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 0.6   # con 1.0 reflejaba el cactus y se veía verde
+    oro = mat_simple("Oro", (1.0, 0.62, 0.08), rough=0.28, coat=0.5)
+    oro.node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 0.35   # con 1.0 reflejaba el cactus y se veía verde
     cinta = mat_simple("Cinta", (0.85, 0.08, 0.10), rough=0.5)
     root = P.empty(name, loc=centro, coll=coll)
     d = P.prim("cyl", name + "_disco", coll, oro, r=r, r2=r, h=r * 0.25, seg=40)
@@ -620,60 +620,50 @@ def aji_guardia(coll, nombre="AjiGuardia", alto=0.32):
 
 
 def tupaya(coll, nombre="Tupaya"):
-    """Tupaya (Tupaia belangeri) de dibujo animado, en cuatro patas sobre una rama: café oliva con guata crema,
-    hocico largo y fino, orejas chicas redondas, ojos grandes y cola larga y peluda. ~0,30 m con cola. Mira hacia -Y."""
+    """Tupaya (modelo de la ficha.jpg: no cambiar sin volver a renderizar la ficha)
+    Tupaya (Tupaia belangeri) de dibujo animado, en cuatro patas sobre una rama: café oliva, raya clara en el hombro,
+    hocico largo, orejas chicas, ojos grandes y cola peluda. ~0,30 m con cola. Mira hacia -Y."""
     root = P.empty(nombre, coll=coll)
-    pel = mat_pelaje(nombre + "_pelaje", (0.20, 0.15, 0.07), (0.78, 0.66, 0.45))
-    lomo = mat_simple(nombre + "_lomo", (0.20, 0.15, 0.07), rough=0.7, sheen=0.9)
-    nariz_m = mat_simple(nombre + "_nariz", (0.05, 0.035, 0.03), rough=0.25, coat=0.6)
-    rosado = mat_simple(nombre + "_patita", (0.55, 0.38, 0.30), rough=0.5, sss=0.3)
+    pel = mat_pelaje(nombre + "_pelaje", (0.22, 0.17, 0.08), (0.72, 0.60, 0.42))
+    lomo = mat_simple(nombre + "_lomo", (0.22, 0.17, 0.08), rough=0.7, sheen=0.9)
+    nariz_m = mat_simple(nombre + "_nariz", (0.06, 0.04, 0.035), rough=0.25, coat=0.6)
     cuerpo = blob(nombre + "_cuerpo", [
-        ((0, 0.015, 0.060), (0.030, 0.058, 0.030), (4, 0, 0)),          # tronco
-        ((0, -0.040, 0.070), (0.027, 0.028, 0.029), (0, 0, 0)),         # pecho
-        ((-0.018, -0.040, 0.040), (0.010, 0.012, 0.028), (0, 0, 0)),    # patas (unidas al cuerpo)
-        ((0.018, -0.040, 0.040), (0.010, 0.012, 0.028), (0, 0, 0)),
-        ((-0.018, -0.042, 0.020), (0.0085, 0.0095, 0.020), (0, 0, 0)),  # antebrazos hasta el pie (el suavizado encoge las puntas)
-        ((0.018, -0.042, 0.020), (0.0085, 0.0095, 0.020), (0, 0, 0)),
-        ((-0.020, 0.050, 0.044), (0.014, 0.020, 0.030), (0, 0, 0)),     # muslos
-        ((0.020, 0.050, 0.044), (0.014, 0.020, 0.030), (0, 0, 0)),
-        ((-0.020, 0.042, 0.020), (0.009, 0.011, 0.020), (0, 0, 0)),     # canillas hasta el pie
-        ((0.020, 0.042, 0.020), (0.009, 0.011, 0.020), (0, 0, 0)),
+        ((0, 0.010, 0.060), (0.032, 0.060, 0.032), (6, 0, 0)),
+        ((0, -0.045, 0.072), (0.028, 0.030, 0.030), (0, 0, 0)),
     ], coll)
     cuerpo.data.materials.append(pel)
     colgar(cuerpo, root)
-    for (x, y) in ((-0.018, -0.044), (0.018, -0.044), (-0.020, 0.044), (0.020, 0.044)):
-        pie = esfera(f"{nombre}_pie{x}{y}", (x, y - 0.006, 0.0055), 0.0085, coll, rosado, escala=(0.95, 1.4, 0.55))   # el pie toca la pata
-        colgar(pie, root)
-    cab_c = Vector((0, -0.076, 0.094))
-    piv_cab = P.empty(nombre + "_piv_cabeza", loc=(0, -0.058, 0.082), coll=coll)
+    for s in (-1, 1):
+        raya = esfera(f"{nombre}_raya{'LR'[s > 0]}", (s * 0.030, -0.040, 0.080), 0.012, coll, mat_simple(nombre + "_raya", (0.80, 0.72, 0.55), rough=0.7, sheen=0.8), escala=(0.25, 1.4, 0.6))
+        colgar(raya, root)
+    cab_c = Vector((0, -0.080, 0.092))
+    piv_cab = P.empty(nombre + "_piv_cabeza", loc=(0, -0.060, 0.080), coll=coll)
     colgar(piv_cab, root)
     cab = blob(nombre + "_cabeza", [
-        (tuple(cab_c), (0.026, 0.027, 0.024), (0, 0, 0)),
-        (tuple(cab_c + Vector((0, -0.030, -0.007))), (0.012, 0.030, 0.012), (8, 0, 0)),
+        (tuple(cab_c), (0.025, 0.026, 0.023), (0, 0, 0)),
+        (tuple(cab_c + Vector((0, -0.030, -0.006))), (0.012, 0.030, 0.012), (8, 0, 0)),
     ], coll)
     cab.data.materials.append(pel)
     colgar(cab, piv_cab)
-    nz = esfera(nombre + "_naricita", cab_c + Vector((0, -0.060, -0.010)), 0.0058, coll, nariz_m)
+    nz = esfera(nombre + "_naricita", cab_c + Vector((0, -0.060, -0.009)), 0.0055, coll, nariz_m)
     colgar(nz, piv_cab)
-    ojos, parps = [], []
+    ojos = []
     for s in (-1, 1):
-        oc = cab_c + Vector((s * 0.016, -0.015, 0.008))
-        o = ojo(f"{nombre}_ojo{'LR'[s > 0]}", oc, 0.0105, oc + Vector((s * 0.5, -1.0, 0.0)), coll, (0.20, 0.10, 0.03), iris_frac=0.9, pupila_frac=0.5)
+        oc = cab_c + Vector((s * 0.016, -0.014, 0.008))
+        o = ojo(f"{nombre}_ojo{'LR'[s > 0]}", oc, 0.0095, oc + Vector((s * 0.6, -1.0, 0.0)), coll, (0.18, 0.09, 0.03), iris_frac=0.9, pupila_frac=0.5)
         colgar(o, piv_cab)
-        pv = P.empty(f"{nombre}_piv_parpado{'LR'[s > 0]}", loc=oc, coll=coll)
-        pv.rotation_euler = o.rotation_euler.copy()
-        colgar(pv, piv_cab)
-        parpado(f"{nombre}_parpado{'LR'[s > 0]}", pv, 0.0105, coll, pel)
         ojos.append(o)
-        parps.append(pv)
-        orj = esfera(f"{nombre}_oreja{'LR'[s > 0]}", cab_c + Vector((s * 0.020, 0.008, 0.017)), 0.0090, coll, lomo, escala=(1.0, 0.35, 1.0))
-        orj.rotation_euler = (0, 0, math.radians(s * 25))
+        orj = esfera(f"{nombre}_oreja{'LR'[s > 0]}", cab_c + Vector((s * 0.020, 0.006, 0.018)), 0.0085, coll, lomo, escala=(1.0, 0.4, 1.0))
         colgar(orj, piv_cab)
-    # cola larga y peluda: tubo continuo en S que se ensancha y se afina
-    pts = [(0, 0.060, 0.058), (0.004, 0.095, 0.070), (0.010, 0.130, 0.095), (0.004, 0.160, 0.128), (-0.008, 0.178, 0.165), (-0.012, 0.182, 0.190)]
-    cola = P.tube(nombre + "_cola", pts, 0.019, coll, lomo, res=16)
-    for pt, r in zip(cola.data.splines[0].points, (0.55, 0.9, 1.05, 1.1, 0.9, 0.45)):
+    for (x, y) in ((-1, -1), (1, -1), (-1, 1), (1, 1)):
+        pata = blob(f"{nombre}_pata{x}{y}", [((x * 0.020, y * 0.035 - 0.005, 0.028), (0.008, 0.009, 0.026), (0, 0, 0)),
+                                            ((x * 0.021, y * 0.035 - 0.010, 0.004), (0.008, 0.012, 0.005), (0, 0, 0))], coll, voxel=0.0006, suave=10)
+        pata.data.materials.append(lomo)
+        colgar(pata, root)
+    pts = [(0, 0.060, 0.058), (0, 0.095, 0.066), (0, 0.130, 0.080), (0, 0.165, 0.100), (0, 0.192, 0.126), (0, 0.205, 0.150)]
+    cola = P.tube(nombre + "_cola", pts, 0.017, coll, lomo, res=16)
+    for pt, r in zip(cola.data.splines[0].points, (0.55, 0.85, 1.0, 1.05, 0.95, 0.55)):
         pt.radius = r
     cola.data.bevel_resolution = 8
     colgar(cola, root)
-    return {"root": root, "cabeza": piv_cab, "ojos": ojos, "parpados": parps}
+    return {"root": root, "cabeza": piv_cab, "ojos": ojos, "parpados": []}

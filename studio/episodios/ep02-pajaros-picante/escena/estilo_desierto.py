@@ -103,7 +103,7 @@ def cima(x, y):
 LX, LY = (float(v) for v in os.environ.get("LENTES_XY", "0.245,0.180").split(","))
 MX, MY = (float(v) for v in os.environ.get("MEDALLA_XY", "0.290,0.172").split(","))
 lc = PJ.lentes("LentesCaidos", (LX, LY, cima(LX, LY) + 0.0135), 0.05, CP, mirando=(-0.35, -1.0, 0.55))
-mc = PJ.medalla("MedallaCaida", (MX, MY, cima(MX, MY) + 0.0115), 0.012, CP)
+mc = PJ.medalla("MedallaCaida", (MX, MY, cima(MX, MY) + 0.016), 0.017, CP)   # más grande: tiene que leerse en el celular
 mc.rotation_euler = (math.radians(-35), 0, math.radians(-15))      # disco recostado hacia atrás, cinta apoyada
 
 bpy.context.view_layer.update()

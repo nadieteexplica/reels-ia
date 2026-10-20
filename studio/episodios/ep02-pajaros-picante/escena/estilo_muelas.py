@@ -26,13 +26,37 @@ sc.view_settings.view_transform = "AgX"
 sc.view_settings.look = "AgX - Punchy"
 sc.world = bpy.data.worlds.new("Fondo")
 sc.world.use_nodes = True
-sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.20, 0.42, 0.55, 1)
+sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.06, 0.36, 0.48, 1)
 sc.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.7
 C = P.collection("Muelas")
 rt = PJ.raton(C)
 # de perfil: el ratón mira hacia -Y y la cámara lo ve desde +X
 bpy.context.view_layer.update()
 cab = rt["cabeza_malla"]
+# de perfil el ojo se veía de costado (esclerótica blanca); en la ficha los ojos se ven negros y brillantes:
+# el ojo del lado de la cámara mira hacia la cámara (como en un dibujo animado de perfil) y su párpado lo sigue
+from mathutils import Vector as _V
+for o, pv in zip(rt["ojos"], rt["parpados"]):
+    if o.matrix_world.translation.x > 0:
+        rot = _V(tuple(float(x) for x in os.environ.get("MIRADA", "1.0,-0.45,0.05").split(","))).normalized().to_track_quat("-Y", "Z").to_euler()
+        o.rotation_euler = rot
+        pv.rotation_euler = rot
+# bigotes del otro lado: de perfil cruzaban por detrás de la nariz
+for ob in bpy.data.objects:
+    if ob.name.startswith("Raton_bigoteL"):
+        ob.hide_render = True
+    if ob.name.startswith("Raton_bigote"):
+        ob.visible_glossy = False          # su reflejo dibujaba rayitas sobre el ojo
+# la patita del otro lado queda casi tapada por el cuerpo y de perfil se cruzaba con la de adelante: no se renderiza
+for ob in bpy.data.objects:
+    if ob.name in ("Raton_brazoL", "Raton_manoL"):
+        ob.hide_render = True
+# orejas un poco echadas hacia atrás (relajado): así la cabeza entera cabe en el recuadro
+for k, ob in enumerate(rt["orejas"]):
+    ob.rotation_euler = (math.radians(float(os.environ.get("OREJA_X", -40))), 0, 0)
+# patitas: un poco abiertas y bajas, para que no se crucen entre ellas de perfil
+for k, br in enumerate(rt["brazos"]):
+    br.rotation_euler = (math.radians(float(os.environ.get("BRAZO_X", 18))), 0, math.radians(14 * (1 if k else -1)))
 # párpados del color del lomo (de perfil, la máscara de guata los pintaba blancos)
 lomo_m = PJ.mat_simple("LomoParpado", (0.42, 0.20, 0.08), rough=0.7, sheen=0.9)
 for pv in rt["parpados"]:
@@ -41,8 +65,8 @@ for pv in rt["parpados"]:
         ch.data.materials.append(lomo_m)
 # ventanita: en la mejilla, bajo el ojo y detrás del hocico, la piel pasa a ser transparente dentro de un círculo
 # chico (coordenadas del objeto = mundo, el ratón se arma en el origen). Borde con un anillo crema para que se lea "ventana".
-centro_loc = Vector((0.0165, -0.037, 0.131))   # delante del cuello (el cuello tapaba la muela de atrás)
-R_VEN = float(os.environ.get("R_VEN", 0.0112))
+centro_loc = Vector((0.0165, -0.036, 0.1335))   # delante del cuello (el cuello tapaba la muela de atrás)
+R_VEN = float(os.environ.get("R_VEN", 0.0124))
 m = cab.data.materials[0].copy()
 m.name = "PelajeVentana"
 nt = m.node_tree
@@ -100,7 +124,7 @@ cab.data.materials.clear()
 cab.data.materials.append(m)
 # interior: todo cabe dentro de la cabeza (x 0.000–0.012) y dentro del círculo de la ventana
 diente = P.mat("Muela", (0.84, 0.81, 0.74), rough=0.3, coat=0.4, emit=float(os.environ.get("BRILLO", 0.0)))   # bajo el umbral del brillo del post (si no, se queman)
-encia = P.mat("Encia", (0.82, 0.34, 0.40), rough=0.5, sss=0.4)
+encia = P.mat("Encia", (0.60, 0.20, 0.26), rough=0.5, sss=0.3)
 semilla = P.mat("Semilla", (0.95, 0.76, 0.36), rough=0.45)
 miga_m = P.mat("Miga", (0.92, 0.70, 0.34), rough=0.6)
 M = cab.matrix_world
@@ -108,31 +132,30 @@ X_M = 0.0070                                           # plano de las muelas, bi
 # fondo del interior: una cápsula oscura (azul noche, como la "cabeza de vidrio") que tapa el revés de la piel
 fondo_m = P.mat("InteriorFondo", (0.03, 0.05, 0.10), rough=0.8)
 cavidad = P.prim("sphere", "MejillaDentro", C, fondo_m, r=1.0)
-cavidad.scale = (0.0040, 0.0150, 0.0100)   # cabe entera dentro de la mejilla (no asoma bajo el mentón)
+cavidad.scale = (0.0040, 0.0165, 0.0128)   # cabe entera dentro de la mejilla (no asoma bajo el mentón)
 cavidad.location = Vector((0.0005, centro_loc.y, centro_loc.z))
 def muela(name, centro, ancho, alto, arriba):
-    """Muela de roedor: corona redondeada con 4 cúspides (una sola malla orgánica)."""
+    """Muela de roedor: corona baja y alargada (de adelante hacia atrás) con tres crestas transversales en la cara que muerde."""
     cx, cy, cz = centro
-    sg = -1 if arriba else 1                          # las cúspides miran hacia la otra fila
-    el = [((cx, cy, cz), (ancho * 0.42, ancho * 0.50, alto * 0.50), (0, 0, 0))]
-    for dy in (-1, 1):
-        for dx in (-1, 1):
-            el.append(((cx + dx * ancho * 0.16, cy + dy * ancho * 0.22, cz + sg * alto * 0.42), (ancho * 0.20, ancho * 0.22, alto * 0.24), (0, 0, 0)))
-    ob = PJ.blob(name, el, C, voxel=0.00018, suave=6)
+    sg = -1 if arriba else 1                          # las crestas miran hacia la otra fila
+    el = [((cx, cy, cz), (ancho * 0.40, ancho * 0.52, alto * 0.48), (0, 0, 0))]
+    for k in (-1, 0, 1):
+        el.append(((cx, cy + k * ancho * 0.30, cz + sg * alto * 0.40), (ancho * 0.38, ancho * 0.12, alto * 0.22), (0, 0, 0)))
+    ob = PJ.blob(name, el, C, voxel=0.00016, suave=5)
     ob.data.materials.append(diente)
     return ob
-ANCHO, ALTO, GAP = 0.0047, 0.0040, 0.0020
+ANCHO, ALTO, GAP = 0.0066, 0.0039, 0.0025        # las muelas llenan la ventanita
 for fila, arriba in (("sup", True), ("inf", False)):
     zc = centro_loc.z + (1 if arriba else -1) * (GAP / 2 + ALTO / 2)
-    zg = zc + (1 if arriba else -1) * (ALTO / 2 + 0.0006)
-    base = PJ.blob(f"Encia_{fila}", [((X_M - 0.0008, centro_loc.y, zg), (0.0028, 0.0085, 0.0020), (0, 0, 0))], C, voxel=0.0002, suave=4)
+    zg = zc + (1 if arriba else -1) * (ALTO / 2 + 0.0004)
+    base = PJ.blob(f"Encia_{fila}", [((X_M - 0.0012, centro_loc.y, zg), (0.0026, 0.0118, 0.0013), (0, 0, 0))], C, voxel=0.0002, suave=4)
     base.data.materials.append(encia)
     for k in range(3):
-        muela(f"Muela_{fila}{k}", (X_M, centro_loc.y - ANCHO * 1.05 + ANCHO * 1.05 * k, zc), ANCHO, ALTO, arriba)
+        muela(f"Muela_{fila}{k}", (X_M, centro_loc.y - ANCHO * 1.0 + ANCHO * 1.0 * k, zc), ANCHO, ALTO, arriba)
 rnd = random.Random(1)
 # semillas enteras entrando por delante (hacia el hocico) y migas saliendo por detrás, entre las dos filas
 for k in range(2):
-    g = P.prim("sphere", f"Semilla{k}", C, semilla, r=0.0024)
+    g = P.prim("sphere", f"Semilla{k}", C, semilla, r=0.0030)
     g.scale = (0.55, 1.15, 0.42)
     g.location = Vector((X_M + 0.0008, centro_loc.y - 0.0072 + 0.0030 * k, centro_loc.z))
     g.rotation_euler.x = math.radians(rnd.uniform(-20, 20))
@@ -145,7 +168,7 @@ lo_in = bpy.data.objects.new("LuzMejilla", luz_in)
 sc.collection.objects.link(lo_in)
 lo_in.location = M @ Vector((0.013, centro_loc.y - 0.002, centro_loc.z + 0.004))
 L = bpy.data.lights.new("Key", "AREA")
-L.energy, L.size = 25, 0.5
+L.energy, L.size, L.shape = 25, 0.5, "DISK"   # reflejo redondo en el ojo (no un parche cuadrado)
 lo = bpy.data.objects.new("Key", L)
 sc.collection.objects.link(lo)
 lo.location = (0.6, -0.5, 0.6)
@@ -156,8 +179,8 @@ sc.camera = cam
 cam.data.lens = 65
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
-tgt = M @ (centro_loc + Vector((0.0, float(os.environ.get("TGT_Y", -0.008)), float(os.environ.get("TGT_Z", -0.006)))))
-cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "0.42,-0.035,0.02").split(",")))
+tgt = M @ (centro_loc + Vector((0.0, float(os.environ.get("TGT_Y", 0.0)), float(os.environ.get("TGT_Z", -0.004)))))
+cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "0.66,-0.05,0.02").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", "estilo_muelas") + ".png")
 bpy.ops.render.render(write_still=True)
