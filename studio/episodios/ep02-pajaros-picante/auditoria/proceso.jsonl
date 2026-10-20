@@ -41,3 +41,4 @@
 {"tipo": "trabajo", "id": "render estilo desierto HD (local)", "estado": "inicio", "nota": "1080x1920, 64 muestras, CPU de 2 núcleos", "n": 41, "ts": "2026-10-19T21:04:02-03:00"}
 {"tipo": "trabajo", "id": "render estilo desierto HD (local)", "estado": "fin", "n": 42, "ts": "2026-10-19T21:14:36-03:00"}
 {"tipo": "trabajo", "id": "render HD desierto v2 (local)", "estado": "inicio", "n": 43, "ts": "2026-10-19T21:19:35-03:00"}
+{"tipo": "chequeo", "id": "render HD desierto v2 (local)", "estado": "corriendo desde 21:19 (el anterior tardó 13 min en esta máquina)", "n": 44, "ts": "2026-10-19T21:22:53-03:00"}

@@ -30,15 +30,25 @@ BQ.cielo_bosque(sc)
 tp = PJ.tupaya(C)
 tp["root"].location = (0.0, 0.0, 0.135)
 tp["root"].rotation_euler.z = math.radians(float(os.environ.get("TUP_ROT", 40)))
-tp["cabeza"].rotation_euler = (math.radians(12), 0, math.radians(-10))
+tp["cabeza"].rotation_euler = (math.radians(14), 0, math.radians(-35))
+# luz manchada de sol entre las hojas (de lado, cálida) + contorno
+def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
+    L = bpy.data.lights.new(name, "AREA")
+    L.energy, L.size, L.color, L.shape = energy, size, color, "DISK"
+    ob = bpy.data.objects.new(name, L)
+    sc.collection.objects.link(ob)
+    ob.location = loc
+    ob.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
+area("Key", (-0.6, -0.7, 0.9), 22, 0.5, (1.0, 0.88, 0.65))
+area("Contorno", (0.5, 0.7, 0.6), 30, 0.4, (1.0, 0.85, 0.55))
 cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
 sc.collection.objects.link(cam)
 sc.camera = cam
 cam.data.lens = 40
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
-tgt = Vector((0.04, 0.0, 0.24))
-cam.location = tgt + Vector((-0.12, -0.75, 0.02))
+tgt = Vector((0.04, 0.0, 0.26))
+cam.location = tgt + Vector((-0.20, -0.62, -0.02))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (Vector((0.0, 0.0, 0.22)) - cam.location).length

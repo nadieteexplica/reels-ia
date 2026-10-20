@@ -81,6 +81,7 @@ def armar(coll, seed=4):
     for k, (x, y, z) in enumerate([(0.09, -0.02, 0.36), (0.13, 0.01, 0.40), (0.05, 0.02, 0.42)]):
         tallo = P.tube(f"TalloPiper{k}", [(x, y, z + 0.15), (x + 0.01, y, z + 0.07), (x, y, z)], 0.0025, coll, verde)
         e = espiga(f"Espiga{k}", coll, largo=rnd.uniform(0.08, 0.11), seed=k)
+        e.data.materials[0].node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.45, 0.55, 0.10, 1)
         e.location = (x, y, z)
         espigas.append(e)
         for j in range(3):
@@ -92,7 +93,7 @@ def armar(coll, seed=4):
         h = hoja(f"Fondo{k}", coll, rnd.uniform(0.15, 0.35), rnd.uniform(0.08, 0.16), rnd.choice([verde, verde2]))
         h.location = (rnd.uniform(-1.2, 1.2), rnd.uniform(0.4, 2.5), rnd.uniform(-0.3, 1.4))
         h.rotation_euler = (math.radians(rnd.uniform(-60, 60)), math.radians(rnd.uniform(-30, 30)), math.radians(rnd.uniform(0, 360)))
-    fondo = P.prim("cube", "FondoNiebla", coll, P.mat("Niebla", (0.30, 0.55, 0.36), rough=1.0, emit=0.35), smooth=False)
+    fondo = P.prim("cube", "FondoNiebla", coll, P.mat("Niebla", (0.16, 0.42, 0.24), rough=1.0, emit=0.25), smooth=False)
     fondo.scale = (8, 0.05, 6)
     fondo.location = (0, 3.0, 0.5)
     return {"rama": rama, "espigas": espigas}
@@ -102,10 +103,10 @@ def cielo_bosque(sc):
     w = sc.world
     nt = w.node_tree
     bg = nt.nodes["Background"]
-    bg.inputs["Color"].default_value = (0.22, 0.45, 0.32, 1)
+    bg.inputs["Color"].default_value = (0.16, 0.36, 0.24, 1)
     bg.inputs["Strength"].default_value = 0.8
     L = bpy.data.lights.new("SolBosque", "SUN")
-    L.energy, L.color, L.angle = 2.2, (1.0, 0.92, 0.75), math.radians(4)
+    L.energy, L.color, L.angle = 1.4, (1.0, 0.90, 0.70), math.radians(4)
     ob = bpy.data.objects.new("SolBosque", L)
     sc.collection.objects.link(ob)
     ob.rotation_euler = (math.radians(40), math.radians(-25), math.radians(-30))
