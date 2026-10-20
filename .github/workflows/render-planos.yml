@@ -1,0 +1,181 @@
+name: render-planos
+# Render por planos (Ep. 2 en adelante): cada pieza de escena/planos_epNN.py arma su escena y renderiza sus cuadros.
+# Las piezas se reparten en N trabajos parejos (escena/reparto.py); el armado hace el post, el audio y el MP4 y lo sube a la
+# prerelease <epNN>-borrador. Con "muestras" > 0 sólo renderiza n cuadros por pieza y sube una hoja de revisión a <epNN>-muestras.
+on:
+  workflow_dispatch:
+    inputs:
+      episodio:
+        default: "ep02-pajaros-picante"
+      partes:
+        description: "Trabajos en paralelo (el proceso permite hasta 16 máquinas a la vez)"
+        default: "15"
+      res:
+        default: "720x1280"
+      samples:
+        default: "16"
+      muestras:
+        description: "Cuadros por pieza (0 = video completo)"
+        default: "0"
+      piezas:
+        description: "Piezas separadas por coma (vacío = todas)"
+        default: ""
+      base_run:
+        description: "Run anterior cuyos cuadros se reutilizan (las piezas de este run los reemplazan)"
+        default: ""
+permissions:
+  contents: write
+  actions: read
+concurrency: render-planos-${{ github.event.inputs.episodio }}-${{ github.event.inputs.muestras }}
+env:
+  EP: ${{ github.event.inputs.episodio }}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -q bpy==5.2.0 numpy pillow
+      - id: m
+        run: |
+          cd "studio/episodios/$EP/escena"
+          echo "matrix=$(python reparto.py ${{ github.event.inputs.partes }} '${{ github.event.inputs.piezas }}' ${{ github.event.inputs.muestras }} 2>/dev/null | grep '^{' | tail -1)" >> "$GITHUB_OUTPUT"
+          python reparto.py ${{ github.event.inputs.partes }} '${{ github.event.inputs.piezas }}' ${{ github.event.inputs.muestras }} >/dev/null
+
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -q bpy==5.2.0 numpy scipy pillow
+      - name: Render ${{ matrix.piezas }}
+        env:
+          PIEZAS: ${{ matrix.piezas }}
+          RES: ${{ github.event.inputs.res }}
+          SAMPLES: ${{ github.event.inputs.samples }}
+          MUESTRAS: ${{ github.event.inputs.muestras }}
+          DIR: ${{ github.workspace }}/_r
+        run: |
+          mkdir -p "$DIR"
+          cd "studio/episodios/$EP/escena"
+          python plano.py 2>&1 | grep -viE "deprecat|use_nodes|Fra:|Saved:" | tail -60
+          echo "progreso: $(ls $DIR/*.png 2>/dev/null | wc -l) cuadros, $(ls $DIR/aux/*.png 2>/dev/null | wc -l) auxiliares"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuadros-${{ matrix.parte }}
+          path: ${{ github.workspace }}/_r
+          retention-days: 5
+
+  armar:
+    needs: render
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: |
+          sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg > /dev/null
+          pip install -q numpy scipy pillow bpy==5.2.0
+      - name: Cuadros del run base
+        if: github.event.inputs.base_run != ''
+        uses: actions/download-artifact@v4
+        with:
+          pattern: cuadros-*
+          path: _r
+          merge-multiple: true
+          run-id: ${{ github.event.inputs.base_run }}
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cuadros-*
+          path: _r
+          merge-multiple: true
+      - name: Post
+        env:
+          OUT: ${{ github.workspace }}/_o
+          MUESTRAS: ${{ github.event.inputs.muestras }}
+        run: |
+          mkdir -p "$OUT"
+          cd "studio/episodios/$EP/escena"
+          if [ "${{ github.event.inputs.muestras }}" != "0" ]; then
+            L=$(ls $GITHUB_WORKSPACE/_r/*.png | xargs -n1 basename | sed 's/\.png//' | sed 's/^0*//' | paste -sd, -)
+            LA=$(ls $GITHUB_WORKSPACE/_r/aux/*.png 2>/dev/null | xargs -n1 basename | sed -E 's/^[^_]+_0*([0-9]+)\.png/\1/' | paste -sd, -)
+            LISTA="$(echo "$L,$LA" | tr ',' '\n' | grep -v '^$' | sort -n | uniq | paste -sd, -)" python post.py "$GITHUB_WORKSPACE/_r" "$OUT/final"
+          else
+            python post.py "$GITHUB_WORKSPACE/_r" "$OUT/final"
+          fi
+      - name: Hoja de muestras
+        if: github.event.inputs.muestras != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'EOF'
+          import glob, os, sys
+          sys.path.insert(0, f"studio/episodios/{os.environ['EP']}/escena")
+          from PIL import Image, ImageDraw, ImageFont
+          import ep02 as E2
+          fs = sorted(glob.glob("_o/final/*.png"))
+          W, H = 216, 384
+          cols = 12
+          rows = -(-len(fs) // cols)
+          hoja = Image.new("RGB", (cols * W, rows * (H + 26)), (16, 20, 24))
+          d = ImageDraw.Draw(hoja)
+          def plano(f):
+              for k in E2.T:
+                  a, b = E2.FR(k)
+                  if a <= f < b:
+                      return k
+          for i, f in enumerate(fs):
+              n = int(os.path.basename(f)[:5])
+              im = Image.open(f).convert("RGB").resize((W, H))
+              x, y = (i % cols) * W, (i // cols) * (H + 26)
+              hoja.paste(im, (x, y + 26))
+              d.text((x + 6, y + 4), f"P{plano(n)} · {n}", fill=(255, 255, 255))
+          hoja.save("_o/muestras.jpg", quality=88)
+          print(len(fs), "cuadros en la hoja")
+          EOF
+          TAG="$(echo "$EP" | cut -d- -f1)-muestras"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$TAG" --notes "Muestras internas. No publicar."
+          cd _o/final && zip -q ../muestras_final.zip *.png && cd ../..
+          gh release upload "$TAG" _o/muestras.jpg _o/muestras_final.zip --clobber
+      - name: Audio y video
+        if: github.event.inputs.muestras == '0'
+        env:
+          OUT: ${{ github.workspace }}/_o
+        run: |
+          set -e
+          cd "studio/episodios/$EP/escena"
+          python audio.py
+          ffmpeg -y -v error -framerate 30 -i "$OUT/final/%05d.png" -i "$OUT/ep02_mix.wav" \
+            -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -profile:v high -crf 18 -preset slow \
+            -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT/$EP.mp4"
+          ffprobe -v error -show_entries format=duration:stream=width,height,r_frame_rate -of compact "$OUT/$EP.mp4"
+      - name: QA automático
+        if: github.event.inputs.muestras == '0'
+        continue-on-error: true
+        run: python tools/qa.py "_o/$EP.mp4" "_r" "_o/subs_log.json" | tee "_o/qa.txt"
+      - name: Borrador para revisión (prerelease)
+        if: github.event.inputs.muestras == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          ffmpeg -y -v error -i "_o/$EP.mp4" -vf "fps=1,scale=216:384,tile=12x7" -frames:v 1 "_o/contacto.jpg"
+          B="$(echo "$EP" | cut -d- -f1)-borrador"
+          gh release view "$B" >/dev/null 2>&1 || gh release create "$B" --prerelease --title "$EP (borrador para revisión)" --notes "Borrador interno para la revisión. No publicar."
+          cp _o/ep02_planos.json _o/planos.json
+          gh release upload "$B" "_o/$EP.mp4" _o/contacto.jpg _o/qa.txt _o/subs_log.json _o/planos.json --clobber

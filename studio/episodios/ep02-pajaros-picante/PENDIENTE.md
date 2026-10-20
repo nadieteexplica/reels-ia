@@ -2,7 +2,7 @@
 
 > **Lo lleva la sesión de chat con Tomás** (desde el 20-oct 10:40). Cualquier otra sesión: no tocar el repo ni lanzar runs del Ep. 2 hasta que este aviso se borre.
 
-Estado: guion, voz y storyboard **APROBADOS** (puertas 1–3). **Puerta 4 (cuadros de estilo): APROBADO** en el ciclo 3, ronda 3 (20-oct 18:25; belleza 8, personaje 9, manos 9, anatomía 8). Los 4 cuadros HD y `ficha.jpg` se le mandaron a Tomás: **esperando su OK antes de animar**.
+Estado: guion, voz y storyboard **APROBADOS** (puertas 1–3). **Puerta 4 (cuadros de estilo): APROBADO** en el ciclo 3, ronda 3 (20-oct 17:20; belleza 8, personaje 9, manos 9, anatomía 8). Los 4 cuadros HD y `ficha.jpg` se le mandaron a Tomás: **esperando su OK antes de animar**.
 
 ## Dónde están los cuadros
 - HD en la prerelease **`ep02-estilos`** (`estilos.yml`, `escenas=desierto,lengua,muelas2,bosque`; `muelas2` arma el inserto completo).

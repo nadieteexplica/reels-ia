@@ -1,0 +1,121 @@
+"""Set del bosque de China (planos 28–32): rama con musgo, Piper con espigas, niebla y la tupaya. Sale de estilo_bosque.py
+(cuadro de estilo aprobado en la puerta 4, c3 r3): armar(sc) arma exactamente ese cuadro y devuelve sus piezas."""
+import math, os, sys
+HERE = os.path.dirname(os.path.abspath(__file__))
+STUDIO = os.path.abspath(os.path.join(HERE, "../../.."))
+for p in (HERE, os.path.join(STUDIO, "plantilla")):
+    if p not in sys.path:
+        sys.path.insert(0, p)
+import bpy
+from mathutils import Vector
+import props as P
+import personajes as PJ
+import bosque as BQ
+
+
+def armar(sc):
+    C = P.collection("Bosque")
+    S = BQ.armar_v2(C) if os.environ.get("BOSQUE", "v2") == "v2" else BQ.armar(C)
+    bpy.context.view_layer.update()
+    _r = S["rama"]
+    _me = bpy.data.meshes.new_from_object(_r.evaluated_get(bpy.context.evaluated_depsgraph_get()))
+    _rm = bpy.data.objects.new("RamaMalla", _me)
+    C.objects.link(_rm)
+    _rm.matrix_world = _r.matrix_world
+    _rm.hide_render = True
+    S["rama"] = _rm
+    (BQ.luz_bosque(sc) if os.environ.get("BOSQUE", "v2") == "v2" else BQ.cielo_bosque(sc))
+    tp = PJ.tupaya(C)
+    # puerta 4 c2 r2: con la luz verde la garganta clara de la ficha no se leía. Se aclara la guata y se abre un poco la
+    # máscara en esta escena (la ficha la muestra casi blanca con luz neutra)
+    for _m in bpy.data.materials:
+        if _m.name.endswith("_pelaje") and _m.name.lower().startswith("tupaya") and _m.use_nodes:
+            for _nd in _m.node_tree.nodes:
+                if _nd.type == "MIX" and getattr(_nd, "data_type", "") == "RGBA":
+                    _nd.inputs["B"].default_value = (0.86, 0.80, 0.68, 1)
+                if _nd.type == "MAP_RANGE" and abs(_nd.inputs["From Min"].default_value - 0.72) < 1e-6:
+                    _nd.inputs["From Min"].default_value = float(os.environ.get("GUATA_MIN", 0.70))
+    # parada ENCIMA de la rama: altura sacada con un rayo contra la rama (las patas apoyan, no cuelgan por delante)
+    bpy.context.view_layer.update()
+    _dg = bpy.context.evaluated_depsgraph_get()
+    _rama = S["rama"]
+    def sobre_rama(x, y):
+        Mi = _rama.matrix_world.inverted()
+        me = _rama.evaluated_get(_dg)
+        hit, loc, *_ = me.ray_cast(Mi @ Vector((x, y, 1.0)), (Mi.to_3x3() @ Vector((0, 0, -1))).normalized())
+        return (_rama.matrix_world @ loc).z if hit else 0.135
+    TX = float(os.environ.get("TUP_X", -0.02))
+    tp["root"].location = (TX, 0.0, sobre_rama(TX, 0.0) - 0.002)
+    tp["root"].rotation_euler.z = math.radians(float(os.environ.get("TUP_ROT", 50)))   # de costado, girada hacia cámara: se ve la garganta clara de la ficha
+    # luz manchada de sol entre las hojas (de lado, cálida) + contorno
+    def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
+        L = bpy.data.lights.new(name, "AREA")
+        L.energy, L.size, L.color, L.shape = energy, size, color, "DISK"
+        ob = bpy.data.objects.new(name, L)
+        sc.collection.objects.link(ob)
+        ob.location = loc
+        ob.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
+        ob.visible_volume_scatter = False      # las luces de relleno/contorno no iluminan la niebla (la dejaban lechosa); sólo el sol hace rayos
+        if name in ("KeyTupaya", "RellenoPatas", "Relleno"):
+            ob.visible_glossy = False          # c3: sus reflejos en los ojos dibujaban una carita triste; un solo brillo por ojo
+    if os.environ.get("BOSQUE", "v2") == "v2":
+        area("Relleno", (0.4, -0.9, 0.5), float(os.environ.get("FILL", 9)), 0.8, (0.70, 0.85, 1.0))       # relleno frío y suave desde cámara
+        area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 35)), 0.22, (1.0, 0.86, 0.66), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza (c3: con 60 quemaba la cola)
+        # c3: luz principal neutra sobre la tupaya (con sólo el ambiente verde el pelaje salía oliva oscuro, lejos del beige de la ficha)
+        # la pata trasera lejana quedaba a la sombra del cuerpo y sólo la iluminaba el rebote del musgo (salía amarillo verdosa)
+        area("RellenoPatas", tuple(float(v) for v in os.environ.get("PATAS_POS", "-0.05,-0.40,0.12").split(",")), float(os.environ.get("PATAS", 2.5)), 0.25, (1.0, 0.96, 0.90), target=(-0.02, 0.0, 0.17))
+        area("KeyTupaya", tuple(float(v) for v in os.environ.get("KEY_TUP_POS", "-0.35,-0.50,0.50").split(",")), float(os.environ.get("KEY_TUP", 5.5)), 0.35, (1.0, 0.95, 0.88), target=(0.0, 0.0, 0.20))
+        # mancha de sol sobre la tupaya y la rama (luz principal cálida que "se cuela" entre las hojas)
+        Ls = bpy.data.lights.new("RayoSol", "SPOT")
+        Ls.energy, Ls.color = float(os.environ.get("RAYO", 40)), (1.0, 0.94, 0.84)   # menos cálido: con 70 y naranjo la tupaya se veía beige, no café oliva
+        Ls.spot_size, Ls.spot_blend, Ls.shadow_soft_size = math.radians(22), 0.6, 0.02
+        os_ = bpy.data.objects.new("RayoSol", Ls)
+        sc.collection.objects.link(os_)
+        os_.location = (-0.55, -0.35, 1.25)
+        os_.rotation_euler = (Vector((0.0, 0.0, 0.20)) - os_.location).to_track_quat("-Z", "Y").to_euler()
+        os_.visible_volume_scatter = os.environ.get("RAYO_NIEBLA", "1") == "1"   # el rayo de sol sí se ve en la niebla (con poca densidad)
+        sc.cycles.volume_step_rate = 4.0
+        sc.cycles.volume_max_steps = 256
+    else:
+        area("Key", (-0.6, -0.7, 0.9), 22, 0.5, (1.0, 0.88, 0.65))
+        area("Contorno", (0.5, 0.7, 0.6), 30, 0.4, (1.0, 0.85, 0.55))
+    # c3: las hojas de la Piper, de frente a la cámara, reflejaban la niebla clara y se veían casi blancas: más mate y sin SSS
+    _hp = bpy.data.materials.get("HojaPiper2")
+    if _hp:
+        _b = _hp.node_tree.nodes.get("Principled BSDF")
+        if _b:
+            _b.inputs["Subsurface Weight"].default_value = 0.08
+            _b.inputs["Roughness"].default_value = 0.65
+            _b.inputs["Specular IOR Level"].default_value = 0.25
+    sc.view_settings.exposure = float(os.environ.get("EXPOSICION", 0.30))   # c3: el bosque quedaba oscuro y turbio (brillo medio 62 contra 94–114 de los otros)
+    cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
+    sc.collection.objects.link(cam)
+    sc.camera = cam
+    cam.data.lens = float(os.environ.get("LENS", 45))   # c3: con 28 mm la perspectiva agrandaba cabeza y patas (no calzaba con la ficha)
+    cam.data.sensor_fit = "VERTICAL"
+    cam.data.sensor_height = 24
+    bpy.context.view_layer.update()
+    cab_w = tp["cabeza"].matrix_world.translation
+    tgt = cab_w + Vector(tuple(float(x) for x in os.environ.get("TGT", "-0.06,0.0,-0.035").split(",")))
+    cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.08,-1.0,0.11").split(",")))
+    cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
+    cam.data.dof.use_dof = True
+    cam.data.dof.focus_distance = (cab_w - cam.location).length
+    cam.data.dof.aperture_fstop = 2.8
+    # la tupaya mira a cámara (storyboard plano 30): giro de la cabeza calculado hacia la cámara
+    bpy.context.view_layer.update()
+    pc = tp["cabeza"]
+    loc_cam = (pc.parent.matrix_world.inverted() @ cam.location) - pc.location
+    yaw = math.atan2(loc_cam.x, -loc_cam.y) * float(os.environ.get("MIRA_CAM", 0.30))   # gira 3/4 de lo necesario: mira a cámara y el hocico largo se sigue viendo de lado
+    pitch = -math.atan2(loc_cam.z, Vector((loc_cam.x, loc_cam.y)).length)
+    pc.rotation_mode = "XYZ"   # R = Rz·Rx: primero cabecea, después gira
+    pc.rotation_euler = (pitch, 0, yaw)
+    print("tupaya cabeza yaw/pitch", round(math.degrees(yaw)), round(math.degrees(pitch)))
+    # los dos ojos miran a la cámara (en la ficha se ven negros; de lado el ojo lejano mostraba el blanco)
+    bpy.context.view_layer.update()
+    Rinv = pc.matrix_world.to_3x3().normalized().inverted()
+    for o in tp["ojos"]:
+        d = Rinv @ (cam.location - o.matrix_world.translation)
+        o.rotation_euler = d.to_track_quat("-Y", "Z").to_euler()
+
+    return dict(locals())
