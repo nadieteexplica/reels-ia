@@ -99,7 +99,7 @@ nt.links.new(mix2.outputs[0], out.inputs["Surface"])
 cab.data.materials.clear()
 cab.data.materials.append(m)
 # interior: todo cabe dentro de la cabeza (x 0.000–0.012) y dentro del círculo de la ventana
-diente = P.mat("Muela", (0.97, 0.94, 0.86), rough=0.22, coat=0.6, emit=float(os.environ.get("BRILLO", 0.12)))
+diente = P.mat("Muela", (0.84, 0.81, 0.74), rough=0.3, coat=0.4, emit=float(os.environ.get("BRILLO", 0.0)))   # bajo el umbral del brillo del post (si no, se queman)
 encia = P.mat("Encia", (0.82, 0.34, 0.40), rough=0.5, sss=0.4)
 semilla = P.mat("Semilla", (0.95, 0.76, 0.36), rough=0.45)
 miga_m = P.mat("Miga", (0.92, 0.70, 0.34), rough=0.6)
@@ -140,7 +140,7 @@ for k in range(10):
     g = P.prim("ico", f"Miga{k}", C, miga_m, r=rnd.uniform(0.00045, 0.0008), sub=1)
     g.location = Vector((X_M + 0.0010, centro_loc.y + 0.0030 + rnd.uniform(0, 0.0055), centro_loc.z + rnd.uniform(-0.0007, 0.0007)))
 luz_in = bpy.data.lights.new("LuzMejilla", "POINT")
-luz_in.energy, luz_in.color, luz_in.shadow_soft_size = 0.04, (1.0, 0.88, 0.78), 0.004
+luz_in.energy, luz_in.color, luz_in.shadow_soft_size = float(os.environ.get("LUZ_IN", 0.012)), (1.0, 0.88, 0.78), 0.004
 lo_in = bpy.data.objects.new("LuzMejilla", luz_in)
 sc.collection.objects.link(lo_in)
 lo_in.location = M @ Vector((0.013, centro_loc.y - 0.002, centro_loc.z + 0.004))
@@ -156,8 +156,8 @@ sc.camera = cam
 cam.data.lens = 65
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
-tgt = M @ (centro_loc + Vector((0.0, float(os.environ.get("TGT_Y", -0.012)), float(os.environ.get("TGT_Z", 0.010)))))
-cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "0.36,-0.03,0.02").split(",")))
+tgt = M @ (centro_loc + Vector((0.0, float(os.environ.get("TGT_Y", -0.008)), float(os.environ.get("TGT_Z", -0.006)))))
+cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "0.42,-0.035,0.02").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", "estilo_muelas") + ".png")
 bpy.ops.render.render(write_still=True)

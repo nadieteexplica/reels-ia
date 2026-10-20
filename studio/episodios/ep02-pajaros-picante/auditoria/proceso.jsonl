@@ -51,3 +51,11 @@
 {"tipo": "trabajo", "id": "sesión nube 20-oct: puerta 4 cuadros", "estado": "inicio", "nota": "tarea programada; 4 HD bajados de ep02-estilos + estilos/", "n": 51, "ts": "2026-10-20T08:01:19-03:00"}
 {"tipo": "trabajo", "id": "marco_ysi muelas", "estado": "fin", "nota": "recuadro punteado + X aplicado al HD", "n": 52, "ts": "2026-10-20T08:01:19-03:00"}
 {"tipo": "trabajo", "id": "revisión propia de los 4 HD", "estado": "fin", "nota": "desierto: patita despegada, ají cruza el ojo, lentes/medalla fuera de cuadro; lengua: molécula atraviesa el domo; muelas: ventanita rota (encías asoman, ojo se ve por dentro); bosque: patas flotan, no mira a cámara. Se arreglan antes de la puerta 4", "n": 53, "ts": "2026-10-20T08:38:37-03:00"}
+{"tipo": "trabajo", "id": "estilos 39416425171", "estado": "inicio", "nota": "4 HD: desierto,lengua,muelas,bosque", "n": 54, "ts": "2026-10-20T08:39:00-03:00"}
+{"tipo": "chequeo", "id": "estilos 39416425171", "estado": "vivo, 4 jobs instalando bpy", "n": 55, "ts": "2026-10-20T08:43:21-03:00"}
+{"tipo": "trabajo", "id": "render HD muelas v3 (local)", "estado": "inicio", "nota": "encuadre nuevo: ventanita sobre y 1000", "n": 56, "ts": "2026-10-20T08:47:04-03:00"}
+{"tipo": "chequeo", "id": "estilos 39416425171", "estado": "3/4 listos, lengua en curso", "n": 57, "ts": "2026-10-20T08:47:05-03:00"}
+{"tipo": "trabajo", "id": "estilos 39416425171", "estado": "fin", "nota": "4 HD subidos a ep02-estilos", "n": 58, "ts": "2026-10-20T08:51:20-03:00"}
+{"tipo": "trabajo", "id": "render HD muelas v3 (local)", "estado": "fin", "nota": "~9 min; post + marco_ysi aplicados", "n": 59, "ts": "2026-10-20T08:56:05-03:00"}
+{"tipo": "trabajo", "id": "render HD muelas v4 (local)", "estado": "inicio", "nota": "muelas se quemaban con el brillo del post: luz interior 0.04→0.012", "n": 60, "ts": "2026-10-20T08:58:53-03:00"}
+{"tipo": "trabajo", "id": "render HD muelas v4 (local)", "estado": "fin", "n": 61, "ts": "2026-10-20T09:03:42-03:00"}
