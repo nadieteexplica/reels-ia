@@ -512,8 +512,8 @@ def armar_v2(coll, seed=11):
     pv.inputs["Anisotropy"].default_value = 0.55
     nt.links.new(pv.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
     caja = P.prim("cube", "CajaNiebla", coll, vol, smooth=False)
-    caja.scale = (4.0, 2.95, 3.0)      # empieza detrás de la tupaya: adelante nítido, el fondo con aire
-    caja.location = (0, 3.1, 0.6)
+    caja.scale = (4.0, 4.4, 3.0)       # la niebla también pasa por delante: ahí se ven los rayos de sol (sin ella el fondo se ve negro)
+    caja.location = (0, 1.6, 0.6)
     return {"rama": rama, "espigas": espigas}
 
 
