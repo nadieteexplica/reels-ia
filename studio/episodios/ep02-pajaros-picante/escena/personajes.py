@@ -634,7 +634,7 @@ def tupaya(coll, nombre="Tupaya"):
     cuerpo.data.materials.append(pel)
     colgar(cuerpo, root)
     for s in (-1, 1):
-        raya = esfera(f"{nombre}_raya{'LR'[s > 0]}", (s * 0.030, -0.040, 0.080), 0.012, coll, mat_simple(nombre + "_raya", (0.80, 0.72, 0.55), rough=0.7, sheen=0.8), escala=(0.25, 1.4, 0.6))
+        raya = esfera(f"{nombre}_raya{'LR'[s > 0]}", (s * 0.031, -0.022, 0.072), 0.012, coll, mat_simple(nombre + "_raya", (0.80, 0.72, 0.55), rough=0.7, sheen=0.8), escala=(0.25, 1.4, 0.6))
         colgar(raya, root)
     cab_c = Vector((0, -0.080, 0.092))
     piv_cab = P.empty(nombre + "_piv_cabeza", loc=(0, -0.060, 0.080), coll=coll)

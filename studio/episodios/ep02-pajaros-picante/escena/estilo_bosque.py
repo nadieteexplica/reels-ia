@@ -25,7 +25,7 @@ sc.view_settings.look = "AgX - Punchy"
 sc.world = bpy.data.worlds.new("Bosque")
 sc.world.use_nodes = True
 C = P.collection("Bosque")
-S = BQ.armar(C)
+S = BQ.armar_v2(C) if os.environ.get("BOSQUE", "v2") == "v2" else BQ.armar(C)
 bpy.context.view_layer.update()
 _r = S["rama"]
 _me = bpy.data.meshes.new_from_object(_r.evaluated_get(bpy.context.evaluated_depsgraph_get()))
@@ -34,7 +34,7 @@ C.objects.link(_rm)
 _rm.matrix_world = _r.matrix_world
 _rm.hide_render = True
 S["rama"] = _rm
-BQ.cielo_bosque(sc)
+(BQ.luz_bosque(sc) if os.environ.get("BOSQUE", "v2") == "v2" else BQ.cielo_bosque(sc))
 tp = PJ.tupaya(C)
 # parada ENCIMA de la rama: altura sacada con un rayo contra la rama (las patas apoyan, no cuelgan por delante)
 bpy.context.view_layer.update()
@@ -56,8 +56,22 @@ def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
     sc.collection.objects.link(ob)
     ob.location = loc
     ob.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
-area("Key", (-0.6, -0.7, 0.9), 22, 0.5, (1.0, 0.88, 0.65))
-area("Contorno", (0.5, 0.7, 0.6), 30, 0.4, (1.0, 0.85, 0.55))
+if os.environ.get("BOSQUE", "v2") == "v2":
+    area("Relleno", (0.4, -0.9, 0.5), float(os.environ.get("FILL", 6)), 0.8, (0.70, 0.85, 1.0))       # relleno frío y suave desde cámara
+    area("Contorno", (-0.35, 0.45, 0.55), float(os.environ.get("RIM", 40)), 0.25, (1.0, 0.80, 0.50))  # borde cálido en la tupaya
+    # mancha de sol sobre la tupaya y la rama (luz principal cálida que "se cuela" entre las hojas)
+    Ls = bpy.data.lights.new("RayoSol", "SPOT")
+    Ls.energy, Ls.color = float(os.environ.get("RAYO", 130)), (1.0, 0.84, 0.58)
+    Ls.spot_size, Ls.spot_blend, Ls.shadow_soft_size = math.radians(22), 0.6, 0.02
+    os_ = bpy.data.objects.new("RayoSol", Ls)
+    sc.collection.objects.link(os_)
+    os_.location = (-0.55, -0.35, 1.25)
+    os_.rotation_euler = (Vector((0.0, 0.0, 0.20)) - os_.location).to_track_quat("-Z", "Y").to_euler()
+    sc.cycles.volume_step_rate = 4.0
+    sc.cycles.volume_max_steps = 256
+else:
+    area("Key", (-0.6, -0.7, 0.9), 22, 0.5, (1.0, 0.88, 0.65))
+    area("Contorno", (0.5, 0.7, 0.6), 30, 0.4, (1.0, 0.85, 0.55))
 cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
 sc.collection.objects.link(cam)
 sc.camera = cam
