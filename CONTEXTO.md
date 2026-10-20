@@ -81,6 +81,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - Modos del JSON: `voices` (buscar voces), `compare` (mismo texto con varias voces) y `tts` (locución final con alineación → `out/tts/<id>.mp3` + `<id>.json`).
   - Se espera el resultado con `git fetch` hasta que cambie `origin/main`.
 - **Por qué Actions:** ElevenLabs está bloqueado desde el espacio de trabajo de Claude (la red tiene allowlist). GitHub y PyPI/npm sí funcionan.
+- **Consultas web (regla de Tomás, 19-oct-2026):** nada de consultas en serie con WebFetch (assets, listados, APIs). Van todas en un solo workflow que deja el resultado en una prerelease y se lee de ahí: `fuentes.yml` (extractos de las fuentes de un guion, para el auditor), `buscar-objaverse.yml`, `descargar.yml`, `estilos.yml` (cuadros de estilo en paralelo). WebFetch sólo para una fuente puntual, máximo 1–2 por tarea.
 - **Render actual (`studio/`):**
   - Cada video es una página three.js que expone `window.renderAt(t)` y `window.READY`.
   - `capture.py` (Playwright + SwiftShader) saca los cuadros a 30 fps.
