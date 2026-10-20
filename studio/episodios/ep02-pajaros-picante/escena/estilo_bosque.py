@@ -70,7 +70,7 @@ def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
         ob.visible_glossy = False          # c3: sus reflejos en los ojos dibujaban una carita triste; un solo brillo por ojo
 if os.environ.get("BOSQUE", "v2") == "v2":
     area("Relleno", (0.4, -0.9, 0.5), float(os.environ.get("FILL", 9)), 0.8, (0.70, 0.85, 1.0))       # relleno frío y suave desde cámara
-    area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 60)), 0.22, (1.0, 0.86, 0.66), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza (c3: con 60 quemaba la cola)
+    area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 35)), 0.22, (1.0, 0.86, 0.66), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza (c3: con 60 quemaba la cola)
     # c3: luz principal neutra sobre la tupaya (con sólo el ambiente verde el pelaje salía oliva oscuro, lejos del beige de la ficha)
     # la pata trasera lejana quedaba a la sombra del cuerpo y sólo la iluminaba el rebote del musgo (salía amarillo verdosa)
     area("RellenoPatas", tuple(float(v) for v in os.environ.get("PATAS_POS", "-0.05,-0.40,0.12").split(",")), float(os.environ.get("PATAS", 2.5)), 0.25, (1.0, 0.96, 0.90), target=(-0.02, 0.0, 0.17))
@@ -97,7 +97,7 @@ if _hp:
         _b.inputs["Subsurface Weight"].default_value = 0.08
         _b.inputs["Roughness"].default_value = 0.65
         _b.inputs["Specular IOR Level"].default_value = 0.25
-sc.view_settings.exposure = float(os.environ.get("EXPOSICION", 0.45))   # c3: el bosque quedaba oscuro y turbio (brillo medio 62 contra 94–114 de los otros)
+sc.view_settings.exposure = float(os.environ.get("EXPOSICION", 0.30))   # c3: el bosque quedaba oscuro y turbio (brillo medio 62 contra 94–114 de los otros)
 cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
 sc.collection.objects.link(cam)
 sc.camera = cam

@@ -561,7 +561,7 @@ def armar_v2(coll, seed=11):
     pv.inputs["Anisotropy"].default_value = 0.55
     # c3: un brillo propio muy tenue (verde grisáceo) separa los troncos del fondo y saca al bosque de lo turbio/negro
     pv.inputs["Emission Color"].default_value = (0.32, 0.66, 0.34, 1)
-    pv.inputs["Emission Strength"].default_value = float(__import__("os").environ.get("NIEBLA_BRILLO", 0.016))
+    pv.inputs["Emission Strength"].default_value = float(__import__("os").environ.get("NIEBLA_BRILLO", 0.026))
     nt.links.new(pv.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
     caja = P.prim("cube", "CajaNiebla", coll, vol, smooth=False)
     caja.scale = (4.0, 4.4, 3.0)       # la niebla también pasa por delante: ahí se ven los rayos de sol (sin ella el fondo se ve negro)
