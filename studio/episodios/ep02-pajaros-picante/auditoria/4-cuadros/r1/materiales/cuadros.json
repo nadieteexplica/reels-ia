@@ -1,0 +1,34 @@
+[
+ {
+  "cuadro": "1_desierto",
+  "archivo": "1_desierto.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.01,
+  "brillo": 114.5,
+  "saturacion": 118.8
+ },
+ {
+  "cuadro": "2_lengua",
+  "archivo": "2_lengua.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.51,
+  "brillo": 83.8,
+  "saturacion": 186.4
+ },
+ {
+  "cuadro": "3_muelas",
+  "archivo": "3_muelas.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.71,
+  "brillo": 79.1,
+  "saturacion": 151.2
+ },
+ {
+  "cuadro": "4_bosque",
+  "archivo": "4_bosque.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.0,
+  "brillo": 79.9,
+  "saturacion": 113.8
+ }
+]

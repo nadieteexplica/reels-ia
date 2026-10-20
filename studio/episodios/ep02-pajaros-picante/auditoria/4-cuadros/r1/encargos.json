@@ -1,0 +1,21 @@
+[
+ {
+  "id": "cuadros1",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "1_desierto, 2_lengua, 3_muelas, 4_bosque",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/1_desierto.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/2_lengua.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/3_muelas.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/4_bosque.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "cuadros1.json",
+  "notas_de_uso": "Cuadros de estilo de los escenarios nuevos del Ep. 2 (estilo del episodio: dibujo animado 3D, personajes propios en ficha_personaje.jpg). 1_desierto = cuadro 0 y plano 40 (pájaro con ají cruzado en el pico, ratón echando fuego detrás, ají mordido + lentes y medalla caídos en la roca). 2_lengua = plano 11, cámara S (la molécula de capsaicina entra desde el borde izquierdo y calza en la campanita, que suena roja; ondas de 'suena'). 3_muelas = plano 23, inserto 2D 'y si…' con borde punteado y ✕ (ventanita translúcida en la mejilla del ratón: muelas moliendo semillas; fuera del recuadro está oscurecido a propósito). 4_bosque = planos 29–32, bosque del sur de China rediseñado entero (decisión de Tomás): tupaya en la rama con musgo, espigas picantes de Piper colgando junto al hocico. Subtítulos irán en y 1000–1250 (de 1920) en todo el video: caras y eventos clave deben quedar fuera de esa franja."
+ }
+]
