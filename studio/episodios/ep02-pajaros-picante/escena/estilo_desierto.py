@@ -120,7 +120,7 @@ aj_m = E.aji("AjiMordido", largo=float(os.environ.get("AJM_LARGO", 0.09)), groso
 AJM = tuple(float(v) for v in os.environ.get("AJM", "0.232,0.181,-86").split(","))
 aj_m.rotation_euler = (math.radians(90), 0, math.radians(AJM[2]))
 aj_m.location = (AJM[0], AJM[1], 0.0)
-E.mordisco_media_luna(aj_m, CP, t=0.55, lado=(0.75, 0.66, 0), r=0.0105)   # media luna arriba y hacia la cámara (x local = -y del mundo), con semillas
+E.mordisco_media_luna(aj_m, CP, t=0.55, lado=(0.45, 0.89, 0), r=0.0118)   # media luna en la silueta de arriba, un poco hacia la cámara (x local = -y del mundo): se ve la muesca y la pulpa
 # la cámara (z≈0,32) queda más abajo que la cima de la roca de atrás: lo que está tirado plano arriba no se ve, y lo que
 # está bajo la altura de la cámara cae en la franja de subtítulos (y > 990). Por eso las pistas van en dos repisas
 # escalonadas a la derecha del ratón: el ají mordido en el borde de la de abajo, la medalla colgando de ese borde con la

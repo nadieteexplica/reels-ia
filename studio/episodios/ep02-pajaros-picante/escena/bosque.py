@@ -456,7 +456,7 @@ def armar_v2(coll, seed=11):
     d_fin = (camino[-1] - camino[-2]).normalized()
     hf = hoja2("HojaPiperPunta", coll, 0.075, 0.048, h_piper, curva=0.25, torsion=0.15, grosor=0.0012)
     hf.location = fin
-    hf.rotation_euler = (d_fin + Vector((-0.35, -0.25, 0.10))).normalized().to_track_quat("Y", "Z").to_euler()
+    hf.rotation_euler = Vector((-1.0, -0.25, 0.45)).normalized().to_track_quat("Y", "Z").to_euler()   # hacia afuera (izquierda), lejos de la cabeza de la tupaya
     for n_i, (k, nd) in enumerate(zip(orden, nudos)):
         anillo = P.prim("sphere", f"NudoPiper{k}", coll, nudo_m, r=0.0062)
         anillo.scale = (1, 1, 0.7)
