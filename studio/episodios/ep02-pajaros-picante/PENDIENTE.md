@@ -1,4 +1,4 @@
-# Ep. 2 — para retomar (20-oct-2026, tarde)
+# Ep. 2 — para retomar (21-oct-2026)
 
 Estado: guion, voz y storyboard **APROBADOS** (puertas 1–3). **Puerta 4 (cuadros de estilo): NO APROBADO en la 3.ª ronda** (r1: 2 bloqueantes · r2: 0 bloqueantes, 6 arreglos · r3: 0 bloqueantes, 5 arreglos; belleza 7 por el bosque). Por la regla de 3 rondas no se siguió corrigiendo y **no se le mandaron los cuadros a Tomás**: se le pidió decidir el reemplazo.
 
@@ -6,6 +6,11 @@ Estado: guion, voz y storyboard **APROBADOS** (puertas 1–3). **Puerta 4 (cuadr
 - HD en la prerelease **`ep02-estilos`** (los sube `estilos.yml`, run 39429531804; los 4 en paralelo, ~3–10 min). El de muelas lleva el inserto 2D: `python3 escena/marco_ysi.py estilo_muelas_HD.jpg salida.jpg x izq mascara`.
 - Veredictos: `auditoria/4-cuadros/r1..r3/veredicto.md`.
 - Pasan sin problemas mayores: **desierto (C0)**, **lengua (campana)** y **muelas (inserto)**. Lo que impide el APROBADO es el **bosque** (belleza 7: luz plana, fondo verde lavado, hojas de papel, hojas flotando, mancha de la tupaya en el cuello).
+
+## Adelantado el 21-oct (sirve con las dos opciones; sin auditar todavía)
+- Muelas: cámara un 7 % más lejos y cabeza más arriba y a la izquierda → la oreja tiene aire dentro del recuadro y la ventanita baja hasta y≈980 (< 1000).
+- Lengua: molécula más chica y más acostada → la punta queda bajo y≈200; campana menos brillante (rough 0.32) → 0,08 % quemado.
+- Falta: render HD de los 4 (`estilos.yml`) y la puerta 4 nueva, cuando Tomás elija el bosque.
 
 ## Lo que espera de Tomás
 Elegir el reemplazo del bosque (propuesta de Claude primero):

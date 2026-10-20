@@ -75,7 +75,7 @@ def mat_campana(color=None, brillo=0.0):
     m = bpy.data.materials.get(nombre)
     if m:
         return m
-    m = P.mat(nombre, PLATA if color is None else color, rough=0.18, metal=1.0 if color is None else 0.3)
+    m = P.mat(nombre, PLATA if color is None else color, rough=0.32, metal=1.0 if color is None else 0.3)
     if color is not None:
         b = m.node_tree.nodes["Principled BSDF"]
         b.inputs["Emission Color"].default_value = (*color, 1)

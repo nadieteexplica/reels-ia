@@ -69,3 +69,5 @@
 {"tipo": "trabajo", "id": "estilos 39429531804", "estado": "fin", "n": 69, "ts": "2026-10-20T10:33:24-03:00"}
 {"tipo": "aviso", "que": "puerta 4 NO APROBADO en r3 (bosque, belleza 7): no se mandan cuadros; se le pide a Tomás elegir reemplazo del bosque", "n": 70, "ts": "2026-10-20T10:37:03-03:00"}
 {"tipo": "trabajo", "id": "sesión nube 20-oct: puerta 4 cuadros", "estado": "fin", "n": 71, "ts": "2026-10-20T10:37:03-03:00"}
+{"tipo": "trabajo", "id": "sesión nube 21-oct: arreglos chicos r3 (muelas, lengua)", "estado": "inicio", "nota": "Tomás aún no elige reemplazo del bosque; se adelanta lo que sirve en las dos opciones", "n": 72, "ts": "2026-10-20T10:38:08-03:00"}
+{"tipo": "trabajo", "id": "sesión nube 21-oct: arreglos chicos r3 (muelas, lengua)", "estado": "fin", "nota": "probados en 540x960; esperando decisión del bosque", "n": 73, "ts": "2026-10-20T10:45:05-03:00"}

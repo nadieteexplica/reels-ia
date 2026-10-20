@@ -59,9 +59,9 @@ if col:
 if ESTADO == "roja":
     # la cabeza vanilílica (anillo con el OH) calza sobre la perilla de la campanita, de cara a la cámara;
     # la cadena se va hacia arriba a la izquierda (por donde entró). Nada atraviesa el domo: se apoya encima.
-    ESC_MOL = float(os.environ.get("ESC_MOL", 0.0052))
+    ESC_MOL = float(os.environ.get("ESC_MOL", 0.0047))
     mol = LG.capsaicina(C, escala=ESC_MOL)
-    mol.rotation_euler = (math.radians(90 + float(os.environ.get("MOL_X", 0))), math.radians(float(os.environ.get("MOL_INCL", -66))), math.radians(float(os.environ.get("MOL_Z", 0))))
+    mol.rotation_euler = (math.radians(90 + float(os.environ.get("MOL_X", 0))), math.radians(float(os.environ.get("MOL_INCL", -88))), math.radians(float(os.environ.get("MOL_Z", 0))))
     bpy.context.view_layer.update()
     oh = bpy.data.objects["Capsaicina_Oh"]
     r_at = 0.48 * ESC_MOL
