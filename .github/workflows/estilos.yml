@@ -1,0 +1,63 @@
+name: estilos
+# Renderiza en paralelo los cuadros de estilo de un episodio (un trabajo por escena) y los sube a la prerelease <epNN>-estilos.
+# Cada escena es un script escena/estilo_<nombre>.py que deja estilo_<nombre>_HD.png en $OUT.
+on:
+  workflow_dispatch:
+    inputs:
+      episodio:
+        description: "Carpeta del episodio en studio/episodios"
+        required: true
+      escenas:
+        description: "Nombres separados por coma (estilo_<nombre>.py)"
+        required: true
+      res:
+        default: "1080x1920"
+      samples:
+        default: "64"
+permissions:
+  contents: write
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      m: ${{ steps.m.outputs.m }}
+    steps:
+      - id: m
+        run: python3 -c "import json; print('m=' + json.dumps([e.strip() for e in '${{ github.event.inputs.escenas }}'.split(',') if e.strip()]))" >> "$GITHUB_OUTPUT"
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        escena: ${{ fromJson(needs.plan.outputs.m) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -q bpy==5.2.0 numpy pillow scipy
+      - name: Render ${{ matrix.escena }}
+        env:
+          EP: ${{ github.event.inputs.episodio }}
+          OUT: ${{ github.workspace }}/_out
+          RES: ${{ github.event.inputs.res }}
+          SAMPLES: ${{ github.event.inputs.samples }}
+          NOMBRE: estilo_${{ matrix.escena }}_HD
+        run: |
+          mkdir -p "$OUT"
+          cd "studio/episodios/$EP/escena"
+          start=$(date +%s)
+          python estilo_${{ matrix.escena }}.py 2>&1 | grep -vi deprecat | tail -5
+          python post_estilo.py "$OUT/$NOMBRE.png" "$OUT/$NOMBRE.jpg"
+          echo "segundos: $(( $(date +%s) - start ))" | tee "$OUT/$NOMBRE.tiempo.txt"
+      - name: Subir
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          EP: ${{ github.event.inputs.episodio }}
+        run: |
+          TAG="$(echo "$EP" | cut -d- -f1)-estilos"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$TAG" --notes "Cuadros de estilo para revisar. No publicar."
+          gh release upload "$TAG" _out/*.jpg _out/*.png _out/*.txt --clobber

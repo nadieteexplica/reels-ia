@@ -83,6 +83,29 @@ def llamarada(name, origen, direccion, coll, escala=1.0, seed=3, n=7):
                             curva=rnd.uniform(-0.2, 0.2), sube=rnd.uniform(0.15, 0.4))
         f.parent = root
         f.rotation_euler = (rnd.uniform(-0.25, 0.1), rnd.uniform(-0.35, 0.35), 0)
+    # centro claro: lenguas más chicas y amarillentas dentro de la principal, y chispas
+    nucleo = bpy.data.materials.get("LlamaNucleo")
+    if not nucleo:
+        nucleo = mat_llama().copy()
+        nucleo.name = "LlamaNucleo"
+        rr = [n for n in nucleo.node_tree.nodes if n.type == "VALTORGB"][0].color_ramp
+        rr.elements[0].color = (1.0, 0.95, 0.75, 1)
+        rr.elements[-1].color = (1.0, 0.35, 0.08, 1)
+    for k in range(3):
+        L = escala * rnd.uniform(0.045, 0.065)
+        f = lengua_de_fuego(f"{name}_nucleo{k}", L, escala * rnd.uniform(0.014, 0.020), coll, seed=seed + 20 + k,
+                            curva=rnd.uniform(-0.15, 0.15), sube=rnd.uniform(0.15, 0.35))
+        f.data.materials.clear()
+        f.data.materials.append(nucleo)
+        f.parent = root
+        f.location = (0, 0, escala * 0.004)
+        f.rotation_euler = (rnd.uniform(-0.15, 0.05), rnd.uniform(-0.2, 0.2), 0)
+    chispa = P.mat("Chispa", (1.0, 0.55, 0.2), emit=6.0)
+    for k in range(7):
+        c = P.prim("sphere", f"{name}_chispa{k}", coll, chispa, r=escala * rnd.uniform(0.0015, 0.0028), u=12, v=6)
+        c.parent = root
+        c.location = (rnd.uniform(-1, 1) * 0.03 * escala, 0.02 * escala + rnd.uniform(0, 0.05) * escala, rnd.uniform(0.04, 0.13) * escala)
+        c.visible_shadow = False
     luz = bpy.data.lights.new(name + "_luz", "POINT")
     luz.energy, luz.color, luz.shadow_soft_size = 2.5 * escala, (1.0, 0.25, 0.15), 0.03
     lo = bpy.data.objects.new(name + "_luz", luz)

@@ -38,3 +38,6 @@
 {"tipo": "trabajo", "id": "auditor storyboard r3b", "estado": "inicio", "n": 38, "ts": "2026-10-19T20:56:02-03:00"}
 {"tipo": "trabajo", "id": "auditor storyboard r3", "estado": "fin", "nota": "corrección: NO se había caído; escribió su resultado a las 20:55:57, justo después de mi chequeo de las 20:55", "n": 39, "ts": "2026-10-19T20:56:26-03:00"}
 {"tipo": "trabajo", "id": "auditor storyboard r3b", "estado": "fin", "nota": "relanzamiento innecesario, detenido a los ~2 min sin escribir nada", "n": 40, "ts": "2026-10-19T20:56:26-03:00"}
+{"tipo": "trabajo", "id": "render estilo desierto HD (local)", "estado": "inicio", "nota": "1080x1920, 64 muestras, CPU de 2 núcleos", "n": 41, "ts": "2026-10-19T21:04:02-03:00"}
+{"tipo": "trabajo", "id": "render estilo desierto HD (local)", "estado": "fin", "n": 42, "ts": "2026-10-19T21:14:36-03:00"}
+{"tipo": "trabajo", "id": "render HD desierto v2 (local)", "estado": "inicio", "n": 43, "ts": "2026-10-19T21:19:35-03:00"}

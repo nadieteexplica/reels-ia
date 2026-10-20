@@ -63,13 +63,13 @@ def mat_arenisca():
     comb = nt.nodes.new("ShaderNodeCombineXYZ")
     nt.links.new(add.outputs[0], comb.inputs["Z"])
     nt.links.new(comb.outputs[0], wave.inputs["Vector"])
-    wave.inputs["Scale"].default_value = 28.0
+    wave.inputs["Scale"].default_value = 9.0
     ramp = nt.nodes.new("ShaderNodeValToRGB")
     cr = ramp.color_ramp
-    cr.elements[0].color = (0.42, 0.14, 0.06, 1)
-    cr.elements[1].color = (0.80, 0.42, 0.20, 1)
+    cr.elements[0].color = (0.56, 0.22, 0.10, 1)
+    cr.elements[1].color = (0.78, 0.40, 0.20, 1)
     e = cr.elements.new(0.5)
-    e.color = (0.62, 0.26, 0.11, 1)
+    e.color = (0.68, 0.30, 0.14, 1)
     nt.links.new(wave.outputs["Fac"], ramp.inputs["Fac"])
     nt.links.new(ramp.outputs["Color"], b.inputs["Base Color"])
     grano = _nodo(nt, "ShaderNodeTexNoise", Scale=300.0, Detail=6.0)
@@ -93,6 +93,7 @@ def roca(name, centro, tam, coll, seed=0, alto=None):
         k = 1.0 if v.co.z < sz * 0.42 else 0.15            # la cima casi no se deforma (ahí se paran los personajes)
         n = noise.noise(v.co * (3.0 / max(sx, sy)) + Vector((seed, 0, 0)))
         v.co += v.normal * n * min(sx, sy) * 0.10 * k
+        v.co.z += noise.noise(v.co * 4.0 / max(sx, sy)) * sz * 0.08 if v.co.z > sz * 0.42 else 0
     ob = P.mesh_obj(name, bm, coll, m=mat_arenisca())
     sub = ob.modifiers.new("Sub", "SUBSURF")
     sub.levels = sub.render_levels = 1
@@ -252,7 +253,7 @@ def armar(coll, seed=7):
     piso = P.prim("cube", "Arena", coll, mat_arena(), smooth=False)
     piso.scale = (80, 80, 0.02)
     piso.location = (0, 0, -0.01)
-    roca_p = roca("RocaPrincipal", (0, 0.05, 0), (1.1, 0.75, 0.24), coll, seed=1)
+    roca_p = roca("RocaPrincipal", (0, -0.45, 0), (1.8, 1.7, 0.24), coll, seed=1)
     top = 0.24
     # rocas y matas alrededor
     for i, (x, y, s) in enumerate([(-1.4, 1.6, 0.5), (1.6, 2.4, 0.8), (-2.8, 5.0, 1.4), (3.5, 7.0, 2.2), (-0.3, -1.6, 0.25)]):
@@ -263,7 +264,7 @@ def armar(coll, seed=7):
         mata(f"Matorral{i}", (x, y, 0), coll, alto=rnd.uniform(0.35, 0.6), seed=40 + i, frutos=0)
     # mesetas lejanas (más claras, como vistas a través del aire)
     lejos = P.mat("MesetaLejana", (0.70, 0.40, 0.30), rough=0.9)
-    for i, (x, y, w, h) in enumerate([(-30, 70, 40, 9), (25, 85, 50, 12), (70, 110, 60, 16)]):
+    for i, (x, y, w, h) in enumerate([(-40, 120, 40, 12), (30, 140, 60, 16), (90, 170, 70, 20)]):
         m_ = roca(f"Meseta{i}", (x, y, 0), (w, w * 0.4, h), coll, seed=60 + i)
         m_.data.materials.clear()
         m_.data.materials.append(lejos)
