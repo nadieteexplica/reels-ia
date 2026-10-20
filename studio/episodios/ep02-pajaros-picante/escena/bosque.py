@@ -448,6 +448,15 @@ def armar_v2(coll, seed=11):
     tope = Vector((0.22, 0.06, 0.95))
     camino = [tope, Vector((0.14, 0.04, 0.62))] + nudos + [nudos[-1] + Vector((-0.03, -0.01, -0.05))]
     P.tube("TalloPiperMadre", [tuple(p) for p in camino], 0.0042, coll, tallo_p, res=12)
+    # puerta 4 c2 r2: el tallo terminaba en el aire con un corte de tubo. Remate: un nudo y una hoja nueva en la punta
+    fin = camino[-1]
+    tapa = P.prim("sphere", "NudoPiperFin", coll, nudo_m, r=0.0058)
+    tapa.scale = (1, 1, 0.8)
+    tapa.location = fin
+    d_fin = (camino[-1] - camino[-2]).normalized()
+    hf = hoja2("HojaPiperPunta", coll, 0.075, 0.048, h_piper, curva=0.25, torsion=0.15, grosor=0.0012)
+    hf.location = fin
+    hf.rotation_euler = (d_fin + Vector((-0.35, -0.25, 0.10))).normalized().to_track_quat("Y", "Z").to_euler()
     for n_i, (k, nd) in enumerate(zip(orden, nudos)):
         anillo = P.prim("sphere", f"NudoPiper{k}", coll, nudo_m, r=0.0062)
         anillo.scale = (1, 1, 0.7)

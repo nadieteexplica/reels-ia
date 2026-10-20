@@ -605,15 +605,20 @@ def lentes(name, centro, ancho, coll, mirando=(0, -1, 0)):
 
 
 def medalla(name, centro, r, coll):
-    """Medalla dorada rígida con cinta (sin tela)."""
-    oro = mat_simple("Oro", (1.0, 0.62, 0.08), rough=0.28, coat=0.5)
-    oro.node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 0.35   # con 1.0 reflejaba el cactus y se veía verde
-    cinta = mat_simple("Cinta", (0.85, 0.08, 0.10), rough=0.5)
+    """Medalla dorada rígida con cinta azul (sin tela). Azul: no se confunde con el ají rojo y se despega de la arenisca."""
+    oro = mat_simple("Oro", (1.0, 0.70, 0.12), rough=0.22, coat=0.6)
+    oro.node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 0.45   # con 1.0 reflejaba el cactus y se veía verde
+    oro2 = mat_simple("Oro2", (0.82, 0.50, 0.07), rough=0.35, coat=0.4)
+    cinta = mat_simple("Cinta", (0.05, 0.16, 0.62), rough=0.5)
     root = P.empty(name, loc=centro, coll=coll)
     d = P.prim("cyl", name + "_disco", coll, oro, r=r, r2=r, h=r * 0.25, seg=40)
     d.rotation_euler = (math.radians(90), 0, 0)
     P.bevel(d, r * 0.08, 2)
     d.parent = root
+    c_ = P.prim("cyl", name + "_centro", coll, oro2, r=r * 0.62, r2=r * 0.62, h=r * 0.08, seg=40)   # relieve central
+    c_.rotation_euler = (math.radians(90), 0, 0)
+    c_.location = (0, -r * 0.15, 0)
+    c_.parent = root
     for s in (-1, 1):
         c = P.prim("cube", f"{name}_cinta{s}", coll, cinta)
         c.scale = (r * 0.5, r * 0.08, r * 2.2)

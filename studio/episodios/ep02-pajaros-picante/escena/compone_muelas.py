@@ -13,7 +13,7 @@ W, H = im.size
 k = W / 1080
 lupa = Image.open(lupa_p).convert("RGB")
 # lupa: círculo de 560 px (52 % del ancho) arriba a la derecha, sin tapar la cabeza (la cara mira a la izquierda)
-D = int(float(__import__("os").environ.get("LUPA_D", 520)) * k)
+D = int(float(__import__("os").environ.get("LUPA_DIAM", 520)) * k)
 cx, cy = int(float(__import__("os").environ.get("LUPA_CX", 760)) * k), int(float(__import__("os").environ.get("LUPA_CY", 600)) * k)
 L = lupa.size[0]
 recorte = int(L * float(__import__("os").environ.get("LUPA_ZOOM", 0.72)))

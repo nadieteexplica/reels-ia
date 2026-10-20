@@ -36,6 +36,15 @@ _rm.hide_render = True
 S["rama"] = _rm
 (BQ.luz_bosque(sc) if os.environ.get("BOSQUE", "v2") == "v2" else BQ.cielo_bosque(sc))
 tp = PJ.tupaya(C)
+# puerta 4 c2 r2: con la luz verde la garganta clara de la ficha no se leía. Se aclara la guata y se abre un poco la
+# máscara en esta escena (la ficha la muestra casi blanca con luz neutra)
+for _m in bpy.data.materials:
+    if _m.name.endswith("_pelaje") and _m.name.lower().startswith("tupaya") and _m.use_nodes:
+        for _nd in _m.node_tree.nodes:
+            if _nd.type == "MIX" and getattr(_nd, "data_type", "") == "RGBA":
+                _nd.inputs["B"].default_value = (0.93, 0.89, 0.80, 1)
+            if _nd.type == "MAP_RANGE" and abs(_nd.inputs["From Min"].default_value - 0.72) < 1e-6:
+                _nd.inputs["From Min"].default_value = float(os.environ.get("GUATA_MIN", 0.64))
 # parada ENCIMA de la rama: altura sacada con un rayo contra la rama (las patas apoyan, no cuelgan por delante)
 bpy.context.view_layer.update()
 _dg = bpy.context.evaluated_depsgraph_get()
@@ -47,7 +56,7 @@ def sobre_rama(x, y):
     return (_rama.matrix_world @ loc).z if hit else 0.135
 TX = float(os.environ.get("TUP_X", -0.02))
 tp["root"].location = (TX, 0.0, sobre_rama(TX, 0.0) - 0.002)
-tp["root"].rotation_euler.z = math.radians(float(os.environ.get("TUP_ROT", 72)))   # de costado (como la ficha), un poco hacia cámara
+tp["root"].rotation_euler.z = math.radians(float(os.environ.get("TUP_ROT", 55)))   # de costado, girada hacia cámara: se ve la garganta clara de la ficha
 # luz manchada de sol entre las hojas (de lado, cálida) + contorno
 def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
     L = bpy.data.lights.new(name, "AREA")
@@ -58,11 +67,11 @@ def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
     ob.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
     ob.visible_volume_scatter = False      # las luces de relleno/contorno no iluminan la niebla (la dejaban lechosa); sólo el sol hace rayos
 if os.environ.get("BOSQUE", "v2") == "v2":
-    area("Relleno", (0.4, -0.9, 0.5), float(os.environ.get("FILL", 6)), 0.8, (0.70, 0.85, 1.0))       # relleno frío y suave desde cámara
-    area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 90)), 0.22, (1.0, 0.78, 0.48), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza
+    area("Relleno", (0.4, -0.9, 0.5), float(os.environ.get("FILL", 9)), 0.8, (0.70, 0.85, 1.0))       # relleno frío y suave desde cámara
+    area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 60)), 0.22, (1.0, 0.86, 0.66), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza
     # mancha de sol sobre la tupaya y la rama (luz principal cálida que "se cuela" entre las hojas)
     Ls = bpy.data.lights.new("RayoSol", "SPOT")
-    Ls.energy, Ls.color = float(os.environ.get("RAYO", 70)), (1.0, 0.88, 0.70)
+    Ls.energy, Ls.color = float(os.environ.get("RAYO", 40)), (1.0, 0.94, 0.84)   # menos cálido: con 70 y naranjo la tupaya se veía beige, no café oliva
     Ls.spot_size, Ls.spot_blend, Ls.shadow_soft_size = math.radians(22), 0.6, 0.02
     os_ = bpy.data.objects.new("RayoSol", Ls)
     sc.collection.objects.link(os_)
@@ -83,7 +92,7 @@ cam.data.sensor_height = 24
 bpy.context.view_layer.update()
 cab_w = tp["cabeza"].matrix_world.translation
 tgt = cab_w + Vector(tuple(float(x) for x in os.environ.get("TGT", "-0.05,0.0,-0.035").split(",")))
-cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.05,-0.62,0.03").split(",")))
+cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.05,-0.62,0.0").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (cab_w - cam.location).length

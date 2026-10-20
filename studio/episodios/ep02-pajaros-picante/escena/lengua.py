@@ -38,7 +38,7 @@ def mat_lengua():
     return m
 
 
-def lengua(coll, largo=0.5, ancho=0.32, y0=None):
+def lengua(coll, largo=0.5, ancho=0.32, y0=None, x0=0.0, surco=0.010):
     """Superficie de la lengua (vista de cerca): plano curvo y ondulado, con el surco central."""
     bm = bmesh.new()
     nx, ny = 60, 80
@@ -47,8 +47,8 @@ def lengua(coll, largo=0.5, ancho=0.32, y0=None):
         row = []
         for i in range(nx + 1):
             u, v = i / nx - 0.5, j / ny
-            x, y = u * ancho, v * largo + (-largo * 0.3 if y0 is None else y0)
-            z = -abs(u) ** 2 * 0.35 - 0.01 * math.exp(-(u / 0.04) ** 2) + 0.006 * noise.noise(Vector((x * 30, y * 30, 0)))
+            x, y = x0 + u * ancho, v * largo + (-largo * 0.3 if y0 is None else y0)
+            z = -abs(u) ** 2 * 0.35 - surco * math.exp(-(u / 0.05) ** 2) + 0.006 * noise.noise(Vector((x * 30, y * 30, 0)))
             row.append(bm.verts.new((x, y, z)))
         vs.append(row)
     for j in range(ny):
@@ -125,7 +125,7 @@ def capsaicina(coll, escala=0.012, color=ROJO, nombre="Capsaicina"):
     """Molécula de capsaicina (C18H27NO3) en bolitas y palitos, sin hidrógenos: anillo vanilílico (OH y OCH3),
     CH2–NH–C(=O) y la cadena de 8-metilnon-6-enoílo con su doble enlace trans. Coordenadas en un plano en zigzag."""
     root = P.empty(nombre, coll=coll)
-    mC = P.mat(nombre + "_C", color, rough=0.25, coat=0.6, emit=0.9)
+    mC = P.mat(nombre + "_C", tuple(c * 0.85 for c in color), rough=0.22, coat=0.8, emit=0.55)   # rojo profundo: se despega de la lengua rosada
     mO = P.mat(nombre + "_O", (1.0, 0.55, 0.50), rough=0.25, coat=0.6, emit=0.3)
     mN = P.mat(nombre + "_N", (0.95, 0.80, 0.80), rough=0.25, coat=0.6, emit=0.3)
     mB = P.mat(nombre + "_enlace", (0.92, 0.88, 0.86), rough=0.4)
@@ -187,7 +187,7 @@ def gota_sopa(coll, loc, r=0.02):
     return g
 
 
-def ondas(coll, centro, r0, color, n=3, nombre="Ondas"):
+def ondas(coll, centro, r0, color, n=3, nombre="Ondas", tope_izq=50):
     """Arcos concéntricos de "está sonando" a los dos lados de la campanita: sólo emisión (sin sombreado ni brillo de tubo),
     cada arco más tenue que el anterior hacia afuera."""
     out = []
@@ -202,7 +202,9 @@ def ondas(coll, centro, r0, color, n=3, nombre="Ondas"):
         nt.links.new(em.outputs[0], nt.nodes["Material Output"].inputs["Surface"])
         for s in (-1, 1):
             R = r0 * (1.25 + 0.42 * k)
-            pts = [Vector(centro) + Vector((s * R * math.cos(math.radians(a)), 0, R * math.sin(math.radians(a)))) for a in range(-50, 51, 10)]
+            tope = 50 if s > 0 else tope_izq            # a la izquierda se cortan bajo la cadena de la molécula (no la cruzan)
+            angs = [-50 + (tope + 50) * i / 10 for i in range(11)]
+            pts = [Vector(centro) + Vector((s * R * math.cos(math.radians(a)), 0, R * math.sin(math.radians(a)))) for a in angs]
             t = P.tube(f"{nombre}{k}{s}", [tuple(p) for p in pts], r0 * 0.035 * (1 - 0.2 * k), coll, m, res=10)
             t.visible_shadow = False
             out.append(t)

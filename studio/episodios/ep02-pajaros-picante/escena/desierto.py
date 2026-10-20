@@ -251,7 +251,7 @@ def armar(coll, seed=7):
     """Arma el set. Devuelve dict con la roca principal (cima en z=ROCA_Z) y referencias."""
     rnd = random.Random(seed)
     piso = P.prim("cube", "Arena", coll, mat_arena(), smooth=False)
-    piso.scale = (80, 80, 0.02)
+    piso.scale = (700, 700, 0.02)       # hasta el horizonte (con 80 se veía una franja azul de cielo bajo las mesetas)
     piso.location = (0, 0, -0.01)
     roca_p = roca("RocaPrincipal", (0, -0.45, 0), (1.8, 1.7, 0.24), coll, seed=1)
     top = 0.24

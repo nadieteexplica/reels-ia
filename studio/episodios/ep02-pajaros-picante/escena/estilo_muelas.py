@@ -56,12 +56,23 @@ for ob in bpy.data.objects:
 for ob in bpy.data.objects:
     if ob.name in ("Raton_brazoL", "Raton_manoL"):
         ob.hide_render = True
-# orejas un poco echadas hacia atrás (relajado): así la cabeza entera cabe en el recuadro
+# orejas como en la ficha (apenas echadas atrás); la de la cámara gira hacia ella para que se vea redonda y rosada
+# (de perfil puro se veía de canto, como una punta beige)
 for k, ob in enumerate(rt["orejas"]):
-    ob.rotation_euler = (math.radians(float(os.environ.get("OREJA_X", -40))), 0, 0)
-# patitas: un poco abiertas y bajas, para que no se crucen entre ellas de perfil
+    ob.rotation_euler = (math.radians(float(os.environ.get("OREJA_X", -12))), 0, math.radians(float(os.environ.get("OREJA_GIRO", 55)) * (1 if k else -1)))
+# patitas como en la ficha: dobladas, con la palma rosada frente al pecho
 for k, br in enumerate(rt["brazos"]):
-    br.rotation_euler = (math.radians(float(os.environ.get("BRAZO_X", 18))), 0, math.radians(14 * (1 if k else -1)))
+    br.rotation_euler = (math.radians(float(os.environ.get("BRAZO_X", 0))), 0, math.radians(float(os.environ.get("BRAZO_Z", 0)) * (1 if k else -1)))
+# puerta 4 c2 r2: de perfil, el brazo de tres globos se leía como bolas sueltas. La pata de la cámara se arma como un tubo
+# continuo que sale del pecho (codo metido en el cuerpo), va hacia adelante y termina en la palma rosada frente al pecho
+if os.environ.get("BRAZO_TUBO", "1") == "1":
+    canela_m = bpy.data.objects["Raton_brazoR"].data.materials[0]
+    rosado_m = bpy.data.objects["Raton_manoR"].data.materials[0]
+    for nm in ("Raton_brazoR", "Raton_manoR"):
+        bpy.data.objects[nm].hide_render = True
+    _pts = [(0.020, -0.018, 0.103), (0.027, -0.019, 0.083), (0.026, -0.035, 0.083), (0.023, -0.047, 0.090)]
+    P.tube("Raton_brazoR_tubo", _pts, float(os.environ.get("BRAZO_R", 0.0071)), C, canela_m)
+    PJ.esfera("Raton_palmaR", (0.0225, -0.0505, 0.0925), 0.0056, C, rosado_m, escala=(0.8, 0.75, 1.15))
 # párpados del color del lomo (de perfil, la máscara de guata los pintaba blancos)
 lomo_m = PJ.mat_simple("LomoParpado", (0.42, 0.20, 0.08), rough=0.7, sheen=0.9)
 for pv in rt["parpados"]:
@@ -134,8 +145,9 @@ cab.data.materials.append(m)
 # interior: todo cabe dentro de la cabeza (x 0.000–0.012) y dentro del círculo de la ventana
 diente = P.mat("Muela", (0.78, 0.62, 0.36), rough=0.35, coat=0.3, emit=float(os.environ.get("BRILLO", 0.0)))   # marfil amarillento de roedor   # bajo el umbral del brillo del post (si no, se queman)
 encia = P.mat("Encia", (0.10, 0.05, 0.07), rough=0.6)   # encía oscura: con rosado arriba y abajo se leía como una sonrisa de frente
-semilla = P.mat("SemillaAji", (0.97, 0.90, 0.62), rough=0.45, coat=0.3)   # las mismas semillas crema del ají mordido
-miga_m = P.mat("MigaSemilla", (0.88, 0.78, 0.50), rough=0.7)
+semilla = P.mat("SemillaAji", (0.96, 0.86, 0.46), rough=0.5, coat=0.2)   # semilla de ají real: disco plano amarillo pálido
+borde_s = P.mat("SemillaBorde", (0.74, 0.56, 0.20), rough=0.55)          # con el borde un poco más oscuro
+miga_m = semilla                                   # las migas son la misma semilla, molida
 M = cab.matrix_world
 X_M = 0.0070                                           # plano de las muelas, bien adentro de la piel
 # fondo del interior: una cápsula oscura (azul noche, como la "cabeza de vidrio") que tapa el revés de la piel
@@ -163,13 +175,20 @@ for fila, arriba in (("sup", True), ("inf", False)):
         muela(f"Muela_{fila}{k}", (X_M, centro_loc.y - ANCHO * 0.52 + ANCHO * 1.04 * k, zc), ANCHO, ALTO, arriba)
 rnd = random.Random(1)
 # semillas enteras entrando por delante (hacia el hocico) y migas saliendo por detrás, entre las dos filas
-for k in range(3):                                        # 3 semillas enteras, planas y redondas, de canto a la cámara no: de frente
-    g = P.prim("cyl", f"Semilla{k}", C, semilla, r=0.0026, r2=0.0026, h=0.0008, seg=32)
-    g.rotation_euler = (math.radians(rnd.uniform(-20, 20)), math.radians(90 - 35), 0)   # disco inclinado: se lee plano (semilla), no bolita
-    g.location = Vector((X_M + 0.0022, centro_loc.y - 0.0108 + 0.0042 * k, centro_loc.z + rnd.uniform(-0.0005, 0.0005)))
-for k in range(10):
-    g = P.prim("ico", f"Miga{k}", C, miga_m, r=rnd.uniform(0.0008, 0.0012), sub=1)
-    g.location = Vector((X_M + 0.0010, centro_loc.y + 0.0030 + rnd.uniform(0, 0.0055), centro_loc.z + rnd.uniform(-0.0007, 0.0007)))
+R_SEM = ANCHO * 0.17                                       # ~1/3 de la corona de diámetro
+for k in range(3):                                        # 3 semillas enteras, planas: disco con borde oscuro, inclinado (se ve el canto)
+    g = P.prim("cyl", f"Semilla{k}", C, borde_s, r=R_SEM, r2=R_SEM, h=R_SEM * 0.30, seg=32)
+    P.bevel(g, R_SEM * 0.08, 2)
+    tapa = P.prim("cyl", f"Semilla{k}_cara", C, semilla, r=R_SEM * 0.80, r2=R_SEM * 0.80, h=R_SEM * 0.12, seg=32)
+    tapa.location = (0, 0, R_SEM * 0.15)
+    tapa.parent = g
+    g.rotation_euler = (math.radians(rnd.uniform(-25, 25)), math.radians(40 + rnd.uniform(-8, 8)), 0)
+    g.location = Vector((X_M + 0.0020, centro_loc.y - 0.0105 + 0.0034 * k, centro_loc.z + rnd.uniform(-0.0006, 0.0006)))
+for k in range(14):                                       # migas: astillas planas del mismo amarillo
+    g = P.prim("ico", f"Miga{k}", C, miga_m if k % 3 else borde_s, r=rnd.uniform(0.0005, 0.0009), sub=1)
+    g.scale = (1.0, rnd.uniform(0.7, 1.2), rnd.uniform(0.35, 0.55))
+    g.rotation_euler = (rnd.uniform(0, 3.1), rnd.uniform(0, 3.1), rnd.uniform(0, 3.1))
+    g.location = Vector((X_M + 0.0012, centro_loc.y + 0.0028 + rnd.uniform(0, 0.0058), centro_loc.z + rnd.uniform(-0.0008, 0.0008)))
 luz_in = bpy.data.lights.new("LuzMejilla", "POINT")
 luz_in.energy, luz_in.color, luz_in.shadow_soft_size = float(os.environ.get("LUZ_IN", 0.012)), (1.0, 0.88, 0.78), 0.004
 lo_in = bpy.data.objects.new("LuzMejilla", luz_in)
@@ -207,6 +226,13 @@ from bpy_extras.object_utils import world_to_camera_view as _w2c
 bpy.context.view_layer.update()
 _v = _w2c(sc, cam, M @ Vector((0.0165, centro_loc.y, centro_loc.z)))
 print("mejilla en pantalla", round(_v.x * sc.render.resolution_x), round((1 - _v.y) * sc.render.resolution_y))
+for _n in ("Raton_nariz", "Raton_orejaR", "Raton_orejaL", "Raton_ojoR", "Raton_manoR", "Raton_pieR"):
+    _o = bpy.data.objects.get(_n)
+    if _o:
+        _q = _w2c(sc, cam, _o.matrix_world.translation)
+        print("pantalla", _n, round(_q.x * 1080), round((1 - _q.y) * 1920))
+if os.environ.get("SOLO_POS"):
+    raise SystemExit
 sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", "estilo_muelas" + ("_lupa" if MODO == "lupa" else "")) + ".png")
 bpy.ops.render.render(write_still=True)
 print("ok", sc.render.filepath)

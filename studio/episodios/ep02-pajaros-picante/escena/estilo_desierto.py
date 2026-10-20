@@ -9,6 +9,7 @@ STUDIO = os.path.abspath(os.path.join(HERE, "../../.."))
 for p in (HERE, os.path.join(STUDIO, "plantilla")):
     sys.path.insert(0, p)
 import bpy
+import bmesh
 from mathutils import Vector, Euler
 import props as P
 import props_ep02 as E
@@ -52,6 +53,7 @@ def area(name, loc, energy, size, color, target):
 area("Relleno", (0.9, -1.3, 0.8), float(os.environ.get("FILL", 10)), 1.2, (0.75, 0.88, 1.0), (0.05, 0.0, TOP + 0.1))
 area("Contorno", (0.5, 1.1, 0.75), float(os.environ.get("RIM", 60)), 0.6, (1.0, 0.70, 0.40), (0.05, 0.0, TOP + 0.12))
 
+D.roca("DunaIzq", (-1.6, 2.6, 0), (3.2, 1.6, 0.45), C, seed=44)
 # --- pájaro con el ají en el pico (se arma en el origen y después se ubica) ---
 CP = P.collection("Personajes")
 pj = PJ.pajaro(CP)
@@ -90,7 +92,7 @@ PJ.colgar(aji, pj["pico"])
 for pv in pj["parpados"]:
     for ch in pv.children:
         ch.rotation_euler.x = math.radians(float(os.environ.get("PARPADO", -30)))   # media asta: "ni lo siente"
-pj["cabeza"].rotation_euler = (math.radians(-4), 0, math.radians(10))
+pj["cabeza"].rotation_euler = (math.radians(-4), 0, math.radians(float(os.environ.get("CABEZA_GIRO", 30))))   # 3/4: se ve el ají entre las dos mitades del pico
 pj["root"].location = (0.0, -0.16, TOP)
 pj["root"].rotation_euler.z = math.radians(float(os.environ.get("PAJ_ROT", -8)))
 
@@ -112,36 +114,102 @@ rt["cabeza"].rotation_euler = (math.radians(-16), 0, 0)
 rt["root"].location = (0.19, 0.20, TOP2)          # tabla de utilería del storyboard
 rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", -60)))
 # causa de la llama: un ají mordido junto al ratón, y los lentes de sol caídos (detalle del loop)
-aj_m = E.aji("AjiMordido", largo=0.10, grosor=0.012, coll=CP, seed=11, curva=0.3)
-# acostado de lado (tallo a la izquierda): el mordisco queda en el costado que mira a la cámara y se lee
-AJM = tuple(float(v) for v in os.environ.get("AJM", "0.235,0.235,-80").split(","))
+aj_m = E.aji("AjiMordido", largo=float(os.environ.get("AJM_LARGO", 0.09)), grosor=0.0155, coll=CP, seed=11, curva=0.25)
+# acostado de lado a lo largo del borde delantero de la repisa (tallo a la izquierda, junto al ratón): el mordisco queda en la
+# silueta de arriba y se lee desde la cámara, que está más abajo
+AJM = tuple(float(v) for v in os.environ.get("AJM", "0.232,0.181,-86").split(","))
 aj_m.rotation_euler = (math.radians(90), 0, math.radians(AJM[2]))
 aj_m.location = (AJM[0], AJM[1], 0.0)
-E.mordisco_media_luna(aj_m, CP, t=0.55, lado=(0, 1, 0), r=0.0085)   # media luna en la silueta de arriba, con semillas
-# la cámara mira la roca de atrás desde abajo: lo que queda tirado plano en la cima no se ve. Los lentes y la medalla
-# quedan en el escalón delantero de la roca (z≈0,30, se ve desde la cámara y no lo tapa la cola), recostados hacia atrás.
-# las pistas (ají mordido, lentes, medalla) van sobre dos piedras apiladas a los lados del ratón: quedan sobre la
-# franja de subtítulos (y < 980 de 1920) y se leen; en la cima plana de la roca caían dentro de la franja
-REP = [tuple(float(v) for v in t.split(",")) for t in os.environ.get("REPISAS", "0.300,0.225,0.19,0.11,0.085").split(";")]
+E.mordisco_media_luna(aj_m, CP, t=0.55, lado=(0.75, 0.66, 0), r=0.0105)   # media luna arriba y hacia la cámara (x local = -y del mundo), con semillas
+# la cámara (z≈0,32) queda más abajo que la cima de la roca de atrás: lo que está tirado plano arriba no se ve, y lo que
+# está bajo la altura de la cámara cae en la franja de subtítulos (y > 990). Por eso las pistas van en dos repisas
+# escalonadas a la derecha del ratón: el ají mordido en el borde de la de abajo, la medalla colgando de ese borde con la
+# cinta caída sobre la piedra, y los lentes en el borde de la de arriba (más alta, para que el ají no los tape).
+REP = [tuple(float(v) for v in t.split(",")) for t in os.environ.get("REPISAS", "0.310,0.225,0.22,0.11,0.085;0.300,0.292,0.15,0.09,0.142").split(";")]
 repisas = [D.roca(f"Repisa{i}", (x, y, TOP2 - 0.01), (sx, sy, sz), C, seed=30 + i) for i, (x, y, sx, sy, sz) in enumerate(REP)]
 bpy.context.view_layer.update()
-def cima(x, y):
+def cima(x, y, obs=None):
     """z de la superficie más alta (roca de atrás o repisas) en (x, y) (rayo sólo contra rocas, no contra personajes ni llama)."""
     dg = bpy.context.evaluated_depsgraph_get()
     best = None
-    for ob in [roca2] + repisas:
+    for ob in (obs or [roca2] + repisas):
         Mi = ob.matrix_world.inverted()
         hit, loc, *_ = ob.evaluated_get(dg).ray_cast(Mi @ Vector((x, y, 1.5)), (Mi.to_3x3() @ Vector((0, 0, -1))).normalized())
         if hit:
             z = (ob.matrix_world @ loc).z
             best = z if best is None else max(best, z)
     return best if best is not None else TOP2
-aj_m.location.z = cima(AJM[0] + 0.05, AJM[1]) + 0.011
-LX, LY = (float(v) for v in os.environ.get("LENTES_XY", "0.300,0.205").split(","))
-MX, MY = (float(v) for v in os.environ.get("MEDALLA_XY", "0.343,0.215").split(","))
-lc = PJ.lentes("LentesCaidos", (LX, LY, cima(LX, LY) + 0.0135), 0.05, CP, mirando=(-0.35, -1.0, 0.55))
-mc = PJ.medalla("MedallaCaida", (MX, MY, cima(MX, MY) + 0.016), 0.017, CP)   # más grande: tiene que leerse en el celular
-mc.rotation_euler = (math.radians(-35), 0, math.radians(-15))      # disco recostado hacia atrás, cinta apoyada
+def frente(ob, x, z):
+    """y de la cara delantera de una roca a la altura z (rayo horizontal desde la cámara hacia +y)."""
+    dg = bpy.context.evaluated_depsgraph_get()
+    Mi = ob.matrix_world.inverted()
+    hit, loc, *_ = ob.evaluated_get(dg).ray_cast(Mi @ Vector((x, -0.4, z)), (Mi.to_3x3() @ Vector((0, 1, 0))).normalized())
+    return (ob.matrix_world @ loc).y if hit else None
+# el ají se apoya en el punto más alto bajo él (muestras a lo largo y a lo ancho)
+_r_aji = 0.0155 * 0.77
+_ex = (Vector((math.cos(math.radians(AJM[2] + 90)), math.sin(math.radians(AJM[2] + 90)), 0)))
+_apoyo = max(cima(*(Vector((AJM[0], AJM[1], 0)) + _ex * d).xy[:]) for d in (0.015, 0.03, 0.045, 0.06, 0.075))
+aj_m.location.z = _apoyo + _r_aji + 0.0014        # + grosor de la cinta de la medalla, que pasa por debajo
+LX, LY = (float(v) for v in os.environ.get("LENTES_XY", "0.312,0.262").split(","))
+lc = PJ.lentes("LentesCaidos", (LX, LY, cima(LX, LY) + 0.0138), 0.05, CP, mirando=(-0.22, -1.0, -0.10))
+lc.rotation_euler.rotate(Euler((0, math.radians(float(os.environ.get("LENTES_LADEO", 14))), 0)))   # caídos: ladeados, no derechos
+# --- medalla caída: cuelga del borde de la repisa de abajo, la cinta (azul, para que no se confunda con el ají) queda
+# tendida sobre la piedra y baja por la cara delantera hasta el disco ---
+MX = float(os.environ.get("MEDALLA_X", 0.296))
+MR = float(os.environ.get("MEDALLA_R", 0.019))
+rep0 = repisas[0]
+top0 = cima(MX, rep0.location.y, [rep0])
+zc = top0 - 0.022 - MR                              # centro del disco, colgando bajo el borde
+yf_c = frente(rep0, MX, zc)
+_ref = PJ.medalla("_MedallaRef", (0, 0, -5), MR, CP)          # mismos materiales que la medalla puesta (ficha)
+oro, oro2, azul = (bpy.data.objects["_MedallaRef_disco"].data.materials[0], bpy.data.objects["_MedallaRef_centro"].data.materials[0],
+                   bpy.data.objects["_MedallaRef_cinta1"].data.materials[0])
+for _o in [_ref] + list(_ref.children):
+    bpy.data.objects.remove(_o)
+mc = P.empty("MedallaCaida", loc=(MX, yf_c - MR * 0.125 - 0.0009, zc), coll=CP)
+_d = P.prim("cyl", "MedallaCaida_disco", CP, oro, r=MR, r2=MR, h=MR * 0.25, seg=40)
+_d.rotation_euler = (math.radians(90), 0, 0)
+P.bevel(_d, MR * 0.08, 2)
+_d.parent = mc
+_e = P.prim("cyl", "MedallaCaida_centro", CP, oro2, r=MR * 0.62, r2=MR * 0.62, h=MR * 0.08, seg=40)   # relieve central: se lee como medalla
+_e.rotation_euler = (math.radians(90), 0, 0)
+_e.location = (0, -MR * 0.15, 0)
+P.bevel(_e, MR * 0.03, 2)
+_e.parent = mc
+mc.rotation_euler = (math.radians(4), 0, math.radians(float(os.environ.get("MEDALLA_GIRO", 7))))
+def cinta(nombre, xs, ancho=0.0075, grosor=0.0012):
+    """Cinta plana rígida que se pega a la roca: sube por la cara delantera, pasa el borde y queda tendida arriba.
+    xs = (x en el disco, x en el borde, x al final arriba)."""
+    pts = []
+    z0 = zc + MR * 0.80
+    zs = [z0 + (top0 - 0.003 - z0) * i / 7 for i in range(8)]
+    for i, z in enumerate(zs):
+        x = xs[0] + (xs[1] - xs[0]) * i / 7
+        y = frente(rep0, x, z)
+        if y is not None:
+            pts.append(Vector((x, y - grosor / 2 - 0.0004, z)))
+    y_borde = pts[-1].y
+    for i in range(1, 9):
+        y = y_borde + 0.045 * i / 8
+        x = xs[1] + (xs[2] - xs[1]) * i / 8
+        z = cima(x, y, [rep0])
+        if z > pts[-1].z - 0.004:
+            pts.append(Vector((x, y, z + grosor / 2 + 0.0004)))
+    bm = bmesh.new()
+    filas = []
+    for k, p_ in enumerate(pts):
+        t = (pts[min(k + 1, len(pts) - 1)] - pts[max(k - 1, 0)]).normalized()
+        lado = Vector((1, 0, 0)) - t * t.x
+        lado.normalize()
+        filas.append([bm.verts.new(p_ - lado * ancho / 2), bm.verts.new(p_ + lado * ancho / 2)])
+    for a, b in zip(filas, filas[1:]):
+        bm.faces.new((a[0], a[1], b[1], b[0]))
+    ob = P.mesh_obj(nombre, bm, CP, m=azul)
+    so = ob.modifiers.new("Grosor", "SOLIDIFY")
+    so.thickness, so.offset = grosor, 0
+    return ob
+cinta("MedallaCaida_cintaL", (MX - 0.004, MX - 0.010, MX - 0.022))
+cinta("MedallaCaida_cintaR", (MX + 0.004, MX + 0.010, MX + 0.016))
 
 bpy.context.view_layer.update()
 boca_w = rt["boca"].matrix_world.translation
@@ -178,7 +246,7 @@ cam.data.lens = float(os.environ.get("LENS", 28))
 bpy.context.view_layer.update()
 foco = pj["cabeza"].matrix_world.translation + Vector((0, -0.03, 0.02))
 cam.location = foco + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.02,-0.66,-0.05").split(",")))
-mira = foco + Vector(tuple(float(x) for x in os.environ.get("MIRA", "0.075,0.10,-0.01").split(",")))
+mira = foco + Vector(tuple(float(x) for x in os.environ.get("MIRA", "0.105,0.10,-0.04").split(",")))
 cam.rotation_euler = (mira - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (foco - cam.location).length
@@ -187,13 +255,30 @@ cam.data.dof.aperture_fstop = float(os.environ.get("FSTOP", 9.0))
 from bpy_extras.object_utils import world_to_camera_view as _w2c
 bpy.context.view_layer.update()
 def _pant(nombre, punto=None):
-    o = bpy.data.objects.get(nombre)
-    w = punto if punto is not None else o.matrix_world.translation
+    w = punto if punto is not None else bpy.data.objects.get(nombre).matrix_world.translation
     v = _w2c(sc, cam, w)
     return round(v.x * 1080), round((1 - v.y) * 1920)
 for _n in ("AjiMordido", "LentesCaidos", "MedallaCaida", "Cuitlacoche_piv_cabeza", "Raton_piv_cabeza", "AjiCuadro0"):
     if bpy.data.objects.get(_n):
         print("pantalla", _n, _pant(_n))
+for _x in [float(t) for t in os.environ.get("PERFIL", "").split(",") if t]:
+    print("perfil x", _x, [(round(_y, 2), round(cima(_x, _y), 3)) for _y in [i * 0.02 for i in range(-2, 16)]])
+print("camara", tuple(round(c, 3) for c in cam.location))
+for _p in [p_ for p_ in os.environ.get("PROBE", "").split(";") if p_]:
+    print("probe", _p, "->", _pant(None, Vector(tuple(float(t) for t in _p.split(",")))))
+if os.environ.get("RAYO_PIX"):
+    # qué objeto se ve en cada píxel (coordenadas de 1080x1920): "x,y;x,y"
+    _dg = bpy.context.evaluated_depsgraph_get()
+    _fr = [cam.matrix_world @ v for v in cam.data.view_frame(scene=sc)]   # sup-der, inf-der, inf-izq, sup-izq
+    for _p in os.environ["RAYO_PIX"].split(";"):
+        _u, _v = (float(t) for t in _p.split(","))
+        _u, _v = _u / 1080, _v / 1920
+        _top = _fr[3].lerp(_fr[0], _u)
+        _bot = _fr[2].lerp(_fr[1], _u)
+        _q = _top.lerp(_bot, _v)
+        _d = (_q - cam.location).normalized()
+        _hit, _loc, _n, _i, _ob, _m = sc.ray_cast(_dg, cam.location, _d)
+        print("pixel", _p, "->", _ob.name if _hit else None, tuple(round(c, 3) for c in _loc) if _hit else "")
 if os.environ.get("SOLO_POS"):
     raise SystemExit
 sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", "estilo_desierto_cuadro0") + ".png")
