@@ -1,5 +1,7 @@
 # Ep. 2 — para retomar (21-oct-2026)
 
+> **20-oct 10:40 — lo lleva la sesión de chat con Tomás** (eligió rediseñar el bosque). Cualquier otra sesión: no tocar el repo ni lanzar runs del Ep. 2 hasta que este aviso se borre.
+
 Estado: guion, voz y storyboard **APROBADOS** (puertas 1–3). **Puerta 4 (cuadros de estilo): NO APROBADO en la 3.ª ronda** (r1: 2 bloqueantes · r2: 0 bloqueantes, 6 arreglos · r3: 0 bloqueantes, 5 arreglos; belleza 7 por el bosque). Por la regla de 3 rondas no se siguió corrigiendo y **no se le mandaron los cuadros a Tomás**: se le pidió decidir el reemplazo.
 
 ## Dónde están los cuadros (r3)
