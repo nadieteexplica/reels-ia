@@ -59,10 +59,10 @@ CP = P.collection("Personajes")
 pj = PJ.pajaro(CP)
 pj["mandibula"].rotation_euler.x = math.radians(float(os.environ.get("MANDIBULA", 20)))   # pico abierto: se ven las dos mitades, arriba y abajo del ají
 bpy.context.view_layer.update()
-pj["mandibula"].rotation_euler.x = math.radians(float(os.environ.get("PICO_ABRE", 22)))
+pj["mandibula"].rotation_euler.x = math.radians(float(os.environ.get("PICO_ABRE", 18)))
 bpy.context.view_layer.update()
 # hueco real entre las mandíbulas a DIST del pivote del pico (medido en las mallas, coordenadas de la raíz del pájaro)
-DIST = float(os.environ.get("PICO_DIST", 0.022))
+DIST = float(os.environ.get("PICO_DIST", 0.024))
 def _verts(nombre):
     o = bpy.data.objects[nombre]
     dg = bpy.context.evaluated_depsgraph_get()
@@ -80,19 +80,24 @@ hueco = sup_b - inf_t
 print("pico: hueco", round(hueco * 1000, 1), "mm a", DIST * 1000, "mm de la base")
 # el ají de props_ep02.aji tiene su radio máximo ~0,77·grosor a un 30 % de su largo: ese punto queda entre las mandíbulas,
 # un 6 % más grueso que el hueco (las mandíbulas aprietan y lo hunden apenas)
-GROS = hueco / 2 * 1.06 / 0.767
-aji = E.aji("AjiCuadro0", largo=0.12, grosor=GROS, coll=CP, seed=5, curva=float(os.environ.get("AJI_CURVA", 0.12)))
+# punto del ají que queda entre las mandíbulas: fracción T de su largo (radio del perfil de props_ep02.aji en ese punto)
+AJI_LARGO = float(os.environ.get("AJI_LARGO", 0.14))
+AJI_T = float(os.environ.get("AJI_T", 0.50))       # c3: el ají va centrado en el pico (sus dos puntas asoman a cada lado de la cabeza)
+_perf = math.sin(min(1.0, AJI_T * 6) * math.pi / 2) * (1 - AJI_T) ** 0.85 + 0.04 * (1 - AJI_T)
+GROS = hueco / 2 * 1.06 / _perf
+aji = E.aji("AjiCuadro0", largo=AJI_LARGO, grosor=GROS, coll=CP, seed=5, curva=float(os.environ.get("AJI_CURVA", 0.12)))
 aji.rotation_euler = (0, math.radians(-90), math.radians(8))
 aji.location = (0.0, y0, (sup_b + inf_t) / 2)
 bpy.context.view_layer.update()
 eje = (aji.matrix_world.to_3x3() @ Vector((0, 0, -1))).normalized()
-aji.location -= eje * 0.12 * 0.30          # corre el ají para que su 30 % (lo más grueso) quede en el pico
+aji.location -= eje * AJI_LARGO * AJI_T * (1 - 0.18 * AJI_T)     # corre el ají para que su punto T quede en el pico
 aji.location = pj["root"].matrix_world @ aji.location if False else aji.location
 PJ.colgar(aji, pj["pico"])
+bpy.data.objects["AjiCuadro0_tallo"].scale = (0.45, 0.45, 0.45)      # tallo corto: el cáliz y el tallo entran en el cuadro
 for pv in pj["parpados"]:
     for ch in pv.children:
         ch.rotation_euler.x = math.radians(float(os.environ.get("PARPADO", -30)))   # media asta: "ni lo siente"
-pj["cabeza"].rotation_euler = (math.radians(-4), 0, math.radians(float(os.environ.get("CABEZA_GIRO", 30))))   # 3/4: se ve el ají entre las dos mitades del pico
+pj["cabeza"].rotation_euler = (math.radians(-4), 0, math.radians(float(os.environ.get("CABEZA_GIRO", 18))))   # 3/4: se ve el ají entre las dos mitades del pico
 pj["root"].location = (0.0, -0.16, TOP)
 pj["root"].rotation_euler.z = math.radians(float(os.environ.get("PAJ_ROT", -8)))
 
@@ -101,7 +106,8 @@ roca2 = D.roca("RocaAtras", (0.12, 0.30, 0), (0.50, 0.30, 0.36), C, seed=3)
 TOP2 = 0.36
 rt = PJ.raton(CP)
 rt["root"].scale = (1.15, 1.15, 1.15)
-rt["boca"].scale = (1.6, 1.4, 3.2)
+rt["boca"].scale = (1.8, 1.6, 3.6)                 # boca bien abierta: de ahí sale la llama
+rt["boca"].location.y -= 0.003
 for pv in rt["parpados"]:
     for ch in pv.children:
         ch.rotation_euler.x = math.radians(-115)        # ojos muy abiertos (de susto)
@@ -116,16 +122,17 @@ rt["cola"].rotation_euler = (math.radians(float(os.environ.get("COLA_X", 0))), 0
 rt["root"].location = (0.19, 0.20, TOP2)          # tabla de utilería del storyboard
 rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", -60)))
 # causa de la llama: un ají mordido junto al ratón, y los lentes de sol caídos (detalle del loop)
-aj_m = E.aji("AjiMordido", largo=float(os.environ.get("AJM_LARGO", 0.10)), grosor=float(os.environ.get("AJM_GROSOR", 0.017)), coll=CP, seed=11, curva=0.25)
+aj_m = E.aji("AjiMordido", largo=float(os.environ.get("AJM_LARGO", 0.125)), grosor=float(os.environ.get("AJM_GROSOR", 0.020)), coll=CP, seed=11, curva=0.25)
 # acostado de lado a lo largo del borde delantero de la repisa (tallo a la izquierda, junto al ratón): el mordisco queda en la
 # silueta de arriba y se lee desde la cámara, que está más abajo
-AJM = tuple(float(v) for v in os.environ.get("AJM", "0.254,0.181,-86").split(","))
+AJM = tuple(float(v) for v in os.environ.get("AJM", "0.256,0.181,-86").split(","))
 aj_m.rotation_euler = (math.radians(90), 0, math.radians(AJM[2]))
 _tl = bpy.data.objects["AjiMordido_tallo"]      # tallo corto y hacia arriba: no toca el lomo del ratón (c3: el ají parecía clavado en la espalda)
 _tl.scale = (0.6, 0.6, 0.6)
 _tl.rotation_euler = (math.radians(float(os.environ.get("TALLO_X", -70))), 0, 0)
 aj_m.location = (AJM[0], AJM[1], 0.0)
-E.mordisco_media_luna(aj_m, CP, t=0.55, lado=tuple(float(v) for v in os.environ.get("BOCADO_LADO", "0.62,0.78,0").split(",")), r=float(os.environ.get("BOCADO", 0.0165)), semillas=5, pulpa=False, en_corte=True)   # media luna en la silueta de arriba, un poco hacia la cámara (x local = -y del mundo): se ve la muesca y la pulpa
+E.mordisco_media_luna(aj_m, CP, t=float(os.environ.get("BOCADO_T", 0.56)), lado=tuple(float(v) for v in os.environ.get("BOCADO_LADO", "1.0,0.3,0").split(",")),
+                     r=float(os.environ.get("BOCADO", 0.019)), semillas=6, pulpa=False, en_corte=True)   # c3: media luna grande en el costado que mira a la cámara (x local = -y del mundo): se ve la pulpa y las semillas adentro
 # la cámara (z≈0,32) queda más abajo que la cima de la roca de atrás: lo que está tirado plano arriba no se ve, y lo que
 # está bajo la altura de la cámara cae en la franja de subtítulos (y > 990). Por eso las pistas van en dos repisas
 # escalonadas a la derecha del ratón: el ají mordido en el borde de la de abajo, la medalla colgando de ese borde con la
@@ -151,13 +158,32 @@ def frente(ob, x, z):
     hit, loc, *_ = ob.evaluated_get(dg).ray_cast(Mi @ Vector((x, -0.4, z)), (Mi.to_3x3() @ Vector((0, 1, 0))).normalized())
     return (ob.matrix_world @ loc).y if hit else None
 # el ají se apoya en el punto más alto bajo él (muestras a lo largo y a lo ancho)
-_r_aji = float(os.environ.get("AJM_GROSOR", 0.017)) * 0.77
+_r_aji = float(os.environ.get("AJM_GROSOR", 0.020)) * 0.77
 _ex = (Vector((math.cos(math.radians(AJM[2] + 90)), math.sin(math.radians(AJM[2] + 90)), 0)))
 _apoyo = max(cima(*(Vector((AJM[0], AJM[1], 0)) + _ex * d).xy[:]) for d in (0.015, 0.03, 0.045, 0.06, 0.075))
 aj_m.location.z = _apoyo + _r_aji + 0.0014        # + grosor de la cinta de la medalla, que pasa por debajo
-LX, LY = (float(v) for v in os.environ.get("LENTES_XY", "0.312,0.262").split(","))
-lc = PJ.lentes("LentesCaidos", (LX, LY, cima(LX, LY) + 0.0138), 0.05, CP, mirando=(-0.22, -1.0, -0.10))
-lc.rotation_euler.rotate(Euler((0, math.radians(float(os.environ.get("LENTES_LADEO", 14))), 0)))   # caídos: ladeados, no derechos
+LX, LY = (float(v) for v in os.environ.get("LENTES_XY", "0.318,0.251").split(","))
+# c3: adelante, en el mismo borde de la repisa alta (más atrás el labio de la piedra les tapaba la mitad de abajo)
+_apoyo_l = max(cima(LX + dx, LY + 0.008) for dx in (-0.02, 0.0, 0.02))
+lc = PJ.lentes("LentesCaidos", (LX, LY, _apoyo_l + 0.0138), 0.05, CP, mirando=tuple(float(v) for v in os.environ.get("LENTES_MIRA", "-0.75,-1.0,-0.15").split(",")))
+lc.rotation_euler.rotate(Euler((0, math.radians(float(os.environ.get("LENTES_LADEO", 20))), 0)))   # caídos: ladeados, no derechos
+# aros y patillas (como los lentes del ají guardia): sin aro ni patilla se leían como dos bolitas negras
+_marco = PJ.mat_simple("MarcoPlata", (0.72, 0.72, 0.74), rough=0.25, coat=0.4)   # aro fino claro: como el filo brillante de los lentes del guardia en la ficha
+_marco.node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 0.8
+bpy.data.objects["LentesCaidos_puente"].data.materials[0] = _marco
+for _s in (-1, 1):
+    _mica = bpy.data.objects[f"LentesCaidos_mica{'LR'[_s > 0]}"]
+    _aro = P.prim("cyl", f"LentesCaidos_aro{'LR'[_s > 0]}", CP, _marco, r=0.05 * 0.30, r2=0.05 * 0.30, h=0.05 * 0.035, seg=40)
+    _aro.parent = lc
+    _aro.location = (_s * 0.05 * 0.27, 0.05 * 0.03, 0)
+    _aro.rotation_euler = (math.radians(90), 0, 0)
+    _aro.scale = (1.15, 1.0, 1.0)
+    # patilla: sale del borde de afuera hacia atrás y cae (una casi derecha, la otra doblada)
+    _x0 = _s * 0.05 * 0.58
+    _pts = [(_x0, 0.002, 0.004), (_x0 + _s * 0.002, 0.020, 0.002), (_x0 + _s * 0.001, 0.040, -0.006 if _s > 0 else 0.0)]
+    _pt = P.tube(f"LentesCaidos_patilla{'LR'[_s > 0]}", _pts, 0.0011, CP, _marco)
+    _pt.parent = lc
+
 # --- medalla caída: cuelga del borde de la repisa de abajo, la cinta (azul, para que no se confunda con el ají) queda
 # tendida sobre la piedra y baja por la cara delantera hasta el disco ---
 MX = float(os.environ.get("MEDALLA_X", 0.296))
@@ -219,8 +245,11 @@ cinta("MedallaCaida_cintaR", (MX + 0.004, MX + 0.010, MX + 0.016))
 bpy.context.view_layer.update()
 boca_w = rt["boca"].matrix_world.translation
 frente_rt = (rt["cabeza"].matrix_world.to_3x3() @ Vector((0, -1, 0.0))).normalized()
-frente_rt = (frente_rt + Vector((0, 0, float(os.environ.get("FUEGO_SUBE", 0.12))))).normalized()
-V.llamarada("Llamarada", boca_w + frente_rt * float(os.environ.get("FUEGO_SALE", 0.022)), frente_rt, CP, escala=float(os.environ.get("FUEGO", 1.7)))
+frente_rt = (frente_rt + Vector((0, 0, float(os.environ.get("FUEGO_SUBE", 0.04))))).normalized()
+# c3: la llama salía de la punta de la nariz (la tapaba). Sale de la boca abierta, bajo la nariz, que queda rosada a la vista
+abajo_rt = (rt["cabeza"].matrix_world.to_3x3() @ Vector((0, 0, -1))).normalized()
+V.llamarada("Llamarada", boca_w + frente_rt * float(os.environ.get("FUEGO_SALE", 0.026)) + abajo_rt * float(os.environ.get("FUEGO_BAJA", 0.008)),
+            frente_rt, CP, escala=float(os.environ.get("FUEGO", 1.7)))
 for o in rt["ojos"]:
     ow = o.matrix_world.translation
     abajo = (rt["cabeza"].matrix_world.to_3x3() @ Vector((0, -0.3, -1))).normalized()
@@ -251,7 +280,7 @@ cam.data.lens = float(os.environ.get("LENS", 28))
 bpy.context.view_layer.update()
 foco = pj["cabeza"].matrix_world.translation + Vector((0, -0.03, 0.02))
 cam.location = foco + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.02,-0.66,-0.05").split(",")))
-mira = foco + Vector(tuple(float(x) for x in os.environ.get("MIRA", "0.105,0.10,-0.04").split(",")))
+mira = foco + Vector(tuple(float(x) for x in os.environ.get("MIRA", "0.095,0.10,-0.04").split(",")))
 cam.rotation_euler = (mira - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (foco - cam.location).length

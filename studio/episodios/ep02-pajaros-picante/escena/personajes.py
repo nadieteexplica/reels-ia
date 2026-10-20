@@ -53,7 +53,7 @@ def blob(name, elipsoides, coll, voxel=0.0007, suave=24):
     bm = bmesh.new()
     for co, rad, rot in elipsoides:
         tmp = bmesh.new()
-        bmesh.ops.create_uvsphere(tmp, u_segments=40, v_segments=20, radius=1.0)
+        bmesh.ops.create_uvsphere(tmp, u_segments=72, v_segments=36, radius=1.0)   # con 40x20 el remesh copiaba las facetas: anillos en hocicos y conos
         M = Matrix.Translation(Vector(co)) @ Euler([math.radians(a) for a in rot]).to_matrix().to_4x4() @ Matrix.Diagonal((*rad, 1.0))
         bmesh.ops.transform(tmp, matrix=M, verts=tmp.verts)
         me_t = bpy.data.meshes.new("t")
@@ -708,8 +708,10 @@ def tupaya(coll, nombre="Tupaya"):
     colgar(piv_cab, root)
     cab = blob(nombre + "_cabeza", [
         (tuple(cab_c), (0.025, 0.026, 0.023), (0, 0, 0)),
-        (tuple(cab_c + Vector((0, -0.030, -0.006))), (0.012, 0.030, 0.012), (8, 0, 0)),
-    ], coll)
+        # hocico: un solo elipsoide largo que nace bien adentro de la cabeza y sale en ángulo bajo (c3: con uno corto
+        # quedaba un escalón concéntrico en la base, como un tubo encajado)
+        (tuple(cab_c + Vector((0, -0.025, -0.006))), (0.0155, 0.039, 0.0145), (8, 0, 0)),
+    ], coll, voxel=0.0005, suave=40)
     cab.data.materials.append(pel)
     colgar(cab, piv_cab)
     nz = esfera(nombre + "_naricita", cab_c + Vector((0, -0.060, -0.009)), 0.0055, coll, nariz_m)

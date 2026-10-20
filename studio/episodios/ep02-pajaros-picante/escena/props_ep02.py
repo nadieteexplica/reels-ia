@@ -356,3 +356,73 @@ def mordisco_media_luna(aji_ob, coll, t=0.62, lado=(0, 1, 0), r=0.010, semillas=
             g.rotation_euler = (d.to_track_quat("Z", "Y").to_euler())
             g.rotation_euler.rotate_axis("X", rnd.uniform(-0.5, 0.5))
     return cortes
+
+
+def mordisco_punta(aji_ob, coll, t_corte=0.66, r=None, semillas=5, seed=4):
+    """Mordisco "de dibujo animado" que se come la punta del ají: el extremo queda cóncavo y festoneado (3 bocados en
+    arco), con la pulpa clara y semillas a la vista en el corte. El ají de props_ep02.aji crece hacia -Z local y se curva
+    hacia +X. Necesita malla cerrada (se cierra acá, igual que en mordisco_media_luna)."""
+    import random as _r
+    rnd = _r.Random(seed)
+    me = aji_ob.data
+    _bm = bmesh.new()
+    _bm.from_mesh(me)
+    bmesh.ops.remove_doubles(_bm, verts=_bm.verts, dist=1e-5)
+    bmesh.ops.dissolve_degenerate(_bm, edges=_bm.edges, dist=1e-6)
+    bmesh.ops.holes_fill(_bm, edges=[e for e in _bm.edges if not e.is_manifold], sides=0)
+    bmesh.ops.recalc_face_normals(_bm, faces=_bm.faces)
+    _bm.to_mesh(me)
+    _bm.free()
+    zs = [v.co.z for v in me.vertices]
+    L = -min(zs)
+    zc = -L * t_corte
+    anillo = [v.co for v in me.vertices if abs(v.co.z - zc) < L * 0.03]
+    cx = sum(p.x for p in anillo) / max(1, len(anillo))
+    rad = max((Vector((p.x - cx, p.y, 0)).length for p in anillo), default=0.008)
+    r = r or rad * 1.25
+    blanco = P.mat("AjiInterior", (0.97, 0.92, 0.74), rough=0.6, emit=0.25)
+    if blanco.name not in [m.name for m in me.materials]:
+        me.materials.append(blanco)
+    k = [m.name for m in me.materials].index(blanco.name)
+    eje = Vector((0.18, 0, -1)).normalized()            # dirección del ají hacia la punta, más o menos, a esa altura
+    base = Vector((cx, 0, zc))
+    # 3 bocados en arco (festón) a lo ancho (Y local) + uno grande que se lleva el resto de la punta
+    centros = [(base + eje * (r * (0.75 if j == 1 else 1.0)) + Vector((0, (j - 1) * r * 0.95, 0)), r * (1.0 if j == 1 else 0.85)) for j in range(3)]
+    centros.append((base + eje * (r * 2.6), r * 1.9))
+    cortes = []
+    for j, (c0, rr) in enumerate(centros):
+        bm = bmesh.new()
+        bmesh.ops.create_icosphere(bm, subdivisions=3, radius=rr)
+        mesh = bpy.data.meshes.new(f"{aji_ob.name}_punta{j}")
+        bm.to_mesh(mesh)
+        bm.free()
+        c = bpy.data.objects.new(mesh.name, mesh)
+        coll.objects.link(c)
+        c.parent = aji_ob
+        c.location = c0
+        c.hide_render = True
+        c.display_type = "WIRE"
+        for mm in me.materials:
+            c.data.materials.append(mm)
+        for pl in c.data.polygons:
+            pl.material_index = k
+        b = aji_ob.modifiers.new(f"Punta{j}", "BOOLEAN")
+        b.operation = "DIFFERENCE"
+        b.object = c
+        b.material_mode = "INDEX"
+        cortes.append(c)
+    # semillas crema con borde más oscuro, apoyadas en la cara del corte del bocado del medio
+    sem = P.mat("SemillaAjiPunta", (0.95, 0.84, 0.52), rough=0.5, coat=0.2, emit=0.08)
+    c_med, r_med = centros[1]
+    for i in range(semillas):
+        a = 2 * math.pi * i / semillas + rnd.uniform(-0.3, 0.3)
+        q = r_med * rnd.uniform(0.12, 0.42)
+        lat = Vector((0, q * math.cos(a), 0)) + Vector((1, 0, 0.18)).normalized() * (q * math.sin(a))
+        prof = math.sqrt(max(r_med * r_med - lat.length_squared, 1e-9))
+        pto = c_med + lat - eje * prof
+        nrm = (c_med - pto).normalized()
+        g = P.prim("cyl", f"{aji_ob.name}_semillaP{i}", coll, sem, r=rad * 0.24, r2=rad * 0.24, h=rad * 0.07, seg=24)
+        g.parent = aji_ob
+        g.location = pto + nrm * (rad * 0.02)
+        g.rotation_euler = nrm.to_track_quat("Z", "Y").to_euler()
+    return cortes

@@ -42,9 +42,9 @@ for _m in bpy.data.materials:
     if _m.name.endswith("_pelaje") and _m.name.lower().startswith("tupaya") and _m.use_nodes:
         for _nd in _m.node_tree.nodes:
             if _nd.type == "MIX" and getattr(_nd, "data_type", "") == "RGBA":
-                _nd.inputs["B"].default_value = (0.93, 0.89, 0.80, 1)
+                _nd.inputs["B"].default_value = (0.86, 0.80, 0.68, 1)
             if _nd.type == "MAP_RANGE" and abs(_nd.inputs["From Min"].default_value - 0.72) < 1e-6:
-                _nd.inputs["From Min"].default_value = float(os.environ.get("GUATA_MIN", 0.64))
+                _nd.inputs["From Min"].default_value = float(os.environ.get("GUATA_MIN", 0.70))
 # parada ENCIMA de la rama: altura sacada con un rayo contra la rama (las patas apoyan, no cuelgan por delante)
 bpy.context.view_layer.update()
 _dg = bpy.context.evaluated_depsgraph_get()
@@ -66,13 +66,15 @@ def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
     ob.location = loc
     ob.rotation_euler = (Vector(target) - Vector(loc)).to_track_quat("-Z", "Y").to_euler()
     ob.visible_volume_scatter = False      # las luces de relleno/contorno no iluminan la niebla (la dejaban lechosa); sólo el sol hace rayos
+    if name in ("KeyTupaya", "RellenoPatas", "Relleno"):
+        ob.visible_glossy = False          # c3: sus reflejos en los ojos dibujaban una carita triste; un solo brillo por ojo
 if os.environ.get("BOSQUE", "v2") == "v2":
     area("Relleno", (0.4, -0.9, 0.5), float(os.environ.get("FILL", 9)), 0.8, (0.70, 0.85, 1.0))       # relleno frío y suave desde cámara
     area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 30)), 0.22, (1.0, 0.86, 0.66), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza (c3: con 60 quemaba la cola)
     # c3: luz principal neutra sobre la tupaya (con sólo el ambiente verde el pelaje salía oliva oscuro, lejos del beige de la ficha)
     # la pata trasera lejana quedaba a la sombra del cuerpo y sólo la iluminaba el rebote del musgo (salía amarillo verdosa)
     area("RellenoPatas", tuple(float(v) for v in os.environ.get("PATAS_POS", "-0.05,-0.40,0.12").split(",")), float(os.environ.get("PATAS", 2.5)), 0.25, (1.0, 0.96, 0.90), target=(-0.02, 0.0, 0.17))
-    area("KeyTupaya", tuple(float(v) for v in os.environ.get("KEY_TUP_POS", "-0.35,-0.50,0.50").split(",")), float(os.environ.get("KEY_TUP", 8)), 0.35, (1.0, 0.95, 0.88), target=(0.0, 0.0, 0.20))
+    area("KeyTupaya", tuple(float(v) for v in os.environ.get("KEY_TUP_POS", "-0.35,-0.50,0.50").split(",")), float(os.environ.get("KEY_TUP", 5.5)), 0.35, (1.0, 0.95, 0.88), target=(0.0, 0.0, 0.20))
     # mancha de sol sobre la tupaya y la rama (luz principal cálida que "se cuela" entre las hojas)
     Ls = bpy.data.lights.new("RayoSol", "SPOT")
     Ls.energy, Ls.color = float(os.environ.get("RAYO", 40)), (1.0, 0.94, 0.84)   # menos cálido: con 70 y naranjo la tupaya se veía beige, no café oliva
@@ -87,6 +89,15 @@ if os.environ.get("BOSQUE", "v2") == "v2":
 else:
     area("Key", (-0.6, -0.7, 0.9), 22, 0.5, (1.0, 0.88, 0.65))
     area("Contorno", (0.5, 0.7, 0.6), 30, 0.4, (1.0, 0.85, 0.55))
+# c3: las hojas de la Piper, de frente a la cámara, reflejaban la niebla clara y se veían casi blancas: más mate y sin SSS
+_hp = bpy.data.materials.get("HojaPiper2")
+if _hp:
+    _b = _hp.node_tree.nodes.get("Principled BSDF")
+    if _b:
+        _b.inputs["Subsurface Weight"].default_value = 0.08
+        _b.inputs["Roughness"].default_value = 0.65
+        _b.inputs["Specular IOR Level"].default_value = 0.25
+sc.view_settings.exposure = float(os.environ.get("EXPOSICION", 0.25))   # c3: el bosque quedaba oscuro y turbio (brillo medio 62 contra 94–114 de los otros)
 cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
 sc.collection.objects.link(cam)
 sc.camera = cam

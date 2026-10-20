@@ -2,7 +2,7 @@
 import math, random
 import bmesh
 import bpy
-from mathutils import Vector, noise
+from mathutils import Vector, Matrix, noise
 import props as P
 
 
@@ -145,7 +145,7 @@ def mat_corteza2():
     m = bpy.data.materials.get("Corteza2")
     if m:
         return m
-    m = P.mat("Corteza2", (0.10, 0.065, 0.04), rough=0.9)
+    m = P.mat("Corteza2", (0.17, 0.115, 0.075), rough=0.85)   # c3: más clara: con 0,10 la cara de abajo de la rama era una banda negra plana
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
     tc = nt.nodes.new("ShaderNodeTexCoord")
@@ -268,7 +268,7 @@ def mat_hoja2(nombre, col, col2):
     return m
 
 
-def hoja2(name, coll, L, W, m, curva=0.25, torsion=0.0, grosor=0.0012):
+def hoja2(name, coll, L, W, m, curva=0.25, torsion=0.0, grosor=0.0012, forma="lanceolada"):
     """Hoja lanceolada con grosor (solidify), curvatura a lo largo y doblez en V por la vena central. Origen = pecíolo; crece hacia +Y."""
     bm = bmesh.new()
     n, k = 14, 4
@@ -276,7 +276,10 @@ def hoja2(name, coll, L, W, m, curva=0.25, torsion=0.0, grosor=0.0012):
     filas = []
     for i in range(n + 1):
         t = i / n
-        w = W * (math.sin(math.pi * min(1, t * 1.08)) ** 0.75) * (1 - 0.25 * t) + 1e-4
+        if forma == "ovada":                       # Piper: ancha, ovada (más ancha cerca de la base) y con punta
+            w = W * (math.sin(math.pi * min(1, t * 1.02)) ** 0.55) * (1 - 0.45 * t) * 1.18 + 1e-4
+        else:
+            w = W * (math.sin(math.pi * min(1, t * 1.08)) ** 0.75) * (1 - 0.25 * t) + 1e-4
         fila = []
         for j in range(-k, k + 1):
             u = j / k
@@ -383,6 +386,20 @@ def musgo_en_rama(name, coll, rama_pts, radio, rnd, n=140, excluir=None):
     return out
 
 
+
+def orientar_hoja(h, direccion, hacia=(-0.05, -1.0, -0.35)):
+    """Ubica la hoja (que crece hacia +Y local, con la cara en +Z local) a lo largo de `direccion`, con la cara mirando hacia
+    `hacia` (la cámara): de canto las hojas se leían como cintas angostas (puerta 4 c3)."""
+    y = Vector(direccion).normalized()
+    c = Vector(hacia).normalized()
+    z = (c - y * c.dot(y))
+    if z.length < 1e-6:
+        z = Vector((0, 0, 1))
+    z.normalize()
+    x = y.cross(z).normalized()
+    M = Matrix((x, y, z)).transposed()
+    h.rotation_euler = M.to_euler()
+
 def capa_musgo(name, coll, pts, radio):
     """Capa de musgo sobre la cara de arriba de una rama: tubo apenas más grueso que sólo se ve donde la normal mira hacia
     arriba, con borde irregular y relieve de musgo (se ve como un manto, no como bolitas)."""
@@ -399,8 +416,8 @@ def capa_musgo(name, coll, pts, radio):
         nt.links.new(geo.outputs["Normal"], sep.inputs[0])
         tc = nt.nodes.new("ShaderNodeTexCoord")
         nz = nt.nodes.new("ShaderNodeTexNoise")
-        nz.inputs["Scale"].default_value = 18.0
-        nz.inputs["Detail"].default_value = 5.0
+        nz.inputs["Scale"].default_value = 26.0
+        nz.inputs["Detail"].default_value = 8.0
         nt.links.new(tc.outputs["Object"], nz.inputs["Vector"])
         add = nt.nodes.new("ShaderNodeMath")
         add.operation = "MULTIPLY_ADD"
@@ -408,8 +425,8 @@ def capa_musgo(name, coll, pts, radio):
         nt.links.new(nz.outputs["Fac"], add.inputs[0])
         nt.links.new(sep.outputs["Z"], add.inputs[2])
         mr = nt.nodes.new("ShaderNodeMapRange")
-        mr.inputs["From Min"].default_value = 1.15
-        mr.inputs["From Max"].default_value = 1.19
+        mr.inputs["From Min"].default_value = float(__import__("os").environ.get("MUSGO_MIN", 0.90))   # c3: transición ancha (con 1.15–1.19 el borde se veía como papel rasgado)
+        mr.inputs["From Max"].default_value = float(__import__("os").environ.get("MUSGO_MAX", 1.16))
         nt.links.new(add.outputs[0], mr.inputs["Value"])
         tr = nt.nodes.new("ShaderNodeBsdfTransparent")
         mx = nt.nodes.new("ShaderNodeMixShader")
@@ -428,7 +445,7 @@ def armar_v2(coll, seed=11):
     h_osc = mat_hoja2("HojaOscura", (0.025, 0.11, 0.025), (0.04, 0.16, 0.03))
     h_med = mat_hoja2("HojaMedia", (0.05, 0.22, 0.04), (0.10, 0.30, 0.05))
     h_cla = mat_hoja2("HojaClara", (0.14, 0.38, 0.06), (0.22, 0.45, 0.08))
-    h_piper = mat_hoja2("HojaPiper2", (0.05, 0.25, 0.04), (0.08, 0.32, 0.05))
+    h_piper = mat_hoja2("HojaPiper2", (0.030, 0.15, 0.025), (0.050, 0.20, 0.032))   # c3: más oscura (de frente a la cámara y con el sol detrás se veía casi blanca)
     # --- rama principal (misma curva que v1: la tupaya se apoya con un rayo) ---
     RAMA = [(-0.9, 0.05, 0.08), (-0.3, 0.02, 0.12), (0.2, 0.0, 0.10), (0.7, 0.05, 0.16)]
     rama = P.tube("Rama", RAMA, 0.035, coll, corteza, res=24)
@@ -442,7 +459,7 @@ def armar_v2(coll, seed=11):
     POS_ESP = [(0.085, -0.03, 0.33), (0.125, 0.0, 0.36), (0.045, 0.02, 0.38)]
     tallo_p = P.mat("TalloPiper", (0.07, 0.20, 0.05), rough=0.5)
     nudo_m = P.mat("NudoPiper", (0.10, 0.17, 0.05), rough=0.6)
-    h_piper = mat_hoja2("HojaPiper2", (0.05, 0.25, 0.04), (0.08, 0.32, 0.05))
+    h_piper = mat_hoja2("HojaPiper2", (0.030, 0.15, 0.025), (0.050, 0.20, 0.032))   # c3: más oscura (de frente a la cámara y con el sol detrás se veía casi blanca)
     orden = sorted(range(3), key=lambda k: -POS_ESP[k][2])          # de arriba hacia abajo
     nudos = [Vector(POS_ESP[k]) + Vector((0.0, 0.0, 0.035)) for k in orden]
     tope = Vector((0.22, 0.06, 0.95))
@@ -454,9 +471,9 @@ def armar_v2(coll, seed=11):
     tapa.scale = (1, 1, 0.8)
     tapa.location = fin
     d_fin = (camino[-1] - camino[-2]).normalized()
-    hf = hoja2("HojaPiperPunta", coll, 0.075, 0.048, h_piper, curva=0.25, torsion=0.15, grosor=0.0012)
+    hf = hoja2("HojaPiperPunta", coll, 0.075, 0.052, h_piper, curva=0.12, torsion=0.0, grosor=0.0012, forma="ovada")
     hf.location = fin
-    hf.rotation_euler = Vector((-1.0, -0.25, 0.45)).normalized().to_track_quat("Y", "Z").to_euler()   # hacia afuera (izquierda), lejos de la cabeza de la tupaya
+    orientar_hoja(hf, (-1.0, -0.25, 0.45))      # hacia afuera (izquierda), lejos de la cabeza de la tupaya, con la cara a la cámara
     for n_i, (k, nd) in enumerate(zip(orden, nudos)):
         anillo = P.prim("sphere", f"NudoPiper{k}", coll, nudo_m, r=0.0062)
         anillo.scale = (1, 1, 0.7)
@@ -472,10 +489,10 @@ def armar_v2(coll, seed=11):
         espigas.append(e)
         # hoja ovalada al lado opuesto, apuntando hacia afuera y arriba (no tapa el hocico de la tupaya)
         lado = 1 if n_i % 2 == 0 else -1
-        h = hoja2(f"HojaPiperN{k}", coll, 0.115, 0.075, h_piper, curva=0.22, torsion=0.1, grosor=0.0014)
+        h = hoja2(f"HojaPiperN{k}", coll, 0.115, 0.078, h_piper, curva=0.12, torsion=0.0, grosor=0.0014, forma="ovada")
         h.location = nd
-        dir_h = Vector((0.55 * lado + 0.35, 0.35, 0.55)).normalized()
-        h.rotation_euler = dir_h.to_track_quat("Y", "Z").to_euler()
+        dir_h = Vector((0.55 * lado + 0.35, 0.10, 0.55)).normalized()
+        orientar_hoja(h, dir_h)                  # cara hacia la cámara: se ve la hoja ancha con su nervadura
     # dos hojas más en el tramo de arriba de la rama
     for q, (pa, pb) in enumerate(((camino[0], camino[1]), (camino[1], camino[2]))):
         h = hoja2(f"HojaPiperA{q}", coll, 0.12, 0.08, h_piper, curva=0.25, grosor=0.0014)
@@ -542,6 +559,9 @@ def armar_v2(coll, seed=11):
     pv.inputs["Color"].default_value = (0.90, 0.92, 0.75, 1)
     pv.inputs["Density"].default_value = float(__import__("os").environ.get("NIEBLA", 0.032))
     pv.inputs["Anisotropy"].default_value = 0.55
+    # c3: un brillo propio muy tenue (verde grisáceo) separa los troncos del fondo y saca al bosque de lo turbio/negro
+    pv.inputs["Emission Color"].default_value = (0.55, 0.68, 0.55, 1)
+    pv.inputs["Emission Strength"].default_value = float(__import__("os").environ.get("NIEBLA_BRILLO", 0.035))
     nt.links.new(pv.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
     caja = P.prim("cube", "CajaNiebla", coll, vol, smooth=False)
     caja.scale = (4.0, 4.4, 3.0)       # la niebla también pasa por delante: ahí se ven los rayos de sol (sin ella el fondo se ve negro)

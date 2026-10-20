@@ -8,7 +8,7 @@ NOMBRE = os.environ.get("NOMBRE", "estilo_muelas2")
 RES = os.environ.get("RES", "720x1280")
 W = int(RES.split("x")[0])
 env = dict(os.environ)
-env.update({"MODO": "cara", "NOMBRE": NOMBRE + "_cara", "TGT_Y": os.environ.get("TGT_Y", "0.0691"), "TGT_Z": os.environ.get("TGT_Z", "-0.0371"),
+env.update({"MODO": "cara", "NOMBRE": NOMBRE + "_cara", "TGT_Y": os.environ.get("TGT_Y", "0.0581"), "TGT_Z": os.environ.get("TGT_Z", "-0.0371"),
             "CAMOFF": os.environ.get("CAMOFF", "1.075,0.0,0.0"), "LENS": os.environ.get("LENS", "50")})
 # puerta 4 c2 r2: el ratón entero y sentado como en la ficha (a la derecha, mirando a la izquierda), la lupa arriba a la
 # izquierda, delante del hocico (no tapa las orejas), y la ✕ abajo al centro de la lupa (niega la escena entera).
@@ -32,9 +32,9 @@ if r2.returncode:
     print(r2.stdout[-2000:], r2.stderr[-2000:])
     sys.exit("no salió el render de la lupa")
 comp = os.path.join(OUT, NOMBRE + "_comp.png")
-envc = dict(os.environ, LINEA_TENUE=os.environ.get("LINEA_TENUE", "1.0"), LUPA_ZOOM=os.environ.get("LUPA_ZOOM", "0.55"), LUPA_CX=os.environ.get("LUPA_CX", "290"), LUPA_CY=os.environ.get("LUPA_CY", "525"),
-            LUPA_DIAM=os.environ.get("LUPA_DIAM", "400"))
+envc = dict(os.environ, LINEA_TENUE=os.environ.get("LINEA_TENUE", "1.0"), LUPA_ZOOM=os.environ.get("LUPA_ZOOM", "0.55"), LUPA_CX=os.environ.get("LUPA_CX", "280"), LUPA_CY=os.environ.get("LUPA_CY", "515"),
+            LUPA_DIAM=os.environ.get("LUPA_DIAM", "370"))
 subprocess.run([sys.executable, os.path.join(HERE, "compone_muelas.py"), os.path.join(OUT, NOMBRE + "_cara.png"), os.path.join(OUT, NOMBRE + "_lupa.png"), comp, mx, my], env=envc, check=True)
-envm = dict(os.environ, MARCA_XY=os.environ.get("MARCA_XY", "290,727"))
+envm = dict(os.environ, MARCA_XY=os.environ.get("MARCA_XY", "280,702"))
 subprocess.run([sys.executable, os.path.join(HERE, "marco_ysi.py"), comp, os.path.join(OUT, NOMBRE + ".png"), "x", "izq", "mascara"], env=envm, check=True)
 print("ok", os.path.join(OUT, NOMBRE + ".png"))

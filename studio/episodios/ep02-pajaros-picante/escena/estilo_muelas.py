@@ -80,6 +80,32 @@ if _cola and _cola.type == "CURVE":
     _pts = _cola.data.splines[0].points
     for _k, _pt in enumerate(_pts):
         _pt.radius = max(0.18, 1.0 - 0.85 * (_k / (len(_pts) - 1)) ** 1.5)
+# c3 (puerta 4): la cola se veía gris con la luz turquesa (el SSS del rosado deja pasar el fondo en un tubo tan fino):
+# copia del rosado sin SSS, sólo para la cola
+if _cola and _cola.type == "CURVE":
+    _rc = PJ.mat_simple("RosadoColaRaton", (0.86, 0.46, 0.48), rough=0.5)
+    _cola.data.materials.clear()
+    _cola.data.materials.append(_rc)
+# bigotes largos como en la ficha: de perfil los de la cámara apuntaban hacia ella y se veían como 3 trazos cortos.
+# Se rehacen en el plano de la imagen, abriéndose hacia adelante desde el hocico
+_bm_big = None
+for ob in list(bpy.data.objects):
+    if ob.name.startswith("Raton_bigoteR"):
+        _bm_big = ob.data.materials[0] if ob.data.materials else None
+        ob.hide_render = True
+_cab_c = Vector((0, -0.016, 0.150))
+for _k, (_dz, _ang) in enumerate([(0.003, 32), (0.0, 7), (-0.003, -20)]):
+    _o = _cab_c + Vector((0.012, -0.051, -0.009 + _dz))
+    _dv = Vector((0.30, -math.cos(math.radians(_ang)), math.sin(math.radians(_ang)))).normalized()
+    _w = P.tube(f"Raton_bigoteP{_k}", [tuple(_o), tuple(_o + _dv * 0.019 + Vector((0, 0, 0.0012))), tuple(_o + _dv * 0.037)], 0.00045, C, _bm_big)
+    _w.visible_glossy = False
+# torso: de perfil se leían bultos apilados (cuello y pecho). Relleno en la garganta y suavizado del cuerpo -> pera continua
+_cu = bpy.data.objects.get("Raton_cuerpo")
+if _cu:
+    _sm = _cu.modifiers.new("SuavePerfil", "SMOOTH")
+    _sm.factor, _sm.iterations = 1.0, int(os.environ.get("SUAVE_CUERPO", 30))
+    _gar = PJ.blob("Raton_garganta", [((0, -0.017, 0.127), (0.027, 0.029, 0.024), (0, 0, 0))], C)
+    _gar.data.materials.append(_cu.data.materials[0])
 # párpados del color del lomo (de perfil, la máscara de guata los pintaba blancos)
 lomo_m = PJ.mat_simple("LomoParpado", (0.42, 0.20, 0.08), rough=0.7, sheen=0.9)
 for pv in rt["parpados"]:
@@ -151,7 +177,7 @@ cab.data.materials.clear()
 cab.data.materials.append(m)
 # interior: todo cabe dentro de la cabeza (x 0.000–0.012) y dentro del círculo de la ventana
 diente = P.mat("Muela", (0.78, 0.62, 0.36), rough=0.35, coat=0.3, emit=float(os.environ.get("BRILLO", 0.0)))   # marfil amarillento de roedor   # bajo el umbral del brillo del post (si no, se queman)
-encia = P.mat("Encia", (0.10, 0.05, 0.07), rough=0.6)   # encía oscura: con rosado arriba y abajo se leía como una sonrisa de frente
+encia = P.mat("Encia", (0.78, 0.36, 0.40), rough=0.55, sss=0.0)   # c3: encía rosada y gruesa que abraza la base de las muelas (oscura y fina se leía como palitos)
 semilla = P.mat("SemillaAji", (0.96, 0.86, 0.46), rough=0.5, coat=0.2)   # semilla de ají real: disco plano amarillo pálido
 borde_s = P.mat("SemillaBorde", (0.74, 0.56, 0.20), rough=0.55)          # con el borde un poco más oscuro
 miga_m = semilla                                   # las migas son la misma semilla, molida
@@ -175,8 +201,8 @@ def muela(name, centro, ancho, alto, arriba):
 ANCHO, ALTO, GAP = 0.0092, 0.0042, 0.0042        # 2 muelas grandes por fila (con 3 chicas se leía como dientes de persona)
 for fila, arriba in (("sup", True), ("inf", False)):
     zc = centro_loc.z + (1 if arriba else -1) * (GAP / 2 + ALTO / 2)
-    zg = zc + (1 if arriba else -1) * (ALTO / 2 + 0.0004)
-    base = PJ.blob(f"Encia_{fila}", [((X_M - 0.0016, centro_loc.y, zg), (0.0022, 0.0105, 0.0008), (0, 0, 0))], C, voxel=0.0002, suave=4)
+    zg = zc + (1 if arriba else -1) * (ALTO / 2 + 0.0002)
+    base = PJ.blob(f"Encia_{fila}", [((X_M - 0.0008, centro_loc.y - ANCHO * 0.52 + ANCHO * 1.04 * kk, zg), (0.0030, ANCHO * 0.50, 0.0017), (0, 0, 0)) for kk in range(2)], C, voxel=0.0002, suave=4)
     base.data.materials.append(encia)
     for k in range(2):
         muela(f"Muela_{fila}{k}", (X_M, centro_loc.y - ANCHO * 0.52 + ANCHO * 1.04 * k, zc), ANCHO, ALTO, arriba)
