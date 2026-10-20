@@ -86,3 +86,6 @@
 {"tipo": "trabajo", "id": "estilos 39445410961", "estado": "fin", "n": 86, "ts": "2026-10-20T12:16:53-03:00"}
 {"tipo": "trabajo", "id": "auditor cuadros c2 r2", "estado": "inicio", "n": 87, "ts": "2026-10-20T12:16:54-03:00"}
 {"tipo": "trabajo", "id": "auditor cuadros c2 r2", "estado": "fin", "n": 88, "ts": "2026-10-20T12:27:59-03:00"}
+{"tipo": "aviso", "que": "la ronda 3 de la puerta 4 se corre: veredicto cerca de las 14:30 (no 13:30); faltaba reacomodar pistas del desierto y muelas", "n": 89, "ts": "2026-10-20T13:23:05-03:00"}
+{"tipo": "promesa", "hora": "14:30", "que": "veredicto puerta 4 c2 r3", "dato": "4 escenas HD en Actions ~20 min + revisión propia 10 min + auditor ~12 min", "n": 90, "ts": "2026-10-20T13:23:05-03:00"}
+{"tipo": "trabajo", "id": "estilos 39456779554", "estado": "inicio", "n": 91, "ts": "2026-10-20T13:23:05-03:00"}
