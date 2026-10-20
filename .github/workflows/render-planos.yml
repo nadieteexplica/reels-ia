@@ -21,12 +21,12 @@ on:
         description: "Piezas separadas por coma (vacío = todas)"
         default: ""
       base_run:
-        description: "Run anterior cuyos cuadros se reutilizan (las piezas de este run los reemplazan)"
+        description: "Runs anteriores cuyos cuadros se reutilizan, separados por coma, del más viejo al más nuevo (cada uno pisa al anterior y las piezas de este run pisan a todos)"
         default: ""
 permissions:
   contents: write
   actions: read
-concurrency: render-planos-${{ github.event.inputs.episodio }}-${{ github.event.inputs.muestras }}
+concurrency: render-planos-${{ github.event.inputs.episodio }}-${{ github.event.inputs.muestras }}-${{ github.event.inputs.piezas }}
 env:
   EP: ${{ github.event.inputs.episodio }}
 jobs:
@@ -89,15 +89,21 @@ jobs:
       - run: |
           sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg > /dev/null
           pip install -q numpy scipy pillow bpy==5.2.0
-      - name: Cuadros del run base
+      - name: Cuadros de los runs base
         if: github.event.inputs.base_run != ''
-        uses: actions/download-artifact@v4
-        with:
-          pattern: cuadros-*
-          path: _r
-          merge-multiple: true
-          run-id: ${{ github.event.inputs.base_run }}
-          github-token: ${{ github.token }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          BASE: ${{ github.event.inputs.base_run }}
+        run: |
+          mkdir -p _r
+          for id in $(echo "$BASE" | tr ',' ' '); do
+            until [ "$(gh run view "$id" --json status -q .status)" = "completed" ]; do echo "esperando run base $id"; sleep 60; done
+            gh run download "$id" --pattern 'cuadros-*' --dir "_b_$id"
+            for a in _b_$id/*/; do cp -r "$a". _r/; done
+            rm -rf "_b_$id"
+            echo "base $id: $(ls _r/*.png | wc -l) cuadros, $(ls _r/aux/*.png 2>/dev/null | wc -l) auxiliares"
+          done
       - uses: actions/download-artifact@v4
         with:
           pattern: cuadros-*
