@@ -69,7 +69,7 @@ Coordenadas del set en metros (roca principal: cima z = 0,24; roca de atrás: ci
 | Cuitlacoche | roca principal (0,00; −0,16) | 1, 2, 17, 40 |
 | Ratón (C0) | roca de atrás (0,19; 0,20), girado −60° | 1, 40 |
 | Ají mordido (C0) | roca de atrás (0,11; 0,15) | 1, 40 |
-| Lentes y medalla caídos | roca de atrás (0,30; 0,13) y (0,27; 0,10) | 1, 40 (en 38 los lleva puestos) |
+| Lentes y medalla caídos | escalón delantero de la roca de atrás (0,245; 0,18) y (0,29; 0,17), recostados hacia la cámara (en la cima no se ven desde C0) | 1, 40 (en 38 los lleva puestos) |
 | Ratón (3–6, 33–34) | roca principal (0,10; 0,05) | 3, 4, 5, 6, 33, 34 (lentes y medalla fuera de cuadro) |
 | Ají del mordisco | roca principal (0,10; −0,06) | 3, 4, 5 |
 | Segundo ají mordido | roca principal (0,02; 0,00) | 33, 34 |

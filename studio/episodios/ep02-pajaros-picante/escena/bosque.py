@@ -72,6 +72,9 @@ def espiga(name, coll, largo=0.09, r=0.0065, seed=0):
     punta = P.prim("sphere", name + "_punta", coll, m, r=r * 0.55)   # punta redondeada (no cortada plana)
     punta.location = pts[-1]
     punta.parent = t
+    tope = P.prim("sphere", name + "_tope", coll, m, r=r * 0.98)        # arriba también redondeada
+    tope.location = pts[0]
+    tope.parent = t
     return t
 
 
