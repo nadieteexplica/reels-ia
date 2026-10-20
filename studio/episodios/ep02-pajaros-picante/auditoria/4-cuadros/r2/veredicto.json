@@ -1,0 +1,122 @@
+{
+ "etapa": "4-cuadros",
+ "ronda": 2,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 7,
+   "por_que": "1_desierto (luz dorada cálida, cactus y repisas saturados, 0,01% quemado) y 2_lengua (rojo profundo, macro con desenfoque) están al nivel, pero 4_bosque se ve gris y apagado (niebla pareja, saturación 71,6 contra 121–170 de los otros; la tupaya beige se pierde en el fondo) y 3_muelas tiene la base de la cola como tubo hueco a la vista.",
+   "de": "cuadros1"
+  },
+  "personaje": {
+   "nota": 6,
+   "por_que": "Cuitlacoche (ojos naranjos, pico largo curvo, alas oscuras, patas finas) y ratón de 1_desierto (orejas rosadas, panza blanca, cabeza roja por el picante) calzan con la ficha; la tupaya de 4_bosque no: hocico corto y romo con nariz grande, ojos casi negros mucho más grandes y patas largas y gruesas con pies ovalados, contra el hocico largo en punta, ojos medianos de iris café y patas cortas y finas de la ficha.",
+   "de": "cuadros1"
+  },
+  "manos": {
+   "nota": 8,
+   "por_que": "Ningún cuadro tiene una mano agarrando algo: en 1_desierto las dos patas delanteras del ratón están abiertas y libres (una estirada, otra en el pecho), en 3_muelas la pata delantera está libre con su punta rosada como en la ficha, y en 4_bosque las cuatro patas de la tupaya apoyan sobre el musgo con sombra de contacto; el ají de 1_desierto queda entre las dos mandíbulas del pico (la superior cae por delante del ají y la inferior nace justo bajo él, sin hueco visible).",
+   "de": "cuadros1"
+  },
+  "anatomia": {
+   "nota": 8,
+   "por_que": "Metáforas estilizadas de un solo foco que no se presentan como anatomía real: 2_lengua muestra la lengua con surco y punta, una sola campanita que brilla y una capsaicina correcta (22 átomos pesados: extremo isopropilo, doble enlace, 4 CH2, amida con N blanco, anillo con OH y OCH3 vecinos); 3_muelas muestra en la lupa semillas planas enteras a la izquierda y molidas a la derecha, todo sobre y<1000 de 1920. Bajan detalle: papilas que parecen gotas de agua y brillo quemado en la muela superior izquierda.",
+   "de": "cuadros1"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "cuadro": "4_bosque",
+   "plano": 29,
+   "segundo": null,
+   "que": "Planos 29–32: la tupaya no es la de ficha_personaje.jpg. Hocico corto, ancho y romo con nariz redonda grande (tipo osito) en vez del hocico largo que se afina hasta una nariz chica; ojos casi negros de ~0,29 del ancho de la cabeza (en la ficha ~0,21, con iris café); patas largas y gruesas (~0,7 del alto del cuerpo) con pies ovalados grandes, contra patas cortas y finas (~0,5) con pies chicos en la ficha. Cambian forma y proporciones del personaje.",
+   "arreglo": "Volver a renderizar el cuadro (y los planos 29–32) con el mismo modelo y materiales de la tupaya de la ficha: hocico largo en punta, ojos medianos con iris café, patas cortas. Si este diseño nuevo es el que se quiere, regenerar ficha.jpg con él para que la ficha y todos los planos sean el mismo modelo, y volver a auditar.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "cuadro": "3_muelas",
+   "plano": 23,
+   "segundo": null,
+   "que": "La base de la cola del ratón es un tubo hueco: se ve la boca oscura del cilindro (x≈300, y≈830 en 720x1280; ≈450,1245 en 1080x1920) y la cola no entra al cuerpo, queda pegada por fuera del anca como un cable. Artefacto de modelado visible para un espectador atento.",
+   "arreglo": "Meter la base de la cola dentro de la malla del anca (o taparla y unirla con un suavizado) y revisar el cuadro desde esta misma cámara antes de exportar.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "cuadro": "4_bosque",
+   "plano": 29,
+   "segundo": null,
+   "que": "Look apagado: niebla pareja gris verdosa en todo el fondo, saturación 71,6 (la mitad que los otros cuadros) y sin luz de contorno; la tupaya beige queda con poco contraste contra la niebla beige-gris (fondo 'muerto', poco vivo).",
+   "arreglo": "Bajar la densidad de la niebla ~40% en el plano medio, oscurecer y saturar troncos y hojas detrás de la tupaya, agregar una luz de contorno cálida que la separe del fondo y apuntar a saturación ≥100 en cuadros.json.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "cuadro": "3_muelas",
+   "plano": 23,
+   "segundo": null,
+   "que": "El ratón se ve más oscuro y café (pelaje caramelo, ≈123,94,64 en el costado) que el ratón del cactus de la ficha (durazno-tostado claro) y que el cuerpo del ratón de 1_desierto; la panza blanca casi no se lee.",
+   "arreglo": "Subir la luz principal y de relleno sobre el ratón o ajustar el material bajo esta luz para que el pelaje quede en el tono de la ficha; compararlo lado a lado con ficha_personaje.jpg antes de exportar.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "cuadro": "3_muelas",
+   "plano": 23,
+   "segundo": null,
+   "que": "La cola sale recta hacia la izquierda y el recuadro punteado la corta en x≈45; afuera queda una mancha clara borrosa (x 0–40, y≈845–870). El ratón no queda 'entero' como dice la nota de uso.",
+   "arreglo": "Curvar la cola hacia arriba o hacia adelante dentro del recuadro para que la punta se vea completa.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "cuadro": "3_muelas",
+   "plano": 23,
+   "segundo": null,
+   "que": "Dentro de la lupa, la muela superior izquierda tiene un brillo quemado casi blanco y la imagen de la lupa se ve más blanda (menos nítida) que el ratón; las muelas se leen como galletas color crema.",
+   "arreglo": "Bajar el especular y la luz principal sobre las muelas y renderizar el contenido de la lupa a resolución completa.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "cuadro": "2_lengua",
+   "plano": 11,
+   "segundo": null,
+   "que": "Las tres ondas de la izquierda empiezan en y≈380 (unos 100 px bajo la molécula, que va en y≈210–290) y terminan en y≈550–590, mientras las de la derecha van de y≈155 a 655: no se lee como que la cadena las tape, se ven cortadas al azar y la campanita suena 'chueca'.",
+   "arreglo": "Recortar las ondas sólo donde cruzan la molécula (máscara de su silueta con ~15 px de margen) o darles a las de los dos lados el mismo arco.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "cuadro": "2_lengua",
+   "plano": 11,
+   "segundo": null,
+   "que": "Las papilas son cúpulas pálidas y muy brillantes con reflejo blanco: parecen gotas de agua o sudor sobre la lengua más que papilas.",
+   "arreglo": "Subir la rugosidad y bajar el especular de las papilas, teñirlas del mismo rosado de la lengua apenas más rojo y achicar las más grandes.",
+   "de": "cuadros1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "cuadro": "1_desierto",
+   "plano": 40,
+   "segundo": null,
+   "que": "Las dos tiras azules de la medalla salen justo debajo del ají mordido (x≈555–595, y≈505–535): se lee como que el ají tiene patitas o lleva la medalla puesta; la cinta 'tendida sobre la piedra' no se ve.",
+   "arreglo": "Correr la medalla ~25–30 px a la derecha del ají para que la cinta se vea tendida sobre la piedra y colgando del borde por sí sola.",
+   "de": "cuadros1"
+  }
+ ],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}
