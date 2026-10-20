@@ -1870,7 +1870,7 @@ def p23L(sc, a, b):
         cierra = math.sin(math.pi * E2.clamp(ciclo / 0.6)) if ciclo < 0.6 else 0
         for o in sup:
             o.location = s0[o.name] + Vector((0, 0, -GAP * 0.92 * cierra))
-        molidas = x > 0.36
+        molidas = x > 0.4333          # se cambian justo cuando las muelas están cerradas (segunda mordida)
         for o in sem:
             o.hide_render = molidas
             for ch in o.children:

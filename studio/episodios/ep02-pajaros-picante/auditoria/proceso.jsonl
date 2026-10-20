@@ -124,3 +124,5 @@
 {"tipo": "aviso", "que": "Tomás 18:48 reclama por la hora (21-oct 11:00). El armado fue más rápido de lo estimado: los 40 planos ya están animados (muestras de las 40 en el run 39502165879). Nueva hora: borrador ~22:00, veredicto puerta 6 ~22:30", "n": 124, "ts": "2026-10-20T18:48:52-03:00"}
 {"tipo": "promesa", "hora": "22:00", "que": "borrador del video completo", "dato": "40 planos ya renderizan (muestras 3/plano en 10 min con 15 máquinas); render completo estimado por reparto.py: 100–115 min por máquina con 15 máquinas", "n": 125, "ts": "2026-10-20T18:48:52-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras 39502165879", "estado": "fin", "n": 126, "ts": "2026-10-20T18:48:52-03:00"}
+{"tipo": "trabajo", "id": "render-planos completo 39503977911", "estado": "inicio", "n": 127, "ts": "2026-10-20T18:53:58-03:00"}
+{"tipo": "chequeo", "id": "render-planos completo 39503977911", "estado": "queued, 0/15 trabajos de render listos", "n": 128, "ts": "2026-10-20T18:54:08-03:00"}

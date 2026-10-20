@@ -24,7 +24,11 @@ Estado: guion, voz y storyboard **APROBADOS** (puertas 1–3). **Puerta 4 (cuadr
 - Bosque: niebla verde liviana (0,016) con brillo propio 0,026, exposición 0,30, contorno 35.
 - `personajes.blob` usa esferas de 72×36 (con 40×20 quedaban anillos).
 
+## Animación (20-oct, desde las 18:01 con el OK de Tomás)
+- Render por planos: `escena/planos_ep02.py` (los 40 planos + piezas auxiliares 14S–16S, 23L, 24L, 31S, 28a/28b), `plano.py` (arma y renderiza piezas), `reparto.py` (reparte en N máquinas), `post.py` (recuadros, "y si…", REC, whip, píldoras, contador, subtítulos), `audio.py` (voz + guitarrita + efectos). Workflow `render-planos.yml` (muestras o completo → prerelease `ep02-muestras` / `ep02-borrador`).
+- Sets reutilizables sacados de los cuadros de estilo aprobados: `set_c0.py`, `set_lengua.py`, `set_bosque.py`, `set_muelas.py` (los `estilo_*.py` los usan).
+- Muestras de los 40 planos: run 39502165879 (3 cuadros por pieza). Render completo: run 39503977911 (15 máquinas, ~2 h).
+
 ## Lo que sigue
-1. OK de Tomás a los cuadros + ficha (o cambios).
-2. Animación por plano (storyboard v3.1, tabla de utilería al día), con los 6 detalles de arriba.
-3. Render, puertas 6, 7 y P.
+1. Borrador completo → revisión propia (hoja de contacto, cada plano) → puerta 6 (`auditar.py preparar ep02-pajaros-picante video --video ... --planos planos.json --subs subs_log.json`).
+2. Con APROBADO: puerta 7 (`entrega/caption.md`) y se le manda a Tomás para el OK de publicación.
