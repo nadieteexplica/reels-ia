@@ -15,3 +15,4 @@
 | 4-cuadros | r3 | NO APROBADO | 0 | 9 |
 | 4-cuadros | r1 | NO APROBADO | 2 | 11 |
 | 4-cuadros | r2 | NO APROBADO | 1 | 9 |
+| 4-cuadros | r3 | APROBADO | 0 | 6 |
