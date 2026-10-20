@@ -1,0 +1,34 @@
+[
+ {
+  "cuadro": "estilo_bosque_HD",
+  "archivo": "estilo_bosque_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.0,
+  "brillo": 73.2,
+  "saturacion": 153.3
+ },
+ {
+  "cuadro": "estilo_desierto_HD",
+  "archivo": "estilo_desierto_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.01,
+  "brillo": 114.3,
+  "saturacion": 119.0
+ },
+ {
+  "cuadro": "estilo_lengua_HD",
+  "archivo": "estilo_lengua_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 1.31,
+  "brillo": 95.4,
+  "saturacion": 177.6
+ },
+ {
+  "cuadro": "estilo_muelas_HD",
+  "archivo": "estilo_muelas_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.73,
+  "brillo": 80.6,
+  "saturacion": 148.6
+ }
+]

@@ -55,7 +55,7 @@ area("Contorno", (0.5, 1.1, 0.75), float(os.environ.get("RIM", 60)), 0.6, (1.0, 
 # --- pájaro con el ají en el pico (se arma en el origen y después se ubica) ---
 CP = P.collection("Personajes")
 pj = PJ.pajaro(CP)
-pj["mandibula"].rotation_euler.x = math.radians(10)
+pj["mandibula"].rotation_euler.x = math.radians(float(os.environ.get("MANDIBULA", 20)))   # pico abierto: se ven las dos mitades, arriba y abajo del ají
 bpy.context.view_layer.update()
 aji = E.aji("AjiCuadro0", largo=0.12, grosor=0.0125, coll=CP, seed=5, curva=float(os.environ.get("AJI_CURVA", 0.12)))   # la punta no cruza el ojo
 centro = Vector((0.0, -0.112, 0.114))                 # entre las dos mitades del pico, a un tercio del largo
@@ -88,9 +88,11 @@ rt["root"].location = (0.19, 0.20, TOP2)          # tabla de utilería del story
 rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", -60)))
 # causa de la llama: un ají mordido junto al ratón, y los lentes de sol caídos (detalle del loop)
 aj_m = E.aji("AjiMordido", largo=0.10, grosor=0.012, coll=CP, seed=11, curva=0.3)
-aj_m.rotation_euler = (math.radians(90), 0, math.radians(-30))
-aj_m.location = (0.11, 0.15, TOP2 + 0.012)
-E.morder(aj_m, Vector((0.0, 0.0, -0.075)), r=0.013)
+# acostado de lado (tallo a la izquierda): el mordisco queda en el costado que mira a la cámara y se lee
+AJM = tuple(float(v) for v in os.environ.get("AJM", "0.100,0.170,-100").split(","))
+aj_m.rotation_euler = (math.radians(90), 0, math.radians(AJM[2]))
+aj_m.location = (AJM[0], AJM[1], 0.0)
+E.morder(aj_m, Vector((0.0125, 0.0, -0.040)), r=0.0105)
 # la cámara mira la roca de atrás desde abajo: lo que queda tirado plano en la cima no se ve. Los lentes y la medalla
 # quedan en el escalón delantero de la roca (z≈0,30, se ve desde la cámara y no lo tapa la cola), recostados hacia atrás.
 bpy.context.view_layer.update()
@@ -100,6 +102,7 @@ def cima(x, y):
     Mi = roca2.matrix_world.inverted()
     hit, loc, *_ = roca2.evaluated_get(dg).ray_cast(Mi @ Vector((x, y, 1.0)), (Mi.to_3x3() @ Vector((0, 0, -1))).normalized())
     return (roca2.matrix_world @ loc).z if hit else TOP2
+aj_m.location.z = cima(AJM[0] + 0.05, AJM[1]) + 0.011
 LX, LY = (float(v) for v in os.environ.get("LENTES_XY", "0.245,0.180").split(","))
 MX, MY = (float(v) for v in os.environ.get("MEDALLA_XY", "0.290,0.172").split(","))
 lc = PJ.lentes("LentesCaidos", (LX, LY, cima(LX, LY) + 0.0135), 0.05, CP, mirando=(-0.35, -1.0, 0.55))

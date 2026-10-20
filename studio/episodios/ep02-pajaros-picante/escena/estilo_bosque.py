@@ -66,7 +66,7 @@ cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
 bpy.context.view_layer.update()
 cab_w = tp["cabeza"].matrix_world.translation
-tgt = cab_w + Vector(tuple(float(x) for x in os.environ.get("TGT", "-0.05,0.0,0.07").split(",")))
+tgt = cab_w + Vector(tuple(float(x) for x in os.environ.get("TGT", "-0.05,0.0,-0.035").split(",")))
 cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.05,-0.62,0.03").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
@@ -81,6 +81,12 @@ pitch = -math.atan2(loc_cam.z, Vector((loc_cam.x, loc_cam.y)).length)
 pc.rotation_mode = "XYZ"   # R = Rz·Rx: primero cabecea, después gira
 pc.rotation_euler = (pitch, 0, yaw)
 print("tupaya cabeza yaw/pitch", round(math.degrees(yaw)), round(math.degrees(pitch)))
+# los dos ojos miran a la cámara (en la ficha se ven negros; de lado el ojo lejano mostraba el blanco)
+bpy.context.view_layer.update()
+Rinv = pc.matrix_world.to_3x3().normalized().inverted()
+for o in tp["ojos"]:
+    d = Rinv @ (cam.location - o.matrix_world.translation)
+    o.rotation_euler = d.to_track_quat("-Y", "Z").to_euler()
 sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", "estilo_bosque") + ".png")
 bpy.ops.render.render(write_still=True)
 print("ok", sc.render.filepath)

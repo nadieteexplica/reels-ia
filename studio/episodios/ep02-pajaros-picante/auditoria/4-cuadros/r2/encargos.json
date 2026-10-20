@@ -1,0 +1,21 @@
+[
+ {
+  "id": "cuadros1",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "estilo_bosque_HD, estilo_desierto_HD, estilo_lengua_HD, estilo_muelas_HD",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r2/materiales/estilo_bosque_HD.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r2/materiales/estilo_desierto_HD.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r2/materiales/estilo_lengua_HD.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r2/materiales/estilo_muelas_HD.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r2/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r2/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "cuadros1.json",
+  "notas_de_uso": "Cuadros de estilo de escenarios nuevos (van a Tomás después de ti). Estilo del episodio: comedia de dibujo animado 3D SIN humanos, personajes propios de la ficha (ficha.jpg). estilo_desierto_HD = cuadro 0 / portada y loop (planos 1 y 40): cuitlacoche tranquilo con un ají entero cruzado en el pico; detrás, en la roca alta, el ratón del cactus con la cara roja echando fuego hacia la izquierda; en el escalón de la roca, ají mordido, lentes de sol y medalla caídos (detalle del loop). estilo_lengua_HD = lengua por dentro, cámara S fija (planos 9–11): la campanita de alarma (sensor) sobre la lengua, con papilas alrededor, y la molécula de capsaicina (estructura real, roja) que se apoya en la campanita y la hace sonar roja; es un diagrama de dibujo animado, no anatomía real. estilo_muelas_HD = plano 23, inserto 2D de 'y si…' (borde punteado, ✕ y fondo oscurecido fuera del recuadro se agregan en 2D): cabeza del ratón de perfil con una ventanita de vidrio en la mejilla que deja ver sólo sus muelas moliendo semillas (semillas enteras adelante, migas atrás); sin hueso ni cráneo, sin cortar la piel; de perfil el ojo del lado de la cámara mira hacia la cámara. estilo_bosque_HD = plano 30, bosque húmedo del sur de China: la tupaya en una rama, mirando a cámara, junto a las espigas picantes de Piper; arriba (y 280–480) va la píldora TUPAYA · CHINA y el subtítulo se oculta mientras está, por eso la cabeza va bajo y≈520."
+ }
+]

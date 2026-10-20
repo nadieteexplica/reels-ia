@@ -256,8 +256,19 @@ def morder(aji_ob, centro_local, r=0.012):
     b.operation = "DIFFERENCE"
     b.object = cort
     # la mordida deja ver el interior claro del ají
-    blanco = P.mat("AjiInterior", (0.95, 0.85, 0.62), rough=0.6, sss=0.3)
+    blanco = P.mat("AjiInterior", (0.95, 0.85, 0.62), rough=0.6, emit=0.35)   # el mordisco se lee claro (con SSS quedaba oscuro)
     aji_ob.data.materials.append(blanco)
-    b.material_mode = "TRANSFER"
-    cort.data.materials.append(blanco)
+    # TRANSFER no asignaba el interior (todas las caras quedaban con el material del ají y el mordisco se veía oscuro):
+    # INDEX copia el índice de las caras del cortador, que apunta al mismo slot del ají
+    b.material_mode = "INDEX"
+    for mm in aji_ob.data.materials:
+        cort.data.materials.append(mm)
+    k = len(aji_ob.data.materials) - 1
+    for pl in cort.data.polygons:
+        pl.material_index = k
+    # el booleano deja el hueco sin tapa (se veía oscuro): una pulpa clara en el eje del ají llena el mordisco por dentro
+    pulpa = P.prim("sphere", aji_ob.name + "_pulpa", aji_ob.users_collection[0], blanco, r=r * 0.55)
+    pulpa.scale = (1.0, 1.0, 1.6)
+    pulpa.parent = aji_ob
+    pulpa.location = (centro_local.x * 0.25, centro_local.y, centro_local.z)
     return cort

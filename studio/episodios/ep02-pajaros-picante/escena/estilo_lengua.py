@@ -48,18 +48,18 @@ for j in range(9):
             continue
         z = -abs(x / 0.32) ** 2 * 0.35 * 0.32 * 0 - (x ** 2) * 1.1
         LG.cupula(f"Sensor{i}_{j}", (x, y, z), 0.0055, C)
-camp, domo = LG.campana(C, loc=(0, 0.02, 0.0), r=0.035, color=col, brillo=1.2 if col else 0.0)
+camp, domo = LG.campana(C, loc=(0, 0.02, 0.0), r=0.035, color=col, brillo=float(os.environ.get("BRILLO", 0.45)) if col else 0.0)   # con 1.2 el centro se quemaba a blanco
 if col:
     LG.ondas(C, (0, 0.02, 0.050), 0.040, col)
     luz = bpy.data.lights.new("LuzCampana", "POINT")
-    luz.energy, luz.color, luz.shadow_soft_size = 0.8, col, 0.02
+    luz.energy, luz.color, luz.shadow_soft_size = float(os.environ.get("LUZ", 0.35)), col, 0.02
     lo = bpy.data.objects.new("LuzCampana", luz)
     C.objects.link(lo)
     lo.location = (0, -0.03, 0.05)
 if ESTADO == "roja":
     # la cabeza vanilílica (anillo con el OH) calza sobre la perilla de la campanita, de cara a la cámara;
     # la cadena se va hacia arriba a la izquierda (por donde entró). Nada atraviesa el domo: se apoya encima.
-    ESC_MOL = float(os.environ.get("ESC_MOL", 0.0058))
+    ESC_MOL = float(os.environ.get("ESC_MOL", 0.0052))
     mol = LG.capsaicina(C, escala=ESC_MOL)
     mol.rotation_euler = (math.radians(90 + float(os.environ.get("MOL_X", 0))), math.radians(float(os.environ.get("MOL_INCL", -66))), math.radians(float(os.environ.get("MOL_Z", 0))))
     bpy.context.view_layer.update()
@@ -112,7 +112,7 @@ cam.data.lens = float(os.environ.get("LENS", 30))
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
 cam.location = Vector(tuple(float(x) for x in os.environ.get("CAM", "0.0,-0.36,0.17").split(",")))   # cámara S: siempre la misma
-tgt = Vector(tuple(float(x) for x in os.environ.get("TGT", "0,0.05,-0.012").split(",")))
+tgt = Vector(tuple(float(x) for x in os.environ.get("TGT", "0,0.05,-0.023").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (Vector((0, 0.02, 0.04)) - cam.location).length

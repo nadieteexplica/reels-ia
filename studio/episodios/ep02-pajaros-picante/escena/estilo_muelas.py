@@ -65,8 +65,8 @@ for pv in rt["parpados"]:
         ch.data.materials.append(lomo_m)
 # ventanita: en la mejilla, bajo el ojo y detrás del hocico, la piel pasa a ser transparente dentro de un círculo
 # chico (coordenadas del objeto = mundo, el ratón se arma en el origen). Borde con un anillo crema para que se lea "ventana".
-centro_loc = Vector((0.0165, -0.036, 0.1335))   # delante del cuello (el cuello tapaba la muela de atrás)
-R_VEN = float(os.environ.get("R_VEN", 0.0124))
+centro_loc = Vector((0.0165, -0.036, 0.1355))   # delante del cuello (el cuello tapaba la muela de atrás)
+R_VEN = float(os.environ.get("R_VEN", 0.0116))
 m = cab.data.materials[0].copy()
 m.name = "PelajeVentana"
 nt = m.node_tree
@@ -123,10 +123,10 @@ nt.links.new(mix2.outputs[0], out.inputs["Surface"])
 cab.data.materials.clear()
 cab.data.materials.append(m)
 # interior: todo cabe dentro de la cabeza (x 0.000–0.012) y dentro del círculo de la ventana
-diente = P.mat("Muela", (0.84, 0.81, 0.74), rough=0.3, coat=0.4, emit=float(os.environ.get("BRILLO", 0.0)))   # bajo el umbral del brillo del post (si no, se queman)
+diente = P.mat("Muela", (0.80, 0.70, 0.48), rough=0.35, coat=0.3, emit=float(os.environ.get("BRILLO", 0.0)))   # bajo el umbral del brillo del post (si no, se queman)
 encia = P.mat("Encia", (0.60, 0.20, 0.26), rough=0.5, sss=0.3)
-semilla = P.mat("Semilla", (0.95, 0.76, 0.36), rough=0.45)
-miga_m = P.mat("Miga", (0.92, 0.70, 0.34), rough=0.6)
+semilla = P.mat("Semilla", (0.42, 0.24, 0.10), rough=0.45)   # semilla café oscura: contrasta con las muelas
+miga_m = P.mat("Miga", (0.50, 0.30, 0.13), rough=0.6)
 M = cab.matrix_world
 X_M = 0.0070                                           # plano de las muelas, bien adentro de la piel
 # fondo del interior: una cápsula oscura (azul noche, como la "cabeza de vidrio") que tapa el revés de la piel
@@ -148,19 +148,19 @@ ANCHO, ALTO, GAP = 0.0066, 0.0039, 0.0025        # las muelas llenan la ventanit
 for fila, arriba in (("sup", True), ("inf", False)):
     zc = centro_loc.z + (1 if arriba else -1) * (GAP / 2 + ALTO / 2)
     zg = zc + (1 if arriba else -1) * (ALTO / 2 + 0.0004)
-    base = PJ.blob(f"Encia_{fila}", [((X_M - 0.0012, centro_loc.y, zg), (0.0026, 0.0118, 0.0013), (0, 0, 0))], C, voxel=0.0002, suave=4)
+    base = PJ.blob(f"Encia_{fila}", [((X_M - 0.0016, centro_loc.y, zg), (0.0022, 0.0105, 0.0008), (0, 0, 0))], C, voxel=0.0002, suave=4)
     base.data.materials.append(encia)
     for k in range(3):
         muela(f"Muela_{fila}{k}", (X_M, centro_loc.y - ANCHO * 1.0 + ANCHO * 1.0 * k, zc), ANCHO, ALTO, arriba)
 rnd = random.Random(1)
 # semillas enteras entrando por delante (hacia el hocico) y migas saliendo por detrás, entre las dos filas
 for k in range(2):
-    g = P.prim("sphere", f"Semilla{k}", C, semilla, r=0.0030)
+    g = P.prim("sphere", f"Semilla{k}", C, semilla, r=0.0036)
     g.scale = (0.55, 1.15, 0.42)
     g.location = Vector((X_M + 0.0008, centro_loc.y - 0.0072 + 0.0030 * k, centro_loc.z))
     g.rotation_euler.x = math.radians(rnd.uniform(-20, 20))
 for k in range(10):
-    g = P.prim("ico", f"Miga{k}", C, miga_m, r=rnd.uniform(0.00045, 0.0008), sub=1)
+    g = P.prim("ico", f"Miga{k}", C, miga_m, r=rnd.uniform(0.0008, 0.0012), sub=1)
     g.location = Vector((X_M + 0.0010, centro_loc.y + 0.0030 + rnd.uniform(0, 0.0055), centro_loc.z + rnd.uniform(-0.0007, 0.0007)))
 luz_in = bpy.data.lights.new("LuzMejilla", "POINT")
 luz_in.energy, luz_in.color, luz_in.shadow_soft_size = float(os.environ.get("LUZ_IN", 0.012)), (1.0, 0.88, 0.78), 0.004
