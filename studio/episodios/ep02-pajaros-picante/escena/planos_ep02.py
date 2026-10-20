@@ -451,7 +451,7 @@ def p05(sc, a, b):
         mira = AP.mirar_a(rat.rt["cabeza"], cam.location, 0.7)
         k = suave(lin(x, 0.15, 0.40))
         rat.pose(cab=(math.degrees(mira.x) * k, 0, math.degrees(mira.z) * k), ojos=AP.parpadeo(f, a + int(n * 0.7), -110), ojos_esc=1.15,
-                 roja=1.0, llama=0.32 + 0.04 * E2.ruido(f, 9, 2.0), doblar=35, lado=75 * k, f=f, lagrimas=True,
+                 roja=1.0, llama=0.26 + 0.03 * E2.ruido(f, 9, 2.0), doblar=25, lado=float(os.environ.get("LLAMA_LADO", -95)) * k, f=f, lagrimas=True,
                  brazo=(-62 * suave(lin(x, 0.35, 0.55)), 14 * suave(lin(x, 0.35, 0.55))))
         bpy.context.view_layer.update()
         orejas = [E2.pantalla(sc, cam, o.matrix_world @ Vector((0, 0, 0.04))) for o in rat.rt["orejas"]]
@@ -708,7 +708,7 @@ def p33(sc, a, b):
     def act(f):
         E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.07, foco=cab)
         mira = AP.mirar_a(rat.rt["cabeza"], cam.location, 0.7)
-        rat.pose(cab=(math.degrees(mira.x), 0, math.degrees(mira.z)), boca=1.0, ojos=-112, ojos_esc=1.2, roja=1.0, llama=0.6, doblar=35, lado=75, f=f, lagrimas=True)
+        rat.pose(cab=(math.degrees(mira.x), 0, math.degrees(mira.z)), boca=1.0, ojos=-112, ojos_esc=1.2, roja=1.0, llama=0.45, doblar=25, lado=float(os.environ.get("LLAMA_LADO", -95)), f=f, lagrimas=True)
     return {"actualizar": act}
 
 
@@ -814,9 +814,9 @@ def p19(sc, a, b):
     S = _desierto(sc)
     mata, fr = _chiltepin(S)
     vc, led = videocamara("Videocamara", S["CP"], MATA + Vector((0.20, -0.62, 0)), MATA + Vector((0, 0, 0.2)))
-    cam = E2.camara(sc, "Cam19", lens=32, fstop=8)
-    pos = MATA + Vector((0.95, -1.10, 0.42))
-    tgt = MATA + Vector((0.12, -0.28, 0.24))
+    cam = E2.camara(sc, "Cam19", lens=30, fstop=8)
+    pos = MATA + Vector((1.05, -1.60, 0.50))
+    tgt = MATA + Vector((0.12, -0.42, 0.28))
     f_rec = a + 18
 
     def act(f):
@@ -929,8 +929,8 @@ def p22(sc, a, b):
     cam = _cam_rec(sc)
     pj = PJ.pajaro(S["CP"], nombre="CuitREC")
     pj["root"].scale = (1.0, 1.0, 1.0)
-    pj["root"].location = MATA + Vector((0.16, -0.14, 0))
-    pj["root"].rotation_euler.z = R(-60)
+    pj["root"].location = MATA + Vector((0.12, -0.20, 0))
+    pj["root"].rotation_euler.z = R(-75)
     for pv in pj["parpados"]:
         for ch in pv.children:
             ch.rotation_euler.x = R(-30)
@@ -1022,8 +1022,8 @@ def p25(sc, a, b):
             pe.location = (0.0032 * math.cos(j * 1.2566), 0.0032 * math.sin(j * 1.2566), 0)
             pe.parent = fo
         flores.append((fo, k))
-    cam = E2.camara(sc, "Cam25", lens=50, fstop=4.0)
-    pos = base + Vector((0.04, -0.42, 0.12))
+    cam = E2.camara(sc, "Cam25", lens=60, fstop=4.0)
+    pos = base + Vector((0.04, -0.34, 0.10))
     tgt = base + Vector((0, 0, 0.055))
     n = b - a
 
@@ -1445,7 +1445,10 @@ def p07(sc, a, b):
         d.scale = (0.022, 0.012, 0.05)
         d.location = (sx * 0.024, -0.60, 0.29 + ZC)
         P.bevel(d, 0.006, 3)
-    p0 = Vector((0.0, -0.95, 0.15 + ZC))
+    p0 = Vector((0.0, -0.52, 0.15 + ZC))
+    for ob in list(bpy.data.objects):            # los labios quedan atrás de la cámara (no tapan el primer cuadro)
+        if ob.name.startswith(("Labio", "Incisivo")):
+            ob.hide_render = True
     n = b - a
     pap = sorted(S["papilas"], key=lambda t: t[2])
     y0, y1 = pap[0][2], pap[-1][2]
@@ -1603,7 +1606,7 @@ def p10(sc, a, b):
     C = P.collection("Corte")
     L = 0.26
     mitades = []
-    interior = P.mat("AjiInteriorCorte", (0.97, 0.90, 0.72), rough=0.55, emit=0.15)
+    interior = P.mat("AjiInteriorCorte", (0.93, 0.45, 0.32), rough=0.55, emit=0.08)   # pulpa roja anaranjada: las venas blancas se despegan
     corte = P.prim("cube", "CajaCorte", C, None)
     corte.hide_render = True
     corte.display_type = "WIRE"
@@ -1643,8 +1646,8 @@ def p10(sc, a, b):
                 go.parent = aj
                 venas.append(go)
     for piv, sgn, aj in mitades:
-        aj.rotation_euler = (0, R(90), 0)          # acostado a lo largo de X
-        aj.location = (-L / 2, 0, 0)
+        aj.rotation_euler = (0, R(90), 0)          # acostado a lo largo de X (la punta hacia -X)
+        aj.location = (L / 2, 0, 0)
     L1 = bpy.data.lights.new("KeyCorte", "AREA")
     L1.energy, L1.size, L1.color = 18, 0.4, (1.0, 0.93, 0.85)
     lo = bpy.data.objects.new("KeyCorte", L1)
@@ -1652,19 +1655,20 @@ def p10(sc, a, b):
     lo.location = (-0.2, -0.3, 0.45)
     lo.rotation_euler = (Vector((0, 0, 0)) - lo.location).to_track_quat("-Z", "Y").to_euler()
     E2.area(sc, "RimCorte", (0.3, 0.4, 0.2), 10, 0.3, (1.0, 0.5, 0.4), (0, 0, 0))
-    cam = E2.camara(sc, "Cam10", lens=40, fstop=5.6)
-    pos, tgt = Vector((0.0, -0.20, 0.42)), Vector((0.0, 0.0, 0.0))
+    cam = E2.camara(sc, "Cam10", lens=34, fstop=5.6)
+    pos, tgt = Vector((0.0, -0.16, 0.44)), Vector((0.0, 0.0, 0.0))
     n = b - a
 
     def act(f):
         x = (f - a) / n
         ab = E2.rebote(lin(x, 0.10, 0.40), 1.2)
         for piv, sgn, aj in mitades:
-            piv.rotation_euler = (R(-sgn * 70 * ab), 0, 0)      # se abre como un libro: las caras de corte miran arriba
+            piv.rotation_euler = (R(sgn * 70 * ab), 0, 0)       # se abre como un libro: las caras de corte miran arriba
             piv.location = (0, sgn * 0.035 * ab, 0)
         brillo = 0.2 + 2.8 * suave(lin(x, 0.40, 0.70))
         gota_m.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = brillo
-        E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.10, foco=tgt)
+        x2 = suave(lin(f, a, b - 1))
+        E2.mirar(cam, pos.lerp(tgt, 0.10 * x2), tgt, foco=tgt, giro=90)      # el ají queda vertical en el cuadro (entero)
     return {"actualizar": act}
 
 
@@ -1896,14 +1900,13 @@ def p24(sc, a, b):
 
 def p24L(sc, a, b):
     """Lupa del plano 24: por dentro del cuello, las semillas bajan ENTERAS después del trago (contraste con las migas)."""
-    sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.02, 0.03, 0.06, 1)
+    sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.16, 0.04, 0.05, 1)
+    sc.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 1.0
     C = P.collection("Cuello")
-    tubo_m = P.mat("Garganta", (0.30, 0.10, 0.12), rough=0.6)
-    t = P.prim("cyl", "Garganta", C, tubo_m, r=0.02, r2=0.02, h=0.20, seg=48)
-    for p_ in t.data.polygons:
-        p_.flip()
-    t.scale = (1, 1, 1)
-    t.rotation_euler = (0, 0, 0)
+    pared = P.mat("Garganta", (0.55, 0.16, 0.18), rough=0.6, sss=0.1)
+    for sx in (-1, 1):          # las dos paredes del cuello (por dentro), suaves y fuera de foco
+        w_ = P.prim("cyl", f"Pared{sx}", C, pared, r=0.012, r2=0.012, h=0.3, seg=32)
+        w_.location = (sx * 0.026, 0.004, 0.0)
     sem = P.mat("SemillaEntera", (0.96, 0.86, 0.46), rough=0.5, coat=0.2)
     borde = P.mat("SemillaBordeE", (0.74, 0.56, 0.20), rough=0.55)
     semillas = []
@@ -1914,11 +1917,7 @@ def p24L(sc, a, b):
         cara.parent = g
         g.rotation_euler = (R(70 + 15 * k), R(20 * k), 0)
         semillas.append((g, k))
-    L1 = bpy.data.lights.new("LuzCuello", "POINT")
-    L1.energy, L1.color = 0.15, (1.0, 0.9, 0.8)
-    lo = bpy.data.objects.new("LuzCuello", L1)
-    C.objects.link(lo)
-    lo.location = (0, -0.012, 0.02)
+    E2.area(sc, "LuzCuello", (0.03, -0.12, 0.06), 2.5, 0.1, (1.0, 0.92, 0.85), (0, 0, 0))
     cam = E2.camara(sc, "Cam24L", lens=40)
     E2.mirar(cam, Vector((0, -0.075, 0.0)), Vector((0, 0, 0.0)))
     n = b - a
@@ -1926,7 +1925,7 @@ def p24L(sc, a, b):
     def act(f):
         x = (f - a) / n
         for g, k in semillas:
-            z = 0.07 - 0.16 * lin(x, 0.05 + 0.12 * k, 0.75 + 0.12 * k)
+            z = 0.034 - 0.068 * lin(x, 0.02 + 0.14 * k, 0.62 + 0.14 * k)
             g.location = (0.004 * math.sin(k * 2.1), 0.002, z)
             g.rotation_euler.z = f * 0.05 + k
     return {"actualizar": act}

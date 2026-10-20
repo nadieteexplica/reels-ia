@@ -121,3 +121,6 @@
 {"tipo": "aviso", "que": "Tomás 18:01: OK a los 4 cuadros de estilo y a la ficha ('Dale saca el video!'). Se parte con la animación de los 40 planos", "n": 121, "ts": "2026-10-20T18:03:44-03:00"}
 {"tipo": "promesa", "hora": "21-oct 11:00", "que": "borrador del video completo (antes de la puerta 6)", "dato": "40 planos por animar (~8 h de armado); render 2.208 cuadros × ~50 s (cuadro HD de estilo: 510 s a 64 muestras → ~45 s a 720p/16) / 15 máquinas ≈ 2 h", "n": 122, "ts": "2026-10-20T18:03:44-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras 39502165879", "estado": "inicio", "n": 123, "ts": "2026-10-20T18:42:09-03:00"}
+{"tipo": "aviso", "que": "Tomás 18:48 reclama por la hora (21-oct 11:00). El armado fue más rápido de lo estimado: los 40 planos ya están animados (muestras de las 40 en el run 39502165879). Nueva hora: borrador ~22:00, veredicto puerta 6 ~22:30", "n": 124, "ts": "2026-10-20T18:48:52-03:00"}
+{"tipo": "promesa", "hora": "22:00", "que": "borrador del video completo", "dato": "40 planos ya renderizan (muestras 3/plano en 10 min con 15 máquinas); render completo estimado por reparto.py: 100–115 min por máquina con 15 máquinas", "n": 125, "ts": "2026-10-20T18:48:52-03:00"}
+{"tipo": "trabajo", "id": "render-planos muestras 39502165879", "estado": "fin", "n": 126, "ts": "2026-10-20T18:48:52-03:00"}

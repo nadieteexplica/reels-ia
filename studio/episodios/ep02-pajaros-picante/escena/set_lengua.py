@@ -128,10 +128,12 @@ def armar(sc):
     mol.location.z += alza
     mol_calzada = mol.location.copy()
     mol_rot = mol.rotation_euler.copy()
-    gota = LG.gota_sopa(C, (0.05, -0.01, 0.03 + ZC), r=0.012)
+    gota = LG.gota_sopa(C, (0.055, 0.0, 0.03 + ZC), r=0.0085)
     gota_obs = [gota] + [o for o in bpy.data.objects if o.name.startswith("VaporSopa")]
     for o in gota_obs:                                  # apoyada en la lengua (no flotando)
-        o.location.z -= 0.03 - 0.0135
+        o.location.z -= 0.03 - 0.0100
+        if o.name.startswith("VaporSopa"):              # vapor: hilitos chicos, no bolas
+            o.scale = (0.45, 0.45, 0.9)
     gota_base = {o.name: o.location.copy() for o in gota_obs}
     E2.area(sc, "Key", (-0.25, -0.30, 0.35 + ZC), 4, 0.35, (1.0, 0.92, 0.85), (0, 0.02, 0.03 + ZC))
     E2.area(sc, "Rim", (0.25, 0.35, 0.25 + ZC), 7, 0.3, (1.0, 0.6, 0.6), (0, 0.02, 0.03 + ZC))

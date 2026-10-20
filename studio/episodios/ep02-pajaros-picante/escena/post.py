@@ -127,7 +127,15 @@ def borde_recuadro(lay, cx, cy, r, tipo, s=1.0):
             ang = a + (0.5 if tipo == "plumas" else 0.15) * (1 if k % 2 else -1)
             ex, ey = math.cos(ang) * L * s / 2, math.sin(ang) * L * s / 2
             if tipo == "plumas":
-                d.ellipse((px - L * s * 0.45, py - L * s * 0.22, px + L * s * 0.45, py + L * s * 0.22), fill=(*col, 255))
+                # pluma: hoja alargada, tangente al círculo y un poco inclinada hacia afuera (se superponen como escamas)
+                ta = a + math.pi / 2 + 0.45
+                Lp, Wp = 48 * s, 17 * s
+                pts = []
+                for q in range(12):
+                    u = q / 11 * 2 * math.pi
+                    lx, ly = Lp / 2 * math.cos(u), Wp / 2 * math.sin(u) * (0.6 + 0.4 * math.cos(u))
+                    pts.append((px + lx * math.cos(ta) - ly * math.sin(ta), py + lx * math.sin(ta) + ly * math.cos(ta)))
+                d.polygon(pts, fill=(*col, 255), outline=(60, 50, 44, 255))
             else:
                 d.line((px - ex, py - ey, px + ex, py + ey), fill=(*col, 255), width=int(6 * s))
     d.ellipse((cx - r - 4 * s, cy - r - 4 * s, cx + r + 4 * s, cy + r + 4 * s), outline=(*c1, 255), width=int(8 * s))
