@@ -20,15 +20,24 @@ recorte = int(L * float(__import__("os").environ.get("LUPA_ZOOM", 0.72)))
 lz = lupa.crop(((L - recorte) // 2, (L - recorte) // 2, (L + recorte) // 2, (L + recorte) // 2)).resize((D, D), Image.LANCZOS)
 mask = Image.new("L", (D, D), 0)
 ImageDraw.Draw(mask).ellipse((0, 0, D - 1, D - 1), fill=255)
-d = ImageDraw.Draw(im)
-# líneas de la mejilla a la lupa (tangentes aproximadas), detrás de la lupa
+# líneas de la mejilla a la lupa, detrás de la lupa. Donde pasan sobre el ratón (hocico, bigotes) quedan tenues, para no
+# ensuciar la cara (puerta 4 c2 r3): la silueta sale del render por diferencia con el color plano del fondo
+import numpy as np
+arr = np.asarray(im).astype(np.float32)
+fondo = np.median(arr[:, : max(4, int(20 * k))].reshape(-1, 3), axis=0)
+silueta = (np.abs(arr - fondo).sum(axis=2) > 40).astype(np.float32)
+silueta = np.asarray(Image.fromarray((silueta * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(2))) / 255.0
+capa = Image.new("L", (W, H), 0)
+dc = ImageDraw.Draw(capa)
 r_m = int(26 * k)
 ang = math.atan2(cy - my, cx - mx)
 for s in (-1, 1):
     a = ang + s * math.pi / 2
     p0 = (mx + r_m * math.cos(a), my + r_m * math.sin(a))
     p1 = (cx + D / 2 * math.cos(a), cy + D / 2 * math.sin(a))
-    d.line((p0, p1), fill=(244, 242, 236), width=max(3, int(5 * k)))
+    dc.line((p0, p1), fill=255, width=max(3, int(5 * k)))
+alfa = np.asarray(capa).astype(np.float32) / 255.0 * (1.0 - float(__import__("os").environ.get("LINEA_TENUE", 0.7)) * silueta)
+im = Image.composite(Image.new("RGB", (W, H), (244, 242, 236)), im, Image.fromarray((alfa * 255).astype(np.uint8)))
 # sombra suave bajo la lupa
 sh = Image.new("L", (W, H), 0)
 ImageDraw.Draw(sh).ellipse((cx - D // 2 + 10, cy - D // 2 + 18, cx + D // 2 + 10, cy + D // 2 + 18), fill=140)
