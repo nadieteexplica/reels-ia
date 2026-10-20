@@ -73,3 +73,6 @@
 {"tipo": "aviso", "que": "Tomás 10:40: rediseñar el bosque entero; puerta 4 con ciclo nuevo de rondas", "n": 72, "ts": "2026-10-20T10:39:02-03:00"}
 {"tipo": "trabajo", "id": "rediseño bosque", "estado": "inicio", "n": 73, "ts": "2026-10-20T10:39:02-03:00"}
 {"tipo": "trabajo", "id": "sesión nube 21-oct: arreglos chicos r3 (muelas, lengua)", "estado": "fin", "nota": "probados en 540x960; esperando decisión del bosque", "n": 73, "ts": "2026-10-20T10:45:05-03:00"}
+{"tipo": "trabajo", "id": "estilos 39433673406", "estado": "inicio", "nota": "HD de bosque v2, lengua y muelas (sesión de chat, tras la decisión de Tomás 10:40)", "n": 76, "ts": "2026-10-20T10:49:06-03:00"}
+{"tipo": "aviso", "que": "la sesión de la tarea programada adelantó los arreglos chicos de muelas y lengua en paralelo (10:38–10:45); se unieron: muelas y campana con sus valores, molécula con MOL_INCL -100 (probado: punta en y≈310)", "n": 77, "ts": "2026-10-20T10:49:06-03:00"}
+{"tipo": "trabajo", "id": "ficha.jpg", "estado": "fin", "nota": "re-render: mancha de la tupaya en el hombro; etiquetas sin cortes", "n": 78, "ts": "2026-10-20T10:53:38-03:00"}
