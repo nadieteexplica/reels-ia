@@ -81,10 +81,10 @@ camp, domo = LG.campana(C, loc=(0, 0.02, ZC), r=0.035, color=None)
 if col:
     LG.ondas(C, (0, 0.02, 0.050 + ZC), 0.040, col, tope_izq=float(os.environ.get("TOPE_IZQ", 8)))
     luz = bpy.data.lights.new("LuzCampana", "POINT")
-    luz.energy, luz.color, luz.shadow_soft_size = float(os.environ.get("LUZ", 0.9)), col, 0.02
+    luz.energy, luz.color, luz.shadow_soft_size = float(os.environ.get("LUZ", 0.6)), col, 0.02
     lo = bpy.data.objects.new("LuzCampana", luz)
     C.objects.link(lo)
-    lo.location = tuple(float(v) for v in os.environ.get("LUZ_POS", "0,-0.035,0.014").split(",")); lo.location.z += ZC   # c3: baja, junto a la lengua: tiñe la lengua y no se refleja como parche blanco en el frente de la campana
+    lo.location = tuple(float(v) for v in os.environ.get("LUZ_POS", "0,-0.035,0.03").split(",")); lo.location.z += ZC   # c3: baja, junto a la lengua: tiñe la lengua y no se refleja como parche blanco en el frente de la campana
 if ESTADO == "roja":
     # la cabeza vanilílica (anillo con el OH) calza sobre la perilla de la campanita, de cara a la cámara;
     # la cadena se va hacia arriba a la izquierda (por donde entró). Nada atraviesa el domo: se apoya encima.

@@ -100,3 +100,6 @@
 {"tipo": "aviso", "que": "puerta 4 c3 r1: veredicto cerca de 15:00 (antes 15:15)", "n": 100, "ts": "2026-10-20T14:22:00-03:00"}
 {"tipo": "trabajo", "id": "estilos 39465377867", "estado": "inicio", "n": 101, "ts": "2026-10-20T14:22:00-03:00"}
 {"tipo": "trabajo", "id": "estilos 39465377867", "estado": "fin", "n": 102, "ts": "2026-10-20T14:31:07-03:00"}
+{"tipo": "trabajo", "id": "estilos 39469261093", "estado": "inicio", "n": 103, "ts": "2026-10-20T14:48:30-03:00"}
+{"tipo": "aviso", "que": "puerta 4 c3 r1 se corre a ~15:30: revisión propia cazó 3 detalles más (campana quemada, tallo tocando al ratón, líneas de la lupa en el ojo → ratón espejado)", "n": 104, "ts": "2026-10-20T14:58:31-03:00"}
+{"tipo": "trabajo", "id": "estilos 39469261093", "estado": "fin", "n": 105, "ts": "2026-10-20T14:58:40-03:00"}
