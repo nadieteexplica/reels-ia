@@ -95,3 +95,5 @@
 {"tipo": "trabajo", "id": "auditor cuadros c2 r3", "estado": "inicio", "n": 95, "ts": "2026-10-20T13:45:15-03:00"}
 {"tipo": "trabajo", "id": "auditor cuadros c2 r3", "estado": "fin", "n": 96, "ts": "2026-10-20T13:54:24-03:00"}
 {"tipo": "cumplida", "id": "90", "n": 97, "ts": "2026-10-20T13:54:47-03:00"}
+{"tipo": "aviso", "que": "Tomás 13:58: ciclo 3 de la puerta 4 con los 9 arreglos de c2 r3 (ciclo 2 archivado en 4-cuadros-ciclo2/)", "n": 98, "ts": "2026-10-20T13:56:15-03:00"}
+{"tipo": "promesa", "hora": "15:15", "que": "veredicto puerta 4 c3 r1", "dato": "9 arreglos ~30 min + HD 10 min + auditor 10 min", "n": 99, "ts": "2026-10-20T13:56:15-03:00"}
