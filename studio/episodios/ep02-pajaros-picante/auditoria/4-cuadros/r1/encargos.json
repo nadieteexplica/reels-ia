@@ -1,0 +1,21 @@
+[
+ {
+  "id": "cuadros1",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "1_desierto, 2_lengua, 3_muelas, 4_bosque",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/1_desierto.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/2_lengua.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/3_muelas.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/4_bosque.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/4-cuadros/r1/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "cuadros1.json",
+  "notas_de_uso": "Cuadros de estilo de los escenarios nuevos del Ep. 2 (estilo del episodio: dibujo animado 3D, personajes propios en ficha_personaje.jpg). 1_desierto = cuadro 0 y plano 40 (el cuitlacoche sostiene el ají cruzado entre las dos mandíbulas del pico, cabeza de 3/4; detrás, el ratón echando fuego; a su derecha, en dos repisas de piedra escalonadas, las pistas del loop: el ají mordido (mordisco grande con pulpa y semillas) acostado en el borde de la repisa baja, la medalla colgando de ese borde con la cinta azul tendida sobre la piedra, y los lentes de sol ladeados en la repisa alta). 2_lengua = plano 11, cámara S (lengua de plastilina con surco central, borde a la derecha y papilas de tamaños distintos; la molécula de capsaicina roja entra desde el borde izquierdo y calza sobre la campanita plateada, que suena: ondas y luz rojas; a la izquierda las ondas se cortan bajo la cadena). 3_muelas = plano 23, inserto 2D 'y si…' (recuadro punteado; fuera de él la imagen se oscurece a propósito): el ratón entero, sentado de perfil mirando a la derecha, con una marca en la mejilla y una lupa arriba a la izquierda (detrás de su cabeza; las líneas de la lupa pasan por detrás del ratón) con el primer plano de sus muelas: a la izquierda semillas enteras (discos planos) y a la derecha ya molidas; la ✕ abajo al centro de la lupa dice 'esto no pasa' para toda la escena (no se lo come). 4_bosque = planos 29–32, bosque húmedo del sur de China: la tupaya en una rama con musgo, junto a una rama de Piper (pimienta) con espigas picantes colgando junto al hocico. Subtítulos irán en y 1000–1250 (de 1920) en todo el video: caras y eventos clave deben quedar fuera de esa franja."
+ }
+]
