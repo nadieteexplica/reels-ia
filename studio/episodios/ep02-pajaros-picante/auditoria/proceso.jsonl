@@ -76,3 +76,4 @@
 {"tipo": "trabajo", "id": "estilos 39433673406", "estado": "inicio", "nota": "HD de bosque v2, lengua y muelas (sesión de chat, tras la decisión de Tomás 10:40)", "n": 76, "ts": "2026-10-20T10:49:06-03:00"}
 {"tipo": "aviso", "que": "la sesión de la tarea programada adelantó los arreglos chicos de muelas y lengua en paralelo (10:38–10:45); se unieron: muelas y campana con sus valores, molécula con MOL_INCL -100 (probado: punta en y≈310)", "n": 77, "ts": "2026-10-20T10:49:06-03:00"}
 {"tipo": "trabajo", "id": "ficha.jpg", "estado": "fin", "nota": "re-render: mancha de la tupaya en el hombro; etiquetas sin cortes", "n": 78, "ts": "2026-10-20T10:53:38-03:00"}
+{"tipo": "aviso", "que": "la sesión de la tarea programada también rediseñó el bosque en paralelo; se descartó (rama local) y se canceló su run de estilos 39434446459 (duplicado). Vale el bosque v2 de la sesión de chat (caeadc7) y su run 39433673406", "n": 79, "ts": "2026-10-20T10:54:59-03:00"}
