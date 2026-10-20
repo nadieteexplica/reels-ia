@@ -73,6 +73,13 @@ if os.environ.get("BRAZO_TUBO", "1") == "1":
     _pts = [(0.020, -0.018, 0.103), (0.027, -0.019, 0.083), (0.026, -0.035, 0.083), (0.023, -0.047, 0.090)]
     P.tube("Raton_brazoR_tubo", _pts, float(os.environ.get("BRAZO_R", 0.0071)), C, canela_m)
     PJ.esfera("Raton_palmaR", (0.0225, -0.0505, 0.0925), 0.0056, C, rosado_m, escala=(0.8, 0.75, 1.15))
+# la cola entra al cuadro: termina en punta (con el radio parejo se veía como un tubo cortado)
+rt["cola"].rotation_euler.z = math.radians(float(os.environ.get("COLA_Z", 62)))   # la cola va hacia atrás, no hacia la cámara (se veía la punta abierta)
+_cola = bpy.data.objects.get("Raton_cola")
+if _cola and _cola.type == "CURVE":
+    _pts = _cola.data.splines[0].points
+    for _k, _pt in enumerate(_pts):
+        _pt.radius = max(0.18, 1.0 - 0.85 * (_k / (len(_pts) - 1)) ** 1.5)
 # párpados del color del lomo (de perfil, la máscara de guata los pintaba blancos)
 lomo_m = PJ.mat_simple("LomoParpado", (0.42, 0.20, 0.08), rough=0.7, sheen=0.9)
 for pv in rt["parpados"]:

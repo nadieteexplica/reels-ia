@@ -119,8 +119,11 @@ rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", -60))
 aj_m = E.aji("AjiMordido", largo=float(os.environ.get("AJM_LARGO", 0.10)), grosor=float(os.environ.get("AJM_GROSOR", 0.017)), coll=CP, seed=11, curva=0.25)
 # acostado de lado a lo largo del borde delantero de la repisa (tallo a la izquierda, junto al ratón): el mordisco queda en la
 # silueta de arriba y se lee desde la cámara, que está más abajo
-AJM = tuple(float(v) for v in os.environ.get("AJM", "0.241,0.181,-86").split(","))
+AJM = tuple(float(v) for v in os.environ.get("AJM", "0.254,0.181,-86").split(","))
 aj_m.rotation_euler = (math.radians(90), 0, math.radians(AJM[2]))
+_tl = bpy.data.objects["AjiMordido_tallo"]      # tallo corto y hacia arriba: no toca el lomo del ratón (c3: el ají parecía clavado en la espalda)
+_tl.scale = (0.6, 0.6, 0.6)
+_tl.rotation_euler = (math.radians(float(os.environ.get("TALLO_X", -70))), 0, 0)
 aj_m.location = (AJM[0], AJM[1], 0.0)
 E.mordisco_media_luna(aj_m, CP, t=0.55, lado=tuple(float(v) for v in os.environ.get("BOCADO_LADO", "0.62,0.78,0").split(",")), r=float(os.environ.get("BOCADO", 0.0165)), semillas=5, pulpa=False, en_corte=True)   # media luna en la silueta de arriba, un poco hacia la cámara (x local = -y del mundo): se ve la muesca y la pulpa
 # la cámara (z≈0,32) queda más abajo que la cima de la roca de atrás: lo que está tirado plano arriba no se ve, y lo que
