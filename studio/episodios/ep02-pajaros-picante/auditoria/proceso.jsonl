@@ -44,3 +44,5 @@
 {"tipo": "chequeo", "id": "render HD desierto v2 (local)", "estado": "corriendo desde 21:19 (el anterior tardó 13 min en esta máquina)", "n": 44, "ts": "2026-10-19T21:22:53-03:00"}
 {"tipo": "chequeo", "id": "estilos 39347261475", "estado": "en curso", "n": 45, "ts": "2026-10-19T21:24:07-03:00"}
 {"tipo": "chequeo", "id": "estilos 39347387369", "estado": "en curso", "n": 46, "ts": "2026-10-19T21:24:08-03:00"}
+{"tipo": "trabajo", "id": "render HD desierto v2 (local)", "estado": "fin", "nota": "8 min", "n": 47, "ts": "2026-10-19T21:27:21-03:00"}
+{"tipo": "aviso", "que": "Tomás 21:28: se le acaba el límite; se deja todo en el repo y una tarea programada para seguir", "n": 48, "ts": "2026-10-19T21:28:47-03:00"}
