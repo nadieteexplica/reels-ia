@@ -107,3 +107,5 @@
 {"tipo": "trabajo", "id": "auditor cuadros c3 r1", "estado": "fin", "n": 107, "ts": "2026-10-20T15:21:33-03:00"}
 {"tipo": "cumplida", "id": "99", "n": 108, "ts": "2026-10-20T15:22:59-03:00"}
 {"tipo": "promesa", "hora": "17:15", "que": "veredicto puerta 4 c3 r2", "dato": "11 arreglos ~75 min + HD 10 min + auditor 10 min", "n": 109, "ts": "2026-10-20T15:22:59-03:00"}
+{"tipo": "trabajo", "id": "estilos 39480961397", "estado": "inicio", "n": 110, "ts": "2026-10-20T16:11:54-03:00"}
+{"tipo": "trabajo", "id": "estilos 39480961397", "estado": "fin", "n": 111, "ts": "2026-10-20T16:19:37-03:00"}
