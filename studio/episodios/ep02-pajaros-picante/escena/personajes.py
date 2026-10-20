@@ -485,6 +485,7 @@ def raton(coll, nombre="Raton", lomo=(0.42, 0.20, 0.08), guata=(0.86, 0.82, 0.76
         piv = P.empty(f"{nombre}_piv_brazo{'LR'[s > 0]}", loc=hom, coll=coll)
         colgar(piv, root)
         br = blob(f"{nombre}_brazo{'LR'[s > 0]}", [
+            (tuple(hom + Vector((-s * 0.003, 0.004, 0.002))), (0.011, 0.011, 0.012), (0, 0, 0)),   # hombro metido en el cuerpo: el brazo nunca se despega al girar
             (tuple(hom + Vector((s * 0.004, -0.010, -0.012))), (0.009, 0.010, 0.016), (30, 0, 0)),
             (tuple(hom + Vector((s * 0.004, -0.022, -0.026))), (0.008, 0.009, 0.007), (0, 0, 0)),
         ], coll, voxel=0.0006, suave=10)
@@ -544,7 +545,7 @@ def lentes(name, centro, ancho, coll, mirando=(0, -1, 0)):
 def medalla(name, centro, r, coll):
     """Medalla dorada rígida con cinta (sin tela)."""
     oro = mat_simple("Oro", (0.95, 0.66, 0.15), rough=0.2)
-    oro.node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 1.0
+    oro.node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 0.6   # con 1.0 reflejaba el cactus y se veía verde
     cinta = mat_simple("Cinta", (0.85, 0.08, 0.10), rough=0.5)
     root = P.empty(name, loc=centro, coll=coll)
     d = P.prim("cyl", name + "_disco", coll, oro, r=r, r2=r, h=r * 0.25, seg=40)
@@ -631,13 +632,17 @@ def tupaya(coll, nombre="Tupaya"):
         ((0, -0.040, 0.070), (0.027, 0.028, 0.029), (0, 0, 0)),         # pecho
         ((-0.018, -0.040, 0.040), (0.010, 0.012, 0.028), (0, 0, 0)),    # patas (unidas al cuerpo)
         ((0.018, -0.040, 0.040), (0.010, 0.012, 0.028), (0, 0, 0)),
+        ((-0.018, -0.042, 0.020), (0.0085, 0.0095, 0.020), (0, 0, 0)),  # antebrazos hasta el pie (el suavizado encoge las puntas)
+        ((0.018, -0.042, 0.020), (0.0085, 0.0095, 0.020), (0, 0, 0)),
         ((-0.020, 0.050, 0.044), (0.014, 0.020, 0.030), (0, 0, 0)),     # muslos
         ((0.020, 0.050, 0.044), (0.014, 0.020, 0.030), (0, 0, 0)),
+        ((-0.020, 0.042, 0.020), (0.009, 0.011, 0.020), (0, 0, 0)),     # canillas hasta el pie
+        ((0.020, 0.042, 0.020), (0.009, 0.011, 0.020), (0, 0, 0)),
     ], coll)
     cuerpo.data.materials.append(pel)
     colgar(cuerpo, root)
     for (x, y) in ((-0.018, -0.044), (0.018, -0.044), (-0.020, 0.044), (0.020, 0.044)):
-        pie = esfera(f"{nombre}_pie{x}{y}", (x, y - 0.005, 0.010), 0.0085, coll, rosado, escala=(0.9, 1.5, 0.6))
+        pie = esfera(f"{nombre}_pie{x}{y}", (x, y - 0.006, 0.0055), 0.0085, coll, rosado, escala=(0.95, 1.4, 0.55))   # el pie toca la pata
         colgar(pie, root)
     cab_c = Vector((0, -0.076, 0.094))
     piv_cab = P.empty(nombre + "_piv_cabeza", loc=(0, -0.058, 0.082), coll=coll)

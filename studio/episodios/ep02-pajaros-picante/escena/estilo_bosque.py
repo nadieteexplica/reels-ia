@@ -53,6 +53,15 @@ cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (Vector((0.0, 0.0, 0.22)) - cam.location).length
 cam.data.dof.aperture_fstop = 2.8
+# la tupaya mira a cámara (storyboard plano 30): giro de la cabeza calculado hacia la cámara
+bpy.context.view_layer.update()
+pc = tp["cabeza"]
+loc_cam = (pc.parent.matrix_world.inverted() @ cam.location) - pc.location
+yaw = math.atan2(loc_cam.x, -loc_cam.y) + math.radians(float(os.environ.get("TUP_34", 10)))   # tres cuartos: mira a cámara y se le ve el hocico
+pitch = -math.atan2(loc_cam.z, Vector((loc_cam.x, loc_cam.y)).length)
+pc.rotation_mode = "XYZ"   # R = Rz·Rx: primero cabecea, después gira
+pc.rotation_euler = (pitch, 0, yaw)
+print("tupaya cabeza yaw/pitch", round(math.degrees(yaw)), round(math.degrees(pitch)))
 sc.render.filepath = os.path.join(OUT, os.environ.get("NOMBRE", "estilo_bosque") + ".png")
 bpy.ops.render.render(write_still=True)
 print("ok", sc.render.filepath)

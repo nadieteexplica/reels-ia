@@ -48,3 +48,6 @@
 {"tipo": "aviso", "que": "Tomás 21:28: se le acaba el límite; se deja todo en el repo y una tarea programada para seguir", "n": 48, "ts": "2026-10-19T21:28:47-03:00"}
 {"tipo": "chequeo", "id": "estilos 39347261475", "estado": "terminó ok", "n": 49, "ts": "2026-10-19T21:35:07-03:00"}
 {"tipo": "chequeo", "id": "estilos 39347387369", "estado": "terminó ok", "n": 50, "ts": "2026-10-19T21:35:07-03:00"}
+{"tipo": "trabajo", "id": "sesión nube 20-oct: puerta 4 cuadros", "estado": "inicio", "nota": "tarea programada; 4 HD bajados de ep02-estilos + estilos/", "n": 51, "ts": "2026-10-20T08:01:19-03:00"}
+{"tipo": "trabajo", "id": "marco_ysi muelas", "estado": "fin", "nota": "recuadro punteado + X aplicado al HD", "n": 52, "ts": "2026-10-20T08:01:19-03:00"}
+{"tipo": "trabajo", "id": "revisión propia de los 4 HD", "estado": "fin", "nota": "desierto: patita despegada, ají cruza el ojo, lentes/medalla fuera de cuadro; lengua: molécula atraviesa el domo; muelas: ventanita rota (encías asoman, ojo se ve por dentro); bosque: patas flotan, no mira a cámara. Se arreglan antes de la puerta 4", "n": 53, "ts": "2026-10-20T08:38:37-03:00"}

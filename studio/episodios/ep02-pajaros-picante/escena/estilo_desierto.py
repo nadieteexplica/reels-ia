@@ -57,7 +57,7 @@ CP = P.collection("Personajes")
 pj = PJ.pajaro(CP)
 pj["mandibula"].rotation_euler.x = math.radians(10)
 bpy.context.view_layer.update()
-aji = E.aji("AjiCuadro0", largo=0.12, grosor=0.0125, coll=CP, seed=5, curva=0.35)
+aji = E.aji("AjiCuadro0", largo=0.12, grosor=0.0125, coll=CP, seed=5, curva=float(os.environ.get("AJI_CURVA", 0.12)))   # la punta no cruza el ojo
 centro = Vector((0.0, -0.112, 0.114))                 # entre las dos mitades del pico, a un tercio del largo
 aji.rotation_euler = (0, math.radians(-90), math.radians(8))
 aji.location = centro + Vector((-0.055, 0, 0.004))
@@ -84,21 +84,33 @@ for k, ob in enumerate(rt["orejas"]):
 for k, br in enumerate(rt["brazos"]):
     br.rotation_euler = (math.radians(-60), 0, math.radians(35 * (1 if k else -1)))   # patitas arriba, sin tocar nada
 rt["cabeza"].rotation_euler = (math.radians(-16), 0, 0)
-rt["root"].location = (0.16, 0.20, TOP2)
+rt["root"].location = (0.19, 0.20, TOP2)          # tabla de utilería del storyboard
 rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", -60)))
 # causa de la llama: un ají mordido junto al ratón, y los lentes de sol caídos (detalle del loop)
 aj_m = E.aji("AjiMordido", largo=0.10, grosor=0.012, coll=CP, seed=11, curva=0.3)
 aj_m.rotation_euler = (math.radians(90), 0, math.radians(-30))
-aj_m.location = (0.08, 0.15, TOP2 + 0.012)
+aj_m.location = (0.11, 0.15, TOP2 + 0.012)
 E.morder(aj_m, Vector((0.0, 0.0, -0.075)), r=0.013)
-lc = PJ.lentes("LentesCaidos", (0.04, 0.11, TOP2 + 0.006), 0.05, CP, mirando=(0.3, -0.2, 1.0))
-mc = PJ.medalla("MedallaCaida", (0.11, 0.09, TOP2 + 0.003), 0.012, CP)
-mc.rotation_euler = (math.radians(-88), 0, math.radians(25))
+# la cámara mira la roca de atrás desde abajo: lo que queda tirado plano en la cima no se ve. Los lentes y la medalla
+# quedan en el escalón delantero de la roca (z≈0,30, se ve desde la cámara y no lo tapa la cola), recostados hacia atrás.
+bpy.context.view_layer.update()
+def cima(x, y):
+    """z de la superficie de la roca de atrás en (x, y) (rayo sólo contra la roca, no contra personajes ni llama)."""
+    dg = bpy.context.evaluated_depsgraph_get()
+    Mi = roca2.matrix_world.inverted()
+    hit, loc, *_ = roca2.evaluated_get(dg).ray_cast(Mi @ Vector((x, y, 1.0)), (Mi.to_3x3() @ Vector((0, 0, -1))).normalized())
+    return (roca2.matrix_world @ loc).z if hit else TOP2
+LX, LY = (float(v) for v in os.environ.get("LENTES_XY", "0.245,0.180").split(","))
+MX, MY = (float(v) for v in os.environ.get("MEDALLA_XY", "0.290,0.172").split(","))
+lc = PJ.lentes("LentesCaidos", (LX, LY, cima(LX, LY) + 0.0135), 0.05, CP, mirando=(-0.35, -1.0, 0.55))
+mc = PJ.medalla("MedallaCaida", (MX, MY, cima(MX, MY) + 0.0115), 0.012, CP)
+mc.rotation_euler = (math.radians(-35), 0, math.radians(-15))      # disco recostado hacia atrás, cinta apoyada
+
 bpy.context.view_layer.update()
 boca_w = rt["boca"].matrix_world.translation
 frente_rt = (rt["cabeza"].matrix_world.to_3x3() @ Vector((0, -1, 0.0))).normalized()
-frente_rt = (frente_rt + Vector((0, 0, float(os.environ.get("FUEGO_SUBE", 0.3))))).normalized()
-V.llamarada("Llamarada", boca_w + frente_rt * 0.010, frente_rt, CP, escala=float(os.environ.get("FUEGO", 1.7)))
+frente_rt = (frente_rt + Vector((0, 0, float(os.environ.get("FUEGO_SUBE", 0.12))))).normalized()
+V.llamarada("Llamarada", boca_w + frente_rt * float(os.environ.get("FUEGO_SALE", 0.022)), frente_rt, CP, escala=float(os.environ.get("FUEGO", 1.7)))
 for o in rt["ojos"]:
     ow = o.matrix_world.translation
     abajo = (rt["cabeza"].matrix_world.to_3x3() @ Vector((0, -0.3, -1))).normalized()
@@ -124,7 +136,7 @@ cam.data.lens = float(os.environ.get("LENS", 28))
 bpy.context.view_layer.update()
 foco = pj["cabeza"].matrix_world.translation + Vector((0, -0.03, 0.02))
 cam.location = foco + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.02,-0.66,-0.05").split(",")))
-mira = foco + Vector(tuple(float(x) for x in os.environ.get("MIRA", "0.04,0.10,-0.01").split(",")))
+mira = foco + Vector(tuple(float(x) for x in os.environ.get("MIRA", "0.075,0.10,-0.01").split(",")))
 cam.rotation_euler = (mira - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (foco - cam.location).length

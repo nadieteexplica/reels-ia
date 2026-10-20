@@ -57,9 +57,33 @@ if col:
     C.objects.link(lo)
     lo.location = (0, -0.03, 0.05)
 if ESTADO == "roja":
-    mol = LG.capsaicina(C, escala=0.0068)
-    mol.location = (-0.022, 0.016, 0.066)
-    mol.rotation_euler = (math.radians(80), math.radians(-20), math.radians(25))
+    # la cabeza vanilílica (anillo con el OH) calza sobre la perilla de la campanita, de cara a la cámara;
+    # la cadena se va hacia arriba a la izquierda (por donde entró). Nada atraviesa el domo: se apoya encima.
+    ESC_MOL = float(os.environ.get("ESC_MOL", 0.0062))
+    mol = LG.capsaicina(C, escala=ESC_MOL)
+    mol.rotation_euler = (math.radians(90), math.radians(float(os.environ.get("MOL_INCL", -24))), 0)
+    bpy.context.view_layer.update()
+    oh = bpy.data.objects["Capsaicina_Oh"]
+    r_at = 0.48 * ESC_MOL
+    tope = Vector((0, 0.02, 0.035 * 1.30))                    # cima de la perilla (campana r=0.035 en (0, 0.02, 0))
+    mol.location = mol.location + (tope + Vector((0, 0, r_at * 0.85)) - oh.matrix_world.translation)
+    bpy.context.view_layer.update()
+    # comprobación: ningún átomo dentro del domo (perfil de revolución) salvo el que toca la perilla
+    def h_domo(rho, r=0.035):
+        prof = [(r * 0.98, 0.0), (r * 0.95, r * 0.25), (r * 0.80, r * 0.55), (r * 0.55, r * 0.78), (r * 0.25, r * 0.88), (0.0, r * 0.9)]
+        if rho >= prof[0][0]:
+            return -1
+        for (r0, z0), (r1, z1) in zip(prof, prof[1:]):
+            if r1 <= rho <= r0:
+                return r * 0.25 + z0 + (z1 - z0) * (r0 - rho) / (r0 - r1)
+        return r * 0.25 + r * 0.9
+    for a in mol.children:
+        if "_e_" in a.name:
+            continue
+        w = a.matrix_world.translation - Vector((0, 0.02, 0))
+        rho = Vector((w.x, w.y)).length
+        assert w.z - r_at > h_domo(rho) - 1e-4 or a.name == "Capsaicina_Oh", ("átomo dentro del domo", a.name)
+    print("molécula: ningún átomo atraviesa el domo")
 if ESTADO == "naranja":
     LG.gota_sopa(C, (0.05, -0.01, 0.03), r=0.012)
 
