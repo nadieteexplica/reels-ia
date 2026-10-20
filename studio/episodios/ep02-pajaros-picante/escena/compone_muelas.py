@@ -28,7 +28,7 @@ for s in (-1, 1):
     a = ang + s * math.pi / 2
     p0 = (mx + r_m * math.cos(a), my + r_m * math.sin(a))
     p1 = (cx + D / 2 * math.cos(a), cy + D / 2 * math.sin(a))
-    d.line((p0, p1), fill=(255, 255, 255), width=max(3, int(5 * k)))
+    d.line((p0, p1), fill=(244, 242, 236), width=max(3, int(5 * k)))
 # sombra suave bajo la lupa
 sh = Image.new("L", (W, H), 0)
 ImageDraw.Draw(sh).ellipse((cx - D // 2 + 10, cy - D // 2 + 18, cx + D // 2 + 10, cy + D // 2 + 18), fill=140)

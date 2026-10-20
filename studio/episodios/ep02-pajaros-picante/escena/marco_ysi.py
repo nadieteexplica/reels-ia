@@ -21,14 +21,14 @@ d = ImageDraw.Draw(im)
 paso, largo = int(W * 0.035), int(W * 0.02)
 grosor = max(3, W // 180)
 for x in range(x0 + r, x1 - r, paso):
-    d.line((x, y0, min(x + largo, x1 - r), y0), fill=(255, 255, 255), width=grosor)
-    d.line((x, y1, min(x + largo, x1 - r), y1), fill=(255, 255, 255), width=grosor)
+    d.line((x, y0, min(x + largo, x1 - r), y0), fill=(244, 242, 236), width=grosor)
+    d.line((x, y1, min(x + largo, x1 - r), y1), fill=(244, 242, 236), width=grosor)
 for y in range(y0 + r, y1 - r, paso):
-    d.line((x0, y, x0, min(y + largo, y1 - r)), fill=(255, 255, 255), width=grosor)
-    d.line((x1, y, x1, min(y + largo, y1 - r)), fill=(255, 255, 255), width=grosor)
+    d.line((x0, y, x0, min(y + largo, y1 - r)), fill=(244, 242, 236), width=grosor)
+    d.line((x1, y, x1, min(y + largo, y1 - r)), fill=(244, 242, 236), width=grosor)
 for (cx, cy, a0) in ((x0 + r, y0 + r, 180), (x1 - r, y0 + r, 270), (x1 - r, y1 - r, 0), (x0 + r, y1 - r, 90)):
     for a in range(a0, a0 + 90, 30):
-        d.arc((cx - r, cy - r, cx + r, cy + r), a, a + 15, fill=(255, 255, 255), width=grosor)
+        d.arc((cx - r, cy - r, cx + r, cy + r), a, a + 15, fill=(244, 242, 236), width=grosor)
 import os as _os
 R = int(W * 0.06)
 cx = (x1 - R - int(W * 0.03)) if esquina == "der" else (x0 + R + int(W * 0.03))
@@ -37,7 +37,7 @@ if _os.environ.get("MARCA_XY"):
     # ✕ grande, blanca con borde oscuro y SIN círculo (con círculo gris se leía como el botón "cerrar"), donde se pida
     cx, cy = (int(float(v) * W / 1080) for v in _os.environ["MARCA_XY"].split(","))
     k2 = int(W * 0.075)
-    for col, g in (((25, 20, 22), int(W * 0.040)), ((255, 255, 255), int(W * 0.024))):
+    for col, g in (((25, 20, 22), int(W * 0.040)), ((244, 242, 236), int(W * 0.024))):
         d.line((cx - k2, cy - k2, cx + k2, cy + k2), fill=col, width=g)
         d.line((cx - k2, cy + k2, cx + k2, cy - k2), fill=col, width=g)
     im.save(dst, **({"quality": 93} if dst.lower().endswith((".jpg", ".jpeg")) else {}))
