@@ -187,7 +187,7 @@ def gota_sopa(coll, loc, r=0.02):
     return g
 
 
-def ondas(coll, centro, r0, color, n=3, nombre="Ondas", tope_izq=50):
+def ondas(coll, centro, r0, color, n=3, nombre="Ondas", tope_izq=50, tope_der=50):
     """Arcos concéntricos de "está sonando" a los dos lados de la campanita: sólo emisión (sin sombreado ni brillo de tubo),
     cada arco más tenue que el anterior hacia afuera."""
     out = []
@@ -202,7 +202,7 @@ def ondas(coll, centro, r0, color, n=3, nombre="Ondas", tope_izq=50):
         nt.links.new(em.outputs[0], nt.nodes["Material Output"].inputs["Surface"])
         for s in (-1, 1):
             R = r0 * (1.25 + 0.42 * k)
-            tope = 50 if s > 0 else tope_izq            # a la izquierda se cortan bajo la cadena de la molécula (no la cruzan)
+            tope = tope_der if s > 0 else tope_izq            # a la izquierda se cortan bajo la cadena de la molécula (no la cruzan)
             angs = [-50 + (tope + 50) * i / 10 for i in range(11)]
             pts = [Vector(centro) + Vector((s * R * math.cos(math.radians(a)), 0, R * math.sin(math.radians(a)))) for a in angs]
             t = P.tube(f"{nombre}{k}{s}", [tuple(p) for p in pts], r0 * 0.035 * (1 - 0.2 * k), coll, m, res=10)

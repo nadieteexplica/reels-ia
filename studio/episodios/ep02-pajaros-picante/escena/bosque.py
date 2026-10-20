@@ -556,12 +556,12 @@ def armar_v2(coll, seed=11):
     nt = vol.node_tree
     nt.nodes.remove(nt.nodes["Principled BSDF"])
     pv = nt.nodes.new("ShaderNodeVolumePrincipled")
-    pv.inputs["Color"].default_value = (0.90, 0.92, 0.75, 1)
-    pv.inputs["Density"].default_value = float(__import__("os").environ.get("NIEBLA", 0.032))
+    pv.inputs["Color"].default_value = (0.74, 0.93, 0.62, 1)   # c3: niebla verde (gris verdosa apagaba el cuadro)
+    pv.inputs["Density"].default_value = float(__import__("os").environ.get("NIEBLA", 0.016))
     pv.inputs["Anisotropy"].default_value = 0.55
     # c3: un brillo propio muy tenue (verde grisáceo) separa los troncos del fondo y saca al bosque de lo turbio/negro
-    pv.inputs["Emission Color"].default_value = (0.55, 0.68, 0.55, 1)
-    pv.inputs["Emission Strength"].default_value = float(__import__("os").environ.get("NIEBLA_BRILLO", 0.035))
+    pv.inputs["Emission Color"].default_value = (0.32, 0.66, 0.34, 1)
+    pv.inputs["Emission Strength"].default_value = float(__import__("os").environ.get("NIEBLA_BRILLO", 0.016))
     nt.links.new(pv.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
     caja = P.prim("cube", "CajaNiebla", coll, vol, smooth=False)
     caja.scale = (4.0, 4.4, 3.0)       # la niebla también pasa por delante: ahí se ven los rayos de sol (sin ella el fondo se ve negro)

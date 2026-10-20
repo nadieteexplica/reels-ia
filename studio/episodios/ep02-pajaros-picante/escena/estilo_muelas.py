@@ -106,6 +106,12 @@ if _cu:
     _sm.factor, _sm.iterations = 1.0, int(os.environ.get("SUAVE_CUERPO", 30))
     _gar = PJ.blob("Raton_garganta", [((0, -0.017, 0.127), (0.027, 0.029, 0.024), (0, 0, 0))], C)
     _gar.data.materials.append(_cu.data.materials[0])
+# c3 r2: la base de la cola se veía como la boca de un tubo hueco, y la cola salía del recuadro: se tapa la base con una
+# esfera del mismo rosado metida en el anca, y la cola se acorta y sube (la punta entra entera en el recuadro)
+if _cola and _cola.type == "CURVE":
+    _tapa = PJ.esfera("Raton_colaBase", (0, 0.044, 0.021), 0.0052, C, _cola.data.materials[0])
+    rt["cola"].scale = (0.62, 0.62, 0.62)
+    rt["cola"].rotation_euler.x = math.radians(float(os.environ.get("COLA_SUBE", -14)))
 # párpados del color del lomo (de perfil, la máscara de guata los pintaba blancos)
 lomo_m = PJ.mat_simple("LomoParpado", (0.42, 0.20, 0.08), rough=0.7, sheen=0.9)
 for pv in rt["parpados"]:
@@ -176,7 +182,7 @@ nt.links.new(mix2.outputs[0], out.inputs["Surface"])
 cab.data.materials.clear()
 cab.data.materials.append(m)
 # interior: todo cabe dentro de la cabeza (x 0.000–0.012) y dentro del círculo de la ventana
-diente = P.mat("Muela", (0.78, 0.62, 0.36), rough=0.35, coat=0.3, emit=float(os.environ.get("BRILLO", 0.0)))   # marfil amarillento de roedor   # bajo el umbral del brillo del post (si no, se queman)
+diente = P.mat("Muela", (0.78, 0.62, 0.36), rough=0.5, coat=0.05, emit=float(os.environ.get("BRILLO", 0.0)))   # marfil amarillento de roedor   # bajo el umbral del brillo del post (si no, se queman)
 encia = P.mat("Encia", (0.78, 0.36, 0.40), rough=0.55, sss=0.0)   # c3: encía rosada y gruesa que abraza la base de las muelas (oscura y fina se leía como palitos)
 semilla = P.mat("SemillaAji", (0.96, 0.86, 0.46), rough=0.5, coat=0.2)   # semilla de ají real: disco plano amarillo pálido
 borde_s = P.mat("SemillaBorde", (0.74, 0.56, 0.20), rough=0.55)          # con el borde un poco más oscuro
@@ -228,11 +234,20 @@ lo_in = bpy.data.objects.new("LuzMejilla", luz_in)
 sc.collection.objects.link(lo_in)
 lo_in.location = M @ Vector((0.013, centro_loc.y - 0.002, centro_loc.z + 0.004))
 L = bpy.data.lights.new("Key", "AREA")
-L.energy, L.size, L.shape = 25, 0.5, "DISK"   # reflejo redondo en el ojo (no un parche cuadrado)
+L.energy, L.size, L.shape = float(os.environ.get("KEY", 30)), 0.5, "DISK"   # reflejo redondo en el ojo (no un parche cuadrado)
 lo = bpy.data.objects.new("Key", L)
 sc.collection.objects.link(lo)
 lo.location = (0.6, -0.5, 0.6)
 lo.rotation_euler = (Vector((0, 0, 0.13)) - lo.location).to_track_quat("-Z", "Y").to_euler()
+# c3 r2: el pelaje salía caramelo oscuro (en la ficha es durazno-tostado claro): relleno suave y cálido desde la cámara,
+# sin reflejo en el ojo
+_Lf = bpy.data.lights.new("RellenoRaton", "AREA")
+_Lf.energy, _Lf.size, _Lf.shape, _Lf.color = float(os.environ.get("FILL", 9)), 0.8, "DISK", (1.0, 0.93, 0.85)
+_lf = bpy.data.objects.new("RellenoRaton", _Lf)
+sc.collection.objects.link(_lf)
+_lf.location = (0.9, 0.25, 0.25)
+_lf.rotation_euler = (Vector((0, 0, 0.11)) - _lf.location).to_track_quat("-Z", "Y").to_euler()
+_lf.visible_glossy = False
 cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
 sc.collection.objects.link(cam)
 sc.camera = cam
@@ -253,7 +268,7 @@ if MODO == "lupa":
     tgt = M @ Vector((X_M, centro_loc.y - 0.0015, centro_loc.z))
     cam.location = tgt + Vector((float(os.environ.get("LUPA_D", 0.12)), 0.0, 0.0))
     cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
-    luz_in.energy = float(os.environ.get("LUZ_LUPA", 0.03))
+    luz_in.energy = float(os.environ.get("LUZ_LUPA", 0.022))   # c3: con 0,03 la muela de arriba se quemaba
     lo_in.location = M @ Vector((0.02, centro_loc.y - 0.004, centro_loc.z + 0.008))
 from bpy_extras.object_utils import world_to_camera_view as _w2c
 bpy.context.view_layer.update()

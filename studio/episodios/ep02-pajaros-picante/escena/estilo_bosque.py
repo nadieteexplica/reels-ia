@@ -70,7 +70,7 @@ def area(name, loc, energy, size, color, target=(0.0, 0.0, 0.22)):
         ob.visible_glossy = False          # c3: sus reflejos en los ojos dibujaban una carita triste; un solo brillo por ojo
 if os.environ.get("BOSQUE", "v2") == "v2":
     area("Relleno", (0.4, -0.9, 0.5), float(os.environ.get("FILL", 9)), 0.8, (0.70, 0.85, 1.0))       # relleno frío y suave desde cámara
-    area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 30)), 0.22, (1.0, 0.86, 0.66), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza (c3: con 60 quemaba la cola)
+    area("Contorno", (-0.10, 0.40, 0.50), float(os.environ.get("RIM", 60)), 0.22, (1.0, 0.86, 0.66), target=(0.0, 0.0, 0.24))  # borde cálido en lomo y cabeza (c3: con 60 quemaba la cola)
     # c3: luz principal neutra sobre la tupaya (con sólo el ambiente verde el pelaje salía oliva oscuro, lejos del beige de la ficha)
     # la pata trasera lejana quedaba a la sombra del cuerpo y sólo la iluminaba el rebote del musgo (salía amarillo verdosa)
     area("RellenoPatas", tuple(float(v) for v in os.environ.get("PATAS_POS", "-0.05,-0.40,0.12").split(",")), float(os.environ.get("PATAS", 2.5)), 0.25, (1.0, 0.96, 0.90), target=(-0.02, 0.0, 0.17))
@@ -97,17 +97,17 @@ if _hp:
         _b.inputs["Subsurface Weight"].default_value = 0.08
         _b.inputs["Roughness"].default_value = 0.65
         _b.inputs["Specular IOR Level"].default_value = 0.25
-sc.view_settings.exposure = float(os.environ.get("EXPOSICION", 0.25))   # c3: el bosque quedaba oscuro y turbio (brillo medio 62 contra 94–114 de los otros)
+sc.view_settings.exposure = float(os.environ.get("EXPOSICION", 0.45))   # c3: el bosque quedaba oscuro y turbio (brillo medio 62 contra 94–114 de los otros)
 cam = bpy.data.objects.new("Cam", bpy.data.cameras.new("Cam"))
 sc.collection.objects.link(cam)
 sc.camera = cam
-cam.data.lens = float(os.environ.get("LENS", 28))
+cam.data.lens = float(os.environ.get("LENS", 45))   # c3: con 28 mm la perspectiva agrandaba cabeza y patas (no calzaba con la ficha)
 cam.data.sensor_fit = "VERTICAL"
 cam.data.sensor_height = 24
 bpy.context.view_layer.update()
 cab_w = tp["cabeza"].matrix_world.translation
 tgt = cab_w + Vector(tuple(float(x) for x in os.environ.get("TGT", "-0.06,0.0,-0.035").split(",")))
-cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.05,-0.62,0.0").split(",")))
+cam.location = tgt + Vector(tuple(float(x) for x in os.environ.get("CAMOFF", "-0.08,-1.0,0.11").split(",")))
 cam.rotation_euler = (tgt - cam.location).to_track_quat("-Z", "Y").to_euler()
 cam.data.dof.use_dof = True
 cam.data.dof.focus_distance = (cab_w - cam.location).length
@@ -116,7 +116,7 @@ cam.data.dof.aperture_fstop = 2.8
 bpy.context.view_layer.update()
 pc = tp["cabeza"]
 loc_cam = (pc.parent.matrix_world.inverted() @ cam.location) - pc.location
-yaw = math.atan2(loc_cam.x, -loc_cam.y) * float(os.environ.get("MIRA_CAM", 0.75))   # gira 3/4 de lo necesario: mira a cámara y el hocico largo se sigue viendo de lado
+yaw = math.atan2(loc_cam.x, -loc_cam.y) * float(os.environ.get("MIRA_CAM", 0.30))   # gira 3/4 de lo necesario: mira a cámara y el hocico largo se sigue viendo de lado
 pitch = -math.atan2(loc_cam.z, Vector((loc_cam.x, loc_cam.y)).length)
 pc.rotation_mode = "XYZ"   # R = Rz·Rx: primero cabecea, después gira
 pc.rotation_euler = (pitch, 0, yaw)

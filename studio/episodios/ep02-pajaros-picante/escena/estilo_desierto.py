@@ -125,7 +125,7 @@ rt["root"].rotation_euler.z = math.radians(float(os.environ.get("RAT_ROT", -60))
 aj_m = E.aji("AjiMordido", largo=float(os.environ.get("AJM_LARGO", 0.125)), grosor=float(os.environ.get("AJM_GROSOR", 0.020)), coll=CP, seed=11, curva=0.25)
 # acostado de lado a lo largo del borde delantero de la repisa (tallo a la izquierda, junto al ratón): el mordisco queda en la
 # silueta de arriba y se lee desde la cámara, que está más abajo
-AJM = tuple(float(v) for v in os.environ.get("AJM", "0.256,0.181,-86").split(","))
+AJM = tuple(float(v) for v in os.environ.get("AJM", "0.262,0.262,-86").split(","))
 aj_m.rotation_euler = (math.radians(90), 0, math.radians(AJM[2]))
 _tl = bpy.data.objects["AjiMordido_tallo"]      # tallo corto y hacia arriba: no toca el lomo del ratón (c3: el ají parecía clavado en la espalda)
 _tl.scale = (0.6, 0.6, 0.6)
@@ -162,10 +162,10 @@ _r_aji = float(os.environ.get("AJM_GROSOR", 0.020)) * 0.77
 _ex = (Vector((math.cos(math.radians(AJM[2] + 90)), math.sin(math.radians(AJM[2] + 90)), 0)))
 _apoyo = max(cima(*(Vector((AJM[0], AJM[1], 0)) + _ex * d).xy[:]) for d in (0.015, 0.03, 0.045, 0.06, 0.075))
 aj_m.location.z = _apoyo + _r_aji + 0.0014        # + grosor de la cinta de la medalla, que pasa por debajo
-LX, LY = (float(v) for v in os.environ.get("LENTES_XY", "0.318,0.251").split(","))
+LX, LY = (float(v) for v in os.environ.get("LENTES_XY", "0.272,0.177").split(","))
 # c3: adelante, en el mismo borde de la repisa alta (más atrás el labio de la piedra les tapaba la mitad de abajo)
 _apoyo_l = max(cima(LX + dx, LY + 0.008) for dx in (-0.02, 0.0, 0.02))
-lc = PJ.lentes("LentesCaidos", (LX, LY, _apoyo_l + 0.0138), 0.05, CP, mirando=tuple(float(v) for v in os.environ.get("LENTES_MIRA", "-0.75,-1.0,-0.15").split(",")))
+lc = PJ.lentes("LentesCaidos", (LX, LY, _apoyo_l + 0.0138), 0.05, CP, mirando=tuple(float(v) for v in os.environ.get("LENTES_MIRA", "-0.45,-1.0,-0.12").split(",")))
 lc.rotation_euler.rotate(Euler((0, math.radians(float(os.environ.get("LENTES_LADEO", 20))), 0)))   # caídos: ladeados, no derechos
 # aros y patillas (como los lentes del ají guardia): sin aro ni patilla se leían como dos bolitas negras
 _marco = PJ.mat_simple("MarcoPlata", (0.72, 0.72, 0.74), rough=0.25, coat=0.4)   # aro fino claro: como el filo brillante de los lentes del guardia en la ficha
@@ -186,7 +186,7 @@ for _s in (-1, 1):
 
 # --- medalla caída: cuelga del borde de la repisa de abajo, la cinta (azul, para que no se confunda con el ají) queda
 # tendida sobre la piedra y baja por la cara delantera hasta el disco ---
-MX = float(os.environ.get("MEDALLA_X", 0.296))
+MX = float(os.environ.get("MEDALLA_X", 0.338))
 MR = float(os.environ.get("MEDALLA_R", 0.019))
 rep0 = repisas[0]
 top0 = cima(MX, rep0.location.y, [rep0])
@@ -213,19 +213,21 @@ def cinta(nombre, xs, ancho=0.0075, grosor=0.0012):
     xs = (x en el disco, x en el borde, x al final arriba)."""
     pts = []
     z0 = zc + MR * 0.80
-    zs = [z0 + (top0 - 0.003 - z0) * i / 7 for i in range(8)]
+    zs = [z0 + (top0 - 0.003 - z0) * i / 15 for i in range(16)]
     for i, z in enumerate(zs):
-        x = xs[0] + (xs[1] - xs[0]) * i / 7
+        x = xs[0] + (xs[1] - xs[0]) * i / 15
         y = frente(rep0, x, z)
         if y is not None:
-            pts.append(Vector((x, y - grosor / 2 - 0.0004, z)))
+            pts.append(Vector((x, y - grosor / 2 - 0.0016, z)))   # c3: más separada de la piedra (el ruido de la roca la cortaba en pedazos)
     y_borde = pts[-1].y
     for i in range(1, 9):
         y = y_borde + 0.045 * i / 8
         x = xs[1] + (xs[2] - xs[1]) * i / 8
         z = cima(x, y, [rep0])
         if z > pts[-1].z - 0.004:
-            pts.append(Vector((x, y, z + grosor / 2 + 0.0004)))
+            pts.append(Vector((x, y, z + grosor / 2 + 0.0016)))
+    for _it in range(3):                                # suaviza el recorrido (sin quiebres entre muestras)
+        pts = [pts[0]] + [(pts[k - 1] + pts[k] * 2 + pts[k + 1]) / 4 for k in range(1, len(pts) - 1)] + [pts[-1]]
     bm = bmesh.new()
     filas = []
     for k, p_ in enumerate(pts):

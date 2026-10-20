@@ -26,7 +26,7 @@ from PIL import Image, ImageOps
 _cp = os.path.join(OUT, NOMBRE + "_cara.png")
 ImageOps.mirror(Image.open(_cp)).save(_cp)
 mx = str(W - int(mx))
-env.update({"MODO": "lupa", "NOMBRE": NOMBRE + "_lupa", "LADO": str(int(W * 0.75)), "LENS": os.environ.get("LENS_LUPA", "65")})
+env.update({"MODO": "lupa", "NOMBRE": NOMBRE + "_lupa", "LADO": str(int(W * 1.2)), "LENS": os.environ.get("LENS_LUPA", "65")})
 r2 = subprocess.run([sys.executable, os.path.join(HERE, "estilo_muelas.py")], env=env, capture_output=True, text=True)
 if r2.returncode:
     print(r2.stdout[-2000:], r2.stderr[-2000:])

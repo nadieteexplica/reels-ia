@@ -52,8 +52,10 @@ def _sobre(x, y):
     hit, loc, nor, _ = _lg.evaluated_get(_dg).ray_cast(_Mi @ Vector((x, y, 0.5)), Vector((0, 0, -1)))
     return (loc.z, nor) if hit else (None, None)
 # papilas sueltas (no en grilla): muchas chicas y unas pocas grandes y más rojas; ninguna dentro del surco ni pegada a la campana
-chica = P.mat("SensorReposo", (0.95, 0.62, 0.62), rough=0.5, coat=0.12)     # mate: brillantes se leían como gotas de agua
-grande = P.mat("PapilaGrande", (0.90, 0.42, 0.46), rough=0.45, coat=0.15)
+chica = P.mat("SensorReposo", (0.74, 0.38, 0.42), rough=0.75)     # c3: del rosado de la lengua, apenas más claro y mate (pálidas y brillantes se leían como gotas)
+grande = P.mat("PapilaGrande", (0.70, 0.29, 0.34), rough=0.72)
+for _m in (chica, grande):
+    _m.node_tree.nodes["Principled BSDF"].inputs["Specular IOR Level"].default_value = 0.2
 rp = random.Random(5)
 puestas, intentos = [], 0
 N_PAP = int(os.environ.get("N_PAP", 420))
@@ -61,7 +63,7 @@ while len(puestas) < N_PAP and intentos < 40000:
     intentos += 1
     x, y = rp.uniform(XL - 0.15, XL + 0.15), rp.uniform(-0.34, 0.32)
     big = rp.random() < 0.07
-    r = rp.uniform(0.0062, 0.0080) if big else rp.uniform(0.0026, 0.0048)
+    r = rp.uniform(0.0052, 0.0064) if big else rp.uniform(0.0026, 0.0046)
     if (x ** 2 + (y - 0.02) ** 2) ** 0.5 < 0.05 or abs(x - XL) < 0.011:
         continue
     if any((x - a) ** 2 + (y - b) ** 2 < (r + c + 0.0035) ** 2 for a, b, c in puestas):
@@ -79,7 +81,7 @@ ZC = _sobre(0, 0.02)[0] - 0.0008
 # la campanita es plateada (neutra) siempre; cuando suena, lo dicen la luz y las ondas del color del estímulo (puerta 4 c2: rojo sobre rojo no se leía)
 camp, domo = LG.campana(C, loc=(0, 0.02, ZC), r=0.035, color=None)
 if col:
-    LG.ondas(C, (0, 0.02, 0.050 + ZC), 0.040, col, tope_izq=float(os.environ.get("TOPE_IZQ", 8)))
+    LG.ondas(C, (0, 0.02, 0.050 + ZC), 0.040, col, tope_izq=float(os.environ.get("TOPE_IZQ", 12)), tope_der=float(os.environ.get("TOPE_DER", 12)))   # c3: mismo arco a los dos lados (la campana no suena "chueca") y bajo la molécula
     luz = bpy.data.lights.new("LuzCampana", "POINT")
     luz.energy, luz.color, luz.shadow_soft_size = float(os.environ.get("LUZ", 0.6)), col, 0.02
     lo = bpy.data.objects.new("LuzCampana", luz)

@@ -710,7 +710,7 @@ def tupaya(coll, nombre="Tupaya"):
         (tuple(cab_c), (0.025, 0.026, 0.023), (0, 0, 0)),
         # hocico: un solo elipsoide largo que nace bien adentro de la cabeza y sale en ángulo bajo (c3: con uno corto
         # quedaba un escalón concéntrico en la base, como un tubo encajado)
-        (tuple(cab_c + Vector((0, -0.025, -0.006))), (0.0155, 0.039, 0.0145), (8, 0, 0)),
+        (tuple(cab_c + Vector((0, -0.026, -0.0065))), (0.0118, 0.040, 0.0112), (8, 0, 0)),
     ], coll, voxel=0.0005, suave=40)
     cab.data.materials.append(pel)
     colgar(cab, piv_cab)
