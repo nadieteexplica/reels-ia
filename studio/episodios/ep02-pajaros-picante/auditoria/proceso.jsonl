@@ -64,3 +64,6 @@
 {"tipo": "trabajo", "id": "render HD bosque (local)", "estado": "inicio", "nota": "puntas de arriba redondeadas", "n": 64, "ts": "2026-10-20T09:48:34-03:00"}
 {"tipo": "trabajo", "id": "estilos 39423925680", "estado": "fin", "n": 65, "ts": "2026-10-20T09:56:20-03:00"}
 {"tipo": "trabajo", "id": "render HD bosque (local)", "estado": "fin", "n": 66, "ts": "2026-10-20T09:56:20-03:00"}
+{"tipo": "trabajo", "id": "estilos 39429531804", "estado": "inicio", "nota": "HD de los arreglos de la puerta 4 r2", "n": 67, "ts": "2026-10-20T10:21:03-03:00"}
+{"tipo": "chequeo", "id": "estilos 39429531804", "estado": "3/4 listos, lengua en curso", "n": 68, "ts": "2026-10-20T10:27:55-03:00"}
+{"tipo": "trabajo", "id": "estilos 39429531804", "estado": "fin", "n": 69, "ts": "2026-10-20T10:33:24-03:00"}
