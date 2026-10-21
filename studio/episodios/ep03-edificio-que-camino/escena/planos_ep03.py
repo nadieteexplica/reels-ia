@@ -112,8 +112,8 @@ def p02(sc, a, b):
 
     def cam_de(t, d):                     # fija: el edificio cruza el cuadro y se leen los pasos
         x = lin(t, t0, t1)
-        return Vector((d0 + 3.0, -36 + 1.5 * x, 1.1)), Vector((d0 + 1.0, 0, 6.2))
-    return _camina(sc, a, b, lambda t: d0 + V * (t - t0), cam_de, lens=20, shift=-0.12)
+        return Vector((d0 + 17.0, -25 + 1.0 * x, 1.0)), Vector((d0 + 1.0, 0, 4.2))     # de frente-derecha: viene hacia la cámara
+    return _camina(sc, a, b, lambda t: d0 + V * (t - t0), cam_de, lens=20, shift=-0.05)
 
 
 def p03(sc, a, b):
@@ -205,7 +205,7 @@ def _vidrio_fantasma():
     m = bpy.data.materials.get("Fantasma")
     if m:
         return m
-    m = P.mat("Fantasma", (0.30, 0.62, 0.95), rough=0.08, emit=0.12, alpha=0.22)
+    m = P.mat("Fantasma", (0.16, 0.42, 0.85), rough=0.08, emit=0.0, alpha=0.38)     # celeste con cuerpo: no se quema contra el cielo
     return m
 
 
@@ -213,7 +213,7 @@ def _torre_fantasma(name, x, y, w, d, h, coll):
     ob = ED._caja(name, -w / 2, w / 2, -d / 2, d / 2, 0, 1.0, coll, _vidrio_fantasma())
     ob.location = (x, y, 0)
     ob["h"] = h
-    lineas = P.mat("FantasmaLineas", (0.55, 0.85, 1.0), emit=1.2, alpha=0.8)
+    lineas = P.mat("FantasmaLineas", (0.40, 0.72, 1.0), emit=0.35, alpha=0.85)
     pisos = []
     for k in range(int(h // 4)):
         l = ED._caja(name + f"_l{k}", -w / 2 - 0.05, w / 2 + 0.05, -d / 2 - 0.05, d / 2 + 0.05, 0, 0.18, coll, lineas)
@@ -306,7 +306,7 @@ def p09(sc, a, b):
 def p10(sc, a, b):
     S = _escuela(sc)
     T = _torres(S)
-    cam = _cam(sc, 22, -0.02)
+    cam = _cam(sc, 16, -0.04)
     t0, t1 = E.T[10]
     big, pisos = T[4]
     big.location = (0, 6, 0)
@@ -316,7 +316,7 @@ def p10(sc, a, b):
     def act(f):
         t = t_de(f)
         x = suave(lin(t, t0, t1))
-        E.mirar(cam, Vector((-46, -96, 5)).lerp(Vector((-42, -88, 5)), x), (0, 8, 30))
+        E.mirar(cam, Vector((-30, -58, 3)).lerp(Vector((-27, -54, 3)), x), (0, 8, 30))
         for ob, ps in T[:4]:
             _crecer(ob, ps, 1.0)
         _crecer(big, pisos, sale(lin(t, t0 + 0.1, t0 + 1.5)))
@@ -606,6 +606,7 @@ MAPA_INI = (-18.0, -38.0, R(90))          # el edificio camina hacia arriba de l
 def _mapa(sc, plano):
     S = _obra(sc, sol=dict(elev=55.0, azim=-40.0, fuerza=4.4))
     ed = S["ed"]
+    ED._caja("TierraMapa", -200, 200, -220, -60, -0.3, 0.0, S["coll"], C.mat_tierra())     # obra también al sur: sin plaza gris bajo el edificio
     cam = E.camara(sc, lens=50)
     cam.data.type = "ORTHO"
     t0, t1 = E.T[plano]
@@ -782,15 +783,15 @@ def _sala_set(sc):
         m = C.mat_baldosa().copy()
         m.name = "BaldosaPlaza"
         br = next(n for n in m.node_tree.nodes if n.bl_idname == "ShaderNodeTexBrick")
-        br.inputs["Color1"].default_value = (0.60, 0.50, 0.40, 1)
-        br.inputs["Color2"].default_value = (0.52, 0.43, 0.34, 1)
-        br.inputs["Mortar"].default_value = (0.34, 0.29, 0.24, 1)
+        br.inputs["Color1"].default_value = (0.46, 0.33, 0.22, 1)
+        br.inputs["Color2"].default_value = (0.38, 0.27, 0.18, 1)
+        br.inputs["Mortar"].default_value = (0.24, 0.19, 0.14, 1)
         piso.data.materials.clear()
         piso.data.materials.append(m)
     # suelo lejano: tapa la franja oscura bajo el horizonte (el pavimento termina a 400 m)
     ED._caja("SueloLejos", -6000, 6000, -6000, 6000, -0.62, -0.50, S["coll"], P.mat("SueloLejos", (0.50, 0.43, 0.35), rough=1.0))
     # huella de la sala: tierra donde estaba; aparece cuando la sala se va y ahí aterriza la autopista
-    ED._caja("HuellaSala", -15.6, 15.6, -10.6, 10.6, -0.34, -0.30, S["coll"], C.mat_tierra())
+    ED._caja("HuellaSala", -15.6, 15.6, -10.6, 10.6, -0.34, -0.29, S["coll"], P.mat("HuellaSala", (0.20, 0.13, 0.08), rough=1.0))
     sala = _sala(S["coll"])
     acero = P.mat("Riel", (0.35, 0.33, 0.32), rough=0.4, metal=0.9)
     for s in (-7, 7):
