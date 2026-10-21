@@ -143,6 +143,9 @@ El chat agrega a esta lista los que encuentre repetidos en muchas cuentas.
 - Datos de cualquier cosa, no solo humanos.
 - Ganchos: "¿Qué pasaría si…?", "¿Cómo funciona por dentro?", "¿Por qué no podemos…?", "¿Qué pasa dentro de…?" y "¿Sabías que…?".
 - Rebuscados y divertidos, pero reales.
+- (21-oct) Rondas **sin seres vivos**: objetos, máquinas, lugares, planeta y espacio como protagonistas (las personas sólo de contexto).
+- (21-oct) **Historias reales absurdas** que cierran con "¿y para qué sirvió? No sé… pero es ridículo": lo chistoso pesa tanto como lo útil.
+- (21-oct) **Datos freaks** que pasan alrededor del mundo en la vida cotidiana.
 
 **No le gusta:**
 - El pulpo como tema.
