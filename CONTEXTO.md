@@ -156,7 +156,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   2. Biblioteca de reacciones del protagonista con Kling (una vez; después se reusa sin gastar unidades).
   3. RunPod con 2–3 pods en paralelo (video completo en ~20–30 min).
   4. ~~Ep. 2~~: programado el 21-oct (versión r3, decisión de Tomás); confirmar en Metricool que quedó "Published". Métricas a las 48 h el 23-oct; comparar lo que dijo el auditor con lo que rindió.
-  5. **Ep. 3 con el proceso v2** (62–65 s, fichas de plano, kit, `tools/prueba.py`, animatic, un render final, topes por video). Primer paso al copiar la escena del Ep. 2: renombrar `ep02.py`/`ep02_planos.json` en la escena y en `render-planos.yml`.
+  5. **Ep. 3 = "El edificio que caminó"** (elegido por Tomás el 21-oct; ficha verificada en `docs/IDEAS.md` → "Historia e ingeniería"; tono absurdo y chistoso, sin moraleja) **con el proceso v2** (62–65 s, fichas de plano, kit, `tools/prueba.py`, animatic, un render final, topes por video). Primer paso al copiar la escena del Ep. 2: renombrar `ep02.py`/`ep02_planos.json` en la escena y en `render-planos.yml`.
   6. ~~Tareas programadas~~: la de producción la eliminó Tomás (21-oct): los videos se piden en el chat. La revisión de métricas, sólo si él la pide.
 
 ## Decisiones pendientes de Tomás
