@@ -165,7 +165,7 @@ def p31(sc, a, b):
 
     def cam_de(t, d):
         x = entra(lin(t, t0, t1))
-        return Vector((d - 30, -70, 30 + 30 * x)), Vector((d, 8, 6 + 160 * x))
+        return Vector((d - 30, -70, 30 + 24 * x)), Vector((d + 10 * x, 8, 6 + 55 * x))
     return _camina(sc, a, b, lambda t: 30 + V * (t - t0), cam_de, lens=26)
 
 
@@ -511,24 +511,24 @@ def p21(sc, a, b):
 # E5 muletas (planos 23–24)
 # =====================================================================================================
 def _muleta(name, coll, alto=17.0):
-    madera = P.mat("MaderaMuleta", (0.55, 0.34, 0.16), rough=0.55)
+    madera = P.mat("MaderaMuleta", (0.78, 0.52, 0.26), rough=0.45, coat=0.4)
     goma = P.mat("GomaMuleta", (0.08, 0.08, 0.08), rough=0.8)
     raiz = P.empty(name, coll=coll)
-    sep = 2.0
+    sep = 3.0
     for s in (-1, 1):
-        rail = P.prim("cyl", name + f"_r{s}", coll, madera, r=0.36, r2=0.36, h=alto * 0.62, seg=16)
+        rail = P.prim("cyl", name + f"_r{s}", coll, madera, r=0.62, r2=0.62, h=alto * 0.62, seg=16)
         rail.parent = raiz
         rail.location = (s * sep * 0.5, 0, alto * 0.62)
         rail.rotation_euler = (0, -s * math.atan2(sep * 0.4, alto * 0.62), 0)
-    pad = ED._caja(name + "_pad", -1.6, 1.6, -0.5, 0.5, alto * 0.93, alto, coll, goma, raiz, bisel=0.2)
-    mano = P.prim("cyl", name + "_mano", coll, madera, r=0.2, r2=0.2, h=sep, seg=12)
+    pad = ED._caja(name + "_pad", -2.4, 2.4, -0.9, 0.9, alto * 0.92, alto, coll, goma, raiz, bisel=0.3)
+    mano = P.prim("cyl", name + "_mano", coll, madera, r=0.38, r2=0.38, h=sep, seg=12)
     mano.parent = raiz
     mano.location = (0, 0, alto * 0.62)
     mano.rotation_euler = (0, R(90), 0)
-    eje = P.prim("cyl", name + "_eje", coll, madera, r=0.24, r2=0.24, h=alto * 0.32, seg=16)
+    eje = P.prim("cyl", name + "_eje", coll, madera, r=0.55, r2=0.55, h=alto * 0.32, seg=16)
     eje.parent = raiz
     eje.location = (0, 0, alto * 0.16)
-    punta = P.prim("cyl", name + "_punta", coll, goma, r=0.34, r2=0.30, h=0.8, seg=16)
+    punta = P.prim("cyl", name + "_punta", coll, goma, r=0.7, r2=0.62, h=1.0, seg=16)
     punta.parent = raiz
     punta.location = (0, 0, 0.4)
     return raiz
@@ -563,12 +563,12 @@ def _muletas(sc, plano):
         ed.poner(0.0, ED.recta(x, 0, 0), alto=z, visibles=0, sin_pasos=True, marco=False)
         ed.raiz.rotation_euler = (tamb, 0, 0)
         for m_, e, s in ((m1, e1, -1), (m2, e2, 1)):
-            m_.location = (s * 17.0 + x, -8.6 - 26 * (1 - e), 2.4 * sube)
+            m_.location = (s * 15.5 + x, -8.8 - 26 * (1 - e), 2.4 * sube)
             m_.rotation_euler = (R(-7.5) - R(25) * (1 - e), s * R(3), 0)
             for o in m_.children_recursive:
                 o.hide_render = e <= 0.001
         xx = suave(lin(t, t0, t1))
-        E.mirar(cam, Vector((-30 + 3 * xx, -48, 4)), (x, -6, 9.5))
+        E.mirar(cam, Vector((-22 + 3 * xx, -44, 3.0)), (x, -6, 10.0))
     return {"actualizar": act}
 
 
@@ -701,12 +701,12 @@ def p30(sc, a, b):
 # E8 sala de conciertos de 2003 (planos 32–34): sobre rieles, sin patas; la autopista elevada
 # =====================================================================================================
 def _sala(coll):
-    piedra = ED.mat_estuco("PiedraSala", (0.88, 0.84, 0.74))
+    piedra = ED.mat_estuco("PiedraSala", (0.80, 0.70, 0.55))
     raiz = P.empty("Sala", coll=coll)
     ED._caja("SalaCuerpo", -15, 15, -10, 10, 0.8, 16, coll, piedra, raiz)
     ED._caja("SalaZocalo", -15.4, 15.4, -10.4, 10.4, 0.6, 2.2, coll, P.mat("Granito", (0.45, 0.43, 0.40), rough=0.6), raiz)
     ED._caja("SalaCornisa", -15.8, 15.8, -10.8, 10.8, 15.4, 16.4, coll, piedra, raiz)
-    ED._caja("SalaAtico", -9, 9, -6, 6, 16.4, 20, coll, piedra, raiz)
+    ED._caja("SalaAtico", -9, 9, -6, 6, 16.4, 20, coll, P.mat("CobreVerde", (0.30, 0.48, 0.42), rough=0.5, metal=0.3), raiz)
     for i in range(6):                       # pórtico de columnas
         x = -8.75 + 3.5 * i
         col = P.prim("cyl", f"SalaCol{i}", coll, piedra, r=0.65, r2=0.6, h=11.5, seg=20)
@@ -723,6 +723,10 @@ def _sala(coll):
     fr = P.mesh_obj("SalaFrontón", bm, coll, smooth=False, m=piedra)
     fr.parent = raiz
     vid = ED.mat_vidrio()
+    for s in (-1, 1):
+        for i in range(4):
+            y = -7 + 4.5 * i
+            ED._caja(f"SalaVent{s}{i}", s * 15.0 - 0.08, s * 15.0 + 0.08, y, y + 2.2, 5.0, 12.5, coll, vid, raiz)
     for i in range(5):
         ED._caja(f"SalaPuerta{i}", -7.4 + 3.5 * i, -6.0 + 3.5 * i, -10.1, -10.0, 2.2, 7.5, coll, vid, raiz)
     return raiz

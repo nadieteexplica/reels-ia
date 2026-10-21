@@ -225,10 +225,10 @@ class Edificio:
         fila([x for x in xs_frente if abs(x) > 7.5], 6.02, math.pi)
         fila([-3.0, 0.0, 3.0][::1], 28.02, math.pi)
         ys_tallo = [9.0 + 3.0 * i for i in range(7)]
-        fila(ys_tallo, None, -math.pi / 2, nx=6.02)
-        fila(ys_tallo, None, math.pi / 2, nx=-6.02)
-        fila([-3.0, 3.0], None, -math.pi / 2, nx=22.02)
-        fila([-3.0, 3.0], None, math.pi / 2, nx=-22.02)
+        fila(ys_tallo, None, math.pi / 2, nx=6.02)
+        fila(ys_tallo, None, -math.pi / 2, nx=-6.02)
+        fila([-3.0, 3.0], None, math.pi / 2, nx=22.02)
+        fila([-3.0, 3.0], None, -math.pi / 2, nx=-22.02)
         self.z_cuerpo = z0
 
     # ---------------- patas ----------------

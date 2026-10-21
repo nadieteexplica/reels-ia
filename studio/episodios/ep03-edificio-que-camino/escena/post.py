@@ -378,7 +378,12 @@ def graficos(im, f, k):
         if k == 27:
             g = meta(27, f, "giro", 0.0) or 0.0
             c = meta(27, f, "centro", (540, 900))
-            d.arc((c[0] - 150, c[1] - 150, c[0] + 150, c[1] + 150), start=-90, end=-90 + g * 3, fill=PATA_A, width=12)
+            R_ = 230          # el ángulo real (21°), con dos rayas: el rumbo de partida y el de ahora
+            for ang, col in ((-90, (255, 255, 255)), (-90 + g, PATA_A)):
+                d.line((c[0], c[1], c[0] + R_ * 1.15 * math.cos(math.radians(ang)), c[1] + R_ * 1.15 * math.sin(math.radians(ang))), fill=col, width=8)
+            if g > 0.3:
+                d.arc((c[0] - R_, c[1] - R_, c[0] + R_, c[1] + R_), start=-90, end=-90 + g, fill=PATA_A, width=14)
+            G.registrar("angulo", (c[0] - R_ * 1.2, c[1] - R_ * 1.2, c[0] + R_ * 1.2, c[1]))
             pildora(im, f"{round(g):d}°", 540, 360, fondo=PATA_A, tinta=(20, 18, 10), s=pop(age), tam=96, tipo="contador")
     elif k == 28:
         m = meta(28, f, "dist", 0.0) or 0.0

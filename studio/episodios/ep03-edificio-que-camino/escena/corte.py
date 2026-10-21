@@ -22,15 +22,19 @@ def mat_corte_tierra():
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
     tc = _nodo(nt, "ShaderNodeTexCoord", -1000, 0)
-    wave = _nodo(nt, "ShaderNodeTexWave", -750, 100, Scale=0.45, Distortion=0.8, Detail=2.0)
-    wave.bands_direction = "Z"
-    nt.links.new(tc.outputs["Object"], wave.inputs["Vector"])
+    mp = _nodo(nt, "ShaderNodeMapping", -850, 100)
+    mp.inputs["Scale"].default_value = (0.12, 0.12, 1.6)          # capas horizontales irregulares
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    wave = _nodo(nt, "ShaderNodeTexNoise", -700, 100, Scale=1.2, Detail=6.0, Roughness=0.55)
+    nt.links.new(mp.outputs["Vector"], wave.inputs["Vector"])
     ramp = _nodo(nt, "ShaderNodeValToRGB", -500, 100)
     cr = ramp.color_ramp
-    cr.elements[0].color = (0.33, 0.19, 0.09, 1)
-    cr.elements[1].color = (0.50, 0.33, 0.17, 1)
-    e = cr.elements.new(0.5)
-    e.color = (0.44, 0.27, 0.13, 1)
+    cr.elements[0].position = 0.35
+    cr.elements[0].color = (0.26, 0.15, 0.07, 1)
+    cr.elements[1].position = 0.68
+    cr.elements[1].color = (0.62, 0.44, 0.25, 1)
+    e = cr.elements.new(0.52)
+    e.color = (0.43, 0.27, 0.13, 1)
     nt.links.new(wave.outputs["Fac"], ramp.inputs["Fac"])
     noi = _nodo(nt, "ShaderNodeTexNoise", -750, -200, Scale=3.0, Detail=8.0)
     nt.links.new(tc.outputs["Object"], noi.inputs["Vector"])
@@ -87,7 +91,7 @@ class Corte:
         self.ed = ed or Edificio(sc)
         # todo lo de la calle que queda delante del corte o bajo el suelo se esconde (el mundo termina en y = -7,2)
         for ob in bpy.data.objects:
-            if ob.name.startswith(("SueloObra", "Pavimento", "Cono", "Huella", "Monton", "Oficina", "VigaPila", "RejaIzq", "RejaDer")):
+            if ob.name.startswith(("SueloObra", "Pavimento", "Cono", "Huella", "Monton", "Oficina", "VigaPila", "RejaIzq", "RejaDer", "Plancha", "Piedra")):
                 ob.hide_render = True
 
     def poner(self, f, cavar, patas, cortar, alzar, rnd_seed=0):

@@ -64,6 +64,29 @@ def mat_asfalto():
     return m
 
 
+def mat_baldosa():
+    m = bpy.data.materials.get("Baldosa")
+    if m:
+        return m
+    m = bpy.data.materials.new("Baldosa")
+    m.use_nodes = True
+    nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]
+    tc = _nodo(nt, "ShaderNodeTexCoord", -800, 0)
+    br = _nodo(nt, "ShaderNodeTexBrick", -500, 0)
+    nt.links.new(tc.outputs["Object"], br.inputs["Vector"])
+    br.inputs["Color1"].default_value = (0.46, 0.44, 0.41, 1)
+    br.inputs["Color2"].default_value = (0.38, 0.36, 0.34, 1)
+    br.inputs["Mortar"].default_value = (0.25, 0.24, 0.23, 1)
+    br.inputs["Scale"].default_value = 0.9
+    br.inputs["Mortar Size"].default_value = 0.02
+    br.inputs["Brick Width"].default_value = 1.0
+    br.inputs["Row Height"].default_value = 0.5
+    nt.links.new(br.outputs["Color"], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.8
+    return m
+
+
 def cielo(sc, elev=30.0, azim=-58.0, fuerza=4.6, cielo_f=1.0):
     """Cielo físico + sol. azim 0 = el sol viene de -y (de frente a la fachada); negativo = desde la izquierda."""
     w = sc.world
@@ -221,7 +244,7 @@ def armar(sc, seed=3):
     rnd = random.Random(seed)
     # suelo: obra (tierra) y alrededor pavimento
     tierra = _caja("SueloObra", -90, 120, -60, 42, -0.3, 0.0, coll, mat_tierra())
-    _caja("Pavimento", -400, 400, -400, 400, -0.5, -0.32, coll, P.mat("PavGris", (0.30, 0.30, 0.31), rough=0.85))
+    _caja("Pavimento", -400, 400, -400, 400, -0.5, -0.32, coll, mat_baldosa())
     _caja("Calle", -400, 400, 46, 60, -0.31, -0.02, coll, mat_asfalto())
     for x in range(-380, 400, 12):                         # línea discontinua
         _caja("Linea", x, x + 5, 52.85, 53.15, -0.02, -0.005, coll, P.mat("LineaBlanca", (0.9, 0.9, 0.86), rough=0.6))
@@ -258,9 +281,17 @@ def armar(sc, seed=3):
         b = P.prim("sphere", f"Monton{i}", coll, mat_tierra(), u=24, v=12, r=1.0)
         b.scale = (rnd.uniform(4, 7), rnd.uniform(3, 5), rnd.uniform(1.2, 2.2))
         b.location = (rnd.choice([-78, -62, 88, 104]) + rnd.uniform(-6, 6), rnd.uniform(-50, 30), 0.0)
-    huella = P.mat("Huella", (0.26, 0.17, 0.10), rough=1.0)
-    for i in range(6):
-        _caja(f"Huella{i}", -90, 120, -24 + 0.9 * (i % 2) + 9 * (i // 2), -23.6 + 0.9 * (i % 2) + 9 * (i // 2), -0.02, 0.004, coll, huella)
+    huella = P.mat("Huella", (0.24, 0.155, 0.09), rough=1.0)
+    for i, (x0, y0, x1, y1) in enumerate([(20, -40, 100, -18), (21.8, -40, 101.8, -18)]):
+        L = math.hypot(x1 - x0, y1 - y0)
+        ob = _caja(f"Huella{i}", -L / 2, L / 2, -0.28, 0.28, -0.02, 0.006, coll, huella)
+        ob.location = ((x0 + x1) / 2, (y0 + y1) / 2, 0)
+        ob.rotation_euler = (0, 0, math.atan2(y1 - y0, x1 - x0))
+    agua = P.mat("Charco", (0.05, 0.06, 0.07), rough=0.04, metal=0.0)
+    for i, (x, y, sx, sy) in enumerate([(-29, -14, 5.5, 2.6), (-18, -19, 3.0, 1.6), (12, -24, 6.0, 2.2), (-48, -30, 4.0, 2.0)]):
+        ch = P.prim("cyl", f"Charco{i}", coll, agua, r=1.0, r2=1.0, h=0.02, seg=32)
+        ch.scale = (sx, sy, 1)
+        ch.location = (x, y, 0.005)
     plancha = P.mat("PlanchaAcero", (0.40, 0.31, 0.24), rough=0.7, metal=0.3)
     for i in range(16):
         x, y = rnd.uniform(-80, 110), rnd.choice([rnd.uniform(-58, -14), rnd.uniform(32, 40)])

@@ -1,0 +1,19 @@
+[
+ {
+  "id": "cuadros",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "estilo_corte_HD, estilo_obra_HD",
+  "materiales": [
+   "studio/episodios/ep03-edificio-que-camino/auditoria/4-cuadros/r1/materiales/estilo_corte_HD.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/4-cuadros/r1/materiales/estilo_obra_HD.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/4-cuadros/r1/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/4-cuadros/r1/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "cuadros.json",
+  "notas_de_uso": "Cuadros de estilo de los dos escenarios nuevos del Ep. 3 (estilo semi-realista, decisión de Tomás). 1) estilo_obra_HD: el cuadro 0 / portada (C0): la escuela de 1935 a medio paso en la obra de Shanghái, grupo A (amarillo) en el aire y grupo B (celeste) apoyado; la franja de subtítulos (y 1000–1250) y la interfaz (bajo y 1250) quedan sobre el suelo. 2) estilo_corte_HD: el corte del terreno (planos 13–17): el foso bajo la escuela con las columnas viejas y las 198 patas ya puestas. No hay personajes con cara: el protagonista es el edificio."
+ }
+]
