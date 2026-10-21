@@ -1,0 +1,76 @@
+{
+ "etapa": "4-cuadros",
+ "ronda": 2,
+ "veredicto": "APROBADO",
+ "promedio": 8.5,
+ "notas": {
+  "belleza": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Ambos cuadros con cielo azul saturado, ladrillo con luz suave y 0 % quemado. En estilo_obra_HD el suelo de obra ahora tiene textura de tierra sin brillo ni ruido de color. En estilo_corte_HD la mitad inferior (arena y ripio, y≈660–1280 a 720x1280) son franjas casi lisas (desviación ~2), pero quedan en la franja de subtítulos y bajo la interfaz, y se leen como un corte de infografía limpio.",
+   "de": "cuadros"
+  },
+  "personaje": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "El edificio es igual a la ficha (panel 1) en los dos cuadros: ladrillo rojo, molduras blancas, 5 pisos, marquesina de entrada, patas amarillas y celestes alternadas. En el corte se ve el mismo ladrillo y las mismas ventanas, sin cambios de color ni de proporción.",
+   "de": "cuadros"
+  },
+  "manos": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "anatomia": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  }
+ },
+ "problemas": [],
+ "sugerencias": [],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "La franja inferior de estilo_corte_HD ya no tiene tierra estirada ni ruido de color: ahora son capas con borde nítido (tierra vegetal, arcilla, arena con puntos y ripio gris), sin barridos y con 0 % quemado.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "Las bases de las patas quedan en y≈855–885 de 1920 (570–590 a 720x1280) y los vástagos cromados en y≈765–855, todo sobre la franja de subtítulos (1000–1250), donde ahora sólo hay capa de arena.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "Ahora se lee como un corte: arriba a la izquierda está el nivel de la calle con los árboles (y≈400), la cara cortada muestra las capas, la pared lateral del foso se ve en perspectiva y las patas se apoyan en el fondo del foso.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A4",
+   "arreglado": true,
+   "por_que": "Ya entra la silueta completa del edificio (el techo queda en y≈30–160, sin cortes a izquierda ni derecha) y el piso es tierra de obra con textura en vez de gris liso. En el recorte 3:4 el piso sigue ocupando cerca del 50 %, pero ya no es una superficie muerta.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A5",
+   "arreglado": true,
+   "por_que": "Las bases amarillas quedan unos 22 px (a 720x1280) sobre la línea de las bases celestes, en un patrón alternado. En las primeras patas de la izquierda se ve el fondo azul por debajo del pie levantado. La sombra del grupo A casi no se distingue y el cruce de vástagos del panel 2 de la ficha (muestra vieja) no se puede verificar en este material: se revisa en el animatic.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A6",
+   "arreglado": true,
+   "por_que": "Las columnas viejas son grises, sin franjas amarillas, y están entre las patas (x≈360–395 y 545–585). Ya no se confunden con el grupo A.",
+   "de": "cuadros"
+  }
+ ],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false
+}
