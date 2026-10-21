@@ -5,3 +5,5 @@
 {"tipo": "trabajo", "id": "render-planos muestras 2", "estado": "inicio", "n": 5, "ts": "2026-10-21T15:26:02-03:00"}
 {"tipo": "trabajo", "id": "revisor puerta 4 r1", "estado": "caido", "nota": "se cortó cuando Tomás escribió a las 15:39 (lección 13/37); se relanza el mismo encargo", "n": 6, "ts": "2026-10-21T15:42:59-03:00"}
 {"tipo": "trabajo", "id": "animatic 1 (540x960, 8 muestras, 15 máquinas)", "estado": "inicio", "n": 7, "ts": "2026-10-21T15:43:27-03:00"}
+{"tipo": "chequeo", "id": "render-planos 39655264403 (animatic 1)", "estado": "vivo, 14 min", "n": 8, "ts": "2026-10-21T15:58:03-03:00"}
+{"tipo": "trabajo", "id": "animatic 1 (run 39655264403)", "estado": "caido", "nota": "cancelado a propósito: la puerta 4 r1 pidió cambiar el look (cámara C0, corte, suelo, paso más alto); casi todos los planos cambian. No cuenta como animatic (no se auditó)", "n": 9, "ts": "2026-10-21T15:58:27-03:00"}

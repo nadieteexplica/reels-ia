@@ -1,0 +1,18 @@
+[
+ {
+  "cuadro": "estilo_corte_HD",
+  "archivo": "estilo_corte_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.0,
+  "brillo": 118.1,
+  "saturacion": 54.0
+ },
+ {
+  "cuadro": "estilo_obra_HD",
+  "archivo": "estilo_obra_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.0,
+  "brillo": 120.5,
+  "saturacion": 64.4
+ }
+]

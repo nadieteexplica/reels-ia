@@ -1,0 +1,22 @@
+# 4-cuadros · ronda 1 · **NO APROBADO**
+
+Promedio **7.0** (mínimo 8; ningún revisor bajo 7 en ningún criterio).
+
+| criterio | nota (promedio) | más baja | por qué (la más baja) |
+|---|---|---|---|
+| belleza | 6.0 | **6** | La mitad de arriba de los dos cuadros está bien (ladrillo con textura, ventanas limpias, cielo en degradado, luz suave y nada quemado), pero la de abajo falla en los dos: en estilo_corte_HD el suelo, que ocupa y≈1170–1920, es una textura estirada en franjas horizontales con ruido de color (el gradiente vertical es 2,5 veces el horizontal), y en estilo_obra_HD hay un piso gris liso y sin detalle desde y≈840 hasta abajo, con una saturación de 41,8 contra 78,6 del corte. |
+| personaje | 8.0 | 8 | El edificio protagonista es igual en los dos cuadros y en la ficha: fachada de ladrillo con cornisas crema, losa gris con vanos, alero con '1935' y patas cilíndricas amarillas y celestes sobre vástagos cromados. Sus proporciones se mantienen. |
+| manos | — | — | no aplica |
+| anatomia | — | — | no aplica |
+
+## Bloqueantes y fallas automáticas (impiden aprobar)
+
+1. 🛑 [B9] El 40 % inferior del cuadro es una textura de tierra estirada en franjas horizontales y con ruido de color: parece una imagen rota o barrida, no tierra. Este cuadro define el look de cinco planos. — plano estilo_corte_HD (planos 13–17) · cuadro fijo, y≈1170–1920 s. **Arreglo:** Lo más barato es reemplazar ese suelo rasante por la cara del corte (capas de tierra con un borde limpio, una textura CC0 de ambientCG a escala real) y activar el denoise. Si se mantiene el piso, hay que subir la escala de la textura, subir un poco la cámara para que no lo mire tan rasante y renderizar con más muestras.
+
+## Sugerencias (las 5 más importantes; el resto queda en veredicto.json)
+
+1. Los vástagos cromados y las bases de las patas (y≈1035–1165), justo lo que nombra la voz en los planos 13–17, quedan dentro de la franja de subtítulos (y 1000–1250) y los subtítulos los van a tapar. — plano estilo_corte_HD (planos 13–17) · cuadro fijo, y≈930–1165 s. **Arreglo:** Inclinar la cámara hacia abajo o subir el encuadre unos 250 px, para que la línea de bases quede en y≈900. La otra opción es usar la excepción de subtítulos arriba (y 280–480) en estos planos, sobre las ventanas, que no son lo importante.
+2. El cuadro no se lee como un 'corte del terreno' ni como un foso: no hay nivel de calle, no hay tierra cortada y no hay desnivel. Se ve un edificio sobre columnas encima de un piso de tierra, y la única pista del foso es la pared café que asoma en x≈150–290, y≈930–1065. — plano estilo_corte_HD (planos 13–17) · cuadro fijo s. **Arreglo:** Encuadre de sección: la línea del suelo de la calle arriba de las patas, la tierra cortada en primer plano con sus capas y el fondo del foso abajo, donde se apoyan las columnas viejas. Esto resuelve también el bloqueante 1.
+3. Más de la mitad del cuadro es piso gris liso. En el recorte 3:4 de la grilla de Instagram (y 240–1680), el piso ocupa cerca de 60 % de la miniatura y el techo del edificio queda cortado a la izquierda, así que la portada pierde fuerza. — plano C0 (estilo_obra_HD, portada) · cuadro fijo, y≈840–1920 s. **Arreglo:** Retroceder la cámara e inclinarla hacia arriba para que entre la silueta completa del edificio, con las patas en y≈950. Al piso darle textura de concreto o tierra de obra con huellas y con el arco del giro de 21° pintado, o poner en primer plano el foso o la fundación vieja.
+4. No se lee que el edificio esté 'a medio paso': todas las bases quedan en la misma línea del suelo y las patas amarillas y celestes se mezclan en una maraña de vástagos cromados cruzados. No se ve que el grupo A esté en el aire. En la ficha (panel 'GRUPO A') las barras cromadas se atraviesan entre sí: si ese primer plano sale en el video, es B1. — plano C0 (estilo_obra_HD, portada) · cuadro fijo, y≈720–840 s. **Arreglo:** Levantar claramente las bases del grupo A, con un espacio visible contra el fondo y su sombra en el suelo debajo, desde una cámara baja. Separar los vástagos para que no se crucen.
+5. Las columnas viejas, que son blancas, tienen franjas verticales amarillas, el color del grupo A. Eso rompe el código de color fijo, y el espectador puede confundir las columnas viejas con las patas del grupo A. — plano estilo_corte_HD (planos 13–17) · cuadro fijo, y≈930–1035 s. **Arreglo:** Pasar esas franjas a naranjo o rojo como marca de corte, o sacarlas.

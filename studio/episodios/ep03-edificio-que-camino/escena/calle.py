@@ -35,12 +35,13 @@ def mat_tierra():
     mix = _nodo(nt, "ShaderNodeMix", -200, 100)
     mix.data_type = "RGBA"
     mix.blend_type = "OVERLAY"
-    mix.inputs["Factor"].default_value = 0.35
+    mix.inputs["Factor"].default_value = 0.55
     nt.links.new(ramp.outputs["Color"], mix.inputs[6])
-    nt.links.new(n2.outputs["Color"], mix.inputs[7])
+    nt.links.new(n2.outputs["Fac"], mix.inputs[7])
     nt.links.new(mix.outputs[2], b.inputs["Base Color"])
-    b.inputs["Roughness"].default_value = 0.95
-    bump = _nodo(nt, "ShaderNodeBump", -200, -200, Strength=0.35, Distance=0.05)
+    b.inputs["Roughness"].default_value = 1.0
+    b.inputs["Specular IOR Level"].default_value = 0.15
+    bump = _nodo(nt, "ShaderNodeBump", -200, -200, Strength=0.6, Distance=0.08)
     nt.links.new(n2.outputs["Fac"], bump.inputs["Height"])
     nt.links.new(bump.outputs[0], b.inputs["Normal"])
     return m

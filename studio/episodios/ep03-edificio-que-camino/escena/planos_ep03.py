@@ -23,7 +23,7 @@ FR = E.FR
 lin, suave, sale, entra, tramo = E.lin, E.suave, E.sale, E.entra, E.tramo
 V = 1.6                       # m por segundo de video (cámara rápida: un ciclo de pasos cada 1,5 s)
 D_C0 = 1.8                    # distancia del cuadro 0: grupo A (amarillo) a medio paso
-C0_POS, C0_TGT, C0_LENS, C0_SHIFT = (-40.0, -22.0, 0.7), (-10.0, 0.0, 0.7), 15.0, -0.075
+C0_POS, C0_TGT, C0_LENS, C0_SHIFT = (-36.0, -24.0, 0.5), (-6.0, 0.0, 4.5), 12.0, -0.07
 
 
 def t_de(f):
@@ -361,12 +361,12 @@ def _corte(sc):
     return S, k
 
 
-CORTE_POS, CORTE_TGT = (-7.0, -24.0, -1.4), (-2.0, 0.0, -1.0)
+CORTE_POS, CORTE_TGT, CORTE_LENS, CORTE_SHIFT = (-22.0, -26.0, -1.0), (-20.0, 0.0, -1.2), 18.0, -0.135
 
 
 def p13(sc, a, b):
     S, k = _corte(sc)
-    cam = _cam(sc, 17)
+    cam = _cam(sc, CORTE_LENS, CORTE_SHIFT)
     t0, t1 = E.T[13]
 
     def act(f):
@@ -379,7 +379,7 @@ def p13(sc, a, b):
 
 def p14(sc, a, b):
     S, k = _corte(sc)
-    cam = _cam(sc, 17)
+    cam = _cam(sc, CORTE_LENS, CORTE_SHIFT)
     t0, t1 = E.T[14]
     t_198 = E.t_palabra("ciento", t0)
 
@@ -422,7 +422,7 @@ def p16(sc, a, b):
 
 def p17(sc, a, b):
     S, k = _corte(sc)
-    cam = _cam(sc, 17)
+    cam = _cam(sc, CORTE_LENS, CORTE_SHIFT)
     t0, t1 = E.T[17]
 
     def act(f):

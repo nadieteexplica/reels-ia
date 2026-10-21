@@ -14,6 +14,7 @@ FOSO = 3.6     # profundidad de la excavación (m)
 
 
 def mat_corte_tierra():
+    """Cara del corte: capas horizontales con borde nítido (tierra vegetal, arcilla, arena, ripio) y piedritas."""
     m = bpy.data.materials.get("CorteTierra")
     if m:
         return m
@@ -21,33 +22,59 @@ def mat_corte_tierra():
     m.use_nodes = True
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
-    tc = _nodo(nt, "ShaderNodeTexCoord", -1000, 0)
-    mp = _nodo(nt, "ShaderNodeMapping", -850, 100)
-    mp.inputs["Scale"].default_value = (0.12, 0.12, 1.6)          # capas horizontales irregulares
-    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
-    wave = _nodo(nt, "ShaderNodeTexNoise", -700, 100, Scale=1.2, Detail=6.0, Roughness=0.55)
-    nt.links.new(mp.outputs["Vector"], wave.inputs["Vector"])
-    ramp = _nodo(nt, "ShaderNodeValToRGB", -500, 100)
+    geo = _nodo(nt, "ShaderNodeNewGeometry", -1200, 0)        # posición en el mundo: las capas siguen la altura real
+    sep = _nodo(nt, "ShaderNodeSeparateXYZ", -1000, 100)
+    nt.links.new(geo.outputs["Position"], sep.inputs[0])
+    noi = _nodo(nt, "ShaderNodeTexNoise", -1000, -150, Scale=0.25, Detail=3.0)
+    nt.links.new(geo.outputs["Position"], noi.inputs["Vector"])
+    ond = _nodo(nt, "ShaderNodeMath", -800, -150)
+    ond.operation = "MULTIPLY_ADD"
+    ond.inputs[1].default_value = 0.9
+    ond.inputs[2].default_value = -0.45
+    nt.links.new(noi.outputs["Fac"], ond.inputs[0])
+    zz = _nodo(nt, "ShaderNodeMath", -650, 100)
+    zz.operation = "ADD"
+    nt.links.new(sep.outputs["Z"], zz.inputs[0])
+    nt.links.new(ond.outputs[0], zz.inputs[1])
+    mr = _nodo(nt, "ShaderNodeMapRange", -500, 100)
+    mr.inputs["From Min"].default_value = -12.0
+    mr.inputs["From Max"].default_value = 0.0
+    nt.links.new(zz.outputs[0], mr.inputs["Value"])
+    ramp = _nodo(nt, "ShaderNodeValToRGB", -300, 100)
     cr = ramp.color_ramp
-    cr.elements[0].position = 0.35
-    cr.elements[0].color = (0.26, 0.15, 0.07, 1)
-    cr.elements[1].position = 0.68
-    cr.elements[1].color = (0.62, 0.44, 0.25, 1)
-    e = cr.elements.new(0.52)
-    e.color = (0.43, 0.27, 0.13, 1)
-    nt.links.new(wave.outputs["Fac"], ramp.inputs["Fac"])
-    noi = _nodo(nt, "ShaderNodeTexNoise", -750, -200, Scale=3.0, Detail=8.0)
-    nt.links.new(tc.outputs["Object"], noi.inputs["Vector"])
-    mix = _nodo(nt, "ShaderNodeMix", -250, 100)
+    cr.interpolation = "CONSTANT"
+    cr.elements[0].position = 0.0
+    cr.elements[0].color = (0.50, 0.42, 0.33, 1)          # ripio (lo más hondo, bajo 8 m)
+    cr.elements[1].position = 0.90
+    cr.elements[1].color = (0.22, 0.13, 0.07, 1)          # tierra vegetal oscura (el primer metro)
+    for pos, col in ((0.33, (0.66, 0.51, 0.32)), (0.62, (0.56, 0.31, 0.15))):   # arena · arcilla
+        e = cr.elements.new(pos)
+        e.color = (*col, 1)
+    nt.links.new(mr.outputs["Result"], ramp.inputs["Fac"])
+    vor = _nodo(nt, "ShaderNodeTexVoronoi", -500, -250, Scale=3.0)
+    nt.links.new(geo.outputs["Position"], vor.inputs["Vector"])
+    piedra = _nodo(nt, "ShaderNodeMath", -300, -250)
+    piedra.operation = "LESS_THAN"
+    piedra.inputs[1].default_value = 0.12
+    nt.links.new(vor.outputs["Distance"], piedra.inputs[0])
+    var = _nodo(nt, "ShaderNodeTexNoise", -500, -450, Scale=1.4, Detail=6.0)
+    nt.links.new(geo.outputs["Position"], var.inputs["Vector"])
+    mul = _nodo(nt, "ShaderNodeMix", -200, 250)
+    mul.data_type = "RGBA"
+    mul.blend_type = "MULTIPLY"
+    mul.inputs["Factor"].default_value = 0.35
+    nt.links.new(ramp.outputs["Color"], mul.inputs[6])
+    nt.links.new(var.outputs["Fac"], mul.inputs[7])
+    mix = _nodo(nt, "ShaderNodeMix", -100, 100)
     mix.data_type = "RGBA"
-    mix.blend_type = "OVERLAY"
-    mix.inputs["Factor"].default_value = 0.4
-    nt.links.new(ramp.outputs["Color"], mix.inputs[6])
-    nt.links.new(noi.outputs["Color"], mix.inputs[7])
+    mix.inputs[7].default_value = (0.30, 0.27, 0.23, 1)
+    nt.links.new(piedra.outputs[0], mix.inputs["Factor"])
+    nt.links.new(mul.outputs[2], mix.inputs[6])
     nt.links.new(mix.outputs[2], b.inputs["Base Color"])
     b.inputs["Roughness"].default_value = 0.95
-    bump = _nodo(nt, "ShaderNodeBump", -250, -250, Strength=0.6, Distance=0.08)
-    nt.links.new(noi.outputs["Fac"], bump.inputs["Height"])
+    b.inputs["Specular IOR Level"].default_value = 0.2
+    bump = _nodo(nt, "ShaderNodeBump", -100, -250, Strength=0.5, Distance=0.04)
+    nt.links.new(piedra.outputs[0], bump.inputs["Height"])
     nt.links.new(bump.outputs[0], b.inputs["Normal"])
     return m
 
@@ -67,15 +94,15 @@ class Corte:
         self.relleno.data.transform(__import__("mathutils").Matrix.Translation((0, 0, FOSO / 2)))
         self.relleno.location.z = -FOSO
         # columnas y zapatas viejas (cada 4 m, entre las patas)
-        horm = P.mat("Hormigon", (0.55, 0.54, 0.52), rough=0.85)
+        horm = P.mat("Hormigon", (0.42, 0.42, 0.41), rough=0.85)
         self.columnas = []
         rnd = random.Random(2)
         for (x0, x1, y0, y1) in [(-22, 22, -6, 6), (-6, 6, 6, 28)]:
-            x = x0 + 1.0
-            while x < x1:
-                y = y0 + 1.0
-                while y < y1:
-                    if (round(x) // 2 + round(y) // 2) % 2 == 0:
+            x = x0 + 2.0                 # columnas entre las patas (las patas van en x impares, -21, -19…)
+            while x < x1 - 1:
+                y = y0 + 2.0
+                while y < y1 - 1:
+                    if True:
                         col = _caja("Columna", x - 0.35, x + 0.35, y - 0.35, y + 0.35, -FOSO + 0.4, 0.0, c, horm)
                         zap = _caja("Zapata", x - 0.9, x + 0.9, y - 0.9, y + 0.9, -FOSO, -FOSO + 0.4, c, horm)
                         self.columnas.append((col, zap, Vector((x, y, -0.15))))

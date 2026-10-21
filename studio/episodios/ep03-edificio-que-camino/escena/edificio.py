@@ -16,7 +16,7 @@ import props as P
 AMARILLO = (1.0, 0.70, 0.05)
 CELESTE = (0.18, 0.62, 1.0)
 PASO = 1.2          # largo del paso de cada pata respecto del edificio (m)
-ALZA = 0.55         # cuánto sube la pata en el aire (m)
+ALZA = 1.05         # cuánto sube la pata en el aire (m; exagerado para que el paso se lea en una foto)
 ALTO_PATA = 3.0     # altura del marco de acero sobre el suelo cuando camina (m; algo exagerada para que las patas se lean)
 PISO = 3.6
 PISOS = 5

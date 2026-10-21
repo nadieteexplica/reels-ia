@@ -1,0 +1,29 @@
+[
+ {
+  "id": "cuadros",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "estilo_corte_HD, estilo_obra_HD",
+  "materiales": [
+   "studio/episodios/ep03-edificio-que-camino/auditoria/4-cuadros/r2/materiales/estilo_corte_HD.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/4-cuadros/r2/materiales/estilo_obra_HD.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/4-cuadros/r2/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/4-cuadros/r2/materiales/cuadros.json",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/4-cuadros/r2/materiales/anterior_cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "cuadros.json",
+  "notas_de_uso": "Ronda 2 (verificación). Cambios: 1) corte rediseñado como sección: línea del suelo de la calle a la izquierda, cara del terreno cortada con 4 capas de borde nítido (tierra vegetal, arcilla, arena, ripio) en posición del mundo, sin franjas estiradas; las bases de las patas en y≈880 (sobre la franja de subtítulos); columnas viejas en gris y movidas entre las patas (ya no asoman franjas amarillas). 2) C0 (portada): cámara más baja y abierta, entra la silueta completa del edificio, las patas en y≈920; el grupo A (amarillo) se levanta 1 m (antes 0,55) y en el cuadro 0 está en el aire con su sombra; suelo de obra sin brillo rasante ni ruido de color. El panel 2 de la ficha (GRUPO A/B) es una muestra anterior al cambio de altura del paso.",
+  "verificar_ids": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5",
+   "A6"
+  ],
+  "modo": "verificacion"
+ }
+]
