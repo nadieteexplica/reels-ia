@@ -17,3 +17,4 @@
 - https://community.element14.com/technologies/industrial-automation-space/b/blog/posts/85-year-old-primary-school-building-walks-to-a-new-location-in-china
 - https://laughingsquid.com/building-walks-using-robotic-feet-to-new-location/
 - https://www.gadgetreview.com/china-made-a-7600-ton-building-walk-on-robot-legs
+
