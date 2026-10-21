@@ -1,0 +1,13 @@
+[
+ {
+  "id": "A3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "el cuadro 0, que además es la portada, no vende 'patas': la fila de patas es una franja chica a media altura, ningún grupo está levantado y la mitad de abajo es tierra lisa; recién en el plano 2 se ve el edificio entero sobre patas, y desde lejos",
+  "arreglo": "bajar y acercar la cámara del plano 1 para que las patas queden más grandes, justo sobre los subtítulos (y≈850–1000), y partir el ciclo de paso con el grupo A (amarillo) en el aire en el cuadro 0; el plano 36 usa la misma toma para que el loop siga calzando",
+  "de": "global",
+  "asignado": "global"
+ }
+]

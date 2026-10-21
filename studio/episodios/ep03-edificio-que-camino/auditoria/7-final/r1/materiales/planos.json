@@ -1,0 +1,362 @@
+[
+ {
+  "plano": 1,
+  "a": 0.0,
+  "b": 1.29,
+  "origen": "render",
+  "mov_mediana": 4.32,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.37,
+  "tira": "planos/P01.jpg"
+ },
+ {
+  "plano": 2,
+  "a": 1.29,
+  "b": 3.1,
+  "origen": "render",
+  "mov_mediana": 7.22,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.24,
+  "tira": "planos/P02.jpg"
+ },
+ {
+  "plano": 3,
+  "a": 3.1,
+  "b": 4.88,
+  "origen": "render",
+  "mov_mediana": 6.72,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.13,
+  "tira": "planos/P03.jpg"
+ },
+ {
+  "plano": 4,
+  "a": 4.88,
+  "b": 6.22,
+  "origen": "render",
+  "mov_mediana": 6.6,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.19,
+  "tira": "planos/P04.jpg"
+ },
+ {
+  "plano": 5,
+  "a": 6.22,
+  "b": 7.1,
+  "origen": "render",
+  "mov_mediana": 12.26,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.14,
+  "tira": "planos/P05.jpg"
+ },
+ {
+  "plano": 6,
+  "a": 7.1,
+  "b": 8.88,
+  "origen": "render",
+  "mov_mediana": 3.27,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.51,
+  "tira": "planos/P06.jpg"
+ },
+ {
+  "plano": 7,
+  "a": 8.88,
+  "b": 9.75,
+  "origen": "render",
+  "mov_mediana": 5.75,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.07,
+  "tira": "planos/P07.jpg"
+ },
+ {
+  "plano": 8,
+  "a": 9.75,
+  "b": 12.3,
+  "origen": "render",
+  "mov_mediana": 6.24,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.23,
+  "tira": "planos/P08.jpg"
+ },
+ {
+  "plano": 9,
+  "a": 12.3,
+  "b": 14.51,
+  "origen": "render",
+  "mov_mediana": 7.12,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.06,
+  "tira": "planos/P09.jpg"
+ },
+ {
+  "plano": 10,
+  "a": 14.51,
+  "b": 16.89,
+  "origen": "render",
+  "mov_mediana": 2.28,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.37,
+  "tira": "planos/P10.jpg"
+ },
+ {
+  "plano": 11,
+  "a": 16.89,
+  "b": 18.04,
+  "origen": "render",
+  "mov_mediana": 2.18,
+  "quieto_max_s": 0.13,
+  "fondo_liso": 0.21,
+  "tira": "planos/P11.jpg"
+ },
+ {
+  "plano": 12,
+  "a": 18.04,
+  "b": 19.15,
+  "origen": "render",
+  "mov_mediana": 3.24,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.4,
+  "tira": "planos/P12.jpg"
+ },
+ {
+  "plano": 13,
+  "a": 19.15,
+  "b": 20.63,
+  "origen": "render",
+  "mov_mediana": 1.65,
+  "quieto_max_s": 0.07,
+  "fondo_liso": 0.52,
+  "tira": "planos/P13.jpg"
+ },
+ {
+  "plano": 14,
+  "a": 20.63,
+  "b": 22.73,
+  "origen": "render",
+  "mov_mediana": 1.45,
+  "quieto_max_s": 0.27,
+  "fondo_liso": 0.46,
+  "tira": "planos/P14.jpg"
+ },
+ {
+  "plano": 15,
+  "a": 22.73,
+  "b": 23.91,
+  "origen": "render",
+  "mov_mediana": 5.8,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.38,
+  "tira": "planos/P15.jpg"
+ },
+ {
+  "plano": 16,
+  "a": 23.91,
+  "b": 25.53,
+  "origen": "render",
+  "mov_mediana": 3.2,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.31,
+  "tira": "planos/P16.jpg"
+ },
+ {
+  "plano": 17,
+  "a": 25.53,
+  "b": 27.5,
+  "origen": "render",
+  "mov_mediana": 3.28,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.46,
+  "tira": "planos/P17.jpg"
+ },
+ {
+  "plano": 18,
+  "a": 27.5,
+  "b": 29.09,
+  "origen": "render",
+  "mov_mediana": 6.07,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.3,
+  "tira": "planos/P18.jpg"
+ },
+ {
+  "plano": 19,
+  "a": 29.09,
+  "b": 30.4,
+  "origen": "render",
+  "mov_mediana": 5.29,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.24,
+  "tira": "planos/P19.jpg"
+ },
+ {
+  "plano": 20,
+  "a": 30.4,
+  "b": 32.11,
+  "origen": "render",
+  "mov_mediana": 6.28,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.26,
+  "tira": "planos/P20.jpg"
+ },
+ {
+  "plano": 21,
+  "a": 32.11,
+  "b": 33.04,
+  "origen": "render",
+  "mov_mediana": 9.8,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.24,
+  "tira": "planos/P21.jpg"
+ },
+ {
+  "plano": 22,
+  "a": 33.04,
+  "b": 34.8,
+  "origen": "render",
+  "mov_mediana": 2.94,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.18,
+  "tira": "planos/P22.jpg"
+ },
+ {
+  "plano": 23,
+  "a": 34.8,
+  "b": 36.87,
+  "origen": "render",
+  "mov_mediana": 2.27,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.39,
+  "tira": "planos/P23.jpg"
+ },
+ {
+  "plano": 24,
+  "a": 36.87,
+  "b": 39.47,
+  "origen": "render",
+  "mov_mediana": 6.31,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.35,
+  "tira": "planos/P24.jpg"
+ },
+ {
+  "plano": 25,
+  "a": 39.47,
+  "b": 40.88,
+  "origen": "render",
+  "mov_mediana": 0.64,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.04,
+  "tira": "planos/P25.jpg"
+ },
+ {
+  "plano": 26,
+  "a": 40.88,
+  "b": 42.28,
+  "origen": "render",
+  "mov_mediana": 0.69,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.04,
+  "tira": "planos/P26.jpg"
+ },
+ {
+  "plano": 27,
+  "a": 42.28,
+  "b": 44.46,
+  "origen": "render",
+  "mov_mediana": 8.26,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.03,
+  "tira": "planos/P27.jpg"
+ },
+ {
+  "plano": 28,
+  "a": 44.46,
+  "b": 46.21,
+  "origen": "render",
+  "mov_mediana": 11.75,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.28,
+  "tira": "planos/P28.jpg"
+ },
+ {
+  "plano": 29,
+  "a": 46.21,
+  "b": 48.19,
+  "origen": "render",
+  "mov_mediana": 7.05,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.39,
+  "tira": "planos/P29.jpg"
+ },
+ {
+  "plano": 30,
+  "a": 48.19,
+  "b": 50.94,
+  "origen": "render",
+  "mov_mediana": 3.75,
+  "quieto_max_s": 0.2,
+  "fondo_liso": 0.37,
+  "tira": "planos/P30.jpg"
+ },
+ {
+  "plano": 31,
+  "a": 50.94,
+  "b": 51.98,
+  "origen": "render",
+  "mov_mediana": 19.94,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.12,
+  "tira": "planos/P31.jpg"
+ },
+ {
+  "plano": 32,
+  "a": 51.98,
+  "b": 54.04,
+  "origen": "render",
+  "mov_mediana": 1.81,
+  "quieto_max_s": 0.47,
+  "fondo_liso": 0.36,
+  "tira": "planos/P32.jpg"
+ },
+ {
+  "plano": 33,
+  "a": 54.04,
+  "b": 56.48,
+  "origen": "render",
+  "mov_mediana": 2.4,
+  "quieto_max_s": 0.6,
+  "fondo_liso": 0.28,
+  "tira": "planos/P33.jpg"
+ },
+ {
+  "plano": 34,
+  "a": 56.48,
+  "b": 58.51,
+  "origen": "render",
+  "mov_mediana": 3.79,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.26,
+  "tira": "planos/P34.jpg"
+ },
+ {
+  "plano": 35,
+  "a": 58.51,
+  "b": 61.75,
+  "origen": "render",
+  "mov_mediana": 4.2,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.05,
+  "tira": "planos/P35.jpg"
+ },
+ {
+  "plano": 36,
+  "a": 61.75,
+  "b": 63.81,
+  "origen": "render",
+  "mov_mediana": 5.39,
+  "quieto_max_s": 0.0,
+  "fondo_liso": 0.49,
+  "tira": "planos/P36.jpg"
+ }
+]

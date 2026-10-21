@@ -1,0 +1,35 @@
+[
+ {
+  "id": "A2",
+  "bloqueante": true,
+  "tipo": "B1",
+  "plano": 24,
+  "segundo": "37.75",
+  "que": "Cuando el edificio se alza, las muletas suben con él: en 36.91 la punta de goma toca el suelo, y desde 37.47 hasta 39.43 las dos puntas quedan flotando sobre una franja azul lisa (el hueco bajo el edificio) y su sombra, sin tocar la tierra. Justo cuando la voz dice que las muletas son para que se pare, el apoyo queda en el aire.",
+  "arreglo": "Desemparentar las muletas del edificio y fijar la punta al suelo (keyframe o restricción); que sólo el apoyo de arriba acompañe al edificio, inclinando un poco la muleta. Si sale caro, que el edificio no se alce en este plano.",
+  "de": "planos3",
+  "asignado": "planos1"
+ },
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 2,
+  "segundo": "2.19",
+  "que": "En 'se fue caminando' la cámara va alta y acompaña al edificio: las patas son una franja oscura de ~60 px al pie (y≈900-960) y el edificio queda fijo en el cuadro. Se ve deslizarse, no caminar.",
+  "arreglo": "Filmar la misma escena con otra cámara, fija, baja (a la altura de las patas) y de costado, para que el edificio cruce el cuadro y se vea un grupo de patas en el aire. Si no, acercar la cámara actual hasta que las patas ocupen ~20 % del alto.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "A7",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.04",
+  "que": "En el cuadro 0 (portada), las patas, que son lo imposible, son una franja delgada (y≈820-940, ~7 % del alto) bajo un edificio grande. En el teléfono se lee 'edificio sobre algo' más que 'edificio con patas'.",
+  "arreglo": "Bajar y acercar la cámara para que las patas ocupen 20-25 % del alto, con un grupo levantado justo en el cuadro 0.",
+  "de": "planos1",
+  "asignado": "planos1"
+ }
+]

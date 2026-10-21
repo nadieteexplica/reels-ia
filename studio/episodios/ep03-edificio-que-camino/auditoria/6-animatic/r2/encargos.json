@@ -1,0 +1,149 @@
+[
+ {
+  "id": "planos1",
+  "prompt": "tools/auditor/prompts/6-animatic-planos.md",
+  "alcance": "planos 1…26 (0.00–42.28 s)",
+  "materiales": [
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/contacto.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/ficha.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P01.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P02.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P09.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P10.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P11.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P21.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P23.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P24.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P25.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P26.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E11.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E12.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E13.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E14.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E15.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E16.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E23.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E26.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E28.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E29.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E30.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos.json",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos.json",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/anterior_planos1.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep03-edificio-que-camino/guion.md"
+  ],
+  "salida": "planos1.json",
+  "planos": [
+   1,
+   2,
+   9,
+   10,
+   11,
+   21,
+   23,
+   24,
+   25,
+   26
+  ],
+  "eventos": [
+   "E11",
+   "E12",
+   "E13",
+   "E14",
+   "E15",
+   "E16",
+   "E23",
+   "E26",
+   "E27",
+   "E28",
+   "E29",
+   "E30"
+  ],
+  "verificar_ids": [
+   "A2",
+   "A4",
+   "A7"
+  ],
+  "modo": "verificacion"
+ },
+ {
+  "id": "planos2",
+  "prompt": "tools/auditor/prompts/6-animatic-planos.md",
+  "alcance": "planos 27…34 (42.28–58.51 s)",
+  "materiales": [
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/contacto.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/ficha.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P27.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P29.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P32.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P33.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos/P34.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E34.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E38.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E39.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E40.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E41.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos/E42.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos.json",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/eventos.json",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/anterior_planos2.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep03-edificio-que-camino/guion.md"
+  ],
+  "salida": "planos2.json",
+  "planos": [
+   27,
+   29,
+   32,
+   33,
+   34
+  ],
+  "eventos": [
+   "E34",
+   "E38",
+   "E39",
+   "E40",
+   "E41",
+   "E42"
+  ],
+  "verificar_ids": [
+   "A1",
+   "A5",
+   "A6"
+  ],
+  "modo": "verificacion"
+ },
+ {
+  "id": "global",
+  "prompt": "tools/auditor/prompts/6-animatic-global.md",
+  "alcance": "video completo (gancho, ritmo, loop, subtítulos, audio, precisión)",
+  "materiales": [
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/contacto.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/ficha.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/cuadro0.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/gancho.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/loop.jpg",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/audio.json",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/subtitulos.md",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/planos.json",
+   "studio/episodios/ep03-edificio-que-camino/auditoria/6-animatic/r2/materiales/anterior_global.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep03-edificio-que-camino/guion.md"
+  ],
+  "salida": "global.json",
+  "verificar_ids": [
+   "A3"
+  ],
+  "modo": "verificacion"
+ }
+]

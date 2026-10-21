@@ -1,0 +1,35 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": true,
+  "tipo": "B1",
+  "plano": 11,
+  "segundo": "17.36",
+  "que": "la bola de demolicion aparece de la nada en el aire (E15) y cuelga de 3 eslabones separados que no se tocan entre si (huecos de fachada entre anillo y anillo, 17.36-18.00): se ve una bola flotando con anillos sueltos",
+  "arreglo": "cadena continua (eslabones entrelazados o un cable cilindrico) que salga por el borde superior del cuadro, y que la bola entre balanceandose desde la izquierda en ~0,3 s en vez de aparecer; re-render solo de P11 (1,15 s)",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 32,
+  "segundo": "52.30",
+  "que": "la sala ocupa la mitad del ancho con la base en y≈1000 y la mitad inferior es pavimento gris vacío (fondo_liso 0.40); de 52.30 a 54.00 sólo hay un push lento, casi no cambia nada",
+  "arreglo": "cámara más baja y más cerca (sala en ~70% del ancho, base en y≈950, rieles visibles a la derecha) y que la sala empiece a deslizarse sobre los rieles en 'práctica' (53.43)",
+  "de": "planos4",
+  "asignado": "planos2"
+ },
+ {
+  "id": "A6",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 34,
+  "segundo": "57.36",
+  "que": "el remate de la historia de 2003 no muestra la causa: la autopista aparece delante de la sala, pero no se ve que pase por donde estaba la sala; además la sala queda cortada por el borde derecho (x≈720–1080) todo el plano",
+  "arreglo": "panear o abrir un poco la cámara a la izquierda para que la sala entre entera (x≈600–1000) y dejar en el piso una huella marcada del tamaño de la sala al inicio de los rieles, justo donde aterriza la autopista en 57.08",
+  "de": "planos4",
+  "asignado": "planos2"
+ }
+]
