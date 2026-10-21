@@ -113,7 +113,7 @@ def p02(sc, a, b):
     def cam_de(t, d):                     # fija: el edificio cruza el cuadro y se leen los pasos
         x = lin(t, t0, t1)
         return Vector((d0 + 17.0, -25 + 1.0 * x, 1.0)), Vector((d0 + 1.0, 0, 4.2))     # de frente-derecha: viene hacia la cámara
-    return _camina(sc, a, b, lambda t: d0 + V * (t - t0), cam_de, lens=20, shift=-0.05)
+    return _camina(sc, a, b, lambda t: d0 + V * (t - t0), cam_de, lens=20, shift=-0.20)
 
 
 def p03(sc, a, b):
@@ -306,7 +306,7 @@ def p09(sc, a, b):
 def p10(sc, a, b):
     S = _escuela(sc)
     T = _torres(S)
-    cam = _cam(sc, 16, -0.04)
+    cam = _cam(sc, 14, -0.24)
     t0, t1 = E.T[10]
     big, pisos = T[4]
     big.location = (0, 6, 0)
@@ -624,7 +624,7 @@ def _mapa(sc, plano):
         ed.poner(d, pose, bob=0.0)
         z = lin(t, t25, t27[1])
         cam.data.ortho_scale = 150 - 14 * z
-        cam.location = (-2, -50 + 30 * suave(lin(t, t27[0] + 0.1, t27[1] - 0.05)), 180)
+        cam.location = (-22, -61.5 + 58 * suave(lin(t, t27[0] + 0.1, t27[1] - 0.05)), 180)     # edificio en y 370–940, centrado
         cam.rotation_quaternion = Euler((0, 0, 0)).to_quaternion()
         bpy.context.view_layer.update()
         camino = [E.pantalla(sc, cam, (*pose(s)[:2], 0)) for s in [i * 62 / 24 for i in range(25)]]
