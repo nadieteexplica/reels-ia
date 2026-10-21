@@ -1,0 +1,19 @@
+{
+ "etapa": "7-final",
+ "ronda": 1,
+ "veredicto": "APROBADO",
+ "promedio": null,
+ "notas": {},
+ "problemas": [],
+ "sugerencias": [],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "sin datos de ojos en el meta: no se pudo comprobar 'cara tapada' (plano.py + studio/plantilla/caras.py)",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false
+}

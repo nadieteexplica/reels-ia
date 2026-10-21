@@ -7,4 +7,6 @@
 | 4-cuadros | r2 | APROBADO | 0 | 0 |
 | 6-animatic | r1 | NO APROBADO | 2 | 39 |
 | 6-animatic | r2 | APROBADO | 0 | 4 |
+| 7-final | r1 | APROBADO | 0 | 0 |
 | 8-paquete | r1 | APROBADO | 0 | 4 |
+| P-proceso | r1 | NO APROBADO | 0 | 19 |

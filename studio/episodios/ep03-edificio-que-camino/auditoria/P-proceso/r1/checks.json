@@ -1,0 +1,389 @@
+{
+ "fallas": [
+  {
+   "que": "promesa n.º 13 ('chequear animatic 1 cada 15 min' a las 16:30) venció sin cumplirse y no hubo aviso antes de la hora",
+   "evidencia": "",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos 39672294640' corrió 99 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:40–19:19",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos 39667963808' corrió 30 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:10–17:40",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos 39659898818' corrió 51 min y nadie lo revisó cada 15 min",
+   "evidencia": "16:14–17:05",
+   "bloqueante": false
+  },
+  {
+   "que": "'sesion chat Ep. 3' corrió 329 min y nadie lo revisó cada 15 min",
+   "evidencia": "14:04–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos muestras (3 por pieza, 360x640)' corrió 268 min y nadie lo revisó cada 15 min",
+   "evidencia": "15:05–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos muestras 2' corrió 247 min y nadie lo revisó cada 15 min",
+   "evidencia": "15:26–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'animatic 1 (540x960, 8 muestras, 15 máquinas)' corrió 230 min y nadie lo revisó cada 15 min",
+   "evidencia": "15:43–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'animatic 1 (540x960, 8 muestras, 15 máquinas) run 39659898818' corrió 199 min y nadie lo revisó cada 15 min",
+   "evidencia": "16:14–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'look (estilo_obra_HD + estilo_corte_HD)' corrió 168 min y nadie lo revisó cada 15 min",
+   "evidencia": "16:45–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'puerta 6 r1: 5 revisores (4 de planos + global)' corrió 144 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:09–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'render final run 39667963808 (720x1280, 16 muestras, 16 máquinas)' corrió 143 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:10–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'puerta 6 r1' corrió 131 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:22–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'muestras 4 (arreglos r1, 13 piezas) run 39669670455' corrió 131 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:22–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'parche render final: 14 piezas (2,9,10,11,21,23,24,25,26,27,29,32,33,34) sobre 39667963808' corrió 114 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:39–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'render final run 39672294640 (720x1280, 16 muestras, 16 máquinas, todos los arreglos r1)' corrió 113 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:40–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'puerta 8 r1 (paquete, 1 revisor)' corrió 112 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:41–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'puerta 8 r1' corrió 109 min y nadie lo revisó cada 15 min",
+   "evidencia": "17:44–19:33",
+   "bloqueante": false
+  },
+  {
+   "que": "20 máquinas de Actions corriendo a la vez a las 17:22 (máx. 16: deja 4 libres para Kling y RunPod)",
+   "evidencia": "21-10 17:22",
+   "bloqueante": false
+  }
+ ],
+ "avisos": [
+  {
+   "que": "'render-planos 39672128904' terminó en cancelled a las 17:39 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render-planos 39667963808' terminó en cancelled a las 17:40 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "trabajos": [
+   {
+    "id": "render-planos 39672294640",
+    "desde": "21-10 17:40",
+    "hasta": "21-10 19:19",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39672128904",
+    "desde": "21-10 17:39",
+    "hasta": "21-10 17:39",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render-planos 39671571656",
+    "desde": "21-10 17:35",
+    "hasta": "21-10 17:38",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39670706972",
+    "desde": "21-10 17:29",
+    "hasta": "21-10 17:33",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39670637123",
+    "desde": "21-10 17:28",
+    "hasta": "21-10 17:32",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39669670455",
+    "desde": "21-10 17:22",
+    "hasta": "21-10 17:26",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39667963808",
+    "desde": "21-10 17:10",
+    "hasta": "21-10 17:40",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render-planos 39659898818",
+    "desde": "21-10 16:14",
+    "hasta": "21-10 17:05",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39658890807",
+    "desde": "21-10 16:07",
+    "hasta": "21-10 16:11",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39655264403",
+    "desde": "21-10 15:43",
+    "hasta": "21-10 15:59",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render-planos 39652662651",
+    "desde": "21-10 15:26",
+    "hasta": "21-10 15:30",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39649584818",
+    "desde": "21-10 15:05",
+    "hasta": "21-10 15:09",
+    "estado": "success"
+   },
+   {
+    "id": "asr 39645837089",
+    "desde": "21-10 14:40",
+    "hasta": "21-10 14:42",
+    "estado": "success"
+   },
+   {
+    "id": "voz 39645675384",
+    "desde": "21-10 14:39",
+    "hasta": "21-10 14:40",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 39644020000",
+    "desde": "21-10 14:27",
+    "hasta": "21-10 14:28",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 39643580087",
+    "desde": "21-10 14:24",
+    "hasta": "21-10 14:26",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 39642356198",
+    "desde": "21-10 14:16",
+    "hasta": "21-10 14:17",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 39641058086",
+    "desde": "21-10 14:08",
+    "hasta": "21-10 14:14",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 39641053533",
+    "desde": "21-10 14:08",
+    "hasta": "21-10 14:11",
+    "estado": "success"
+   },
+   {
+    "id": "sesion chat Ep. 3",
+    "desde": "21-10 14:04",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "estudio previo",
+    "desde": "21-10 14:24",
+    "hasta": "21-10 14:24",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos muestras (3 por pieza, 360x640)",
+    "desde": "21-10 15:05",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "render-planos muestras 2",
+    "desde": "21-10 15:26",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "revisor puerta 4 r1",
+    "desde": "21-10 15:42",
+    "hasta": "21-10 15:42",
+    "estado": "failure"
+   },
+   {
+    "id": "animatic 1 (540x960, 8 muestras, 15 máquinas)",
+    "desde": "21-10 15:43",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "animatic 1 (run 39655264403)",
+    "desde": "21-10 15:58",
+    "hasta": "21-10 15:58",
+    "estado": "failure"
+   },
+   {
+    "id": "render-planos muestras 3 (look r2)",
+    "desde": "21-10 16:07",
+    "hasta": "21-10 16:14",
+    "estado": "success"
+   },
+   {
+    "id": "animatic 1 (540x960, 8 muestras, 15 máquinas) run 39659898818",
+    "desde": "21-10 16:14",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "look (estilo_obra_HD + estilo_corte_HD)",
+    "desde": "21-10 16:45",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "animatic 1 run 39659898818",
+    "desde": "21-10 17:09",
+    "hasta": "21-10 17:09",
+    "estado": "success"
+   },
+   {
+    "id": "puerta 6 r1: 5 revisores (4 de planos + global)",
+    "desde": "21-10 17:09",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "render final run 39667963808 (720x1280, 16 muestras, 16 máquinas)",
+    "desde": "21-10 17:10",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "puerta 6 r1",
+    "desde": "21-10 17:22",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "muestras 4 (arreglos r1, 13 piezas) run 39669670455",
+    "desde": "21-10 17:22",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "muestras 4–7 (arreglos r1)",
+    "desde": "21-10 17:39",
+    "hasta": "21-10 17:39",
+    "estado": "success"
+   },
+   {
+    "id": "parche render final: 14 piezas (2,9,10,11,21,23,24,25,26,27,29,32,33,34) sobre 39667963808",
+    "desde": "21-10 17:39",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "render final run 39667963808 + parche 39672128904",
+    "desde": "21-10 17:40",
+    "hasta": "21-10 17:40",
+    "estado": "failure"
+   },
+   {
+    "id": "render final run 39672294640 (720x1280, 16 muestras, 16 máquinas, todos los arreglos r1)",
+    "desde": "21-10 17:40",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "puerta 8 r1 (paquete, 1 revisor)",
+    "desde": "21-10 17:41",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "puerta 8 r1",
+    "desde": "21-10 17:44",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "render final run 39672294640",
+    "desde": "21-10 19:26",
+    "hasta": "21-10 19:26",
+    "estado": "success"
+   },
+   {
+    "id": "puerta 6 r2 (3 revisores) + puerta 7 (1) sobre el render final",
+    "desde": "21-10 19:26",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   },
+   {
+    "id": "puerta 6 r2",
+    "desde": "21-10 19:31",
+    "hasta": "21-10 19:33",
+    "estado": "?"
+   }
+  ],
+  "maquinas_pico": 20,
+  "gasto": {
+   "eleven": 1300.0
+  },
+  "rondas": {
+   "4-cuadros": 2,
+   "1-guion": 1,
+   "6-animatic": 2,
+   "3-storyboard": 1,
+   "7-final": 1,
+   "8-paquete": 1,
+   "2-voz": 1
+  },
+  "revisores_lanzados": 15,
+  "imagenes_a_revisores": 217,
+  "horas_bitacora": 5.5,
+  "horas_activas": 3.8,
+  "kling_unidades_restantes": 54
+ }
+}
