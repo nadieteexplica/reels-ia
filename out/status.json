@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 1638,
+ "creditos_usados": 2101,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -25,5 +25,8 @@
  },
  "0007-ep02-pajaros-picante.json": {
   "tts": "ep02-pajaros-picante"
+ },
+ "0008-ep03-edificio-que-camino.json": {
+  "tts": "ep03-edificio-que-camino"
  }
 }
