@@ -30,7 +30,7 @@ El Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás: **19 ro
 | P | **Proceso** | al final | bitácora, horas prometidas, chequeos de 15 min, ≤ 16 máquinas, gasto, **rondas y revisores por puerta, horas del video** | — |
 
 ## Chequeo automático por plano (sin IA)
-`tools/auditor/chequeo_planos.py` — corre en `tools/prueba.py` (cada plano, ~2–3 min), en el workflow de render (muestras y borrador) y en las puertas 6 y 7. Usa los **ojos** que `plano.py` guarda en el meta de cada cuadro (`studio/plantilla/caras.py`) y las **cajas de los gráficos** que registra el post (`studio/plantilla/graficos.py` → `graficos.json`).
+`tools/auditor/chequeo_planos.py` — corre en `tools/prueba.py` (cada plano, ~1,5 min: medido 94 s en el plano 14 del Ep. 2, 2 piezas × 2 cuadros), en el workflow de render (muestras y borrador) y en las puertas 6 y 7. Usa los **ojos** que `plano.py` guarda en el meta de cada cuadro (`studio/plantilla/caras.py`) y las **cajas de los gráficos** que registra el post (`studio/plantilla/graficos.py` → `graficos.json`).
 - 🛑 ojo tapado por un gráfico o un subtítulo (≥ 0,2 s) · 🛑 quemado > 3 % sin subtítulos ni gráficos · 🛑 pantalla vacía
 - ❌ ojos bajo y 1250 (interfaz de la app) · ❌ 1,5 s o más sin cambio visible
 - ⚠️ ojos en la franja de subtítulos · ⚠️ poco movimiento (mediana < 0,5) · ⚠️ 1,0–1,5 s quieto · ⚠️ fondo liso > 70 % · ⚠️ cara al borde

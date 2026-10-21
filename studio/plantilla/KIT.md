@@ -32,7 +32,7 @@
 
 ## 3. El ciclo del editor (cada plano, antes del auditor)
 1. Armar el plano desde su plantilla, con lo que dice su ficha.
-2. `python3 tools/prueba.py <ep> --planos N` → render chico + post + **chequeo automático** + `hoja.jpg` (ojos marcados en verde si están libres y en rojo si algo los tapa; cajas de los gráficos en azul). En ~2–3 min por plano.
+2. `python3 tools/prueba.py <ep> --planos N` → render chico + post + **chequeo automático** + `hoja.jpg` (ojos marcados en verde si están libres y en rojo si algo los tapa; cajas de los gráficos en azul). En ~1,5 min por plano (medido: 94 s en el plano 14 del Ep. 2, 2 piezas × 2 cuadros).
 3. Arreglar hasta **0 fallas** del chequeo y mirar la hoja (30 s por plano). Recién ahí el plano está listo.
 4. Con todos los planos listos: **animatic** completo (`render-planos.yml` con `res=540x960`, `samples=8`) → el workflow corre el chequeo → **puerta 6** (2 revisores).
 5. Sólo se arreglan los bloqueantes y las 5 sugerencias de arriba, re-renderizando sólo esos planos (`piezas` + `base_run`). **Lo que ya pasó no se toca.** Un plano que falla dos veces se simplifica o se cambia por una plantilla.
