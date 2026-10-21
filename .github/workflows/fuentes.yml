@@ -13,6 +13,9 @@ on:
       extra:
         description: "URLs extra separadas por espacio (opcional)"
         default: ""
+      archivo:
+        description: "Ruta a otro .md con '## Fuentes' (opcional; por defecto studio/episodios/<episodio>/guion.md). Caza de datos: studio/caza/<ronda>.md"
+        default: ""
 permissions:
   contents: write
 jobs:
@@ -29,9 +32,11 @@ jobs:
           EP: ${{ github.event.inputs.episodio }}
           CLAVES: ${{ github.event.inputs.claves }}
           EXTRA: ${{ github.event.inputs.extra }}
+          ARCHIVO: ${{ github.event.inputs.archivo }}
         run: |
           mkdir -p f
-          python3 tools/fuentes.py "studio/episodios/$EP/guion.md" "f/fuentes_$EP.md" --claves "$CLAVES" --extra $EXTRA
+          G="${ARCHIVO:-studio/episodios/$EP/guion.md}"
+          python3 tools/fuentes.py "$G" "f/fuentes_$EP.md" --claves "$CLAVES" --extra $EXTRA
       - name: Subir
         env:
           GH_TOKEN: ${{ github.token }}
