@@ -79,7 +79,7 @@ jobs:
 
   armar:
     needs: render
-    if: always()
+    if: ${{ !cancelled() }}      # always() corría el armado igual al cancelar el run
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
