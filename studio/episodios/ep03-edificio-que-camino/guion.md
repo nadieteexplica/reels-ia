@@ -37,7 +37,7 @@ Así que esta escuela, a los ochenta y cinco años... por fin aprendió a camina
 | Según el jefe técnico, es como ponerle muletas para que se pare y camine | CNN 2020 (Lan Wuji, chief technical supervisor: "It's like giving the building crutches so it can stand up and then walk"); The Drive 2020 (misma cita, a CNN) |
 | No usaron rieles porque había que doblar: la giraron 21 (veintiún) grados | The Drive 2020 ("needed to move along a curved path and rotate 21 degrees as it did so, which ruled out relocation via rail"); CNN 2020 (rotated 21 degrees); The Urban Developer 2020 (21 degrees). Oddity Central y Xataka dicen "unos 20 grados" (redondeo) |
 | Caminó 62 (sesenta y dos) metros en 18 (dieciocho) días | CNN 2020 ("Over the course of 18 days... moved 62 meters (203 feet)"); The Urban Developer 2020; The Drive 2020 (203 feet, 18 days). CCTV (vía Xataka) da 61,7 m: se dice 62 |
-| Tú caminas eso en menos de un minuto (cálculo) | 62 m a 1,42 m/s (velocidad media al caminar al aire libre de adultos sanos, metaanálisis de Murtagh et al., *Sports Medicine* 2021) = 44 s; incluso a 1,2 m/s (lo que suponen los cruces peatonales en el Reino Unido, U. of Bath) = 52 s. Los dos bajo 1 minuto |
+| Tú caminas eso en menos de un minuto (cálculo) | A las velocidades con que se calculan los semáforos peatonales, 62 m toman menos de 1 minuto: 1,2 m/s en el Reino Unido (U. of Bath) = 52 s; 3,5 pies/s ≈ 1,07 m/s en EE. UU. (FHWA, MUTCD §4E.06) = 58 s |
 | Shanghái ya tenía práctica: en 2003 (dos mil tres) movió su sala de conciertos para que pasara una autopista | China Daily 2020 (la Shanghai Concert Hall, de 1930, se movió 66,46 m en 2003 para dejar paso a la autopista elevada Yan'an); CNN 2020 (en 2003 la Shanghai Concert Hall se movió más de 66 m "to make way for an elevated highway") |
 | Esta escuela, a los 85 (ochenta y cinco) años, por fin aprendió a caminar | CNN 2020 ("An 85-year-old primary school"); Construction Equipment 2020 ("85-year-old building"); "aprendió a caminar" es el chiste del loop (la escuela construida en 1935 caminó en 2020) |
 
@@ -46,6 +46,7 @@ Así que esta escuela, a los ochenta y cinco años... por fin aprendió a camina
 - "Estorbaba" y "ya tenía práctica" son humor sobre hechos reales (la mudanza para un complejo de oficinas y comercio; las mudanzas anteriores de edificios históricos en Shanghái, CNN 2020).
 - La sala de conciertos de 2003 no "caminó": la movieron (CNN y China Daily sólo dicen "moved"). El guion dice "movió" y la imagen no le pone patas.
 - No se dice que la escuela "sigue ahí" ni qué es hoy: las fuentes dicen que iba a ser un centro de patrimonio y educación cultural (2020).
+- "Menos de un minuto" vale para alguien que camina a paso normal (las velocidades de diseño de los cruces); una persona mayor con movilidad reducida puede tardar más (U. of Bath midió 0,76 m/s en ese grupo). El "tú" del guion es el espectador típico.
 - No es tema de salud ni de riesgo: nadie puede imitarlo.
 
 ## Fuentes
@@ -58,7 +59,7 @@ Así que esta escuela, a los ochenta y cinco años... por fin aprendió a camina
 - BBC Mundo vía T13 (2020) — Escuela Lagena: el increíble traslado de un edificio escolar de 7.600 toneladas: https://www.t13.cl/noticia/mundo/bbc/escuela-lagena-de-china-el-increible-traslado-de-un-edificio-escolar-de-7600-toneladas-en-shanghai
 - Gadget Review (2026) — China made a 7,600-ton building walk on robot legs: https://www.gadgetreview.com/china-made-a-7600-ton-building-walk-on-robot-legs
 - China Daily (2020) — Shanghai Concert Hall reopens to the public: https://www.chinadaily.com.cn/a/202009/18/WS5f640d0ea31024ad0ba7a4d9.html
-- Murtagh et al. (2021), *Sports Medicine* — Outdoor walking speeds of apparently healthy adults: a systematic review and meta-analysis: https://pubmed.ncbi.nlm.nih.gov/33030707/
+- FHWA (EE. UU.), Manual on Uniform Traffic Control Devices, §4E.06 (tiempo de cruce peatonal a 3,5 pies/s): https://mutcd.fhwa.dot.gov/htm/2009/part4/part4e.htm
 - University of Bath — Are pedestrian crossings in the UK fit for purpose?: https://researchportal.bath.ac.uk/en/publications/are-pedestrian-crossings-in-the-uk-fit-for-purpose-comparing-the-/
 
 ## Plan de Kling
