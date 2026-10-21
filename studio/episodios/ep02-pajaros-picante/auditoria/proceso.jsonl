@@ -156,3 +156,4 @@
 {"tipo": "chequeo", "id": "render-planos arreglos revisión borrador 39525585159", "estado": "in_progress, 9/12 trabajos de render listos", "n": 156, "ts": "2026-10-20T22:39:27-03:00"}
 {"tipo": "chequeo", "id": "render-planos plano 36 (v3) 39525994646", "estado": "in_progress, 2/2 trabajos de render listos", "n": 157, "ts": "2026-10-20T22:43:41-03:00"}
 {"tipo": "aviso", "que": "22:48: con OK explícito de Tomás (eligió 'Sí, prográmalos' con el borrador que vio) se copió el MP4 al Release ep02 y se programaron los 3 posts del 21-oct: IG 10:00 (401677198), YouTube 16:00 (401677452), TikTok 18:00 (401677487). La versión corregida sigue: si pasa la puerta 6 se le ofrece cambiarla; sin su OK no se cambia.", "n": 158, "ts": "2026-10-20T22:48:36-03:00"}
+{"tipo": "chequeo", "id": "render-planos arreglos revisión borrador 39525585159", "estado": "in_progress, 12/12 trabajos de render listos", "n": 159, "ts": "2026-10-20T22:54:32-03:00"}
