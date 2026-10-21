@@ -152,3 +152,4 @@
 {"tipo": "aviso", "que": "22:15: 7 planos en re-render (10, 12, 4, 25, 29-30, 24L y 36 otra vez: la fila quedaba chica y bajo los subtítulos). Armado final ~23:10 (se cancela el armado intermedio del run 39525585159 para no esperar dos armados). Después: puerta 6.", "n": 152, "ts": "2026-10-20T22:13:45-03:00"}
 {"tipo": "chequeo", "id": "render-planos arreglos 36+23L 39517107581", "estado": "completed, 2/2 trabajos de render listos", "n": 153, "ts": "2026-10-20T22:16:10-03:00"}
 {"tipo": "chequeo", "id": "render-planos arreglos revisión borrador 39525585159", "estado": "in_progress, 2/12 trabajos de render listos", "n": 154, "ts": "2026-10-20T22:24:22-03:00"}
+{"tipo": "chequeo", "id": "render-planos plano 36 (v3) 39525994646", "estado": "in_progress, 2/2 trabajos de render listos", "n": 155, "ts": "2026-10-20T22:28:37-03:00"}
