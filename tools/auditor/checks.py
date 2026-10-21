@@ -14,13 +14,18 @@ NUMEROS = {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nu
            "quince", "veinte", "treinta", "cuarenta", "cincuenta", "cien", "mil", "millón", "millones", "medio", "mitad"}
 RES = lambda: {"fallas": [], "avisos": [], "datos": {}}
 # Proceso v2 (21-oct-2026, pedido de Tomás: "lo mínimo, no necesitamos 74 s"): videos de 62–65 s.
-# Fernando habla a ~2,91 palabras/s contando las pausas (Ep. 2: 214 palabras en 73,6 s) → 178–190 palabras.
-PALABRAS = (178, 190)
+# Fernando habla a 2,89–2,94 palabras/s contando las pausas (Ep. 1: 207 en 71,7 s; Ep. 2: 214 en 73,6 s) → 182–190 palabras
+# (con 178 la voz daba ~61 s y el video quedaba bajo el minuto).
+PALABRAS = (182, 190)
 PALABRAS_S = 2.91
 DURACION = (62.0, 65.5)          # video final (voz + 0,4 s de cola)
-PLANOS = (14, 22)                # en 62 s: 16–22 planos de 2–4 s con algo que cambia cada 2 s
+# Lo caro son las ESCENAS (set + personajes + actuación armados); los cortes dentro de una escena (otra cámara, un detalle,
+# un acercamiento) son casi gratis. Lo que retiene es que algo cambie cada 1–2 s (REFERENCIAS §3: R4 1,2 s, R2 1,7 s).
+ESCENAS_MAX = 12
+A_MEDIDA_MAX = 3
+CAMBIO_MAX_S = 1.5               # nunca más de 1,5 s sin un cambio (corte, acción, gráfico o transformación)
 FICHA = {                        # columnas obligatorias de la ficha de plano (storyboard.md) → clave normalizada
-    "plantilla": ("plantilla",), "accion": ("accion visible", "accion"), "cambio": ("cambio",), "camara": ("camara",),
+    "escena": ("escena",), "plantilla": ("plantilla",), "accion": ("accion visible", "accion"), "cambio": ("cambio",), "camara": ("camara",),
     "cara": ("cara",), "grafico": ("grafico",), "origen": ("origen", "fuente", "sale de"),
 }
 
@@ -218,17 +223,28 @@ def storyboard(ep_d, dur_voz=None):
     r["datos"]["planos"] = len(filas)
     ci = lambda *ks: next((c for c in cols if any(k in c for k in ks)), None)
     # proceso v2: la ficha de plano (las necesidades del auditor escritas ANTES de animar)
-    if len(filas) > PLANOS[1]:
-        _f(r, f"{len(filas)} planos (máx. {PLANOS[1]} en 62–65 s): juntar planos con movimiento dentro del cuadro en vez de cortar", bloqueante=True)
-    elif filas and len(filas) < PLANOS[0]:
-        _a(r, f"sólo {len(filas)} planos: confirmar que algo cambia cada 2 s en los planos largos")
     faltan_col = [k for k, ks in FICHA.items() if not ci(*ks)]
+    c_es, c_pt = ci(*FICHA["escena"]), ci(*FICHA["plantilla"])
+    if c_es:
+        escenas = {}
+        for f in filas:
+            e = norm(f.get(c_es, "")).strip()
+            if e:
+                escenas.setdefault(e, set()).add(norm(f.get(c_pt, "")).strip() if c_pt else "")
+        r["datos"]["escenas"] = len(escenas)
+        if len(escenas) > ESCENAS_MAX:
+            _f(r, f"{len(escenas)} escenas (máx. {ESCENAS_MAX}): reutilizar una escena con otra cámara en vez de armar otra", bloqueante=True)
+        medida = sorted(e for e, pts in escenas.items() if any("medida" in p for p in pts))
+        if len(medida) > A_MEDIDA_MAX:
+            _f(r, f"{len(medida)} escenas a medida ({', '.join(medida)}; máx. {A_MEDIDA_MAX}): usar plantillas del kit", bloqueante=True)
+    if filas and len(filas) < 20:
+        _a(r, f"{len(filas)} planos: en 62 s hacen falta ~40 cambios (uno cada 1,5 s); confirmar que la columna 'cambio' los cubre")
     if faltan_col:
         _f(r, f"a la ficha de plano le faltan columnas: {', '.join(faltan_col)} (plantilla en studio/plantilla/storyboard.md)", bloqueante=True)
     vacio = lambda x: not x or norm(x).strip() in ("", "-", "—", "?", "x")
     for f in filas:
         n = f[cols[0]]
-        for k in ("accion", "camara", "cara", "origen", "plantilla"):
+        for k in ("escena", "accion", "camara", "cara", "origen", "plantilla"):
             c = ci(*FICHA[k])
             if c and vacio(f.get(c, "")):
                 _f(r, f"plano {n}: la ficha no dice '{c}'")
@@ -258,8 +274,8 @@ def storyboard(ep_d, dur_voz=None):
         d = b - a
         acc = norm(f.get(c_acc, ""))
         c_cb = ci(*FICHA["cambio"])
-        if d > 2.2 and c_cb and vacio(f.get(c_cb, "")):
-            _f(r, f"plano {n} dura {d:.1f} s y la ficha no dice qué cambia cada 2 s")
+        if d > CAMBIO_MAX_S + 0.2 and c_cb and vacio(f.get(c_cb, "")):
+            _f(r, f"plano {n} dura {d:.1f} s y la ficha no dice qué cambia dentro (nunca más de 1,5 s sin cambio)")
         elif d > 2.5 and not c_cb and not re.search(r"(se arma|se transforma|aparece|crece|se llena|cuenta|sube|baja|se enciende|se ilumina)", acc):
             _a(r, f"plano {n} dura {d:.1f} s sin transformación escrita (nunca más de 2 s sin cambio)")
         if d < 0.8:

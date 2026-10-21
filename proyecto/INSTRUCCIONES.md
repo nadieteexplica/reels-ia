@@ -58,7 +58,7 @@ Además, cada video pasa una **revisión independiente**: el **auditor por etapa
 
 **Proceso v2 (21-oct-2026, después del Ep. 2, que tomó más de 24 h — "no se puede volver a repetir"):**
 - **El auditor es la receta, no el examen final:** lo que va a exigir se escribe antes de animar en la **ficha de cada plano** del storyboard, y cada plano pasa un **chequeo automático** (`tools/prueba.py`: ojos tapados, quemado, plano quieto, fondo liso) antes de llegar al auditor.
-- Cada plano parte de una **plantilla del kit** (`studio/plantilla/KIT.md`); 16–22 planos por video, máximo 3 hechos a medida.
+- Cada escena parte de una **plantilla del kit** (`studio/plantilla/KIT.md`): **máximo 12 escenas** por video (lo caro), 3 a medida como máximo, y los cortes que hagan falta dentro de cada escena (lo barato) para que **algo cambie cada 1,5 s**.
 - El video se audita como **animatic** (baja resolución) y después se hace **un solo render final**, que sólo se revisa por bloqueantes.
 - **Aprueba** sin bloqueantes (lista cerrada B1–B11: lo que un espectador notaría como error o lo que es falso), con **promedio ≥ 8 y ningún criterio bajo 7**. Se muestran sólo las 5 sugerencias más importantes.
 - **Máximo 2 rondas** (la 2.ª sólo verifica lo de la 1.ª) y **2 revisores** por ronda. Lo aprobado no se toca; un plano que falla dos veces se simplifica o se reemplaza. Si el video igual no llega, le explicas a Tomás por qué y propones un reemplazo.

@@ -17,7 +17,7 @@
 | Workflow | `.github/workflows/render-planos.yml` | Muestras, piezas, runs base, armado, **chequeo automático por plano** y borrador en la prerelease. Al copiar para otro episodio: cambiar `ep02_planos.json` y `import ep02` por los del episodio |
 
 ## 2. Plantillas de plano (cada una ya cumple las reglas del auditor)
-Cada ficha del storyboard dice qué plantilla usa (columna **Plantilla**). Un plano "a medida" sólo si ninguna sirve, y **máximo 3 por video**.
+**Escena ≠ plano.** Una escena es lo caro: una función que arma el set, los personajes y su actuación (en el Ep. 2, `_c0()` arma la roca con el pájaro y el ratón). Un plano es un corte dentro de una escena: otra pieza que llama a la misma función con otra cámara o un detalle (el Ep. 2 usó `_c0()` en los planos 1, 2, 14, 17 y 40). **Máximo 12 escenas por video, 3 a medida**; cortes, los que hagan falta para que algo cambie cada 1,5 s (~40 cambios en 62 s, el ritmo de las referencias que retienen). Cada ficha del storyboard dice su escena y su plantilla.
 
 | Plantilla | Escala | Ejemplo Ep. 2 | Reglas que trae puestas |
 |---|---|---|---|
@@ -41,5 +41,5 @@ Cada ficha del storyboard dice qué plantilla usa (columna **Plantilla**). Un pl
 ## 4. Qué mide el chequeo automático (`tools/auditor/chequeo_planos.py`)
 Calibrado con el Ep. 2: en la r3 habría pillado la lupa sobre el ojo del plano 14 (bloqueante), el suelo liso y quieto del 19, el plano fijo del 13 y el interior quemado del 10.
 - 🛑 ojo tapado por un gráfico o un subtítulo · 🛑 quemado > 3 % · 🛑 pantalla vacía
-- ❌ cara bajo la interfaz (y > 1250) · ❌ 1,6 s o más sin cambio visible
+- ❌ cara bajo la interfaz (y > 1250) · ❌ 1,5 s o más sin cambio visible
 - ⚠️ cara en la franja de subtítulos · ⚠️ poco movimiento · ⚠️ fondo liso > 70 % · ⚠️ cara pegada al borde

@@ -21,7 +21,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - "¿Qué pasa dentro de…?"
   - "¿Sabías que…?"
 - **Formatos candidatos** (del estudio de referencias, sin probar todavía; fichas en `docs/REFERENCIAS.md` §5): corte que se transforma, objeto cotidiano "parece un error, pero es a propósito", "lo conté yo" con datos propios, concepto armado frente a ti, megaproyecto absurdo + "lo calculé", fábula absurda y story time.
-- **Duración: 62–65 s, lo mínimo** (decisión de Tomás, 21-oct-2026: "no necesitamos 74 segundos"), en las dos líneas. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días. Guion de 178–190 palabras.
+- **Duración: 62–65 s, lo mínimo** (decisión de Tomás, 21-oct-2026: "no necesitamos 74 segundos"), en las dos líneas. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días. Guion de 182–190 palabras.
 - **Cadencia:** se parte con **3 videos por semana** (lunes, miércoles y viernes) y se sube a 5 si la calidad se mantiene. Diario no cabe en los créditos de voz. Detalle en `docs/AUTOMATIZACION.md`.
 - **Lo que se presenta como real es real y verificado**, con fuentes. Nada de desinformar. La ficción de la línea historias puede ser todo lo loca que se quiera, pero no se disfraza de dato.
 - **Animación 3D "sí o sí".**
@@ -53,7 +53,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Reglas de edición (del estudio de formatos virales y de `docs/REFERENCIAS.md`)
 - **Gancho** en los primeros 0–2 s. El cuadro 0 es una imagen absurda o una pregunta: algo que todavía no tiene sentido.
 - **Planos:**
-  - Una idea por plano, de 2–4 s cada uno: **16–22 planos** por video, cada uno desde una plantilla del kit (`studio/plantilla/KIT.md`).
+  - **Algo cambia en pantalla cada 1–1,5 s** (~40 cambios en 62 s). **Máximo 12 escenas** por video (lo caro: set, personajes y actuación), cada una desde una plantilla del kit (`studio/plantilla/KIT.md`); los cortes dentro de una escena (otra cámara, un detalle) son casi gratis y se usan todos los que hagan falta.
   - **Nunca más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece o se transforma dentro del cuadro. Con transformación continua un plano puede durar más.
   - Cortes secos sincronizados con la voz.
   - La cámara siempre se mueve (acercamientos lentos u órbitas).
@@ -112,7 +112,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Estado actual (21-oct-2026)
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
-- **Proceso v2 (21-oct-2026, después del Ep. 2 — "NO SE PUEDE VOLVER A REPETIR", Tomás):** el Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás (19 rondas del auditor, 40 planos a mano). Ahora: videos de **62–65 s**; **storyboard = fichas de plano** con lo que exige el auditor escrito antes de animar; **kit de plantillas y bases** (`studio/plantilla/KIT.md`); **`tools/prueba.py`** por plano (render chico + post + chequeo automático de ojos tapados, quemado, quieto, fondo liso, en ~2–3 min); **animatic** auditado antes de un **solo render final**; auditor con **bloqueantes de lista cerrada**, **5 sugerencias**, **promedio ≥ 8 y ninguna nota bajo 7**, **máx. 2 rondas** (la 2.ª sólo verifica) y **2 revisores**; **topes por video** (8 h, 22 planos, 3 a medida) en `tools/auditor/presupuesto.json`. Detalle en `docs/AUDITOR.md`, el manual §4 y §8 y `docs/AUTOMATIZACION.md` ("Topes por video").
+- **Proceso v2 (21-oct-2026, después del Ep. 2 — "NO SE PUEDE VOLVER A REPETIR", Tomás):** el Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás (19 rondas del auditor, 40 planos a mano). Ahora: videos de **62–65 s**; **storyboard = fichas de plano** con lo que exige el auditor escrito antes de animar; **kit de plantillas y bases** (`studio/plantilla/KIT.md`); **`tools/prueba.py`** por plano (render chico + post + chequeo automático de ojos tapados, quemado, quieto, fondo liso, en ~2–3 min); **animatic** auditado antes de un **solo render final**; auditor con **bloqueantes de lista cerrada**, **5 sugerencias**, **promedio ≥ 8 y ninguna nota bajo 7**, **máx. 2 rondas** (la 2.ª sólo verifica) y **2 revisores**; **topes por video** (8 h, 12 escenas, 3 a medida, algo que cambia cada 1,5 s) en `tools/auditor/presupuesto.json`. Detalle en `docs/AUDITOR.md`, el manual §4 y §8 y `docs/AUTOMATIZACION.md` ("Topes por video").
 
 - **Estilo decidido:** semi-realista con Mixamo y personaje propio (ver "Formato").
 - **Auditor por etapas (19-oct; v2 desde el 21-oct, ver arriba):** `docs/AUDITOR.md` + `tools/auditor/`. Corre como subagentes (gratis) y a Tomás le llegan sólo los cuadros de estilo nuevos y el video final ya aprobados. Calibrado a ciegas con las versiones viejas del Ep. 1 (20 de 22 errores conocidos) y el chequeo automático con el Ep. 2 (`docs/AUDITOR_CALIBRACION.md`). Obligatorio, junto con la bitácora del proceso.

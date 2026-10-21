@@ -10,10 +10,10 @@ Qué mira (umbrales calibrados con el Ep. 2, ver docs/AUDITOR.md):
   🛑 quemado         más del 3 % del cuadro sobre 250, sin contar subtítulos ni gráficos, ≥ 0,2 s
   🛑 pantalla_vacia  fondo liso sin contenido ≥ 0,2 s
   ❌ cara_bajo_ui    ojos bajo y 1250 (la interfaz de la app los tapa)
-  ❌ plano_quieto    1,6 s o más sin cambio visible (fuera de la franja de subtítulos)
+  ❌ plano_quieto    1,5 s o más sin cambio visible (fuera de la franja de subtítulos)
   ⚠️ cara_en_franja  ojos en y 1000–1250 (la franja de subtítulos)
   ⚠️ poco_movimiento la mediana del cambio entre cuadros es muy baja (cámara fija y nada se mueve: P13, P19 y P20 del Ep. 2)
-  ⚠️ quieto_1s       entre 1,0 y 1,6 s sin cambio
+  ⚠️ quieto_1s       entre 1,0 y 1,5 s sin cambio
   ⚠️ fondo_liso      más del 70 % del cuadro es superficie lisa (P19 del Ep. 2: "suelo liso que ocupa la mitad")
   ⚠️ cara_al_borde   ojos pegados al borde o bajo la barra de arriba (y < 200)
 Sale con código 1 si hay algún 🛑 o ❌.
@@ -28,7 +28,7 @@ import detectores as D
 
 FPS = 30
 QUIETO_PAR = 0.6        # cambio medio (niveles de gris, 216x384, sin franja) bajo el cual dos cuadros "no cambian"
-QUIETO_FALLA, QUIETO_AVISO = 1.6, 1.0
+QUIETO_FALLA, QUIETO_AVISO = 1.5, 1.0     # algo cambia cada 1–2 s en las referencias (REFERENCIAS §3)
 MOV_BAJO = 0.5
 LISO_AVISO = 0.70
 QUEMADO = 0.03

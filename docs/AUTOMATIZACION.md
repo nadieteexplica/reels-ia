@@ -41,7 +41,7 @@ Ya hecho: el workflow de voz procesa solo los jobs nuevos de cada push, falla en
 ## Topes por video (proceso v2, 21-oct-2026 — "NO SE PUEDE VOLVER A REPETIR", Tomás)
 El Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás. Desde el Ep. 3, cada video tiene estos topes (`tools/auditor/presupuesto.json` → `proceso_v2`; la puerta P los revisa):
 - **8 h de trabajo** desde el guion hasta el paquete (sin contar esperas de Tomás).
-- **62–65 s**, **16–22 planos**, cada plano desde una **plantilla del kit** (`studio/plantilla/KIT.md`), **máximo 3 a medida**.
+- **62–65 s**, **máximo 12 escenas** (lo caro: set, personajes y actuación) cada una desde una **plantilla del kit** (`studio/plantilla/KIT.md`), **máximo 3 a medida**. Los cortes dentro de una escena son libres: **algo cambia cada 1,5 s** (~40 cambios en 62 s).
 - **2 rondas por puerta** (la 2.ª sólo verifica), **2 revisores por ronda**, **2 animatics** y **1 render final**.
 - Cada plano pasa `tools/prueba.py` con 0 fallas **antes** del auditor. Lo aprobado no se toca. Un plano que falla dos veces se simplifica o se cambia por una plantilla.
 - Si se ve venir que un tope se pasa, se para y se le avisa a Tomás en 2 líneas con opciones (simplificar, cambiar la idea, seguir).
@@ -58,9 +58,9 @@ El Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás. Desde e
    - Buscar según `IDEAS.md` §1.
    - Puntuar y elegir **3 temas** con el umbral de su línea (`IDEAS.md` §2: 32 en datos, 25 en historias), en la proporción datos/historias de `CONTEXTO.md`, variados (distinto gancho, área y formato).
    - Darle prioridad a las preguntas de la comunidad.
-4. **Guiones:** verificar con 2 fuentes, escribir en 178–190 palabras (62–65 s) y guardar en `studio/episodios/epNN-slug/guion.md` (con el puntaje de la idea y para qué acción es). → **Puerta 1 del auditor** (`auditar.py preparar <ep> guion` → `lanzar` → `cerrar`). Sin APROBADO no se genera la voz.
+4. **Guiones:** verificar con 2 fuentes, escribir en 182–190 palabras (62–65 s) y guardar en `studio/episodios/epNN-slug/guion.md` (con el puntaje de la idea y para qué acción es). → **Puerta 1 del auditor** (`auditar.py preparar <ep> guion` → `lanzar` → `cerrar`). Sin APROBADO no se genera la voz.
 5. **Voces:** 3 jobs en un solo push. Esperar a Actions, revisar `out/status.json`, armar `words.json` con `tools/words.py` y controlar duraciones (62–65 s; si queda corta, `tools/pausas.py`). `asr.yml` transcribe cada voz sola al terminar `voz.yml`. → **Puerta 2** (voz: automática; revisor sólo si la transcripción encuentra diferencias).
-6. **Storyboards = fichas de plano** (`studio/plantilla/storyboard.md`): 16–22 planos, cada uno con su plantilla del kit, acción visible, qué cambia cada 2 s, cámara, dónde va la cara y dónde el gráfico, y `Origen` (render / kling / biblioteca; máx. 3 de Kling). → **Puerta 3**, antes de gastar en cuadros, Kling o render.
+6. **Storyboards = fichas de plano** (`studio/plantilla/storyboard.md`): máx. 12 escenas con su plantilla del kit y los cortes que hagan falta dentro de cada una; por plano: acción visible, qué cambia (nunca más de 1,5 s sin cambio), cámara, dónde va la cara y dónde el gráfico, y `Origen` (render / kling / biblioteca; máx. 3 de Kling). → **Puerta 3**, antes de gastar en cuadros, Kling o render.
 7. **Cuadros de estilo** sólo si hay escenario nuevo (si se reutiliza un set del kit, no hay) → **Puerta 4** → recién aprobados se le muestran a Tomás (es el único mensaje intermedio).
 8. **Kling:** cuadros de partida con la mano libre → **Puerta 4** (`--nota` con el plano y la acción) → `kling.yml` → **Puerta 5** (8 cuadros por clip) → `kling/planos.json` sólo con clips aprobados.
 9. **Animación por plano:** cada plano desde su plantilla → `tools/prueba.py <ep> --planos N` hasta 0 fallas y la hoja mirada. Nada pasa al animatic con fallas del chequeo.

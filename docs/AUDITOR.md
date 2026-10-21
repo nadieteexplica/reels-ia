@@ -14,14 +14,14 @@ El Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás: **19 ro
 6. **Máximo 2 revisores por ronda** (antes 6). El video se audita como **animatic** (baja resolución, antes del render final), con un revisor para todos los planos y uno global; el render final sólo pasa un chequeo de bloqueantes.
 7. **El revisor ve 6–12 cuadros por plano (4 por segundo)** y las medidas de movimiento de cada plano, para no confundir movimiento chico con "congelado".
 8. **Tomás tiene la última palabra.** A las 48 h de publicado se compara lo que dijo el auditor con las métricas (`PUBLICADOS.md`); si no calzan, se ajustan los criterios.
-9. **Topes por video** (`tools/auditor/presupuesto.json` → `proceso_v2`): 8 h de trabajo, 2 rondas por puerta, 2 revisores por ronda, 2 animatics, 1 render final, 22 planos, 3 planos a medida. Si se va a pasar uno, se para y se le avisa a Tomás con opciones.
+9. **Topes por video** (`tools/auditor/presupuesto.json` → `proceso_v2`): 8 h de trabajo, 2 rondas por puerta, 2 revisores por ronda, 2 animatics, 1 render final, 12 escenas, 3 escenas a medida. Si se va a pasar uno, se para y se le avisa a Tomás con opciones.
 
 ## Etapas
 | # | Etapa | Cuándo | Chequeo automático | Revisor |
 |---|---|---|---|---|
-| 1 | **Guion** | antes de la voz | 178–190 palabras (62–65 s), frases ≤ 14 palabras, pausas, prohibidas, lista negra, 2 fuentes con URL (sin Wikipedia), tabla de verificación, cifras con fuente, puntaje ≥ mínimo | 1: precisión (abre las fuentes), gancho, claridad (¿sobra una frase?), compartible |
+| 1 | **Guion** | antes de la voz | 182–190 palabras (62–65 s), frases ≤ 14 palabras, pausas, prohibidas, lista negra, 2 fuentes con URL (sin Wikipedia), tabla de verificación, cifras con fuente, puntaje ≥ mínimo | 1: precisión (abre las fuentes), gancho, claridad (¿sobra una frase?), compartible |
 | 2 | **Voz** | antes del storyboard | duración 62–65 s (si queda corta: `tools/pausas.py`, 0 créditos), palabras > 1,2 s, pausas, conteo = guion, créditos, transcripción automática contra el guion | **sólo si** la transcripción encontró diferencias o hay ritmo raro |
-| 3 | **Storyboard (fichas de plano)** | antes de animar | 14–22 planos, columnas de la ficha completas (plantilla, acción visible, cambio cada 2 s, cámara, cara, gráfico, origen), cara sobre y 1000, gráfico vs. cara, huecos, escala cada ≤ 12 s, Kling ≤ 3 | 1: foco, ritmo, viabilidad con el kit, gancho visual |
+| 3 | **Storyboard (fichas de plano)** | antes de animar | máx. 12 escenas y 3 a medida, columnas de la ficha completas (escena, plantilla, acción visible, cambio, cámara, cara, gráfico, origen), qué cambia en cada plano de más de 1,7 s, cara sobre y 1000, gráfico vs. cara, huecos, escala cada ≤ 12 s, Kling ≤ 3 | 1: foco, ritmo, viabilidad con el kit, gancho visual |
 | 4 | **Cuadros de estilo** | sólo si hay escenario nuevo | resolución, % quemado, lavado, oscuro | 1 (todos los cuadros en un encargo) |
 | 5 | **Clips de Kling** | si hay | resolución, palabras que activan el filtro, máx. 3 | 1 |
 | 6 | **Animatic** | video completo en baja resolución (540×960, 8 muestras), antes del render final | QA técnico, detectores (pantalla vacía, apariciones, luz), **chequeo por plano** (ojos tapados, quemado, plano quieto, poco movimiento, fondo liso, cara bajo la interfaz), subtítulos contra `words.json`, audio | 2: **planos** (todos) y **global** (8 criterios) |
@@ -32,8 +32,8 @@ El Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás: **19 ro
 ## Chequeo automático por plano (sin IA)
 `tools/auditor/chequeo_planos.py` — corre en `tools/prueba.py` (cada plano, ~2–3 min), en el workflow de render (muestras y borrador) y en las puertas 6 y 7. Usa los **ojos** que `plano.py` guarda en el meta de cada cuadro (`studio/plantilla/caras.py`) y las **cajas de los gráficos** que registra el post (`studio/plantilla/graficos.py` → `graficos.json`).
 - 🛑 ojo tapado por un gráfico o un subtítulo (≥ 0,2 s) · 🛑 quemado > 3 % sin subtítulos ni gráficos · 🛑 pantalla vacía
-- ❌ ojos bajo y 1250 (interfaz de la app) · ❌ 1,6 s o más sin cambio visible
-- ⚠️ ojos en la franja de subtítulos · ⚠️ poco movimiento (mediana < 0,5) · ⚠️ 1,0–1,6 s quieto · ⚠️ fondo liso > 70 % · ⚠️ cara al borde
+- ❌ ojos bajo y 1250 (interfaz de la app) · ❌ 1,5 s o más sin cambio visible
+- ⚠️ ojos en la franja de subtítulos · ⚠️ poco movimiento (mediana < 0,5) · ⚠️ 1,0–1,5 s quieto · ⚠️ fondo liso > 70 % · ⚠️ cara al borde
 
 **Calibración con el Ep. 2 (r3):** pilla la lupa que tapaba el ojo del pájaro en el plano 14 (el bloqueante que tumbó la r3), el suelo liso y quieto del 19 (2,1 s sin cambio, 76 % liso), el plano fijo del 13 y el interior quemado del 10 (3,5 %). El plano 14–16 que el revisor llamó "congelado" mide 0,8–1,0 de movimiento mediano y 0,6–0,7 s máximo quieto: se movía, poco.
 
@@ -65,7 +65,7 @@ python3 tools/auditor/auditar.py cerrar <ep> <etapa>     # veredicto.md (sale 0 
 ## Bitácora del proceso (obligatoria)
 Cada hecho se anota con `tools/auditor/bitacora.py` en `auditoria/proceso.jsonl`:
 ```bash
-python3 tools/auditor/bitacora.py <ep> promesa --hora 18:40 --que "animatic" --dato "muestras: 22 planos en 9 min"
+python3 tools/auditor/bitacora.py <ep> promesa --hora 18:40 --que "animatic" --dato "muestras: 40 planos en 9 min"
 python3 tools/auditor/bitacora.py <ep> aviso   --que "se atrasa a 19:10: ..."          # cada aviso a Tomás, ANTES de la hora
 python3 tools/auditor/bitacora.py <ep> cumplida --id <n de la promesa>
 python3 tools/auditor/bitacora.py <ep> trabajo --id "pod a5000-1" --estado inicio|fin|caido

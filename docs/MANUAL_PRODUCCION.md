@@ -26,7 +26,7 @@ studio/episodios/epNN-slug/
 
 ### Duración y largo
 - **62–65 s: lo mínimo** (decisión de Tomás, 21-oct-2026: "no necesitamos 74 segundos"). TikTok solo monetiza videos de más de 1 minuto; más largo no suma y cuesta más render, más voz y más revisión.
-- Fernando habla a unas **2,91 palabras por segundo contando las pausas** (Ep. 2: 214 palabras en 73,6 s), así que el guion tiene **178–190 palabras**.
+- Fernando habla a **2,89–2,94 palabras por segundo contando las pausas** (Ep. 1: 207 palabras en 71,7 s; Ep. 2: 214 en 73,6 s), así que el guion tiene **182–190 palabras** (con menos, la voz queda bajo 62 s).
 - Mide siempre con los tiempos reales de la alineación. Si la voz queda bajo 62 s, se alargan pausas con `tools/pausas.py` (0 créditos) antes de regenerar.
 - Con 62 s cada frase se gana su lugar: un dato central, 4 pasos como máximo y la enseñanza. Lo que se puede sacar sin perder la idea, se saca.
 
@@ -108,20 +108,21 @@ Se crea `jobs/voz/NNNN-epNN-slug.json` (NNNN es correlativo, mira el último en 
 ## 4. Storyboard = fichas de plano (antes de animar)
 El storyboard es **la receta del editor**: cada fila es la ficha de un plano y trae escrito, antes de animar, todo lo que el auditor va a exigir después. Plantilla: `studio/plantilla/storyboard.md`. El chequeo automático de la puerta 3 rechaza fichas incompletas.
 
-| # | Tiempo | Frase de la voz | Plano (escala) | Plantilla | Acción visible (se lee en 1 foto) | Cambio cada 2 s | Cámara | Cara (y) | Gráfico (dónde) | SFX | Origen |
-|---|---|---|---|---|---|---|---|---|---|---|---|
+| # | Tiempo | Frase de la voz | Escena | Plano (escala) | Plantilla | Acción visible (se lee en 1 foto) | Cambio (≤ 1,5 s) | Cámara | Cara (y) | Gráfico (dónde) | SFX | Origen |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
 
-- **Plantilla** (obligatoria): una de `studio/plantilla/KIT.md` (reaccion, detalle_lupa, interior, tarjetas, cifra, recorrido, loop, whip) o `a medida` (máximo 3 por video).
+- **Escena** (obligatoria): qué escena armada usa el plano (E1, E2…). **Escena ≠ plano:** la escena es lo caro (set, personajes y actuación); un plano es un corte dentro de una escena (otra cámara, un detalle, un acercamiento) y es casi gratis. **Máximo 12 escenas por video**; cortes, los que hagan falta.
+- **Plantilla** (obligatoria): una de `studio/plantilla/KIT.md` (reaccion, detalle_lupa, interior, tarjetas, cifra, recorrido, loop, whip) o `a medida` (máximo 3 escenas a medida por video).
 - **Acción visible:** lo que pasa tiene que entenderse en **una foto** ("escupe una llamarada", no "parpadea").
-- **Cambio cada 2 s:** qué cambia dentro del plano si dura más de 2,2 s (una acción, un push-in, un gráfico que entra).
+- **Cambio (≤ 1,5 s):** qué cambia dentro del plano si dura más de 1,7 s (una acción, un gráfico que entra, algo que se transforma).
 - **Cara (y):** dónde quedan los ojos del personaje (entre y 300 y 950; nunca bajo 1000). **Gráfico (dónde):** zona de la lupa, píldora o recuadro, que no puede ser la de la cara; se ubica con `graficos.lugar_libre` y se comprueba con `tools/prueba.py`.
 
 - **Origen** (obligatorio, lo revisa el auditor): `render` (Blender), `kling` (máx. 3 por video: manos con objetos o en la cara) o `biblioteca` (reacción ya hecha). Una mano con objeto marcada `render` no pasa la puerta 3.
 - **Plano (tipo)** empieza con la escala: G, M, P, D o I (interior).
 
 ### Ritmo
-- **16–22 planos** en 62–65 s (máximo 22: el Ep. 2 tuvo 40 hechos a mano y tomó más de 24 h). Cada plano dura 2–4 s.
-- **Nunca pasan más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece, se transforma o se arma dentro del cuadro. Con transformación continua un plano puede durar más (R5: 13 s sin cortar). Menos cortes y más movimiento dentro del plano.
+- **Algo cambia en pantalla cada 1–1,5 s** (~40 cambios en 62 s): un corte, o algo que aparece, se transforma o se arma dentro del cuadro. Es lo que hacen las referencias que retienen (`REFERENCIAS.md` §3: R4 corta cada 1,2 s, R2 cada 1,7 s; R5 casi no corta, pero algo se transforma todo el rato). Con transformación continua un plano puede durar más (R5: 13 s sin cortar).
+- **Máximo 12 escenas** (el Ep. 2 armó 40 escenas a mano y tomó más de 24 h). Los cortes salen de reutilizar cada escena con varias cámaras y detalles: el ritmo del Ep. 2 (un corte cada ~1,9 s) con la cuarta parte del trabajo.
 - Los cortes son secos, justo en el inicio de una frase o palabra clave.
 - Cambia la escala cada 8–12 s (general → medio → detalle → interior del cuerpo u objeto).
 
@@ -232,7 +233,7 @@ Reglas: **nunca se renderiza el video completo sin que Tomás haya aprobado el l
 - [ ] No hay negros ni congelados (`blackdetect`, `freezedetect` > 0,5 s).
 - [ ] Menos del 3% de píxeles quemados (>250) en cada cuadro de muestra, medido sin subtítulos.
 - [ ] Los subtítulos coinciden palabra por palabra con `words.json`, y sus cajas quedan dentro de la zona segura (se miden en el DOM durante el render).
-- [ ] **Chequeo por plano** (`tools/auditor/chequeo_planos.py`, lo corre el workflow y `tools/prueba.py`): ningún ojo bajo un gráfico o un subtítulo, nada quemado, ningún plano 1,6 s quieto, ninguna cara bajo y 1250.
+- [ ] **Chequeo por plano** (`tools/auditor/chequeo_planos.py`, lo corre el workflow y `tools/prueba.py`): ningún ojo bajo un gráfico o un subtítulo, nada quemado, ningún plano 1,5 s quieto, ninguna cara bajo y 1250.
 
 ### 9.2 Visual (hoja de contacto con 1 cuadro por segundo y cuadros de cada plano)
 - [ ] El cuadro 0 sirve como portada.

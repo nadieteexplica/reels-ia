@@ -17,7 +17,7 @@ El animatic es el video **completo** con la voz, los subtítulos y los gráficos
 3. **Encuadre:** caras entre y≈300 y 950; nada importante bajo y 1000 (subtítulos) ni bajo y 1250 (interfaz de la app).
 4. **Animación:** ¿el personaje actúa (una acción que se lee en una foto, anticipación, expresión) o está tieso? Usa las medidas antes de decir "congelado".
 5. **Belleza:** luz, color, materiales, composición. El ruido de las pocas muestras del animatic no cuenta.
-6. **Ritmo del plano:** ¿cambia algo en pantalla al menos cada 2 s?
+6. **Ritmo del plano:** ¿cambia algo en pantalla al menos cada 1,5 s? (`quieto_max_s` lo mide)
 7. **Cada evento:** ¿defecto o buscado? Respóndelo en `eventos`.
 
 Al final, ordena tus sugerencias por impacto (máximo 8). En `problemas`, `plano` es el número del plano y `segundo` el tiempo exacto del cuadro donde se ve (el rótulo de la imagen).

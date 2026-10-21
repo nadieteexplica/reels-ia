@@ -31,7 +31,8 @@
   "revisores_por_ronda": 2,
   "animatics": 2,
   "renders_finales": 1,
-  "planos_max": 22,
-  "planos_a_medida_max": 3
+  "escenas_max": 12,
+  "escenas_a_medida_max": 3,
+  "cambio_max_s": 1.5
  }
 }
