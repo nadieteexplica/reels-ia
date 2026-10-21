@@ -25,22 +25,22 @@ studio/episodios/epNN-slug/
 ## 1. Guion
 
 ### Duración y largo
-- **62–65 s: lo mínimo** (decisión de Tomás, 21-oct-2026: "no necesitamos 74 segundos"). TikTok solo monetiza videos de más de 1 minuto; más largo no suma y cuesta más render, más voz y más revisión.
-- Fernando habla a **2,89–2,94 palabras por segundo contando las pausas** (Ep. 1: 207 palabras en 71,7 s; Ep. 2: 214 en 73,6 s), así que el guion tiene **181–188 palabras**: es la ventana que da 62–65 s con las dos velocidades medidas (con 190, a la velocidad del Ep. 1, el video pasa de 66 s y hay que regenerar; si queda corto, se arregla gratis con `tools/pausas.py`).
-- Mide siempre con los tiempos reales de la alineación. Si la voz queda bajo 62 s, se alargan pausas con `tools/pausas.py` (0 créditos) antes de regenerar.
-- Con 62 s cada frase se gana su lugar: un dato central, 4 pasos como máximo y la enseñanza. Lo que se puede sacar sin perder la idea, se saca.
+- **Sin mínimo: la duración la pone el guion. Meta 40–60 s, techo 65 s** (decisión de Tomás, 21-oct-2026: "sácalo ya que no cobramos nada de TikTok"). El programa de TikTok que paga videos de más de 1 minuto no existe en Chile, y YouTube Shorts no paga más por durar más. Más largo cuesta más render, más voz y más revisión. El chequeo automático acepta 30–65,5 s.
+- Fernando habla a **2,89–2,94 palabras por segundo contando las pausas** (Ep. 1: 207 palabras en 71,7 s; Ep. 2: 214 en 73,6 s), o sea **~2,9 palabras por segundo**: 40 s ≈ 115 palabras, 50 s ≈ 145, 60 s ≈ 175. El techo es **188 palabras** (con 190, a la velocidad del Ep. 1, el video pasa de 66 s y hay que regenerar). El chequeo acepta 88–188.
+- Mide siempre con los tiempos reales de la alineación. Si la voz se pasa de 65 s, se recorta el guion; las pausas se ajustan con `tools/pausas.py` (0 créditos) antes de regenerar.
+- Cada frase se gana su lugar: un dato central, 4 pasos como máximo y la enseñanza. Lo que se puede sacar sin perder la idea, se saca: **más corto es mejor si se entiende igual**.
 
 ### Antes de escribir: ¿para qué acción?
 Cada video se diseña para que lo **envíen** (tiene destinatario: humor, dato sorpresa, "esto es para ti") o para que lo **guarden** (sirve después: cómo se hace, algo que enseña). Si no se puede responder *¿a quién se lo mandan?* o *¿por qué lo guardarían?*, la idea no sale. Base: `docs/REFERENCIAS.md` §3.
 
-### Estructura de la línea datos (tiempos aproximados)
+### Estructura de la línea datos (tiempos aproximados; los tramos del medio se estiran o se encogen con el largo del video)
 | Tramo | Qué pasa | Ejemplo (Ep. 1) |
 |---|---|---|
 | **0–3 s · Gancho** | Situación cotidiana o pregunta imposible, con una imagen fuerte desde el cuadro 0 | "Te comes un helado muy rápido… y de repente: ¡zas! Te duele la frente." |
 | **3–7 s · Giro** | Contradice la intuición y abre la pregunta | "Pero el frío nunca tocó tu cerebro. Entonces, ¿qué pasó?" |
-| **7–38 s · Mecanismo** | 3 a 4 pasos, cada uno con su imagen | Paladar → vasos → trigémino → confusión |
-| **38–48 s · "Y lo más loco"** | Un segundo dato sorpresa (opcional si no cabe) | "Tu cerebro no siente dolor." |
-| **48–62 s · Enseñanza** | Qué hacer, cómo usarlo o cómo explicárselo a alguien | "Aprieta la lengua contra el paladar…" |
+| **Hasta ~60 % · Mecanismo** | 3 a 4 pasos (2–3 en un video de 40 s), cada uno con su imagen | Paladar → vasos → trigémino → confusión |
+| **~60–75 % · "Y lo más loco"** | Un segundo dato sorpresa (opcional si no cabe) | "Tu cerebro no siente dolor." |
+| **Último ~25 % · Enseñanza** | Qué hacer, cómo usarlo o cómo explicárselo a alguien | "Aprieta la lengua contra el paladar…" |
 | **Cierre en loop** | Frase que conecta con el inicio y deja ganas de verlo otra vez | "…nadie come helado lento." |
 
 - **Con cifras:** dejar adivinar antes de revelar (opciones o pregunta en pantalla y después la respuesta).
@@ -121,7 +121,7 @@ El storyboard es **la receta del editor**: cada fila es la ficha de un plano y t
 - **Plano (tipo)** empieza con la escala: G, M, P, D o I (interior).
 
 ### Ritmo
-- **Algo cambia en pantalla cada 1–2 s y nunca pasan más de 2 s sin un cambio** (~35–40 cambios en 62 s): un corte, o algo que aparece, se transforma o se arma dentro del cuadro. Es lo que dicen las referencias (`REFERENCIAS.md` §3: cortes de 1,2 a 2,2 s, mediana ~1,65 s; los videos con más envíos cortan más lento y R5 casi no corta, pero algo se transforma todo el rato). Con transformación continua un plano puede durar más (R5: 13 s sin cortar).
+- **Algo cambia en pantalla cada 1–2 s y nunca pasan más de 2 s sin un cambio** (en un video de 50 s, unos 25–50 cambios): un corte, o algo que aparece, se transforma o se arma dentro del cuadro. Es lo que dicen las referencias (`REFERENCIAS.md` §3: cortes de 1,2 a 2,2 s, mediana ~1,65 s; los videos con más envíos cortan más lento y R5 casi no corta, pero algo se transforma todo el rato). Con transformación continua un plano puede durar más (R5: 13 s sin cortar).
 - **Máximo 12 escenas** (el Ep. 2 armó ~45 y tomó más de 24 h). Los cortes salen de filmar cada escena con varias cámaras y detalles. El ahorro todavía no está medido: se mide en el Ep. 3.
 - Los cortes son secos, justo en el inicio de una frase o palabra clave.
 - Cambia la escala cada 8–12 s (general → medio → detalle → interior del cuerpo u objeto).
@@ -228,7 +228,7 @@ Reglas: **nunca se renderiza el video completo sin que Tomás haya aprobado el l
 ## 9. Control de calidad (QA)
 
 ### 9.1 Automático (script)
-- [ ] Dura 62–65 s, a 1080×1920 y 30 fps, en H.264 yuv420p y pesa menos de 100 MB.
+- [ ] Dura 30–65,5 s (meta 40–60 s), a 1080×1920 y 30 fps, en H.264 yuv420p y pesa menos de 100 MB.
 - [ ] El volumen integrado está en −14 ±1 LUFS y el true peak en ≤ −1 dBTP (`ffmpeg -af ebur128`).
 - [ ] No hay negros ni congelados (`blackdetect`, `freezedetect` > 0,5 s).
 - [ ] Menos del 3% de píxeles quemados (>250) en cada cuadro de muestra, medido sin subtítulos.

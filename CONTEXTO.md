@@ -21,7 +21,8 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - "¿Qué pasa dentro de…?"
   - "¿Sabías que…?"
 - **Formatos candidatos** (del estudio de referencias, sin probar todavía; fichas en `docs/REFERENCIAS.md` §5): corte que se transforma, objeto cotidiano "parece un error, pero es a propósito", "lo conté yo" con datos propios, concepto armado frente a ti, megaproyecto absurdo + "lo calculé", fábula absurda y story time.
-- **Duración: 62–65 s, lo mínimo** (decisión de Tomás, 21-oct-2026: "no necesitamos 74 segundos"), en las dos líneas. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días. Guion de 181–188 palabras.
+- **Duración: sin mínimo, la pone el guion. Meta 40–60 s, techo 65 s** (decisión de Tomás, 21-oct-2026: "sácalo ya que no cobramos nada de TikTok"; antes era 62–65 s para cobrar en TikTok). El chequeo automático acepta 30–65,5 s y 88–188 palabras (~2,9 palabras/s: 40 s ≈ 115, 50 s ≈ 145, 60 s ≈ 175). El Ep. 3 se hizo con la regla anterior (voz de 63,4 s aprobada) y no se toca.
+- **Monetización desde Chile (investigado el 21-oct-2026):** TikTok no paga por vistas (Creator Rewards sólo en EE. UU., Reino Unido, Alemania, Francia, Japón, Corea del Sur, Brasil y México, y hay que vivir ahí). Instagram no paga por vistas (los regalos en Reels sí están en Chile: US$0,01 por estrella). YouTube Shorts sí: 1.000 suscriptores + 10 M vistas de Shorts en 90 días; desde el 1-feb-2027, 20 M para los que entran y 10 M cada 90 días para seguir cobrando; ~US$0,03–0,10 por mil vistas, con Latam en la parte baja (México ~US$0,04). Facebook Content Monetization incluye Chile y el español (por invitación). La plata real son las marcas.
 - **Cadencia (meta; cada video lo pide Tomás en el chat):** se parte con **3 videos por semana** (lunes, miércoles y viernes) y se sube a 5 si la calidad se mantiene. Diario no cabe en los créditos de voz. Detalle en `docs/AUTOMATIZACION.md`.
 - **Lo que se presenta como real es real y verificado**, con fuentes. Nada de desinformar. La ficción de la línea historias puede ser todo lo loca que se quiera, pero no se disfraza de dato.
 - **Animación 3D "sí o sí".**
@@ -53,7 +54,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Reglas de edición (del estudio de formatos virales y de `docs/REFERENCIAS.md`)
 - **Gancho** en los primeros 0–2 s. El cuadro 0 es una imagen absurda o una pregunta: algo que todavía no tiene sentido.
 - **Planos:**
-  - **Algo cambia en pantalla cada 1–2 s y nunca más de 2 s sin cambio** (~35–40 cambios en 62 s; REFERENCIAS §3). **Máximo 12 escenas** por video: una escena es una actuación animada que se arma una vez y se filma con varias cámaras (el Ep. 2 armó ~45); los cortes dentro de una escena son baratos y se usan los que hagan falta.
+  - **Algo cambia en pantalla cada 1–2 s y nunca más de 2 s sin cambio** (en un video de 50 s, unos 25–50 cambios; REFERENCIAS §3). **Máximo 12 escenas** por video: una escena es una actuación animada que se arma una vez y se filma con varias cámaras (el Ep. 2 armó ~45); los cortes dentro de una escena son baratos y se usan los que hagan falta.
   - **Nunca más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece o se transforma dentro del cuadro. Con transformación continua un plano puede durar más.
   - Cortes secos sincronizados con la voz.
   - La cámara siempre se mueve (acercamientos lentos u órbitas).
@@ -166,6 +167,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 4. **Pegar `proyecto/INSTRUCCIONES.md` en las instrucciones del proyecto en Claude** (las de ahí todavía dicen 62–75 s, todas las notas ≥ 8 y 3 rondas). Se le mandó el archivo el 21-oct.
 5. ~~Producción automática~~: **decidido por Tomás el 21-oct-2026: no hay tarea programada de producción.** Él pide cada video en el chat; un video por sesión.
 6. **Proporción datos/historias.** Propuesta de Claude: ~2 de datos por cada historia en el piloto; a las 4 semanas se ajusta según envíos/alcance de cada línea.
+7. **Sumar Facebook como 4.ª red** (es el mismo video y Facebook paga por vistas en Chile, por invitación). Necesita que Tomás cree una página de Facebook y la conecte a Metricool. Preguntado el 21-oct.
 
 ## Aprendizajes
 (Se llenan con los datos de cada semana. Ver `docs/PUBLICADOS.md`.)

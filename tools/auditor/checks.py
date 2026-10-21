@@ -13,9 +13,10 @@ SALUD = ["dolor", "cerebro", "sangre", "nervio", "corazón", "pulmón", "riñón
 NUMEROS = {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce",
            "quince", "veinte", "treinta", "cuarenta", "cincuenta", "cien", "mil", "millón", "millones", "medio", "mitad"}
 RES = lambda: {"fallas": [], "avisos": [], "datos": {}}
-# Proceso v2 (21-oct-2026, pedido de Tomás: "lo mínimo, no necesitamos 74 s"). Los números viven en presupuesto.json.
+# Proceso v2 (21-oct-2026). Duración: sin mínimo (Tomás, 21-oct: "sácalo ya que no cobramos nada de TikTok"); meta 40–60 s,
+# techo 65 s. Los números viven en presupuesto.json; el piso de 30 s sólo pilla una voz o un guion cortados.
 # Fernando habla a 2,889–2,935 palabras/s contando las pausas (Ep. 1: 207 en 71,66 s; Ep. 2: 214 en 72,9–73,6 s).
-# Video de 62–65,5 s = voz de 61,6–65,1 s → 181–188 palabras sirven con las dos velocidades (190 daba 66,2 s con la del Ep. 1).
+# Techo: video de 65,5 s = voz de 65,1 s → 188 palabras con las dos velocidades (190 daba 66,2 s con la del Ep. 1).
 _T = comun.topes()
 PALABRAS = tuple(_T["palabras"])
 PALABRAS_S = 2.91
@@ -111,9 +112,9 @@ def guion(ep_d, publicados=None):
     est = n / PALABRAS_S
     r["datos"].update({"palabras": n, "duracion_estimada_s": round(est, 1)})
     if not PALABRAS[0] <= n <= PALABRAS[1]:
-        _f(r, f"el guion tiene {n} palabras ({PALABRAS[0]}–{PALABRAS[1]}: 62–65 s, lo mínimo que paga TikTok)")
-    if not 61 <= est <= 65.5:
-        _f(r, f"duración estimada {est:.1f} s fuera de 61–65,5 s (a {PALABRAS_S} palabras/s)")
+        _f(r, f"el guion tiene {n} palabras (acepta {PALABRAS[0]}–{PALABRAS[1]}; meta 40–60 s ≈ 115–175)")
+    if not DURACION[0] - 1 <= est <= DURACION[1]:
+        _f(r, f"duración estimada {est:.1f} s fuera de {DURACION[0] - 1:g}–{DURACION[1]:g} s (a {PALABRAS_S} palabras/s)")
     frases = [f.strip() for f in re.split(r"(?<=[.!?:])\s+", txt.replace("\n", " ")) if f.strip()]
     largas = [(len(palabras(f)), f) for f in frases if len(palabras(f)) > 14]
     for k, f in largas:
@@ -280,7 +281,7 @@ def storyboard(ep_d, dur_voz=None):
         if len(medida) > A_MEDIDA_MAX:
             _f(r, f"{len(medida)} escenas a medida ({', '.join(medida)}; máx. {A_MEDIDA_MAX}): usar plantillas del kit", bloqueante=True)
     if filas and len(filas) < 20:
-        _a(r, f"{len(filas)} planos: con algo que cambia cada 1–2 s, en 62 s hacen falta ~35–40 cambios; confirmar que la columna 'cambio' los cubre")
+        _a(r, f"{len(filas)} planos: con algo que cambia cada 1–2 s, en 50 s hacen falta ~25–50 cambios; confirmar que la columna 'cambio' los cubre")
     if faltan_col:
         _f(r, f"a la ficha de plano le faltan columnas: {', '.join(faltan_col)} (plantilla en studio/plantilla/storyboard.md)", bloqueante=True)
     vacio = lambda x: not x or norm(x).strip() in ("", "-", "—", "?", "x")

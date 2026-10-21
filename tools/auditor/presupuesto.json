@@ -35,14 +35,15 @@
   "planos_por_revisor": 10,
   "cambio_max_s": 2.0,
   "palabras": [
-   181,
+   88,
    188
   ],
   "duracion_s": [
-   62.0,
+   30.0,
    65.5
   ],
   "promedio_min": 8.0,
-  "nota_min_revisor": 7
+  "nota_min_revisor": 7,
+  "nota_duracion": "Sin mínimo desde el 21-oct-2026 (Tomás: 'sácalo ya que no cobramos nada de TikTok'). Meta 40–60 s, techo 65 s; el piso de 30 s sólo pilla una voz o un guion cortados."
  }
 }

@@ -1,6 +1,6 @@
 # EpNN — Storyboard (fichas de plano)
 
-Tiempos reales de `words.json` (s). 30 fps, vertical 1080×1920. 62–65 s, **máximo 12 escenas** (una escena = una actuación animada que se arma una vez y se filma con varias cámaras) y algo que cambia cada 1–2 s, nunca más de 2 s sin cambio (~35–40 cambios: los cortes dentro de una escena son baratos). Escalas: **G** general · **M** medio · **P** primer plano · **D** detalle · **I** interior.
+Tiempos reales de `words.json` (s). 30 fps, vertical 1080×1920. Meta 40–60 s (techo 65 s), **máximo 12 escenas** (una escena = una actuación animada que se arma una vez y se filma con varias cámaras) y algo que cambia cada 1–2 s, nunca más de 2 s sin cambio (en 50 s, unos 25–50 cambios: los cortes dentro de una escena son baratos). Escalas: **G** general · **M** medio · **P** primer plano · **D** detalle · **I** interior.
 Cada fila es la **ficha del plano**: lo que el auditor va a exigir, escrito antes de animar (`docs/MANUAL_PRODUCCION.md` §4). El chequeo automático (`auditar.py preparar <ep> storyboard`) rechaza fichas con columnas vacías, planos de más de 2 s sin "cambio" escrito, caras que bajan de y 1000, más de 12 escenas y más de 3 escenas a medida.
 
 ## Concepto
