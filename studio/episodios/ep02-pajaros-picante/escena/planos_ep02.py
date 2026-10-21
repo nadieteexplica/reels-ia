@@ -1776,7 +1776,7 @@ def p29(sc, a, b):
         x = (f - a) / n
         tx = x_ini + (x_fin - x_ini) * x
         _tupaya_en(S, tx)
-        tp["root"].location.z += 0.005 + 0.008 * abs(math.sin((f - a) * 0.55))
+        tp["root"].location.z += 0.006 * abs(math.sin((f - a) * 0.55))       # (la altura sale del respaldo 0,135 del rayo: en x < -0,6 el rayo no pega)
         tp["cabeza"].rotation_euler = Euler((r0.x * 0.2, 0, 0))        # mira adelante, no a cámara (todavía no se presenta)
         _caminar(S, f - a)
         _cola(S, f, 10)
@@ -1952,30 +1952,31 @@ def p24L(sc, a, b):
     sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.16, 0.04, 0.05, 1)
     sc.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 1.0
     C = P.collection("Cuello")
-    pared = P.mat("Garganta", (0.55, 0.16, 0.18), rough=0.6, sss=0.1)
-    for sx in (-1, 1):          # las dos paredes del cuello (por dentro), suaves y fuera de foco
+    pared = P.mat("Garganta", (0.46, 0.11, 0.13), rough=0.38, coat=0.25)      # sin SSS: en un tubo de 1 cm la luz lo atravesaba y quedaba rosado pálido
+    for sx in (-1, 1):          # las dos paredes del cuello (por dentro), húmedas, se leen como un tubo
         w_ = P.prim("cyl", f"Pared{sx}", C, pared, r=0.012, r2=0.012, h=0.3, seg=32)
-        w_.location = (sx * 0.026, 0.004, 0.0)
+        w_.location = (sx * 0.0225, 0.004, 0.0)
     sem = P.mat("SemillaEntera", (0.96, 0.86, 0.46), rough=0.5, coat=0.2)
     borde = P.mat("SemillaBordeE", (0.74, 0.56, 0.20), rough=0.55)
     semillas = []
-    for k in range(3):
+    for k in range(5):
         g = P.prim("cyl", f"SemE{k}", C, borde, r=0.0055, r2=0.0055, h=0.0016, seg=32)
         cara = P.prim("cyl", f"SemE{k}_cara", C, sem, r=0.0045, r2=0.0045, h=0.0006, seg=32)
         cara.location = (0, 0, 0.0007)
         cara.parent = g
-        g.rotation_euler = (R(70 + 15 * k), R(20 * k), 0)
+        g.rotation_euler = (R(70 + 9 * k), R(14 * k), 0)
         semillas.append((g, k))
-    E2.area(sc, "LuzCuello", (0.03, -0.12, 0.06), 2.5, 0.1, (1.0, 0.92, 0.85), (0, 0, 0))
+    E2.area(sc, "LuzCuello", (0.03, -0.12, 0.06), 0.55, 0.1, (1.0, 0.92, 0.85), (0, 0, 0))
+    E2.area(sc, "RimCuello", (-0.05, 0.06, 0.05), 0.5, 0.08, (1.0, 0.55, 0.50), (0, 0, 0))
     cam = E2.camara(sc, "Cam24L", lens=40)
     E2.mirar(cam, Vector((0, -0.075, 0.0)), Vector((0, 0, 0.0)))
     n = b - a
 
     def act(f):
         x = (f - a) / n
-        for g, k in semillas:
-            z = 0.034 - 0.068 * lin(x, 0.02 + 0.14 * k, 0.62 + 0.14 * k)
-            g.location = (0.004 * math.sin(k * 2.1), 0.002, z)
+        for g, k in semillas:     # revisión del borrador: la lupa quedaba vacía al principio y al final; ahora pasan todo el plano
+            z = 0.040 - 0.080 * lin(x, -0.18 + 0.21 * k, 0.30 + 0.21 * k)
+            g.location = (0.005 * math.sin(k * 2.1) + 0.0015 * math.sin(f * 0.3 + k), 0.002, z)
             g.rotation_euler.z = f * 0.05 + k
     return {"actualizar": act}
 
@@ -2038,3 +2039,16 @@ PIEZAS = {
     "24": _pieza(24, p24, fijo=True),
     "24L": _pieza(24, p24L, aux=True, cuadrado=True, lado=1.0),
 }
+
+
+def _partir(pid, n):
+    """Parte una pieza larga en n trabajos ("29@1"…): cada uno arma la escena entera con el rango completo del plano
+    (la animación no cambia) y renderiza sólo su tramo de cuadros. El meta se junta en el post por "base"."""
+    pz = PIEZAS.pop(pid)
+    a, b = pz["a"], pz["b"]
+    for i in range(n):
+        PIEZAS[f"{pid}@{i + 1}"] = dict(pz, rango=(a + (b - a) * i // n, a + (b - a) * (i + 1) // n), base=pid)
+
+
+for _pid, _n in (("29", 3), ("30", 2), ("25", 2), ("12", 2)):
+    _partir(_pid, _n)

@@ -27,14 +27,17 @@ FONT = os.path.join(FONTS, "Inter-Black.otf")
 FONT_B = os.path.join(FONTS, "Inter-ExtraBold.otf")
 AMARILLO = (255, 210, 63)
 ROJO = (236, 52, 38)
-CANELA = (214, 140, 72)
+CANELA = (255, 150, 60)       # revisión del borrador: (214, 140, 72) se perdía contra el pelaje del ratón
 CELESTE = (110, 200, 255)
 CLAVE = {"CAPSAICINA": ROJO, "MAMÍFEROS": CANELA, "LECHE": CELESTE}
 BOX = (120, 888, 1000, 1250)
 META = {}
 for p in glob.glob(os.path.join(src, "meta", "*.json")):
     d = json.load(open(p))
-    META[d["pieza"]] = d
+    if d["pieza"] in META:        # pieza partida en varios trabajos (29@1, 29@2…): se juntan los cuadros
+        META[d["pieza"]]["cuadros"].update(d.get("cuadros", {}))
+    else:
+        META[d["pieza"]] = d
 
 
 def plano_de(f):
@@ -104,6 +107,16 @@ def cuadro_cercano(f, a, b):
 
 
 # ---------------- brillo ----------------
+def acercar(im, z):
+    """Push-in de post sobre un fondo quieto (planos 15, 16 y 31): z = 0 → igual; z = 0.05 → 5 % más cerca."""
+    if z <= 1e-4:
+        return im
+    w, h = im.size
+    cw, ch = w / (1 + z), h / (1 + z)
+    x0, y0 = (w - cw) / 2, (h - ch) * 0.45
+    return im.resize((w, h), Image.BICUBIC, box=(x0, y0, x0 + cw, y0 + ch))
+
+
 def bloom(im, umbral=0.80, fuerza=0.55):
     a = np.asarray(im).astype(np.float32) / 255
     lum = a.max(axis=2)
@@ -392,7 +405,7 @@ T_MAMI = E2.t_palabra("mamíferos")
 T_ARIZ = E2.t_palabra("arizona")
 T_CHIL = E2.t_palabra("chiltepín")
 PILDORAS[5] = _pil(5, "TÚ = RATÓN", "blanca", clave_y="orejas_y", pieza="5")
-PILDORAS[6] = lambda im, f, age: pildora(im, "TÚ = RATÓN", "blanca", 540, 380, 1.0, ("canela", E2.suave((t_de(f) - T_MAMI) / 0.25)))
+PILDORAS[6] = lambda im, f, age: pildora(im, "TÚ = RATÓN", "blanca", 540, 880, 1.0, ("canela", E2.suave((t_de(f) - T_MAMI) / 0.25)))   # en el pecho: arriba tapaba los ojos
 PILDORAS[12] = _pil(12, "¡FUEGO!", "coral", clave_y="baliza_y", pieza="12")
 PILDORAS[13] = _pil(13, "NORMAL", "verde", clave_y="termo_y", pieza="13")
 PILDORAS[18] = _pil(18, "ARIZONA", "amarilla", desde=T_ARIZ)
@@ -407,7 +420,7 @@ def pildora_19(im, f, age):
 
 
 PILDORAS[19] = pildora_19
-PILDORAS[25] = lambda im, f, age: marca_ok(im, 540, 380, pop(age - 1.4))
+PILDORAS[25] = lambda im, f, age: marca_ok(im, 800, 540, pop(age - 1.4))    # al lado de las flores, no encima
 
 
 def contador_35(im, f, age):
@@ -553,8 +566,13 @@ def procesar(f):
         fondo = cuadro_cercano(f, a, b) if k == 14 else cuadro_cercano(FR[14][1] - 1, *FR[14])
         if fondo is None:
             return False
-        if k != 14:          # el fondo queda quieto (último cuadro del 14) y un poco más oscuro: manda el recuadro
-            fondo = ImageEnhance.Brightness(fondo.filter(ImageFilter.GaussianBlur(3))).enhance(0.8)
+        if k != 14:          # el fondo es el último cuadro del 14, más oscuro y desenfocado: manda el recuadro
+            # revisión del borrador: quieto daba "congelado" en el QA (24 s); ahora el desenfoque entra en 0,2 s y el fondo
+            # se acerca lento durante el 15 y el 16
+            t15 = (f - FR[15][0]) / FPS
+            e = E2.suave(min(1.0, t15 / 0.2))
+            fondo = acercar(fondo, 0.06 * (f - FR[15][0]) / (FR[16][1] - FR[15][0]))
+            fondo = ImageEnhance.Brightness(fondo.filter(ImageFilter.GaussianBlur(3 * e))).enhance(1 - 0.2 * e)
         cont = aux(f"{k}S", f)
         s = pop(age - 0.25) if k == 14 else 1.0
         im = recuadro(fondo, cont, 540, 500, 210 if k == 14 else 260, "plumas", s)
@@ -562,6 +580,7 @@ def procesar(f):
         fondo = cargar(os.path.join(src, f"{a:05d}.png"))
         if fondo is None:
             return False
+        fondo = acercar(fondo, 0.05 * (f - a) / (b - a))
         fondo = ImageEnhance.Brightness(fondo.filter(ImageFilter.GaussianBlur(3))).enhance(0.8)
         im = recuadro(fondo, aux("31S", f), 540, 500, 260, "pelaje", pop(age - 0.05))
     else:

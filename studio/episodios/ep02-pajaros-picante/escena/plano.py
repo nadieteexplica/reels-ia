@@ -60,6 +60,8 @@ os.makedirs(os.path.join(d, "meta"), exist_ok=True)
 cuadros = list(range(a, b))
 if pz.get("fijo"):
     cuadros = [a]
+if pz.get("rango"):
+    cuadros = [f for f in cuadros if pz["rango"][0] <= f < pz["rango"][1]]
 rng = os.environ.get("CUADROS", "").strip()
 if rng:
     x, y = (int(v) for v in rng.split("-"))
@@ -67,7 +69,7 @@ if rng:
 n = int(os.environ.get("MUESTRAS", "0") or 0)
 if n and len(cuadros) > n:
     cuadros = sorted({cuadros[round(i * (len(cuadros) - 1) / (n - 1))] for i in range(n)}) if n > 1 else [cuadros[len(cuadros) // 2]]
-meta = {"pieza": pid, "a": a, "b": b, "cuadros": {}}
+meta = {"pieza": pz.get("base", pid), "a": a, "b": b, "cuadros": {}}
 t0 = time.time()
 for f in cuadros:
     out = os.path.join(dst, (f"{pid}_" if aux else "") + f"{f:05d}.png")

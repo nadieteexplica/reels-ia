@@ -16,7 +16,9 @@ ARMADO = 70     # segundos de armar la escena de cada pieza
 
 
 def costo(pid, pz, muestras):
-    n = 1 if pz.get("fijo") else (pz["b"] - pz["a"])
+    a, b = pz.get("rango") or (pz["a"], pz["b"])
+    n = 1 if pz.get("fijo") else (b - a)
+    pid = pz.get("base", pid)
     if muestras:
         n = min(n, muestras)
     if pid in C0:
@@ -49,6 +51,8 @@ def repartir(n, piezas, muestras):
 if __name__ == "__main__":
     n = int(sys.argv[1])
     sel = [p for p in (sys.argv[2] if len(sys.argv) > 2 else "").split(",") if p.strip()] or list(PL.PIEZAS)
+    # "29" pide todas sus partes (29@1, 29@2…)
+    sel = [q for p in sel for q in ([p] if p in PL.PIEZAS else sorted(k for k in PL.PIEZAS if k.split("@")[0] == p))]
     mu = int(sys.argv[3]) if len(sys.argv) > 3 and sys.argv[3] else 0
     m = repartir(n, sel, mu)
     print(json.dumps({"include": m}))
