@@ -144,10 +144,14 @@ El chat agrega a esta lista los que encuentre repetidos en muchas cuentas.
 - Ganchos: "¿Qué pasaría si…?", "¿Cómo funciona por dentro?", "¿Por qué no podemos…?", "¿Qué pasa dentro de…?" y "¿Sabías que…?".
 - Rebuscados y divertidos, pero reales.
 - (21-oct) Rondas **sin seres vivos**: objetos, máquinas, lugares, planeta y espacio como protagonistas (las personas sólo de contexto).
-- (21-oct) **Historias reales absurdas** que cierran con "¿y para qué sirvió? No sé… pero es ridículo": lo chistoso pesa tanto como lo útil.
+- (21-oct) Cosas **ridículas y chistosas** que hagan que **la gente** diga "¿y eso para qué sirvió?" o "qué weá". El video **no** lo explica ni lo dice: la reacción la pone el que mira.
+- (21-oct) Tres tipos: dato "qué weá", historia que pasó de verdad, y "¿qué pasa si hacemos esto?" (algo que nunca vamos a hacer, pero igual es interesante).
+- (21-oct) **Abrirse a todo el mundo:** construcción, mar, cielo, autos, edificios, una cuchara… Sus ideas son ejemplos, no límites.
 - (21-oct) **Datos freaks** que pasan alrededor del mundo en la vida cotidiana.
 
 **No le gusta:**
 - El pulpo como tema.
+- (21-oct, ronda 2 entera 👎, "todo fome") Fallas técnicas de la NASA y física de nerd; rondas encerradas en una sola idea de Tomás; un cierre "¿para qué sirvió?" narrado por el video.
+- (21-oct) Gastar horas verificando antes de que él reaccione: primero ronda ancha y rápida, y la verificación a fondo solo para los 👍.
 
 (El chat suma acá lo que aprenda de cada ronda.)
