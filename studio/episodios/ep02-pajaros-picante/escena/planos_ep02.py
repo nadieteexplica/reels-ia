@@ -1281,17 +1281,19 @@ def p36(sc, a, b):
     c = _mesa_leche(S, -0.05, -0.32)
     cosas = []
     for k, (txt, col) in enumerate((("ENTERA", (0.15, 0.40, 0.90)), ("DESCREMADA", (0.25, 0.65, 1.0)))):
-        x = c.x + (k - 0.5) * 0.22
+        x = c.x + (k - 0.5) * 0.19
         z = S["suelo"](x, c.y)
         v = E.vaso_leche(f"Vaso36_{k}", S["CP"], alto=0.085, r=0.032, nivel=0.8)
-        v.location = (x - 0.035, c.y, z - 0.001)
+        v.location = (x, c.y, z - 0.001)
         cj = cajita_leche(f"Caja36_{k}", txt, S["CP"], color=col)
-        cj.location = (x - 0.035, c.y + 0.075, S["suelo"](x - 0.035, c.y + 0.075) - 0.001)
-        ar, ll = ardorometro(f"Ardor36_{k}", S["CP"], (x + 0.045, c.y - 0.01, S["suelo"](x + 0.045, c.y - 0.01) - 0.001))
+        cj.location = (x - 0.062, c.y + 0.040, S["suelo"](x - 0.062, c.y + 0.040) - 0.001)     # al lado del vaso: se lee la etiqueta
+        ar, ll = ardorometro(f"Ardor36_{k}", S["CP"], (x + 0.062, c.y - 0.01, S["suelo"](x + 0.062, c.y - 0.01) - 0.001))
         cosas.append(ll)
-    cam = E2.camara(sc, "Cam36", lens=30, fstop=8)
-    pos = c + Vector((0.0, -0.98, 0.24))
-    tgt = c + Vector((0.0, 0.02, 0.07))
+    # revisión del borrador: con 30 mm la fila quedaba chica y abajo, tapada por los subtítulos; ahora llena el ancho y
+    # queda arriba de la franja de subtítulos (la cámara mira al suelo delante de la fila)
+    cam = E2.camara(sc, "Cam36", lens=float(os.environ.get("P36_LENS", 31)), fstop=8)
+    pos = c + Vector(tuple(float(v) for v in os.environ.get("P36_POS", "0.0,-0.98,0.34").split(",")))
+    tgt = c + Vector(tuple(float(v) for v in os.environ.get("P36_TGT", "0.0,0.0,-0.015").split(",")))
     n = b - a
 
     def act(f):
@@ -1299,7 +1301,7 @@ def p36(sc, a, b):
         for k, ll in enumerate(cosas):
             baja = suave(lin(x, 0.12 + 0.03 * k, 0.72 + 0.03 * k))
             ll.poner(f + 17 * k, 1.0 - 0.72 * baja - 0.02 * k)
-        E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.07, foco=tgt)
+        E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.035, foco=tgt)
     return {"actualizar": act}
 
 
@@ -2050,5 +2052,5 @@ def _partir(pid, n):
         PIEZAS[f"{pid}@{i + 1}"] = dict(pz, rango=(a + (b - a) * i // n, a + (b - a) * (i + 1) // n), base=pid)
 
 
-for _pid, _n in (("29", 3), ("30", 2), ("25", 2), ("12", 2)):
+for _pid, _n in (("29", 3), ("30", 2), ("25", 2), ("12", 2), ("36", 2)):
     _partir(_pid, _n)
