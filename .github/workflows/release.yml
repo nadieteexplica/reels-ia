@@ -6,6 +6,9 @@ on:
     inputs:
       episodio:
         default: "ep01-congelamiento-cerebral"
+      sufijo:
+        description: "Sufijo para publicar otra versión con URL nueva (p. ej. -v3); vacío = nombre del episodio"
+        default: ""
 permissions:
   contents: write
 jobs:
@@ -16,10 +19,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           EP: ${{ github.event.inputs.episodio }}
+          SUF: ${{ github.event.inputs.sufijo }}
         run: |
           TAG="$(echo "$EP" | cut -d- -f1)"
           mkdir -p r && cd r
           gh release download "$TAG-borrador" -p "$EP.mp4" -p "contacto.jpg"
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "$EP" --notes "Video final de $EP"
-          gh release upload "$TAG" "$EP.mp4" contacto.jpg --clobber
-          echo "URL: https://github.com/${{ github.repository }}/releases/download/$TAG/$EP.mp4"
+          if [ -n "$SUF" ]; then mv "$EP.mp4" "$EP$SUF.mp4"; mv contacto.jpg "contacto$SUF.jpg"; fi
+          gh release upload "$TAG" "$EP$SUF.mp4" "contacto$SUF.jpg" --clobber
+          echo "URL: https://github.com/${{ github.repository }}/releases/download/$TAG/$EP$SUF.mp4"
