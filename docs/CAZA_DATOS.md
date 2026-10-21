@@ -147,6 +147,7 @@ El chat agrega a esta lista los que encuentre repetidos en muchas cuentas.
 - (21-oct) Cosas **ridículas y chistosas** que hagan que **la gente** diga "¿y eso para qué sirvió?" o "qué weá". El video **no** lo explica ni lo dice: la reacción la pone el que mira.
 - (21-oct) Tres tipos: dato "qué weá", historia que pasó de verdad, y "¿qué pasa si hacemos esto?" (algo que nunca vamos a hacer, pero igual es interesante).
 - (21-oct) **Abrirse a todo el mundo:** construcción, mar, cielo, autos, edificios, una cuchara… Sus ideas son ejemplos, no límites.
+- (21-oct, ronda 3) 👍 **El edificio que caminó** (Shanghái): una imagen "qué weá" que se entiende sola, sin explicación.
 - (21-oct) **Datos freaks** que pasan alrededor del mundo en la vida cotidiana.
 
 **No le gusta:**

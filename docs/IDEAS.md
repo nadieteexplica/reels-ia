@@ -148,6 +148,14 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 |---|---|---|---|---|
 | pendiente | ¿Por qué las ventanas de los aviones son redondas? | El Comet (1954): las esquinas cuadradas concentraban la tensión y se agrietaban | Avión en un tanque de agua, grieta en la esquina | Por qué las esquinas redondas aguantan más |
 | pendiente | Con 23 personas en una pieza, hay 50 % de que dos estén de cumpleaños el mismo día | La paradoja del cumpleaños | Pieza que se llena y parejas que se conectan | Por qué la intuición falla con las probabilidades |
+| pendiente (👍 Tomás 21-oct, ficha abajo) | Un edificio de 7.600 toneladas se fue caminando | Shanghái, 2020: una escuela de 1935 "caminó" 62 m sobre 198 patas robóticas para dejarle el sitio a un centro comercial | El edificio de cinco pisos con patitas, dando pasos por la ciudad | La reacción la pone la gente ("¿no era más fácil hacer el mall en otro lado?"); el video no la explica |
+
+#### Ficha — El edificio que caminó (caza del 21-oct-2026, verificado)
+- **Qué pasó:** en octubre de 2020 movieron la Escuela Primaria Lagena (Shanghái, construida en 1935, cinco pisos, en forma de T, más de 7.600 toneladas) para dejar el terreno a un complejo de oficinas y comercio. No la demolieron: era patrimonio.
+- **Cómo:** 198 patas robóticas hidráulicas debajo del edificio, en **dos grupos que se turnan** para levantar y avanzar, imitando pasos humanos. Rieles no servían porque el camino era curvo y había que girarlo.
+- **Cifras:** 62 m (203 pies) en **18 días**, girándolo ~21° de paso; llegó el 15-oct-2020. Lo hizo la empresa Shanghai Evolution Shift, con un sistema creado en 2018. Después quedó como centro cultural.
+- **Fuentes (2, coinciden en peso, patas, distancia, días y giro):** [The Drive](https://www.thedrive.com/news/37679/watch-a-giant-walking-machine-relocate-an-entire-five-story-school-building) (cita a CNN) · [Oddity Central](https://www.odditycentral.com/architecture/robot-legs-help-7600-tonne-building-walk-to-new-location.html) (cita al South China Morning Post). Giro: una dice "unos 20°" y la otra 21° → decir "unos 20 grados".
+- **Ojo al guion:** el video muestra el absurdo y no cierra con moraleja ni con "¿para qué sirvió?" narrado (gusto de Tomás, `CAZA_DATOS.md` §9).
 
 ### Megaproyecto absurdo + "lo calculé"
 | Estado | Gancho | Cálculo (supuestos explícitos en `guion.md`) | Imagen 3D clave | Acción buscada |
