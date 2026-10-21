@@ -160,26 +160,34 @@ def auditar(ep, desde=None, hasta=None):
     pv = pres.get("proceso_v2", {})
     if pv:
         base = os.path.join(comun.ep_dir(ep), "auditoria")
-        rondas = {}
+        rondas, revisores, imagenes = {}, 0, 0
         for d in glob.glob(os.path.join(base, "*", "r*")):
-            et = os.path.basename(os.path.dirname(d))
-            if et in ("6-video", "7-paquete") or "ciclo" in et or not re.match(r"^r\d+$", os.path.basename(d)):   # proceso viejo / canceladas
+            if not os.path.isdir(d) or not re.match(r"^r\d+", os.path.basename(d)):
                 continue
+            # todas cuentan: archivar una carpeta (-cicloN) o cancelar una ronda no resetea el tope
+            et = re.sub(r"-ciclo\d+$", "", os.path.basename(os.path.dirname(d)))
             rondas.setdefault(et, []).append(d)
-            n_enc = len(comun.leer(os.path.join(d, "encargos.json"), []) or [])
-            if n_enc > pv.get("revisores_por_ronda", 2):
-                f(f"{et}/{os.path.basename(d)} lanzó {n_enc} revisores (máx. {pv['revisores_por_ronda']})")
+            encs = comun.leer(os.path.join(d, "encargos.json"), []) or []
+            revisores += len(encs)
+            imagenes += sum(1 for e in encs for m in e.get("materiales", []) if m.lower().endswith((".jpg", ".png")))
         r["datos"]["rondas"] = {k: len(v) for k, v in rondas.items()}
+        # el % de uso de Claude no se puede medir desde acá: lo que más lo mueve son los revisores y las imágenes que leen
+        r["datos"]["revisores_lanzados"] = revisores
+        r["datos"]["imagenes_a_revisores"] = imagenes
         for et, ds in rondas.items():
+            if et == "P-proceso":
+                continue
             if len(ds) > pv.get("rondas_por_puerta", 2):
                 forz = any("--forzar" in json.dumps(comun.leer(os.path.join(d, "checks.json"), {}), ensure_ascii=False) for d in ds)
                 (a if forz else f)(f"{et}: {len(ds)} rondas (máx. {pv['rondas_por_puerta']})" + (" con --forzar" if forz else ""))
         if B:
-            horas = (B[-1]["_t"] - B[0]["_t"]).total_seconds() / 3600
-            r["datos"]["horas_bitacora"] = round(horas, 1)
-            if horas > pv.get("horas_por_video", 8):
-                a(f"el video lleva {horas:.1f} h desde la primera anotación de la bitácora (tope {pv['horas_por_video']} h de trabajo; "
-                  "descontar esperas de Tomás): si se pasó, tiene que haber un aviso a Tomás con opciones")
+            # horas activas: entre anotaciones seguidas; un hueco de más de 60 min sin anotar (noche, esperar a Tomás) no cuenta
+            ts_ = sorted(e["_t"] for e in B)
+            activas = sum(d_ for d_ in ((y - x).total_seconds() / 3600 for x, y in zip(ts_, ts_[1:])) if d_ <= 1.0)
+            r["datos"]["horas_bitacora"] = round((ts_[-1] - ts_[0]).total_seconds() / 3600, 1)
+            r["datos"]["horas_activas"] = round(activas, 1)
+            if activas > pv.get("horas_por_video", 8):
+                f(f"el video lleva {activas:.1f} h activas (tope {pv['horas_por_video']} h; huecos de más de 1 h sin anotar no cuentan)")
     kl = pres.get("paquetes", {}).get("kling")
     if kl:
         usado = kl.get("usado_antes_de_bitacora", 0) + sum(

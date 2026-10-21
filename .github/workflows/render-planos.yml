@@ -133,7 +133,8 @@ jobs:
           import glob, os, sys
           sys.path.insert(0, f"studio/episodios/{os.environ['EP']}/escena")
           from PIL import Image, ImageDraw, ImageFont
-          import ep02 as E2
+          import importlib
+          E2 = importlib.import_module(os.environ['EP'].split('-')[0])   # epNN.py de la escena del episodio
           fs = sorted(glob.glob("_o/final/*.png"))
           W, H = 216, 384
           cols = 12
@@ -158,7 +159,7 @@ jobs:
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$TAG" --notes "Muestras internas. No publicar."
           cd _o/final && zip -q ../muestras_final.zip *.png && cd ../..
           # chequeo automático por plano sobre las muestras (caras tapadas, quemado, vacío, piso plano): lo mira el editor ANTES del auditor
-          python tools/auditor/chequeo_planos.py --cuadros _o/final --planos _o/ep02_planos.json --meta _r/meta \
+          python tools/auditor/chequeo_planos.py --cuadros _o/final --planos _o/${EP%%-*}_planos.json --meta _r/meta \
             --graficos _o/graficos.json --subs _o/subs_log.json --salida _o/chequeo.json > _o/chequeo.txt || true
           gh release upload "$TAG" _o/muestras.jpg _o/muestras_final.zip _o/chequeo.txt _o/chequeo.json --clobber
       - name: Audio y video
@@ -169,7 +170,7 @@ jobs:
           set -e
           cd "studio/episodios/$EP/escena"
           python audio.py
-          ffmpeg -y -v error -framerate 30 -i "$OUT/final/%05d.png" -i "$OUT/ep02_mix.wav" \
+          ffmpeg -y -v error -framerate 30 -i "$OUT/final/%05d.png" -i "$OUT/${EP%%-*}_mix.wav" \
             -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -profile:v high -crf 18 -preset slow \
             -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT/$EP.mp4"
           ffprobe -v error -show_entries format=duration:stream=width,height,r_frame_rate -of compact "$OUT/$EP.mp4"
@@ -181,7 +182,7 @@ jobs:
         if: github.event.inputs.muestras == '0'
         continue-on-error: true
         run: |
-          python tools/auditor/chequeo_planos.py --video "_o/$EP.mp4" --planos _o/ep02_planos.json --meta _r/meta \
+          python tools/auditor/chequeo_planos.py --video "_o/$EP.mp4" --planos _o/${EP%%-*}_planos.json --meta _r/meta \
             --graficos _o/graficos.json --subs _o/subs_log.json --salida _o/chequeo.json | tee _o/chequeo.txt
           (cd _r && zip -q -r ../_o/meta.zip meta)
       - name: Borrador para revisión (prerelease)
@@ -193,6 +194,6 @@ jobs:
           ffmpeg -y -v error -i "_o/$EP.mp4" -vf "fps=1,scale=216:384,tile=12x7" -frames:v 1 "_o/contacto.jpg"
           B="$(echo "$EP" | cut -d- -f1)-borrador"
           gh release view "$B" >/dev/null 2>&1 || gh release create "$B" --prerelease --title "$EP (borrador para revisión)" --notes "Borrador interno para la revisión. No publicar."
-          cp _o/ep02_planos.json _o/planos.json
+          cp _o/${EP%%-*}_planos.json _o/planos.json
           gh release upload "$B" "_o/$EP.mp4" _o/contacto.jpg _o/qa.txt _o/subs_log.json _o/planos.json --clobber
           for x in graficos.json chequeo.json chequeo.txt meta.zip; do [ -f "_o/$x" ] && gh release upload "$B" "_o/$x" --clobber; done

@@ -57,11 +57,11 @@ Cada video pasa **todo** el checklist de `MANUAL_PRODUCCION.md`:
 Además, cada video pasa una **revisión independiente**: el **auditor por etapas** (`docs/AUDITOR.md`), subagentes que no hicieron el video, que lo puntúan de 1 a 10 en 8 criterios (gancho, claridad, ritmo, belleza, animación, subtítulos, audio, precisión).
 
 **Proceso v2 (21-oct-2026, después del Ep. 2, que tomó más de 24 h — "no se puede volver a repetir"):**
-- **El auditor es la receta, no el examen final:** lo que va a exigir se escribe antes de animar en la **ficha de cada plano** del storyboard, y cada plano pasa un **chequeo automático** (`tools/prueba.py`: ojos tapados, quemado, plano quieto, fondo liso) antes de llegar al auditor.
-- Cada escena parte de una **plantilla del kit** (`studio/plantilla/KIT.md`): **máximo 12 escenas** por video (lo caro), 3 a medida como máximo, y los cortes que hagan falta dentro de cada escena (lo barato) para que **algo cambie cada 1,5 s**.
+- **El auditor es la receta, no el examen final:** lo que va a exigir se escribe antes de animar en la **ficha de cada plano** del storyboard, y cada plano pasa un **chequeo automático** (`tools/prueba.py`: ojos tapados, quemado, pantalla vacía, fondo liso; lo quieto se mide en el animatic) antes de llegar al auditor.
+- **Máximo 12 escenas** por video (una escena = una actuación animada que se arma una vez y se filma con varias cámaras; lo caro) y 3 a medida como máximo; los cortes dentro de cada escena son baratos y se usan para que **algo cambie cada 1–2 s** (nunca más de 2 s sin cambio).
 - El video se audita como **animatic** (baja resolución) y después se hace **un solo render final**, que sólo se revisa por bloqueantes.
-- **Aprueba** sin bloqueantes (lista cerrada B1–B11: lo que un espectador notaría como error o lo que es falso), con **promedio ≥ 8 y ningún criterio bajo 7**. Se muestran sólo las 5 sugerencias más importantes.
-- **Máximo 2 rondas** (la 2.ª sólo verifica lo de la 1.ª) y **2 revisores** por ronda. Lo aprobado no se toca; un plano que falla dos veces se simplifica o se reemplaza. Si el video igual no llega, le explicas a Tomás por qué y propones un reemplazo.
+- **Aprueba** sin bloqueantes (lista cerrada B1–B11: lo que un espectador notaría como error o lo que es falso), con **promedio ≥ 8 y ninguna nota de ningún revisor bajo 7**. Se muestran sólo las 5 sugerencias más importantes.
+- **Máximo 2 rondas** (la 2.ª sólo verifica lo de la 1.ª; con fallas automáticas no se abre ronda). Lo aprobado no se toca; un plano que falla dos veces se simplifica o se reemplaza y lo revisa la puerta del render final. Si el video igual no llega, le explicas a Tomás por qué y propones un reemplazo.
 - **Topes por video:** 8 h de trabajo (`tools/auditor/presupuesto.json` → `proceso_v2`). Si uno se va a pasar, paras y le avisas a Tomás con opciones.
 
 Nunca le mandes a Tomás algo "más o menos" para que él lo corrija.
@@ -75,19 +75,12 @@ Nunca le mandes a Tomás algo "más o menos" para que él lo corrija.
 
 ## Ciclo automático
 Resumen; el detalle está en `docs/AUTOMATIZACION.md`.
-- **Cadencia de partida:** **3 videos por semana** (lunes, miércoles y viernes), a la mejor hora que diga Metricool.
+- **Cadencia meta:** **3 videos por semana** (lunes, miércoles y viernes), a la mejor hora que diga Metricool. Los videos los pide Tomás en el chat.
   - Se sube a 5 por semana si la calidad se mantiene y Tomás lo pide.
   - Diario no cabe en el plan de voz actual.
-- **Una vez por semana corre la producción semanal**, como tarea programada:
-  1. Métricas.
-  2. Ideas.
-  3. Guiones.
-  4. Voces.
-  5. Animación.
-  6. Control de calidad.
-  7. Paquete listo.
-- **Aprobación:** a Tomás le llega **un solo mensaje** con los videos, textos y horarios, en la sesión de la producción semanal. Él responde ahí OK (a todos o a cada uno) y recién entonces se programan en Metricool. Sin OK, nada se programa.
-- **Revisión del jueves:** se revisan métricas y comentarios. Las preguntas de la gente van al banco de ideas.
+- **Producción a pedido (decisión de Tomás, 21-oct-2026):** no hay tarea programada de producción. Cuando Tomás quiere un video, lo pide en el chat y se hace **un video por sesión**: ideas (si no trae una), guion, voz, fichas de plano, animación, control de calidad y paquete. El detalle está en `docs/AUTOMATIZACION.md` → "Cómo se hace un video".
+- **Aprobación:** a Tomás le llega un mensaje con el video, los textos y los horarios. Él responde OK y recién entonces se programa en Metricool. Sin OK, nada se programa.
+- **Métricas:** se revisan al empezar cada video (y en una revisión aparte sólo si Tomás la pide). Las preguntas de la gente van al banco de ideas.
 
 ## Publicación
 - **Nunca publiques ni programes un post sin el OK explícito de Tomás para ese post.** Un OK puede cubrir varios posts si cada uno está listado.
@@ -140,7 +133,7 @@ Después de cada sesión de trabajo:
 - Actualiza `docs/PUBLICADOS.md` y `docs/IDEAS.md` (marca usadas y agrega nuevas).
 - Haz commit y push.
 
-El próximo chat o la tarea programada parte de ahí, no de tu memoria.
+El próximo chat parte de ahí, no de tu memoria.
 
 ## Si algo falla
 - **Primero:** reintenta (Actions hasta 2 veces).

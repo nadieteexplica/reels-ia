@@ -47,6 +47,15 @@ def ronda_dir(ep, etapa, ronda=None, crear=False):
     return d, ronda
 
 
+def topes():
+    """Topes del proceso v2 (presupuesto.json → proceso_v2). Los cambia Tomás ahí; el código los lee de ahí."""
+    d = leer(os.path.join(os.path.dirname(os.path.abspath(__file__)), "presupuesto.json"), {}) or {}
+    base = {"horas_por_video": 8, "rondas_por_puerta": 2, "planos_por_revisor": 10, "escenas_max": 12, "escenas_a_medida_max": 3,
+            "cambio_max_s": 2.0, "palabras": [181, 188], "duracion_s": [62.0, 65.5], "promedio_min": 8.0, "nota_min_revisor": 7}
+    base.update(d.get("proceso_v2", {}))
+    return base
+
+
 def ficha(ep_d):
     """Ficha de personajes del episodio (studio/episodios/<ep>/ficha.jpg); si no tiene, la del protagonista humano.
     Desde el 19-oct-2026 cada idea define su estilo y sus personajes (decisión de Tomás)."""

@@ -117,6 +117,7 @@ def acercar(im, z):
     w, h = im.size
     cw, ch = w / (1 + z), h / (1 + z)
     x0, y0 = (w - cw) / 2, (h - ch) * 0.45
+    G.transformar(1 + z, 0, -x0 * W / w * (1 + z), 0, 1 + z, -y0 * H / h * (1 + z))   # los ojos del meta se mueven igual (chequeo "cara tapada")
     return im.resize((w, h), Image.BICUBIC, box=(x0, y0, x0 + cw, y0 + ch))
 
 
@@ -290,6 +291,7 @@ def ysi(f, k):
         if cara is None:
             return None
         cara = ImageOps.mirror(cara)           # el ratón mira a la derecha: las líneas de la lupa llegan por la nuca
+        G.transformar(*G.espejo_x())
         lupa = aux("23L", f)
         mej = meta_cuadro("23", f, "mejilla", META.get("23", {}).get("mejilla", [397, 818]))
         mx, my = W - mej[0], mej[1]
@@ -310,6 +312,7 @@ def ysi(f, k):
     if z > 1.001:
         w2, h2 = int(W * z), int(H * z)
         im = im.resize((w2, h2), Image.LANCZOS).crop(((w2 - W) // 2, (h2 - H) // 2, (w2 - W) // 2 + W, (h2 - H) // 2 + H))
+        G.transformar(w2 / W, 0, -((w2 - W) // 2), 0, h2 / H, -((h2 - H) // 2))
     return im
 
 

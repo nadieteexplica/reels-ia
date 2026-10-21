@@ -25,14 +25,24 @@
   }
  },
  "proceso_v2": {
-  "nota": "Topes por video desde el 21-oct-2026 (Ep. 2: >24 h, 19 rondas del auditor y ~26 % del uso semanal de Claude de Tomás). Si se va a pasar uno, se para y se le avisa a Tomás con opciones.",
+  "nota": "Topes por video desde el 21-oct-2026 (Ep. 2: >24 h, 19 rondas del auditor y ~26 % del uso semanal de Claude de Tomás). El código los lee de acá (comun.topes()). Los números de escenas y horas son un punto de partida: se ajustan con las horas medidas del Ep. 3. Si se va a pasar uno, se para y se le avisa a Tomás con opciones.",
   "horas_por_video": 8,
   "rondas_por_puerta": 2,
-  "revisores_por_ronda": 2,
   "animatics": 2,
   "renders_finales": 1,
   "escenas_max": 12,
   "escenas_a_medida_max": 3,
-  "cambio_max_s": 1.5
+  "planos_por_revisor": 10,
+  "cambio_max_s": 2.0,
+  "palabras": [
+   181,
+   188
+  ],
+  "duracion_s": [
+   62.0,
+   65.5
+  ],
+  "promedio_min": 8.0,
+  "nota_min_revisor": 7
  }
 }

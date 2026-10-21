@@ -15,7 +15,7 @@ El animatic es el video **completo** con voz, subtítulos y gráficos, renderiza
 ## Revisa
 1. **Gancho:** ¿alguien deja de hacer scroll en 1 s? El cuadro 0 es una imagen fuerte, absurda o con pregunta, y sirve de portada.
 2. **Claridad:** siguiendo el contacto con el guion, ¿un niño de 12 años entiende la explicación? ¿Cada idea tiene su imagen?
-3. **Ritmo:** algo cambia al menos cada 1,5 s; cambio de escala cada 8–12 s; ningún tiempo muerto; el final empalma con el inicio.
+3. **Ritmo:** algo cambia al menos cada 2 s (idealmente cada 1–2 s); cambio de escala cada 8–12 s; ningún tiempo muerto; el final empalma con el inicio.
 4. **Belleza:** ¿se ve profesional y bonito en todo el video, o hay tramos feos, oscuros, vacíos o con otro look?
 5. **Animación:** ¿los personajes actúan en todo el video o hay tramos tiesos? (usa las medidas de `planos.json`).
 6. **Subtítulos:** ¿todas las palabras aparecen, a tiempo y dentro de la zona? ¿Tapan una cara? ¿Ortografía y tildes?

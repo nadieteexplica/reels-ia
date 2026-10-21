@@ -7,7 +7,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **Redes:** Instagram `nadie_te_explica` · TikTok "Nadie te explica" · YouTube Shorts (canal `UCFvRAW_exW4MgXEwQqCD1Fw`).
 - **Metricool:** brand id `7499838`, zona horaria America/Santiago. Ya están conectadas las tres redes.
 - **Dueño:** Tomás (Santiago, Chile). Habla en español chileno casual y directo, y quiere respuestas cortas.
-- **Meta: automatización total.** Claude investiga qué subir, escribe el guion, genera la voz, anima, deja todo listo, publica **3 veces por semana** (lun/mié/vie) vía Metricool con el OK de Tomás por post, y revisa los datos.
+- **Cómo trabaja:** Tomás pide cada video en el chat (decisión del 21-oct-2026: nada de producción programada). Claude investiga, escribe el guion, genera la voz, anima, deja todo listo, lo programa en Metricool con el OK de Tomás por post y revisa los datos.
 
 ## Formato (brief vigente)
 - **Dos líneas de contenido (decidido por Tomás, 18-oct-2026):**
@@ -21,8 +21,8 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - "¿Qué pasa dentro de…?"
   - "¿Sabías que…?"
 - **Formatos candidatos** (del estudio de referencias, sin probar todavía; fichas en `docs/REFERENCIAS.md` §5): corte que se transforma, objeto cotidiano "parece un error, pero es a propósito", "lo conté yo" con datos propios, concepto armado frente a ti, megaproyecto absurdo + "lo calculé", fábula absurda y story time.
-- **Duración: 62–65 s, lo mínimo** (decisión de Tomás, 21-oct-2026: "no necesitamos 74 segundos"), en las dos líneas. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días. Guion de 182–190 palabras.
-- **Cadencia:** se parte con **3 videos por semana** (lunes, miércoles y viernes) y se sube a 5 si la calidad se mantiene. Diario no cabe en los créditos de voz. Detalle en `docs/AUTOMATIZACION.md`.
+- **Duración: 62–65 s, lo mínimo** (decisión de Tomás, 21-oct-2026: "no necesitamos 74 segundos"), en las dos líneas. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días. Guion de 181–188 palabras.
+- **Cadencia (meta; cada video lo pide Tomás en el chat):** se parte con **3 videos por semana** (lunes, miércoles y viernes) y se sube a 5 si la calidad se mantiene. Diario no cabe en los créditos de voz. Detalle en `docs/AUTOMATIZACION.md`.
 - **Lo que se presenta como real es real y verificado**, con fuentes. Nada de desinformar. La ficción de la línea historias puede ser todo lo loca que se quiera, pero no se disfraza de dato.
 - **Animación 3D "sí o sí".**
 - **Edición:** limpia, amigable, llamativa, entretenida y bonita de ver.
@@ -45,7 +45,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 
 ## Voz
 - **ElevenLabs**, plan Starter (pagado), con **40.000 créditos al mes**. Cada toma gasta unos 1.200 créditos (hay que presupuestar ~1,3 tomas por video), y el saldo se ve en `out/status.json`.
-- La voz elegida es **Fernando Martínez**: `voice_id dlGxemPxFMTY7iXagmOj`. Habla a unas 2,97 palabras por segundo.
+- La voz elegida es **Fernando Martínez**: `voice_id dlGxemPxFMTY7iXagmOj`. Habla a 2,89–2,94 palabras por segundo contando las pausas (Ep. 1 y Ep. 2).
 - Modelo `eleven_multilingual_v2`.
 - Settings: stability 0.4, similarity 0.8, style 0.32, speaker boost activado.
 - Se genera **con timestamps por carácter** para armar subtítulos palabra por palabra.
@@ -53,7 +53,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Reglas de edición (del estudio de formatos virales y de `docs/REFERENCIAS.md`)
 - **Gancho** en los primeros 0–2 s. El cuadro 0 es una imagen absurda o una pregunta: algo que todavía no tiene sentido.
 - **Planos:**
-  - **Algo cambia en pantalla cada 1–1,5 s** (~40 cambios en 62 s). **Máximo 12 escenas** por video (lo caro: set, personajes y actuación), cada una desde una plantilla del kit (`studio/plantilla/KIT.md`); los cortes dentro de una escena (otra cámara, un detalle) son casi gratis y se usan todos los que hagan falta.
+  - **Algo cambia en pantalla cada 1–2 s y nunca más de 2 s sin cambio** (~35–40 cambios en 62 s; REFERENCIAS §3). **Máximo 12 escenas** por video: una escena es una actuación animada que se arma una vez y se filma con varias cámaras (el Ep. 2 armó ~45); los cortes dentro de una escena son baratos y se usan los que hagan falta.
   - **Nunca más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece o se transforma dentro del cuadro. Con transformación continua un plano puede durar más.
   - Cortes secos sincronizados con la voz.
   - La cámara siempre se mueve (acercamientos lentos u órbitas).
@@ -112,10 +112,10 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Estado actual (21-oct-2026)
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
-- **Proceso v2 (21-oct-2026, después del Ep. 2 — "NO SE PUEDE VOLVER A REPETIR", Tomás):** el Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás (19 rondas del auditor, 40 planos a mano). Ahora: videos de **62–65 s**; **storyboard = fichas de plano** con lo que exige el auditor escrito antes de animar; **kit de plantillas y bases** (`studio/plantilla/KIT.md`); **`tools/prueba.py`** por plano (render chico + post + chequeo automático de ojos tapados, quemado, quieto, fondo liso, en ~1,5 min); **animatic** auditado antes de un **solo render final**; auditor con **bloqueantes de lista cerrada**, **5 sugerencias**, **promedio ≥ 8 y ninguna nota bajo 7**, **máx. 2 rondas** (la 2.ª sólo verifica) y **2 revisores**; **topes por video** (8 h, 12 escenas, 3 a medida, algo que cambia cada 1,5 s) en `tools/auditor/presupuesto.json`. Detalle en `docs/AUDITOR.md`, el manual §4 y §8 y `docs/AUTOMATIZACION.md` ("Topes por video").
+- **Proceso v2 (21-oct-2026, después del Ep. 2 — "NO SE PUEDE VOLVER A REPETIR", Tomás):** el Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás (medido en la bitácora: 22,7 h activas, 20 rondas del auditor, 35 revisores, 337 imágenes revisadas, ~45 escenas animadas una por una). Ahora: videos de **62–65 s**; **storyboard = fichas de plano** con lo que exige el auditor escrito antes de animar; **máx. 12 escenas** y algo que cambia cada 1–2 s; **`tools/prueba.py`** por plano (render chico + post + chequeo automático de ojos tapados, quemado, vacío y fondo liso, ~1,5–2 min; lo quieto se mide en el animatic); **animatic** auditado antes de un **solo render final**; auditor sin rondas por fallas medibles, **bloqueantes de lista cerrada**, **5 sugerencias**, **promedio ≥ 8 y ninguna nota bajo 7**, **máx. 2 rondas** (la 2.ª verifica) y 1 revisor por cada 10 planos + 1 global; **topes por video** en `tools/auditor/presupuesto.json` (los lee el código). Una auditoría independiente del mismo 21-oct encontró 20 errores en la primera versión (lección 50) y se corrigieron. **El kit es todavía un catálogo de código del Ep. 2, no plantillas programadas**, y el ahorro no está medido: se mide en el Ep. 3.
 
 - **Estilo decidido:** semi-realista con Mixamo y personaje propio (ver "Formato").
-- **Auditor por etapas (19-oct; v2 desde el 21-oct, ver arriba):** `docs/AUDITOR.md` + `tools/auditor/`. Corre como subagentes (gratis) y a Tomás le llegan sólo los cuadros de estilo nuevos y el video final ya aprobados. Calibrado a ciegas con las versiones viejas del Ep. 1 (20 de 22 errores conocidos) y el chequeo automático con el Ep. 2 (`docs/AUDITOR_CALIBRACION.md`). Obligatorio, junto con la bitácora del proceso.
+- **Auditor por etapas (19-oct; v2 desde el 21-oct, ver arriba):** `docs/AUDITOR.md` + `tools/auditor/`. Corre como subagentes (gratis) y a Tomás le llegan sólo los cuadros de estilo nuevos y el video final ya aprobados. Calibrado a ciegas con las versiones viejas del Ep. 1 (20 de 22 errores conocidos, con el auditor v1; el v2 no está recalibrado) y el chequeo automático con el Ep. 2 (`docs/AUDITOR_CALIBRACION.md`). Obligatorio, junto con la bitácora del proceso.
 - **Interior del cuerpo ("cabeza de vidrio"), aprobado por Tomás el 19-oct:** perfil fijo, fondo azul noche, anatomía real de Z-Anatomy; se ve y brilla sólo lo que nombra la voz. Reglas en el manual §8.
 - **Manos con objetos y reacciones → Kling** (API oficial, secreto `KILING_SECRET`, workflow `kling.yml`). En Blender los dedos flotaban; Tomás lo rechazó dos veces. Kling parte de cuadros nuestros y no se usa para anatomía.
 - **Render en GPU → RunPod** (secreto `RUNPOD_API_KEY`, workflow `render-gpu.yml`). Probado el 19-oct: RTX A5000, ~1,4 s por cuadro a 720p/16 muestras, el pod se borra solo.
@@ -157,13 +157,15 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   3. RunPod con 2–3 pods en paralelo (video completo en ~20–30 min).
   4. ~~Ep. 2~~: programado el 21-oct (versión r3, decisión de Tomás); confirmar en Metricool que quedó "Published". Métricas a las 48 h el 23-oct; comparar lo que dijo el auditor con lo que rindió.
   5. **Ep. 3 con el proceso v2** (62–65 s, fichas de plano, kit, `tools/prueba.py`, animatic, un render final, topes por video). Primer paso al copiar la escena del Ep. 2: renombrar `ep02.py`/`ep02_planos.json` en la escena y en `render-planos.yml`.
-  6. Tareas programadas (A: producción; B: revisión del jueves) cuando un episodio salga con el proceso v2 dentro de los topes y sin intervención.
+  6. ~~Tareas programadas~~: la de producción la eliminó Tomás (21-oct): los videos se piden en el chat. La revisión de métricas, sólo si él la pide.
 
 ## Decisiones pendientes de Tomás
 1. ~~Estilo~~: decidido el 18-oct (semi-realista con Mixamo, personaje propio de cuerpo normal, ~18–20 años).
 2. ~~Audiencia de YouTube (`madeForKids`)~~: decidido el 19-oct → **no es para niños**.
 3. ~~Repo privado de assets y token~~: listo el 18-oct (`nadieteexplica/assets` + secreto `TOKEN`). **Renovar el token antes del 17-nov-2026.**
-4. **Proporción datos/historias.** Propuesta de Claude: ~2 de datos por cada historia en el piloto; a las 4 semanas se ajusta según envíos/alcance de cada línea.
+4. **Pegar `proyecto/INSTRUCCIONES.md` en las instrucciones del proyecto en Claude** (las de ahí todavía dicen 62–75 s, todas las notas ≥ 8 y 3 rondas). Se le mandó el archivo el 21-oct.
+5. ~~Producción automática~~: **decidido por Tomás el 21-oct-2026: no hay tarea programada de producción.** Él pide cada video en el chat; un video por sesión.
+6. **Proporción datos/historias.** Propuesta de Claude: ~2 de datos por cada historia en el piloto; a las 4 semanas se ajusta según envíos/alcance de cada línea.
 
 ## Aprendizajes
 (Se llenan con los datos de cada semana. Ver `docs/PUBLICADOS.md`.)
@@ -176,7 +178,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - `docs/AUDITOR.md`: el auditor independiente por etapas (puertas, chequeos, bloqueantes, formato del veredicto, bitácora del proceso). Código y prompts en `tools/auditor/`.
 - `docs/AUDITOR_CALIBRACION.md`: el auditor corrido a ciegas sobre las versiones del Ep. 1 y qué errores detectó.
 - `docs/MANUAL_PRODUCCION.md`: estándar de cada video (guion, verificación, voz, storyboard, look, subtítulos, audio, render, QA, entrega, publicación).
-- `docs/AUTOMATIZACION.md`: cadencia, fases, ciclo semanal, prompts de las tareas programadas y manejo de fallas.
+- `docs/AUTOMATIZACION.md`: cadencia, fases, topes por video, cómo se hace un video (a pedido) y manejo de fallas.
 - `docs/IDEAS.md`: dónde buscar, puntaje, lista negra y banco de ideas.
 - `docs/CAZA_DATOS.md`: método del chat de caza de datos (qué buscamos, familias, métodos, dónde verificar, datos quemados, ángulos y gustos de Tomás).
 - `docs/PUBLICADOS.md`: registro de videos y métricas.

@@ -32,6 +32,24 @@ def registrar(tipo, caja, f=None):
     _LOG.append([int(f), tipo, x0, y0, x1, y1])
 
 
+def transformar(a, b, c, d, e, g, f=None):
+    """El post movió la imagen (espejo, acercamiento): x' = a·x + b·y + c ; y' = d·x + e·y + g. Se aplica a los ojos del meta y a
+    los gráficos registrados ANTES en el mismo cuadro (los de después ya se dibujan sobre la imagen movida)."""
+    f = _F[0] if f is None else f
+    if f is None:
+        return
+    _LOG.append([int(f), "_afin", a, b, c, d, e, g])
+
+
+def espejo_x(w=1080):
+    return (-1, 0, w, 0, 1, 0)
+
+
+def zoom_centro(z, w=1080, h=1920):
+    """Agrandar z veces y recortar al centro."""
+    return (z, 0, (1 - z) * w / 2, 0, z, (1 - z) * h / 2)
+
+
 def guardar(path):
     with open(path, "w") as fh:
         json.dump(_LOG, fh)

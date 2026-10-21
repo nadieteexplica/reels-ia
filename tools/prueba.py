@@ -100,12 +100,14 @@ def hoja(d, nums, planos, ojos, cajas, W=300, H=533):
     for i, (f, p) in enumerate(zip(nums, fs)):
         x, y = (i % cols) * W, (i // cols) * (H + 18)
         lienzo.paste(Image.open(p).convert("RGB").resize((W, H)), (x, y + 18))
-        dr.text((x + 3, y + 3), f"P{CH._plano(planos, (f - 1) / 30)} · {f}", fill=(255, 255, 0))
-        for tipo, (x0, y0, x1, y1) in cajas.get(f, []):
+        dr.text((x + 3, y + 3), f"P{CH._plano_f(planos, f)} · {f}", fill=(255, 255, 0))
+        ojos_f, dib = CH.cajas_finales(f, ojos.get(f, []), cajas.get(f, []))     # ojos movidos igual que la imagen en el post
+        for tipo, (x0, y0, x1, y1) in dib:
             if not tipo.startswith("subt"):
-                dr.rectangle((x + x0 * k, y + 18 + y0 * k, x + x1 * k, y + 18 + y1 * k), outline=(80, 160, 255), width=1)
-        for ox, oy, r, _n in ojos.get(f, []):
-            tap = any(x0 - 0.3 * r <= ox <= x1 + 0.3 * r and y0 - 0.3 * r <= oy <= y1 + 0.3 * r for _t, (x0, y0, x1, y1) in cajas.get(f, []))
+                forma = dr.ellipse if tipo.split(" ")[0] in CH.CIRCULOS else dr.rectangle
+                forma((x + x0 * k, y + 18 + y0 * k, x + x1 * k, y + 18 + y1 * k), outline=(80, 160, 255), width=1)
+        for ox, oy, r, _n in ojos_f:
+            tap = any(CH.tapado(ox, oy, r, t, c) for t, c in dib)
             rr = max(3, r * k)
             dr.ellipse((x + ox * k - rr, y + 18 + oy * k - rr, x + ox * k + rr, y + 18 + oy * k + rr), outline=(255, 40, 40) if tap else (40, 255, 90), width=2)
     lienzo.save(os.path.join(d, "hoja.jpg"), quality=85)

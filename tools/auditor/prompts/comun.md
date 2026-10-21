@@ -21,7 +21,7 @@ En el Ep. 2 el auditor marcó 76, 66 y 58 cosas en tres rondas y nunca convergi�
 - **7:** se nota algo flojo, pero no es un error. **6:** flojo en varias partes. **≤5:** roto, confuso o feo.
 - Una nota necesita evidencia concreta (plano y segundo). Juzga el conjunto: un detalle chico en un plano no baja un criterio de todo el video a 6.
 - Si un criterio no aplica a tu encargo, pon `"nota": null` y `"por_que": "no aplica"`.
-- **Aprobación (la calcula el sistema, no tú):** sin bloqueantes, sin fallas automáticas, promedio de los criterios ≥ 8 y ningún criterio bajo 7.
+- **Aprobación (la calcula el sistema, no tú):** sin bloqueantes, sin fallas automáticas, promedio de los criterios ≥ 8 y **ninguna nota tuya ni de otro revisor bajo 7**.
 
 ## Bloqueantes: lista cerrada
 Un bloqueante es algo que **un espectador notaría como error** o que es **falso**. Sólo estos tipos cuentan; pon el código en `"tipo"`. Un problema marcado `"bloqueante": true` sin uno de estos códigos se trata como sugerencia.

@@ -5,7 +5,7 @@ Lo usa plano.py después de cada `actualizar(f)`: guarda en el meta del cuadro `
 cruza esos puntos con las cajas de los gráficos (`graficos.json`) y de los subtítulos (`subs_log.json`).
 
 Un objeto cuenta como ojo si tiene la propiedad `ojo` (ob["ojo"] = 1) o si su nombre termina en `_ojo`, `_ojoL` u
-`_ojoR` (así ya se llaman los de `personajes.py` del Ep. 2). Sólo se guardan los ojos que la cámara ve: dentro del
+`_ojoR` (así ya se llaman los de `personajes.py` del Ep. 2), o si se llama `Ojo.L` / `Ojo.R` (protagonista humano). Sólo se guardan los ojos que la cámara ve: dentro del
 cuadro, delante de la cámara, sin ocultar y sin otro objeto entre medio (rayo desde la cámara).
 """
 import re
@@ -13,7 +13,7 @@ import re
 import bpy
 from mathutils import Vector
 
-PATRON = re.compile(r"_ojo[LR]?(\.\d+)?$")
+PATRON = re.compile(r"(^|[_.])[Oo]jo([._]?[LR])?(\.\d+)?$")     # Cuitlacoche_ojoR (Ep. 2) · Ojo.L (protagonista humano)
 
 
 def es_ojo(ob):

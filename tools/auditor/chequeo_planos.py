@@ -1,19 +1,21 @@
-"""Chequeo automático por plano (sin IA). Lo corre el EDITOR en cada prueba y el render en cada borrador, ANTES del auditor:
-pilla en segundos lo que en el Ep. 2 costó rondas enteras del auditor.
+"""Chequeo automático por plano (sin IA). Lo corre el EDITOR en cada prueba y el render en cada borrador, ANTES del auditor.
+Mide lo que se puede medir (no ve hojas que flotan ni piezas que se atraviesan: eso sigue siendo del revisor).
+Con cuadros sueltos (tools/prueba.py) no mide movimiento: plano quieto y poco movimiento se miden en el animatic.
 
   python3 tools/auditor/chequeo_planos.py (--video borrador.mp4 | --cuadros carpeta_post) --planos planos.json \\
       [--meta carpeta_render/meta] [--graficos graficos.json] [--subs subs_log.json] [--salida chequeo.json]
 
 Qué mira (umbrales calibrados con el Ep. 2, ver docs/AUDITOR.md):
-  🛑 ojo_tapado      un ojo de un personaje bajo un gráfico (lupa, recuadro, píldora, marca) o un subtítulo ≥ 0,2 s
-                     (necesita "ojos" en el meta, que escribe plano.py con studio/plantilla/caras.py, y graficos.json del post)
+  🛑 ojo_tapado      al menos la mitad del radio de un ojo bajo un gráfico (lupa/recuadro/marca como círculo; píldora y
+                     contador como caja) o un subtítulo, ≥ 0,2 s. Usa los "ojos" del meta (plano.py + studio/plantilla/caras.py)
+                     movidos igual que la imagen en el post (espejo, acercamientos: "_afin" en graficos.json)
   🛑 quemado         más del 3 % del cuadro sobre 250, sin contar subtítulos ni gráficos, ≥ 0,2 s
   🛑 pantalla_vacia  fondo liso sin contenido ≥ 0,2 s
   ❌ cara_bajo_ui    ojos bajo y 1250 (la interfaz de la app los tapa)
-  ❌ plano_quieto    1,5 s o más sin cambio visible (fuera de la franja de subtítulos)
+  ❌ plano_quieto    2 s o más sin cambio visible (fuera de la franja de subtítulos; REFERENCIAS §3: algo cambia cada 1–2 s)
   ⚠️ cara_en_franja  ojos en y 1000–1250 (la franja de subtítulos)
   ⚠️ poco_movimiento la mediana del cambio entre cuadros es muy baja (cámara fija y nada se mueve: P13, P19 y P20 del Ep. 2)
-  ⚠️ quieto_1s       entre 1,0 y 1,5 s sin cambio
+  ⚠️ quieto_1s       entre 1,2 y 2 s sin cambio
   ⚠️ fondo_liso      más del 70 % del cuadro es superficie lisa (P19 del Ep. 2: "suelo liso que ocupa la mitad")
   ⚠️ cara_al_borde   ojos pegados al borde o bajo la barra de arriba (y < 200)
 Sale con código 1 si hay algún 🛑 o ❌.
@@ -28,7 +30,9 @@ import detectores as D
 
 FPS = 30
 QUIETO_PAR = 0.6        # cambio medio (niveles de gris, 216x384, sin franja) bajo el cual dos cuadros "no cambian"
-QUIETO_FALLA, QUIETO_AVISO = 1.5, 1.0     # algo cambia cada 1–2 s en las referencias (REFERENCIAS §3)
+QUIETO_FALLA = float(comun.topes()["cambio_max_s"])   # 2 s: "algo cambia cada 1–2 s" (REFERENCIAS §3); Ep. 2 P19 = 2,1 s
+QUIETO_AVISO = 1.2
+CIRCULOS = ("lupa", "recuadro", "marca")
 MOV_BAJO = 0.5
 LISO_AVISO = 0.70
 QUEMADO = 0.03
@@ -67,6 +71,12 @@ def _plano(planos, t):
     return next((p["plano"] for p in planos if p["a"] <= t < p["b"]), planos[-1]["plano"] if planos else None)
 
 
+def _plano_f(planos, f):
+    """Plano del cuadro global f con la misma regla que el render: F(t) = round(t·30) + 1 (en el borde, el tiempo se equivoca)."""
+    F_ = lambda t: int(round(t * FPS)) + 1
+    return next((p["plano"] for p in planos if F_(p["a"]) <= f < F_(p["b"])), planos[-1]["plano"] if planos else None)
+
+
 def leer_ojos(meta_dir):
     """{cuadro global: [[x, y, r, nombre], ...]} juntando el meta de todas las piezas."""
     ojos = {}
@@ -82,8 +92,12 @@ def leer_ojos(meta_dir):
 
 
 def leer_cajas(graficos=None, subs=None):
+    """{cuadro: [(tipo, caja) o ("_afin", coeficientes)]} en el orden en que el post los dibujó; los subtítulos van al final."""
     cajas = {}
     for g in comun.leer(graficos, []) if graficos else []:
+        if g[1] == "_afin":
+            cajas.setdefault(int(g[0]), []).append(("_afin", tuple(g[2:8])))
+            continue
         f, tipo, x0, y0, x1, y1 = g[:6]
         cajas.setdefault(int(f), []).append((tipo, (x0, y0, x1, y1)))
     for s in comun.leer(subs, []) if subs else []:
@@ -104,7 +118,7 @@ def _agrupar(marcas, planos, ralo):
         ini = prev = fs[0][0]
         det = fs[0][1]
         for f, d_ in fs[1:]:
-            if f - prev <= hueco and _plano(planos, (f - 1) / FPS) == _plano(planos, (prev - 1) / FPS):
+            if f - prev <= hueco and _plano_f(planos, f) == _plano_f(planos, prev):
                 prev = f
                 continue
             grupos.append((ini, prev, det))
@@ -114,17 +128,51 @@ def _agrupar(marcas, planos, ralo):
         for ini, prev, det in grupos:
             t0, t1 = (ini - 1) / FPS, prev / FPS
             ev.append({"clave": clave, "t0": round(t0, 2), "t1": round(t1, 2), "dur": round(t1 - t0, 2),
-                       "plano": _plano(planos, t0), "detalle": det})
+                       "plano": _plano_f(planos, ini), "detalle": det})
     return sorted(ev, key=lambda e: e["t0"])
+
+
+def _afin(c, x, y):
+    a, b, c_, d, e, g = c
+    return a * x + b * y + c_, d * x + e * y + g
+
+
+def tapado(x, y, r, tipo, caja):
+    """¿Al menos la mitad del radio del ojo queda bajo el gráfico? Círculos (lupa, recuadro, marca) con su círculo; el resto
+    (píldoras, contador, subtítulos) con su caja."""
+    x0, y0, x1, y1 = caja
+    if tipo.split(" ")[0] in CIRCULOS:
+        cx, cy, R = (x0 + x1) / 2, (y0 + y1) / 2, max(x1 - x0, y1 - y0) / 2
+        return ((x - cx) ** 2 + (y - cy) ** 2) ** 0.5 < R + 0.5 * r
+    dx = max(x0 - x, 0, x - x1)
+    dy = max(y0 - y, 0, y - y1)
+    return (dx * dx + dy * dy) ** 0.5 < 0.5 * r
+
+
+def cajas_finales(f, ojos_f, ops):
+    """Aplica en orden lo que hizo el post en el cuadro: cada '_afin' mueve los ojos y los gráficos dibujados antes."""
+    ojos_f = [list(o) for o in ojos_f]
+    dib = []
+    for tipo, val in ops:
+        if tipo == "_afin":
+            for o in ojos_f:
+                o[0], o[1] = _afin(val, o[0], o[1])
+                o[2] = o[2] * abs(val[0])
+            dib = [(t, (*_afin(val, c[0], c[1]), *_afin(val, c[2], c[3]))) for t, c in dib]
+            dib = [(t, (min(c[0], c[2]), min(c[1], c[3]), max(c[0], c[2]), max(c[1], c[3]))) for t, c in dib]
+        else:
+            dib.append((tipo, val))
+    return ojos_f, dib
 
 
 def ojos_vs_cajas(ojos, cajas, planos, ralo=False):
     tapados, franja, bajo, borde = [], [], [], []
-    for f, lista in ojos.items():
+    for f, lista0 in ojos.items():
+        lista, dib = cajas_finales(f, lista0, cajas.get(f, []))
         for x, y, r, nombre in lista:
-            m = 0.3 * r
-            for tipo, (x0, y0, x1, y1) in cajas.get(f, []):
-                if x0 - m <= x <= x1 + m and y0 - m <= y <= y1 + m:
+            x, y = round(x), round(y)
+            for tipo, (x0, y0, x1, y1) in dib:
+                if tapado(x, y, r, tipo, (x0, y0, x1, y1)):
                     tapados.append((f, (nombre, tipo.split(" ")[0]), f"{tipo} {[int(x0), int(y0), int(x1), int(y1)]} sobre {nombre} en ({x}, {y})"))
             if y > FRANJA[1]:
                 bajo.append((f, nombre, f"{nombre} en y={y}"))
@@ -150,7 +198,7 @@ def quemados(G, nums, cajas):
     out = []
     for i, f in enumerate(nums):
         m = band.copy()
-        for _t, (x0, y0, x1, y1) in cajas.get(f, []):
+        for _t, (x0, y0, x1, y1) in (c for c in cajas.get(f, []) if c[0] != "_afin"):
             m[max(0, int(y0 / D.ESC)):int(y1 / D.ESC) + 1, max(0, int(x0 / D.ESC)):int(x1 / D.ESC) + 1] = False
         out.append(float((G[i][m] > 250).mean()) if m.any() else 0.0)
     return out

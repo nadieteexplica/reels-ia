@@ -140,5 +140,5 @@ def luz(G, planos, umbral=0.30):
 def sin_cambio(planos, max_s=2.5):
     """Planos más largos que lo permitido: el revisor confirma si hay transformación dentro del cuadro."""
     return [{"tipo": "plano_largo", "plano": p["plano"], "t0": p["a"], "t1": p["b"], "dur": round(p["b"] - p["a"], 2),
-             "bloqueante": False, "que": f"plano de {p['b'] - p['a']:.1f} s: confirmar que algo cambia cada 1,5 s"}
+             "bloqueante": False, "que": f"plano de {p['b'] - p['a']:.1f} s: confirmar que algo cambia cada 1–2 s"}
             for p in planos if p["b"] - p["a"] > max_s]
