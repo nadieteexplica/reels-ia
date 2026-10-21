@@ -8,3 +8,6 @@
 {"tipo": "chequeo", "id": "render-planos 39655264403 (animatic 1)", "estado": "vivo, 14 min", "n": 8, "ts": "2026-10-21T15:58:03-03:00"}
 {"tipo": "trabajo", "id": "animatic 1 (run 39655264403)", "estado": "caido", "nota": "cancelado a propósito: la puerta 4 r1 pidió cambiar el look (cámara C0, corte, suelo, paso más alto); casi todos los planos cambian. No cuenta como animatic (no se auditó)", "n": 9, "ts": "2026-10-21T15:58:27-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras 3 (look r2)", "estado": "inicio", "n": 10, "ts": "2026-10-21T16:07:46-03:00"}
+{"tipo": "trabajo", "id": "render-planos muestras 3 (look r2)", "estado": "fin", "nota": "run 39658890807, 3m56s, chequeo 0 fallas / 1 aviso (sin ojos, esperado)", "n": 11, "ts": "2026-10-21T16:14:53-03:00"}
+{"tipo": "trabajo", "id": "animatic 1 (540x960, 8 muestras, 15 máquinas) run 39659898818", "estado": "inicio", "n": 12, "ts": "2026-10-21T16:14:53-03:00"}
+{"tipo": "promesa", "hora": "16:30", "que": "chequear animatic 1 cada 15 min", "dato": "estimado 25–35 min (medido: muestras ~4 min con 1 cuadro/pieza)", "n": 13, "ts": "2026-10-21T16:14:53-03:00"}
