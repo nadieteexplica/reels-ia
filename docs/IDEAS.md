@@ -156,6 +156,7 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 - **Cifras:** 62 m (203 pies) en **18 días**, girándolo ~21° de paso; llegó el 15-oct-2020. Lo hizo la empresa Shanghai Evolution Shift, con un sistema creado en 2018. Después quedó como centro cultural.
 - **Fuentes (2, coinciden en peso, patas, distancia, días y giro):** [The Drive](https://www.thedrive.com/news/37679/watch-a-giant-walking-machine-relocate-an-entire-five-story-school-building) (cita a CNN) · [Oddity Central](https://www.odditycentral.com/architecture/robot-legs-help-7600-tonne-building-walk-to-new-location.html) (cita al South China Morning Post). Giro: una dice "unos 20°" y la otra 21° → decir "unos 20 grados".
 - **Ojo al guion:** el video muestra el absurdo y no cierra con moraleja ni con "¿para qué sirvió?" narrado (gusto de Tomás, `CAZA_DATOS.md` §9).
+- **Estilo (decisión de Tomás, 21-oct):** semi-realista, un solo estilo; no se le muestran opciones. Antes de producir, el chat del video hace un estudio corto (algoritmo de las 3 redes, nuestras métricas, videos parecidos) y guarda las conclusiones en `docs/estudios/ep03.md`.
 
 ### Megaproyecto absurdo + "lo calculé"
 | Estado | Gancho | Cálculo (supuestos explícitos en `guion.md`) | Imagen 3D clave | Acción buscada |
