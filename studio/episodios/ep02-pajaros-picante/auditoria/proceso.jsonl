@@ -172,3 +172,4 @@
 {"tipo": "chequeo", "id": "render-planos puerta 6 r1 arreglos 39540956118", "estado": "in_progress, 14/16 trabajos de render listos", "n": 172, "ts": "2026-10-21T02:23:38-03:00"}
 {"tipo": "chequeo", "id": "render-planos puerta 6 r1 arreglos 39540956118", "estado": "in_progress, 14/16 trabajos de render listos", "n": 173, "ts": "2026-10-21T02:38:42-03:00"}
 {"tipo": "aviso", "que": "02:54: atraso: la promesa de 02:55 no se cumple; 15/16 máquinas listas, la parte 0 (32 y 8) sigue (estimada 99 min, ya va en ~117). Nueva hora: borrador ~03:40 (parte 0 + ~25 min de armado con 4 runs base). Los vigilantes de 2 h se cortaron por límite de tiempo; se sigue con uno nuevo.", "n": 174, "ts": "2026-10-21T02:53:35-03:00"}
+{"tipo": "chequeo", "id": "render-planos 39540956118", "estado": "en curso, 15/16 trabajos de render listos, armado: sin empezar", "n": 175, "ts": "2026-10-21T02:54:00-03:00"}
