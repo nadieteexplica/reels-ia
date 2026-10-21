@@ -11,6 +11,6 @@ El video del oxígeno (época low-poly) se descartó y nunca salió. El Ep. 2 qu
 | ep01-congelamiento-cerebral | 2026-10-19 16:35 | ¿Qué pasa dentro de…? | cuerpo | datos | corte (interior) | loop | Instagram | 72,1 | | | | | | | | |
 | ep01-congelamiento-cerebral | 2026-10-19 16:35 | ¿Qué pasa dentro de…? | cuerpo | datos | corte (interior) | loop | TikTok | 72,1 | | | | | | | | |
 | ep01-congelamiento-cerebral | 2026-10-19 16:35 | ¿Qué pasa dentro de…? | cuerpo | datos | corte (interior) | loop | YouTube | 72,1 | | | | | | | | |
-| ep02-pajaros-picante | 2026-10-21 10:00 | ¿Por qué no podemos…? (¿por qué ellos no?) | naturaleza | datos | fábula con personajes | loop + envío | Instagram | 74,0 | | | | | | | | |
-| ep02-pajaros-picante | 2026-10-21 16:00 | ¿Por qué no podemos…? (¿por qué ellos no?) | naturaleza | datos | fábula con personajes | loop + envío | YouTube | 74,0 | | | | | | | | |
-| ep02-pajaros-picante | 2026-10-21 18:00 | ¿Por qué no podemos…? (¿por qué ellos no?) | naturaleza | datos | fábula con personajes | loop + envío | TikTok | 74,0 | | | | | | | | |
+| ep02-pajaros-picante | 2026-10-21 10:00 | ¿Por qué…? / ¿Sabías que…? | animales y comida | datos | comedia con animales + metáfora visual | loop + envío | Instagram | 74,0 | | | | | | | | |
+| ep02-pajaros-picante | 2026-10-21 16:00 | ¿Por qué…? / ¿Sabías que…? | animales y comida | datos | comedia con animales + metáfora visual | loop + envío | YouTube | 74,0 | | | | | | | | |
+| ep02-pajaros-picante | 2026-10-21 18:00 | ¿Por qué…? / ¿Sabías que…? | animales y comida | datos | comedia con animales + metáfora visual | loop + envío | TikTok | 74,0 | | | | | | | | |
