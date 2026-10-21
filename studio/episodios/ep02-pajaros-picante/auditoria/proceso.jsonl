@@ -144,3 +144,4 @@
 {"tipo": "chequeo", "id": "render-planos completo 39503977911", "estado": "in_progress, 15/15 trabajos de render listos", "n": 144, "ts": "2026-10-20T21:19:11-03:00"}
 {"tipo": "chequeo", "id": "render-planos arreglos 36+23L 39517107581", "estado": "in_progress, 1/2 trabajos de render listos", "n": 145, "ts": "2026-10-20T21:31:43-03:00"}
 {"tipo": "aviso", "que": "21:34: atraso: las 2 últimas máquinas terminaron 21:11 y 21:14 (no ~21:00); el armado va en la subida del borrador, llega ~21:36. Vigilante del run completo cortado por límite de tiempo; no se relanza porque el run está por cerrar.", "n": 146, "ts": "2026-10-20T21:34:01-03:00"}
+{"tipo": "chequeo", "id": "render-planos arreglos 36+23L 39517107581", "estado": "in_progress, 2/2 trabajos de render listos", "n": 147, "ts": "2026-10-20T21:46:47-03:00"}
