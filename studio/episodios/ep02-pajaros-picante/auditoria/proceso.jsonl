@@ -176,3 +176,4 @@
 {"tipo": "chequeo", "id": "render-planos 39540956118", "estado": "en curso, 16/16 trabajos de render listos, armado: in_progress", "n": 176, "ts": "2026-10-21T03:09:24-03:00"}
 {"tipo": "chequeo", "id": "render-planos 39540956118", "estado": "en curso, 16/16 trabajos de render listos, armado: in_progress", "n": 177, "ts": "2026-10-21T03:24:48-03:00"}
 {"tipo": "cumplida", "que": "borrador r2 de la puerta 6", "nota": "llegó 03:27 (aviso de 02:54: ~03:40); QA PASA; 0 fallas automáticas en la r2", "n": 178, "ts": "2026-10-21T03:31:54-03:00"}
+{"tipo": "aviso", "que": "04:05: puerta 6 r2 NO APROBADO (notas 7–8, 5 bloqueantes: ojos del ratón en 12, foco del 26 quemado, vaso del 34 bajo los subtítulos, lentes del 38 que desaparecen, ají que atraviesa el pico en 14/17). Se arregla para la r3 (última).", "n": 179, "ts": "2026-10-21T03:55:20-03:00"}

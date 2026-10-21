@@ -326,10 +326,10 @@ def rec(im, f):
 
 
 def vigilancia(im):
+    # puerta 6 r2: el tramo REC se veía gris y lavado → sólo líneas de cámara, sin desaturar
+    im = ImageEnhance.Color(ImageEnhance.Contrast(im).enhance(1.06)).enhance(1.22)
     a = np.asarray(im).astype(np.float32)
-    a[::4] *= 0.90
-    g = a.mean(axis=2, keepdims=True)
-    a = a * 0.82 + g * 0.18
+    a[::4] *= 0.93
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
 
 
@@ -352,7 +352,7 @@ def whip_rapido(im, f):
     a, b = FR[28]
     m = (a + b) // 2
     x = 1 - abs(f - m) / max(1, (b - a) / 2)
-    k = int(20 + 260 * max(0.0, x) ** 1.5)
+    k = int(16 + 110 * max(0.0, x) ** 1.5)      # puerta 6 r2: menos desenfoque, se alcanza a ver algo en todo el barrido
     arr = np.asarray(im).astype(np.float32)
     pad = np.pad(arr, ((0, 0), (k, k), (0, 0)), mode="edge")
     cs = np.cumsum(pad, axis=1)
@@ -454,7 +454,7 @@ def pildora_19(im, f, age):
     pildora(im, "CHILTEPÍN", "amarilla", max(220, min(860, p[0])), max(300, min(900, p[1] - 90)), s)
 
 
-PILDORAS[19] = pildora_19
+# puerta 6 r2: la píldora CHILTEPÍN repetía el subtítulo o duraba 0,35 s → fuera (el subtítulo ya lo dice)
 PILDORAS[25] = lambda im, f, age: marca_ok(im, 800, 540, pop(age - 1.4))    # al lado de las flores, no encima
 
 
@@ -613,7 +613,16 @@ def procesar(f):
         s = pop(age - 0.25) if k == 14 else 1.0
         pico = meta_cuadro("14", f, "pico", None) if k == 14 else meta_cuadro(str(k), f, "pico", meta_cuadro("14", FR[14][1] - 1, "pico", None))
         cx_, cy_, r_ = LUPA_14
-        im = recuadro(fondo, cont, cx_, cy_, r_ if k == 14 else r_ + 30, "plumas", s, apunta=pico)
+        rr15 = r_ + (70 if k == 15 else 30 if k == 16 else 0)          # puerta 6 r2: en el 15 la molécula no se leía
+        im = recuadro(fondo, cont, cx_ + (40 if k == 15 else 0), cy_ + (30 if k == 15 else 0), rr15, "plumas", s, apunta=pico)
+        if k == 15:              # ✕ chica junto a la campana cuando la molécula rebota: "no suena"
+            sx = pop(age - 0.45 * (FR[15][1] - FR[15][0]) / FPS - 0.05, 0.3)
+            if sx > 0.02:
+                d_ = ImageDraw.Draw(im)
+                cxx, cyy, kk = cx_ + 40 + int(rr15 * 0.55), cy_ + 30 - int(rr15 * 0.45), int(34 * sx)
+                for c_, gg in (((25, 20, 22), int(20 * sx) + 1), ((244, 242, 236), int(11 * sx) + 1)):
+                    d_.line((cxx - kk, cyy - kk, cxx + kk, cyy + kk), fill=c_, width=gg)
+                    d_.line((cxx - kk, cyy + kk, cxx + kk, cyy - kk), fill=c_, width=gg)
     elif k == 31:
         fondo = cuadro(f)          # puerta 6 r1: fondo animado (la tupaya actúa); si falta, el cuadro fijo con push-in
         if fondo is None:
@@ -629,6 +638,8 @@ def procesar(f):
             return False
     if k in INTERIOR:
         im = ImageEnhance.Color(ImageEnhance.Contrast(im).enhance(1.06)).enhance(1.10)
+    if k == 19:          # puerta 6 r2: gris y desaturado frente al resto del desierto
+        im = ImageEnhance.Color(ImageEnhance.Contrast(im).enhance(1.05)).enhance(1.35)
     im = bloom(im)
     if k in (21, 22):
         im = rec(vigilancia(im), f)

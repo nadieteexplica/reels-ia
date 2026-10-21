@@ -1,0 +1,651 @@
+{
+ "etapa": "6-video",
+ "ronda": 2,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 6,
+   "por_que": "Hay cosas buenas: los saguaros y el cielo del plano 26, el desenfoque con piedritas del 25 y el look de cámara REC de los planos 21 y 22. Pero el foco del piso del plano 26 quema el 8,6–8,7 % del cuadro (46.02 y 46.57; el tope es 3 %), en el plano 20 la rama salta de posición entre cuadros y el plano 19 es pobre: un cubo con una esfera como cámara, un arbusto chico y un 60 % de piso plano.",
+   "de": "tramo3"
+  },
+  "animacion": {
+   "nota": 6,
+   "por_que": "La caca que cae y brota hasta florecer (plano 25) y la entrada en caída del ají guardia (44.91→45.47) funcionan. Las tres acciones clave del tramo están flojas: en el 21 el rechazo no se actúa (34.69: el ratón mira a cámara con cara neutra), en el 22 hay un solo picotazo y el ají desaparece sin verse dentro del pico, y en el 27 el ají está con los brazos cruzados e inmóvil en los 6 cuadros mientras la voz dice «espanta».",
+   "de": "tramo3"
+  },
+  "claridad": {
+   "nota": 7,
+   "por_que": "P11 (la molécula llega y la campana suena) y P13 (termómetro en NORMAL) se entienden al tiro; pero el contraste clave de P15 ('no la activa') pasa en un recuadro de ~510 px con una molécula de ~100 px, P18 muestra una roca vacía para '¿Por qué?', y en P12 el 'tú' tiene ojos negros gigantes que se confunden con los lentes del ratón inmune.",
+   "de": "tramo2"
+  },
+  "ritmo": {
+   "nota": 6,
+   "por_que": "P29-P32 (49.88-58.42) son 4 planos seguidos con el mismo encuadre lateral de la tupaya sobre la rama, y el corte P29→P30 es un salto. P29 pasa 2,78 s sin ningún elemento nuevo. Lo demás del tramo sí avanza: el barrido de P28, la acción de tomar en P34, el contador de P35 y el empuje de cámara de P36.",
+   "de": "tramo4"
+  },
+  "gancho": {
+   "nota": 9,
+   "por_que": "cuadro 0: el pájaro impasible con el ají cruzado en el pico al lado de un ratón rojo que escupe una llamarada; contraste absurdo que se entiende sin audio y sirve de portada (sin fundido, corte a primer plano del pájaro en 1,71 s). Único detalle: el texto de la portada queda cortado en 'ESTE PÁJARO / SE'.",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 7,
+   "por_que": "212 de 214 palabras, 0 desfase, 0 fuera de zona y tildes correctas (PÁJARO, AJÍ, RATÓN, MAMÍFEROS, MOLÉCULA, CHILTEPÍN, MOLERÍA, BAJÓ, MÁNDASELO), pero en el plano 34 (59,5-60,5 s) 'TOMA LECHE' / 'AUNQUE SEA DESCREMADA' tapan el vaso y el hocico del ratón que bebe.",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8,
+   "por_que": "no lo escucho: −14,2 LUFS (rango −15/−13) y true peak −1,5 dBTP (≤ −1) cumplen; la voz queda 14,1 dB sobre las pausas (música + efectos), que es un mínimo porque con ducking la música bajo la voz está más baja, así que lo más probable es que esté dentro de 15-20 dB, pero no queda demostrado.",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 8,
+   "por_que": "lo que se ve calza con guion y fuentes: chiltepín de frutos rojos y redondos, cámara que filma en Arizona, ratón y rata que no lo tocan y un pájaro de pico curvo que lo come, semillas molidas vs. enteras, contador que llega a '72 PERSONAS', leche ENTERA y DESCREMADA juntas sin podio de 'la mejor', 'CON GAS ×' con la llama más grande, 'TUPAYA · CHINA' y 'PLANTA PICANTE'; 'TÚ = RATÓN' es la broma del guion ('para el ají'). Queda sin verificar el ícono del plano 31 (55 s).",
+   "de": "global"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 12,
+   "segundo": "19.24",
+   "que": "El ratón no es el de la ficha (bloqueante 4). En la ficha, el ratón del cactus tiene ojos chicos y oscuros con anillo blanco; en todo P12 (18.64–20.13 s) tiene dos discos negros brillantes unos 3 veces más grandes, sin blanco y juntos sobre la nariz. Parecen los lentes oscuros del ratón 'inmune', pero sin su medalla. El espectador lo lee como otro ratón, o como el 'inmune', justo cuando la voz dice 'tu cerebro'.",
+   "arreglo": "Re-renderizar P12 con los ojos de la ficha (negros y chicos con anillo blanco), manteniendo la cara roja y la baliza. Si se quieren ojos saltones por el picante, que salgan animados desde los ojos normales y que ese estado quede en la ficha aprobada. Revisar si el mismo modelo de ojos se usa en otros planos del ratón.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 26,
+   "segundo": "46.02",
+   "que": "El foco del piso se prende de golpe y queda casi blanco: en 46.02 y 46.57 el 8,6–8,7 % de los píxeles pasa de 250, medido en la tira; en 45.47, sin foco y con subtítulo, es 0,4 %. El tope del manual es 3 %, así que es look sobreexpuesto (bloqueante 9). Además la elipse está completa bajo y=1250, en la franja de la interfaz, y no ilumina al ají: se lee como una mancha que aparece, no como un foco.",
+   "arreglo": "Bajar la intensidad o emisión del foco hasta que el piso no pase de ~235 (o sacarlo). Si se mantiene, que sea un cono que ilumine al ají a la altura del cuerpo y que la mancha quede sobre y=1250.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 38,
+   "segundo": "70.55",
+   "que": "Los anteojos del ratón 'inmune' desaparecen de golpe. Están puestos en 70.03 y en E45 'antes' (70.20). En E45 'después' (70.40) y en 70.55 y 71.07 ya no están en su cara ni en ninguna parte del cuadro. En esos mismos 6 cuadros el ratón gira 90° de frente a perfil y le cambian los ojos (aparece el ojo café grande con párpado). Parece un cambio de pose o de modelo, no una acción.",
+   "arreglo": "Mantener los anteojos puestos hasta el corte a P39 (en P40 ya aparecen en la roca) o hacer que salgan volando o se caigan a la vista: al menos 8–10 cuadros de trayectoria y que aterricen dentro del cuadro. Hacer el giro con anticipación (2–3 cuadros de pausa o encogerse) en vez de un salto de 6 cuadros.",
+   "de": "tramo5"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "plano": 34,
+   "segundo": "59.50-60.50",
+   "que": "el vaso de leche, que es lo que nombra 'TOMA LECHE', está en y≈1040-1270, detrás de los subtítulos, y a los 60,5 s el ratón se agacha a beber con el hocico, los bigotes y la boca dentro de la franja de 'AUNQUE SEA / DESCREMADA' (y 1026-1213). Queda tapada la parte baja de la cara justo en la acción clave (cara tapada, bloqueante 5).",
+   "arreglo": "reencuadrar el plano 34: subir el vaso a la roca o inclinar la cámara para que el borde del vaso y el hocico queden sobre y≈950 y la cara entre y 350-900; volver a renderizar el plano 34 y revisar que en ningún cuadro del plano el texto toque el hocico",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "26.94",
+   "que": "La pieza roja de la boca o lengua atraviesa la mandíbula superior. En 26.94 s y 27.10 s se ve una púa roja delgada saliendo por encima del pico, cerca de la base, y desaparece en 27.26 s cuando gira la cabeza. Es un primer plano del protagonista, así que se nota (el evento E16 la marca).",
+   "arreglo": "Achicar la lengua o el interior de la boca, o ajustar su forma, para que quede siempre dentro del pico en todo el giro de cabeza. Re-renderizar P17 y revisar los cuadros 26.90–27.30 s uno por uno.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "21.87",
+   "que": "Es el mismo defecto de la boca. La hoja roja de la lengua cruza por encima de la mandíbula superior negra en buena parte de su largo y se ve encima del pico, no entre las dos mandíbulas. En 22.20 s queda tapada por el recuadro que entra.",
+   "arreglo": "Mismo arreglo de la malla de la boca; re-renderizar P14 desde 21.83 s.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 20,
+   "segundo": "31.94",
+   "que": "La rama y las bayas saltan de un lado a otro entre cuadros: la baya de arriba está en x≈78, y≈210 de la celda en 31.66, en 127/180 en 31.94, en 78/210 en 32.23, en 133/175 en 32.51 y en 77/200 en 32.80. Son ±150 px del cuadro real cada ~0,3 s, y los detectores lo marcaron como E19 (32.13) y E20 (32.60). En un primer plano quieto se ve como un tembleque o glitch, y además este plano no tiene el marco REC que justificaría una cámara en mano.",
+   "arreglo": "Quitar el ruido de cámara o rama, o dejarlo suave y de menos de 15 px. Un empuje lento hacia las bayas basta para el ritmo.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 28,
+   "segundo": "49.26",
+   "que": "En el barrido hay dos cuadros seguidos de fondo liso y nada más que líneas de velocidad: degradé cielo/suelo en 49.26 y verde plano en 49.34. Los cuadros vecinos (49.06 y 49.45) ya muestran contenido, así que el tramo liso dura entre 0,08 y 0,39 s. Con este material no se puede confirmar que esté bajo 0,2 s; si lo pasa, es el bloqueante 3.",
+   "arreglo": "Medir a 30 fps. Acortar la parte lisa del barrido a 4 cuadros o menos, o dejar visible algo reconocible durante el giro (el borde de la rama de la selva o un cactus), para que nunca haya fondo liso.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 38,
+   "segundo": "68.46",
+   "que": "En 3/4 el ojo cercano del ratón atraviesa el lente izquierdo de los anteojos: el iris café con su brillo se ve dentro o al costado del vidrio negro. Pasa en 68.46, en 68.98 y en E44 'antes' (69.74). De frente (69.50) los lentes se ven sólidos. Son piezas que se atraviesan en un plano medio.",
+   "arreglo": "Separar los anteojos de la cara (más distancia o un lente un poco más grande y curvo), o encoger o meter el globo ocular bajo el lente cuando lleva anteojos. Revisar el render en 68.4–69.8 s con un recorte a 2×.",
+   "de": "tramo5"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "5.27",
+   "que": "Tras el cambio a rojo, el ratón queda congelado: cabeza, orejas, brazos y ojos idénticos en 5.07, 5.27, 5.47, 5.67 y 5.87 (24 cuadros); sólo se mueve la llama. La cámara también está fija (el cactus no se mueve), sin zoom-punch ni shake en el golpe. El remate cómico del gancho se ve tieso.",
+   "arreglo": "Agregar zoom-punch y un shake corto a ~5.0 s. Dar acción secundaria al ratón: aplastar y estirar al soltar la llama, orejas y bigotes que vibran, brazos que se agitan o se abanican la boca, ojos que se agrandan. Dejar la pose sostenida en 6–10 cuadros.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "7.60",
+   "que": "La cara del ratón queda demasiado baja: el mentón llega a y≈1090–1110 de 1920 (la regla pide la cara entre y≈350 y 900) y en 7.60 el subtítulo 'RATÓN SON LO' roza el borde inferior de la mejilla y el mentón. Lo mismo, apenas tocando, en 5.95, 8.15 y 8.70.",
+   "arreglo": "Subir al ratón en el cuadro (inclinar la cámara o acortar el acercamiento) para que el mentón termine sobre y≈980 y quede aire entre la cara y la franja de subtítulos.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "22.53",
+   "que": "Entre 21.83 y 26.90 s (P14–P16), la cabeza del pájaro queda cortada por el borde derecho y sólo se ven el ojo, el pico y un tercio de la cabeza. El personaje que habla queda medio fuera de cuadro durante 5 s.",
+   "arreglo": "Correr la cámara o el pájaro unos 150–200 px a la izquierda para que se vea la cabeza entera. Si no cabe, achicar el recuadro y ponerlo arriba a la izquierda, sin tapar el pico.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 15,
+   "segundo": "24.33",
+   "que": "P14, P15 y P16 son un solo encuadre fijo de 5,07 s. El pájaro no cambia de pose: el pico queda abierto e inmóvil, y sólo se mueven los párpados y el recuadro. El plano se ve tieso.",
+   "arreglo": "Agregarle actuación al pájaro: cerrar y abrir el pico, ladear la cabeza hacia el recuadro en 'misma alarma' y encogerse de hombros en 'no la activa'. Sumar un empuje lento de cámara o un cambio de encuadre en 23.56 s (P15).",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 15,
+   "segundo": "24.69",
+   "que": "'Pero la capsaicina no la activa' no se ve claro. La molécula (~100 px) toca la campana dentro de un recuadro de ~510 px y se aleja, pero nada marca el 'no': la campana no cambia y no hay contraste con P11. En el teléfono casi no se alcanza a ver.",
+   "arreglo": "Agrandar el recuadro en P15 (o pasar a plano completo de la lengua del pájaro) y mostrar el rebote de la molécula con un 'X' o un tic de 'clic' sin sonido. La campana debe quedar plateada y quieta, al lado de un recuerdo de P11 en rojo.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 13,
+   "segundo": "20.21",
+   "que": "La esfera del termómetro, que es el objeto clave del plano, toca el borde superior: su aro empieza en y≈60 de 1920. En TikTok e Instagram queda bajo la barra superior de la app y se pierde el arco verde de 'normal'.",
+   "arreglo": "Bajar el encuadre o el termómetro unos 200 px para que la esfera quede entre y≈250 y 650.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "15.43",
+   "que": "El ají no se abre: se cambia de golpe (E11, 15.40→15.60 s). Las dos mitades pálidas ya están detrás y son más grandes que el ají cerrado, y la cáscara roja de adelante desaparece en un cuadro. Se lee como un 'pop' de modelo, no como un ají que se parte.",
+   "arreglo": "Animar la apertura en 8–10 cuadros: que el ají se parta por la mitad y las dos mitades giren hacia afuera, con el tamaño constante, dejando ver la cáscara roja por detrás y la cara cortada adelante.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 18,
+   "segundo": "27.83",
+   "que": "En '¿Por qué?' (27.79–28.6 s) se ve una roca plana vacía en el desierto, sin personajes ni nada que plantee la pregunta. Recién con 'En Arizona' y la etiqueta ARIZONA (28.97 s) el plano tiene sentido.",
+   "arreglo": "Abrir P18 con el pájaro y el ratón mirándose sobre la roca (o el chiltepín en primer plano) y después hacer la grúa a Arizona, o mostrar un '?' que entre sobre la roca.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 27,
+   "segundo": "47.51",
+   "que": "Con «Espanta a los que destruyen semillas», el ají guardia está con los brazos cruzados y la misma pose en los 6 cuadros (46.65–48.79): no espanta a nadie. El ratón entra y sale por el borde derecho, cortado por la mitad en 47.08, 47.51 y 47.93 (en 48.36 sólo se ve la cola). La acción que nombra la voz no se ve.",
+   "arreglo": "Que el ratón entre completo al cuadro hasta el arbusto. El ají le hace un gesto claro (bajarse los lentes, que existe en la ficha, más un paso o un brazo que apunta hacia afuera) y el ratón sale corriendo en cuadro. Encuadrar a los dos completos.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 22,
+   "segundo": "36.40",
+   "que": "«Los pájaros se lo devoraban» se ve como picotazos sueltos a una sola baya. La baya sigue colgada en 35.15, 35.46, 35.77 y 36.09, aunque el pico la toca, y en 36.40 ya no está, sin que se la vea dentro del pico. Con 6 cuadros no se puede verificar que no desaparezca de golpe (material insuficiente).",
+   "arreglo": "Que el pájaro arranque 2 o 3 bayas seguidas, cada una visible en la punta del pico durante al menos 3 cuadros, con un trago (garganta o cabeza hacia arriba) y las ramas quedando peladas.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 21,
+   "segundo": "34.69",
+   "que": "Con «ni lo tocaban», la rata pone la nariz encima de una baya (E22, 34.27) y el ratón se da vuelta con cara neutra (34.69). No hay reacción de rechazo, así que se puede leer como que sí lo prueban. En 33.16 el ratón está cortado a la mitad por el borde derecho, y en 35.07 sólo queda un pedazo de su cabeza en el borde.",
+   "arreglo": "Que olfateen a un par de centímetros sin tocar, con una reacción clara (arrugar la nariz, sacudir la cabeza, cara de asco) antes de darse vuelta. Que los dos queden completos en cuadro durante la reacción.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 19,
+   "segundo": "31.58",
+   "que": "La píldora CHILTEPÍN entra en 31.27 (E18) y desaparece con el corte en 31.62: está 0,35 s en pantalla, no alcanza a leerse y queda como un destello amarillo. Además entra cuando la palabra «chiltepín» ya terminó (el subtítulo la marca activa en 30.68–31.13).",
+   "arreglo": "Hacer entrar la píldora en ~30.65, junto con la palabra, y apuntarla al arbusto y no a la cámara. Si no, quitarla, porque el subtítulo ya dice CHILTEPÍN.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 30,
+   "segundo": "52.70",
+   "que": "Corte con salto entre P29 y P30. En 52.62 la tupaya está al centro y en 52.70 aparece cortada en el borde izquierdo y vuelve a entrar caminando, con el mismo ángulo, el mismo tamaño y la misma rama. Se lee como si se teletransportara hacia atrás.",
+   "arreglo": "Unir P29 y P30 en una sola toma de seguimiento que termine bajo la planta. Otra opción: abrir P30 con otro ángulo o tamaño, por ejemplo un primer plano de 3/4 frente a las vainas.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 29,
+   "segundo": "49.92",
+   "que": "De 49.88 a 58.42 hay 8,5 s con el mismo plano lateral de la tupaya en la rama (P29, P30, P31 y P32). P29 dura 2,78 s y sólo trae el ciclo de caminar. El bloque se siente estancado justo en 'lo más loco'.",
+   "arreglo": "Variar la cámara dentro del bloque. Por ejemplo, P29 abierto con la cámara siguiéndola, P30 un primer plano de la cara con la etiqueta, P31 un plano medio con la lupa y P32 un plano cercano del mordisco a la vaina.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 31,
+   "segundo": "55.83",
+   "que": "En la lupa, la campana se vuelve azul con 'cambio' (55.18). Pero cuando llega la molécula, la campana azul muestra arcos de sonido a ambos lados y un brillo rojo debajo (55.83 y 56.16), que es el mismo código de 'suena' que se usó antes con la lengua. El espectador entiende que la alarma sí se activa, justo antes de 'como si nada'.",
+   "arreglo": "Que la molécula llegue y la campana azul apenas tiemble: un solo arco tenue y sin brillo rojo. También sirve que la molécula rebote y se vaya. Así se lee 'casi no lo siente'.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 32,
+   "segundo": "56.67",
+   "que": "La voz dice 'y come plantas picantes', pero la tupaya sólo toca una vaina con la punta del hocico (56.67) y se retira (57.10). No hay mordisco ni masticación, y las vainas siguen enteras en los 6 cuadros (lo confirmé con zoom). No se ve que coma.",
+   "arreglo": "Animar un mordisco que se note: arranca un trozo de la vaina, la vaina queda más corta y mastica con las mejillas. Después viene la pose de 'como si nada' con los ojos cerrados (57.95), que sí funciona.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 34,
+   "segundo": "59.48",
+   "que": "El vaso de leche, que es el objeto de la enseñanza, cae en la franja de subtítulos: queda entre y≈1005 y 1305 en 1080×1920. 'TOMA LECHE' (59.48 y 59.94) y 'AUNQUE SEA DESCREMADA' (60.41-61.34) se pintan encima del vaso, justo donde el ratón toma.",
+   "arreglo": "Reencuadrar para que el vaso y el hocico queden sobre y≈1050, bajando o inclinando la cámara o subiendo la escena. Así el subtítulo pasa por la arena y no por el vaso.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 34,
+   "segundo": "60.87",
+   "que": "El cartón de leche queda cortado por el borde izquierdo y su etiqueta se lee 'ESCREMADA' (60.87 y 61.34) y 'SCREMADA' (61.80). Es justo el apoyo visual de 'aunque sea descremada', y un corte así se puede leer como una falta en pantalla.",
+   "arreglo": "Mover el cartón hacia el centro o abrir el encuadre para que 'DESCREMADA' se lea completa durante todo el plano.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 29,
+   "segundo": "49.92",
+   "que": "Al caminar, las almohadillas de las 4 patas quedan unos 10 px por encima del borde del musgo en la tira, unos 30 px en 1080×1920 (49.92, 50.46 y en E35, 51.14 y 51.34). Cuando está parada (51.80) sí lo toca. Con este material no puedo confirmar el contacto: falta material para verificar que no flota.",
+   "arreglo": "Revisar el plano a resolución completa. Si flota, bajar la raíz del personaje o ajustar el ciclo de caminar para que siempre haya 2 patas apoyadas en la superficie de la rama.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 34,
+   "segundo": "60.87",
+   "que": "Junto al hocico, en el borde del vaso, hay un disco transparente grande (60.41, 60.87 y 61.34) que puede ser una gota de sudor agrandada o la mano con material de vidrio. Con este material no se distingue. Si es la mano, cambia de material respecto de 59.48 (opaca) y sería el bloqueante 2.",
+   "arreglo": "Verificar a resolución completa. Si es la mano, devolverle el material de pelaje. Si es la gota, achicarla al tamaño de P33 o quitarla mientras toma.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 37,
+   "segundo": "67.52",
+   "que": "La llama dentro del frasco y el vaso de bebida cola son el dato visual del plano ('funcionaron mal'), pero están justo en la franja de subtítulos (y≈960–1260). 'BEBIDAS' tapa el borde izquierdo de la llama en 66.66 y 'FUNCIONARON' cruza por encima de la parte baja de la llama y del vaso en 67.52 y 67.95.",
+   "arreglo": "Bajar la cámara o inclinarla para que el vaso y la llama queden entre y≈600 y y≈950, sobre la franja de subtítulos. También sirve acercarlos y ponerlos más arriba en el cuadro.",
+   "de": "tramo5"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 40,
+   "segundo": "72.32",
+   "que": "Con el material no se puede comprobar que el pájaro agarra el ají. En el recorte ampliado (72.32, 72.97 y 73.95) el ají cruza por delante del pico: se ve el pico oscuro arriba y abajo del ají, pero la mandíbula no se cierra sobre él. Si el ají está delante del pico, flota.",
+   "arreglo": "Revisar el render del pico en 2× (en P40 y en el cuadro 0, que es la misma toma). Si no está agarrado, poner el ají entre las dos mandíbulas, con la punta del pico superior por delante del ají y el inferior por detrás.",
+   "de": "tramo5"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 19,
+   "segundo": "29.30-31.62",
+   "que": "el plano de la cámara en trípode se ve gris y desaturado (saturación ~68 contra 105-135 en el resto), con cielo blanquecino y la mitad inferior del cuadro como suelo pelado; además casi no cambia entre 29,5 y 30,5 s. Es el tramo más feo y vacío del video",
+   "arreglo": "darle el mismo grade cálido y saturado del desierto de 0-9 s (cielo azul turquesa), acercar la cámara para que el chiltepín y el trípode llenen el cuadro sobre la franja de subtítulos y agregar un empuje de cámara visible o una luz REC que se encienda",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 21,
+   "segundo": "33.12-36.75",
+   "que": "el tramo REC (planos 21-22) cae a una saturación de 72-83, con 33-34 s gris oscuro y 35-36 s beige pálido. Se lee como un look distinto o lavado frente al resto, aunque no hay quemados (0 %)",
+   "arreglo": "dejar el marco REC y la hora como señal de 'cámara' sin desaturar la imagen; subir saturación y contraste al nivel del resto (o, como mucho, un leve tinte de cámara de campo)",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "21.83-26.90",
+   "que": "el pájaro está en la misma pose (pico abierto, ojo fijo, cabeza cortada por el borde derecho) durante 5 s y tres planos; sólo cambia el recuadro de la lupa. Se ve tieso",
+   "arreglo": "agregar actuación: parpadeo, ladeo de cabeza al 'LA MISMA ALARMA', gesto de desdén en 'PERO LA CAPSAICINA' y un 'ah, calorcito' al 'SIENTEN EL CALOR'; centrar la cabeza para que no quede cortada por el borde",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 32,
+   "segundo": "56.20-58.42",
+   "que": "la voz dice 'y come plantas picantes como si nada', pero en los cuadros de 56,5 y 57,5 s la tupaya sigue parada en el tronco, en la misma postura que desde 50 s, sin tocar la planta marcada 'PLANTA PICANTE'",
+   "arreglo": "que en el plano 32 la tupaya alcance el fruto colgante, lo muerda y mastique tranquila (cara relajada) mientras está la etiqueta",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "1.90-2.50",
+   "que": "material insuficiente para verificar: a 1,90 s (gancho.jpg) el ají está en el pico y a 2,5 s (contacto) el pico está muy abierto con el interior rojo y el ají ya no se ve. No sé si se lo traga con animación o si desaparece de golpe (que sería bloqueante 2)",
+   "arreglo": "confirmar en la tira P02 que hay cuadros intermedios del trago; si el ají desaparece entre dos cuadros, animar el trago (el ají entra por el pico en 4-6 cuadros)",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "1.02",
+   "que": "La voz dice 'se come un ají', pero el pájaro sólo sostiene el ají y parpadea (0.04–1.67), sin picotear ni mascar. El ratón del fondo también está casi fijo; sólo se mueve la llama.",
+   "arreglo": "Dar al pájaro uno o dos mordiscos o sacudidas de cabeza con el ají (que el ají se mueva con el pico) y un pequeño balanceo del cuerpo del ratón al echar fuego.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "10.40",
+   "que": "Los primeros 'sensores' que se encienden (puntos blancos) aparecen en la franja de abajo, y≈1350–1900, desenfocados y bajo la interfaz de la app; recién en 10.75–11.11 suben a la zona enfocada.",
+   "arreglo": "Empezar la ola de sensores en la zona enfocada (y 400–1000) o subir el foco para que los primeros puntos se lean como sensores y no como manchas.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "4.13",
+   "que": "Al morder, la cabeza del ratón toca el borde izquierdo y la oreja lejana queda cortada por el borde del cuadro.",
+   "arreglo": "Encuadrar unos 60–80 px más a la izquierda o abrir apenas el plano durante el mordisco (3.8–4.3 s).",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "9.11",
+   "que": "'Mamíferos' no tiene imagen propia: la píldora sigue diciendo 'TÚ = RATÓN' y sólo cambia de color; el concepto nuevo lo carga sólo el subtítulo.",
+   "arreglo": "Cambiar el texto de la píldora a 'MAMÍFEROS' al decirlo, o mostrar una silueta humana junto al ratón bajo la misma etiqueta.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "13.90",
+   "que": "'Lo que quema de verdad' es una mancha amarilla-blanca brillante junto a la campana, que no se reconoce como brasa o fuego. Además, el interior de la campana brilla igual de fuerte, así que hay dos puntos de luz compitiendo.",
+   "arreglo": "Hacer reconocible el objeto caliente (brasa con llamita y humo, o algo al rojo vivo) y bajar el brillo interior de la campana, para que el foco sea uno: la campana que suena por la brasa.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "8.15",
+   "que": "El brillo del fuego en el hocico queda blanco quemado (8.15 y 8.70) y se lee como una ampolleta en la nariz más que como la boca ardiendo.",
+   "arreglo": "Bajar la emisión o el bloom del hocico y dejar una llamita naranja visible saliendo de la boca, como en 5.95.",
+   "de": "tramo1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 16,
+   "segundo": "26.32",
+   "que": "En 'Sienten el calor' la fuente de calor es un brillo amarillo de ~40 px al lado de la campana, dentro del recuadro chico. No se distingue que es una llama.",
+   "arreglo": "Hacer la llama más grande y reconocible (o acercar una brasa a la lengua) y agrandar el recuadro como en P15.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "16.05",
+   "que": "La palabra 'CAPSAICINA' va en rojo sobre las mitades color salmón con nervios blancos y pierde contraste. Además, el interior se ve pálido y lavado al lado del rojo del ají (E10: el brillo sube 102 %).",
+   "arreglo": "Poner detrás de 'CAPSAICINA' una sombra oscura más ancha, o subir el subtítulo a la zona oscura de fondo. Darle al interior un tono rojo-anaranjado más saturado y hacer brillar sólo los nervios blancos (donde está la capsaicina) cuando la voz la nombra.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "19.24",
+   "que": "La etiqueta '¡FUEGO!' tapa el borde de la oreja derecha del ratón de 18.94 a 20.13 s.",
+   "arreglo": "Correr la etiqueta unos 60 px a la derecha y hacia arriba para que no toque la oreja.",
+   "de": "tramo2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 19,
+   "segundo": "29.34",
+   "que": "El escenario es pobre. La «cámara» es un cubo negro con una esfera al costado, sin detalle, al lado de personajes muy pulidos. El arbusto de chiltepín es chico y sus frutos son puntitos. Cerca del 60 % del cuadro es piso plano gris-café, y hasta 31.27 sólo hay una deriva lenta.",
+   "arreglo": "Usar una cámara de documental con más forma (lente cilíndrico, visor, luz REC), acercar el encuadre al arbusto para que los frutos rojos se lean y hacer un empuje de cámara más marcado.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 25,
+   "segundo": "42.80",
+   "que": "En 42.80 la caca con semillas queda justo detrás del subtítulo «SU CACA / LISTAS». En 43.27 y 43.73 la caca, en la base del brote, queda en y≈1410, bajo la franja de la interfaz.",
+   "arreglo": "Que la grúa termine con la base del brote sobre y≈1000, o que el brote nazca más arriba en el cuadro, para que la caca se vea durante todo el plano.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 26,
+   "segundo": "43.81",
+   "que": "De 43.77 a ~44.85, con «Los científicos creen que», se ve el escenario sin personaje (cactus, arbusto y cordón vacío) durante 1,1 s. No llega a plano muerto, pero la imagen no acompaña la frase.",
+   "arreglo": "Adelantar la caída del ají a ~44.2, o empezar con el cordón y el ají ya cayendo, para que el guardia esté en cuadro cuando la voz dice «el picante».",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "36.79",
+   "que": "En la burbuja de zoom, las muelas son discos crema apilados que parecen macarons o malvaviscos, y las semillas son puntitos. Sin la voz y la X, no se entiende que son dientes moliendo semillas.",
+   "arreglo": "Agrandar la burbuja o el detalle y modelar muelas con cúspides reconocibles. Que las semillas sean discos claros grandes que se ven enteros y después rotos en migas.",
+   "de": "tramo3"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 31,
+   "segundo": "54.86",
+   "que": "La lupa usa la misma lengua de antes. Sólo un ícono café muy chico con tres puntos (arriba a la derecha) indica que es la de la tupaya, y se lee como una galleta o un botón.",
+   "arreglo": "Agrandar el ícono y que sea la cara reconocible de la tupaya, o agregar una etiqueta 'TUPAYA' en la lupa.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 35,
+   "segundo": "61.88",
+   "que": "El plano abre con el desierto vacío, sin vasos ni contador, mientras la voz dice 'En un estudio'. Por el ritmo del contador (17 en 62.28 y 40 en 62.68), lo vacío dura unos 0,14 s, bajo el límite, pero está al filo.",
+   "arreglo": "Que el contador y los primeros vasos aparezcan desde el primer cuadro del plano.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 36,
+   "segundo": "65.27",
+   "que": "La baja del ardor se nota poco: la llama pasa a ser un brillo ovalado de tamaño parecido, y el empuje de cámara la agranda en pantalla. Al final (66.15), 'ENTERA' queda cortada como 'ERA' y el farol derecho queda medio afuera.",
+   "arreglo": "Que la llama se achique claramente, a menos de la mitad, sin que el empuje de cámara lo compense. Terminar el empuje con los dos cartones completos en cuadro.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 33,
+   "segundo": "58.84",
+   "que": "En '¿Y tú?' el ratón está casi quieto los 6 cuadros (sólo parpadea el fuego) y no se dirige al espectador.",
+   "arreglo": "Que gire la cabeza hacia la cámara o apunte con la mano en 'tú', con una anticipación corta.",
+   "de": "tramo4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 40,
+   "segundo": "73.30",
+   "que": "El ratón echa fuego con la misma pose en los 6 cuadros (brazos arriba y cuerpo quieto de 72.32 a 73.95), y el pájaro tampoco se mueve. Sólo cambian la llama y un acercamiento leve, así que el remate se ve tieso.",
+   "arreglo": "Agregar una acción secundaria que vuelva a la pose del cuadro 0 al final para no romper el loop: temblor del cuerpo, orejas y bigotes que vibran, o un parpadeo lento y satisfecho del pájaro.",
+   "de": "tramo5"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 38,
+   "segundo": "70.03",
+   "que": "El ají guardia entra de espaldas (69.94–71.07): sólo se ven su gorro verde y una bola negra al costado, sin lentes de frente ni cara, así que se lee como 'un ají con sombrero'. Además, en 70.55 el ratón mira hacia la derecha, al lado contrario de donde está el ají.",
+   "arreglo": "Girar el ají 3/4 hacia la cámara para que se vean sus lentes (como en la ficha) o hacer que el ratón gire hacia el ají y no hacia el otro lado.",
+   "de": "tramo5"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 39,
+   "segundo": "71.80",
+   "que": "Con los lentes abajo, el borde de los lentes tapa casi entera la pupila del ají (en el recorte sólo asoma una media luna oscura abajo). A tamaño de celular los ojos se ven blancos, sin mirada, y el chiste de la mirada por encima de los lentes pierde fuerza.",
+   "arreglo": "Subir la mirada (pupilas al centro del ojo, mirando a la cámara) o bajar los lentes unos 10–15 px más para que se vea la pupila completa.",
+   "de": "tramo5"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 37,
+   "segundo": "68.38",
+   "que": "La cámara está casi fija en todo el plano: el vaso y el frasco quedan en la misma posición de 66.23 a 68.38. El manual pide la cámara siempre en movimiento.",
+   "arreglo": "Agregar un acercamiento lento (2–3 %) o un paneo corto hacia el frasco con la llama.",
+   "de": "tramo5"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 30,
+   "segundo": "53.44-54.16",
+   "que": "'de China.' no sale en subtítulos. La reemplaza la píldora 'TUPAYA · CHINA' en y≈460, del mismo tamaño que un subtítulo, no un título grande, así que la regla del silencio del título apenas aplica y la vista tiene que saltar arriba",
+   "arreglo": "o dejar 'DE CHINA' en subtítulos, o agrandar la etiqueta a título (≥ el doble del subtítulo) mientras se dice",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "16.50",
+   "que": "'CAPSAICINA' en rojo sobre las mitades del ají, también rojo-anaranjadas: poco contraste en el contacto",
+   "arreglo": "en ese plano dar a la palabra clave un fondo de píldora oscuro o un borde más grueso, u oscurecer el ají detrás de la franja",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00-0.90",
+   "que": "palabras sueltas en la segunda línea: 'ESTE PÁJARO / SE' (es el texto de la portada), 'SUENAN CON / LO' (13,1 s), 'UNA MOLÉCULA / QUE' (16,7 s), 'LOS PÁJAROS / SE' (35,1 s), 'MÁNDASELO AL / QUE' (68,4 s)",
+   "arreglo": "reagrupar para que la palabra funcional vaya con la siguiente ('ESTE PÁJARO' | 'SE COME UN AJÍ'); como mínimo, que el cuadro 0 muestre 'ESTE PÁJARO' sin el 'SE' colgando",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "37.50-39.50",
+   "que": "la X blanca sobre la lupa de las muelas se puede leer como 'el ratón NO muele' en vez de 'las semillas se destruyen'",
+   "arreglo": "mostrar la semilla partida o rota en la lupa (o un ícono de semilla rota en rojo) en vez de una X sobre los dientes",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 36,
+   "segundo": "64.50-65.50",
+   "que": "la llama del frasco junto a la leche entera se ve más brillante a 65,5 s que a 64,5 s mientras la voz dice 'bajó el ardor'. La metáfora queda al revés",
+   "arreglo": "animar las llamas de los frascos de leche achicándose durante el plano 36 (y dejar grande sólo la de 'CON GAS')",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 31,
+   "segundo": "55.50",
+   "que": "material insuficiente: en el borde de la lupa hay un ícono redondo con dos huecos que, a la resolución del contacto, parece una calavera. Si lo es, sugiere que el cambio en el receptor es dañino o mortal, y eso no lo dicen las fuentes",
+   "arreglo": "confirmar en la tira P31; si es calavera, cambiarla por un ícono neutro de 'cambio' (llave o hebra de ADN)",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 18,
+   "segundo": "28.65-29.30",
+   "que": "'En Arizona' no tiene ninguna señal en pantalla: el cuadro de 28,5 s es una losa de roca y cactus sin rótulo",
+   "arreglo": "agregar una píldora 'ARIZONA, EE. UU.' o un pin de mapa al decirlo",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "36.75-41.37",
+   "que": "las tarjetas turquesa con borde punteado sobre un fondo café barroso desenfocado son otro lenguaje visual, más plano que el resto del video",
+   "arreglo": "usar de fondo la escena del desierto desenfocada con su color, o integrar la lupa en la escena 3D en vez de una tarjeta",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "todo",
+   "que": "audio: la separación medida voz − pausas de 14,1 dB es un mínimo y no alcanza a demostrar los 15-20 dB de música bajo la voz",
+   "arreglo": "medir el stem de música bajo los tramos con voz (o voz vs. música sin efectos) y dejarlo en audio.json",
+   "de": "global"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "'de China.' no sale en subtítulos (plano 30): confirmar que está como título grande en pantalla",
+   "evidencia": "53.44 s"
+  }
+ ],
+ "criterios_sin_nota": [],
+ "reemplazo": false
+}
