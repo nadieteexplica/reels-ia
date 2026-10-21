@@ -113,7 +113,7 @@ def p02(sc, a, b):
     def cam_de(t, d):
         x = lin(t, t0, t1)
         return Vector((d - 34 + 6 * x, -78, 40 - 4 * x)), Vector((d + 2, 8, 6))
-    return _camina(sc, a, b, lambda t: d0 + V * (t - t0), cam_de, lens=27)
+    return _camina(sc, a, b, lambda t: d0 + V * (t - t0), cam_de, lens=27, shift=-0.155)
 
 
 def p03(sc, a, b):
@@ -140,7 +140,7 @@ def p04(sc, a, b):
         pie = Vector((d_land + pt_x + ED.PASO / 2, -5, 0.15))
         sh = 0.04 * math.exp(-max(0, t - t_land) * 9) * math.sin(max(0, t - t_land) * 60) if t > t_land else 0
         return pie + Vector((-1.6, -4.6, 0.30 + sh)), pie + Vector((0.2, 0, 0.55 + sh))
-    return _camina(sc, a, b, lambda t: d_land + V * 0.45 * (t - t_land), cam_de, lens=30, shift=-0.08, polvo_pata=n)
+    return _camina(sc, a, b, lambda t: d_land + V * 0.45 * (t - t_land), cam_de, lens=30, shift=-0.20, polvo_pata=n)
 
 
 def p12(sc, a, b):
@@ -156,7 +156,7 @@ def p22(sc, a, b):
 
     def cam_de(t, d):
         return Vector((d - 2, -64, 4.0)), Vector((d + 1, 0, 6.5))
-    return _camina(sc, a, b, lambda t: 20 + V * (t - t0), cam_de, lens=26, shift=-0.04)
+    return _camina(sc, a, b, lambda t: 20 + V * (t - t0), cam_de, lens=26, shift=-0.125)
 
 
 def p31(sc, a, b):
@@ -176,7 +176,7 @@ def p35(sc, a, b):
     def cam_de(t, d):
         x = suave(lin(t, t0, t1))
         return Vector((d - 40 + 4 * x, -88 + 10 * x, 46 - 18 * x)), Vector((d + 2, 8, 6))
-    return _camina(sc, a, b, lambda t: D_C0 - V * (t_fin - t), cam_de, lens=27)
+    return _camina(sc, a, b, lambda t: D_C0 - V * (t_fin - t), cam_de, lens=27, shift=-0.14)
 
 
 def p36(sc, a, b):
@@ -205,7 +205,7 @@ def _vidrio_fantasma():
     m = bpy.data.materials.get("Fantasma")
     if m:
         return m
-    m = P.mat("Fantasma", (0.45, 0.78, 1.0), rough=0.1, emit=0.6, alpha=0.32)
+    m = P.mat("Fantasma", (0.30, 0.62, 0.95), rough=0.08, emit=0.12, alpha=0.22)
     return m
 
 
@@ -213,7 +213,7 @@ def _torre_fantasma(name, x, y, w, d, h, coll):
     ob = ED._caja(name, -w / 2, w / 2, -d / 2, d / 2, 0, 1.0, coll, _vidrio_fantasma())
     ob.location = (x, y, 0)
     ob["h"] = h
-    lineas = P.mat("FantasmaLineas", (0.75, 0.92, 1.0), emit=3.0)
+    lineas = P.mat("FantasmaLineas", (0.55, 0.85, 1.0), emit=1.2, alpha=0.8)
     pisos = []
     for k in range(int(h // 4)):
         l = ED._caja(name + f"_l{k}", -w / 2 - 0.05, w / 2 + 0.05, -d / 2 - 0.05, d / 2 + 0.05, 0, 0.18, coll, lineas)
@@ -224,7 +224,7 @@ def _torre_fantasma(name, x, y, w, d, h, coll):
 
 def p05(sc, a, b):
     S = _escuela(sc)
-    cam = _cam(sc, 30, -0.04)
+    cam = _cam(sc, 30, -0.17)
     t0, t1 = E.T[5]
 
     def act(f):
@@ -244,7 +244,7 @@ def p06(sc, a, b):
         t = t_de(f)
         x = suave(lin(t, t0, t1))
         bpy.context.view_layer.update()
-        pz = placa.matrix_world.translation + Vector((0.95, 0, 0.3))
+        pz = sum((placa.matrix_world @ Vector(c) for c in placa.bound_box), Vector()) / 8
         E.mirar(cam, pz + Vector((1.2, -7.5, -0.6)).lerp(Vector((0.6, -5.6, -0.4)), x), pz)
         luz.data.energy = 900 * max(0.0, 1 - abs(t - (t0 + 0.8)) / 0.25)
     return {"actualizar": act}
@@ -252,7 +252,7 @@ def p06(sc, a, b):
 
 def p07(sc, a, b):
     S = _escuela(sc)
-    cam = _cam(sc, 30)
+    cam = _cam(sc, 30, -0.145)
     t0, t1 = E.T[7]
 
     def act(f):
@@ -290,7 +290,7 @@ def _crecer(torre, pisos, x):
 def p09(sc, a, b):
     S = _escuela(sc)
     T = _torres(S)
-    cam = _cam(sc, 22)
+    cam = _cam(sc, 22, -0.24)
     t0, t1 = E.T[9]
 
     def act(f):
@@ -306,7 +306,7 @@ def p09(sc, a, b):
 def p10(sc, a, b):
     S = _escuela(sc)
     T = _torres(S)
-    cam = _cam(sc, 24, -0.03)
+    cam = _cam(sc, 24, -0.25)
     t0, t1 = E.T[10]
     big, pisos = T[4]
     big.location = (0, 6, 0)
@@ -325,10 +325,10 @@ def p10(sc, a, b):
 
 def p11(sc, a, b):
     S = _escuela(sc)
-    cam = _cam(sc, 22, -0.02)
+    cam = _cam(sc, 22, -0.27)
     t0, t1 = E.T[11]
     acero = P.mat("BolaAcero", (0.06, 0.06, 0.065), rough=0.35, metal=0.9)
-    bola = P.prim("sphere", "Bola", S["coll"], acero, r=2.4)
+    bola = P.prim("sphere", "Bola", S["coll"], acero, r=3.2)
     piv = Vector((-14, -14, 70))
     eslabones = [P.prim("torus", f"Cadena{k}", S["coll"], acero, R=0.35, r=0.09) for k in range(28)]
 
@@ -345,7 +345,7 @@ def p11(sc, a, b):
             p_ = piv.lerp(Vector(bola.location) + Vector((0, 0, 2.4)), u)
             e.location = p_
             e.rotation_euler = (R(90) * (k % 2), 0, ang)
-        E.mirar(cam, (-32, -46, 9), (-6, -6, 12))
+        E.mirar(cam, (-30, -38, 8), (-8, -6, 12))
     return {"actualizar": act}
 
 
@@ -514,9 +514,9 @@ def _muleta(name, coll, alto=17.0):
     madera = P.mat("MaderaMuleta", (0.55, 0.34, 0.16), rough=0.55)
     goma = P.mat("GomaMuleta", (0.08, 0.08, 0.08), rough=0.8)
     raiz = P.empty(name, coll=coll)
-    sep = 1.3
+    sep = 2.0
     for s in (-1, 1):
-        rail = P.prim("cyl", name + f"_r{s}", coll, madera, r=0.22, r2=0.22, h=alto * 0.62, seg=16)
+        rail = P.prim("cyl", name + f"_r{s}", coll, madera, r=0.36, r2=0.36, h=alto * 0.62, seg=16)
         rail.parent = raiz
         rail.location = (s * sep * 0.5, 0, alto * 0.62)
         rail.rotation_euler = (0, -s * math.atan2(sep * 0.4, alto * 0.62), 0)
@@ -547,7 +547,7 @@ def _muletas_set(sc):
 def _muletas(sc, plano):
     S, m1, m2 = _muletas_set(sc)
     ed = S["ed"]
-    cam = _cam(sc, 22, -0.04)
+    cam = _cam(sc, 22, -0.21)
     t0, t1 = E.T[plano]
     t23, t24 = E.T[23][0], E.T[24][0]
 
@@ -563,11 +563,12 @@ def _muletas(sc, plano):
         ed.poner(0.0, ED.recta(x, 0, 0), alto=z, visibles=0, sin_pasos=True, marco=False)
         ed.raiz.rotation_euler = (tamb, 0, 0)
         for m_, e, s in ((m1, e1, -1), (m2, e2, 1)):
-            m_.location = (s * (23.6 + 30 * (1 - e)) + x, 0, 0.0 + 2.4 * sube)
-            m_.rotation_euler = (0, s * R(6) * (1 - e) + s * R(-4), 0)
-            m_.hide_render = e <= 0.001
+            m_.location = (s * 17.0 + x, -8.6 - 26 * (1 - e), 2.4 * sube)
+            m_.rotation_euler = (R(-7.5) - R(25) * (1 - e), s * R(3), 0)
+            for o in m_.children_recursive:
+                o.hide_render = e <= 0.001
         xx = suave(lin(t, t0, t1))
-        E.mirar(cam, Vector((-52 + 4 * xx, -60, 7)), (x, 0, 10))
+        E.mirar(cam, Vector((-30 + 3 * xx, -48, 4)), (x, -6, 9.5))
     return {"actualizar": act}
 
 
@@ -651,7 +652,7 @@ def _timelapse(sc, plano):
     ed = S["ed"]
     sol, sky, bg = C.cielo(sc)
     h, marcas = _huincha(S["coll"])
-    cam = _cam(sc, 22 if plano == 28 else 20, -0.05)
+    cam = _cam(sc, 22 if plano == 28 else 20, -0.115 if plano == 28 else -0.05)
     t0, t1 = E.T[plano]
     tA, tB = E.T[28][0], E.T[30][1]
     t29 = E.T[29]

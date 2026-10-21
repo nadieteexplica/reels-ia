@@ -1,0 +1,18 @@
+[
+ {
+  "id": "storyboard",
+  "prompt": "tools/auditor/prompts/3-storyboard.md",
+  "alcance": "storyboard completo (fichas de plano)",
+  "materiales": [
+   "studio/episodios/ep03-edificio-que-camino/storyboard.md",
+   "studio/episodios/ep03-edificio-que-camino/guion.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "CONTEXTO.md",
+   "studio/plantilla/KIT.md"
+  ],
+  "salida": "storyboard.json"
+ }
+]

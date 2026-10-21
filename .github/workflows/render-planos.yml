@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       episodio:
-        default: "ep02-pajaros-picante"
+        default: "ep03-edificio-que-camino"
       partes:
         description: "Trabajos en paralelo (el proceso permite hasta 16 máquinas a la vez)"
         default: "15"
@@ -169,7 +169,7 @@ jobs:
         run: |
           set -e
           cd "studio/episodios/$EP/escena"
-          python audio.py
+          RENDER="$GITHUB_WORKSPACE/_r" python audio.py
           ffmpeg -y -v error -framerate 30 -i "$OUT/final/%05d.png" -i "$OUT/${EP%%-*}_mix.wav" \
             -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -profile:v high -crf 18 -preset slow \
             -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT/$EP.mp4"

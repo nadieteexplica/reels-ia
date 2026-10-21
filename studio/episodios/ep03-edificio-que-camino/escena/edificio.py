@@ -318,6 +318,11 @@ class Edificio:
         return dict(x=x, y=y, yaw=yaw, fase=fase_a)
 
 
+    def quieto(self, x=0.0, y=0.0, yaw=0.0):
+        """Antes de la mudanza: sin patas ni marco, el zócalo apoyado en el suelo."""
+        self.poner(0.0, recta(x, y, yaw), alto=-self.z_cuerpo, visibles=0, sin_pasos=True, marco=False)
+
+
 def recta(x0=0.0, y0=0.0, yaw=0.0):
     """Camina derecho por +x local de su orientación."""
     def pose(d):
@@ -337,7 +342,3 @@ def curva(total=62.0, giro=math.radians(21), x0=0.0, y0=0.0, yaw0=0.0):
         return (x0 + R * (math.sin(th) - math.sin(yaw0)), y0 - R * (math.cos(th) - math.cos(yaw0)), th)
     return pose
 
-
-    def quieto(self, x=0.0, y=0.0, yaw=0.0):
-        """Antes de la mudanza: sin patas ni marco, el zócalo apoyado en el suelo."""
-        self.poner(0.0, recta(x, y, yaw), alto=-self.z_cuerpo, visibles=0, sin_pasos=True, marco=False)

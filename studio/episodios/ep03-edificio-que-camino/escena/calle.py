@@ -22,13 +22,15 @@ def mat_tierra():
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
     tc = _nodo(nt, "ShaderNodeTexCoord", -900, 0)
-    n1 = _nodo(nt, "ShaderNodeTexNoise", -700, 100, Scale=0.08, Detail=6.0, Roughness=0.55)
+    n1 = _nodo(nt, "ShaderNodeTexNoise", -700, 100, Scale=0.12, Detail=8.0, Roughness=0.62)
     nt.links.new(tc.outputs["Object"], n1.inputs["Vector"])
     n2 = _nodo(nt, "ShaderNodeTexNoise", -700, -150, Scale=1.6, Detail=10.0, Roughness=0.7)
     nt.links.new(tc.outputs["Object"], n2.inputs["Vector"])
     ramp = _nodo(nt, "ShaderNodeValToRGB", -400, 100)
-    ramp.color_ramp.elements[0].color = (0.36, 0.22, 0.12, 1)
-    ramp.color_ramp.elements[1].color = (0.62, 0.44, 0.27, 1)
+    ramp.color_ramp.elements[0].color = (0.30, 0.19, 0.10, 1)
+    ramp.color_ramp.elements[1].color = (0.64, 0.46, 0.29, 1)
+    ramp.color_ramp.elements[0].position = 0.35
+    ramp.color_ramp.elements[1].position = 0.65
     nt.links.new(n1.outputs["Fac"], ramp.inputs["Fac"])
     mix = _nodo(nt, "ShaderNodeMix", -200, 100)
     mix.data_type = "RGBA"
@@ -141,27 +143,40 @@ def casa_baja(name, x0, x1, y0, y1, h, coll, seed=0):
 
 
 def torre(name, x, y, w, d, h, coll, seed=0):
-    rnd = random.Random(seed)
+    """Torre de oficinas lejana: vidrio azul grisáceo con grilla de ventanas (coordenadas del objeto en metros)."""
     m = bpy.data.materials.get(f"Torre{seed % 3}")
     if not m:
         m = bpy.data.materials.new(f"Torre{seed % 3}")
         m.use_nodes = True
         nt = m.node_tree
         b = nt.nodes["Principled BSDF"]
+        tc = _nodo(nt, "ShaderNodeTexCoord", -900, 0)
+        sep = _nodo(nt, "ShaderNodeSeparateXYZ", -800, -100)
+        nt.links.new(tc.outputs["Object"], sep.inputs[0])
+        add = _nodo(nt, "ShaderNodeMath", -700, -100)
+        add.operation = "ADD"
+        nt.links.new(sep.outputs["X"], add.inputs[0])
+        nt.links.new(sep.outputs["Y"], add.inputs[1])
+        comb = _nodo(nt, "ShaderNodeCombineXYZ", -650, -60)
+        nt.links.new(add.outputs[0], comb.inputs["X"])
+        nt.links.new(sep.outputs["Z"], comb.inputs["Y"])
         br = _nodo(nt, "ShaderNodeTexBrick", -500, 0)
-        c1 = [(0.32, 0.42, 0.52), (0.55, 0.58, 0.62), (0.40, 0.48, 0.55)][seed % 3]
+        nt.links.new(comb.outputs[0], br.inputs["Vector"])
+        c1 = [(0.10, 0.17, 0.25), (0.16, 0.20, 0.24), (0.12, 0.19, 0.22)][seed % 3]
         br.inputs["Color1"].default_value = (*c1, 1)
-        br.inputs["Color2"].default_value = (c1[0] * 0.8, c1[1] * 0.85, c1[2] * 0.95, 1)
-        br.inputs["Mortar"].default_value = (0.75, 0.76, 0.78, 1)
-        br.inputs["Scale"].default_value = 0.35
-        br.inputs["Mortar Size"].default_value = 0.08
-        br.inputs["Brick Width"].default_value = 0.9
-        br.inputs["Row Height"].default_value = 0.6
+        br.inputs["Color2"].default_value = (c1[0] * 1.15, c1[1] * 1.12, c1[2] * 1.1, 1)
+        br.inputs["Mortar"].default_value = (0.46, 0.48, 0.50, 1)
+        br.inputs["Scale"].default_value = 0.4
+        br.inputs["Mortar Size"].default_value = 0.035
+        br.inputs["Brick Width"].default_value = 0.85
+        br.inputs["Row Height"].default_value = 0.42
         br.offset = 0.0
         nt.links.new(br.outputs["Color"], b.inputs["Base Color"])
-        b.inputs["Roughness"].default_value = 0.25
-        b.inputs["Metallic"].default_value = 0.35
+        b.inputs["Roughness"].default_value = 0.18
+        b.inputs["Metallic"].default_value = 0.55
     _caja(name, x - w / 2, x + w / 2, y - d / 2, y + d / 2, 0, h, coll, m)
+    _caja(name + "_remate", x - w / 2 - 0.5, x + w / 2 + 0.5, y - d / 2 - 0.5, y + d / 2 + 0.5, h, h + 2.5, coll,
+          P.mat("RemateTorre", (0.55, 0.56, 0.58), rough=0.5))
 
 
 def grua(coll, x=78.0, y=34.0, h=60.0, yaw=200.0):
@@ -230,7 +245,7 @@ def armar(sc, seed=3):
         x += w + rnd.uniform(1, 3)
         k += 1
     for k in range(16):
-        torre(f"Torre{k}", rnd.uniform(-260, 300), rnd.uniform(140, 420), rnd.uniform(24, 40), rnd.uniform(24, 40), rnd.uniform(70, 190), coll, seed=k)
+        torre(f"Torre{k}", rnd.uniform(-300, 340), rnd.uniform(220, 520), rnd.uniform(26, 42), rnd.uniform(26, 42), rnd.uniform(70, 160), coll, seed=k)
     # utilería de obra
     grua(coll)
     contenedor("Oficina1", -70, -40, coll, 10, (0.15, 0.35, 0.75))
@@ -246,6 +261,17 @@ def armar(sc, seed=3):
     huella = P.mat("Huella", (0.26, 0.17, 0.10), rough=1.0)
     for i in range(6):
         _caja(f"Huella{i}", -90, 120, -24 + 0.9 * (i % 2) + 9 * (i // 2), -23.6 + 0.9 * (i % 2) + 9 * (i // 2), -0.02, 0.004, coll, huella)
+    plancha = P.mat("PlanchaAcero", (0.40, 0.31, 0.24), rough=0.7, metal=0.3)
+    for i in range(16):
+        x, y = rnd.uniform(-80, 110), rnd.choice([rnd.uniform(-58, -14), rnd.uniform(32, 40)])
+        ob = _caja(f"Plancha{i}", -1.5, 1.5, -3, 3, 0.0, 0.03, coll, plancha)
+        ob.location = (x, y, 0)
+        ob.rotation_euler = (0, 0, rnd.uniform(0, 3.14))
+    piedra = P.mat("Piedrita", (0.42, 0.38, 0.33), rough=0.9)
+    for i in range(70):
+        b = P.prim("ico", f"Piedra{i}", coll, piedra, sub=1, r=rnd.uniform(0.12, 0.35))
+        b.location = (rnd.uniform(-85, 115), rnd.uniform(-58, -10), 0.05)
+        b.scale = (1, rnd.uniform(0.6, 1.2), rnd.uniform(0.4, 0.7))
     vigas = P.mat("VigasOxido", (0.42, 0.20, 0.10), rough=0.7, metal=0.4)
     for i in range(5):
         _caja(f"VigaPila{i}", 60, 72, -40 + i * 0.5, -39.6 + i * 0.5, 0, 0.4 + 0.4 * (i % 3), coll, vigas)

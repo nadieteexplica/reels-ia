@@ -2,3 +2,4 @@
 |---|---|---|---|---|
 | 1-guion | r1 | APROBADO | 0 | 4 |
 | 2-voz | r1 | APROBADO | 0 | 5 |
+| 3-storyboard | r1 | APROBADO | 0 | 8 |
