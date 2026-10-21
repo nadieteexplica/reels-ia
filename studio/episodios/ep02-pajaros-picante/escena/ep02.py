@@ -196,9 +196,11 @@ def pantalla(sc, cam, punto):
 
 
 def oculto(ob, si=True):
+    """Oculta o muestra un objeto con sus hijos. Los auxiliares (cortadores de booleanos, cajas: display WIRE) quedan
+    siempre ocultos (puerta 6 r1: al mostrar el ají mordido del plano 3 aparecían las esferas del mordisco)."""
     ob.hide_render = si
     for ch in ob.children_recursive:
-        ch.hide_render = si
+        ch.hide_render = True if ch.display_type == "WIRE" else si
 
 
 def hijos(ob):

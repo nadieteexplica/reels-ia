@@ -32,7 +32,8 @@ CELESTE = (110, 200, 255)
 CLAVE = {"CAPSAICINA": ROJO, "MAMÍFEROS": CANELA, "LECHE": CELESTE}
 BOX = (120, 888, 1000, 1250)
 META = {}
-for p in glob.glob(os.path.join(src, "meta", "*.json")):
+# las piezas partidas ("12@1", "12@2") van después de la entera ("12", que puede venir vieja de un run base): mandan
+for p in sorted(glob.glob(os.path.join(src, "meta", "*.json")), key=lambda q: ("@" in os.path.basename(q), q)):
     d = json.load(open(p))
     if d["pieza"] in META:        # pieza partida en varios trabajos (29@1, 29@2…): se juntan los cuadros
         META[d["pieza"]]["cuadros"].update(d.get("cuadros", {}))
@@ -155,10 +156,7 @@ def borde_recuadro(lay, cx, cy, r, tipo, s=1.0):
     # distintivo en la esquina: el ojo naranjo del cuitlacoche / la carita de la tupaya
     bx, by, br = cx + r * 0.74, cy - r * 0.74, 44 * s
     if tipo == "plumas":
-        d.ellipse((bx - br, by - br, bx + br, by + br), fill=(110, 98, 88, 255), outline=(40, 34, 30, 255), width=int(5 * s))
-        d.ellipse((bx - br * 0.62, by - br * 0.62, bx + br * 0.62, by + br * 0.62), fill=(250, 120, 20, 255))
-        d.ellipse((bx - br * 0.26, by - br * 0.26, bx + br * 0.26, by + br * 0.26), fill=(10, 8, 6, 255))
-        d.ellipse((bx - br * 0.36, by - br * 0.40, bx - br * 0.16, by - br * 0.20), fill=(255, 255, 255, 255))
+        pass            # puerta 6 r1: el "ojo" del borde se leía como el ojo del pájaro corrido de lugar
     else:
         d.ellipse((bx - br, by - br, bx + br, by + br), fill=(150, 132, 96, 255), outline=(60, 50, 34, 255), width=int(5 * s))
         for sx in (-1, 1):
@@ -166,10 +164,21 @@ def borde_recuadro(lay, cx, cy, r, tipo, s=1.0):
         d.ellipse((bx - br * 0.13, by + br * 0.28, bx + br * 0.13, by + br * 0.50), fill=(30, 22, 18, 255))
 
 
-def recuadro(im, contenido, cx=540, cy=500, r=200, tipo="plumas", s=1.0):
+def recuadro(im, contenido, cx=540, cy=500, r=200, tipo="plumas", s=1.0, apunta=None):
     if contenido is None or s <= 0.02:
         return im
     rr = int(r * s)
+    if apunta is not None:      # cuña que sale del círculo hacia lo que muestra (el pico), como un globo de diálogo
+        ax, ay = apunta
+        ang = math.atan2(ay - cy, ax - cx)
+        dl = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        dd = ImageDraw.Draw(dl)
+        p1 = (cx + rr * 0.92 * math.cos(ang + 0.32), cy + rr * 0.92 * math.sin(ang + 0.32))
+        p2 = (cx + rr * 0.92 * math.cos(ang - 0.32), cy + rr * 0.92 * math.sin(ang - 0.32))
+        dd.polygon((p1, p2, (ax, ay)), fill=(150, 136, 120, 255) if tipo == "plumas" else (170, 150, 112, 255), outline=(60, 50, 44, 255))
+        im = im.convert("RGBA")
+        im.alpha_composite(dl)
+        im = im.convert("RGB")
     c = ImageEnhance.Color(ImageEnhance.Contrast(contenido).enhance(1.06)).enhance(1.10)
     L = min(c.size)
     c = c.crop(((c.size[0] - L) // 2, (c.size[1] - L) // 2, (c.size[0] + L) // 2, (c.size[1] + L) // 2)).resize((2 * rr, 2 * rr), Image.LANCZOS)
@@ -229,10 +238,11 @@ def compone_lupa(cara, lupa, mx, my, cx, cy, D, zoom=0.55, tenue=1.0):
     return im
 
 
-def marco_ysi(im, marca, mxy, age):
+def marco_ysi(im, marca, mxy, age, t_marca=0.35, desierto=None):
     m, r = int(W * 0.06), int(W * 0.08)
     x0, y0, x1, y1 = m, int(H * 0.16), W - m, int(H * 0.80)
-    fuera = ImageEnhance.Brightness(im.filter(ImageFilter.GaussianBlur(W // 60))).enhance(0.45)
+    # puerta 6 r1: afuera de la tarjeta, el desierto desenfocado y oscuro (antes el mismo turquesa liso de la tarjeta)
+    fuera = ImageEnhance.Brightness((desierto if desierto is not None else im).filter(ImageFilter.GaussianBlur(W // 60))).enhance(0.45)
     mk = Image.new("L", (W, H), 0)
     ImageDraw.Draw(mk).rounded_rectangle((x0, y0, x1, y1), radius=r, fill=255)
     im = Image.composite(im, fuera, mk)
@@ -248,7 +258,7 @@ def marco_ysi(im, marca, mxy, age):
     for (cx, cy, a0) in ((x0 + r, y0 + r, 180), (x1 - r, y0 + r, 270), (x1 - r, y1 - r, 0), (x0 + r, y1 - r, 90)):
         for a in range(a0, a0 + 90, 30):
             d.arc((cx - r, cy - r, cx + r, cy + r), a, a + 15, fill=col, width=g)
-    s = pop(age - 0.35)
+    s = pop(age - t_marca, 0.45)
     if s > 0.02:
         cx, cy = mxy
         k2 = int(W * 0.075 * s)
@@ -267,24 +277,29 @@ def marco_ysi(im, marca, mxy, age):
 def ysi(f, k):
     a, b = FR[k]
     age = (f - a) / FPS
+    des = cuadro(FR[22][1] - 1)          # el desierto del plano 22 para afuera de la tarjeta
     if k == 23:
-        cara = cargar(os.path.join(src, f"{a:05d}.png"))
+        cara = cuadro(f)                     # animado desde la puerta 6 r1
+        if cara is None:
+            cara = cargar(os.path.join(src, f"{a:05d}.png"))
         if cara is None:
             return None
         cara = ImageOps.mirror(cara)           # el ratón mira a la derecha: las líneas de la lupa llegan por la nuca
         lupa = aux("23L", f)
-        mej = META.get("23", {}).get("mejilla", [397, 818])
+        mej = meta_cuadro("23", f, "mejilla", META.get("23", {}).get("mejilla", [397, 818]))
         mx, my = W - mej[0], mej[1]
         im = compone_lupa(cara, lupa, mx, my, 280, 515, 370, zoom=0.55, tenue=1.0) if lupa else cara
-        im = marco_ysi(im, "x", (280, 702), age)
+        im = marco_ysi(im, "x", (280, 702), age, t_marca=E2.t_palabra("moler", E2.T[23][0]) - E2.T[23][0], desierto=des)
     else:
-        fondo = cargar(os.path.join(src, f"{a:05d}.png"))
+        fondo = cuadro(f)
+        if fondo is None:
+            fondo = cargar(os.path.join(src, f"{a:05d}.png"))
         if fondo is None:
             return None
         lupa = aux("24L", f)
-        cu = META.get("24", {}).get("cuello", [520, 900])
+        cu = meta_cuadro("24", f, "cuello", META.get("24", {}).get("cuello", [520, 900]))
         im = compone_lupa(fondo, lupa, cu[0], cu[1], 800, 515, 370, zoom=0.80, tenue=1.0) if lupa else fondo
-        im = marco_ysi(im, "check", (800, 702), age)
+        im = marco_ysi(im, "check", (640, 610), age, t_marca=E2.t_palabra("traga", E2.T[24][0]) - E2.T[24][0], desierto=des)   # ✓ abajo a la derecha del círculo
     # push-in del recuadro entero
     z = 1 + 0.03 * E2.suave(age / max(0.1, (b - a) / FPS))
     if z > 1.001:
@@ -405,17 +420,17 @@ def marca_ok(im, cx, cy, s):
 PILDORAS = {}   # plano → función(im, f, edad)
 
 
-def _pil(k, texto, estilo, y=None, desde=None, clave_y=None, pieza=None, mezcla=None):
+def _pil(k, texto, estilo, y=None, desde=None, clave_y=None, pieza=None, mezcla=None, esc=1.0, x=540, dy=-70):
     def fn(im, f, age):
         t0 = (F(desde) - FR[k][0]) / FPS if desde is not None else 0.2
-        s = pop(age - t0)
+        s = pop(age - t0) * esc
         cy = y or 380
         if clave_y:
             v = meta_cuadro(pieza or str(k), f, clave_y)
             if v is not None:
-                cy = max(300, min(460, v - 70))
+                cy = max(300, min(460, v + dy))
         mz = mezcla(f) if mezcla else None
-        pildora(im, texto, estilo, 540, cy, s, mz)
+        pildora(im, texto, estilo, x, cy, s, mz)
     return fn
 
 
@@ -424,16 +439,17 @@ T_ARIZ = E2.t_palabra("arizona")
 T_CHIL = E2.t_palabra("chiltepín")
 PILDORAS[5] = _pil(5, "TÚ = RATÓN", "blanca", clave_y="orejas_y", pieza="5")
 PILDORAS[6] = lambda im, f, age: pildora(im, "TÚ = RATÓN", "blanca", 540, 880, 1.0, ("canela", E2.suave((t_de(f) - T_MAMI) / 0.25)))   # en el pecho: arriba tapaba los ojos
-PILDORAS[12] = _pil(12, "¡FUEGO!", "coral", clave_y="baliza_y", pieza="12")
-PILDORAS[13] = _pil(13, "NORMAL", "verde", clave_y="termo_y", pieza="13")
+PILDORAS[12] = _pil(12, "¡FUEGO!", "coral", clave_y="baliza_y", pieza="12", x=820, dy=40)    # al lado de la baliza (puerta 6 r1)
+PILDORAS[13] = _pil(13, "NORMAL", "verde", clave_y="termo_y", pieza="13", x=840, dy=60)     # puerta 6 r1: al costado del dial, no tapando la aguja
 PILDORAS[18] = _pil(18, "ARIZONA", "amarilla", desde=T_ARIZ)
 T_DE_CHINA = E2.t_palabra("de", E2.t_palabra("tupaya", E2.T[30][0] - 0.5) + 0.05)
-PILDORAS[30] = _pil(30, "TUPAYA · CHINA", "amarilla", desde=T_DE_CHINA, clave_y="cabeza_y", pieza="30")   # entra con "de China" (antes tapaba "tupaya")
+PILDORAS[30] = _pil(30, "TUPAYA · CHINA", "amarilla", desde=T_DE_CHINA, clave_y="cabeza_y", pieza="30", esc=1.4)   # entra con "de China" (antes tapaba "tupaya")
+PILDORAS[32] = _pil(32, "PLANTA PICANTE", "coral", y=330)          # puerta 6 r1: nada decía que la planta pica
 PILDORAS[37] = _pil(37, "CON GAS ×", "coral")          # × (U+00D7): Inter no trae ✕
 
 
 def pildora_19(im, f, age):
-    s = pop(age - (F(T_CHIL) - FR[19][0]) / FPS)
+    s = pop(age - (F(T_CHIL + 0.55) - FR[19][0]) / FPS)       # puerta 6 r1: entra cuando el subtítulo ya cambió (no repite)
     p = meta_cuadro("19", f, "mata", [560, 760])
     pildora(im, "CHILTEPÍN", "amarilla", max(220, min(860, p[0])), max(300, min(900, p[1] - 90)), s)
 
@@ -467,9 +483,9 @@ def limpiar(w):
 
 
 def vis(w):
-    """Como se muestra: mayúsculas, con los signos de pregunta (¿POR QUÉ?)."""
+    """Como se muestra: mayúsculas y sin signos (manual §6; puerta 6 r1 pidió sacar también ¿?)."""
     w = w.replace("...", "").replace("…", "")
-    for ch in ",.:;!¡\"":
+    for ch in ",.:;!¡?¿\"":
         w = w.replace(ch, "")
     return w.upper()
 
@@ -572,6 +588,7 @@ def subtitulos(img, f):
 
 
 # ---------------- armado de cada cuadro ----------------
+LUPA_14 = tuple(int(v) for v in os.environ.get("LUPA_14", "330,420,220").split(","))   # puerta 6 r1: al lado del pico, no sobre el ojo
 INTERIOR = {7, 8, 9, 10, 11}
 
 
@@ -582,26 +599,30 @@ def procesar(f):
     if k in (23, 24):
         im = ysi(f, k)
     elif k in (14, 15, 16):
-        fondo = cuadro_cercano(f, a, b) if k == 14 else cuadro_cercano(FR[14][1] - 1, *FR[14])
+        # puerta 6 r1: el 15 y el 16 tienen fondo propio animado (el pájaro parpadea y se mueve; la cámara sigue el push-in)
+        fondo = cuadro_cercano(f, a, b) if os.environ.get("MUESTRAS") else cuadro(f)
+        if fondo is None and k != 14:
+            fondo = cuadro_cercano(FR[14][1] - 1, *FR[14])
         if fondo is None:
             return False
-        if k != 14:          # el fondo es el último cuadro del 14, más oscuro y desenfocado: manda el recuadro
-            # revisión del borrador: quieto daba "congelado" en el QA (24 s); ahora el desenfoque entra en 0,2 s y el fondo
-            # se acerca lento durante el 15 y el 16
+        if k != 14:          # más oscuro y un poco desenfocado: manda el recuadro (entra en 0,2 s)
             t15 = (f - FR[15][0]) / FPS
             e = E2.suave(min(1.0, t15 / 0.2))
-            fondo = acercar(fondo, 0.06 * (f - FR[15][0]) / (FR[16][1] - FR[15][0]))
-            fondo = ImageEnhance.Brightness(fondo.filter(ImageFilter.GaussianBlur(3 * e))).enhance(1 - 0.2 * e)
+            fondo = ImageEnhance.Brightness(fondo.filter(ImageFilter.GaussianBlur(2 * e))).enhance(1 - 0.15 * e)
         cont = aux(f"{k}S", f)
         s = pop(age - 0.25) if k == 14 else 1.0
-        im = recuadro(fondo, cont, 540, 500, 210 if k == 14 else 260, "plumas", s)
+        pico = meta_cuadro("14", f, "pico", None) if k == 14 else meta_cuadro(str(k), f, "pico", meta_cuadro("14", FR[14][1] - 1, "pico", None))
+        cx_, cy_, r_ = LUPA_14
+        im = recuadro(fondo, cont, cx_, cy_, r_ if k == 14 else r_ + 30, "plumas", s, apunta=pico)
     elif k == 31:
-        fondo = cargar(os.path.join(src, f"{a:05d}.png"))
+        fondo = cuadro(f)          # puerta 6 r1: fondo animado (la tupaya actúa); si falta, el cuadro fijo con push-in
         if fondo is None:
-            return False
-        fondo = acercar(fondo, 0.05 * (f - a) / (b - a))
+            fondo = cargar(os.path.join(src, f"{a:05d}.png"))
+            if fondo is None:
+                return False
+            fondo = acercar(fondo, 0.05 * (f - a) / (b - a))
         fondo = ImageEnhance.Brightness(fondo.filter(ImageFilter.GaussianBlur(3))).enhance(0.8)
-        im = recuadro(fondo, aux("31S", f), 540, 500, 260, "pelaje", pop(age - 0.05))
+        im = recuadro(fondo, aux("31S", f), 470, 380, 240, "pelaje", pop(age - 0.05))
     else:
         im = cuadro_cercano(f, a, b) if os.environ.get("MUESTRAS") else cuadro(f)
         if im is None:

@@ -94,9 +94,20 @@ def p01(sc, a, b):
     cam = S["cam"]
     c0, foco = cam.location.copy(), S["foco"]
 
+    pj = S["pj"]
+    cab0 = S["pj_cab0"]
+    f_parp = a + int((b - a) * 0.55)
+
     def act(f):
-        cam.location = c0.lerp(foco, 0.045 * suave(lin(f, a, b - 1)))   # parte exacto en C0 y hace push-in lento
+        x = lin(f, a, b - 1)
+        cam.location = c0.lerp(foco, 0.11 * suave(x))   # parte exacto en C0 y hace push-in (puerta 6 r1: más marcado)
         _c0_vida(S, f)
+        # puerta 6 r1: el pájaro estaba quieto 1,7 s → mastica el ají (mandíbula y cabeza) y parpadea; en el cuadro 1 es C0
+        k = suave(lin(x, 0.0, 0.25))
+        mast = math.sin(max(0.0, x - 0.05) * 2 * math.pi * 2.2) * k
+        pj["mandibula"].rotation_euler.x = S["mand0"] + R(5) * max(0.0, mast)
+        pj["cabeza"].rotation_euler = Euler((cab0.x + R(2.5) * mast, cab0.y + R(4) * k, cab0.z + R(5) * k))
+        AP.parpados(pj["parpados"], AP.parpadeo(f, f_parp, -30, dur=6))
     return {"actualizar": act, "meta": {"c0": [list(c0), list(foco)]}}
 
 
@@ -141,7 +152,7 @@ def p02(sc, a, b):
     cab = pj["cabeza"].matrix_world @ Vector((0, -0.016, 0.030))      # centro de la cabeza
     pico_dir = (pj["pico"].matrix_world.to_3x3() @ Vector((0, -1, 0))).normalized()
     centro = cab + pico_dir * 0.050                                    # entre la cabeza y la punta del pico
-    pos = centro + Vector((-0.22, -0.30, 0.02))                        # 3/4 desde la izquierda: el ají en el eje del pico se lee
+    pos = centro + Vector((-0.26, -0.36, 0.02))                        # 3/4 desde la izquierda (puerta 6 r1: un poco más atrás)
     n = b - a
 
     def act(f):
@@ -156,7 +167,7 @@ def p02(sc, a, b):
         bulto.poner(lin(x, 0.55, 0.95))
         # tilt suave hacia abajo siguiendo el bulto
         k = suave(lin(x, 0.5, 1.0))
-        E2.mirar(cam, pos, centro + Vector((0, 0, -0.018 - 0.020 * k)), foco=cab + pico_dir * 0.02)
+        E2.mirar(cam, pos, centro + Vector((0, 0, float(os.environ.get("P2_Z", -0.042)) - 0.015 * k)), foco=cab + pico_dir * 0.02)   # puerta 6 r1: el pico bajaba a los subtítulos
         _c0_vida(S, f)
     return {"actualizar": act}
 
@@ -179,12 +190,28 @@ def p14(sc, a, b):
     cab = pj["cabeza"].matrix_world @ Vector((0, -0.016, 0.030))
     pico_dir = (pj["pico"].matrix_world.to_3x3() @ Vector((0, -1, 0))).normalized()
     lado = pico_dir.cross(Vector((0, 0, 1))).normalized()               # perfil: la cámara mira de costado al pico
-    pos = cab + pico_dir * 0.03 - lado * 0.42 + Vector((0, 0, 0.02))
-    tgt = cab + pico_dir * 0.03 + Vector((0, 0, -0.035))
+    # puerta 6 r1: el pico quedaba cortado por el borde y el 14–16 eran 5 s del mismo cuadro quieto → un solo push-in
+    # largo de 14 a 16 (piezas "14", "15" y "16"), el pájaro parpadea, mueve la cabeza y traga saliva
+    pos = cab + pico_dir * float(os.environ.get("P14_ADEL", 0.06)) - lado * float(os.environ.get("P14_D", 0.50)) + Vector((0, 0, 0.02))
+    tgt = cab + pico_dir * float(os.environ.get("P14_ADEL", 0.06)) + Vector((0, 0, float(os.environ.get("P14_Z", -0.055))))
+    A, B = FR(14)[0], FR(16)[1]
+    parps = [A + int((B - A) * q) for q in (0.18, 0.55, 0.86)]
+    cab0 = S["pj_cab0"]
 
     def act(f):
-        E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.07, foco=cab)
+        x = lin(f, A, B - 1)
+        E2.empujar(cam, f, A, B - 1, pos, tgt, cuanto=0.12, foco=cab)
         _c0_vida(S, f)
+        ang = 0.0
+        for q in parps:
+            ang = AP.parpadeo(f, q, -30, dur=6)
+            if ang != -30:
+                break
+        AP.parpados(pj["parpados"], ang)
+        # cabeza: mira un poco hacia el recuadro y vuelve, con un respiro
+        mira = math.sin(math.pi * lin(x, 0.10, 0.50)) * 0.8 + math.sin(math.pi * lin(x, 0.62, 0.95)) * 0.6
+        pj["cabeza"].rotation_euler = Euler((cab0.x - R(5) * mira + R(1.2) * math.sin(f * 0.21), cab0.y, cab0.z + R(4) * mira))
+        bpy.context.view_layer.update()
         return {"pico": E2.pantalla(sc, cam, S["pj"]["pico"].matrix_world @ Vector((0, -0.03, -0.004)))}
     return {"actualizar": act}
 
@@ -317,8 +344,12 @@ class Raton:
         self.roja(roja)
         if self.llama:
             self.llama.poner(f, llama, doblar, lado)
-        for ob in self.lagr:
-            ob.hide_render = not lagrimas
+        if not hasattr(self, "lagr0"):
+            self.lagr0 = [ob.location.copy() for ob in self.lagr]
+        for k, (ob, l0) in enumerate(zip(self.lagr, self.lagr0)):     # puerta 6 r1: resbalan y caen (antes fijas)
+            ph = ((f + 13 * k) % 26) / 26.0
+            ob.location = l0 + Vector((0, 0, -0.010 * ph * ph))
+            ob.hide_render = (not lagrimas) or ph > 0.92
         for k, br in enumerate(rt["brazos"]):
             if k == 1 and brazo is not None:
                 br.rotation_euler = (R(brazo[0]), 0, R(brazo[1]))
@@ -382,7 +413,7 @@ def p03(sc, a, b):
             mord.modifiers.remove(m)
     E.mordisco_media_luna(mord, S["CP"], t=0.55, lado=(0.62, 0.78, 0), r=0.0155, semillas=5, pulpa=False, en_corte=True)
     cam = E2.camara(sc, "Cam03", lens=40, fstop=5.6)
-    cab = (rat.punto("cabeza") + boca) / 2 + Vector((0, 0, -0.01))
+    cab = (rat.punto("cabeza") + boca) / 2 + Vector((0, 0, float(os.environ.get("P3_Z", -0.045))))   # puerta 6 r1: el ají quedaba bajo los subtítulos
     pos = cab + Vector((0.08, -0.64, 0.02))
     n = b - a
     f_mord = a + int(n * 0.58)
@@ -416,7 +447,7 @@ def p04(sc, a, b):
     cam = E2.camara(sc, "Cam04", lens=45, fstop=4.0)
     cab = rat.punto("cabeza") + Vector((0, 0, 0.0))
     pos = cab + Vector((0.13, -0.66, 0.02))
-    tgt = cab + Vector((-0.075, -0.02, 0.0))      # revisión del borrador: la llama salía cortada (sólo el centro blanco)
+    tgt = cab + Vector((-0.045, -0.02, 0.0))      # puerta 6 r1: la cabeza se cortaba a la derecha · revisión del borrador: la llama salía cortada (sólo el centro blanco)
     f_fuego = a + 3
     doblar = float(os.environ.get("P4_DOBLAR", 30))
 
@@ -457,11 +488,14 @@ def p05(sc, a, b):
     def act(f):
         x = (f - a) / n
         foco = aj.lerp(cab, suave(lin(x, 0.05, 0.32)))
-        E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.08, foco=foco)
+        E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.18, foco=foco)
         mira = AP.mirar_a(rat.rt["cabeza"], cam.location, 0.7)
         k = suave(lin(x, 0.15, 0.40))
-        rat.pose(cab=(math.degrees(mira.x) * k, 0, math.degrees(mira.z) * k), ojos=AP.parpadeo(f, a + int(n * 0.7), -110), ojos_esc=1.15,
-                 roja=1.0, llama=0.26 + 0.03 * E2.ruido(f, 9, 2.0), doblar=25, lado=float(os.environ.get("LLAMA_LADO", -95)) * k, f=f, lagrimas=True,
+        # puerta 6 r1: 2,8 s en la misma pose → en "son lo mismo" se inclina hacia la cámara y asiente dos veces
+        inc = math.sin(math.pi * lin(x, 0.48, 0.92))
+        asiente = math.sin(lin(x, 0.55, 0.85) * 2 * math.pi * 2) * inc
+        rat.pose(cab=(math.degrees(mira.x) * k + 10 * asiente, 0, math.degrees(mira.z) * k), cuerpo=9 * inc, ojos=AP.parpadeo(f, a + int(n * 0.7), -110), ojos_esc=1.15,
+                 roja=1.0, llama=(0.26 - 0.12 * suave(lin(x, 0.40, 0.55))) + 0.03 * E2.ruido(f, 9, 2.0), doblar=25, lado=float(os.environ.get("LLAMA_LADO", -95)) * k, f=f, lagrimas=True,
                  brazo=(-62 * suave(lin(x, 0.35, 0.55)), 14 * suave(lin(x, 0.35, 0.55))))
         bpy.context.view_layer.update()
         orejas = [E2.pantalla(sc, cam, o.matrix_world @ Vector((0, 0, 0.04))) for o in rat.rt["orejas"]]
@@ -618,16 +652,34 @@ def p12(sc, a, b):
         g.location = c + Vector((dx * 1.15, -0.03, dz * 1.15))
         PJ.colgar(g, rt["cabeza"])
         gotas.append((g, g.location.copy(), k))
+    # puerta 6 r1: el ratón se veía translúcido (SSS + los haces rojos de la baliza pegados a las orejas)
+    for m_ in bpy.data.materials:
+        if m_.use_nodes and m_.name.startswith(("Raton", "raton", "Rosado", "Oreja_")) and "Principled BSDF" in m_.node_tree.nodes:
+            m_.node_tree.nodes["Principled BSDF"].inputs["Subsurface Weight"].default_value = 0.0
+    for ob in bpy.data.objects:
+        if ob.type == "LIGHT" and ob.name.startswith("Baliza_haz"):
+            ob.data.energy = 0.5
     cam = E2.camara(sc, "Cam12", lens=42, fstop=4.0)
-    pos = c + Vector((0.04, -0.74, 0.10))      # revisión del borrador: la baliza quedaba cortada arriba
-    tgt = c + Vector((0, 0, 0.03))
+    pos = c + Vector((0.04, -0.86, 0.10))      # puerta 6 r1: cara más arriba (los ojos en y≈600, el mentón sobre los subtítulos)
+    tgt = c + Vector((0, 0, -0.065))
+
+    z0 = rt["root"].location.z
 
     def act(f):
+        x = lin(f, a, b - 1)
         E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.06, foco=c)
         mira = AP.mirar_a(rt["cabeza"], cam.location, 0.7)
-        rat.pose(cab=(math.degrees(mira.x) + 1.5 * E2.ruido(f, 5, 3), 0, math.degrees(mira.z)), ojos=-108, ojos_esc=1.12, roja=1.0, f=f)
-        giro.rotation_euler = (0, 0, (f - a) * 0.42)
-        vid.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 0.8 + 0.6 * max(0, math.sin((f - a) * 0.42 * 2))
+        # puerta 6 r1: estaba tieso → con "¡FUEGO!" se agacha (anticipación), salta del susto con ojos enormes y boca
+        # abierta, y queda temblando
+        agacha = math.sin(math.pi * lin(x, 0.06, 0.16))
+        salto = math.sin(math.pi * lin(x, 0.16, 0.34))
+        susto = suave(lin(x, 0.14, 0.24))
+        tiembla = susto * math.sin((f - a) * 2.3)
+        rat.pose(cab=(math.degrees(mira.x) + 1.5 * E2.ruido(f, 5, 3) - 8 * salto, 0, math.degrees(mira.z) + 2.5 * tiembla), cuerpo=6 * agacha - 4 * salto,
+                 boca=0.85 * susto, ojos=-108 - 8 * susto, ojos_esc=1.12 + 0.25 * susto + 0.15 * E2.rebote(lin(x, 0.16, 0.30)), roja=1.0, f=f)
+        rt["root"].location.z = z0 - 0.006 * agacha + 0.030 * salto
+        giro.rotation_euler = (0, 0, (f - a) * 0.55)
+        vid.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 0.5 + 3.0 * max(0, math.sin((f - a) * 0.55 * 2)) ** 2
         for g, l0, k in gotas:
             ph = ((f - a + k * 13) % 36) / 36
             g.location = l0 + Vector((0, 0, -0.012 * ph))
@@ -691,8 +743,8 @@ def p13(sc, a, b):
     cam = E2.camara(sc, "Cam13", lens=50, fstop=4.0)
     bpy.context.view_layer.update()
     esf = term.matrix_world @ Vector((0, 0, 0.09 + 0.025))
-    pos = esf + Vector((-0.03, -0.32, -0.035))
-    tgt = esf + Vector((0, 0, -0.035))
+    pos = esf + Vector((-0.03, -0.64, -0.02))       # puerta 6 r1: el ají quedaba bajo la interfaz de la app
+    tgt = esf + Vector((0, 0, -0.115))
     n = b - a
 
     def act(f):
@@ -712,8 +764,8 @@ def p33(sc, a, b):
     _aji_roca(S, "AjiMordido2", (0.02, 0.00), rot=-30, mordido=True, seed=12)
     cam = E2.camara(sc, "Cam33", lens=42, fstop=4.0)
     cab = rat.punto("cabeza")
-    pos = cab + Vector((0.14, -0.50, 0.0))
-    tgt = cab + Vector((-0.02, 0, -0.05))
+    pos = cab + Vector((0.16, -0.62, 0.0))          # puerta 6 r1: cortaba las orejas
+    tgt = cab + Vector((-0.02, 0, -0.025))
 
     def act(f):
         E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.07, foco=cab)
@@ -736,11 +788,14 @@ def p34(sc, a, b):
     vaso.location = (boca.x, boca.y - 0.010, z0 - 0.001)
     leche = bpy.data.objects["VasoLeche_leche"]
     caja = cajita_leche("CajaDescremada", "DESCREMADA", S["CP"])
-    cx, cy = boca.x - 0.075, boca.y + 0.035
+    cx, cy = boca.x - 0.098, boca.y + 0.060          # puerta 6 r1: más lejos de la llama (se quemaba a blanco)
     caja.location = (cx, cy, S["suelo"](cx, cy) - 0.001)
     caja.rotation_euler.z = R(10)
     o, d = rat.boca_dir()
     humo = AP.Bocanada("Humo34", o, d, S["CP"], n=9, tam=0.007)
+    if rat.llama:
+        rat.llama.luz_e *= 0.5
+    orejas0 = [o_.rotation_euler.copy() for o_ in rat.rt["orejas"]]
     cam = E2.camara(sc, "Cam34", lens=32, fstop=5.6)
     cab = rat.punto("cabeza")
     tgt = cab.lerp(boca, 0.5) + Vector((-0.02, 0, -0.03))
@@ -749,15 +804,22 @@ def p34(sc, a, b):
 
     def act(f):
         x = (f - a) / n
-        baja = suave(lin(x, 0.08, 0.28)) * (1 - suave(lin(x, 0.78, 0.92)))
+        # puerta 6 r1: al levantar la cabeza todo cambiaba de golpe (ojos, lágrimas); ahora sube en ~0,5 s con anticipación,
+        # los ojos se entornan y se abren con fundido y lo rojo baja a café junto con el humo
+        baja = suave(lin(x, 0.08, 0.28)) * (1 - suave(lin(x, 0.76, 0.96)))
+        antic = math.sin(math.pi * lin(x, 0.70, 0.78))
         bebe = lin(x, 0.28, 0.76)
         nivel = 0.85 - 0.50 * suave(bebe)
         leche.scale = (1, 1, nivel / 0.85)
         hund = 0.5 * (0.85 - nivel)               # el hocico sigue el nivel de la leche (un poco más adentro)
-        alivio = suave(lin(x, 0.86, 0.98))
-        rat.pose(cab=(32 * baja + 18 * hund * baja, 0, 0), cuerpo=26 * baja + 10 * hund * baja, boca=0.4 * baja,
-                 ojos=-100 + 70 * alivio if x > 0.8 else (-60 if 0.3 < x < 0.76 else -100), roja=1.0 - 0.6 * alivio,
-                 llama=max(0.0, 0.9 - 0.95 * suave(bebe)), doblar=55 * baja, f=f, lagrimas=x < 0.8)
+        alivio = suave(lin(x, 0.84, 0.98))
+        entorna = suave(lin(x, 0.26, 0.34)) * (1 - suave(lin(x, 0.74, 0.84)))
+        ojos = -100 + 40 * entorna + 70 * alivio
+        rat.pose(cab=(32 * baja + 18 * hund * baja + 4 * antic, 0, 14 * baja), cuerpo=26 * baja + 10 * hund * baja, boca=0.4 * baja,
+                 ojos=ojos, roja=1.0 - 0.6 * alivio,
+                 llama=max(0.0, 0.9 - 0.95 * suave(bebe)), doblar=55 * baja, f=f, lagrimas=x < 0.86)
+        for k_, (o_, r0_) in enumerate(zip(rat.rt["orejas"], orejas0)):       # que la oreja no quede de canto al tomar
+            o_.rotation_euler = Euler((r0_.x - R(25) * baja, r0_.y, r0_.z + (R(40) if k_ == 0 else R(-15)) * baja))
         humo.poner(lin(x, 0.84, 1.05))
         E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.05, foco=tgt)
     return {"actualizar": act}
@@ -847,7 +909,7 @@ def p20(sc, a, b):
     pts = sorted([f_.matrix_world.translation.copy() for f_ in fr], key=lambda p: -p.z)
     f1 = pts[0]
     f2 = min(pts[1:], key=lambda p: abs((p - f1).length - 0.045))
-    cam = E2.camara(sc, "Cam20", lens=85, fstop=2.0)
+    cam = E2.camara(sc, "Cam20", lens=85, fstop=5.0)        # puerta 6 r1: con f/2 todo quedaba borroso
     mid = (f1 + f2) / 2
     pos = mid + Vector((0.05, -0.36, 0.02))
     ramas = [o for o in mata.children]
@@ -865,9 +927,12 @@ def p20(sc, a, b):
 
 
 def _cam_rec(sc):
-    """La vista de la cámara de vigilancia de los científicos (fija) para los planos 21 y 22."""
-    cam = E2.camara(sc, "CamREC", lens=30, fstop=11)
-    E2.mirar(cam, MATA + Vector((0.20, -0.66, 0.47)), MATA + Vector((-0.02, 0.05, 0.13)))
+    """La vista de la cámara de vigilancia de los científicos (fija) para los planos 21 y 22.
+    Puerta 6 r1: las cabezas de los roedores y el pájaro caían en la franja de subtítulos → la cámara mira más abajo y
+    más cerca, y lo que pasa queda en la mitad de arriba del cuadro."""
+    cam = E2.camara(sc, "CamREC", lens=float(os.environ.get("REC_LENS", 32)), fstop=11)
+    E2.mirar(cam, MATA + Vector(tuple(float(v) for v in os.environ.get("REC_POS", "0.25,-0.95,0.40").split(","))),
+             MATA + Vector(tuple(float(v) for v in os.environ.get("REC_TGT", "-0.02,0.05,-0.03").split(","))))
     return cam
 
 
@@ -898,8 +963,8 @@ def p21(sc, a, b):
     n = b - a
     # caminos: entran desde los lados, llegan junto a la mata, huelen, se dan vuelta y se van
     caminos = {
-        "rat": (MATA + Vector((0.55, -0.15, 0)), MATA + Vector((0.13, -0.10, 0))),
-        "rata": (MATA + Vector((-0.62, -0.22, 0)), MATA + Vector((-0.16, -0.14, 0))),
+        "rat": (MATA + Vector((0.23, -0.16, 0)), MATA + Vector((0.13, -0.10, 0))),       # puerta 6 r1: en cuadro desde el inicio
+        "rata": (MATA + Vector((-0.27, -0.22, 0)), MATA + Vector((-0.16, -0.14, 0))),
     }
 
     def mover(r_, cm, f, f0, f_llega, f_vuelta, f_sale):
@@ -939,8 +1004,10 @@ def p22(sc, a, b):
     cam = _cam_rec(sc)
     pj = PJ.pajaro(S["CP"], nombre="CuitREC")
     pj["root"].scale = (1.0, 1.0, 1.0)
-    pj["root"].location = MATA + Vector((0.12, -0.20, 0))
+    pj["root"].location = MATA + Vector((0.10, -0.16, 0))        # puerta 6 r1: más junto a la mata
     pj["root"].rotation_euler.z = R(-75)
+    # puerta 6 r1: a contraluz se veía casi negro → relleno cálido desde el lado de la cámara
+    E2.area(sc, "RellenoPajaroREC", tuple(MATA + Vector((0.30, -0.70, 0.45))), 10, 0.6, (1.0, 0.92, 0.82), tuple(pj["root"].location + Vector((0, 0, 0.10))))
     for pv in pj["parpados"]:
         for ch in pv.children:
             ch.rotation_euler.x = R(-30)
@@ -972,8 +1039,9 @@ def p22(sc, a, b):
             t0 = tomas[k]
             x = (f - t0) / (n * 0.42)
             # pica (0–0,25) → traga con la cabeza hacia arriba (0,25–0,7) → vuelve (0,7–1)
-            pica = suave(lin(x, 0.0, 0.18)) * (1 - suave(lin(x, 0.24, 0.36)))
-            tr = AP.trago(lin(x, 0.24, 0.85))
+            # puerta 6 r1: el fruto se esfumaba → lo arranca, lo sostiene en la punta ~7 cuadros y lo traga echando la cabeza atrás
+            pica = suave(lin(x, 0.0, 0.18)) * (1 - suave(lin(x, 0.38, 0.50)))
+            tr = AP.trago(lin(x, 0.40, 0.95))
             if 0 <= x <= 1:
                 cab = Euler((cab0.x + R(18) * pica - R(16) * tr, 0, cab0.z + R(14) * pica))
             pj["cabeza"].rotation_euler = cab
@@ -984,13 +1052,13 @@ def p22(sc, a, b):
             if x < 0.18:
                 fo.location = p0
                 fo.hide_render = False
-            elif x < 0.40:
-                fo.location = pt.lerp(boca, suave(lin(x, 0.24, 0.40)))
+            elif x < 0.52:
+                fo.location = pt.lerp(boca, suave(lin(x, 0.40, 0.52)))      # en la punta del pico y después adentro
                 fo.hide_render = False
             else:
                 fo.hide_render = True                       # ya entró al pico (de un trago)
-            if 0.38 <= x <= 0.95:
-                bul = lin(x, 0.38, 0.95)
+            if 0.50 <= x <= 1.0:
+                bul = lin(x, 0.50, 1.0)
         bulto.poner(bul if bul is not None else 0)
     return {"actualizar": act}
 
@@ -1032,20 +1100,33 @@ def p25(sc, a, b):
         semillas.append(g)
     # brote: tallo (curva que crece), hojas y flores blancas
     verde = P.mat("Brote", (0.12, 0.40, 0.08), rough=0.5)
-    tallo = P.tube("BroteTallo", [tuple(base + Vector((0.002, -0.006, 0.006))), tuple(base + Vector((0.004, -0.008, 0.05))), tuple(base + Vector((-0.004, -0.006, 0.10))), tuple(base + Vector((0.002, -0.004, 0.15)))], 0.0022, S["CP"], verde)
+    tallo_pts = [base + Vector((0.002, -0.006, 0.006)), base + Vector((0.004, -0.008, 0.05)), base + Vector((-0.004, -0.006, 0.10)), base + Vector((0.002, -0.004, 0.15))]
+    tallo = P.tube("BroteTallo", [tuple(p_) for p_ in tallo_pts], 0.0022, S["CP"], verde)
+
+    def en_tallo(z):
+        """Punto del tallo a la altura z (interpolación lineal entre sus puntos)."""
+        for p_, q_ in zip(tallo_pts, tallo_pts[1:]):
+            if p_.z <= base.z + z <= q_.z:
+                return p_.lerp(q_, (base.z + z - p_.z) / max(1e-6, q_.z - p_.z))
+        return tallo_pts[-1].copy()
     tallo.data.bevel_factor_mapping_end = "SPLINE"
     hojas, flores = [], []
     hm = P.mat("BroteHoja", (0.10, 0.36, 0.07), rough=0.45, sss=0.1)
     fl = P.mat("FlorChiltepin", (0.97, 0.96, 0.92), rough=0.5)
-    for k in range(6):
+    for k in range(6):          # puerta 6 r1: las hojas flotaban separadas del tallo → nacen en el tallo (la base en el tallo)
         z = 0.035 + 0.02 * k
+        sg = 1 if k % 2 else -1
         h = P.prim("sphere", f"BroteHoja{k}", S["CP"], hm, r=1.0, u=16, v=8)
-        h.location = base + Vector((0.012 * (1 if k % 2 else -1), -0.006, z))
-        h.rotation_euler = (0, R(60 if k % 2 else -60), 0)
+        h.location = en_tallo(z) + Vector((sg * 0.0115, 0, 0.0066))      # centro a medio largo de la hoja, que sale en diagonal
+        h.rotation_euler = (0, R(60 * sg), 0)
         hojas.append((h, k))
     centro = P.mat("FlorCentro", (0.95, 0.75, 0.15), rough=0.5)
     for k in range(4):
-        fo = P.empty(f"Flor{k}", loc=base + Vector((0.002 + 0.010 * math.cos(k * 1.7), -0.010, 0.112 + 0.012 * k)), coll=S["CP"])
+        zf = 0.112 + 0.012 * k
+        pf = en_tallo(zf) + Vector((0.008 * math.cos(k * 1.7), -0.004, 0.006))
+        ped = P.tube(f"Pedicelo{k}", [tuple(en_tallo(zf - 0.004)), tuple(pf)], 0.0008, S["CP"], verde)
+        fo = P.empty(f"Flor{k}", loc=pf, coll=S["CP"])
+        fo["ped"] = ped.name
         fo.rotation_euler = (R(78), 0, R(-10 + 8 * k))      # la flor mira a cámara (revisión: de canto se leían como platillos grises)
         for j in range(5):
             pe = P.prim("sphere", f"Flor{k}_p{j}", S["CP"], fl, r=0.0036, u=12, v=6)
@@ -1060,18 +1141,18 @@ def p25(sc, a, b):
     cam = E2.camara(sc, "Cam25", lens=60, fstop=7.0)
     # revisión del borrador: arrancaba con el cuadro vacío (la caca caía fuera de cuadro); ahora la caca cae en cuadro y la
     # cámara sube con el brote hasta encuadrar la mata entera con flores
-    pos = base + Vector((0.04, -0.32, 0.06))
-    tgt = base + Vector((0, 0, 0.018))
-    sube = Vector((0, 0, 0.072))
+    pos = base + Vector((0.04, -0.26, 0.07))
+    tgt = base + Vector((0, 0, -0.022))          # puerta 6 r1: la caca caía detrás del subtítulo
+    sube = Vector((0, 0, 0.088))
     n = b - a
 
     def act(f):
         x = (f - a) / n
         cae = lin(x, 0.0, 0.10)
         aplasta = math.exp(-max(0, x - 0.10) * 40) if x > 0.10 else 0
-        caca.location = base + Vector((0, 0, 0.065 * (1 - entra(cae))))
+        caca.location = base + Vector((0, 0, 0.016 * (1 - entra(cae))))      # cae poquito: ya está en cuadro en el primer cuadro
         caca.scale = (1 + 0.35 * aplasta, 1 + 0.35 * aplasta, 1 - 0.45 * aplasta)
-        crece = E2.suave(lin(x, 0.25, 0.92))
+        crece = E2.suave(lin(x, 0.17, 0.92))
         tallo.data.bevel_factor_end = max(0.001, crece)
         tallo.hide_render = crece < 0.01
         for h, k in hojas:
@@ -1083,10 +1164,11 @@ def p25(sc, a, b):
             fo.scale = (s_, s_, s_)
             for ch in fo.children:
                 ch.hide_render = s_ < 0.01
+            bpy.data.objects[fo["ped"]].hide_render = s_ < 0.01
         caca.scale = caca.scale * (1 - 0.35 * suave(lin(x, 0.4, 0.9)))   # se va deshaciendo mientras brota
         k_ = E2.suave(lin(x, 0.22, 0.95))
         foco = tgt + sube * k_ * 0.6
-        atras = Vector((-0.02, -0.17, 0.0)) * k_          # se abre para ver la mata entera con la caca abajo
+        atras = Vector((-0.02, -0.30, 0.0)) * k_          # se abre para ver la mata entera con la caca abajo
         E2.empujar(cam, f, a, b - 1, pos + sube * k_ + atras, tgt + sube * k_, cuanto=0.03, foco=foco)
     return {"actualizar": act}
 
@@ -1147,6 +1229,11 @@ def p26(sc, a, b):
     bola = P.prim("ico", "BolaDisco", S["CP"], bola_m, r=0.05, sub=2)
     bola.location = pos_g + Vector((0, 0, 0.62))
     P.tube("BolaDiscoCable", [tuple(bola.location + Vector((0, 0, 0.05))), tuple(bola.location + Vector((0, 0, 0.4))), tuple(bola.location + Vector((0, 0, 0.8)))], 0.0015, S["CP"], P.mat("Cable", (0.05, 0.05, 0.05)))
+    # puerta 6 r1: la bola de discoteca cortada arriba se leía como un objeto suelto → fuera (queda la luz de discoteca)
+    bola.hide_render = True
+    bpy.data.objects["BolaDiscoCable"].hide_render = True
+    lt0 = g["lentes"].location.copy()
+    cab0g = g["cabeza"].rotation_euler.copy()
     cam = E2.camara(sc, "Cam26", lens=30, fstop=8)
     pos = pos_g + Vector((-0.20, -0.95, 0.06))
     tgt = pos_g + Vector((0.0, 0.10, 0.26))
@@ -1158,15 +1245,21 @@ def p26(sc, a, b):
             h = 0.9 * min(1.0, (-dt / 0.35)) ** 2
         else:
             h = 0.0
-        sq = math.exp(-max(0, dt) * 10) * math.cos(max(0, dt) * 26) if dt >= 0 else 0
+        sq = math.exp(-max(0, dt) * 6) * math.cos(max(0, dt) * 20) if dt >= 0 else 0       # aplasta y estira más largo
+        st = 0.12 * math.exp(-((dt + 0.06) / 0.05) ** 2) if dt < 0 else 0.0                  # se estira al caer
         g["root"].location = pos_g + Vector((0, 0, h))
-        g["root"].scale = (1 + 0.18 * sq, 1 + 0.18 * sq, 1 - 0.25 * sq)
+        g["root"].scale = (1 + 0.26 * sq - st * 0.5, 1 + 0.26 * sq - st * 0.5, 1 - 0.32 * sq + st)
+        # en "guardia" se acomoda los lentes (suben y bajan) y asiente serio
+        dg = (f - t_gua) / E2.FPS
+        ac = math.sin(math.pi * E2.clamp(dg / 0.35)) if 0 <= dg <= 0.35 else 0.0
+        g["lentes"].location = lt0 + Vector((0, 0, 0.012 * ac))
+        g["cabeza"].rotation_euler = Euler((cab0g.x + R(8) * ac, cab0g.y, cab0g.z))
         on = suave(lin(f, t_gua, t_gua + 3))
         disco.energy = 220 * on
         disco.color = (1.0, 0.35 + 0.3 * math.sin(f * 0.5), 0.9)
         bola.rotation_euler.z = f * 0.12
         bola_m.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 0.0
-        E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.08, foco=pos_g + Vector((0, 0, 0.2)))
+        E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.18, foco=pos_g + Vector((0, 0, 0.2)))     # puerta 6 r1: push-in más marcado
     return {"actualizar": act}
 
 
@@ -1206,10 +1299,12 @@ def p27(sc, a, b):
         _poner_cuerda(cu, ca, cb, 0.10 * (1 - sale(lin(x, 0.30, 0.42))))
         # el guardia niega con la cabeza (brazos cruzados siempre)
         neg = math.sin(lin(x, 0.42, 0.68) * math.pi * 4) * math.sin(math.pi * lin(x, 0.42, 0.68))
-        g["cabeza"].rotation_euler = (0, 0, R(18) * neg)
+        inc = math.sin(math.pi * lin(x, 0.40, 0.74))          # se inclina hacia el ratón (patovica) mientras niega
+        g["cabeza"].rotation_euler = (R(6) * inc, 0, R(18) * neg)
+        g["root"].rotation_euler.x = R(-9) * inc
         # paneo de la llegada del ratón al guardia
-        tgt = (fin.lerp(pg, 0.5 * suave(lin(x, 0.2, 0.6)))) + Vector((0, 0, 0.16))
-        E2.mirar(cam, MATA + Vector((0.40, -1.55, 0.25)), tgt, foco=fin + Vector((0, 0, 0.1)))
+        tgt = (fin.lerp(pg, 0.5 * suave(lin(x, 0.2, 0.6)))) + Vector((-0.17, 0, 0.16))      # puerta 6 r1: el guardia entero y la mata detrás
+        E2.mirar(cam, MATA + Vector((0.22, -1.75, 0.27)), tgt, foco=fin + Vector((0, 0, 0.1)))
     return {"actualizar": act}
 
 
@@ -1235,6 +1330,7 @@ def ardorometro(nombre, coll, loc, alto=0.12):
     """Tubo de vidrio con la misma llama del video adentro, a escala. Devuelve (raíz, Llama)."""
     root = P.empty(nombre, loc=loc, coll=coll)
     vidrio = P.mat("VidrioArdor", (0.95, 0.97, 1.0), rough=0.03, transmission=1.0)
+    vidrio.node_tree.nodes["Principled BSDF"].inputs["IOR"].default_value = 1.12     # puerta 6 r1: con 1,45 la llama se veía como un garabato
     tubo = P.prim("cyl", nombre + "_tubo", coll, vidrio, r=0.022, r2=0.022, h=alto, seg=40)
     tubo.location = (0, 0, alto / 2 + 0.008)
     sol = tubo.modifiers.new("Grosor", "SOLIDIFY")
@@ -1329,7 +1425,7 @@ def p36(sc, a, b):
         for k, ll in enumerate(cosas):
             baja = suave(lin(x, 0.12 + 0.03 * k, 0.72 + 0.03 * k))
             ll.poner(f + 17 * k, 1.0 - 0.72 * baja - 0.02 * k)
-        E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.035, foco=tgt)
+        E2.empujar(cam, f, a, b - 1, pos, tgt + Vector((0, 0, 0.04)) * suave(x), cuanto=0.30, foco=tgt)   # puerta 6 r1: push-in a los faroles
     return {"actualizar": act}
 
 
@@ -1409,7 +1505,7 @@ def p38(sc, a, b):
     g["root"].rotation_euler.z = R(160)
     t_lle = a + int((b - a) * 0.55)
     cam = E2.camara(sc, "Cam38", lens=32, fstop=6)
-    centro = c + Vector((0.0, 0.08, 0.13))
+    centro = c + Vector((0.045, 0.06, 0.13))        # puerta 6 r1: el ratón arrancaba cortado a la derecha
     n = b - a
 
     def act(f):
@@ -1538,7 +1634,7 @@ def p08(sc, a, b):
         g = E2.rebote(lin(x, 0.20, 0.42), 2.0)
         S["camp"].scale = (max(0.001, g),) * 3
         E2.oculto(S["camp"], g < 0.02)
-        c = 1 - suave(lin(x, 0.16, 0.30))
+        c = (1 - suave(lin(x, 0.16, 0.30))) * E2.rebote(lin(f, a, a + 4), 1.5)      # puerta 6 r1: entra con pop
         cup.scale = (max(0.001, c * (1 + 0.6 * suave(lin(x, 0.0, 0.18)))),) * 2 + (max(0.001, c * 0.65),)
         cup.hide_render = c < 0.02
         din = math.exp(-max(0, x - 0.45) * 7) if x > 0.45 else 0
@@ -1564,7 +1660,9 @@ def p09(sc, a, b):
     def act(f):
         x = (f - a) / n
         su, t = _timbre(f, f_cae + 1)
-        SL.poner(S, "naranja", su, t, gota=lin(f, a + int(n * 0.12), f_cae), empuje=lin(f, a, b))
+        # puerta 6 r1: la bola aparecía entera en el cuadro; ahora parte arriba, fuera de cuadro, y cae desde el primer cuadro
+        SL.poner(S, "naranja", su, t, gota=lin(f, a, f_cae), empuje=lin(f, a, b), alto=0.30,
+                 posada=max(0.0, (f - f_cae) / E2.FPS))
     return {"actualizar": act}
 
 
@@ -1604,7 +1702,12 @@ def p15S(sc, a, b):
             m = sale(lin(f, a + 2, f_toca)) * 0.92
         else:
             m = 0.92 - 0.55 * sale(lin(f, f_toca, f_toca + int(n * 0.35)))      # rebota y se aleja
-        SL.poner(S, None, 0, 0, celeste=suave(lin(f, f_toca, f_toca + 10)), mol=m, empuje=0.5 * lin(f, a, b))
+        # puerta 6 r1: la molécula era chiquita y la campana se ponía celeste (se leía "frío"); ahora la molécula es grande,
+        # choca y rebota, y la campana queda plateada y quieta (un temblorcito mudo al choque)
+        S["mol"].scale = (2.6,) * 3
+        SL.poner(S, None, 0, 0, celeste=0.0, mol=m, empuje=0.5 * lin(f, a, b))
+        g = math.exp(-max(0, f - f_toca) / 4.0) if f >= f_toca else 0.0
+        S["camp"].rotation_euler = (0, R(3 * g * math.sin((f - f_toca) * 1.9)), 0)
     return {"actualizar": act}
 
 
@@ -1614,9 +1717,16 @@ def p16S(sc, a, b):
     n = b - a
     f_cae = a + int(n * 0.35)
 
+    for o in S["gota_obs"]:          # puerta 6 r1: la gotita no se leía en la lupa → la bola de calor, el doble de grande
+        if not o.name.startswith("VaporSopa"):
+            o.scale = (o.scale.x * 2.0, o.scale.y * 2.0, o.scale.z * 2.0)
+            S["gota_base"][o.name] = S["gota_base"][o.name] + Vector((0, 0, 0.0085 * 1.25))
+    S["marca"].scale = (2.0, 2.0, 0.24)
+
     def act(f):
         su, t = _timbre(f, f_cae + 1)
-        SL.poner(S, "naranja", su, t, celeste=1.0 - 0.6 * su, gota=lin(f, a + 2, f_cae), empuje=0.5 * lin(f, a, b))
+        SL.poner(S, "naranja", su, t, celeste=0.0, gota=lin(f, a, f_cae), empuje=0.5 * lin(f, a, b), alto=0.20,
+                 posada=max(0.0, (f - f_cae) / E2.FPS))
     return {"actualizar": act}
 
 
@@ -1674,8 +1784,8 @@ def p10(sc, a, b):
         if interior.name not in [m.name for m in aj.data.materials]:
             aj.data.materials.append(interior)
         cj = P.prim("cube", f"CajaCorte{k}", C, interior)
-        cj.scale = (0.2, 0.2, 0.4)
-        cj.location = (0, sgn * 0.1, -L / 2)
+        cj.scale = (0.2, 0.2, 0.5)
+        cj.location = (0, sgn * 0.1, -L / 2 + 0.06)        # puerta 6 r1: el corte parte también el cáliz (antes cada mitad tenía el suyo)
         cj.hide_render = True
         cj.display_type = "WIRE"
         cj.parent = aj
@@ -1723,18 +1833,21 @@ def p10(sc, a, b):
     lo.location = (-0.2, -0.3, 0.45)
     lo.rotation_euler = (Vector((0, 0, 0)) - lo.location).to_track_quat("-Z", "Y").to_euler()
     E2.area(sc, "RimCorte", (0.3, 0.4, 0.2), 10, 0.3, (1.0, 0.5, 0.4), (0, 0, 0))
+    F_CAPS = E2.F(E2.t_palabra("capsaicina", E2.T[10][0]))
     cam = E2.camara(sc, "Cam10", lens=34, fstop=5.6)
     pos, tgt = Vector((0.0, -0.16, 0.44)), Vector((0.0, 0.0, 0.0))
     n = b - a
 
     def act(f):
         x = (f - a) / n
-        ab = E2.rebote(lin(x, 0.10, 0.40), 1.2)
+        ab = E2.suave(lin(x, 0.08, 0.42))         # puerta 6 r1: se abría de golpe; ahora en ~0,55 s, sin rebote
         for piv, sgn, aj in mitades:
             piv.rotation_euler = (R(sgn * 70 * ab), 0, 0)       # se abre como un libro: las caras de corte miran arriba
             piv.location = (0, sgn * 0.035 * ab, 0)
         brillo = 0.2 + 2.8 * suave(lin(x, 0.40, 0.70))
         gota_m.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = brillo
+        # al decir "capsaicina" se encienden las venas (ahí está la capsaicina)
+        vena_m.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 0.25 + 1.1 * suave(lin(f, F_CAPS, F_CAPS + 8))
         x2 = suave(lin(f, a, b - 1))
         E2.mirar(cam, pos.lerp(tgt, 0.10 * x2), tgt, foco=tgt, giro=90)      # el ají queda vertical en el cuadro (entero)
     return {"actualizar": act}
@@ -1808,28 +1921,36 @@ def p28b(sc, a, b):
 
 
 def p29(sc, a, b):
-    """hay un mamífero que casi no lo siente: cámara que acompaña de costado a algo que camina por la rama entre la niebla
-    (revisión del borrador: antes eran 2,8 s de rama vacía); en el 30 llega al encuadre principal."""
+    """hay un mamífero que casi no lo siente: cámara que acompaña de costado a la tupaya que camina por la rama entre la
+    niebla; en "casi no lo siente" se detiene y mira a cámara (en el 30 llega al encuadre principal).
+    Puerta 6 r1: salía café oscuro (fuera de las luces del set) → las luces de la tupaya la acompañan; cola entera en cuadro."""
     S = _bosque(sc)
     tp = S["tp"]
     cam = S["cam"]
     n = b - a
-    x_ini, x_fin = float(os.environ.get("P29_X0", -0.84)), float(os.environ.get("P29_X1", -0.66))
-    dist = float(os.environ.get("P29_D", 0.95))
+    x_ini, x_fin = float(os.environ.get("P29_X0", -0.84)), float(os.environ.get("P29_X1", -0.68))
+    dist = float(os.environ.get("P29_D", 1.05))
     r0 = S["pc_rot0"]
+    TX = S["TX"]
+    luces = [(o, o.location.copy()) for o in bpy.data.objects if o.name in ("Relleno", "Contorno", "RellenoPatas", "KeyTupaya", "RayoSol")]
 
     def act(f):
         x = (f - a) / n
-        tx = x_ini + (x_fin - x_ini) * x
+        camina = suave(min(1.0, x / 0.66)) if x < 0.66 else 1.0
+        tx = x_ini + (x_fin - x_ini) * camina
         _tupaya_en(S, tx)
-        tp["root"].location.z += 0.006 * abs(math.sin((f - a) * 0.55))       # (la altura sale del respaldo 0,135 del rayo: en x < -0,6 el rayo no pega)
-        tp["cabeza"].rotation_euler = Euler((r0.x * 0.2, 0, 0))        # mira adelante, no a cámara (todavía no se presenta)
-        _caminar(S, f - a)
+        paso = 1 - suave(lin(x, 0.56, 0.68))
+        tp["root"].location.z += 0.006 * abs(math.sin((f - a) * 0.55)) * paso       # (la altura sale del respaldo 0,135 del rayo: en x < -0,6 el rayo no pega)
+        mira = suave(lin(x, 0.66, 0.84))
+        tp["cabeza"].rotation_euler = Euler((r0.x * (0.2 + 0.8 * mira), 0, r0.z * mira))
+        _caminar(S, f - a, paso)
         _cola(S, f, 10)
+        for o, l0 in luces:
+            o.location = l0 + Vector((tx - TX, 0, 0))
         bpy.context.view_layer.update()
         h = tp["cabeza"].matrix_world.translation
-        tgt = Vector((tx + 0.07, 0.0, h.z - 0.02))
-        pos = tgt + Vector((-0.10 + 0.08 * x, -dist, 0.07))
+        tgt = Vector((tx - 0.02, 0.0, h.z - 0.03))
+        pos = tgt + Vector((-0.08 + 0.06 * x, -dist, 0.07))
         E2.mirar(cam, pos, tgt, foco=h)
     return {"actualizar": act}
 
@@ -1847,12 +1968,13 @@ def p30(sc, a, b):
     def act(f):
         x = (f - a) / n
         llega = suave(lin(x, 0.0, 0.42))
-        _tupaya_en(S, (x0 - 0.42) + 0.42 * llega)
+        _tupaya_en(S, (x0 - 0.20) + 0.20 * llega)          # puerta 6 r1: entra antes (se decía "la tupaya" sobre la rama vacía)
         tp["root"].location.z += 0.008 * abs(math.sin((f - a) * 0.55)) * (1 - llega)
         _caminar(S, f - a + 84, 1 - llega)        # sigue el paso del 29 (84 cuadros)
         mira = suave(lin(x, 0.40, 0.62))
         r0 = S["pc_rot0"]
-        tp["cabeza"].rotation_euler = Euler((r0.x * mira, 0, r0.z * mira))
+        olf = suave(lin(x, 0.62, 0.75)) * math.sin((f - a) * 1.5)        # ya parada: olfatea (no queda tiesa)
+        tp["cabeza"].rotation_euler = Euler((r0.x * mira + R(3) * olf, 0, r0.z * mira + R(2) * olf))
         for o, r_ in zip(tp["ojos"], S["ojos_rot0"]):
             o.rotation_euler = r_
         _cola(S, f)
@@ -1864,9 +1986,21 @@ def p30(sc, a, b):
 
 
 def p31(sc, a, b):
-    """Fondo del recuadro del plano 31: la tupaya en la rama (un solo cuadro; el post le pone el recuadro encima)."""
+    """Fondo del recuadro del plano 31: la tupaya en la rama, animada (puerta 6 r1: estaba tiesa 2,8 s). Olfatea, ladea la
+    cabeza, en "cambio" mira hacia el recuadro (arriba a la izquierda) y vuelve a cámara como si nada."""
     S = _bosque(sc)
-    return {"actualizar": lambda f: _cola(S, f)}
+    tp = S["tp"]
+    r0 = S["pc_rot0"]
+    n = b - a
+
+    def act(f):
+        x = (f - a) / n
+        _cola(S, f, 8)
+        arriba = math.sin(math.pi * lin(x, 0.30, 0.75))
+        ladea = math.sin(math.pi * lin(x, 0.05, 0.35))
+        olf = math.sin((f - a) * 1.5) * (1 - arriba)
+        tp["cabeza"].rotation_euler = Euler((r0.x * (1 - arriba) - R(18) * arriba + R(3) * olf, R(10) * ladea, r0.z * (1 - arriba) + R(25) * arriba))
+    return {"actualizar": act}
 
 
 def p32(sc, a, b):
@@ -1899,11 +2033,12 @@ def p32(sc, a, b):
     fwd = (tp["root"].matrix_world.to_3x3() @ Vector((0, -1, 0))).normalized()
     n = b - a
     mordiscos = [0.18, 0.45, 0.72]
+    ojos_s0 = [o_.scale.copy() for o_ in tp["ojos"]]
 
     def act(f):
         x = (f - a) / n
         # largo de la espiga: baja un poco en cada mordisco (la forma queda fija)
-        largo = e_largo0 * (1 - 0.13 * sum(1 for m in mordiscos if x >= m + 0.06))
+        largo = e_largo0 * (1 - 0.22 * sum(1 for m in mordiscos if x >= m + 0.06))     # puerta 6 r1: cada mordida se lleva un trozo que se ve
         e.scale = (1, 1, largo)
         # cabeza: apunta a la punta; en cada mordisco avanza, cierra y vuelve
         cerca = max(math.sin(math.pi * lin(x, m - 0.06, m + 0.12)) for m in mordiscos)
@@ -1918,6 +2053,11 @@ def p32(sc, a, b):
             _tupaya_en(S, tp["root"].location.x + avance * fwd.x)
             bpy.context.view_layer.update()
         _cola(S, f)
+        # entre mordidas mastica contenta: la cabeza late y los ojos se entornan
+        mastica = max(math.sin(math.pi * lin(x, m + 0.10, m + 0.26)) for m in mordiscos)
+        pc.rotation_euler = Euler((pc.rotation_euler.x + R(4) * mastica * math.sin((f - a) * 2.2), pc.rotation_euler.y, pc.rotation_euler.z))
+        for o_, s0_ in zip(tp["ojos"], ojos_s0):
+            o_.scale = (s0_.x, s0_.y, s0_.z * (1 - 0.45 * mastica))
         gota.location = gl0 + Vector((0, 0, -0.006 * suave(lin(x, 0.80, 1.0))))
         gota.hide_render = x < 0.62
         ang = R(-14 + 28 * x)
@@ -1936,13 +2076,28 @@ def _fondo_muelas(sc):
 
 
 def p23(sc, a, b):
-    """Fondo del plano 23: el ratón entero de perfil (un cuadro; el post espeja, pone la lupa, el recuadro y la ✕)."""
+    """Fondo del plano 23: el ratón entero en 3/4 (el post espeja, pone la lupa, el recuadro y la ✕).
+    Puerta 6 r1: de perfil puro el ratón no se parecía al de la ficha (ojo de cuenta, hocico largo) y estaba congelado →
+    3/4 para que se vean los ojos grandes y la guata, y mastica al ritmo de las muelas de la lupa, parpadea y mueve la cabeza."""
     _fondo_muelas(sc)
+    os.environ.setdefault("CAMOFF", os.environ.get("P23_CAMOFF", "0.80,-0.66,0.07"))
+    os.environ.setdefault("MIRADA", "0.6,-1.0,0.05")
     import set_muelas
     M = set_muelas.armar(sc, "cara")
-    bpy.context.view_layer.update()
-    mej = E2.pantalla(sc, sc.camera, M["M"] @ Vector((0.0165, M["centro_loc"].y, M["centro_loc"].z)))
-    return {"actualizar": lambda f: None, "meta": {"mejilla": mej}}
+    rt = M["rt"]
+    cab0 = rt["cabeza"].rotation_euler.copy()
+    n = b - a
+
+    def act(f):
+        x = (f - a) / n
+        ciclo = (x * 3) % 1
+        cierra = math.sin(math.pi * E2.clamp(ciclo / 0.6)) if ciclo < 0.6 else 0.0
+        rt["cabeza"].rotation_euler = Euler((cab0.x + R(5) * cierra, cab0.y + R(3) * math.sin(x * 4.0), cab0.z + R(4) * math.sin(x * 2.5)))
+        rt["boca"].scale = (1 + 0.5 * (1 - cierra), 1 + 0.3 * (1 - cierra), 1 + 1.6 * (1 - cierra) * (x < 0.97))
+        AP.parpados(rt["parpados"], AP.parpadeo(f, a + int(n * 0.55), -100, dur=6))
+        bpy.context.view_layer.update()
+        return {"mejilla": E2.pantalla(sc, sc.camera, M["M"] @ Vector((0.0165, M["centro_loc"].y, M["centro_loc"].z)))}
+    return {"actualizar": act}
 
 
 def p23L(sc, a, b):
@@ -1986,11 +2141,26 @@ def p24(sc, a, b):
             ch.rotation_euler.x = R(-30)
     pj["root"].rotation_euler.z = R(90)              # de perfil, mirando a la izquierda de la pantalla
     E2.area(sc, "Key", (0.6, -0.5, 0.6), 30, 0.5, (1, 0.96, 0.92), (0, 0, 0.12))
+    # puerta 6 r1: salía gris carbón y la cola se cortaba; ahora relleno de frente, más lejos y corrido; traga en "traga"
+    E2.area(sc, "Relleno24", (-0.2, -0.9, 0.3), 14, 0.8, (1, 0.94, 0.88), (0, 0, 0.11))
     cam = E2.camara(sc, "Cam24", lens=50)
-    E2.mirar(cam, Vector((0.02, -1.0, 0.115)), Vector((0.02, 0, 0.115)))
-    bpy.context.view_layer.update()
-    cuello = pj["root"].matrix_world @ Vector((0, -0.045, 0.100))
-    return {"actualizar": lambda f: None, "meta": {"cuello": E2.pantalla(sc, cam, cuello)}}
+    E2.mirar(cam, Vector((-0.045, -1.62, 0.125)), Vector((-0.045, 0, 0.125)))
+    bulto = AP.Bulto(pj, C)
+    cab0 = pj["cabeza"].rotation_euler.copy()
+    t_tr = (E2.t_palabra("traga", E2.T[24][0]) - E2.T[24][0]) / (E2.T[24][1] - E2.T[24][0])
+    n = b - a
+
+    def act(f):
+        x = (f - a) / n
+        tr = AP.trago(lin(x, t_tr - 0.08, t_tr + 0.30))
+        pj["cabeza"].rotation_euler = Euler((cab0.x - R(16) * tr, cab0.y, cab0.z))
+        pj["mandibula"].rotation_euler.x = R(6) * tr
+        bulto.poner(lin(x, t_tr + 0.05, t_tr + 0.50))
+        AP.parpados(pj["parpados"], AP.parpadeo(f, a + int(n * 0.2), -30, dur=6))
+        bpy.context.view_layer.update()
+        cuello = pj["root"].matrix_world @ Vector((0, -0.045, 0.100))
+        return {"cuello": E2.pantalla(sc, cam, cuello)}
+    return {"actualizar": act}
 
 
 def p24L(sc, a, b):
@@ -2044,6 +2214,8 @@ PIEZAS = {
     "1": _pieza(1, p01),
     "2": _pieza(2, p02),
     "14": _pieza(14, p14),
+    "15": _pieza(15, p14),          # fondo animado del 15 (puerta 6 r1)
+    "16": _pieza(16, p14),          # fondo animado del 16
     "17": _pieza(17, p17),
     "40": _pieza(40, p40),
     "3": _pieza(3, p03),
@@ -2078,11 +2250,11 @@ PIEZAS = {
     "31S": _pieza(31, p31S, aux=True, cuadrado=True),
     "29": _pieza(29, p29),
     "30": _pieza(30, p30),
-    "31": _pieza(31, p31, fijo=True),
+    "31": _pieza(31, p31),
     "32": _pieza(32, p32),
-    "23": _pieza(23, p23, fijo=True),
+    "23": _pieza(23, p23),
     "23L": _pieza(23, p23L, aux=True, cuadrado=True, lado=1.2),
-    "24": _pieza(24, p24, fijo=True),
+    "24": _pieza(24, p24),
     "24L": _pieza(24, p24L, aux=True, cuadrado=True, lado=1.0),
 }
 

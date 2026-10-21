@@ -188,18 +188,25 @@ def mata(name, base, coll, alto=0.35, seed=0, frutos=24, fruto_r=0.006, hoja=(0.
             h = P.mesh_obj(f"{name}_hoja{k}_{j}", bm, coll, m=hoja_m)
             h.location = q
             h.rotation_euler = (rnd.uniform(-.5, .5), rnd.uniform(-.7, .1), rnd.uniform(0, 2 * math.pi))
-            h.parent = root
+            h.parent = t            # (puerta 6 r1) hojas y frutos cuelgan de su rama: si la rama se mece, se mueven con ella
             s = h.modifiers.new("Sub", "SUBSURF")
             s.levels = s.render_levels = 2
-        puntas.append((p1, p2))
+        puntas.append((p1, p2, t))
     fr = []
     for i in range(frutos):
-        p1, p2 = puntas[i % len(puntas)]
-        q = p1.lerp(p2, rnd.uniform(0.3, 1.0)) + Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 0.3))) * alto * 0.05
+        p1, p2, rama = puntas[i % len(puntas)]
+        u = rnd.uniform(0.3, 1.0)
+        b_ = p1.lerp(p2, u)
+        q = b_ + Vector((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 0.3))) * alto * 0.05
         f = P.prim("sphere", f"{name}_fruto{i}", coll, fruto_m, r=fruto_r, u=24, v=12)
         f.scale = (1.0, 1.0, 1.25)
         f.location = q
-        f.parent = root
+        f.parent = rama
+        # pedúnculo: del frutito a la rama (antes los frutos flotaban sueltos)
+        top = q + Vector((0, 0, fruto_r * 1.15))
+        mid = top.lerp(b_, 0.5) + Vector((0, 0, alto * 0.012))
+        pd = P.tube(f"{name}_pedunculo{i}", [tuple(top), tuple(mid), tuple(b_)], fruto_r * 0.16, coll, tallo)
+        pd.parent = rama
         fr.append(f)
     return root, fr
 

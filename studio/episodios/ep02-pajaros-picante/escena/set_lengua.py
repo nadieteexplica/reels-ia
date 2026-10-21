@@ -128,13 +128,19 @@ def armar(sc):
     mol.location.z += alza
     mol_calzada = mol.location.copy()
     mol_rot = mol.rotation_euler.copy()
-    gota = LG.gota_sopa(C, (0.055, 0.0, 0.03 + ZC), r=0.0085)
+    gota = LG.gota_sopa(C, (0.040, 0.004, 0.03 + ZC), r=0.0085)        # puerta 6 r1: más adentro de la lengua, junto a la campana
     gota_obs = [gota] + [o for o in bpy.data.objects if o.name.startswith("VaporSopa")]
     for o in gota_obs:                                  # apoyada en la lengua (no flotando)
         o.location.z -= 0.03 - 0.0100
         if o.name.startswith("VaporSopa"):              # vapor: hilitos chicos, no bolas
             o.scale = (0.45, 0.45, 0.9)
     gota_base = {o.name: o.location.copy() for o in gota_obs}
+    # marca de calor donde toca la gota (brillo naranja-rojo en la lengua): se enciende al aterrizar
+    marca_m = P.mat("MarcaCalor", (1.0, 0.28, 0.06), rough=0.6, emit=0.001)
+    marca = P.prim("sphere", "MarcaCalor", C, marca_m, r=0.013, u=32, v=12)
+    marca.scale = (1.0, 1.0, 0.12)
+    marca.location = gota.location + Vector((0, 0, -0.0085 * 1.25 + 0.0004))
+    marca.hide_render = True
     E2.area(sc, "Key", (-0.25, -0.30, 0.35 + ZC), 4, 0.35, (1.0, 0.92, 0.85), (0, 0.02, 0.03 + ZC))
     E2.area(sc, "Rim", (0.25, 0.35, 0.25 + ZC), 7, 0.3, (1.0, 0.6, 0.6), (0, 0.02, 0.03 + ZC))
     cam = E2.camara(sc, "CamS", lens=30, fstop=3.5)
@@ -144,12 +150,13 @@ def armar(sc):
     E2.mirar(cam, cam_pos, cam_tgt, foco=foco)
     S = dict(C=C, ZC=ZC, camp=camp, domo=domo, mix=val, perilla=perilla, ondas=ondas, ondas_m=ondas_m, luz=luz, luz_ob=lo,
              mol=mol, mol_calzada=mol_calzada, mol_rot=mol_rot, gota_obs=gota_obs, gota_base=gota_base, cam=cam,
+             marca=marca, marca_m=marca_m,
              cam_pos=cam_pos, cam_tgt=cam_tgt, foco=foco, papilas=papilas, enc=enc, sc=sc)
     poner(S)
     return S
 
 
-def poner(S, color=None, suena=0.0, fase=0.0, celeste=0.0, mol=None, gota=None, empuje=0.0):
+def poner(S, color=None, suena=0.0, fase=0.0, celeste=0.0, mol=None, gota=None, empuje=0.0, alto=0.12, posada=0.0):
     """Estado de un cuadro.
     color: 'roja'|'naranja'|'celeste'|None (de las ondas y la luz) · suena: 0..1 (intensidad del timbre) · fase: s (vibración)
     celeste: 0..1 (tinte del domo) · mol: None (oculta) o 0..1 (0 = afuera a la izquierda, 1 = calzada) o Vector (posición)
@@ -157,7 +164,8 @@ def poner(S, color=None, suena=0.0, fase=0.0, celeste=0.0, mol=None, gota=None, 
     S["mix"].outputs[0].default_value = celeste
     col = COLORES.get(color)
     # vibración del timbre: la campana se mece y las ondas laten de adentro hacia afuera
-    S["camp"].rotation_euler = (0, math.radians(7.0 * suena * math.sin(fase * 2 * math.pi * 9)), 0)
+    # (puerta 6 r1: además del temblor rápido, un balanceo lento que se ve aunque se muestreen pocos cuadros)
+    S["camp"].rotation_euler = (0, math.radians(4.0 * suena * math.sin(fase * 2 * math.pi * 9) + 7.0 * suena * math.sin(fase * 2 * math.pi * 2.2)), 0)
     for k, m in enumerate(S["ondas_m"]):
         em = m.node_tree.nodes["Emission"]
         if col and suena > 0:
@@ -188,5 +196,13 @@ def poner(S, color=None, suena=0.0, fase=0.0, celeste=0.0, mol=None, gota=None, 
         o.hide_render = gota is None
         if gota is not None:
             base = S["gota_base"][o.name]
-            o.location = base + Vector((0, 0, 0.12 * (1 - E2.entra(gota)) ** 1.0))
+            o.location = base + Vector((0, 0, alto * (1 - E2.entra(gota)) ** 1.0))
+            if o.name.startswith("VaporSopa") and posada > 0:      # ya apoyada: el vapor sube y se apaga (no queda congelado)
+                o.location += Vector((0, 0, 0.02 * posada))
+                k = max(0.0, 1.0 - posada / 0.7)
+                o.scale = (0.45 * k + 1e-4, 0.45 * k + 1e-4, 0.9 * k + 1e-4)
+                o.hide_render = k < 0.02
+    if "marca" in S:
+        S["marca"].hide_render = not (gota is not None and gota >= 0.999)
+        S["marca_m"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 2.5 * min(1.0, posada / 0.15)
     E2.mirar(S["cam"], S["cam_pos"].lerp(S["cam_tgt"], 0.08 * empuje), S["cam_tgt"], foco=S["foco"])

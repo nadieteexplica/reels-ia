@@ -9,7 +9,7 @@ import planos_ep02 as PL
 
 # segundos por cuadro estimados a 720x1280 y 16 muestras en una máquina de Actions (medidos en los cuadros de estilo)
 PESO = {"c0": 55, "desierto": 45, "lengua": 30, "aux": 18, "bosque": 65, "muelas": 20, "corte": 25}
-C0 = {"1", "2", "14", "17", "40"}
+C0 = {"1", "2", "14", "15", "16", "17", "40"}
 LENGUA = {"7", "8", "9", "11"}
 BOSQUE = {"28b", "29", "30", "31", "32"}
 ARMADO = 70     # segundos de armar la escena de cada pieza
