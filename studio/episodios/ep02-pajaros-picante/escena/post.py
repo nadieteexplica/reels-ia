@@ -343,7 +343,25 @@ def whip_rapido(im, f):
     cs = np.cumsum(pad, axis=1)
     out = (cs[:, 2 * k:] - cs[:, :-2 * k]) / (2 * k)
     out = out[:, :W]
-    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
+    im2 = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
+    # puerta 6 r1 (fondo liso 49,3–49,5 s): líneas de velocidad en lo más fuerte del whip, para que no quede un verde liso
+    if x > 0.35:
+        import random as _r
+        rr = _r.Random(f)
+        lay = Image.new("RGBA", im2.size, (0, 0, 0, 0))
+        d = ImageDraw.Draw(lay)
+        al = int(120 * min(1.0, (x - 0.35) / 0.3))
+        for _ in range(26):
+            y = rr.uniform(60, H - 60)
+            if 960 < y < 1290:
+                continue
+            L_ = rr.uniform(260, 820)
+            x0 = rr.uniform(-200, W)
+            d.rounded_rectangle((x0, y, x0 + L_, y + rr.uniform(3, 7)), radius=3, fill=(255, 255, 255, al))
+        base = im2.convert("RGBA")
+        base.alpha_composite(lay)
+        im2 = base.convert("RGB")
+    return im2
 
 
 # ---------------- píldoras, marcas y contador ----------------
@@ -409,7 +427,8 @@ PILDORAS[6] = lambda im, f, age: pildora(im, "TÚ = RATÓN", "blanca", 540, 880,
 PILDORAS[12] = _pil(12, "¡FUEGO!", "coral", clave_y="baliza_y", pieza="12")
 PILDORAS[13] = _pil(13, "NORMAL", "verde", clave_y="termo_y", pieza="13")
 PILDORAS[18] = _pil(18, "ARIZONA", "amarilla", desde=T_ARIZ)
-PILDORAS[30] = _pil(30, "TUPAYA · CHINA", "amarilla", clave_y="cabeza_y", pieza="30")
+T_DE_CHINA = E2.t_palabra("de", E2.t_palabra("tupaya", E2.T[30][0] - 0.5) + 0.05)
+PILDORAS[30] = _pil(30, "TUPAYA · CHINA", "amarilla", desde=T_DE_CHINA, clave_y="cabeza_y", pieza="30")   # entra con "de China" (antes tapaba "tupaya")
 PILDORAS[37] = _pil(37, "CON GAS ×", "coral")          # × (U+00D7): Inter no trae ✕
 
 
@@ -436,7 +455,7 @@ def contador_35(im, f, age):
 
 PILDORAS[35] = contador_35
 # mientras está la píldora que repite lo que dice la voz, el subtítulo se oculta (storyboard)
-SIN_SUBS = set(range(F(T_ARIZ), FR[18][1])) | set(range(FR[30][0] + 6, FR[30][1]))
+SIN_SUBS = set(range(F(T_ARIZ), FR[18][1])) | set(range(F(T_DE_CHINA), FR[30][1]))
 
 
 # ---------------- subtítulos (como el Ep. 1, con 3 palabras clave de color) ----------------

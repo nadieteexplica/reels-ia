@@ -1,0 +1,299 @@
+[
+ {
+  "id": "tramo1",
+  "prompt": "tools/auditor/prompts/6-video-tramo.md",
+  "alcance": "planos 1…9 (0.00–15.08 s)",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/contacto.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/ficha.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P01.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P02.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P03.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P04.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P05.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P06.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P07.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P08.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P09.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E1.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E2.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E3.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E4.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E5.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E6.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E8.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E9.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E10.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E11.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E12.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos.json",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep02-pajaros-picante/guion.md"
+  ],
+  "salida": "tramo1.json",
+  "planos": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "eventos": [
+   "E1",
+   "E2",
+   "E3",
+   "E4",
+   "E5",
+   "E6",
+   "E7",
+   "E8",
+   "E9",
+   "E10",
+   "E11",
+   "E12"
+  ]
+ },
+ {
+  "id": "tramo2",
+  "prompt": "tools/auditor/prompts/6-video-tramo.md",
+  "alcance": "planos 10…18 (15.08–29.30 s)",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/contacto.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/ficha.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P10.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P11.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P12.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P13.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P14.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P15.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P16.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P17.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P18.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E13.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E14.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E15.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E16.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E17.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E18.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E19.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E20.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E21.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos.json",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep02-pajaros-picante/guion.md"
+  ],
+  "salida": "tramo2.json",
+  "planos": [
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18
+  ],
+  "eventos": [
+   "E13",
+   "E14",
+   "E15",
+   "E16",
+   "E17",
+   "E18",
+   "E19",
+   "E20",
+   "E21"
+  ]
+ },
+ {
+  "id": "tramo3",
+  "prompt": "tools/auditor/prompts/6-video-tramo.md",
+  "alcance": "planos 19…27 (29.30–48.83 s)",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/contacto.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/ficha.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P19.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P20.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P21.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P22.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P23.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P24.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P25.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P26.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P27.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E22.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E23.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E24.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E25.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E26.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E27.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E28.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E30.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E31.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E32.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E33.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E35.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos.json",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep02-pajaros-picante/guion.md"
+  ],
+  "salida": "tramo3.json",
+  "planos": [
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27
+  ],
+  "eventos": [
+   "E22",
+   "E23",
+   "E24",
+   "E25",
+   "E26",
+   "E27",
+   "E28",
+   "E29",
+   "E30",
+   "E31",
+   "E32",
+   "E33",
+   "E34",
+   "E35"
+  ]
+ },
+ {
+  "id": "tramo4",
+  "prompt": "tools/auditor/prompts/6-video-tramo.md",
+  "alcance": "planos 28…36 (48.83–66.19 s)",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/contacto.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/ficha.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P28.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P29.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P30.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P31.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P32.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P33.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P34.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P35.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P36.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E36.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E37.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E38.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E40.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E41.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E42.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E43.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E44.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos.json",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep02-pajaros-picante/guion.md"
+  ],
+  "salida": "tramo4.json",
+  "planos": [
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36
+  ],
+  "eventos": [
+   "E36",
+   "E37",
+   "E38",
+   "E39",
+   "E40",
+   "E41",
+   "E42",
+   "E43",
+   "E44"
+  ]
+ },
+ {
+  "id": "tramo5",
+  "prompt": "tools/auditor/prompts/6-video-tramo.md",
+  "alcance": "planos 37…40 (66.19–73.99 s)",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/contacto.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/ficha.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P37.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P38.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P39.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos/P40.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E46.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E47.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos/E48.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos.json",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/eventos.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep02-pajaros-picante/guion.md"
+  ],
+  "salida": "tramo5.json",
+  "planos": [
+   37,
+   38,
+   39,
+   40
+  ],
+  "eventos": [
+   "E45",
+   "E46",
+   "E47",
+   "E48"
+  ]
+ },
+ {
+  "id": "global",
+  "prompt": "tools/auditor/prompts/6-video-global.md",
+  "alcance": "video completo (gancho, ritmo, loop, subtítulos, audio, precisión)",
+  "materiales": [
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/contacto.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/ficha.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/cuadro0.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/gancho.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/loop.jpg",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/audio.json",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/subtitulos.md",
+   "studio/episodios/ep02-pajaros-picante/auditoria/6-video/r1/materiales/planos.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep02-pajaros-picante/guion.md"
+  ],
+  "salida": "global.json"
+ }
+]

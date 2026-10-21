@@ -994,6 +994,25 @@ def p25(sc, a, b):
     caca = PJ.blob("Caca", [((0, 0, 0.006), (0.016, 0.013, 0.007), (0, 0, 0)), ((0.004, 0.002, 0.011), (0.009, 0.008, 0.006), (0, 0, 0))], S["CP"], voxel=0.0006, suave=6)
     caca.data.materials.append(caca_m)
     caca.location = base
+    # puerta 6 r1 (fondo liso 41,4–42,5 s): suelo con piedritas y ramitas en foco alrededor de la caca
+    rr = random.Random(25)
+    pied = P.mat("Piedrita25", (0.55, 0.30, 0.16), rough=0.8)
+    for k in range(150):
+        dx, dy = rr.uniform(-0.18, 0.18), rr.uniform(-0.18, 0.14)
+        if abs(dx) < 0.03 and abs(dy) < 0.03:
+            continue
+        pz = P.prim("ico", f"Piedrita25_{k}", S["CP"], pied, r=rr.uniform(0.0018, 0.0060), sub=2)
+        pz.scale = (1, rr.uniform(0.7, 1.3), rr.uniform(0.5, 0.8))
+        pz.location = base + Vector((dx, dy, pz.scale.z * 0.003))
+    rama_m = P.mat("Ramita25", (0.36, 0.24, 0.13), rough=0.8)
+    for k in range(7):
+        x0 = base + Vector((rr.uniform(-0.14, 0.14), rr.uniform(-0.10, 0.10), 0.0015))
+        if (x0 - base).length < 0.04:
+            continue
+        ang = rr.uniform(0, math.pi)
+        L_ = rr.uniform(0.03, 0.06)
+        x1 = x0 + Vector((math.cos(ang) * L_, math.sin(ang) * L_, 0.0))
+        P.tube(f"Ramita25_{k}", [tuple(x0), tuple((x0 + x1) / 2 + Vector((0, 0, 0.002))), tuple(x1)], 0.0011, S["CP"], rama_m)
     sem = P.mat("SemillaAjiCaca", (0.92, 0.80, 0.45), rough=0.5)
     semillas = []
     for k, (dx, dy) in enumerate(((0.008, -0.010), (-0.006, -0.011), (0.0, -0.012))):
@@ -1029,10 +1048,10 @@ def p25(sc, a, b):
         cc.location = (0, 0, 0.0006)
         cc.parent = fo
         flores.append((fo, k))
-    cam = E2.camara(sc, "Cam25", lens=60, fstop=4.0)
+    cam = E2.camara(sc, "Cam25", lens=60, fstop=7.0)
     # revisión del borrador: arrancaba con el cuadro vacío (la caca caía fuera de cuadro); ahora la caca cae en cuadro y la
     # cámara sube con el brote hasta encuadrar la mata entera con flores
-    pos = base + Vector((0.04, -0.36, 0.05))
+    pos = base + Vector((0.04, -0.32, 0.06))
     tgt = base + Vector((0, 0, 0.018))
     sube = Vector((0, 0, 0.072))
     n = b - a
