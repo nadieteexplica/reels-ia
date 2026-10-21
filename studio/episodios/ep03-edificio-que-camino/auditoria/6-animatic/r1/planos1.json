@@ -1,0 +1,38 @@
+{
+ "encargo": "planos1",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "Render limpio y fiel a la ficha (ladrillo, patas cromadas amarillo/celeste, cielo profundo en P1 0.04 y P8 10.06); lo bajan la mitad inferior de suelo liso en P5 6.26, P6 7.14 y P10 15.57 y las torres blancas que se pierden en el cielo en P10 15.06."},
+  "animacion": {"nota": 8, "por_que": "Las patas dan el paso con pies que se levantan (P4 4.92 y 5.68) mientras el cono pasa (P3 3.14-4.27), el contador sube 0 a 7.600 t (P8) y las torres crecen piso a piso (P9 13.14-14.20); flojo: en P2 el edificio se desliza sin que se lea el paso y P5/P10 son sólo un paneo sobre la fachada."},
+  "claridad": {"nota": 7, "por_que": "P3-P9 muestran lo que dice la voz (patas, LAGENA, 1935, Shanghái, contador de toneladas, torres de 2020), pero en P2 'se fue caminando' (2.19) no se ve caminar (las patas son una franja oscura al pie) y en P10 'oficinas y tiendas' (15.57) se ve sólo la fachada, con las torres cortadas por el borde de arriba."},
+  "ritmo": {"nota": 8, "por_que": "Ningún plano pasa de 2,6 s y los 10 tienen quieto_max_s 0; algo cambia cada 1-2 s (cortes en palabra clave, píldoras, contador, torres que suben); el más flojo es P10: 2,4 s y desde 15.0 sólo hay un paneo lento."}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": false, "plano": 2, "segundo": "2.19", "que": "En 'se fue caminando' la cámara va alta y acompaña al edificio: las patas son una franja oscura de ~60 px al pie (y≈900-960) y el edificio queda fijo en el cuadro. Se ve deslizarse, no caminar.", "arreglo": "Filmar la misma escena con otra cámara, fija, baja (a la altura de las patas) y de costado, para que el edificio cruce el cuadro y se vea un grupo de patas en el aire. Si no, acercar la cámara actual hasta que las patas ocupen ~20 % del alto."},
+  {"prioridad": 2, "bloqueante": false, "plano": 1, "segundo": "0.04", "que": "En el cuadro 0 (portada), las patas, que son lo imposible, son una franja delgada (y≈820-940, ~7 % del alto) bajo un edificio grande. En el teléfono se lee 'edificio sobre algo' más que 'edificio con patas'.", "arreglo": "Bajar y acercar la cámara para que las patas ocupen 20-25 % del alto, con un grupo levantado justo en el cuadro 0."},
+  {"prioridad": 3, "bloqueante": false, "plano": 10, "segundo": "15.57", "que": "En 'oficinas y tiendas' se ve sólo la fachada. De las torres translúcidas, que son las oficinas, sólo asoman sus pisos de abajo (y<240, bajo la barra de la app), cortadas por el borde de arriba, y la mitad de abajo es suelo vacío.", "arreglo": "Inclinar la cámara hacia arriba o alejarla para que las torres translúcidas se vean enteras, creciendo alrededor de la escuela (o reusar la cámara de P9 más cerca), y sumar una píldora 'OFICINAS + TIENDAS' sobre las torres en y≈400."},
+  {"prioridad": 4, "bloqueante": false, "plano": 3, "segundo": "3.42", "que": "El edificio avanza varios metros en ~1,4 s (el cono cruza el cuadro entre 3.14 y 4.27) y no hay ninguna marca de cámara rápida, aunque guion.md (Matices) la promete 'donde se ve el edificio avanzar'. En la realidad avanzaba ~3,4 m por día.", "arreglo": "Agregar en P2-P3 una píldora 'CÁMARA RÁPIDA' arriba (y≈350). Es sólo post, sin render."},
+  {"prioridad": 5, "bloqueante": false, "plano": 6, "segundo": "7.14", "que": "La mitad de abajo del cuadro es superficie lisa: en P6 un plano café sin textura (fondo_liso 0,51) y en P5 (6.26) y P10 (15.57) suelo gris vacío bajo la fachada.", "arreglo": "En P6, cerrar el encuadre para que el '1935' quede en y≈700 y el ladrillo llene el resto. En P5 y P10, bajar la cámara o poner en primer plano los conos y árboles de P1."},
+  {"prioridad": 6, "bloqueante": false, "plano": 10, "segundo": "15.06", "que": "Las torres translúcidas son blancas sobre un cielo blanco, se confunden con nubes y la parte de arriba del cuadro se ve lavada (también en P9 13.94).", "arreglo": "Teñir las torres de celeste con un borde más marcado y bajar la bruma, para que se separen del cielo."},
+  {"prioridad": 7, "bloqueante": false, "plano": 7, "segundo": "9.08", "que": "Hay un disco negro con borde azul en el suelo, delante del edificio (también en P9 12.34, en el borde izquierdo). Se lee como un hoyo o un charco sin explicación y jala la vista.", "arreglo": "Darle textura de tapa metálica (gris con relieve) o sacarlo."},
+  {"prioridad": 8, "bloqueante": false, "plano": 5, "segundo": "6.42", "que": "La voz dice 'es una escuela' y nada en la imagen lo muestra: la píldora dice 'LAGENA · 1935', y el 1935 se repite en P6.", "arreglo": "Cambiar la píldora a 'ESCUELA LAGENA'."}
+ ],
+ "eventos": [
+  {"id": "E1", "es_defecto": false, "por_que": "Es el corte de P1 a P2 (1.29 s): cambia el plano entero."},
+  {"id": "E2", "es_defecto": false, "por_que": "Son las patas cambiando de posición en el paso, y el cono que se corre porque la cámara acompaña al edificio."},
+  {"id": "E3", "es_defecto": false, "por_que": "Es el mismo paso de las patas, con el cono saliendo por la izquierda."},
+  {"id": "E4", "es_defecto": false, "por_que": "Es el corte de P3 a P4 (4.88 s)."},
+  {"id": "E5", "es_defecto": false, "por_que": "Un pie se levanta para dar el paso. La pata cromada sigue unida a la placa."},
+  {"id": "E6", "es_defecto": false, "por_que": "Es la píldora 'LAGENA · 1935', que entra a propósito."},
+  {"id": "E7", "es_defecto": false, "por_que": "Es el corte de P6 a P7 (8.88 s)."},
+  {"id": "E8", "es_defecto": false, "por_que": "En el plano de 2,55 s el contador sube sin parar de 0 a 7.600 t y la cámara inclina: algo cambia todo el tiempo."},
+  {"id": "E9", "es_defecto": false, "por_que": "El contador crece de '0 t' a '1.110 t'. Es buscado."},
+  {"id": "E10", "es_defecto": false, "por_que": "Son los dígitos del contador (4.4… a 5.5…). Es buscado."},
+  {"id": "E11", "es_defecto": false, "por_que": "Son los dígitos del contador (6.8… a 7.2…). Es buscado."},
+  {"id": "E12", "es_defecto": false, "por_que": "Una torre translúcida empieza a subir en el borde derecho: es la metáfora de 'estorbaba'."},
+  {"id": "E13", "es_defecto": false, "por_que": "La torre translúcida de atrás suma pisos: se arma frente al espectador."},
+  {"id": "E14", "es_defecto": false, "por_que": "Aparece un piso translúcido nuevo arriba y tapa la torre azul del fondo; es el crecimiento buscado, pero queda cortado por el borde (sugerencia 3)."}
+ ],
+ "resumen": "Planos 1-10 sin bloqueantes: el modelo calza con la ficha, los textos están bien escritos, ningún plano queda quieto y los 14 eventos son cortes o animaciones buscadas. Lo que más subiría la nota es que en P1-P2 se vea caminar al edificio, con las patas grandes, y que P10 muestre de verdad las oficinas y tiendas."
+}

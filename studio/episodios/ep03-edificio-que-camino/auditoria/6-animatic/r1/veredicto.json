@@ -1,0 +1,423 @@
+{
+ "etapa": "6-animatic",
+ "ronda": 1,
+ "veredicto": "NO APROBADO",
+ "promedio": 8.03,
+ "notas": {
+  "belleza": {
+   "nota": 7.6,
+   "min": 7,
+   "por_que": "Look 3D semi-realista limpio y consistente (ladrillo, cielo, píldoras), pero en P21 (32.15–33.00) las fundas amarillas en sombra se ven oliva y barrosas, la muleta de P23 (35.41) está mal armada y en P22–P24 y P28–P30 la mitad inferior del cuadro es tierra lisa.",
+   "de": "planos3"
+  },
+  "animacion": {
+   "nota": 7.6,
+   "min": 7,
+   "por_que": "todo se mueve (quieto_max_s <= 0,07 en los 10 planos) y el paso de P20 (30.98-31.80: pies del grupo A alzados, patas que se inclinan) se lee, pero las acciones clave son apariciones de un cuadro: la bola aparece en el aire sin balanceo (P11 17.34), la columna desaparece de golpe (P16 25.27) y el alzado de P17 son ~80 px (26.65-27.19)",
+   "de": "planos2"
+  },
+  "claridad": {
+   "nota": 7.8,
+   "min": 7,
+   "por_que": "P3-P9 muestran lo que dice la voz (patas, LAGENA, 1935, Shanghái, contador de toneladas, torres de 2020), pero en P2 'se fue caminando' (2.19) no se ve caminar (las patas son una franja oscura al pie) y en P10 'oficinas y tiendas' (15.57) se ve sólo la fachada, con las torres cortadas por el borde de arriba.",
+   "de": "planos1"
+  },
+  "ritmo": {
+   "nota": 8.2,
+   "min": 8,
+   "por_que": "Ningún plano pasa de 2,6 s y los 10 tienen quieto_max_s 0; algo cambia cada 1-2 s (cortes en palabra clave, píldoras, contador, torres que suben); el más flojo es P10: 2,4 s y desde 15.0 sólo hay un paneo lento.",
+   "de": "planos1"
+  },
+  "gancho": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "la frase 'este edificio de cinco pisos se fue caminando' es muy fuerte, pero en el cuadro 0 (0.00–1.29) las patas son una franja delgada (y≈800–940 de 1920), no se ve ningún paso y la mitad de abajo es tierra lisa: en miniatura se lee como 'edificio sobre pilotes', no como 'edificio con patas'",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "181/181 palabras, sin desfase ni cajas fuera de zona (todas entre y 1022 y 1219, x 139–866), tildes correctas (SHANGHÁI, CAMINÓ, DEMORÓ, ROBÓTICAS, PRÁCTICA, DÍAS, APRENDIÓ) y sin caras que tapar; a los 19–20 s y 15 s la letra baja de tamaño para que quepan 3 palabras",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "no lo escuché: −14,0 LUFS y −1,5 dBTP en rango; la voz queda 12,8 dB sobre las pausas (música + efectos con el ducking abierto, o sea un mínimo), así que bajo la voz la música debería estar más abajo",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "todo lo que se lee en pantalla calza con el guion y sus fuentes (LAGENA·1935, SHANGHÁI·CHINA, 7.600 t, 2020, 198 patas, grupos A/B, 21°, 62 m, 18 días, <1 MIN, 2003, sala sin patas y autopista elevada, 85 años, planta en T en la vista cenital); no alcanzo a ver el valor final de los contadores de 198, 62 m y la sala (44 m a los 55 s)",
+   "de": "global"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B1",
+   "plano": 11,
+   "segundo": "17.36",
+   "que": "la bola de demolicion aparece de la nada en el aire (E15) y cuelga de 3 eslabones separados que no se tocan entre si (huecos de fachada entre anillo y anillo, 17.36-18.00): se ve una bola flotando con anillos sueltos",
+   "arreglo": "cadena continua (eslabones entrelazados o un cable cilindrico) que salga por el borde superior del cuadro, y que la bola entre balanceandose desde la izquierda en ~0,3 s en vez de aparecer; re-render solo de P11 (1,15 s)",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B1",
+   "plano": 24,
+   "segundo": "37.75",
+   "que": "Cuando el edificio se alza, las muletas suben con él: en 36.91 la punta de goma toca el suelo, y desde 37.47 hasta 39.43 las dos puntas quedan flotando sobre una franja azul lisa (el hueco bajo el edificio) y su sombra, sin tocar la tierra. Justo cuando la voz dice que las muletas son para que se pare, el apoyo queda en el aire.",
+   "arreglo": "Desemparentar las muletas del edificio y fijar la punta al suelo (keyframe o restricción); que sólo el apoyo de arriba acompañe al edificio, inclinando un poco la muleta. Si sale caro, que el edificio no se alce en este plano.",
+   "de": "planos3"
+  }
+ ],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "el cuadro 0, que además es la portada, no vende 'patas': la fila de patas es una franja chica a media altura, ningún grupo está levantado y la mitad de abajo es tierra lisa; recién en el plano 2 se ve el edificio entero sobre patas, y desde lejos",
+   "arreglo": "bajar y acercar la cámara del plano 1 para que las patas queden más grandes, justo sobre los subtítulos (y≈850–1000), y partir el ciclo de paso con el grupo A (amarillo) en el aire en el cuadro 0; el plano 36 usa la misma toma para que el loop siga calzando",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "2.19",
+   "que": "En 'se fue caminando' la cámara va alta y acompaña al edificio: las patas son una franja oscura de ~60 px al pie (y≈900-960) y el edificio queda fijo en el cuadro. Se ve deslizarse, no caminar.",
+   "arreglo": "Filmar la misma escena con otra cámara, fija, baja (a la altura de las patas) y de costado, para que el edificio cruce el cuadro y se vea un grupo de patas en el aire. Si no, acercar la cámara actual hasta que las patas ocupen ~20 % del alto.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 32,
+   "segundo": "52.30",
+   "que": "la sala ocupa la mitad del ancho con la base en y≈1000 y la mitad inferior es pavimento gris vacío (fondo_liso 0.40); de 52.30 a 54.00 sólo hay un push lento, casi no cambia nada",
+   "arreglo": "cámara más baja y más cerca (sala en ~70% del ancho, base en y≈950, rieles visibles a la derecha) y que la sala empiece a deslizarse sobre los rieles en 'práctica' (53.43)",
+   "de": "planos4"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 34,
+   "segundo": "57.36",
+   "que": "el remate de la historia de 2003 no muestra la causa: la autopista aparece delante de la sala, pero no se ve que pase por donde estaba la sala; además la sala queda cortada por el borde derecho (x≈720–1080) todo el plano",
+   "arreglo": "panear o abrir un poco la cámara a la izquierda para que la sala entre entera (x≈600–1000) y dejar en el piso una huella marcada del tamaño de la sala al inicio de los rieles, justo donde aterriza la autopista en 57.08",
+   "de": "planos4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.04",
+   "que": "En el cuadro 0 (portada), las patas, que son lo imposible, son una franja delgada (y≈820-940, ~7 % del alto) bajo un edificio grande. En el teléfono se lee 'edificio sobre algo' más que 'edificio con patas'.",
+   "arreglo": "Bajar y acercar la cámara para que las patas ocupen 20-25 % del alto, con un grupo levantado justo en el cuadro 0.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "14.51",
+   "que": "'ahí iban a hacer oficinas y tiendas' no tiene imagen: durante 2,4 s se ve la misma fachada de la escuela con tierra vacía abajo y torres pálidas cortadas por el borde de arriba",
+   "arreglo": "que entren dos píldoras 'OFICINAS' y 'TIENDAS' con pop en 15.48 y 16.35 (cuando la voz las nombra), o meter las torres nuevas en fantasma (translúcidas) sobre el terreno, delante de la escuela",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 16,
+   "segundo": "25.49",
+   "que": "'cortaron las columnas': la columna gris se esfuma en un cuadro en 25.27 (E18), 0,26 s antes del corte a P17; no se ve ningun corte y casi no alcanza a notarse que ya no esta",
+   "arreglo": "en 24.9 (sobre 'columnas') una linea de corte brillante a media altura de la columna y la mitad de abajo que se desliza o cae en 0,3 s, con SFX; y adelantar el cambio para que el estado 'sin columna' dure >= 0,5 s",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 29,
+   "segundo": "47.34",
+   "que": "El time-lapse de días hace que toda la imagen pase de clara a oscura de un cuadro a otro (oscuros en 46.52, 47.34 y 47.88; claros en 46.79, 47.61 y 48.15; E37) mientras el contador sube unos 8 días por segundo. Si cada día es un ciclo claro-oscuro, son unos 8 destellos por segundo a pantalla completa: molesta y es un riesgo para personas fotosensibles (la pauta de accesibilidad es no más de 3 por segundo). Con 4 cuadros por segundo no alcanzo a medir la frecuencia exacta.",
+   "arreglo": "Verificarlo en el video corrido. Si parpadea, dejar la luz fija o hacer un solo barrido suave de la sombra del sol en todo el plano, y que el paso del tiempo lo cuente sólo la píldora 'DÍA N'.",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 34,
+   "segundo": "56.52",
+   "que": "el bloque 2003 (P32–P34) tiene paleta fría, poco contraste y pavimento gris claro (tirando a lavado), muy distinto de las escenas cálidas de la escuela; la franja azul marino de horizonte (y≈420–560) tiene borde recto y parece el fin del escenario",
+   "arreglo": "usar el mismo sol cálido y contraste de las escenas de la escuela (o un tinte de archivo deliberado para 2003) y tapar el borde del suelo con torres o niebla",
+   "de": "planos4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 34,
+   "segundo": "57.63",
+   "que": "la autopista es una losa blanca lisa sin marcas: se lee como plataforma o puente genérico, no como autopista",
+   "arreglo": "agregarle líneas de pista, barandas y 2–3 autos simples que avancen encima desde 57.6 (también suma movimiento)",
+   "de": "planos4"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 35,
+   "segundo": "59.70",
+   "que": "3,24 s de un solo movimiento de cámara (E44); las patas son una franja de ~40 px en la base y el 'caminar' que prepara el remate casi no se ve",
+   "arreglo": "cortar en 59.70 ('a los 85') a un plano bajo de las patas alternándose (la escena de P36 ya existe) o hacer entrar una píldora '85 años' en ese momento",
+   "de": "planos4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "15.57",
+   "que": "En 'oficinas y tiendas' se ve sólo la fachada. De las torres translúcidas, que son las oficinas, sólo asoman sus pisos de abajo (y<240, bajo la barra de la app), cortadas por el borde de arriba, y la mitad de abajo es suelo vacío.",
+   "arreglo": "Inclinar la cámara hacia arriba o alejarla para que las torres translúcidas se vean enteras, creciendo alrededor de la escuela (o reusar la cámara de P9 más cerca), y sumar una píldora 'OFICINAS + TIENDAS' sobre las torres en y≈400.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "22.50",
+   "que": "los contadores llegan a la cifra justo en el corte y el número final casi no se lee: a los 22.5 s el contador dice '182 PATAS' mientras el subtítulo dice '198', y el plano corta a los 22.73; a los 45.5 s dice '10 m' con el subtítulo '62 METROS' y el plano corta a los 46.21. No alcanzo a ver si el de la sala de conciertos (44 m a los 55 s) termina en 66 m (66,46 m según China Daily)",
+   "arreglo": "que cada contador llegue a su cifra cuando la voz la termina (198 en 22.71, 62 m en 46.18) y la sostenga ≥ 0,5 s, llevando la píldora '198 PATAS' al plano 15 si hace falta; comprobar que el de la sala termine en 66 m (no 62 ni 70)",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 20,
+   "segundo": "31.25",
+   "que": "las flechas amarillas del paso cruzan la pildora 'GRUPO A' (30.98 debajo, 31.25 encima: se come la O y se lee 'GRUP A'; 31.53 tapa el borde derecho)",
+   "arreglo": "fijar las flechas a media altura de las patas (y ~ 600-700 en 1080x1920) o subir la pildora; que ningun grafico pase sobre otro",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 28,
+   "segundo": "46.17",
+   "que": "El contador de metros llega sólo a '16 m' y se corta al plano de los días (E36) mientras el subtítulo y la voz dicen '62 metros'. Lo mismo pasa en P29: el último cuadro (48.15) muestra 'DÍA 17' cuando se dice 18.",
+   "arreglo": "Acelerar el contador con ease-out para que llegue a '62 m' en ~45.7 s y se quede 0,5 s; el de días, que llegue a 'DÍA 18' en ~47.8 s y se mantenga hasta el corte.",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 33,
+   "segundo": "54.08",
+   "que": "el subtítulo (y≈1080–1180) cae sobre la base de la sala y los rieles, que es justo lo que muestra que se mueve",
+   "arreglo": "bajar la cámara o inclinarla para subir la sala ~150 px y dejar los rieles sobre y 1000",
+   "de": "planos4"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 34,
+   "segundo": "58.47",
+   "que": "aparece un bloque rojo y una caja blanca bajo la autopista junto a los rieles (x≈420–520, y≈1160–1200) cuando sale el subtítulo; con el material del animatic no se puede saber si es escenografía o utilería técnica",
+   "arreglo": "revisarlo en la escena y sacarlo si no es escenografía buscada",
+   "de": "planos4"
+  },
+  {
+   "prioridad": 4,
+   "bloqueante": false,
+   "plano": 20,
+   "segundo": "30.98",
+   "que": "'el otro se alza y da un paso': el paso se lee, pero entre ~20 patas y pies negros a distintas alturas cuesta ver cual se alza y avanza",
+   "arreglo": "desenfocar u oscurecer las patas del fondo y dejar en primer plano un par A/B, donde la amarilla haga claramente alzar-avanzar-bajar (la misma escena, otra camara mas cerca)",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 4,
+   "bloqueante": false,
+   "plano": 21,
+   "segundo": "32.49",
+   "que": "'Luego cambian' no se lee: la píldora destacada es 'GRUPO B' durante todo el plano (32.15–33.00), y en la sombra las fundas amarillas quedan oliva, casi iguales a las celestes, así que en el bosque de patas no se ve qué grupo sube y cuál baja.",
+   "arreglo": "En 'cambian' (~32.5) pasar el énfasis de B a A (agrandar 'GRUPO A' y achicar 'GRUPO B'), y meter luz de relleno o más saturación en las fundas para que el amarillo y el celeste se distingan.",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 4,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "3.42",
+   "que": "El edificio avanza varios metros en ~1,4 s (el cono cruza el cuadro entre 3.14 y 4.27) y no hay ninguna marca de cámara rápida, aunque guion.md (Matices) la promete 'donde se ve el edificio avanzar'. En la realidad avanzaba ~3,4 m por día.",
+   "arreglo": "Agregar en P2-P3 una píldora 'CÁMARA RÁPIDA' arriba (y≈350). Es sólo post, sin render.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 4,
+   "bloqueante": false,
+   "plano": 35,
+   "segundo": "58.51",
+   "que": "3,2 s de acercamiento aéreo a la escuela sin que aparezca ni cambie nada, justo antes del remate",
+   "arreglo": "que entre una píldora '85 AÑOS' (o '1935 → 2020') con pop en 59.97, cuando la voz dice 'ochenta y cinco'",
+   "de": "global"
+  },
+  {
+   "prioridad": 5,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "26.92",
+   "que": "en el corte (P13, P14, P17) la excavacion, las patas y el alzado van en una franja y~600-960 de 1920; debajo de los subtitulos ~45 % de suelo gris liso (fondo_liso 0,46-0,52); en el telefono las 198 patas y el alzado (~80 px) se ven chicos",
+   "arreglo": "acercar la camara ~1,4x y bajarla para que el foso ocupe y~350-950 (cortar la fachada arriba no importa) y exagerar un poco la subida en P17",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 5,
+   "bloqueante": false,
+   "plano": 25,
+   "segundo": "40.04",
+   "que": "En la vista cenital (P25–P26, 39.51–42.24, y P27 hasta ~43.1), el edificio queda abajo, en y≈920–1660: el subtítulo cae encima del edificio y la mitad queda bajo la interfaz (y>1250) justo cuando se habla de girarlo. La mitad de arriba es tierra con los rieles.",
+   "arreglo": "Correr el encuadre cenital ~350 px para que el edificio quede en y 450–950 y la ruta punteada y los rieles queden arriba de la franja de subtítulos.",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 5,
+   "bloqueante": false,
+   "plano": 30,
+   "segundo": "48.50",
+   "que": "en la carrera de barras los rótulos 'TÚ', 'EL EDIFICIO', '< 1 MIN' y '18 DÍAS' son muy chicos (≈30 px de alto en 1080 de ancho): en el celular no se alcanzan a leer en 2,7 s",
+   "arreglo": "subir los rótulos a ≥ 50 px y engrosar las barras; si no caben, dejar sólo 'TÚ' y 'EDIFICIO' y poner las cifras dentro de cada barra",
+   "de": "global"
+  },
+  {
+   "prioridad": 5,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "7.14",
+   "que": "La mitad de abajo del cuadro es superficie lisa: en P6 un plano café sin textura (fondo_liso 0,51) y en P5 (6.26) y P10 (15.57) suelo gris vacío bajo la fachada.",
+   "arreglo": "En P6, cerrar el encuadre para que el '1935' quede en y≈700 y el ladrillo llene el resto. En P5 y P10, bajar la cámara o poner en primer plano los conos y árboles de P1.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 6,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "15.06",
+   "que": "Las torres translúcidas son blancas sobre un cielo blanco, se confunden con nubes y la parte de arriba del cuadro se ve lavada (también en P9 13.94).",
+   "arreglo": "Teñir las torres de celeste con un borde más marcado y bajar la bruma, para que se separen del cielo.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 6,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "21.54",
+   "que": "en 20.96 ya estan todas las patas visibles (contador en 29) y el contador sigue hasta 198 durante 1,7 s sin que cambie nada en el foso",
+   "arreglo": "paneo lateral lento a la derecha (o alejar la camara) mientras cuenta, para que sigan entrando patas al cuadro al ritmo del contador",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 6,
+   "bloqueante": false,
+   "plano": 24,
+   "segundo": "38.59",
+   "que": "En 'para que se pare y camine', el edificio se alza en 37.47 pero en 'camine' (38.59–39.43) no avanza ni da un paso: el cuadro queda igual 1,7 s.",
+   "arreglo": "En ~38.6, que el edificio dé un paso corto de lado apoyado en las muletas (un solo keyframe de traslación con las muletas pivoteando en la punta).",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 6,
+   "bloqueante": false,
+   "plano": 34,
+   "segundo": "56.50",
+   "que": "en los planos de la sala de conciertos (54–57 s) arriba aparece una franja azul marino plana y sin detalle que parece el borde del escenario (si es el río, no se lee como agua); la plaza se ve muy pálida al lado del resto del video",
+   "arreglo": "bajar la inclinación de la cámara para que esa franja salga de cuadro, o darle reflejo u olas si es el río; subir un poco el contraste o la saturación de la plaza",
+   "de": "global"
+  },
+  {
+   "prioridad": 7,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "un palo amarillo sale en diagonal desde atrás del techo (0–1 s, 18 s, 62 s) y no se entiende qué es: parece utilería olvidada",
+   "arreglo": "si es una grúa, encuadrarla para que se lea como grúa; si no tiene función, sacarlo",
+   "de": "global"
+  },
+  {
+   "prioridad": 7,
+   "bloqueante": false,
+   "plano": 19,
+   "segundo": "29.62",
+   "que": "'uno aguanta el peso': las flechas azules son finas y casi no contrastan con las patas celestes palidas; nada muestra el peso",
+   "arreglo": "flechas mas gruesas (blancas con borde azul) sobre el grupo B y un leve aplastamiento del piston B / bajada de 5 px del edificio al cargar",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 7,
+   "bloqueante": false,
+   "plano": 23,
+   "segundo": "35.41",
+   "que": "La muleta está mal armada: los dos largueros se abren hacia abajo y la pata de goma sale del medio sin tocarlos, con un hueco visible entre los largueros y la pata. Se nota porque la muleta es el centro del chiste (P23–P24).",
+   "arreglo": "Corregir el modelo para que los largueros se junten abajo en la pata, como una muleta real. Es un solo cambio y vale para las dos muletas.",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 7,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "9.08",
+   "que": "Hay un disco negro con borde azul en el suelo, delante del edificio (también en P9 12.34, en el borde izquierdo). Se lee como un hoyo o un charco sin explicación y jala la vista.",
+   "arreglo": "Darle textura de tapa metálica (gris con relieve) o sacarlo.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 8,
+   "bloqueante": false,
+   "plano": 13,
+   "segundo": "19.19",
+   "que": "linea negra vertical en la tierra (x~240, y~600-880) de 19.19 a 20.03: es la pared de la excavacion vista de canto antes de cavar y se lee como una grieta o un artefacto",
+   "arreglo": "ocultarla hasta que la excavacion llegue a ese borde o darle el color de la tierra",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 8,
+   "bloqueante": false,
+   "plano": 30,
+   "segundo": "49.03",
+   "que": "Los textos de las barras ('TÚ', 'EL EDIFICIO', '<1 MIN', '18 DÍAS') miden ~28–32 px de alto en 1080×1920: en el teléfono se leen con esfuerzo, y son los datos de la comparación.",
+   "arreglo": "Subirlos a ≥ 44 px y engrosar las barras; hay espacio, porque el bloque ocupa sólo y 280–540.",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 8,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "6.42",
+   "que": "La voz dice 'es una escuela' y nada en la imagen lo muestra: la píldora dice 'LAGENA · 1935', y el 1935 se repite en P6.",
+   "arreglo": "Cambiar la píldora a 'ESCUELA LAGENA'.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 9,
+   "bloqueante": false,
+   "plano": 22,
+   "segundo": "33.36",
+   "que": "'Como tú cuando caminas' se ilustra con huellas 2D pegadas sobre las ventanas de la fachada, y las patas del edificio son una franja de ~15 px abajo: la comparación con caminar no se ve en la escena.",
+   "arreglo": "Bajar las huellas al suelo delante del edificio (y≈900–980, encima de los subtítulos) y alternarlas con el paso de cada grupo, o encuadrar más cerca de la línea de patas.",
+   "de": "planos3"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "sin datos de ojos en el meta: no se pudo comprobar 'cara tapada' (plano.py + studio/plantilla/caras.py)",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false
+}

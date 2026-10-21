@@ -1,0 +1,31 @@
+# 6-animatic · ronda 1 · **NO APROBADO**
+
+Promedio **8.03** (mínimo 8; ningún revisor bajo 7 en ningún criterio).
+
+| criterio | nota (promedio) | más baja | por qué (la más baja) |
+|---|---|---|---|
+| belleza | 7.6 | 7 | Look 3D semi-realista limpio y consistente (ladrillo, cielo, píldoras), pero en P21 (32.15–33.00) las fundas amarillas en sombra se ven oliva y barrosas, la muleta de P23 (35.41) está mal armada y en P22–P24 y P28–P30 la mitad inferior del cuadro es tierra lisa. |
+| animacion | 7.6 | 7 | todo se mueve (quieto_max_s <= 0,07 en los 10 planos) y el paso de P20 (30.98-31.80: pies del grupo A alzados, patas que se inclinan) se lee, pero las acciones clave son apariciones de un cuadro: la bola aparece en el aire sin balanceo (P11 17.34), la columna desaparece de golpe (P16 25.27) y el alzado de P17 son ~80 px (26.65-27.19) |
+| claridad | 7.8 | 7 | P3-P9 muestran lo que dice la voz (patas, LAGENA, 1935, Shanghái, contador de toneladas, torres de 2020), pero en P2 'se fue caminando' (2.19) no se ve caminar (las patas son una franja oscura al pie) y en P10 'oficinas y tiendas' (15.57) se ve sólo la fachada, con las torres cortadas por el borde de arriba. |
+| ritmo | 8.2 | 8 | Ningún plano pasa de 2,6 s y los 10 tienen quieto_max_s 0; algo cambia cada 1-2 s (cortes en palabra clave, píldoras, contador, torres que suben); el más flojo es P10: 2,4 s y desde 15.0 sólo hay un paneo lento. |
+| gancho | 7.0 | 7 | la frase 'este edificio de cinco pisos se fue caminando' es muy fuerte, pero en el cuadro 0 (0.00–1.29) las patas son una franja delgada (y≈800–940 de 1920), no se ve ningún paso y la mitad de abajo es tierra lisa: en miniatura se lee como 'edificio sobre pilotes', no como 'edificio con patas' |
+| subtitulos | 9.0 | 9 | 181/181 palabras, sin desfase ni cajas fuera de zona (todas entre y 1022 y 1219, x 139–866), tildes correctas (SHANGHÁI, CAMINÓ, DEMORÓ, ROBÓTICAS, PRÁCTICA, DÍAS, APRENDIÓ) y sin caras que tapar; a los 19–20 s y 15 s la letra baja de tamaño para que quepan 3 palabras |
+| audio | 8.0 | 8 | no lo escuché: −14,0 LUFS y −1,5 dBTP en rango; la voz queda 12,8 dB sobre las pausas (música + efectos con el ducking abierto, o sea un mínimo), así que bajo la voz la música debería estar más abajo |
+| precision | 9.0 | 9 | todo lo que se lee en pantalla calza con el guion y sus fuentes (LAGENA·1935, SHANGHÁI·CHINA, 7.600 t, 2020, 198 patas, grupos A/B, 21°, 62 m, 18 días, <1 MIN, 2003, sala sin patas y autopista elevada, 85 años, planta en T en la vista cenital); no alcanzo a ver el valor final de los contadores de 198, 62 m y la sala (44 m a los 55 s) |
+
+## Bloqueantes y fallas automáticas (impiden aprobar)
+
+1. 🛑 [B1] la bola de demolicion aparece de la nada en el aire (E15) y cuelga de 3 eslabones separados que no se tocan entre si (huecos de fachada entre anillo y anillo, 17.36-18.00): se ve una bola flotando con anillos sueltos — plano 11 · 17.36 s. **Arreglo:** cadena continua (eslabones entrelazados o un cable cilindrico) que salga por el borde superior del cuadro, y que la bola entre balanceandose desde la izquierda en ~0,3 s en vez de aparecer; re-render solo de P11 (1,15 s)
+2. 🛑 [B1] Cuando el edificio se alza, las muletas suben con él: en 36.91 la punta de goma toca el suelo, y desde 37.47 hasta 39.43 las dos puntas quedan flotando sobre una franja azul lisa (el hueco bajo el edificio) y su sombra, sin tocar la tierra. Justo cuando la voz dice que las muletas son para que se pare, el apoyo queda en el aire. — plano 24 · 37.75 s. **Arreglo:** Desemparentar las muletas del edificio y fijar la punta al suelo (keyframe o restricción); que sólo el apoyo de arriba acompañe al edificio, inclinando un poco la muleta. Si sale caro, que el edificio no se alce en este plano.
+
+## Sugerencias (las 5 más importantes; el resto queda en veredicto.json)
+
+1. el cuadro 0, que además es la portada, no vende 'patas': la fila de patas es una franja chica a media altura, ningún grupo está levantado y la mitad de abajo es tierra lisa; recién en el plano 2 se ve el edificio entero sobre patas, y desde lejos — plano 1 · 0.00 s. **Arreglo:** bajar y acercar la cámara del plano 1 para que las patas queden más grandes, justo sobre los subtítulos (y≈850–1000), y partir el ciclo de paso con el grupo A (amarillo) en el aire en el cuadro 0; el plano 36 usa la misma toma para que el loop siga calzando
+2. En 'se fue caminando' la cámara va alta y acompaña al edificio: las patas son una franja oscura de ~60 px al pie (y≈900-960) y el edificio queda fijo en el cuadro. Se ve deslizarse, no caminar. — plano 2 · 2.19 s. **Arreglo:** Filmar la misma escena con otra cámara, fija, baja (a la altura de las patas) y de costado, para que el edificio cruce el cuadro y se vea un grupo de patas en el aire. Si no, acercar la cámara actual hasta que las patas ocupen ~20 % del alto.
+3. la sala ocupa la mitad del ancho con la base en y≈1000 y la mitad inferior es pavimento gris vacío (fondo_liso 0.40); de 52.30 a 54.00 sólo hay un push lento, casi no cambia nada — plano 32 · 52.30 s. **Arreglo:** cámara más baja y más cerca (sala en ~70% del ancho, base en y≈950, rieles visibles a la derecha) y que la sala empiece a deslizarse sobre los rieles en 'práctica' (53.43)
+4. el remate de la historia de 2003 no muestra la causa: la autopista aparece delante de la sala, pero no se ve que pase por donde estaba la sala; además la sala queda cortada por el borde derecho (x≈720–1080) todo el plano — plano 34 · 57.36 s. **Arreglo:** panear o abrir un poco la cámara a la izquierda para que la sala entre entera (x≈600–1000) y dejar en el piso una huella marcada del tamaño de la sala al inicio de los rieles, justo donde aterriza la autopista en 57.08
+5. En el cuadro 0 (portada), las patas, que son lo imposible, son una franja delgada (y≈820-940, ~7 % del alto) bajo un edificio grande. En el teléfono se lee 'edificio sobre algo' más que 'edificio con patas'. — plano 1 · 0.04 s. **Arreglo:** Bajar y acercar la cámara para que las patas ocupen 20-25 % del alto, con un grupo levantado justo en el cuadro 0.
+
+## Avisos automáticos
+
+- sin datos de ojos en el meta: no se pudo comprobar 'cara tapada' (plano.py + studio/plantilla/caras.py)

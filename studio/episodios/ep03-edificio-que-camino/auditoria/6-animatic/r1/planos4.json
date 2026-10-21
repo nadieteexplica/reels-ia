@@ -1,0 +1,28 @@
+{
+ "encargo": "planos4",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 7, "por_que": "P31, P35 y P36 se ven bien (escuela fiel a la ficha, patas amarillas/celestes, cielo y torres), pero el bloque 2003 (P32 52.30–54.00, P34 56.52–58.47) es una plaza gris vacía en la mitad inferior (fondo_liso 0.40/0.47) con paleta fría y plana, tirando a lavado, y una franja azul marino de horizonte que parece un muro."},
+  "animacion": {"nota": 8, "por_que": "las patas se alternan entre cuadros (P35 58.55→58.84, P36 61.79→63.77), el barrido de P31 51.56–51.94, el contador 0→66 m de P33 y la autopista que entra en P34 57.08 dan acción; en P35 las patas miden ~40 px y el paso se lee poco."},
+  "claridad": {"nota": 8, "por_que": "cada frase tiene su imagen (píldora 2003 + sala en P32–P33, autopista que aparece justo en 'pasara' en P34 57.08, escuela caminando en P35–P36), pero en P34 no se ve que la autopista ocupa el lugar donde estaba la sala y la sala queda cortada por el borde derecho."},
+  "ritmo": {"nota": 8, "por_que": "ningún plano se queda quieto (quieto_max_s ≤ 0,27); P32 52.30–54.00 es casi sólo un push lento y P35 dura 3,24 s con un solo movimiento de cámara, sin tramos muertos."}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": false, "plano": 34, "segundo": "57.36", "que": "el remate de la historia de 2003 no muestra la causa: la autopista aparece delante de la sala, pero no se ve que pase por donde estaba la sala; además la sala queda cortada por el borde derecho (x≈720–1080) todo el plano", "arreglo": "panear o abrir un poco la cámara a la izquierda para que la sala entre entera (x≈600–1000) y dejar en el piso una huella marcada del tamaño de la sala al inicio de los rieles, justo donde aterriza la autopista en 57.08"},
+  {"prioridad": 1, "bloqueante": false, "plano": 32, "segundo": "52.30", "que": "la sala ocupa la mitad del ancho con la base en y≈1000 y la mitad inferior es pavimento gris vacío (fondo_liso 0.40); de 52.30 a 54.00 sólo hay un push lento, casi no cambia nada", "arreglo": "cámara más baja y más cerca (sala en ~70% del ancho, base en y≈950, rieles visibles a la derecha) y que la sala empiece a deslizarse sobre los rieles en 'práctica' (53.43)"},
+  {"prioridad": 2, "bloqueante": false, "plano": 34, "segundo": "56.52", "que": "el bloque 2003 (P32–P34) tiene paleta fría, poco contraste y pavimento gris claro (tirando a lavado), muy distinto de las escenas cálidas de la escuela; la franja azul marino de horizonte (y≈420–560) tiene borde recto y parece el fin del escenario", "arreglo": "usar el mismo sol cálido y contraste de las escenas de la escuela (o un tinte de archivo deliberado para 2003) y tapar el borde del suelo con torres o niebla"},
+  {"prioridad": 2, "bloqueante": false, "plano": 34, "segundo": "57.63", "que": "la autopista es una losa blanca lisa sin marcas: se lee como plataforma o puente genérico, no como autopista", "arreglo": "agregarle líneas de pista, barandas y 2–3 autos simples que avancen encima desde 57.6 (también suma movimiento)"},
+  {"prioridad": 2, "bloqueante": false, "plano": 35, "segundo": "59.70", "que": "3,24 s de un solo movimiento de cámara (E44); las patas son una franja de ~40 px en la base y el 'caminar' que prepara el remate casi no se ve", "arreglo": "cortar en 59.70 ('a los 85') a un plano bajo de las patas alternándose (la escena de P36 ya existe) o hacer entrar una píldora '85 años' en ese momento"},
+  {"prioridad": 3, "bloqueante": false, "plano": 33, "segundo": "54.08", "que": "el subtítulo (y≈1080–1180) cae sobre la base de la sala y los rieles, que es justo lo que muestra que se mueve", "arreglo": "bajar la cámara o inclinarla para subir la sala ~150 px y dejar los rieles sobre y 1000"},
+  {"prioridad": 3, "bloqueante": false, "plano": 34, "segundo": "58.47", "que": "aparece un bloque rojo y una caja blanca bajo la autopista junto a los rieles (x≈420–520, y≈1160–1200) cuando sale el subtítulo; con el material del animatic no se puede saber si es escenografía o utilería técnica", "arreglo": "revisarlo en la escena y sacarlo si no es escenografía buscada"}
+ ],
+ "eventos": [
+  {"id": "E40", "es_defecto": false, "por_que": "es el inicio del barrido con desenfoque de movimiento sobre 'loco': transición buscada hacia la escena de 2003"},
+  {"id": "E41", "es_defecto": false, "por_que": "el corte P31→P32 cae dentro del barrido desenfocado y entra la píldora '2003'"},
+  {"id": "E42", "es_defecto": false, "por_que": "es el corte P32→P33 (54.04) con la entrada de la píldora del contador '0 m'"},
+  {"id": "E43", "es_defecto": false, "por_que": "es la autopista que entra desde el borde derecho, tramo por tramo, justo en 'pasara' (56.80 nada, 57.08 primer tramo, 57.63 completa): aparición buscada y en sincronía con la voz"},
+  {"id": "E44", "es_defecto": false, "por_que": "P35 dura 3,24 s, pero la cámara se mueve todo el tiempo (quieto_max_s 0) y las patas se alternan; ver sugerencia de prioridad 2"}
+ ],
+ "resumen": "Planos 31–36 sin bloqueantes: transiciones y apariciones buscadas, cifras en pantalla correctas (2003, 66 m), subtítulos sin faltas y la escuela igual a la ficha. Lo flojo es el bloque 2003 (P32–P34): plaza gris vacía, paleta fría y una autopista que no muestra que pasa donde estaba la sala (belleza 7, promedio 7,75). Se arregla con cámara, luz y una huella en el piso, sin volver a animar."
+}

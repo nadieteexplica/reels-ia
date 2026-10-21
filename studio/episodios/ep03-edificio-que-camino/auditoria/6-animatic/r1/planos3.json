@@ -1,0 +1,44 @@
+{
+ "encargo": "planos3",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 7, "por_que": "Look 3D semi-realista limpio y consistente (ladrillo, cielo, píldoras), pero en P21 (32.15–33.00) las fundas amarillas en sombra se ven oliva y barrosas, la muleta de P23 (35.41) está mal armada y en P22–P24 y P28–P30 la mitad inferior del cuadro es tierra lisa."},
+  "animacion": {"nota": 7, "por_que": "P28 (44.50–46.17) alterna bien los grupos de patas con travelling y P27 gira fluido con su contador, pero en P24 (38.59–39.43) la voz dice 'camine' y el edificio no da ningún paso, y en P22 el caminar es sólo un ícono 2D sobre la fachada."},
+  "claridad": {"nota": 8, "por_que": "Casi cada frase tiene su imagen (muletas en 35.41, rieles en 40.04, giro 0°→21° en 42.32–44.42, barras tú vs. edificio en 48.50), con dos huecos: el cambio de grupo en P21 (32.49) no se lee y el contador de P28 termina en '16 m' (46.17) mientras se oye '62 metros'."},
+  "ritmo": {"nota": 8, "por_que": "Cortes cada 0,9–2,8 s y quieto_max_s ≤ 0,2 en los 10 planos; siempre cambia algo (contadores, píldoras, travelling); el tramo más quieto es P24 37.75–39.43, con sólo subtítulos y un leve movimiento de cámara."}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "tipo": "B1", "plano": 24, "segundo": "37.75", "que": "Cuando el edificio se alza, las muletas suben con él: en 36.91 la punta de goma toca el suelo, y desde 37.47 hasta 39.43 las dos puntas quedan flotando sobre una franja azul lisa (el hueco bajo el edificio) y su sombra, sin tocar la tierra. Justo cuando la voz dice que las muletas son para que se pare, el apoyo queda en el aire.", "arreglo": "Desemparentar las muletas del edificio y fijar la punta al suelo (keyframe o restricción); que sólo el apoyo de arriba acompañe al edificio, inclinando un poco la muleta. Si sale caro, que el edificio no se alce en este plano."},
+  {"prioridad": 2, "bloqueante": false, "plano": 29, "segundo": "47.34", "que": "El time-lapse de días hace que toda la imagen pase de clara a oscura de un cuadro a otro (oscuros en 46.52, 47.34 y 47.88; claros en 46.79, 47.61 y 48.15; E37) mientras el contador sube unos 8 días por segundo. Si cada día es un ciclo claro-oscuro, son unos 8 destellos por segundo a pantalla completa: molesta y es un riesgo para personas fotosensibles (la pauta de accesibilidad es no más de 3 por segundo). Con 4 cuadros por segundo no alcanzo a medir la frecuencia exacta.", "arreglo": "Verificarlo en el video corrido. Si parpadea, dejar la luz fija o hacer un solo barrido suave de la sombra del sol en todo el plano, y que el paso del tiempo lo cuente sólo la píldora 'DÍA N'."},
+  {"prioridad": 3, "bloqueante": false, "plano": 28, "segundo": "46.17", "que": "El contador de metros llega sólo a '16 m' y se corta al plano de los días (E36) mientras el subtítulo y la voz dicen '62 metros'. Lo mismo pasa en P29: el último cuadro (48.15) muestra 'DÍA 17' cuando se dice 18.", "arreglo": "Acelerar el contador con ease-out para que llegue a '62 m' en ~45.7 s y se quede 0,5 s; el de días, que llegue a 'DÍA 18' en ~47.8 s y se mantenga hasta el corte."},
+  {"prioridad": 4, "bloqueante": false, "plano": 21, "segundo": "32.49", "que": "'Luego cambian' no se lee: la píldora destacada es 'GRUPO B' durante todo el plano (32.15–33.00), y en la sombra las fundas amarillas quedan oliva, casi iguales a las celestes, así que en el bosque de patas no se ve qué grupo sube y cuál baja.", "arreglo": "En 'cambian' (~32.5) pasar el énfasis de B a A (agrandar 'GRUPO A' y achicar 'GRUPO B'), y meter luz de relleno o más saturación en las fundas para que el amarillo y el celeste se distingan."},
+  {"prioridad": 5, "bloqueante": false, "plano": 25, "segundo": "40.04", "que": "En la vista cenital (P25–P26, 39.51–42.24, y P27 hasta ~43.1), el edificio queda abajo, en y≈920–1660: el subtítulo cae encima del edificio y la mitad queda bajo la interfaz (y>1250) justo cuando se habla de girarlo. La mitad de arriba es tierra con los rieles.", "arreglo": "Correr el encuadre cenital ~350 px para que el edificio quede en y 450–950 y la ruta punteada y los rieles queden arriba de la franja de subtítulos."},
+  {"prioridad": 6, "bloqueante": false, "plano": 24, "segundo": "38.59", "que": "En 'para que se pare y camine', el edificio se alza en 37.47 pero en 'camine' (38.59–39.43) no avanza ni da un paso: el cuadro queda igual 1,7 s.", "arreglo": "En ~38.6, que el edificio dé un paso corto de lado apoyado en las muletas (un solo keyframe de traslación con las muletas pivoteando en la punta)."},
+  {"prioridad": 7, "bloqueante": false, "plano": 23, "segundo": "35.41", "que": "La muleta está mal armada: los dos largueros se abren hacia abajo y la pata de goma sale del medio sin tocarlos, con un hueco visible entre los largueros y la pata. Se nota porque la muleta es el centro del chiste (P23–P24).", "arreglo": "Corregir el modelo para que los largueros se junten abajo en la pata, como una muleta real. Es un solo cambio y vale para las dos muletas."},
+  {"prioridad": 8, "bloqueante": false, "plano": 30, "segundo": "49.03", "que": "Los textos de las barras ('TÚ', 'EL EDIFICIO', '<1 MIN', '18 DÍAS') miden ~28–32 px de alto en 1080×1920: en el teléfono se leen con esfuerzo, y son los datos de la comparación.", "arreglo": "Subirlos a ≥ 44 px y engrosar las barras; hay espacio, porque el bloque ocupa sólo y 280–540."},
+  {"prioridad": 9, "bloqueante": false, "plano": 22, "segundo": "33.36", "que": "'Como tú cuando caminas' se ilustra con huellas 2D pegadas sobre las ventanas de la fachada, y las patas del edificio son una franja de ~15 px abajo: la comparación con caminar no se ve en la escena.", "arreglo": "Bajar las huellas al suelo delante del edificio (y≈900–980, encima de los subtítulos) y alternarlas con el paso de cada grupo, o encuadrar más cerca de la línea de patas."}
+ ],
+ "eventos": [
+  {"id": "E21", "es_defecto": false, "por_que": "Se alza el grupo B (las placas oscuras suben) y entra la flecha azul del paso: es la acción buscada."},
+  {"id": "E22", "es_defecto": false, "por_que": "Las patas bajan y aparecen las flechas de avance del otro grupo: es el cambio de grupo animado."},
+  {"id": "E23", "es_defecto": false, "por_que": "Se apaga la huella amarilla y se enciende la azul: huellas que alternan a propósito."},
+  {"id": "E24", "es_defecto": false, "por_que": "Vuelve la huella amarilla y se apaga la azul: es la misma alternancia."},
+  {"id": "E25", "es_defecto": false, "por_que": "Entra la primera muleta, inclinada, y se endereza en 35.41: es la entrada del objeto del chiste."},
+  {"id": "E26", "es_defecto": false, "por_que": "Entra la segunda muleta por la derecha: es buscado."},
+  {"id": "E27", "es_defecto": false, "por_que": "Plano de 2,6 s con quieto_max_s 0: el edificio se alza en 37.47 y la cámara se mueve, aunque en 'camine' no pasa nada nuevo (ver sugerencia 6)."},
+  {"id": "E28", "es_defecto": false, "por_que": "Es el cambio de subtítulo ('ponerle' → 'para')."},
+  {"id": "E29", "es_defecto": false, "por_que": "Aparece el riel blanco antes de 'no usaron rieles': es buscado."},
+  {"id": "E30", "es_defecto": false, "por_que": "Cambia el subtítulo y empieza a dibujarse la ruta punteada: es buscado."},
+  {"id": "E31", "es_defecto": false, "por_que": "Entra la píldora '0°' del contador de giro."},
+  {"id": "E32", "es_defecto": false, "por_que": "El edificio gira y avanza en cámara rápida mientras sube el contador: es buscado."},
+  {"id": "E33", "es_defecto": false, "por_que": "Sigue el giro (16° → 19°) con el edificio avanzando: es buscado."},
+  {"id": "E34", "es_defecto": false, "por_que": "Entra la píldora '0 m' al empezar P28."},
+  {"id": "E35", "es_defecto": false, "por_que": "Las patas cambian de grupo al dar el paso y el cono se corre por el travelling: es buscado."},
+  {"id": "E36", "es_defecto": false, "por_que": "Corte a P29 con la píldora 'DÍA 1'. Es buscado, pero deja el contador de metros en 16 m (ver sugerencia 3)."},
+  {"id": "E37", "es_defecto": false, "por_que": "Toda la imagen se oscurece por la 'noche' del time-lapse: es buscado, pero puede ser un parpadeo rápido (ver sugerencia 2)."},
+  {"id": "E38", "es_defecto": false, "por_que": "Plano de 2,75 s con quieto_max_s 0,2: la barra verde se llena entre 48.2 y 49.0 y el edificio se desplaza a la derecha durante todo el plano."},
+  {"id": "E39", "es_defecto": false, "por_que": "El edificio se desplaza y deja ver la torre de atrás: es el movimiento continuo del plano."}
+ ],
+ "resumen": "El tramo 32–51 s funciona bien con gráficos (giro 0°→21° con contador, barras tú vs. edificio), pero en P24 las muletas suben con el edificio y quedan flotando sobre el suelo (B1). Lo que más subiría la nota: revisar el posible parpadeo día/noche de P29 y que los contadores lleguen a 62 m y al día 18."
+}

@@ -145,15 +145,15 @@ def huella(im, cx, cy, col, izq=True, s=1.0):
 
 def barra(im, y, texto, frac, col, etiqueta_der):
     d = ImageDraw.Draw(im, "RGBA")
-    x0, x1, h = 150, 930, 64
-    f = ImageFont.truetype(FONT, 44)
-    d.text((x0, y - 58), texto, font=f, fill=(255, 255, 255), stroke_width=5, stroke_fill=(0, 0, 0))
+    x0, x1, h = 130, 950, 84
+    f = ImageFont.truetype(FONT, 60)
+    d.text((x0, y - 78), texto, font=f, fill=(255, 255, 255), stroke_width=6, stroke_fill=(0, 0, 0))
     d.rounded_rectangle((x0, y, x1, y + h), radius=h / 2, fill=(20, 20, 24, 200))
     if frac > 0.003:
         d.rounded_rectangle((x0, y, x0 + max(h, (x1 - x0) * frac), y + h), radius=h / 2, fill=(*col, 255))
-    fr = ImageFont.truetype(FONT, 38)
-    d.text((x1 - fr.getlength(etiqueta_der) - 18, y + 10), etiqueta_der, font=fr, fill=(255, 255, 255))
-    G.registrar("barra", (x0, y - 60, x1, y + h))
+    fr = ImageFont.truetype(FONT, 50)
+    d.text((x1 - fr.getlength(etiqueta_der) - 24, y + 14), etiqueta_der, font=fr, fill=(255, 255, 255), stroke_width=4, stroke_fill=(0, 0, 0))
+    G.registrar("barra", (x0, y - 80, x1, y + h))
 
 
 def linea_puntos(im, pts, col, ancho=9, paso=34):
@@ -322,8 +322,11 @@ def edad(f, k, desde=0.0):
 def graficos(im, f, k):
     age = edad(f, k)
     dur = E.T[k][1] - E.T[k][0]
+    if k in (2, 3):                      # el guion lo promete: los pasos van acelerados
+        pildora(im, "CÁMARA RÁPIDA", 540, 300, fondo=(28, 30, 36), tinta=(255, 255, 255), tam=40,
+                s=pop(edad(f, 2, 0.15)) if k == 2 else 1.0)
     if k == 5:
-        pildora(im, "LAGENA · 1935", 540, 360, s=pop(age - 0.1))
+        pildora(im, "ESCUELA LAGENA", 540, 360, s=pop(age - 0.1))
     elif k == 7:
         pildora(im, "SHANGHÁI · CHINA", 540, 340, s=pop(age - 0.05))
     elif k == 8:
@@ -331,18 +334,25 @@ def graficos(im, f, k):
         pildora(im, f"{n:,}".replace(",", ".") + " t", 540, 390, s=pop(age), tam=96, tipo="contador")
     elif k == 9:
         pildora(im, "2020", 540, 340, fondo=(28, 30, 36), tinta=(255, 255, 255), s=pop(age - 0.05))
+    elif k == 10:
+        pildora(im, "OFICINAS + TIENDAS", 540, 360, fondo=(60, 140, 230), tinta=(255, 255, 255), s=pop(t_de(f) - E.t_palabra("oficinas", E.T[10][0] - 0.3)))
     elif k == 11:
         pildora(im, "DEMOLER", 540, 360, fondo=ROJO, tinta=(255, 255, 255), s=pop(age - 0.45), marca="x")
     elif k == 12:
         pildora(im, "MOVER", 540, 360, fondo=VERDE, tinta=(255, 255, 255), s=pop(age - 0.05), marca="v")
     elif k == 14:
-        n = meta(14, f, "contador", 0) or 0
+        n = round(198 * E.sale(min(1.0, max(0.0, age - 0.05) / (0.68 * dur))))     # llega a 198 y se queda ~0,5 s
         pildora(im, f"{n} PATAS", 540, 390, fondo=PATA_A, tinta=(20, 18, 10), s=pop(age), tam=96, tipo="contador")
     elif k in (18, 19, 20, 21):
         sa = pop(edad(f, 18, 0.15)) if k == 18 else 1.0
         sb = pop(edad(f, 18, 0.95)) if k == 18 else 1.0
-        pildora(im, "GRUPO A", 330, 360, fondo=PATA_A, tinta=(20, 18, 10), s=sa * (0.75 if k in (19, 21) else 1.0))
-        pildora(im, "GRUPO B", 760, 360, fondo=PATA_B, tinta=(8, 20, 36), s=sb * (0.75 if k == 20 else 1.0))
+        if k == 21:                      # "luego cambian": el énfasis pasa de A a B
+            w = min(1.0, max(0.0, (t_de(f) - E.t_palabra("cambian", E.T[21][0] - 0.5) + 0.12) / 0.24))
+            fa, fb = 1.0 - 0.25 * w, 0.75 + 0.25 * w
+        else:
+            fa, fb = (0.75 if k == 19 else 1.0), (0.75 if k == 20 else 1.0)
+        pildora(im, "GRUPO A", 330, 360, fondo=PATA_A, tinta=(20, 18, 10), s=sa * fa)
+        pildora(im, "GRUPO B", 760, 360, fondo=PATA_B, tinta=(8, 20, 36), s=sb * fb)
         if k == 19:
             for (x, y) in (meta(19, f, "pies_b", []) or [])[:5]:
                 if 230 < y < 960:
@@ -350,14 +360,16 @@ def graficos(im, f, k):
         if k in (20, 21):
             pies = meta(k, f, "pies_a" if k == 20 else "pies_b", []) or []
             col = PATA_A if k == 20 else PATA_B
+            if k == 21 and t_de(f) < E.t_palabra("cambian", E.T[21][0] - 0.5):
+                pies = []
             for (x, y) in pies[:5]:
-                if 230 < y < 960 and x < 980:
-                    flecha(im, x - 40, y - 150, x + 70, y - 150, col, 10)
+                if 620 < y < 960 and x < 980:          # bajo las píldoras: ningún gráfico pisa a otro
+                    flecha(im, x - 40, y - 150, x + 70, y - 150, col, 12)
     elif k == 22:
         fase = meta(22, f, "fase", 0.0) or 0.0
         izq = fase < 0.5
-        huella(im, 440, 400, PATA_A if izq else (90, 90, 90), True, 1.0 if izq else 0.8)
-        huella(im, 640, 360, PATA_B if not izq else (90, 90, 90), False, 1.0 if not izq else 0.8)
+        huella(im, 430, 885, PATA_A if izq else (90, 90, 90), True, 0.85 if izq else 0.7)      # en el suelo, delante de las patas
+        huella(im, 650, 865, PATA_B if not izq else (90, 90, 90), False, 0.85 if not izq else 0.7)
     elif k in (25, 26, 27):
         rie = meta(k, f, "rieles", None)
         cam = meta(k, f, "camino", None)
@@ -386,20 +398,23 @@ def graficos(im, f, k):
             G.registrar("angulo", (c[0] - R_ * 1.2, c[1] - R_ * 1.2, c[0] + R_ * 1.2, c[1]))
             pildora(im, f"{round(g):d}°", 540, 360, fondo=PATA_A, tinta=(20, 18, 10), s=pop(age), tam=96, tipo="contador")
     elif k == 28:
-        m = meta(28, f, "dist", 0.0) or 0.0
+        m = 62 * E.sale(min(1.0, max(0.0, age - 0.05) / (0.70 * dur)))     # llega a 62 m mientras se dice y se queda
         pildora(im, f"{min(62, round(m)):d} m", 540, 370, fondo=(255, 200, 40), tinta=(20, 18, 10), s=pop(age), tam=96, tipo="contador")
     elif k == 29:
         dia = meta(29, f, "dia", 1) or 1
         pildora(im, f"DÍA {dia}", 540, 370, fondo=(28, 30, 36), tinta=(255, 255, 255), s=pop(age), tam=96, tipo="contador")
     elif k == 30:
         a = max(0.0, age - 0.1)
-        barra(im, 330, "TÚ", min(1.0, a / 0.8), VERDE, "< 1 MIN")
-        barra(im, 500, "EL EDIFICIO", min(0.04, 0.04 * a / dur), ROJO, "18 DÍAS")
+        barra(im, 340, "TÚ", min(1.0, a / 0.8), VERDE, "< 1 MIN")
+        barra(im, 560, "EL EDIFICIO", min(0.04, 0.04 * a / dur), ROJO, "18 DÍAS")
     elif k in (32, 33):
         pildora(im, "2003", 540, 340, fondo=(28, 30, 36), tinta=(255, 255, 255), s=pop(edad(f, 32, 0.1)) if k == 32 else 1.0)
-        if k == 33:
-            m = meta(33, f, "metros", 0.0) or 0.0
-            pildora(im, f"{m:.0f} m".replace(".", ","), 540, 470, s=pop(age), tam=80, tipo="contador")
+    elif k == 35 and t_de(f) >= E.t_palabra("ochenta", E.T[35][0]) - 0.05:
+        pildora(im, "85 AÑOS", 540, 360, fondo=PATA_A, tinta=(20, 18, 10), tam=80, tipo="contador",
+                s=pop(t_de(f) - E.t_palabra("ochenta", E.T[35][0]) + 0.05))
+    if k == 33:
+        m = meta(33, f, "metros", 0.0) or 0.0
+        pildora(im, f"{m:.0f} m".replace(".", ","), 540, 470, s=pop(age), tam=80, tipo="contador")
 
 
 def procesar(f):

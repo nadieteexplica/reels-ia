@@ -1,0 +1,30 @@
+{
+ "encargo": "planos2",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "materiales y color limpios y saturados (ladrillo, cromo, patas amarillo/celeste) en P15-P16 y P18-P20, sin quemado ni lavado; lo flojo: en P13/P14/P17 la accion ocupa una franja y~600-960 con ~45 % de suelo gris liso debajo, y el resalte de P18 (27.54, 28.45) blanquea las patas en vez de hacerlas brillar"},
+  "animacion": {"nota": 7, "por_que": "todo se mueve (quieto_max_s <= 0,07 en los 10 planos) y el paso de P20 (30.98-31.80: pies del grupo A alzados, patas que se inclinan) se lee, pero las acciones clave son apariciones de un cuadro: la bola aparece en el aire sin balanceo (P11 17.34), la columna desaparece de golpe (P16 25.27) y el alzado de P17 son ~80 px (26.65-27.19)"},
+  "claridad": {"nota": 8, "por_que": "cada frase tiene su imagen (bola + DEMOLER, MOVER, excavacion, contador 0->198, grupos A/B con codigo de color y flechas); lo mas flojo: 'cortaron las columnas' no se ve cortar (P16 25.27, la columna se esfuma 0,2 s antes del corte) y en P20 el paso se pierde entre ~20 patas"},
+  "ritmo": {"nota": 9, "por_que": "planos de 1,1-2,1 s, quieto_max_s <= 0,07 en los 10; el contador de P14 y las pildoras de P18-P20 renuevan la imagen cada menos de 1 s"}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "tipo": "B1", "plano": 11, "segundo": "17.36", "que": "la bola de demolicion aparece de la nada en el aire (E15) y cuelga de 3 eslabones separados que no se tocan entre si (huecos de fachada entre anillo y anillo, 17.36-18.00): se ve una bola flotando con anillos sueltos", "arreglo": "cadena continua (eslabones entrelazados o un cable cilindrico) que salga por el borde superior del cuadro, y que la bola entre balanceandose desde la izquierda en ~0,3 s en vez de aparecer; re-render solo de P11 (1,15 s)"},
+  {"prioridad": 2, "bloqueante": false, "plano": 16, "segundo": "25.49", "que": "'cortaron las columnas': la columna gris se esfuma en un cuadro en 25.27 (E18), 0,26 s antes del corte a P17; no se ve ningun corte y casi no alcanza a notarse que ya no esta", "arreglo": "en 24.9 (sobre 'columnas') una linea de corte brillante a media altura de la columna y la mitad de abajo que se desliza o cae en 0,3 s, con SFX; y adelantar el cambio para que el estado 'sin columna' dure >= 0,5 s"},
+  {"prioridad": 3, "bloqueante": false, "plano": 20, "segundo": "31.25", "que": "las flechas amarillas del paso cruzan la pildora 'GRUPO A' (30.98 debajo, 31.25 encima: se come la O y se lee 'GRUP A'; 31.53 tapa el borde derecho)", "arreglo": "fijar las flechas a media altura de las patas (y ~ 600-700 en 1080x1920) o subir la pildora; que ningun grafico pase sobre otro"},
+  {"prioridad": 4, "bloqueante": false, "plano": 20, "segundo": "30.98", "que": "'el otro se alza y da un paso': el paso se lee, pero entre ~20 patas y pies negros a distintas alturas cuesta ver cual se alza y avanza", "arreglo": "desenfocar u oscurecer las patas del fondo y dejar en primer plano un par A/B, donde la amarilla haga claramente alzar-avanzar-bajar (la misma escena, otra camara mas cerca)"},
+  {"prioridad": 5, "bloqueante": false, "plano": 17, "segundo": "26.92", "que": "en el corte (P13, P14, P17) la excavacion, las patas y el alzado van en una franja y~600-960 de 1920; debajo de los subtitulos ~45 % de suelo gris liso (fondo_liso 0,46-0,52); en el telefono las 198 patas y el alzado (~80 px) se ven chicos", "arreglo": "acercar la camara ~1,4x y bajarla para que el foso ocupe y~350-950 (cortar la fachada arriba no importa) y exagerar un poco la subida en P17"},
+  {"prioridad": 6, "bloqueante": false, "plano": 14, "segundo": "21.54", "que": "en 20.96 ya estan todas las patas visibles (contador en 29) y el contador sigue hasta 198 durante 1,7 s sin que cambie nada en el foso", "arreglo": "paneo lateral lento a la derecha (o alejar la camara) mientras cuenta, para que sigan entrando patas al cuadro al ritmo del contador"},
+  {"prioridad": 7, "bloqueante": false, "plano": 19, "segundo": "29.62", "que": "'uno aguanta el peso': las flechas azules son finas y casi no contrastan con las patas celestes palidas; nada muestra el peso", "arreglo": "flechas mas gruesas (blancas con borde azul) sobre el grupo B y un leve aplastamiento del piston B / bajada de 5 px del edificio al cargar"},
+  {"prioridad": 8, "bloqueante": false, "plano": 13, "segundo": "19.19", "que": "linea negra vertical en la tierra (x~240, y~600-880) de 19.19 a 20.03: es la pared de la excavacion vista de canto antes de cavar y se lee como una grieta o un artefacto", "arreglo": "ocultarla hasta que la excavacion llegue a ese borde o darle el color de la tierra"}
+ ],
+ "eventos": [
+  {"id": "E15", "es_defecto": true, "por_que": "la entrada de la bola calza con 'demolerla' (buscada), pero aparece de la nada en el aire y cuelga de eslabones que no se tocan: ver problema B1 de P11"},
+  {"id": "E16", "es_defecto": false, "por_que": "entran las primeras patas (2 a la izquierda) junto con el contador '12 PATAS'; buscado"},
+  {"id": "E17", "es_defecto": false, "por_que": "leve cambio de luz/ruido en los cilindros con el avance de la camara; nada aparece ni desaparece"},
+  {"id": "E18", "es_defecto": false, "por_que": "es el 'corte' de la columna sobre 'columnas' (buscado), pero hecho como desaparicion de un cuadro: sugerencia 2"},
+  {"id": "E19", "es_defecto": false, "por_que": "entra la pildora 'GRUPO A' con su animacion"},
+  {"id": "E20", "es_defecto": false, "por_que": "cambio de subtitulo 'EL' -> 'PESO'"}
+ ],
+ "resumen": "Los planos 11-20 cuentan bien el mecanismo con buen ritmo y color, pero la bola de demolicion de P11 flota con eslabones sueltos (B1, arreglo barato). Lo que mas subiria la nota: que se vea el corte de la columna en P16 y que las flechas de P20 no pisen la pildora 'GRUPO A'."
+}
