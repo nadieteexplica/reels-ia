@@ -406,16 +406,17 @@ def p04(sc, a, b):
     aji = _raton_con_aji(sc, S, rat)
     cam = E2.camara(sc, "Cam04", lens=45, fstop=4.0)
     cab = rat.punto("cabeza") + Vector((0, 0, 0.0))
-    pos = cab + Vector((0.12, -0.50, 0.02))
-    tgt = cab + Vector((-0.07, -0.02, -0.025))
+    pos = cab + Vector((0.13, -0.66, 0.02))
+    tgt = cab + Vector((-0.075, -0.02, 0.0))      # revisión del borrador: la llama salía cortada (sólo el centro blanco)
     f_fuego = a + 3
+    doblar = float(os.environ.get("P4_DOBLAR", 30))
 
     def act(f):
         t = (f - f_fuego) / E2.FPS
         llama = rebote_llama(f - f_fuego)
         rat.pose(cab=(-12 * sale(lin(f, f_fuego, f_fuego + 5)), 0, 0), boca=suave(lin(f, f_fuego - 2, f_fuego + 2)),
                  ojos=-100 - 15 * suave(lin(f, f_fuego, f_fuego + 4)), ojos_esc=1 + 0.25 * E2.rebote(lin(f, f_fuego, f_fuego + 6)),
-                 roja=suave(lin(f, f_fuego + 4, f_fuego + 16)), llama=llama, f=f)
+                 roja=suave(lin(f, f_fuego + 4, f_fuego + 16)), llama=llama * 0.8, doblar=doblar, f=f)
         sh = math.exp(-max(0, t) * 7) * (1 if t > 0 else 0)
         off = Vector((0.004 * math.sin(f * 2.7), 0, 0.004 * math.sin(f * 3.9))) * sh
         E2.mirar(cam, pos + off, tgt + off, foco=cab)
@@ -609,8 +610,8 @@ def p12(sc, a, b):
         PJ.colgar(g, rt["cabeza"])
         gotas.append((g, g.location.copy(), k))
     cam = E2.camara(sc, "Cam12", lens=42, fstop=4.0)
-    pos = c + Vector((0.04, -0.55, 0.04))
-    tgt = c + Vector((0, 0, -0.05))
+    pos = c + Vector((0.04, -0.74, 0.10))      # revisión del borrador: la baliza quedaba cortada arriba
+    tgt = c + Vector((0, 0, 0.03))
 
     def act(f):
         E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.06, foco=c)
@@ -1014,24 +1015,33 @@ def p25(sc, a, b):
         h.location = base + Vector((0.012 * (1 if k % 2 else -1), -0.006, z))
         h.rotation_euler = (0, R(60 if k % 2 else -60), 0)
         hojas.append((h, k))
+    centro = P.mat("FlorCentro", (0.95, 0.75, 0.15), rough=0.5)
     for k in range(4):
-        fo = P.empty(f"Flor{k}", loc=base + Vector((0.016 * math.cos(k * 1.7), -0.006 + 0.01 * math.sin(k * 1.7), 0.12 + 0.012 * k)), coll=S["CP"])
+        fo = P.empty(f"Flor{k}", loc=base + Vector((0.002 + 0.010 * math.cos(k * 1.7), -0.010, 0.112 + 0.012 * k)), coll=S["CP"])
+        fo.rotation_euler = (R(78), 0, R(-10 + 8 * k))      # la flor mira a cámara (revisión: de canto se leían como platillos grises)
         for j in range(5):
-            pe = P.prim("sphere", f"Flor{k}_p{j}", S["CP"], fl, r=0.0028, u=12, v=6)
-            pe.scale = (1, 0.5, 0.25)
-            pe.location = (0.0032 * math.cos(j * 1.2566), 0.0032 * math.sin(j * 1.2566), 0)
+            pe = P.prim("sphere", f"Flor{k}_p{j}", S["CP"], fl, r=0.0036, u=12, v=6)
+            pe.scale = (1, 0.55, 0.25)
+            pe.location = (0.0040 * math.cos(j * 1.2566), 0.0040 * math.sin(j * 1.2566), 0)
+            pe.rotation_euler = (0, 0, j * 1.2566)
             pe.parent = fo
+        cc = P.prim("sphere", f"Flor{k}_c", S["CP"], centro, r=0.0016, u=12, v=6)
+        cc.location = (0, 0, 0.0006)
+        cc.parent = fo
         flores.append((fo, k))
     cam = E2.camara(sc, "Cam25", lens=60, fstop=4.0)
-    pos = base + Vector((0.04, -0.34, 0.10))
-    tgt = base + Vector((0, 0, 0.055))
+    # revisión del borrador: arrancaba con el cuadro vacío (la caca caía fuera de cuadro); ahora la caca cae en cuadro y la
+    # cámara sube con el brote hasta encuadrar la mata entera con flores
+    pos = base + Vector((0.04, -0.36, 0.05))
+    tgt = base + Vector((0, 0, 0.018))
+    sube = Vector((0, 0, 0.072))
     n = b - a
 
     def act(f):
         x = (f - a) / n
         cae = lin(x, 0.0, 0.10)
         aplasta = math.exp(-max(0, x - 0.10) * 40) if x > 0.10 else 0
-        caca.location = base + Vector((0, 0, 0.30 * (1 - entra(cae))))
+        caca.location = base + Vector((0, 0, 0.065 * (1 - entra(cae))))
         caca.scale = (1 + 0.35 * aplasta, 1 + 0.35 * aplasta, 1 - 0.45 * aplasta)
         crece = E2.suave(lin(x, 0.25, 0.92))
         tallo.data.bevel_factor_end = max(0.001, crece)
@@ -1046,8 +1056,10 @@ def p25(sc, a, b):
             for ch in fo.children:
                 ch.hide_render = s_ < 0.01
         caca.scale = caca.scale * (1 - 0.35 * suave(lin(x, 0.4, 0.9)))   # se va deshaciendo mientras brota
-        p = pos + Vector((0, 0, 0.03 * suave(x)))
-        E2.empujar(cam, f, a, b - 1, p, tgt + Vector((0, 0, 0.03 * suave(x))), cuanto=0.06, foco=tgt)
+        k_ = E2.suave(lin(x, 0.22, 0.95))
+        foco = tgt + sube * k_ * 0.6
+        atras = Vector((-0.02, -0.17, 0.0)) * k_          # se abre para ver la mata entera con la caca abajo
+        E2.empujar(cam, f, a, b - 1, pos + sube * k_ + atras, tgt + sube * k_, cuanto=0.03, foco=foco)
     return {"actualizar": act}
 
 
@@ -1606,7 +1618,7 @@ def p10(sc, a, b):
     C = P.collection("Corte")
     L = 0.26
     mitades = []
-    interior = P.mat("AjiInteriorCorte", (0.93, 0.45, 0.32), rough=0.55, emit=0.08)   # pulpa roja anaranjada: las venas blancas se despegan
+    interior = P.mat("AjiInteriorCorte", (0.78, 0.13, 0.05), rough=0.42, emit=0.02)   # pulpa roja (revisión del borrador: salmón claro + bloom = pétalo blanco)
     corte = P.prim("cube", "CajaCorte", C, None)
     corte.hide_render = True
     corte.display_type = "WIRE"
@@ -1631,6 +1643,7 @@ def p10(sc, a, b):
     # venas (placenta) blancas a lo largo de la mitad de arriba, con gotitas rojas de capsaicina
     vena_m = P.mat("Placenta", (0.98, 0.96, 0.90), rough=0.5, emit=0.25)
     gota_m = P.mat("GotaCapsaicina", (1.0, 0.05, 0.03), rough=0.1, emit=3.0)
+    semilla_m = P.mat("SemillaAji", (0.93, 0.80, 0.50), rough=0.45, emit=0.0)
     rr = random.Random(3)
     venas = []
     for piv, sgn, aj in mitades:
@@ -1645,11 +1658,20 @@ def p10(sc, a, b):
                 go.location = (dx * (1.0 + 0.4 * (-z / (L * 0.5))) + rr.uniform(-0.002, 0.002), sgn * 0.0015, z)
                 go.parent = aj
                 venas.append(go)
+            # semillas: discos crema pegados a la vena (lo que hace que se lea "ají por dentro")
+            for g in range(6):
+                z = -0.03 - (g + rr.uniform(-0.2, 0.2)) * L * 0.07
+                se = P.prim("sphere", f"Semilla{sgn}{j}{g}", C, semilla_m, r=rr.uniform(0.0046, 0.0056), u=20, v=10)
+                se.scale = (1.0, 0.32, 0.82)
+                se.location = (dx * (1.0 + 0.4 * (-z / (L * 0.5))) + (1 if dx > 0 else -1) * rr.uniform(0.0062, 0.0085), sgn * 0.0012, z)
+                se.rotation_euler = (0, rr.uniform(-0.5, 0.5), 0)
+                se.parent = aj
+                venas.append(se)
     for piv, sgn, aj in mitades:
         aj.rotation_euler = (0, R(90), 0)          # acostado a lo largo de X (la punta hacia -X)
         aj.location = (L / 2, 0, 0)
     L1 = bpy.data.lights.new("KeyCorte", "AREA")
-    L1.energy, L1.size, L1.color = 18, 0.4, (1.0, 0.93, 0.85)
+    L1.energy, L1.size, L1.color = 11, 0.4, (1.0, 0.93, 0.85)
     lo = bpy.data.objects.new("KeyCorte", L1)
     sc.collection.objects.link(lo)
     lo.location = (-0.2, -0.3, 0.45)
@@ -1695,6 +1717,28 @@ def _tupaya_en(S, x):
     tp["root"].location = Vector((x, 0.0, S["sobre_rama"](x, 0.0) - 0.002))
 
 
+def _patas_tupaya(S):
+    """Pivotes en las caderas para un paso simple (diagonales en fase). Se arma una vez por escena."""
+    if "patas" in S:
+        return S["patas"]
+    root = S["tp"]["root"]
+    out = []
+    for (x, y) in ((-1, -1), (1, -1), (-1, 1), (1, 1)):
+        ob = bpy.data.objects.get(f"Tupaya_pata{x}{y}")
+        if ob is None:
+            continue
+        piv = P.empty(f"PivPata{x}{y}", loc=(x * 0.020, y * 0.035 - 0.005, 0.050), coll=S["tp"]["root"].users_collection[0], parent=root)
+        PJ.colgar(ob, piv)
+        out.append((piv, 1 if x * y > 0 else -1))
+    S["patas"] = out
+    return out
+
+
+def _caminar(S, f, peso=1.0):
+    for piv, sg in _patas_tupaya(S):
+        piv.rotation_euler = (R(26) * peso * sg * math.sin(f * 0.55), 0, 0)
+
+
 def _cola(S, f, amp=6):
     if S["cola"] is not None:
         r0 = S["cola_rot0"]
@@ -1718,25 +1762,29 @@ def p28b(sc, a, b):
 
 
 def p29(sc, a, b):
-    """hay un mamífero que casi no lo siente: el bosque; algo se mueve entre las ramas y asoma una cola peluda."""
+    """hay un mamífero que casi no lo siente: cámara que acompaña de costado a algo que camina por la rama entre la niebla
+    (revisión del borrador: antes eran 2,8 s de rama vacía); en el 30 llega al encuadre principal."""
     S = _bosque(sc)
     tp = S["tp"]
     cam = S["cam"]
-    c0 = cam.location.copy()
-    t0 = S["tgt"].copy()
-    lejos = c0 + Vector((0.45, -0.35, 0.10))
     n = b - a
+    x_ini, x_fin = float(os.environ.get("P29_X0", -0.84)), float(os.environ.get("P29_X1", -0.66))
+    dist = float(os.environ.get("P29_D", 0.95))
+    r0 = S["pc_rot0"]
 
     def act(f):
         x = (f - a) / n
-        # grúa lateral: de más lejos y de costado al encuadre del plano 30
-        k = E2.suave2(x)
-        cam.rotation_mode = "QUATERNION"
-        E2.mirar(cam, lejos.lerp(c0, k) + Vector((0, 0, 0.0)), t0 + Vector((-0.08 * (1 - k), 0, 0.02 * (1 - k))))
-        cam.data.dof.focus_distance = (S["cab_w"] - cam.location).length
-        # la tupaya viene por la rama desde la izquierda, todavía tapada: sólo asoma la cola
-        _tupaya_en(S, -0.62 + 0.20 * suave(lin(x, 0.25, 1.0)))
+        tx = x_ini + (x_fin - x_ini) * x
+        _tupaya_en(S, tx)
+        tp["root"].location.z += 0.005 + 0.008 * abs(math.sin((f - a) * 0.55))
+        tp["cabeza"].rotation_euler = Euler((r0.x * 0.2, 0, 0))        # mira adelante, no a cámara (todavía no se presenta)
+        _caminar(S, f - a)
         _cola(S, f, 10)
+        bpy.context.view_layer.update()
+        h = tp["cabeza"].matrix_world.translation
+        tgt = Vector((tx + 0.07, 0.0, h.z - 0.02))
+        pos = tgt + Vector((-0.10 + 0.08 * x, -dist, 0.07))
+        E2.mirar(cam, pos, tgt, foco=h)
     return {"actualizar": act}
 
 
@@ -1755,6 +1803,7 @@ def p30(sc, a, b):
         llega = suave(lin(x, 0.0, 0.42))
         _tupaya_en(S, (x0 - 0.42) + 0.42 * llega)
         tp["root"].location.z += 0.008 * abs(math.sin((f - a) * 0.55)) * (1 - llega)
+        _caminar(S, f - a + 84, 1 - llega)        # sigue el paso del 29 (84 cuadros)
         mira = suave(lin(x, 0.40, 0.62))
         r0 = S["pc_rot0"]
         tp["cabeza"].rotation_euler = Euler((r0.x * mira, 0, r0.z * mira))
