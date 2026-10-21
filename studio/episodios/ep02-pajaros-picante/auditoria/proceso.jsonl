@@ -180,3 +180,4 @@
 {"tipo": "promesa", "hora": "06:10", "que": "borrador r3 de la puerta 6 (19 piezas)", "dato": "reparto.py: 45–74 min por máquina (+20 % como en el run anterior) + ~25 min de armado con 5 runs base, desde 04:06", "n": 180, "ts": "2026-10-21T04:05:25-03:00"}
 {"tipo": "chequeo", "id": "render-planos 39559543358", "estado": "en curso, 0/0 trabajos de render listos, armado: sin empezar", "n": 181, "ts": "2026-10-21T04:05:36-03:00"}
 {"tipo": "chequeo", "id": "render-planos 39559543358", "estado": "en curso, 0/16 trabajos de render listos, armado: sin empezar", "n": 182, "ts": "2026-10-21T04:21:00-03:00"}
+{"tipo": "chequeo", "id": "render-planos 39559543358", "estado": "en curso, 3/16 trabajos de render listos, armado: sin empezar", "n": 183, "ts": "2026-10-21T04:36:26-03:00"}
