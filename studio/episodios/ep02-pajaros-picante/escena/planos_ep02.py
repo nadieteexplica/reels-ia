@@ -986,7 +986,7 @@ def p21(sc, a, b):
     # caminos: entran desde los lados, llegan junto a la mata, huelen, se dan vuelta y se van
     caminos = {
         "rat": (MATA + Vector((0.20, -0.17, 0)), MATA + Vector((0.15, -0.12, 0))),       # puerta 6 r1/r2: enteros en cuadro, sin tocar
-        "rata": (MATA + Vector((-0.24, -0.22, 0)), MATA + Vector((-0.18, -0.16, 0))),
+        "rata": (MATA + Vector((-0.19, -0.22, 0)), MATA + Vector((-0.12, -0.16, 0))),
     }
 
     def mover(r_, cm, f, f0, f_llega, f_vuelta, f_sale):
@@ -2071,6 +2071,12 @@ def p32(sc, a, b):
     fwd = (tp["root"].matrix_world.to_3x3() @ Vector((0, -1, 0))).normalized()
     n = b - a
     mordiscos = [0.18, 0.45, 0.72]
+    # puerta 6 r2: no se veía que comiera → un trozo de espiga en la boca que se achica al masticar entre mordidas
+    trozo = P.prim("sphere", "TrozoEspiga", S["C"], e.data.materials[0] if e.data.materials else None, r=0.0055, u=16, v=8)
+    trozo.scale = (2.4, 1.0, 1.0)
+    trozo.location = nar.matrix_world.translation + fwd * 0.010 + Vector((0, 0, -0.006))
+    PJ.colgar(trozo, pc)
+    trozo_s0 = trozo.scale.copy()
     ojos_s0 = [o_.scale.copy() for o_ in tp["ojos"]]
 
     def act(f):
@@ -2091,6 +2097,12 @@ def p32(sc, a, b):
             _tupaya_en(S, tp["root"].location.x + avance * fwd.x)
             bpy.context.view_layer.update()
         _cola(S, f)
+        tz = 0.0
+        for m in mordiscos:
+            if m + 0.06 <= x < m + 0.26:
+                tz = 1.0 - lin(x, m + 0.10, m + 0.26)
+        trozo.scale = (trozo_s0.x * max(tz, 1e-3), trozo_s0.y * max(tz, 1e-3), trozo_s0.z * max(tz, 1e-3))
+        trozo.hide_render = tz < 0.03
         # entre mordidas mastica contenta: la cabeza late y los ojos se entornan
         mastica = max(math.sin(math.pi * lin(x, m + 0.10, m + 0.26)) for m in mordiscos)
         pc.rotation_euler = Euler((pc.rotation_euler.x + R(4) * mastica * math.sin((f - a) * 2.2), pc.rotation_euler.y, pc.rotation_euler.z))
@@ -2101,7 +2113,7 @@ def p32(sc, a, b):
         ang = R(-14 + 28 * x)
         rr_ = Matrix.Rotation(ang, 3, "Z") @ (rel * 0.72)       # puerta 6 r2: más cerca (variar el tamaño del bloque 29–32)
         cam.rotation_mode = "QUATERNION"
-        E2.mirar(cam, centro + rr_, S["tgt"] + (centro + rr_ - c0) * 0.0, foco=centro)
+        E2.mirar(cam, centro + rr_, S["tgt"].lerp(centro, 0.65) + Vector((0.02, 0, -0.01)), foco=centro)    # puerta 6 r2: centrado en la cabeza
     return {"actualizar": act}
 
 
