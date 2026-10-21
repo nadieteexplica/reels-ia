@@ -109,7 +109,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - No crear cuentas ni usar contraseñas por Tomás.
 - **Publicar en redes solo con su OK explícito, post por post.**
 
-## Estado actual (20-oct-2026)
+## Estado actual (21-oct-2026)
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
 - **Estilo decidido:** semi-realista con Mixamo y personaje propio (ver "Formato").
@@ -144,7 +144,10 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **Ep. 2 — "Los pájaros no sienten el picante" (en producción, `studio/episodios/ep02-pajaros-picante/`):**
   - Concepto hecho para la idea (decisión de Tomás): comedia 3D de dibujo animado **sin humanos**, en el desierto de Arizona; el ratón hace de "tú" (mamíferos) y el cierre lo manda al que se cree inmune. Personajes propios en `ficha.jpg` (cuitlacoche, ratón del cactus, rata, tupaya, ají guardia), todos procedurales (`escena/personajes.py`), sin modelos externos.
   - Puertas: **guion APROBADO (r2)** · **voz APROBADO (r2**, 73,6 s; pausas ajustadas con `tools/pausas.py`, 0 créditos extra) · **storyboard APROBADO (r3**, 40 planos, **0 clips de Kling**: todo render para que la llama y los personajes sean siempre los mismos).
-  - **Puerta 4 (cuadros de estilo): APROBADO el 20-oct a las 17:20** (ciclo 3, r3; belleza 8, personaje 9, manos 9, anatomía 8; 6 detalles de prioridad 3 para la animación). Tres ciclos de 3 rondas: c1 (bosque v1, se rediseñó por decisión de Tomás), c2 (9 arreglos pendientes, Tomás eligió un ciclo más), c3. Archivados en `auditoria/4-cuadros-ciclo1/` y `-ciclo2/`. Cuadros + ficha enviados a Tomás: **falta su OK antes de animar**. Detalle en `studio/episodios/ep02-pajaros-picante/PENDIENTE.md`.
+  - **Puerta 4 (cuadros de estilo): APROBADO el 20-oct a las 17:20** (ciclo 3, r3; belleza 8, personaje 9, manos 9, anatomía 8; 6 detalles de prioridad 3 para la animación). Tres ciclos de 3 rondas: c1 (bosque v1, se rediseñó por decisión de Tomás), c2 (9 arreglos pendientes, Tomás eligió un ciclo más), c3. Archivados en `auditoria/4-cuadros-ciclo1/` y `-ciclo2/`. Tomás dio el OK para animar (20-oct 18:01).
+  - **Animación (20–21 oct):** sistema por planos (`escena/plano.py`, `planos_ep02.py`, `post.py`, `audio.py`; workflow `render-planos.yml` con varios runs base y piezas partidas). Primer borrador 21:34; revisión propia → 7 planos rehechos.
+  - **Publicación: Tomás aprobó el borrador que vio y pidió que saliera sí o sí a las mejores horas** (`docs/HORARIOS.md`): programado el 20-oct 22:48 para el **21-oct** → Instagram 10:00, YouTube 16:00, TikTok 18:00 (Metricool 401677198 / 401677452 / 401677487; MP4 en el Release `ep02`). Ese borrador NO pasó la puerta 6.
+  - **Puerta 6 r1: NO APROBADO** (23:40, 76 observaciones). Arreglos de 35 piezas + post en el run 39540956118 (borrador ~02:55) → r2. Si aprueba, se le ofrece a Tomás cambiar el video de los posts que no hayan salido (YouTube 16:00, TikTok 18:00): **sin su OK no se cambia nada**.
 - **Ep. 1 publicado** el 19-oct-2026 a las 16:35 en Instagram, TikTok y YouTube (links en `docs/PUBLICADOS.md`). Métricas a las 48 h (21-oct) y a los 7 días (26-oct).
 - **Próximos pasos:**
   1. ~~Auditor por etapas~~: listo el 19-oct (`docs/AUDITOR.md`, `tools/auditor/`, calibración en `docs/AUDITOR_CALIBRACION.md`).
