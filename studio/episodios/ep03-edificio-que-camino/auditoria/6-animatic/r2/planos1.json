@@ -1,0 +1,32 @@
+{
+ "encargo": "planos1",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "Ladrillo, cielo y patas amarillo/celeste se ven limpios y bien iluminados (P02 1.33, P21 32.15, P23 35.69); lo más pobre es la vista cenital de P25-P26 (39.51-42.24), con textura de tierra a manchas y el edificio como una T gris plana, y el suelo liso que llena la mitad baja en P10 y P24."},
+  "animacion": {"nota": 8, "por_que": "Las patas se alternan con pies levantados (P02 1.62-2.77, P21 32.49-33.00), la bola de demolición entra columpiándose (P11 17.20-17.40), las torres crecen piso a piso (P09 12.94-13.14) y la muleta da un paso con 'camine' (P24 38.59-38.87); P25 casi no tiene acción (mov_mediana 0,64), sólo entran los rieles."},
+  "claridad": {"nota": 8, "por_que": "Cada imagen muestra lo que dice la voz: torres nuevas con 'estorbaba' (P09), bola con ✕ DEMOLER (P11), cambio de grupo con flechas en 'luego cambian' (P21), muletas en 'muletas' (P23-P24) y rieles con ✕ RIELES (P25-P26); el cuadro 0 sigue leyéndose más 'edificio' que 'edificio con patas' (A7 abierto)."},
+  "ritmo": {"nota": 9, "por_que": "Ningún plano pasa 0,13 s quieto (quieto_max_s ≤ 0,13) y hasta el más largo (P24, 2,6 s) cambia: se alza el edificio en 37.75, la muleta da un paso en 38.59 y el subtítulo cambia cada ~0,5 s."}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A2", "arreglado": true, "por_que": "De 37.75 a 39.43 el edificio se alza (franja de sombra bajo él) y las puntas de goma de las dos muletas quedan apoyadas en la tierra delante de esa franja; sólo en 38.59 la izquierda se levanta para dar el paso con 'camine' y vuelve a apoyar en 38.87."},
+  {"id": "A4", "arreglado": true, "por_que": "En 1.33-3.06 la cámara es fija y baja a la altura de las patas (los conos no se mueven en el cuadro), las patas ocupan y≈600-830 con grupos inclinados y pies levantados, y el edificio avanza hacia la derecha (~250 px en el plano): se lee caminar, no deslizarse. Las patas ocupan ~12 % del alto, no 20 %, pero ahora son el sujeto del plano."},
+  {"id": "A7", "arreglado": false, "por_que": "En 0.04 el encuadre es el mismo: las patas siguen siendo una franja de y≈820-940 (~7 % del alto) bajo un edificio que ocupa casi todo el cuadro; no se ve un grupo levantado. Sigue siendo sugerencia, no bloqueante."}
+ ],
+ "eventos": [
+  {"id": "E11", "es_defecto": false, "por_que": "Es el corte P08→P09 (12.30): antes es el ladrillo en primer plano y después la esquina del edificio con la primera losa de vidrio de la torre nueva."},
+  {"id": "E12", "es_defecto": false, "por_que": "Las torres de oficinas de vidrio crecen piso a piso detrás del edificio con 'estorbaba'."},
+  {"id": "E13", "es_defecto": false, "por_que": "Siguen subiendo las losas de la torre de vidrio en P10; nada cambia de forma ni de color."},
+  {"id": "E14", "es_defecto": false, "por_que": "Más losas de la torre y la píldora OFICINAS + TIENDAS que entra creciendo con 'oficinas'."},
+  {"id": "E15", "es_defecto": false, "por_que": "La bola de demolición entra columpiándose desde la izquierda (en 17.20 ya asoma al borde) y aparece la píldora ✕ DEMOLER con 'demolerla'."},
+  {"id": "E16", "es_defecto": false, "por_que": "La bola sigue oscilando bajo la píldora ✕ DEMOLER; no cambia de forma."},
+  {"id": "E23", "es_defecto": false, "por_que": "Cambio de grupo con 'luego cambian': el B se ilumina, el A se apaga y entran flechas azules de avance."},
+  {"id": "E26", "es_defecto": false, "por_que": "La primera muleta entra inclinada en 35.07 y se endereza en 35.41-35.69, con 'según el jefe técnico': es una entrada animada de utilería."},
+  {"id": "E27", "es_defecto": false, "por_que": "El plano de 2,6 s sí cambia: el edificio se alza en 37.75, la muleta da un paso en 38.59-38.87 y el subtítulo cambia cada ~0,5 s (quieto_max_s 0)."},
+  {"id": "E28", "es_defecto": false, "por_que": "Es el cambio de subtítulo 'COMO PONERLE' → 'MULETAS PARA' en el corte P23→P24 (36.87)."},
+  {"id": "E29", "es_defecto": false, "por_que": "Los rieles se dibujan junto al edificio con 'no usaron rieles'."},
+  {"id": "E30", "es_defecto": false, "por_que": "Entra la píldora ✕ RIELES creciendo desde 41.71 con 'no doblan', sobre la trayectoria curva punteada."}
+ ],
+ "resumen": "Sin bloqueantes nuevos en los planos 1-26. A2 (muletas flotando) y A4 (cámara de 'se fue caminando') quedaron arreglados; A7 (patas chicas en el cuadro 0) sigue igual, pero es sugerencia."
+}

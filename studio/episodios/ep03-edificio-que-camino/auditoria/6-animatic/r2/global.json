@@ -1,0 +1,21 @@
+{
+ "encargo": "global",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "gancho": {"nota": 7, "por_que": "la frase 'este edificio de cinco pisos se fue caminando' más el corte a las patas en paso a 1,29 s (gancho.jpg 1.40 s) sujetan, y en 0–1,29 s las patas ya se mueven (mov_mediana 4,32); pero la portada (cuadro0) sigue mostrando las patas como una franja de ~90 px (y≈840–930, ~5 % del alto) con la mitad de abajo de tierra lisa, y el grupo amarillo sube apenas ~30 px: en el teléfono se lee 'edificio sobre gatas', no 'edificio con patas dando un paso'"},
+  "claridad": {"nota": 9, "por_que": "cada idea tiene su imagen y su etiqueta: 1935 en 3D (7–8 s), SHANGHÁI · CHINA (9 s), contador de toneladas (10–11 s), torres fantasma + OFICINAS + TIENDAS (12–16 s), ✕DEMOLER/✓MOVER (17–18 s), corte de la excavación (19–20 s), contador 198 PATAS (21–22 s), GRUPO A/B (28–32 s), muletas (35–38 s), vista cenital rieles rectos vs camino curvo con 21° (39–43 s), 62 m, DÍA 18, barras TÚ <1 MIN vs 18 DÍAS (44–50 s), sala de 2003 sin patas y autopista (52–57 s), 85 AÑOS (60 s)"},
+  "ritmo": {"nota": 9, "por_que": "36 planos en 63,8 s (1,77 s de promedio), escala cambia todo el tiempo (general, detalle, aéreo, corte, cenital), QA sin congelados > 0,5 s y quieto_max_s máximo 0,6 s (P33); el loop calza exacto: misma toma y encuadre en fin −0,1 s e inicio 0,0 s, y la voz 'aprendió a caminar' empalma con 'este edificio… se fue caminando'"},
+  "belleza": {"nota": 8, "por_que": "look 3D semi-realista parejo, luz de día limpia, sin quemados ni lavado; lo más flojo son los cortes de excavación (19–22 s y 26 s) con el ~40 % de abajo en gris liso y la vista cenital (39–43 s), que es un esquema plano sobre textura beige ruidosa"},
+  "animacion": {"nota": 8, "por_que": "el protagonista actúa por las patas: zancada visible en 1,4–4,5 s y 27–34 s, grúa de demolición, muletas, contadores; ningún plano congelado (quieto_max_s ≤ 0,6); lo más quieto es la cenital P25–P26 (mov_mediana 0,64–0,69), pero ahí entra algo nuevo cada segundo (rieles 40 s, camino 41 s, ángulo 42–43 s)"},
+  "subtitulos": {"nota": 9, "por_que": "181/181 palabras, desfase 0, todas las cajas dentro de x 139–866 · y 1022–1217, tildes bien (SHANGHÁI, CAMINÓ, DEMORÓ, DÍAS, PRÁCTICA, APRENDIÓ, ROBÓTICAS, TÉCNICO), sin caras que tapar; la puntuación (incluido ¿?) se omite de forma pareja como estilo, y el tamaño baja en algunos bloques (19–20 s, 15 s) sin perder legibilidad"},
+  "audio": {"nota": 9, "por_que": "no lo puedo escuchar: por cifras, −14,0 LUFS y −1,5 dBTP dentro de rango, y la voz queda 12,8 dB sobre música y efectos medidos en las pausas (mínimo, por el ducking)"},
+  "precision": {"nota": 9, "por_que": "5 hileras de ventanas = 5 pisos, Escuela Lagena, 1935, Shanghái, 7.600 t con 'más de' en la voz, 198 patas, dos grupos, 21°, 62 m, 18 días, 85 años y la sala de 2003 movida sin patas, todo coincide con guion y fuentes; 'CÁMARA RÁPIDA' marca el paso acelerado (1,9–4,5 s). No alcanzo a ver el valor final del contador de metros de la sala (55,5 s marca 61 m): por China Daily debe detenerse en 66 m, no en 62"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A3", "arreglado": false, "por_que": "se hizo a medias: en cuadro0 las patas ya quedan justo sobre los subtítulos (y≈840–930) y el loop sigue calzando, pero siguen siendo una franja de ~5 % del alto, el grupo amarillo sube sólo ~30 px (no se lee como paso a tamaño teléfono) y de y≈940 hacia abajo sigue siendo tierra lisa; la portada todavía no vende 'patas' por sí sola"}
+ ],
+ "eventos": [],
+ "resumen": "Sin bloqueantes: subtítulos, audio, ritmo, loop y precisión están sólidos. A3 quedó a medias (la portada sigue mostrando las patas chicas y la mitad de abajo vacía); conviene confirmar que el contador de la sala de conciertos termine en 66 m."
+}
