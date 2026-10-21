@@ -147,3 +147,4 @@
 {"tipo": "chequeo", "id": "render-planos arreglos 36+23L 39517107581", "estado": "in_progress, 2/2 trabajos de render listos", "n": 147, "ts": "2026-10-20T21:46:47-03:00"}
 {"tipo": "chequeo", "id": "render-planos arreglos 36+23L 39517107581", "estado": "in_progress, 2/2 trabajos de render listos", "n": 148, "ts": "2026-10-20T22:01:05-03:00"}
 {"tipo": "aviso", "que": "22:09: revisión propia del borrador completo: 6 planos a re-renderizar (10 corte sobreexpuesto, 12 baliza cortada, 4 llama ilegible, 25 arranque vacío y flores de canto, 29 rama vacía 2,8 s, 24L lupa vacía) + arreglos de post (congelado del QA a los 24 s, color MAMÍFEROS, píldoras 6 y ✓ 25). Run 39525585159 lanzado encima de los dos anteriores; borrador nuevo ~23:05.", "n": 149, "ts": "2026-10-20T22:09:07-03:00"}
+{"tipo": "chequeo", "id": "render-planos arreglos revisión borrador 39525585159", "estado": "in_progress, 0/12 trabajos de render listos", "n": 150, "ts": "2026-10-20T22:09:18-03:00"}
