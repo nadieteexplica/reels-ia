@@ -12,3 +12,6 @@
 {"tipo": "trabajo", "id": "animatic 1 (540x960, 8 muestras, 15 máquinas) run 39659898818", "estado": "inicio", "n": 12, "ts": "2026-10-21T16:14:53-03:00"}
 {"tipo": "promesa", "hora": "16:30", "que": "chequear animatic 1 cada 15 min", "dato": "estimado 25–35 min (medido: muestras ~4 min con 1 cuadro/pieza)", "n": 13, "ts": "2026-10-21T16:14:53-03:00"}
 {"tipo": "trabajo", "id": "look (estilo_obra_HD + estilo_corte_HD)", "estado": "OK de Tomás", "nota": "16:45: 'esta bueno el video le doy el ok' sobre los 2 cuadros de estilo. Es OK del look, no de publicación", "n": 14, "ts": "2026-10-21T16:45:24-03:00"}
+{"tipo": "trabajo", "id": "animatic 1 run 39659898818", "estado": "fin", "nota": "50 min total: render 34 min (15 máquinas, la más lenta 33,8 min), armado 16 min. QA PASA (63,8 s, −14,1 LUFS, −1,5 dBTP). Chequeo 0 fallas, 1 aviso (sin ojos)", "n": 15, "ts": "2026-10-21T17:09:42-03:00"}
+{"tipo": "trabajo", "id": "puerta 6 r1: 5 revisores (4 de planos + global)", "estado": "inicio", "n": 16, "ts": "2026-10-21T17:09:42-03:00"}
+{"tipo": "promesa", "hora": "17:40", "que": "resultado puerta 6 r1 a Tomás", "dato": "puerta 4: 1 revisor ~5 min; 6: 5 revisores en paralelo, estimado 15–25 min", "n": 17, "ts": "2026-10-21T17:09:42-03:00"}
