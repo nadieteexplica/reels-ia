@@ -1,0 +1,743 @@
+[
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 0.93,
+  "caja": [
+   450,
+   1230,
+   570,
+   1260
+  ],
+  "celdas": 4,
+  "score": 23.71,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 1,
+  "id": "E1",
+  "imagen": "eventos/E1.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 2.33,
+  "caja": [
+   570,
+   510,
+   810,
+   990
+  ],
+  "celdas": 24,
+  "score": 25.3,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 2,
+  "id": "E2",
+  "imagen": "eventos/E2.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 3.93,
+  "caja": [
+   30,
+   270,
+   600,
+   1020
+  ],
+  "celdas": 30,
+  "score": 27.16,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 3,
+  "id": "E3",
+  "imagen": "eventos/E3.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 4.4,
+  "caja": [
+   30,
+   210,
+   630,
+   1020
+  ],
+  "celdas": 35,
+  "score": 33.4,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 3,
+  "id": "E4",
+  "imagen": "eventos/E4.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 5.07,
+  "caja": [
+   30,
+   30,
+   720,
+   1230
+  ],
+  "celdas": 23,
+  "score": 21.54,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 4,
+  "id": "E5",
+  "imagen": "eventos/E5.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 5.8,
+  "caja": [
+   60,
+   30,
+   240,
+   330
+  ],
+  "celdas": 8,
+  "score": 17.07,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 4,
+  "id": "E6",
+  "imagen": "eventos/E6.jpg"
+ },
+ {
+  "tipo": "plano_largo",
+  "plano": 5,
+  "t0": 5.91,
+  "t1": 8.74,
+  "dur": 2.83,
+  "bloqueante": false,
+  "que": "plano de 2.8 s: confirmar que algo cambia cada 2 s",
+  "id": "E7"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 6.2,
+  "caja": [
+   330,
+   240,
+   750,
+   360
+  ],
+  "celdas": 34,
+  "score": 35.32,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica (zona de etiquetas: puede ser una píldora que entra a propósito)",
+  "plano": 5,
+  "id": "E8",
+  "imagen": "eventos/E8.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 8.93,
+  "caja": [
+   240,
+   180,
+   870,
+   660
+  ],
+  "celdas": 78,
+  "score": 27.89,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 6,
+  "id": "E9",
+  "imagen": "eventos/E9.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 11.93,
+  "caja": [
+   270,
+   540,
+   750,
+   990
+  ],
+  "celdas": 83,
+  "score": 67.24,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 8,
+  "id": "E10",
+  "imagen": "eventos/E10.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 13.13,
+  "caja": [
+   360,
+   1590,
+   780,
+   1890
+  ],
+  "celdas": 6,
+  "score": 18.09,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 9,
+  "id": "E11",
+  "imagen": "eventos/E11.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 13.6,
+  "caja": [
+   750,
+   30,
+   900,
+   150
+  ],
+  "celdas": 11,
+  "score": 42.2,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 9,
+  "id": "E12",
+  "imagen": "eventos/E12.jpg"
+ },
+ {
+  "tipo": "cambio_de_luz",
+  "plano": 10,
+  "t0": 15.08,
+  "t1": 16.71,
+  "cambio": 121,
+  "bloqueante": false,
+  "que": "el brillo sube 121 % dentro del plano",
+  "id": "E13",
+  "imagen": "eventos/E13.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 15.53,
+  "caja": [
+   390,
+   870,
+   810,
+   1650
+  ],
+  "celdas": 37,
+  "score": 42.09,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 10,
+  "id": "E14",
+  "imagen": "eventos/E14.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 17.07,
+  "caja": [
+   30,
+   300,
+   210,
+   450
+  ],
+  "celdas": 8,
+  "score": 24.55,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica (zona de etiquetas: puede ser una píldora que entra a propósito)",
+  "plano": 11,
+  "id": "E15",
+  "imagen": "eventos/E15.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 17.6,
+  "caja": [
+   270,
+   720,
+   750,
+   1230
+  ],
+  "celdas": 52,
+  "score": 23.95,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 11,
+  "id": "E16",
+  "imagen": "eventos/E16.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 18.67,
+  "caja": [
+   450,
+   210,
+   660,
+   480
+  ],
+  "celdas": 16,
+  "score": 18.02,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 12,
+  "id": "E17",
+  "imagen": "eventos/E17.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 19.13,
+  "caja": [
+   300,
+   360,
+   990,
+   1260
+  ],
+  "celdas": 39,
+  "score": 23.72,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 12,
+  "id": "E18",
+  "imagen": "eventos/E18.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 22.13,
+  "caja": [
+   150,
+   240,
+   510,
+   630
+  ],
+  "celdas": 69,
+  "score": 59.79,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 14,
+  "id": "E19",
+  "imagen": "eventos/E19.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 23.6,
+  "caja": [
+   270,
+   300,
+   660,
+   750
+  ],
+  "celdas": 30,
+  "score": 70.93,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 15,
+  "id": "E20",
+  "imagen": "eventos/E20.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 27.0,
+  "caja": [
+   780,
+   540,
+   1020,
+   1080
+  ],
+  "celdas": 17,
+  "score": 37.35,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 17,
+  "id": "E21",
+  "imagen": "eventos/E21.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 28.93,
+  "caja": [
+   360,
+   330,
+   840,
+   780
+  ],
+  "celdas": 22,
+  "score": 23.04,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 18,
+  "id": "E22",
+  "imagen": "eventos/E22.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 34.2,
+  "caja": [
+   390,
+   1230,
+   660,
+   1260
+  ],
+  "celdas": 9,
+  "score": 46.23,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 21,
+  "id": "E23",
+  "imagen": "eventos/E23.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 35.93,
+  "caja": [
+   480,
+   1230,
+   600,
+   1260
+  ],
+  "celdas": 4,
+  "score": 25.58,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 22,
+  "id": "E24",
+  "imagen": "eventos/E24.jpg"
+ },
+ {
+  "tipo": "plano_largo",
+  "plano": 23,
+  "t0": 36.75,
+  "t1": 39.54,
+  "dur": 2.79,
+  "bloqueante": false,
+  "que": "plano de 2.8 s: confirmar que algo cambia cada 2 s",
+  "id": "E25"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 39.6,
+  "caja": [
+   720,
+   360,
+   840,
+   450
+  ],
+  "celdas": 8,
+  "score": 41.92,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica (zona de etiquetas: puede ser una píldora que entra a propósito)",
+  "plano": 24,
+  "id": "E26",
+  "imagen": "eventos/E26.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 41.6,
+  "caja": [
+   270,
+   120,
+   810,
+   630
+  ],
+  "celdas": 124,
+  "score": 72.76,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 25,
+  "id": "E27",
+  "imagen": "eventos/E27.jpg"
+ },
+ {
+  "tipo": "plano_largo",
+  "plano": 26,
+  "t0": 43.77,
+  "t1": 46.61,
+  "dur": 2.84,
+  "bloqueante": false,
+  "que": "plano de 2.8 s: confirmar que algo cambia cada 2 s",
+  "id": "E28"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 45.0,
+  "caja": [
+   270,
+   300,
+   720,
+   1050
+  ],
+  "celdas": 10,
+  "score": 25.5,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 26,
+  "id": "E29",
+  "imagen": "eventos/E29.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 48.87,
+  "caja": [
+   30,
+   30,
+   1050,
+   1260
+  ],
+  "celdas": 274,
+  "score": 135.1,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 28,
+  "id": "E30",
+  "imagen": "eventos/E30.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 49.27,
+  "caja": [
+   840,
+   30,
+   1050,
+   810
+  ],
+  "celdas": 35,
+  "score": 19.09,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 28,
+  "id": "E31",
+  "imagen": "eventos/E31.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 49.73,
+  "caja": [
+   30,
+   30,
+   1050,
+   1890
+  ],
+  "celdas": 186,
+  "score": 100.15,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 28,
+  "id": "E32",
+  "imagen": "eventos/E32.jpg"
+ },
+ {
+  "tipo": "plano_largo",
+  "plano": 29,
+  "t0": 49.88,
+  "t1": 52.66,
+  "dur": 2.78,
+  "bloqueante": false,
+  "que": "plano de 2.8 s: confirmar que algo cambia cada 2 s",
+  "id": "E33"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 53.2,
+  "caja": [
+   30,
+   600,
+   840,
+   1050
+  ],
+  "celdas": 46,
+  "score": 59.72,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 30,
+  "id": "E34",
+  "imagen": "eventos/E34.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 54.6,
+  "caja": [
+   300,
+   210,
+   630,
+   570
+  ],
+  "celdas": 70,
+  "score": 55.4,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 31,
+  "id": "E35",
+  "imagen": "eventos/E35.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 55.4,
+  "caja": [
+   120,
+   600,
+   240,
+   780
+  ],
+  "celdas": 15,
+  "score": 29.54,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 31,
+  "id": "E36",
+  "imagen": "eventos/E36.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 56.07,
+  "caja": [
+   30,
+   600,
+   240,
+   870
+  ],
+  "celdas": 25,
+  "score": 41.47,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 31,
+  "id": "E37",
+  "imagen": "eventos/E37.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 57.0,
+  "caja": [
+   480,
+   630,
+   750,
+   1200
+  ],
+  "celdas": 15,
+  "score": 30.33,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 32,
+  "id": "E38",
+  "imagen": "eventos/E38.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 59.93,
+  "caja": [
+   150,
+   330,
+   510,
+   900
+  ],
+  "celdas": 26,
+  "score": 20.3,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 34,
+  "id": "E39",
+  "imagen": "eventos/E39.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 62.6,
+  "caja": [
+   30,
+   120,
+   1020,
+   1200
+  ],
+  "celdas": 18,
+  "score": 16.48,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 35,
+  "id": "E40",
+  "imagen": "eventos/E40.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 63.2,
+  "caja": [
+   450,
+   300,
+   690,
+   480
+  ],
+  "celdas": 14,
+  "score": 20.56,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica (zona de etiquetas: puede ser una píldora que entra a propósito)",
+  "plano": 35,
+  "id": "E41",
+  "imagen": "eventos/E41.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 66.47,
+  "caja": [
+   480,
+   330,
+   690,
+   390
+  ],
+  "celdas": 12,
+  "score": 19.04,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica (zona de etiquetas: puede ser una píldora que entra a propósito)",
+  "plano": 37,
+  "id": "E42",
+  "imagen": "eventos/E42.jpg"
+ },
+ {
+  "tipo": "plano_largo",
+  "plano": 38,
+  "t0": 68.42,
+  "t1": 71.11,
+  "dur": 2.69,
+  "bloqueante": false,
+  "que": "plano de 2.7 s: confirmar que algo cambia cada 2 s",
+  "id": "E43"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 69.87,
+  "caja": [
+   210,
+   480,
+   870,
+   1140
+  ],
+  "celdas": 22,
+  "score": 32.93,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 38,
+  "id": "E44",
+  "imagen": "eventos/E44.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 70.33,
+  "caja": [
+   30,
+   30,
+   870,
+   1500
+  ],
+  "celdas": 32,
+  "score": 32.87,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 38,
+  "id": "E45",
+  "imagen": "eventos/E45.jpg"
+ },
+ {
+  "tipo": "aparece_o_desaparece",
+  "t": 71.47,
+  "caja": [
+   210,
+   510,
+   930,
+   1050
+  ],
+  "celdas": 69,
+  "score": 56.62,
+  "bloqueante": false,
+  "que": "algo cambia de golpe en 1 cuadro dentro del plano y el movimiento no lo explica",
+  "plano": 39,
+  "id": "E46",
+  "imagen": "eventos/E46.jpg"
+ }
+]

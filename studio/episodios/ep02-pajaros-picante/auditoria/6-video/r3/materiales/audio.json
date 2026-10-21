@@ -1,0 +1,8 @@
+{
+ "lufs": -14.2,
+ "true_peak": -1.5,
+ "voz_db": -13.5,
+ "pausas_db": -27.6,
+ "voz_menos_pausas_db": 14.1,
+ "nota": "pausas = música + efectos sin voz; con ducking la música sube en las pausas, así que esto es un mínimo"
+}
