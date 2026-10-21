@@ -1,7 +1,7 @@
 # Ep. 3 — Textos por red
 
 ## Instagram (Reel) y TikTok
-Este edificio de 7.600 toneladas se fue caminando 🏫🦿
+Este edificio de más de 7.600 toneladas se fue caminando 🏫🦿
 En 2020, en Shanghái, una escuela de 1935 caminó 62 metros sobre 198 patas robóticas, en dos grupos que se turnan como tus pies.
 ¿Qué edificio de tu ciudad pondrías a caminar? 👇
 #curiosidades #ingenieria #shanghai #nadieteexplica
