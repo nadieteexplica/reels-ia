@@ -1,0 +1,21 @@
+# 1-guion · ronda 1 · **APROBADO**
+
+Promedio **8.75** (mínimo 8; ningún revisor bajo 7 en ningún criterio).
+
+| criterio | nota (promedio) | más baja | por qué (la más baja) |
+|---|---|---|---|
+| precision | 9.0 | 9 | Las 16 afirmaciones calzan con los extractos: CNN/IHBC trae 1935, 198 soportes 'like robotic legs', cavar alrededor, cortar columnas y alzarla entera, dos grupos que imitan el paso humano, la cita de las muletas, 21 grados, 62 m, 18 días, 85 años y la sala de conciertos de 2003; The Drive trae 'more than 7,600 tons' y que el camino curvo descartó los rieles; China Daily confirma la sala (66,46 m, autopista elevada Yan'an); MUTCD §4E.06 da 3,5 pies/s (verificado en el sitio: 62 m = 58 s). El dato central tiene fuentes independientes (CNN, BBC Mundo/T13 citando a CCTV, Oddity citando al SCMP). El 62 frente a los 61,7 m de CCTV es la cifra de CNN, no un redondeo para sonar mejor. |
+| gancho | 9.0 | 9 | Las primeras 8 palabras ('Este edificio de cinco pisos se fue caminando') ya son una imagen absurda, y 'no es broma... tiene patas' cierra el escape antes de los 3 s; entre los 3 y los 7 s el giro es más bien una subida (1935, 7.600 toneladas) que una contradicción, y la contradicción ('en vez de demolerla, la movieron') llega recién cerca de los 12 s. |
+| claridad | 8.0 | 8 | El mecanismo va en pasos cortos (cavar → patas → cortar columnas → alzar → dos grupos que se turnan, 'como tú cuando caminas') que un niño de 12 años sigue; las frases están en ≤ 14 palabras salvo el cierre (15, cortado por la pausa). Tiene dos puntos flojos: 'Porque había que doblar: la giraron veintiún grados' no dice por qué un riel no dobla, y 'Una y otra vez' repite lo que ya dijo 'Luego cambian'. No hay enseñanza útil, pero es decisión de Tomás (sin moraleja). |
+| compartible | 9.0 | 9 | Tiene destinatario claro: se manda con un 'mira esto' porque la premisa se entiende sola; la cita de las muletas y el cierre 'por fin aprendió a caminar' son frases que se citan, y la premisa ('¿no era más fácil hacer las oficinas en otro lado?') invita a comentar. |
+
+## Bloqueantes y fallas automáticas (impiden aprobar)
+
+Ninguno.
+
+## Sugerencias (las 5 más importantes; el resto queda en veredicto.json)
+
+1. El 'y lo más loco' promete superar el dato central y no lo supera: una sala que se movió (sin patas, como bien aclara el guion) sorprende menos que un edificio que camina, y queda como bajón justo antes del cierre, cuando más gente se va. Lo que sí la vuelve loca está en las fuentes y no se dice: la movieron 66 metros, más que la escuela (China Daily: 66,46 m; CNN: más de 66 m). — Y lo más loco: Shanghái ya tenía práctica. En dos mil tres movió su sala de conciertos... para que pasara una autopista. s. **Arreglo:** Agregar después de 'autopista': 'Sesenta y seis metros: más que esta escuela.' (8 palabras) y sacar 'Una y otra vez.' (4 palabras). Queda en 186 palabras, dentro de 181–188.
+2. La respuesta da por sabido que un riel sólo va derecho; 'doblar' y 'giraron' son dos ideas en una frase, y el espectador no conecta por qué el giro descarta los rieles (The Drive: el camino curvo y el giro de 21° fueron lo que 'ruled out relocation via rail'). — ¿Y por qué no usaron rieles? Porque había que doblar: la giraron veintiún grados. s. **Arreglo:** Cambiar la respuesta por 'Los rieles no doblan, y había que girarla veintiún grados.' (10 palabras en vez de 8, sin pausa nueva: ya hay 4). Con la sugerencia 1, el guion queda en 188 palabras, en el borde de la ventana; si hay que recortar, sale 'Y no, no es broma' → 'Y no es broma' (-1).
+3. 'Una y otra vez' no agrega información: 'Luego cambian' ya dice que se turnan, y la imagen del ciclo lo muestra. — Luego cambian. Una y otra vez. Como tú cuando caminas. s. **Arreglo:** Sacarla (son 4 palabras) y usar ese espacio en la cifra de la sala de conciertos (sugerencia 1).
+4. La ficha marca el gancho '¿Sabías que…?', que es el mismo tipo que el Ep. 2 según PUBLICADOS ('¿Por qué…? / ¿Sabías que…?'); IDEAS §2 pide no repetir gancho dos videos seguidos. El texto no dice '¿sabías que?' (es una imagen absurda), así que el problema está en la etiqueta y no en lo que ve el espectador. — Este edificio de cinco pisos se fue caminando. s. **Arreglo:** Registrar el gancho como imagen absurda/historia real en la ficha y en PUBLICADOS, o que Tomás confirme que se puede repetir.

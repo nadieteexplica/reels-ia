@@ -1,0 +1,23 @@
+{
+ "fallas": [],
+ "avisos": [],
+ "datos": {
+  "palabras": 182,
+  "duracion_estimada_s": 62.5,
+  "pausas": 4,
+  "fuentes": [
+   "chinadaily.com.cn",
+   "constructionequipment.com",
+   "gadgetreview.com",
+   "mutcd.fhwa.dot.gov",
+   "newsblogs.ihbc.org.uk",
+   "odditycentral.com",
+   "researchportal.bath.ac.uk",
+   "t13.cl",
+   "thedrive.com",
+   "theurbandeveloper.com",
+   "xataka.com"
+  ],
+  "afirmaciones_verificadas": 16
+ }
+}

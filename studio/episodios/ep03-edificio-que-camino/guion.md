@@ -1,22 +1,22 @@
 # Ep. 3 — El edificio que caminó
 
-**Versión 1 (21-oct-2026).** Idea elegida por Tomás el 21-oct (ficha en `docs/IDEAS.md` → "Historia e ingeniería"). Estudio previo: `docs/estudios/ep03.md`.
+**Versión 1.1 (21-oct-2026).** Puerta 1 APROBADO en la r1 (notas 9/9/8/9); se aplicaron sus sugerencias 2–4 (rieles que no doblan, sin "una y otra vez", etiqueta del gancho); la 1 (cifra de la sala de conciertos) no, porque alarga la voz sobre 65 s. Idea elegida por Tomás el 21-oct (ficha en `docs/IDEAS.md` → "Historia e ingeniería"). Estudio previo: `docs/estudios/ep03.md`.
 **Voz:** Fernando Martínez · job `jobs/voz/0008-ep03-edificio-que-camino.json` → `out/tts/ep03-edificio-que-camino.mp3`.
-**Línea:** datos (historia real absurda) · **Gancho:** "¿Sabías que…?" (imagen que no tiene sentido todavía: un edificio con patas) · **Área:** ciudad e infraestructura · **Formato:** dato histórico con metáfora visual + corte que se arma frente a ti (REFERENCIAS R6 + R5), 3D semi-realista.
+**Línea:** datos (historia real absurda) · **Gancho:** imagen imposible / historia real (un edificio con patas que se va caminando; no es el "¿Sabías que…?" del Ep. 2) · **Área:** ciudad e infraestructura · **Formato:** dato histórico con metáfora visual + corte que se arma frente a ti (REFERENCIAS R6 + R5), 3D semi-realista.
 **Tono (decisión de Tomás):** absurdo y chistoso: voz seria contra imágenes ridículas. Sin moraleja y sin "¿para qué sirvió?" narrado: esa reacción la pone la gente. Cierre en loop.
 **Acción buscada:** enviar. ¿A quién se lo mandan? A cualquiera, con un "mira esta weá": la imagen se entiende sola y la premisa ("¿no era más fácil hacer las oficinas en otro lado?") invita a comentar y discutir (REFERENCIAS §3, conclusiones 17–18).
 **Puntaje de la idea:** 43,0 de 45 (IDEAS.md §2; mínimo 32 en datos). Curiosidad 5 (×1,5 = 7,5) · Universalidad 5 (×1,2 = 6) · Sorpresa 5 (×1,5 = 7,5) · Visual 3D 5 (×1,3 = 6,5) · Enseñanza 3 (×1 = 3) · Verificable 5 (×1 = 5) · Compartible 5 (×1,5 = 7,5).
 **Costo estimado (IDEAS.md §2):** cabe en 62–65 s con un dato central y 4 pasos; ~9 escenas (máx. 12), 3 a medida (corte con las patas, muletas, sala de conciertos).
-**Cifras escritas en palabras:** así el conteo de palabras refleja lo que se habla (los números largos como "mil novecientos treinta y cinco" son 5 palabras habladas) y la voz no tiene que adivinar cómo leerlos. En pantalla se muestran con dígitos (1935, 7.600, 198, 2020, 21, 62, 18, 2003, 85): el post junta esas palabras en un solo bloque, con los tiempos de la voz. Duración estimada con la velocidad medida en sílabas (Ep. 1: 5,18 síl/s; Ep. 2: 5,19 síl/s): 335 sílabas → ~64,7 s de voz.
+**Cifras escritas en palabras:** así el conteo de palabras refleja lo que se habla (los números largos como "mil novecientos treinta y cinco" son 5 palabras habladas) y la voz no tiene que adivinar cómo leerlos. En pantalla se muestran con dígitos (1935, 7.600, 198, 2020, 21, 62, 18, 2003, 85): el post junta esas palabras en un solo bloque, con los tiempos de la voz. Duración estimada con la velocidad medida en sílabas (Ep. 1: 5,18 síl/s; Ep. 2: 5,19 síl/s): 334 sílabas → ~64,5 s de voz.
 
-## Guion (182 palabras, ~64,7 s)
+## Guion (181 palabras, ~64,5 s)
 Este edificio de cinco pisos se fue caminando. Y no, no es broma... tiene patas.
 Es una escuela de mil novecientos treinta y cinco, en Shanghái. Pesa más de siete mil seiscientas toneladas. Y en dos mil veinte estorbaba: ahí iban a hacer oficinas y tiendas.
 En vez de demolerla, la movieron.
-Primero cavaron alrededor. Le metieron ciento noventa y ocho patas robóticas. Cortaron las columnas... y las patas la alzaron entera.
-Las patas van en dos grupos. Uno aguanta el peso. El otro se alza y da un paso. Luego cambian. Una y otra vez. Como tú cuando caminas.
+Primero cavaron alrededor. Le metieron debajo ciento noventa y ocho patas robóticas. Cortaron las columnas... y las patas la alzaron entera.
+Las patas van en dos grupos. Uno aguanta el peso. El otro se alza y da un paso. Luego cambian. Como tú cuando caminas.
 Según el jefe técnico, es como ponerle muletas para que se pare y camine.
-¿Y por qué no usaron rieles? Porque había que doblar: la giraron veintiún grados.
+¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados.
 Caminó sesenta y dos metros. Se demoró dieciocho días. Tú caminas eso en menos de un minuto.
 Y lo más loco: Shanghái ya tenía práctica. En dos mil tres movió su sala de conciertos... para que pasara una autopista.
 Así que esta escuela, a los ochenta y cinco años... por fin aprendió a caminar.
@@ -31,11 +31,11 @@ Así que esta escuela, a los ochenta y cinco años... por fin aprendió a camina
 | En 2020 (dos mil veinte) estorbaba: ahí iban a hacer oficinas y tiendas ("estorbaba" es el chiste; el dato es que la movieron para dejarle el terreno a un complejo de oficinas y comercio) | CNN 2020 (comunicado de Huangpu: "to make space for a new commercial and office complex"); The Urban Developer 2020; Xataka 2020 (centro comercial y oficinas) |
 | En vez de demolerla, la movieron | Oddity Central 2020 ("Instead of tearing it down, authorities decided to relocate"); Construction Equipment 2020 ("Rather than demolish"); CNN 2020 (Lan Wuji: "Relocation is not the first choice, but better than demolition") |
 | Primero cavaron alrededor | CNN 2020 ("Workers had to first dig around the building to install the 198 mobile supports in the spaces underneath") |
-| Le metieron 198 (ciento noventa y ocho) patas robóticas | CNN 2020 (198 mobile supports, "robotic legs"); The Drive 2020 (198 robotic legs); Construction Equipment 2020 |
+| Le metieron debajo 198 (ciento noventa y ocho) patas robóticas | CNN 2020 (198 mobile supports, "robotic legs"); The Drive 2020 (198 robotic legs); Construction Equipment 2020 |
 | Cortaron las columnas y las patas la alzaron entera | CNN 2020 ("After the pillars of the building were truncated, the robotic legs were then extended upward, lifting the building"; "lifted off the ground – in its entirety") |
-| Las patas van en dos grupos: uno aguanta el peso, el otro se alza y da un paso; luego cambian, una y otra vez, como tú cuando caminas | CNN 2020 ("split into two groups which alternately rise up and down, imitating the human stride"); Construction Equipment 2020 ("two groups, alternately rising up and down"); Gadget Review 2026 ("one set holds the building steady while the other lifts, advances slightly, and sets down. Then they swap") |
+| Las patas van en dos grupos: uno aguanta el peso, el otro se alza y da un paso; luego cambian, como tú cuando caminas | CNN 2020 ("split into two groups which alternately rise up and down, imitating the human stride"); Construction Equipment 2020 ("two groups, alternately rising up and down"); Gadget Review 2026 ("one set holds the building steady while the other lifts, advances slightly, and sets down. Then they swap") |
 | Según el jefe técnico, es como ponerle muletas para que se pare y camine | CNN 2020 (Lan Wuji, chief technical supervisor: "It's like giving the building crutches so it can stand up and then walk"); The Drive 2020 (misma cita, a CNN) |
-| No usaron rieles porque había que doblar: la giraron 21 (veintiún) grados | The Drive 2020 ("needed to move along a curved path and rotate 21 degrees as it did so, which ruled out relocation via rail"); CNN 2020 (rotated 21 degrees); The Urban Developer 2020 (21 degrees). Oddity Central y Xataka dicen "unos 20 grados" (redondeo) |
+| No usaron rieles porque los rieles no doblan y había que girarla 21 (veintiún) grados | The Drive 2020 ("needed to move along a curved path and rotate 21 degrees as it did so, which ruled out relocation via rail"); CNN 2020 (rotated 21 degrees); The Urban Developer 2020 (21 degrees). Oddity Central y Xataka dicen "unos 20 grados" (redondeo) |
 | Caminó 62 (sesenta y dos) metros en 18 (dieciocho) días | CNN 2020 ("Over the course of 18 days... moved 62 meters (203 feet)"); The Urban Developer 2020; The Drive 2020 (203 feet, 18 days). CCTV (vía Xataka) da 61,7 m: se dice 62 |
 | Tú caminas eso en menos de un minuto (cálculo) | A las velocidades con que se calculan los semáforos peatonales, 62 m toman menos de 1 minuto: 1,2 m/s en el Reino Unido (U. of Bath) = 52 s; 3,5 pies/s ≈ 1,07 m/s en EE. UU. (FHWA, MUTCD §4E.06) = 58 s |
 | Shanghái ya tenía práctica: en 2003 (dos mil tres) movió su sala de conciertos para que pasara una autopista | China Daily 2020 (la Shanghai Concert Hall, de 1930, se movió 66,46 m en 2003 para dejar paso a la autopista elevada Yan'an); CNN 2020 (en 2003 la Shanghai Concert Hall se movió más de 66 m "to make way for an elevated highway") |
