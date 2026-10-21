@@ -24,6 +24,7 @@ sys.path.insert(0, HERE)
 import bpy
 import ep02 as E2
 import planos_ep02 as PL
+import caras            # studio/plantilla/caras.py (planos_ep02 deja studio/plantilla en sys.path)
 
 pid = os.environ["_PIEZA"]
 pz = PL.PIEZAS[pid]
@@ -78,6 +79,10 @@ for f in cuadros:
     info = act(f) or {}
     sc.frame_current = f
     bpy.context.view_layer.update()
+    if not aux:          # dónde quedan los ojos en pantalla → chequeo automático "cara tapada" (tools/auditor/chequeo_planos.py)
+        ojos = caras.ojos_en_pantalla(sc)
+        if ojos:
+            info = dict(info, ojos=ojos)
     sc.render.filepath = out
     bpy.ops.render.render(write_still=True)
     if info:

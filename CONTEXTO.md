@@ -21,7 +21,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - "¿Qué pasa dentro de…?"
   - "¿Sabías que…?"
 - **Formatos candidatos** (del estudio de referencias, sin probar todavía; fichas en `docs/REFERENCIAS.md` §5): corte que se transforma, objeto cotidiano "parece un error, pero es a propósito", "lo conté yo" con datos propios, concepto armado frente a ti, megaproyecto absurdo + "lo calculé", fábula absurda y story time.
-- **Duración: 62–75 s** en las dos líneas. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días.
+- **Duración: 62–65 s, lo mínimo** (decisión de Tomás, 21-oct-2026: "no necesitamos 74 segundos"), en las dos líneas. TikTok solo paga videos de más de 1 minuto, con 10 mil seguidores y 100 mil vistas en 30 días. Guion de 178–190 palabras.
 - **Cadencia:** se parte con **3 videos por semana** (lunes, miércoles y viernes) y se sube a 5 si la calidad se mantiene. Diario no cabe en los créditos de voz. Detalle en `docs/AUTOMATIZACION.md`.
 - **Lo que se presenta como real es real y verificado**, con fuentes. Nada de desinformar. La ficción de la línea historias puede ser todo lo loca que se quiera, pero no se disfraza de dato.
 - **Animación 3D "sí o sí".**
@@ -53,7 +53,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Reglas de edición (del estudio de formatos virales y de `docs/REFERENCIAS.md`)
 - **Gancho** en los primeros 0–2 s. El cuadro 0 es una imagen absurda o una pregunta: algo que todavía no tiene sentido.
 - **Planos:**
-  - Una idea por plano, de 1,2–2,5 s cada uno.
+  - Una idea por plano, de 2–4 s cada uno: **16–22 planos** por video, cada uno desde una plantilla del kit (`studio/plantilla/KIT.md`).
   - **Nunca más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece o se transforma dentro del cuadro. Con transformación continua un plano puede durar más.
   - Cortes secos sincronizados con la voz.
   - La cámara siempre se mueve (acercamientos lentos u órbitas).
@@ -112,12 +112,14 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Estado actual (21-oct-2026)
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
+- **Proceso v2 (21-oct-2026, después del Ep. 2 — "NO SE PUEDE VOLVER A REPETIR", Tomás):** el Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás (19 rondas del auditor, 40 planos a mano). Ahora: videos de **62–65 s**; **storyboard = fichas de plano** con lo que exige el auditor escrito antes de animar; **kit de plantillas y bases** (`studio/plantilla/KIT.md`); **`tools/prueba.py`** por plano (render chico + post + chequeo automático de ojos tapados, quemado, quieto, fondo liso, en ~2–3 min); **animatic** auditado antes de un **solo render final**; auditor con **bloqueantes de lista cerrada**, **5 sugerencias**, **promedio ≥ 8 y ninguna nota bajo 7**, **máx. 2 rondas** (la 2.ª sólo verifica) y **2 revisores**; **topes por video** (8 h, 22 planos, 3 a medida) en `tools/auditor/presupuesto.json`. Detalle en `docs/AUDITOR.md`, el manual §4 y §8 y `docs/AUTOMATIZACION.md` ("Topes por video").
+
 - **Estilo decidido:** semi-realista con Mixamo y personaje propio (ver "Formato").
-- **Auditor por etapas listo (19-oct):** `docs/AUDITOR.md` + `tools/auditor/`. Corre como subagentes (gratis), umbral 8 + bloqueantes, máx. 3 rondas, y a Tomás le llegan sólo los cuadros de estilo nuevos y el video final ya aprobados. Calibrado a ciegas con las versiones viejas del Ep. 1: detecta 20 de 22 errores conocidos (`docs/AUDITOR_CALIBRACION.md`). Desde el Ep. 2 es obligatorio, junto con la bitácora del proceso.
+- **Auditor por etapas (19-oct; v2 desde el 21-oct, ver arriba):** `docs/AUDITOR.md` + `tools/auditor/`. Corre como subagentes (gratis) y a Tomás le llegan sólo los cuadros de estilo nuevos y el video final ya aprobados. Calibrado a ciegas con las versiones viejas del Ep. 1 (20 de 22 errores conocidos) y el chequeo automático con el Ep. 2 (`docs/AUDITOR_CALIBRACION.md`). Obligatorio, junto con la bitácora del proceso.
 - **Interior del cuerpo ("cabeza de vidrio"), aprobado por Tomás el 19-oct:** perfil fijo, fondo azul noche, anatomía real de Z-Anatomy; se ve y brilla sólo lo que nombra la voz. Reglas en el manual §8.
 - **Manos con objetos y reacciones → Kling** (API oficial, secreto `KILING_SECRET`, workflow `kling.yml`). En Blender los dedos flotaban; Tomás lo rechazó dos veces. Kling parte de cuadros nuestros y no se usa para anatomía.
 - **Render en GPU → RunPod** (secreto `RUNPOD_API_KEY`, workflow `render-gpu.yml`). Probado el 19-oct: RTX A5000, ~1,4 s por cuadro a 720p/16 muestras, el pod se borra solo.
-- **Proceso (desde el 19-oct):** cada etapa pasa una puerta del **auditor** (`docs/AUDITOR.md`) antes de avanzar: guion → voz → storyboard → cuadros (los de estilo nuevos van a Tomás ya aprobados) → Kling → render → video final → paquete, más el proceso (bitácora). A Tomás le llegan sólo los cuadros de estilo de escenarios nuevos y el video final, los dos con APROBADO. Claude revisa su trabajo antes de mostrarlo y vigila cada 15 min lo que corre en paralelo (el 19-oct dos trabajos en paralelo murieron una hora sin que nadie lo notara).
+- **Proceso:** cada etapa pasa una puerta del **auditor** (`docs/AUDITOR.md`) antes de avanzar: guion → voz → storyboard (fichas) → cuadros (sólo escenarios nuevos; van a Tomás ya aprobados) → Kling → animatic → final → paquete, más el proceso (bitácora y topes). A Tomás le llegan sólo los cuadros de estilo de escenarios nuevos y el video final, los dos con APROBADO. Claude revisa su trabajo antes de mostrarlo y vigila cada 15 min lo que corre en paralelo (el 19-oct dos trabajos en paralelo murieron una hora sin que nadie lo notara).
 - **Estudio de referencias virales:** `docs/REFERENCIAS.md` (Tomás sigue mandando videos).
 - **Protagonista:** `studio/personaje/` (MakeHuman CC0 + esqueleto `mixamorig:*`, 34 shape keys de expresión).
 - **Ep. 1 — Congelamiento cerebral (helado):** guion v2 con fuentes, voz de 71,7 s, escena `escena/build_ep01.py`, post `escena/post.py`, audio `escena/audio.py`, clips de Kling en `kling/`, textos en `entrega/caption.md`. Estado de la entrega: ver el final de esta sección.
@@ -141,7 +143,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
       - `Happy Idle` → "Happy Idle Variation 1" (entre planos).
     - Para otros episodios: `Terrified` ("Being Terrified While Standing") y `Excited` ("Super Excited").
     - Descartadas: `Agony` (demasiado dramática).
-- **Ep. 2 — "Los pájaros no sienten el picante" (en producción, `studio/episodios/ep02-pajaros-picante/`):**
+- **Ep. 2 — "Los pájaros no sienten el picante" (sale el 21-oct: IG 10:00, YouTube 16:00, TikTok 18:00; `studio/episodios/ep02-pajaros-picante/`):**
   - Concepto hecho para la idea (decisión de Tomás): comedia 3D de dibujo animado **sin humanos**, en el desierto de Arizona; el ratón hace de "tú" (mamíferos) y el cierre lo manda al que se cree inmune. Personajes propios en `ficha.jpg` (cuitlacoche, ratón del cactus, rata, tupaya, ají guardia), todos procedurales (`escena/personajes.py`), sin modelos externos.
   - Puertas: **guion APROBADO (r2)** · **voz APROBADO (r2**, 73,6 s; pausas ajustadas con `tools/pausas.py`, 0 créditos extra) · **storyboard APROBADO (r3**, 40 planos, **0 clips de Kling**: todo render para que la llama y los personajes sean siempre los mismos).
   - **Puerta 4 (cuadros de estilo): APROBADO el 20-oct a las 17:20** (ciclo 3, r3; belleza 8, personaje 9, manos 9, anatomía 8; 6 detalles de prioridad 3 para la animación). Tres ciclos de 3 rondas: c1 (bosque v1, se rediseñó por decisión de Tomás), c2 (9 arreglos pendientes, Tomás eligió un ciclo más), c3. Archivados en `auditoria/4-cuadros-ciclo1/` y `-ciclo2/`. Tomás dio el OK para animar (20-oct 18:01).
@@ -153,8 +155,9 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   1. ~~Auditor por etapas~~: listo el 19-oct (`docs/AUDITOR.md`, `tools/auditor/`, calibración en `docs/AUDITOR_CALIBRACION.md`).
   2. Biblioteca de reacciones del protagonista con Kling (una vez; después se reusa sin gastar unidades).
   3. RunPod con 2–3 pods en paralelo (video completo en ~20–30 min).
-  4. Ep. 2 = **"Los pájaros no sienten el picante"** (elegido por Tomás el 19-oct; ficha con fuentes en `docs/IDEAS.md`, tabla "¿Sabías que…?"), con el proceso nuevo: guion pensado para 2–3 planos de Kling como máximo, storyboard con columna `Origen`, cuadros de estilo, render en GPU y las 8 puertas del auditor con bitácora desde el primer minuto.
-  5. Tareas programadas (A: producción; B: revisión del jueves) cuando el Ep. 2 salga sin intervención.
+  4. ~~Ep. 2~~: programado el 21-oct (versión r3, decisión de Tomás); confirmar en Metricool que quedó "Published". Métricas a las 48 h el 23-oct; comparar lo que dijo el auditor con lo que rindió.
+  5. **Ep. 3 con el proceso v2** (62–65 s, fichas de plano, kit, `tools/prueba.py`, animatic, un render final, topes por video). Primer paso al copiar la escena del Ep. 2: renombrar `ep02.py`/`ep02_planos.json` en la escena y en `render-planos.yml`.
+  6. Tareas programadas (A: producción; B: revisión del jueves) cuando un episodio salga con el proceso v2 dentro de los topes y sin intervención.
 
 ## Decisiones pendientes de Tomás
 1. ~~Estilo~~: decidido el 18-oct (semi-realista con Mixamo, personaje propio de cuerpo normal, ~18–20 años).

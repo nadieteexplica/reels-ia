@@ -1,4 +1,4 @@
-# Etapa 7 — Paquete de publicación
+# Etapa 8 — Paquete de publicación
 
 **Criterios:** `textos`, `cumplimiento`.
 **Materiales:** `entrega/caption.md` (texto de Instagram y TikTok, título y descripción de YouTube, primer comentario y datos para Metricool) y `guion.md` (dato y fuentes).

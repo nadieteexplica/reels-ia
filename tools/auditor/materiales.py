@@ -1,7 +1,9 @@
 """Arma los materiales que mira el revisor (imágenes y tablas). Todo se regenera desde los archivos de origen:
 si se pierde la carpeta materiales/, se vuelve a correr y queda igual.
 
-video:   contacto (1 cuadro/s), gancho (cuadro 0 + primeros 2 s), loop (fin → inicio), tira de 6 cuadros por plano,
+video:   contacto (1 cuadro/s), gancho (cuadro 0 + primeros 2 s), loop (fin → inicio), tira de 6–12 cuadros por plano
+         (4 por segundo: con 6 cuadros el revisor del Ep. 2 no veía parpadeos y decía "congelado"), medidas de movimiento
+         por plano (chequeo_planos.metricas), chequeo automático por plano (ojos tapados, quemado, quieto, fondo liso),
          eventos de los detectores (antes | después ampliados), tabla de subtítulos y audio.
 kling:   8 cuadros por clip + su cuadro de partida.
 cuadros: cada cuadro de estilo / de partida en grande + la ficha del personaje.
@@ -12,10 +14,16 @@ from PIL import Image
 
 import comun
 import detectores as D
+import chequeo_planos as CH
 
 
 # ---------------- video ----------------
-def video(mdir, mp4, planos=None, subs_log=None, words=None, kling_planos=None):
+def cuadros_por_plano(dur):
+    """4 cuadros por segundo, entre 6 y 12."""
+    return int(max(6, min(12, round(dur * 4))))
+
+
+def video(mdir, mp4, planos=None, subs_log=None, words=None, kling_planos=None, meta=None, graficos=None):
     os.makedirs(mdir, exist_ok=True)
     info = comun.info_video(mp4)
     dur = info["dur"]
@@ -41,6 +49,14 @@ def video(mdir, mp4, planos=None, subs_log=None, words=None, kling_planos=None):
     comun.guardar(os.path.join(mdir, "eventos.json"), eventos)
     _imagenes_eventos(mdir, mp4, eventos)
 
+    # --- chequeo automático por plano + medidas de movimiento (van en planos.json para el revisor) ---
+    nums = [int(round(i / D.FPS_D * 30)) + 1 for i in range(len(G))]
+    ojos = CH.leer_ojos(meta) if meta else {}
+    cajas = CH.leer_cajas(graficos if graficos and os.path.exists(graficos) else None, subs_log if subs_log and os.path.exists(subs_log) else None)
+    chq = CH.chequear(planos, G, nums, ojos, cajas, vacias=False)      # la pantalla vacía ya la marca D.vacios arriba
+    for p in planos:
+        p.update(chq["planos"].get(p["plano"], {}))
+
     # --- contacto 1 cuadro por segundo ---
     ts = [min(s + 0.5, dur - 0.05) for s in range(int(dur))]
     fs = comun.extraer(mp4, ts, os.path.join(mdir, "tmp", "c%s.jpg"), 180, 320)
@@ -58,20 +74,21 @@ def video(mdir, mp4, planos=None, subs_log=None, words=None, kling_planos=None):
     fs = comun.extraer(mp4, ts, os.path.join(mdir, "tmp", "l%s.jpg"), 360, 640)
     comun.grilla(fs, ["fin -0.9s", "fin -0.5s", "fin -0.1s", "inicio 0.0s", "0.3s", "0.6s"], 3, os.path.join(mdir, "loop.jpg"))
 
-    # --- tira de 6 cuadros por plano ---
+    # --- tira de 6–12 cuadros por plano (4 por segundo) ---
     os.makedirs(os.path.join(mdir, "planos"), exist_ok=True)
     todos, mapa = [], []
     for p in planos:
         a, b = p["a"] + 0.04, p["b"] - 0.04
-        for k in range(6):
-            todos.append(a + (b - a) * k / 5)
+        n = cuadros_por_plano(p["b"] - p["a"])
+        for k in range(n):
+            todos.append(a + (b - a) * k / (n - 1))
             mapa.append(p["plano"])
-    fs = comun.extraer(mp4, todos, os.path.join(mdir, "tmp", "p%s.jpg"), 360, 640)
+    fs = comun.extraer(mp4, todos, os.path.join(mdir, "tmp", "p%s.jpg"), 270, 480)
     for p in planos:
         idx = [i for i, m in enumerate(mapa) if m == p["plano"]]
         rot = [f"P{p['plano']} {todos[i]:.2f}s" for i in idx]
         p["tira"] = f"planos/P{p['plano']:02d}.jpg"
-        comun.grilla([fs[i] for i in idx], rot, 3, os.path.join(mdir, p["tira"]))
+        comun.grilla([fs[i] for i in idx], rot, 3 if len(idx) <= 6 else 4, os.path.join(mdir, p["tira"]), (270, 480))
     comun.guardar(os.path.join(mdir, "planos.json"), planos)
 
     # --- subtítulos contra words.json ---
@@ -81,7 +98,7 @@ def video(mdir, mp4, planos=None, subs_log=None, words=None, kling_planos=None):
     aud = audio(mp4, comun.leer(words, []) if words else [])
     comun.guardar(os.path.join(mdir, "audio.json"), aud)
     subprocess.run(["rm", "-rf", os.path.join(mdir, "tmp")])
-    return {"info": info, "planos": planos, "eventos": eventos, "subtitulos": sub, "audio": aud}
+    return {"info": info, "planos": planos, "eventos": eventos, "subtitulos": sub, "audio": aud, "chequeo": chq}
 
 
 def _imagenes_eventos(mdir, mp4, eventos):

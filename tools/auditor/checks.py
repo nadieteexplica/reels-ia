@@ -13,6 +13,16 @@ SALUD = ["dolor", "cerebro", "sangre", "nervio", "corazón", "pulmón", "riñón
 NUMEROS = {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce",
            "quince", "veinte", "treinta", "cuarenta", "cincuenta", "cien", "mil", "millón", "millones", "medio", "mitad"}
 RES = lambda: {"fallas": [], "avisos": [], "datos": {}}
+# Proceso v2 (21-oct-2026, pedido de Tomás: "lo mínimo, no necesitamos 74 s"): videos de 62–65 s.
+# Fernando habla a ~2,91 palabras/s contando las pausas (Ep. 2: 214 palabras en 73,6 s) → 178–190 palabras.
+PALABRAS = (178, 190)
+PALABRAS_S = 2.91
+DURACION = (62.0, 65.5)          # video final (voz + 0,4 s de cola)
+PLANOS = (14, 22)                # en 62 s: 16–22 planos de 2–4 s con algo que cambia cada 2 s
+FICHA = {                        # columnas obligatorias de la ficha de plano (storyboard.md) → clave normalizada
+    "plantilla": ("plantilla",), "accion": ("accion visible", "accion"), "cambio": ("cambio",), "camara": ("camara",),
+    "cara": ("cara",), "grafico": ("grafico",), "origen": ("origen", "fuente", "sale de"),
+}
 
 
 def _f(r, que, evidencia="", bloqueante=False):
@@ -51,12 +61,12 @@ def guion(ep_d, publicados=None):
         return r
     ws = palabras(txt)
     n = len(ws)
-    est = n / 2.97
+    est = n / PALABRAS_S
     r["datos"].update({"palabras": n, "duracion_estimada_s": round(est, 1)})
-    if not 190 <= n <= 215:
-        _f(r, f"el guion tiene {n} palabras (190–215)")
-    if not 62 <= est <= 75:
-        _f(r, f"duración estimada {est:.1f} s fuera de 62–75 s (a 2,97 palabras/s)")
+    if not PALABRAS[0] <= n <= PALABRAS[1]:
+        _f(r, f"el guion tiene {n} palabras ({PALABRAS[0]}–{PALABRAS[1]}: 62–65 s, lo mínimo que paga TikTok)")
+    if not 61 <= est <= 65.5:
+        _f(r, f"duración estimada {est:.1f} s fuera de 61–65,5 s (a {PALABRAS_S} palabras/s)")
     frases = [f.strip() for f in re.split(r"(?<=[.!?:])\s+", txt.replace("\n", " ")) if f.strip()]
     largas = [(len(palabras(f)), f) for f in frases if len(palabras(f)) > 14]
     for k, f in largas:
@@ -119,8 +129,10 @@ def voz(ep_d, words_path, status_path=None, job=None, asr_path=None):
         return r
     dur = words[-1]["e"]
     r["datos"]["duracion_voz_s"] = round(dur, 2)
-    if not 62 <= dur + 0.4 <= 75:
-        _f(r, f"la voz dura {dur:.1f} s (+0,4 de cola) fuera de 62–75 s", bloqueante=True)
+    if not DURACION[0] <= dur + 0.4 <= DURACION[1]:
+        corta = dur + 0.4 < DURACION[0]
+        _f(r, f"la voz dura {dur:.1f} s (+0,4 de cola) fuera de {DURACION[0]:g}–{DURACION[1]:g} s"
+           + (" → alargar pausas con tools/pausas.py (0 créditos) antes de regenerar" if corta else ""), bloqueante=True)
     largas = [(w["w"], round(w["e"] - w["s"], 2), w["s"]) for w in words[:-1] if w["e"] - w["s"] > 1.2 and "..." not in w["w"]]
     for w, d, s in largas:
         _f(r, f"la palabra '{w}' dura {d} s (máx. 1,2)", f"{s:.2f} s")
@@ -205,6 +217,33 @@ def storyboard(ep_d, dur_voz=None):
             filas.append(dict(zip(cols, cel)))
     r["datos"]["planos"] = len(filas)
     ci = lambda *ks: next((c for c in cols if any(k in c for k in ks)), None)
+    # proceso v2: la ficha de plano (las necesidades del auditor escritas ANTES de animar)
+    if len(filas) > PLANOS[1]:
+        _f(r, f"{len(filas)} planos (máx. {PLANOS[1]} en 62–65 s): juntar planos con movimiento dentro del cuadro en vez de cortar", bloqueante=True)
+    elif filas and len(filas) < PLANOS[0]:
+        _a(r, f"sólo {len(filas)} planos: confirmar que algo cambia cada 2 s en los planos largos")
+    faltan_col = [k for k, ks in FICHA.items() if not ci(*ks)]
+    if faltan_col:
+        _f(r, f"a la ficha de plano le faltan columnas: {', '.join(faltan_col)} (plantilla en studio/plantilla/storyboard.md)", bloqueante=True)
+    vacio = lambda x: not x or norm(x).strip() in ("", "-", "—", "?", "x")
+    for f in filas:
+        n = f[cols[0]]
+        for k in ("accion", "camara", "cara", "origen", "plantilla"):
+            c = ci(*FICHA[k])
+            if c and vacio(f.get(c, "")):
+                _f(r, f"plano {n}: la ficha no dice '{c}'")
+        c_ca, c_gr = ci(*FICHA["cara"]), ci(*FICHA["grafico"])
+        def ry(t):          # rango vertical: "y 260–660" si lo dice; si no, los dos primeros números (sin una "x" antes)
+            m = re.search(r"\by\s*=?\s*(\d{3,4})\s*[–-]\s*(\d{3,4})", t or "")
+            if m:
+                return [float(m.group(1)), float(m.group(2))]
+            return [] if re.search(r"\bx\s*\d", t or "") else [float(x) for x in re.findall(r"\d{3,4}", t or "")[:2]]
+        ca, gr = ry(f.get(c_ca, "")), ry(f.get(c_gr, ""))
+        if len(ca) == 2 and len(gr) == 2 and min(ca[1], gr[1]) > max(ca[0], gr[0]):
+            _a(r, f"plano {n}: el gráfico (y {gr[0]:.0f}–{gr[1]:.0f}) comparte franja con la cara (y {ca[0]:.0f}–{ca[1]:.0f}): "
+                  "ubicarlo con graficos.lugar_libre y confirmarlo con tools/prueba.py")
+        if len(ca) == 2 and ca[1] > 1000:
+            _f(r, f"plano {n}: la cara llega a y {ca[1]:.0f} (debe quedar sobre y 1000, la franja de subtítulos)")
     c_t, c_pl, c_acc, c_or = ci("tiempo"), ci("plano"), ci("accion"), ci("origen", "fuente", "sale de")
     tiempos = []
     for f in filas:
@@ -218,7 +257,10 @@ def storyboard(ep_d, dur_voz=None):
     for n, a, b, f in tiempos:
         d = b - a
         acc = norm(f.get(c_acc, ""))
-        if d > 2.5 and not re.search(r"(se arma|se transforma|aparece|crece|se llena|cuenta|sube|baja|se enciende|se ilumina)", acc):
+        c_cb = ci(*FICHA["cambio"])
+        if d > 2.2 and c_cb and vacio(f.get(c_cb, "")):
+            _f(r, f"plano {n} dura {d:.1f} s y la ficha no dice qué cambia cada 2 s")
+        elif d > 2.5 and not c_cb and not re.search(r"(se arma|se transforma|aparece|crece|se llena|cuenta|sube|baja|se enciende|se ilumina)", acc):
             _a(r, f"plano {n} dura {d:.1f} s sin transformación escrita (nunca más de 2 s sin cambio)")
         if d < 0.8:
             _a(r, f"plano {n} dura {d:.2f} s (muy corto para leerse)")

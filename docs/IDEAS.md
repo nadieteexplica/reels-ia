@@ -34,6 +34,7 @@ El método completo para encontrar datos (pruebas, familias, métodos de caza, d
 | Compartible o guardable | ¿Dan ganas de mandárselo a alguien, o de guardarlo para después? | ×1,5 |
 
 - **Filtro previo:** antes de puntuar, responder *¿a quién se lo mandan?* o *¿por qué lo guardarían?*. Sin respuesta, no se puntúa.
+- **Filtro de producción (proceso v2, 21-oct-2026):** ¿se cuenta en **62 s** (~180 palabras) con un dato central y 4 pasos o menos? ¿Se arma con las plantillas del kit (`studio/plantilla/KIT.md`) y **3 planos a medida como máximo**? Si no, se simplifica la idea o queda en el banco hasta que exista la plantilla. El Ep. 2 (40 planos hechos a mano) tomó más de 24 h: eso no se repite.
 - **Línea datos:** puntaje máximo 45. **Para producir hacen falta 32 o más.** Una idea con Verificable = 0 se descarta aunque sume.
 - **Línea historias:** se puntúa solo con Curiosidad (¿engancha el cuadro 0?), Universalidad, Sorpresa (¿sorprende el giro?), Visual 3D y Compartible. Máximo 35; **para producir hacen falta 25 o más.**
 - **Ajuste mensual:** los pesos se ajustan con los datos de `PUBLICADOS.md`. Por ejemplo, si los temas del cuerpo rinden el doble en envíos, sube su prioridad.

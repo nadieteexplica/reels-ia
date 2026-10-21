@@ -13,8 +13,8 @@
    - Cifras redondeadas "para sonar mejor" o exageradas = bloqueante.
    - Si no pudiste verificar una cifra, es un problema (prioridad 1: "no se pudo verificar X"), no un aprobado.
 2. **Gancho.** ¿Las primeras 5–8 palabras crean una imagen absurda o una pregunta que obliga a quedarse? ¿El giro de los segundos 3–8 contradice la intuición?
-3. **Claridad.** ¿Un niño de 12 años lo entiende? Cada palabra técnica explicada al decirla. Frases de 14 palabras o menos, una idea por frase. Estructura del manual: gancho → giro → mecanismo en 4–6 pasos → "y lo más loco" → enseñanza útil → cierre que empalma con el inicio.
+3. **Claridad.** ¿Un niño de 12 años lo entiende? ¿Sobra alguna frase? Con 62 s cada frase tiene que ganarse su lugar: si una se puede sacar sin perder la idea, es sugerencia de prioridad 1. Cada palabra técnica explicada al decirla. Frases de 14 palabras o menos, una idea por frase. Estructura del manual: gancho → giro → mecanismo en 4–6 pasos → "y lo más loco" → enseñanza útil → cierre que empalma con el inicio.
 4. **Compartible.** ¿A quién se lo mandan o por qué lo guardarían? Si no se puede responder, `compartible` < 8.
-5. **Reglas duras:** tema de la lista negra; salud como indicación médica (debe ser información general y "si te pasa seguido, consulta" cuando aplique); tema ya publicado (PUBLICADOS); frases prohibidas ("en este video", "sígueme"…); duración estimada 62–75 s; puntaje de la idea sobre el mínimo.
+5. **Reglas duras:** tema de la lista negra; salud como indicación médica (debe ser información general y "si te pasa seguido, consulta" cuando aplique); tema ya publicado (PUBLICADOS); frases prohibidas ("en este video", "sígueme"…); duración estimada 62–65 s (178–190 palabras: lo mínimo que paga TikTok; un guion más largo es sugerencia de recorte, no un mérito); puntaje de la idea sobre el mínimo.
 
 En `problemas`, usa `"plano": null` y en `"segundo"` pon la frase del guion afectada.

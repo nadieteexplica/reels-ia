@@ -11,7 +11,9 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance, ImageOps
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.abspath(os.path.join(HERE, "../../../plantilla")))
 import ep02 as E2
+import graficos as G     # registro de dónde queda cada gráfico → graficos.json (chequeo "cara tapada")
 
 EPI = E2.EPI
 OUT = os.environ.get("OUT", os.path.join(HERE, "out"))
@@ -168,6 +170,7 @@ def recuadro(im, contenido, cx=540, cy=500, r=200, tipo="plumas", s=1.0, apunta=
     if contenido is None or s <= 0.02:
         return im
     rr = int(r * s)
+    G.registrar("recuadro", (cx - rr, cy - rr, cx + rr, cy + rr))
     if apunta is not None:      # cuña que sale del círculo hacia lo que muestra (el pico), como un globo de diálogo
         ax, ay = apunta
         ang = math.atan2(ay - cy, ax - cx)
@@ -232,6 +235,7 @@ def compone_lupa(cara, lupa, mx, my, cx, cy, D, zoom=0.55, tenue=1.0):
     ImageDraw.Draw(sh).ellipse((cx - D // 2 + 10, cy - D // 2 + 18, cx + D // 2 + 10, cy + D // 2 + 18), fill=140)
     im = Image.composite(Image.new("RGB", (W, H), (0, 0, 0)), im, sh.filter(ImageFilter.GaussianBlur(18)))
     im.paste(lz, (cx - D // 2, cy - D // 2), mask)
+    G.registrar("lupa", (cx - D // 2, cy - D // 2, cx + D // 2, cy + D // 2))
     d = ImageDraw.Draw(im)
     d.ellipse((cx - D // 2, cy - D // 2, cx + D // 2, cy + D // 2), outline=(250, 246, 236), width=10)
     d.ellipse((mx - r_m, my - r_m, mx + r_m, my + r_m), outline=(250, 246, 236), width=6)
@@ -262,6 +266,7 @@ def marco_ysi(im, marca, mxy, age, t_marca=0.35, desierto=None):
     if s > 0.02:
         cx, cy = mxy
         k2 = int(W * 0.075 * s)
+        G.registrar("marca", (cx - k2, cy - k2, cx + k2, cy + k2))
         if marca == "x":
             for c_, gg in (((25, 20, 22), int(W * 0.040 * s) + 1), ((244, 242, 236), int(W * 0.024 * s) + 1)):
                 d.line((cx - k2, cy - k2, cx + k2, cy + k2), fill=c_, width=gg)
@@ -397,6 +402,7 @@ def pildora(im, texto, estilo, cx, cy, s=1.0, mezcla=None):
     tw = fnt.getlength(texto)
     pw, ph = tw + 70 * s, 100 * s
     x0, y0 = cx - pw / 2, cy - ph / 2
+    G.registrar("pildora", (x0, y0, x0 + pw, y0 + ph))
     lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
     d = ImageDraw.Draw(lay)
     d.rounded_rectangle((x0 + 4, y0 + 8, x0 + pw + 4, y0 + ph + 8), radius=ph / 2, fill=(0, 0, 0, 80))
@@ -412,6 +418,7 @@ def marca_ok(im, cx, cy, s):
         return
     d = ImageDraw.Draw(im)
     R_ = int(64 * s)
+    G.registrar("marca", (cx - R_, cy - R_, cx + R_, cy + R_))
     d.ellipse((cx - R_, cy - R_, cx + R_, cy + R_), fill=(40, 170, 80), outline=(20, 60, 30), width=5)
     k = int(R_ * 0.5)
     d.line((cx - k, cy, cx - k // 3, cy + int(k * 0.7), cx + k, cy - int(k * 0.6)), fill=(255, 255, 255), width=int(18 * s) + 1)
@@ -465,6 +472,7 @@ def contador_35(im, f, age):
     d = ImageDraw.Draw(im)
     fnt = ImageFont.truetype(FONT, 150)
     fnt2 = ImageFont.truetype(FONT_B, 48)
+    G.registrar("contador", (380, 280, 700, 490))
     d.text((540, 360), str(int(n)), font=fnt, fill=(255, 255, 255), anchor="mm", stroke_width=10, stroke_fill=(20, 24, 30))
     d.text((540, 462), "PERSONAS", font=fnt2, fill=(255, 255, 255), anchor="mm", stroke_width=5, stroke_fill=(20, 24, 30))
 
@@ -593,6 +601,7 @@ INTERIOR = {7, 8, 9, 10, 11}
 
 
 def procesar(f):
+    G.cuadro(f)
     k = plano_de(f)
     a, b = FR[k]
     age = (f - a) / FPS
@@ -662,6 +671,7 @@ if __name__ == "__main__":
         cuadros = [int(v) for v in lista.split(",")]
     faltan = [f for f in cuadros if not procesar(f)]
     json.dump(SUB_LOG, open(os.path.join(OUT, "subs_log.json"), "w"))
+    G.guardar(os.path.join(OUT, "graficos.json"))
     json.dump({"T": {str(k): list(v) for k, v in E2.T.items()}, "FR": {str(k): list(v) for k, v in FR.items()}, "END": END},
               open(os.path.join(OUT, "ep02_planos.json"), "w"))
     print("ok post", len(list(cuadros)) - len(faltan), "cuadros; faltan", len(faltan), faltan[:20])

@@ -25,9 +25,10 @@ studio/episodios/epNN-slug/
 ## 1. Guion
 
 ### Duración y largo
-- **62–75 s**, porque TikTok solo monetiza videos de más de 1 minuto.
-- Fernando habla a unas **2,97 palabras por segundo**, así que el guion tiene **190–215 palabras** (185 palabras dan apenas ~62 s, sin margen).
-- Mide siempre con los tiempos reales de la alineación, no con la estimación.
+- **62–65 s: lo mínimo** (decisión de Tomás, 21-oct-2026: "no necesitamos 74 segundos"). TikTok solo monetiza videos de más de 1 minuto; más largo no suma y cuesta más render, más voz y más revisión.
+- Fernando habla a unas **2,91 palabras por segundo contando las pausas** (Ep. 2: 214 palabras en 73,6 s), así que el guion tiene **178–190 palabras**.
+- Mide siempre con los tiempos reales de la alineación. Si la voz queda bajo 62 s, se alargan pausas con `tools/pausas.py` (0 créditos) antes de regenerar.
+- Con 62 s cada frase se gana su lugar: un dato central, 4 pasos como máximo y la enseñanza. Lo que se puede sacar sin perder la idea, se saca.
 
 ### Antes de escribir: ¿para qué acción?
 Cada video se diseña para que lo **envíen** (tiene destinatario: humor, dato sorpresa, "esto es para ti") o para que lo **guarden** (sirve después: cómo se hace, algo que enseña). Si no se puede responder *¿a quién se lo mandan?* o *¿por qué lo guardarían?*, la idea no sale. Base: `docs/REFERENCIAS.md` §3.
@@ -36,10 +37,10 @@ Cada video se diseña para que lo **envíen** (tiene destinatario: humor, dato s
 | Tramo | Qué pasa | Ejemplo (Ep. 1) |
 |---|---|---|
 | **0–3 s · Gancho** | Situación cotidiana o pregunta imposible, con una imagen fuerte desde el cuadro 0 | "Te comes un helado muy rápido… y de repente: ¡zas! Te duele la frente." |
-| **3–8 s · Giro** | Contradice la intuición y abre la pregunta | "Pero el frío nunca tocó tu cerebro. Entonces, ¿qué pasó?" |
-| **8–45 s · Mecanismo** | 4 a 6 pasos, cada uno con su imagen y su plano | Paladar → vasos → trigémino → confusión |
-| **45–55 s · "Y lo más loco"** | Un segundo dato sorpresa | "Tu cerebro no siente dolor." |
-| **55–68 s · Enseñanza** | Qué hacer, cómo usarlo o cómo explicárselo a alguien | "Aprieta la lengua contra el paladar…" |
+| **3–7 s · Giro** | Contradice la intuición y abre la pregunta | "Pero el frío nunca tocó tu cerebro. Entonces, ¿qué pasó?" |
+| **7–38 s · Mecanismo** | 3 a 4 pasos, cada uno con su imagen | Paladar → vasos → trigémino → confusión |
+| **38–48 s · "Y lo más loco"** | Un segundo dato sorpresa (opcional si no cabe) | "Tu cerebro no siente dolor." |
+| **48–62 s · Enseñanza** | Qué hacer, cómo usarlo o cómo explicárselo a alguien | "Aprieta la lengua contra el paladar…" |
 | **Cierre en loop** | Frase que conecta con el inicio y deja ganas de verlo otra vez | "…nadie come helado lento." |
 
 - **Con cifras:** dejar adivinar antes de revelar (opciones o pregunta en pantalla y después la respuesta).
@@ -104,18 +105,23 @@ Se crea `jobs/voz/NNNN-epNN-slug.json` (NNNN es correlativo, mira el último en 
 
 ---
 
-## 4. Storyboard (antes de animar)
-Se arma una tabla en `storyboard.md`:
+## 4. Storyboard = fichas de plano (antes de animar)
+El storyboard es **la receta del editor**: cada fila es la ficha de un plano y trae escrito, antes de animar, todo lo que el auditor va a exigir después. Plantilla: `studio/plantilla/storyboard.md`. El chequeo automático de la puerta 3 rechaza fichas incompletas.
 
-| # | Tiempo | Frase de la voz | Plano (tipo) | Acción / actuación | Cámara | SFX | Llamado en pantalla | Origen |
-|---|---|---|---|---|---|---|---|---|
+| # | Tiempo | Frase de la voz | Plano (escala) | Plantilla | Acción visible (se lee en 1 foto) | Cambio cada 2 s | Cámara | Cara (y) | Gráfico (dónde) | SFX | Origen |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+
+- **Plantilla** (obligatoria): una de `studio/plantilla/KIT.md` (reaccion, detalle_lupa, interior, tarjetas, cifra, recorrido, loop, whip) o `a medida` (máximo 3 por video).
+- **Acción visible:** lo que pasa tiene que entenderse en **una foto** ("escupe una llamarada", no "parpadea").
+- **Cambio cada 2 s:** qué cambia dentro del plano si dura más de 2,2 s (una acción, un push-in, un gráfico que entra).
+- **Cara (y):** dónde quedan los ojos del personaje (entre y 300 y 950; nunca bajo 1000). **Gráfico (dónde):** zona de la lupa, píldora o recuadro, que no puede ser la de la cara; se ubica con `graficos.lugar_libre` y se comprueba con `tools/prueba.py`.
 
 - **Origen** (obligatorio, lo revisa el auditor): `render` (Blender), `kling` (máx. 3 por video: manos con objetos o en la cara) o `biblioteca` (reacción ya hecha). Una mano con objeto marcada `render` no pasa la puerta 3.
 - **Plano (tipo)** empieza con la escala: G, M, P, D o I (interior).
 
 ### Ritmo
-- Cada plano dura 1,2–2,5 s (25–50 planos por minuto).
-- **Nunca pasan más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece, se transforma o se arma dentro del cuadro. Con transformación continua un plano puede durar más (R5: 13 s sin cortar).
+- **16–22 planos** en 62–65 s (máximo 22: el Ep. 2 tuvo 40 hechos a mano y tomó más de 24 h). Cada plano dura 2–4 s.
+- **Nunca pasan más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece, se transforma o se arma dentro del cuadro. Con transformación continua un plano puede durar más (R5: 13 s sin cortar). Menos cortes y más movimiento dentro del plano.
 - Los cortes son secos, justo en el inicio de una frase o palabra clave.
 - Cambia la escala cada 8–12 s (general → medio → detalle → interior del cuerpo u objeto).
 
@@ -187,15 +193,16 @@ El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier es
 
 ---
 
-## 8. Render (con dos OK de Tomás antes de gastar horas)
-Regla nacida del Ep. 1 (19-oct-2026): **nunca se renderiza el video completo sin que Tomás haya aprobado el look.**
-1. **Cuadros de estilo (≈30 min):** un cuadro HD por escenario nuevo (plaza, interior del cuerpo, etc.). Tomás los aprueba o pide cambios. Cambiar acá es barato.
-2. **Hoja de contacto propia:** 1 cuadro por plano a baja resolución, revisada por Claude (encuadre, manos, objetos, caras) antes de mandar el render. Los cuadros de estilo y los de partida para Kling pasan además la **puerta 4 del auditor** (`docs/AUDITOR.md`).
-3. **Render completo**, dos caminos (720×1280 con eliminación de ruido, se amplía a 1080×1920 al armar):
+## 8. Render (proceso v2: prueba por plano → animatic → un solo render final)
+Reglas: **nunca se renderiza el video completo sin que Tomás haya aprobado el look** de los escenarios nuevos (Ep. 1), y **un video se arma en una jornada** (Ep. 2: más de 24 h; topes en `tools/auditor/presupuesto.json` → `proceso_v2`).
+1. **Cuadros de estilo** (sólo si hay escenario nuevo, ≈30 min): un cuadro HD por escenario → puerta 4 → Tomás. Si se reutiliza un set del kit, no hay cuadros de estilo.
+2. **Prueba por plano** (`python3 tools/prueba.py <ep> --planos N`, ~2–3 min): render chico + post + **chequeo automático** (ojos tapados, quemado, vacío, quieto, fondo liso) + `hoja.jpg` con los ojos marcados. Cada plano queda con **0 fallas** y la hoja mirada antes de seguir. Un plano con gráficos se prueba siempre compuesto entero (lección 47).
+3. **Animatic:** el video completo en baja resolución (`render-planos.yml` con `res=540x960`, `samples=8`) → el workflow corre el chequeo por plano → **puerta 6** (2 revisores). Se arreglan los bloqueantes y, si es barato, las 5 sugerencias; se re-renderiza **sólo** lo que cambió (`piezas` + `base_run`) → r2 de verificación. Lo que ya pasó no se toca; un plano que falla dos veces se simplifica o se cambia por una plantilla.
+4. **Render final, una sola vez** (720×1280, 16 muestras) → **puerta 7** (chequeo + 1 revisor, sólo bloqueantes). Dos caminos (720×1280 con eliminación de ruido, se amplía a 1080×1920 al armar):
    - **GPU arrendada (RunPod, preferido):** `render-gpu.yml`. El pod arma la escena, renderiza con OptiX (~1,4 s por cuadro en una RTX A5000), mete los clips de Kling, hace post/audio/video y sube el MP4 a la prerelease `gpu-<run>` y a `epNN-borrador`. ~1 h por video, ~USD 0,3–0,5. El pod se borra solo y el workflow lo borra igual. Saldo cargado por Tomás, sin Auto-Pay.
    - **GitHub Actions (gratis, de respaldo):** `render.yml`, 16 partes (deja 4 máquinas libres para Kling y RunPod; con 20 se bloquea todo lo demás). ~1,5–2 h.
-4. **Puerta 6 del auditor + OK de Tomás** sobre el MP4. Las correcciones se re-renderizan en la GPU (rápido) o, en Actions, sólo esos planos (`lista` + `base_run`).
-5. **Encode:** H.264 High, yuv420p, CRF 18 y `+faststart`.
+5. **OK de Tomás** sobre el MP4 (en el mensaje único). Las correcciones se re-renderizan sólo en esos planos (`piezas` + `base_run`).
+6. **Encode:** H.264 High, yuv420p, CRF 18 y `+faststart`.
 - **EEVEE** (motor en tiempo real) sólo sirve con tarjeta gráfica; en los servidores gratis es 3× más lento que Cycles (probado el 19-oct).
 - Los logs de Actions no se pueden leer desde el espacio de trabajo: todo lo que haya que revisar (errores, log del pod) se sube a la prerelease del run.
 
@@ -220,11 +227,12 @@ Regla nacida del Ep. 1 (19-oct-2026): **nunca se renderiza el video completo sin
 ## 9. Control de calidad (QA)
 
 ### 9.1 Automático (script)
-- [ ] Dura 62–75 s, a 1080×1920 y 30 fps, en H.264 yuv420p y pesa menos de 100 MB.
+- [ ] Dura 62–65 s, a 1080×1920 y 30 fps, en H.264 yuv420p y pesa menos de 100 MB.
 - [ ] El volumen integrado está en −14 ±1 LUFS y el true peak en ≤ −1 dBTP (`ffmpeg -af ebur128`).
 - [ ] No hay negros ni congelados (`blackdetect`, `freezedetect` > 0,5 s).
 - [ ] Menos del 3% de píxeles quemados (>250) en cada cuadro de muestra, medido sin subtítulos.
 - [ ] Los subtítulos coinciden palabra por palabra con `words.json`, y sus cajas quedan dentro de la zona segura (se miden en el DOM durante el render).
+- [ ] **Chequeo por plano** (`tools/auditor/chequeo_planos.py`, lo corre el workflow y `tools/prueba.py`): ningún ojo bajo un gráfico o un subtítulo, nada quemado, ningún plano 1,6 s quieto, ninguna cara bajo y 1250.
 
 ### 9.2 Visual (hoja de contacto con 1 cuadro por segundo y cuadros de cada plano)
 - [ ] El cuadro 0 sirve como portada.
@@ -238,12 +246,12 @@ Regla nacida del Ep. 1 (19-oct-2026): **nunca se renderiza el video completo sin
 
 ### 9.3 Revisión independiente (obligatoria) → el auditor
 Desde el 19-oct-2026 la revisión independiente la hace el **auditor por etapas** (`docs/AUDITOR.md`, `tools/auditor/`): revisa guion, voz, storyboard, cuadros, clips de Kling, video final, paquete y proceso, cada uno como puerta. Lo de abajo es lo que mira en el video final (puerta 6).
-- **Quién revisa:** subagentes que no participaron del video: uno por tramo de ≤9 planos y uno global.
+- **Quién revisa:** 2 subagentes que no participaron del video, sobre el **animatic**: uno para todos los planos y uno global. El render final lo revisa uno solo, buscando bloqueantes.
 - **Cómo se lanza:** como subagente, con los materiales y sin tu opinión ni tu autoevaluación.
 - **Qué recibe:**
   - el guion con sus fuentes,
   - la hoja de contacto (1 cuadro por segundo),
-  - una **tira de 6 cuadros por plano**, para juzgar movimiento y actuación,
+  - una **tira de 6–12 cuadros por plano** (4 por segundo) y las medidas de movimiento de cada plano, para juzgar movimiento y actuación,
   - la tabla de subtítulos contra `words.json` (palabra, inicio, fin, posición de la caja),
   - los eventos de los detectores automáticos (pantalla vacía, algo que aparece o desaparece de golpe, cambios de luz dentro del plano), con su "antes | después",
   - las estadísticas de audio: LUFS, true peak y dB de diferencia entre voz y música,
@@ -257,10 +265,10 @@ Desde el 19-oct-2026 la revisión independiente la hace el **auditor por etapas*
   6. **Subtítulos:** ¿se leen, sincronizan y no tapan?
   7. **Audio:** ¿la mezcla y el volumen están bien?
   8. **Precisión:** ¿cada dato está respaldado?
-- **Regla de aprobación:**
-  - Todas las notas ≥8 y **ningún bloqueante** (dedos u objetos que flotan o atraviesan, algo que aparece de golpe, pantalla vacía, personaje distinto, cara tapada, dato sin respaldo, interior confuso, lista negra, estilo rechazado, faltas de ortografía).
-  - Si no pasa, se corrige en el orden de la lista de arreglos y se revisa otra vez, hasta 3 rondas.
-  - Si sigue sin llegar, se descarta y se explica por qué.
+- **Regla de aprobación (v2, 21-oct-2026):**
+  - **Ningún bloqueante** de la lista cerrada B1–B11 (piezas que se atraviesan o flotan, cambios de golpe, pantalla vacía, personaje distinto, cara tapada, dato falso, interior confuso, lista negra, estilo rechazado o quemado, faltas de ortografía, algo clave cortado), ninguna falla automática, **promedio ≥ 8 y ningún criterio bajo 7**.
+  - El veredicto muestra sólo las 5 sugerencias más importantes.
+  - **Máximo 2 rondas:** la 2.ª sólo verifica lo de la 1.ª. Lo que sigue fallando se simplifica o se cambia por una plantilla; si el video igual no llega, se le explica a Tomás y se propone un reemplazo.
 
 ---
 

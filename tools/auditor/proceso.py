@@ -8,8 +8,11 @@ Revisa:
   3. que todo trabajo de más de 15 min tenga un chequeo cada 15 min (tolerancia 17) mientras corre;
   4. que cada run caído quede notado (chequeo o aviso) dentro de 20 min;
   5. que nunca haya más de 16 máquinas de Actions a la vez (las otras 4 son para Kling y RunPod);
-  6. el gasto del episodio contra el presupuesto por video y lo que queda del mes.
+  6. el gasto del episodio contra el presupuesto por video y lo que queda del mes;
+  7. proceso v2 (21-oct-2026): rondas por puerta (máx. 2), revisores por ronda (máx. 2) y horas de trabajo del video (máx. 8)
+     contra los topes de presupuesto.json → "proceso_v2".
 """
+import glob
 import argparse, datetime, json, os, re, sys
 from zoneinfo import ZoneInfo
 
@@ -77,7 +80,11 @@ def auditar(ep, desde=None, hasta=None):
     for p in [e for e in B if e["tipo"] == "promesa"]:
         if not p.get("dato") or not re.search(r"\d", p["dato"]):
             f(f"promesa n.º {p['n']} ('{p.get('que', '')}' a las {p['hora']}) sin dato medido que la respalde", p.get("dato", ""))
-        h, m_ = (int(x) for x in p["hora"].split(":"))
+        hh = re.findall(r"(\d{1,2}):(\d{2})", str(p["hora"]))       # "18:40" o "21-oct 11:00"
+        if not hh:
+            a(f"promesa n.º {p['n']} con hora ilegible: '{p['hora']}'")
+            continue
+        h, m_ = (int(x) for x in hh[-1])
         limite = p["_t"].replace(hour=h, minute=m_, second=0)
         if limite < p["_t"]:
             limite += datetime.timedelta(days=1)
@@ -149,6 +156,30 @@ def auditar(ep, desde=None, hasta=None):
     for serv, clave in (("kling", "kling_unidades"), ("runpod", "runpod_usd"), ("eleven", "eleven_creditos")):
         if serv in g and clave in tope and g[serv] > tope[clave]:
             f(f"gasto de {serv}: {g[serv]:g} (tope por video {tope[clave]:g})")
+    # 7. topes del proceso v2
+    pv = pres.get("proceso_v2", {})
+    if pv:
+        base = os.path.join(comun.ep_dir(ep), "auditoria")
+        rondas = {}
+        for d in glob.glob(os.path.join(base, "*", "r*")):
+            et = os.path.basename(os.path.dirname(d))
+            if et in ("6-video", "7-paquete") or "ciclo" in et or not re.match(r"^r\d+$", os.path.basename(d)):   # proceso viejo / canceladas
+                continue
+            rondas.setdefault(et, []).append(d)
+            n_enc = len(comun.leer(os.path.join(d, "encargos.json"), []) or [])
+            if n_enc > pv.get("revisores_por_ronda", 2):
+                f(f"{et}/{os.path.basename(d)} lanzó {n_enc} revisores (máx. {pv['revisores_por_ronda']})")
+        r["datos"]["rondas"] = {k: len(v) for k, v in rondas.items()}
+        for et, ds in rondas.items():
+            if len(ds) > pv.get("rondas_por_puerta", 2):
+                forz = any("--forzar" in json.dumps(comun.leer(os.path.join(d, "checks.json"), {}), ensure_ascii=False) for d in ds)
+                (a if forz else f)(f"{et}: {len(ds)} rondas (máx. {pv['rondas_por_puerta']})" + (" con --forzar" if forz else ""))
+        if B:
+            horas = (B[-1]["_t"] - B[0]["_t"]).total_seconds() / 3600
+            r["datos"]["horas_bitacora"] = round(horas, 1)
+            if horas > pv.get("horas_por_video", 8):
+                a(f"el video lleva {horas:.1f} h desde la primera anotación de la bitácora (tope {pv['horas_por_video']} h de trabajo; "
+                  "descontar esperas de Tomás): si se pasó, tiene que haber un aviso a Tomás con opciones")
     kl = pres.get("paquetes", {}).get("kling")
     if kl:
         usado = kl.get("usado_antes_de_bitacora", 0) + sum(

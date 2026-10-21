@@ -157,7 +157,10 @@ jobs:
           TAG="$(echo "$EP" | cut -d- -f1)-muestras"
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$TAG" --notes "Muestras internas. No publicar."
           cd _o/final && zip -q ../muestras_final.zip *.png && cd ../..
-          gh release upload "$TAG" _o/muestras.jpg _o/muestras_final.zip --clobber
+          # chequeo automático por plano sobre las muestras (caras tapadas, quemado, vacío, piso plano): lo mira el editor ANTES del auditor
+          python tools/auditor/chequeo_planos.py --cuadros _o/final --planos _o/ep02_planos.json --meta _r/meta \
+            --graficos _o/graficos.json --subs _o/subs_log.json --salida _o/chequeo.json > _o/chequeo.txt || true
+          gh release upload "$TAG" _o/muestras.jpg _o/muestras_final.zip _o/chequeo.txt _o/chequeo.json --clobber
       - name: Audio y video
         if: github.event.inputs.muestras == '0'
         env:
@@ -174,6 +177,13 @@ jobs:
         if: github.event.inputs.muestras == '0'
         continue-on-error: true
         run: python tools/qa.py "_o/$EP.mp4" "_r" "_o/subs_log.json" | tee "_o/qa.txt"
+      - name: Chequeo automático por plano
+        if: github.event.inputs.muestras == '0'
+        continue-on-error: true
+        run: |
+          python tools/auditor/chequeo_planos.py --video "_o/$EP.mp4" --planos _o/ep02_planos.json --meta _r/meta \
+            --graficos _o/graficos.json --subs _o/subs_log.json --salida _o/chequeo.json | tee _o/chequeo.txt
+          (cd _r && zip -q -r ../_o/meta.zip meta)
       - name: Borrador para revisión (prerelease)
         if: github.event.inputs.muestras == '0'
         env:
@@ -185,3 +195,4 @@ jobs:
           gh release view "$B" >/dev/null 2>&1 || gh release create "$B" --prerelease --title "$EP (borrador para revisión)" --notes "Borrador interno para la revisión. No publicar."
           cp _o/ep02_planos.json _o/planos.json
           gh release upload "$B" "_o/$EP.mp4" _o/contacto.jpg _o/qa.txt _o/subs_log.json _o/planos.json --clobber
+          for x in graficos.json chequeo.json chequeo.txt meta.zip; do [ -f "_o/$x" ] && gh release upload "$B" "_o/$x" --clobber; done

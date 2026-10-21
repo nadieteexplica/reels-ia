@@ -6,20 +6,24 @@ EPIS = os.path.join(RAIZ, "studio", "episodios")
 FPS = 30
 W, H = 1080, 1920
 
+# Proceso v2 (21-oct-2026, después del Ep. 2): el video se audita como ANIMATIC (baja resolución, antes del render final)
+# y el render final sólo pasa un chequeo de bloqueantes. Las carpetas viejas 6-video / 7-paquete quedan como historia.
 ETAPAS = {
-    "1": "guion", "2": "voz", "3": "storyboard", "4": "cuadros", "5": "kling", "6": "video", "7": "paquete", "P": "proceso",
+    "1": "guion", "2": "voz", "3": "storyboard", "4": "cuadros", "5": "kling", "6": "animatic", "7": "final", "8": "paquete",
+    "P": "proceso",
 }
 NOMBRE = {v: k for k, v in ETAPAS.items()}
+ALIAS = {"video": "animatic", "plan": "storyboard"}
 
 
 def etapa_id(e):
-    """'6', 'video' o '6-video' → '6-video'."""
-    e = str(e)
+    """'6', 'animatic' o '6-animatic' → '6-animatic' ('video' = animatic)."""
+    e = ALIAS.get(str(e), str(e))
     if e in ETAPAS:
         return f"{e}-{ETAPAS[e]}"
     if e in NOMBRE:
         return f"{NOMBRE[e]}-{e}"
-    if re.match(r"^[1-7P]-\w+$", e):
+    if re.match(r"^[1-8P]-\w+$", e):
         return e
     sys.exit(f"etapa desconocida: {e}")
 

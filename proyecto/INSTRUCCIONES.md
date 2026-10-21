@@ -34,7 +34,7 @@ Tomás no quiere estar encima de cada paso. Decide lo importante y aprueba lo qu
 Los archivos del repo mandan sobre los adjuntos del proyecto, porque el repo es la versión viva. Si algo choca entre documentos, manda el más reciente, y avísale a Tomás. **Excepción:** las secciones *Seguridad* y *Publicación* de estas instrucciones nunca se pisan con nada.
 
 ## El producto
-- **Dos líneas, de 62–75 segundos** (TikTok solo paga videos de más de 1 minuto):
+- **Dos líneas, de 62–65 segundos: lo mínimo** (TikTok solo paga videos de más de 1 minuto; más largo no suma):
   - **Datos:** un dato impresionante y real que termina **enseñando algo útil**.
   - **Historias:** ficción, inventada o absurda. Lo que se presenta como real tiene que ser real; la ficción no se disfraza de dato.
 - **Ganchos de la línea datos:**
@@ -54,19 +54,15 @@ Cada video pasa **todo** el checklist de `MANUAL_PRODUCCION.md`:
 - **Técnico:** duración, formato, volumen, sin cuadros negros.
 - **Visual:** una hoja de contacto revisada plano por plano.
 
-Además, cada video pasa una **revisión independiente**: un subagente que no hizo el video lo puntúa de 1 a 10 en 8 criterios:
-- gancho,
-- claridad,
-- ritmo,
-- belleza,
-- animación,
-- subtítulos,
-- audio,
-- precisión.
+Además, cada video pasa una **revisión independiente**: el **auditor por etapas** (`docs/AUDITOR.md`), subagentes que no hicieron el video, que lo puntúan de 1 a 10 en 8 criterios (gancho, claridad, ritmo, belleza, animación, subtítulos, audio, precisión).
 
-Si algún criterio queda bajo 8, corriges y se revisa de nuevo, hasta 3 rondas. Si después de 3 rondas no llega, ese video no se entrega. Le explicas a Tomás por qué y propones un reemplazo.
-
-Desde el 19-oct-2026 esta revisión la hace el **auditor por etapas** (`docs/AUDITOR.md`): no sólo al final, sino en cada etapa (guion, voz, storyboard, cuadros, Kling, video, paquete y proceso), con bloqueantes que lo dejan en NO APROBADO aunque las notas den 8 o más.
+**Proceso v2 (21-oct-2026, después del Ep. 2, que tomó más de 24 h — "no se puede volver a repetir"):**
+- **El auditor es la receta, no el examen final:** lo que va a exigir se escribe antes de animar en la **ficha de cada plano** del storyboard, y cada plano pasa un **chequeo automático** (`tools/prueba.py`: ojos tapados, quemado, plano quieto, fondo liso) antes de llegar al auditor.
+- Cada plano parte de una **plantilla del kit** (`studio/plantilla/KIT.md`); 16–22 planos por video, máximo 3 hechos a medida.
+- El video se audita como **animatic** (baja resolución) y después se hace **un solo render final**, que sólo se revisa por bloqueantes.
+- **Aprueba** sin bloqueantes (lista cerrada B1–B11: lo que un espectador notaría como error o lo que es falso), con **promedio ≥ 8 y ningún criterio bajo 7**. Se muestran sólo las 5 sugerencias más importantes.
+- **Máximo 2 rondas** (la 2.ª sólo verifica lo de la 1.ª) y **2 revisores** por ronda. Lo aprobado no se toca; un plano que falla dos veces se simplifica o se reemplaza. Si el video igual no llega, le explicas a Tomás por qué y propones un reemplazo.
+- **Topes por video:** 8 h de trabajo (`tools/auditor/presupuesto.json` → `proceso_v2`). Si uno se va a pasar, paras y le avisas a Tomás con opciones.
 
 Nunca le mandes a Tomás algo "más o menos" para que él lo corrija.
 

@@ -22,7 +22,7 @@ v = next(s for s in p["streams"] if s["codec_type"] == "video")
 dur = float(p["format"]["duration"])
 size = int(p["format"]["size"]) / 1e6
 fps = eval(v["r_frame_rate"])
-check("duración 62–75 s", 62 <= dur <= 75, f"{dur:.2f} s")
+check("duración 62–65 s (lo mínimo que paga TikTok, con margen)", 62 <= dur <= 65.5, f"{dur:.2f} s")
 check("1080×1920", (v["width"], v["height"]) == (1080, 1920), f"{v['width']}×{v['height']}")
 check("30 fps", abs(fps - 30) < 0.01, f"{fps:.2f}")
 check("H.264 yuv420p", v["codec_name"] == "h264" and v["pix_fmt"] == "yuv420p", f"{v['codec_name']} {v['pix_fmt']}")

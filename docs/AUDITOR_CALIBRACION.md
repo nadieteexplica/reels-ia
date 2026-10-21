@@ -89,3 +89,16 @@ Detectados por el auditor, con el plano y el segundo (de `calibrar.py`; cuenta s
 
 ## Cómo repetirla
 `python3 tools/auditor/calibrar.py` sobre `studio/episodios/ep01-congelamiento-cerebral/auditoria/historico/`. Los videos viejos están en la prerelease `calibracion`, los clips en `ep01-kling`, y los cortes por plano se sacan de `build_ep01.py` de cada commit.
+
+## Proceso v2: chequeo automático por plano calibrado con el Ep. 2 (21-oct-2026)
+`tools/auditor/chequeo_planos.py` corrido sobre la versión r3 del Ep. 2 (`ep02-pajaros-picante-v3.mp4`, la que se publicó) y, para los ojos, sobre una prueba local del plano 14 (`tools/prueba.py ep02-pajaros-picante --planos 14 --muestras 2`):
+
+| Lo que marcó el auditor en las rondas | Lo que mide el chequeo (en segundos, sin IA) |
+|---|---|
+| r3, bloqueante: la lupa tapa el ojo del pájaro en 14–16 | 🛑 `ojo_tapado` plano 14: recuadro [110, 200, 550, 640] sobre `Cuitlacoche_ojoR` |
+| r2–r3: plano 19 pobre, suelo liso que ocupa la mitad del cuadro | ❌ `plano_quieto` 2,1 s · ⚠️ `fondo_liso` 76 % · ⚠️ `poco_movimiento` 0,31 |
+| r3: P13 es una imagen fija con una píldora | ⚠️ `poco_movimiento` 0,38 |
+| r3: en P10 el interior del ají queda pálido con bloom | 🛑 `quemado` 3,5 % en 16,0–16,7 s |
+| r1–r3: el pájaro de 14–16 "congelado 5 s" | **No** lo marca: movimiento mediano 0,8–1,0 y 0,6–0,7 s máximo quieto (push-in, parpadeos y cabeza). Se movía poco; el revisor veía 6 fotos por plano. Desde v2 el revisor recibe estas medidas y 4 cuadros por segundo |
+
+Umbrales (en `chequeo_planos.py`): par de cuadros "sin cambio" bajo 0,6 niveles de gris (216×384, sin la franja de subtítulos); plano quieto ≥ 1,6 s = falla, ≥ 1,0 s = aviso; poco movimiento = mediana < 0,5; fondo liso = celdas de 12×12 con desviación < 3 en más del 70 % del cuadro; quemado > 3 % sin subtítulos ni gráficos; ojo tapado con un margen de 0,3 × el radio del ojo.
