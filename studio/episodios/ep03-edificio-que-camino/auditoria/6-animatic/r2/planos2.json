@@ -1,0 +1,26 @@
+{
+ "encargo": "planos2",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "look 3D limpio y coherente: sala de conciertos con cielo y torres bien iluminada (P32 53.72, P33 55.13) y vista cenital clara en P27; baja por el pavimento vacío bajo la sala en P32 (y≈1100–1920) y la sala cortada por el borde derecho en P34 (56.52–58.47), sin errores visibles"},
+  "animacion": {"nota": 8, "por_que": "todo se mueve con intención: la planta gira 0°→21° con su contador (P27 42.32–44.42), el edificio avanza con contador DÍA 1→18 (P29), la sala se desliza con 0→66 m (P33) y la autopista entra extendiéndose (P34 56.80–57.36); P32 es sólo un push lento (mov_mediana 1,81, quieto_max_s 0,47)"},
+  "claridad": {"nota": 8, "por_que": "cada imagen muestra lo que dice la voz: rieles rectos contra el giro de 21° (P27 44.42), 18 días en el contador (P29 47.88), 66 m de la sala en 2003 (P33 55.92); en P34 la autopista cae sobre el inicio de los rieles (57.36), pero sin huella de la sala la causa la cuenta la voz más que la imagen"},
+  "ritmo": {"nota": 8, "por_que": "ningún plano pasa 0,6 s sin cambio (quieto_max_s 0–0,6) y los contadores cambian cada ~0,3 s en P27, P29 y P33; el más lento es P32 (52.30–54.00, sólo acercamiento y subtítulos)"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A1", "arreglado": true, "por_que": "en 17s (contacto.jpg) la bola cuelga de un cable negro continuo que sale por el borde superior: ya no hay eslabones sueltos ni bola flotando; la entrada balanceándose no se puede verificar con mi material (1 cuadro/s; P11.jpg y E15.jpg son de planos1) y E15 sigue marcando un cambio de golpe en 17.33: que planos1 confirme que es la bola entrando y no un pop"},
+  {"id": "A5", "arreglado": false, "por_que": "parcial (era sugerencia, no bloqueante): la sala ahora llena ~90 % del ancho (52.30), pero su base quedó en y≈1100 y de ahí abajo (~43 % del cuadro) sigue siendo pavimento; entre 52.30 y 54.00 la sala mantiene su posición respecto de la plancha del suelo (sólo hay acercamiento), no empieza a deslizarse en 'práctica' (53.43) y no se ven rieles a la derecha"},
+  {"id": "A6", "arreglado": false, "por_que": "no hecho (era sugerencia, no bloqueante): la sala sigue cortada por el borde derecho (x≈680–1080) en los 8 cuadros 56.52–58.47 y no hay huella de la sala en el suelo; lo único que ayuda es que la autopista pasa sobre el inicio de los rieles a la izquierda (57.36)"}
+ ],
+ "eventos": [
+  {"id": "E34", "es_defecto": false, "por_que": "es el corte de P28 ('62 m') a P29 y la píldora 'DÍA 1' que entra con su animación (pequeña en 46.25, grande en 46.52)"},
+  {"id": "E38", "es_defecto": false, "por_que": "la píldora '0 m' entra bajo '2003' con su animación (54.08 chica, 54.34 '2 m')"},
+  {"id": "E39", "es_defecto": false, "por_que": "una plancha del suelo sale por el borde izquierdo porque la cámara sigue a la sala que avanza (el pavimento se desplaza ~1400 px/s); no aparece ni desaparece dentro del cuadro"},
+  {"id": "E40", "es_defecto": false, "por_que": "la autopista entra desde abajo a la derecha extendiéndose en 'para que pasara' (56.74→57.36 sigue avanzando hacia arriba a la izquierda): efecto buscado"},
+  {"id": "E41", "es_defecto": false, "por_que": "es la misma autopista que sigue extendiéndose con sus pilares sobre el inicio de los rieles (57.00→57.20)"},
+  {"id": "E42", "es_defecto": false, "por_que": "paralaje entre la torre y la franja azul del horizonte por el movimiento de cámara; nada aparece ni cambia de forma"}
+ ],
+ "resumen": "Sin bloqueantes nuevos en P27, P29 y P32–P34; A1 (cadena de la bola) arreglado según el contacto, con la entrada por confirmar en P11. Las sugerencias A5 (P32: sala que no se desliza, pavimento abajo) y A6 (P34: sala cortada, sin huella) no se hicieron o quedaron a medias, pero no bloquean."
+}
