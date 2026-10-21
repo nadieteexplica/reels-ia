@@ -552,6 +552,8 @@ def _muletas_set(sc):
     for ob in bpy.data.objects:
         if ob.name.startswith(("Cono", "Monton", "Huella")):
             ob.hide_render = True
+    # bajo el edificio alzado se ve el horizonte: suelo lejano para que no aparezca la franja azul del cielo de abajo
+    ED._caja("SueloLejos", -6000, 6000, -6000, 6000, -0.62, -0.50, S["coll"], P.mat("SueloLejos", (0.50, 0.43, 0.35), rough=1.0))
     m1 = _muleta("MuletaIzq", S["coll"])
     m2 = _muleta("MuletaDer", S["coll"])
     return S, m1, m2
