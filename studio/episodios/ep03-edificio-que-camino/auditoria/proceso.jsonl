@@ -3,3 +3,5 @@
 {"tipo": "gasto", "servicio": "eleven", "monto": 1300.0, "nota": "voz 0008 (estimado; el real sale en out/status.json)", "n": 3, "ts": "2026-10-21T14:39:02-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras (3 por pieza, 360x640)", "estado": "inicio", "n": 4, "ts": "2026-10-21T15:05:37-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras 2", "estado": "inicio", "n": 5, "ts": "2026-10-21T15:26:02-03:00"}
+{"tipo": "trabajo", "id": "revisor puerta 4 r1", "estado": "caido", "nota": "se cortó cuando Tomás escribió a las 15:39 (lección 13/37); se relanza el mismo encargo", "n": 6, "ts": "2026-10-21T15:42:59-03:00"}
+{"tipo": "trabajo", "id": "animatic 1 (540x960, 8 muestras, 15 máquinas)", "estado": "inicio", "n": 7, "ts": "2026-10-21T15:43:27-03:00"}
