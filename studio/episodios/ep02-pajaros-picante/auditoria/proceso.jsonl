@@ -175,3 +175,4 @@
 {"tipo": "chequeo", "id": "render-planos 39540956118", "estado": "en curso, 15/16 trabajos de render listos, armado: sin empezar", "n": 175, "ts": "2026-10-21T02:54:00-03:00"}
 {"tipo": "chequeo", "id": "render-planos 39540956118", "estado": "en curso, 16/16 trabajos de render listos, armado: in_progress", "n": 176, "ts": "2026-10-21T03:09:24-03:00"}
 {"tipo": "chequeo", "id": "render-planos 39540956118", "estado": "en curso, 16/16 trabajos de render listos, armado: in_progress", "n": 177, "ts": "2026-10-21T03:24:48-03:00"}
+{"tipo": "cumplida", "que": "borrador r2 de la puerta 6", "nota": "llegó 03:27 (aviso de 02:54: ~03:40); QA PASA; 0 fallas automáticas en la r2", "n": 178, "ts": "2026-10-21T03:31:54-03:00"}
