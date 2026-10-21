@@ -107,10 +107,19 @@ def p40(sc, a, b):
     c0, foco = cam.location.copy(), S["foco"]
     lejos = c0 + (c0 - foco) * 0.22
 
+    pj = S["pj"]
+    cab0 = S["pj_cab0"]
+    f_parp = a + int((b - a) * 0.40)
+
     def act(f):
         fase = f - (b - 1) + 1                 # en el último cuadro la fase es 1 = la del primer cuadro del video
         cam.location = lejos.lerp(c0, sale(lin(f, a, b - 1)))
         _c0_vida(S, fase)
+        # puerta 6 r1: el pájaro no estaba quieto 1,7 s; ladea la cabeza, parpadea una vez y vuelve exacto a C0
+        x = lin(f, a, b - 1)
+        k = math.sin(math.pi * x) ** 2
+        pj["cabeza"].rotation_euler = Euler((cab0.x + R(-4) * k, cab0.y + R(5) * k, cab0.z + R(7) * k))
+        AP.parpados(pj["parpados"], AP.parpadeo(f, f_parp, -30, dur=6))
     return {"actualizar": act}
 
 
@@ -1336,21 +1345,28 @@ def p37(sc, a, b):
     beb.data.materials[0] = bm
     rr = random.Random(2)
     burb = []
-    bmat = P.mat("Burbuja", (1, 1, 1), rough=0.0, transmission=1.0)
-    for k in range(26):
-        bo = P.prim("sphere", f"Burbuja{k}", S["CP"], bmat, r=rr.uniform(0.0012, 0.0024), u=12, v=6)
-        burb.append((bo, Vector((c.x - 0.04 + rr.uniform(-0.022, 0.022), c.y + rr.uniform(-0.022, 0.022), z + 0.006)), rr.uniform(0, 1), rr.uniform(0.6, 1.2)))
+    # puerta 6 r1: las burbujas transparentes no se veían dentro de la bebida oscura → claras y un poco emisivas, más, y
+    # pegadas al vidrio de adelante; espuma arriba
+    bmat = P.mat("Burbuja37", (0.98, 0.94, 0.86), rough=0.15, emit=0.45)
+    for k in range(48):
+        bo = P.prim("sphere", f"Burbuja{k}", S["CP"], bmat, r=rr.uniform(0.0016, 0.0030), u=12, v=6)
+        ang = rr.uniform(R(-150), R(-30))          # mitad de adelante del vaso (la cámara mira desde -Y)
+        rad = rr.uniform(0.020, 0.030)
+        burb.append((bo, Vector((c.x - 0.04 + rad * math.cos(ang), c.y + rad * math.sin(ang), z + 0.006)), rr.uniform(0, 1), rr.uniform(0.6, 1.2)))
+    esp = P.prim("cyl", "Espuma37", S["CP"], P.mat("Espuma37", (0.86, 0.72, 0.52), rough=0.6), r=0.031, r2=0.031, h=0.006, seg=40)
+    esp.location = (c.x - 0.04, c.y, z + 0.10 * 0.85 - 0.002)
     ar, ll = ardorometro("Ardor37", S["CP"], (c.x + 0.07, c.y - 0.01, S["suelo"](c.x + 0.07, c.y - 0.01) - 0.001))
     cam = E2.camara(sc, "Cam37", lens=40, fstop=7)
-    pos = c + Vector((0.0, -0.50, 0.14))
-    tgt = c + Vector((0.01, 0.02, 0.065))
+    pos = c + Vector((0.015, -0.60, 0.15))       # puerta 6 r1: el ardorómetro quedaba cortado a la derecha y el vaso tocaba el borde
+    tgt = c + Vector((0.015, 0.02, 0.060))
     n = b - a
 
     def act(f):
         x = (f - a) / n
         for bo, p0, ph, vel in burb:
             t = ((f - a) / 40 * vel + ph) % 1
-            bo.location = p0 + Vector((0.0015 * math.sin(t * 9 + ph * 6), 0, 0.075 * t))
+            bo.location = p0 + Vector((0.0015 * math.sin(t * 9 + ph * 6), 0, 0.072 * t))
+            bo.hide_render = t > 0.97
         ll.poner(f, 1.0 - 0.14 * suave(lin(x, 0.15, 0.6)) + 0.04 * math.sin(lin(x, 0.6, 1.0) * math.pi))
         E2.empujar(cam, f, a, b - 1, pos, tgt, cuanto=0.05, foco=tgt)
     return {"actualizar": act}
@@ -1398,15 +1414,24 @@ def p38(sc, a, b):
 
     def act(f):
         x = (f - a) / n
-        pav = math.sin((f - a) * 0.35)
-        rat.pose(cab=(-12 + 3 * pav, 0, 10 * pav), cuerpo=-8, giro=8 * pav, ojos=-80, f=f)
-        rt["root"].location.z = c.z + 0.004 * abs(math.sin((f - a) * 0.35))
         dt = (f - t_lle) / E2.FPS
+        # puerta 6 r1: el ratón se quedaba igual cuando caía el guardia → 0,15 s después del golpe salta del susto, se le
+        # abren los ojos y gira la cabeza hacia el ají; deja de pavonearse
+        su = suave(lin(dt, 0.15, 0.40))
+        pav = math.sin((f - a) * 0.35) * (1 - su)
+        bpy.context.view_layer.update()
+        mira_g = AP.mirar_a(rt["cabeza"], g["root"].matrix_world @ Vector((0, 0, 0.12)), 0.8 * su, limite=70)
+        rat.pose(cab=(-12 * (1 - su) + 3 * pav + math.degrees(mira_g.x) * su, 0, 10 * pav + math.degrees(mira_g.z) * su),
+                 cuerpo=-8 * (1 - su), giro=8 * pav + 25 * su, ojos=-80 - 35 * su, ojos_esc=1 + 0.25 * E2.rebote(lin(dt, 0.15, 0.45)), f=f)
+        salto = math.sin(math.pi * lin(dt, 0.15, 0.42)) if 0.15 <= dt <= 0.42 else 0.0
+        rt["root"].location.z = c.z + 0.004 * abs(math.sin((f - a) * 0.35)) * (1 - su) + 0.035 * salto
         h = 0.8 * min(1.0, (-dt / 0.3)) ** 2 if dt < 0 else 0.0
         sq = math.exp(-max(0, dt) * 10) * math.cos(max(0, dt) * 26) if dt >= 0 else 0
         g["root"].location = pg + Vector((0, 0, h))
-        g["root"].scale = (1 + 0.18 * sq, 1 + 0.18 * sq, 1 - 0.25 * sq)
-        ang = R(-35 + 50 * suave(x))
+        resp = 0.012 * math.sin(max(0.0, dt) * 5.0) * suave(lin(dt, 0.3, 0.6))      # ya parado: respira y se inclina hacia él
+        g["root"].scale = (1 + 0.18 * sq - resp * 0.5, 1 + 0.18 * sq - resp * 0.5, 1 - 0.25 * sq + resp)
+        g["root"].rotation_euler.x = R(-7) * suave(lin(dt, 0.35, 0.8))
+        ang = R(-25 + 45 * suave(x))         # puerta 6 r1: arrancaba con el ratón pegado al borde derecho
         p = centro + Vector((math.sin(ang) * 0.75, -math.cos(ang) * 0.75, 0.10))
         E2.mirar(cam, p, centro, foco=centro)
     return {"actualizar": act}

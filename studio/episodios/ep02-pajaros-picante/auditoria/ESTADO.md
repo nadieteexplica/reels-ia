@@ -16,3 +16,4 @@
 | 4-cuadros | r1 | NO APROBADO | 2 | 11 |
 | 4-cuadros | r2 | NO APROBADO | 1 | 9 |
 | 4-cuadros | r3 | APROBADO | 0 | 6 |
+| 6-video | r1 | NO APROBADO | 19 | 76 |
