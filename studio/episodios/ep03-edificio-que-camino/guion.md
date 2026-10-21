@@ -66,4 +66,43 @@ Así que esta escuela, a los ochenta y cinco años... por fin aprendió a camina
 **0 clips.** No hay manos con objetos: el protagonista es el edificio (sin cara) y todo sale de render.
 
 ## Tiempos por frase
-(Se llenan con `words.json` después de la voz.)
+De `words.json` (voz de 63,41 s con 16 pausas de 0,2–0,45 s agregadas con `tools/pausas.py`, 0 créditos; la toma salió en 57,96 s). Un renglón por plano del storyboard.
+
+| Plano | Tiempo (s) | Frase |
+|---|---|---|
+| 1 | 0.00–1.29 | Este edificio de cinco |
+| 2 | 1.29–3.10 | pisos se fue caminando. |
+| 3 | 3.10–4.88 | Y no, no es broma... |
+| 4 | 4.88–6.22 | tiene patas. |
+| 5 | 6.22–7.10 | Es una escuela de |
+| 6 | 7.10–8.88 | mil novecientos treinta y cinco, |
+| 7 | 8.88–9.75 | en Shanghái. |
+| 8 | 9.75–12.30 | Pesa más de siete mil seiscientas toneladas. |
+| 9 | 12.30–14.51 | Y en dos mil veinte estorbaba: |
+| 10 | 14.51–16.89 | ahí iban a hacer oficinas y tiendas. |
+| 11 | 16.89–18.04 | En vez de demolerla, |
+| 12 | 18.04–19.15 | la movieron. |
+| 13 | 19.15–20.63 | Primero cavaron alrededor. |
+| 14 | 20.63–22.73 | Le metieron debajo ciento noventa y ocho |
+| 15 | 22.73–23.91 | patas robóticas. |
+| 16 | 23.91–25.53 | Cortaron las columnas... |
+| 17 | 25.53–27.50 | y las patas la alzaron entera. |
+| 18 | 27.50–29.09 | Las patas van en dos grupos. |
+| 19 | 29.09–30.40 | Uno aguanta el peso. |
+| 20 | 30.40–32.11 | El otro se alza y da un paso. |
+| 21 | 32.11–33.04 | Luego cambian. |
+| 22 | 33.04–34.80 | Como tú cuando caminas. |
+| 23 | 34.80–36.87 | Según el jefe técnico, es como ponerle |
+| 24 | 36.87–39.47 | muletas para que se pare y camine. |
+| 25 | 39.47–40.88 | ¿Y por qué no usaron rieles? |
+| 26 | 40.88–42.28 | Los rieles no doblan, |
+| 27 | 42.28–44.46 | y había que girarla veintiún grados. |
+| 28 | 44.46–46.21 | Caminó sesenta y dos metros. |
+| 29 | 46.21–48.19 | Se demoró dieciocho días. |
+| 30 | 48.19–50.94 | Tú caminas eso en menos de un minuto. |
+| 31 | 50.94–51.98 | Y lo más loco: |
+| 32 | 51.98–54.04 | Shanghái ya tenía práctica. |
+| 33 | 54.04–56.48 | En dos mil tres movió su sala de conciertos... |
+| 34 | 56.48–58.51 | para que pasara una autopista. |
+| 35 | 58.51–61.75 | Así que esta escuela, a los ochenta y cinco años... |
+| 36 | 61.75–63.81 | por fin aprendió a caminar. |

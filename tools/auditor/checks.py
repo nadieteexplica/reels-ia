@@ -50,6 +50,45 @@ def palabras(texto):
     return [w for w in re.split(r"\s+", texto.strip()) if re.search(r"\w", w)]
 
 
+_UNI = "cero uno dos tres cuatro cinco seis siete ocho nueve diez once doce trece catorce quince dieciseis diecisiete dieciocho diecinueve veinte".split()
+_VEI = {21: "veintiun", 22: "veintidos", 23: "veintitres", 24: "veinticuatro", 25: "veinticinco", 26: "veintiseis", 27: "veintisiete", 28: "veintiocho", 29: "veintinueve"}
+_DEC = {3: "treinta", 4: "cuarenta", 5: "cincuenta", 6: "sesenta", 7: "setenta", 8: "ochenta", 9: "noventa"}
+_CEN = {1: "ciento", 2: "doscientos", 3: "trescientos", 4: "cuatrocientos", 5: "quinientos", 6: "seiscientos", 7: "setecientos", 8: "ochocientos", 9: "novecientos"}
+
+
+def numero_es(n):
+    """Entero (0–999.999) en palabras, sin tildes, como lo transcribe el guion ("mil novecientos treinta y cinco")."""
+    if n <= 20:
+        return _UNI[n]
+    if n < 30:
+        return _VEI[n]
+    if n < 100:
+        d, u = divmod(n, 10)
+        return _DEC[d] + ("" if u == 0 else " y " + ("un" if u == 1 else _UNI[u]))
+    if n < 1000:
+        c, r = divmod(n, 100)
+        if n == 100:
+            return "cien"
+        return _CEN[c] + ("" if r == 0 else " " + numero_es(r))
+    m, r = divmod(n, 1000)
+    return ("mil" if m == 1 else numero_es(m) + " mil") + ("" if r == 0 else " " + numero_es(r))
+
+
+def palabras_habladas(texto):
+    """La transcripción automática escribe las cifras con dígitos ("1,935", "7.600"): se pasan a palabras para compararlas
+    con un guion que las escribe en palabras (Ep. 3: el conteo de palabras tiene que reflejar lo que se habla)."""
+    out = []
+    for w in palabras(texto):
+        x = w.strip(".,;:!?¡¿…\"'")
+        if re.fullmatch(r"\d{1,3}([.,]\d{3})*", x):
+            n = int(re.sub(r"[.,]", "", x))
+            if n < 1_000_000:
+                out += numero_es(n).split()
+                continue
+        out.append(w)
+    return out
+
+
 def seccion(md, titulo):
     m = re.search(rf"^##+\s*{titulo}[^\n]*\n(.*?)(?=^##\s|\Z)", md, re.S | re.M | re.I)
     return m.group(1).strip() if m else ""
@@ -177,7 +216,7 @@ def voz(ep_d, words_path, status_path=None, job=None, asr_path=None):
     # pronunciación: transcripción automática contra el guion
     if asr_path and os.path.exists(asr_path):
         asr = comun.leer(asr_path)
-        a = [norm(x).strip(".,;:!?¡¿…\"'") for x in palabras(asr.get("texto", ""))]
+        a = [norm(x).strip(".,;:!?¡¿…\"'") for x in palabras_habladas(asr.get("texto", ""))]
         g = [norm(x).strip(".,;:!?¡¿…\"'") for x in palabras(txt)]
         sm = difflib.SequenceMatcher(None, g, a, autojunk=False)
         dif = [(" ".join(g[i1:i2]), " ".join(a[j1:j2])) for op, i1, i2, j1, j2 in sm.get_opcodes() if op != "equal"]

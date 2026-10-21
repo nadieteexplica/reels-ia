@@ -1,0 +1,49 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ritmo de 4.8 palabras/s en 'El otro se alza y da un paso.'",
+   "evidencia": "30.36 s"
+  },
+  {
+   "que": "se escucha 'seiscientos' donde el guion dice 'seiscientas'",
+   "evidencia": ""
+  },
+  {
+   "que": "se escucha '2020' donde el guion dice 'dos mil veinte'",
+   "evidencia": ""
+  },
+  {
+   "que": "se escucha 'shangai' donde el guion dice 'shanghai'",
+   "evidencia": ""
+  },
+  {
+   "que": "se escucha '2003' donde el guion dice 'dos mil tres'",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 62.91,
+  "palabras_por_s": 2.88,
+  "creditos_restantes": 37899,
+  "asr_coincidencia": 0.966,
+  "asr_diferencias": [
+   [
+    "seiscientas",
+    "seiscientos"
+   ],
+   [
+    "dos mil veinte",
+    "2020"
+   ],
+   [
+    "shanghai",
+    "shangai"
+   ],
+   [
+    "dos mil tres",
+    "2003"
+   ]
+  ]
+ }
+}
