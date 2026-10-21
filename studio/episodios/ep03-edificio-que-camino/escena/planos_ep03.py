@@ -140,7 +140,7 @@ def p04(sc, a, b):
         pie = Vector((d_land + pt_x + ED.PASO / 2, -5, 0.15))
         sh = 0.04 * math.exp(-max(0, t - t_land) * 9) * math.sin(max(0, t - t_land) * 60) if t > t_land else 0
         return pie + Vector((-1.6, -4.6, 0.30 + sh)), pie + Vector((0.2, 0, 0.55 + sh))
-    return _camina(sc, a, b, lambda t: d_land + V * 0.45 * (t - t_land), cam_de, lens=30, shift=-0.20, polvo_pata=n)
+    return _camina(sc, a, b, lambda t: d_land + V * 0.45 * (t - t_land), cam_de, lens=30, shift=-0.20)
 
 
 def p12(sc, a, b):
@@ -563,12 +563,12 @@ def _muletas(sc, plano):
         ed.poner(0.0, ED.recta(x, 0, 0), alto=z, visibles=0, sin_pasos=True, marco=False)
         ed.raiz.rotation_euler = (tamb, 0, 0)
         for m_, e, s in ((m1, e1, -1), (m2, e2, 1)):
-            m_.location = (s * 15.5 + x, -8.8 - 26 * (1 - e), 2.4 * sube)
+            m_.location = (s * 10.5 + x, -8.8 - 26 * (1 - e), 2.4 * sube)
             m_.rotation_euler = (R(-7.5) - R(25) * (1 - e), s * R(3), 0)
             for o in m_.children_recursive:
                 o.hide_render = e <= 0.001
         xx = suave(lin(t, t0, t1))
-        E.mirar(cam, Vector((-22 + 3 * xx, -44, 3.0)), (x, -6, 10.0))
+        E.mirar(cam, Vector((-24 + 3 * xx, -54, 3.0)), (x, -6, 10.0))
     return {"actualizar": act}
 
 
@@ -652,7 +652,7 @@ def _timelapse(sc, plano):
     ed = S["ed"]
     sol, sky, bg = C.cielo(sc)
     h, marcas = _huincha(S["coll"])
-    cam = _cam(sc, 22 if plano == 28 else 20, -0.115 if plano == 28 else -0.05)
+    cam = _cam(sc, 22 if plano == 28 else 17, -0.115 if plano == 28 else -0.10)
     t0, t1 = E.T[plano]
     tA, tB = E.T[28][0], E.T[30][1]
     t29 = E.T[29]
@@ -680,7 +680,7 @@ def _timelapse(sc, plano):
         if plano == 28:
             E.mirar(cam, (d - 6, -30, 1.4), (d + 3, 0, 2.6))
         else:
-            E.mirar(cam, (-12, -96, 8), (0, 0, 6))
+            E.mirar(cam, (-14, -58, 4.5), (0, 0, 7.5))
         return {"dist": round(largo, 2), "dia": int(min(18, 1 + 17 * dia)) if plano == 29 else (18 if plano == 30 else 0)}
     return {"actualizar": act}
 

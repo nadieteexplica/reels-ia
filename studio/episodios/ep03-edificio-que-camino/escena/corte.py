@@ -91,7 +91,7 @@ class Corte:
         self.ed = ed or Edificio(sc)
         # todo lo de la calle que queda delante del corte o bajo el suelo se esconde (el mundo termina en y = -7,2)
         for ob in bpy.data.objects:
-            if ob.name.startswith(("SueloObra", "Pavimento", "Cono", "Huella", "Monton", "Oficina", "VigaPila", "RejaIzq", "RejaDer", "Plancha", "Piedra")):
+            if ob.name.startswith(("SueloObra", "Pavimento", "Cono", "Huella", "Monton", "Oficina", "VigaPila", "RejaIzq", "RejaDer", "Plancha", "Piedra", "Charco")):
                 ob.hide_render = True
 
     def poner(self, f, cavar, patas, cortar, alzar, rnd_seed=0):

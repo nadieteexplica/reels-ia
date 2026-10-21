@@ -288,7 +288,7 @@ def armar(sc, seed=3):
         ob.location = ((x0 + x1) / 2, (y0 + y1) / 2, 0)
         ob.rotation_euler = (0, 0, math.atan2(y1 - y0, x1 - x0))
     agua = P.mat("Charco", (0.05, 0.06, 0.07), rough=0.04, metal=0.0)
-    for i, (x, y, sx, sy) in enumerate([(-29, -14, 5.5, 2.6), (-18, -19, 3.0, 1.6), (12, -24, 6.0, 2.2), (-48, -30, 4.0, 2.0)]):
+    for i, (x, y, sx, sy) in enumerate([(-29, -14, 5.5, 2.6)]):
         ch = P.prim("cyl", f"Charco{i}", coll, agua, r=1.0, r2=1.0, h=0.02, seg=32)
         ch.scale = (sx, sy, 1)
         ch.location = (x, y, 0.005)

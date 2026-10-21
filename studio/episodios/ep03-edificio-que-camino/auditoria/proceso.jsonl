@@ -2,3 +2,4 @@
 {"tipo": "trabajo", "id": "estudio previo", "estado": "fin", "nota": "docs/estudios/ep03.md; guion v1 listo 14:45", "n": 2, "ts": "2026-10-21T14:24:56-03:00"}
 {"tipo": "gasto", "servicio": "eleven", "monto": 1300.0, "nota": "voz 0008 (estimado; el real sale en out/status.json)", "n": 3, "ts": "2026-10-21T14:39:02-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras (3 por pieza, 360x640)", "estado": "inicio", "n": 4, "ts": "2026-10-21T15:05:37-03:00"}
+{"tipo": "trabajo", "id": "render-planos muestras 2", "estado": "inicio", "n": 5, "ts": "2026-10-21T15:26:02-03:00"}
