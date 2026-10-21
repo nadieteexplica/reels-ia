@@ -170,11 +170,12 @@ class Edificio:
         H = z0 + 1.0 + PISOS * PISO
         self.alto = H
         # marco de acero (vigas en grilla) bajo todo el edificio
+        self.marco = []
         for (x0, x1, y0, y1) in self._alas():
-            _caja("MarcoBorde", x0 - 0.3, x1 + 0.3, y0 - 0.3, y1 + 0.3, 0.0, 0.25, c, acero, r)
+            self.marco.append(_caja("MarcoBorde", x0 - 0.3, x1 + 0.3, y0 - 0.3, y1 + 0.3, 0.0, 0.25, c, acero, r))
             x = x0
             while x <= x1 + 0.01:
-                _caja("Viga", x - 0.18, x + 0.18, y0 - 0.3, y1 + 0.3, 0.25, z0, c, acero, r)
+                self.marco.append(_caja("Viga", x - 0.18, x + 0.18, y0 - 0.3, y1 + 0.3, 0.25, z0, c, acero, r))
                 x += 2.0
         for (x0, x1, y0, y1) in self._alas():
             _caja("Zocalo", x0, x1, y0, y1, z0, z0 + 1.0, c, base, r)
@@ -189,11 +190,11 @@ class Edificio:
         # torreón de la escalera y entrada con marquesina al centro de la fachada
         _caja("Torre", -3.5, 3.5, -2.5, 2.5, H, H + 3.4, c, est, r)
         _caja("TorreRemate", -3.8, 3.8, -2.8, 2.8, H + 3.4, H + 3.8, c, est, r)
-        _caja("Marquesina", -4.0, 4.0, -8.0, -6.0, z0 + 1.0 + 3.0, z0 + 1.0 + 3.3, c, est, r)
+        _caja("Marquesina", -4.0, 4.0, -8.0, -6.0, z0 + 1.0 + 2.95, z0 + 1.0 + 3.65, c, est, r)
         _caja("Puerta", -1.6, 1.6, -6.12, -6.0, z0 + 1.0, z0 + 1.0 + 2.8, c, P.mat("PuertaMadera", (0.26, 0.12, 0.05), rough=0.6), r)
-        txt = P.text3d("Placa1935", "1935", size=1.1, extrude=0.06, coll=c, m=est)
+        txt = P.text3d("Placa1935", "1935", size=0.62, extrude=0.05, coll=c, m=P.mat("PlacaOscura", (0.20, 0.14, 0.08), rough=0.5, metal=0.3))
         txt.parent = r
-        txt.location = (0, -6.25, z0 + 1.0 + 3.65)
+        txt.location = (0, -8.04, z0 + 1.0 + 3.02)
         txt.rotation_euler = (math.radians(90), 0, 0)
         self.placa = txt
         # ventanas (instancias)
@@ -268,14 +269,16 @@ class Edificio:
     def matriz(x, y, yaw, z=0.0):
         return Matrix.Translation((x, y, z)) @ Matrix.Rotation(yaw, 4, "Z")
 
-    def poner(self, dist, pose, alto=ALTO_PATA, bob=0.10, visibles=None, extension=1.0, sin_pasos=False):
+    def poner(self, dist, pose, alto=ALTO_PATA, bob=0.10, visibles=None, extension=1.0, sin_pasos=False, suelo=0.0, marco=True):
         """Pone el edificio y las 198 patas para la distancia recorrida `dist` (m).
         pose(d) -> (x, y, yaw). extension < 1 encoge las patas (el edificio baja); visibles = cuántas patas se ven (contador)."""
         x, y, yaw = pose(dist)
         ciclo = 2 * PASO
         fase_a = (dist / ciclo) % 1.0
         # el cuerpo baja apenas cuando el peso pasa de un grupo al otro
-        z = alto * extension - (0 if sin_pasos else bob * (0.5 - 0.5 * math.cos(4 * math.pi * fase_a)))
+        z = suelo + alto * extension - (0 if sin_pasos else bob * (0.5 - 0.5 * math.cos(4 * math.pi * fase_a)))
+        for o in self.marco:
+            o.hide_render = not marco
         self.raiz.location = (x, y, z)
         self.raiz.rotation_euler = (0, 0, yaw)
         Mc = self.matriz(x, y, yaw, z)
@@ -292,7 +295,7 @@ class Edificio:
                 d0 = dist - fase * ciclo
                 px, py, pyaw = pose(d0)
                 pie = self.matriz(px, py, pyaw) @ Vector((pt["x"] + PASO / 2, pt["y"], 0))
-                pie.z = 0.0
+                pie.z = suelo
             else:              # en el aire: del despegue al aterrizaje, con arco
                 s = (fase - 0.5) / 0.5
                 d_lo = dist - (fase - 0.5) * ciclo
@@ -300,7 +303,7 @@ class Edificio:
                 b = self.matriz(*pose(d_lo + PASO)) @ Vector((pt["x"] + PASO / 2, pt["y"], 0))
                 e = s * s * (3 - 2 * s)
                 pie = a.lerp(b, e)
-                pie.z = ALZA * math.sin(math.pi * s) * extension
+                pie.z = suelo + ALZA * math.sin(math.pi * s) * extension
             arriba = Mc @ Vector((pt["x"], pt["y"], 0.0))
             d = pie + Vector((0, 0, 0.28)) - arriba          # hasta la cara de arriba del pie
             L = max(d.length, self.carcasa_h + 0.05)
@@ -333,3 +336,8 @@ def curva(total=62.0, giro=math.radians(21), x0=0.0, y0=0.0, yaw0=0.0):
         R = 1 / k
         return (x0 + R * (math.sin(th) - math.sin(yaw0)), y0 - R * (math.cos(th) - math.cos(yaw0)), th)
     return pose
+
+
+    def quieto(self, x=0.0, y=0.0, yaw=0.0):
+        """Antes de la mudanza: sin patas ni marco, el zócalo apoyado en el suelo."""
+        self.poner(0.0, recta(x, y, yaw), alto=-self.z_cuerpo, visibles=0, sin_pasos=True, marco=False)
