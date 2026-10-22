@@ -157,5 +157,6 @@ El chat agrega a esta lista los que encuentre repetidos en muchas cuentas.
 - El pulpo como tema.
 - (21-oct, ronda 2 entera 👎, "todo fome") Fallas técnicas de la NASA y física de nerd; rondas encerradas en una sola idea de Tomás; un cierre "¿para qué sirvió?" narrado por el video.
 - (21-oct) Gastar horas verificando antes de que él reaccione: primero ronda ancha y rápida, y la verificación a fondo solo para los 👍.
+- (21-oct, noche, ronda 4 entera 👎) **Casos puntuales que pasaron una vez** (un volcán de 1943, un granizo de 2018) cuando pidió **procesos**: cómo se genera algo, cómo se hace algo, qué pasa si (física real, muy poco probable). Sus ejemplos (el socavón, soplar hasta hacer una tormenta, cómo se hace un baño) son el estilo, no el tema: no meterse en ellos.
 
 (El chat suma acá lo que aprenda de cada ronda.)
