@@ -38,3 +38,4 @@
 {"tipo": "chequeo", "id": "render-planos parche 39726712487", "estado": "vivo, in_progress null, completed:5 in_progress:1", "n": 38, "ts": "2026-10-22T02:58:31-03:00"}
 {"tipo": "chequeo", "id": "render-planos final 39722863780", "estado": "vivo, in_progress null, completed:12 in_progress:1", "n": 39, "ts": "2026-10-22T03:03:18-03:00"}
 {"tipo": "chequeo", "id": "render-planos parche 39726712487", "estado": "vivo, in_progress null, completed:5 in_progress:1", "n": 40, "ts": "2026-10-22T03:13:43-03:00"}
+{"tipo": "aviso", "que": "03:15: la máquina de los planos 13–14 del final lleva 102 min (estimado 60; en el animatic 47–52 min con otro plano). Cierre proyectado ~04:10 (40–45 min sobre el tope de 4 h). Se paró el trabajo activo y se le dieron a Tomás 2 opciones: A terminar (~20 min de auditor y paquete) o B dejarlo en la prerelease sin la última auditoría; sin respuesta queda B", "n": 41, "ts": "2026-10-22T03:15:34-03:00"}
