@@ -23,3 +23,7 @@
 {"tipo": "trabajo", "id": "render-planos final 39722811570", "estado": "inicio", "nota": "render final 720x1280, 8 muestras + denoise (16 no cabe en el tope de 4 h: medido 2,5x el animatic), 12 partes mientras terminan 3 del animatic (máx. 16 máquinas)", "n": 23, "ts": "2026-10-22T01:31:10-03:00"}
 {"tipo": "trabajo", "id": "render-planos final 39722811570", "estado": "fin", "nota": "cancelado en cola: compartía el grupo de concurrencia con el animatic; se relanza con la lista de piezas explícita", "n": 24, "ts": "2026-10-22T01:31:29-03:00"}
 {"tipo": "trabajo", "id": "render-planos final 39722863780", "estado": "inicio", "nota": "render final 720x1280, 8 muestras + denoise, 12 partes (3 del animatic siguen: 15 máquinas)", "n": 25, "ts": "2026-10-22T01:31:44-03:00"}
+{"tipo": "chequeo", "id": "render-planos animatic 39718733164", "estado": "vivo, in_progress null, completed:12 in_progress:3", "n": 26, "ts": "2026-10-22T01:32:46-03:00"}
+{"tipo": "trabajo", "id": "render-planos animatic 39718733164", "estado": "fin", "nota": "completed success", "n": 27, "ts": "2026-10-22T01:47:11-03:00"}
+{"tipo": "chequeo", "id": "render-planos final 39722863780", "estado": "vivo, in_progress null, completed:1 in_progress:12", "n": 28, "ts": "2026-10-22T01:47:21-03:00"}
+{"tipo": "trabajo", "id": "puerta 6 r1 (4 revisores)", "estado": "inicio", "nota": "sobre el animatic 39718733164; el render final ya corre con los arreglos de la puerta 4", "n": 29, "ts": "2026-10-22T01:49:41-03:00"}
