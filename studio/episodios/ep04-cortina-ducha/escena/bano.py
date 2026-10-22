@@ -59,8 +59,8 @@ def mat_azulejo():
     br.inputs["Brick Width"].default_value = 0.5
     br.inputs["Row Height"].default_value = 0.25
     br.offset = 0.5
-    br.inputs["Color1"].default_value = (0.10, 0.50, 0.58, 1)
-    br.inputs["Color2"].default_value = (0.13, 0.56, 0.63, 1)
+    br.inputs["Color1"].default_value = (0.05, 0.42, 0.52, 1)
+    br.inputs["Color2"].default_value = (0.07, 0.48, 0.57, 1)
     br.inputs["Mortar"].default_value = (0.78, 0.85, 0.85, 1)
     nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
     # el ladrillo de Blender usa x,y: las paredes se mapean con (x o y, z)
@@ -104,12 +104,12 @@ def mat_cortina(pesada=False):
     st = nt.nodes.new("ShaderNodeMath"); st.operation = "GREATER_THAN"; st.inputs[1].default_value = 0.30
     nt.links.new(fr.outputs[0], st.inputs[0])
     mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
-    mix.inputs["A"].default_value = (0.72, 0.86, 0.80, 1)
-    mix.inputs["B"].default_value = (0.10, 0.52, 0.46, 1)
+    mix.inputs["A"].default_value = (0.64, 0.83, 0.76, 1)
+    mix.inputs["B"].default_value = (0.05, 0.46, 0.40, 1)
     nt.links.new(st.outputs[0], mix.inputs["Factor"])
     b.inputs["Roughness"].default_value = 0.65 if pesada else 0.32
     if pesada:
-        b.inputs["Sheen Weight"].default_value = 0.6
+        b.inputs["Sheen Weight"].default_value = 0.15
         nt.links.new(mix.outputs["Result"], b.inputs["Base Color"])
         noise = nt.nodes.new("ShaderNodeTexNoise"); noise.inputs["Scale"].default_value = 900
         bump = nt.nodes.new("ShaderNodeBump"); bump.inputs["Strength"].default_value = 0.25
@@ -258,7 +258,7 @@ def _alinear(v):
 # ---------------- set ----------------
 def armar(sc, corte=False, cortina="liviana", pato_en=None):
     S = {"sc": sc}
-    blanco = mat("Ceramica", (0.80, 0.82, 0.82), rough=0.14, coat=0.5)
+    blanco = mat("Ceramica", (0.72, 0.77, 0.80), rough=0.14, coat=0.5)
     cromo = mat("Cromo", (0.9, 0.9, 0.92), rough=0.08, metal=1.0)
     azulejo = mat_azulejo()
     piso = mat("PisoBano", (0.55, 0.60, 0.62), rough=0.35)

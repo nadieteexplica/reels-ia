@@ -1,0 +1,28 @@
+{
+ "fallas": [
+  {
+   "que": "00022: se ve lavado (brillo 187.6, saturación 38.0)",
+   "evidencia": "",
+   "bloqueante": false
+  },
+  {
+   "que": "00121: se ve lavado (brillo 201.8, saturación 30.3)",
+   "evidencia": "",
+   "bloqueante": false
+  },
+  {
+   "que": "00560: se ve lavado (brillo 205.4, saturación 34.2)",
+   "evidencia": "",
+   "bloqueante": false
+  },
+  {
+   "que": "01075: se ve lavado (brillo 187.6, saturación 42.6)",
+   "evidencia": "",
+   "bloqueante": false
+  }
+ ],
+ "avisos": [],
+ "datos": {
+  "cuadros": 4
+ }
+}

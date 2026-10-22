@@ -35,7 +35,7 @@ def TW(prefijo, desde=0.0):
 
 # ===================================== E1 · la ducha ======================================
 def _set_ducha(sc, pesada=False):
-    sc.view_settings.exposure = -0.3          # piel mojada, espuma y cortina claras: sin quemar (chequeo < 3 %)
+    sc.view_settings.exposure = -1.0          # piel mojada, espuma y cortina claras: sin quemar ni lavar (chequeos)
     S = B.armar(sc, corte=False, cortina="pesada" if pesada else "liviana", pato_en=(0.45, 0.365, B.Z_BORDE))
     pj = PJ.cargar(sc, x=0.0, y=0.10, z=B.Z_PISO, rot_z=math.pi)
     A = B.sistema_agua(n_gotas=700, n_aire=1, n_vapor=30)
@@ -147,6 +147,7 @@ def _e1(sc, a, b, plano):
         _quitar(der)                          # cámara en la punta de la tina: de perfil
     if plano in (4, 5):
         _luz_rasante(sc, S)
+        sc.view_settings.exposure = -1.3      # afuera: la cortina clara llena el cuadro
     k0 = T0(plano)
 
     def act(f):
@@ -176,6 +177,7 @@ CENTRO = (-0.30, 1.12)          # centro del remolino (x, z): su eje va de la pa
 
 
 def _set_corte(sc, pesada=False):
+    sc.view_settings.exposure = -1.3          # la tina blanca y los azulejos claros: sin lavar (chequeo de la puerta 4)
     S = B.armar(sc, corte=True, cortina="pesada" if pesada else "liviana")
     A = B.sistema_agua(n_gotas=900, n_aire=700, n_vapor=40)
     # brillo del centro (baja presión): esfera cian que aparece en el plano 13
@@ -332,6 +334,8 @@ def _e3(sc, a, b, plano):
     fondo = S["paredes"][0]
     if plano in (17, 18, 21):
         _luz_rasante(sc, S)
+    if plano in (17, 18):
+        sc.view_settings.exposure = -1.3
     if plano in (20, 21):
         _quitar(fondo)
 
