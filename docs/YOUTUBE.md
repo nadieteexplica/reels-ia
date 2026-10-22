@@ -39,6 +39,20 @@ Tomás decidió el 21-oct-2026 concentrar el proyecto en YouTube, porque es la r
 - Si una parte del público es de EE. UU. (US$0,33 por mil), sube. Ejemplo: 20 % de EE. UU. y 80 % latino ≈ US$0,10 por mil, casi el doble.
 - Paga en proporción a las vistas comprometidas: el doble de vistas, el doble de plata.
 
+## Checklist para el YPP (22-oct-2026; canal con ~25 suscriptores)
+**Todavía no se puede postular:** el botón "Postularse ahora" de Studio → Ingresos aparece recién al cumplir 1.000 suscriptores + 10 M vistas de Shorts en 90 días (20 M para los que entran desde el 1-feb-2027). Después de postular, la revisión toma ~1 mes; si te rechazan, se puede apelar en 21 días o volver a postular a los 30.
+
+**Lo que Tomás deja listo ahora:**
+1. Verificación en 2 pasos en la cuenta de Google del canal.
+2. Funciones avanzadas: Studio → Configuración → Canal → Elegibilidad de funciones (verificar con el teléfono). También habilita las miniaturas personalizadas y los videos de más de 15 min, que sirven para las compilaciones.
+3. País de residencia = Chile (Studio → Configuración → Canal → Información básica).
+4. Studio → Ingresos → "Recibir notificación".
+5. Nombre "El viejo del dato" y handle @elviejodeldato en YouTube (e Instagram), más la descripción del canal.
+6. Valores de carga predeterminados: "No, no es para niños".
+7. Revisar que no haya faltas por los Lineamientos de la Comunidad.
+
+**Al postular (más adelante):** aceptar las condiciones básicas y crear AdSense para YouTube desde Studio (no antes), y después llenar la info tributaria de EE. UU. en AdSense.
+
 ## 3. Frecuencia
 - vidIQ (10,2 M canales, abr-2025 a mar-2026): el crecimiento sube en cada escalón de frecuencia; con 12 o más subidas al mes, 4,1× el crecimiento de vistas de los que suben menos de una al mes. Es correlación, no causa [11].
 - Metricool 2026 (799.718 videos): en Shorts **no hay techo claro**: más publicaciones dan más vistas al mes, porque cada una es otra oportunidad en el feed. El límite es la calidad. (En video largo, lo mejor es 2–4 por semana.) [27]
