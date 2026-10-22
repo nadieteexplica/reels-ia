@@ -281,7 +281,7 @@ def _e2(sc, a, b, plano):
 
 
 # ===================================== E3 · la cortina pesada ======================================
-E3_BAJA = (26.45, 27.35)        # la cortina pesada baja (se desenrolla) en "¿La solución?"
+E3_BAJA = (26.36, 27.30)        # la cortina pesada baja (se desenrolla) en "¿La solución?" (puerta 6 r2: desde el corte y pareja, sin salto)
 E3_INFLA = 32.15                # "igual se mueve": empieza a inflarse
 E3_FANT = 33.95                 # "ahí sí es un fantasma": cara del fantasma y susto
 
@@ -306,7 +306,7 @@ def act_e3(S, pj, A, t, f):
     bpy.context.view_layer.update()
     # cortina pesada: baja (se desenrolla), queda casi quieta y después se infla con una cara desde afuera
     C = S["cortina"]
-    bajar = sale(clamp((t - E3_BAJA[0]) / (E3_BAJA[1] - E3_BAJA[0])))
+    bajar = suave(clamp((t - E3_BAJA[0]) / (E3_BAJA[1] - E3_BAJA[0])))
     infla = suave(clamp((t - E3_INFLA) / 1.6))
     cara = suave(clamp((t - (E3_FANT - 0.35)) / 0.45))
     B.deformar_cortina(C, f, inflar=0.03 + 0.20 * infla + 0.14 * cara, centro=(0.14, 1.48), radio=(0.4, 0.5), aleteo=0.4 + 0.6 * infla,
@@ -337,6 +337,8 @@ def _e3(sc, a, b, plano):
         sc.view_settings.exposure = -1.3
     if plano in (20, 21):
         _quitar(fondo)
+    if plano == 17:      # puerta 6 r2: la cortina baja desde arriba y tapaba la cabeza antes que el cuerpo (torso sin cabeza).
+        _quitar(pj["rig"], *pj["rig"].children_recursive)   # el plano es de la cortina; él vuelve en el 20
 
     def act(f):
         t = (f - 1) / FPS
@@ -371,7 +373,7 @@ def _pieza(k, fn, **kw):
 
 PIEZAS = {str(k): _pieza(k, fn) for k, fn in sorted(FUNC.items()) if k in E.T}
 # piezas partidas (para parches rápidos en varias máquinas): "4@1" y "4@2" renderizan cada mitad del plano 4
-for _k in (4,):
+for _k in (4, 17):
     _a, _b = FR(_k)
     _m = (_a + _b) // 2
     for _i, (_x, _y) in enumerate(((_a, _m), (_m, _b)), 1):

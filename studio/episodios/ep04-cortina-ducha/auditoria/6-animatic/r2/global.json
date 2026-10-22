@@ -1,0 +1,23 @@
+{
+ "encargo": "global",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "gancho": {"nota": 7, "por_que": "el cuadro 0 y todo 0.00–1.00 s siguen siendo un hombre tranquilo con los ojos cerrados bajo la ducha (gancho.jpg); el personaje con la espuma en punta tiene gracia, pero la cortina recién actúa en el corte de 1.41 s y la cara de fantasma en 3.2 s"},
+  "claridad": {"nota": 7, "por_que": "la cadena se entiende hasta 'la presión baja' (16–21 s: remolino, anillo azul y 'BAJA PRESIÓN'), pero en 23 s 'AIRE DE AFUERA' sigue con flechas horizontales desde izquierda y derecha dentro del plano de la cortina y la cortina no se mueve en 22–24 s: el 'de afuera / hacia ti' recién se entiende al cortar en 24.4 s"},
+  "ritmo": {"nota": 8, "por_que": "21 planos en 36 s, cortes o cambios de etiqueta cada 1–2 s, cambios de escala (cara → baño completo → corte con remolino → cara) y el final (cara asustada, 35.9 s) empalma con el mismo encuadre del inicio (loop.jpg); el tramo más quieto es 27–29.5 s (cortina plana, plano 18 con mov_mediana 0.77, quieto_max_s 0.33)"},
+  "belleza": {"nota": 8, "por_que": "look 3D coherente, paleta turquesa y blanca bien iluminada en todo el video y el remolino de 16–21 s ya se lee; lo más feo es 26.5 s (torso sin cabeza bajo la cortina que baja) y 27–29.5 s con la cortina lisa llenando el cuadro"},
+  "animacion": {"nota": 8, "por_que": "ningún plano congelado (quieto_max_s ≤ 0.33 en todos); la cortina se infla sobre el personaje en 1.4–3.2 s y 24–26 s, la cara de fantasma se marca en 3–4 s y el cierre tiene la reacción de susto con boca abierta (34–35 s); el inicio (0–1.4 s) es la parte más pasiva"},
+  "subtitulos": {"nota": 9, "por_que": "97/97 palabras en pantalla, 0 desfases y 0 fuera de zona (checks.json); cajas entre y 1022–1214, siempre bajo la cara; tildes correctas en pantalla (ESTÁS, PRESIÓN, SOLUCIÓN, AHÍ SÍ, FRÍA, MÁS) y en etiquetas ('NO SOLO' sin tilde es correcto)"},
+  "audio": {"nota": 8, "por_que": "no lo puedo escuchar: por cifras está en rango, −14.1 LUFS, true peak −1.4 dBTP y la voz 10.4 dB sobre música y efectos en las pausas (mínimo, con ducking)"},
+  "precision": {"nota": 8, "por_que": "las etiquetas calzan con el guion y las fuentes (¿aire caliente? ✗ no solo; agua caliente más fuerte; agua fría igual pasa; flecha de aire hacia abajo; remolino de frente a través de la cortina, eje perpendicular a ella; baja presión en el centro; cortina pesada 'cuesta moverla'); lo único ambiguo son las flechas laterales de 23 s, que sugieren aire desde los costados de la ducha y no desde afuera"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A4", "arreglado": false, "por_que": "cuadro0.jpg y gancho.jpg 0.00–1.00 s: el hombre sigue tranquilo con los ojos cerrados, la cortina de atrás no lo toca ni él reacciona; la cortina recién se le viene encima en el corte de 1.41 s. La portada con la cara de fantasma (videoCoverMilliseconds) no se puede verificar en el material: es un ajuste del paquete"},
+  {"id": "A5", "arreglado": false, "por_que": "en 23 s las flechas naranjas de 'AIRE DE AFUERA' siguen entrando horizontales desde la izquierda y la derecha hacia el anillo central, y en 22–23 s las rayas de la cortina siguen rectas, sin abombarse hacia el centro"},
+  {"id": "A7", "arreglado": true, "por_que": "en 16–21 s el remolino ya es de trazos blancos sobre baldosas turquesa, con el anillo azul saturado que marca el giro (17–18 s) y el centro azul (20–23 s): se lee claro; sólo el tercio de abajo (la tina detrás de la cortina) sigue lechoso, y no es el foco"},
+  {"id": "A8", "arreglado": false, "por_que": "en 26.5 s la cortina que baja todavía corta al personaje en el cuello: se ve un torso sin cabeza, de espaldas (omóplatos), con la espuma en la espalda, contra la ficha que la pone en el pecho; el arreglo pedido (borde bajo los hombros o cortar directo a la cortina cerrada) no se aplicó"}
+ ],
+ "resumen": "Sin bloqueantes y con lo técnico impecable (subtítulos 97/97, audio en rango); se arregló A7 (el remolino ya se lee), pero A4, A5 y A8 siguen igual, así que el gancho (cuadro 0 pasivo) y la claridad del paso 'aire de afuera' quedan en 7 y el promedio da 7,9, bajo 8."
+}

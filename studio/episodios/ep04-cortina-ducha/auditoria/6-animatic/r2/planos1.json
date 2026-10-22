@@ -1,0 +1,33 @@
+{
+ "encargo": "planos1",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "paleta turquesa/blanca coherente y luz suave en todos los planos (P1 0.04, P16 24.43, P21 33.99); la tela de la cortina se lee como material real; nada quemado ni lavado en zonas clave"},
+  "animacion": {"nota": 7, "por_que": "P16 ya sostiene el perfil mientras la cortina se infla (24.43–26.30) y el susto de P21 se lee (34.28→34.57), pero en el remate de P21 la cortina casi no se mueve (33.99–36.01) y P17 resuelve la cortina con un salto de 1 cuadro (26.53)"},
+  "claridad": {"nota": 8, "por_que": "la imagen dice lo mismo que la voz: el remolino se arma en 'remolino acostado' (P11 15.56–16.45), flechas y 'AIRE DE AFUERA'/'EMPUJA MÁS' entran justo en sus palabras (P15 22.93, 23.78) y la cortina se mete hacia él en 'mete la cortina hacia ti' (P16)"},
+  "ritmo": {"nota": 8, "por_que": "todos los planos del encargo cambian algo cada 1–2 s (quieto_max_s ≤ 0,2); el único tramo calmo es la cortina cerrada de P17 (26.68–27.88), sostenido por el subtítulo"}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "tipo": "B2", "plano": 17, "segundo": "26.38", "que": "P17 abre con ~0,17 s (26.34–26.50, unos 5 cuadros) de Don Héctor de espaldas y en 26.53 (E21) la cortina pesada aparece entera en un solo cuadro con la cámara fija: el personaje desaparece de golpe y se lee como un flash entre P16 y la cortina, no como una cortina que cae (lo introdujo el arreglo de A3)", "arreglo": "empezar P17 con la cortina ya cerrada: sacar los cuadros 26.34–26.52 y sostener la cortina cerrada desde 26.34 (el arreglo que ya proponía A3); si la caída es buscada, animarla de arriba abajo en ≥ 6 cuadros"}
+ ],
+ "verificacion": [
+  {"id": "A1", "arreglado": true, "por_que": "en 4.99–5.36 ya no hay manchas de espuma: la cara de fantasma se desinfla y se funde en la cortina en el 'NO' (4.99 → 5.12 tenue → 5.24 sólo tela), sin partículas que mueran en el aire"},
+  {"id": "A2", "arreglado": true, "por_que": "de 24.43 a 26.30 Don Héctor se queda de perfil mirando a la derecha; en 26.03 ya no gira a cámara ni cruza el brazo, y E20 (25.87) es sólo la cortina y el agua moviéndose"},
+  {"id": "A3", "arreglado": true, "por_que": "en 26.38 el plano de espaldas corta con la espuma llegando al borde de abajo (no se ve torso flotando ni falta de caderas), desde 26.68 la cortina llega al borde inferior sin manos colgando y P16 26.30 ya no muestra el corte bajo la espuma; queda el salto de 1 cuadro anotado como B2 nuevo"},
+  {"id": "A6", "arreglado": false, "por_que": "entre 33.99 y 36.01 la cortina de la izquierda sólo se curva un poco detrás del hombro (34.57–35.43) y no aparece la cara de fantasma ni el shake: el remate sigue apoyado sólo en la cara de susto"}
+ ],
+ "eventos": [
+  {"id": "E1", "es_defecto": false, "por_que": "vapor/luz que se desplaza en la pared sobre la barra; las argollas y la cámara no se mueven y la zona es chica y lejos de lo importante"},
+  {"id": "E5", "es_defecto": false, "por_que": "giro buscado de Don Héctor hacia la cortina; 2.92 muestra el cuadro intermedio de perfil entre el frente (2.81) y la espalda (3.04)"},
+  {"id": "E6", "es_defecto": false, "por_que": "la cara de fantasma se desinfla y se funde en la tela justo en 'NO' (en 5.12 todavía se ve tenue): efecto buscado"},
+  {"id": "E16", "es_defecto": false, "por_que": "entran la etiqueta 'AIRE DE AFUERA' y las flechas en la palabra 'afuera'"},
+  {"id": "E17", "es_defecto": false, "por_que": "entra la píldora 'EMPUJA MÁS' en 'empuja' (en 23.50 se ve creciendo)"},
+  {"id": "E18", "es_defecto": false, "por_que": "gotas del chorro que cruzan frente a la cortina, coherentes con el agua del plano"},
+  {"id": "E19", "es_defecto": false, "por_que": "pliegue de la cortina que se sigue inflando y cambio de subtítulo; el movimiento es continuo en la tira de P16"},
+  {"id": "E20", "es_defecto": false, "por_que": "se mueven la cortina y el agua; la cabeza sigue de perfil (donde antes estaba el salto de A2)"},
+  {"id": "E21", "es_defecto": true, "por_que": "la cortina pesada aparece entera en 1 cuadro tras ~0,17 s de espalda con la cámara fija: Don Héctor desaparece de golpe (B2 nuevo de P17)"},
+  {"id": "E27", "es_defecto": false, "por_que": "reacción de susto en 'SÍ': abre la boca y levanta los hombros, igual a la pose 'susto' de la ficha"}
+ ],
+ "resumen": "A1, A2 y A3 quedaron arreglados; A6 (no bloqueante) no: la cortina del remate casi no se mueve. Nuevo B2 en P17: 5 cuadros de espalda y la cortina que aparece entera en 1 cuadro (26.53); se arregla recortando esos cuadros."
+}

@@ -1,0 +1,168 @@
+{
+ "etapa": "6-animatic",
+ "ronda": 2,
+ "veredicto": "NO APROBADO",
+ "promedio": 7.88,
+ "notas": {
+  "belleza": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "paleta turquesa/blanca coherente y luz suave en todos los planos (P1 0.04, P16 24.43, P21 33.99); la tela de la cortina se lee como material real; nada quemado ni lavado en zonas clave",
+   "de": "planos1"
+  },
+  "animacion": {
+   "nota": 7.5,
+   "min": 7,
+   "por_que": "P16 ya sostiene el perfil mientras la cortina se infla (24.43–26.30) y el susto de P21 se lee (34.28→34.57), pero en el remate de P21 la cortina casi no se mueve (33.99–36.01) y P17 resuelve la cortina con un salto de 1 cuadro (26.53)",
+   "de": "planos1"
+  },
+  "claridad": {
+   "nota": 7.5,
+   "min": 7,
+   "por_que": "la cadena se entiende hasta 'la presión baja' (16–21 s: remolino, anillo azul y 'BAJA PRESIÓN'), pero en 23 s 'AIRE DE AFUERA' sigue con flechas horizontales desde izquierda y derecha dentro del plano de la cortina y la cortina no se mueve en 22–24 s: el 'de afuera / hacia ti' recién se entiende al cortar en 24.4 s",
+   "de": "global"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "todos los planos del encargo cambian algo cada 1–2 s (quieto_max_s ≤ 0,2); el único tramo calmo es la cortina cerrada de P17 (26.68–27.88), sostenido por el subtítulo",
+   "de": "planos1"
+  },
+  "gancho": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "el cuadro 0 y todo 0.00–1.00 s siguen siendo un hombre tranquilo con los ojos cerrados bajo la ducha (gancho.jpg); el personaje con la espuma en punta tiene gracia, pero la cortina recién actúa en el corte de 1.41 s y la cara de fantasma en 3.2 s",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "97/97 palabras en pantalla, 0 desfases y 0 fuera de zona (checks.json); cajas entre y 1022–1214, siempre bajo la cara; tildes correctas en pantalla (ESTÁS, PRESIÓN, SOLUCIÓN, AHÍ SÍ, FRÍA, MÁS) y en etiquetas ('NO SOLO' sin tilde es correcto)",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "no lo puedo escuchar: por cifras está en rango, −14.1 LUFS, true peak −1.4 dBTP y la voz 10.4 dB sobre música y efectos en las pausas (mínimo, con ducking)",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "las etiquetas calzan con el guion y las fuentes (¿aire caliente? ✗ no solo; agua caliente más fuerte; agua fría igual pasa; flecha de aire hacia abajo; remolino de frente a través de la cortina, eje perpendicular a ella; baja presión en el centro; cortina pesada 'cuesta moverla'); lo único ambiguo son las flechas laterales de 23 s, que sugieren aire desde los costados de la ducha y no desde afuera",
+   "de": "global"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B2",
+   "plano": 17,
+   "segundo": "26.38",
+   "que": "P17 abre con ~0,17 s (26.34–26.50, unos 5 cuadros) de Don Héctor de espaldas y en 26.53 (E21) la cortina pesada aparece entera en un solo cuadro con la cámara fija: el personaje desaparece de golpe y se lee como un flash entre P16 y la cortina, no como una cortina que cae (lo introdujo el arreglo de A3)",
+   "arreglo": "empezar P17 con la cortina ya cerrada: sacar los cuadros 26.34–26.52 y sostener la cortina cerrada desde 26.34 (el arreglo que ya proponía A3); si la caída es buscada, animarla de arriba abajo en ≥ 6 cuadros",
+   "de": "planos1"
+  }
+ ],
+ "sugerencias": [
+  {
+   "id": "A4",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "[A4 sin arreglar] el cuadro 0 (portada y lo que decide visto vs. deslizado) es un hombre duchándose tranquilo con los ojos cerrados; la acción del gancho (la cortina que se le viene encima) empieza recién a los 1.41 s y la cara de fantasma a los 3.2 s",
+   "arreglo": "en el plano 1, adelantar la animación de la cortina para que desde el cuadro 0 ya venga inflada por detrás y le roce el hombro (que abra un ojo al contacto); y usar el cuadro de la cara de fantasma (~3.6 s) como portada (videoCoverMilliseconds) para la grilla",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "A5",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 15,
+   "segundo": "23.00",
+   "que": "[A5 sin arreglar] las flechas naranjas de 'AIRE DE AFUERA' entran por la izquierda y la derecha, en el plano de la cortina: se lee como aire que viene de los costados dentro de la ducha, y en todo 22–24 s no se ve la cortina moverse hacia el centro, así que el 'mete la cortina hacia ti' recién se entiende al cortar a los 24.4 s",
+   "arreglo": "cambiar las flechas laterales por flechas que vienen desde la cámara hacia el centro (en perspectiva, achicándose) y hacer que las rayas de la cortina se abomben hacia el anillo de baja presión en este mismo plano",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "A8",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 17,
+   "segundo": "26.40",
+   "que": "[A8 sin arreglar] la cortina nueva que baja corta al personaje a la altura del cuello: por ~0.5 s se ve un torso sin cabeza, con espuma que parece estar en la espalda (la ficha la pone en el pecho); material insuficiente para verificar si es espalda o pecho",
+   "arreglo": "empezar el plano con el borde de la cortina ya bajo los hombros, o cortar directo a la cortina pesada cerrada (27 s) y dejar al personaje fuera de este plano",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "A6",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 21,
+   "segundo": "34.86",
+   "que": "[A6 sin arreglar] en 'FANTASMA' la cortina de la izquierda (x 0–500, y 250–1000) es una onda suave y desenfocada que casi no cambia entre 33.99 y 36.01: el remate prometido (la cortina pesada que igual se infla) no se ve, sólo la cara de susto",
+   "arreglo": "en la misma cámara, justo en 'FANTASMA' (~34.9) que la cortina se infle hacia su hombro y aparezca la cara de fantasma marcada en la tela de los planos 3–4 (reusar ese desplazamiento), con un shake corto; cierra el chiste y el loop con el gancho",
+   "de": "verificación",
+   "asignado": "planos1"
+  }
+ ],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "en 4.99–5.36 ya no hay manchas de espuma: la cara de fantasma se desinfla y se funde en la cortina en el 'NO' (4.99 → 5.12 tenue → 5.24 sólo tela), sin partículas que mueran en el aire",
+   "de": "planos1"
+  },
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "de 24.43 a 26.30 Don Héctor se queda de perfil mirando a la derecha; en 26.03 ya no gira a cámara ni cruza el brazo, y E20 (25.87) es sólo la cortina y el agua moviéndose",
+   "de": "planos1"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "en 26.38 el plano de espaldas corta con la espuma llegando al borde de abajo (no se ve torso flotando ni falta de caderas), desde 26.68 la cortina llega al borde inferior sin manos colgando y P16 26.30 ya no muestra el corte bajo la espuma; queda el salto de 1 cuadro anotado como B2 nuevo",
+   "de": "planos1"
+  },
+  {
+   "id": "A6",
+   "arreglado": false,
+   "por_que": "entre 33.99 y 36.01 la cortina de la izquierda sólo se curva un poco detrás del hombro (34.57–35.43) y no aparece la cara de fantasma ni el shake: el remate sigue apoyado sólo en la cara de susto",
+   "de": "planos1"
+  },
+  {
+   "id": "A4",
+   "arreglado": false,
+   "por_que": "cuadro0.jpg y gancho.jpg 0.00–1.00 s: el hombre sigue tranquilo con los ojos cerrados, la cortina de atrás no lo toca ni él reacciona; la cortina recién se le viene encima en el corte de 1.41 s. La portada con la cara de fantasma (videoCoverMilliseconds) no se puede verificar en el material: es un ajuste del paquete",
+   "de": "global"
+  },
+  {
+   "id": "A5",
+   "arreglado": false,
+   "por_que": "en 23 s las flechas naranjas de 'AIRE DE AFUERA' siguen entrando horizontales desde la izquierda y la derecha hacia el anillo central, y en 22–23 s las rayas de la cortina siguen rectas, sin abombarse hacia el centro",
+   "de": "global"
+  },
+  {
+   "id": "A7",
+   "arreglado": true,
+   "por_que": "en 16–21 s el remolino ya es de trazos blancos sobre baldosas turquesa, con el anillo azul saturado que marca el giro (17–18 s) y el centro azul (20–23 s): se lee claro; sólo el tercio de abajo (la tina detrás de la cortina) sigue lechoso, y no es el foco",
+   "de": "global"
+  },
+  {
+   "id": "A8",
+   "arreglado": false,
+   "por_que": "en 26.5 s la cortina que baja todavía corta al personaje en el cuello: se ve un torso sin cabeza, de espaldas (omóplatos), con la espuma en la espalda, contra la ficha que la pone en el pecho; el arreglo pedido (borde bajo los hombros o cortar directo a la cortina cerrada) no se aplicó",
+   "de": "global"
+  }
+ ],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": true
+}
