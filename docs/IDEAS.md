@@ -159,6 +159,36 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 - **Ojo al guion:** el video muestra el absurdo y no cierra con moraleja ni con "¿para qué sirvió?" narrado (gusto de Tomás, `CAZA_DATOS.md` §9).
 - **Estilo (decisión de Tomás, 21-oct):** semi-realista, un solo estilo; no se le muestran opciones. Antes de producir, el chat del video hace un estudio corto (algoritmo de las 3 redes, nuestras métricas, videos parecidos) y guarda las conclusiones en `docs/estudios/ep03.md`.
 
+### Procesos: cómo se hace, cómo se genera, qué pasa si (ronda 5, 21-oct-2026, 👍 de Tomás, verificadas)
+| Estado | Gancho | Dato central (verificado) | Imagen 3D clave | Enseñanza |
+|---|---|---|---|---|
+| pendiente (ficha abajo) | La cortina de la ducha te persigue (y no es un fantasma) | El chorro arma un remolino acostado dentro de la ducha; su centro tiene baja presión y chupa la cortina. Pasa también con agua fría | La ducha en corte con el remolino girando como una rueda y la cortina que se mete | El agua caliente lo empeora |
+| pendiente (ficha abajo) | El vidrio de tu ventana se hizo flotando sobre metal derretido | Vidrio a 1.100 °C se vierte sobre una piscina de estaño fundido, flota y se aplana solo; sale a 600 °C | La cinta de vidrio naranja deslizándose sobre el espejo de estaño | Con luz ultravioleta se ve cuál lado tocó el estaño |
+| pendiente (ficha abajo) | Con un imán gigante puedes hacer flotar a un ser vivo | El agua del cuerpo es repelida un poquito por los imanes: con ~16 T flotó una rana viva; la NASA hizo flotar ratones por horas | La rana flotando dentro del tubo del imán | Todo lo que tiene agua (tú también) es levemente "antimagnético" |
+
+#### Ficha — La cortina de la ducha (verificada)
+- **Por qué le gustó a Tomás:** una vez pensó que le estaban penando porque la cortina se movía sola. Gancho natural: "no es un fantasma".
+- **Escalera:** (1) la teoría vieja: el aire caliente sube y entra aire frío por abajo (Popular Science, 1938); (2) pero pasa igual con agua fría; (3) otra teoría: Bernoulli, el chorro arrastra aire; (4) en 2001 David Schmidt (U. de Massachusetts Amherst) simuló una ducha en su PC: 50.000 celdas, 1,5 billones de cálculos, dos semanas corriendo de noche porque en la mañana su señora le hacía reiniciar el computador; (5) resultado: el chorro arma un **remolino acostado**, como una rueda de agua, y su centro de baja presión chupa la cortina. Ganó el Ig Nobel 2001.
+- **Matiz obligatorio:** en 2007 otro investigador mostró que el agua caliente sí produce un efecto más fuerte que la fría: el calor ayuda, pero no es la causa principal. Decir "pasa hasta con agua fría", no "el calor no tiene nada que ver".
+- **Fuentes (independientes):** [Popular Science](https://www.popsci.com/why-do-shower-curtains-billow-inward-0/) · [The Straight Dope (carta del propio Schmidt)](https://www.straightdope.com/21343421/why-does-the-shower-curtain-blow-in-despite-the-water-pushing-it-out-revisited) · [NASW, ScienceWriters 2001-02](https://nasw.org/sites/default/files/sciencewriters/html/win0102tex/shower.htm) · [Mental Floss](https://www.mentalfloss.com/science/physics/why-does-shower-curtain-always-try-get-me).
+- **Producción:** un solo set (baño), tela de la cortina y el remolino visible con partículas o vapor. Barata.
+
+#### Ficha — El vidrio flotado (verificada)
+- **Cómo se hace de verdad (Pilkington y Guardian Glass coinciden):** el horno funde arena, soda y caliza a ~1.500–1.600 °C; el vidrio entra a ~1.100 °C a un baño de **estaño fundido**, flota encima y se extiende solo hasta quedar plano y liso; sale sólido a ~600 °C; después se templa en un horno largo (lehr), se inspecciona y se corta con ruedas de diamante. La línea mide casi medio kilómetro. El grosor "natural" que toma solo era de 6,8 mm; hoy con otros ajustes va de menos de 1 mm a 25 mm.
+- **Historia:** Alastair Pilkington empezó a experimentar en diciembre de 1952; 7 años y £28 millones después lo anunciaron, el 20-ene-1959. Lo de que se le ocurrió lavando platos es un mito que él mismo negaba (Pilkington).
+- **Giro 1:** el lado que tocó el estaño queda con una capa finísima de estaño y **brilla con luz ultravioleta**; las vidrierías usan una lámpara para saber qué lado es (Nakajima Glass, Bohle).
+- **Giro 2 (mito al revés):** los vitrales viejos más gruesos abajo **no** son vidrio que "se chorreó": el vidrio tardaría miles de millones de años en deformarse algo visible (Penn State 2018, Scientific American). Eran hechos a mano, disparejos. Antes del flotado, el vidrio plano se pulía a mano o con máquinas.
+- **Fuentes:** [Pilkington, el paso a paso](https://www.pilkington.com/en/global/knowledge-base/glass-technology/the-float-process/the-float-process-step-by-step) · [Guardian Glass (PDF)](https://www.guardianglass.com/content/dam/guardianindustriesholdings/collateral/usca/brochure_expert_series_EN_doc5_mfg_process_float_glass_2020.pdf) · [Pilkington, la invención](https://www.pilkington.com/en/gbl/about-us/pilkington-history/invention-of-float-glass) · [Nakajima Glass, lado estaño con UV](https://www.ngci.co.jp/en/tech/tech_kn1/) · [Penn State](https://www.psu.edu/news/research/story/researcher-uses-westminster-abbey-windows-shine-light-glass-myth) · [Scientific American](https://www.scientificamerican.com/article/fact-fiction-glass-liquid/).
+- **Producción:** 3–4 escenas (horno, baño de estaño, horno de templado y corte, ventana con UV). Render tipo producto (R8).
+
+#### Ficha — El imán que hace flotar seres vivos (verificada)
+- **Qué pasó:** Andre Geim, en el Laboratorio de Campos Magnéticos Altos de Nijmegen (Países Bajos), hizo flotar una rana viva dentro de un imán de ~16 teslas (Geim y Berry, *European Journal of Physics* 1997). Empezó como un experimento de viernes en la noche. Ganó el Ig Nobel por eso y en 2010 el **Nobel de Física** de verdad, por el grafeno: es el único con los dos.
+- **Cómo funciona:** el agua es diamagnética: un campo muy fuerte la repele un poquito. Como los seres vivos son casi pura agua, con suficiente campo esa fuerza le gana a la gravedad.
+- **"Y lo más loco":** en 2009 la NASA (JPL) hizo flotar ratones de 10 g por horas en un imán superconductor de 17 T, con comida y agua, para estudiar cómo afecta la falta de gravedad a los huesos. El primero se veía agitado y desorientado.
+- **Ojo:** no decir que se ha hecho flotar a una persona ni que "se podría" sin una fuente que lo diga.
+- **Fuentes:** [Geim y Berry, EJP 1997 (PDF)](https://obelix.physik.uni-bielefeld.de/~schnack/Herbstakademie/CD-2008/frog-ejp.pdf) · [Harvard Gazette](https://news.harvard.edu/gazette/story/2024/04/how-did-you-get-that-frog-to-float) · [NobelPrize.org](https://www.nobelprize.org/prizes/physics/2010/geim/facts/) · [MIT Technology Review](https://www.technologyreview.com/2009/09/11/93412/magnetically-levitating-mice/) · [NBC/Space.com](https://www.nbcnews.com/news/amp/wbna32760311).
+- **Producción:** rana y ratón animados (seres vivos: más costo); el tubo del imán y el laboratorio.
+
 ### Megaproyecto absurdo + "lo calculé"
 | Estado | Gancho | Cálculo (supuestos explícitos en `guion.md`) | Imagen 3D clave | Acción buscada |
 |---|---|---|---|---|
