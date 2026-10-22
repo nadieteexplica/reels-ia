@@ -109,14 +109,14 @@ def _espuma(rig):
     mb.threshold = 0.6
     rng = np.random.default_rng(4)
     c = Vector((0.0, -0.045, 1.70))
-    for i in range(70):
+    for i in range(160):
         th = rng.uniform(0, 2 * math.pi)
         ph = rng.uniform(0.0, 1.05)
         r = 0.088
         p = c + Vector((r * math.sin(ph) * math.cos(th), r * math.sin(ph) * math.sin(th) * 1.15, r * math.cos(ph) * 0.55))
         e = mb.elements.new()
         e.co = p
-        e.radius = rng.uniform(0.018, 0.034)
+        e.radius = rng.uniform(0.012, 0.026)
     # copete de espuma arriba (el chiste: peinado de espuma)
     for k in range(9):
         e = mb.elements.new()
@@ -135,6 +135,34 @@ def _espuma(rig):
     nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
     ob.data.materials.append(m)
     _pegar_a_cabeza(ob, rig)
+    return ob
+
+
+def _espuma_pecho(rig):
+    """Espuma que le tapa el pecho y la espalda (decisión de Tomás: tapado con espuma): un 'poncho' de burbujas."""
+    mb = bpy.data.metaballs.new("EspumaPecho")
+    mb.resolution = 0.010
+    mb.render_resolution = 0.006
+    mb.threshold = 0.6
+    rng = np.random.default_rng(9)
+    for i in range(380):
+        z = rng.uniform(1.00, 1.38)
+        ang = rng.uniform(0, 2 * math.pi)
+        rx = 0.165 + 0.035 * (1.40 - z) / 0.4
+        ry = 0.125
+        e = mb.elements.new()
+        e.co = (rx * math.cos(ang), -0.03 + ry * math.sin(ang), z)
+        e.radius = rng.uniform(0.03, 0.05)
+    ob = bpy.data.objects.new("EspumaPecho", mb)
+    bpy.context.scene.collection.objects.link(ob)
+    ob.data.materials.append(bpy.data.materials["EspumaMat"])
+    hb = rig.data.bones[P + "Spine2"]
+    mw = ob.matrix_world.copy()
+    ob.parent = rig
+    ob.parent_type = "BONE"
+    ob.parent_bone = P + "Spine2"
+    bpy.context.view_layer.update()
+    ob.matrix_world = mw
     return ob
 
 
@@ -162,6 +190,13 @@ def cargar(sc, x=0.0, y=0.0, z=0.0, rot_z=0.0):
             bpy.data.objects.remove(bpy.data.objects[n])
     if "Ocultar" in cuerpo.modifiers:
         cuerpo.modifiers.remove(cuerpo.modifiers["Ocultar"])
+    # SEGURIDAD (decisión de Tomás: nada de desnudos): el cuerpo bajo el pecho no existe en el render. Si una cámara
+    # encuadra de más, se ve un torso cortado (error visible para el auditor), nunca un desnudo.
+    vg = cuerpo.vertex_groups.new(name="Visible")
+    vg.add([v.index for v in cuerpo.data.vertices if v.co.z > 1.18], 1.0, "REPLACE")
+    mk = cuerpo.modifiers.new("SoloPecho", "MASK")
+    mk.vertex_group = "Visible"
+
     # piel morena y mojada (coat), un poco más saturada
     piel = bpy.data.materials["Piel"]
     nt = piel.node_tree
@@ -178,6 +213,7 @@ def cargar(sc, x=0.0, y=0.0, z=0.0, rot_z=0.0):
     b.inputs["Roughness"].default_value = 0.42
     b.inputs["Subsurface Weight"].default_value = 0.12
     extras = [_bigote(rig, cuerpo), _espuma(rig)] + _cejas(rig)
+    extras.append(_espuma_pecho(rig))
     rig.location = (x, y, z)
     rig.rotation_euler = (0, 0, rot_z)
     pb = rig.pose.bones
@@ -214,11 +250,9 @@ def pose(pj, f, expr=None, cabeza=(0, 0, 0), cuello=(0, 0, 0), torso=(0, 0, 0), 
     hombros: 0 = relajados, 1 = encogidos (susto). Brazos siempre abajo (fuera de cuadro)."""
     pb = pj["pb"]
     for side, s in (("Left", 1), ("Right", -1)):
-        _rot(pb, side + "Arm", 0, 0, 0)
-        b = pb[P + side + "Arm"]
-        b.rotation_euler = Euler((math.radians(8), 0, math.radians(-72 * s)), "XYZ")
-        pb[P + side + "ForeArm"].rotation_euler = Euler((0, 0, math.radians(-12 * s)), "XYZ")
-        pb[P + side + "Shoulder"].rotation_euler = Euler((0, 0, math.radians(-14 * hombros * s)), "XYZ")
+        pb[P + side + "Arm"].rotation_euler = Euler((math.radians(80), math.radians(6 * s), 0), "XYZ")
+        pb[P + side + "ForeArm"].rotation_euler = Euler((0, 0, 0), "XYZ")
+        pb[P + side + "Shoulder"].rotation_euler = Euler((math.radians(-16 * hombros), 0, 0), "XYZ")
     resp = math.sin(f / 30 * 2 * math.pi / 3.6) * (1.2 if respira else 0)
     pb[P + "Spine2"].rotation_euler = Euler((math.radians(torso[0] + resp), math.radians(torso[1]), math.radians(torso[2])), "XYZ")
     pb[P + "Neck"].rotation_euler = Euler([math.radians(v) for v in cuello], "XYZ")

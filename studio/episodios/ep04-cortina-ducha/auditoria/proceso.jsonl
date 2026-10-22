@@ -1,3 +1,4 @@
 {"tipo": "trabajo", "id": "sesion chat Ep. 4", "estado": "inicio", "nota": "arranque 23:28, lectura del repo", "n": 1, "ts": "2026-10-21T23:29:21-03:00"}
 {"tipo": "trabajo", "id": "estudio previo", "estado": "fin", "nota": "docs/estudios/ep04.md 23:58; Chrome no conectado (sin YouTube Studio)", "n": 2, "ts": "2026-10-21T23:35:41-03:00"}
 {"tipo": "aviso", "que": "puerta 1: preparé sin --fuentes y abrió r1 sin revisor; se borró esa preparación (sin revisor lanzado, 0 imágenes) y se preparó de nuevo con los extractos", "n": 3, "ts": "2026-10-21T23:37:05-03:00"}
+{"tipo": "gasto", "servicio": "eleven", "monto": 560.0, "nota": "voz 0009 (estimado; el real en out/status.json)", "n": 4, "ts": "2026-10-21T23:42:51-03:00"}

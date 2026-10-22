@@ -1,0 +1,20 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ritmo de 1.9 palabras/s en 'Una cortina más pesada.'",
+   "evidencia": "27.32 s"
+  },
+  {
+   "que": "ritmo de 2.1 palabras/s en 'ahí sí es un fantasma.'",
+   "evidencia": "33.25 s"
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 35.65,
+  "palabras_por_s": 2.72,
+  "creditos_restantes": 37496,
+  "asr_coincidencia": 1.0,
+  "asr_diferencias": []
+ }
+}

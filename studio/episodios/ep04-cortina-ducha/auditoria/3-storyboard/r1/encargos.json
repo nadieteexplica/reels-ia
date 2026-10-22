@@ -1,0 +1,18 @@
+[
+ {
+  "id": "storyboard",
+  "prompt": "tools/auditor/prompts/3-storyboard.md",
+  "alcance": "storyboard completo (fichas de plano)",
+  "materiales": [
+   "studio/episodios/ep04-cortina-ducha/storyboard.md",
+   "studio/episodios/ep04-cortina-ducha/guion.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "CONTEXTO.md",
+   "studio/plantilla/KIT.md"
+  ],
+  "salida": "storyboard.json"
+ }
+]
