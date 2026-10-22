@@ -1,0 +1,34 @@
+[
+ {
+  "cuadro": "estilo_00022",
+  "archivo": "estilo_00022.jpg",
+  "res": "720x1280",
+  "quemados_pct": 0.13,
+  "brillo": 171.0,
+  "saturacion": 61.3
+ },
+ {
+  "cuadro": "estilo_00121",
+  "archivo": "estilo_00121.jpg",
+  "res": "720x1280",
+  "quemados_pct": 0.0,
+  "brillo": 172.0,
+  "saturacion": 68.2
+ },
+ {
+  "cuadro": "estilo_00560",
+  "archivo": "estilo_00560.jpg",
+  "res": "720x1280",
+  "quemados_pct": 0.0,
+  "brillo": 171.2,
+  "saturacion": 74.8
+ },
+ {
+  "cuadro": "estilo_01075",
+  "archivo": "estilo_01075.jpg",
+  "res": "720x1280",
+  "quemados_pct": 0.14,
+  "brillo": 166.2,
+  "saturacion": 66.5
+ }
+]

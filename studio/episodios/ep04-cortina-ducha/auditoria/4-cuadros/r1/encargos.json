@@ -1,0 +1,21 @@
+[
+ {
+  "id": "cuadros",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "estilo_00022, estilo_00121, estilo_00560, estilo_01075",
+  "materiales": [
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r1/materiales/estilo_00022.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r1/materiales/estilo_00121.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r1/materiales/estilo_00560.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r1/materiales/estilo_01075.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r1/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r1/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "cuadros.json",
+  "notas_de_uso": "Escenario nuevo del Ep. 4 (baño). estilo_00022 = cuadro 0 (C0: Don Héctor tranquilo bajo el chorro con los ojos cerrados y la cortina que se le viene por detrás); estilo_00121 = plano 4 (desde afuera: la cara de fantasma marcada en la cortina, el chiste del gancho); estilo_00560 = plano 12 (la ducha por dentro, de frente a través de la cortina vuelta transparente: el remolino acostado con el eje perpendicular a la cortina); estilo_01075 = plano 21 (cierre: la cortina pesada se infla a su lado y él salta del susto; mismo encuadre del cuadro 0). Render 720x1280, 16 muestras, con la gradación de saturación del post y sin subtítulos."
+ }
+]

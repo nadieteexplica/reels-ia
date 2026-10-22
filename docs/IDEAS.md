@@ -162,7 +162,7 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 ### Procesos: cómo se hace, cómo se genera, qué pasa si (ronda 5, 21-oct-2026, 👍 de Tomás, verificadas)
 | Estado | Gancho | Dato central (verificado) | Imagen 3D clave | Enseñanza |
 |---|---|---|---|---|
-| pendiente (ficha abajo) | La cortina de la ducha te persigue (y no es un fantasma) | El chorro arma un remolino acostado dentro de la ducha; su centro tiene baja presión y chupa la cortina. Pasa también con agua fría | La ducha en corte con el remolino girando como una rueda y la cortina que se mete | El agua caliente lo empeora |
+| **usada: Ep. 4** (22-oct-2026) | La cortina de la ducha te persigue (y no es un fantasma) | El chorro arma un remolino acostado dentro de la ducha; su centro tiene baja presión y chupa la cortina. Pasa también con agua fría | La ducha en corte con el remolino girando como una rueda y la cortina que se mete | El agua caliente lo empeora |
 | pendiente (ficha abajo) | El vidrio de tu ventana se hizo flotando sobre metal derretido | Vidrio a 1.100 °C se vierte sobre una piscina de estaño fundido, flota y se aplana solo; sale a 600 °C | La cinta de vidrio naranja deslizándose sobre el espejo de estaño | Con luz ultravioleta se ve cuál lado tocó el estaño |
 | pendiente (ficha abajo) | Con un imán gigante puedes hacer flotar a un ser vivo | El agua del cuerpo es repelida un poquito por los imanes: con ~16 T flotó una rana viva; la NASA hizo flotar ratones por horas | La rana flotando dentro del tubo del imán | Todo lo que tiene agua (tú también) es levemente "antimagnético" |
 
@@ -172,6 +172,7 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 - **Matiz obligatorio:** en 2007 otro investigador mostró que el agua caliente sí produce un efecto más fuerte que la fría: el calor ayuda, pero no es la causa principal. Decir "pasa hasta con agua fría", no "el calor no tiene nada que ver".
 - **Fuentes (independientes):** [Popular Science](https://www.popsci.com/why-do-shower-curtains-billow-inward-0/) · [The Straight Dope (carta del propio Schmidt)](https://www.straightdope.com/21343421/why-does-the-shower-curtain-blow-in-despite-the-water-pushing-it-out-revisited) · [NASW, ScienceWriters 2001-02](https://nasw.org/sites/default/files/sciencewriters/html/win0102tex/shower.htm) · [Mental Floss](https://www.mentalfloss.com/science/physics/why-does-shower-curtain-always-try-get-me).
 - **Producción:** un solo set (baño), tela de la cortina y el remolino visible con partículas o vapor. Barata.
+- **Producida como Ep. 4 (22-oct-2026):** `studio/episodios/ep04-cortina-ducha/`. Ojo: el eje del remolino es **perpendicular a la cortina** (Schmidt en Scientific American, fuente sumada); "de costado" no alcanza para dibujarlo.
 - **Decisión de Tomás (21-oct, 23:27):** el video **no cuenta el estudio** (nada de "en 2001 un científico simuló…", ni el Ig Nobel ni el computador reiniciado: aburre). Se explica directo cómo pasa: no es el aire caliente (pasa hasta con agua fría) → es un remolino → su centro chupa la cortina. Las fuentes van en la descripción y el primer comentario. Personaje nuevo, no el del helado.
 
 #### Ficha — El vidrio flotado (verificada)

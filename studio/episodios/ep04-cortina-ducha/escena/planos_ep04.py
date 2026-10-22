@@ -131,7 +131,7 @@ def act_e1(S, pj, A, t, f, fastidio=False, afuera=False):
     else:
         pato.location = (0.45, 0.365, B.Z_BORDE)
         pato.rotation_euler = (0, 0, math.radians(180 + 10 * math.sin(t * 3)))
-    B.gotas(A, t, caliente=0.6, densidad=0.25 if afuera else 1.0)
+    B.gotas(A, t, caliente=0.15, densidad=0.25 if afuera else 1.0)
     B.vapor(A, t, caliente=0.0 if afuera else 0.5)
 
 
@@ -323,7 +323,7 @@ def act_e3(S, pj, A, t, f):
         co[:, 1] += 0.05 * (1 - bajar) * np.sin(co[:, 0] * 12)
         me.vertices.foreach_set("co", co.ravel())
         me.update()
-    B.gotas(A, t, caliente=0.6)
+    B.gotas(A, t, caliente=0.15)
     B.vapor(A, t, caliente=0.4)
 
 
@@ -342,8 +342,8 @@ def _e3(sc, a, b, plano):
     def act(f):
         t = (f - 1) / FPS
         act_e3(S, pj, A, t, f)
-        if plano == 17:      # afuera: la cortina pesada baja como telón
-            E.empujar(cam, f, a, b, (0.10, -2.45, 1.62), (0.0, -0.35, 1.50), cuanto=0.06, lens=36)
+        if plano == 17:      # afuera, arriba: la cortina pesada baja desde el riel como telón y tapa la cabeza con espuma
+            E.empujar(cam, f, a, b, (0.10, -1.85, 1.98), (0.0, -0.35, 1.84), cuanto=0.06, lens=40)
         elif plano == 18:
             E.empujar(cam, f, a, b, (0.35, -2.25, 1.55), (0.0, -0.35, 1.40), cuanto=0.08, lens=36)
         elif plano == 20:    # C0: él tranquilo, la cortina detrás
