@@ -33,6 +33,12 @@ Tomás decidió el 21-oct-2026 concentrar el proyecto en YouTube, porque es la r
 - **Conclusión:** llegar al YPP antes del 1-feb-2027 por Shorts (10 M vistas en 90 días partiendo de 10 suscriptores) no es realista; hay que planear con la regla de 2027. **Shorts es el motor de crecimiento; la plata viene del video largo (RPM mucho más alto, y sus horas también sirven para entrar) y de las marcas.**
 - **Facebook** también paga por vistas desde Chile (por invitación; ver `CONTEXTO.md` → Monetización), así que YouTube no es la única opción: es la principal.
 
+### Cuánto paga en pesos (cálculo del 21-oct-2026, dólar a $975,68)
+- 10 M vistas en 90 días ≈ 3,3 M al mes. Con público latino (~US$0,03–0,06 por mil; Brasil, el único latino medido, está en US$0,045) → **~US$100–200 al mes ≈ $100–195 mil**.
+- Para entrar desde febrero de 2027 hacen falta 20 M en 90 días → **~US$200–400 al mes ≈ $195–390 mil**.
+- Si una parte del público es de EE. UU. (US$0,33 por mil), sube. Ejemplo: 20 % de EE. UU. y 80 % latino ≈ US$0,10 por mil, casi el doble.
+- Paga en proporción a las vistas comprometidas: el doble de vistas, el doble de plata.
+
 ## 3. Frecuencia
 - vidIQ (10,2 M canales, abr-2025 a mar-2026): el crecimiento sube en cada escalón de frecuencia; con 12 o más subidas al mes, 4,1× el crecimiento de vistas de los que suben menos de una al mes. Es correlación, no causa [11].
 - Metricool 2026 (799.718 videos): en Shorts **no hay techo claro**: más publicaciones dan más vistas al mes, porque cada una es otra oportunidad en el feed. El límite es la calidad. (En video largo, lo mejor es 2–4 por semana.) [27]
@@ -81,7 +87,7 @@ Los Shorts se concentran entre 14:00 y 18:00, y el contenido pesa más que la ho
 ## 9. ¿Cabe uno diario?
 - **Voz:** ~1 crédito por carácter. Un guion de ~35 s tiene ~100 palabras (~600 caracteres). 30 videos × 1,3 tomas ≈ **23.000 de 40.000 créditos. Cabe.**
 - **Tiempo:** el Ep. 3 (63 s, 36 planos, 9 escenas) tomó 5,5 h. Diario así serían ~38 h de sesiones por semana. A 30–35 s (~15–18 planos, 6 escenas como máximo, 1 ronda del auditor + revisión del final) la meta es **≤ 2,5 h por video**, y 2 videos por sesión.
-- **Uso de Claude:** el Ep. 2 gastó ~26 % del uso semanal de Tomás en 22,7 h. No se puede medir desde la sesión: Tomás ve el % real del Ep. 3.
+- **Uso de Claude:** el Ep. 2 gastó ~26 % del uso semanal de Tomás en 22,7 h; el Ep. 3, **~7 %** (dato de Tomás). A 25–40 s se estima ~4–5 % por video: diario ≈ 30–35 % a la semana. Cabe.
 - **Render:** GitHub Actions es gratis (repo público).
 
 ## Fuentes
