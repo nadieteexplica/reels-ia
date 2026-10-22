@@ -59,9 +59,9 @@ def mat_azulejo():
     br.inputs["Brick Width"].default_value = 0.5
     br.inputs["Row Height"].default_value = 0.25
     br.offset = 0.5
-    br.inputs["Color1"].default_value = (0.20, 0.62, 0.68, 1)
-    br.inputs["Color2"].default_value = (0.24, 0.68, 0.72, 1)
-    br.inputs["Mortar"].default_value = (0.88, 0.92, 0.92, 1)
+    br.inputs["Color1"].default_value = (0.10, 0.50, 0.58, 1)
+    br.inputs["Color2"].default_value = (0.13, 0.56, 0.63, 1)
+    br.inputs["Mortar"].default_value = (0.78, 0.85, 0.85, 1)
     nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
     # el ladrillo de Blender usa x,y: las paredes se mapean con (x o y, z)
     sep = nt.nodes.new("ShaderNodeSeparateXYZ")
@@ -104,8 +104,8 @@ def mat_cortina(pesada=False):
     st = nt.nodes.new("ShaderNodeMath"); st.operation = "GREATER_THAN"; st.inputs[1].default_value = 0.36
     nt.links.new(fr.outputs[0], st.inputs[0])
     mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
-    mix.inputs["A"].default_value = (0.93, 0.95, 0.94, 1)
-    mix.inputs["B"].default_value = (0.45, 0.82, 0.70, 1)
+    mix.inputs["A"].default_value = (0.84, 0.91, 0.88, 1)
+    mix.inputs["B"].default_value = (0.16, 0.62, 0.54, 1)
     nt.links.new(st.outputs[0], mix.inputs["Factor"])
     b.inputs["Roughness"].default_value = 0.65 if pesada else 0.32
     if pesada:
@@ -120,7 +120,7 @@ def mat_cortina(pesada=False):
         tr = nt.nodes.new("ShaderNodeBsdfTranslucent")
         nt.links.new(mix.outputs["Result"], tr.inputs["Color"])
         ms = nt.nodes.new("ShaderNodeMixShader")
-        ms.inputs["Fac"].default_value = 0.42
+        ms.inputs["Fac"].default_value = 0.30
         nt.links.new(b.outputs["BSDF"], ms.inputs[1])
         nt.links.new(tr.outputs["BSDF"], ms.inputs[2])
         nt.links.new(ms.outputs["Shader"], out.inputs["Surface"])
@@ -165,8 +165,8 @@ def pato(blanco, amarillo, naranjo, loc):
     for nombre, l, r, s, mt in (("PatoCuerpo", (0, 0, 0.032), 0.045, (1.25, 1.0, 0.75), amarillo),
                                 ("PatoCabeza", (0.035, 0, 0.078), 0.028, (1, 1, 1), amarillo),
                                 ("PatoPico", (0.065, 0, 0.073), 0.012, (1.6, 1.1, 0.55), naranjo),
-                                ("Pato_ojoL", (0.055, 0.014, 0.088), 0.0045, (1, 1, 1), mat("PatoOjo", (0.02, 0.02, 0.03), 0.2)),
-                                ("Pato_ojoR", (0.055, -0.014, 0.088), 0.0045, (1, 1, 1), mat("PatoOjo", (0.02, 0.02, 0.03), 0.2))):
+                                ("PatoPupilaL", (0.055, 0.014, 0.088), 0.0045, (1, 1, 1), mat("PatoOjo", (0.02, 0.02, 0.03), 0.2)),
+                                ("PatoPupilaR", (0.055, -0.014, 0.088), 0.0045, (1, 1, 1), mat("PatoOjo", (0.02, 0.02, 0.03), 0.2))):
         bpy.ops.mesh.primitive_uv_sphere_add(radius=r, location=l, segments=24, ring_count=12)
         ob = bpy.context.active_object
         ob.name = nombre
@@ -258,7 +258,7 @@ def _alinear(v):
 # ---------------- set ----------------
 def armar(sc, corte=False, cortina="liviana", pato_en=None):
     S = {"sc": sc}
-    blanco = mat("Ceramica", (0.92, 0.93, 0.92), rough=0.12, coat=0.6)
+    blanco = mat("Ceramica", (0.80, 0.82, 0.82), rough=0.14, coat=0.5)
     cromo = mat("Cromo", (0.9, 0.9, 0.92), rough=0.08, metal=1.0)
     azulejo = mat_azulejo()
     piso = mat("PisoBano", (0.55, 0.60, 0.62), rough=0.35)
@@ -324,9 +324,13 @@ def crear_cortina(pesada=False, corte=False, nx=96, nz=84):
     bpy.context.scene.collection.objects.link(ob)
     so = ob.modifiers.new("Grosor", "SOLIDIFY"); so.thickness = 0.008 if pesada else 0.0015
     sub = ob.modifiers.new("Sub", "SUBSURF"); sub.levels = sub.render_levels = 1
-    if corte:      # en el corte se ve de canto: opaca y gruesa para que se lea como línea menta
-        so.thickness = 0.014
-        ob.data.materials.append(mat("CortinaCorte", (0.30, 0.78, 0.64), rough=0.45))
+    if corte:      # en el corte: la misma estampa, sin translucidez; su Alpha baja para "ver por dentro"
+        m = mat_cortina(pesada)
+        b = _bsdf(m)
+        out = m.node_tree.nodes["Material Output"]
+        m.node_tree.links.new(b.outputs["BSDF"], out.inputs["Surface"])
+        ob.data.materials.append(m)
+        ob["mat_alpha"] = m.name
     else:
         ob.data.materials.append(mat_cortina(pesada))
     base = np.array(verts, np.float32)
@@ -409,8 +413,8 @@ def luces(sc):
         o.rotation_mode = "QUATERNION"
         o.rotation_quaternion = (Vector(tgt) - Vector(loc)).to_track_quat("-Z", "Y")
         return o
-    return {"techo": area("LuzTecho", (0, -0.1, 2.75), (0, 0, 1.0), 260, 1.4, (1.0, 0.93, 0.82)),
-            "relleno": area("LuzRelleno", (0.4, -2.2, 1.7), (0, 0, 1.3), 220, 2.5, (0.85, 0.92, 1.0)),
+    return {"techo": area("LuzTecho", (0, -0.1, 2.75), (0, 0, 1.0), 300, 1.4, (1.0, 0.90, 0.76)),
+            "relleno": area("LuzRelleno", (0.4, -2.2, 1.7), (0, 0, 1.3), 140, 2.5, (0.85, 0.92, 1.0)),
             "contra": area("LuzContra", (-0.6, 1.2, 2.4), (0, 0, 1.4), 120, 0.8, (0.8, 0.95, 1.0))}
 
 
@@ -419,7 +423,7 @@ def mundo(sc):
     sc.world = w
     w.use_nodes = True
     w.node_tree.nodes["Background"].inputs[0].default_value = (0.42, 0.72, 0.78, 1)
-    w.node_tree.nodes["Background"].inputs[1].default_value = 0.35
+    w.node_tree.nodes["Background"].inputs[1].default_value = 0.25
 
 
 # ---------------- agua, aire y vapor ----------------
@@ -427,7 +431,7 @@ def sistema_agua(n_gotas=900, n_aire=700, n_vapor=40):
     gota_m = mat("Gota", (0.80, 0.92, 1.0), rough=0.05, emis=0.25)
     bpy.ops.mesh.primitive_ico_sphere_add(radius=1.0, subdivisions=2)
     g = bpy.context.active_object; g.name = "ProtoGota"; g.data.materials.append(gota_m)
-    aire_m = mat("Aire", (0.05, 0.75, 1.0), rough=0.5, emis=1.6)
+    aire_m = mat("Aire", (0.0, 0.62, 1.0), rough=0.5, emis=2.2)
     bpy.ops.mesh.primitive_ico_sphere_add(radius=1.0, subdivisions=2)
     a = bpy.context.active_object; a.name = "ProtoAire"; a.data.materials.append(aire_m)
     vap_m = mat("Vapor", (1.0, 1.0, 1.0), rough=1.0, alpha=0.05)
@@ -457,27 +461,27 @@ def gotas(A, t, caliente=1.0, x_lim=(-0.8, 0.3), densidad=1.0):
     esc = np.tile([0.0035, 0.0035, 0.022], (len(p), 1))
     poner(A["gotas"], p, _alinear(vel), esc)
     m = A["mat_gota"]
-    col = (0.55 + 0.45 * caliente, 0.82 - 0.22 * caliente, 1.0 - 0.62 * caliente)
+    col = (0.55 + 0.45 * caliente, 0.82 - 0.40 * caliente, 1.0 - 0.70 * caliente)
     _bsdf(m).inputs["Base Color"].default_value = (*col, 1)
     _bsdf(m).inputs["Emission Color"].default_value = (*col, 1)
 
 
-def remolino(A, t, fuerza=1.0, centro=(-0.05, 1.05), x_lim=(-0.78, 0.28), giro=1.0, visible=1.0, brillo=1.6):
-    """El remolino acostado: partículas de aire que giran en el plano YZ alrededor de `centro` (y, z), a lo largo de x.
-    Sentido: bajan por el chorro (lado de la pared), van por abajo hacia la cortina, suben por la cortina y vuelven arriba."""
+def remolino(A, t, fuerza=1.0, centro=(-0.30, 1.12), y_lim=(-0.30, 0.24), giro=1.0, visible=1.0, brillo=2.2, rmax=0.38):
+    """El remolino acostado: su eje es PERPENDICULAR a la cortina (a lo largo de y, de la pared a la cortina; Schmidt en
+    Scientific American), así que la rueda gira en el plano XZ, paralela a la cortina. centro = (x, z).
+    Sentido: baja por el lado del chorro (x mayor), sube por el otro lado."""
     n = A["n"][1]
     rng = np.random.default_rng(11)
-    r = 0.06 + 0.40 * np.sqrt(rng.uniform(0, 1, n))
+    r = 0.05 + (rmax - 0.05) * np.sqrt(rng.uniform(0, 1, n))
     th0 = rng.uniform(0, 2 * math.pi, n)
-    xs = rng.uniform(x_lim[0], x_lim[1], n)
-    w = 2.6 * giro * (0.35 / (r + 0.12))              # gira más rápido cerca del centro
-    th = th0 + w * t * fuerza
-    yc, zc = centro
-    ry = r * 0.66                                       # rueda aplanada: no se sale de la tina (y -0,36 a 0,26)
-    y = yc + ry * np.cos(th)
-    z = zc + r * np.sin(th) * 1.05
-    p = np.stack([xs, y, z], 1)
-    tang = np.stack([np.zeros(n), -ry * np.sin(th), r * np.cos(th) * 1.05], 1) * np.sign(giro)
+    ys = rng.uniform(y_lim[0], y_lim[1], n)
+    w = 2.6 * giro * (0.32 / (r + 0.10))
+    th = th0 - w * t * fuerza                         # horario visto desde afuera: baja por el lado del chorro
+    xc, zc = centro
+    x = xc + r * np.cos(th)
+    z = zc + r * np.sin(th)
+    p = np.stack([x, ys, z], 1)
+    tang = np.stack([r * np.sin(th), np.zeros(n), -r * np.cos(th)], 1)
     sel = rng.uniform(0, 1, n) < visible
     largo = 0.010 + 0.05 * fuerza
     esc = np.stack([np.full(n, 0.006), np.full(n, 0.006), np.full(n, largo)], 1)

@@ -328,7 +328,7 @@ def graficos(im, f, k):
         arco(im, cx, cy, r, -ang, CIAN, ancho=12)
         if k == 19:
             x0, y0 = meta(19, f, "cortina_alta", (250, 600))
-            pildora(im, "CORTINA PESADA", 540, 360, fondo=VERDE, tinta=(255, 255, 255), marca="v", s=pop(age - 0.1))
+            pildora(im, "CORTINA PESADA", 540, 380, fondo=VERDE, tinta=(255, 255, 255), marca="v", s=pop(age - 0.1))
     elif k == 13:       # el centro del remolino
         cx, cy = meta(13, f, "centro", (540, 760))
         r = 70 + 12 * math.sin(t_de(f) * 8)
@@ -339,17 +339,17 @@ def graficos(im, f, k):
         anillo(im, cx, cy, 70 + 12 * math.sin(t_de(f) * 8), CIAN)
         if t_de(f) > tw("presión") - 0.05:
             pildora(im, "BAJA PRESIÓN", cx, max(330, cy - 190), fondo=CIAN, tinta=(10, 30, 40), s=pop(t_de(f) - tw("presión") + 0.05))
-    elif k == 15:       # el aire de afuera empuja la cortina
-        for clave_a, clave_c, dt in (("afuera_alta", "cortina_alta", 0.0), ("afuera", "cortina", 0.15)):
-            ax, ay = meta(15, f, clave_a, (80, 600))
-            bx, by = meta(15, f, clave_c, (300, 600))
-            t0 = tw("afuera") - 0.2 + dt
-            if t_de(f) > t0:
-                x = sale(min(1.0, (t_de(f) - t0) / 0.45))
-                ax = max(40, ax - 40)
-                flecha(im, ax, ay, ax + (bx - 24 - ax) * x, ay + (by - ay) * x, NARANJO, ancho=16)
-        if t_de(f) > tw("afuera") - 0.2:
-            pildora(im, "AIRE DE AFUERA", 540, 380, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t_de(f) - tw("afuera") + 0.2))
+    elif k == 15:       # el aire de afuera empuja la cortina hacia el ojo del remolino (flechas que convergen)
+        cx, cy = meta(15, f, "centro", (540, 720))
+        anillo(im, cx, cy, 70, CIAN)
+        t0 = tw("afuera") - 0.2
+        if t_de(f) > t0:
+            x = sale(min(1.0, (t_de(f) - t0) / 0.45))
+            for sx in (-1, 1):
+                x0 = cx + sx * 420
+                x0 = min(1040, max(40, x0))
+                flecha(im, x0, cy, x0 + (cx + sx * 95 - x0) * x, cy, NARANJO, ancho=18)
+            pildora(im, "AIRE DE AFUERA", 540, 380, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t_de(f) - t0))
         if t_de(f) > tw("empuja"):
             pildora(im, "EMPUJA MÁS", 540, 500, tam=46, s=pop(t_de(f) - tw("empuja")))
     elif k == 18:       # "una cortina más pesada"
@@ -363,7 +363,7 @@ def procesar(f):
     im = cuadro(f, a, b)
     if im is None:
         return False
-    im = bloom(im)
+    im = bloom(im, umbral=0.88, fuerza=0.25)
     graficos(im, f, k)
     subtitulos(im, f)
     im.save(os.path.join(dst, f"{f:05d}.png"), compress_level=1)

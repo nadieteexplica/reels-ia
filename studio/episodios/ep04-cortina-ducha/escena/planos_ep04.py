@@ -133,6 +133,7 @@ def _e1(sc, a, b, plano):
     fondo, der = S["paredes"][0], S["paredes"][2]
     if plano in (1, 3):
         fondo.visible_camera = False          # cámara "dentro" de la pared del fondo: mira la cara
+        der.visible_camera = False
     if plano in (2, 16):
         der.visible_camera = False            # cámara en la punta de la tina: de perfil
     if plano in (4, 5):
@@ -162,7 +163,7 @@ def _e1(sc, a, b, plano):
 
 
 # ===================================== E2 · la ducha por dentro (corte) ======================================
-CENTRO = (-0.05, 1.05)          # centro del remolino (y, z)
+CENTRO = (-0.30, 1.12)          # centro del remolino (x, z): su eje va de la pared a la cortina (y)
 
 
 def _set_corte(sc, pesada=False):
@@ -170,10 +171,10 @@ def _set_corte(sc, pesada=False):
     A = B.sistema_agua(n_gotas=900, n_aire=700, n_vapor=40)
     # brillo del centro (baja presión): esfera cian que aparece en el plano 13
     m = B.mat("CentroBaja", (0.25, 0.85, 1.0), rough=1.0, emis=4.0, alpha=0.0)
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.07, location=(-0.25, CENTRO[0], CENTRO[1]), segments=32, ring_count=16)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.07, location=(CENTRO[0], -0.03, CENTRO[1]), segments=32, ring_count=16)
     c = bpy.context.active_object
     c.name = "CentroBaja"
-    c.scale = (6.5, 1, 1)                 # a lo largo del eje del remolino
+    c.scale = (1, 4.0, 1)                 # el ojo del remolino: un tubo de la pared a la cortina
     c.data.materials.append(m)
     bpy.ops.object.shade_smooth()
     return S, A, c
@@ -206,52 +207,65 @@ def act_e2(S, A, c, t, f, pesada=False):
     if pesada:
         inf = 0.035
     else:
-        base = 0.20 + 0.06 * caliente
-        empuje = 0.10 * suave(clamp((t - TW("empuja")) / 0.6))
+        base = 0.17 + 0.06 * caliente
+        empuje = 0.09 * suave(clamp((t - TW("empuja")) / 0.6))
         inf = base + empuje
-    B.deformar_cortina(S["cortina"], f, inflar=inf, centro=(-0.25, CENTRO[1] + 0.05), radio=(0.75, 0.55), aleteo=0.6 if not pesada else 0.3)
+    B.deformar_cortina(S["cortina"], f, inflar=inf, centro=CENTRO, radio=(0.36, 0.36), aleteo=0.6 if not pesada else 0.3)
+
+
+def _alpha_cortina(S, valor):
+    m = bpy.data.materials[S["cortina"]["ob"]["mat_alpha"]]
+    B._bsdf(m).inputs["Alpha"].default_value = valor
 
 
 def _e2(sc, a, b, plano):
     pesada = plano == 19
     S, A, c = _set_corte(sc, pesada=pesada)
     cam = E.camara(sc, lens=30)
-
-    # cámaras: arriba (cenital inclinada) para caliente/frío; de punta (corte transversal) para el remolino
-    ARRIBA = (Vector((2.35, -1.55, 1.85)), Vector((-0.15, -0.08, 1.10)))     # 3/4 desde afuera, por la punta abierta
-    CORTE = (Vector((3.05, -0.06, 1.12)), Vector((-0.2, -0.06, 1.12)))
-    CORTE_C = (Vector((2.05, CENTRO[0], CENTRO[1] + 0.06)), Vector((-0.2, CENTRO[0], CENTRO[1] + 0.02)))
-    CHORRO = (Vector((2.30, 0.12, 1.50)), Vector((-0.2, 0.12, 1.42)))
+    xc, zc = CENTRO
+    # cámaras: 3/4 desde afuera por la punta abierta (caliente/frío, el empuje) y de frente a través de la cortina
+    TRES4 = (Vector((2.0, -1.95, 1.70)), Vector((-0.15, -0.10, 1.05)))
+    FRENTE = (Vector((xc + 0.05, -2.30, 0.98)), Vector((xc + 0.05, 0.0, 0.95)))
+    FRENTE_C = (Vector((xc, -1.60, 1.00)), Vector((xc, 0.0, 0.98)))
+    CHORRO = (Vector((0.10, -1.85, 1.30)), Vector((0.05, 0.10, 1.22)))
+    EMPUJE = (Vector((1.45, -2.05, 1.20)), Vector((xc, -0.35, 1.02)))
 
     def act(f):
         t = (f - 1) / FPS
         tt = t if not pesada else (TW("remolino", 16.0) + (t - T0(19)))
         act_e2(S, A, c, tt, f, pesada=pesada)
         x = lin(f, a, b)
+        alfa = 1.0
         if plano in (6, 8):
-            E.empujar(cam, f, a, b, *ARRIBA, cuanto=0.07, lens=30)
+            E.empujar(cam, f, a, b, *TRES4, cuanto=0.07, lens=30)
         elif plano == 7:
-            E.empujar(cam, f, a, b, Vector((-0.02, -0.80, 2.75)), Vector((-0.05, 0.12, 1.20)), cuanto=0.08, lens=32)
-        elif plano == 9:     # "Mira la ducha por dentro": la cámara baja de arriba a la vista de punta (corte)
+            E.empujar(cam, f, a, b, Vector((1.75, 0.02, 1.62)), Vector((0.0, 0.14, 1.40)), cuanto=0.08, lens=32)
+        elif plano == 9:     # "Mira la ducha por dentro": la cámara pasa al frente y la cortina se vuelve transparente
             u = suave(x)
-            E.mirar(cam, ARRIBA[0].lerp(CORTE[0], u), ARRIBA[1].lerp(CORTE[1], u), lens=30)
+            E.mirar(cam, TRES4[0].lerp(FRENTE[0], u), TRES4[1].lerp(FRENTE[1], u), lens=30)
+            alfa = 1.0 - 0.90 * suave(clamp((x - 0.35) / 0.5))
         elif plano == 10:
             E.empujar(cam, f, a, b, *CHORRO, cuanto=0.08, lens=34)
-        elif plano in (11, 15, 19):
-            E.empujar(cam, f, a, b, *CORTE, cuanto=0.06, lens=30)
-        elif plano == 12:
-            E.empujar(cam, f, a, b, CORTE[0] + Vector((0, 0, 0.0)), CORTE[1], cuanto=0.12, lens=30)
+            alfa = 0.10
+        elif plano in (11, 12, 15):
+            E.empujar(cam, f, a, b, *FRENTE, cuanto={11: 0.06, 12: 0.10, 15: 0.08}[plano], lens=30)
+            alfa = 0.30 if plano == 15 else 0.10      # en el 15 se ven las franjas doblándose hacia el ojo
         elif plano in (13, 14):
-            E.empujar(cam, f, a, b, *CORTE_C, cuanto=0.10, lens=34)
+            E.empujar(cam, f, a, b, *FRENTE_C, cuanto=0.10, lens=32)
+            alfa = 0.10
+        elif plano == 19:    # la cortina pesada se ve por delante: el remolino gira detrás y ella casi no se mueve
+            E.empujar(cam, f, a, b, *FRENTE, cuanto=0.06, lens=30)
+            alfa = 0.40
+        _alpha_cortina(S, alfa)
         bpy.context.view_layer.update()
-        # dónde quedan las cosas en pantalla (para los gráficos del post)
-        info = {"centro": E.pantalla(sc, cam, (-0.25, CENTRO[0], CENTRO[1])),
-                "chorro": E.pantalla(sc, cam, (-0.25, 0.12, 1.45)),
-                "cortina": E.pantalla(sc, cam, (-0.25, B.Y_CORT, 1.10)),
-                "cortina_alta": E.pantalla(sc, cam, (-0.25, B.Y_CORT, 1.60)),
-                "afuera": E.pantalla(sc, cam, (-0.25, B.Y_CORT - 0.45, 1.10)),
-                "afuera_alta": E.pantalla(sc, cam, (-0.25, B.Y_CORT - 0.45, 1.60)),
-                "radio_px": abs(E.pantalla(sc, cam, (-0.25, CENTRO[0], CENTRO[1] + 0.42))[1] - E.pantalla(sc, cam, (-0.25, CENTRO[0], CENTRO[1]))[1])}
+        rp = E.pantalla(sc, cam, (xc, -0.40, zc))
+        info = {"centro": E.pantalla(sc, cam, (xc, -0.05, zc)),
+                "chorro": E.pantalla(sc, cam, (0.05, 0.12, 1.45)),
+                "cortina": E.pantalla(sc, cam, (xc, B.Y_CORT + 0.12, zc - 0.10)),
+                "cortina_alta": E.pantalla(sc, cam, (xc, B.Y_CORT + 0.12, zc + 0.12)),
+                "afuera": E.pantalla(sc, cam, (xc + 0.05, B.Y_CORT - 0.55, zc - 0.12)),
+                "afuera_alta": E.pantalla(sc, cam, (xc + 0.05, B.Y_CORT - 0.55, zc + 0.14)),
+                "radio_px": abs(E.pantalla(sc, cam, (xc, -0.05, zc + 0.38))[1] - E.pantalla(sc, cam, (xc, -0.05, zc))[1])}
         return info
     return {"actualizar": act}
 
@@ -311,6 +325,7 @@ def _e3(sc, a, b, plano):
         _luz_rasante(sc, S)
     if plano in (20, 21):
         fondo.visible_camera = False
+        S["paredes"][2].visible_camera = False
 
     def act(f):
         t = (f - 1) / FPS
