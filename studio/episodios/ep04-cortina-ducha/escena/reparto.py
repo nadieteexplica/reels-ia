@@ -8,8 +8,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import planos_ep04 as PL
 
-PESO = {"E1": 30, "E2": 26, "E3": 30}
-ARMADO = 30
+PESO = {"E1": 30, "E2": 38, "E3": 30}      # medido en local (720x1280): el corte es ~1,3x el baño
+ARMADO = 40
 
 
 def costo(pid, pz, muestras):
