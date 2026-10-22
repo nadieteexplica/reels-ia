@@ -8,15 +8,15 @@ Va **una fila por red** (3 filas por video). Al publicar se llena hasta "Dur."; 
 
 | Ep (id) | Fecha | Gancho | Área | Línea | Formato | Cierre | Red | Dur. (s) | Alcance | Vistas | % visto | Envíos | Guardados | Comentarios | Envíos/alcance 48 h | Envíos/alcance 7 d |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ep01-congelamiento-cerebral | 2026-10-19 16:35 | ¿Qué pasa dentro de…? | cuerpo | datos | corte (interior) | loop | Instagram | 72,1 | | | | | | | | |
-| ep01-congelamiento-cerebral | 2026-10-19 16:35 | ¿Qué pasa dentro de…? | cuerpo | datos | corte (interior) | loop | TikTok | 72,1 | | | | | | | | |
-| ep01-congelamiento-cerebral | 2026-10-19 16:35 | ¿Qué pasa dentro de…? | cuerpo | datos | corte (interior) | loop | YouTube | 72,1 | | | | | | | | |
-| ep02-pajaros-picante | 2026-10-21 10:00 | ¿Por qué…? / ¿Sabías que…? | animales y comida | datos | comedia con animales + metáfora visual | loop + envío | Instagram | 74,0 | | | | | | | | |
-| ep02-pajaros-picante | 2026-10-21 16:00 | ¿Por qué…? / ¿Sabías que…? | animales y comida | datos | comedia con animales + metáfora visual | loop + envío | YouTube | 74,0 | | | | | | | | |
-| ep02-pajaros-picante | 2026-10-21 18:00 | ¿Por qué…? / ¿Sabías que…? | animales y comida | datos | comedia con animales + metáfora visual | loop + envío | TikTok | 74,0 | | | | | | | | |
-| ep03-edificio-que-camino | 2026-10-22 10:00 | imagen imposible / historia real | historia e ingeniería | datos | comedia absurda (objeto que camina) | loop | Instagram | 63,8 | | | | | | | | |
-| ep03-edificio-que-camino | 2026-10-22 10:00 | imagen imposible / historia real | historia e ingeniería | datos | comedia absurda (objeto que camina) | loop | YouTube | 63,8 | | | | | | | | |
-| ep03-edificio-que-camino | 2026-10-22 10:00 | imagen imposible / historia real | historia e ingeniería | datos | comedia absurda (objeto que camina) | loop | TikTok | 63,8 | | | | | | | | |
+| ep01-congelamiento-cerebral | 2026-10-19 16:35 | ¿Qué pasa dentro de…? | cuerpo | datos | corte (interior) | loop | Instagram | 72,1 | | 291 | | | | | | |
+| ep01-congelamiento-cerebral | 2026-10-19 16:35 | ¿Qué pasa dentro de…? | cuerpo | datos | corte (interior) | loop | TikTok | 72,1 | | 133 | | | | 1 | | |
+| ep01-congelamiento-cerebral | 2026-10-19 16:35 | ¿Qué pasa dentro de…? | cuerpo | datos | corte (interior) | loop | YouTube | 72,1 | 1,2 mil únicos | 4.003 (3 mil comprometidas) | 77,7/22,3 · 0:40 prom. (46 % sigue en 0:30) | | | | | |
+| ep02-pajaros-picante | 2026-10-21 10:00 | ¿Por qué…? / ¿Sabías que…? | animales y comida | datos | comedia con animales + metáfora visual | loop + envío | Instagram | 74,0 | 3.483 (Metricool, atrasado) | 4.439 | 36,7 s prom.; 81 % pasa 3 s | 45 | 11 | 6 | | |
+| ep02-pajaros-picante | 2026-10-21 16:00 | ¿Por qué…? / ¿Sabías que…? | animales y comida | datos | comedia con animales + metáfora visual | loop + envío | YouTube | 74,0 | | 1.261 (911 comprometidas) | 73,2/26,8 · 0:32 prom. | | | | | |
+| ep02-pajaros-picante | 2026-10-21 18:00 | ¿Por qué…? / ¿Sabías que…? | animales y comida | datos | comedia con animales + metáfora visual | loop + envío | TikTok | 74,0 | | 7.613 | | | | 0 | | |
+| ep03-edificio-que-camino | 2026-10-22 10:00 | imagen imposible / historia real | historia e ingeniería | datos | comedia absurda (objeto que camina) | loop | Instagram | 63,8 | | 63,2 mil | | | | | | |
+| ep03-edificio-que-camino | 2026-10-22 10:00 | imagen imposible / historia real | historia e ingeniería | datos | comedia absurda (objeto que camina) | loop | YouTube | 63,8 | | 1.483 (936 comprometidas) | 77,3/22,7 · 0:42 prom. | | | | | |
+| ep03-edificio-que-camino | 2026-10-22 10:04 | imagen imposible / historia real | historia e ingeniería | datos | comedia absurda (objeto que camina) | loop | TikTok | 63,8 | | 118 mil | 31,2 s prom.; 27 % completo | 115 | 331 | 15 | | |
 | ep04-cortina-ducha | 2026-10-23 10:00 | ¿Un fantasma? / ¿Cómo funciona por dentro? | casa y física cotidiana | datos | comedia de susto + corte (interior) | chiste de cierre | Instagram | 35,7 | | | | | | | | |
 | ep04-cortina-ducha | 2026-10-23 10:00 | ¿Un fantasma? / ¿Cómo funciona por dentro? | casa y física cotidiana | datos | comedia de susto + corte (interior) | chiste de cierre | TikTok | 35,7 | | | | | | | | |
 | ep04-cortina-ducha | 2026-10-23 16:00 | ¿Un fantasma? / ¿Cómo funciona por dentro? | casa y física cotidiana | datos | comedia de susto + corte (interior) | chiste de cierre | YouTube | 35,7 | | | | | | | | |
