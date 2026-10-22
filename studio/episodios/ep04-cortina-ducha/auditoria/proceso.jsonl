@@ -20,3 +20,6 @@
 {"tipo": "chequeo", "id": "render-planos animatic 39718733164", "estado": "vivo, in_progress null, completed:6 in_progress:9", "n": 20, "ts": "2026-10-22T01:17:36-03:00"}
 {"tipo": "chequeo", "id": "render-planos animatic 39718733164", "estado": "vivo, 9/14 piezas listas (revisado a mano)", "n": 21, "ts": "2026-10-22T01:21:49-03:00"}
 {"tipo": "aviso", "que": "cuadros de estilo del baño enviados a Tomás a las 01:22 (estilos_ep04.jpg); si no responde en 20 min se sigue con el look que apruebe el auditor (instrucción de Tomás)", "n": 22, "ts": "2026-10-22T01:22:24-03:00"}
+{"tipo": "trabajo", "id": "render-planos final 39722811570", "estado": "inicio", "nota": "render final 720x1280, 8 muestras + denoise (16 no cabe en el tope de 4 h: medido 2,5x el animatic), 12 partes mientras terminan 3 del animatic (máx. 16 máquinas)", "n": 23, "ts": "2026-10-22T01:31:10-03:00"}
+{"tipo": "trabajo", "id": "render-planos final 39722811570", "estado": "fin", "nota": "cancelado en cola: compartía el grupo de concurrencia con el animatic; se relanza con la lista de piezas explícita", "n": 24, "ts": "2026-10-22T01:31:29-03:00"}
+{"tipo": "trabajo", "id": "render-planos final 39722863780", "estado": "inicio", "nota": "render final 720x1280, 8 muestras + denoise, 12 partes (3 del animatic siguen: 15 máquinas)", "n": 25, "ts": "2026-10-22T01:31:44-03:00"}
