@@ -109,18 +109,17 @@ def _espuma(rig):
     mb.threshold = 0.6
     rng = np.random.default_rng(4)
     c = Vector((0.0, -0.045, 1.70))
-    for i in range(160):
+    for i in range(170):          # sobre el cuero cabelludo (elipsoide pegado a la cabeza)
         th = rng.uniform(0, 2 * math.pi)
-        ph = rng.uniform(0.0, 1.05)
-        r = 0.088
-        p = c + Vector((r * math.sin(ph) * math.cos(th), r * math.sin(ph) * math.sin(th) * 1.15, r * math.cos(ph) * 0.55))
+        ph = rng.uniform(0.0, 1.25)
+        p = Vector((0.083 * math.sin(ph) * math.cos(th), -0.045 + 0.10 * math.sin(ph) * math.sin(th), 1.652 + 0.068 * math.cos(ph)))
         e = mb.elements.new()
         e.co = p
-        e.radius = rng.uniform(0.012, 0.026)
+        e.radius = rng.uniform(0.014, 0.028)
     # copete de espuma arriba (el chiste: peinado de espuma)
     for k in range(9):
         e = mb.elements.new()
-        e.co = c + Vector((0.004 * math.sin(k), -0.02 + 0.006 * k, 0.05 + 0.011 * k))
+        e.co = c + Vector((0.004 * math.sin(k), -0.02 + 0.006 * k, 0.02 + 0.011 * k))
         e.radius = 0.030 - 0.0022 * k
     ob = bpy.data.objects.new("Espuma", mb)
     bpy.context.scene.collection.objects.link(ob)
