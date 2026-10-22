@@ -1,0 +1,22 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "palabra de la lista negra (revisar tema): 'arma'",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "palabras": 97,
+  "duracion_estimada_s": 33.3,
+  "pausas": 3,
+  "fuentes": [
+   "mentalfloss.com",
+   "nasw.org",
+   "popsci.com",
+   "scienceabc.com",
+   "straightdope.com"
+  ],
+  "afirmaciones_verificadas": 10
+ }
+}
