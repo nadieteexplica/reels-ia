@@ -1,10 +1,10 @@
-# Nadie te explica — contexto del proyecto
+# El viejo del dato (ex Nadie te explica) — contexto del proyecto
 
 Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus secciones *Seguridad* y *Publicación* mandan sobre todo. Es la fuente de verdad de lo decidido hasta ahora (18-oct-2026).
 
 ## La cuenta
-- **Nombre:** Nadie te explica. Cuenta faceless de videos cortos hechos con Claude.
-- **Redes:** Instagram `nadie_te_explica` · TikTok "Nadie te explica" · YouTube Shorts (canal `UCFvRAW_exW4MgXEwQqCD1Fw`).
+- **Nombre:** **El viejo del dato**, usuario **@elviejodeldato** en las 3 redes (cambio de Tomás del 21-oct-2026: había muchas cuentas "Nadie te explica"; ya cambiado en TikTok). Foto de perfil: un viejo con boina que apunta a la cámara con un tazón, en un estudio con globo y mapa. Cuenta faceless de videos cortos hechos con Claude. El repo y la organización de GitHub siguen como `nadieteexplica`.
+- **Redes:** Instagram (antes `nadie_te_explica`) · TikTok (ya @elviejodeldato) · YouTube Shorts (canal `UCFvRAW_exW4MgXEwQqCD1Fw`).
 - **Metricool:** brand id `7499838`, zona horaria America/Santiago. Ya están conectadas las tres redes.
 - **Dueño:** Tomás (Santiago, Chile). Habla en español chileno casual y directo, y quiere respuestas cortas.
 - **Cómo trabaja:** Tomás pide cada video en el chat (decisión del 21-oct-2026: nada de producción programada). Claude investiga, escribe el guion, genera la voz, anima, deja todo listo, lo programa en Metricool con el OK de Tomás por post y revisa los datos.
