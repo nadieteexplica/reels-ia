@@ -6,3 +6,4 @@
 | 3-storyboard | r2 | APROBADO | 0 | 3 |
 | 4-cuadros | r1 | NO APROBADO | 1 | 8 |
 | 4-cuadros | r2 | APROBADO | 0 | 1 |
+| 6-animatic | r1 | NO APROBADO | 3 | 27 |

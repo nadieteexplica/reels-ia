@@ -1,0 +1,311 @@
+{
+ "etapa": "6-animatic",
+ "ronda": 1,
+ "veredicto": "NO APROBADO",
+ "promedio": 7.95,
+ "notas": {
+  "belleza": {
+   "nota": 7.8,
+   "min": 7,
+   "por_que": "P16 y P20 se ven ricos (azulejo saturado, piel con brillo, espuma limpia), pero P15 (22.36–24.35) y sobre todo P19 (29.61–31.46) quedan lechosos y de bajo contraste por el velo blanco de la cortina, con una franja gris plana de tina en el tercio inferior, y P17–P18 (26.98–29.53) son 2,5 s de una pared de rayas sin relieve.",
+   "de": "planos2"
+  },
+  "animacion": {
+   "nota": 7.8,
+   "min": 7,
+   "por_que": "El remolino gira de forma consistente (flecha horaria en P12 17.41–19.24, coherente con el chorro a la derecha) y la cortina se infla bien en P16, pero Don Héctor salta de perfil a frente y de vuelta a espaldas sin pose intermedia en P16 25.77→26.03→26.30, y en P20 actúa poco (sólo gira apenas la cabeza).",
+   "de": "planos2"
+  },
+  "claridad": {
+   "nota": 7.8,
+   "min": 7,
+   "por_que": "P11–P14 explican bien remolino, centro y baja presión (anillo + píldora 'BAJA PRESIÓN' en 21.06), pero en P15 las flechas naranjas entran por los lados en el plano de la cortina en vez de empujarla hacia adentro, P17–P18 no muestran qué hace 'pesada' a la cortina y P19 no muestra que al remolino 'le cueste moverla'.",
+   "de": "planos2"
+  },
+  "ritmo": {
+   "nota": 8.2,
+   "min": 8,
+   "por_que": "Ningún plano pasa 2 s sin cambio (quieto_max_s 0 en todos, 0,13 en P18); cortes cada 1,4–2,5 s, con píldoras que entran en 20.93, 22.80, 23.60 y 28.33; lo más lento es la cortina quieta de 26.98 a 29.53, sostenida sólo por la píldora y los subtítulos.",
+   "de": "planos2"
+  },
+  "gancho": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "el cuadro 0 es Don Héctor duchándose tranquilo con los ojos cerrados (gracioso por la espuma, pero sin acción ni pregunta); la cortina recién se le viene encima a los 1.41 s y la cara de fantasma, la imagen fuerte, llega a los 3.2 s",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "97 de 97 palabras, desfase 0, todas las cajas dentro de x 153–868 · y 1022–1214, resaltado palabra a palabra legible y nunca sobre la cara (en 0 s y 31–36 s quedan bajo el mentón); tildes bien (ESTÁS, FRÍA, SOLUCIÓN, AHÍ SÍ); sólo faltan los signos ¿? de las dos preguntas",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "no lo escucho: por cifras, −14.1 LUFS (en rango), true peak −1.4 dBTP (≤ −1) y la voz 10.4 dB sobre música+efectos en las pausas (mínimo, por el ducking)",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "lo que se ve calza con el guion y sus fuentes: agua caliente roja con 'MÁS FUERTE', agua fría con 'IGUAL PASA', remolino dibujado de frente con el eje perpendicular a la cortina (Schmidt), baja presión en el centro y cortina más pesada que 'cuesta moverla'; la única licencia es que las flechas de 'AIRE DE AFUERA' (23 s) llegan por los costados en el plano de la cortina, no desde afuera de ella",
+   "de": "global"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B2",
+   "plano": 5,
+   "segundo": "5.12",
+   "que": "aparecen manchas de espuma blanca sobre la cortina sin ninguna fuente (no hay personaje en cuadro): en 4.99 hay una gota, en 5.12 un racimo grande en la mitad baja y en 5.24 ya no hay nada; no salen de cuadro, desaparecen (es lo que marcó E5)",
+   "arreglo": "apagar las partículas de espuma en este plano; si es una salpicadura buscada, que caiga y salga por abajo del cuadro en vez de morir de golpe",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B2",
+   "plano": 16,
+   "segundo": "26.03",
+   "que": "Don Héctor pasa de perfil mirando a la derecha (25.77) a estar de frente a cámara con cara de susto y el brazo cruzado por delante de la cortina (26.03) en un solo cuadro (E23: 25.80→26.00), y en 26.30 ya está de espaldas: se lee como un salto del personaje, no como un giro",
+   "arreglo": "si el giro a cámara es buscado, animarlo en ≥ 8 cuadros con anticipación y sostener la cara de susto ≥ 0,5 s antes del corte; si no, terminar P16 en 25.90 y cortar directo a P17",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B4",
+   "plano": 17,
+   "segundo": "26.38",
+   "que": "plano general de espaldas: el cuerpo de Don Héctor termina bajo la espuma, sin caderas ni piernas, y el torso flota sobre el azulejo; en 26.68 bajo el ruedo de la cortina sólo cuelgan las puntas de las manos, sin pies (también se ve el corte bajo la espuma en P16 26.30). La ficha dice 'siempre de los hombros para arriba'",
+   "arreglo": "empezar P17 con la cortina ya cerrada (recortar ~0,3 s del inicio) o encuadrar de los hombros para arriba; en P16 26.30 recortar el último cuadro o subir el encuadre para que no se vea el borde bajo la espuma",
+   "de": "planos2"
+  }
+ ],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "el cuadro 0 (portada y lo que decide visto vs. deslizado) es un hombre duchándose tranquilo con los ojos cerrados; la acción del gancho (la cortina que se le viene encima) empieza recién a los 1.41 s y la cara de fantasma a los 3.2 s",
+   "arreglo": "en el plano 1, adelantar la animación de la cortina para que desde el cuadro 0 ya venga inflada por detrás y le roce el hombro (que abra un ojo al contacto); y usar el cuadro de la cara de fantasma (~3.6 s) como portada (videoCoverMilliseconds) para la grilla",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 15,
+   "segundo": "23.00",
+   "que": "las flechas naranjas de 'AIRE DE AFUERA' entran por la izquierda y la derecha, en el plano de la cortina: se lee como aire que viene de los costados dentro de la ducha, y en todo 22–24 s no se ve la cortina moverse hacia el centro, así que el 'mete la cortina hacia ti' recién se entiende al cortar a los 24.4 s",
+   "arreglo": "cambiar las flechas laterales por flechas que vienen desde la cámara hacia el centro (en perspectiva, achicándose) y hacer que las rayas de la cortina se abomben hacia el anillo de baja presión en este mismo plano",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 21,
+   "segundo": "34.86",
+   "que": "en 'FANTASMA' la cortina de la izquierda (x 0–500, y 250–1000) es una onda suave y desenfocada que casi no cambia entre 33.99 y 36.01: el remate prometido (la cortina pesada que igual se infla) no se ve, sólo la cara de susto",
+   "arreglo": "en la misma cámara, justo en 'FANTASMA' (~34.9) que la cortina se infle hacia su hombro y aparezca la cara de fantasma marcada en la tela de los planos 3–4 (reusar ese desplazamiento), con un shake corto; cierra el chiste y el loop con el gancho",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "16.00–22.30",
+   "que": "el remolino celeste sobre baldosas celestes, visto a través de la cortina lechosa, tiene poco contraste: es el tramo más lavado del video y justo el del mecanismo",
+   "arreglo": "dar más contraste al remolino (azul más profundo o trazos blancos con un borde oscuro fino) y bajar la opacidad de la cortina u oscurecer el fondo ~15 % en las escenas 11–15",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 17,
+   "segundo": "26.40",
+   "que": "la cortina nueva que baja corta al personaje a la altura del cuello: por ~0.5 s se ve un torso sin cabeza, con espuma que parece estar en la espalda (la ficha la pone en el pecho); material insuficiente para verificar si es espalda o pecho",
+   "arreglo": "empezar el plano con el borde de la cortina ya bajo los hombros, o cortar directo a la cortina pesada cerrada (27 s) y dejar al personaje fuera de este plano",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 18,
+   "segundo": "28.48",
+   "que": "la 'cortina más pesada' tiene los mismos colores y rayas que la liviana y nada indica peso: el espectador no ve qué cambió",
+   "arreglo": "mostrar el ruedo con una barra o pesas (inclinar la cámara hacia abajo en P18) o darle otro color o una tela más gruesa con pliegues hondos; que la caída en P17 (26.60–26.80) tenga un rebote pesado al final",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 19,
+   "segundo": "30.40",
+   "que": "la voz dice 'al remolino le cuesta moverla' pero la cortina pesada está plana e igual que siempre y el remolino gira igual que en P12: no se ve el esfuerzo",
+   "arreglo": "que el remolino empuje y la cortina apenas se curve 2–3 cm y vuelva (rebote corto), y que la flecha del remolino se frene; alternativa barata: en P19 bajar la velocidad de la flecha y hacer temblar las rayas de la cortina en el centro",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 21,
+   "segundo": "33.99",
+   "que": "nada identifica esta cortina como 'esa' (la pesada): se ve con las mismas franjas anchas y ondas que la del cuadro 0, mientras la pesada en 27–30 s colgaba con pliegues rectos y la píldora verde. Material insuficiente para verificar si es el mismo material o el de la cortina pesada",
+   "arreglo": "si es la cortina liviana, cambiarle el material por el de la pesada en esta escena; lo más barato: repetir la píldora verde '✓ CORTINA PESADA' arriba a la izquierda sobre la cortina (x 120–500, y 320–400, lejos de la cara) desde 'Y SI ESA' (plano 20) hasta ~34.3",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "3.81",
+   "que": "la cara de fantasma (el chiste del gancho) es un relieve gris suave que pierde contra las rayas turquesa fuertes; además el ojo derecho tiene un anillo blanco fino (3.23-4.87) que parece monóculo o artefacto",
+   "arreglo": "luz rasante lateral para hundir cuencas y boca (más sombra), empujar más la cara hacia cámara y sacar el anillo del ojo derecho",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "8.00–9.70",
+   "que": "'con agua caliente pasa más fuerte': la cámara mira la pared con los frascos y el pato, la cortina no está en cuadro, así que el 'más fuerte' sólo lo dice la píldora",
+   "arreglo": "encuadrar la cortina abombándose más con el agua roja (mover la cámara a la izquierda) para que a los 10–11 s el agua fría muestre un abombado menor",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 15,
+   "segundo": "22.93",
+   "que": "las flechas naranjas 'AIRE DE AFUERA' entran por la izquierda y la derecha en el plano de la cortina, como si el aire viniera de los costados; el empuje real es desde afuera hacia adentro de la ducha (perpendicular a la cortina)",
+   "arreglo": "dibujar las flechas en perspectiva desde la cámara hacia el anillo central (que se achiquen al entrar) o hundir el centro de las rayas de la cortina hacia el remolino mientras entra la píldora",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 19,
+   "segundo": "29.61",
+   "que": "imagen lechosa: el velo blanco de la cortina translúcida aplana todo (remolino, azulejo y chorro), y la franja inferior es gris pálido sin detalle; lo mismo, en menor grado, en P15 22.36",
+   "arreglo": "bajar la opacidad de las franjas blancas de la cortina y subir el contraste del remolino (borde azul más oscuro), u oscurecer un poco la tina",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 20,
+   "segundo": "31.50–36.05",
+   "que": "'Y si esa igual se mueve': en el cierre la cortina de atrás parece la original (rayas anchas onduladas) y no la pesada de pliegues rectos de 27–30 s; material insuficiente para verificarlo a esta resolución",
+   "arreglo": "si es la original, poner la textura y los pliegues de la cortina pesada en la escena final para que el chiste cierre",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 21,
+   "segundo": "35.14",
+   "que": "de 34.86 a 36.01 la cara queda fija con la boca abierta, sin cejas arriba ni acción secundaria, y la toma de 34.28 parte sin anticipación",
+   "arreglo": "agregar 3–4 cuadros de retroceso de cabeza antes del giro (~34.1) y en el sostén una sola acción secundaria: cejas que saltan arriba en ~35.1 y un escalofrío corto de hombros, o los ojos que van a la cortina y vuelven",
+   "de": "planos3"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "3.20",
+   "que": "los subtítulos quitan los signos de pregunta: '¿Un fantasma?' (3.20 s, el chiste del gancho) y '¿La solución?' (26.33 s) se leen como afirmaciones",
+   "arreglo": "mantener ¿? sólo en esas dos preguntas",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "6.80",
+   "que": "la píldora dice '✕ NO SÓLO' con tilde mientras el subtítulo de 6.13 s dice 'SOLO' sin tilde; la RAE recomienda sin tilde cuando no hay ambigüedad",
+   "arreglo": "cambiar la píldora a '✕ NO SOLO'",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "8.82",
+   "que": "la voz dice 'pasa más fuerte' pero el plano muestra agua caliente y vapor; la cortina es un borde a la izquierda y no se ve que se meta más que en P6/P8",
+   "arreglo": "abrir el encuadre (o reusar la cámara de P6) con la cortina más inflada que en P8, para que 'más fuerte' se vea y no sólo se lea",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 4,
+   "bloqueante": false,
+   "plano": 20,
+   "segundo": "33.65",
+   "que": "la cortina detrás de Don Héctor recién se mueve en 33.65–33.91, después de que la voz dijo 'igual se mueve' (32.33–33.38); mientras la voz lo nombra, la cortina está quieta",
+   "arreglo": "adelantar el inflado de la cortina a ~32.60 y que Don Héctor la mire de reojo justo antes del corte a P21",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 4,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "7.67",
+   "que": "las bocanadas de vapor arriba a la izquierda son grises oscuras y se leen como humo o manchas, no como vapor de ducha",
+   "arreglo": "vapor blanco y más transparente (subir el color/emisión y bajar la densidad)",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 5,
+   "bloqueante": false,
+   "plano": 19,
+   "segundo": "29.61",
+   "que": "la píldora 'CORTINA PESADA' estaba en P18 hasta 29.53, desaparece en el corte y vuelve a entrar en 29.87 (E27): parpadeo innecesario",
+   "arreglo": "mantener la píldora fija a través del corte, sin animación de entrada en P19",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 5,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "2.69",
+   "que": "la cara de susto, el golpe del gancho, dura ~0,2 s (2.58-2.69) antes de que gire de espaldas",
+   "arreglo": "cortar P2 ~0,2 s antes o atrasar el giro para sostener el susto ~0,4 s",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 6,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "14.69",
+   "que": "el plano clave del mecanismo se ve pálido por la capa de la cortina encima, y las rayitas azules del aire tienen la misma forma que las gotas: el aire parece agua azul",
+   "arreglo": "bajar la opacidad de la cortina en P10 y dibujar el aire como líneas largas o cintas que siguen al chorro, no como gotas",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 7,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "7.05",
+   "que": "la píldora dice 'NO SÓLO' con tilde y el subtítulo de 6.25 dice 'SOLO' sin tilde: inconsistente (la RAE recomienda 'solo' sin tilde)",
+   "arreglo": "cambiar la píldora a '✕ NO SOLO'",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 8,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.84",
+   "que": "Don Héctor mantiene la misma pose con ojos cerrados todo el plano; el contraste relajado → susto queda flojo",
+   "arreglo": "agregar una acción chica: tararear con vaivén de cabeza o subir las cejas de gusto",
+   "de": "planos1"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false
+}

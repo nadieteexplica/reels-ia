@@ -1,0 +1,38 @@
+{
+ "encargo": "planos2",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 7, "por_que": "P16 y P20 se ven ricos (azulejo saturado, piel con brillo, espuma limpia), pero P15 (22.36–24.35) y sobre todo P19 (29.61–31.46) quedan lechosos y de bajo contraste por el velo blanco de la cortina, con una franja gris plana de tina en el tercio inferior, y P17–P18 (26.98–29.53) son 2,5 s de una pared de rayas sin relieve."},
+  "animacion": {"nota": 7, "por_que": "El remolino gira de forma consistente (flecha horaria en P12 17.41–19.24, coherente con el chorro a la derecha) y la cortina se infla bien en P16, pero Don Héctor salta de perfil a frente y de vuelta a espaldas sin pose intermedia en P16 25.77→26.03→26.30, y en P20 actúa poco (sólo gira apenas la cabeza)."},
+  "claridad": {"nota": 7, "por_que": "P11–P14 explican bien remolino, centro y baja presión (anillo + píldora 'BAJA PRESIÓN' en 21.06), pero en P15 las flechas naranjas entran por los lados en el plano de la cortina en vez de empujarla hacia adentro, P17–P18 no muestran qué hace 'pesada' a la cortina y P19 no muestra que al remolino 'le cueste moverla'."},
+  "ritmo": {"nota": 8, "por_que": "Ningún plano pasa 2 s sin cambio (quieto_max_s 0 en todos, 0,13 en P18); cortes cada 1,4–2,5 s, con píldoras que entran en 20.93, 22.80, 23.60 y 28.33; lo más lento es la cortina quieta de 26.98 a 29.53, sostenida sólo por la píldora y los subtítulos."}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "tipo": "B2", "plano": 16, "segundo": "26.03", "que": "Don Héctor pasa de perfil mirando a la derecha (25.77) a estar de frente a cámara con cara de susto y el brazo cruzado por delante de la cortina (26.03) en un solo cuadro (E23: 25.80→26.00), y en 26.30 ya está de espaldas: se lee como un salto del personaje, no como un giro", "arreglo": "si el giro a cámara es buscado, animarlo en ≥ 8 cuadros con anticipación y sostener la cara de susto ≥ 0,5 s antes del corte; si no, terminar P16 en 25.90 y cortar directo a P17"},
+  {"prioridad": 1, "bloqueante": true, "tipo": "B4", "plano": 17, "segundo": "26.38", "que": "plano general de espaldas: el cuerpo de Don Héctor termina bajo la espuma, sin caderas ni piernas, y el torso flota sobre el azulejo; en 26.68 bajo el ruedo de la cortina sólo cuelgan las puntas de las manos, sin pies (también se ve el corte bajo la espuma en P16 26.30). La ficha dice 'siempre de los hombros para arriba'", "arreglo": "empezar P17 con la cortina ya cerrada (recortar ~0,3 s del inicio) o encuadrar de los hombros para arriba; en P16 26.30 recortar el último cuadro o subir el encuadre para que no se vea el borde bajo la espuma"},
+  {"prioridad": 2, "bloqueante": false, "plano": 19, "segundo": "30.40", "que": "la voz dice 'al remolino le cuesta moverla' pero la cortina pesada está plana e igual que siempre y el remolino gira igual que en P12: no se ve el esfuerzo", "arreglo": "que el remolino empuje y la cortina apenas se curve 2–3 cm y vuelva (rebote corto), y que la flecha del remolino se frene; alternativa barata: en P19 bajar la velocidad de la flecha y hacer temblar las rayas de la cortina en el centro"},
+  {"prioridad": 2, "bloqueante": false, "plano": 18, "segundo": "28.48", "que": "la 'cortina más pesada' tiene los mismos colores y rayas que la liviana y nada indica peso: el espectador no ve qué cambió", "arreglo": "mostrar el ruedo con una barra o pesas (inclinar la cámara hacia abajo en P18) o darle otro color o una tela más gruesa con pliegues hondos; que la caída en P17 (26.60–26.80) tenga un rebote pesado al final"},
+  {"prioridad": 3, "bloqueante": false, "plano": 15, "segundo": "22.93", "que": "las flechas naranjas 'AIRE DE AFUERA' entran por la izquierda y la derecha en el plano de la cortina, como si el aire viniera de los costados; el empuje real es desde afuera hacia adentro de la ducha (perpendicular a la cortina)", "arreglo": "dibujar las flechas en perspectiva desde la cámara hacia el anillo central (que se achiquen al entrar) o hundir el centro de las rayas de la cortina hacia el remolino mientras entra la píldora"},
+  {"prioridad": 3, "bloqueante": false, "plano": 19, "segundo": "29.61", "que": "imagen lechosa: el velo blanco de la cortina translúcida aplana todo (remolino, azulejo y chorro), y la franja inferior es gris pálido sin detalle; lo mismo, en menor grado, en P15 22.36", "arreglo": "bajar la opacidad de las franjas blancas de la cortina y subir el contraste del remolino (borde azul más oscuro), u oscurecer un poco la tina"},
+  {"prioridad": 4, "bloqueante": false, "plano": 20, "segundo": "33.65", "que": "la cortina detrás de Don Héctor recién se mueve en 33.65–33.91, después de que la voz dijo 'igual se mueve' (32.33–33.38); mientras la voz lo nombra, la cortina está quieta", "arreglo": "adelantar el inflado de la cortina a ~32.60 y que Don Héctor la mire de reojo justo antes del corte a P21"},
+  {"prioridad": 5, "bloqueante": false, "plano": 19, "segundo": "29.61", "que": "la píldora 'CORTINA PESADA' estaba en P18 hasta 29.53, desaparece en el corte y vuelve a entrar en 29.87 (E27): parpadeo innecesario", "arreglo": "mantener la píldora fija a través del corte, sin animación de entrada en P19"}
+ ],
+ "eventos": [
+  {"id": "E16", "es_defecto": false, "por_que": "son las estelas del remolino que giran sobre el azulejo en P13; nada aparece ni desaparece"},
+  {"id": "E17", "es_defecto": false, "por_que": "entra la píldora 'BAJA PRESIÓN' sobre el centro, con la voz 'presión'"},
+  {"id": "E18", "es_defecto": false, "por_que": "una estela del remolino que pasa sobre el azulejo junto al pato; es el giro"},
+  {"id": "E19", "es_defecto": false, "por_que": "entran la píldora 'AIRE DE AFUERA' y las flechas naranjas con la voz 'aire de afuera'"},
+  {"id": "E20", "es_defecto": false, "por_que": "entra la píldora 'EMPUJA MÁS' con la voz 'empuja'"},
+  {"id": "E21", "es_defecto": false, "por_que": "es el resaltado karaoke del subtítulo que pasa de 'METE' a 'CORTINA'"},
+  {"id": "E22", "es_defecto": false, "por_que": "el subtítulo cambia de página ('METE LA CORTINA' → 'HACIA TI') y la cortina se mueve abajo; nada salta"},
+  {"id": "E23", "es_defecto": true, "por_que": "Don Héctor pasa de perfil a frente en un solo cuadro y el brazo aparece por delante de la cortina: salto de pose (bloqueante B2 de P16)"},
+  {"id": "E24", "es_defecto": false, "por_que": "es la cortina nueva que cae y tapa el cuadro en 'la solución' (transición buscada); antes del cierre se ve el cuerpo cortado bajo la espuma (bloqueante B4 de P17)"},
+  {"id": "E25", "es_defecto": false, "por_que": "entra la píldora '✓ CORTINA PESADA' con la voz 'cortina'"},
+  {"id": "E26", "es_defecto": false, "por_que": "cambio de página del subtítulo ('UNA CORTINA MÁS' → 'PESADA')"},
+  {"id": "E27", "es_defecto": false, "por_que": "la píldora 'CORTINA PESADA' vuelve a entrar después del corte; es buscado, pero sobra el parpadeo (sugerencia 8)"},
+  {"id": "E28", "es_defecto": false, "por_que": "cambio de página del subtítulo ('Y SI ESA' → 'IGUAL SE MUEVE') sobre el pecho"},
+  {"id": "E29", "es_defecto": false, "por_que": "gotas del chorro que pasan por delante de la oreja; es el agua"}
+ ],
+ "resumen": "El tramo explica bien remolino, centro y baja presión (P11–P14), pero tiene dos bloqueantes en la transición a la solución: Don Héctor salta de pose en un cuadro en P16 (26.03) y se le ve el cuerpo cortado bajo la espuma, flotando, en P17 (26.38). Además, la parte de la solución (P17–P19) no muestra que la cortina sea pesada ni que al remolino le cueste moverla."
+}
