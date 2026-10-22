@@ -264,10 +264,12 @@ def armar(sc, corte=False, cortina="liviana", pato_en=None):
     piso = mat("PisoBano", (0.55, 0.60, 0.62), rough=0.35)
     S["paredes"] = []
     fondo = caja("ParedFondo", (X0 - 0.6, Y_PARED, 0.0), (X1 + 0.6, Y_PARED + 0.12, 2.9), azulejo)
-    izq = caja("ParedIzq", (X0 - 0.12, Y_CORT - 1.6, 0.0), (X0, Y_PARED + 0.12, 2.9), azulejo)
+    izq = caja("ParedIzq", (X0 - 0.12, Y_CORT - 2.6, 0.0), (X0, Y_PARED + 0.12, 2.9), azulejo)
     S["paredes"] += [fondo, izq]
+    caja("ParedFrente", (X0 - 2.0, Y_CORT - 2.75, 0.0), (X1 + 2.0, Y_CORT - 2.6, 2.9), azulejo)      # el baño cerrado
+    caja("Techo", (X0 - 2.0, Y_CORT - 2.75, 2.9), (X1 + 2.0, Y_PARED + 0.12, 2.95), mat("TechoMat", (0.85, 0.88, 0.88), 0.8))
     if not corte:
-        der = caja("ParedDer", (X1, Y_CORT - 1.6, 0.0), (X1 + 0.12, Y_PARED + 0.12, 2.9), azulejo)
+        der = caja("ParedDer", (X1, Y_CORT - 2.6, 0.0), (X1 + 0.12, Y_PARED + 0.12, 2.9), azulejo)
         S["paredes"].append(der)
     caja("Piso", (X0 - 2, Y_CORT - 3, -0.02), (X1 + 2, Y_PARED + 0.2, 0.0), piso)
     S["tina"] = tina(blanco)
@@ -339,7 +341,7 @@ def crear_cortina(pesada=False, corte=False, nx=96, nz=84):
 
 
 def deformar_cortina(C, f, inflar=0.0, centro=(0.0, 1.05), radio=(0.55, 0.45), aleteo=1.0, objetivos=(), cara=None,
-                     empuje_cara=0.0, cara_dentro=False, tope_y=None):
+                     empuje_cara=0.0, cara_dentro=False, tope_y=None, cara_escala=1.0):
     """Pone la forma de la cortina en el cuadro f.
     inflar: cuánto se mete hacia adentro (m, hacia +y) en el centro (x, z) del bulto; aleteo: ondas chicas de aire.
     objetivos: objetos contra los que la cortina se pega (la cabeza: no los atraviesa, se moldea encima).
@@ -361,12 +363,13 @@ def deformar_cortina(C, f, inflar=0.0, centro=(0.0, 1.05), radio=(0.55, 0.45), a
     y = y + bulto + fl * (0.4 + inflar * 3)
     if cara is not None and empuje_cara > 0:
         cx, cz = cara
-        r = np.hypot((x - cx) / 0.11, (z - cz) / 0.14)
+        k = cara_escala
+        r = np.hypot((x - cx) / (0.11 * k), (z - cz) / (0.14 * k))
         cabeza = np.clip(1 - r ** 2, 0, None) ** 0.5
-        nariz = np.exp(-((x - cx) / 0.018) ** 2 - ((z - cz + 0.01) / 0.03) ** 2) * 0.35
-        ojos = -0.65 * (np.exp(-((x - cx - 0.036) / 0.022) ** 2 - ((z - cz - 0.035) / 0.02) ** 2)
-                        + np.exp(-((x - cx + 0.036) / 0.022) ** 2 - ((z - cz - 0.035) / 0.02) ** 2))
-        boca = -0.75 * np.exp(-((x - cx) / 0.026) ** 2 - ((z - cz + 0.065) / 0.032) ** 2)     # boca en "O" (¡uuuh!)
+        nariz = np.exp(-((x - cx) / (0.018 * k)) ** 2 - ((z - cz + 0.01 * k) / (0.03 * k)) ** 2) * 0.35
+        ojos = -0.65 * (np.exp(-((x - cx - 0.036 * k) / (0.022 * k)) ** 2 - ((z - cz - 0.035 * k) / (0.02 * k)) ** 2)
+                        + np.exp(-((x - cx + 0.036 * k) / (0.022 * k)) ** 2 - ((z - cz - 0.035 * k) / (0.02 * k)) ** 2))
+        boca = -0.75 * np.exp(-((x - cx) / (0.026 * k)) ** 2 - ((z - cz + 0.065 * k) / (0.032 * k)) ** 2)     # boca en "O" (¡uuuh!)
         relieve = empuje_cara * (cabeza + nariz + ojos + boca) * np.clip(r < 1.25, 0, 1) + empuje_cara * 0.35 * np.exp(-r ** 2 / 3)
     else:
         relieve = 0.0

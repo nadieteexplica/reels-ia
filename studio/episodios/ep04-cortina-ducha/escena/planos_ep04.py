@@ -308,8 +308,8 @@ def act_e3(S, pj, A, t, f):
     bajar = sale(clamp((t - E3_BAJA[0]) / (E3_BAJA[1] - E3_BAJA[0])))
     infla = suave(clamp((t - E3_INFLA) / 1.6))
     cara = suave(clamp((t - (E3_FANT - 0.35)) / 0.45))
-    B.deformar_cortina(C, f, inflar=0.03 + 0.12 * infla, centro=(0.04, 1.55), radio=(0.4, 0.45), aleteo=0.4,
-                       cara=(0.04, 1.66), empuje_cara=0.11 * cara, cara_dentro=False, objetivos=_objetivos(pj))
+    B.deformar_cortina(C, f, inflar=0.03 + 0.16 * infla + 0.08 * cara, centro=(0.12, 1.50), radio=(0.4, 0.5), aleteo=0.4 + 0.6 * infla,
+                       cara=(0.12, 1.62), empuje_cara=0.10 * cara, cara_dentro=False, tope_y=-0.05, cara_escala=1.6)
     if bajar < 1:
         me = C["ob"].data
         import numpy as np
