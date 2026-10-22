@@ -28,3 +28,4 @@
 {"tipo": "chequeo", "id": "render-planos final 39722863780", "estado": "vivo, in_progress null, completed:1 in_progress:12", "n": 28, "ts": "2026-10-22T01:47:21-03:00"}
 {"tipo": "trabajo", "id": "puerta 6 r1 (4 revisores)", "estado": "inicio", "nota": "sobre el animatic 39718733164; el render final ya corre con los arreglos de la puerta 4", "n": 29, "ts": "2026-10-22T01:49:41-03:00"}
 {"tipo": "chequeo", "id": "render-planos final 39722863780", "estado": "vivo, in_progress null, completed:1 in_progress:12", "n": 30, "ts": "2026-10-22T02:02:32-03:00"}
+{"tipo": "trabajo", "id": "render-planos parche 39726712487", "estado": "inicio", "nota": "planos 3, 4 (en 2 mitades) y 5 sobre el final 39722863780: espuma del 5 (bloqueante puerta 6 r1) y susto más largo; corre en paralelo, el armado espera al final", "n": 31, "ts": "2026-10-22T02:12:54-03:00"}
