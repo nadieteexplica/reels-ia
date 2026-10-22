@@ -4,7 +4,7 @@
 Este edificio de más de 7.600 toneladas se fue caminando 🏫🦿
 En 2020, en Shanghái (China), una escuela de 1935 caminó 62 metros sobre 198 patas robóticas, en dos grupos que se turnan como tus pies.
 ¿Qué edificio de tu ciudad pondrías a caminar? 👇
-#curiosidades #ingenieria #shanghai #china #nadieteexplica
+#curiosidades #ingenieria #shanghai #china #elviejodeldato
 
 **Título de TikTok:** El edificio que caminó 62 metros con 198 patas robóticas 🦿
 
@@ -18,6 +18,7 @@ Fuentes:
 • The Drive (2020): https://www.thedrive.com/news/37679/watch-a-giant-walking-machine-relocate-an-entire-five-story-school-building
 • Xataka (2020): https://www.xataka.com/otros/china-utiliza-198-patas-roboticas-para-hacer-caminar-recolocar-edificio-historico-7-600-toneladas
 • China Daily (2020): https://www.chinadaily.com.cn/a/202009/18/WS5f640d0ea31024ad0ba7a4d9.html
+El viejo del dato 🧓: datos raros y reales, explicados en un minuto.
 
 ## Primer comentario (firstCommentText)
 Fuentes:
@@ -26,7 +27,7 @@ Fuentes:
 • The Drive (2020), por qué no usaron rieles: https://www.thedrive.com/news/37679/watch-a-giant-walking-machine-relocate-an-entire-five-story-school-building
 • Xataka (2020): https://www.xataka.com/otros/china-utiliza-198-patas-roboticas-para-hacer-caminar-recolocar-edificio-historico-7-600-toneladas
 • China Daily (2020), la sala de conciertos movida en 2003: https://www.chinadaily.com.cn/a/202009/18/WS5f640d0ea31024ad0ba7a4d9.html
-¿Qué quieres que te explique la próxima? 🤔
+¿Qué dato quieres que te cuente el viejo la próxima? 🧓
 
 ## Datos para Metricool
 - Portada: cuadro 0 (videoCoverMilliseconds = 0): el edificio a medio paso (C0).
