@@ -153,7 +153,7 @@ def _e1(sc, a, b, plano):
         t = (f - 1) / FPS
         tl = t
         if plano == 16:                       # el mismo golpe de E1, ahora "hacia ti"
-            tl = min((t - T0(16)) + (E1_TOQUE - 0.9), E1_GIRO[0] - 0.05)     # no entra al giro de E1
+            tl = min((t - T0(16)) + (E1_TOQUE - 0.9), 2.55)     # no entra al giro de E1
         act_e1(S, pj, A, tl, f, fastidio=(plano == 16), afuera=plano in (4, 5))
         x = lin(f, a, b)
         if plano == 1:       # C0: la cara (tranquilo) y la cortina que se le viene por detrás
@@ -370,3 +370,9 @@ def _pieza(k, fn, **kw):
 
 
 PIEZAS = {str(k): _pieza(k, fn) for k, fn in sorted(FUNC.items()) if k in E.T}
+# piezas partidas (para parches rápidos en varias máquinas): "4@1" y "4@2" renderizan cada mitad del plano 4
+for _k in (4,):
+    _a, _b = FR(_k)
+    _m = (_a + _b) // 2
+    for _i, (_x, _y) in enumerate(((_a, _m), (_m, _b)), 1):
+        PIEZAS[f"{_k}@{_i}"] = dict(a=_a, b=_b, fn=FUNC[_k], plano=_k, base=str(_k), rango=(_x, _y))
