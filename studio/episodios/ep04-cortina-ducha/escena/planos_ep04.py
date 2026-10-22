@@ -68,7 +68,7 @@ def _objetivos(pj):
 
 # tiempos de E1 (s, tiempo de la escena = tiempo del video en los planos 1–5)
 E1_TOQUE = TW("cortina") + 0.05     # la cortina le toca la espalda (≈1,71)
-E1_GIRO = (2.60, 2.95)              # se da vuelta para mirarla
+E1_GIRO = (2.74, 3.06)              # se da vuelta para mirarla (antes 2,60: el susto se veía 0,2 s)
 E1_PEGA = 3.30                      # se le pega en la cara
 E1_SUELTA = TW("no") + 0.05        # "No.": la cortina se suelta
 
@@ -96,9 +96,8 @@ def act_e1(S, pj, A, t, f, fastidio=False, afuera=False):
     # tarareo con la boca mientras está tranquilo (algo cambia en la cara)
     if tranquilo > 0.5:
         expr["sonrisa"] = 0.35 + 0.25 * max(0.0, math.sin(t * 9))
-    pega_c = suave(clamp((t - E1_GIRO[1]) / 0.3)) * (1 - suave(clamp((t - E1_SUELTA) / 0.4)))
-    PJ.pose(pj, f, expr=expr, cabeza=(cab_x + 10 * pega_c, cab_y, 3 * math.sin(t * 0.9)), cuello=(6 * pega_c, 0, 0),
-            torso=(torso_x + 10 * pega_c, 0, 0), hombros=hombros, parpadeo=parp)
+    PJ.pose(pj, f, expr=expr, cabeza=(cab_x, cab_y, 3 * math.sin(t * 0.9)), cuello=(0, 0, 0),
+            torso=(torso_x, 0, 0), hombros=hombros, parpadeo=parp)
     # cortina: ya viene en camino en el cuadro 0, le toca la espalda, después se le pega en la cara y se suelta
     if t < E1_GIRO[0]:
         inf = 0.46 + 0.08 * sale(clamp(t / E1_TOQUE))        # el cuadro 0 ya trae el bulto encima (puerta 4 r1, sugerencia 1)
@@ -117,7 +116,7 @@ def act_e1(S, pj, A, t, f, fastidio=False, afuera=False):
     else:                   # se le pega en la cara: la cara se marca en la cortina (relieve hacia afuera)
         pega = suave(clamp((t - E1_GIRO[1]) / (E1_PEGA - E1_GIRO[1]))) * (1 - suave(clamp((t - E1_SUELTA) / 0.45)))
         B.deformar_cortina(S["cortina"], f, inflar=inf, centro=centro, radio=radio, aleteo=1.0 - 0.6 * pega,
-                           cara=(0.0, 1.70), empuje_cara=0.11 * pega, cara_dentro=True, tope_y=-0.07)
+                           cara=(0.0, 1.70), empuje_cara=0.11 * pega, cara_dentro=True, tope_y=-0.24)     # lejos de la espuma (puerta 6 r1: B2)
     # patito: se cae del borde con el golpe
     pato = S["pato"]
     tc = t - (E1_TOQUE + 0.18)

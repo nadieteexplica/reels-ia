@@ -1,0 +1,39 @@
+{
+ "encargo": "planos1",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "paleta turquesa/blanco limpia, luz suave y piel mojada creíble en P1-P3 y P6-P8; bajan el vapor gris con pinta de humo en P7 (7.67) y el velo pálido de P10 (13.10-15.48)"},
+  "animacion": {"nota": 8, "por_que": "la cortina se infla y ondula de verdad (P2 1.45-2.50, P6/P8), el susto y el giro de P3 (2.58-3.15) se leen en una foto; P1 (0.04-1.37) casi sin actuación y P4 (3.23-4.67) sólo deriva lento"},
+  "claridad": {"nota": 8, "por_que": "cada frase tiene su imagen y el código rojo/azul (caliente/fría) de P6-P8 se entiende solo; flojos: la cara de fantasma de P4 tiene poco contraste contra las rayas y en P7 'pasa más fuerte' se lee en la píldora pero la cortina casi no está en cuadro"},
+  "ritmo": {"nota": 9, "por_que": "planos de 0,65-2,46 s, quieto_max_s 0 en los 10, y las píldoras entran cada 0,4-0,5 s en P6-P8: nunca pasan 2 s sin cambio"}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "tipo": "B2", "plano": 5, "segundo": "5.12", "que": "aparecen manchas de espuma blanca sobre la cortina sin ninguna fuente (no hay personaje en cuadro): en 4.99 hay una gota, en 5.12 un racimo grande en la mitad baja y en 5.24 ya no hay nada; no salen de cuadro, desaparecen (es lo que marcó E5)", "arreglo": "apagar las partículas de espuma en este plano; si es una salpicadura buscada, que caiga y salga por abajo del cuadro en vez de morir de golpe"},
+  {"prioridad": 2, "bloqueante": false, "plano": 4, "segundo": "3.81", "que": "la cara de fantasma (el chiste del gancho) es un relieve gris suave que pierde contra las rayas turquesa fuertes; además el ojo derecho tiene un anillo blanco fino (3.23-4.87) que parece monóculo o artefacto", "arreglo": "luz rasante lateral para hundir cuencas y boca (más sombra), empujar más la cara hacia cámara y sacar el anillo del ojo derecho"},
+  {"prioridad": 3, "bloqueante": false, "plano": 7, "segundo": "8.82", "que": "la voz dice 'pasa más fuerte' pero el plano muestra agua caliente y vapor; la cortina es un borde a la izquierda y no se ve que se meta más que en P6/P8", "arreglo": "abrir el encuadre (o reusar la cámara de P6) con la cortina más inflada que en P8, para que 'más fuerte' se vea y no sólo se lea"},
+  {"prioridad": 4, "bloqueante": false, "plano": 7, "segundo": "7.67", "que": "las bocanadas de vapor arriba a la izquierda son grises oscuras y se leen como humo o manchas, no como vapor de ducha", "arreglo": "vapor blanco y más transparente (subir el color/emisión y bajar la densidad)"},
+  {"prioridad": 5, "bloqueante": false, "plano": 3, "segundo": "2.69", "que": "la cara de susto, el golpe del gancho, dura ~0,2 s (2.58-2.69) antes de que gire de espaldas", "arreglo": "cortar P2 ~0,2 s antes o atrasar el giro para sostener el susto ~0,4 s"},
+  {"prioridad": 6, "bloqueante": false, "plano": 10, "segundo": "14.69", "que": "el plano clave del mecanismo se ve pálido por la capa de la cortina encima, y las rayitas azules del aire tienen la misma forma que las gotas: el aire parece agua azul", "arreglo": "bajar la opacidad de la cortina en P10 y dibujar el aire como líneas largas o cintas que siguen al chorro, no como gotas"},
+  {"prioridad": 7, "bloqueante": false, "plano": 6, "segundo": "7.05", "que": "la píldora dice 'NO SÓLO' con tilde y el subtítulo de 6.25 dice 'SOLO' sin tilde: inconsistente (la RAE recomienda 'solo' sin tilde)", "arreglo": "cambiar la píldora a '✕ NO SOLO'"},
+  {"prioridad": 8, "bloqueante": false, "plano": 1, "segundo": "0.84", "que": "Don Héctor mantiene la misma pose con ojos cerrados todo el plano; el contraste relajado → susto queda flojo", "arreglo": "agregar una acción chica: tararear con vaivén de cabeza o subir las cejas de gusto"}
+ ],
+ "eventos": [
+  {"id": "E1", "es_defecto": false, "por_que": "cambio leve de sombra sobre la barra por el acercamiento de cámara y los chorros; no aparece ni desaparece ningún objeto (y además está bajo la barra superior)"},
+  {"id": "E2", "es_defecto": false, "por_que": "la cortina inflándose y los chorros moviéndose, junto con el cambio de frase del subtítulo"},
+  {"id": "E3", "es_defecto": false, "por_que": "pliegues de la cortina en movimiento y el resaltado del subtítulo que pasa de TE a VIENE"},
+  {"id": "E4", "es_defecto": false, "por_que": "Don Héctor gira rápido de frente a espaldas para mirar la cortina (2.69 frente, 2.81 perfil, 2.92 espalda): acción buscada"},
+  {"id": "E5", "es_defecto": true, "por_que": "espuma que aparece sin fuente sobre la cortina y desaparece antes de 5.24 (bloqueante B2 del plano 5)"},
+  {"id": "E6", "es_defecto": false, "por_que": "cambio de frase del subtítulo (Y TAMPOCO ES → SOLO EL AIRE)"},
+  {"id": "E7", "es_defecto": false, "por_que": "entra la píldora ¿AIRE CALIENTE? con su animación"},
+  {"id": "E8", "es_defecto": false, "por_que": "entra la píldora ✕ NO SÓLO"},
+  {"id": "E9", "es_defecto": false, "por_que": "entra la píldora AGUA CALIENTE"},
+  {"id": "E10", "es_defecto": false, "por_que": "bocanada de vapor que crece detrás del subtítulo: vapor animado"},
+  {"id": "E11", "es_defecto": false, "por_que": "entra la píldora MÁS FUERTE y el resaltado del subtítulo"},
+  {"id": "E12", "es_defecto": false, "por_que": "la cortina ondulando bajo el subtítulo; nada aparece ni desaparece"},
+  {"id": "E13", "es_defecto": false, "por_que": "cambio de frase del subtítulo (PERO PASA HASTA → CON AGUA FRÍA)"},
+  {"id": "E14", "es_defecto": false, "por_que": "entra la píldora ✓ IGUAL PASA"},
+  {"id": "E15", "es_defecto": false, "por_que": "la cámara atraviesa la cortina para 'mira la ducha por dentro': transición buscada"}
+ ],
+ "resumen": "Planos 1-10 bien armados: el personaje calza con la ficha, el ritmo nunca se detiene y el código caliente/fría se entiende. Un bloqueante: la espuma que aparece y desaparece sin fuente en P5 (5.12). Lo que más sube la nota es que la cara de fantasma de P4 tenga más contraste y que en P7 se vea la cortina meterse más fuerte."
+}
