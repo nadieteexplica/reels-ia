@@ -21,6 +21,7 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 | R7 | Cómo ganarle al arquero en un mano a mano (`admir_footy`) | Análisis de datos propio, visualización 2D | 62,6 mil | 25,7 mil | 12 mil | **41 %** | 19 % | 0 cortes |
 | R8 | ¿Por qué el gancho del metro está suelto? (`resultaaquee`) | Objeto cotidiano en primer plano, 3D, con etiqueta de IA | 290 mil | 50,3 mil | 29,7 mil | 17 % | 10 % | ~1,8 |
 | R9 | Hacer girar el monte Fuji como un trompo (`zackdfilms`) | Megaproyecto absurdo paso a paso, 3D | **5,8 mill.** | **1,4 mill.** | 243 mil | 24 % | 4 % | ~1,4 |
+| R10 | "Estos dos videos": 47 mil vs 10,5 M (`resultaaquee`, el de R8) | Video meta que vende un curso, 3D con etiquetas | 4.631 | 248 | 1.266 | 5 % | **27 %** | ~1,6 |
 
 ---
 
@@ -147,7 +148,21 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 
 ---
 
-## 3. Conclusiones (al 18-oct-2026, con 9 referencias)
+### R10 · "Estos dos videos" (`resultaaquee`, 21-oct)
+- **Qué es:** el mismo creador de R8 compara dos videos suyos con el mismo estilo: uno del AirTag que se quedó en 47–61 mil vistas y uno de cómo funciona la pantalla táctil que va por 10,5 millones. Explica "3 reglas que puedes copiar" y cierra vendiendo una carpeta con sus reglas ("mira mi perfil").
+- **Sus 3 reglas:**
+  1. **De qué hablas.** El AirTag deja fuera a los de Android (el comentario top: "¿por qué no hacen uno para Android?"). La pantalla táctil la tiene y la está tocando todo el que mira.
+  2. **El primer segundo.** En el que fracasó, el celular está quieto en un bolsillo. En el que explotó, ya hay un dedo gigante tocando la pantalla.
+  3. **No lo cuentes, muéstralo.** En el que fracasó, "hay un detective en tu bolsillo" que te tienes que imaginar. En el que explotó, ves el mecanismo real: el dedo, el cristal, los cables, la carga y los números del sensor que bajan de 100 a 62.
+- **Por qué importa:** es la única referencia con un **experimento natural**: mismo creador, mismo estilo y misma época, y una diferencia de ~200 veces. Lo que cambia es el tema, el primer segundo y cómo se muestra.
+- **Ojo:** es un video para vender un curso. El propio video tiene 4,6 mil likes (sí muchos guardados: es un "cómo se hace"), y 2 éxitos de 5 videos no prueban un método. Sus reglas valen porque coinciden con lo que ya vimos en R1–R9, no porque lo diga él. No compramos su carpeta.
+- **Tomar:** las tres reglas (ver conclusiones 19–22) y su look: fondo oscuro, mecanismo real con etiquetas cortas en mayúscula y números del sensor en pantalla.
+- **No tomar:** sus temas (la pantalla táctil y el gancho del metro son suyos) ni el video meta.
+- **Alcanzable:** **sí**. Es el mismo nivel que R8.
+
+---
+
+## 3. Conclusiones (al 21-oct-2026, con 10 referencias)
 
 1. **Cada video se diseña para una acción: enviar o guardar.**
    - Se **envía** lo que tiene un destinatario: humor (R1, 46 %), dato sorpresa (R6, 31 %) o moraleja "esto es para ti" (R4, 20 %).
@@ -171,6 +186,11 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 16. **El subtítulo puede ir arriba** cuando el objeto ocupa el centro (R8). La zona fija al medio sirve para personajes, no para todo.
 17. **El mayor alcance lo da lo absurdo a escala gigante** (R9: 5,8 millones). Una premisa imposible con un lugar real.
 18. **Los comentarios explotan cuando la premisa invita a discutir** (R9: "eso no funcionaría"). Para comentarios: dejar algo que la gente quiera corregir o completar.
+19. **El tema decide más que todo lo demás** (R10: mismo creador y estilo, 47 mil contra 10,5 M). Confirma la conclusión 6 y lo que dijo Tomás: el dato es lo más importante.
+20. **Universal es "lo tiene el que mira"** (R10). Si deja fuera a una parte del público (AirTag → Android), se pierde alcance y los comentarios se van en reclamos. El mejor caso: el dato es sobre lo que el espectador **tiene en la mano o está haciendo mientras ve el video** (la pantalla que está tocando).
+21. **El primer segundo ya tiene acción en curso** (R10): el dedo ya tocando, nunca el objeto quieto esperando. Calza con "visto vs. deslizado" de YouTube.
+22. **Primero el mecanismo real, con etiquetas** (R10). Le gana a una metáfora dicha ("un detective en tu bolsillo"). La metáfora sirve solo si lo real no se puede mostrar, y siempre se muestra en imagen, nunca solo se dice.
+23. **Los videos meta que venden cursos se leen con cuidado** (R10): sirven cuando confirman lo que ya vimos, no como prueba.
 
 ---
 

@@ -16,6 +16,7 @@ Un dato sirve si pasa estas pruebas:
 |---|---|---|
 | **Una frase** | ¿Se entiende en 12 palabras o menos? | Se reescribe o se descarta |
 | **"¿Qué?"** | ¿La primera reacción es sorpresa, risa o "no puede ser"? | Se descarta |
+| **Lo tiene el que mira** | ¿Le sirve a todo el que lo ve, sin dejar fuera a nadie (iPhone/Android, un país, una edad)? Lo mejor: algo que el espectador tiene en la mano o está haciendo mientras ve el video | Se busca un ángulo más universal o baja en el puntaje |
 | **Cotidiano o imposible** | ¿Es algo que todos ven y nadie se pregunta, o algo tan grande o raro que no se puede ignorar? | Se descarta |
 | **Destino** | ¿A quién se lo mandan, o por qué lo guardarían? | Se descarta |
 | **Imagen** | ¿Se puede mostrar en 3D sin explicarlo con texto? | Se busca otro ángulo |
