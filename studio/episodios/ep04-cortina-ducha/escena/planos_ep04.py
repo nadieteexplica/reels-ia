@@ -101,8 +101,8 @@ def act_e1(S, pj, A, t, f, fastidio=False, afuera=False):
             torso=(torso_x + 10 * pega_c, 0, 0), hombros=hombros, parpadeo=parp)
     # cortina: ya viene en camino en el cuadro 0, le toca la espalda, después se le pega en la cara y se suelta
     if t < E1_GIRO[0]:
-        inf = 0.36 + 0.14 * sale(clamp(t / E1_TOQUE))
-        centro, radio = (0.18, 1.42), (0.42, 0.48)
+        inf = 0.46 + 0.08 * sale(clamp(t / E1_TOQUE))        # el cuadro 0 ya trae el bulto encima (puerta 4 r1, sugerencia 1)
+        centro, radio = (0.24, 1.48), (0.36, 0.42)
     elif t < E1_SUELTA:
         x = sale(clamp((t - E1_GIRO[0]) / (E1_PEGA - E1_GIRO[0])))
         inf = 0.48 + 0.20 * x

@@ -1,0 +1,88 @@
+{
+ "etapa": "4-cuadros",
+ "ronda": 2,
+ "veredicto": "APROBADO",
+ "promedio": 8.0,
+ "notas": {
+  "belleza": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Luz suave de estudio y paleta menta/blanco saturada sin quemar (0-0,25 % quemado) en los 4 cuadros; el remolino blanco de 00560 se lee claro sobre el azulejo. Lo más flojo: el frente liso de la tina ocupa el quinto inferior de 00560 (y≈1010-1280) y la cara de 00121 queda blanda.",
+   "de": "cuadros"
+  },
+  "personaje": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "En 00001 y 01075 Don Héctor calza con la ficha: bigote, gorro de espuma con punta, espuma en el pecho, cejas y proporciones. El susto de 01075 (ojos muy abiertos con iris café y boca abierta con dientes) se lee mejor que en la ficha. El extremo interior de la ceja es un tubo abierto que se ve como un punto negro (01075, x≈550, y≈410), pero la ficha lo tiene igual.",
+   "de": "cuadros"
+  },
+  "manos": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "anatomia": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "id": "A2",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 0,
+   "segundo": "0.73",
+   "que": "[A2 sin arreglar] En el cuadro 0 (portada) la cortina detrás de él cuelga casi plana: no se lee que 'se le viene por detrás'. Sin esa amenaza visible, la portada es un señor duchándose y no plantea pregunta.",
+   "arreglo": "Inflar la cortina en el cuadro 0 con un bulto redondo grande a la altura del hombro izquierdo (x≈60-330, y≈300-700 de 1280) casi tocándole la espalda, con sombra de contacto, como en 01075 pero más marcado.",
+   "de": "verificación",
+   "asignado": "cuadros"
+  }
+ ],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "En 00001 y 01075 el chorro y las gotas ahora son blanco azulado (≈170,188,189; los más claros ≈205,218,217, R<B), igual de neutros que en 00121 y 00560. Ya no hay tinte rosado ni salmón.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A2",
+   "arreglado": false,
+   "por_que": "En 00001 las rayas de la cortina ondulan más, pero sigue sin haber un bulto redondo a la altura del hombro (x≈60-330, y≈300-700) y no hay sombra de contacto contra la espalda: todavía no se lee que 'se le viene por detrás'. Es una sugerencia, así que no bloquea.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "En 00560 el remolino ahora es blanco y contrasta con el azulejo. Va de x≈50 a 590, así que ya no toca el borde, y de y≈140 a 690 de 1280: sólo los últimos ~20 px del anillo (≈1030 de 1920) entran a la franja de subtítulos, frente a los ~150 px de antes.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A4",
+   "arreglado": true,
+   "por_que": "En 01075 el susto ya es claro: cejas arriba, ojos muy abiertos con blanco visible y boca abierta con dientes. La cortina muestra un bulto redondo con sombra a su izquierda (x≈100-330, y≈390-590) en vez de pliegues, aunque no llega a empujarle el hombro.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A5",
+   "arreglado": true,
+   "por_que": "En 00121 los dos ojos ahora son iguales (hueco con un brillo puntual en x≈300 y x≈450, y≈370), la boca en O es oscura y profunda, y la cara clara se separa de las rayas: se lee como una cara gritando.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A6",
+   "arreglado": true,
+   "por_que": "En 00560 ya no está la pieza blanca del borde izquierdo (x 0-25, y 300-700: sólo azulejo). Lo que queda más cerca del borde es el anillo del remolino, en x≈50.",
+   "de": "cuadros"
+  }
+ ],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false
+}
