@@ -142,7 +142,7 @@ def _e1(sc, a, b, plano):
     # las paredes que quedan entre la cámara y el personaje se sacan del render (hide_render: así tampoco tapan
     # los rayos del chequeo de ojos, que no respetan visible_camera)
     if plano in (1, 3):
-        _quitar(fondo, der)                   # cámara "dentro" de la pared del fondo: mira la cara
+        _quitar(fondo)                        # cámara "dentro" de la pared del fondo: mira la cara
     if plano in (2, 16):
         _quitar(der)                          # cámara en la punta de la tina: de perfil
     if plano in (4, 5):
@@ -308,8 +308,8 @@ def act_e3(S, pj, A, t, f):
     bajar = sale(clamp((t - E3_BAJA[0]) / (E3_BAJA[1] - E3_BAJA[0])))
     infla = suave(clamp((t - E3_INFLA) / 1.6))
     cara = suave(clamp((t - (E3_FANT - 0.35)) / 0.45))
-    B.deformar_cortina(C, f, inflar=0.03 + 0.10 * infla, centro=(0.22, 1.45), radio=(0.4, 0.45), aleteo=0.4,
-                       cara=(0.24, 1.62), empuje_cara=0.22 * cara, objetivos=_objetivos(pj))
+    B.deformar_cortina(C, f, inflar=0.03 + 0.12 * infla, centro=(0.04, 1.55), radio=(0.4, 0.45), aleteo=0.4,
+                       cara=(0.04, 1.66), empuje_cara=0.11 * cara, cara_dentro=False, objetivos=_objetivos(pj))
     if bajar < 1:
         me = C["ob"].data
         import numpy as np
@@ -333,7 +333,7 @@ def _e3(sc, a, b, plano):
     if plano in (17, 18, 21):
         _luz_rasante(sc, S)
     if plano in (20, 21):
-        _quitar(fondo, S["paredes"][2])
+        _quitar(fondo)
 
     def act(f):
         t = (f - 1) / FPS

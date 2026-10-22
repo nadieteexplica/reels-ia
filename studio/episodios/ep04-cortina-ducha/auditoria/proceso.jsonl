@@ -9,3 +9,5 @@
 {"tipo": "trabajo", "id": "render-planos muestras 39715190183", "estado": "fin", "nota": "completed success", "n": 9, "ts": "2026-10-22T00:13:07-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras 39716229832", "estado": "inicio", "nota": "muestras 2: todos los planos, remolino reorientado", "n": 10, "ts": "2026-10-22T00:20:00-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras 39716229832", "estado": "fin", "nota": "completed success", "n": 11, "ts": "2026-10-22T00:25:24-03:00"}
+{"tipo": "trabajo", "id": "render-planos animatic 39717046800", "estado": "inicio", "nota": "animatic 1: 540x960, 8 muestras, 14 partes", "n": 12, "ts": "2026-10-22T00:28:53-03:00"}
+{"tipo": "aviso", "que": "animatic 39717046800 cancelado a los 10 min: la revisión propia de los cuadros HD pilló la cara del fantasma fuera de cuadro en el 21 y una pared sacada de más en C0; se relanza con el arreglo para no gastar la r1 del auditor en eso", "n": 13, "ts": "2026-10-22T00:34:16-03:00"}
