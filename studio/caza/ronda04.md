@@ -76,3 +76,17 @@ Cifras a buscar en las fuentes:
 - https://wgbh.org/news/2017-09-28/it-rained-fish-in-mexico-officials-say-no-its-not-the-end-times-we-think
 - https://science.howstuffworks.com/science-vs-myth/unexplained-phenomena/fish-rain-from-sky.htm
 - https://gizmodo.com/when-it-rains-animals-the-science-of-true-weather-weir-5895116
+
+## Propuestas enviadas a Tomás (21-oct, 23:40)
+Extractos en la prerelease `caza04-fuentes`. Puntaje según `IDEAS.md` §2.
+1. Los aviones fabrican sus propios rayos (40,2) — SciAm + Earth Networks.
+2. El volcán que salió de un maizal: Parícutin, 1943 (37,8) — Nautilus + Mexico News Daily.
+3. El asteroide cayó justo en el 13 % que podía matarlos (36,7) — Tohoku + National Geographic.
+4. Las cabritas saltan con una "pata" (36,0) — Royal Society + NBC + ScienceAlert.
+5. La cascada más alta del mundo está bajo el mar (35,0) — NOAA + Live Science.
+6. Granizo de hasta 24 cm en Villa Carlos Paz, 2018 (34,8) — Penn State + estudio BAMS.
+7. Cristales de 11 m en Naica (34,3) — Live Science (= NBC, falta 2.ª independiente).
+8. El dedo de hielo que congela el fondo del mar (brinicle) (34,1) — Cal Academy + PMC 2023.
+9. Islas de piedra pómez (32,0) — PHIVOLCS + GSJ (AIST) + NASA.
+10. El reactor nuclear natural de Oklo (31,0) — WashU + Live Science.
+Reserva: diamantes en ascensor de magma (NatGeo), olor a lluvia (MIT), lluvia de peces (Tampico 2017), rayos volcánicos, fulgurita, pelo de hielo, mar salado (capa de 166 m, USGS/NOAA).
