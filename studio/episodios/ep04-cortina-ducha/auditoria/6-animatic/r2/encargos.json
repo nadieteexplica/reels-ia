@@ -1,0 +1,98 @@
+[
+ {
+  "id": "planos1",
+  "prompt": "tools/auditor/prompts/6-animatic-planos.md",
+  "alcance": "planos 1…21 (0.00–36.05 s)",
+  "materiales": [
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/contacto.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/ficha.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos/P01.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos/P03.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos/P04.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos/P05.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos/P11.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos/P15.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos/P16.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos/P17.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos/P21.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E1.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E5.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E6.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E16.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E17.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E18.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E19.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E20.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E21.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos/E27.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos.json",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/eventos.json",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/anterior_planos1.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep04-cortina-ducha/guion.md"
+  ],
+  "salida": "planos1.json",
+  "planos": [
+   1,
+   3,
+   4,
+   5,
+   11,
+   15,
+   16,
+   17,
+   21
+  ],
+  "eventos": [
+   "E1",
+   "E5",
+   "E6",
+   "E16",
+   "E17",
+   "E18",
+   "E19",
+   "E20",
+   "E21",
+   "E27"
+  ],
+  "verificar_ids": [
+   "A1",
+   "A2",
+   "A3",
+   "A6"
+  ],
+  "modo": "verificacion"
+ },
+ {
+  "id": "global",
+  "prompt": "tools/auditor/prompts/6-animatic-global.md",
+  "alcance": "video completo (gancho, ritmo, loop, subtítulos, audio, precisión)",
+  "materiales": [
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/contacto.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/ficha.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/cuadro0.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/gancho.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/loop.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/audio.json",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/subtitulos.md",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/planos.json",
+   "studio/episodios/ep04-cortina-ducha/auditoria/6-animatic/r2/materiales/anterior_global.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "studio/episodios/ep04-cortina-ducha/guion.md"
+  ],
+  "salida": "global.json",
+  "verificar_ids": [
+   "A4",
+   "A5",
+   "A7",
+   "A8"
+  ],
+  "modo": "verificacion"
+ }
+]

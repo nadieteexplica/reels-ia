@@ -30,7 +30,7 @@ Fuentes:
 ¿Qué dato quieres que te cuente el viejo la próxima? 🧓
 
 ## Datos para Metricool
-- Portada: cuadro 0 (videoCoverMilliseconds = 0): Don Héctor bajo el chorro y la cortina que se le viene por detrás (C0).
+- Portada: la cara del "fantasma" en la cortina con "UN FANTASMA" (`videoCoverMilliseconds: 3700`, `entrega/portada.jpg`). Sugerencia de la puerta 6 r1: la cara se lee mejor que el cuadro 0 en la grilla del perfil.
 - Instagram: `instagramData.type: "REEL"`, `isAiGenerated: true`.
 - TikTok: `tiktokData.isAigc: true`, `title` arriba.
 - YouTube: `type: "short"`, `category: "EDUCATION"`, `madeForKids: false` (decidido por Tomás el 19-oct), `isAiGeneratedContent: false` (animación 3D estilizada que no se puede confundir con una grabación; no es estilo realista).

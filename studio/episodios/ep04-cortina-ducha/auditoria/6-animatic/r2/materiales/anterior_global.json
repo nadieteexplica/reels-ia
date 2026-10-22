@@ -1,0 +1,46 @@
+[
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "el cuadro 0 (portada y lo que decide visto vs. deslizado) es un hombre duchándose tranquilo con los ojos cerrados; la acción del gancho (la cortina que se le viene encima) empieza recién a los 1.41 s y la cara de fantasma a los 3.2 s",
+  "arreglo": "en el plano 1, adelantar la animación de la cortina para que desde el cuadro 0 ya venga inflada por detrás y le roce el hombro (que abra un ojo al contacto); y usar el cuadro de la cara de fantasma (~3.6 s) como portada (videoCoverMilliseconds) para la grilla",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 15,
+  "segundo": "23.00",
+  "que": "las flechas naranjas de 'AIRE DE AFUERA' entran por la izquierda y la derecha, en el plano de la cortina: se lee como aire que viene de los costados dentro de la ducha, y en todo 22–24 s no se ve la cortina moverse hacia el centro, así que el 'mete la cortina hacia ti' recién se entiende al cortar a los 24.4 s",
+  "arreglo": "cambiar las flechas laterales por flechas que vienen desde la cámara hacia el centro (en perspectiva, achicándose) y hacer que las rayas de la cortina se abomben hacia el anillo de baja presión en este mismo plano",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "A7",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "16.00–22.30",
+  "que": "el remolino celeste sobre baldosas celestes, visto a través de la cortina lechosa, tiene poco contraste: es el tramo más lavado del video y justo el del mecanismo",
+  "arreglo": "dar más contraste al remolino (azul más profundo o trazos blancos con un borde oscuro fino) y bajar la opacidad de la cortina u oscurecer el fondo ~15 % en las escenas 11–15",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "A8",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 17,
+  "segundo": "26.40",
+  "que": "la cortina nueva que baja corta al personaje a la altura del cuello: por ~0.5 s se ve un torso sin cabeza, con espuma que parece estar en la espalda (la ficha la pone en el pecho); material insuficiente para verificar si es espalda o pecho",
+  "arreglo": "empezar el plano con el borde de la cortina ya bajo los hombros, o cortar directo a la cortina pesada cerrada (27 s) y dejar al personaje fuera de este plano",
+  "de": "global",
+  "asignado": "global"
+ }
+]

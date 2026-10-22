@@ -1,0 +1,16 @@
+[
+ {
+  "id": "paquete",
+  "prompt": "tools/auditor/prompts/8-paquete.md",
+  "alcance": "textos de publicación",
+  "materiales": [
+   "studio/episodios/ep04-cortina-ducha/entrega/caption.md",
+   "studio/episodios/ep04-cortina-ducha/guion.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "paquete.json"
+ }
+]

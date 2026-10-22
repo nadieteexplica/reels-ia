@@ -1,0 +1,46 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": true,
+  "tipo": "B2",
+  "plano": 5,
+  "segundo": "5.12",
+  "que": "aparecen manchas de espuma blanca sobre la cortina sin ninguna fuente (no hay personaje en cuadro): en 4.99 hay una gota, en 5.12 un racimo grande en la mitad baja y en 5.24 ya no hay nada; no salen de cuadro, desaparecen (es lo que marcó E5)",
+  "arreglo": "apagar las partículas de espuma en este plano; si es una salpicadura buscada, que caiga y salga por abajo del cuadro en vez de morir de golpe",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "A2",
+  "bloqueante": true,
+  "tipo": "B2",
+  "plano": 16,
+  "segundo": "26.03",
+  "que": "Don Héctor pasa de perfil mirando a la derecha (25.77) a estar de frente a cámara con cara de susto y el brazo cruzado por delante de la cortina (26.03) en un solo cuadro (E23: 25.80→26.00), y en 26.30 ya está de espaldas: se lee como un salto del personaje, no como un giro",
+  "arreglo": "si el giro a cámara es buscado, animarlo en ≥ 8 cuadros con anticipación y sostener la cara de susto ≥ 0,5 s antes del corte; si no, terminar P16 en 25.90 y cortar directo a P17",
+  "de": "planos2",
+  "asignado": "planos1"
+ },
+ {
+  "id": "A3",
+  "bloqueante": true,
+  "tipo": "B4",
+  "plano": 17,
+  "segundo": "26.38",
+  "que": "plano general de espaldas: el cuerpo de Don Héctor termina bajo la espuma, sin caderas ni piernas, y el torso flota sobre el azulejo; en 26.68 bajo el ruedo de la cortina sólo cuelgan las puntas de las manos, sin pies (también se ve el corte bajo la espuma en P16 26.30). La ficha dice 'siempre de los hombros para arriba'",
+  "arreglo": "empezar P17 con la cortina ya cerrada (recortar ~0,3 s del inicio) o encuadrar de los hombros para arriba; en P16 26.30 recortar el último cuadro o subir el encuadre para que no se vea el borde bajo la espuma",
+  "de": "planos2",
+  "asignado": "planos1"
+ },
+ {
+  "id": "A6",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 21,
+  "segundo": "34.86",
+  "que": "en 'FANTASMA' la cortina de la izquierda (x 0–500, y 250–1000) es una onda suave y desenfocada que casi no cambia entre 33.99 y 36.01: el remate prometido (la cortina pesada que igual se infla) no se ve, sólo la cara de susto",
+  "arreglo": "en la misma cámara, justo en 'FANTASMA' (~34.9) que la cortina se infle hacia su hombro y aparezca la cara de fantasma marcada en la tela de los planos 3–4 (reusar ese desplazamiento), con un shake corto; cierra el chiste y el loop con el gancho",
+  "de": "planos3",
+  "asignado": "planos1"
+ }
+]

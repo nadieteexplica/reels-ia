@@ -479,8 +479,8 @@ def paquete(ep_d, url_mp4=None, usa_anatomia=None):
     r["datos"]["hashtags"] = tags
     if not 3 <= len(tags) <= 5:
         _f(r, f"{len(tags)} hashtags en Instagram/TikTok (3–5)")
-    if "#nadieteexplica" not in [t.lower() for t in tags]:
-        _f(r, "falta #nadieteexplica")
+    if "#elviejodeldato" not in [t.lower() for t in tags]:       # nombre de la cuenta desde el 21-oct-2026 (antes #nadieteexplica)
+        _f(r, "falta #elviejodeldato")
     if "?" not in ig:
         _f(r, "el texto de Instagram/TikTok no tiene pregunta abierta")
     m = re.search(r"T[ií]tulo[^:]*:\**\s*(.+)", yt)

@@ -278,7 +278,7 @@ Desde el 19-oct-2026 la revisión independiente la hace el **auditor por etapas*
   - gancho (1 línea),
   - el dato en 1 línea,
   - pregunta abierta ("¿Qué otra cosa te pasa y nadie te explica por qué?"),
-  - 3 a 5 hashtags (1 amplio + 2–3 del tema + `#nadieteexplica`).
+  - 3 a 5 hashtags (1 amplio + 2–3 del tema + `#elviejodeldato`; antes `#nadieteexplica`).
 - **YouTube Shorts:**
   - título de 60 caracteres o menos, con la palabra clave al inicio (p. ej. "Por qué te duele la cabeza con el helado 🍦"),
   - descripción de 2 líneas con las fuentes.
