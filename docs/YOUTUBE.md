@@ -1,6 +1,13 @@
 # YouTube primero — algoritmo de Shorts, monetización y plan (21-oct-2026)
 
-Tomás decidió el 21-oct-2026 concentrar el proyecto en YouTube, porque es la red que paga desde Chile. Este documento junta la investigación de ese día. Lo que Tomás apruebe pasa a `CONTEXTO.md`. Los números entre corchetes remiten a la lista de fuentes del final (extractos bajados con `fuentes.yml`, prerelease `yt-fuentes`).
+Tomás decidió el 21-oct-2026 concentrar el proyecto en YouTube, porque es la red que paga desde Chile. Este documento junta la investigación de ese día y lo que él decidió. Los números entre corchetes remiten a la lista de fuentes del final (extractos bajados con `fuentes.yml`, prerelease `yt-fuentes`).
+
+## Decisiones de Tomás (21-oct-2026)
+1. **Duración: 25–40 s, techo 45 s.** En código: `presupuesto.json` → 25–45,5 s y 70–128 palabras.
+2. **Cadencia: 5 por semana ahora y diario cuando un video tome ≤ 2,5 h**, con 2 videos por sesión. En código: tope de 4 h, meta 2,5 h y máximo 6 escenas.
+3. **Instagram y TikTok siguen recibiendo el mismo video**, sin trabajo extra; todo se optimiza para YouTube.
+4. **Compilaciones largas: muy de vez en cuando**, no con calendario fijo.
+5. **Métrica principal en YouTube:** visto vs. deslizado, % visto y vistas comprometidas (YouTube Studio).
 
 ## 1. Cómo decide el algoritmo de Shorts (en palabras de YouTube)
 - Cada Short se le muestra primero a una **audiencia semilla** chica. Según si la gente lo mira o lo desliza, YouTube lo abre a más gente o lo deja morir (Todd Sherman, jefe de producto de Shorts, Creator Insider, 23-ago-2023) [1][3][4].
@@ -54,13 +61,13 @@ Se evalúa por canal, no por video. Para nosotros:
 - ~6 de cada 10 vistas orgánicas de YouTube vienen del feed de Shorts [27].
 - Con ~5 Shorts al mes, el video largo del canal rinde 46 % sobre lo típico; sobre 35 Shorts al mes el efecto se pierde [27].
 - El video largo más exitoso de Zack D. Films es una **compilación** ("13 videos no publicados…", 10 M vistas) [24].
-- **Propuesta:** cada 8–10 Shorts, una compilación de 5–8 min con capítulos e intro nueva. Suma horas de video largo sin animar nada nuevo. Cada Short la enlaza con "video relacionado".
+- **Decidido:** compilaciones de 5–8 min con capítulos e intro nueva **muy de vez en cuando** (Tomás). Suman horas de video largo sin animar nada nuevo; los Shorts que salen en ella la enlazan con "video relacionado".
 
 ## 7. Horario
 Los Shorts se concentran entre 14:00 y 18:00, y el contenido pesa más que la hora [27]. Nuestro 16:00 de YouTube está bien; se compara con el 10:00 del Ep. 3.
 
 ## 8. Lo que hacemos vs. lo que pide YouTube
-| Tema | Hoy | Qué pide YouTube | Cambio propuesto |
+| Tema | Antes | Qué pide YouTube | Desde el 21-oct-2026 |
 |---|---|---|---|
 | Duración | 64–74 s | Rinde más en 11–30 s; hasta ~45 s si la historia lo pide | **Meta 25–40 s, techo 45 s** |
 | Cadencia | 3 por semana, 5,5 h por video (Ep. 3) | Más es mejor si no baja la calidad | 5 por semana ahora → diario cuando un video tome ≤ 2,5 h |
@@ -68,7 +75,7 @@ Los Shorts se concentran entre 14:00 y 18:00, y el contenido pesa más que la ho
 | Final en loop | Sí | Cada repetición cuenta | Mantener |
 | Métrica principal en YouTube | Envíos/alcance | Visto vs. deslizado, % visto, vistas comprometidas | Cambiar (las de IG/TikTok siguen igual) |
 | Variedad visual por idea | Sí | Protege de "no auténtico" | Mantener |
-| Video largo | Nada | Horas para el YPP de 2027 y RPM más alto | Compilación cada 8–10 Shorts |
+| Video largo | Nada | Horas para el YPP de 2027 y RPM más alto | Compilación muy de vez en cuando |
 | Datos de YouTube | Metricool (2 días de atraso, sin "visto vs. deslizado") | — | Leer YouTube Studio en el Chrome de Tomás |
 
 ## 9. ¿Cabe uno diario?

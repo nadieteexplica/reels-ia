@@ -13,18 +13,18 @@ SALUD = ["dolor", "cerebro", "sangre", "nervio", "corazón", "pulmón", "riñón
 NUMEROS = {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce",
            "quince", "veinte", "treinta", "cuarenta", "cincuenta", "cien", "mil", "millón", "millones", "medio", "mitad"}
 RES = lambda: {"fallas": [], "avisos": [], "datos": {}}
-# Proceso v2 (21-oct-2026). Duración: sin mínimo (Tomás, 21-oct: "sácalo ya que no cobramos nada de TikTok"); meta 40–60 s,
-# techo 65 s. Los números viven en presupuesto.json; el piso de 30 s sólo pilla una voz o un guion cortados.
+# Proceso v2 (21-oct-2026) + YouTube primero (Tomás, 21-oct, docs/YOUTUBE.md): meta 25–40 s, techo 45 s. Los números viven en
+# presupuesto.json; el piso de 25 s es el de la meta.
 # Fernando habla a 2,889–2,935 palabras/s contando las pausas (Ep. 1: 207 en 71,66 s; Ep. 2: 214 en 72,9–73,6 s).
-# Techo: video de 65,5 s = voz de 65,1 s → 188 palabras con las dos velocidades (190 daba 66,2 s con la del Ep. 1).
+# Ep. 3: 181 en 63,4 s = 2,855 palabras/s (la más lenta). Techo: video de 45,5 s = voz de 45,1 s → 128 palabras a esa velocidad.
 _T = comun.topes()
 PALABRAS = tuple(_T["palabras"])
 PALABRAS_S = 2.91
 DURACION = tuple(_T["duracion_s"])     # video final (voz + 0,4 s de cola)
 # ESCENA = una toma animada: una actuación que se arma una vez (función pNN con su animación) y se filma con una o varias
 # cámaras. Ep. 2: 45 funciones pNN = ~45 escenas, y ahí estuvo el costo. Los cortes que reutilizan una escena con otra cámara
-# (las piezas "15" y "16" del Ep. 2 llaman a p14) son baratos. El tope de 12 es un punto de partida: se ajusta con las horas
-# medidas del Ep. 3. Ritmo: REFERENCIAS §3 dice "algo cambia cada 1–2 s" (cortes: mediana ~1,65 s) → nunca más de 2 s.
+# (las piezas "15" y "16" del Ep. 2 llaman a p14) son baratos. Tope: 12 hasta el Ep. 3 (63 s, 9 escenas, 5,5 h); 6 desde que los
+# videos duran 25–40 s (21-oct-2026). Ritmo: REFERENCIAS §3 dice "algo cambia cada 1–2 s" (cortes: mediana ~1,65 s) → nunca más de 2 s.
 ESCENAS_MAX = int(_T["escenas_max"])
 A_MEDIDA_MAX = int(_T["escenas_a_medida_max"])
 CAMBIO_MAX_S = float(_T["cambio_max_s"])
@@ -112,7 +112,7 @@ def guion(ep_d, publicados=None):
     est = n / PALABRAS_S
     r["datos"].update({"palabras": n, "duracion_estimada_s": round(est, 1)})
     if not PALABRAS[0] <= n <= PALABRAS[1]:
-        _f(r, f"el guion tiene {n} palabras (acepta {PALABRAS[0]}–{PALABRAS[1]}; meta 40–60 s ≈ 115–175)")
+        _f(r, f"el guion tiene {n} palabras (acepta {PALABRAS[0]}–{PALABRAS[1]}; meta 25–40 s ≈ 72–115)")
     if not DURACION[0] - 1 <= est <= DURACION[1]:
         _f(r, f"duración estimada {est:.1f} s fuera de {DURACION[0] - 1:g}–{DURACION[1]:g} s (a {PALABRAS_S} palabras/s)")
     frases = [f.strip() for f in re.split(r"(?<=[.!?:])\s+", txt.replace("\n", " ")) if f.strip()]

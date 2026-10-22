@@ -34,9 +34,10 @@ El método completo para encontrar datos (pruebas, familias, métodos de caza, d
 | Compartible o guardable | ¿Dan ganas de mandárselo a alguien, o de guardarlo para después? | ×1,5 |
 
 - **Filtro previo:** antes de puntuar, responder *¿a quién se lo mandan?* o *¿por qué lo guardarían?*. Sin respuesta, no se puntúa.
-- **Costo de producción (proceso v2, 21-oct-2026):** después del puntaje, a cada idea elegida se le anota una estimación de costo: ¿cabe en **40–60 s** (115–175 palabras; techo 65 s) con un dato central y 3–4 pasos? ¿cuántas escenas (máx. 12) y cuántas necesitan una plantilla que no existe todavía? **No es un descarte:** la idea pesa más que la técnica (REFERENCIAS §3) y cada idea se diseña para su viralidad (decisión de Tomás, 19-oct). Si una idea muy buena cuesta más que el tope, se le pregunta a Tomás con la estimación.
+- **Costo de producción (proceso v2, 21-oct-2026):** después del puntaje, a cada idea elegida se le anota una estimación de costo: ¿cabe en **25–40 s** (72–115 palabras; techo 45 s) con un dato central y 2–3 pasos? ¿cuántas escenas (máx. 6) y cuántas necesitan una plantilla que no existe todavía? **No es un descarte:** la idea pesa más que la técnica (REFERENCIAS §3) y cada idea se diseña para su viralidad (decisión de Tomás, 19-oct). Si una idea muy buena cuesta más que el tope, se le pregunta a Tomás con la estimación.
 - **Línea datos:** puntaje máximo 45. **Para producir hacen falta 32 o más.** Una idea con Verificable = 0 se descarta aunque sume.
 - **Línea historias:** se puntúa solo con Curiosidad (¿engancha el cuadro 0?), Universalidad, Sorpresa (¿sorprende el giro?), Visual 3D y Compartible. Máximo 35; **para producir hacen falta 25 o más.**
+- **Salud (YouTube, 21-oct-2026):** YouTube no monetiza "personas de IA" que hablan de salud o finanzas (`docs/YOUTUBE.md` §5) y nuestra voz es sintética. Los datos curiosos del cuerpo siguen, pero con menos peso: Universalidad −1 si el tema es de salud, y nunca algo que suene a consejo.
 - **Ajuste mensual:** los pesos se ajustan con los datos de `PUBLICADOS.md`. Por ejemplo, si los temas del cuerpo rinden el doble en envíos, sube su prioridad.
 - **Variedad:** nunca 2 videos seguidos con el mismo gancho o la misma área (cuerpo, tecnología, planeta…).
 

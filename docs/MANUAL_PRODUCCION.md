@@ -25,9 +25,9 @@ studio/episodios/epNN-slug/
 ## 1. Guion
 
 ### Duración y largo
-- **Sin mínimo: la duración la pone el guion. Meta 40–60 s, techo 65 s** (decisión de Tomás, 21-oct-2026: "sácalo ya que no cobramos nada de TikTok"). El programa de TikTok que paga videos de más de 1 minuto no existe en Chile, y YouTube Shorts no paga más por durar más. Más largo cuesta más render, más voz y más revisión. El chequeo automático acepta 30–65,5 s.
-- Fernando habla a **2,89–2,94 palabras por segundo contando las pausas** (Ep. 1: 207 palabras en 71,7 s; Ep. 2: 214 en 73,6 s), o sea **~2,9 palabras por segundo**: 40 s ≈ 115 palabras, 50 s ≈ 145, 60 s ≈ 175. El techo es **188 palabras** (con 190, a la velocidad del Ep. 1, el video pasa de 66 s y hay que regenerar). El chequeo acepta 88–188.
-- Mide siempre con los tiempos reales de la alineación. Si la voz se pasa de 65 s, se recorta el guion; las pausas se ajustan con `tools/pausas.py` (0 créditos) antes de regenerar.
+- **Meta 25–40 s, techo 45 s** (YouTube primero (decisión de Tomás, 21-oct-2026; investigación en `docs/YOUTUBE.md`)). En 108 mil Shorts la mediana de vistas es máxima en 11–20 s y cae fuerte sobre 30 s, y el tiempo promedio visto por Short es ~16 s. YouTube no paga más por durar más, y más corto cuesta menos render, voz y revisión. **Un dato central, sin relleno:** si una frase se puede sacar sin perder la idea, se saca. El chequeo automático acepta 25–45,5 s. (Antes: 62–65 s por TikTok; después, 40–60 s.)
+- Fernando habla a **2,86–2,94 palabras por segundo contando las pausas** (Ep. 1: 207 palabras en 71,7 s; Ep. 2: 214 en 73,6 s; Ep. 3: 181 en 63,4 s), o sea **~2,9 palabras por segundo**: 25 s ≈ 72 palabras, 35 s ≈ 101, 40 s ≈ 115. El techo es **128 palabras** (voz de 45,1 s a la velocidad más lenta, la del Ep. 3). El chequeo acepta 70–128.
+- Mide siempre con los tiempos reales de la alineación. Si la voz se pasa de 45 s, se recorta el guion; las pausas se ajustan con `tools/pausas.py` (0 créditos) antes de regenerar.
 - Cada frase se gana su lugar: un dato central, 4 pasos como máximo y la enseñanza. Lo que se puede sacar sin perder la idea, se saca: **más corto es mejor si se entiende igual**.
 
 ### Antes de escribir: ¿para qué acción?
@@ -36,11 +36,11 @@ Cada video se diseña para que lo **envíen** (tiene destinatario: humor, dato s
 ### Estructura de la línea datos (tiempos aproximados; los tramos del medio se estiran o se encogen con el largo del video)
 | Tramo | Qué pasa | Ejemplo (Ep. 1) |
 |---|---|---|
-| **0–3 s · Gancho** | Situación cotidiana o pregunta imposible, con una imagen fuerte desde el cuadro 0 | "Te comes un helado muy rápido… y de repente: ¡zas! Te duele la frente." |
-| **3–7 s · Giro** | Contradice la intuición y abre la pregunta | "Pero el frío nunca tocó tu cerebro. Entonces, ¿qué pasó?" |
-| **Hasta ~60 % · Mecanismo** | 3 a 4 pasos (2–3 en un video de 40 s), cada uno con su imagen | Paladar → vasos → trigémino → confusión |
-| **~60–75 % · "Y lo más loco"** | Un segundo dato sorpresa (opcional si no cabe) | "Tu cerebro no siente dolor." |
-| **Último ~25 % · Enseñanza** | Qué hacer, cómo usarlo o cómo explicárselo a alguien | "Aprieta la lengua contra el paladar…" |
+| **0–2 s · Gancho** | Situación cotidiana o pregunta imposible, con una imagen fuerte desde el cuadro 0 | "Te comes un helado muy rápido… y de repente: ¡zas! Te duele la frente." |
+| **2–5 s · Giro** | Contradice la intuición y abre la pregunta | "Pero el frío nunca tocó tu cerebro. Entonces, ¿qué pasó?" |
+| **Hasta ~60 % · Mecanismo** | 2 a 3 pasos (2 en un video de 25–30 s), cada uno con su imagen | Paladar → vasos → trigémino → confusión |
+| **~60–75 % · "Y lo más loco"** | Un segundo dato sorpresa: casi nunca cabe en 25–40 s; va sólo si sobra tiempo | "Tu cerebro no siente dolor." |
+| **Último ~20 % · Enseñanza** | Una frase: qué hacer, cómo usarlo o cómo explicárselo a alguien | "Aprieta la lengua contra el paladar…" |
 | **Cierre en loop** | Frase que conecta con el inicio y deja ganas de verlo otra vez | "…nadie come helado lento." |
 
 - **Con cifras:** dejar adivinar antes de revelar (opciones o pregunta en pantalla y después la respuesta).
@@ -97,7 +97,7 @@ Se crea `jobs/voz/NNNN-epNN-slug.json` (NNNN es correlativo, mira el último en 
   - Usa `alignment`, no `normalized_alignment`.
   - Si escribiste palabras fonéticamente para la voz, pasa `pantalla.txt` con el guion tal como debe verse. Debe tener el mismo número de palabras.
 - **Control:**
-  - La duración total debe quedar entre 62 y 75 s.
+  - La duración total debe quedar entre 25 y 45,5 s (meta 25–40 s).
   - Ninguna palabra puede durar más de 1,2 s (salvo pausas).
   - El conteo de palabras tiene que coincidir con el guion.
   - Si algo falla, se regenera solo esa versión, porque cada intento cuesta créditos.
@@ -111,7 +111,7 @@ El storyboard es **la receta del editor**: cada fila es la ficha de un plano y t
 | # | Tiempo | Frase de la voz | Escena | Plano (escala) | Plantilla | Acción visible (se lee en 1 foto) | Cambio (≤ 2 s) | Cámara | Cara (y) | Gráfico (dónde) | SFX | Origen |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 
-- **Escena** (obligatoria, E1, E2…): una **escena** es una actuación animada que se arma una vez (una función de animación, como `p14` del Ep. 2) y se filma con una o varias cámaras; un **plano** es cada corte. El costo está en las escenas: el Ep. 2 armó ~45 (45 funciones `pNN`, con sólo ~5 escenarios), y ahí se fue el tiempo. Filmar la misma escena desde otra cámara (las piezas 15 y 16 del Ep. 2 reutilizan `p14`) es barato. **Máximo 12 escenas por video** (punto de partida: se ajusta con las horas medidas del Ep. 3); cortes, los que hagan falta.
+- **Escena** (obligatoria, E1, E2…): una **escena** es una actuación animada que se arma una vez (una función de animación, como `p14` del Ep. 2) y se filma con una o varias cámaras; un **plano** es cada corte. El costo está en las escenas: el Ep. 2 armó ~45 (45 funciones `pNN`, con sólo ~5 escenarios), y ahí se fue el tiempo. Filmar la misma escena desde otra cámara (las piezas 15 y 16 del Ep. 2 reutilizan `p14`) es barato. **Máximo 6 escenas por video** (12 hasta el Ep. 3, que con 63 s usó 9 y tomó 5,5 h; con 25–40 s bajan a 6); cortes, los que hagan falta.
 - **Plantilla** (obligatoria): una de `studio/plantilla/KIT.md` (reaccion, detalle_lupa, interior, tarjetas, cifra, recorrido, loop, whip) o `a medida` (máximo 3 escenas a medida por video).
 - **Acción visible:** lo que pasa tiene que entenderse en **una foto** ("escupe una llamarada", no "parpadea").
 - **Cambio (≤ 2 s):** qué cambia dentro del plano si dura más de 2 s (una acción, un gráfico que entra, algo que se transforma).
@@ -121,8 +121,8 @@ El storyboard es **la receta del editor**: cada fila es la ficha de un plano y t
 - **Plano (tipo)** empieza con la escala: G, M, P, D o I (interior).
 
 ### Ritmo
-- **Algo cambia en pantalla cada 1–2 s y nunca pasan más de 2 s sin un cambio** (en un video de 50 s, unos 25–50 cambios): un corte, o algo que aparece, se transforma o se arma dentro del cuadro. Es lo que dicen las referencias (`REFERENCIAS.md` §3: cortes de 1,2 a 2,2 s, mediana ~1,65 s; los videos con más envíos cortan más lento y R5 casi no corta, pero algo se transforma todo el rato). Con transformación continua un plano puede durar más (R5: 13 s sin cortar).
-- **Máximo 12 escenas** (el Ep. 2 armó ~45 y tomó más de 24 h). Los cortes salen de filmar cada escena con varias cámaras y detalles. El ahorro todavía no está medido: se mide en el Ep. 3.
+- **Algo cambia en pantalla cada 1–2 s y nunca pasan más de 2 s sin un cambio** (en un video de 35 s, unos 18–35 cambios): un corte, o algo que aparece, se transforma o se arma dentro del cuadro. Es lo que dicen las referencias (`REFERENCIAS.md` §3: cortes de 1,2 a 2,2 s, mediana ~1,65 s; los videos con más envíos cortan más lento y R5 casi no corta, pero algo se transforma todo el rato). Con transformación continua un plano puede durar más (R5: 13 s sin cortar).
+- **Máximo 6 escenas** (el Ep. 2 armó ~45 y tomó más de 24 h; el Ep. 3, 9 escenas en 5,5 h). Los cortes salen de filmar cada escena con varias cámaras y detalles.
 - Los cortes son secos, justo en el inicio de una frase o palabra clave.
 - Cambia la escala cada 8–12 s (general → medio → detalle → interior del cuerpo u objeto).
 
@@ -228,7 +228,7 @@ Reglas: **nunca se renderiza el video completo sin que Tomás haya aprobado el l
 ## 9. Control de calidad (QA)
 
 ### 9.1 Automático (script)
-- [ ] Dura 30–65,5 s (meta 40–60 s), a 1080×1920 y 30 fps, en H.264 yuv420p y pesa menos de 100 MB.
+- [ ] Dura 25–45,5 s (meta 25–40 s), a 1080×1920 y 30 fps, en H.264 yuv420p y pesa menos de 100 MB.
 - [ ] El volumen integrado está en −14 ±1 LUFS y el true peak en ≤ −1 dBTP (`ffmpeg -af ebur128`).
 - [ ] No hay negros ni congelados (`blackdetect`, `freezedetect` > 0,5 s).
 - [ ] Menos del 3% de píxeles quemados (>250) en cada cuadro de muestra, medido sin subtítulos.

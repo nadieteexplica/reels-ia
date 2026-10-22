@@ -10,6 +10,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **Cómo trabaja:** Tomás pide cada video en el chat (decisión del 21-oct-2026: nada de producción programada). Claude investiga, escribe el guion, genera la voz, anima, deja todo listo, lo programa en Metricool con el OK de Tomás por post y revisa los datos.
 
 ## Formato (brief vigente)
+- **YouTube primero (decisión de Tomás, 21-oct-2026):** es la red que paga desde Chile, así que todo se optimiza para YouTube Shorts (duración, ritmo, primer segundo, métricas, horario). **Instagram y TikTok siguen recibiendo el mismo video**, sin trabajo extra. Investigación y números en **`docs/YOUTUBE.md`**: el algoritmo prueba cada Short con una audiencia semilla y lo abre o lo corta según "visto vs. deslizado"; YPP desde el 1-feb-2027 = 1.000 suscriptores + 20 M vistas en 90 días u 8.000 h de video largo; Shorts paga poco (~US$0,03–0,06 por mil en Latam): la plata está en video largo y marcas.
 - **Dos líneas de contenido (decidido por Tomás, 18-oct-2026):**
   - **Datos:** un dato impresionante por video, que termina enseñando algo, con fuentes. Usa los ganchos de abajo.
   - **Historias:** ficción (inventadas, absurdas o sin sentido: fábulas, story time). Si sale un híbrido historia + dato de forma natural, bien, pero no es requisito.
@@ -21,9 +22,10 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - "¿Qué pasa dentro de…?"
   - "¿Sabías que…?"
 - **Formatos candidatos** (del estudio de referencias, sin probar todavía; fichas en `docs/REFERENCIAS.md` §5): corte que se transforma, objeto cotidiano "parece un error, pero es a propósito", "lo conté yo" con datos propios, concepto armado frente a ti, megaproyecto absurdo + "lo calculé", fábula absurda y story time.
-- **Duración: sin mínimo, la pone el guion. Meta 40–60 s, techo 65 s** (decisión de Tomás, 21-oct-2026: "sácalo ya que no cobramos nada de TikTok"; antes era 62–65 s para cobrar en TikTok). El chequeo automático acepta 30–65,5 s y 88–188 palabras (~2,9 palabras/s: 40 s ≈ 115, 50 s ≈ 145, 60 s ≈ 175). El Ep. 3 se hizo con la regla anterior (voz de 63,4 s aprobada) y no se toca.
+- **Duración: meta 25–40 s, techo 45 s** (decisión de Tomás, 21-oct-2026, por YouTube: la mediana de vistas de los Shorts es máxima en 11–20 s y cae fuerte sobre 30 s; el promedio visto por Short es ~16 s). Un dato central, sin relleno. El chequeo automático acepta 25–45,5 s y 70–128 palabras (~2,9 palabras/s: 25 s ≈ 72, 35 s ≈ 101, 40 s ≈ 115). Historia: 62–65 s por TikTok (hasta el 21-oct), después 40–60 s el mismo día; el Ep. 3 (63,4 s) se hizo con la regla anterior y no se toca.
 - **Monetización desde Chile (investigado el 21-oct-2026):** TikTok no paga por vistas (Creator Rewards sólo en EE. UU., Reino Unido, Alemania, Francia, Japón, Corea del Sur, Brasil y México, y hay que vivir ahí). Instagram no paga por vistas (los regalos en Reels sí están en Chile: US$0,01 por estrella). YouTube Shorts sí: 1.000 suscriptores + 10 M vistas de Shorts en 90 días; desde el 1-feb-2027, 20 M para los que entran y 10 M cada 90 días para seguir cobrando; ~US$0,03–0,10 por mil vistas, con Latam en la parte baja (México ~US$0,04). Facebook Content Monetization incluye Chile y el español (por invitación). La plata real son las marcas.
-- **Cadencia (meta; cada video lo pide Tomás en el chat):** se parte con **3 videos por semana** (lunes, miércoles y viernes) y se sube a 5 si la calidad se mantiene. Diario no cabe en los créditos de voz. Detalle en `docs/AUTOMATIZACION.md`.
+- **Cadencia (decisión de Tomás, 21-oct-2026; cada video lo pide él en el chat):** **5 videos por semana (lunes a viernes) y diario cuando un video tome ≤ 2,5 h**, haciendo 2 videos por sesión. La voz alcanza: a ~35 s son ~600 créditos por video, ~23.000 de 40.000 al mes con 30 videos. El cuello es el tiempo (Ep. 3: 5,5 h). Cada video tiene que ser distinto: YouTube no monetiza contenido "de plantilla con poca variación" y lo evalúa por canal. Detalle en `docs/AUTOMATIZACION.md`.
+- **Video largo (decisión de Tomás, 21-oct-2026):** compilaciones de Shorts **muy de vez en cuando**, no con calendario fijo. Suman horas de video largo sin animar nada nuevo.
 - **Lo que se presenta como real es real y verificado**, con fuentes. Nada de desinformar. La ficción de la línea historias puede ser todo lo loca que se quiera, pero no se disfraza de dato.
 - **Animación 3D "sí o sí".**
 - **Edición:** limpia, amigable, llamativa, entretenida y bonita de ver.
@@ -54,7 +56,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 ## Reglas de edición (del estudio de formatos virales y de `docs/REFERENCIAS.md`)
 - **Gancho** en los primeros 0–2 s. El cuadro 0 es una imagen absurda o una pregunta: algo que todavía no tiene sentido.
 - **Planos:**
-  - **Algo cambia en pantalla cada 1–2 s y nunca más de 2 s sin cambio** (en un video de 50 s, unos 25–50 cambios; REFERENCIAS §3). **Máximo 12 escenas** por video: una escena es una actuación animada que se arma una vez y se filma con varias cámaras (el Ep. 2 armó ~45); los cortes dentro de una escena son baratos y se usan los que hagan falta.
+  - **Algo cambia en pantalla cada 1–2 s y nunca más de 2 s sin cambio** (en un video de 35 s, unos 18–35 cambios; REFERENCIAS §3). **Máximo 6 escenas** por video (12 hasta el Ep. 3): una escena es una actuación animada que se arma una vez y se filma con varias cámaras (el Ep. 2 armó ~45); los cortes dentro de una escena son baratos y se usan los que hagan falta.
   - **Nunca más de 2 s sin un cambio en pantalla:** un corte, o algo que aparece o se transforma dentro del cuadro. Con transformación continua un plano puede durar más.
   - Cortes secos sincronizados con la voz.
   - La cámara siempre se mueve (acercamientos lentos u órbitas).
@@ -111,6 +113,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **Publicar en redes solo con su OK explícito, post por post.**
 
 ## Estado actual (21-oct-2026)
+- **YouTube primero (21-oct-2026, noche):** Tomás decidió concentrar el proyecto en YouTube. Se investigó el algoritmo de Shorts, el YPP 2027, la frecuencia y la duración (`docs/YOUTUBE.md`, 27 fuentes en la prerelease `yt-fuentes`). Decidió: **videos de 25–40 s (techo 45)**, **5 por semana y diario cuando un video tome ≤ 2,5 h** (2 por sesión), **IG y TikTok siguen con el mismo video** y **compilaciones largas muy de vez en cuando**. Ajustado en el código (`presupuesto.json`: 25–45,5 s, 70–128 palabras, 6 escenas, tope 4 h y meta 2,5 h), el manual, el auditor, las ideas y las instrucciones. **Métrica principal en YouTube:** visto vs. deslizado, % visto y vistas comprometidas (se leen en YouTube Studio con el Chrome de Tomás; Metricool no las trae). Pendiente: que Tomás diga qué % de su uso semanal de Claude se fue en el Ep. 3, para saber si diario le cabe.
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
 - **Proceso v2 (21-oct-2026, después del Ep. 2 — "NO SE PUEDE VOLVER A REPETIR", Tomás):** el Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás (medido en la bitácora: 22,7 h activas, 20 rondas del auditor, 35 revisores, 337 imágenes revisadas, ~45 escenas animadas una por una). Ahora: videos de **62–65 s**; **storyboard = fichas de plano** con lo que exige el auditor escrito antes de animar; **máx. 12 escenas** y algo que cambia cada 1–2 s; **`tools/prueba.py`** por plano (render chico + post + chequeo automático de ojos tapados, quemado, vacío y fondo liso, ~1,5–2 min; lo quieto se mide en el animatic); **animatic** auditado antes de un **solo render final**; auditor sin rondas por fallas medibles, **bloqueantes de lista cerrada**, **5 sugerencias**, **promedio ≥ 8 y ninguna nota bajo 7**, **máx. 2 rondas** (la 2.ª verifica) y 1 revisor por cada 10 planos + 1 global; **topes por video** en `tools/auditor/presupuesto.json` (los lee el código). Una auditoría independiente del mismo 21-oct encontró 20 errores en la primera versión (lección 50) y se corrigieron. **El kit es todavía un catálogo de código del Ep. 2, no plantillas programadas**, y el ahorro no está medido: se mide en el Ep. 3.
@@ -165,7 +168,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 2. ~~Audiencia de YouTube (`madeForKids`)~~: decidido el 19-oct → **no es para niños**.
 3. ~~Repo privado de assets y token~~: listo el 18-oct (`nadieteexplica/assets` + secreto `TOKEN`). **Renovar el token antes del 17-nov-2026.**
 4. **Pegar `proyecto/INSTRUCCIONES.md` en las instrucciones del proyecto en Claude** (las de ahí todavía dicen 62–75 s, todas las notas ≥ 8 y 3 rondas). Se le mandó el archivo el 21-oct.
-5. ~~Producción automática~~: **decidido por Tomás el 21-oct-2026: no hay tarea programada de producción.** Él pide cada video en el chat; un video por sesión.
+5. ~~Producción automática~~: **decidido por Tomás el 21-oct-2026: no hay tarea programada de producción.** Él pide cada video en el chat; uno o dos videos por sesión (desde el 21-oct, YouTube primero).
 6. **Proporción datos/historias.** Propuesta de Claude: ~2 de datos por cada historia en el piloto; a las 4 semanas se ajusta según envíos/alcance de cada línea.
 7. **Sumar Facebook como 4.ª red** (es el mismo video y Facebook paga por vistas en Chile, por invitación). Necesita que Tomás cree una página de Facebook y la conecte a Metricool. Preguntado el 21-oct.
 
@@ -176,6 +179,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 
 ## Documentos
 - `proyecto/INSTRUCCIONES.md`: instrucciones del proyecto en Claude.
+- `docs/YOUTUBE.md`: YouTube primero (21-oct-2026): algoritmo de Shorts, YPP 2027, frecuencia, duración, política de contenido no auténtico y plan.
 - `docs/LECCIONES.md`: errores de producción, cómo se solucionaron y la regla que queda (leer antes de cada video).
 - `docs/AUDITOR.md`: el auditor independiente por etapas (puertas, chequeos, bloqueantes, formato del veredicto, bitácora del proceso). Código y prompts en `tools/auditor/`.
 - `docs/AUDITOR_CALIBRACION.md`: el auditor corrido a ciegas sobre las versiones del Ep. 1 y qué errores detectó.

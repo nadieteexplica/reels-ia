@@ -1,16 +1,16 @@
 # Automatización — cómo funciona la cuenta sola
 
 ## Cadencia
+**YouTube primero (decisión de Tomás, 21-oct-2026; `docs/YOUTUBE.md`):** videos de 25–40 s, todo optimizado para YouTube Shorts, y el mismo video sigue saliendo en Instagram y TikTok.
+
 | Fase | Videos | Días | Créditos de voz al mes (aprox.) |
 |---|---|---|---|
-| **Meta de Tomás (19-oct-2026)** | **2 cada 3 días** (~20 al mes) | cada 3 días, en tandas | ~31.000 de 40.000 |
-| **Piloto (primeras 4 semanas)** | 3 por semana | lunes, miércoles, viernes | ~20.000 de 40.000 |
-| **Crecimiento** (si la calidad se mantiene y Tomás lo pide) | 5 por semana | lunes a viernes | ~34.000 de 40.000 (justo) |
-| Diario | 7 por semana | todos | ~47.000: no cabe en Starter, así que **no** |
+| **Ahora** | **5 por semana** (1 o 2 por sesión) | lunes a viernes | ~17.000 de 40.000 |
+| **Diario** (cuando un video tome ≤ 2,5 h; Tomás ya lo aprobó) | 7 por semana, 2 por sesión | todos | ~23.000 de 40.000 |
 
-El cálculo supone ~1.200 créditos por toma y ~1,3 tomas por video.
+El cálculo supone ~1 crédito por carácter, ~600 por toma de ~35 s y ~1,3 tomas por video. (Con los videos de 62–75 s de antes, diario no cabía: ~47.000.)
 
-Se parte con 3 a la semana a propósito. La calidad pesa más que la cantidad, y así hay datos para aprender antes de escalar.
+Por qué más es mejor en Shorts: cada Short se juzga solo y cada uno es otra oportunidad en el feed (Metricool 2026: sin techo claro en Shorts; vidIQ: 12+ subidas al mes = 4× el crecimiento). El límite es la calidad: con premisas repetidas o videos "de plantilla" YouTube corta el alcance y la monetización del canal entero. **Compilaciones largas:** muy de vez en cuando (decisión de Tomás).
 
 ## Fase 0 — Puesta a punto (una vez, en el chat del proyecto)
 Antes de trabajar en serie, todo esto tiene que estar hecho y probado:
@@ -40,27 +40,28 @@ Ya hecho: el workflow de voz procesa solo los jobs nuevos de cada push, falla en
 
 ## Topes por video (proceso v2, 21-oct-2026 — "NO SE PUEDE VOLVER A REPETIR", Tomás)
 El Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás. Desde el Ep. 3, cada video tiene estos topes (`tools/auditor/presupuesto.json` → `proceso_v2`; la puerta P los revisa):
-- **Sin mínimo de duración (meta 40–60 s, techo 65 s)** y **máximo 12 escenas** (una escena = una actuación animada que se arma una vez y se filma con varias cámaras; el Ep. 2 armó ~45), **3 a medida como máximo**. Los cortes dentro de una escena son baratos: algo cambia cada 1–2 s y nunca más de 2 s sin cambio. El 12 es un punto de partida: se ajusta con las horas medidas del Ep. 3.
-- **2 rondas por puerta** (la 2.ª sólo verifica; con fallas automáticas no se abre ronda), 1 revisor por cada 10 planos + 1 global (en la r2 sólo los planos marcados), **2 animatics** y **1 render final**. **8 h activas** (la puerta P lo mide con la bitácora: huecos de más de 1 h no cuentan). El % de uso de Claude no se puede medir desde la sesión: la puerta P anota revisores lanzados e imágenes revisadas, que es lo que más lo mueve; Tomás puede contar el % real.
+- **Meta 25–40 s, techo 45 s** y **máximo 6 escenas** (una escena = una actuación animada que se arma una vez y se filma con varias cámaras; el Ep. 2 armó ~45 y el Ep. 3, 9 en 63 s), **3 a medida como máximo**. Los cortes dentro de una escena son baratos: algo cambia cada 1–2 s y nunca más de 2 s sin cambio.
+- **2 rondas por puerta** (la 2.ª sólo verifica; con fallas automáticas no se abre ronda), 1 revisor por cada 10 planos + 1 global (en la r2 sólo los planos marcados), **2 animatics** y **1 render final**. **Tope de 4 h activas, meta 2,5 h** (la puerta P lo mide con la bitácora: huecos de más de 1 h no cuentan). El % de uso de Claude no se puede medir desde la sesión: la puerta P anota revisores lanzados e imágenes revisadas, que es lo que más lo mueve; Tomás puede contar el % real.
 - Cada plano pasa `tools/prueba.py` con 0 fallas **antes** del auditor. Lo aprobado no se toca. Un plano que falla dos veces se simplifica o se cambia por una plantilla.
 - Si se ve venir que un tope se pasa, se para y se le avisa a Tomás en 2 líneas con opciones (simplificar, cambiar la idea, seguir).
 
 ## Cómo se hace un video
 
 ### A) Producción de un video — cuando Tomás lo pide en el chat (decisión de Tomás, 21-oct-2026)
-No hay tarea programada de producción: Tomás abre el chat y pide el video. Se hace **un video por sesión**.
+No hay tarea programada de producción: Tomás abre el chat y pide el video. Se hacen **uno o dos videos por sesión** (dos cuando se quiere llegar a diario: el segundo reutiliza la sesión, no las ideas ni el look).
 1. Actualizar el repo y leer los docs, primero `proyecto/INSTRUCCIONES.md` y después `CONTEXTO.md`, **`docs/LECCIONES.md`**, el manual, `IDEAS.md` y `PUBLICADOS.md`.
 2. **Métricas:**
    - Bajar de Metricool los datos de los videos de las últimas semanas.
    - Actualizar `PUBLICADOS.md`.
    - Escribir 2–3 aprendizajes en `CONTEXTO.md`.
+   - **YouTube** (la red principal): visto vs. deslizado, % visto y vistas comprometidas de cada Short. Metricool no las trae: se leen en YouTube Studio con el Chrome de Tomás (sólo lectura) o de una captura que él mande.
 3. **Ideas:**
    - Buscar según `IDEAS.md` §1.
    - Si Tomás no trae la idea: proponerle 3 con su puntaje (`IDEAS.md` §2: 32 en datos, 25 en historias) y su costo estimado, variadas (distinto gancho, área y formato); él elige.
    - Darle prioridad a las preguntas de la comunidad.
-4. **Guiones:** verificar con 2 fuentes, escribir con el largo que pida la idea (meta 40–60 s ≈ 115–175 palabras; techo 65 s = 188) y guardar en `studio/episodios/epNN-slug/guion.md` (con el puntaje de la idea y para qué acción es). → **Puerta 1 del auditor** (`auditar.py preparar <ep> guion` → `lanzar` → `cerrar`). Sin APROBADO no se genera la voz.
-5. **Voz:** un job. Esperar a Actions, revisar `out/status.json`, armar `words.json` con `tools/words.py` y controlar duraciones (30–65,5 s; si se pasa, recortar el guion). `asr.yml` transcribe cada voz sola al terminar `voz.yml`. → **Puerta 2** (voz: automática; revisor sólo si la transcripción encuentra diferencias).
-6. **Storyboard = fichas de plano** (`studio/plantilla/storyboard.md`): máx. 12 escenas con su plantilla del kit y los cortes que hagan falta dentro de cada una; por plano: acción visible, qué cambia (nunca más de 2 s sin cambio), cámara, dónde va la cara y dónde el gráfico, y `Origen` (render / kling / biblioteca; máx. 3 de Kling). → **Puerta 3**, antes de gastar en cuadros, Kling o render.
+4. **Guiones:** verificar con 2 fuentes, escribir con el largo que pida la idea (meta 25–40 s ≈ 72–115 palabras; techo 45 s = 128) y guardar en `studio/episodios/epNN-slug/guion.md` (con el puntaje de la idea y para qué acción es). → **Puerta 1 del auditor** (`auditar.py preparar <ep> guion` → `lanzar` → `cerrar`). Sin APROBADO no se genera la voz.
+5. **Voz:** un job. Esperar a Actions, revisar `out/status.json`, armar `words.json` con `tools/words.py` y controlar duraciones (25–45,5 s; si se pasa, recortar el guion). `asr.yml` transcribe cada voz sola al terminar `voz.yml`. → **Puerta 2** (voz: automática; revisor sólo si la transcripción encuentra diferencias).
+6. **Storyboard = fichas de plano** (`studio/plantilla/storyboard.md`): máx. 6 escenas con su plantilla del kit y los cortes que hagan falta dentro de cada una; por plano: acción visible, qué cambia (nunca más de 2 s sin cambio), cámara, dónde va la cara y dónde el gráfico, y `Origen` (render / kling / biblioteca; máx. 3 de Kling). → **Puerta 3**, antes de gastar en cuadros, Kling o render.
 7. **Cuadros de estilo** sólo si hay escenario nuevo (si se reutiliza un set del kit, no hay) → **Puerta 4** → recién aprobados se le muestran a Tomás (es el único mensaje intermedio).
 8. **Kling:** cuadros de partida con la mano libre → **Puerta 4** (`--nota` con el plano y la acción) → `kling.yml` → **Puerta 5** (8 cuadros por clip) → `kling/planos.json` sólo con clips aprobados.
 9. **Animación por plano:** cada plano desde su plantilla → `tools/prueba.py <ep> --planos N` hasta 0 fallas y la hoja mirada. Nada pasa al animatic con fallas del chequeo.
@@ -106,7 +107,7 @@ Clona github.com/nadieteexplica/reels-ia. Lee primero proyecto/INSTRUCCIONES.md 
 | Actions falla (voz o render): workflow en rojo o `error` en `out/status.json` | Reintentar 2 veces (con `workflow_dispatch`, sin crear jobs nuevos). Si sigue, avisar en 1 línea con la causa y la propuesta |
 | Créditos de ElevenLabs bajo 8.000 | Avisar a Tomás y bajar a 2 videos esa semana |
 | Un video no pasa una puerta en 2 rondas | Lo que sigue fallando se simplifica o se cambia por una plantilla (sin otra ronda); si igual no llega, entregar 2 videos y explicar. Nunca mandar uno malo |
-| Un video va a pasar el tope de 8 h activas | Parar y avisar a Tomás en 2 líneas con opciones (simplificar, cambiar la idea, seguir) |
+| Un video va a pasar el tope de 4 h activas | Parar y avisar a Tomás en 2 líneas con opciones (simplificar, cambiar la idea, seguir) |
 | Un revisor del auditor se corta (Tomás escribió a mitad de turno, error) | `auditar.py estado` muestra qué encargo falta; `lanzar` da el texto para relanzarlo. No se pierde nada: cada encargo escribe su resultado una sola vez al final |
 | Se cree que el auditor se equivocó | Nunca se edita un veredicto. Se corrige el prompt o el chequeo, se anota en `LECCIONES.md` y se corre una ronda nueva |
 | Metricool rechaza la URL o el post | Probar el hosting alternativo y avisar |

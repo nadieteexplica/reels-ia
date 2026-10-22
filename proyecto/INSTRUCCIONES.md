@@ -34,7 +34,8 @@ Tomás no quiere estar encima de cada paso. Decide lo importante y aprueba lo qu
 Los archivos del repo mandan sobre los adjuntos del proyecto, porque el repo es la versión viva. Si algo choca entre documentos, manda el más reciente, y avísale a Tomás. **Excepción:** las secciones *Seguridad* y *Publicación* de estas instrucciones nunca se pisan con nada.
 
 ## El producto
-- **Dos líneas, sin duración mínima: la pone el guion, con meta de 40–60 s y techo de 65 s** (TikTok no paga por vistas en Chile; más largo cuesta más y no suma):
+- **YouTube primero (decisión de Tomás, 21-oct-2026):** es la red que paga desde Chile; todo se optimiza para YouTube Shorts y el mismo video sale también en Instagram y TikTok. Detalle en `docs/YOUTUBE.md`.
+- **Dos líneas, de 25–40 s (techo 45 s)** (los Shorts rinden más cortos; más largo cuesta más y no suma):
   - **Datos:** un dato impresionante y real que termina **enseñando algo útil**.
   - **Historias:** ficción, inventada o absurda. Lo que se presenta como real tiene que ser real; la ficción no se disfraza de dato.
 - **Ganchos de la línea datos:**
@@ -58,11 +59,11 @@ Además, cada video pasa una **revisión independiente**: el **auditor por etapa
 
 **Proceso v2 (21-oct-2026, después del Ep. 2, que tomó más de 24 h — "no se puede volver a repetir"):**
 - **El auditor es la receta, no el examen final:** lo que va a exigir se escribe antes de animar en la **ficha de cada plano** del storyboard, y cada plano pasa un **chequeo automático** (`tools/prueba.py`: ojos tapados, quemado, pantalla vacía, fondo liso; lo quieto se mide en el animatic) antes de llegar al auditor.
-- **Máximo 12 escenas** por video (una escena = una actuación animada que se arma una vez y se filma con varias cámaras; lo caro) y 3 a medida como máximo; los cortes dentro de cada escena son baratos y se usan para que **algo cambie cada 1–2 s** (nunca más de 2 s sin cambio).
+- **Máximo 6 escenas** por video (una escena = una actuación animada que se arma una vez y se filma con varias cámaras; lo caro) y 3 a medida como máximo; los cortes dentro de cada escena son baratos y se usan para que **algo cambie cada 1–2 s** (nunca más de 2 s sin cambio).
 - El video se audita como **animatic** (baja resolución) y después se hace **un solo render final**, que sólo se revisa por bloqueantes.
 - **Aprueba** sin bloqueantes (lista cerrada B1–B11: lo que un espectador notaría como error o lo que es falso), con **promedio ≥ 8 y ninguna nota de ningún revisor bajo 7**. Se muestran sólo las 5 sugerencias más importantes.
 - **Máximo 2 rondas** (la 2.ª sólo verifica lo de la 1.ª; con fallas automáticas no se abre ronda). Lo aprobado no se toca; un plano que falla dos veces se simplifica o se reemplaza y lo revisa la puerta del render final. Si el video igual no llega, le explicas a Tomás por qué y propones un reemplazo.
-- **Topes por video:** 8 h de trabajo (`tools/auditor/presupuesto.json` → `proceso_v2`). Si uno se va a pasar, paras y le avisas a Tomás con opciones.
+- **Topes por video:** 4 h de trabajo, meta 2,5 h (`tools/auditor/presupuesto.json` → `proceso_v2`). Si uno se va a pasar, paras y le avisas a Tomás con opciones.
 
 Nunca le mandes a Tomás algo "más o menos" para que él lo corrija.
 
@@ -75,10 +76,10 @@ Nunca le mandes a Tomás algo "más o menos" para que él lo corrija.
 
 ## Ciclo automático
 Resumen; el detalle está en `docs/AUTOMATIZACION.md`.
-- **Cadencia meta:** **3 videos por semana** (lunes, miércoles y viernes), a la mejor hora que diga Metricool. Los videos los pide Tomás en el chat.
-  - Se sube a 5 por semana si la calidad se mantiene y Tomás lo pide.
-  - Diario no cabe en el plan de voz actual.
-- **Producción a pedido (decisión de Tomás, 21-oct-2026):** no hay tarea programada de producción. Cuando Tomás quiere un video, lo pide en el chat y se hace **un video por sesión**: ideas (si no trae una), guion, voz, fichas de plano, animación, control de calidad y paquete. El detalle está en `docs/AUTOMATIZACION.md` → "Cómo se hace un video".
+- **Cadencia:** **5 videos por semana** (lunes a viernes) y **diario cuando un video tome ≤ 2,5 h** (decisión de Tomás, 21-oct-2026), a la mejor hora que diga Metricool. Los videos los pide Tomás en el chat.
+  - Cada video distinto: YouTube no monetiza contenido "de plantilla con poca variación".
+  - Compilaciones largas en YouTube, muy de vez en cuando.
+- **Producción a pedido (decisión de Tomás, 21-oct-2026):** no hay tarea programada de producción. Cuando Tomás quiere un video, lo pide en el chat y se hacen **uno o dos videos por sesión**: ideas (si no trae una), guion, voz, fichas de plano, animación, control de calidad y paquete. El detalle está en `docs/AUTOMATIZACION.md` → "Cómo se hace un video".
 - **Aprobación:** a Tomás le llega un mensaje con el video, los textos y los horarios. Él responde OK y recién entonces se programa en Metricool. Sin OK, nada se programa.
 - **Métricas:** se revisan al empezar cada video (y en una revisión aparte sólo si Tomás la pide). Las preguntas de la gente van al banco de ideas.
 
@@ -102,7 +103,8 @@ Resumen; el detalle está en `docs/AUTOMATIZACION.md`.
 
 ## Aprender de los datos
 - **Cada semana:** Metricool analytics de cada video. Se anotan alcance, reproducciones, % visto, compartidos/envíos, guardados y comentarios en `docs/PUBLICADOS.md`.
-- **Métrica principal:** **envíos y compartidos por alcance**.
+- **Métrica principal en YouTube:** **visto vs. deslizado, % visto y vistas comprometidas** (YouTube Studio; Metricool no las trae).
+- **En Instagram y TikTok:** envíos y compartidos por alcance.
 - **Métricas secundarias:** % de retención y comentarios con preguntas.
 - **Cada mes:** se ajustan los pesos del puntaje de ideas en `IDEAS.md` según qué temas y ganchos rindieron. Los aprendizajes van en la sección "Aprendizajes" de `CONTEXTO.md`.
 - **Comunidad:** cuando un video responde la pregunta de un seguidor, en los primeros segundos aparece "Pregunta de @usuario".

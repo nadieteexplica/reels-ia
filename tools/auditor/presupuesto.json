@@ -25,25 +25,26 @@
   }
  },
  "proceso_v2": {
-  "nota": "Topes por video desde el 21-oct-2026 (Ep. 2: >24 h, 19 rondas del auditor y ~26 % del uso semanal de Claude de Tomás). El código los lee de acá (comun.topes()). Los números de escenas y horas son un punto de partida: se ajustan con las horas medidas del Ep. 3. Si se va a pasar uno, se para y se le avisa a Tomás con opciones.",
-  "horas_por_video": 8,
+  "nota": "Topes por video. 21-oct-2026 (Ep. 2: >24 h y ~26 % del uso semanal de Claude de Tomás) y, el mismo día, YouTube primero (docs/YOUTUBE.md): videos de 25–40 s, 5 por semana y diario cuando un video tome ≤ 2,5 h. Ep. 3 (63 s, 9 escenas, 36 planos) tomó 5,5 h; a 25–40 s se esperan ~6 escenas y ≤ 3 h. El código los lee de acá (comun.topes()). Si se va a pasar uno, se para y se le avisa a Tomás con opciones.",
+  "horas_por_video": 4,
   "rondas_por_puerta": 2,
   "animatics": 2,
   "renders_finales": 1,
-  "escenas_max": 12,
+  "escenas_max": 6,
   "escenas_a_medida_max": 3,
   "planos_por_revisor": 10,
   "cambio_max_s": 2.0,
   "palabras": [
-   88,
-   188
+   70,
+   128
   ],
   "duracion_s": [
-   30.0,
-   65.5
+   25.0,
+   45.5
   ],
   "promedio_min": 8.0,
   "nota_min_revisor": 7,
-  "nota_duracion": "Sin mínimo desde el 21-oct-2026 (Tomás: 'sácalo ya que no cobramos nada de TikTok'). Meta 40–60 s, techo 65 s; el piso de 30 s sólo pilla una voz o un guion cortados."
+  "nota_duracion": "YouTube primero (Tomás, 21-oct-2026): meta 25–40 s, techo 45 s (en 108 mil Shorts la mediana de vistas es máxima en 11–20 s y cae fuerte sobre 30 s; el promedio visto por Short es ~16 s). Palabras: 25 s ≈ 72, 35 s ≈ 101, 40 s ≈ 115; techo 128 = voz de 45,1 s a la velocidad más lenta medida (Ep. 3: 181 palabras en 63,4 s = 2,855 palabras/s).",
+  "horas_meta": 2.5
  }
 }
