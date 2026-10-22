@@ -42,3 +42,4 @@
 {"tipo": "chequeo", "id": "render-planos final 39722863780", "estado": "vivo, in_progress null, completed:12 in_progress:1", "n": 42, "ts": "2026-10-22T03:18:29-03:00"}
 {"tipo": "chequeo", "id": "render-planos parche 39726712487", "estado": "vivo, in_progress null, completed:5 in_progress:1", "n": 43, "ts": "2026-10-22T03:28:54-03:00"}
 {"tipo": "aviso", "que": "el vigilante del render final 39722863780 se cortó al llegar a su límite de 2 h con el run todavía corriendo (máquina de los planos 13–14); no se relanza: queda B salvo que Tomás pida A", "n": 44, "ts": "2026-10-22T03:32:23-03:00"}
+{"tipo": "aviso", "que": "el vigilante del parche 39726712487 se cortó a los 90 min (su límite) con el armado esperando al final; no se relanza: queda B salvo que Tomás pida A", "n": 45, "ts": "2026-10-22T03:43:08-03:00"}
