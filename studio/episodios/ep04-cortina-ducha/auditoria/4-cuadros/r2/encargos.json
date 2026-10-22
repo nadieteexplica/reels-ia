@@ -1,0 +1,31 @@
+[
+ {
+  "id": "cuadros",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "estilo_00001, estilo_00121, estilo_00560, estilo_01075",
+  "materiales": [
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r2/materiales/estilo_00001.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r2/materiales/estilo_00121.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r2/materiales/estilo_00560.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r2/materiales/estilo_01075.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r2/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r2/materiales/cuadros.json",
+   "studio/episodios/ep04-cortina-ducha/auditoria/4-cuadros/r2/materiales/anterior_cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "cuadros.json",
+  "notas_de_uso": "Ronda 2 (verificación). estilo_00001 = cuadro 0 (antes 00022: ahora el primer cuadro del video): Don Héctor tranquilo bajo el chorro y la cortina que se le viene por detrás; estilo_00121 = plano 4 (cara de fantasma marcada en la cortina, desde afuera); estilo_00560 = plano 12 (la ducha por dentro, de frente a través de la cortina transparente: el remolino acostado con el eje perpendicular a la cortina); estilo_01075 = plano 21 (cierre: la cortina pesada se infla a su lado y él salta del susto; mismo encuadre del cuadro 0). Render 720x1280, 16 muestras, con la gradación de saturación del post (1,16) y sin subtítulos.",
+  "verificar_ids": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5",
+   "A6"
+  ],
+  "modo": "verificacion"
+ }
+]

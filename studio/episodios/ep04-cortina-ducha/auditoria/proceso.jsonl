@@ -17,3 +17,4 @@
 {"tipo": "trabajo", "id": "render-planos animatic 39717599087", "estado": "fin", "nota": "completed cancelled", "n": 17, "ts": "2026-10-22T00:42:28-03:00"}
 {"tipo": "trabajo", "id": "render-planos animatic 39718733164", "estado": "inicio", "nota": "animatic 1 (paleta corregida): 540x960, 8 muestras, 14 partes", "n": 18, "ts": "2026-10-22T00:47:09-03:00"}
 {"tipo": "chequeo", "id": "render-planos animatic 39718733164", "estado": "vivo, in_progress null, completed:1 in_progress:14", "n": 19, "ts": "2026-10-22T01:02:25-03:00"}
+{"tipo": "chequeo", "id": "render-planos animatic 39718733164", "estado": "vivo, in_progress null, completed:6 in_progress:9", "n": 20, "ts": "2026-10-22T01:17:36-03:00"}

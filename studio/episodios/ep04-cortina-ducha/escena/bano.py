@@ -437,7 +437,7 @@ def sistema_agua(n_gotas=900, n_aire=700, n_vapor=40):
     aire_m = mat("Aire", (0.55, 0.92, 1.0), rough=0.5, emis=2.0)
     bpy.ops.mesh.primitive_ico_sphere_add(radius=1.0, subdivisions=2)
     a = bpy.context.active_object; a.name = "ProtoAire"; a.data.materials.append(aire_m)
-    vap_m = mat("Vapor", (1.0, 1.0, 1.0), rough=1.0, alpha=0.05)
+    vap_m = mat("Vapor", (1.0, 1.0, 1.0), rough=1.0, alpha=0.05, emis=0.8)     # vapor claro: con emisión no se ve como humo gris
     bpy.ops.mesh.primitive_ico_sphere_add(radius=1.0, subdivisions=3)
     v = bpy.context.active_object; v.name = "ProtoVapor"; v.data.materials.append(vap_m)
     bpy.ops.object.shade_smooth()
