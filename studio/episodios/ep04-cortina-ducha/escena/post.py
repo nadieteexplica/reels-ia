@@ -352,6 +352,8 @@ def graficos(im, f, k):
             pildora(im, "AIRE DE AFUERA", 540, 380, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t_de(f) - t0))
         if t_de(f) > tw("empuja"):
             pildora(im, "EMPUJA MÁS", 540, 500, tam=46, s=pop(t_de(f) - tw("empuja")))
+    elif k in (20, 21):  # sigue siendo la cortina pesada (puerta 6 r1, sugerencia)
+        pildora(im, "CORTINA PESADA", 300, 360, fondo=VERDE, tinta=(255, 255, 255), tam=40, marca="v")
     elif k == 18:       # "una cortina más pesada"
         pildora(im, "CORTINA PESADA", 540, 380, fondo=VERDE, tinta=(255, 255, 255), marca="v", s=pop(t_de(f) - tw("cortina", 27.5)))
 

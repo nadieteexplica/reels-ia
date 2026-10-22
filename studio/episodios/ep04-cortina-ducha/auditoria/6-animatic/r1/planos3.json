@@ -1,0 +1,20 @@
+{
+ "encargo": "planos3",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "P21 33.99–36.01: luz suave y cálida en la piel, espuma con volumen y sombra (sin quemar), paleta turquesa/blanco coherente con el resto; el fondo de cortina desenfocado es correcto pero algo pálido arriba a la izquierda"},
+  "animacion": {"nota": 8, "por_que": "la toma de susto se lee en una foto: giro de cabeza y hombros + boca que se abre entre 34.28 y 34.86 hasta la pose 'susto' de la ficha; después la cara queda fija 1,15 s (34.86–36.01) sin acción secundaria, sólo se mueve el agua (mov_mediana 3,93, quieto_max_s 0)"},
+  "claridad": {"nota": 8, "por_que": "en 'AHÍ SÍ ES / UN FANTASMA' se ve a Don Héctor asustado mirando la cortina a su izquierda: la imagen acompaña el chiste, pero la cortina sólo es una onda suave desenfocada que casi no cambia, así que la causa del susto se ve poco"},
+  "ritmo": {"nota": 8, "por_que": "plano de 2,1 s con cambio continuo (giro 33.99–34.86, chorro de agua, cambio de subtítulo en 34.86); el sostén final de 1,15 s funciona como remate y cierra en un encuadre que calza con el cuadro 0 para el loop"}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": false, "plano": 21, "segundo": "34.86", "que": "en 'FANTASMA' la cortina de la izquierda (x 0–500, y 250–1000) es una onda suave y desenfocada que casi no cambia entre 33.99 y 36.01: el remate prometido (la cortina pesada que igual se infla) no se ve, sólo la cara de susto", "arreglo": "en la misma cámara, justo en 'FANTASMA' (~34.9) que la cortina se infle hacia su hombro y aparezca la cara de fantasma marcada en la tela de los planos 3–4 (reusar ese desplazamiento), con un shake corto; cierra el chiste y el loop con el gancho"},
+  {"prioridad": 2, "bloqueante": false, "plano": 21, "segundo": "33.99", "que": "nada identifica esta cortina como 'esa' (la pesada): se ve con las mismas franjas anchas y ondas que la del cuadro 0, mientras la pesada en 27–30 s colgaba con pliegues rectos y la píldora verde. Material insuficiente para verificar si es el mismo material o el de la cortina pesada", "arreglo": "si es la cortina liviana, cambiarle el material por el de la pesada en esta escena; lo más barato: repetir la píldora verde '✓ CORTINA PESADA' arriba a la izquierda sobre la cortina (x 120–500, y 320–400, lejos de la cara) desde 'Y SI ESA' (plano 20) hasta ~34.3"},
+  {"prioridad": 3, "bloqueante": false, "plano": 21, "segundo": "35.14", "que": "de 34.86 a 36.01 la cara queda fija con la boca abierta, sin cejas arriba ni acción secundaria, y la toma de 34.28 parte sin anticipación", "arreglo": "agregar 3–4 cuadros de retroceso de cabeza antes del giro (~34.1) y en el sostén una sola acción secundaria: cejas que saltan arriba en ~35.1 y un escalofrío corto de hombros, o los ojos que van a la cortina y vuelven"}
+ ],
+ "eventos": [
+  {"id": "E30", "es_defecto": false, "por_que": "es la toma de susto: entre 34.14 y 34.34 cabeza y hombros giran hacia la cámara y la boca se abre (sigue suave en P21 de 33.99 a 34.86), más el resaltado del subtítulo que salta de AHÍ a SÍ; la espuma del pecho se mueve con el cuerpo y nada aparece ni desaparece"}
+ ],
+ "resumen": "Plano 21 sin bloqueantes: Don Héctor igual a la ficha, ojos en y≈740, subtítulos dentro de la zona y bien tildados (AHÍ, SÍ; FANTASMA en el mismo morado del gancho), y el encuadre calza con el cuadro 0. Lo que más subiría el remate es que la cortina se infle o muestre la cara de fantasma en 'FANTASMA' y que se note que es la cortina pesada."
+}
