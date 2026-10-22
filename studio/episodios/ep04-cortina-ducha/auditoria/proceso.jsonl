@@ -57,3 +57,5 @@
 {"tipo": "trabajo", "id": "puertas 6 r2 + 7 + 8 (4 revisores)", "estado": "fin", "nota": "6 r2 NO (1 bloqueante en el 17, promedio 7,88); 7 r1 APROBADO; 8 APROBADO 8,5; 7 r2 (17 simplificado) APROBADO", "n": 57, "ts": "2026-10-22T07:11:01-03:00"}
 {"tipo": "trabajo", "id": "cierre Ep. 4 (opción A)", "estado": "fin", "nota": "video aprobado por la puerta 7 r2 y enviado a Tomás con los textos; espera su OK para Metricool", "n": 58, "ts": "2026-10-22T07:11:01-03:00"}
 {"tipo": "trabajo", "id": "sesion chat Ep. 4", "estado": "fin", "nota": "~5 h activas (23:28–03:43 y 06:23–07:15); tope 4 h pasado por ~1 h, avisado a las 02:44 y 03:15", "n": 59, "ts": "2026-10-22T07:11:01-03:00"}
+{"tipo": "trabajo", "id": "release + Metricool Ep. 4", "estado": "inicio", "nota": "07:23 OK de Tomás: programar como se propuso (vie 23-oct IG 10:00, TikTok 10:00, YouTube 16:00)", "n": 60, "ts": "2026-10-22T07:24:08-03:00"}
+{"tipo": "trabajo", "id": "release + Metricool Ep. 4", "estado": "fin", "nota": "Release ep04 (URL OK, puerta 8); Metricool 403001164 IG / 403001266 TikTok / 403001408 YouTube, vie 23-oct 10:00/10:00/16:00", "n": 61, "ts": "2026-10-22T07:25:38-03:00"}
