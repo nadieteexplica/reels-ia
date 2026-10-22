@@ -1,0 +1,123 @@
+{
+ "etapa": "3-storyboard",
+ "ronda": 1,
+ "veredicto": "NO APROBADO",
+ "promedio": 7.75,
+ "notas": {
+  "foco": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Cada frase tiene su imagen y una idea por plano (6-8 calor/frío con píldoras de color, 10 arrastre, 11-12 remolino, 13-14 centro y BAJA PRESIÓN, 15 empuje, 18-19 cortina pesada); lo invisible se muestra con corte y flechas. El código de color se cruza en el 6 (chorro caliente naranjo) y la geometría del remolino es falsa (ver bloqueante).",
+   "de": "storyboard"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "21 planos en 36 s, ninguno de más de 2,5 s sin un cambio anotado (p. ej. 10: 0,6 / 1,0 s y 1,46 s hasta el corte), cortes secos en las palabras clave, escala que cambia antes de 12 s y 0 transiciones especiales. Le resta el 11 y el 12: misma cámara y escala, cortados entre sí, se ven como salto.",
+   "de": "storyboard"
+  },
+  "viabilidad": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "Respeta los topes (3 escenas, 3 a medida, 0 Kling, sin manos), pero las fichas no dicen qué tapa el cuerpo bajo el pecho en planos medios verticales (1, 2, 3, 16, 20, 21 y la silueta del 4), ni cómo se anima la cortina y el chorro (tela y agua no están en el kit) en un render partido en piezas.",
+   "de": "storyboard"
+  },
+  "gancho_visual": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Cuadro 0 con la acción en curso (cortina que avanza hacia él con los ojos cerrados), símbolo claro (cortina de franjas que se infla) y final en la misma cámara C0 con el chiste del fantasma. La imagen absurda (cara en la cortina) llega recién a los 3,2 s y la costura del loop cambia de cortina.",
+   "de": "storyboard"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B6",
+   "plano": 11,
+   "segundo": "15.52",
+   "que": "Los planos 9-15 y 19 muestran el remolino como una rueda vista de frente desde la punta de la tina (cortina de canto), girando entre el chorro y la cortina: eso pone su eje PARALELO a la cortina. El autor de la simulación, David Schmidt (UMass Amherst), escribe en Scientific American: 'The vortex rotates around an axis that is perpendicular to the shower curtain. It is a bit like a sideways dust devil.' Las fuentes del guion sólo dicen 'sideways/horizontal' y no respaldan la orientación elegida. El mecanismo queda dibujado mal justo en los planos que lo explican.",
+   "arreglo": "Cambiar sólo la cámara de E2 (misma escena): en el 9 terminar el movimiento en una vista desde adentro de la ducha (pared de azulejos cortada) mirando la cortina en 3/4, a 30-40° de su normal; armar la rueda en el plano paralelo a la cortina, al lado del chorro (que la arrastra hacia abajo por un costado), con su ojo y el anillo cian (13-14) pegados al punto donde la cortina se abomba, y las flechas naranjas del 15 entrando desde detrás de la cortina hacia ese ojo. Sumar Scientific American (Schmidt) a las fuentes del guion: https://www.scientificamerican.com/article/why-does-the-shower-curta/",
+   "de": "storyboard"
+  }
+ ],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "Las fichas ponen a Don Héctor en plano medio (M) con los ojos en y 380-760 de un cuadro de 1920 de alto, pero el cuerpo bajo el pecho no existe en el render: desde y≈1100 hasta el borde quedan ~800 px (visibles aunque estén bajo la interfaz) donde se vería un busto flotando sobre la tina. Lo mismo en 2, 3, 16, 20 y 21, y en el 4 la silueta oscura detrás de la cortina mostraría ese corte. Ninguna ficha dice qué tapa esa zona.",
+   "arreglo": "Escribir en cada ficha el tapado: cámara más alta mirando hacia abajo para que el poncho de espuma y el borde de la tina llenen del pecho al borde inferior, con vapor denso abajo; en el 4, franjas opacas en la parte baja de la cortina o la luz rasante sólo a la altura de la cabeza para que la silueta sea cabeza y hombros. Probarlo con prueba.py en el plano 1 antes de armar el resto.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "3.19",
+   "que": "La cortina se infla, se pega, marca una cara (4, 21), se suelta (5) y baja como telón (17) en las 3 escenas, y E2 suma chorro de agua y vapor. El kit no trae ni tela ni chorro (vfx.py sólo tiene vapor, humo, burbujas, llama, lágrimas) y el render se reparte en piezas en hasta 16 máquinas: una simulación de tela o de partículas sin semilla fija da resultados distintos por pieza y la cortina saltaría en los cortes de pieza (B2).",
+   "arreglo": "Anotar en las fichas que la cortina se anima con shape keys o lattice con llaves por tiempo (inflado 0-1 y la 'cara' como shape key esculpida una vez por cortina, liviana y pesada) y el chorro como gotas instanciadas con semilla fija o un cono con textura animada; nada de simulación física.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "El cuadro 0 (señor tranquilo y cortina inflándose atrás) tiene acción en curso pero no es absurdo ni pregunta: la imagen fuerte, la cara de fantasma en la cortina, llega a los 3,2 s. Además el loop empalma la cortina pesada del 21 (gruesa, pliegues hondos, sin franjas indicadas) con la liviana de franjas menta del cuadro 0: la costura cambia de cortina.",
+   "arreglo": "En el plano 1 marcar ya, tenue, la cara de bigote en la tela que avanza detrás de él (la misma shape key del 4 al 30-40 %): portada absurda en 0,0 s y empalme con el final del 21. Darle a la cortina pesada las mismas franjas menta, sólo más gruesa, para que el loop no salte.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "17.37",
+   "que": "El 11 y el 12 son la misma cámara y escala (G corte, vista de punta, push-in 6 % y luego 12 %): el corte entre ellos se ve como un salto de imagen, no como un cambio.",
+   "arreglo": "Unirlos en un solo plano continuo de 3,8 s con la flecha curva entrando en 17,37 (ese ya es el cambio), u orbitar la cámara 20-30° en el 12. Vale también con la cámara nueva del bloqueante.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "5.40",
+   "que": "El chorro caliente va naranjo, pero el código fijo del propio storyboard dice rojo = caliente y naranjo = aire de afuera que empuja (flechas del 15): el mismo color nombra dos cosas en el mismo corte.",
+   "arreglo": "Teñir el chorro y el vapor calientes de rojo (como la píldora ¿AIRE CALIENTE?) y dejar el naranjo sólo para el aire de afuera.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 21,
+   "segundo": "33.95",
+   "que": "La ficha pone el susto a 0,25 s y la cara a 0,45 s: salta antes de que aparezca lo que lo asusta y el chiste final pierde la causa.",
+   "arreglo": "Cara a 0,15-0,25 s y salto a 0,45 s, con la pose de susto sostenida 6-10 cuadros.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "5.40",
+   "que": "La píldora dice NO SÓLO ✕ y el subtítulo, que sale del guion, dice SOLO: la misma palabra con y sin tilde con un segundo de diferencia.",
+   "arreglo": "Escribir NO SOLO ✕, sin tilde, como el guion y la recomendación de la RAE.",
+   "de": "storyboard"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "plano 3 dura 0.65 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 5 dura 0.69 s (muy corto para leerse)",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false
+}

@@ -7,3 +7,5 @@
 {"tipo": "aviso", "que": "muestras 39714950831 falló al planificar (faltaba reparto.py en la escena del Ep. 4); arreglado y relanzado", "n": 7, "ts": "2026-10-22T00:08:16-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras 39715190183", "estado": "inicio", "nota": "relanzado con reparto.py", "n": 8, "ts": "2026-10-22T00:08:30-03:00"}
 {"tipo": "trabajo", "id": "render-planos muestras 39715190183", "estado": "fin", "nota": "completed success", "n": 9, "ts": "2026-10-22T00:13:07-03:00"}
+{"tipo": "trabajo", "id": "render-planos muestras 39716229832", "estado": "inicio", "nota": "muestras 2: todos los planos, remolino reorientado", "n": 10, "ts": "2026-10-22T00:20:00-03:00"}
+{"tipo": "trabajo", "id": "render-planos muestras 39716229832", "estado": "fin", "nota": "completed success", "n": 11, "ts": "2026-10-22T00:25:24-03:00"}

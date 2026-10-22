@@ -1,0 +1,119 @@
+{
+ "etapa": "3-storyboard",
+ "ronda": 2,
+ "veredicto": "APROBADO",
+ "promedio": 8.0,
+ "notas": {
+  "foco": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "cada frase tiene su imagen y una idea por plano: 9 abre la ducha de frente volviendo transparente la cortina, 10 aire ↓, 11-12 rueda paralela a la cortina, 13-14 un solo foco en el ojo, 15 empuje hacia el ojo; el 15 junta flechas, píldora y anillo, pero todos apuntan a la misma idea",
+   "de": "storyboard"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "21 planos en 36,05 s y ningún tramo pasa de ~1,5 s sin cambio (p. ej. 10: flecha a 14,06 y corte a 15,52; 20: se infla a 32,15 y mira a ~33,0); la escala cambia en menos de 12 s; 3 y 5 (0,65/0,69 s) son golpes de chiste que se leen; 11→12 y 13→14 siguen con la misma cámara",
+   "de": "storyboard"
+  },
+  "viabilidad": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "3 escenas (tope 6) y 3 a medida (justo en el tope), 0 Kling y sin manos; cortina, gotas, vapor y aire procedurales con semilla fija (nota v2 punto 3), así que las piezas no saltan; el riesgo que queda es el contacto cortina-espalda en 2 y 16 sin simulación, y eso lo pilla la prueba",
+   "de": "storyboard"
+  },
+  "gancho_visual": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "cuadro 0 con la acción en curso (cortina volando hacia él, que tiene los ojos cerrados y la espuma en punta), cara de fantasma a 3,19 s, la cortina de franjas menta como símbolo en las 3 escenas y el 21 vuelve a C0 con las mismas franjas para el loop",
+   "de": "storyboard"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "id": "A4",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "[A4 sin arreglar] El cuadro 0 (señor tranquilo y cortina inflándose atrás) tiene acción en curso pero no es absurdo ni pregunta: la imagen fuerte, la cara de fantasma en la cortina, llega a los 3,2 s. Además el loop empalma la cortina pesada del 21 (gruesa, pliegues hondos, sin franjas indicadas) con la liviana de franjas menta del cuadro 0: la costura cambia de cortina.",
+   "arreglo": "En el plano 1 marcar ya, tenue, la cara de bigote en la tela que avanza detrás de él (la misma shape key del 4 al 30-40 %): portada absurda en 0,0 s y empalme con el final del 21. Darle a la cortina pesada las mismas franjas menta, sólo más gruesa, para que el loop no salte.",
+   "de": "verificación",
+   "asignado": "storyboard"
+  },
+  {
+   "id": "A5",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 12,
+   "segundo": "17.37",
+   "que": "[A5 sin arreglar] El 11 y el 12 son la misma cámara y escala (G corte, vista de punta, push-in 6 % y luego 12 %): el corte entre ellos se ve como un salto de imagen, no como un cambio.",
+   "arreglo": "Unirlos en un solo plano continuo de 3,8 s con la flecha curva entrando en 17,37 (ese ya es el cambio), u orbitar la cámara 20-30° en el 12. Vale también con la cámara nueva del bloqueante.",
+   "de": "verificación",
+   "asignado": "storyboard"
+  },
+  {
+   "id": "A6",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "5.40",
+   "que": "[A6 sin arreglar] El chorro caliente va naranjo, pero el código fijo del propio storyboard dice rojo = caliente y naranjo = aire de afuera que empuja (flechas del 15): el mismo color nombra dos cosas en el mismo corte.",
+   "arreglo": "Teñir el chorro y el vapor calientes de rojo (como la píldora ¿AIRE CALIENTE?) y dejar el naranjo sólo para el aire de afuera.",
+   "de": "verificación",
+   "asignado": "storyboard"
+  }
+ ],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "las fichas 9-15 y 19 ahora miran de frente a través de la cortina transparente, la 11 pone la rueda paralela a la cortina con el eje de la pared a la cortina (perpendicular, como dice Schmidt) y Scientific American quedó en la verificación y en las fuentes del guion; ojo: el 'sentido horario' del 12 sólo calza con 'baja por el lado del chorro' si el chorro queda a la derecha de la rueda",
+   "de": "storyboard"
+  },
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "el Concepto fija para todos los planos de E1/E3 que se ve 'siempre de los hombros para arriba, tapado con espuma o detrás de la cortina', con el poncho de espuma de ficha.jpg y el cuerpo enmascarado bajo el pecho; falta comprobar en la prueba del plano 1 (ojos en y 380-700) que el poncho llegue al borde inferior",
+   "de": "storyboard"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "en la nota v2, punto 3: la cortina, las gotas, el vapor y el aire son procedurales en bano.py, con la forma calculada por cuadro y semilla fija, sin simulación",
+   "de": "storyboard"
+  },
+  {
+   "id": "A4",
+   "arreglado": false,
+   "por_que": "a medias: el loop quedó arreglado (la pesada lleva las mismas franjas menta, punto 5), pero el cuadro 0 sigue sin la cara tenue por decisión del editor (la ironía); como sugerencia no hecha, no cuenta como falla",
+   "de": "storyboard"
+  },
+  {
+   "id": "A5",
+   "arreglado": false,
+   "por_que": "11 y 12 siguen siendo 'G frente', con la misma cámara y push-in de 6 % y luego 10 %; el editor decidió no unirlos ni orbitar; no es bloqueante",
+   "de": "storyboard"
+  },
+  {
+   "id": "A6",
+   "arreglado": false,
+   "por_que": "la ficha 7 y el punto 4 dicen rojo, pero la ficha 6 (el plano marcado, 5,40) todavía dice 'chorro rojo-naranjo'; se arregla cambiando una palabra y no es bloqueante",
+   "de": "storyboard"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "plano 3 dura 0.65 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 5 dura 0.69 s (muy corto para leerse)",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false
+}

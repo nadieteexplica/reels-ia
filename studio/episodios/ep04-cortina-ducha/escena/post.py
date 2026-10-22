@@ -363,7 +363,8 @@ def procesar(f):
     im = cuadro(f, a, b)
     if im is None:
         return False
-    im = bloom(im, umbral=0.88, fuerza=0.25)
+    if k in (6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19):      # brillo sólo en el corte (el aire cian); en el baño quemaba
+        im = bloom(im, umbral=0.88, fuerza=0.25)
     graficos(im, f, k)
     subtitulos(im, f)
     im.save(os.path.join(dst, f"{f:05d}.png"), compress_level=1)

@@ -101,11 +101,11 @@ def mat_cortina(pesada=False):
     nt.links.new(sep.outputs["X"], mul.inputs[0])
     fr = nt.nodes.new("ShaderNodeMath"); fr.operation = "PINGPONG"; fr.inputs[1].default_value = 0.5
     nt.links.new(mul.outputs[0], fr.inputs[0])
-    st = nt.nodes.new("ShaderNodeMath"); st.operation = "GREATER_THAN"; st.inputs[1].default_value = 0.36
+    st = nt.nodes.new("ShaderNodeMath"); st.operation = "GREATER_THAN"; st.inputs[1].default_value = 0.30
     nt.links.new(fr.outputs[0], st.inputs[0])
     mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
-    mix.inputs["A"].default_value = (0.84, 0.91, 0.88, 1)
-    mix.inputs["B"].default_value = (0.16, 0.62, 0.54, 1)
+    mix.inputs["A"].default_value = (0.72, 0.86, 0.80, 1)
+    mix.inputs["B"].default_value = (0.10, 0.52, 0.46, 1)
     nt.links.new(st.outputs[0], mix.inputs["Factor"])
     b.inputs["Roughness"].default_value = 0.65 if pesada else 0.32
     if pesada:
@@ -364,9 +364,9 @@ def deformar_cortina(C, f, inflar=0.0, centro=(0.0, 1.05), radio=(0.55, 0.45), a
         r = np.hypot((x - cx) / 0.11, (z - cz) / 0.14)
         cabeza = np.clip(1 - r ** 2, 0, None) ** 0.5
         nariz = np.exp(-((x - cx) / 0.018) ** 2 - ((z - cz + 0.01) / 0.03) ** 2) * 0.35
-        ojos = -0.25 * (np.exp(-((x - cx - 0.035) / 0.02) ** 2 - ((z - cz - 0.035) / 0.016) ** 2)
-                        + np.exp(-((x - cx + 0.035) / 0.02) ** 2 - ((z - cz - 0.035) / 0.016) ** 2))
-        boca = -0.2 * np.exp(-((x - cx) / 0.035) ** 2 - ((z - cz + 0.06) / 0.012) ** 2)
+        ojos = -0.65 * (np.exp(-((x - cx - 0.036) / 0.022) ** 2 - ((z - cz - 0.035) / 0.02) ** 2)
+                        + np.exp(-((x - cx + 0.036) / 0.022) ** 2 - ((z - cz - 0.035) / 0.02) ** 2))
+        boca = -0.75 * np.exp(-((x - cx) / 0.026) ** 2 - ((z - cz + 0.065) / 0.032) ** 2)     # boca en "O" (¡uuuh!)
         relieve = empuje_cara * (cabeza + nariz + ojos + boca) * np.clip(r < 1.25, 0, 1) + empuje_cara * 0.35 * np.exp(-r ** 2 / 3)
     else:
         relieve = 0.0
@@ -413,7 +413,7 @@ def luces(sc):
         o.rotation_mode = "QUATERNION"
         o.rotation_quaternion = (Vector(tgt) - Vector(loc)).to_track_quat("-Z", "Y")
         return o
-    return {"techo": area("LuzTecho", (0, -0.1, 2.75), (0, 0, 1.0), 300, 1.4, (1.0, 0.90, 0.76)),
+    return {"techo": area("LuzTecho", (0, -0.1, 2.75), (0, 0, 1.0), 230, 1.4, (1.0, 0.90, 0.76)),
             "relleno": area("LuzRelleno", (0.4, -2.2, 1.7), (0, 0, 1.3), 140, 2.5, (0.85, 0.92, 1.0)),
             "contra": area("LuzContra", (-0.6, 1.2, 2.4), (0, 0, 1.4), 120, 0.8, (0.8, 0.95, 1.0))}
 
@@ -442,7 +442,7 @@ def sistema_agua(n_gotas=900, n_aire=700, n_vapor=40):
             "mat_gota": gota_m, "mat_aire": aire_m, "mat_vapor": vap_m, "n": (n_gotas, n_aire, n_vapor)}
 
 
-def gotas(A, t, caliente=1.0, x_lim=(-0.8, 0.3), densidad=1.0):
+def gotas(A, t, caliente=1.0, x_lim=(-0.8, 0.8), densidad=1.0):
     """Chorro de la ducha: gotas que salen del cabezal en cono y caen (cada una con su fase)."""
     n = A["n"][0]
     rng = np.random.default_rng(7)

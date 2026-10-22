@@ -123,7 +123,7 @@ def _espuma(rig):
         e.radius = 0.030 - 0.0022 * k
     ob = bpy.data.objects.new("Espuma", mb)
     bpy.context.scene.collection.objects.link(ob)
-    m = _mat("EspumaMat", (0.96, 0.97, 1.0), rough=0.35, sss=0.35)
+    m = _mat("EspumaMat", (0.84, 0.86, 0.88), rough=0.45, sss=0.25)
     b = m.node_tree.nodes["Principled BSDF"]
     nt = m.node_tree
     vor = nt.nodes.new("ShaderNodeTexVoronoi")

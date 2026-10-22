@@ -35,6 +35,7 @@ def TW(prefijo, desde=0.0):
 
 # ===================================== E1 · la ducha ======================================
 def _set_ducha(sc, pesada=False):
+    sc.view_settings.exposure = -0.3          # piel mojada, espuma y cortina claras: sin quemar (chequeo < 3 %)
     S = B.armar(sc, corte=False, cortina="pesada" if pesada else "liviana", pato_en=(0.45, 0.365, B.Z_BORDE))
     pj = PJ.cargar(sc, x=0.0, y=0.10, z=B.Z_PISO, rot_z=math.pi)
     A = B.sistema_agua(n_gotas=700, n_aire=1, n_vapor=30)
@@ -43,15 +44,22 @@ def _set_ducha(sc, pesada=False):
 
 def _luz_rasante(sc, S):
     """Afuera de la cortina: luz que pasa rasante por la tela para que se lea el relieve (la cara de fantasma)."""
-    S["luces"]["relleno"].data.energy = 50
-    S["luces"]["techo"].data.energy = 160
+    S["luces"]["relleno"].data.energy = 45
+    S["luces"]["techo"].data.energy = 70
     L = bpy.data.lights.new("Rasante", "AREA")
-    L.energy, L.size, L.color = 230, 0.4, (1.0, 0.92, 0.82)
+    L.energy, L.size, L.color = 260, 0.35, (1.0, 0.92, 0.82)
     o = bpy.data.objects.new("Rasante", L)
     sc.collection.objects.link(o)
-    o.location = (0.66, -0.80, 2.35)
+    o.location = (0.78, -0.58, 2.15)
     o.rotation_mode = "QUATERNION"
     o.rotation_quaternion = (Vector((0.0, -0.2, 1.62)) - o.location).to_track_quat("-Z", "Y")
+
+
+def _quitar(*obs):
+    """Saca una pared del render y de la escena evaluada (los rayos del chequeo de ojos tampoco la ven)."""
+    for o in obs:
+        o.hide_render = True
+        o.hide_viewport = True
 
 
 def _objetivos(pj):
@@ -65,7 +73,7 @@ E1_PEGA = 3.30                      # se le pega en la cara
 E1_SUELTA = TW("no") + 0.05        # "No.": la cortina se suelta
 
 
-def act_e1(S, pj, A, t, f, fastidio=False):
+def act_e1(S, pj, A, t, f, fastidio=False, afuera=False):
     """Actuación de E1 en el tiempo de escena t."""
     rig = pj["rig"]
     # giro del cuerpo (se da vuelta hacia la cortina)
@@ -123,19 +131,20 @@ def act_e1(S, pj, A, t, f, fastidio=False):
     else:
         pato.location = (0.45, 0.365, B.Z_BORDE)
         pato.rotation_euler = (0, 0, math.radians(180 + 10 * math.sin(t * 3)))
-    B.gotas(A, t, caliente=0.6)
-    B.vapor(A, t, caliente=0.5)
+    B.gotas(A, t, caliente=0.6, densidad=0.25 if afuera else 1.0)
+    B.vapor(A, t, caliente=0.0 if afuera else 0.5)
 
 
 def _e1(sc, a, b, plano):
     S, pj, A = _set_ducha(sc)
     cam = E.camara(sc, lens=38)
     fondo, der = S["paredes"][0], S["paredes"][2]
+    # las paredes que quedan entre la cámara y el personaje se sacan del render (hide_render: así tampoco tapan
+    # los rayos del chequeo de ojos, que no respetan visible_camera)
     if plano in (1, 3):
-        fondo.visible_camera = False          # cámara "dentro" de la pared del fondo: mira la cara
-        der.visible_camera = False
+        _quitar(fondo, der)                   # cámara "dentro" de la pared del fondo: mira la cara
     if plano in (2, 16):
-        der.visible_camera = False            # cámara en la punta de la tina: de perfil
+        _quitar(der)                          # cámara en la punta de la tina: de perfil
     if plano in (4, 5):
         _luz_rasante(sc, S)
     k0 = T0(plano)
@@ -145,7 +154,7 @@ def _e1(sc, a, b, plano):
         tl = t
         if plano == 16:                       # el mismo golpe de E1, ahora "hacia ti"
             tl = (t - T0(16)) + (E1_TOQUE - 0.55)
-        act_e1(S, pj, A, tl, f, fastidio=(plano == 16))
+        act_e1(S, pj, A, tl, f, fastidio=(plano == 16), afuera=plano in (4, 5))
         x = lin(f, a, b)
         if plano == 1:       # C0: la cara (tranquilo) y la cortina que se le viene por detrás
             E.empujar(cam, f, a, b, (0.66, 1.32, 1.86), (0.02, -0.04, 1.60), cuanto=0.08, lens=34)
@@ -324,8 +333,7 @@ def _e3(sc, a, b, plano):
     if plano in (17, 18, 21):
         _luz_rasante(sc, S)
     if plano in (20, 21):
-        fondo.visible_camera = False
-        S["paredes"][2].visible_camera = False
+        _quitar(fondo, S["paredes"][2])
 
     def act(f):
         t = (f - 1) / FPS
