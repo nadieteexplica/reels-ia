@@ -9,4 +9,5 @@
 | 6-animatic | r1 | NO APROBADO | 3 | 27 |
 | 6-animatic | r2 | NO APROBADO | 1 | 5 |
 | 7-final | r1 | APROBADO | 0 | 0 |
+| 7-final | r2 | APROBADO | 0 | 0 |
 | 8-paquete | r1 | APROBADO | 0 | 4 |

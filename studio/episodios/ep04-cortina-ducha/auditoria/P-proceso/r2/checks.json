@@ -1,0 +1,225 @@
+{
+ "fallas": [
+  {
+   "que": "'sesion chat Ep. 4' corrió 462 min y nadie lo revisó cada 15 min",
+   "evidencia": "23:29–07:11",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos final 39722863780' corrió 132 min y nadie lo revisó cada 15 min",
+   "evidencia": "03:18–03:43",
+   "bloqueante": false
+  },
+  {
+   "que": "'puerta 6 r1 (4 revisores)' corrió 318 min y nadie lo revisó cada 15 min",
+   "evidencia": "01:49–07:07",
+   "bloqueante": false
+  },
+  {
+   "que": "'cierre Ep. 4 (opción A)' corrió 47 min y nadie lo revisó cada 15 min",
+   "evidencia": "06:24–07:11",
+   "bloqueante": false
+  },
+  {
+   "que": "'puertas 6 r2 + 7 + 8 (4 revisores)' corrió 43 min y nadie lo revisó cada 15 min",
+   "evidencia": "06:28–07:11",
+   "bloqueante": false
+  },
+  {
+   "que": "el video lleva 5.0 h activas (tope 4 h; huecos de más de 1 h sin anotar no cuentan)",
+   "evidencia": "",
+   "bloqueante": false
+  }
+ ],
+ "avisos": [
+  {
+   "que": "'render-planos 39722811570' terminó en cancelled a las 01:31 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "trabajos": [
+   {
+    "id": "render-planos 39756380402",
+    "desde": "22-10 06:33",
+    "hasta": "22-10 07:05",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39726712487",
+    "desde": "22-10 02:12",
+    "hasta": "22-10 03:43",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39722863780",
+    "desde": "22-10 01:31",
+    "hasta": "22-10 03:33",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39722811570",
+    "desde": "22-10 01:31",
+    "hasta": "22-10 01:31",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render-planos 39718733164",
+    "desde": "22-10 00:47",
+    "hasta": "22-10 01:46",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39717599087",
+    "desde": "22-10 00:34",
+    "hasta": "22-10 00:41",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render-planos 39717046800",
+    "desde": "22-10 00:28",
+    "hasta": "22-10 00:34",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render-planos 39716229832",
+    "desde": "22-10 00:19",
+    "hasta": "22-10 00:25",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39715190183",
+    "desde": "22-10 00:08",
+    "hasta": "22-10 00:12",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 39714950831",
+    "desde": "22-10 00:05",
+    "hasta": "22-10 00:07",
+    "estado": "failure"
+   },
+   {
+    "id": "asr 39712921960",
+    "desde": "21-10 23:43",
+    "hasta": "21-10 23:44",
+    "estado": "success"
+   },
+   {
+    "id": "voz 39712889502",
+    "desde": "21-10 23:42",
+    "hasta": "21-10 23:43",
+    "estado": "success"
+   },
+   {
+    "id": "sesion chat Ep. 4",
+    "desde": "21-10 23:29",
+    "hasta": "22-10 07:11",
+    "estado": "success"
+   },
+   {
+    "id": "estudio previo",
+    "desde": "21-10 23:35",
+    "hasta": "21-10 23:35",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos muestras 39714950831",
+    "desde": "22-10 00:05",
+    "hasta": "22-10 00:07",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos muestras 39715190183",
+    "desde": "22-10 00:08",
+    "hasta": "22-10 00:13",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos muestras 39716229832",
+    "desde": "22-10 00:20",
+    "hasta": "22-10 00:25",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos animatic 39717046800",
+    "desde": "22-10 00:28",
+    "hasta": "22-10 00:35",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos animatic 39717599087",
+    "desde": "22-10 00:34",
+    "hasta": "22-10 00:42",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos animatic 39718733164",
+    "desde": "22-10 00:47",
+    "hasta": "22-10 01:47",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos final 39722811570",
+    "desde": "22-10 01:31",
+    "hasta": "22-10 01:31",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos final 39722863780",
+    "desde": "22-10 01:31",
+    "hasta": "22-10 03:43",
+    "estado": "success"
+   },
+   {
+    "id": "puerta 6 r1 (4 revisores)",
+    "desde": "22-10 01:49",
+    "hasta": "22-10 07:07",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos parche 39726712487",
+    "desde": "22-10 02:12",
+    "hasta": "22-10 03:43",
+    "estado": "success"
+   },
+   {
+    "id": "cierre Ep. 4 (opción A)",
+    "desde": "22-10 06:24",
+    "hasta": "22-10 07:11",
+    "estado": "success"
+   },
+   {
+    "id": "puertas 6 r2 + 7 + 8 (4 revisores)",
+    "desde": "22-10 06:28",
+    "hasta": "22-10 07:11",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos parche17 39756380402",
+    "desde": "22-10 06:33",
+    "hasta": "22-10 07:07",
+    "estado": "success"
+   }
+  ],
+  "maquinas_pico": 15,
+  "gasto": {
+   "eleven": 560.0
+  },
+  "rondas": {
+   "4-cuadros": 2,
+   "1-guion": 1,
+   "6-animatic": 2,
+   "P-proceso": 1,
+   "3-storyboard": 2,
+   "7-final": 2,
+   "8-paquete": 1,
+   "2-voz": 1
+  },
+  "revisores_lanzados": 15,
+  "imagenes_a_revisores": 205,
+  "horas_bitacora": 7.7,
+  "horas_activas": 5.0,
+  "kling_unidades_restantes": 54
+ }
+}
