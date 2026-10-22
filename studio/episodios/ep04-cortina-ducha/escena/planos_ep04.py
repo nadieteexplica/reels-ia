@@ -50,7 +50,7 @@ def _luz_rasante(sc, S):
     L.energy, L.size, L.color = 260, 0.35, (1.0, 0.92, 0.82)
     o = bpy.data.objects.new("Rasante", L)
     sc.collection.objects.link(o)
-    o.location = (0.78, -0.58, 2.15)
+    o.location = (0.10, -0.62, 2.30)
     o.rotation_mode = "QUATERNION"
     o.rotation_quaternion = (Vector((0.0, -0.2, 1.62)) - o.location).to_track_quat("-Z", "Y")
 
@@ -101,8 +101,8 @@ def act_e1(S, pj, A, t, f, fastidio=False, afuera=False):
             torso=(torso_x + 10 * pega_c, 0, 0), hombros=hombros, parpadeo=parp)
     # cortina: ya viene en camino en el cuadro 0, le toca la espalda, después se le pega en la cara y se suelta
     if t < E1_GIRO[0]:
-        inf = 0.26 + 0.22 * sale(clamp(t / E1_TOQUE))
-        centro, radio = (0.12, 1.40), (0.50, 0.50)
+        inf = 0.36 + 0.14 * sale(clamp(t / E1_TOQUE))
+        centro, radio = (0.18, 1.42), (0.42, 0.48)
     elif t < E1_SUELTA:
         x = sale(clamp((t - E1_GIRO[0]) / (E1_PEGA - E1_GIRO[0])))
         inf = 0.48 + 0.20 * x
@@ -147,14 +147,14 @@ def _e1(sc, a, b, plano):
         _quitar(der)                          # cámara en la punta de la tina: de perfil
     if plano in (4, 5):
         _luz_rasante(sc, S)
-        sc.view_settings.exposure = -1.3      # afuera: la cortina clara llena el cuadro
+        sc.view_settings.exposure = -1.65     # afuera: la cortina clara llena el cuadro
     k0 = T0(plano)
 
     def act(f):
         t = (f - 1) / FPS
         tl = t
         if plano == 16:                       # el mismo golpe de E1, ahora "hacia ti"
-            tl = (t - T0(16)) + (E1_TOQUE - 0.55)
+            tl = min((t - T0(16)) + (E1_TOQUE - 0.9), E1_GIRO[0] - 0.05)     # no entra al giro de E1
         act_e1(S, pj, A, tl, f, fastidio=(plano == 16), afuera=plano in (4, 5))
         x = lin(f, a, b)
         if plano == 1:       # C0: la cara (tranquilo) y la cortina que se le viene por detrás
@@ -173,11 +173,11 @@ def _e1(sc, a, b, plano):
 
 
 # ===================================== E2 · la ducha por dentro (corte) ======================================
-CENTRO = (-0.30, 1.12)          # centro del remolino (x, z): su eje va de la pared a la cortina (y)
+CENTRO = (-0.20, 1.22)          # centro del remolino (x, z): su eje va de la pared a la cortina (y)
 
 
 def _set_corte(sc, pesada=False):
-    sc.view_settings.exposure = -1.3          # la tina blanca y los azulejos claros: sin lavar (chequeo de la puerta 4)
+    sc.view_settings.exposure = -1.55         # la tina blanca y los azulejos claros: sin lavar (chequeo de la puerta 4)
     S = B.armar(sc, corte=True, cortina="pesada" if pesada else "liviana")
     A = B.sistema_agua(n_gotas=900, n_aire=700, n_vapor=40)
     # brillo del centro (baja presión): esfera cian que aparece en el plano 13
@@ -207,7 +207,7 @@ def act_e2(S, A, c, t, f, pesada=False):
         fuerza = 0.35 * suave(clamp((t - t_arr) / 0.8)) + 0.65 * suave(clamp((t - t_arma) / 1.0))
     if t < t_arr - 0.05 and not pesada:
         vis = 0.0
-    B.remolino(A, t, fuerza=max(fuerza, 0.05), centro=CENTRO, visible=vis)
+    B.remolino(A, t, fuerza=max(fuerza, 0.05), centro=CENTRO, visible=vis, rmax=0.32)
     # brillo del centro (baja presión)
     t_c = TW("centro")
     a_c = 0.0 if pesada else suave(clamp((t - t_c) / 0.5)) * (1 - suave(clamp((t - TW("y", 22.0)) / 0.6)) * 0.6)
@@ -276,7 +276,7 @@ def _e2(sc, a, b, plano):
                 "cortina_alta": E.pantalla(sc, cam, (xc, B.Y_CORT + 0.12, zc + 0.12)),
                 "afuera": E.pantalla(sc, cam, (xc + 0.05, B.Y_CORT - 0.55, zc - 0.12)),
                 "afuera_alta": E.pantalla(sc, cam, (xc + 0.05, B.Y_CORT - 0.55, zc + 0.14)),
-                "radio_px": abs(E.pantalla(sc, cam, (xc, -0.05, zc + 0.38))[1] - E.pantalla(sc, cam, (xc, -0.05, zc))[1])}
+                "radio_px": abs(E.pantalla(sc, cam, (xc, -0.05, zc + 0.32))[1] - E.pantalla(sc, cam, (xc, -0.05, zc))[1])}
         return info
     return {"actualizar": act}
 
@@ -300,7 +300,7 @@ def act_e3(S, pj, A, t, f):
         expr["duda"] = sospecha
         expr["alivio"] = tranquilo * (1 - sospecha)
     hombros = min(1.0, resorte(t - (E3_FANT + 0.25), frec=2.6, amort=5.0)) if t > E3_FANT + 0.25 else 0.0
-    cab_x = -10 * tranquilo + 5 * susto + 1.5 * math.sin(t * 2.0)
+    cab_x = -10 * tranquilo - 9 * susto + 1.5 * math.sin(t * 2.0)
     cab_y = 12 * sospecha * (1 - susto) + 3 * math.sin(t * 1.1) * tranquilo
     PJ.pose(pj, f, expr=expr, cabeza=(cab_x, cab_y, 2 * math.sin(t * 0.8)), torso=(-5 * susto, 0, 0), hombros=hombros,
             parpadeo=PJ.parpadeo(f, fase=11) if susto > 0.5 else 0.0)
@@ -310,7 +310,7 @@ def act_e3(S, pj, A, t, f):
     bajar = sale(clamp((t - E3_BAJA[0]) / (E3_BAJA[1] - E3_BAJA[0])))
     infla = suave(clamp((t - E3_INFLA) / 1.6))
     cara = suave(clamp((t - (E3_FANT - 0.35)) / 0.45))
-    B.deformar_cortina(C, f, inflar=0.03 + 0.16 * infla + 0.08 * cara, centro=(0.12, 1.50), radio=(0.4, 0.5), aleteo=0.4 + 0.6 * infla,
+    B.deformar_cortina(C, f, inflar=0.03 + 0.20 * infla + 0.14 * cara, centro=(0.14, 1.48), radio=(0.4, 0.5), aleteo=0.4 + 0.6 * infla,
                        cara=(0.12, 1.62), empuje_cara=0.10 * cara, cara_dentro=False, tope_y=-0.05, cara_escala=1.6)
     if bajar < 1:
         me = C["ob"].data

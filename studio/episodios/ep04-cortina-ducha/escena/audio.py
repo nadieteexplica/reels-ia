@@ -226,7 +226,7 @@ add(fx, whoosh(0.8, False), W("arrastra"), 0.5)                  # el aire baja 
 add(fx, zumbido_giro(W("en", 19.0) - W("arma") + 0.4), W("arma"), 1.0)   # el remolino gira
 add(fx, wub(), W("presión") - 0.05, 0.9)                         # baja presión
 add(fx, whoosh(0.7, True), W("afuera") - 0.2, 0.7)               # el aire de afuera empuja
-add(fx, plastico(), T(16) + 0.55, 1.0)                           # "hacia ti": otro golpe
+add(fx, plastico(), T(16) + 0.9, 1.0)                            # "hacia ti": otro golpe
 add(fx, whoosh(0.5, False), T(17, 0.1), 0.6)                     # baja la cortina pesada
 add(fx, thud(), 27.35, 1.0)
 add(fx, ding(1568, 0.8), W("pesada"), 0.5)                       # píldora CORTINA PESADA ✓

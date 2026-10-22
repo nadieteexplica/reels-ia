@@ -203,7 +203,7 @@ def cargar(sc, x=0.0, y=0.0, z=0.0, rot_z=0.0):
     tex = nt.nodes["Image Texture"]
     hsv = nt.nodes.new("ShaderNodeHueSaturation")
     hsv.inputs["Hue"].default_value = 0.49
-    hsv.inputs["Saturation"].default_value = 1.35
+    hsv.inputs["Saturation"].default_value = 1.10
     hsv.inputs["Value"].default_value = 0.72
     nt.links.new(tex.outputs["Color"], hsv.inputs["Color"])
     nt.links.new(hsv.outputs["Color"], b.inputs["Base Color"])
@@ -232,7 +232,7 @@ def _rot(pb, nombre, x=0.0, y=0.0, z=0.0):
 EXPR = {
     "neutro": {},
     "susto": {"eye-left-opened-up": 1.0, "eye-right-opened-up": 1.0, "eyebrows-left-up": 1.0, "eyebrows-right-up": 1.0,
-              "eyebrows-left-inner-up": 0.6, "eyebrows-right-inner-up": 0.6, "mouth-open": 0.95, "mouth-retraction": 0.4,
+              "eyebrows-left-inner-up": 0.8, "eyebrows-right-inner-up": 0.8, "mouth-open": 1.0, "mouth-retraction": 0.4,
               "neck-platysma": 0.7, "nose-left-dilatation": 0.5, "nose-right-dilatation": 0.5},
     "duda": {"eyebrows-left-up": 0.8, "eyebrows-right-down": 0.5, "mouth-pursing": 0.4, "eye-right-slit": 0.3},
     "alivio": {"eye-left-closure": 0.55, "eye-right-closure": 0.55, "mouth-corner-puller": 0.7, "eyebrows-left-inner-up": 0.3,

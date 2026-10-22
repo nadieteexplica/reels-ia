@@ -305,7 +305,7 @@ def graficos(im, f, k):
     if k == 6:          # "tampoco es solo el aire caliente"
         pildora(im, "¿AIRE CALIENTE?", 540, 380, fondo=ROJO, tinta=(255, 255, 255), s=pop(t_de(f) - tw("aire", 6.0) + 0.05))
         if t_de(f) > tw("caliente", 6.5) + 0.15:
-            pildora(im, "NO SÓLO", 540, 500, fondo=(28, 30, 36), tinta=(255, 255, 255), tam=46, marca="x",
+            pildora(im, "NO SOLO", 540, 500, fondo=(28, 30, 36), tinta=(255, 255, 255), tam=46, marca="x",
                     s=pop(t_de(f) - tw("caliente", 6.5) - 0.15))
     elif k == 7:        # "con agua caliente pasa más fuerte"
         pildora(im, "AGUA CALIENTE", 540, 380, fondo=ROJO, tinta=(255, 255, 255), s=pop(t_de(f) - tw("agua", 7.5)))
@@ -365,7 +365,7 @@ def procesar(f):
         return False
     if k in (6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19):      # brillo sólo en el corte (el aire cian); en el baño quemaba
         im = bloom(im, umbral=0.88, fuerza=0.25)
-    im = ImageEnhance.Color(im).enhance(1.22)                 # gradación: baño pastel sin verse lavado
+    im = ImageEnhance.Color(im).enhance(1.16)                 # gradación: baño pastel sin verse lavado
     graficos(im, f, k)
     subtitulos(im, f)
     im.save(os.path.join(dst, f"{f:05d}.png"), compress_level=1)
