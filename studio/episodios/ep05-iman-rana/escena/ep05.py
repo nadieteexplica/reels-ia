@@ -631,15 +631,15 @@ def mat_cable(nombre="cable", color=(0.028, 0.027, 0.026)):
     nz = _ruido(nt, escala=8, detalle=6)
     geo = nt.nodes.new("ShaderNodeNewGeometry")
     sep = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(geo.outputs["Normal"], sep.inputs[0])
-    polvo = _mapa(nt, sep.outputs["Z"], 0.0, 0.55); polvo.inputs["From Min"].default_value = 0.3
+    polvo = _mapa(nt, sep.outputs["Z"], 0.0, 0.25); polvo.inputs["From Min"].default_value = 0.3
     mul = nt.nodes.new("ShaderNodeMath"); mul.operation = "MULTIPLY"
     nt.links.new(polvo.outputs[0], mul.inputs[0]); nt.links.new(nz.outputs["Fac"], mul.inputs[1])
     mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
     nt.links.new(mul.outputs[0], mix.inputs[0])
     mix.inputs[6].default_value = (*color, 1); mix.inputs[7].default_value = (0.55, 0.5, 0.46, 1)
     nt.links.new(mix.outputs[2], b.inputs["Base Color"])
-    b.inputs["Roughness"].default_value = 0.85
-    b.inputs["Specular IOR Level"].default_value = 0.25
+    b.inputs["Roughness"].default_value = 1.0
+    b.inputs["Specular IOR Level"].default_value = 0.0      # a ras del suelo y de lejos reflejaba el cielo: se veía como una aleta gris
     return m
 
 
@@ -694,9 +694,9 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
         lejos.normalize()
         p2 = Vector((x, y, 0)) + out * 2.0
         pts = [(x, y, zc), (x + out.x * 0.5, y + out.y * 0.5, zc - 0.2), (x + out.x * 1.2, y + out.y * 1.2, 0.35),
-               (p2.x, p2.y, 0.09), tuple(p2 + lejos * 12 + Vector((0.22 * i, 0, 0.09))), tuple(p2 + lejos * 60 + Vector((0.22 * i, 0, 0.09))),
-               tuple(p2 + lejos * 400 + Vector((0.22 * i, 0, 0.09)))]
-        manguera(sc, f"G_cable{i}", pts, 0.085, goma)
+               (p2.x, p2.y, 0.04), tuple(p2 + lejos * 12 + Vector((0.12 * i, 0, 0.03))), tuple(p2 + lejos * 60 + Vector((0.12 * i, 0, 0.03))),
+               tuple(p2 + lejos * 400 + Vector((0.12 * i, 0, 0.03)))]
+        manguera(sc, f"G_cable{i}", pts, 0.06, goma)
         cilindro(sc, f"G_conector{i}", 0.13, 0.25, (x, y, zc - 0.12), verts=32, mat=conector, bisel=0.01).rotation_euler = (0, math.radians(90), a)
     return z0 + alto
 

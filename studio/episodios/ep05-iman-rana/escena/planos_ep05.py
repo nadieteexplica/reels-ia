@@ -40,12 +40,14 @@ BOCA = Z0 + 1.25 + 0.025
 RANA_Z = BOCA + 0.045
 LARGO_RANA = 0.022
 ROT0 = (math.radians(6), math.radians(-6), math.radians(78))     # 3/4 hacia cámara: se ve un ojo (puerta 4 r1)
+ALTO_CAM = 0.075                                                  # cámara 7,5 cm sobre la rana: de fondo, el salar a contraluz (azul)
 R_CERCA = 0.22                                                   # la rana ocupa ~la mitad del ancho (cuadro A v2)
 CABEZA = Vector((-0.008, -0.004, 0.002))                         # foco en la cabeza (el ojo), no en el centro
 
 
 def armar_E1(sc, fresa=False):
     E.cielo_atardecer(sc, elev=2.5, rot=10, fuerza=0.35, sol=3.5)
+    sc.view_settings.exposure = -0.2
     E.salar(sc)
     E.cerros(sc)
     E.plataforma(sc)
@@ -66,7 +68,7 @@ def armar_E1(sc, fresa=False):
         fr = fresa_obj(sc)
         fr.location = (0, 0, RANA_Z)
     E.luz_area(sc, "Rebote", (-0.22, -0.32, BOCA + 0.12), (0, 0, RANA_Z), 3.5, (1.0, 0.88, 0.78), 0.3)
-    cam = E.camara(sc, (0.021, -R_CERCA, RANA_Z + 0.005), (0, 0, RANA_Z), lente=100, fstop=8.0)
+    cam = E.camara(sc, (0.021, -R_CERCA, RANA_Z + ALTO_CAM), (0, 0, RANA_Z), lente=100, fstop=8.0)
     return {"rana": rana, "tubo": tubo, "fresa": fr, "cam": cam}
 
 
@@ -112,7 +114,7 @@ def p_orbita(sc, a, b, ang0, ang1, pieza_inicio_cuadro0=False):
         x = suave(lin(f, a, b - 1))
         ang = ang0 + (ang1 - ang0) * x
         rana_flota(rana, f, giro=4 * math.sin((f - 1) / 30 * 0.7))
-        p = orbita(c, R_CERCA, ang, 0.005)
+        p = orbita(c, R_CERCA, ang, ALTO_CAM)
         mirar(cam, p, c + Vector((0, 0, -0.008)), foco=c + CABEZA)      # la rana queda en y ~650 (lejos de los subtítulos)
         return {"rana": pantalla(sc, cam, rana.location)}
     return {"actualizar": act}
@@ -135,7 +137,7 @@ def p2(sc, a, b):
     def act(f):
         x = suave(lin(f, a, b - 1))
         rana_flota(rana, f)
-        p0 = orbita(c, R_CERCA, 20, 0.005)
+        p0 = orbita(c, R_CERCA, 20, ALTO_CAM)
         p1_ = Vector((0.03, -0.11, RANA_Z + 0.30))
         mirar(cam, p0.lerp(p1_, x), c + Vector((0, 0, -0.008 * (1 - x))), lente=100 - 25 * x, foco=c + CABEZA * (1 - x))
         return {"rana": pantalla(sc, cam, rana.location)}
@@ -499,7 +501,7 @@ def p11(sc, a, b):
 # ===================================== E4 / E5 · el imán gigante ======================================
 PLANTA = Vector((-1150, 2080, 0))
 PETE_E4 = Vector((-3.4, -1.6, 0.0))
-PETE_GIRO = -28            # Pete de 3/4 hacia la cámara alta del cuadro B v2
+PETE_GIRO = -23            # Pete de 3/4 hacia la cámara alta del cuadro B v2
 
 
 def armar_E4(sc):
@@ -594,7 +596,7 @@ def p13(sc, a, b):
         estado_iman(S, t, lambda o: lleg.get(round(o["z0"], 2), t1) if o in cuerpo else 999)
         pose_pete(sc, P, f, cabeza=(-25, 0))
         x = suave(lin(f, a, b - 1))
-        p = orbita(Vector((0, 0, 0)), 18.5, 18 + 14 * x, 2.6)
+        p = orbita(Vector((0, 0, 0)), 18.5, -14 + 12 * x, 2.6)     # de espaldas a la central: el vapor no sale "del imán" (puerta 4 r1)
         mirar(cam, p, Vector((0, 0, 2.2)), lente=35, foco=Vector((0, 0, 2.0)))
         return {}
     return {"actualizar": act}
@@ -658,16 +660,16 @@ def p16(sc, a, b):
     if P["arm"].type == "ARMATURE":
         base = P["arm"].rotation_euler.copy()
         P["arm"].rotation_euler = (base.x + math.radians(4), base.y + math.radians(-3), base.z + math.radians(PETE_GIRO))
-    az = math.radians(28)
+    az = math.radians(33)
 
     def act(f):
         x = suave(lin(f, a, b - 1))
         z = boca - 0.9 + 1.7 * sale(lin(f, a, b - 8))
         P["arm"].location = (0.0, 0.0, z + 0.03 * math.sin(f / 30 * 2.0))
         pose_pete(sc, P, f, cabeza=(-8, 0), cuadro_anim=20)
-        d = 16.5 - 1.5 * x
-        pos = Vector((math.sin(az) * d, -math.cos(az) * d, 6.6))
-        mirar(cam, pos, Vector((0, 0, 4.7)), lente=50, foco=Vector((0, 0, boca + 1.7)))
+        d = 13.5 - 1.5 * x
+        pos = Vector((math.sin(az) * d, -math.cos(az) * d, 4.8))
+        mirar(cam, pos, Vector((0, 0, 4.3)), lente=35, foco=Vector((0, 0, boca + 1.7)))
         cam.data.dof.aperture_fstop = 8
         return {}
     return {"actualizar": act}

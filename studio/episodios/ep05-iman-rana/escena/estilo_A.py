@@ -28,7 +28,8 @@ E.gotitas(sc, rana, 10, (0.00012, 0.00025))          # antes del tubo (si no, la
 tubo = E.tubo(sc, "Tubo_acrilico", 0.0158, 0.0148, 0.11, (0, 0, BOCA - 0.01), verts=96, mat=E.mat_acrilico(), bisel=0.0004)
 objetivo = rana.location.copy()
 DIST = float(os.environ.get("DIST", 0.22))
-pos = Vector((0.035 * DIST / 0.36, -DIST, BOCA + 0.05))
+pos = Vector((0.035 * DIST / 0.36, -DIST, BOCA + float(os.environ.get("CAM_DZ", 0.12))))   # un poco desde arriba: de fondo, el salar a contraluz (no el horizonte quemado)
+sc.view_settings.exposure = float(os.environ.get("EXPO", -0.2))
 # relleno suave desde el lado de la cámara (como un rebotador) para que se lea la cara con el sol detrás
 E.luz_area(sc, "Rebote", (-0.22, -0.32, BOCA + 0.12), objetivo, 3.5, (1.0, 0.88, 0.78), 0.3)
 foco = objetivo + Vector((float(os.environ.get("FOCO_X", -0.008)), -0.004, 0.002))      # foco en la cabeza (el ojo), no en el centro
