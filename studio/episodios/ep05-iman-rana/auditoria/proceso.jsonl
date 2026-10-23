@@ -26,3 +26,6 @@
 {"tipo": "trabajo", "id": "auditor 1-guion v2", "estado": "fin", "n": 26, "ts": "2026-10-23T00:35:29-03:00"}
 {"tipo": "trabajo", "id": "voz 0010", "estado": "inicio", "n": 27, "ts": "2026-10-23T00:35:52-03:00"}
 {"tipo": "gasto", "servicio": "eleven", "monto": 626.0, "nota": "toma 1 del Ep. 5 (626 caracteres)", "n": 28, "ts": "2026-10-23T00:35:52-03:00"}
+{"tipo": "trabajo", "id": "voz 0010", "estado": "fin", "n": 29, "ts": "2026-10-23T00:39:47-03:00"}
+{"tipo": "trabajo", "id": "estilos exterior A,B 39896186814", "estado": "inicio", "n": 30, "ts": "2026-10-23T00:39:48-03:00"}
+{"tipo": "aviso", "que": "el contenedor se reinició: se cortaron los vigilantes de la sesión y de los renders; se relanzan", "n": 31, "ts": "2026-10-23T00:41:10-03:00"}
