@@ -15,7 +15,7 @@ E.iman_lab(sc)
 R = 1.25 + 0.025                      # boca del hueco
 rana = E.rana(sc, 0.085)
 rana.location = (0, 0, R + 0.075)
-rana.rotation_euler = (math.radians(-8), math.radians(-14), math.radians(-38))
+rana.rotation_euler = (math.radians(6), math.radians(-6), math.radians(48))
 bpy.context.view_layer.update()
 E.gotitas(sc, rana, 14, (0.0004, 0.0009))
 # luz: principal cálida y grande arriba a la izquierda (sombra suave de la rana sobre la tapa: se ve que flota),
@@ -24,7 +24,7 @@ E.luz_area(sc, "Principal", (-0.75, -0.55, 1.75), (0, 0, R + 0.075), 160, (1.0, 
 E.luz_area(sc, "Contra", (0.5, 0.7, 1.5), (0, 0, R + 0.07), 70, (0.55, 0.78, 1.0), 0.25, spread=40)
 E.luz_area(sc, "Relleno", (0.4, -1.4, 1.1), (0, 0, R + 0.07), 5, (0.8, 0.9, 1.0), 1.5)
 objetivo = Vector((0.0, 0.0, R + 0.055))
-pos = Vector((0.08, -0.40, R + 0.075))
+pos = Vector((0.05, -0.31, R + 0.2))
 E.camara(sc, pos, objetivo, lente=42, fstop=2.0, foco=(rana.location - pos).length)
 sc.render.filepath = os.path.join(out, os.environ.get("NOMBRE", "estilo_A_HD") + ".png")
 bpy.ops.render.render(write_still=True)

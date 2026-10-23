@@ -419,7 +419,7 @@ def gotitas(sc, padre, n=60, radio=(0.0006, 0.0016), semilla=3):
 def iman_lab(sc, alto=1.25, r=0.42, r_hueco=0.028):
     """Electroimán de laboratorio, vertical, con el hueco arriba. Cuerpo azul de equipo industrial, tapa de acero con
     pernos, aros de abrazadera, barras de cobre y mangueras de agua de enfriamiento. La boca del hueco queda en z = alto."""
-    acero = mat_metal_cepillado("acero_tapa", (0.42, 0.43, 0.45), (0.14, 0.3))
+    acero = mat_metal_cepillado("acero_tapa", (0.30, 0.31, 0.33), (0.2, 0.3), escala=1.5)
     pintura = mat_pintura("cuerpo_iman", (0.07, 0.19, 0.30))
     cobre = mat_cobre()
     goma = mat_goma()
