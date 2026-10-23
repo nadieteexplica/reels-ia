@@ -1,0 +1,45 @@
+name: biblioteca
+# Arma la biblioteca gratis del estilo realista (docs/BIBLIOTECA.md, pedido de Tomás 23-oct-2026):
+#  - catálogos buscables (sólo metadatos) de Poly Haven, ambientCG y los escaneos 3D del Smithsonian → studio/biblioteca/ (commit)
+#  - packs CC0 de animaciones (Quaternius Universal Animation Library 1 y 2) → prerelease "biblioteca"
+# Todo es CC0. Nada con licencia restringida pasa por acá (Mixamo, Sonniss y Fab van al repo privado nadieteexplica/assets).
+on:
+  workflow_dispatch:
+    inputs:
+      packs:
+        description: "Bajar también los packs CC0 de animaciones (si/no)"
+        default: "si"
+permissions:
+  contents: write
+jobs:
+  catalogos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests beautifulsoup4
+      - name: Catálogos
+        run: python3 tools/biblioteca.py catalogos studio/biblioteca
+      - name: Packs CC0
+        if: ${{ github.event.inputs.packs == 'si' }}
+        run: python3 tools/biblioteca.py packs packs
+      - name: Subir packs a la prerelease
+        if: ${{ github.event.inputs.packs == 'si' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          ls -la packs
+          gh release view biblioteca >/dev/null 2>&1 || gh release create biblioteca --prerelease --title "biblioteca" --notes "Packs CC0 de la biblioteca realista (docs/BIBLIOTECA.md). Licencia y origen en LEEME.txt."
+          gh release upload biblioteca packs/* --clobber
+      - name: Commit de los catálogos
+        run: |
+          git config user.name "biblioteca-bot"
+          git config user.email "actions@github.com"
+          git add studio/biblioteca
+          git diff --cached --quiet && echo "sin cambios" && exit 0
+          git commit -m "Biblioteca: catálogos actualizados (Poly Haven, ambientCG, Smithsonian)"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
