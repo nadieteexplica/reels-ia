@@ -224,6 +224,63 @@
           "Atrás, el doctor mastica con la boca llena y cara de inocente. Corte al caballero lanzándose otra vez (loop)."
         ]
       ]
+    },
+    "E": {
+      "titulo": "Tira lento v2 (mezcla)",
+      "centro": "El cinturón mide qué tan rápido tiras (rápido se traba, lento te deja) y, en la subida, una bolita de acero lo traba aunque nadie tire",
+      "estructura": "D con el medio alternando adentro/afuera cada 2–3 s; el segundo sensor entra como misterio nuevo (se traban los 4 sin que nadie tire) en vez de reabrir la explicación; 27° de C con inclinómetro y la gota en la máscara; el truco ya en plano; remate del doctor resuelto con el cuerpo",
+      "gancho": "situación que le pasa a todos, dicha como regla (de D)",
+      "tono": "comedia física",
+      "lineas": [
+        [
+          "Tira rápido y tu cinturón te dice que no.",
+          "Cuadro 0 con la acción en curso: el caballero de armadura ya va lanzándose por la bolsa de papas del tablero; CLAC: el cinturón lo para y rebota contra el asiento (golpe metálico de la armadura)."
+        ],
+        [
+          "Tira lento... y te deja.",
+          "Lo intenta despacio: la cinta sale suave; su mano queda a 5 cm de la bolsa, que se sigue resbalando por el tablero."
+        ],
+        [
+          "¿Cómo sabe? La cinta vive en un carrete con dientes.",
+          "La cámara entra por la ranura del pilar, que se vuelve transparente: el carrete con la cinta enrollada y una rueda dentada. Píldora CARRETE."
+        ],
+        [
+          "Si tiras de golpe, el carrete gira tan rápido...",
+          "Corte de 1 s afuera: el caballero tira de golpe. Corte adentro: el carrete gira veloz."
+        ],
+        [
+          "...que el giro empuja un pestillo hacia afuera, y se engancha. Clac.",
+          "Adentro: una flecha FUERZA DEL GIRO empuja el pestillo hacia afuera y se engancha en los dientes. Corte afuera: el caballero rebota otra vez."
+        ],
+        [
+          "Lento, el giro no alcanza.",
+          "Mitad de pantalla: adentro el carrete gira lento y el pestillo quieto; afuera el caballero se estira despacito."
+        ],
+        [
+          "Pero el auto sube el cerro... y se traban los cuatro.",
+          "Afuera: el 4x4 se empina en el cerro; CLAC, CLAC, CLAC, CLAC: los 4 cinturones se traban uno tras otro y los 4 quedan pegados al asiento. Inclinómetro chico en la esquina subiendo. Nadie tiró."
+        ],
+        [
+          "Nadie tiró. Fue una bolita de acero: rodó y trabó el carrete.",
+          "Adentro del pilar: al lado del carrete, una bolita de acero en su tacita; la tacita se inclina, la bolita rueda al borde, levanta una palanquita (flecha) y la palanquita muerde la rueda dentada. CLAC."
+        ],
+        [
+          "Pasado veintisiete grados, tiene que trabarse: cree que te vas a volcar.",
+          "Afuera: el inclinómetro marca 27° y la píldora dice MÁS DE 27°: SE TRABA. El de la máscara antigás mira el precipicio por la ventana y una gota le corre por el vidrio de la máscara."
+        ],
+        [
+          "Ya en plano: suéltalo un poquito... y tira lento.",
+          "El 4x4 llega arriba, al plano. El de la máscara le hace la mímica al caballero, lentísimo; el caballero suelta un poco la cinta y tira despacio: sale suave."
+        ],
+        [
+          "Y ahí están, por fin, sus papas...",
+          "El caballero toma la bolsa con cuidado... la da vuelta: está vacía."
+        ],
+        [
+          "...si el doctor no se las comió antes.",
+          "Atrás, el doctor tiene la mano en la boca con una papa y migas naranjas en el delantal blanco; lo pillan y se congela, después se encoge de hombros. Corte al caballero lanzándose otra vez (loop al cuadro 0)."
+        ]
+      ]
     }
   }
 }

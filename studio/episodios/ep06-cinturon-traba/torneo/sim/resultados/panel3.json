@@ -1,0 +1,101 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Juliana",
+      "videos": {
+        "Z": {
+          "desliza": 9,
+          "por_que_desliza_o_sigue": "Paró el dedo por el caballero con armadura en un jeep estirándose por las papas (0-3 s), eso es raro y chistoso. Pero a los 3 s la cámara se mete al plástico y empieza 'tacita', 'bolita', 'frena fuerte o se inclina'. Ya sabe que es un video de explicar y no hay ningún chiste a la vista: se va a los 9 s, con la bolita rodando.",
+          "risas": [
+            {"s": 2, "que": "medio sonrisa: el caballero queda tieso con la mano a 5 cm de las papas"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "No llegó a nada gracioso y no le importa cómo funciona un cinturón."},
+          "no_entendio": "Qué era la 'tacita'. Vio una pelotita brillante dentro de un plástico y no conectó qué tenía que ver con el caballero.",
+          "le_contaria": "nada",
+          "nota": 3
+        },
+        "W": {
+          "desliza": 12,
+          "por_que_desliza_o_sigue": "El arranque le funciona: el caballero se tira por las papas y rebota contra el asiento (risa), y 'tira lento y te deja' le da el 'jaja sí, me pasa'. '¿Cómo sabe?' (5 s) la deja un poco más. Pero de 5 a 12 s sólo hay un carrete girando, sin ningún personaje: se aburre y desliza justo antes del pestillo. Nunca ve al doctor comiéndose las papas, que era lo que más la habría hecho reír.",
+          "risas": [
+            {"s": 2, "que": "el caballero con armadura se lanza por las papas y el cinturón lo devuelve de golpe contra el asiento"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Se fue antes del remate. Con lo que vio no hay nada para mandar."},
+          "no_entendio": "nada",
+          "le_contaria": "nada (como mucho: 'el cinturón se traba si tiras rápido, tira lento')",
+          "nota": 5
+        },
+        "Q": {
+          "desliza": 8,
+          "por_que_desliza_o_sigue": "'Tu cinturón tiene dos guardias' no le promete nada chistoso, y al segundo 1 ya está dentro de un pilar con piezas de colores. Se queda un poco por 'El otro, a ti' y por 'Juguemos', pero el juego es adivinar piezas de un cinturón que vio medio segundo. No le interesa adivinar, así que desliza cuando empieza la respuesta del 1.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Le pareció una clase con concurso; nada para su grupo."},
+          "no_entendio": "Qué eran el 1 y el 2: las piezas se encendieron muy rápido y 'bolita' y 'pestillo' no le dicen nada.",
+          "le_contaria": "nada",
+          "nota": 3
+        },
+        "X": {
+          "desliza": 20,
+          "por_que_desliza_o_sigue": "El inclinómetro tiene forma de reto ('¿hasta dónde aguanta?') y vive en Medellín, donde todo es loma: le suena. Cada número trae algo: a los 5° el caballero saca una papa, a los 20° al de la máscara le corre una gota por el vidrio, a los 27° CLAC y los 4 quedan pegados al asiento. Ese es el pago. Con '¿Quién lo decide? Una bolita...' (19 s) vuelve la explicación y desliza.",
+          "risas": [
+            {"s": 12, "que": "la gota de sudor que le corre por el vidrio de la máscara antigás"},
+            {"s": 14, "que": "CLAC y los cuatro quedan pegados al asiento a la vez, el caballero con cara de tragedia"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Le dio risa a ratos, pero no lo terminó y no es tan chistoso como para el grupo. Casi lo manda a la amiga que vive en una loma, pero no."},
+          "no_entendio": "nada",
+          "le_contaria": "'Si el carro se inclina mucho el cinturón se traba solo, por eso en las lomas te deja pegada'",
+          "nota": 6
+        }
+      }
+    },
+    {
+      "perfil": "Andrés",
+      "videos": {
+        "Z": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "'Lo frenó una bolita de acero' lo hace quedarse a ver si lo explican bien, porque conoce el sensor de inercia. La parte de la bolita, la palanquita y la rueda dentada (3-17 s) está correcta y bien mostrada, y el pestillo por giro como 'compañero' también le parece aceptable. Se queda hasta el final, pero se irrita a los 32 s: 'Lento, la bolita ni se entera' es falso, porque la bolita no sabe a qué velocidad tiras; reacciona a la inclinación. Además siguen en la subida, así que el truco no debería funcionar.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Mezcla los dos sensores al final; no manda algo con un error que alguien le va a discutir."},
+          "no_entendio": "Por qué el truco funciona en plena subida si la bolita sigue en el borde. Así como está es contradictorio.",
+          "le_contaria": "Que el cinturón tiene dos mecanismos de bloqueo, uno por inclinación/desaceleración y otro por tirón, 'pero el video al final los confunde'.",
+          "nota": 5
+        },
+        "W": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "El gancho es una experiencia real: rápido se traba, lento no. '¿Cómo sabe?' es la pregunta correcta. Explica primero el sensor de la cinta (pestillo por giro) y después el del vehículo (bolita); el orden le parece lógico y está bien explicado. Lo único que le hace ruido es que a los 25 s dicen 'en esta subida nadie llega' y a los 29 s el truco de tirar lento funciona, cuando con el auto inclinado la bolita sigue trabando.",
+          "risas": [
+            {"s": 36, "que": "sonrisa con el doctor masticando con cara de inocente"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Está bien pero no aprendió nada nuevo; es lo que ya sabe."},
+          "no_entendio": "Si el truco se hace todavía en la subida o ya en plano; si es en la subida, no funcionaría.",
+          "le_contaria": "Que el cinturón tiene dos sensores: uno por la velocidad con que sale la cinta y otro por desaceleración/inclinación del auto.",
+          "nota": 7
+        },
+        "Q": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "'Dos guardias: uno vigila el auto, el otro a ti' es exactamente la clasificación correcta (sensible al vehículo y sensible a la cinta) dicha en 3 s, y eso le gana el respeto. El quiz le sirve: acierta los tres y se siente listo. Tiene un detalle: en el frenazo (4.5 s) los dos pueden actuar, no sólo la bolita. El cierre le molesta: 'Lento, ningún guardia se despierta' (35.9 s) es falso para la bolita, sobre todo justo después del ejemplo del cerro.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Bien estructurado, pero ya lo sabía y la última frase es incorrecta."},
+          "no_entendio": "nada (va rápido, pero lo sigue porque conoce el mecanismo)",
+          "le_contaria": "Que un mecanismo vigila el auto (la bolita) y otro vigila la cinta (el pestillo por giro).",
+          "nota": 7
+        },
+        "X": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "La pregunta con número lo engancha en el segundo 0. Los umbrales 12° (no puede trabarse) y 27° (debe trabarse) son un dato concreto y verificable que no conocía con precisión, y la píldora SIMULACIÓN le parece honesta. El mecanismo de la bolita está correcto, y el truco se hace con el auto ya en plano (33 s), así que no hay contradicción. Reclamos: no dicen qué norma es (ECE R16 / FMVSS 209) y quiere verla en pantalla; tampoco explican por qué hay que tirar lento si ya está en plano, porque ahí actúa el otro mecanismo y no lo mencionan.",
+          "risas": [],
+          "lo_manda": {"si": true, "a_quien": "a un amigo que sale a trochas con su 4x4 (y al chat de compañeros de ingeniería)", "por_que": "Es un dato numérico y concreto de norma, del tipo '¿sabías que está regulado?'. Es lo único de los cuatro que le enseñó algo."},
+          "no_entendio": "Qué norma es exactamente; y el porqué del 'tira lento' al final, ya que el sensor de la cinta no se explica.",
+          "le_contaria": "Por norma, el cinturón no se puede trabar si el auto se inclina hasta 12° y tiene que trabarse pasado 27°. Lo decide una bola de acero en una copita, como un péndulo.",
+          "nota": 8
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "Z": "Engancha: 0-3 s, la imagen absurda (caballero frenado a 5 cm de las papas) y la promesa 'lo frenó una bolita'. Hace deslizar: a los 3 s ya está dentro del pilar, y de 3 a 17 s todo es mecanismo sin personajes, así que el de comedia se va cerca de los 9 s. Para el técnico, 'Lento, la bolita ni se entera' (32.1 s) es un error de concepto: la bolita no depende de la velocidad del tirón y además siguen en la subida. Corregirlo es bloqueante.",
+    "W": "Engancha: 0-5 s, el contraste rápido/lento que todos han vivido, más el golpe físico del caballero; '¿Cómo sabe?' (5.2 s) es buena bisagra. Hace deslizar: 9-17.6 s, carrete y pestillo sin personajes; el de comedia se va cerca de los 12 s y nunca ve el mejor chiste de los 4 videos (doctor con las papas, 34.9 s). Problema lógico: el truco (29 s) aparece justo después de 'en esta subida nadie llega', y en subida la bolita sigue trabando. Hay que poner el auto en plano antes del truco.",
+    "Q": "Engancha: 1.7-4.5 s, 'uno vigila el auto, el otro a ti' es el marco más claro y correcto, y el quiz retiene a quien ya está interesado. Hace deslizar: al segundo 1 corta a piezas internas sin contexto, y '¿Cuál te atrapa?' (4.5-7.6 s) pide esfuerzo antes de dar ninguna recompensa; el casual se va cerca de los 8 s. El cierre 'Lento, ningún guardia se despierta' (35.9 s) es falso para la bolita en subida.",
+    "X": "Engancha: la escalada numérica de 0 a 15 s (5°, 12°, 20°, 27°), con un chiste en cada número (gota en la máscara a los 11-14 s, CLAC de los 4 a los 14.1 s). Es la retención más larga del casual y el único dato nuevo y compartible para el técnico, gracias a la norma de 12°/27°. Hace deslizar: desde los 19 s ('¿Quién lo decide?') ya se pagó el gancho y entra la explicación, y el casual se va cerca de los 20 s; conviene acortar 19-28 s o meter un chiste ahí. El técnico pide la norma con nombre en pantalla. El truco en plano (33.1 s) es coherente, pero el sensor de la cinta queda sin explicar."
+  }
+}
