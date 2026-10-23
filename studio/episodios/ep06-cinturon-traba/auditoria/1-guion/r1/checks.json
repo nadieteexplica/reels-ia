@@ -1,0 +1,27 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "cifra 'cuatro' sin fuente al lado en la verificación",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "palabras": 108,
+  "duracion_estimada_s": 37.1,
+  "pausas": 4,
+  "fuentes": [
+   "autoliv.com",
+   "euroamerica-llc.com",
+   "indianapublicmedia.org",
+   "mlit.go.jp",
+   "ncbi.nlm.nih.gov",
+   "nissan.ie",
+   "opifiles.mt.gov",
+   "owners-manual.mazda.com",
+   "patents.google.com",
+   "saferidenews.com"
+  ],
+  "afirmaciones_verificadas": 9
+ }
+}

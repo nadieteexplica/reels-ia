@@ -10,3 +10,7 @@
 {"tipo": "chequeo", "id": "sesion ep06", "estado": "vivo (vigilante)", "n": 10, "ts": "2026-10-23T20:21:18-03:00"}
 {"tipo": "chequeo", "id": "sesion ep06", "estado": "vivo (vigilante)", "n": 11, "ts": "2026-10-23T20:36:18-03:00"}
 {"tipo": "chequeo", "id": "sesion ep06", "estado": "vivo (vigilante)", "n": 12, "ts": "2026-10-23T20:51:19-03:00"}
+{"tipo": "aviso", "que": "20:53 OK de Tomás al guion ganador ('sí a todo', con 'jala'); sigue puerta 1 y voz", "n": 13, "ts": "2026-10-23T20:54:14-03:00"}
+{"tipo": "aviso", "que": "Puerta 1 r1 preparada y borrada antes de lanzar al revisor (sin revisión): se bajaron las pausas de 7 a 4 que marcó el aviso; se vuelve a preparar como r1", "n": 14, "ts": "2026-10-23T20:55:31-03:00"}
+{"tipo": "trabajo", "id": "puerta1 r1", "estado": "inicio", "n": 15, "ts": "2026-10-23T20:55:31-03:00"}
+{"tipo": "aviso", "que": "La r1 de la puerta 1 se volvió a preparar 2 veces antes de lanzar al revisor (un script falló a medias y después el chequeo pilló una frase de 20 palabras): sin revisión gastada", "n": 16, "ts": "2026-10-23T20:56:26-03:00"}

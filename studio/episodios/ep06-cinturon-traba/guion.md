@@ -1,30 +1,44 @@
 # Ep. 6 — El cinturón que se traba
 
-**Versión 2.1 (23-oct-2026, 20:00) — ganador del torneo de guiones (lección 95), esperando el OK de Tomás para la voz.** Sale de la ronda 2: el guion D ("Tira lento", ganador de la ronda 1 entre 4) mezclado con lo mejor de A (la mano a 5 cm de la bolsa), C (27° con inclinómetro y la gota en la máscara) y la revisión de producción (remate del doctor resuelto con el cuerpo, sin cara). v2.1 aplica lo que marcó la ronda 2: "jala" en vez de "tira" (público de YouTube sobre todo de México, Colombia y Perú), la bolsa cae atrás con la subida (así el doctor puede tenerla), píldora TAMBIÉN EN FRENADAS y DESDE 12° PUEDE. Torneo completo en `torneo/` (guiones, paquetes a ciegas y resultados) e investigación en `investigacion.md`.
+**Versión 2.1 (23-oct-2026, 20:00) — ganador del torneo de guiones (lección 95); OK de Tomás a las 20:53 ("sí a todo": guion, "jala" y voz).** Sale de la ronda 2: el guion D ("Tira lento", ganador de la ronda 1 entre 4) mezclado con lo mejor de A (la mano a 5 cm de la bolsa), C (27° con inclinómetro y la gota en la máscara) y la revisión de producción (remate del doctor resuelto con el cuerpo, sin cara). v2.1 aplica lo que marcó la ronda 2: "jala" en vez de "tira" (público de YouTube sobre todo de México, Colombia y Perú), la bolsa cae atrás con la subida (así el doctor puede tenerla), píldora TAMBIÉN EN FRENADAS y DESDE 12° PUEDE. Torneo completo en `torneo/` (guiones, paquetes a ciegas y resultados) e investigación en `investigacion.md`.
 **Voz:** Fernando Martínez · job pendiente (`jobs/voz/NNNN-ep06-cinturon-traba.json`), recién con el OK de Tomás.
 **Línea:** datos · **Gancho:** "¿Cómo funciona por dentro?" dicho como regla que le pasa a todos ("jala rápido y te dice que no") · **Área:** tecnología cotidiana (auto) · **Formato:** comedia física + corte (entrar al pilar) + giro a mitad de video ("nadie jaló").
 **Centro (en los primeros 2 s):** el cinturón mide qué tan rápido jalas: rápido se traba, lento te deja. El giro del medio: en la subida se traban los cuatro sin que nadie jale, porque una bolita de acero cree que te vas a volcar.
 **Estilo:** realista (`estilo.json`), el del Ep. 5. Mundo abierto: camino de tierra y cerro de roca en el desierto de Atacama al atardecer, sol bajo de costado.
 **Personajes (idea de Tomás: 4 lo más aleatorios posible, Mixamo With Skin del Release `Personajes`):** maneja un piloto de carreras (Racer) a paso de tortuga; de copiloto, un caballero con armadura (Castle Guard: revisar en la ficha que traiga texturas; si no, Astra o Gas Mask cambian de rol); atrás, el de la máscara antigás (Gas Mask) y un doctor (Chad). Mixamo no anima la cara: todo se actúa con cuerpo, objetos y cámara.
+**Puntaje de la idea:** 35,7 de 45 (ronda 6 de `docs/IDEAS.md`; mínimo 32 en datos).
 **Acción buscada:** enviar ("a ese que siempre pelea con el cinturón") y guardar el truco.
 **Cuidado con el tema (Tomás):** nada que invite a no usar el cinturón, nada de choques ni heridas, nada de cómo manipular piezas, salud sólo general. Nadie se saca el cinturón en el video.
 
-## Guion (109 palabras, ~40 s estimados a 2,9 palabras/s; se ajusta con `pausas.py`)
+## Guion (108 palabras, ~40 s estimados a 2,9 palabras/s; se ajusta con `pausas.py`)
+Jala rápido y tu cinturón te dice que no.
+Jala lento... y te deja.
+¿Cómo sabe? La cinta vive en un carrete con dientes.
+Si jalas de golpe, el carrete gira muy rápido.
+Y el giro empuja un pestillo hacia afuera: se engancha. Clac.
+Lento, el giro no alcanza.
+Pero el auto sube el cerro... y se traban los cuatro.
+Nadie jaló. Fue una bolita de acero: rodó y trabó el carrete.
+Pasado veintisiete grados, tiene que trabarse: cree que te vas a volcar.
+Ya en plano: suéltalo un poquito... y jala lento.
+Y ahí están, por fin, sus papas...
+si el doctor no se las comió antes.
+
+## Lo que se ve en cada línea
 | # | Voz | Pantalla |
 |---|---|---|
-| 1 | Jala rápido y tu cinturón te dice que no. | Cuadro 0 con la acción en curso: camino de tierra plano, el caballero ya va lanzándose por la bolsa de papas del fondo del tablero; CLAC, el cinturón lo para y rebota contra el asiento (golpe de armadura) |
-| 2 | Jala lento... y te deja. | Lo intenta despacio: la cinta sale suave; su mano queda a 5 cm de la bolsa |
-| 3 | ¿Cómo sabe? La cinta vive en un carrete con dientes. | La cámara entra por la ranura del pilar, que se vuelve transparente: carrete con la cinta y rueda dentada. Píldora CARRETE |
-| 4 | Si jalas de golpe, el carrete gira tan rápido... | 1 s afuera: el caballero jala de golpe. Adentro: el carrete gira veloz |
-| 5 | ...que el giro empuja un pestillo hacia afuera, y se engancha. Clac. | Adentro: flecha FUERZA DEL GIRO empuja el pestillo hacia afuera y se engancha en los dientes. Afuera: el caballero rebota otra vez |
-| 6 | Lento, el giro no alcanza. | Pantalla partida: adentro el carrete lento y el pestillo quieto; afuera el caballero se estira despacito |
-| 7 | Pero el auto sube el cerro... y se traban los cuatro. | El 4x4 se empina; la bolsa se resbala hacia atrás y cae junto al doctor; CLAC ×4, los cuatro pegados al asiento. Inclinómetro chico subiendo. Nadie jaló |
-| 8 | Nadie jaló. Fue una bolita de acero: rodó y trabó el carrete. | Adentro: la bolita de acero en su tacita; la tacita se inclina, la bolita rueda al borde, levanta una palanquita (flecha) y ésta muerde la rueda dentada. CLAC. Píldora TAMBIÉN EN FRENADAS |
-| 9 | Pasado veintisiete grados, tiene que trabarse: cree que te vas a volcar. | Inclinómetro 27°, píldora DESDE 12° PUEDE · MÁS DE 27°: SE TRABA. El de la máscara mira el precipicio y le corre una gota por el vidrio de la máscara |
-| 10 | Ya en plano: suéltalo un poquito... y jala lento. | Arriba, en plano: el de la máscara le hace la mímica lentísimo; el caballero suelta un poco la cinta y jala despacio: sale suave |
-| 11 | Y ahí están, por fin, sus papas... | El caballero estira la mano despacio al tablero... la bolsa ya no está |
-| 12 | ...si el doctor no se las comió antes. | Atrás, el doctor con la bolsa en la falda, una papa camino a la boca y migas naranjas en el delantal; lo pillan, se congela y se encoge de hombros. Corte al caballero lanzándose (loop al cuadro 0) |
-
+| 1 | Jala rápido y tu cinturón te dice que no. | Cuadro 0 con la acción en curso: en un camino de tierra plano, el caballero de armadura ya va lanzándose por la bolsa de papas que está al fondo del tablero; CLAC: el cinturón lo para y rebota contra el asiento (golpe metálico de la armadura). |
+| 2 | Jala lento... y te deja. | Lo intenta despacio: la cinta sale suave; su mano queda a 5 cm de la bolsa. |
+| 3 | ¿Cómo sabe? La cinta vive en un carrete con dientes. | La cámara entra por la ranura del pilar, que se vuelve transparente: el carrete con la cinta enrollada y una rueda dentada. Píldora CARRETE. |
+| 4 | Si jalas de golpe, el carrete gira muy rápido. | Corte de 1 s afuera: el caballero jala de golpe. Corte adentro: el carrete gira veloz. |
+| 5 | Y el giro empuja un pestillo hacia afuera: se engancha. Clac. | Adentro: una flecha FUERZA DEL GIRO empuja el pestillo hacia afuera y se engancha en los dientes. Corte afuera: el caballero rebota otra vez. |
+| 6 | Lento, el giro no alcanza. | Mitad de pantalla: adentro el carrete gira lento y el pestillo quieto; afuera el caballero se estira despacito. |
+| 7 | Pero el auto sube el cerro... y se traban los cuatro. | Afuera: el 4x4 se empina en el cerro; la bolsa de papas se resbala hacia atrás por el tablero y cae al asiento de atrás, junto al doctor. CLAC, CLAC, CLAC, CLAC: los 4 cinturones se traban uno tras otro y los 4 quedan pegados al asiento. Inclinómetro chico en la esquina subiendo. Nadie tiró. |
+| 8 | Nadie jaló. Fue una bolita de acero: rodó y trabó el carrete. | Adentro del pilar: al lado del carrete, una bolita de acero en su tacita; la tacita se inclina, la bolita rueda al borde, levanta una palanquita (flecha) y la palanquita muerde la rueda dentada. CLAC. Píldora chica: TAMBIÉN EN FRENADAS. |
+| 9 | Pasado veintisiete grados, tiene que trabarse: cree que te vas a volcar. | Afuera: el inclinómetro marca 27° y la píldora dice DESDE 12° PUEDE · MÁS DE 27°: SE TRABA. El de la máscara antigás mira el precipicio por la ventana y una gota le corre por el vidrio de la máscara. |
+| 10 | Ya en plano: suéltalo un poquito... y jala lento. | El 4x4 llega arriba, al plano. El de la máscara le hace la mímica al caballero, lentísimo; el caballero suelta un poco la cinta y jala despacio: sale suave. |
+| 11 | Y ahí están, por fin, sus papas... | El caballero estira la mano despacio hacia el tablero... la bolsa ya no está. |
+| 12 | si el doctor no se las comió antes. | Atrás, el doctor tiene la bolsa en la falda, una papa en la mano camino a la boca y migas naranjas en el delantal blanco; lo pillan, se congela y se encoge de hombros. Corte al caballero lanzándose otra vez (loop al cuadro 0). |
 
 ## Predicción de la simulación (para calibrar con YouTube Studio)
 Panel de 10 espectadores simulados (hombres y mujeres de 16 a 35, de México, Argentina, Colombia, Perú y Chile; 3 sin sonido), subagentes que no escribieron los guiones, con los videos en orden aleatorio y a ciegas.

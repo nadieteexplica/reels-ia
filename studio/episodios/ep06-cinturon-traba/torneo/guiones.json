@@ -245,11 +245,11 @@
           "La cámara entra por la ranura del pilar, que se vuelve transparente: el carrete con la cinta enrollada y una rueda dentada. Píldora CARRETE."
         ],
         [
-          "Si jalas de golpe, el carrete gira tan rápido...",
+          "Si jalas de golpe, el carrete gira muy rápido.",
           "Corte de 1 s afuera: el caballero tira de golpe. Corte adentro: el carrete gira veloz."
         ],
         [
-          "...que el giro empuja un pestillo hacia afuera, y se engancha. Clac.",
+          "Y el giro empuja un pestillo hacia afuera: se engancha. Clac.",
           "Adentro: una flecha FUERZA DEL GIRO empuja el pestillo hacia afuera y se engancha en los dientes. Corte afuera: el caballero rebota otra vez."
         ],
         [
@@ -277,7 +277,7 @@
           "El caballero estira la mano despacio hacia el tablero... la bolsa ya no está."
         ],
         [
-          "...si el doctor no se las comió antes.",
+          "si el doctor no se las comió antes.",
           "Atrás, el doctor tiene la bolsa en la falda, una papa en la mano camino a la boca y migas naranjas en el delantal blanco; lo pillan, se congela y se encoge de hombros. Corte al caballero lanzándose otra vez (loop al cuadro 0)."
         ]
       ]

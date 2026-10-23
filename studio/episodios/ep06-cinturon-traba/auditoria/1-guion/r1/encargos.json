@@ -1,0 +1,18 @@
+[
+ {
+  "id": "guion",
+  "prompt": "tools/auditor/prompts/1-guion.md",
+  "alcance": "guion completo",
+  "materiales": [
+   "studio/episodios/ep06-cinturon-traba/guion.md",
+   "studio/episodios/ep06-cinturon-traba/auditoria/1-guion/r1/materiales/fuentes.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "docs/IDEAS.md",
+   "docs/PUBLICADOS.md"
+  ],
+  "salida": "guion.json"
+ }
+]
