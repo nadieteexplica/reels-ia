@@ -73,7 +73,7 @@ def camara(sc, pos, mira, lente=50, fstop=2.8, foco=None, sensor=36):
     cam.data.sensor_fit = "VERTICAL"   # vertical: el ángulo vertical manda (9:16)
     cam.data.sensor_height = 24
     cam.data.clip_start = 0.005
-    cam.data.clip_end = 500
+    cam.data.clip_end = 60000      # cerros a 9–14 km y la central a ~2,4 km
     apuntar(cam, pos, mira)
     cam.data.dof.use_dof = fstop is not None
     if fstop:
@@ -574,11 +574,11 @@ def girar_hueso(arm, sufijo, eje, grados):
 
 
 # ---------------------------------------------------------------- el imán gigante (hipotético, para una persona)
-def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45):
+def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
     """Bobina superconductora gigante, de pie, con el hueco vertical: cuerpo azul de criostato con aros de acero,
     bandas de cobre a la vista arriba, escarcha abajo (frío), plataforma de concreto y cables gruesos al piso.
     La boca del hueco queda en z = z0 + alto."""
-    pintura = mat_pintura("criostato", (0.035, 0.11, 0.2), rugo=(0.22, 0.48), sucio=0.35)
+    pintura = mat_pintura("criostato", (0.04, 0.12, 0.21), rugo=(0.45, 0.7), sucio=0.35)
     acero = mat_metal_cepillado("acero_g", (0.45, 0.46, 0.48), (0.2, 0.42))
     cobre = mat_cobre("cobre_g")
     goma = mat_goma("cable_g", (0.02, 0.02, 0.022), 0.5)
@@ -594,11 +594,12 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45):
         caja(sc, f"G_costilla{i}", (0.09, 0.14, alto * 0.96), (r * 1.01 * math.cos(a), r * 1.01 * math.sin(a), z0 + alto / 2),
              acero, 0.01, rot=(0, 0, a))
     gris = mat_pintura("portico", (0.55, 0.42, 0.06), rugo=(0.35, 0.6), sucio=0.4)
-    for sx in (-1, 1):
+    for sx in ((-1, 1) if portico else ()):
         caja(sc, f"G_columna{sx}", (0.45, 0.45, 9.0), (sx * (r + 2.2), 1.4, 4.5), gris, 0.02)
-    caja(sc, "G_viga", (2 * (r + 2.2) + 0.6, 0.6, 0.7), (0, 1.4, 9.2), gris, 0.02)
-    caja(sc, "G_carro", (1.0, 1.0, 0.6), (0.6, 1.4, 8.6), mat_pintura("carro", (0.12, 0.12, 0.13)), 0.02)
-    manguera(sc, "G_gancho_cable", [(0.6, 1.4, 8.3), (0.6, 1.4, 6.8)], 0.02, goma)
+    if portico:
+        caja(sc, "G_viga", (2 * (r + 2.2) + 0.6, 0.6, 0.7), (0, 1.4, 9.2), gris, 0.02)
+        caja(sc, "G_carro", (1.0, 1.0, 0.6), (0.6, 1.4, 8.6), mat_pintura("carro", (0.12, 0.12, 0.13)), 0.02)
+        manguera(sc, "G_gancho_cable", [(0.6, 1.4, 8.3), (0.6, 1.4, 6.8)], 0.02, goma)
     for i, z in enumerate((0.55, 1.2, 1.85, 2.5)):
         tubo(sc, f"G_aro{i}", r * 1.01, r * 0.99, 0.09, (0, 0, z0 + z), verts=192, mat=acero, bisel=0.01)
     # tapa: bandas de cobre concéntricas (la bobina a la vista) entre dos aros de acero
@@ -615,13 +616,16 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45):
                  verts=6, mat=acero, bisel=0.006)
     # cables de alimentación: salen por el costado y se van por el piso hacia el fondo
     for i in range(6):
-        a = math.radians(70 + 8 * i)
+        a = math.radians(105 + 8 * i)
         x, y = r * math.cos(a), r * math.sin(a)
         out = Vector((math.cos(a), math.sin(a), 0))
         zc = z0 + 0.9 + 0.12 * (i % 3)
+        lejos = Vector((-1150, 2080, 0)) - Vector((x, y, 0))
+        lejos.normalize()
+        p2 = Vector((x, y, 0)) + out * 2.0
         pts = [(x, y, zc), (x + out.x * 0.5, y + out.y * 0.5, zc - 0.2), (x + out.x * 1.2, y + out.y * 1.2, 0.35),
-               (x + out.x * 2.0, y + out.y * 2.0, 0.09), (x + out.x * 6 + 0.3 * i, y + out.y * 6, 0.09),
-               (x + out.x * 18 + 0.3 * i, y + out.y * 18, 0.09)]
+               (p2.x, p2.y, 0.09), tuple(p2 + lejos * 12 + Vector((0.35 * i, 0, 0.09))), tuple(p2 + lejos * 60 + Vector((0.35 * i, 0, 0.09))),
+               tuple(p2 + lejos * 400 + Vector((0.35 * i, 0, 0.09)))]
         manguera(sc, f"G_cable{i}", pts, 0.085, goma)
         cilindro(sc, f"G_conector{i}", 0.13, 0.25, (x, y, zc - 0.12), verts=32, mat=acero, bisel=0.01).rotation_euler = (0, math.radians(90), a)
     return z0 + alto
@@ -830,15 +834,15 @@ def cerros(sc, semilla=7):
         g.scale = (ancho, ancho * 0.3, 1)
         g.rotation_euler = (0, 0, -a)
         bpy.ops.object.transform_apply(scale=True, rotation=True)
-        tx = bpy.data.textures.new(f"cerro{i}", "CLOUDS"); tx.noise_scale = 0.35; tx.noise_depth = 4
+        tx = bpy.data.textures.new(f"cerro{i}", "CLOUDS"); tx.noise_scale = 2200; tx.noise_depth = 5
         for v in g.data.vertices:
             u = (v.co.x / ancho) if abs(math.cos(a)) > 0.5 else (v.co.y / ancho)
             borde = max(0.0, 1 - abs(2 * (v.co - Vector((0, 0, 0))).length / ancho))
             v.co.z = 0
-        d = g.modifiers.new("relieve", "DISPLACE"); d.texture = tx; d.strength = alto; d.mid_level = 0.25
+        d = g.modifiers.new("relieve", "DISPLACE"); d.texture = tx; d.strength = alto * 2.2; d.mid_level = 0.35
         d.texture_coords = "GLOBAL"
         liso(g, 180)
-        asignar(g, mat_lejano(f"cerro_m{i}", (0.42, 0.28, 0.24), k=0.5 + 0.1 * (dist > 10000)))
+        asignar(g, mat_lejano(f"cerro_m{i}", (0.30, 0.2, 0.18), k=0.32 + 0.1 * (dist > 10000)))
     # volcán (cono perfecto con cumbre nevada), lejos
     a = math.radians(205)
     dist = 14000
@@ -903,9 +907,9 @@ def mat_vapor():
     nt = m.node_tree
     nt.nodes.remove(nt.nodes["Principled BSDF"])
     v = nt.nodes.new("ShaderNodeVolumePrincipled")
-    v.inputs["Color"].default_value = (1.0, 0.9, 0.86, 1)
-    v.inputs["Density"].default_value = 0.012
-    v.inputs["Anisotropy"].default_value = 0.4
+    v.inputs["Color"].default_value = (1.0, 0.95, 0.92, 1)
+    v.inputs["Density"].default_value = 0.005
+    v.inputs["Anisotropy"].default_value = 0.65     # el sol está detrás: el vapor se ilumina hacia la cámara
     nt.links.new(v.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
     return m
 

@@ -24,3 +24,5 @@
 {"tipo": "chequeo", "id": "estilos HD C 39893696054 · B2 39893836860 · A2 39894106192", "estado": "vivo (vigilante) · completed/success · 2/2 trabajos", "n": 24, "ts": "2026-10-23T00:31:32-03:00"}
 {"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 25, "ts": "2026-10-23T00:33:54-03:00"}
 {"tipo": "trabajo", "id": "auditor 1-guion v2", "estado": "fin", "n": 26, "ts": "2026-10-23T00:35:29-03:00"}
+{"tipo": "trabajo", "id": "voz 0010", "estado": "inicio", "n": 27, "ts": "2026-10-23T00:35:52-03:00"}
+{"tipo": "gasto", "servicio": "eleven", "monto": 626.0, "nota": "toma 1 del Ep. 5 (626 caracteres)", "n": 28, "ts": "2026-10-23T00:35:52-03:00"}
