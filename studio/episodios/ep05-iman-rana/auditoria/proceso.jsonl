@@ -48,3 +48,10 @@
 {"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 48, "ts": "2026-10-23T01:26:10-03:00"}
 {"tipo": "trabajo", "id": "estilos v4 A,B 39899460986", "estado": "fin", "n": 49, "ts": "2026-10-23T01:26:59-03:00"}
 {"tipo": "trabajo", "id": "auditor 4-cuadros r1", "estado": "inicio", "n": 50, "ts": "2026-10-23T01:26:59-03:00"}
+{"tipo": "trabajo", "id": "animatic 39901337879", "estado": "inicio", "n": 51, "ts": "2026-10-23T01:37:57-03:00"}
+{"tipo": "aviso", "que": "animatic lanzado con la puerta 4 en revisión (el chequeo automático de la puerta 4 pasó: 0 fallas) para no perder ~10 min; si la puerta 4 no da realismo ≥ 8 se cancela y se para (regla de Tomás)", "n": 52, "ts": "2026-10-23T01:37:57-03:00"}
+{"tipo": "trabajo", "id": "animatic 39901337879", "estado": "caido", "n": 53, "ts": "2026-10-23T01:38:55-03:00"}
+{"tipo": "aviso", "que": "puerta 4 r1 NO (realismo 7: A 8, C 7, B 6): se cancela el animatic 39901337879 y se rediseña B entero (lección 41) para la r2", "n": 54, "ts": "2026-10-23T01:38:55-03:00"}
+{"tipo": "trabajo", "id": "auditor 4-cuadros r1", "estado": "fin", "n": 55, "ts": "2026-10-23T01:38:55-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 56, "ts": "2026-10-23T01:41:10-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 57, "ts": "2026-10-23T01:56:10-03:00"}

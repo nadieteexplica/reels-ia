@@ -392,7 +392,8 @@ def ojos_pete(sc, P, cam=None):
 
 
 def armar_salar_tarde(sc):
-    E.cielo_atardecer(sc, elev=4, rot=150, fuerza=0.28, sol=4.5)
+    E.cielo_atardecer(sc, elev=5, rot=60, fuerza=0.12, sol=4.0)
+    sc.view_settings.exposure = -0.5
     E.salar(sc)
     E.cerros(sc)
 

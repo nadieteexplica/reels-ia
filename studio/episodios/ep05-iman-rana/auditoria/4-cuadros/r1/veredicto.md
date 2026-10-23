@@ -1,0 +1,27 @@
+# 4-cuadros · ronda 1 · **NO APROBADO** · estilo realista
+
+Promedio **7.4** (mínimo 8; ningún revisor bajo 7 en ningún criterio; realismo: ningún revisor bajo 8).
+
+| criterio | nota (promedio) | más baja | por qué (la más baja) |
+|---|---|---|---|
+| belleza | 7.0 | 7 | A (8) y C (8) funcionan: A con profundidad de campo, refracción en los bordes oscuros del tubo y rana cálida contra fondo frío; C con negros reales (p5=7), desenfoque y un foco claro. B (6) arrastra el set: luz plana de mediodía con neblina, sin negros (p5=117), imán con paneles azules de textura de nubes procedural y base beige lisa, montañas como bultos de greda y torre de enfriamiento blanca sin textura. No es B9: lo quemado (1,63 %) son las columnas de vapor, que conservan gradiente, y el suelo mantiene el detalle de los polígonos de sal. |
+| personaje | 8.0 | 8 | La rana de A es la misma de la ficha (escaneo, misma pose, mismas manchas y patas palmeadas) y Pete en B también (casco, barba, chaleco salmón con cintas, pantalón con barro, botas), con proporciones reales y cabeza en y≈645/1920. Fallas: en A el ojo de la rana no se lee (lo lava la franja de reflejo del vidrio en x≈250-330) y en B Pete mide ~160 px y apenas se despega del borde, así que no se lee que flota. |
+| manos | 8.0 | 8 | B: las manos de Pete van libres a los costados, sin agarre y sin deformación visible (son chicas, ~10 px a 720). A: la pata trasera de la rana muestra los dedos y la membrana completos, sin dedos de más ni atravesados. |
+| anatomia | 7.0 | 7 | C tiene un solo foco claro (molécula grande con flecha hacia arriba), H-O-H a ~104° y líneas cian que se juntan hacia abajo con flechas hacia arriba, coherente con el empuje diamagnético. Lo flojo: justo detrás hay otra molécula cuyo H blanco (x≈340, y≈877 de 1280) parece un tercer hidrógeno pegado a la grande (se lee H3O), el centro de la molécula queda en y≈1050/1920, dentro de la franja de subtítulos, y los globos rojos del fondo no se leen como ningún tejido concreto. |
+| realismo | 7.0 | **7** | Por cuadro: A=8, C=7, B=6. A se ve real porque la rana es un escaneo con piel moteada y el vidrio refracta con un desenfoque de lente real; delatan el 3D el vidrio sin marcas y el aro metálico perfecto. C: las moléculas son capa permitida, pero el tejido de fondo son globos rojos lisos sin membrana ni humedad. B es maqueta o videojuego (6): el imán parece estanque o edificio de vidrio con paneles de nubes, la base y la torre son lisas, las montañas son de greda y la luz es pareja sin negros. En comparacion_realismo.jpg, A y B ya no tienen el look de caricatura del Ep. 4 (el pato de goma y los azulejos turquesa), pero B al lado de las fotos del HFML (metal corrugado con reflejos, ladrillo, suciedad) se ve de juguete. |
+
+## Bloqueantes y fallas automáticas (impiden aprobar)
+
+Ninguno.
+
+## Sugerencias (las 5 más importantes; el resto queda en veredicto.json)
+
+1. El imán gigante no se lee como imán sino como estanque o edificio de vidrio: paneles azules con textura de nubes procedural, rejilla de acero limpia, base beige lisa. Además, la segunda columna de vapor (x≈140-220, y≈470-600) sale de detrás del borde del imán sin torre visible, como si el imán echara humo; la torre izquierda está cortada por el borde (x 0-70) y las montañas son bultos de greda. — plano B · cuadro s. **Arreglo:** Cambiar materiales: carcasa de acero pintado o cepillado con rayas y mugre (ambientCG/Poly Haven), pernos, 3-4 cilindros como tubos de enfriamiento y cables gruesos que bajan al suelo, base de hormigón con manchas. Mover las torres para que se vean enteras y separadas de la silueta del imán, con textura de hormigón. Usar un relieve o HDRI de montaña real.
+2. Luz pareja de mediodía con neblina: sin negros (p5=117, brillo 182,8) y sombras débiles; la base casi no tiene sombra de contacto. Además el salar de A es al atardecer y este no. — plano B · cuadro s. **Arreglo:** Bajar el sol a ~10° de elevación, cálido y de costado como en A: sombras largas sobre los polígonos de sal, un lado del imán en sombra con negros reales y sombra de contacto bajo la base. Esto también une el look de A y B.
+3. La levitación no se lee: las botas de Pete quedan ~8 px (a 720) sobre una tapa cerrada (y≈585). Parece parado en el techo, no hay boca del imán a la vista y Kling probablemente lo va a 'apoyar'. — plano B · cuadro s. **Arreglo:** Subir la cámara ~15° para ver una boca oscura en la tapa, poner a Pete 0,5-1 m sobre la boca con una sombra suave en la tapa y acercar la cámara o usar 50-85 mm para que Pete ocupe ~25 % del alto.
+4. En el cuadro 0 la cara de la rana queda lavada por la franja vertical de reflejo del tubo (x≈250-330, y≈470-520), no se ve ningún ojo, y la rana ocupa ~4 % del cuadro. Como gancho, el protagonista se pierde. — plano A · cuadro s. **Arreglo:** Mover la rana ~60 px a la derecha o rotar el HDRI para sacar la franja de la cabeza; girarla 20-30° hacia cámara para que se vea un ojo con brillo; acercar la cámara hasta que la rana ocupe ~50 % del ancho.
+5. Una molécula queda justo detrás de la grande: su H blanco (x≈340, y≈877) y el borde rojo de su O parecen pegados bajo el O grande, así que se lee una molécula de tres hidrógenos. Kling puede fundirlas en una sola. — plano C · cuadro s. **Arreglo:** Correr esa molécula ≥80 px a un lado o sacarla del cuadro, para que la grande muestre sólo sus dos H.
+
+## Avisos automáticos
+
+- B_persona_iman_gigante: muy claro y con pocas sombras (brillo 182.8, negros en 117.0): que el revisor diga si está lavado (B9) o es un lugar blanco bien expuesto

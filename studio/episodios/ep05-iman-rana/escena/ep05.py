@@ -576,35 +576,102 @@ def girar_hueso(arm, sufijo, eje, grados):
 
 
 # ---------------------------------------------------------------- el imán gigante (hipotético, para una persona)
+def mat_acero_industrial(nombre, color=(0.16, 0.17, 0.18), sucio=0.5, rugo=(0.45, 0.8)):
+    """Acero pintado de máquina grande: pintura gris pizarra con chorreados verticales de mugre y óxido, rayones y bordes
+    gastados (más claros). Nada de paneles lisos: lo delataba como maqueta (puerta 4 r1)."""
+    m, nt, b = _nodos(nombre)
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    # chorreados verticales: ruido estirado en z
+    mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (3.0, 3.0, 0.25)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    ch = nt.nodes.new("ShaderNodeTexNoise"); ch.inputs["Scale"].default_value = 2.0; ch.inputs["Detail"].default_value = 10
+    nt.links.new(mp.outputs[0], ch.inputs["Vector"])
+    grande = _ruido(nt, escala=0.8, detalle=8)
+    oxido = _rampa(nt, grande.outputs["Fac"], (0.22, 0.1, 0.05), tuple(color), pos=(0.25, 0.42))
+    mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
+    k = _mapa(nt, ch.outputs["Fac"], 0.0, sucio); k.inputs["From Min"].default_value = 0.45; k.inputs["From Max"].default_value = 0.75
+    nt.links.new(k.outputs[0], mix.inputs[0])
+    nt.links.new(oxido.outputs[0], mix.inputs[6])
+    mix.inputs[7].default_value = (color[0] * 0.45, color[1] * 0.42, color[2] * 0.4, 1)
+    nt.links.new(mix.outputs[2], b.inputs["Base Color"])
+    nt.links.new(_mapa(nt, ch.outputs["Fac"], *rugo).outputs[0], b.inputs["Roughness"])
+    b.inputs["Metallic"].default_value = 0.15
+    rayas = _ruido(nt, escala=40, detalle=3, estirar=(1, 1, 30))
+    _bump(nt, b, rayas.outputs["Fac"], 0.12, 0.002)
+    return m
+
+
+def mat_chorreado(nombre, color, escala=0.05, estirar_z=0.08, metal=0.0, rugo=(0.6, 0.9), sucio=0.45, oscuro=0.55):
+    """Superficie grande a la intemperie (hormigón de las torres, acero pintado): manchas grandes + chorreados verticales
+    de lluvia y mugre (ruido estirado en z) + rugosidad irregular. Lo liso y parejo delata la maqueta."""
+    m, nt, b = _nodos(nombre)
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (escala, escala, escala * estirar_z)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    ch = nt.nodes.new("ShaderNodeTexNoise"); ch.inputs["Scale"].default_value = 6.0; ch.inputs["Detail"].default_value = 12
+    nt.links.new(mp.outputs[0], ch.inputs["Vector"])
+    gr = nt.nodes.new("ShaderNodeTexNoise"); gr.inputs["Scale"].default_value = 1.5; gr.inputs["Detail"].default_value = 8
+    mp2 = nt.nodes.new("ShaderNodeMapping"); mp2.inputs["Scale"].default_value = (escala, escala, escala)
+    nt.links.new(tc.outputs["Object"], mp2.inputs["Vector"]); nt.links.new(mp2.outputs[0], gr.inputs["Vector"])
+    base = _rampa(nt, gr.outputs["Fac"], tuple(c * 0.78 for c in color), color, pos=(0.3, 0.7))
+    mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
+    k = _mapa(nt, ch.outputs["Fac"], 0.0, sucio); k.inputs["From Min"].default_value = 0.5; k.inputs["From Max"].default_value = 0.72
+    nt.links.new(k.outputs[0], mix.inputs[0]); nt.links.new(base.outputs[0], mix.inputs[6])
+    mix.inputs[7].default_value = (color[0] * oscuro, color[1] * oscuro * 0.95, color[2] * oscuro * 0.9, 1)
+    nt.links.new(mix.outputs[2], b.inputs["Base Color"])
+    nt.links.new(_mapa(nt, ch.outputs["Fac"], *rugo).outputs[0], b.inputs["Roughness"])
+    b.inputs["Metallic"].default_value = metal
+    _bump(nt, b, ch.outputs["Fac"], 0.1, 0.01)
+    return m
+
+
+def mat_cable(nombre="cable", color=(0.028, 0.027, 0.026)):
+    """Cable de potencia de goma, mate y con polvo de sal encima (no refleja el cielo como plástico)."""
+    m, nt, b = _nodos(nombre)
+    nz = _ruido(nt, escala=8, detalle=6)
+    geo = nt.nodes.new("ShaderNodeNewGeometry")
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(geo.outputs["Normal"], sep.inputs[0])
+    polvo = _mapa(nt, sep.outputs["Z"], 0.0, 0.55); polvo.inputs["From Min"].default_value = 0.3
+    mul = nt.nodes.new("ShaderNodeMath"); mul.operation = "MULTIPLY"
+    nt.links.new(polvo.outputs[0], mul.inputs[0]); nt.links.new(nz.outputs["Fac"], mul.inputs[1])
+    mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
+    nt.links.new(mul.outputs[0], mix.inputs[0])
+    mix.inputs[6].default_value = (*color, 1); mix.inputs[7].default_value = (0.55, 0.5, 0.46, 1)
+    nt.links.new(mix.outputs[2], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.85
+    b.inputs["Specular IOR Level"].default_value = 0.25
+    return m
+
+
 def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
-    """Bobina superconductora gigante, de pie, con el hueco vertical: cuerpo azul de criostato con aros de acero,
-    bandas de cobre a la vista arriba, escarcha abajo (frío), plataforma de concreto y cables gruesos al piso.
+    """Bobina gigante para una persona (hipotética), de pie y con el hueco vertical, con look de máquina industrial real:
+    carcasa de acero pintado con mugre y óxido, bridas y pernos, 6 tubos de enfriamiento verticales con abrazaderas, tapa con
+    bandas de cobre y la boca negra a la vista, base de hormigón con manchas y cables gruesos al suelo.
     La boca del hueco queda en z = z0 + alto."""
-    pintura = mat_pintura("criostato", (0.018, 0.05, 0.17), rugo=(0.72, 0.9), sucio=0.4, capa=0.0)
-    acero = mat_metal_cepillado("acero_g", (0.27, 0.28, 0.3), (0.32, 0.55))
+    pintura = mat_acero_industrial("carcasa_g", (0.2, 0.22, 0.24))
+    acero = mat_metal_cepillado("acero_g", (0.3, 0.31, 0.33), (0.3, 0.55))
     cobre = mat_cobre("cobre_g")
-    goma = mat_goma("cable_g", (0.02, 0.02, 0.022), 0.5)
-    hueco = mat_pintura("hueco_g", (0.02, 0.02, 0.025), rugo=(0.5, 0.7), sucio=0.0)
-    esc = mat_pintura("escarcha", (0.62, 0.68, 0.74), rugo=(0.7, 0.95), sucio=0.45)
-    cilindro(sc, "G_plataforma", r * 1.18, z0, (0, 0, 0), verts=160, mat=mat_concreto("plataforma", (0.24, 0.24, 0.24), 1.0), bisel=0.02)
+    goma = mat_cable("cable_g")
+    hueco = mat_pintura("hueco_g", (0.008, 0.008, 0.01), rugo=(0.6, 0.8), sucio=0.0, capa=0.0)
+    tubos = mat_metal_cepillado("tubos_g", (0.32, 0.33, 0.34), (0.35, 0.65), escala=2.0)
+    cilindro(sc, "G_plataforma", r * 1.18, z0, (0, 0, 0), verts=160, mat=mat_concreto("plataforma", (0.3, 0.29, 0.28), 0.6), bisel=0.02)
     tubo(sc, "G_cuerpo", r, r_hueco, alto, (0, 0, z0), verts=192, mat=pintura, bisel=0.03)
-    tubo(sc, "G_escarcha", r * 1.004, r * 0.98, 0.35, (0, 0, z0), verts=192, mat=esc, bisel=0.02)
     tubo(sc, "G_hueco", r_hueco * 1.002, r_hueco * 0.97, alto * 1.01, (0, 0, z0), verts=160, mat=hueco, bisel=0)
-    # costillas verticales de acero y un pórtico (grúa puente) encima: le dan escala de máquina, no de torta
-    for i in range(16):
-        a = 2 * math.pi * i / 16
-        caja(sc, f"G_costilla{i}", (0.09, 0.14, alto * 0.96), (r * 1.01 * math.cos(a), r * 1.01 * math.sin(a), z0 + alto / 2),
-             acero, 0.01, rot=(0, 0, a))
-    gris = mat_pintura("portico", (0.55, 0.42, 0.06), rugo=(0.35, 0.6), sucio=0.4)
-    for sx in ((-1, 1) if portico else ()):
-        caja(sc, f"G_columna{sx}", (0.45, 0.45, 9.0), (sx * (r + 2.2), 1.4, 4.5), gris, 0.02)
-    if portico:
-        caja(sc, "G_viga", (2 * (r + 2.2) + 0.6, 0.6, 0.7), (0, 1.4, 9.2), gris, 0.02)
-        caja(sc, "G_carro", (1.0, 1.0, 0.6), (0.6, 1.4, 8.6), mat_pintura("carro", (0.12, 0.12, 0.13)), 0.02)
-        manguera(sc, "G_gancho_cable", [(0.6, 1.4, 8.3), (0.6, 1.4, 6.8)], 0.02, goma)
-    for i, z in enumerate((0.55, 1.2, 1.85, 2.5)):
-        tubo(sc, f"G_aro{i}", r * 1.01, r * 0.99, 0.09, (0, 0, z0 + z), verts=192, mat=acero, bisel=0.01)
-    # tapa: bandas de cobre concéntricas (la bobina a la vista) entre dos aros de acero
+    # bridas (anillos salientes con pernos) en la base, al medio y arriba
+    for i, z in enumerate((0.0, alto * 0.5 - 0.06, alto - 0.12)):
+        tubo(sc, f"G_aro{i}", r * 1.035, r * 0.99, 0.12, (0, 0, z0 + z), verts=192, mat=acero, bisel=0.012)
+        for j in range(48):
+            a = 2 * math.pi * j / 48
+            cilindro(sc, f"G_aroperno{i}_{j}", 0.022, 0.03, (r * 1.03 * math.cos(a), r * 1.03 * math.sin(a), z0 + z + 0.06 - 0.015),
+                     verts=6, mat=acero, bisel=0.004).rotation_euler = (0, math.radians(90), a)
+    # tubos de enfriamiento verticales con abrazaderas
+    for i in range(6):
+        a = 2 * math.pi * (i + 0.5) / 6
+        x, y = (r + 0.22) * math.cos(a), (r + 0.22) * math.sin(a)
+        cilindro(sc, f"G_costilla{i}", 0.16, alto * 0.98, (x, y, z0 + 0.03), verts=48, mat=tubos, bisel=0.01)
+        for z in (0.5, alto * 0.75):
+            tubo(sc, f"G_costilla_abraz{i}_{z:.1f}", 0.19, 0.155, 0.08, (x, y, z0 + z), verts=48, mat=acero, bisel=0.006)
+    # tapa: bandas de cobre concéntricas entre dos aros de acero, y la boca negra
     tubo(sc, "G_tapa_ext", r * 1.01, r * 0.92, 0.06, (0, 0, z0 + alto), verts=192, mat=acero, bisel=0.01)
     tubo(sc, "G_tapa_int", r_hueco * 1.12, r_hueco, 0.06, (0, 0, z0 + alto), verts=160, mat=acero, bisel=0.01)
     k = 7
@@ -616,7 +683,7 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
         a = 2 * math.pi * i / 36
         cilindro(sc, f"G_perno{i}", 0.035, 0.03, ((r * 0.965) * math.cos(a), (r * 0.965) * math.sin(a), z0 + alto + 0.06),
                  verts=6, mat=acero, bisel=0.006)
-    # cables de alimentación: salen por el costado y se van por el piso hacia el fondo
+    # cables de alimentación: salen por el costado y cruzan el salar hacia la central
     for i in range(6):
         a = math.radians(105 + 8 * i)
         x, y = r * math.cos(a), r * math.sin(a)
@@ -626,8 +693,8 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
         lejos.normalize()
         p2 = Vector((x, y, 0)) + out * 2.0
         pts = [(x, y, zc), (x + out.x * 0.5, y + out.y * 0.5, zc - 0.2), (x + out.x * 1.2, y + out.y * 1.2, 0.35),
-               (p2.x, p2.y, 0.09), tuple(p2 + lejos * 12 + Vector((0.35 * i, 0, 0.09))), tuple(p2 + lejos * 60 + Vector((0.35 * i, 0, 0.09))),
-               tuple(p2 + lejos * 400 + Vector((0.35 * i, 0, 0.09)))]
+               (p2.x, p2.y, 0.09), tuple(p2 + lejos * 12 + Vector((0.22 * i, 0, 0.09))), tuple(p2 + lejos * 60 + Vector((0.22 * i, 0, 0.09))),
+               tuple(p2 + lejos * 400 + Vector((0.22 * i, 0, 0.09)))]
         manguera(sc, f"G_cable{i}", pts, 0.085, goma)
         cilindro(sc, f"G_conector{i}", 0.13, 0.25, (x, y, zc - 0.12), verts=32, mat=acero, bisel=0.01).rotation_euler = (0, math.radians(90), a)
     return z0 + alto
@@ -682,9 +749,26 @@ def tejido(sc, n=40, caja_xy=8.0, z=(-3, 6), semilla=5):
     b.inputs["Roughness"].default_value = 0.5
     b.inputs["Coat Weight"].default_value = 0.15
     b.inputs["Coat Roughness"].default_value = 0.3
-    # tejido: manchas y venitas (no un globo de plástico)
+    # tejido: manchas, venitas finas y brillo húmedo irregular (puerta 4 r1: "globos rojos lisos delatan el juguete")
     nz = _ruido(nt, escala=3.0, detalle=12, coord="Generated")
-    nt.links.new(_rampa(nt, nz.outputs["Fac"], (0.32, 0.05, 0.05), (0.62, 0.16, 0.12)).outputs[0], b.inputs["Base Color"])
+    carne = _rampa(nt, nz.outputs["Fac"], (0.3, 0.05, 0.05), (0.66, 0.2, 0.15))
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    dist = nt.nodes.new("ShaderNodeTexNoise"); dist.inputs["Scale"].default_value = 3.0; dist.inputs["Detail"].default_value = 3
+    nt.links.new(tc.outputs["Generated"], dist.inputs["Vector"])
+    mzv = nt.nodes.new("ShaderNodeMix"); mzv.data_type = "VECTOR"; mzv.inputs[0].default_value = 0.35
+    nt.links.new(tc.outputs["Generated"], mzv.inputs[4]); nt.links.new(dist.outputs["Color"], mzv.inputs[5])
+    vo = nt.nodes.new("ShaderNodeTexVoronoi"); vo.feature = "DISTANCE_TO_EDGE"; vo.inputs["Scale"].default_value = 5.0
+    nt.links.new(mzv.outputs[1], vo.inputs["Vector"])
+    vena = _mapa(nt, vo.outputs["Distance"], 1.0, 0.0); vena.inputs["From Min"].default_value = 0.0; vena.inputs["From Max"].default_value = 0.035
+    mxv = nt.nodes.new("ShaderNodeMix"); mxv.data_type = "RGBA"
+    nt.links.new(vena.outputs[0], mxv.inputs[0]); nt.links.new(carne.outputs[0], mxv.inputs[6])
+    mxv.inputs[7].default_value = (0.2, 0.01, 0.03, 1)
+    nt.links.new(mxv.outputs[2], b.inputs["Base Color"])
+    humedo = _ruido(nt, escala=6.0, detalle=8, coord="Generated")
+    nt.links.new(_mapa(nt, humedo.outputs["Fac"], 0.12, 0.55).outputs[0], b.inputs["Roughness"])
+    b.inputs["Coat Weight"].default_value = 0.6
+    b.inputs["Coat Roughness"].default_value = 0.08
+    nt.links.new(_mapa(nt, nz.outputs["Fac"], 0.6, 1.4).outputs[0], b.inputs["Subsurface Scale"])
     fino = _ruido(nt, escala=40, detalle=6, coord="Generated")
     _bump(nt, b, fino.outputs["Fac"], 0.25, 0.02)
     for i in range(n):
@@ -815,7 +899,14 @@ def mat_lejano(nombre, color, neblina=(0.78, 0.55, 0.52), k=0.55):
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
     nz = _ruido(nt, escala=0.004, detalle=10)
-    nt.links.new(_rampa(nt, nz.outputs["Fac"], tuple(c * 0.6 for c in color), color).outputs[0], b.inputs["Base Color"])
+    roca = _rampa(nt, nz.outputs["Fac"], tuple(c * 0.6 for c in color), color)
+    # quebradas: surcos verticales más oscuros (ruido estirado en z), como la roca erosionada de los cerros reales
+    qb = _ruido(nt, escala=0.02, detalle=8, estirar=(1, 1, 0.12))
+    kq = _mapa(nt, qb.outputs["Fac"], 0.0, 0.7); kq.inputs["From Min"].default_value = 0.5; kq.inputs["From Max"].default_value = 0.7
+    mx0 = nt.nodes.new("ShaderNodeMix"); mx0.data_type = "RGBA"
+    nt.links.new(kq.outputs[0], mx0.inputs[0]); nt.links.new(roca.outputs[0], mx0.inputs[6])
+    mx0.inputs[7].default_value = (color[0] * 0.35, color[1] * 0.33, color[2] * 0.33, 1)
+    nt.links.new(mx0.outputs[2], b.inputs["Base Color"])
     b.inputs["Roughness"].default_value = 1.0
     em = nt.nodes.new("ShaderNodeEmission")
     em.inputs[0].default_value = (*neblina, 1)
@@ -847,11 +938,11 @@ def cerros(sc, semilla=7):
             v.co.z = 0
         d = g.modifiers.new("relieve", "DISPLACE"); d.texture = tx; d.strength = alto * 2.2; d.mid_level = 0.35
         d.texture_coords = "GLOBAL"
-        tx2 = bpy.data.textures.new(f"cerro_det{i}", "CLOUDS"); tx2.noise_scale = 260; tx2.noise_depth = 6
-        d2 = g.modifiers.new("detalle", "DISPLACE"); d2.texture = tx2; d2.strength = alto * 0.35; d2.mid_level = 0.5
+        tx2 = bpy.data.textures.new(f"cerro_det{i}", "CLOUDS"); tx2.noise_scale = 260; tx2.noise_depth = 6; tx2.noise_type = "HARD_NOISE"
+        d2 = g.modifiers.new("detalle", "DISPLACE"); d2.texture = tx2; d2.strength = alto * 0.5; d2.mid_level = 0.5
         d2.texture_coords = "GLOBAL"
         liso(g, 180)
-        asignar(g, mat_lejano(f"cerro_m{i}", (0.30, 0.2, 0.18), k=0.32 + 0.1 * (dist > 10000)))
+        asignar(g, mat_lejano(f"cerro_m{i}", (0.2, 0.15, 0.14), k=0.42 + 0.12 * (dist > 10000)))
     # volcán (cono perfecto con cumbre nevada), lejos
     a = math.radians(205)
     dist = 14000
@@ -867,7 +958,7 @@ def cerros(sc, semilla=7):
 def central_nuclear(sc, pos=(0, 2500, 0), rot=0.0):
     """Central nuclear a escala real en el horizonte: 2 torres de enfriamiento (~150 m), el domo del reactor y la casa de
     turbinas, con su vapor. Concreto con manchas."""
-    hormigon = mat_concreto("hormigon_central", (0.62, 0.6, 0.57), 0.02)
+    hormigon = mat_chorreado("hormigon_central", (0.5, 0.49, 0.47), escala=0.05, estirar_z=0.06, sucio=0.5)
     px, py, pz = pos
     torres = []
     for i, dx in enumerate((-110, 70)):
@@ -952,12 +1043,26 @@ def mat_acrilico(nombre="acrilico"):
     tr = nt.nodes.new("ShaderNodeBsdfTransparent")
     tr.inputs[0].default_value = (0.97, 0.99, 1.0, 1)
     gl = nt.nodes.new("ShaderNodeBsdfGlossy")
-    gl.inputs["Roughness"].default_value = 0.03
+    # huellas y manchas: zonas donde el reflejo se vuelve borroso (puerta 4 r1: "el vidrio sin marcas delata el 3D")
+    manchas = _ruido(nt, escala=90, detalle=6)
+    nt.links.new(_mapa(nt, manchas.outputs["Fac"], 0.0, 0.0).outputs[0], gl.inputs["Roughness"])
+    rg = nt.nodes["Map Range"] if "Map Range" in nt.nodes else None
+    if rg:
+        rg.inputs["From Min"].default_value = 0.5; rg.inputs["From Max"].default_value = 0.75
+        rg.inputs["To Min"].default_value = 0.02; rg.inputs["To Max"].default_value = 0.22
     lw = nt.nodes.new("ShaderNodeLayerWeight")
     lw.inputs["Blend"].default_value = 0.12
+    # polvo fino: puntitos que dispersan un poco de luz
+    polvo = _ruido(nt, escala=900, detalle=2)
+    pk = _mapa(nt, polvo.outputs["Fac"], 0.0, 0.06); pk.inputs["From Min"].default_value = 0.68; pk.inputs["From Max"].default_value = 0.8
+    suma = nt.nodes.new("ShaderNodeMath"); suma.operation = "ADD"; suma.use_clamp = True
+    nt.links.new(lw.outputs["Fresnel"], suma.inputs[0]); nt.links.new(pk.outputs[0], suma.inputs[1])
+    dif = nt.nodes.new("ShaderNodeBsdfDiffuse"); dif.inputs[0].default_value = (0.8, 0.78, 0.75, 1)
+    mxp = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(pk.outputs[0], mxp.inputs[0]); nt.links.new(gl.outputs[0], mxp.inputs[1]); nt.links.new(dif.outputs[0], mxp.inputs[2])
     mx = nt.nodes.new("ShaderNodeMixShader")
-    nt.links.new(lw.outputs["Fresnel"], mx.inputs[0])
-    nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(gl.outputs[0], mx.inputs[2])
+    nt.links.new(suma.outputs[0], mx.inputs[0])
+    nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(mxp.outputs[0], mx.inputs[2])
     nt.links.new(mx.outputs[0], nt.nodes["Material Output"].inputs[0])
     return m
 

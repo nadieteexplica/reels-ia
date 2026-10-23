@@ -132,3 +132,23 @@ Resultado: se publicó el 19-oct a las 16:35 en Instagram, TikTok y YouTube, per
 
 ### Lo que funcionó (para repetir)
 - **Ep. 4 (Tomás, 22-oct-2026):** "me gustó cómo te metiste a la cortina y explicaste todo visualmente". La regla: en los videos de datos, la mecánica se explica **entrando** al objeto (corte, pared o tela que se vuelve transparente) y cada pieza del mecanismo aparece dibujada en el momento en que la voz la nombra (remolino, centro con baja presión, aire de afuera empujando), con espacio alrededor (encuadres con aire, una etiqueta a la vez).
+
+## Ep. 5 — El imán que hace flotar a una rana (22–23-oct-2026, proceso v2, primer video realista)
+
+| # | Qué pasó | Causa | Solución | Regla que queda |
+|---|---|---|---|---|
+| 75 | Para "realismo de verdad" saqué imágenes fotorrealistas con IA (Canva) y una prueba de Kling texto→video; Tomás: "no me gustó nada… nada de nada" | Leí "realismo" como fotografía; él quería el de Zack D. Films: "realista pero en un mundo animado" | Todo en Blender: escaneo 3D de una rana real (CC-BY), Pete de Mixamo con sus texturas, materiales con imperfecciones, cielo físico y lente real | **"Realismo" en esta cuenta = 3D realista (Zack D. Films como calidad), nunca fotos o video fotorrealistas de IA.** Un pedido de look nuevo se confirma con un cuadro de prueba propio antes de generar opciones |
+| 76 | Canva (MCP) devolvía sólo una miniatura de 112×199 y la imagen de la rana no tenía rana | La herramienta entrega miniaturas; el modelo de imágenes no sigue un sujeto chico | No se usa | Canva no sirve para cuadros de producción |
+| 77 | Kling texto→video rechazó los dos clips ("prompt cannot be empty"): 0 unidades | El endpoint de texto espera otro formato de `contents` | `kling.py` acepta texto→video y anota el rechazo, pero no se usó más | Antes de depender de un endpoint nuevo de Kling, una llamada de prueba barata |
+| 78 | Pete salía en T aunque se le copiaba la pose de Happy Idle | El FBX "With Skin" de Mixamo trae una acción en T que pisa la pose al renderizar | `arm.animation_data_clear()` al importar | Personaje de Mixamo con piel: borrar su acción antes de posar |
+| 79 | No se veían los cerros ni la central nuclear | `clip_end` de la cámara en 500 m; los cerros están a 9–14 km | `clip_end` 60 km | En exteriores, revisar el `clip_end` contra lo más lejano de la escena |
+| 80 | Los imanes del refri quedaban dentro del refri y la cámara del plano los buscaba en el origen | `caja()` aplicaba también la ubicación en `transform_apply` (el objeto quedaba en 0,0,0) | `transform_apply(location=False, rotation=False, scale=True)` | Las funciones de geometría dejan la ubicación en el objeto |
+| 81 | Las gotitas de la piel quedaban pegadas al vidrio del tubo | Se ubican con rayos y el tubo se creaba antes | Gotitas antes que el tubo | Lo que se apoya con rayos se crea antes que los vidrios que lo rodean |
+| 82 | Las marcas invisibles de los ojos salían como esferas blancas | En Blender 5 los materiales nuevos ya traen nodos, así que el `if not use_nodes` no armaba el transparente | Se arma por nombre y se apagan sus visibilidades de rayos | No suponer `use_nodes = False` en materiales nuevos (Blender 5) |
+| 83 | La voz salió de 45,8 s con 119 palabras (2,6 palabras/s, más lenta que antes) | Toma lenta con pausas largas (11,5 s de silencio) | `pausas.py`: 14 pausas recortadas, 41,4 s, 0 créditos | Si la toma se pasa, primero recortar silencios con `pausas.py` |
+| 84 | Tomás pidió escenas abiertas (no dentro de un edificio) y todo a escala real con los sets ya armados | El primer set era una nave y un laboratorio cerrado | Todo pasó a un salar de Atacama al atardecer; la rana a su tamaño real (2,2 cm, en el tubo de ~3 cm del experimento) | Preferir exteriores abiertos y espaciosos (menos ruido visual) y la escala real de todo lo que se muestra como verdad |
+
+### Lo que funcionó (para repetir)
+- **Escaneos reales con licencia CC-BY** (Objaverse/Sketchfab, crédito en la descripción) para animales: la rana se ve real sin modelarla.
+- **Mixamo "With Skin" en el Release privado `Personajes`** (Tomás los sube y el render los baja con el secreto `TOKEN`): personajes con ropa y texturas reales, sin pasar por el repo público.
+- **Exterior con cielo físico** (dispersión múltiple, sol bajo), costra de sal procedural y cerros con neblina: espacio abierto, barato y que se ve real.
