@@ -517,6 +517,7 @@ def pete(sc, pose_fbx=None, frame=40):
     bpy.ops.import_scene.fbx(filepath=asset(PETE_FBX), automatic_bone_orientation=False)
     nuevos = [o for o in bpy.data.objects if o not in antes]
     arm = next(o for o in nuevos if o.type == "ARMATURE")
+    arm.animation_data_clear()   # el FBX "With Skin" trae una acción en T que pisa cualquier pose al renderizar
     for m in {s.material for o in nuevos if o.type == "MESH" for s in o.material_slots if s.material}:
         nt = m.node_tree
         b = next((n for n in nt.nodes if n.type == "BSDF_PRINCIPLED"), None)
