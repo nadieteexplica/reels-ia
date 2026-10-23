@@ -1,0 +1,68 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Juliana",
+      "videos": {
+        "M": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "El caballero ya lanzándose y el CLAC metálico de la armadura en el s 1 la atrapan (es un chiste visual antes de ser un dato). En el s 5 casi se va cuando entra al pilar, pero el corte al caballero rebotando otra vez (12-16) la devuelve. Los 4 CLAC seguidos al subir el cerro (19-22) la dejan pensando por qué se trabaron todos, y la gota en la máscara antigás más la bolsa vacía la llevan hasta el doctor. Si no entraran esos cortes afuera, se habría ido en el s 8.",
+          "risas": [
+            {"s": 1, "que": "el caballero con armadura se tira por las papas y el cinturón lo devuelve con un golpe de lata"},
+            {"s": 4, "que": "la mano queda a 5 cm de la bolsa y la bolsa se le sigue escapando por el tablero"},
+            {"s": 20, "que": "CLAC CLAC CLAC CLAC: los cuatro quedan pegados al asiento, piloto de carreras incluido"},
+            {"s": 29, "que": "el de la máscara antigás mirando el precipicio con una gota corriéndole por el vidrio"},
+            {"s": 38, "que": "el doctor pillado con la papa en la boca y migas naranjas en el delantal, se congela y se encoge de hombros (la risa más fuerte)"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "su grupo de amigas", "por_que": "por el doctor comiéndose las papas a escondidas; lo manda con un 'esta es Sara en todos los paseos jajaja'. El dato del cinturón le sirve de excusa, no es la razón."},
+          "no_entendio": "Lo del pestillo que 'el giro empuja hacia afuera' le pasó por encima, y lo de los 27 grados también; no le importó. En Colombia se dice 'jalar', no 'tirar', pero igual se entiende.",
+          "le_contaria": "Que si el cinturón se traba en una subida no es que esté malo: adentro hay una bolita que cree que te vas a voltear, y que lo sueltas un poquito y jalas suave. Y que el doctor se comió las papas.",
+          "nota": 8
+        },
+        "K": {
+          "desliza": 12,
+          "por_que_desliza_o_sigue": "El caballero que suena a lata en el s 1 la engancha igual, pero desde el s 5 el video se queda metido en el pilar: carrete, carrete girando, pestillo, sin personajes ni chiste. Para el s 12 ya es una clase de mecánica y ella vino por el caballero: desliza antes de que vuelva la comedia.",
+          "risas": [
+            {"s": 1, "que": "el caballero con armadura rebotando contra el asiento"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Se fue antes del cerro y del doctor; lo único gracioso que vio fueron 3 segundos."},
+          "no_entendio": "No captó para qué servía tanto carrete con dientes ni qué es el pestillo; no esperó a saberlo.",
+          "le_contaria": "Nada, o como mucho 'vi un video de un caballero en un carro'.",
+          "nota": 4
+        }
+      }
+    },
+    {
+      "perfil": "Andrés",
+      "videos": {
+        "M": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "Se queda para auditar: el pestillo que el giro empuja hacia afuera es la versión del embrague centrífugo; está simplificada, pero no es mentira. Lo que lo engancha de verdad es 'nadie tiró' con los 4 CLAC (18-22): es una segunda pregunta y la respuesta (la bolita, la tacita, la palanquita que muerde la rueda) está bien mostrada. El '27 grados' le suena sospechosamente preciso, pero lo deja seguir porque el video dice 'tiene que' (una norma). El 'ya en plano: suéltalo y tira lento' es físicamente coherente (en plano la bolita vuelve, falta quitarle la tensión al pestillo) y eso le gana el respeto.",
+          "risas": [
+            {"s": 38, "que": "sonrisa, no carcajada: el doctor pillado con la papa en la boca, encogiéndose de hombros"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "a su papá, que pelea con el cinturón en las subidas para la finca", "por_que": "Porque explica bien la bolita y el truco de soltar y jalar suave en plano, y no tiene errores gruesos."},
+          "no_entendio": "De dónde sale el 27 (va a buscar la fuente en los comentarios; si no está, desconfía). Le molesta un poco que la bolita aparezca sólo por la inclinación, cuando su trabajo principal es el frenazo o el choque; el video lo omite.",
+          "le_contaria": "Que el cinturón tiene dos sensores: uno que reacciona al jalón de la cinta y una bolita de acero que traba todo cuando el carro se inclina más de unos 27 grados, y que para destrabarlo hay que aflojar la tensión, no jalar más fuerte.",
+          "nota": 7
+        },
+        "K": {
+          "desliza": 32,
+          "por_que_desliza_o_sigue": "La parte del carrete y el pestillo la ve completa, porque es lo suyo; 'si el auto frena o se inclina' le parece más completo que sólo hablar de inclinación. 'Otro guardia que vigila el auto' le suena infantil y 'se inclina mucho' le parece vago (¿cuánto?). En el s 29 lo pierde: le enseñan el truco de soltar y jalar lento con el carro todavía en la subida, y si sigue empinado la bolita sigue trabando y el truco no funciona. Lo marca como dato mal explicado y desliza sin esperar el chiste de las papas.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "El truco del final, tal como está mostrado (en plena subida), es incorrecto; no manda algo que su papá va a intentar y no le va a funcionar."},
+          "no_entendio": "Por qué el truco funcionaría si el carro sigue inclinado. Tampoco le queda claro qué es 'el pestillo sale disparado': ¿por velocidad, por aceleración?",
+          "le_contaria": "Que hay una bolita de acero que traba el cinturón al frenar o inclinarse; pero agregaría 'aunque el video se equivoca con el truco'.",
+          "nota": 5
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "M": "Engancha el cuadro 0 en plena acción con el CLAC de armadura (0-3 s) y la mano a 5 cm de la bolsa que se escapa (3-5 s). Lo mejor está entre 8,6 y 16,6 s, donde los cortes afuera al caballero rebotando mantienen la comedia mientras se explica, y en 18,3-22,4 s, donde los 4 CLAC con 'nadie tiró' abren un segundo misterio a mitad de video. El final del doctor pillado y encogiéndose de hombros (37-40 s) es el que hace mandarlo. Riesgo de deslizar: la primera entrada al pilar (5,2-8,6 s) para el público de comedia y la línea densa de la bolita y los 27° (22,4-30,7 s). Para un técnico, omite que la bolita reacciona sobre todo al frenazo.",
+    "K": "Mismo gancho y mismo arranque, pero entre 5,2 y 21,7 s son 16 s seguidos dentro del pilar sin personajes: el público de comedia se va alrededor de 10-13 s. La bolita se presenta antes de que se traben los cinturones, así que no hay misterio de 'nadie tiró'. Tiene un error lógico: el truco de soltar y jalar lento (29-32 s) se aplica todavía en la subida, sin mostrar que llegaron al plano, y el que sabe lo detecta y se va. A favor, 'frena o se inclina' es más completo que M. El remate del doctor (35-38 s) es más débil: sólo mastica, no lo pillan."
+  },
+  "mejor": {
+    "video": "M",
+    "por_que": "Intercala la comedia afuera con la explicación adentro, así que nunca pasan más de unos segundos sin un personaje. Convierte la traba de los 4 cinturones en una pregunta ('nadie tiró') antes de responderla. El truco final es físicamente correcto porque espera llegar al plano, y el remate del doctor pillado es más mandable. K pierde a la gente de comedia por los 16 s seguidos de mecanismo y al técnico por el truco aplicado en plena subida."
+  }
+}

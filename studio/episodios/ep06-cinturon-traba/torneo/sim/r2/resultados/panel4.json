@@ -1,0 +1,69 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Lucía",
+      "videos": {
+        "K": {
+          "desliza": 7,
+          "por_que_desliza_o_sigue": "Sin sonido, el caballero lanzándose por las papas y rebotando la frena 0–3 s (raro y gracioso de ver). Tira lento y sale la cinta: ok. A los 5.2 la cámara se mete al pilar y pasa a ser una pieza de plástico con un carrete; el subtítulo dice 'carrete con dientes'. No maneja, no le importa cómo funciona. Desliza apenas desaparecen los personajes.",
+          "risas": [
+            {"s": 1, "que": "media sonrisa: un caballero con armadura tirándose por una bolsa de papas y el cinturón lo devuelve de golpe"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Se fue antes de cualquier remate; no vio nada que valga mandar."},
+          "no_entendio": "Qué hacen un caballero, un piloto y un tipo con máscara antigás en el mismo auto; qué es un 'carrete con dientes'.",
+          "le_contaria": "Nada. Como mucho 'vi un caballero en un auto que no alcanzaba unas papas'.",
+          "nota": 3
+        },
+        "M": {
+          "desliza": 12,
+          "por_que_desliza_o_sigue": "El cuadro 0 con el caballero ya en el aire la engancha sin sonido. De 3 a 5 s la mano queda a 5 cm de la bolsa que se sigue resbalando: tensión que se entiende sin audio. Entra al pilar a los 5.2 y casi se va, pero el corte de 1 s afuera a los 8.6 la devuelve. A los 12.1 aparece la flecha 'FUERZA DEL GIRO' y otra vez plástico con texto: desliza. No alcanza a ver el CLAC×4 de los 18 s, que era lo más gracioso para ella.",
+          "risas": [
+            {"s": 1, "que": "el caballero rebotando con armadura y todo contra el asiento"},
+            {"s": 4, "que": "la mano queda a nada de las papas y la bolsa se resbala sola"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Se fue en la parte de explicación; no llegó a ningún remate compartible."},
+          "no_entendio": "'Fuerza del giro' y 'pestillo': no sabe qué es ni le interesa.",
+          "le_contaria": "'Si tiras el cinturón lento no se traba' (lo leyó en los primeros 5 s, es lo único que se lleva).",
+          "nota": 4
+        }
+      }
+    },
+    {
+      "perfil": "José",
+      "videos": {
+        "K": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "Es su vida diaria: maneja Uber en Arequipa y el cinturón se traba en las subidas. El gancho ya lo sabe, pero '¿Cómo sabe?' a los 5 s le abre la curiosidad. De 9 a 17.6 s son tres tomas seguidas del carrete dentro del pilar sin volver afuera y casi desliza (sobre todo en 'Lento, el pestillo ni se mueve', que repite lo que ya entendió). Lo salva 'Y hay otro guardia' a los 17.6, porque es justo lo que él quería saber, y la subida al cerro a los 21.7 es su cuadra. Se queda hasta el final, sin mucha emoción.",
+          "risas": [
+            {"s": 35, "que": "el doctor masticando con cara de inocente: sonrisa, no carcajada"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Está bien, pero 'se inclina mucho' le queda vago; no tiene una frase concreta que le haga mandarlo."},
+          "no_entendio": "Por qué el pestillo 'sale disparado' y cómo la bolita traba el carrete: la bolita sólo 'se enciende' y rueda, nunca se ve qué engancha. ¿Cuánto es 'se inclina mucho'?",
+          "le_contaria": "'El cinturón tiene una bolita de acero adentro que lo traba si el auto frena o se inclina.'",
+          "nota": 6
+        },
+        "M": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "Mismo gancho, pero los cortes afuera (8.6, 15, el split a los 16.6) le dan ritmo y no le dan ganas de irse. A los 18.3 el CLAC, CLAC, CLAC, CLAC con 'nadie tiró' es exactamente lo que le pasa con los pasajeros en las subidas: lo engancha fuerte. La bolita que levanta la palanquita y muerde la rueda le cierra el cómo. '27 grados' es un número concreto que puede repetir. El truco 'ya en plano, suéltalo y tira lento' le sirve para el trabajo. Se queda entero y lo vería de nuevo en el loop.",
+          "risas": [
+            {"s": 1, "que": "el golpe metálico de la armadura contra el asiento"},
+            {"s": 29, "que": "la gota que corre por el vidrio de la máscara antigás mirando el precipicio"},
+            {"s": 38, "que": "el doctor pillado con la papa en la boca y migas naranjas en el delantal, se congela y se encoge de hombros"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "al grupo de WhatsApp de choferes de Uber", "por_que": "Los pasajeros siempre se quejan de que el cinturón se traba en las subidas; ahora tiene la explicación y el truco para decirles."},
+          "no_entendio": "Lo de los 27°: en su calle se le traba y no cree que sea tan empinada. No sabe si tiene que llegar a 27° o si puede trabarse antes. Tampoco menciona las frenadas, que es cuando más le pasa.",
+          "le_contaria": "'Pasado 27 grados el cinturón se traba solo, por una bolita de acero que cree que te vas a volcar. Si se te traba, suéltalo un poco y tira lento.'",
+          "nota": 8
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "K": "Engancha: el caballero tirándose por las papas con CLAC (0–3 s) y la pregunta '¿Cómo sabe?' (5.2 s); el doctor del final funciona. Hace deslizar: de 5.2 a 17.6 s son 12 s seguidos dentro del pilar sin volver a los personajes, y quien mira sin sonido se va a los ~7 s. La bolita sólo 'se enciende' (17.6 s) y nunca se ve cómo traba. La subida, que es la parte más cercana para quien maneja, recién llega a los 21.7 s y se cuenta en vez de mostrarse como misterio.",
+    "M": "Engancha: la mano a 5 cm de la bolsa (3–5 s) se entiende sin audio; los cortes afuera cada 1–2 s mantienen el ritmo. El mejor momento del video es el CLAC×4 con 'Nadie tiró' (18.3 s): primero el misterio y después la respuesta. El dato de 27° y los dos remates visuales (gota en la máscara a los 29 s, doctor pillado a los 38 s) le dan algo para repetir y para reírse. Hace deslizar: de 5.2 a 12.1 s sigue siendo casi todo pilar, y la flecha 'FUERZA DEL GIRO' (12.1 s) tiene mucho texto, así que quien mira sin sonido y con poca atención se va antes del CLAC×4. Entre 22.4 y 26.6 s hay 4 s de explicación adentro. El '27°' sin mencionar frenadas puede confundir a choferes a quienes se les traba en pendientes más suaves."
+  },
+  "mejor": {
+    "video": "M",
+    "por_que": "Muestra el mecanismo de la bolita completo (palanquita que muerde la rueda) en vez de nombrarlo, plantea la subida como misterio ('nadie tiró') antes de explicarla, da un número concreto (27°) y vuelve a los personajes cada 1–2 s. Al chofer lo retiene entero y se lo manda al grupo; a la espectadora sin sonido la aguanta casi el doble que K. Su punto débil es igual al de K, pero menor: el primer tramo dentro del pilar (5–12 s) sigue espantando a quien no maneja."
+  }
+}
