@@ -13,7 +13,7 @@ Haz el Ep. 6 de El viejo del dato: **¿por qué el cinturón de seguridad se tra
   - Lewis, Megan u otro: el que tira el cinturón.
 - **Movimientos:** los que haya en `Personajes` y en la carpeta `mixamo/`. Quaternius CC0 (prerelease `biblioteca`) trae `Driving_Loop` y `Sitting_Idle_Loop`. Si falta uno, pídele a Tomás el nombre exacto en Mixamo.
 
-**Qué hay que mostrar (verifica todo con 2 fuentes; si cambia según el auto, dilo):**
+**Qué hay que mostrar** (el chat de ideas ya juntó fuentes en `studio/caza/ronda06.md`: parte de ahí; verifica todo con 2 fuentes, y si cambia según el auto, dilo):
 - **El carrete por dentro**, en corte, con estos dos frenos:
   - **Frenazo:** un sensor de inercia (una bolita o un péndulo) se va hacia adelante y empuja una uña contra un engranaje del carrete.
   - **Tirón rápido:** el carrete gira tan rápido que unos contrapesos se abren hacia afuera y lo traban. Por eso si tiras despacio, sale.
