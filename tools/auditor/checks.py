@@ -2,7 +2,7 @@
 Cada función devuelve {"fallas": [...], "avisos": [...], "datos": {...}}. Una falla es una regla del manual que no se cumple;
 un aviso es algo que el revisor tiene que mirar con cuidado.
 """
-import difflib, json, os, re, unicodedata
+import glob, difflib, json, os, re, unicodedata
 
 import comun
 
@@ -536,7 +536,11 @@ def paquete(ep_d, url_mp4=None, usa_anatomia=None):
         _f(r, "estilo realista (estilo.json): falta youtubeData.isAiGeneratedContent: true en YouTube", bloqueante=True)
     if usa_anatomia is None:
         sb = os.path.join(ep_d, "storyboard.md")
-        usa_anatomia = os.path.exists(sb) and re.search(r"(interior|anatom|cabeza de vidrio)", norm(open(sb).read())) is not None
+        # sólo Z-Anatomy (CC BY-SA) pide crédito: "interior" solo daba falso positivo en el Ep. 5 (adentro de la rana con
+        # moléculas y células procedurales, sin Z-Anatomy)
+        txt = norm(open(sb).read()) if os.path.exists(sb) else ""
+        codigo = " ".join(norm(open(f).read()) for f in glob.glob(os.path.join(ep_d, "escena", "*.py")))
+        usa_anatomia = re.search(r"(z-?anatomy|cabeza de vidrio)", txt + " " + codigo) is not None
     if usa_anatomia:
         for nom, s in (("descripción de YouTube", yt), ("primer comentario", com)):
             if "z-anatomy" not in norm(s):
