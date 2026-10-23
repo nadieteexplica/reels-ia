@@ -28,7 +28,9 @@ El look de los primeros episodios: 3D semi-realista estilizado, tipo película a
 ---
 
 ## REALISTA (decisión de Tomás, 22-oct-2026; primero el Ep. 5)
-**La meta:** que parezca una película con efectos especiales, no un dibujo animado. No tiene que confundirse con una grabación, pero nadie debería decir "es un monito animado". Tomás lo pidió porque los videos se veían "muy animados", y porque al pedir realismo en otro video siguió saliendo el mismo look y el mismo personaje de MakeHuman.
+**La meta, en palabras de Tomás:** "realista pero en un mundo animado". Su referencia de **calidad** es Zack D. Films (nunca su marca, sus personajes ni sus formatos). Se busca un mundo 3D con proporciones, materiales y luz reales, que **se nota que es animación 3D** pero nadie llamaría "monito animado". Tomás lo pidió porque los videos se veían "muy animados", y porque al pedir realismo en otro video siguió saliendo el mismo look y el mismo personaje de MakeHuman.
+
+**No es fotorrealismo:** Tomás rechazó imágenes fotorrealistas generadas con IA ("nada de nada"). Un plano que parece grabación real o video de IA fotográfico no suma puntos: rompe el mundo animado. Si aparece al lado de planos 3D, es sugerencia de prioridad 1 en belleza ("otro look").
 
 ### Belleza (en realista)
 - **Luz:** con dirección y sombras de contacto reales (los objetos tocan el suelo, con sombra debajo). Una luz de ambiente creíble (de estudio, de laboratorio, de día o de noche), no la luz pareja de una maqueta.
@@ -48,12 +50,14 @@ El look de los primeros episodios: 3D semi-realista estilizado, tipo película a
 ### Criterio `realismo` (1–10, obligatorio en cuadros de estilo y animatic)
 | Nota | Qué se ve |
 |---|---|
-| 10 | Un espectador podría dudar si es una grabación |
-| 9 | Nivel de efectos de cine o de serie |
-| **8** | **Claramente 3D, pero la luz, los materiales y la cámara son reales: nadie diría "dibujo animado". Mínimo para aprobar** |
-| 7 | Mezcla: el mundo se ve real, pero algo delata el juguete (un personaje de plástico, sombras flotantes, bordes perfectos) |
+| 10 | Al nivel de las mejores cuentas de animación 3D realista: todo el mundo (personas, animales, objetos, lugar) tiene proporciones, materiales y luz reales, coherente de principio a fin |
+| 9 | Excelente: un detalle chico delata el juguete |
+| **8** | **Animación 3D realista: proporciones reales, materiales con textura y luz con sombras reales; nada de caricatura ni pastel. Mínimo para aprobar** |
+| 7 | Mezcla: el mundo se ve real, pero algo delata el juguete (un personaje de muñeco o de plástico, piel lisa, sombras flotantes, bordes perfectos) |
 | 6 | Videojuego viejo, todo de plástico o de maqueta |
-| ≤ 5 | Dibujo animado o 3D estilizado (lo que se pidió evitar) |
+| ≤ 5 | Dibujo animado o caricatura (cabezones, ojos grandes, paleta pastel: el look de los Ep. 1–4) |
+
+Más fotográfico no es más nota: el 10 es una animación 3D realista impecable, no un video que parezca grabado.
 
 - **Evidencia:** di qué se ve real y qué **delata** el 3D, con plano y segundo. Delatores típicos:
   - piel lisa de muñeco, ojos grandes o brillantes de caricatura;
@@ -90,7 +94,7 @@ Las explicaciones pueden llevar **capas gráficas estilizadas encima del mundo r
 - Colores sobrios (grises, metal, blanco de laboratorio) no son "lavado" si hay sombras y negros de verdad.
 
 ### Kling (realista)
-El clip mantiene el mismo look que los cuadros renderizados:
+Kling parte de un cuadro 3D nuestro y el clip mantiene ese mismo look (nada de pasar a fotorrealismo de IA):
 - la misma luz y los mismos materiales;
 - que no derive a dibujo ni a otra cámara.
 

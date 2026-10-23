@@ -31,6 +31,7 @@ Hasta el Ep. 4 el auditor tenía metido el look animado: belleza pedía colores 
 
 | | Animado | Realista |
 |---|---|---|
+| **Qué es** | el look de los Ep. 1–4 | "realista pero en un mundo animado" (Tomás; referencia de calidad: Zack D. Films). **No** es fotorrealismo de IA |
 | **Belleza** | luz suave de estudio, colores saturados, fondo vivo | luz con sombras reales, materiales con textura e imperfecciones, color natural con contraste, lente real |
 | **Criterio `realismo`** | no existe | obligatorio en cuadros (4) y animatic (6), con número; **ningún revisor bajo 8** (`presupuesto.json` → `realismo_min`). "No aplica" cuenta como falta |
 | **Lavado (automático, puerta 4)** | brillo > 175 y saturación < 70 | brillo > 175 y **sin negros** (percentil 5 > 120, como neblina); entre 90 y 120, o poco color con sombras reales, es aviso y lo decide el revisor |
