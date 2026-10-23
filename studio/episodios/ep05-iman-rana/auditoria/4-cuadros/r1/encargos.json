@@ -1,0 +1,26 @@
+[
+ {
+  "id": "cuadros",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "A_rana, B_persona_iman_gigante, C_adentro_agua",
+  "materiales": [
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r1/materiales/A_rana.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r1/materiales/B_persona_iman_gigante.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r1/materiales/C_adentro_agua.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r1/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r1/materiales/ref_1.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r1/materiales/ref_2.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r1/materiales/ref_3.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r1/materiales/ref_4.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r1/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "tools/auditor/prompts/estilos.md"
+  ],
+  "salida": "cuadros.json",
+  "notas_de_uso": "Estilo REALISTA ('realista pero en un mundo animado', referencia de calidad Zack D. Films; NO fotorrealismo de IA). A = cuadro 0 y set E1: la rana (escaneo real, 2,2 cm) flotando dentro de un tubo de vidrio en la boca de un electroimán, en un salar de Atacama al atardecer. B = set E4/E5 (parte HIPOTÉTICA, va con la píldora SIMULACIÓN): Pete (Mixamo) flotando sobre la boca del imán gigante que haría falta para una persona; atrás, la central nuclear. C = set E2: adentro de la rana, moléculas de agua y el empujón del imán (líneas cian y flechas naranjas = capa de explicación estilizada). Las fotos reales de referencia y un cuadro del Ep. 4 (look animado de antes) van para comparar el realismo.",
+  "estilo": "realista"
+ }
+]

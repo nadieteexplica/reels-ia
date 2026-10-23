@@ -1,0 +1,13 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "B_persona_iman_gigante: muy claro y con pocas sombras (brillo 182.8, negros en 117.0): que el revisor diga si está lavado (B9) o es un lugar blanco bien expuesto",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "cuadros": 3,
+  "estilo": "realista"
+ }
+}

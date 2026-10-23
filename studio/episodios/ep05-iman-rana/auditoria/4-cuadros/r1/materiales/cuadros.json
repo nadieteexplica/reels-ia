@@ -1,0 +1,29 @@
+[
+ {
+  "cuadro": "A_rana",
+  "archivo": "A_rana.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.0,
+  "brillo": 146.6,
+  "saturacion": 66.4,
+  "negros_p5": 21.0
+ },
+ {
+  "cuadro": "B_persona_iman_gigante",
+  "archivo": "B_persona_iman_gigante.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 1.63,
+  "brillo": 182.8,
+  "saturacion": 42.7,
+  "negros_p5": 117.0
+ },
+ {
+  "cuadro": "C_adentro_agua",
+  "archivo": "C_adentro_agua.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.08,
+  "brillo": 75.1,
+  "saturacion": 187.9,
+  "negros_p5": 7.0
+ }
+]
