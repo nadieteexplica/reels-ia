@@ -15,3 +15,12 @@
 {"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 15, "ts": "2026-10-23T00:18:54-03:00"}
 {"tipo": "trabajo", "id": "estilos B3 39894344590", "estado": "inicio", "n": 16, "ts": "2026-10-23T00:19:10-03:00"}
 {"tipo": "aviso", "que": "B2 salió con Pete en T: el FBX With Skin trae una acción que pisa la pose; arreglado (animation_data_clear) y relanzado B3 39894344590", "n": 17, "ts": "2026-10-23T00:19:10-03:00"}
+{"tipo": "aviso", "que": "00:23 Tomás se va a dormir: escenas abiertas y espaciosas (no dentro de un edificio), 'choro'. Se pasa todo a un salar de Atacama al atardecer. Pidió terminarlo solo; se le avisó que el tope de 4 h se pasa (~5 h, listo 05:00–06:00) y que nada se programa sin su OK", "n": 18, "ts": "2026-10-23T00:24:08-03:00"}
+{"tipo": "promesa", "hora": "06:00", "que": "video listo para OK de Tomás", "dato": "cuadros de estilo ~5–8 min cada uno en Actions (medido: A 310 s, B 222 s, C 500 s); animatic y final estimados con eso", "n": 19, "ts": "2026-10-23T00:24:08-03:00"}
+{"tipo": "trabajo", "id": "auditor 1-guion r1", "estado": "caido", "n": 20, "ts": "2026-10-23T00:24:42-03:00"}
+{"tipo": "trabajo", "id": "auditor 1-guion r1 (relanzado)", "estado": "inicio", "n": 21, "ts": "2026-10-23T00:24:42-03:00"}
+{"tipo": "trabajo", "id": "auditor 1-guion r1 (relanzado)", "estado": "caido", "n": 22, "ts": "2026-10-23T00:27:44-03:00"}
+{"tipo": "trabajo", "id": "auditor 1-guion v2", "estado": "inicio", "n": 23, "ts": "2026-10-23T00:27:44-03:00"}
+{"tipo": "chequeo", "id": "estilos HD C 39893696054 · B2 39893836860 · A2 39894106192", "estado": "vivo (vigilante) · completed/success · 2/2 trabajos", "n": 24, "ts": "2026-10-23T00:31:32-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 25, "ts": "2026-10-23T00:33:54-03:00"}
+{"tipo": "trabajo", "id": "auditor 1-guion v2", "estado": "fin", "n": 26, "ts": "2026-10-23T00:35:29-03:00"}

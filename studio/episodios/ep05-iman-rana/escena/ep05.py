@@ -729,3 +729,207 @@ def pose_flotando(arm):
     rotar_hueso_mundo(arm, "Head", (1, 0, 0), 14)
     rotar_hueso_mundo(arm, "LeftUpLeg", (0, 1, 0), 4)
     rotar_hueso_mundo(arm, "RightUpLeg", (0, 1, 0), -4)
+
+
+# ================================================================ EXTERIOR: salar de Atacama al atardecer
+# Tomás (23-oct 00:23): la escena abierta y espaciosa, no dentro de un edificio ("que sea choro"), y todo a escala real.
+def cielo_atardecer(sc, elev=4.0, rot=200.0, fuerza=0.32, sol=3.5, color_sol=(1.0, 0.64, 0.42)):
+    """Cielo físico (dispersión múltiple) con el sol bajo + una luz de sol para las sombras largas."""
+    w = bpy.data.worlds.new("Cielo")
+    sc.world = w
+    w.use_nodes = True
+    nt = w.node_tree
+    sky = nt.nodes.new("ShaderNodeTexSky")
+    sky.sky_type = "MULTIPLE_SCATTERING"
+    sky.sun_elevation = math.radians(elev)
+    sky.sun_rotation = math.radians(rot)
+    sky.altitude = 2300          # el salar está a ~2.300 m: aire más limpio
+    sky.air_density = 1.0
+    sky.aerosol_density = 1.4
+    sky.sun_disc = True
+    nt.links.new(sky.outputs[0], nt.nodes["Background"].inputs[0])
+    nt.nodes["Background"].inputs[1].default_value = fuerza
+    s = bpy.data.lights.new("Sol", "SUN")
+    s.energy = sol
+    s.color = color_sol
+    s.angle = math.radians(0.6)
+    o = bpy.data.objects.new("Sol", s)
+    sc.collection.objects.link(o)
+    # el sol de la luz apunta igual que el del cielo
+    az = math.radians(rot)
+    d = Vector((math.sin(az) * math.cos(math.radians(elev)), math.cos(az) * math.cos(math.radians(elev)), math.sin(math.radians(elev))))
+    o.rotation_euler = (-d).to_track_quat("-Z", "Y").to_euler()
+    return w, o, d
+
+
+def mat_sal(nombre="costra_sal", escala=1.3):
+    """Costra de sal del salar: polígonos de sal (voronoi) con bordes levantados más blancos, polvo y variación grande."""
+    m, nt, b = _nodos(nombre)
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    vo = nt.nodes.new("ShaderNodeTexVoronoi")
+    vo.feature = "DISTANCE_TO_EDGE"
+    vo.inputs["Scale"].default_value = escala
+    vo.inputs["Randomness"].default_value = 0.85
+    nt.links.new(tc.outputs["Object"], vo.inputs["Vector"])
+    borde = _mapa(nt, vo.outputs["Distance"], 1.0, 0.0)
+    borde.inputs["From Max"].default_value = 0.06
+    grande = _ruido(nt, escala=0.08, detalle=6)
+    base = _rampa(nt, grande.outputs["Fac"], (0.62, 0.58, 0.53), (0.80, 0.77, 0.72))
+    mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
+    nt.links.new(borde.outputs[0], mix.inputs[0])
+    nt.links.new(base.outputs[0], mix.inputs[6])
+    mix.inputs[7].default_value = (0.93, 0.92, 0.9, 1)
+    nt.links.new(mix.outputs[2], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.88
+    fino = _ruido(nt, escala=60, detalle=4)
+    suma = nt.nodes.new("ShaderNodeMath"); suma.operation = "ADD"
+    nt.links.new(borde.outputs[0], suma.inputs[0])
+    esc = nt.nodes.new("ShaderNodeMath"); esc.operation = "MULTIPLY"; esc.inputs[1].default_value = 0.25
+    nt.links.new(fino.outputs["Fac"], esc.inputs[0]); nt.links.new(esc.outputs[0], suma.inputs[1])
+    _bump(nt, b, suma.outputs[0], 0.5, 0.03)
+    return m
+
+
+def salar(sc, lado=6000.0):
+    bpy.ops.mesh.primitive_plane_add(size=lado, location=(0, 0, 0))
+    piso = bpy.context.object
+    piso.name = "Salar"
+    asignar(piso, mat_sal())
+    return piso
+
+
+def mat_lejano(nombre, color, neblina=(0.78, 0.55, 0.52), k=0.55):
+    """Cerros lejanos: roca + neblina del atardecer (perspectiva aérea falsa: se mezcla con el color del cielo)."""
+    m = bpy.data.materials.new(nombre)
+    m.use_nodes = True
+    nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]
+    nz = _ruido(nt, escala=0.004, detalle=10)
+    nt.links.new(_rampa(nt, nz.outputs["Fac"], tuple(c * 0.6 for c in color), color).outputs[0], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 1.0
+    em = nt.nodes.new("ShaderNodeEmission")
+    em.inputs[0].default_value = (*neblina, 1)
+    em.inputs[1].default_value = 0.35
+    mx = nt.nodes.new("ShaderNodeMixShader")
+    mx.inputs[0].default_value = k
+    nt.links.new(b.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2])
+    nt.links.new(mx.outputs[0], nt.nodes["Material Output"].inputs[0])
+    return m
+
+
+def cerros(sc, semilla=7):
+    """Cordillera lejana (5–12 km) y un volcán de cono perfecto (como los del borde del salar), todo con neblina."""
+    random.seed(semilla)
+    for i, (ang, dist, alto, ancho) in enumerate(((150, 9000, 900, 9000), (190, 11000, 1500, 12000), (230, 8000, 700, 8000),
+                                                 (270, 12000, 1300, 10000), (110, 10000, 1100, 9000), (330, 9000, 800, 9000),
+                                                 (20, 11000, 1000, 12000), (60, 10000, 900, 10000))):
+        a = math.radians(ang)
+        bpy.ops.mesh.primitive_grid_add(x_subdivisions=80, y_subdivisions=12, size=1, location=(math.sin(a) * dist, math.cos(a) * dist, 0))
+        g = bpy.context.object
+        g.name = f"Cerro{i}"
+        g.scale = (ancho, ancho * 0.3, 1)
+        g.rotation_euler = (0, 0, -a)
+        bpy.ops.object.transform_apply(scale=True, rotation=True)
+        tx = bpy.data.textures.new(f"cerro{i}", "CLOUDS"); tx.noise_scale = 0.35; tx.noise_depth = 4
+        for v in g.data.vertices:
+            u = (v.co.x / ancho) if abs(math.cos(a)) > 0.5 else (v.co.y / ancho)
+            borde = max(0.0, 1 - abs(2 * (v.co - Vector((0, 0, 0))).length / ancho))
+            v.co.z = 0
+        d = g.modifiers.new("relieve", "DISPLACE"); d.texture = tx; d.strength = alto; d.mid_level = 0.25
+        d.texture_coords = "GLOBAL"
+        liso(g, 180)
+        asignar(g, mat_lejano(f"cerro_m{i}", (0.42, 0.28, 0.24), k=0.5 + 0.1 * (dist > 10000)))
+    # volcán (cono perfecto con cumbre nevada), lejos
+    a = math.radians(205)
+    dist = 14000
+    bpy.ops.mesh.primitive_cone_add(vertices=160, radius1=6500, radius2=350, depth=2600, location=(math.sin(a) * dist, math.cos(a) * dist, 1300))
+    v = bpy.context.object; v.name = "Volcan"
+    tx = bpy.data.textures.new("volcan", "CLOUDS"); tx.noise_scale = 0.08
+    sub = v.modifiers.new("sub", "SUBSURF"); sub.levels = 2; sub.subdivision_type = "SIMPLE"
+    d = v.modifiers.new("relieve", "DISPLACE"); d.texture = tx; d.strength = 120
+    liso(v, 180)
+    asignar(v, mat_lejano("volcan_m", (0.48, 0.3, 0.26), k=0.55))
+
+
+def central_nuclear(sc, pos=(0, 2500, 0), rot=0.0):
+    """Central nuclear a escala real en el horizonte: 2 torres de enfriamiento (~150 m), el domo del reactor y la casa de
+    turbinas, con su vapor. Concreto con manchas."""
+    hormigon = mat_concreto("hormigon_central", (0.62, 0.6, 0.57), 0.02)
+    px, py, pz = pos
+    torres = []
+    for i, dx in enumerate((-110, 70)):
+        # hiperboloide: r(z) = a * sqrt(1 + ((z - z0) / c)^2)
+        prof = []
+        for k in range(25):
+            z = 150 * k / 24
+            r = 34 * math.sqrt(1 + ((z - 105) / 55) ** 2)
+            prof.append((r, z))
+        verts, caras, n = [], [], 64
+        for (r, z) in prof:
+            for j in range(n):
+                t = 2 * math.pi * j / n
+                verts.append((r * math.cos(t), r * math.sin(t), z))
+        for k in range(len(prof) - 1):
+            for j in range(n):
+                a0, a1 = k * n + j, k * n + (j + 1) % n
+                caras.append((a0, a1, a1 + n, a0 + n))
+        me = bpy.data.meshes.new(f"torre{i}"); me.from_pydata(verts, [], caras)
+        t = bpy.data.objects.new(f"Torre{i}", me); sc.collection.objects.link(t)
+        t.location = (px + dx, py + (i * 40), pz)
+        sol = t.modifiers.new("grosor", "SOLIDIFY"); sol.thickness = 1.2
+        liso(t, 180); asignar(t, hormigon)
+        torres.append(t)
+        # vapor: volumen suave sobre la boca
+        vap = mat_vapor()
+        for k in range(4):
+            bpy.ops.mesh.primitive_ico_sphere_add(radius=40 + 18 * k, subdivisions=3,
+                                                  location=(px + dx + 12 * k, py + i * 40 + 6 * k, 165 + 55 * k))
+            vv = bpy.context.object; vv.name = f"Vapor{i}_{k}"; vv.scale = (1, 1, 0.7)
+            dd = vv.modifiers.new("bulto", "DISPLACE"); tx = bpy.data.textures.new(f"vap{i}{k}", "CLOUDS"); tx.noise_scale = 30; dd.texture = tx; dd.strength = 14
+            asignar(vv, vap)
+    # domo del reactor y casa de turbinas
+    cilindro(sc, "Reactor", 24, 45, (px + 200, py - 30, pz), verts=64, mat=hormigon)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=24, location=(px + 200, py - 30, pz + 45), segments=48, ring_count=24)
+    dm = bpy.context.object; dm.name = "Domo"; liso(dm, 180); asignar(dm, hormigon)
+    caja(sc, "Turbinas", (160, 50, 32), (px + 300, py - 10, pz + 16), mat_pintura("turbinas", (0.55, 0.57, 0.6), sucio=0.3), 0.5)
+    return torres
+
+
+def mat_vapor():
+    if "vapor" in bpy.data.materials:
+        return bpy.data.materials["vapor"]
+    m = bpy.data.materials.new("vapor")
+    m.use_nodes = True
+    nt = m.node_tree
+    nt.nodes.remove(nt.nodes["Principled BSDF"])
+    v = nt.nodes.new("ShaderNodeVolumePrincipled")
+    v.inputs["Color"].default_value = (1.0, 0.9, 0.86, 1)
+    v.inputs["Density"].default_value = 0.012
+    v.inputs["Anisotropy"].default_value = 0.4
+    nt.links.new(v.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
+    return m
+
+
+def mat_acrilico(nombre="acrilico"):
+    """Tubo de vidrio delgado que se lee limpio: transparente al centro y con reflejos en los bordes (fresnel), sin la
+    refracción gruesa que con un tubo de 3 cm frente a un lente macro borraba la rana."""
+    m = bpy.data.materials.new(nombre)
+    m.use_nodes = True
+    nt = m.node_tree
+    nt.nodes.remove(nt.nodes["Principled BSDF"])
+    tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+    tr.inputs[0].default_value = (0.97, 0.99, 1.0, 1)
+    gl = nt.nodes.new("ShaderNodeBsdfGlossy")
+    gl.inputs["Roughness"].default_value = 0.03
+    lw = nt.nodes.new("ShaderNodeLayerWeight")
+    lw.inputs["Blend"].default_value = 0.12
+    mx = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(lw.outputs["Fresnel"], mx.inputs[0])
+    nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(gl.outputs[0], mx.inputs[2])
+    nt.links.new(mx.outputs[0], nt.nodes["Material Output"].inputs[0])
+    return m
+
+
+def plataforma(sc, lado=3.2):
+    """Losa de acero con grip (donde está el imán del laboratorio, en medio del salar)."""
+    return caja(sc, "Plataforma", (lado, lado, 0.08), (0, 0, 0.04), mat_metal_cepillado("losa", (0.36, 0.37, 0.39), (0.35, 0.6), 0.4), 0.01)

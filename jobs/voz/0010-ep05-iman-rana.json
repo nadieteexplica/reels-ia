@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "id": "ep05-iman-rana",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.32,
+  "use_speaker_boost": true
+ },
+ "text": "Esta rana está flotando... y nadie la sostiene. La levanta un imán gigante. ¿Cómo? La rana es, en gran parte, agua. Y al agua, un imán la empuja... un poquito. Ese empujoncito lo recibe cada molécula. Y con un imán bien fuerte, le gana a la gravedad. Le pasa a una fresa... y a ti. ¿Por qué no flotas junto al refri? Porque ese imán es miles de veces más débil. ¿Y si quisiéramos hacerte flotar a ti? Haría falta un imán gigante donde quepas. Casi cuarenta teslas: más del doble que el de la rana. Y gastaría cerca de un gigavatio: un reactor nuclear entero. Ahí sí flotarías. Todo eso... para lo que esta rana hace sin hilos."
+}

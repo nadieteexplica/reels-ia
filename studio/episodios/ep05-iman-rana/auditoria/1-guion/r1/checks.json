@@ -7,8 +7,8 @@
   }
  ],
  "datos": {
-  "palabras": 113,
-  "duracion_estimada_s": 38.8,
+  "palabras": 118,
+  "duracion_estimada_s": 40.5,
   "pausas": 5,
   "fuentes": [
    "energy.gov",
@@ -18,6 +18,6 @@
    "physics.umd.edu",
    "technologyreview.com"
   ],
-  "afirmaciones_verificadas": 10
+  "afirmaciones_verificadas": 11
  }
 }
