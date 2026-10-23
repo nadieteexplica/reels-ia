@@ -46,7 +46,7 @@ CABEZA = Vector((-0.008, -0.004, 0.002))                         # foco en la ca
 
 
 def armar_E1(sc, fresa=False):
-    E.cielo_atardecer(sc, elev=2.5, rot=10, fuerza=0.35, sol=3.5)
+    E.cielo_atardecer(sc, elev=2.5, rot=35, fuerza=0.35, sol=3.5)     # como el cuadro A v2.1
     sc.view_settings.exposure = -0.2
     E.salar(sc)
     E.cerros(sc)

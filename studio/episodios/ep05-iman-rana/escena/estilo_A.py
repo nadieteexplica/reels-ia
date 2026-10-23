@@ -10,7 +10,7 @@ import ep05 as E
 w, h = (int(v) for v in os.environ.get("RES", "1080x1920").split("x"))
 out = os.environ.get("OUT", os.path.join(HERE, "out")); os.makedirs(out, exist_ok=True)
 sc = E.escena("EstiloA", (w, h), int(os.environ.get("SAMPLES", 64)))
-SOL_ROT = float(os.environ.get("SOL_ROT", 10))
+SOL_ROT = float(os.environ.get("SOL_ROT", 35))   # 35: el brillo del sol en la sal queda fuera del cuadro (con 10 era una mancha detrás de la rana)
 E.cielo_atardecer(sc, elev=2.5, rot=SOL_ROT, fuerza=0.35, sol=3.5)
 E.salar(sc)
 E.cerros(sc)
