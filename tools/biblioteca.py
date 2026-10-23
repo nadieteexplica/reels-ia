@@ -2,6 +2,8 @@
 
   python3 tools/biblioteca.py catalogos studio/biblioteca   # metadatos de Poly Haven, ambientCG y Smithsonian 3D (lo corre biblioteca.yml)
   python3 tools/biblioteca.py packs packs                   # packs CC0 de animaciones (Quaternius UAL 1 y 2)
+  python3 tools/biblioteca.py sonda sonda                   # respuestas crudas (Smithsonian) y links de Sonniss, para depurar
+  python3 tools/biblioteca.py hojas hojas [model|hdri|texture]  # hojas de miniaturas de Poly Haven para elegir el kit
   python3 tools/biblioteca.py buscar "concrete,rust" [hdri|texture|model|material|3d]   # busca en los catálogos del repo
   python3 tools/biblioteca.py bajar polyhaven <id> [2k] [carpeta]                         # baja un asset por nombre (en Actions)
   python3 tools/biblioteca.py bajar ambientcg <id> [2K-JPG] [carpeta]
@@ -154,6 +156,67 @@ def packs(destino):
     open(f"{destino}/LEEME.txt", "w").write("\n".join(leeme) + "\n")
 
 
+def sonda(destino):
+    """Respuestas crudas para depurar fuentes nuevas (Smithsonian) y los links de descarga de Sonniss (sin bajar nada)."""
+    from bs4 import BeautifulSoup
+    os.makedirs(destino, exist_ok=True)
+    pruebas = {
+        "si_openaccess_q": ("https://api.si.edu/openaccess/api/v1.0/search", {"q": 'online_media_type:"3D Images"', "rows": 5, "api_key": "DEMO_KEY"}),
+        "si_openaccess_3d": ("https://api.si.edu/openaccess/api/v1.0/search", {"q": "3d", "rows": 5, "api_key": "DEMO_KEY"}),
+        "si_3dapi_glb": ("https://3d-api.si.edu/api/v1.0/content/file/search", {"file_type": "glb", "rows": 5}),
+    }
+    for n, (u, p) in pruebas.items():
+        try:
+            r = requests.get(u, params=p, headers=UA, timeout=60)
+            open(f"{destino}/{n}.txt", "w").write(f"{r.status_code} {r.url}\n\n{r.text[:20000]}")
+        except Exception as e:
+            open(f"{destino}/{n}.txt", "w").write(f"error {e}")
+    links = []
+    for pagina in ("https://sonniss.com/gameaudiogdc", "https://gdc.sonniss.com/"):
+        r = _get(pagina)
+        if not r:
+            links.append({"pagina": pagina, "error": "no respondió"})
+            continue
+        for a in BeautifulSoup(r.text, "html.parser").find_all("a", href=True):
+            h = requests.compat.urljoin(pagina, a["href"])
+            if re.search(r"(\.zip|\.torrent|\.rar|\.7z|download|gdc)", h, re.I):
+                links.append({"pagina": pagina, "url": h, "texto": a.get_text(" ", strip=True)[:120]})
+    for l in links:
+        if l.get("url", "").lower().endswith((".zip", ".rar", ".7z")):
+            try:
+                h = requests.head(l["url"], headers=UA, timeout=30, allow_redirects=True)
+                l["estado"], l["bytes"] = h.status_code, int(h.headers.get("content-length", 0))
+            except Exception as e:
+                l["estado"] = f"error {e}"
+    json.dump(links, open(f"{destino}/sonniss_links.json", "w"), ensure_ascii=False, indent=1)
+
+
+def hojas(destino, catalogo="studio/biblioteca/polyhaven.json", tipo="model", por_hoja=48):
+    """Hojas de miniaturas de Poly Haven (para elegir el kit mirando, no a ciegas)."""
+    import io
+    from PIL import Image, ImageDraw
+    os.makedirs(destino, exist_ok=True)
+    d = json.load(open(catalogo))
+    ids = sorted([k for k, v in d.items() if v["tipo"] == tipo], key=lambda k: (d[k]["categorias"][:1], k))
+    for h in range(0, len(ids), por_hoja):
+        tiles = []
+        for k in ids[h:h + por_hoja]:
+            try:
+                im = Image.open(io.BytesIO(_get(f"https://cdn.polyhaven.com/asset_img/thumbs/{k}.png?width=256&height=256", timeout=30).content)).convert("RGB").resize((256, 256))
+            except Exception:
+                im = Image.new("RGB", (256, 256), (60, 60, 60))
+            dr = ImageDraw.Draw(im)
+            dr.rectangle((0, 226, 256, 256), fill=(0, 0, 0))
+            dr.text((4, 230), k[:40], fill=(255, 255, 0))
+            dr.text((4, 242), ",".join(d[k]["categorias"][:2])[:40], fill=(255, 255, 255))
+            tiles.append(im)
+        cols = 8
+        sheet = Image.new("RGB", (cols * 256, -(-len(tiles) // cols) * 256), (20, 20, 20))
+        for i, t in enumerate(tiles):
+            sheet.paste(t, ((i % cols) * 256, (i // cols) * 256))
+        sheet.save(f"{destino}/hoja_polyhaven_{tipo}_{h // por_hoja + 1:02d}.jpg", quality=82)
+
+
 def buscar(palabras, tipo=None, carpeta="studio/biblioteca"):
     pal = [p.strip().lower() for p in palabras.split(",") if p.strip()]
     res = []
@@ -218,6 +281,10 @@ if __name__ == "__main__":
         catalogos(a[1] if len(a) > 1 else "studio/biblioteca")
     elif a[0] == "packs":
         packs(a[1] if len(a) > 1 else "packs")
+    elif a[0] == "sonda":
+        sonda(a[1] if len(a) > 1 else "sonda")
+    elif a[0] == "hojas":
+        hojas(a[1] if len(a) > 1 else "hojas", tipo=a[2] if len(a) > 2 else "model")
     elif a[0] == "buscar":
         buscar(a[1], a[2] if len(a) > 2 else None)
     elif a[0] == "bajar":

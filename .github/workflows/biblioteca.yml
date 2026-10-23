@@ -9,6 +9,12 @@ on:
       packs:
         description: "Bajar también los packs CC0 de animaciones (si/no)"
         default: "si"
+      catalogos:
+        description: "Rehacer los catálogos (si/no)"
+        default: "si"
+      extra:
+        description: "Pasos extra separados por espacio: sonda (Smithsonian crudo + links de Sonniss), hojas (miniaturas de Poly Haven)"
+        default: ""
 permissions:
   contents: write
 jobs:
@@ -20,9 +26,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -q requests beautifulsoup4
+      - run: pip install -q requests beautifulsoup4 pillow
       - name: Catálogos
+        if: ${{ github.event.inputs.catalogos == 'si' }}
         run: python3 tools/biblioteca.py catalogos studio/biblioteca
+      - name: Extra
+        if: ${{ github.event.inputs.extra != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          EXTRA: ${{ github.event.inputs.extra }}
+        run: |
+          mkdir -p extra
+          for x in $EXTRA; do
+            case "$x" in
+              sonda) python3 tools/biblioteca.py sonda extra || true ;;
+              hojas) for t in model hdri texture; do python3 tools/biblioteca.py hojas extra $t || true; done ;;
+            esac
+          done
+          ls -la extra
+          gh release view biblioteca >/dev/null 2>&1 || gh release create biblioteca --prerelease --title "biblioteca" --notes "Biblioteca realista (docs/BIBLIOTECA.md)."
+          [ -n "$(ls extra)" ] && gh release upload biblioteca extra/* --clobber || true
       - name: Packs CC0
         if: ${{ github.event.inputs.packs == 'si' }}
         run: python3 tools/biblioteca.py packs packs
