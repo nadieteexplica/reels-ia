@@ -1,0 +1,92 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Lucía",
+      "videos": {
+        "X": {
+          "desliza": 2,
+          "por_que_desliza_o_sigue": "Sin sonido, el primer cuadro es un auto quieto al pie de un cerro con un número en 0° y una pregunta larga sobre 'tu auto' (no maneja). Nada se mueve hasta el 4.5; antes de eso ya pasó al siguiente. Los personajes raros alcanzan a llamarle la atención un segundo, pero no lo suficiente.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "No vio nada que valga la pena mandar."},
+          "no_entendio": "Qué mide el número grande ni por qué dice SIMULACIÓN; no llegó a ver nada más.",
+          "le_contaria": "nada",
+          "nota": 2
+        },
+        "W": {
+          "desliza": 8,
+          "por_que_desliza_o_sigue": "El CLAC del caballero al segundo 0 la frena, y las piezas de colores y las píldoras que parpadean tipo concurso la sostienen unos segundos. Cuando el video se mete adentro del pilar a explicar la bolita (7.6), sin audio es leer palabras técnicas encima de piezas chicas, y se aburre.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "No le importa el cinturón; no llegó a ninguna parte chistosa."},
+          "no_entendio": "Qué son los 'guardias' 1 y 2: ve dos piezas iluminadas, pero no entiende qué hacen. El concurso no le dio tiempo de adivinar nada.",
+          "le_contaria": "nada",
+          "nota": 3
+        },
+        "Q": {
+          "desliza": 11,
+          "por_que_desliza_o_sigue": "El caballero con armadura lanzándose por las papas y rebotando contra el asiento se entiende sin sonido, y al tiro le sigue la versión lenta, en que la cinta sale (3.1). Ese contraste lo captó: a ella también le pasa de pasajera. Cuando entra al carrete y la rueda dentada gira (9–12), ya es 'explicación de máquina' y desliza.",
+          "risas": [{"s": 2, "que": "El caballero con armadura rebotando contra el asiento por querer agarrar papas (media risa, más sonrisa que carcajada)."}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "El chiste del inicio es chico; el remate del doctor no lo vio."},
+          "no_entendio": "Qué es el carrete con dientes y para qué sirve; no entendió lo del pestillo.",
+          "le_contaria": "Que si jalas el cinturón despacio sí sale, y si jalas fuerte se traba.",
+          "nota": 5
+        },
+        "Z": {
+          "desliza": 9,
+          "por_que_desliza_o_sigue": "El arranque con acción (el caballero frenado a 5 cm de las papas) y la frase 'lo frenó una bolita de acero' le dan una curiosidad tipo 'sabías que'. Pero al 3.1 el video ya está adentro del pilar, y del 6 al 10 es una bolita en una tacita que se inclina: para ella no pasa nada y desliza.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Dato curioso, pero no lo suficiente para mandarlo."},
+          "no_entendio": "Cómo una bolita puede parar un cinturón y qué es la 'tacita'.",
+          "le_contaria": "nada (a lo más 'el cinturón tiene una bolita adentro', si alguien saca el tema)",
+          "nota": 4
+        }
+      }
+    },
+    {
+      "perfil": "José",
+      "videos": {
+        "X": {
+          "desliza": 34,
+          "por_que_desliza_o_sigue": "La pregunta del 0 le toca justo (maneja todo el día en subidas) y la cuenta de grados lo deja esperando el número. Con el 27° y la bolita queda servido. Del 28 al 33 el video repite la idea, y el truco del 33 ya lo sabe (se lo enseña a sus pasajeros), así que desliza antes del final.",
+          "risas": [{"s": 12, "que": "La gota de sudor corriendo por el vidrio de la máscara antigás (sonrisa)."}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Lo de los 27° no le calza con su experiencia: en Arequipa se le traba en calles que ni de cerca tienen 27°, así que no lo siente 'su' explicación."},
+          "no_entendio": "Qué pasa entre 12° y 27° (a los 20° nadie le dice si se traba o no). Y si la norma dice 27°, por qué a él se le traba en cualquier subida de la ciudad.",
+          "le_contaria": "Que el cinturón tiene una bolita que se traba cuando el auto se inclina mucho, como a 27 grados.",
+          "nota": 6
+        },
+        "W": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "'Tu cinturón tiene dos guardias' le despierta la curiosidad, y el formato de adivinar ('¿Cuál te atrapa?') lo mete. Cada pregunta (4.5, 13.8, 23.5) le abre una razón nueva para seguir, y la tercera es justo la subida. Le molesta un poco que la respuesta llegue antes de que alcance a pensar.",
+          "risas": [{"s": 36, "que": "El caballero por fin alcanza las papas y el piloto frena en seco otra vez."}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Le gustó, pero como juego no funciona para mandarlo: no deja tiempo de adivinar, así que no sirve para retar a un amigo."},
+          "no_entendio": "El 'pestillo que sale por el giro' (19.7–23.5) le quedó medio abstracto; lo de la bolita sí lo entendió.",
+          "le_contaria": "Que el cinturón tiene dos trabas: una se activa si el auto frena o se inclina, y la otra si jalas rápido.",
+          "nota": 7
+        },
+        "Q": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "El arranque es algo que ve todos los días con sus pasajeros, y el '¿Cómo sabe?' del 5.2 lo engancha porque nunca supo por qué pasa. La parte de la subida (21.7–29) le habla directo a él. El remate del doctor lo agarra con sonido y le saca la risa.",
+          "risas": [{"s": 35, "que": "La bolsa vacía y el doctor masticando con cara de inocente."}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Se rió, pero no lo suficiente como para mandarlo. Lo comentaría en persona."},
+          "no_entendio": "Al 25.5 dice que en la subida nadie llega a las papas, y al 29 el caballero hace el truco y sí le sale en la misma subida. Él sabe que en una subida fuerte el cinturón no sale aunque tires lento.",
+          "le_contaria": "Que el cinturón tiene un carrete con dientes que se traba si jalas de golpe y una bolita que lo traba en las subidas, y que lo del doctor comiéndose las papas estuvo bueno.",
+          "nota": 8
+        },
+        "Z": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "'Lo frenó una bolita de acero' es una curiosidad concreta, y al 16.9 le responde lo que siempre se preguntó ('en esta subida, la bolita cree que el auto se va a dar vuelta'). Lo del pestillo (21.7–29) ya no le suma tanto, pero queda poco y lo termina.",
+          "risas": [],
+          "lo_manda": {"si": true, "a_quien": "Su grupo de WhatsApp de choferes", "por_que": "Explica de forma simple por qué el cinturón se traba en las subidas, que es la queja típica de los pasajeros."},
+          "no_entendio": "'Lento, la bolita ni se entera' (32.1): pensaba que la bolita dependía del auto, no de cómo jalas, y ahí se confundió un poco.",
+          "le_contaria": "Que adentro del cinturón hay una bolita de acero que, en las subidas, cree que el auto se va a voltear y por eso lo traba.",
+          "nota": 7
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "X": "Lo que más engancha es la cuenta de grados del 0 al 15 con una pregunta numérica, para quien maneja y tiene sonido. Lo que más hace deslizar es el arranque (0–4.5): está quieto y es pura pregunta, así que quien mira sin sonido o tiene poca paciencia se va al 2. La pregunta principal se responde temprano (14.1–19), y el 28.3–33.1 es una repetición que vacía el video. Los 27° no le calzan a quien se le traba en calles normales, y el tramo de 12° a 27° queda sin explicar.",
+    "W": "Engancha la acción del segundo 0 más la idea de 'dos guardias', y las tres preguntas (4.5, 13.8, 23.5) van abriendo razones nuevas para seguir, para quien tiene sonido. Hace deslizar que el juego no da tiempo de adivinar (la respuesta llega altiro, en el 7.6) y que la primera respuesta ya es mecánica adentro del pilar (7.6–13.8): sin sonido, el formato de concurso no se entiende. El loop del 35.9 funciona como chiste.",
+    "Q": "Tiene el mejor arranque para todos: el gag físico del 0–3 más el contraste lento del 3.1–5.2 se entienden sin sonido y le pasan a cualquiera, maneje o no. Tiene el mejor remate (el doctor, 34.9) para quien llega. Donde más se desliza es en el 9–15.5 (primeros planos del carrete girando). Hay una contradicción: al 25.5 'nadie llega' en la subida, y al 29 el truco funciona en la misma subida.",
+    "Z": "Engancha la curiosidad del 0 ('lo frenó una bolita de acero') con acción, y el 16.9 es la mejor respuesta de los cuatro a '¿por qué se traba en las subidas?'; es lo que se manda. Hace deslizar que entra al pilar demasiado pronto (3.1) y que del 6 al 13.5 es una bolita lenta en una tacita: quien mira sin sonido se va cerca del 9. La segunda mitad (pestillo, 21.7–29) suma poco, y 'Lento, la bolita ni se entera' (32.1) mezcla los dos mecanismos."
+  }
+}

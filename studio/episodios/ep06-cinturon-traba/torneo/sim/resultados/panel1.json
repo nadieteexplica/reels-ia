@@ -1,0 +1,97 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Valeria",
+      "videos": {
+        "Z": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "El gancho le pasa a ella siempre (jalar el cinturón y que se trabe) y el caballero con armadura lanzándose por unas papas es absurdo, tipo meme. El '¿Cómo sabe?' del 5.2 le abre la duda y el carrete con dientes se la responde rápido. En el 17.6 ('Y hay otro guardia') casi se va porque siente que la clase vuelve a empezar, pero en el 21.7 vuelven el 4x4 y los personajes, y se queda para ver si el caballero llega a las papas.",
+          "risas": [
+            {"s": 30, "que": "el de la máscara antigás haciéndole la mímica lentísimo, todo serio"},
+            {"s": 36, "que": "el doctor masticando con la boca llena y cara de inocente: se comió las papas"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "a su mejor amiga por WhatsApp", "por_que": "por el remate del doctor ('literal tú con mis papas'); el dato del cinturón da lo mismo, lo manda por el chiste"},
+          "no_entendio": "La diferencia entre el pestillo y la bolita; se queda con 'hay dos cosas que lo traban' sin tener claro cuál hace qué.",
+          "le_contaria": "Que si jalas el cinturón lento sí sale, porque adentro tiene un carrete con dientes que se traba si gira rápido. Y que el doctor se comió las papas, jaja.",
+          "nota": 7
+        },
+        "W": {
+          "desliza": 12,
+          "por_que_desliza_o_sigue": "'Lo frenó una bolita de acero' le da curiosidad y se queda, pero a los 6 s ya tiene la respuesta (hay una bolita escondida en el cinturón). Lo que sigue es clase con flechas: tacita, palanquita, rueda dentada, sin personajes ni nada chistoso entre el 3 y el 16. Como no maneja, 'si el auto frena fuerte o se inclina' no le dice nada. Desliza en plena palanquita.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "no llegó a ninguna parte chistosa y el dato no le pareció para mandar"},
+          "no_entendio": "Qué es la palanquita y por qué la bolita la levanta; ahí se perdió y se fue.",
+          "le_contaria": "Que dentro del cinturón hay una bolita de acero (y nada más, porque no lo terminó).",
+          "nota": 4
+        },
+        "Q": {
+          "desliza": 20,
+          "por_que_desliza_o_sigue": "Del 0 al 1.7 pasan demasiadas cosas (el caballero se lanza, corte, dos piezas brillando con píldoras) y no alcanza a ver cuál es cuál. 'Uno vigila el auto, el otro a ti' le da un poco de intriga y se queda. El 'Juguemos' le suena a profe, y el juego es de mentira porque contestan al tiro sin darle tiempo de adivinar. En la ronda 2 (16.9 en adelante) la explicación del carrete y el pestillo se pone técnica y repite 'giró de golpe'. Desliza.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "le pareció un quiz de colegio; no hubo nada que valiera la pena mandar"},
+          "no_entendio": "El inicio: qué pieza era la 1 y cuál la 2. Las píldoras parpadeando la confundieron más.",
+          "le_contaria": "Que el cinturón tiene dos cosas que lo traban, una cuando el carro frena y otra cuando lo jalas.",
+          "nota": 5
+        },
+        "X": {
+          "desliza": 3,
+          "por_que_desliza_o_sigue": "Abre con una pregunta larga sobre cuánto se inclina 'tu auto', y ella no maneja. El plano es casi quieto (el auto al pie del cerro, el inclinómetro en 0°, los cuatro mirando para arriba) y no hay ningún chiste ni nada raro que la agarre. Antes de que pase algo, ya deslizó.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "no lo vio"},
+          "no_entendio": "nada (no llegó a la explicación)",
+          "le_contaria": "nada",
+          "nota": 2
+        }
+      }
+    },
+    {
+      "perfil": "Diego",
+      "videos": {
+        "Z": {
+          "desliza": 4,
+          "por_que_desliza_o_sigue": "'Tira rápido y te dice que no, tira lento y te deja' es exactamente lo obvio: lo sabe todo el que maneja. El caballero le saca medio segundo de atención, pero cuando el video le explica algo que ya sabe ('tira lento... y te deja'), desliza antes de que llegue el '¿Cómo sabe?'.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "le pareció un video de algo que todos saben"},
+          "no_entendio": "nada (no llegó a la explicación)",
+          "le_contaria": "nada",
+          "nota": 3
+        },
+        "W": {
+          "desliza": 30,
+          "por_que_desliza_o_sigue": "'Lo frenó una bolita de acero' no es obvio y le pica el lado de mecánico. Ver el mecanismo real dentro del pilar (bolita, palanquita, rueda dentada, del 3 al 17) es justo lo que le gusta: piezas que funcionan. 'La bolita cree que el auto se va a dar vuelta' le sirve para su camioneta, y lo del pestillo por el giro (24.8) completa el cuadro. En el 29 llega el truco de soltarlo y tirar lento, que ya sabe de memoria, y desliza.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "le gustó, pero no es tan chistoso ni tan sorprendente como para mandarlo; lo comentaría en el taller"},
+          "no_entendio": "nada",
+          "le_contaria": "Que el cinturón tiene una bolita de acero que, si frenas o te inclinas, rueda y levanta una palanquita que traba la rueda dentada. Y aparte otro seguro que se activa si jalas de golpe.",
+          "nota": 7
+        },
+        "Q": {
+          "desliza": 33,
+          "por_que_desliza_o_sigue": "'Dos guardias: uno vigila el auto y el otro a ti' le ordena algo que conocía a medias, y le gusta. El quiz le da para probarse ('a ver si le atino') y en la ronda 3 atina solo, así que se queda con la satisfacción. Pero 'Juguemos' le suena medio infantil, y cuando empieza el truco de tirar lento (32.1), que ya sabía, desliza.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "está bien explicado, pero no tiene nada que dé ganas de mandarlo"},
+          "no_entendio": "Al principio confundió la palanquita con el pestillo porque se ven parecidos; se aclaró en la ronda 2.",
+          "le_contaria": "Que el cinturón tiene dos seguros: uno que siente el carro (frenón o inclinación) y otro que siente el jalón.",
+          "nota": 6
+        },
+        "X": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "La pregunta le habla directo: maneja camioneta y sube a la sierra. El inclinómetro subiendo es como un reto y no se va sin ver el número. '12 grados libre, 27 se traba, lo dice la norma' es un dato duro que no sabía. El CLAC de los cuatro a la vez en el 14.1 le gusta, y después la bolita explica el porqué. Se queda hasta el final aunque el truco del 33 ya lo sabía, porque ya va casi terminando.",
+          "risas": [
+            {"s": 12, "que": "la gota de sudor bajando por el vidrio de la máscara antigás"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "a un compa con el que va en camioneta a la Huasteca", "por_que": "por el número: 'a 27 grados se te traba el cinturón, por eso en la subida no te deja'"},
+          "no_entendio": "Qué norma es (¿de México, de Estados Unidos?) y si aplica a su camioneta. Con la píldora SIMULACIÓN tampoco le queda claro si los grados son reales.",
+          "le_contaria": "Que por norma el cinturón no puede trabarse hasta 12 grados de inclinación y tiene que trabarse pasando los 27, y que eso lo decide una bolita de acero que rueda.",
+          "nota": 8
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "Z": "Engancha: el gancho del 0 al 5.2 (algo que le pasa a todos, el contraste rápido/lento y el caballero absurdo) y el remate del doctor en el 34.9, el único chiste realmente compartible del panel. Hace deslizar: para el que ya conoce el truco, del 0 al 5 es obvio (Diego se va en el 4). 'Y hay otro guardia' en el 17.6 reabre la explicación y es el punto de fuga a la mitad; lo salvan los personajes que vuelven en el 21.7.",
+    "W": "Engancha: 'lo frenó una bolita de acero' (0–3.1) es un buen gancho de misterio para el público curioso o técnico, y el mecanismo real del 3 al 17 retiene al que le gustan los fierros. Hace deslizar: el misterio se resuelve en el 6 y vienen ~11 s seguidos de mecanismo sin personajes ni humor (6.2–16.9), donde se cae el público casual (Valeria en el 12). El remate 'despídete de las papas' (34.2) es mucho más débil que el del doctor en Z.",
+    "Q": "Engancha: el marco 'dos guardias, uno vigila el auto y el otro a ti' (0–4.5) ordena todo y al técnico le da un quiz para probarse. Hace deslizar: del 0 al 1.7 está sobrecargado (lanzamiento, corte y dos píldoras en 1,7 s); 'Juguemos' (4.5) suena a profe y el juego es falso porque la respuesta llega sin pausa; la ronda 2 (16.9–23.5) dice dos veces 'el carrete giró de golpe' y ahí se va el público casual.",
+    "X": "Engancha: el dato duro y no obvio, 12° libre / 27° se traba (7.2–19), con el inclinómetro como escalada y el CLAC simultáneo en el 14.1. Es el único dato que un conductor le cuenta a otro y el que más se manda entre los que manejan. Hace deslizar: la apertura (0–4.5) es una pregunta larga sobre 'tu auto' sobre un plano casi quieto; quien no maneja o busca meme se va en el 2–3. 'La norma' sin decir cuál deja con la duda al escéptico."
+  }
+}

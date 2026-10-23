@@ -1,0 +1,92 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Antonia",
+      "videos": {
+        "Q": {
+          "desliza": 22,
+          "por_que_desliza_o_sigue": "Sin sonido, el arranque (0-4.5) es casi quieto y el subtítulo es una pregunta larga; se queda porque el atardecer en Atacama es bonito y el inclinómetro grande se entiende sin audio. Lo de la máscara sudando y el CLAC de los 4 a los 14 s la mantienen. Una vez que aparece 'MÁS DE 27°: SE TRABA' ya tiene la respuesta; cuando entra al pilar a explicar la bolita (19-22) siente que el video ya terminó y desliza.",
+          "risas": [{"s": 12, "que": "la gota de sudor corriendo por el vidrio de la máscara antigás (sonrisa, no carcajada)"}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Está bonito pero es un dato de autos; no tiene a quién le sirva mandárselo."},
+          "no_entendio": "Lo de la norma: '¿qué norma?' y qué pasa entre 12 y 27 grados, que no queda claro si se traba o no.",
+          "le_contaria": "Que el cinturón se traba solo cuando el auto está muy inclinado, como a 27 grados.",
+          "nota": 6
+        },
+        "X": {
+          "desliza": 19,
+          "por_que_desliza_o_sigue": "El arranque la engancha sin audio: el caballero se lanza, rebota (0-3), y lo de 'tira lento y te deja' le pasó mil veces. Pero desde 5.2 son ~14 s seguidos adentro del pilar (carrete, dientes, pestillo, carrete lento) sin volver al auto; leyendo subtítulos se siente clase de mecánica. Cuando a 17.6 aparece 'otro guardia', piensa 'más explicación' y desliza. Nunca ve el gag del doctor.",
+          "risas": [{"s": 2, "que": "el caballero con armadura rebotando contra el asiento"}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Se fue antes del final; no alcanzó a ver nada que valga la pena mandar."},
+          "no_entendio": "Por qué el pestillo 'sale disparado' por girar rápido; la flecha muestra que sale pero no por qué.",
+          "le_contaria": "Que si tiras el cinturón rápido se traba y si lo tiras lento no.",
+          "nota": 6
+        },
+        "W": {
+          "desliza": 15,
+          "por_que_desliza_o_sigue": "A 1.7 s salta de la escena a un esquema con píldoras 1 y 2 de colores: se ve como diapositiva, no como algo bonito de mirar. Sin sonido no escucha el 'ding' ni el tono de concurso; sólo lee 'Juguemos... ¿Cuál te atrapa?' y números parpadeando. El frenazo con polvo (4.5) es lindo, pero cuando a los 14 vuelve a preguntar '¿Cuál?' entiende que es un quiz de varias rondas sobre piezas y desliza.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Le pareció una lección; nada que mandar."},
+          "no_entendio": "Al principio, qué eran 'los dos guardias' y qué significaban las píldoras 1 y 2 apuntando al auto y al caballero (sin la voz, el 'uno vigila el auto, el otro a ti' le llega tarde).",
+          "le_contaria": "Nada.",
+          "nota": 4
+        },
+        "Z": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "El primer cuadro funciona sin sonido: la mano del caballero a 5 cm de las papas que se resbalan y la píldora BOLITA DE ACERO dicen lo mismo que el subtítulo. A 3.1 la bolita brillando en el pilar transparente es justo lo que le gusta mirar. El video alterna adentro/afuera (bolita, caballero congelado a 13.5, plano general con el doctor a 16.9, caballero enojado a 21.7), así que nunca pasa mucho rato en el esquema. El segundo mecanismo (21.7-29) la aburre un poco, pero ya está cerca del final y llega.",
+          "risas": [{"s": 18, "que": "el doctor mirando para abajo por la ventana y tragando saliva"}, {"s": 22, "que": "el caballero enojado tirando la cinta de un tirón"}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Le gustó de mirar, pero no es algo que mande; el final no tiene remate."},
+          "no_entendio": "Nada importante; lo del pestillo 'por el giro' lo pasó por encima.",
+          "le_contaria": "Que adentro del cinturón hay una bolita de acero que lo traba cuando el auto se inclina o frena fuerte, y que hay que tirarlo lento.",
+          "nota": 7
+        }
+      }
+    },
+    {
+      "perfil": "Benjamín",
+      "videos": {
+        "Q": {
+          "desliza": 9,
+          "por_que_desliza_o_sigue": "'¿Cuánto se puede inclinar TU auto...?': no tiene auto, y el arranque es el 4x4 quieto a 0°. Lo que lo retiene unos segundos es el elenco absurdo (caballero, máscara antigás) y el caballero sacando papas a los 5°. A 7.2 la voz dice 'la norma prohíbe que se trabe': suena a ley, a colegio. Desliza antes de la máscara sudando y del CLAC.",
+          "risas": [{"s": 5, "que": "un caballero con armadura sacando papas fritas (risa corta, 'qué wea')"}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Lo vio 9 segundos, no hay nada que mandar."},
+          "no_entendio": "Para qué le importa la inclinación si él no maneja; lo de 'la norma'.",
+          "le_contaria": "Nada.",
+          "nota": 3
+        },
+        "X": {
+          "desliza": 18,
+          "por_que_desliza_o_sigue": "El arranque es lo único de los 4 que le pasa a él: en el asiento de atrás el cinturón se traba cuando tira. El caballero rebotando le da risa y 'tira lento y te deja' es verdad. Entrar al pilar le gusta ('cómo funciona por dentro', como desarmar algo en un juego) y el pestillo con CLAC (12-15) es un mini pago. Cuando a 17.6 empieza 'otro guardia', siente que vuelve a empezar la explicación y desliza. No llega al gag del doctor, que era lo que más le iba a gustar.",
+          "risas": [{"s": 2, "que": "el caballero con armadura frenado en seco y rebotando contra el asiento"}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Está piola pero es de cinturones; a sus amigos no les va a importar."},
+          "no_entendio": "Nada hasta donde vio.",
+          "le_contaria": "Que el cinturón se traba si lo tiras rápido porque adentro un carrete gira y saca un pestillo.",
+          "nota": 5
+        },
+        "W": {
+          "desliza": 28,
+          "por_que_desliza_o_sigue": "'Juguemos... ¿Cuál te atrapa?' con píldoras parpadeando como concurso le activa el modo juego: intenta adivinar y acierta (frenazo = auto = 1; lanzarse = tú = 2), eso lo hace sentir pillo y se queda. La tercera ronda (23.5) es la misma respuesta que la primera; ya la sabe antes de que la digan y a 'Otra vez el uno' (27.6) desliza: no queda nada por descubrir y el consejo de soltar el cinturón no le interesa.",
+          "risas": [{"s": 14, "que": "el caballero tirándose de cabeza por las papas"}],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Le gustó adivinar, pero no es algo que se manda entre amigos de 16."},
+          "no_entendio": "Al segundo 1-2, el esquema con píldoras pasó muy rápido; recién entendió qué era cada guardia con la primera pregunta.",
+          "le_contaria": "Que el cinturón tiene dos trabas: una que se activa si el auto frena o se inclina, y otra si tú tiras de golpe.",
+          "nota": 6
+        },
+        "Z": {
+          "desliza": 11,
+          "por_que_desliza_o_sigue": "'A este caballero lo frenó una bolita de acero' es una frase rara que da curiosidad, y la bolita brillando adentro del pilar a 3.1 se ve bacán. Pero a 6.2 la voz se pone lenta con puntos suspensivos ('si el auto frena fuerte... o se inclina mucho...'), que es cosa de manejar, y ya le respondieron lo que quería saber (que hay una bolita). Desliza antes del CLAC de los 13.5.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "No llegó a ninguna parte buena."},
+          "no_entendio": "Nada; simplemente se aburrió.",
+          "le_contaria": "Que dentro del cinturón hay una bolita de acero.",
+          "nota": 4
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "Q": "Engancha: el inclinómetro que sube 0->27° (una cuenta con meta, se entiende sin audio) y el pico de 11-15 s (máscara sudando + CLAC de los 4). Hace deslizar: arranque quieto 0-4.5 con pregunta larga sobre 'tu auto' (deja afuera a quien no maneja) y 'la norma prohíbe/exige' (7.2-19), que suena a trámite y deja la zona 12-27° sin explicar. La respuesta llega a los 15 s, así que el mecanismo (19-28) queda como un epílogo y ahí se cae la gente.",
+    "X": "Tiene el mejor gancho de los 4 (0-3 s): acción física y una verdad que a todos les pasó, incluso a quien no maneja. Hace deslizar: 5.2-21.7 son ~16 s casi sin salir del pilar, y el 'otro guardia' a 17.6 reabre la explicación justo cuando la primera se cerró; ahí se pierden los dos perfiles. Su mejor remate (doctor con la boca llena, 34.9) casi nadie lo ve. Si se acorta el medio, es el más fuerte.",
+    "W": "Engancha: el formato concurso ('Juguemos... ¿Cuál?', 4.5 s) funciona CON sonido y con gente joven, porque es adivinable y da gusto acertar. Hace deslizar: el corte a esquema con píldoras a 1.7 s parece diapositiva; sin sonido se pierde el ding y el 1/2 queda abstracto (Antonia se va a 15). La 3.ª ronda (23.5-32) repite la respuesta 'otra vez el uno' y es predecible, y el final no tiene remate.",
+    "Z": "Engancha: la frase rara de 0-3 ('lo frenó una bolita de acero') con la mano a 5 cm y la píldora que repite el texto; la revelación a 3.1 (bolita brillando); y que alterna adentro/afuera cada 3-4 s con humor visual (doctor 16.9, caballero enojado 21.7). Es el que mejor sostiene a quien mira SIN sonido. Hace deslizar: la curiosidad se resuelve muy temprano (3.1); la frase lenta con puntos suspensivos de 6.2-10 sobre 'frenar/inclinar' pierde a quien no maneja (Benjamín se va a 11), y el segundo mecanismo llega tarde (21.7). El final (34.2) no tiene remate."
+  }
+}
