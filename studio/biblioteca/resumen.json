@@ -1,0 +1,30 @@
+{
+ "polyhaven": {
+  "total": 2387,
+  "por_tipo": {
+   "model": 521,
+   "hdri": 997,
+   "texture": 869
+  }
+ },
+ "ambientcg": {
+  "total": 2926,
+  "por_tipo": {
+   "Material": 2036,
+   "HDRI": 434,
+   "Atlas": 61,
+   "Substance": 211,
+   "Decal": 127,
+   "Terrain": 5,
+   "3DModel": 34,
+   "PlainTexture": 9,
+   "HDRIElement": 4,
+   "Brush": 5
+  }
+ },
+ "smithsonian": {
+  "total": 0,
+  "error": "no respondió (ver el log del workflow)"
+ },
+ "fecha": "2026-10-23"
+}
