@@ -322,7 +322,7 @@ def caja(sc, nombre, tam, pos, mat=None, bisel=0.004, rot=(0, 0, 0)):
     o = bpy.context.object
     o.name = nombre
     o.scale = tam
-    bpy.ops.object.transform_apply(scale=True)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)   # la ubicación queda en el objeto
     if bisel:
         bv = o.modifiers.new("bisel", "BEVEL"); bv.width = bisel; bv.segments = 3
     if mat:
@@ -1082,15 +1082,20 @@ def marca_ojo(sc, nombre, padre, pos_local, r=0.004):
     o = bpy.context.object
     o.name = nombre
     o["ojo"] = 1
-    m = bpy.data.materials.get("invisible") or bpy.data.materials.new("invisible")
-    if not m.use_nodes:
+    m = bpy.data.materials.get("invisible")
+    if m is None:
+        m = bpy.data.materials.new("invisible")
         m.use_nodes = True
         nt = m.node_tree
-        nt.nodes.remove(nt.nodes["Principled BSDF"])
+        for n in list(nt.nodes):
+            if n.type != "OUTPUT_MATERIAL":
+                nt.nodes.remove(n)
         tr = nt.nodes.new("ShaderNodeBsdfTransparent")
         nt.links.new(tr.outputs[0], nt.nodes["Material Output"].inputs[0])
     asignar(o, m)
-    o.visible_shadow = False
+    # no se ve en el render (ni en reflejos ni sombras) pero sí la tocan los rayos del chequeo de ojos
+    for k in ("visible_camera", "visible_diffuse", "visible_glossy", "visible_transmission", "visible_volume_scatter", "visible_shadow"):
+        setattr(o, k, False)
     o.parent = padre
     o.location = pos_local
     return o

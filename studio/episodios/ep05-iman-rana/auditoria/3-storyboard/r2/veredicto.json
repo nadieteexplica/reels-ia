@@ -1,0 +1,77 @@
+{
+ "etapa": "3-storyboard",
+ "ronda": 2,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": 8.75,
+ "notas": {
+  "foco": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "cada frase tiene su imagen y una sola idea: el 5 ahora tiene un solo foco (moléculas nítidas, células desenfocadas atrás), 'y a ti' cae sobre Pete en el 10 y 'Todo eso...' sobre el plano abierto del 17",
+   "de": "storyboard"
+  },
+  "ritmo": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "18 planos en 41,9 s con ~37 cambios; el hueco más largo sin cambio es de ~1,7 s (6: 0,2→1,9 s; 15: 0,6→2,3 s), cambio de escala casi en cada corte y el 12 ya tiene a Pete levantando la vista a 1,2 s",
+   "de": "storyboard"
+  },
+  "viabilidad": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "5 escenas (3 sets a medida, E3 y E5 reusan), 0 Kling y nadie agarra objetos; E1 baja el costo con vidrio delgado sin refracción gruesa y macro frenada en el vidrio; queda el riesgo de ruido a 16 muestras (los cuadros de estilo se midieron a 64) y de Pete Mixamo en M en el 16 sin contraluz declarado",
+   "de": "storyboard"
+  },
+  "gancho_visual": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "cuadro 0 con la imagen imposible y real (rana flotando en el tubo, sin fundido), símbolo SIN HILOS que vuelve en el 18 y órbita que cierra exacto en la cámara y la pose del cuadro 0",
+   "de": "storyboard"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "el concepto fija la rana en ~2,2 cm dentro de un tubo de 3,2 cm con aire visible alrededor y giros de ±8° para que nunca toque el vidrio; lo único que no quedó escrito es el tamaño de la fresa del 9 (aplicarle la misma regla: más chica que el hueco, con aire alrededor)",
+   "de": "storyboard"
+  },
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "el 10 ya no es un P de cara: es un M de cuerpo entero a contraluz del atardecer, unido al antiguo 11 (2,68 s), y el concepto prohíbe el primer plano de cara de Pete; en 12, 13 y 17 queda en G y en el 16 en M (ahí no se declara contraluz)",
+   "de": "storyboard"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "el plan de render ya declara máquina, muestras y denoise (animatic 540×960/8, final 720×1280/16 con denoise), saca la refracción gruesa del vidrio (lo que más ruido da) y el push-in del 4 se frena en el vidrio con cuadro de ~2 cm, donde el escaneo aguanta; conviene confirmar el ruido del 4 a 16 muestras en el animatic, porque los cuadros de estilo se midieron a 64",
+   "de": "storyboard"
+  },
+  {
+   "id": "A4",
+   "arreglado": true,
+   "por_que": "el 18 (39,10–41,90) es una órbita de vuelta que termina en el ángulo exacto del cuadro 0 y trae SIN HILOS a 1,3 s; el 12 (24,17–26,60) suma a Pete levantando la vista a 1,2 s; detalle: en el 18 la columna Gráfico dice '—' aunque Cambio pone la píldora (va en y 400 como en el 2)",
+   "de": "storyboard"
+  },
+  {
+   "id": "A5",
+   "arreglado": true,
+   "por_que": "el 5 dice moléculas de agua en foco y las células rojas atrás desenfocadas, 'un solo foco: el agua'",
+   "de": "storyboard"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "18 planos: con algo que cambia cada 1–2 s, en 50 s hacen falta ~25–50 cambios; confirmar que la columna 'cambio' los cubre",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "parar_y_preguntar": false
+}
