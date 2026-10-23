@@ -1,0 +1,23 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "5 pausas '...' (el manual pide 2–4)",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "palabras": 113,
+  "duracion_estimada_s": 38.8,
+  "pausas": 5,
+  "fuentes": [
+   "energy.gov",
+   "journals.le.ac.uk",
+   "news.harvard.edu",
+   "obelix.physik.uni-bielefeld.de",
+   "physics.umd.edu",
+   "technologyreview.com"
+  ],
+  "afirmaciones_verificadas": 10
+ }
+}

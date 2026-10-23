@@ -19,7 +19,7 @@ Pero ese empujoncito lo recibe cada molécula.
 Con un imán lo bastante fuerte, le gana a la gravedad.
 Le pasa a todo lo que tiene agua: una frutilla... o tú.
 ¿Por qué no flotas junto al refri?
-Porque ese imán es cientos de veces más débil.
+Porque ese imán es miles de veces más débil.
 ¿Y si quisiéramos hacerte flotar a ti?
 Haría falta un imán donde quepas, de casi cuarenta teslas...
 que gastaría cerca de un gigavatio: un reactor nuclear entero.
@@ -30,18 +30,19 @@ Todo eso... para lo que esta rana hace tranquila.
 |---|---|
 | Una rana viva puede flotar en el aire, sin nada que la sostenga, dentro de un imán | Geim y Berry, *European Journal of Physics* 1997 (rana viva levitando dentro de un imán de ~16 T); Geim, *Physics Today* 1998 ("Everyone's magnetism"); Harvard Gazette 2024 |
 | La levanta un imán gigante | Las mismas: un electroimán de laboratorio de campos altos (Nijmegen), del orden de 16 teslas; el aparato es enorme aunque el hueco donde flota es chico |
-| La rana es, en gran parte, agua | Geim y Berry 1997 y Geim 1998 (los seres vivos están hechos sobre todo de agua y por eso levitan como el agua) |
+| La rana es, en gran parte, agua | Geim y Berry 1997 y Geim 1998 (los seres vivos están hechos sobre todo de agua y por eso levitan como el agua); MIT Technology Review 2009 (lo que hace flotar a los ratones es el efecto del campo sobre las moléculas de agua) |
 | Al agua, un imán la empuja apenas un poquito (diamagnetismo) | Geim y Berry 1997; Geim 1998 (el agua es diamagnética: un campo magnético la repele débilmente) |
 | Ese empujoncito lo recibe cada molécula; con un imán lo bastante fuerte, le gana a la gravedad | Geim y Berry 1997 (la fuerza diamagnética actúa sobre cada parte del cuerpo, por eso el objeto flota sin tensiones internas; con campo y gradiente suficientes iguala al peso) |
-| Le pasa a todo lo que tiene agua: una frutilla o tú | Geim 1998 (todo el mundo es diamagnético: "Everyone's magnetism"; un humano también levitaría con un imán suficiente) |
-| No flotas junto al refri porque ese imán es cientos de veces más débil (el del refri también te empuja, muchísimo menos) | Geim 1998 (un campo de 10 T es ~100 veces el de un imán de refrigerador → el de la rana, ~16 T, es del orden de cientos de veces); MIT Technology Review 2009 da una relación aún mayor. No se usa un "X veces" exacto porque las fuentes no calzan: "cientos de veces" es el piso de las dos |
-| ¿Y si quisiéramos hacerte flotar a ti? Haría falta un imán donde quepas, de casi 40 T, que gastaría cerca de un gigavatio | Geim 1998 (hacer flotar a una persona "requeriría un imán especial de casi 40 T y alrededor de un gigavatio" de consumo continuo); cruce: Journal of Physics Special Topics, U. de Leicester (cálculo para un humano) |
+| Le pasa a todo lo que tiene agua: una frutilla o tú | Harvard Gazette 2024 (el diamagnetismo está en el agua, la comida y las moléculas orgánicas; después del agua hizo flotar frutillas y tomates cherry); Geim 1998 (todos somos diamagnéticos: "Everyone's magnetism") |
+| No flotas junto al refri porque ese imán es miles de veces más débil (el del refri también te empuja, muchísimo menos) | Harvard Gazette 2024 (el propio Geim: para hacer flotar una rana hace falta un campo "1,000 to 10,000 times stronger than a refrigerator magnet"); MIT Technology Review 2009 (17 T, "ten thousand times as strong as a typical fridge magnet"). Dos fuentes independientes coinciden en "miles"; no se da un número exacto |
+| ¿Y si quisiéramos hacerte flotar a ti? Haría falta un imán donde quepas, de casi 40 T, que gastaría cerca de un gigavatio | Geim 1998 (hacer flotar a una persona "requeriría un imán especial de casi 40 T y alrededor de un gigavatio" de consumo continuo). Son los números de la ficha (decisión de Tomás). Ojo: el cálculo de estudiantes de Leicester da 70,6 T con otros supuestos; por eso la voz dice "casi cuarenta" (el piso de Geim) y no "exactamente" |
 | Cerca de un gigavatio: un reactor nuclear entero (lo que produce un reactor típico) | Departamento de Energía de EE. UU. (un reactor típico produce ~1 gigavatio) |
 | La rana flota tranquila (no le pasa nada) | Geim 1998 y Harvard Gazette (la rana no sufrió efectos, salvo desorientarse por la falta de peso) |
 
 **Matices (para no exagerar):**
 - **No se dice que se haya hecho flotar a una persona.** La parte del humano es hipotética ("¿Y si quisiéramos…?", "haría falta", "gastaría") y en pantalla lleva una píldora fija de SIMULACIÓN mientras dura.
-- "Cientos de veces más débil": Geim compara 10 T con ~100 imanes de refri y MIT Technology Review da ~10.000 para 17 T. "Cientos" es lo que aguantan las dos fuentes; no se pone un número exacto.
+- "Miles de veces más débil": Harvard Gazette (Geim en 2024: 1.000–10.000 veces) y MIT Technology Review (~10.000 para 17 T) coinciden en miles. Geim en 1998 había comparado 10 T con ~100 imanes de refri (depende del imán de refri que se tome): no se pone un número exacto.
+- Teslas para un humano: Geim (1998) dice casi 40 T; el trabajo de estudiantes de Leicester calcula 70,6 T. La voz usa el número de Geim (la ficha) y el texto del post no promete precisión.
 - "Le gana a la gravedad" simplifica: no basta con un campo fuerte, el campo también tiene que cambiar rápido con la altura (el empujón depende de los dos). El dibujo del imán muestra las líneas apretándose bajo la rana.
 - "Un imán gigante": el laboratorio usa un electroimán grande; la rana flota dentro de un tubo de pocos centímetros. En la animación la rana flota en la boca del tubo del imán.
 - Seguridad: nada imitable. Nadie acerca imanes a personas ni a animales en la animación; los animales se ven bien y tranquilos.

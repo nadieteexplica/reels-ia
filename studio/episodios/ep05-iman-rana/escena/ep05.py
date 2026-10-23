@@ -632,3 +632,68 @@ def nave(sc, lado=80.0):
     amarillo = mat_pintura("amarillo", (0.75, 0.55, 0.05), rugo=(0.5, 0.8), sucio=0.4)
     tubo(sc, "linea_seg", 4.6, 4.45, 0.004, (0, 0, 0.0), verts=192, mat=amarillo, bisel=0)
     return piso
+
+
+# ---------------------------------------------------------------- adentro de la rana: el agua y el empujón del imán
+def mat_molecula(nombre, color, rugo=0.18):
+    m, nt, b = _nodos(nombre)
+    b.inputs["Base Color"].default_value = (*color, 1)
+    b.inputs["Roughness"].default_value = rugo
+    b.inputs["Coat Weight"].default_value = 0.6
+    b.inputs["Coat Roughness"].default_value = 0.05
+    b.inputs["Subsurface Weight"].default_value = 0.25
+    b.inputs["Subsurface Radius"].default_value = tuple(min(1, c * 1.5 + 0.2) for c in color)
+    b.inputs["Subsurface Scale"].default_value = 0.05
+    return m
+
+
+def molecula_agua(sc, pos, rot, esc=1.0, mats=None, nombre="H2O"):
+    """H2O con el ángulo real (104,5°): oxígeno rojo grande, dos hidrógenos blancos. Devuelve el vacío padre."""
+    o_m, h_m = mats
+    padre = bpy.data.objects.new(nombre, None)
+    sc.collection.objects.link(padre)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.5 * esc, location=(0, 0, 0), segments=32, ring_count=16)
+    ox = bpy.context.object; liso(ox, 180); asignar(ox, o_m); ox.parent = padre
+    for s in (-1, 1):
+        a = math.radians(104.5 / 2) * s
+        d = Vector((math.sin(a), 0, math.cos(a))) * 0.48 * esc
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.3 * esc, location=d, segments=24, ring_count=12)
+        hh = bpy.context.object; liso(hh, 180); asignar(hh, h_m); hh.parent = padre
+    padre.location = pos
+    padre.rotation_euler = rot
+    return padre
+
+
+def tejido(sc, n=40, caja_xy=8.0, z=(-3, 6), semilla=5):
+    """Células del tejido de la rana alrededor (fuera de foco): globos translúcidos rosados con núcleo."""
+    random.seed(semilla)
+    m, nt, b = _nodos("celula")
+    b.inputs["Base Color"].default_value = (0.55, 0.11, 0.09, 1)
+    b.inputs["Subsurface Weight"].default_value = 1.0
+    b.inputs["Subsurface Radius"].default_value = (1.0, 0.3, 0.2)
+    b.inputs["Subsurface Scale"].default_value = 0.6
+    b.inputs["Roughness"].default_value = 0.25
+    b.inputs["Coat Weight"].default_value = 0.4
+    for i in range(n):
+        x, y = random.uniform(-caja_xy, caja_xy), random.uniform(3, 14)
+        bpy.ops.mesh.primitive_ico_sphere_add(radius=random.uniform(1.2, 2.4), subdivisions=4, location=(x, y, random.uniform(*z)))
+        c = bpy.context.object
+        c.scale = (1, random.uniform(0.7, 1.0), random.uniform(0.6, 0.9))
+        d = c.modifiers.new("bulto", "DISPLACE"); tx = bpy.data.textures.new(f"cel{i}", "CLOUDS"); tx.noise_scale = 1.2; d.texture = tx; d.strength = 0.25
+        liso(c, 180); asignar(c, m)
+
+
+def linea_campo(sc, nombre, pts, r=0.03, color=(0.2, 0.85, 1.0), fuerza=6.0):
+    """Línea del campo del imán: tubo fino que brilla (capa de explicación, estilizada encima del mundo real)."""
+    return manguera(sc, nombre, pts, r, mat_emision(nombre + "_m", color, fuerza))
+
+
+def flecha(sc, nombre, base, largo=0.9, r=0.06, color=(1.0, 0.45, 0.05), fuerza=2.2):
+    """Flecha hacia arriba (el empujón del imán): cilindro + cono que brillan."""
+    m = mat_emision(nombre + "_m", color, fuerza)
+    bx, by, bz = base
+    bpy.ops.mesh.primitive_cylinder_add(radius=r, depth=largo * 0.7, location=(bx, by, bz + largo * 0.35), vertices=24)
+    c = bpy.context.object; asignar(c, m)
+    bpy.ops.mesh.primitive_cone_add(radius1=r * 2.4, depth=largo * 0.3, location=(bx, by, bz + largo * 0.85), vertices=24)
+    p = bpy.context.object; asignar(p, m)
+    return c, p
