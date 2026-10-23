@@ -1,0 +1,48 @@
+name: personaje
+# Revisa un personaje de Mixamo del Release privado "Personajes" (repo nadieteexplica/assets, secreto TOKEN):
+# lo importa en Blender, saca su ficha (huesos, materiales, texturas, medidas) y 3 vistas de prueba.
+# Sólo suben a la prerelease pública las vistas renderizadas y la ficha: el FBX NUNCA sale del runner (licencia de Mixamo).
+on:
+  workflow_dispatch:
+    inputs:
+      patron:
+        description: "Patrón del archivo en el Release Personajes (ej. *ete*)"
+        default: "*ete*"
+      tag:
+        description: "Prerelease destino de las vistas"
+        default: "ep05-estilos"
+permissions:
+  contents: write
+jobs:
+  ver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -q bpy==5.2.0 numpy pillow
+      - name: Bajar el personaje (privado) y una HDRI de estudio (CC0)
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          mkdir -p priv d
+          gh release view Personajes -R nadieteexplica/assets --json assets --jq '.assets[] | [.name, .size] | @tsv' | tee d/personajes_lista.txt
+          gh release download Personajes -R nadieteexplica/assets -p "${{ github.event.inputs.patron }}" -D priv
+          ls -la priv
+          curl -fsSL -o priv/studio.hdr https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/studio_small_09_2k.hdr || echo "sin HDRI"
+      - name: Ficha y vistas
+        run: |
+          f=$(ls priv/*.fbx priv/*.FBX 2>/dev/null | head -1)
+          python studio/plantilla/ver_personaje.py "$f" priv/studio.hdr d
+      - name: Subir (sin el FBX)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.event.inputs.tag }}
+        run: |
+          ls -la d
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$TAG" --notes "Cuadros internos de prueba. No publicar."
+          gh release upload "$TAG" d/* --clobber
