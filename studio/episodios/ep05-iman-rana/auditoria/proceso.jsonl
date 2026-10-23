@@ -69,3 +69,4 @@
 {"tipo": "trabajo", "id": "auditor 4-cuadros r2", "estado": "fin", "n": 69, "ts": "2026-10-23T02:49:59-03:00"}
 {"tipo": "aviso", "que": "puerta 4 r2 NO APROBADO: realismo 7 (A 9, C 8, B 7 por el fondo) y 1 bloqueante B1 (cerros flotando). 2 rondas sin llegar a 8: el video NO sigue; se para y se le proponen alternativas a Tomás. Se deja listo el arreglo del fondo de B (sin abrir ronda 3) para que decida con la imagen a la vista", "n": 70, "ts": "2026-10-23T02:54:40-03:00"}
 {"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 71, "ts": "2026-10-23T02:56:17-03:00"}
+{"tipo": "trabajo", "que": "parado en la puerta 4 por la regla de Tomás (realismo 7 en 2 rondas); opciones enviadas", "id": "sesion ep05", "estado": "fin", "n": 72, "ts": "2026-10-23T03:02:50-03:00"}
