@@ -35,6 +35,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - Look lavado o sobreexpuesto con cámara pegada (primer intento del helado).
   - Copiar formatos de otras cuentas tal cual.
   - El pulpo como tema (no engancha).
+- **Realismo (Tomás, 22-oct-2026):** los videos se ven "muy animados" y quiere **realismo de verdad** (más real, no dibujo animado). Ya **no le gusta el personaje propio de MakeHuman**: pidió realismo en el aviso de Rhein (rama `rhein`) y siguió saliendo el mismo look y el mismo personaje. Primera prueba: el video del imán.
 - **Estilo por idea (DECIDIDO por Tomás, 19-oct-2026, manda sobre lo de abajo):** cada idea nueva se diseña **desde cero para esa idea y su viralidad**, sin arrastrar cómo se hizo el video anterior: si hace falta un humano o no, qué personajes, qué fondo, qué cámara y qué estilo 3D (puede ser totalmente otro). El protagonista humano es una opción más, no la cara obligatoria de la cuenta. Siguen vigentes: 3D sí o sí, verdad con fuentes y los estilos rechazados. Cada episodio deja sus personajes en `studio/episodios/<ep>/ficha.jpg`.
 - **Estilo en evaluación (historia, hasta el Ep. 1):**
   - **Monito animado 3D.** Muestras de 5 s en tres estilos: A · Pixar suave, B · caricatura con contorno, C · plastilina.
