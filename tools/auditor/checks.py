@@ -365,7 +365,16 @@ def storyboard(ep_d, dur_voz=None):
 
 
 # ---------------- 4. cuadros ----------------
-def cuadros(lista):
+LAVADO_BRILLO = 175          # brillo medio sobre esto + …
+LAVADO_SAT_ANIMADO = 70      # … poca saturación = lavado en el estilo animado (se pide color saturado)
+LAVADO_NEGROS_REALISTA = 120  # … negros levantados (percentil 5 sobre esto: todo gris claro, como neblina) = lavado en el realista
+LAVADO_NEGROS_AVISO = 90      # entre 90 y 120: aviso (un laboratorio blanco bien expuesto puede caer acá); lo decide el revisor
+
+
+def cuadros(lista, estilo="animado"):
+    """Lo medible de los cuadros de estilo. 'Lavado' depende del estilo del episodio: en el animado es brillo alto con poco
+    color; en el realista los colores naturales (un laboratorio blanco, metal) tienen poca saturación sin estar lavados, así
+    que lavado es brillo alto SIN negros (todo gris claro, como con neblina). Quemado (> 3 % de blanco puro) vale para los dos."""
     r = RES()
     for c in lista:
         w, h = (int(x) for x in c["res"].split("x"))
@@ -373,11 +382,22 @@ def cuadros(lista):
             _f(r, f"{c['cuadro']}: resolución {c['res']} (mín. 720x1280)")
         if c["quemados_pct"] >= 3:
             _f(r, f"{c['cuadro']}: {c['quemados_pct']} % de píxeles quemados (máx. 3 %)", bloqueante=True)
-        if c["brillo"] > 175 and c["saturacion"] < 70:
+        if estilo == "realista":
+            negros = c.get("negros_p5")
+            if c["brillo"] > LAVADO_BRILLO and negros is not None and negros > LAVADO_NEGROS_REALISTA:
+                _f(r, f"{c['cuadro']}: se ve lavado (brillo {c['brillo']}, lo más oscuro del cuadro en {negros}: no hay sombras)")
+            elif c["brillo"] > LAVADO_BRILLO and negros is not None and negros > LAVADO_NEGROS_AVISO:
+                _a(r, f"{c['cuadro']}: muy claro y con pocas sombras (brillo {c['brillo']}, negros en {negros}): que el revisor "
+                      f"diga si está lavado (B9) o es un lugar blanco bien expuesto")
+            elif c["brillo"] > LAVADO_BRILLO and c["saturacion"] < LAVADO_SAT_ANIMADO:
+                _a(r, f"{c['cuadro']}: muy claro y con poco color (brillo {c['brillo']}, saturación {c['saturacion']}); "
+                      f"en realista se acepta si tiene sombras de verdad: que lo mire el revisor")
+        elif c["brillo"] > LAVADO_BRILLO and c["saturacion"] < LAVADO_SAT_ANIMADO:
             _f(r, f"{c['cuadro']}: se ve lavado (brillo {c['brillo']}, saturación {c['saturacion']})")
         if c["brillo"] < 35:
             _a(r, f"{c['cuadro']}: muy oscuro (brillo {c['brillo']})")
     r["datos"]["cuadros"] = len(lista)
+    r["datos"]["estilo"] = estilo
     return r
 
 
@@ -502,10 +522,15 @@ def paquete(ep_d, url_mp4=None, usa_anatomia=None):
         _f(r, "madeForKids no está en 'no' (decidido por Tomás el 19-oct)", mk.group(0) if mk else "", bloqueante=True)
     if not re.search(r"tiktok[^\n]*title|tiktok[^\n]*t[ií]tulo", mm):
         _f(r, "falta tiktokData.title (Metricool rechaza TikTok sin título)", bloqueante=True)
-    if not re.search(r"isaigenerated[^\n]*true", mm):
+    if not re.search(r"isaigenerated(?!content)\W{0,4}true", mm):     # Instagram (no confundir con el isAiGeneratedContent de YouTube)
         _f(r, "falta isAiGenerated: true en Instagram", bloqueante=True)
     if not re.search(r"isaigc[^\n]*true", mm):
         _f(r, "falta isAigc: true en TikTok", bloqueante=True)
+    est = comun.estilo(ep_d)["estilo"]
+    r["datos"]["estilo"] = est
+    if est == "realista" and not re.search(r"isaigeneratedcontent\W{0,4}true", mm):
+        # regla del manual: en YouTube la etiqueta de contenido IA va cuando el estilo es realista
+        _f(r, "estilo realista (estilo.json): falta youtubeData.isAiGeneratedContent: true en YouTube", bloqueante=True)
     if usa_anatomia is None:
         sb = os.path.join(ep_d, "storyboard.md")
         usa_anatomia = os.path.exists(sb) and re.search(r"(interior|anatom|cabeza de vidrio)", norm(open(sb).read())) is not None

@@ -51,15 +51,75 @@ def topes():
     """Topes del proceso v2 (presupuesto.json → proceso_v2). Los cambia Tomás ahí; el código los lee de ahí."""
     d = leer(os.path.join(os.path.dirname(os.path.abspath(__file__)), "presupuesto.json"), {}) or {}
     base = {"horas_por_video": 4, "rondas_por_puerta": 2, "planos_por_revisor": 10, "escenas_max": 6, "escenas_a_medida_max": 3,
-            "cambio_max_s": 2.0, "palabras": [70, 128], "duracion_s": [25.0, 45.5], "promedio_min": 8.0, "nota_min_revisor": 7}
+            "cambio_max_s": 2.0, "palabras": [70, 128], "duracion_s": [25.0, 45.5], "promedio_min": 8.0, "nota_min_revisor": 7,
+            "realismo_min": 8}
     base.update(d.get("proceso_v2", {}))
     return base
 
 
+# ---------- estilo del episodio (decisión de Tomás, 22-oct-2026) ----------
+# Cada episodio declara su estilo en studio/episodios/<ep>/estilo.json y el auditor juzga contra ESE estilo:
+#   animado  → el look de los Ep. 1–4 (luz suave de estudio, colores saturados, fondo vivo, personajes estilizados).
+#   realista → que parezca una película con efectos, no un dibujo animado; suma el criterio "realismo".
+# Las reglas de cada uno están en tools/auditor/prompts/estilos.md (los revisores las leen).
+ESTILOS = ("animado", "realista")
+# Episodios hechos antes de que existiera estilo.json: sin el archivo se auditan como animados y conservan la ficha del
+# protagonista viejo como respaldo. Cualquier episodio nuevo TIENE que declarar su estilo.
+LEGADO = {"ep01-congelamiento-cerebral", "ep02-pajaros-picante", "ep03-edificio-que-camino", "ep04-cortina-ducha",
+          "rhein01-mosasaurio"}
+
+
+def es_legado(ep_d):
+    return os.path.basename(os.path.normpath(ep_d)) in LEGADO
+
+
+def estilo(ep_d):
+    """Lee studio/episodios/<ep>/estilo.json → {"estilo", "declarado", "referencias", "errores"}.
+
+    Formato: {"estilo": "realista", "referencias": ["referencias/*.jpg"], "nota": "para qué"}
+    - estilo: "animado" o "realista" (obligatorio).
+    - referencias (opcional, sirve sobre todo en realista): fotos reales del tema, rutas relativas a la carpeta del episodio
+      (se aceptan comodines). Los revisores las comparan con los cuadros. Máximo 4 se usan. No se suben al repo público
+      (.gitignore): son de otros, sólo para comparar.
+    Sin archivo: "animado" (declarado = False). Para un episodio nuevo eso es una falla en preparar."""
+    p = os.path.join(ep_d, "estilo.json")
+    out = {"estilo": "animado", "declarado": False, "referencias": [], "nota": "", "errores": [], "avisos": []}
+    if not os.path.exists(p):
+        return out
+    try:
+        d = leer(p) or {}
+    except ValueError as e:
+        out["errores"].append(f"estilo.json no es JSON válido: {e}")
+        return out
+    e = str(d.get("estilo", "")).strip().lower()
+    if e not in ESTILOS:
+        out["errores"].append(f"estilo.json: 'estilo' debe ser {' o '.join(ESTILOS)} (dice '{d.get('estilo')}')")
+        return out
+    out.update(estilo=e, declarado=True, nota=str(d.get("nota", "")))
+    import glob as _g
+    refs = d.get("referencias") or []
+    if isinstance(refs, str):
+        refs = [refs]
+    if not isinstance(refs, list):
+        out["errores"].append("estilo.json: 'referencias' tiene que ser una lista de rutas (por ejemplo [\"referencias/*.jpg\"])")
+        refs = []
+    for patron in refs:
+        hits = sorted(_g.glob(os.path.join(ep_d, str(patron))))
+        if not hits:     # todavía no se bajan las fotos: no frena (se usan recién en las puertas 4, 6 y 7)
+            out["avisos"].append(f"estilo.json: la referencia '{patron}' no encontró archivos en la carpeta del episodio")
+        out["referencias"] += [h for h in hits if h.lower().endswith((".jpg", ".jpeg", ".png", ".webp"))]
+    out["referencias"] = out["referencias"][:4]
+    return out
+
+
 def ficha(ep_d):
-    """Ficha de personajes del episodio (studio/episodios/<ep>/ficha.jpg); si no tiene, la del protagonista humano.
-    Desde el 19-oct-2026 cada idea define su estilo y sus personajes (decisión de Tomás)."""
-    for p in (os.path.join(ep_d, "ficha.jpg"), os.path.join(RAIZ, "studio", "personaje", "ficha.jpg")):
+    """Ficha de personajes del episodio (studio/episodios/<ep>/ficha.jpg). Desde el 19-oct-2026 cada idea define su estilo y sus
+    personajes (decisión de Tomás), así que un episodio nuevo sólo se compara con SU ficha. El protagonista viejo
+    (studio/personaje/ficha.jpg) queda como respaldo sólo para los episodios de LEGADO."""
+    rutas = [os.path.join(ep_d, "ficha.jpg")]
+    if es_legado(ep_d):
+        rutas.append(os.path.join(RAIZ, "studio", "personaje", "ficha.jpg"))
+    for p in rutas:
         if os.path.exists(p):
             return p
     return None

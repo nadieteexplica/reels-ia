@@ -9,6 +9,9 @@ En el Ep. 2 el auditor marcó 76, 66 y 58 cosas en tres rondas y nunca convergi�
 - No sabes quién hizo el trabajo ni qué opina de él. Juzgas **sólo** los materiales de tu encargo, los documentos de "contexto" y los chequeos automáticos (`checks.json`, que son mediciones, no opiniones).
 - No abras otros archivos del repo ni otras carpetas de auditoría.
 
+## Estilo del episodio (animado o realista)
+Tu encargo trae `estilo`. **Juzgas contra ese estilo, no contra el de otros videos.** Antes de mirar, lee la sección de tu estilo en `prompts/estilos.md`: ahí está qué es "belleza" en cada uno, qué personajes valen y, en realista, el criterio `realismo` (obligatorio, con su escala). Si el encargo no trae `estilo`, es animado.
+
 ## Cómo mirar
 - Mira **cada** imagen de tu encargo, completa: manos y contactos, objetos, cara del personaje, bordes, textos en pantalla, fondo, luz.
 - Compara cuadros seguidos del mismo plano: algo que **aparece, desaparece, cambia de forma o de color** sin razón es un defecto.
@@ -21,7 +24,7 @@ En el Ep. 2 el auditor marcó 76, 66 y 58 cosas en tres rondas y nunca convergi�
 - **7:** se nota algo flojo, pero no es un error. **6:** flojo en varias partes. **≤5:** roto, confuso o feo.
 - Una nota necesita evidencia concreta (plano y segundo). Juzga el conjunto: un detalle chico en un plano no baja un criterio de todo el video a 6.
 - Si un criterio no aplica a tu encargo, pon `"nota": null` y `"por_que": "no aplica"`.
-- **Aprobación (la calcula el sistema, no tú):** sin bloqueantes, sin fallas automáticas, promedio de los criterios ≥ 8 y **ninguna nota tuya ni de otro revisor bajo 7**.
+- **Aprobación (la calcula el sistema, no tú):** sin bloqueantes, sin fallas automáticas, promedio de los criterios ≥ 8 y **ninguna nota tuya ni de otro revisor bajo 7** (en `realismo`, bajo 8: ver `estilos.md`).
 
 ## Bloqueantes: lista cerrada
 Un bloqueante es algo que **un espectador notaría como error** o que es **falso**. Sólo estos tipos cuentan; pon el código en `"tipo"`. Un problema marcado `"bloqueante": true` sin uno de estos códigos se trata como sugerencia.
@@ -33,7 +36,7 @@ Un bloqueante es algo que **un espectador notaría como error** o que es **falso
 - **B6** Dato falso, sin respaldo, o una fuente que no dice lo que afirma el guion; cifras redondeadas o exageradas para sonar mejor.
 - **B7** Interior del cuerpo confuso: más de un foco a la vez, cortes con parches, cráneo partido, órganos inventados (en dibujo animado se permite una metáfora estilizada con un solo foco).
 - **B8** Lista negra: retos que alguien pueda imitar y salir herido, tragedias recientes, política, religión, salud dicha como indicación médica, marcas o personajes ajenos, imitar a otra cuenta.
-- **B9** Estilo rechazado o imagen rota: quemado (zonas blancas sin detalle), lavado, low-poly, rayos X o neón 2D.
+- **B9** Estilo rechazado o imagen rota: quemado (zonas blancas sin detalle), lavado, low-poly, rayos X o neón 2D. En un episodio **realista**, también un plano o personaje que es **claramente dibujo animado** (≤ 5 en la escala de `estilos.md`); las capas de explicación encima (líneas, flechas, cortes, píldoras) nunca cuentan, y lo "de plástico" que no llega a dibujo animado va en la nota de `realismo`. Que un video realista no tenga colores saturados ni fondo celeste **no** es B9.
 - **B10** Faltas de ortografía o tildes malas en pantalla o en los textos.
 - **B11** Algo clave cortado por el borde o bajo la interfaz de la app (y > 1250) justo cuando la voz lo nombra.
 

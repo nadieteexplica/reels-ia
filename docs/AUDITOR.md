@@ -9,14 +9,38 @@ El Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás. Medido 
 1. **El auditor es la receta, no el examen final.** Lo que va a exigir está escrito antes de animar: en la **ficha de plano** del storyboard y en el **chequeo automático** que el editor corre en cada prueba (`tools/prueba.py`) y el workflow en cada animatic.
 2. **Lo medible se arregla antes de gastar revisores:** si el chequeo automático de una puerta falla, `preparar` **no abre la ronda ni crea encargos** (queda en `<etapa>/_pre/checks.json`). Una ronda sólo se gasta en lo que necesita ojos.
 3. **Bloqueantes: lista cerrada B1–B11** (`tools/auditor/prompts/comun.md`): sólo lo que un espectador notaría como error o lo que es falso. Todo lo demás es **sugerencia**, y el veredicto muestra sólo **las 5 más importantes**.
-4. **Aprueba** sin bloqueantes, sin fallas automáticas, con **promedio ≥ 8** (promedio de los revisores por criterio) y **ninguna nota de ningún revisor bajo 7** (el promedio no esconde al revisor que sí miró).
+4. **Aprueba** sin bloqueantes, sin fallas automáticas, con **promedio ≥ 8** (promedio de los revisores por criterio) y **ninguna nota de ningún revisor bajo 7** (el promedio no esconde al revisor que sí miró). En un episodio realista, `realismo` pide **ningún revisor bajo 8**.
 5. **Máximo 2 rondas por puerta.** La 2.ª es de **verificación**: cada cosa que marcó la 1.ª la verifica **un solo revisor** (el que tiene ese plano, o el global si la marcó el global), que también puede agregar bloqueantes nuevos; nada de sugerencias nuevas. `preparar` no abre una 3.ª ronda (sólo con `--forzar 'motivo'`, que queda anotado y lo revisa la puerta P).
-6. **Salida después de 2 rondas:** en el animatic, los planos que siguen fallando se simplifican o se cambian por una plantilla y el video sigue: la **puerta 7** revisa bloqueantes en todo el render final, incluidos esos planos. En guion o storyboard, se cambia la idea o se le pregunta a Tomás.
+6. **Salida después de 2 rondas:** si lo que no llega es el `realismo` de un episodio realista, **se para y se le pregunta a Tomás** (el kit es animado y la puerta 7 no mide realismo; el veredicto lo dice y marca `parar_y_preguntar`). Si no, en el animatic, los planos que siguen fallando se simplifican o se cambian por una plantilla y el video sigue: la **puerta 7** revisa bloqueantes en todo el render final, incluidos esos planos. En guion o storyboard, se cambia la idea o se le pregunta a Tomás.
 7. **Un plano con un bloqueante que falla dos veces se simplifica o se reemplaza**, no se parcha otra vez. Una sugerencia que el editor decidió no hacer no cuenta como falla. **Lo que ya pasó no se toca.**
 8. **Revisores:** en el animatic, **1 por cada 10 planos + 1 global** (un solo revisor no alcanza a mirar 40 tiras con sus eventos); en la r2, sólo los planos que tenían algo que verificar o que se re-renderizaron (`--cambiados`). El render final lo revisa uno solo, por bloqueantes.
 9. **El revisor ve 6–12 cuadros por plano (4 por segundo)** y las medidas de movimiento de cada plano, para no confundir movimiento chico con "congelado".
 10. **Tomás tiene la última palabra.** A las 48 h de publicado se compara lo que dijo el auditor con las métricas (`PUBLICADOS.md`); si no calzan, se ajustan los criterios.
 11. **Topes por video** en `tools/auditor/presupuesto.json` → `proceso_v2` (el código los lee de ahí; los cambia Tomás): 4 h activas (meta 2,5 h), 2 rondas por puerta, 10 planos por revisor, 2 animatics, 1 render final, 6 escenas, 3 a medida, 2 s máximo sin cambio, 70–128 palabras, 25–45,5 s (meta 25–40 s; YouTube primero, 21-oct-2026). Se ajustan con lo medido en el Ep. 4. **El % de uso de Claude no se puede medir desde la sesión:** la puerta P anota revisores lanzados e imágenes revisadas, que es lo que más lo mueve.
+
+## Estilo del episodio: animado o realista (Tomás, 22-oct-2026)
+Hasta el Ep. 4 el auditor tenía metido el look animado: belleza pedía colores saturados y fondo celeste, el personaje se comparaba con el protagonista viejo, y no había forma de exigir realismo. Tomás pidió realismo de verdad, así que ahora **cada episodio declara su estilo** y el auditor se ajusta a ese estilo.
+
+**`studio/episodios/<ep>/estilo.json`** (obligatorio desde el Ep. 5; sin él, `preparar` falla en las puertas 3–8):
+```json
+{"estilo": "realista", "referencias": ["referencias/*.jpg"], "nota": "rana flotando en el laboratorio y el imán gigante"}
+```
+- `estilo`: `animado` o `realista`. Las reglas de cada uno están en **`tools/auditor/prompts/estilos.md`**, y cada revisor lee la sección de su estilo.
+- `referencias` (opcional, recomendado en realista): hasta 4 fotos reales del tema para comparar (lista de rutas en la carpeta del episodio; se aceptan comodines). Van como `ref_N.jpg` a los materiales de las puertas 4, 6 y 7. Son de otros y sólo para comparar: **no van al video ni al repo público** (`.gitignore` ignora `referencias/` y `ref_*.jpg`). Si todavía no están, es aviso, no falla.
+- Los episodios de antes (Ep. 1–4 y Rhein, `LEGADO` en `comun.py`) siguen como animados sin el archivo.
+
+| | Animado | Realista |
+|---|---|---|
+| **Belleza** | luz suave de estudio, colores saturados, fondo vivo | luz con sombras reales, materiales con textura e imperfecciones, color natural con contraste, lente real |
+| **Criterio `realismo`** | no existe | obligatorio en cuadros (4) y animatic (6), con número; **ningún revisor bajo 8** (`presupuesto.json` → `realismo_min`). "No aplica" cuenta como falta |
+| **Lavado (automático, puerta 4)** | brillo > 175 y saturación < 70 | brillo > 175 y **sin negros** (percentil 5 > 120, como neblina); entre 90 y 120, o poco color con sombras reales, es aviso y lo decide el revisor |
+| **B9** | estilo rechazado o imagen rota | lo mismo, más un plano o personaje **claramente** de dibujo animado (≤ 5 en la escala); las capas de explicación nunca, y lo "de plástico" va en la nota |
+| **Paquete** | etiqueta IA en IG y TikTok | además `isAiGeneratedContent: true` en YouTube (falla si falta) |
+| **Personajes** | los de la ficha del episodio | los de la ficha del episodio; el protagonista de MakeHuman ya no se usa |
+
+**Ficha:** un episodio nuevo se compara **sólo con su propia `ficha.jpg`**: el protagonista viejo ya no sirve de respaldo. Sin ficha, las puertas 4–7 fallan, salvo `--sin-personajes`.
+
+**Capas de explicación:** en realista, las líneas, flechas, cortes y etiquetas pueden ir estilizadas encima del mundo real (lo del Ep. 4) y no bajan el realismo.
 
 ## Etapas
 | # | Etapa | Cuándo | Chequeo automático | Revisor |
@@ -24,7 +48,7 @@ El Ep. 2 tomó más de 24 h y ~26 % del uso semanal de Claude de Tomás. Medido 
 | 1 | **Guion** | antes de la voz | 70–128 palabras (25–45 s; meta 25–40), frases ≤ 14 palabras, pausas, prohibidas, lista negra, 2 fuentes con URL (sin Wikipedia), tabla de verificación, cifras con fuente, puntaje ≥ mínimo | 1: precisión (abre las fuentes), gancho, claridad (¿sobra una frase?), compartible |
 | 2 | **Voz** | antes del storyboard | duración 25–45,5 s (si se pasa: recortar el guion; pausas con `tools/pausas.py`, 0 créditos), palabras > 1,2 s, pausas, conteo = guion, créditos, transcripción automática contra el guion | **sólo si** la transcripción encontró diferencias o hay ritmo raro |
 | 3 | **Storyboard (fichas de plano)** | antes de animar | columnas de la ficha (escena, plantilla, acción visible, cambio, cámara, cara, gráfico, origen), máx. 6 escenas (el id "E1" cuenta igual aunque diga "E1 patio") y 3 a medida, qué cambia en cada plano de más de 2 s, cara sobre y 1000, gráfico vs. cara, huecos, escala cada ≤ 12 s, Kling ≤ 3 | 1: foco, ritmo, viabilidad, gancho visual |
-| 4 | **Cuadros de estilo** | sólo si hay escenario nuevo | resolución, % quemado, lavado, oscuro | 1 (todos los cuadros en un encargo) |
+| 4 | **Cuadros de estilo** | sólo si hay escenario nuevo | resolución, % quemado, lavado (según el estilo), oscuro, `estilo.json`, ficha del episodio | 1 (todos los cuadros en un encargo); en realista suma `realismo` |
 | 5 | **Clips de Kling** | si hay | resolución, palabras que activan el filtro, máx. 3 | 1 |
 | 6 | **Animatic** | video completo en baja resolución (540×960, 8 muestras), antes del render final | QA técnico, detectores (pantalla vacía, apariciones, luz), **chequeo por plano** (ojos tapados, quemado, plano quieto, poco movimiento, fondo liso, cara bajo la interfaz), **sin datos de ojos = falla** (salvo `--sin-personajes`), subtítulos contra `words.json`, audio | 1 por cada 10 planos + 1 global |
 | 7 | **Final** | render final (720×1280, 16 muestras) | lo mismo que el animatic | 1: **sólo bloqueantes**, sin notas |
@@ -48,6 +72,7 @@ Cada ronda queda en `studio/episodios/<ep>/auditoria/<etapa>/rN/`:
 ## Cómo se corre (lo hace Claude, no Tomás)
 ```bash
 python3 tools/prueba.py <ep> --planos 3,4                                   # editor: cada plano, antes del auditor
+echo '{"estilo": "realista"}' > studio/episodios/<ep>/estilo.json   # una vez, al empezar ("referencias" se agrega cuando estén las fotos)
 python3 tools/auditor/auditar.py preparar <ep> guion [--fuentes fuentes.md]
 python3 tools/auditor/auditar.py preparar <ep> voz                          # necesita out/asr/<ep>.json
 python3 tools/auditor/auditar.py preparar <ep> storyboard
@@ -80,6 +105,7 @@ python3 tools/auditor/bitacora.py <ep> gasto   --servicio kling --monto 4 --nota
 - **Los detectores marcan, no deciden** (salvo pantalla vacía, quemado y ojo tapado). Hay falsos positivos (etiquetas que entran a propósito, acciones rápidas).
 - **El chequeo de ojos es geométrico:** sabe si un gráfico o un subtítulo queda sobre el ojo, no si una pata o una hoja lo tapa en 3D; y depende de que el post registre cada gráfico y cada movimiento de la imagen.
 - **Independencia:** el revisor conoce las reglas, no sabe qué se hizo ni qué opina quien lo hizo (salvo, en la r2, la lista de lo que debía arreglarse).
+- **Modo realista sin calibrar:** las notas de realismo y el lavado realista (percentil 5) se probaron con simulaciones, no con un video realista de verdad; se ajustan con el Ep. 5. El chequeo automático de pantalla vacía es igual para los dos estilos: un plano realista muy oscuro y sin bordes puede saltarlo.
 - **Sin recalibrar:** la calibración "20 de 22" (`AUDITOR_CALIBRACION.md`) es del auditor v1; el v2 (lista cerrada, un revisor por cada 10 planos) no se ha recalibrado.
 
 ## Calibración y mantenimiento

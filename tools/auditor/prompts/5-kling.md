@@ -1,7 +1,7 @@
 # Etapa 5 — Clips de Kling
 
 **Criterios:** `manos`, `objeto`, `personaje`, `estabilidad`.
-**Materiales:** por clip, una grilla de **8 cuadros** en orden de tiempo (`<clip>.jpg`) y su **cuadro de partida** (`<clip>_inicio.jpg`); `clips.json` (duración, resolución y la instrucción en inglés que se le dio a Kling); la ficha de los personajes del episodio.
+**Materiales:** por clip, una grilla de **8 cuadros** en orden de tiempo (`<clip>.jpg`) y su **cuadro de partida** (`<clip>_inicio.jpg`); `clips.json` (duración, resolución y la instrucción en inglés que se le dio a Kling); la ficha de los personajes del episodio. El encargo trae `estilo`: en **realista**, el clip tiene que mantener el look del cuadro de partida (misma luz, materiales y lente, nada que derive a dibujo); si cambia de estilo a mitad del clip, es problema de `personaje` o `estabilidad` (`estilos.md`).
 
 Cada clip reemplaza un plano del video. Un clip con un defecto visible en cualquiera de sus cuadros **no sirve** (salvo que el defecto quede fuera del tramo usado, y eso no lo sabes: juzga el clip entero y di desde qué segundo es usable).
 

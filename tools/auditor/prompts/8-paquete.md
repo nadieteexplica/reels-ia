@@ -17,6 +17,6 @@ Lo mecánico (largo del título, hashtags, etiquetas IA, madeForKids, título de
    - Las fuentes del primer comentario y de la descripción de YouTube son las mismas del guion, con enlaces.
    - Crédito de licencias si hay anatomía (Z-Anatomy, BodyParts3D).
    - Nada de "sígueme" en el video; puede ir en el texto.
-   - Etiqueta de IA en Instagram y TikTok; en YouTube sólo si el estilo es realista.
+   - Etiqueta de IA en Instagram y TikTok; en YouTube (`isAiGeneratedContent: true`) cuando el estilo del episodio (`estilo` del encargo) es **realista** (lo mide el chequeo).
    - `madeForKids` = no (decisión de Tomás, 19-oct-2026).
    - TikTok con título.

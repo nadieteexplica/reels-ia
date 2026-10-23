@@ -286,8 +286,23 @@ def cuadros(mdir, imagenes, ficha=None):
         im.resize((720, 1280)).save(os.path.join(mdir, f"{nombre}.jpg"), quality=90)
         out.append({"cuadro": nombre, "archivo": f"{nombre}.jpg", "res": f"{im.width}x{im.height}",
                     "quemados_pct": round(float((a > 250).mean() * 100), 2), "brillo": round(float(a.mean()), 1),
-                    "saturacion": round(float(hsv[..., 1].mean()), 1)})
+                    "saturacion": round(float(hsv[..., 1].mean()), 1),
+                    # lo más oscuro del cuadro (percentil 5 de la luz): alto = negros levantados, sin sombras = lavado
+                    "negros_p5": round(float(np.percentile(a, 5)), 1)})
     if ficha and os.path.exists(ficha):
         Image.open(ficha).convert("RGB").save(os.path.join(mdir, "ficha_personaje.jpg"), quality=90)
     comun.guardar(os.path.join(mdir, "cuadros.json"), out)
+    return out
+
+
+def referencias(mdir, rutas):
+    """Fotos reales de referencia del episodio (estilo.json → referencias) → ref_N.jpg en los materiales, a lo ancho de 720."""
+    out = []
+    for i, f in enumerate(rutas[:4], 1):
+        im = Image.open(f).convert("RGB")
+        if im.width > 720:
+            im = im.resize((720, round(im.height * 720 / im.width)))
+        nombre = f"ref_{i}.jpg"
+        im.save(os.path.join(mdir, nombre), quality=88)
+        out.append(nombre)
     return out

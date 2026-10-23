@@ -1,7 +1,9 @@
 # Etapa 3 — Storyboard (fichas de plano)
 
 **Criterios:** `foco`, `ritmo`, `viabilidad`, `gancho_visual`.
-**Materiales:** `storyboard.md` (una ficha por plano, en tabla), `guion.md`, `ficha.jpg` si el episodio tiene personajes propios. **Contexto:** manual §4, §5 y §8; CONTEXTO (estilo vigente); `studio/plantilla/KIT.md` (lo que ya existe y se puede reutilizar).
+**Materiales:** `storyboard.md` (una ficha por plano, en tabla), `guion.md`, `ficha.jpg` si el episodio tiene personajes propios. **Contexto:** manual §4, §5 y §8; el **estilo del episodio** (`estilo` del encargo, reglas en `estilos.md`); `studio/plantilla/KIT.md` (lo que ya existe y se puede reutilizar).
+
+**Si el estilo es realista**, en **viabilidad** mira además cómo llega cada escena a verse real: materiales con textura (assets CC0, escaneos), luz y lente reales, render con las muestras suficientes (GPU) o Kling para lo que en render se vería de juguete (personas, animales). Una escena que depende de un personaje estilizado (el protagonista de MakeHuman de los episodios anteriores, un muñeco) o de un plano que en render va a verse de plástico es **sugerencia de prioridad 1**, con la alternativa (de espalda, fuera de foco, manos con guantes, Kling).
 
 El storyboard es **la receta del editor**: cada ficha ya trae lo que después vas a exigir en el animatic. Se audita **antes de gastar** render: acá cambiar es gratis. Sé duro con lo que el pipeline no logra y con los planos que no se van a poder leer.
 

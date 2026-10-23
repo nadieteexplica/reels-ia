@@ -138,7 +138,7 @@ El storyboard es **la receta del editor**: cada fila es la ficha de un plano y t
 ---
 
 ## 5. Look y animación
-El estilo vigente está en `CONTEXTO.md`, y estas reglas valen para cualquier estilo.
+**Cada episodio declara su estilo en `estilo.json`: `animado` o `realista`** (Tomás, 22-oct-2026; `docs/AUDITOR.md` → "Estilo del episodio"). Lo de abajo (fondo celeste, luz suave de estudio, colores saturados, R4) es el estilo **animado**. El **realista** sigue `tools/auditor/prompts/estilos.md`: luz con sombras reales, materiales con textura e imperfecciones, color natural con contraste, lente real, personas creíbles (nada del protagonista de MakeHuman) y las explicaciones como capas encima del mundo real. Exposición, quemado, encuadre y subtítulos valen para los dos.
 
 ### Luz y color
 - **Fondo:** cielo o degradado celeste/turquesa, o escenario simple y saturado. Para objetos en primer plano, fondo oscuro cálido con partículas desenfocadas (R8).

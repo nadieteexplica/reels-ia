@@ -44,6 +44,7 @@
   ],
   "promedio_min": 8.0,
   "nota_min_revisor": 7,
+  "realismo_min": 8,
   "nota_duracion": "YouTube primero (Tomás, 21-oct-2026): meta 25–40 s, techo 45 s (en 108 mil Shorts la mediana de vistas es máxima en 11–20 s y cae fuerte sobre 30 s; el promedio visto por Short es ~16 s). Palabras: 25 s ≈ 72, 35 s ≈ 101, 40 s ≈ 115; techo 128 = voz de 45,1 s a la velocidad más lenta medida (Ep. 3: 181 palabras en 63,4 s = 2,855 palabras/s).",
   "horas_meta": 2.5
  }

@@ -35,7 +35,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - Look lavado o sobreexpuesto con cámara pegada (primer intento del helado).
   - Copiar formatos de otras cuentas tal cual.
   - El pulpo como tema (no engancha).
-- **Realismo (Tomás, 22-oct-2026):** los videos se ven "muy animados" y quiere **realismo de verdad** (más real, no dibujo animado). Ya **no le gusta el personaje propio de MakeHuman**: pidió realismo en el aviso de Rhein (rama `rhein`) y siguió saliendo el mismo look y el mismo personaje. Primera prueba: el video del imán.
+- **Realismo (Tomás, 22-oct-2026):** los videos se ven "muy animados" y quiere **realismo de verdad** (más real, no dibujo animado). Ya **no le gusta el personaje propio de MakeHuman**: pidió realismo en el aviso de Rhein (rama `rhein`) y siguió saliendo el mismo look y el mismo personaje. Primera prueba: el video del imán. El auditor ya tiene el modo realista (`estilo.json` + criterio `realismo` ≥ 8; `docs/AUDITOR.md`).
 - **Estilo por idea (DECIDIDO por Tomás, 19-oct-2026, manda sobre lo de abajo):** cada idea nueva se diseña **desde cero para esa idea y su viralidad**, sin arrastrar cómo se hizo el video anterior: si hace falta un humano o no, qué personajes, qué fondo, qué cámara y qué estilo 3D (puede ser totalmente otro). El protagonista humano es una opción más, no la cara obligatoria de la cuenta. Siguen vigentes: 3D sí o sí, verdad con fuentes y los estilos rechazados. Cada episodio deja sus personajes en `studio/episodios/<ep>/ficha.jpg`.
 - **Estilo en evaluación (historia, hasta el Ep. 1):**
   - **Monito animado 3D.** Muestras de 5 s en tres estilos: A · Pixar suave, B · caricatura con contorno, C · plastilina.
@@ -62,7 +62,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - Cortes secos sincronizados con la voz.
   - La cámara siempre se mueve (acercamientos lentos u órbitas).
   - Cambio de escala cada 8–12 s.
-- **Look:** fondos vivos (celeste/turquesa), luz suave de estudio, colores saturados. Nunca sobreexpuesto. Con encuadre vertical se deja aire: la cara del personaje va en el tercio superior.
+- **Look (según el estilo del episodio, `estilo.json`; Tomás 22-oct-2026):** **animado** = fondos vivos (celeste/turquesa), luz suave de estudio, colores saturados; **realista** = `tools/auditor/prompts/estilos.md` (luz y materiales reales, color natural con contraste, lente real). En los dos: Nunca sobreexpuesto. Con encuadre vertical se deja aire: la cara del personaje va en el tercio superior.
 - **Subtítulos:**
   - Palabra por palabra, de 1 a 3 palabras a la vez, en mayúsculas gruesas.
   - Blancos con borde negro, y la palabra activa en amarillo (#FFD23F).

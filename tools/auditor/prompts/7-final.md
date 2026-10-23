@@ -1,6 +1,6 @@
 # Etapa 7 — Render final: sólo bloqueantes
 
-El video ya pasó el **animatic** (puerta 6), con los mismos planos, cámaras y gráficos. Lo que cambió es la calidad del render (más resolución y muestras, sin ruido) y el armado final. Tu único trabajo es encontrar **bloqueantes de la lista cerrada** (comun.md) que el render final haya introducido o que se vean recién ahora con más detalle: algo quemado, piezas que se atraviesan, un objeto que aparece de golpe, una cara tapada, un subtítulo fuera de zona.
+El video ya pasó el **animatic** (puerta 6), con los mismos planos, cámaras y gráficos. Lo que cambió es la calidad del render (más resolución y muestras, sin ruido) y el armado final. Tu único trabajo es encontrar **bloqueantes de la lista cerrada** (comun.md) que el render final haya introducido o que se vean recién ahora con más detalle: algo quemado, piezas que se atraviesan, un objeto que aparece de golpe, una cara tapada, un subtítulo fuera de zona, y en un episodio **realista** un plano que se ve de dibujo animado (B9, `estilos.md`).
 
 **Criterios:** ninguno (no pongas notas). **Materiales:** cuadro 0, gancho, loop, contacto, tiras por plano, eventos de los detectores, `subtitulos.md`, `audio.json` y `checks.json`.
 
