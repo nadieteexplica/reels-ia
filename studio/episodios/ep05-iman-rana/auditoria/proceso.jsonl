@@ -31,3 +31,5 @@
 {"tipo": "aviso", "que": "el contenedor se reinició: se cortaron los vigilantes de la sesión y de los renders; se relanzan", "n": 31, "ts": "2026-10-23T00:41:10-03:00"}
 {"tipo": "aviso", "que": "checks.py (puerta 3): la regla de manos con objeto miraba también la frase de la voz ('nadie la sostiene' daba falso positivo); ahora mira las columnas de acción", "n": 32, "ts": "2026-10-23T00:45:30-03:00"}
 {"tipo": "trabajo", "id": "auditor 3-storyboard r1", "estado": "inicio", "n": 33, "ts": "2026-10-23T00:45:50-03:00"}
+{"tipo": "trabajo", "id": "estilos exterior A,B 39896186814", "estado": "fin", "n": 34, "ts": "2026-10-23T00:46:08-03:00"}
+{"tipo": "trabajo", "id": "estilos HD C 39893696054 · B2 39893836860 · A2 39894106192", "estado": "fin", "n": 35, "ts": "2026-10-23T00:46:08-03:00"}

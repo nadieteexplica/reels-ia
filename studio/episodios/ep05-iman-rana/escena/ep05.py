@@ -180,7 +180,7 @@ def mat_metal_cepillado(nombre="acero", color=(0.62, 0.63, 0.65), rugo=(0.18, 0.
     return m
 
 
-def mat_pintura(nombre="pintura", color=(0.08, 0.2, 0.32), rugo=(0.3, 0.55), sucio=0.25):
+def mat_pintura(nombre="pintura", color=(0.08, 0.2, 0.32), rugo=(0.3, 0.55), sucio=0.25, capa=0.25):
     """Pintura esmaltada de equipo industrial, con desgaste y mugre suave."""
     m, nt, b = _nodos(nombre)
     nz = _ruido(nt, escala=4, detalle=10)
@@ -189,7 +189,7 @@ def mat_pintura(nombre="pintura", color=(0.08, 0.2, 0.32), rugo=(0.3, 0.55), suc
     nt.links.new(_rampa(nt, nz.outputs["Fac"], oscuro, color).outputs[0], b.inputs["Base Color"])
     fino = _ruido(nt, escala=180, detalle=2)
     _bump(nt, b, fino.outputs["Fac"], 0.03, 0.0003)
-    b.inputs["Coat Weight"].default_value = 0.25
+    b.inputs["Coat Weight"].default_value = capa
     b.inputs["Coat Roughness"].default_value = 0.2
     return m
 
@@ -578,7 +578,7 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
     """Bobina superconductora gigante, de pie, con el hueco vertical: cuerpo azul de criostato con aros de acero,
     bandas de cobre a la vista arriba, escarcha abajo (frío), plataforma de concreto y cables gruesos al piso.
     La boca del hueco queda en z = z0 + alto."""
-    pintura = mat_pintura("criostato", (0.04, 0.12, 0.21), rugo=(0.45, 0.7), sucio=0.35)
+    pintura = mat_pintura("criostato", (0.02, 0.07, 0.26), rugo=(0.45, 0.7), sucio=0.35, capa=0.05)
     acero = mat_metal_cepillado("acero_g", (0.45, 0.46, 0.48), (0.2, 0.42))
     cobre = mat_cobre("cobre_g")
     goma = mat_goma("cable_g", (0.02, 0.02, 0.022), 0.5)
@@ -773,8 +773,12 @@ def mat_sal(nombre="costra_sal", escala=1.3):
     vo = nt.nodes.new("ShaderNodeTexVoronoi")
     vo.feature = "DISTANCE_TO_EDGE"
     vo.inputs["Scale"].default_value = escala
-    vo.inputs["Randomness"].default_value = 0.85
-    nt.links.new(tc.outputs["Object"], vo.inputs["Vector"])
+    vo.inputs["Randomness"].default_value = 1.0
+    dist = nt.nodes.new("ShaderNodeTexNoise"); dist.inputs["Scale"].default_value = 0.6; dist.inputs["Detail"].default_value = 4
+    nt.links.new(tc.outputs["Object"], dist.inputs["Vector"])
+    mezcla = nt.nodes.new("ShaderNodeMix"); mezcla.data_type = "VECTOR"; mezcla.inputs[0].default_value = 0.18
+    nt.links.new(tc.outputs["Object"], mezcla.inputs[4]); nt.links.new(dist.outputs["Color"], mezcla.inputs[5])
+    nt.links.new(mezcla.outputs[1], vo.inputs["Vector"])
     borde = _mapa(nt, vo.outputs["Distance"], 1.0, 0.0)
     borde.inputs["From Max"].default_value = 0.06
     grande = _ruido(nt, escala=0.08, detalle=6)
@@ -828,7 +832,7 @@ def cerros(sc, semilla=7):
                                                  (270, 12000, 1300, 10000), (110, 10000, 1100, 9000), (330, 9000, 800, 9000),
                                                  (20, 11000, 1000, 12000), (60, 10000, 900, 10000))):
         a = math.radians(ang)
-        bpy.ops.mesh.primitive_grid_add(x_subdivisions=80, y_subdivisions=12, size=1, location=(math.sin(a) * dist, math.cos(a) * dist, 0))
+        bpy.ops.mesh.primitive_grid_add(x_subdivisions=420, y_subdivisions=60, size=1, location=(math.sin(a) * dist, math.cos(a) * dist, 0))
         g = bpy.context.object
         g.name = f"Cerro{i}"
         g.scale = (ancho, ancho * 0.3, 1)
@@ -841,6 +845,9 @@ def cerros(sc, semilla=7):
             v.co.z = 0
         d = g.modifiers.new("relieve", "DISPLACE"); d.texture = tx; d.strength = alto * 2.2; d.mid_level = 0.35
         d.texture_coords = "GLOBAL"
+        tx2 = bpy.data.textures.new(f"cerro_det{i}", "CLOUDS"); tx2.noise_scale = 260; tx2.noise_depth = 6
+        d2 = g.modifiers.new("detalle", "DISPLACE"); d2.texture = tx2; d2.strength = alto * 0.35; d2.mid_level = 0.5
+        d2.texture_coords = "GLOBAL"
         liso(g, 180)
         asignar(g, mat_lejano(f"cerro_m{i}", (0.30, 0.2, 0.18), k=0.32 + 0.1 * (dist > 10000)))
     # volcán (cono perfecto con cumbre nevada), lejos
@@ -884,13 +891,7 @@ def central_nuclear(sc, pos=(0, 2500, 0), rot=0.0):
         liso(t, 180); asignar(t, hormigon)
         torres.append(t)
         # vapor: volumen suave sobre la boca
-        vap = mat_vapor()
-        for k in range(4):
-            bpy.ops.mesh.primitive_ico_sphere_add(radius=40 + 18 * k, subdivisions=3,
-                                                  location=(px + dx + 12 * k, py + i * 40 + 6 * k, 165 + 55 * k))
-            vv = bpy.context.object; vv.name = f"Vapor{i}_{k}"; vv.scale = (1, 1, 0.7)
-            dd = vv.modifiers.new("bulto", "DISPLACE"); tx = bpy.data.textures.new(f"vap{i}{k}", "CLOUDS"); tx.noise_scale = 30; dd.texture = tx; dd.strength = 14
-            asignar(vv, vap)
+        caja(sc, f"Vapor{i}", (150, 150, 300), (px + dx + 25, py + i * 40 + 10, 150 + 150), mat_vapor(), 0)
     # domo del reactor y casa de turbinas
     cilindro(sc, "Reactor", 24, 45, (px + 200, py - 30, pz), verts=64, mat=hormigon)
     bpy.ops.mesh.primitive_uv_sphere_add(radius=24, location=(px + 200, py - 30, pz + 45), segments=48, ring_count=24)
@@ -900,6 +901,7 @@ def central_nuclear(sc, pos=(0, 2500, 0), rot=0.0):
 
 
 def mat_vapor():
+    """Pluma de vapor: densidad = ruido × forma de pluma (más ancha arriba, se deshace hacia los bordes y arriba)."""
     if "vapor" in bpy.data.materials:
         return bpy.data.materials["vapor"]
     m = bpy.data.materials.new("vapor")
@@ -907,9 +909,30 @@ def mat_vapor():
     nt = m.node_tree
     nt.nodes.remove(nt.nodes["Principled BSDF"])
     v = nt.nodes.new("ShaderNodeVolumePrincipled")
-    v.inputs["Color"].default_value = (1.0, 0.95, 0.92, 1)
-    v.inputs["Density"].default_value = 0.005
-    v.inputs["Anisotropy"].default_value = 0.65     # el sol está detrás: el vapor se ilumina hacia la cámara
+    v.inputs["Color"].default_value = (1.0, 0.96, 0.93, 1)
+    v.inputs["Anisotropy"].default_value = 0.45
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Generated"], sep.inputs[0])
+    # distancia al eje de la pluma (x, y en 0..1 → centrado), que se abre con la altura z
+    def m_(op, a=None, b=None, v1=None):
+        n = nt.nodes.new("ShaderNodeMath"); n.operation = op
+        if a is not None: nt.links.new(a, n.inputs[0])
+        elif v1 is not None: n.inputs[0].default_value = v1
+        if b is not None:
+            if isinstance(b, float): n.inputs[1].default_value = b
+            else: nt.links.new(b, n.inputs[1])
+        return n.outputs[0]
+    dx = m_("SUBTRACT", sep.outputs["X"], 0.5); dy = m_("SUBTRACT", sep.outputs["Y"], 0.5)
+    r = m_("SQRT", m_("ADD", m_("MULTIPLY", dx, dx), m_("MULTIPLY", dy, dy)))
+    ancho = m_("ADD", m_("MULTIPLY", sep.outputs["Z"], 0.32), 0.12)       # radio de la pluma según la altura
+    forma = m_("SUBTRACT", None, m_("DIVIDE", r, ancho), v1=1.0)
+    forma = m_("MAXIMUM", forma, 0.0)
+    arriba = m_("SUBTRACT", None, sep.outputs["Z"], v1=1.0)
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 4.0; nz.inputs["Detail"].default_value = 8
+    nt.links.new(tc.outputs["Generated"], nz.inputs["Vector"])
+    nzr = _mapa(nt, nz.outputs["Fac"], 0.0, 1.0); nzr.inputs["From Min"].default_value = 0.42; nzr.inputs["From Max"].default_value = 0.72
+    dens = m_("MULTIPLY", m_("MULTIPLY", forma, arriba), nzr.outputs[0])
+    nt.links.new(m_("MULTIPLY", dens, 0.06), v.inputs["Density"])
     nt.links.new(v.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
     return m
 

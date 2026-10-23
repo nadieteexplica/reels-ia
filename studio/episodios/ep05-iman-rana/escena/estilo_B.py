@@ -11,7 +11,7 @@ import ep05 as E
 w, h = (int(v) for v in os.environ.get("RES", "1080x1920").split("x"))
 out = os.environ.get("OUT", os.path.join(HERE, "out")); os.makedirs(out, exist_ok=True)
 sc = E.escena("EstiloB", (w, h), int(os.environ.get("SAMPLES", 64)))
-E.cielo_atardecer(sc, elev=0.8, rot=float(os.environ.get("SOL_ROT", 25)), fuerza=0.35, sol=3.5)
+E.cielo_atardecer(sc, elev=float(os.environ.get("SOL_ELEV", 4)), rot=float(os.environ.get("SOL_ROT", 150)), fuerza=0.28, sol=4.5)
 E.salar(sc)
 E.cerros(sc)
 E.central_nuclear(sc, pos=(-1150, 2080, 0))
@@ -29,8 +29,7 @@ if os.path.exists(os.path.join(E.ASSETS, E.PETE_FBX)):
 else:
     E.cilindro(sc, "Persona_prueba", 0.22, 1.79, (0.05, 0, boca + 0.45), mat=E.mat_pintura("prueba", (0.7, 0.3, 0.1)))
 centro = Vector((0.05, 0.0, boca + 1.2))
-E.luz_area(sc, "LlavePete", (6, -12, boca + 3), centro, 220, (1.0, 0.86, 0.75), 3.0, spread=30)
-E.luz_area(sc, "LlaveIman", (8, -14, 4), (0, 0, 2), 350, (1.0, 0.8, 0.65), 6.0, spread=40)
+E.luz_area(sc, "RellenoPete", (6, -12, boca + 3), centro, 60, (1.0, 0.86, 0.75), 3.0, spread=30)
 pos = Vector((7.5, -20.0, 1.7))
 E.camara(sc, pos, Vector((0, 0, 3.6)), lente=35, fstop=8.0, foco=(centro - pos).length)
 sc.render.filepath = os.path.join(out, os.environ.get("NOMBRE", "estilo_B_HD") + ".png")
