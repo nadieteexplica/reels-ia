@@ -191,6 +191,8 @@ def mat_pintura(nombre="pintura", color=(0.08, 0.2, 0.32), rugo=(0.3, 0.55), suc
     _bump(nt, b, fino.outputs["Fac"], 0.03, 0.0003)
     b.inputs["Coat Weight"].default_value = capa
     b.inputs["Coat Roughness"].default_value = 0.2
+    if capa == 0.0:
+        b.inputs["Specular IOR Level"].default_value = 0.3      # pintura mate: no refleja el cielo como vidrio
     return m
 
 
@@ -578,8 +580,8 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
     """Bobina superconductora gigante, de pie, con el hueco vertical: cuerpo azul de criostato con aros de acero,
     bandas de cobre a la vista arriba, escarcha abajo (frío), plataforma de concreto y cables gruesos al piso.
     La boca del hueco queda en z = z0 + alto."""
-    pintura = mat_pintura("criostato", (0.02, 0.07, 0.26), rugo=(0.45, 0.7), sucio=0.35, capa=0.05)
-    acero = mat_metal_cepillado("acero_g", (0.45, 0.46, 0.48), (0.2, 0.42))
+    pintura = mat_pintura("criostato", (0.018, 0.05, 0.17), rugo=(0.72, 0.9), sucio=0.4, capa=0.0)
+    acero = mat_metal_cepillado("acero_g", (0.27, 0.28, 0.3), (0.32, 0.55))
     cobre = mat_cobre("cobre_g")
     goma = mat_goma("cable_g", (0.02, 0.02, 0.022), 0.5)
     hueco = mat_pintura("hueco_g", (0.02, 0.02, 0.025), rugo=(0.5, 0.7), sucio=0.0)
@@ -932,7 +934,10 @@ def mat_vapor():
     nt.links.new(tc.outputs["Generated"], nz.inputs["Vector"])
     nzr = _mapa(nt, nz.outputs["Fac"], 0.0, 1.0); nzr.inputs["From Min"].default_value = 0.42; nzr.inputs["From Max"].default_value = 0.72
     dens = m_("MULTIPLY", m_("MULTIPLY", forma, arriba), nzr.outputs[0])
-    nt.links.new(m_("MULTIPLY", dens, 0.06), v.inputs["Density"])
+    nt.links.new(m_("MULTIPLY", dens, 0.16), v.inputs["Density"])
+    # brillo propio suave (imita la luz que rebota dentro del vapor: si no, se ve como humo oscuro)
+    v.inputs["Emission Color"].default_value = (1.0, 0.86, 0.74, 1)
+    nt.links.new(m_("MULTIPLY", dens, 2.2), v.inputs["Emission Strength"])
     nt.links.new(v.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
     return m
 
@@ -960,3 +965,155 @@ def mat_acrilico(nombre="acrilico"):
 def plataforma(sc, lado=3.2):
     """Losa de acero con grip (donde está el imán del laboratorio, en medio del salar)."""
     return caja(sc, "Plataforma", (lado, lado, 0.08), (0, 0, 0.04), mat_metal_cepillado("losa", (0.36, 0.37, 0.39), (0.35, 0.6), 0.4), 0.01)
+
+
+# ================================================================ tiempos del video (planos) y curvas
+import json as _json
+from mathutils import Quaternion
+
+FPS = 30
+EPI = os.path.abspath(os.path.join(HERE, ".."))
+_tp = os.path.join(EPI, "tiempos.json")
+T = {int(k): tuple(v) for k, v in _json.load(open(_tp)).items()} if os.path.exists(_tp) else {1: (0.0, 42.0)}
+
+
+def F(t):
+    return int(round(t * FPS)) + 1
+
+
+def FR(k):
+    a, b = T[k]
+    return F(a), F(b)
+
+
+FIN = FR(max(T))[1]
+
+
+def palabras():
+    return _json.load(open(os.path.join(EPI, "words.json")))
+
+
+def t_palabra(prefijo, desde=0.0):
+    for w in palabras():
+        if w["s"] >= desde - 1e-6 and w["w"].lower().strip("¡!¿?.,:;…").startswith(prefijo.lower()):
+            return w["s"]
+    raise KeyError(prefijo)
+
+
+def clamp(x, a=0.0, b=1.0):
+    return a if x < a else b if x > b else x
+
+
+def lin(f, f0, f1):
+    if f1 == f0:
+        return 1.0 if f >= f1 else 0.0
+    return clamp((f - f0) / (f1 - f0))
+
+
+def suave(x):
+    x = clamp(x)
+    return x * x * (3 - 2 * x)
+
+
+def sale(x):
+    x = clamp(x)
+    return 1 - (1 - x) ** 3
+
+
+def mezcla(a, b, x):
+    if isinstance(a, (int, float)):
+        return a + (b - a) * x
+    return Vector(a).lerp(Vector(b), x)
+
+
+def ruido(f, seed=0, vel=1.0):
+    r = random.Random(seed)
+    s = 0.0
+    for k in range(3):
+        s += math.sin(f * vel * r.uniform(0.15, 0.5) * (k + 1) + r.uniform(0, 6.28)) / (k + 1)
+    return s / 1.83
+
+
+def tramo(f, claves):
+    if f <= claves[0][0]:
+        return claves[0][1]
+    for (fa, va), (fb, vb) in zip(claves, claves[1:]):
+        if f <= fb:
+            return mezcla(va, vb, suave(lin(f, fa, fb)))
+    return claves[-1][1]
+
+
+def mirar(cam, pos, tgt, lente=None, foco=None, giro=0.0):
+    cam.location = Vector(pos)
+    q = (Vector(tgt) - Vector(pos)).to_track_quat("-Z", "Y")
+    if giro:
+        q = q @ Quaternion((0, 0, 1), math.radians(giro))
+    cam.rotation_mode = "QUATERNION"
+    cam.rotation_quaternion = q
+    if lente:
+        cam.data.lens = lente
+    if cam.data.dof.use_dof:
+        cam.data.dof.focus_distance = ((Vector(foco) if foco is not None else Vector(tgt)) - Vector(pos)).length
+
+
+def orbita(centro, radio, ang, alto):
+    a = math.radians(ang)
+    c = Vector(centro)
+    return Vector((c.x + radio * math.sin(a), c.y - radio * math.cos(a), c.z + alto))
+
+
+def pantalla(sc, cam, punto):
+    from bpy_extras.object_utils import world_to_camera_view
+    v = world_to_camera_view(sc, cam, Vector(punto))
+    return round(v.x * 1080), round((1 - v.y) * 1920)
+
+
+def oculto(ob, si=True):
+    ob.hide_render = si
+    ob.hide_viewport = si
+    for ch in ob.children_recursive:
+        ch.hide_render = si
+        ch.hide_viewport = si
+
+
+def marca_ojo(sc, nombre, padre, pos_local, r=0.004):
+    """Esferita invisible en el ojo de un personaje (chequeo automático 'cara tapada': studio/plantilla/caras.py)."""
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=r, segments=8, ring_count=6, location=(0, 0, 0))
+    o = bpy.context.object
+    o.name = nombre
+    o["ojo"] = 1
+    m = bpy.data.materials.get("invisible") or bpy.data.materials.new("invisible")
+    if not m.use_nodes:
+        m.use_nodes = True
+        nt = m.node_tree
+        nt.nodes.remove(nt.nodes["Principled BSDF"])
+        tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+        nt.links.new(tr.outputs[0], nt.nodes["Material Output"].inputs[0])
+    asignar(o, m)
+    o.visible_shadow = False
+    o.parent = padre
+    o.location = pos_local
+    return o
+
+
+def ojos_pete(sc, arm):
+    """Marcas en los ojos de Pete, colgadas del hueso de la cabeza (Mixamo; Pete mira hacia -Y local del armature)."""
+    hb = next(b for b in arm.data.bones if b.name.endswith(":Head"))
+    out = []
+    for s, lado in ((1, "L"), (-1, "R")):
+        o = marca_ojo(sc, f"Pete_ojo{lado}", arm, (0, 0, 0), 0.012)
+        o.parent_type = "BONE"
+        o.parent_bone = hb.name
+        o.location = (s * 3.2, 8.5, 9.0)        # cm en el espacio del hueso (FBX de Mixamo en centímetros)
+        out.append(o)
+    return out
+
+
+def ojos_rana(sc, rana_padre, largo=0.028):
+    """Marcas en los ojos de la rana (cabeza hacia -X del escaneo, ojos arriba)."""
+    out = []
+    for s, lado in ((1, "L"), (-1, "R")):
+        o = marca_ojo(sc, f"Rana_ojo{lado}", rana_padre, (0, 0, 0), 0.0016 / rana_padre.scale.x)
+        o.location = (-0.36 * largo / rana_padre.scale.x, s * 0.11 * largo / rana_padre.scale.x, 0.17 * largo / rana_padre.scale.x)
+        out.append(o)
+    return out

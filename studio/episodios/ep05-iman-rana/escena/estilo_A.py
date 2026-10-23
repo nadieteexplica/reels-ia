@@ -21,7 +21,7 @@ for p in piezas:
     p.location.z += Z0
 BOCA = Z0 + 1.25 + 0.025
 tubo = E.tubo(sc, "Tubo_acrilico", 0.0158, 0.0148, 0.11, (0, 0, BOCA - 0.01), verts=96, mat=E.mat_acrilico(), bisel=0.0004)
-rana = E.rana(sc, 0.028)
+rana = E.rana(sc, 0.022)
 rana.location = (0, 0, BOCA + 0.045)
 rana.rotation_euler = (math.radians(6), math.radians(-6), math.radians(48))
 bpy.context.view_layer.update()

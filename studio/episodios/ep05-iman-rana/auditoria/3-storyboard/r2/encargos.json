@@ -1,0 +1,29 @@
+[
+ {
+  "id": "storyboard",
+  "prompt": "tools/auditor/prompts/3-storyboard.md",
+  "alcance": "storyboard completo (fichas de plano)",
+  "materiales": [
+   "studio/episodios/ep05-iman-rana/storyboard.md",
+   "studio/episodios/ep05-iman-rana/guion.md",
+   "studio/episodios/ep05-iman-rana/auditoria/3-storyboard/r2/materiales/anterior_storyboard.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "CONTEXTO.md",
+   "studio/plantilla/KIT.md",
+   "tools/auditor/prompts/estilos.md"
+  ],
+  "salida": "storyboard.json",
+  "estilo": "realista",
+  "verificar_ids": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5"
+  ],
+  "modo": "verificacion"
+ }
+]

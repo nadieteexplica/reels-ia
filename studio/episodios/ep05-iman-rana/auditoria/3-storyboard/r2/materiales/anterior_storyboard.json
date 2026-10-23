@@ -1,0 +1,57 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "una rana de 2,8 cm en un tubo de ~3 cm queda a ~1 mm de las paredes: en la foto se ve atascada o sostenida por el vidrio (contradice 'nadie la sostiene'), una rana dentro de un tubo también se lee como 'rana en agua', y al girar sobre sí misma puede atravesar el vidrio (B1 en el animatic). Lo mismo pasa con la fresa del 9",
+  "arreglo": "rana de ~2,2 cm (sigue siendo real y cabe en el hueco), pose compacta con las patas colgando (no de nado), aire visible alrededor y debajo (la boca negra varios mm bajo las patas), tubo seco sin línea de agua, y giro de unos ±10° que nunca acerque la punta a la pared; en el 2, desde arriba, ese anillo de aire es la prueba de 'sin hilos'",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 10,
+  "segundo": "18.62",
+  "que": "P de frente de Pete mirando a la cámara: un personaje de Mixamo no trae cara animada (ni parpadeo ni expresión), y en un primer plano frontal es donde más se ve de muñeco o de plástico; además el plano dura 0,69 s (aviso automático). Pete vuelve en M en el 11 y el 17",
+  "arreglo": "reencuadrar el 10 como M de 3/4 a contraluz del sol bajo (silueta con borde de luz, cara en sombra), o unirlo al 11 (Pete junto al refri desde 18,62 y el tilt a los pies en 'flotas'); en 11, 13, 14, 17 y 18 dejar a Pete en M o G con contraluz y profundidad de campo, nunca la cara frontal y nítida",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "5.02",
+  "que": "E1 es lo más difícil de render en realista (vidrio que refracta, profundidad de campo, sol bajo y piel mojada) y la ficha no dice muestras ni máquina: con las 8–16 muestras del animatic y del final, el vidrio y el bokeh dan ruido y luciérnagas. Además, el push-in del 4 hasta 'la piel mojada con gotitas' pide más detalle del que trae el escaneo de una rana de 2,8 cm: la textura se va a ver estirada",
+  "arreglo": "declarar en la ficha que E1 va en GPU (RunPod) con muestras altas y eliminación de ruido, y probarlo en el cuadro de estilo antes de animar; en el 4, terminar el push-in a la escala del ojo y la cabeza (no más cerca de lo que aguanta la textura), con desenfoque de movimiento, gotitas como geometría y micro-relieve procedural en la piel",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 19,
+  "segundo": "39.10",
+  "que": "el 19 dura 2,8 s y sólo tiene la órbita, y la ficha dice 'órbita igual a la del 1': si repite el mismo recorrido, termina 35° corrido y el salto al cuadro 0 no empalma. El 13 (24,47–26,60, 2,1 s) tampoco tiene ningún cambio después de SIMULACIÓN, sólo el push-in",
+  "arreglo": "19: una órbita que llega (de −35° a 0°) y termina exacto en la cámara y la pose de la rana del cuadro 0, y la píldora SIN HILOS vuelve en 'sin hilos' (símbolo y cambio gratis). 13: a ~1,3 s ('flotar') Pete baja la mirada a la losa vacía o entra la sombra del primer anillo (es la misma escena E4)",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "5.90",
+  "que": "en 'La rana es, en gran parte, agua', las células rojas y las moléculas de agua en el mismo cuadro son dos focos a escalas que no conviven (células de micras, moléculas de décimas de nanómetro), y la foto no dice 'en gran parte'",
+  "arreglo": "un solo foco: moléculas de agua azules y nítidas llenando la mayor parte del cuadro, con las células como paredes desenfocadas al fondo",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ }
+]
