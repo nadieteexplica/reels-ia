@@ -179,6 +179,8 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 6. **Proporción datos/historias.** Propuesta de Claude: ~2 de datos por cada historia en el piloto; a las 4 semanas se ajusta según envíos/alcance de cada línea.
 7. **Sumar Facebook como 4.ª red** (es el mismo video y Facebook paga por vistas en Chile, por invitación). Necesita que Tomás cree una página de Facebook y la conecte a Metricool. Preguntado el 21-oct.
 8. ~~Ep. 5 después de la puerta 4~~: Tomás eligió seguir (23-oct 06:24, "sí, sigue con todo").
+9. **Formato de mecánica (23-oct-2026):** Tomás quiere un estilo propio para explicar cómo funciona o cómo se hace algo (no copiar la cadena de problemas de la piscina). Propuesta de Claude: "El reloj" (recomendado) o "Sácale una pieza" (`docs/REFERENCIAS.md` §5).
+10. **Biblioteca realista (23-oct-2026, pedido de Tomás):** base de assets para el realista. Plan, licencias y lista de Mixamo para Tomás en `docs/BIBLIOTECA.md`. Pendiente de Tomás: bajar la lista de Mixamo (a mano, no con el script) y decidir si se prueba MetaHuman (instalar Unreal) después de leer su contrato.
 
 ## Aprendizajes
 (Se llenan con los datos de cada semana. Ver `docs/PUBLICADOS.md`.)
@@ -188,6 +190,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 
 ## Documentos
 - `proyecto/INSTRUCCIONES.md`: instrucciones del proyecto en Claude.
+- `docs/BIBLIOTECA.md`: biblioteca de assets del estilo realista (fuentes gratis, licencias, qué baja Claude y qué baja Tomás, lista de Mixamo).
 - `docs/YOUTUBE.md`: YouTube primero (21-oct-2026): algoritmo de Shorts, YPP 2027, frecuencia, duración, política de contenido no auténtico y plan.
 - `docs/LECCIONES.md`: errores de producción, cómo se solucionaron y la regla que queda (leer antes de cada video).
 - `docs/AUDITOR.md`: el auditor independiente por etapas (puertas, chequeos, bloqueantes, formato del veredicto, bitácora del proceso). Código y prompts en `tools/auditor/`.

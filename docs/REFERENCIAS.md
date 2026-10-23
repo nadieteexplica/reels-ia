@@ -218,8 +218,12 @@ Documento vivo. Acá se analizan videos virales que manda Tomás (o que encuentr
 | **Fábula absurda con moraleja** | Historias | R4 | Enviar |
 | **Story time ficticio en primera persona** | Historias | R2 | Retención (alcance) |
 | **Serie por partes** (cualquiera de los anteriores) | Ambas | R1 | Seguir |
+| **"El reloj"** (propuesta 23-oct, pendiente de Tomás): la acción cotidiana a velocidad real + cronómetro ("esto duró menos de un parpadeo y adentro pasaron 5 cosas"); el mundo se congela, la cámara entra (como el Ep. 5) y el reloj avanza a saltos, una pieza de la mecánica por salto; al final se descongela y pasa todo en un parpadeo (loop). Para procesos lentos el reloj acelera | Datos | propio | Guardar y enviar |
+| **"Sácale una pieza"** (alternativa): la máquina funcionando; se le saca una pieza y falla en SIMULACIÓN, y así se entiende para qué estaba | Datos | propio | Enviar |
 
 **Firmas ajenas que no se copian:** la narración en imperativo de Zack D. Films y sus megaproyectos contados igual; la casa con patio de `hiddenhome.3d`; las frutas humanizadas.
+
+**Tendencia que vio Tomás (23-oct-2026):** se están haciendo virales los videos de "cómo se hace algo" contados como cadena de problemas ("haces un hoyo y le echas agua → al otro día se evaporó → por eso le ponen murallas → pero el agua sube por la tierra y la muralla se sale → …"). Cada "pero" abre un problema nuevo y eso retiene. Tomás no quiere copiarlo: quiere un estilo propio y enganchador para explicar la mecánica de algo (del touch del celular a la mecánica de una construcción), siempre entrando a la explicación visual como en el Ep. 5. Propuestas arriba ("El reloj", "Sácale una pieza").
 
 ---
 
