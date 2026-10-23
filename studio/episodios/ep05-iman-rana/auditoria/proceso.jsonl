@@ -81,3 +81,13 @@
 {"tipo": "chequeo", "id": "animatic 39932351715", "estado": "vivo (vigilante) · in_progress/- · 10/16 trabajos", "n": 81, "ts": "2026-10-23T07:00:38-03:00"}
 {"tipo": "chequeo", "id": "animatic 39932351715", "estado": "vivo (vigilante) · in_progress/- · 16/17 trabajos", "n": 82, "ts": "2026-10-23T07:15:40-03:00"}
 {"tipo": "chequeo", "id": "animatic 39932351715", "estado": "vivo (vigilante) · completed/success · 17/17 trabajos", "n": 83, "ts": "2026-10-23T07:30:42-03:00"}
+{"tipo": "trabajo", "id": "animatic 39932351715", "estado": "fin", "n": 84, "ts": "2026-10-23T07:37:01-03:00"}
+{"tipo": "aviso", "que": "animatic (50 min, más lento que lo estimado): 2 fallas automáticas (ojo de la rana bajo subtítulo en el 2; 14 % quemado en el 8) y en revisión propia: plano 15 nunca mostraba la central, fondos lavados en 4/8/9, Pete al borde en 12–13. Arreglados y probados en local. Para llegar hoy, se lanza el render FINAL ya con los arreglos (720x1280/8, 16 máquinas, ~55 min) y la puerta 6 se hace sobre el final (como en el Ep. 3); lo que salga se parcha por plano", "n": 85, "ts": "2026-10-23T07:37:01-03:00"}
+{"tipo": "trabajo", "que": "render final 720x1280/8, 16 partes", "id": "final 39940355233", "estado": "abierto", "n": 86, "ts": "2026-10-23T07:37:01-03:00"}
+{"tipo": "chequeo", "id": "final 39940355233", "estado": "vivo (vigilante) · in_progress/- · 1/17 trabajos", "n": 87, "ts": "2026-10-23T07:52:09-03:00"}
+{"tipo": "chequeo", "id": "final 39940355233", "estado": "vivo (vigilante) · in_progress/- · 2/17 trabajos", "n": 88, "ts": "2026-10-23T08:07:11-03:00"}
+{"tipo": "chequeo", "id": "final 39940355233", "estado": "vivo (vigilante) · in_progress/- · 8/17 trabajos", "n": 89, "ts": "2026-10-23T08:22:13-03:00"}
+{"tipo": "chequeo", "id": "final 39940355233", "estado": "vivo (vigilante) · in_progress/- · 17/18 trabajos", "n": 90, "ts": "2026-10-23T08:37:14-03:00"}
+{"tipo": "chequeo", "id": "final 39940355233", "estado": "vivo (vigilante) · in_progress/- · 17/18 trabajos", "n": 91, "ts": "2026-10-23T08:52:15-03:00"}
+{"tipo": "aviso", "que": "final: las 16 máquinas terminaron (23–59 min) pero el armado se colgó 22 min en apt-get (instalar ffmpeg); se cancela y se re-ejecuta sólo el armado (los cuadros quedan)", "n": 92, "ts": "2026-10-23T08:59:27-03:00"}
+{"tipo": "chequeo", "id": "final 39940355233", "estado": "vivo (vigilante) · in_progress/- · 17/18 trabajos", "n": 93, "ts": "2026-10-23T09:07:19-03:00"}

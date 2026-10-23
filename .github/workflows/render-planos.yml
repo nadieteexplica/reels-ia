@@ -112,7 +112,13 @@ jobs:
         with:
           python-version: "3.13"
       - run: |
-          sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg > /dev/null
+          # apt con tiempo máximo y reintentos (el 23-oct se colgó 20+ min dos veces sin límite)
+          for i in 1 2 3; do
+            timeout 240 sudo apt-get -qq -o Acquire::Retries=3 -o Acquire::http::Timeout=25 -o Acquire::ForceIPv4=true update \
+              && timeout 360 sudo apt-get -qq -o Acquire::Retries=3 -o Acquire::http::Timeout=25 -o Acquire::ForceIPv4=true \
+                 install -y --no-install-recommends ffmpeg > /dev/null && break
+            echo "apt: intento $i falló"
+          done
           pip install -q numpy scipy pillow bpy==5.2.0
       - name: Cuadros de los runs base
         if: github.event.inputs.base_run != ''

@@ -1,0 +1,89 @@
+name: armar
+# Arma el video de un run de render-planos ya renderizado (post, audio, MP4, QA, chequeo y prerelease <epNN>-borrador) sin
+# volver a renderizar: baja los cuadros de los runs base. Sirve cuando el armado de render-planos se cae (p. ej. el 23-oct
+# apt-get se colgó 20+ min instalando ffmpeg). apt con tiempo máximo y reintentos.
+on:
+  workflow_dispatch:
+    inputs:
+      episodio:
+        description: "Carpeta del episodio en studio/episodios"
+        required: true
+      base_run:
+        description: "Runs de render-planos cuyos cuadros se usan, separados por coma, del más viejo al más nuevo"
+        required: true
+permissions:
+  contents: write
+  actions: read
+env:
+  EP: ${{ github.event.inputs.episodio }}
+jobs:
+  armar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: ffmpeg y Python
+        run: |
+          # apt con tiempo máximo y reintentos (el 23-oct apt-get se colgó 20+ min dos veces sin límite)
+          for i in 1 2 3; do
+            timeout 240 sudo apt-get -qq -o Acquire::Retries=3 -o Acquire::http::Timeout=25 -o Acquire::ForceIPv4=true update \
+              && timeout 360 sudo apt-get -qq -o Acquire::Retries=3 -o Acquire::http::Timeout=25 -o Acquire::ForceIPv4=true \
+                 install -y --no-install-recommends ffmpeg > /dev/null && break
+            echo "apt: intento $i falló"
+          done
+          command -v ffmpeg && ffmpeg -version | head -1
+          pip install -q numpy scipy pillow bpy==5.2.0
+      - name: Cuadros de los runs base
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          BASE: ${{ github.event.inputs.base_run }}
+        run: |
+          mkdir -p _r
+          for id in $(echo "$BASE" | tr ',' ' '); do
+            gh run download "$id" --pattern 'cuadros-*' --dir "_b_$id"
+            for a in _b_$id/*/; do cp -r "$a". _r/; done
+            rm -rf "_b_$id"
+            echo "base $id: $(ls _r/*.png | wc -l) cuadros, $(ls _r/aux/*.png 2>/dev/null | wc -l) auxiliares"
+          done
+      - name: Post
+        env:
+          OUT: ${{ github.workspace }}/_o
+        run: |
+          mkdir -p "$OUT"
+          cd "studio/episodios/$EP/escena"
+          python post.py "$GITHUB_WORKSPACE/_r" "$OUT/final"
+      - name: Audio y video
+        env:
+          OUT: ${{ github.workspace }}/_o
+        run: |
+          set -e
+          cd "studio/episodios/$EP/escena"
+          RENDER="$GITHUB_WORKSPACE/_r" python audio.py
+          ffmpeg -y -v error -framerate 30 -i "$OUT/final/%05d.png" -i "$OUT/${EP%%-*}_mix.wav" \
+            -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -profile:v high -crf 18 -preset slow \
+            -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT/$EP.mp4"
+          ffprobe -v error -show_entries format=duration:stream=width,height,r_frame_rate -of compact "$OUT/$EP.mp4"
+      - name: QA automático
+        continue-on-error: true
+        run: python tools/qa.py "_o/$EP.mp4" "_r" "_o/subs_log.json" | tee "_o/qa.txt"
+      - name: Chequeo automático por plano
+        continue-on-error: true
+        run: |
+          python tools/auditor/chequeo_planos.py --video "_o/$EP.mp4" --planos _o/${EP%%-*}_planos.json --meta _r/meta \
+            --graficos _o/graficos.json --subs _o/subs_log.json --salida _o/chequeo.json | tee _o/chequeo.txt
+          (cd _r && zip -q -r ../_o/meta.zip meta)
+      - name: Borrador para revisión (prerelease)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          ffmpeg -y -v error -i "_o/$EP.mp4" -vf "fps=1,scale=216:384,tile=12x7" -frames:v 1 "_o/contacto.jpg"
+          B="$(echo "$EP" | cut -d- -f1)-borrador"
+          gh release view "$B" >/dev/null 2>&1 || gh release create "$B" --prerelease --title "$EP (borrador para revisión)" --notes "Borrador interno para la revisión. No publicar."
+          cp _o/${EP%%-*}_planos.json _o/planos.json
+          gh release upload "$B" "_o/$EP.mp4" _o/contacto.jpg _o/qa.txt _o/subs_log.json _o/planos.json --clobber
+          for x in graficos.json chequeo.json chequeo.txt meta.zip; do [ -f "_o/$x" ] && gh release upload "$B" "_o/$x" --clobber; done
