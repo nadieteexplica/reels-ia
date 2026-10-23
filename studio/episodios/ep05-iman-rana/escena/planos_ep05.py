@@ -39,7 +39,9 @@ Z0 = 0.08
 BOCA = Z0 + 1.25 + 0.025
 RANA_Z = BOCA + 0.045
 LARGO_RANA = 0.022
-ROT0 = (math.radians(6), math.radians(-6), math.radians(48))
+ROT0 = (math.radians(6), math.radians(-6), math.radians(78))     # 3/4 hacia cámara: se ve un ojo (puerta 4 r1)
+R_CERCA = 0.22                                                   # la rana ocupa ~la mitad del ancho (cuadro A v2)
+CABEZA = Vector((-0.008, -0.004, 0.002))                         # foco en la cabeza (el ojo), no en el centro
 
 
 def armar_E1(sc, fresa=False):
@@ -64,7 +66,7 @@ def armar_E1(sc, fresa=False):
         fr = fresa_obj(sc)
         fr.location = (0, 0, RANA_Z)
     E.luz_area(sc, "Rebote", (-0.22, -0.32, BOCA + 0.12), (0, 0, RANA_Z), 3.5, (1.0, 0.88, 0.78), 0.3)
-    cam = E.camara(sc, (0.035, -0.36, RANA_Z + 0.005), (0, 0, RANA_Z), lente=100, fstop=5.6)
+    cam = E.camara(sc, (0.021, -R_CERCA, RANA_Z + 0.005), (0, 0, RANA_Z), lente=100, fstop=8.0)
     return {"rana": rana, "tubo": tubo, "fresa": fr, "cam": cam}
 
 
@@ -110,8 +112,8 @@ def p_orbita(sc, a, b, ang0, ang1, pieza_inicio_cuadro0=False):
         x = suave(lin(f, a, b - 1))
         ang = ang0 + (ang1 - ang0) * x
         rana_flota(rana, f, giro=4 * math.sin((f - 1) / 30 * 0.7))
-        p = orbita(c, 0.36, ang, 0.005)
-        mirar(cam, p, c + Vector((0, 0, -0.016)), foco=c)      # la rana queda en y ~650 (lejos de los subtítulos)
+        p = orbita(c, R_CERCA, ang, 0.005)
+        mirar(cam, p, c + Vector((0, 0, -0.008)), foco=c + CABEZA)      # la rana queda en y ~650 (lejos de los subtítulos)
         return {"rana": pantalla(sc, cam, rana.location)}
     return {"actualizar": act}
 
@@ -133,9 +135,9 @@ def p2(sc, a, b):
     def act(f):
         x = suave(lin(f, a, b - 1))
         rana_flota(rana, f)
-        p0 = orbita(c, 0.36, 20, 0.005)
+        p0 = orbita(c, R_CERCA, 20, 0.005)
         p1_ = Vector((0.03, -0.11, RANA_Z + 0.30))
-        mirar(cam, p0.lerp(p1_, x), c, lente=100 - 25 * x, foco=c)
+        mirar(cam, p0.lerp(p1_, x), c + Vector((0, 0, -0.008 * (1 - x))), lente=100 - 25 * x, foco=c + CABEZA * (1 - x))
         return {"rana": pantalla(sc, cam, rana.location)}
     return {"actualizar": act}
 
@@ -497,6 +499,7 @@ def p11(sc, a, b):
 # ===================================== E4 / E5 · el imán gigante ======================================
 PLANTA = Vector((-1150, 2080, 0))
 PETE_E4 = Vector((-3.4, -1.6, 0.0))
+PETE_GIRO = -28            # Pete de 3/4 hacia la cámara alta del cuadro B v2
 
 
 def armar_E4(sc):
@@ -513,7 +516,7 @@ def armar_E4(sc):
     for o in G["cuerpo"] + G["tapa"]:
         o["z0"] = o.location.z
     P = cargar_pete(sc)
-    E.luz_area(sc, "RellenoPete", (6, -12, 6), (0, 0, 3), 60, (1.0, 0.86, 0.75), 3.0, spread=30)
+    E.luz_area(sc, "RellenoPete", (5.0, -13.2, 8.1), (0, 0, 4.4), 25, (1.0, 0.9, 0.82), 2.0, spread=30)   # como en el cuadro B v2
     cam = E.camara(sc, (7.0, -18.5, 3.4), (0, 0, 2.4), lente=35, fstop=8.0)
     return {"G": G, "P": P, "cam": cam}
 
@@ -645,22 +648,27 @@ def p15(sc, a, b):
 
 
 def p16(sc, a, b):
+    # "Ahí sí flotarías": cámara alta (la del cuadro B v2) para ver la boca negra; Pete sale flotando del hueco y queda a
+    # 0,8 m sobre la boca
     S = armar_E4(sc)
     cam, P = S["cam"], S["P"]
     estado_iman(S, 0, lambda o: None)
-    cables(S, 1.0, 0.8)
+    cables(S, 1.0, 0.3)
     boca = S["G"]["boca"]
     if P["arm"].type == "ARMATURE":
         base = P["arm"].rotation_euler.copy()
-        P["arm"].rotation_euler = (base.x + math.radians(4), base.y + math.radians(-3), base.z + math.radians(-35))
+        P["arm"].rotation_euler = (base.x + math.radians(4), base.y + math.radians(-3), base.z + math.radians(PETE_GIRO))
+    az = math.radians(28)
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        z = boca - 0.6 + 1.05 * sale(lin(f, a, b - 6))
-        P["arm"].location = (0.05, 0.0, z + 0.04 * math.sin(f / 30 * 2.0))
+        z = boca - 0.9 + 1.7 * sale(lin(f, a, b - 8))
+        P["arm"].location = (0.0, 0.0, z + 0.03 * math.sin(f / 30 * 2.0))
         pose_pete(sc, P, f, cabeza=(-8, 0), cuadro_anim=20)
-        mirar(cam, Vector((6.0, -13.5, 2.0)).lerp(Vector((5.2, -11.5, 2.3)), x), Vector((0.05, 0, boca + 0.6)), lente=35,
-              foco=Vector((0.05, 0, boca + 1.0)))
+        d = 16.5 - 1.5 * x
+        pos = Vector((math.sin(az) * d, -math.cos(az) * d, 6.6))
+        mirar(cam, pos, Vector((0, 0, 4.7)), lente=50, foco=Vector((0, 0, boca + 1.7)))
+        cam.data.dof.aperture_fstop = 8
         return {}
     return {"actualizar": act}
 
@@ -669,15 +677,15 @@ def p17(sc, a, b):
     S = armar_E4(sc)
     cam, P = S["cam"], S["P"]
     estado_iman(S, 0, lambda o: None)
-    cables(S, 1.0, 0.8)
+    cables(S, 1.0, 0.3)
     boca = S["G"]["boca"]
     if P["arm"].type == "ARMATURE":
         base = P["arm"].rotation_euler.copy()
-        P["arm"].rotation_euler = (base.x + math.radians(4), base.y + math.radians(-3), base.z + math.radians(-35))
+        P["arm"].rotation_euler = (base.x + math.radians(4), base.y + math.radians(-3), base.z + math.radians(PETE_GIRO))
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        P["arm"].location = (0.05, 0.0, boca + 0.45 + 0.04 * math.sin(f / 30 * 2.0))
+        P["arm"].location = (0.0, 0.0, boca + 0.8 + 0.03 * math.sin(f / 30 * 2.0))
         pose_pete(sc, P, f, cabeza=(-8, 0), cuadro_anim=20)
         mirar(cam, Vector((8.0, -20.0, 1.6)).lerp(Vector((10.5, -27.0, 1.7)), x), Vector((-2.0, 0, 3.2)), lente=24, foco=Vector((0, 0, 3.0)))
         cam.data.dof.aperture_fstop = 11

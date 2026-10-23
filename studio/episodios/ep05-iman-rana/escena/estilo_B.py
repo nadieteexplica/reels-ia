@@ -27,7 +27,7 @@ if os.path.exists(os.path.join(E.ASSETS, E.PETE_FBX)):
     pete = E.pete(sc, pose if pose and os.path.isfile(pose) else None, frame=int(os.environ.get("POSE_CUADRO", 40)))
     pete.location = (0.0, 0.0, boca + ALTO)
     base = pete.rotation_euler.copy()
-    pete.rotation_euler = (base.x + math.radians(4), base.y + math.radians(-3), base.z + math.radians(env("PETE_GIRO", -20)))
+    pete.rotation_euler = (base.x + math.radians(4), base.y + math.radians(-3), base.z + math.radians(env("PETE_GIRO", -28)))
     if not (pose and os.path.isfile(pose)):
         bpy.context.view_layer.update()
         E.pose_flotando(pete)

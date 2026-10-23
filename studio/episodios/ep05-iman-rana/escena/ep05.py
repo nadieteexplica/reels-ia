@@ -651,6 +651,7 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
     pintura = mat_acero_industrial("carcasa_g", (0.2, 0.22, 0.24))
     acero = mat_metal_cepillado("acero_g", (0.3, 0.31, 0.33), (0.3, 0.55))
     cobre = mat_cobre("cobre_g")
+    conector = mat_metal_cepillado("conector_g", (0.3, 0.31, 0.33), (0.3, 0.55))   # propio: los cables se encienden y no deben encender los aros
     goma = mat_cable("cable_g")
     hueco = mat_pintura("hueco_g", (0.008, 0.008, 0.01), rugo=(0.6, 0.8), sucio=0.0, capa=0.0)
     tubos = mat_metal_cepillado("tubos_g", (0.32, 0.33, 0.34), (0.35, 0.65), escala=2.0)
@@ -696,7 +697,7 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
                (p2.x, p2.y, 0.09), tuple(p2 + lejos * 12 + Vector((0.22 * i, 0, 0.09))), tuple(p2 + lejos * 60 + Vector((0.22 * i, 0, 0.09))),
                tuple(p2 + lejos * 400 + Vector((0.22 * i, 0, 0.09)))]
         manguera(sc, f"G_cable{i}", pts, 0.085, goma)
-        cilindro(sc, f"G_conector{i}", 0.13, 0.25, (x, y, zc - 0.12), verts=32, mat=acero, bisel=0.01).rotation_euler = (0, math.radians(90), a)
+        cilindro(sc, f"G_conector{i}", 0.13, 0.25, (x, y, zc - 0.12), verts=32, mat=conector, bisel=0.01).rotation_euler = (0, math.radians(90), a)
     return z0 + alto
 
 
