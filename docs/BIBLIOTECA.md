@@ -11,8 +11,12 @@ Pedido de Tomás (23-oct-2026, 18:24): "limar la edición realista" con una base
 | ambientCG | Materiales PBR | CC0 | Igual que Poly Haven |
 | Smithsonian Open Access | Más de 2.000 escaneos 3D de objetos reales (OBJ/glTF) | CC0, sin atribución | Catálogo + descarga por nombre |
 | Sketchfab / Objaverse | Escaneos de animales, objetos y vehículos, algunos ya animados (la rana del Ep. 5) | CC-BY (crédito en descripción y primer comentario) o CC0 | Catálogo filtrado por licencia y animación (`buscar-objaverse.yml`) |
-| Quaternius Universal Animation Library 1 y 2 | ~120 + ~130 animaciones para un esqueleto universal (la versión gratis de la 2 trae ~70 %) | CC0 | Relleno de movimientos; calidad de juego, no de cine |
+| Quaternius Universal Animation Library 1 y 2 | La versión gratis trae **89 animaciones** (46 + 43; las completas de 120+ y 130+ son del Patreon) para un esqueleto universal | CC0 | Relleno de movimientos; calidad de juego, no de cine. Sirven: arreglar algo arrodillado, levantar de una mesa, empujar, manejar, hablar por teléfono, regar, cortar un árbol, caminar cargando, abrir un cofre, trepar 1 m, levantarse del suelo |
 | Sonniss GDC Game Audio Bundle | Efectos de sonido de estudio (7,47 GB sólo el de 2026; los de años anteriores siguen disponibles) | Sin regalías, uso comercial, sin atribución; no se redistribuye suelto | Al repo privado `nadieteexplica/assets`; reemplaza los efectos sintetizados |
+
+### Estado (23-oct-2026)
+- **Listo:** catálogos en `studio/biblioteca/` (Poly Haven: 2.387 assets = 521 modelos, 997 cielos, 869 texturas; ambientCG: 2.926, de ellos 2.036 materiales y 434 cielos) y los 2 packs de Quaternius en la prerelease `biblioteca`. Buscar: `python3 tools/biblioteca.py buscar "concrete,rust" texture`; bajar en el render: `python3 tools/biblioteca.py bajar polyhaven <id> 2k`.
+- **Pendiente:** Smithsonian (la API no respondió con la consulta de prueba; se depura con `extra=sonda`) y Sonniss (no se puede redistribuir: va al repo privado `nadieteexplica/assets`, y esta sesión no tiene acceso a ese repo: Tomás tiene que darle acceso a Claude en GitHub).
 
 ## 2. Lo que baja Tomás (piden cuenta)
 ### Mixamo (licencia: gratis, uso comercial sí; lo único prohibido es redistribuir los archivos sueltos o entrenar IA)
