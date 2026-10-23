@@ -1,0 +1,68 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Camila",
+      "videos": {
+        "M": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "Sin sonido, lo que la para es la imagen: un caballero con armadura tirándose por unas papas dentro de un 4x4 con un piloto, un tipo con máscara antigás y un doctor. Es absurdo y está bien renderizado. Lee 'Tira rápido y tu cinturón te dice que no' y lo entiende sin audio. El pilar que se vuelve transparente le gusta como diseño, y los cortes de vuelta al caballero (8.6, 12.1, 16.6 en pantalla dividida) le mantienen el elenco a la vista. Casi se va entre 22 y 26, en la segunda explicación adentro del pilar, pero la vuelve a agarrar la píldora 'MÁS DE 27°: SE TRABA' con la gota en la máscara. Se queda por la bolsa de papas: quiere ver si al final se las come.",
+          "risas": [
+            {"s": 2, "que": "el caballero rebota contra el asiento con toda la armadura, se lee sin sonido"},
+            {"s": 38, "que": "el doctor pillado con la papa en la boca y migas naranjas en el delantal blanco, se congela y se encoge de hombros"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "una compañera de diseño que está en la misma clase", "por_que": "por el corte transparente del pilar y el remate del doctor con migas; el tema del cinturón le da lo mismo, lo manda por lo visual y el chiste"},
+          "no_entendio": "Por qué el giro rápido 'empuja un pestillo hacia afuera' (sin la voz, la flecha FUERZA DEL GIRO no le explica la física). Y cómo el doctor, sentado atrás, se comió unas papas que estaban en el tablero.",
+          "le_contaria": "Que el cinturón se traba solo cuando el auto se inclina más de 27° porque adentro hay una bolita de acero que rueda, y que hay un video con un caballero y un doctor que se come las papas.",
+          "nota": 8
+        },
+        "K": {
+          "desliza": 13,
+          "por_que_desliza_o_sigue": "Entra igual que en M por el caballero lanzándose a las papas. Pero desde 5.2 la cámara se mete al pilar y no vuelve a salir. Sin sonido, entre 9 y 12.4 sólo ve un carrete girando rápido durante más de 3 s, sin el caballero y sin las papas. El elenco absurdo que la paró desapareció y la explicación, leída en subtítulos, se siente como un diagrama de clase. Desliza cuando aparece el pestillo.",
+          "risas": [
+            {"s": 2, "que": "el caballero rebota contra el asiento"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "se fue antes del cerro y del remate; lo que vio fue un mecanismo de plástico"},
+          "no_entendio": "Qué es el 'pestillo' y por qué sale; sin voz sólo vio una pieza que se abre y una flecha.",
+          "le_contaria": "Nada concreto; como mucho, 'vi un caballero en un auto que quería unas papas'.",
+          "nota": 4
+        }
+      }
+    },
+    {
+      "perfil": "Martín",
+      "videos": {
+        "M": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "'Tira rápido y tu cinturón te dice que no' le pasa todos los días cuando se estira a pasarle algo a los chicos atrás, así que en 1 s ya está adentro. El ruido de lata de la armadura ayuda. La explicación del carrete es rápida y con cortes afuera, así que no se aburre. En 16.6 casi se va, porque 'Lento, el giro no alcanza' le confirma lo que ya entendió y ahí la pregunta está respondida. Pero en 18.3 entra 'Pero el auto sube el cerro... y se traban los cuatro. Nadie tiró', que es justo lo que le pasa en la rampa del estacionamiento. Con eso tiene una pregunta nueva y se queda. Los 27° y el truco de 'suéltalo un poquito y tira lento' le sirven de verdad.",
+          "risas": [
+            {"s": 2, "que": "el CLAC y el golpe metálico del caballero contra el asiento"},
+            {"s": 38, "que": "'si el doctor no se las comió antes': el doctor pillado con migas que se encoge de hombros"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "su señora", "por_que": "porque siempre se pelea con el cinturón cuando se da vuelta a atender a los chicos, y por el truco de soltarlo un poco y tirar lento"},
+          "no_entendio": "Cómo el doctor se comió las papas del tablero si iba atrás y con el cinturón trabado. No le importa mucho, pero se da cuenta.",
+          "le_contaria": "'¿Sabías que el cinturón se traba en las subidas porque tiene una bolita de acero que, pasado 27 grados, cree que te vas a volcar? Si se te traba, lo soltás un poquito y tirás despacio.'",
+          "nota": 8
+        },
+        "K": {
+          "desliza": 16,
+          "por_que_desliza_o_sigue": "El gancho le funciona igual que en M (le pasa a diario). Pero desde 5.2 está todo adentro del pilar, y de 9 a 12.4 es un carrete girando sin nada más. Con su poca paciencia, cuando en 15.5 la voz dice 'Lento, el pestillo ni se mueve', ya tiene la respuesta y no ve nada afuera que le prometa más. Desliza antes de 'Y hay otro guardia' y se pierde justo la parte que más le servía, la de la subida, la frenada y el truco.",
+          "risas": [
+            {"s": 2, "que": "el CLAC del caballero rebotando"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "se quedó con la mitad obvia (rápido traba, lento no) y no le pareció para mandar"},
+          "no_entendio": "Nada de lo que alcanzó a ver; le quedó sin resolver por qué se le traba cuando está estacionado en bajada, porque el video lo explicaba después de que se fue.",
+          "le_contaria": "'El cinturón tiene un carrete que se traba si tirás rápido.' Lo dice sin entusiasmo, porque eso ya lo intuía.",
+          "nota": 5
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "M": "Engancha el cuadro 0 con la acción ya en curso (caballero + papas + CLAC con ruido de lata) y el elenco absurdo, que los cortes afuera (8.6, 12.1, 16.6) mantienen a la vista mientras explica. El mejor momento es el giro de 18.3 ('se traban los cuatro... nadie tiró'): vuelve a enganchar justo cuando la primera pregunta ya estaba respondida y toca una experiencia real (rampas, estacionar en bajada). Los 27° concretos con la gota en la máscara y el remate del doctor con migas naranjas se entienden sin sonido. Lo que más hace deslizar es 16.6–18.3: 'Lento, el giro no alcanza' es un repaso y una salida natural; también 22.4–26.6, una segunda explicación adentro del pilar. Además tiene un hueco de lógica: el doctor iba atrás y trabado, y no se explica cómo se comió las papas del tablero.",
+    "K": "Mismo gancho 0–5 s, y 'otro guardia' es una buena frase. Además menciona la frenada, algo con lo que se identifica cualquiera que maneje. Pero de 5.2 a 21.7 son 16 s seguidos adentro del pilar sin volver al caballero ni a las papas, y de 9.0 a 12.4 sólo se ve el carrete girando (más de 2 s sin cambio). Ahí se van tanto los que miran sin sonido como los impacientes, en general entre 12 y 16. La bolita 'se enciende' quieta en 17.6, el cerro llega tarde (21.7) y comprimido con la bolita, sin el número de 27°, y el remate del doctor masticando depende de la cara, que se lee peor que las migas en el delantal."
+  },
+  "mejor": {
+    "video": "M",
+    "por_que": "Los dos tienen el mismo gancho, pero M nunca deja al espectador más de 3–4 s adentro del mecanismo sin volver al elenco. Además pone el giro del cerro ('nadie tiró') justo donde K pierde a la gente (16–18 s) y lo remata con un dato concreto (27°) y un final visual que funciona sin sonido. Los dos perfiles llegan al final en M y se van entre 13 y 16 s en K, antes de la parte más útil y más compartible."
+  }
+}

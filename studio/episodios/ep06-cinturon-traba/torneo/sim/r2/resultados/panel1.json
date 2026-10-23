@@ -1,0 +1,71 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Valeria",
+      "videos": {
+        "K": {
+          "desliza": 18,
+          "por_que_desliza_o_sigue": "El caballero con armadura frenado en seco por las papas la engancha (es meme puro) y el '¿cómo sabe?' le pica. Pero desde el 9 son casi 9 segundos seguidos adentro del pilar: carrete rápido, pestillo, carrete lento... sin volver a los personajes. Cuando en el 17.6 dice 'Y hay otro guardia' siente que empieza otra clase entera y desliza.",
+          "risas": [
+            {"s": 1, "que": "el caballero se lanza por las papas y rebota contra el asiento (sonrisa)"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Se fue antes del remate; en lo que vio no había nada que mandar."},
+          "no_entendio": "Por qué el pestillo 'sale disparado' sólo si tiras rápido; la palabra pestillo no le dice nada.",
+          "le_contaria": "Nada concreto; como mucho 'vi uno de un caballero en un jeep al que el cinturón no lo dejaba agarrar las papas'.",
+          "nota": 5
+        },
+        "M": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "Mismo gancho del caballero, y la mano que se queda a 5 cm de la bolsa que se sigue resbalando le deja la tensión puesta. La explicación del carrete se aguanta porque cada pocos segundos vuelve al caballero rebotando. El momento que la amarra es el 18-22: CLAC, CLAC, CLAC, CLAC, los cuatro pegados al asiento y 'nadie tiró'; quiere saber qué pasó. Después la gota en la máscara antigás y el doctor la llevan al final.",
+          "risas": [
+            {"s": 1, "que": "golpe metálico de la armadura contra el asiento"},
+            {"s": 15, "que": "el caballero rebota otra vez"},
+            {"s": 20, "que": "los cuatro se traban uno tras otro, cada uno con un CLAC, y quedan pegados como figuritas"},
+            {"s": 29, "que": "al de la máscara antigás le corre una gota por el vidrio mientras mira el precipicio"},
+            {"s": 38, "que": "el doctor pillado con la papa en la boca y migas naranjas en el delantal, se congela y se encoge de hombros"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "su mejor amiga por WhatsApp", "por_que": "Por el doctor y las migas; el dato del cinturón es la excusa: 'jajaja el doctor'."},
+          "no_entendio": "Lo de 'la fuerza del giro empuja el pestillo' lo vio pasar sin entenderlo bien; tampoco cachó qué hace la palanquita, sólo que la bolita rueda y se traba.",
+          "le_contaria": "Que el cinturón tiene una bolita de acero adentro: si el auto se inclina mucho rueda y te deja pegado al asiento, como si te fueras a volcar. Y que el doctor se comió las papas.",
+          "nota": 8
+        }
+      }
+    },
+    {
+      "perfil": "Diego",
+      "videos": {
+        "K": {
+          "desliza": 31,
+          "por_que_desliza_o_sigue": "Que el cinturón se traba si tiras rápido ya lo sabe; casi se va en el 3, pero el caballero en un 4x4 lo deja y el '¿cómo sabe?' sí le interesa porque nunca ha abierto un retractor. El carrete y el pestillo lo convencen, y la bolita la reconoce porque le pasa en su camioneta en las subidas. En el 29 le dan el truco con el auto todavía en la subida y no le cuadra: en pendiente la bolita sigue corrida y no sale aunque tires lento. Siente que le vendieron algo que no funciona y desliza.",
+          "risas": [
+            {"s": 26, "que": "los cuatro estirándose sin llegar a las papas (media sonrisa)"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "El truco en plena subida le parece falso; no manda algo que el compa del taller le va a corregir."},
+          "no_entendio": "Cómo la bolita 'vigila el auto': se ve encendida en su tacita y rodando, pero no qué traba. Y por qué el truco funcionaría si el auto sigue inclinado.",
+          "le_contaria": "Que adentro del cinturón hay un pestillo que se abre con el giro si tiras de golpe, y aparte una bolita para cuando el auto frena o se inclina.",
+          "nota": 6
+        },
+        "M": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "Arranca igual de 'ya sé', pero el cuadro 0 con el caballero ya lanzándose y el golpe metálico lo dejan. Le gusta ver el carrete, y que lo corten con el tirón de afuera hace que se entienda solo. Lo que lo engancha de verdad es el 'nadie tiró' con los cuatro trabados en el cerro: eso le pasa en la camioneta y nunca supo por qué. Le gusta el número concreto de 27° (no es obvio) y que el truco sea 'ya en plano', que le cuadra con lo que vive. Se queda los últimos 6 s porque son cortos y el doctor le da risa.",
+          "risas": [
+            {"s": 29, "que": "'cree que te vas a volcar' con la gota corriendo por la máscara antigás"},
+            {"s": 39, "que": "el doctor con migas naranjas en el delantal, encogiéndose de hombros"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "a un compa del taller o a su hermano que tiene 4x4", "por_que": "'Para que veas por qué se te traba el cinturón en la subida': es un dato que no es obvio y le sirve a alguien que maneja."},
+          "no_entendio": "Si los 27° es por norma o así viene de fábrica, y si la bolita también traba en un frenazo (el video sólo habla de la inclinación).",
+          "le_contaria": "Que el cinturón tiene una bolita de acero que, pasados unos 27° de inclinación, rueda y lo traba porque 'cree que te vas a volcar'. Por eso en la subida no te puedes estirar: espera a llegar a lo plano, suéltalo un poco y tira lento.",
+          "nota": 8
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "K": "Engancha el 0-3 (caballero absurdo + CLAC) y el elenco raro. Lo que hace deslizar es el tramo 9-21.7, unos 12 s casi seguidos adentro del pilar sin volver a los personajes; en el 17.6 'Y hay otro guardia' suena a segunda clase y ahí se cae la gente que vino por el meme. En el 29 el truco se aplica en plena subida, cosa que choca con la bolita (quien maneja lo nota y desconfía). Además, el remate del doctor llega sin que lo hayan mostrado comiendo antes.",
+    "M": "Engancha el cuadro 0 con la acción en curso, los cortes al caballero cada pocos segundos que mantienen viva la comedia durante la explicación, y sobre todo el 18.3-22.4: los cuatro CLAC con 'nadie tiró' arman un misterio que la bolita resuelve. El 27° concreto con la gota en la máscara y el truco 'ya en plano' (que es coherente) suman. El punto débil es el 12.1-18.3: la frase larga 'el giro empuja un pestillo hacia afuera' y el abstracto 'Lento, el giro no alcanza' son donde más arriesga perder gente. Tampoco menciona el caso de frenada, y dura 40 s, cerca del techo."
+  },
+  "mejor": {
+    "video": "M",
+    "por_que": "Convierte la bolita en un misterio visible ('nadie tiró', cuatro CLAC) en vez de presentarla como 'otro guardia'. Nunca pasa más de unos segundos sin volver a los personajes, el truco es correcto (en plano) y el remate del doctor tiene pistas visuales. K pierde a la audiencia meme en el 17-18 y a la que maneja en el truco del 29."
+  }
+}

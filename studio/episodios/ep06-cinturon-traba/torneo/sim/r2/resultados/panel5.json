@@ -1,0 +1,66 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Antonia",
+      "videos": {
+        "M": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "Sin sonido igual entiende el arranque: un caballero con armadura volando por unas papas y el cinturón lo frena; el subtítulo lo cierra. Atacama al atardecer y el pilar que se vuelve transparente son justo lo 'bonito de mirar' que le gusta. Durante la explicación nunca se queda pegada en el mecanismo porque cada pocos segundos vuelve al caballero (8.6, ~15, la pantalla partida en 16.6). A los 18 s los 4 cinturones trabándose en el cerro le abren la duda de quién tiró, y la quiere ver resuelta. Después vienen los chistes visuales (la gota en la máscara, el doctor con migas), que funcionan sin audio.",
+          "risas": [
+            {"s": 29, "que": "la gota que le corre por el vidrio de la máscara antigás mientras mira el precipicio (sonrisa)"},
+            {"s": 38, "que": "el doctor pillado con una papa en la boca y migas naranjas en el delantal blanco, congelado y después encogiéndose de hombros"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "a su pololo, que maneja", "por_que": "Él siempre alega que el cinturón se le traba en los estacionamientos en subida, y acá sale el truco de soltarlo y tirar lento. Además el doctor comiéndose las papas le da risa."},
+          "no_entendio": "Sin el CLAC no capta del todo lo del pestillo y la 'fuerza del giro' (la flecha la ayuda a medias). Tampoco sabe si 27° es mucho o poco; el inclinómetro lo lee, pero no se lo imagina en la vida real.",
+          "le_contaria": "Que en las subidas el cinturón se traba solo porque adentro hay una bolita de acero que rueda y cree que te vas a volcar, y que si se traba hay que soltarlo un poco y tirar lento.",
+          "nota": 8
+        },
+        "K": {
+          "desliza": 19,
+          "por_que_desliza_o_sigue": "El arranque la engancha igual que en el otro: caballero, papas, el cinturón lo frena. Pero desde el 9 el video se queda adentro del pilar y no vuelve a los personajes; sin sonido, eso es leer subtítulos encima de un carrete. Entre 15.5 y 21.7 casi no pasa nada (carrete lento, pestillo quieto, una bolita que 'se enciende'), y 'otro guardia que vigila el auto' no le dice nada. Se aburre antes de que aparezca el cerro.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Lo dejó a la mitad y no alcanzó a ver nada que valiera la pena mandar."},
+          "no_entendio": "Qué es el 'otro guardia' y para qué está la bolita, porque nunca vio el auto inclinarse. Tampoco por qué hay un doctor y un tipo con máscara antigás atrás.",
+          "le_contaria": "Nada concreto; a lo más que el cinturón tiene un carrete con dientes que se traba si tiras rápido.",
+          "nota": 5
+        }
+      }
+    },
+    {
+      "perfil": "Benjamín",
+      "videos": {
+        "M": {
+          "desliza": 27,
+          "por_que_desliza_o_sigue": "Lo engancha lo absurdo: un caballero con armadura rebotando con ruido de lata, un piloto de carreras manejando a paso de tortuga, un loco con máscara antigás. Tolera la primera explicación porque cada rato vuelve el caballero rebotando. A los 18 s, CLAC CLAC CLAC CLAC y 'nadie tiró' le da curiosidad de saber quién fue, y se queda por la respuesta (la bolita, ~25 s). Apenas se resuelve el misterio y entra 'pasado veintisiete grados', ya no tiene razón para quedarse: no maneja, el truco no le sirve y se va. Se pierde el chiste del doctor.",
+          "risas": [
+            {"s": 2, "que": "el caballero con armadura completa volando por las papas y rebotando contra el asiento con golpe de lata"},
+            {"s": 15, "que": "el caballero rebota otra vez (risa más chica, el chiste ya lo conocía)"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Le dio risa el caballero, pero 'cómo funciona un cinturón' no se lo manda a sus amigos; sin el remate del doctor no tiene nada que compartir."},
+          "no_entendio": "Lo de la 'fuerza del giro' que empuja el pestillo lo escuchó y no lo procesó. Le da lo mismo.",
+          "le_contaria": "Que vio un video de un caballero en un 4x4 que no podía sacar unas papas porque se le trababa el cinturón.",
+          "nota": 6
+        },
+        "K": {
+          "desliza": 11,
+          "por_que_desliza_o_sigue": "El caballero rebotando lo hace quedarse los primeros segundos. Pero a los 9 la cámara se mete al pilar y se queda ahí: un carrete girando y una voz explicando 'si tiras de golpe, el carrete gira tan rápido...'. Para él eso es clase de mecánica y desliza en la primera explicación sin personajes.",
+          "risas": [
+            {"s": 2, "que": "el caballero con armadura rebotando contra el asiento"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "", "por_que": "Se fue a los 11 s; no vio nada mandable."},
+          "no_entendio": "No llegó a nada que pudiera no entender. Se queda con la duda de por qué hay un caballero en un auto.",
+          "le_contaria": "Nada.",
+          "nota": 3
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "M": "Engancha el cuadro 0 con la acción ya en curso (caballero volando por las papas, CLAC) y el elenco absurdo. Los cortes afuera durante la explicación (8.6, ~15, pantalla partida a los 16.6) evitan que el video se quede pegado en el mecanismo. El misterio de los 18–22 s ('los cuatro se trabaron... nadie tiró') retiene hasta la respuesta, y el remate del doctor con migas naranjas funciona sin sonido. Lo que hace deslizar: el segundo bloque técnico, 26.6–30.7 ('pasado veintisiete grados') para quien no maneja, porque el misterio ya se resolvió y el chiste del doctor recién llega a los 37 s. El segundo rebote del caballero (~15 s) ya no sorprende. Sembrar al doctor masticando de fondo a mitad del video retendría al impaciente.",
+    "K": "Mismo gancho que M en 0–5 s, pero entre 9.0 y 21.7 son 12.7 s seguidos adentro del pilar sin volver a los personajes: ahí se va el impaciente con sonido (~11 s) y el que mira sin sonido se aburre en el tramo casi quieto de 15.5–21.7 (carrete lento, bolita que 'se enciende'). La bolita entra como 'otro guardia' antes de mostrar el problema, así que se pierde el misterio del 'nadie tiró' que en M es el mejor momento. El remate del doctor (masticando, cara de inocente) es menos visual que el de M y sin sonido pega menos. Dura 2 s menos, pero eso no compensa."
+  },
+  "mejor": {
+    "video": "M",
+    "por_que": "Retiene más en los dos perfiles: Antonia lo ve completo y lo manda, y Benjamín llega a los 27 s en vez de 11. M intercala al caballero en cada explicación, plantea el cerro como misterio ('nadie tiró') antes de explicar la bolita, y sus chistes visuales (gota en la máscara, migas en el delantal) se entienden sin audio. K se queda demasiado rato dentro del mecanismo y explica la bolita antes de que exista la pregunta."
+  }
+}
