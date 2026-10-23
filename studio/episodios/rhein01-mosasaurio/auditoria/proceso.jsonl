@@ -18,3 +18,7 @@
 {"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 18, "ts": "2026-10-22T23:03:16-03:00"}
 {"tipo": "trabajo", "id": "auditor 3-storyboard r2", "estado": "fin", "n": 19, "ts": "2026-10-22T23:04:07-03:00"}
 {"tipo": "chequeo", "id": "render-planos 39887262644 (muestras HD)", "estado": "vivo: 5/15 partes listas a los 3 min; el resto (planos con el niño, el racimo y el mar) sigue", "n": 20, "ts": "2026-10-22T23:04:36-03:00"}
+{"tipo": "trabajo", "id": "render-planos 39887262644 (muestras HD)", "estado": "fin", "n": 21, "ts": "2026-10-22T23:08:26-03:00"}
+{"tipo": "trabajo", "que": "corrijo los 12 planos que fallaron en las muestras HD (encuadres, radar, bajo el agua, chispas, destello)", "n": 22, "ts": "2026-10-22T23:13:42-03:00"}
+{"tipo": "chequeo", "que": "prueba local 270x480 de los planos corregidos", "n": 23, "ts": "2026-10-22T23:13:42-03:00"}
+{"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 24, "ts": "2026-10-22T23:18:16-03:00"}

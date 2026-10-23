@@ -263,8 +263,8 @@ def mat_pollo():
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
     b.inputs["Roughness"].default_value = 0.28
-    b.inputs["Coat Weight"].default_value = 0.8
-    b.inputs["Coat Roughness"].default_value = 0.12
+    b.inputs["Coat Weight"].default_value = 0.35      # con 0,8 reflejaba el cielo azul y el dorado se veía verdoso
+    b.inputs["Coat Roughness"].default_value = 0.22
     b.inputs["Subsurface Weight"].default_value = 0.1
     tc = nt.nodes.new("ShaderNodeTexCoord")
     nz = nt.nodes.new("ShaderNodeTexNoise")

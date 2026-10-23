@@ -316,6 +316,22 @@ def regla(im, f, k):
     if not pts:
         return
     (x0, y0), (x1, y1) = pts
+    if abs(y1 - y0) > abs(x1 - x0):            # plano cenital: la regla va vertical, al lado de la micro
+        x = max(80, min(1000, (x0 + x1) / 2))
+        ya, yb = max(260, min(y0, y1)), min(980, max(y0, y1))
+        p = sale(min(1.0, max(0.0, edad(f, k) - 0.35) / 0.4))
+        if p <= 0:
+            return
+        ym = ya + (yb - ya) * p
+        d = ImageDraw.Draw(im)
+        d.line((x, ya, x, ym), fill=(255, 255, 255), width=8)
+        for yy in (ya, ym):
+            d.line((x - 24, yy, x + 24, yy), fill=(255, 255, 255), width=8)
+        G.registrar("flecha", (x - 30, ya - 10, x + 30, ym + 10))
+        if p > 0.9:
+            xp = x + 130 if x < 540 else x - 130
+            pildora(im, "12 M", xp, (ya + yb) / 2, tam=60, s=pop(edad(f, k) - 0.75))
+        return
     y = max(300, min(600, (y0 + y1) / 2))
     x0, x1 = max(60, min(x0, x1)), min(1020, max(x0, x1))
     x = sale(min(1.0, max(0.0, edad(f, k) - 0.35) / 0.4))
@@ -372,11 +388,19 @@ def procesar(f):
             im = bloom(im, umbral=0.80, fuerza=0.35 if k != 29 else 0.6)
         im = ImageEnhance.Color(im).enhance(1.12)
         im = ImageEnhance.Contrast(im).enhance(1.05)
-        if k == 29:                                    # destello verde al final de la explosión
+        if k == 29:                                    # destello verde al final: estallido radial con rayos (no un fondo liso)
             x = max(0.0, (f - (b - 9)) / 9)
             if x > 0:
-                ov = Image.new("RGB", (W, H), (150, 255, 170))
-                im = Image.blend(im, ov, min(1.0, x ** 1.5))
+                yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+                cx, cy = W * 0.5, H * 0.46
+                r = np.hypot(xx - cx, yy - cy) / H
+                ang = np.arctan2(yy - cy, xx - cx)
+                rayos = 0.55 + 0.45 * np.cos(ang * 14 + f * 0.7) ** 8
+                inten = np.clip((1.2 * x) - r * (1.6 - x), 0, 1) * rayos
+                base = np.asarray(im).astype(np.float32) / 255
+                verde = np.array([0.55, 1.0, 0.62], np.float32)
+                out = base * (1 - inten[..., None] * 0.9) + verde * inten[..., None] * 0.95
+                im = Image.fromarray((np.clip(out, 0, 1) * 255).astype(np.uint8))
     graficos(im, f, k)
     subtitulos(im, f)
     im.save(os.path.join(dst, f"{f:05d}.png"), compress_level=1)

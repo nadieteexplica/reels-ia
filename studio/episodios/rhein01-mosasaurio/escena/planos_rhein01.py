@@ -88,8 +88,8 @@ def armar(sc, quiero, mosa=True, nino=True, olas=0.34):
     if "carrete" in quiero:
         S["carrete"], S["car"] = K.carrete(coll)
         S["carrete"].parent = bote
-        S["carrete"].location = (0.70, BASE_GRUA[1], Z_PISO + 0.42)
-        S["carrete"].rotation_euler = (0, 0, math.radians(90))
+        S["carrete"].location = (0.0, 0.40, Z_PISO + 0.55)
+        S["carrete"].rotation_euler = (0, 0, 0)
     if "gotas" in quiero:
         S["gotas"] = U.gotas(coll, n=170)
     if "huesos" in quiero:
@@ -101,6 +101,10 @@ def armar(sc, quiero, mosa=True, nino=True, olas=0.34):
         S["pj"] = N.cargar(sc, x=0.25, y=-0.8, z=Z_PISO, rot_z=0.0)
         S["pj"]["rig"].parent = bote
     U.realismo_bote()
+    fm = bpy.data.objects.get("FondoMar")
+    if fm:
+        fm.location.z = -6.5
+        bpy.data.materials["FondoMar"].node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.05, 0.32, 0.42, 1)
     return S
 
 
@@ -180,7 +184,7 @@ def _e1(sc, a, b, k):
     cam = E.camara(sc, lens=30)
     pj = S.get("pj")
     if pj and k in (15, 17, 20, 22, 24, 26, 27, 28, 37):        # sentado en el asiento de montaña rusa
-        pj["rig"].location = (0, -0.47, Z_PISO + 0.33)
+        pj["rig"].location = (0, -0.44, Z_PISO - 0.31)
         pj["rig"].rotation_euler = (0, 0, 0)
     huesos_fin = k in (28, 37)
     if huesos_fin:          # un hueso quedó sobre el gorro
@@ -189,7 +193,12 @@ def _e1(sc, a, b, k):
         h.location = (0.0, 0.02, 0.10)
         h.rotation_euler = (0.2, 0.1, 0.9)
     if k in (19, 23):
-        U.niebla(sc.collection)
+        U.niebla(sc.collection, densidad=0.025)
+        S["mar"].visible_shadow = False
+        if bpy.data.objects.get("FondoMar"):
+            bpy.data.objects["FondoMar"].hide_render = True
+    if k == 3:
+        E.area(sc, "RellenoPollos", (2.5, -3.5, 1.0), 900, 3.0, (1.0, 0.92, 0.8), (0, -0.2, 1.4))
     flecha_roja = None
     if k == 14:
         flecha_roja = U.flecha(sc.collection, "TiraAgua", (1.0, 0.12, 0.05), largo=1.2, grosor=0.035)
@@ -218,7 +227,7 @@ def _e1(sc, a, b, k):
                    parpadeo=N.parpadeo(f))
             pj["rig"].location = (0.55, -0.55, Z_PISO)
             pj["rig"].rotation_euler = (0, 0, math.radians(-20))
-            E.empujar(cam, f, a, b, (1.3, -3.0, 1.15), (0.25, -0.1, 0.55), cuanto=0.07, lens=34)
+            E.empujar(cam, f, a, b, (1.25, -3.1, 1.75), (0.25, -0.1, 0.45), cuanto=0.07, lens=32)
         elif k == 3:    # los pollos vuelan a la cuerda y forman el racimo
             centro = Vector((0, -0.2, 2.35))
             r = S["racimo"]
@@ -243,17 +252,19 @@ def _e1(sc, a, b, k):
                     c.hide_render = p.hide_render
             E.mirar(cam, centro + Vector((1.7 - 0.25 * u, -2.0, -1.0 + 0.4 * u)), centro + Vector((0, 0, -1.2)), lens=38)
         elif k == 4:    # cenital: el bote chico y la silueta enorme
-            mosa_en(S, (1.0, 6 - 12 * u, -2.2), rot_z=0, t=t, amp=0.45)
+            mosa_en(S, (1.4, 6 - 12 * u, -1.25), rot_z=0, t=t, amp=0.45)
             q = math.radians(-12 + 10 * u)
             E.mirar(cam, (math.sin(q) * 2, -0.5, 30), (0.0, -0.5, 0), lens=40, giro=-10 + 25 * u)
         elif k == 5:    # la micro flotando al lado del lomo
-            S["micro"].location = (2.0, -1.0, -0.95)
+            S["micro"].location = (1.6, -1.0, -0.45)
             S["micro"].rotation_euler = (math.radians(1.5 * math.sin(t)), math.radians(2 * math.sin(t * 0.7)), 0)
-            mosa_en(S, (7.6, -1.0 + 0.2 * u, -0.62), rot_z=0, t=t, amp=0.15)
+            mosa_en(S, (6.4, -0.6 + 0.2 * u, -0.12), rot_z=0, t=t, amp=0.15)
             lejos(S["bote"])
-            E.mirar(cam, (-13.0 + 1.5 * u, -1.0, 3.2), (4.6, -1.0, 0.4), lens=30)
+            S["bote"].location.x = 200                 # el corte seco del mar se va con el bote
+            S["mar"].modifiers["Seco"].show_render = False
+            E.empujar(cam, f, a, b, (1.3, -10.5, 20.5), (4.0, -0.8, 0.3), cuanto=0.08, lens=34)
             bpy.context.view_layer.update()
-            info["regla"] = [E.pantalla(sc, cam, (2.0, -7.0, 2.9)), E.pantalla(sc, cam, (2.0, 5.0, 2.9))]
+            info["regla"] = [E.pantalla(sc, cam, (-0.35, -7.0, 2.9)), E.pantalla(sc, cam, (-0.35, 5.0, 2.9))]
         elif k == 6:    # la pluma baja del cielo; el niño hace señas
             S["giro"].rotation_euler = (math.radians(-48 - 40 * (1 - sale(u))), 0, 0)
             N.pose(pj, f, expr={"concentrado": 1}, brazoR=N.brazo("senal"), brazoL=N.brazo("arriba", 0.5 + 0.3 * math.sin(t * 9)),
@@ -292,7 +303,7 @@ def _e1(sc, a, b, k):
             caida = sale(lin(f, a + 8, a + 16))
             N.pose(pj, f, expr={"susto": 1}, brazoL=N.brazo("arriba", caida), brazoR=N.brazo("arriba", caida), sentado=caida,
                    parpadeo=0)
-            pj["rig"].location = (0.2, -0.75 + 0.2 * caida, Z_PISO - 0.12 * caida)
+            pj["rig"].location = (0.2, -0.75 + 0.15 * caida, Z_PISO - 0.56 * caida)
             pj["rig"].rotation_euler = (0, 0, math.radians(100))
             E.mirar(cam, (3.4, -0.9, 0.95), (0.1, -0.7, 0.35), lens=32)
         elif k == 15:   # el asiento de montaña rusa en la cubierta
@@ -330,8 +341,8 @@ def _e1(sc, a, b, k):
         elif k == 23:   # bajo el agua: la boca se abre bajo los pollos
             colgar_racimo(S, t, balanceo=5)
             tip = punta_pluma(S)
-            mosa_en(S, (tip.x, tip.y + 4.6, -2.3), rot_z=180, cabeceo=-38, boca=sale(u), t=t, amp=0.2)
-            E.mirar(cam, (tip.x + 5.5, tip.y - 1.5, -2.8), (tip.x, tip.y - 0.5, -1.6), lens=26)
+            mosa_en(S, (tip.x, tip.y - 3.3, -4.7), rot_z=180, cabeceo=-38, boca=sale(u), t=t, amp=0.2)
+            E.mirar(cam, (tip.x + 3.6, tip.y - 2.2, -2.6), (tip.x, tip.y - 0.4, -1.6), lens=26)
         elif k == 24:   # se prepara: aprieta los dientes
             S["arnes"].rotation_euler = (0, 0, 0)
             colgar_racimo(S, t, balanceo=3)
@@ -341,13 +352,13 @@ def _e1(sc, a, b, k):
         elif k == 25:   # sale del agua y se traga el racimo
             tip = punta_pluma(S)
             x = lin(f, a, b)
-            z = -4.0 + 10.5 * sale(x) - 6 * max(0, x - 0.6) ** 2
+            z = -2.2 + 9.0 * sale(x) - 6 * max(0, x - 0.6) ** 2
             mosa_en(S, (tip.x, tip.y + 0.8, z), rot_z=180, cabeceo=-72 + 20 * x, boca=1 - sale(lin(f, a + 10, a + 16)), t=t, amp=0.3)
             comido = f >= a + 14
             colgar_racimo(S, t, balanceo=4)
             U.ocultar(S["racimo"], comido)
             U.mover_gotas(S["gotas"], tl - 0.15, (tip.x, tip.y, 0.0), escala=1.0)
-            E.mirar(cam, (tip.x + 7.5, tip.y - 7.5, 0.35), (tip.x, tip.y, 2.6), lens=22)
+            E.mirar(cam, (tip.x + 8.5, tip.y - 8.5, 0.9), (tip.x, tip.y, 1.6), lens=22)
         elif k == 26:   # remolcado a toda velocidad
             S["arnes"].rotation_euler = (0, 0, 0)
             vel = 7.0
@@ -357,7 +368,7 @@ def _e1(sc, a, b, k):
             U.mover_gotas(S["gotas"], (tl % 0.9), (0.0, y - 1.9, 0.1), escala=0.35)
             N.pose(pj, f, expr={"grito": 1}, sentado=1.0, brazoL=N.brazo("arriba"), brazoR=N.brazo("arriba"),
                    cabeza=(10 + 4 * math.sin(t * 20), 0, 0), parpadeo=0)
-            E.mirar(cam, (2.6, y + 0.6, 1.3), (0.0, y - 0.6, 0.6), lens=24)
+            E.mirar(cam, (5.5, y + 2.2, 2.0), (0.0, y - 0.6, 0.7), lens=26)
         elif k == 27:   # lluvia de huesos
             S["arnes"].rotation_euler = (0, 0, 0)
             U.mover_huesos(S["huesos"], tl, (0.0, -0.47, Z_BOTE + Z_PISO + 0.6))
@@ -391,6 +402,7 @@ def _e2(sc, a, b, k):
         for i, pb in enumerate(S["pernos"]):
             fl = U.flecha(sc.collection, f"GiroPerno{i}", (0.1, 1.0, 0.25), curva=True, radio=0.075, arco=260, grosor=0.007)
             flechas.append((fl, pb))
+        E.area(sc, "KeyPernos", (0.55, 0.35, 0.95), 140, 0.8, (1.0, 0.93, 0.82), (0.0, 1.0, 0.1))
     if k == 9:
         alma, hilos, info_t = K.cable_trenzado(sc.collection)
         raiz = bpy.data.objects.new("TrenzaRaiz", None)
@@ -399,6 +411,10 @@ def _e2(sc, a, b, k):
             o.parent = raiz
         raiz.location = (-0.8, -2.6, 2.8)
         raiz.rotation_euler = (0, math.radians(-25), math.radians(15))
+        # el acero refleja el cielo y se veía como tubos azules: luces cálidas que den brillos de metal
+        bpy.data.materials["HiloAcero"].node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 0.85
+        E.area(sc, "KeyTrenza", (-0.3, -3.3, 3.8), 260, 0.6, (1.0, 0.86, 0.66), (-0.1, -2.41, 3.1))
+        E.area(sc, "RimTrenza", (0.4, -1.5, 3.6), 160, 0.4, (0.75, 0.88, 1.0), (-0.1, -2.41, 3.1))
     if k in (11, 12, 13):
         verde = U.flecha(sc.collection, "GiroEngranaje", (0.1, 1.0, 0.25), curva=True, radio=0.36, arco=240, grosor=0.012)
         rojo1 = U.flecha(sc.collection, "Pinza1", (1.0, 0.1, 0.05), largo=0.14, grosor=0.012)
@@ -418,14 +434,15 @@ def _e2(sc, a, b, k):
         m_ch.use_nodes = True
         bch = m_ch.node_tree.nodes["Principled BSDF"]
         bch.inputs["Emission Color"].default_value = (1.0, 0.55, 0.1, 1)
-        bch.inputs["Emission Strength"].default_value = 30.0
+        bch.inputs["Emission Strength"].default_value = 12.0
+        bch.inputs["Base Color"].default_value = (1.0, 0.45, 0.08, 1)
         for c in chispas:
             c.data = chispas[0].data
         chispas[0].data.materials.clear()
         chispas[0].data.materials.append(m_ch)
     if k == 16:
         pj = S["pj"]
-        pj["rig"].location = (0, -0.47, Z_PISO + 0.33)
+        pj["rig"].location = (0, -0.44, Z_PISO - 0.31)
 
     def act(f):
         t = t_de(f)
@@ -443,8 +460,9 @@ def _e2(sc, a, b, k):
                 fl.location = pb.matrix_world.translation + Vector((0, 0, 0.05))
                 fl.rotation_euler = (0, 0, 6 * tl)
                 U.ocultar(fl, x >= 1.0 or x <= 0.0)
-            base = Vector(BASE_GRUA) + Vector((0, 0, Z_BOTE))
-            E.empujar(cam, f, a, b, base + Vector((0.75, -0.75, 0.35)), base + Vector((0.15, -0.1, 0.05)), cuanto=0.12, lens=45)
+            bpy.context.view_layer.update()
+            base = S["bote"].matrix_world @ Vector(BASE_GRUA)
+            E.empujar(cam, f, a, b, base + Vector((0.35, -0.90, 0.74)), base + Vector((0.08, -0.27, 0.08)), cuanto=0.12, lens=40)
         elif k == 9:    # el cable se trenza
             K.pose_trenzado(hilos, info_t, giro=3.0 * tl, cierre=0.05 + 0.9 * u)
             bpy.context.view_layer.update()
@@ -474,6 +492,8 @@ def _e2(sc, a, b, k):
                 bpy.context.view_layer.update()
                 pc = S["carrete"].matrix_world @ Vector((-0.27, 0.0, 0.215))
                 U.mover_gotas(chispas, (tl - 0.25) % 0.6, pc, escala=0.06)
+                for c in chispas:
+                    c.scale = (c.scale.x * 0.35, c.scale.y * 0.35, c.scale.z * 0.9)
             else:
                 for c in chispas:
                     c.hide_render = True
@@ -486,7 +506,7 @@ def _e2(sc, a, b, k):
             bpy.context.view_layer.update()
             M_c = S["carrete"].matrix_world
             if k == 11:
-                E.empujar(cam, f, a, b, M_c @ Vector((0.9, -1.2, 0.55)), M_c @ Vector((0.05, 0, 0.05)), cuanto=0.10, lens=42)
+                E.empujar(cam, f, a, b, M_c @ Vector((0.6, -1.2, 1.25)), M_c @ Vector((0.05, 0, 0.05)), cuanto=0.14, lens=38)
             elif k == 12:
                 E.empujar(cam, f, a, b, M_c @ Vector((-0.9, -0.75, 0.55)), M_c @ Vector((-0.27, 0, 0.18)), cuanto=0.10, lens=48)
             else:
@@ -518,7 +538,7 @@ def _e3(sc, a, b, k):
         S["mochila"], S["m_luz"], S["luz_m"] = U.mochila(sc.collection)
         S["mochila"].parent = S["bote"]
         S["mochila"].location = (-0.35, -0.95, Z_PISO)
-        S["mochila"].rotation_euler = (0, 0, math.radians(20))
+        S["mochila"].rotation_euler = (0, 0, math.radians(200))
     if k == 29:
         import props as P
         m = bpy.data.materials.new("Energia")
@@ -548,8 +568,9 @@ def _e3(sc, a, b, k):
         bpy.context.view_layer.update()
         pant = S["pantalla"]
         P0 = pant.matrix_world.translation
-        normal = (pant.matrix_world.to_3x3() @ Vector((0, 0, 1))).normalized()
-        if normal.dot(Vector((0, -1, 0))) < 0:
+        normal = (pant.matrix_world.to_3x3() @ Vector((0, 0, -1))).normalized()     # la cara de la pantalla
+        cen = S["consola"].matrix_world.translation
+        if normal.dot(P0 - cen) < 0:
             normal = -normal
         barrido = 2 * math.pi * (tl / 1.2)
         if k == 18:     # se enciende y barre
@@ -565,15 +586,15 @@ def _e3(sc, a, b, k):
             Mm = S["mochila"].matrix_world
             C = Mm @ Vector((0, -0.03, 0.43))
             x = entra(u)
-            S["m_luz"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 2 + 60 * x
-            S["luz_m"].energy = 5 + 400 * x
+            S["m_luz"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 2 + 30 * x
+            S["luz_m"].energy = 5 + 60 * x
             S["mochila"].scale = (1 + 0.06 * math.sin(tl * 40) * x, 1 + 0.06 * math.sin(tl * 37) * x, 1 + 0.08 * x)
             r = 0.02 + 3.0 * entra(lin(f, a + 26, b))
             esfera.location = C
             esfera.scale = (r, r, r)
             esfera.hide_render = r < 0.03
-            bpy.data.materials["Energia"].node_tree.nodes["E"].inputs["Strength"].default_value = 6 + 30 * u
-            E.empujar(cam, f, a, b, C + Vector((0.25, -0.85, 0.25)), C + Vector((0, 0, -0.08)), cuanto=0.35, lens=45, curva=entra)
+            bpy.data.materials["Energia"].node_tree.nodes["E"].inputs["Strength"].default_value = 4 + 12 * u
+            E.empujar(cam, f, a, b, C + Vector((0.55, 1.35, 0.55)), C + Vector((0, 0, -0.10)), cuanto=0.40, lens=40, curva=entra)
         M.olas_t(S["mar"], t)
         bpy.context.view_layer.update()
         return {}

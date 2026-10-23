@@ -47,12 +47,12 @@ def _gorro(rig, cuerpo):
     top = co[:, 2].max()
     cab = co[(co[:, 2] > top - 0.055)]
     cx, cy = float(np.median(cab[:, 0])), float(np.median(cab[:, 1]))
-    r = float(np.percentile(np.hypot(cab[:, 0] - cx, cab[:, 1] - cy), 99)) + 0.016
+    r = float(np.percentile(np.hypot(cab[:, 0] - cx, cab[:, 1] - cy), 99)) + 0.004
     z0 = top - 0.036
     bm = bmesh.new()
     n = 72
     perfil = [(r * 1.0, z0 - 0.004), (r * 1.0, z0 + 0.025), (r * 0.95, z0 + 0.052), (r * 0.80, z0 + 0.072), (r * 0.45, z0 + 0.084), (0.0, z0 + 0.087)]
-    ala = [(r * 1.0, z0 - 0.002), (r * 1.20, z0 - 0.014), (r * 1.30, z0 - 0.026)]
+    ala = [(r * 1.0, z0 - 0.002), (r * 1.17, z0 - 0.012), (r * 1.24, z0 - 0.022)]
     rings = []
     for (rr, zz) in list(reversed(ala))[:-1] + perfil:
         rings.append([bm.verts.new((cx + rr * math.cos(2 * math.pi * k / n), cy + rr * 1.06 * math.sin(2 * math.pi * k / n), zz)) for k in range(n)])
