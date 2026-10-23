@@ -1,0 +1,55 @@
+{
+  "ranking": [
+    {
+      "guion": "Q",
+      "nota_comedia_visual": 8,
+      "mejor_chiste_visual": "32.1–38.0 s: el caballero por fin agarra la bolsa con cuidado, la levanta… y está vacía; corte atrás al doctor como culpable. Es el único guion que cierra con un remate de verdad (preparación → recompensa → giro) y no sólo con un loop. Le gana además el arranque físico de 0.0–3.1 s: un caballero con armadura completa lanzándose por unas papas y rebotando contra el asiento con el CLAC."
+    },
+    {
+      "guion": "W",
+      "nota_comedia_visual": 6,
+      "mejor_chiste_visual": "13.5–16.9 s: corte al caballero congelado con la mano estirada a 5 cm mientras la bolsa de papas se sigue resbalando por el tablero, alejándose. Es frustración pura y se lee en una imagen sin ninguna cara."
+    },
+    {
+      "guion": "X",
+      "nota_comedia_visual": 5,
+      "mejor_chiste_visual": "11.0–15.2 s: con el inclinómetro en 20°, al de la máscara antigás le corre una gota por el vidrio de la máscara (el sudor es un objeto, no una cara: se puede hacer), y a los 27° CLAC en los 4 cinturones al mismo tiempo, los 4 pegados al asiento como si alguien los hubiera atornillado."
+    },
+    {
+      "guion": "Z",
+      "nota_comedia_visual": 4,
+      "mejor_chiste_visual": "35.9–37.6 s: el caballero por fin alcanza las papas… y justo el piloto frena en seco otra vez y vuelve al inicio. Es el único chiste de personaje que tiene; el resto es un diagrama con píldoras que parpadean."
+    }
+  ],
+  "por_guion": {
+    "Q": {
+      "escenas": 6,
+      "dificil_o_imposible": "Imposible: 34.9–38.0 s 'el doctor mastica con la boca llena y cara de inocente': Mixamo no mueve bocas ni hace caras, y ahí está el remate entero. Difícil: 0.0–3.1 s el caballero se lanza sentado y rebota contra el asiento; no hay animación de Mixamo sentada para eso y hay que hacerla a medida (keyframes de columna y brazos más el tope del cinturón). 3.1–5.2 s tirar la cinta despacio con la armadura (manos en la cinta, a medida). Escenas: cabina-caballero (lanzarse/rebotar/tirar lento), mecanismo del pilar (carrete, pestillo, bolita), exterior del 4x4 trepando, cabina con los 4 trabados, máscara haciendo la mímica + bolsa vacía y reveal del doctor. Quedan 6 justas; las 3 a medida son el lanzamiento, el mecanismo y el remate del doctor.",
+      "cambio_para_mas_chistoso": "Resolver el remate con cuerpo y objetos: el doctor usa la animación 'tomar algo' (Drinking) con una papa en la mano, o sea, se lleva la mano a la boca una y otra vez; tiene el delantal blanco manchado de migas naranjas y una bolsa vacía en la falda. Cuando la cámara lo pilla, se congela con la mano a medio camino y después hace Shrugging. El 'cara de inocente' queda como encogerse de hombros, que se lee mejor. Además: la mímica del de la máscara a 0,3x de velocidad (la lentitud exagerada es el chiste) y que la bolsa se vea resbalando en cada plano de cabina para que no se pierda el hilo."
+    },
+    "W": {
+      "escenas": 6,
+      "dificil_o_imposible": "Imposible: 16.9–21.7 s 'el doctor traga saliva' (es pura cara). Difícil: 21.7–24.8 s 'el caballero, enojado, tira la cinta de un tirón': con casco y sin cara, el enojo tiene que leerse en el tirón (a medida). 6.2–10.0 s el pantallazo dividido entre afuera y el pilar al mismo tiempo exige sincronizar el ángulo del auto con la tacita. Escenas: cabina-caballero estirándose/congelado, mecanismo (bolita+palanquita y pestillo), exterior empinado, doctor en la ventana, caballero tirando de golpe, máscara con mímica + tirar lento. Son 6; el loop reutiliza la 1 y la 3.",
+      "cambio_para_mas_chistoso": "Cambiar 'traga saliva' por algo de cuerpo: el doctor se asoma, mira hacia abajo y se lleva las manos a la cabeza (animación disponible), o se agarra con las dos manos de la manilla del techo. Y darle un remate al final en vez de sólo volver al loop: a los 34.2–38.0 s, con la nueva subida, la bolsa se resbala por el tablero y sale volando por la ventana abierta mientras el caballero queda congelado con la mano estirada. Es física barata y cierra el hilo de las papas."
+    },
+    "X": {
+      "escenas": 6,
+      "dificil_o_imposible": "Imposible: 28.3–33.1 s 'el doctor cierra los ojos'. Difícil: 0.0–4.5 s es un plano casi quieto (auto parado, inclinómetro en 0°, los 4 mirando arriba) de 4,5 s; rompe la regla de que algo cambie cada 1–2 s y falla el chequeo de pantalla quieta. La gota en el vidrio de la máscara se puede hacer (es un shader/partícula sobre el visor), pero hay que encuadrarla bien de cerca. Escenas: exterior de subida continua (una sola toma larga del auto empinándose, filmada con varias cámaras; es eficiente), cabina con el caballero sacando papas y después sin poder (incluye el CLAC de los 4), máscara en la ventana, mecanismo, doctor y auto arriba en plano con el caballero tirando lento. Quedan 6 justas.",
+      "cambio_para_mas_chistoso": "Arrancar ya subiendo, no al pie del cerro. Que el chiste de las papas escale con los grados: a 5° el caballero intenta meterse una papa y se la aplasta contra el visor cerrado del casco (cuerpo + objeto, cero cara); a 12° lo vuelve a intentar; a 27° hace CLAC con la papa a un centímetro del visor. El doctor no cierra los ojos: se tapa la cara con las dos manos o con su portapapeles."
+    },
+    "Z": {
+      "escenas": 7,
+      "dificil_o_imposible": "Se pasa del tope: abre un set nuevo (un camino de ripio con frenada y polvo), además del cerro, la cabina con el caballero, la cabina con los 4 yéndose adelante, el mecanismo con dos estados, la máscara enseñando y el final de alcanzar las papas + frenada. Son unas 7 escenas. No depende de caras (lo más limpio de los 4 en eso), pero entra al pilar 4 veces y 16.9–23.5 s repite 'el carrete gira de golpe' dos veces seguidas: visualmente es redundante y se siente diagrama. La frenada en ripio con polvo y los 4 cuerpos yéndose adelante en sincronía requiere física y animación a medida.",
+      "cambio_para_mas_chistoso": "Eliminar el ripio: el piloto frena en seco en la misma subida (se reutilizan el set y el cerro). Convertir el concurso en comedia de personajes: cuando parpadean las píldoras, los pasajeros 'responden' con la animación de apuntar. El doctor apunta siempre al guardia equivocado y el de la máscara siempre al correcto, impasible. Así se aprovechan Pointing, Shaking Head No y Head Nod Yes de Mixamo sin costo extra."
+    }
+  },
+  "mejor_sin_sonido": {
+    "guion": "X",
+    "por_que": "La variable que manda está dibujada en pantalla: el inclinómetro sube con números grandes (0° → 5° → 12° → 20° → 27°) mientras el auto se empina, y las píldoras HASTA 12°: LIBRE y MÁS DE 27°: SE TRABA cuentan la regla sin que nadie hable. El momento clave (27° = CLAC en los 4 a la vez) es una causa y un efecto visibles. En Q y Z la diferencia entre 'rápido' y 'lento' o 'cuál guardia' depende mucho más de la voz."
+  },
+  "mejor_cuadro0": {
+    "guion": "Q",
+    "por_que": "Desde el cuadro 0 hay acción violenta y absurda: un caballero con armadura completa, dentro de un 4x4 en el desierto, se lanza por una bolsa de papas y el cinturón lo devuelve de golpe contra el asiento. Hay movimiento grande, un personaje fuera de lugar y un golpe físico en el primer segundo, sin necesidad de leer nada. W tiene la misma imagen pero más suave (estira la mano), Z la corta a los 1,7 s para un diagrama y X arranca con un auto detenido y 4 tipos mirando hacia arriba, que es el que más se desliza."
+  },
+  "recomendacion": "Produciría Q: tiene el mejor arranque físico, el único remate real (bolsa vacía + doctor) y entra en 6 escenas con 3 a medida. Le cambiaría el remate del doctor para que no dependa de la cara (animación Drinking con papa, migas en el delantal y Shrugging cuando lo pillan). Le tomaría prestado a W el plano del caballero congelado con la mano estirada a 5 cm mientras la bolsa se sigue resbalando (para 25.5–29.0 s, en vez de 'estira y no llega'), y a X un inclinómetro chico en la esquina durante la subida (21.7–25.5 s) más la gota en el visor de la máscara: le suman lectura sin sonido y otra risa sin costo de escenas nuevas."
+}
