@@ -70,3 +70,8 @@
 {"tipo": "aviso", "que": "puerta 4 r2 NO APROBADO: realismo 7 (A 9, C 8, B 7 por el fondo) y 1 bloqueante B1 (cerros flotando). 2 rondas sin llegar a 8: el video NO sigue; se para y se le proponen alternativas a Tomás. Se deja listo el arreglo del fondo de B (sin abrir ronda 3) para que decida con la imagen a la vista", "n": 70, "ts": "2026-10-23T02:54:40-03:00"}
 {"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 71, "ts": "2026-10-23T02:56:17-03:00"}
 {"tipo": "trabajo", "que": "parado en la puerta 4 por la regla de Tomás (realismo 7 en 2 rondas); opciones enviadas", "id": "sesion ep05", "estado": "fin", "n": 72, "ts": "2026-10-23T03:02:50-03:00"}
+{"tipo": "aviso", "que": "Tomás (06:24): 'sí, sigue con todo' → 3.ª ronda de la puerta 4 (forzada con su OK) y, si llega a 8, animatic + final", "n": 73, "ts": "2026-10-23T06:24:45-03:00"}
+{"tipo": "promesa", "hora": "09:30", "que": "video del Ep. 5 listo para OK de Tomás", "dato": "r3 ~5 min, animatic ~25 min + puerta 6 ~15 min, final ~60–90 min + puertas 7/8", "n": 74, "ts": "2026-10-23T06:24:45-03:00"}
+{"tipo": "trabajo", "id": "sesion ep05 manana", "estado": "inicio", "n": 75, "ts": "2026-10-23T06:24:45-03:00"}
+{"tipo": "trabajo", "id": "auditor 4-cuadros r3", "estado": "inicio", "n": 76, "ts": "2026-10-23T06:24:51-03:00"}
+{"tipo": "trabajo", "id": "auditor 4-cuadros r3", "estado": "fin", "n": 77, "ts": "2026-10-23T06:28:06-03:00"}

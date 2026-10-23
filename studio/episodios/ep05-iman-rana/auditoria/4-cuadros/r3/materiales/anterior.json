@@ -1,0 +1,13 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": true,
+  "tipo": "B1",
+  "plano": "B",
+  "segundo": "cuadro",
+  "que": "Los cerros nuevos flotan: en x 0-230, y≈560-595 (a 720x1280; x 0-345, y 840-893 a 1080) se ve la parte de abajo de la malla de los cerros, dentada, con una franja clara de cielo entre ella y el suelo, que termina en un escalón vertical en x≈230 donde los cerros sí llegan al suelo. Kling va a copiar esa franja en todo el clip.",
+  "arreglo": "Bajar el objeto de los cerros 2-3 m o alargarle la falda por debajo del nivel del suelo para que toque el horizonte en todo el ancho; volver a mirar sólo la franja y 540-600.",
+  "de": "cuadros",
+  "asignado": "cuadros"
+ }
+]

@@ -1,0 +1,31 @@
+[
+ {
+  "id": "cuadros",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "A_rana, B_persona_iman_gigante, C_adentro_agua",
+  "materiales": [
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/A_rana.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/B_persona_iman_gigante.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/C_adentro_agua.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/ref_1.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/ref_2.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/ref_3.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/ref_4.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/cuadros.json",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r3/materiales/anterior_cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "tools/auditor/prompts/estilos.md"
+  ],
+  "salida": "cuadros.json",
+  "notas_de_uso": "Ronda 3 (forzada con OK de Tomás): verifica el bloqueante y el realismo de B de r2. Cambios en B sólo en el fondo: el salar ahora llega hasta los cerros (antes medía 6 km y bajo los cerros había cielo), los cerros tienen falda (el relieve se apaga hacia el borde de la malla y el pie toca el suelo en todo el ancho), formas grandes en vez de detalle chico de greda, bruma de distancia y vetas de otra roca; el salar con manchas grandes; cada torre con su pluma de vapor distinta y un labio arriba. A y C no cambiaron desde r2.",
+  "estilo": "realista",
+  "verificar_ids": [
+   "A1"
+  ],
+  "modo": "verificacion"
+ }
+]

@@ -1,0 +1,13 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ronda 3 abierta con --forzar: Tomás pidió seguir el 23-oct 06:24 ('sí, sigue con todo') después de ver los cuadros; el fondo de B (único motivo del 7 en r2) ya está rehecho",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "cuadros": 3,
+  "estilo": "realista"
+ }
+}

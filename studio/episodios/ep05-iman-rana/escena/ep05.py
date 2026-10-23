@@ -1003,7 +1003,9 @@ def central_nuclear(sc, pos=(0, 2500, 0), rot=0.0):
         vp = caja(sc, f"Vapor{i}", (150, 150, 300), (px + dx + 25, py + i * 40 + 10, 150 + 150), mat_vapor(), 0)
         if vp is not None:
             vp.rotation_euler.z = 2.3 * i + 0.6                 # cada pluma con su forma (antes, dos conos iguales)
-            vp.scale = (1.0 + 0.2 * i, 1.0 + 0.2 * i, 0.85 + 0.3 * i)
+            sz = 0.85 + 0.3 * i
+            vp.scale = (1.0 + 0.2 * i, 1.0 + 0.2 * i, sz)
+            vp.location.z = 140 + 150 * sz                      # la base de la pluma siempre dentro de la boca de la torre (puerta 4 r3: flotaba)
         rt = 34 * math.sqrt(1 + ((150 - 105) / 55) ** 2)
         tubo(sc, f"Torre_labio{i}", rt + 1.6, rt - 0.3, 3.0, (px + dx, py + i * 40, pz + 147), verts=96, mat=hormigon, bisel=0.3)
     # domo del reactor y casa de turbinas
@@ -1041,7 +1043,9 @@ def mat_vapor():
     ancho = m_("ADD", m_("MULTIPLY", sep.outputs["Z"], 0.32), 0.12)       # radio de la pluma según la altura
     forma = m_("SUBTRACT", None, m_("DIVIDE", r, ancho), v1=1.0)
     forma = m_("MAXIMUM", forma, 0.0)
-    arriba = m_("SUBTRACT", None, sep.outputs["Z"], v1=1.0)
+    # arriba: se deshace desde la mitad y llega a 0 antes del borde de la caja (si no, la pluma termina en un corte recto)
+    ar = _mapa(nt, sep.outputs["Z"], 1.0, 0.0); ar.inputs["From Min"].default_value = 0.45; ar.inputs["From Max"].default_value = 0.95
+    arriba = m_("POWER", ar.outputs[0], 2.0)
     nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 4.0; nz.inputs["Detail"].default_value = 8
     # 4D: la W cambia con cada objeto (Object Info → Random): cada torre con su pluma distinta
     nz.noise_dimensions = "4D"
