@@ -102,3 +102,6 @@
 {"tipo": "trabajo", "id": "auditor 7-final y 8-paquete r1", "estado": "inicio", "n": 102, "ts": "2026-10-23T10:33:29-03:00"}
 {"tipo": "trabajo", "id": "auditor 7-final y 8-paquete r1", "estado": "fin", "n": 103, "ts": "2026-10-23T10:39:10-03:00"}
 {"tipo": "aviso", "que": "puerta 7 APROBADO (0 bloqueantes) y puerta 8 APROBADO (textos 8, cumplimiento 8); aplicadas sus 2 sugerencias de texto (créditos CC-BY también en IG/TikTok y el primer comentario; el experimento fue del equipo de Geim, Berry co-escribió la explicación)", "n": 104, "ts": "2026-10-23T10:39:10-03:00"}
+{"tipo": "aviso", "que": "OK de Tomás (23-oct 18:19, 'si te doy el ok… dale nomás') para los 3 posts del Ep. 5: sábado 24-oct IG 10:00 · TikTok 18:00 · YouTube 20:30. release.yml → Release ep05 (run 40025936549)", "n": 105, "ts": "2026-10-23T18:19:47-03:00"}
+{"tipo": "aviso", "que": "programado en Metricool con OK de Tomás: IG 404575035 (sáb 24 10:00), TikTok 404575043 (18:00), YouTube 404575057 (20:30); MP4 del Release ep05 (URL responde 206)", "n": 106, "ts": "2026-10-23T18:21:44-03:00"}
+{"tipo": "trabajo", "id": "sesion ep05 manana", "estado": "fin", "n": 107, "ts": "2026-10-23T18:21:44-03:00"}

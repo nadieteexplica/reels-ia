@@ -164,7 +164,7 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 |---|---|---|---|---|
 | **usada: Ep. 4** (22-oct-2026) | La cortina de la ducha te persigue (y no es un fantasma) | El chorro arma un remolino acostado dentro de la ducha; su centro tiene baja presión y chupa la cortina. Pasa también con agua fría | La ducha en corte con el remolino girando como una rueda y la cortina que se mete | El agua caliente lo empeora |
 | pendiente (ficha abajo) | El vidrio de tu ventana se hizo flotando sobre metal derretido | Vidrio a 1.100 °C se vierte sobre una piscina de estaño fundido, flota y se aplana solo; sale a 600 °C | La cinta de vidrio naranja deslizándose sobre el espejo de estaño | Con luz ultravioleta se ve cuál lado tocó el estaño |
-| en producción: Ep. 5, parado en la puerta 4 (23-oct, ver CONTEXTO) | Con un imán gigante puedes hacer flotar a un ser vivo | El agua del cuerpo es repelida un poquito por los imanes: con ~16 T flotó una rana viva; la NASA hizo flotar ratones por horas | La rana flotando dentro del tubo del imán | Todo lo que tiene agua (tú también) es levemente "antimagnético" |
+| usada: Ep. 5 (sale el 24-oct) | Con un imán gigante puedes hacer flotar a un ser vivo | El agua del cuerpo es repelida un poquito por los imanes: con ~16 T flotó una rana viva; la NASA hizo flotar ratones por horas | La rana flotando dentro del tubo del imán | Todo lo que tiene agua (tú también) es levemente "antimagnético" |
 
 #### Ficha — La cortina de la ducha (verificada)
 - **Por qué le gustó a Tomás:** una vez pensó que le estaban penando porque la cortina se movía sola. Gancho natural: "no es un fantasma".
