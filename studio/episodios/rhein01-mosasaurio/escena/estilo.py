@@ -41,6 +41,24 @@ if cual == "A":
     mosa.location.z = -2.4
     mosa.rotation_euler = (0, 0, math.radians(-35))
     E.mirar(cam, tip + Vector((7.5, 9.5, 2.0)), tip + Vector((0, 0, -4.0)), lens=24)
+elif cual in ("M", "M2"):
+    nino.location = (0, 0, -0.2)
+    mosa.location = (12, -10, 3.0)
+    mosa.rotation_euler = (0, 0, math.radians(90 if cual == "M" else 140))
+    bpy.data.objects["Mosa_mandibula"].rotation_euler = (math.radians(32), 0, 0)
+    E.mirar(cam, (12 + (0 if cual == "M" else -9), -10 - (17 if cual == "M" else 12), 4.0), (12, -10, 2.6), lens=28 if cual == "M" else 35)
+elif cual == "M3":
+    nino.location = (0, 0, -0.2)
+    mosa.location = (12, -10, 3.0)
+    mosa.rotation_euler = (math.radians(-8), 0, math.radians(90))
+    bpy.data.objects["Mosa_mandibula"].rotation_euler = (math.radians(34), 0, 0)
+    E.mirar(cam, (22.5, -16.5, 4.6), (16.0, -10, 3.2), lens=32)
+elif cual == "B2":
+    nino.location = (0, -0.3, -0.20)
+    nino.rotation_euler = (0, 0, math.radians(-20))
+    PJ.pose_nino(nino, cabeza=(-5, 0, -8), brazoL=(0, 0, 25), brazoR=(-60, 0, -20), boca=0.35, cejas=0.6)
+    mosa.location = (0, -60, -6)
+    E.mirar(cam, (-0.45, -1.55, 0.95), (0, -0.3, 0.82), lens=50)
 elif cual == "B":
     nino.location = (0, -0.3, -0.20)
     nino.rotation_euler = (0, 0, math.radians(-20))

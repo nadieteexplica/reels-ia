@@ -2,3 +2,12 @@
 {"tipo": "trabajo", "id": "auditor 1-guion r1", "estado": "inicio", "n": 2, "ts": "2026-10-22T21:59:16-03:00"}
 {"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 3, "ts": "2026-10-22T22:03:15-03:00"}
 {"tipo": "trabajo", "id": "auditor 1-guion r1", "estado": "fin", "n": 4, "ts": "2026-10-22T22:06:51-03:00"}
+{"tipo": "gasto", "servicio": "eleven", "monto": 610.0, "nota": "tutorial + venta (estimado por caracteres)", "n": 5, "ts": "2026-10-22T22:07:13-03:00"}
+{"tipo": "trabajo", "id": "auditor 2-voz r1", "estado": "inicio", "n": 6, "ts": "2026-10-22T22:14:02-03:00"}
+{"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 7, "ts": "2026-10-22T22:18:16-03:00"}
+{"tipo": "trabajo", "id": "auditor 2-voz r1", "estado": "fin", "n": 8, "ts": "2026-10-22T22:21:10-03:00"}
+{"tipo": "aviso", "que": "22:22: se le avisa a Tomás que el video va a pasar el tope de 4 h (estimado 6–8 h: personaje semi-realista nuevo, 5 mecánicas en corte, agua, montaje); opciones: completo mañana (recomendado) o versión simple de ~4 h", "n": 9, "ts": "2026-10-22T22:21:10-03:00"}
+{"tipo": "aviso", "que": "22:24 Tomás: 'Hazlo completo y confío en lo que vas a hacer, te doy el ok desde ahora' → versión completa; los cuadros de estilo no esperan su OK (las puertas del auditor siguen)", "n": 10, "ts": "2026-10-22T22:24:35-03:00"}
+{"tipo": "trabajo", "id": "auditor 3-storyboard r1", "estado": "inicio", "n": 11, "ts": "2026-10-22T22:33:02-03:00"}
+{"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 12, "ts": "2026-10-22T22:33:16-03:00"}
+{"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 13, "ts": "2026-10-22T22:48:16-03:00"}

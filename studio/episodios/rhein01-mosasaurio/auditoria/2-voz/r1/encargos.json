@@ -1,0 +1,16 @@
+[
+ {
+  "id": "voz",
+  "prompt": "tools/auditor/prompts/2-voz.md",
+  "alcance": "voz completa",
+  "materiales": [
+   "studio/episodios/rhein01-mosasaurio/auditoria/2-voz/r1/materiales/voz.md",
+   "studio/episodios/rhein01-mosasaurio/guion.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "voz.json"
+ }
+]

@@ -27,10 +27,10 @@ def cielo(sc, sol_energia=4.2, sol_dir=(-0.45, 0.55, 0.70)):
     nt.links.new(tc.outputs["Generated"], sep.inputs[0])
     mr = nt.nodes.new("ShaderNodeMapRange")
     mr.inputs["From Min"].default_value = -0.05
-    mr.inputs["From Max"].default_value = 0.55
+    mr.inputs["From Max"].default_value = 0.40
     nt.links.new(sep.outputs["Z"], mr.inputs["Value"])
     ramp = nt.nodes.new("ShaderNodeValToRGB")
-    ramp.color_ramp.elements[0].color = (0.40, 0.82, 0.95, 1)       # horizonte celeste claro
+    ramp.color_ramp.elements[0].color = (0.30, 0.76, 0.93, 1)       # horizonte celeste claro
     ramp.color_ramp.elements[1].color = (0.07, 0.42, 0.78, 1)       # cenit turquesa-azul
     e = ramp.color_ramp.elements.new(0.35)
     e.color = (0.14, 0.58, 0.92, 1)
@@ -165,6 +165,19 @@ def bote(coll, nombre="Bote"):
         pts.append(secs[i][0].co.copy())
     for i in range(nsec, -1, -1):
         pts.append(secs[i][-1].co.copy())
+    # volumen seco (para cortar el mar adentro del bote): casco achicado y cerrado por arriba
+    seco_pts = []
+    for ring in secs:
+        for v in ring:
+            seco_pts.append(Vector((v.co.x * 0.93, v.co.y * 0.985, v.co.z + 0.03)))
+            seco_pts.append(Vector((v.co.x * 0.93, v.co.y * 0.985, v.co.z + 0.9)))
+    bm_s = bmesh.new()
+    vs = [bm_s.verts.new(p) for p in seco_pts]
+    bmesh.ops.convex_hull(bm_s, input=vs)
+    seco = P.mesh_obj(nombre + "_seco", bm_s, coll, smooth=False)
+    seco.display_type = "WIRE"
+    seco.hide_render = True
+    seco.parent = raiz
     casco = P.mesh_obj(nombre + "_casco", bm, coll, m=m_casco)
     s = casco.modifiers.new("Grosor", "SOLIDIFY")
     s.thickness = 0.06
@@ -234,7 +247,7 @@ def grua(coll, base=(0, 1.15, 0.0), angulo=48, largo=6.2, nombre="Grua"):
     pl.parent = giro
     for o in barras + [punta]:
         o.parent = pl
-    giro.rotation_euler = (math.radians(angulo), 0, 0)
+    giro.rotation_euler = (math.radians(-angulo), 0, 0)      # -X levanta la pluma (apunta a -Y y arriba)
     bpy.context.view_layer.update()
     tip = (pl.matrix_world @ Vector((0, -largo - 0.05, -0.16)))
     return raiz, tip

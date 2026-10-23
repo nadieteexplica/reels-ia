@@ -1,0 +1,61 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "pausa de 1.38 s después de '(silencio)'",
+   "evidencia": "24.38 s"
+  },
+  {
+   "que": "pausa de 3.37 s después de '(silencio)'",
+   "evidencia": "26.36 s"
+  },
+  {
+   "que": "ritmo de 1.9 palabras/s en 'necesitas doscientos pollos asados.'",
+   "evidencia": "1.56 s"
+  },
+  {
+   "que": "ritmo de 4.4 palabras/s en '¡Hay uno que cabe en tu mochila!'",
+   "evidencia": "30.49 s"
+  },
+  {
+   "que": "se escucha 'de' donde el guion dice 'del'",
+   "evidencia": ""
+  },
+  {
+   "que": "se escucha 'ryan' donde el guion dice 'rhein'",
+   "evidencia": ""
+  },
+  {
+   "que": "se escucha 't-rex' donde el guion dice 't rex'",
+   "evidencia": ""
+  },
+  {
+   "que": "se escucha 'ryan' donde el guion dice 'rhein'",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 41.67,
+  "palabras_por_s": 2.57,
+  "creditos_restantes": 37288,
+  "asr_coincidencia": 0.958,
+  "asr_diferencias": [
+   [
+    "del",
+    "de"
+   ],
+   [
+    "rhein",
+    "ryan"
+   ],
+   [
+    "t rex",
+    "t-rex"
+   ],
+   [
+    "rhein",
+    "ryan"
+   ]
+  ]
+ }
+}

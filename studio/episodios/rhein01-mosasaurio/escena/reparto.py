@@ -1,4 +1,4 @@
-"""Reparte las piezas del Ep. 4 en N trabajos parejos (por costo estimado) → matriz JSON para Actions.
+"""Reparte las piezas de Rhein 01 en N trabajos parejos (por costo estimado) → matriz JSON para Actions.
 
 Uso: python3 reparto.py N [piezas,separadas,por,coma] [muestras]
 Costo medido en local (2 núcleos, 540x960, 16 muestras): obra ~31 s/cuadro, corte ~26 s; en Actions a 720x1280 ~1,7×.
@@ -6,9 +6,9 @@ Costo medido en local (2 núcleos, 540x960, 16 muestras): obra ~31 s/cuadro, cor
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import planos_ep04 as PL
+import planos_rhein01 as PL
 
-PESO = {"E1": 30, "E2": 38, "E3": 30}      # medido en local (720x1280): el corte es ~1,3x el baño
+PESO = {"E1": 40, "E2": 34, "E3": 22}      # estimado (a medir en las muestras): mar con olas + niño con pelo es lo más caro
 ARMADO = 40
 
 
