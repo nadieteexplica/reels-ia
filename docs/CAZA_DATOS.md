@@ -153,6 +153,7 @@ El chat agrega a esta lista los que encuentre repetidos en muchas cuentas.
 - (21-oct) **Datos freaks** que pasan alrededor del mundo en la vida cotidiana.
 - (21-oct, 23:27) En el video **no se narra "un estudio dijo" ni quién lo descubrió**: se cuenta directo cómo pasan las cosas. Las fuentes van abajo (descripción y comentario).
 - (21-oct, noche) **Cómo se genera algo** (natural u objeto) y **"qué pasa si se juntan estas condiciones"**: cosas muy poco probables que, si pasan, dan un resultado loco.
+- (23-oct) Cree que el Ep. 3 (edificio) rindió "por lejos" más que el resto porque **mostró la mecánica**: el hoyo en la tierra, cómo ponían las patas. Quiere ideas de **cómo funciona la mecánica** de algo: cómo lo hicieron, cómo funciona, cómo se hace, "el arte de crear algo" (del touch del celular a una construcción), abiertas a todo. Ronda 6 en `IDEAS.md`.
 - (21-oct, noche) **Información nueva cada pocos segundos** y una **mecánica explicada a mitad de video** (como el "por qué no rieles" del Ep. 3). El Ep. 1 y el Ep. 2 se le hicieron largos: "mucho chamullo", una sola línea estirada. Cada propuesta trae su escalera de 3–4 datos, no un dato solo.
 
 **No le gusta:**
