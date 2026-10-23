@@ -1,0 +1,58 @@
+name: revisar-privados
+# Revisa el Release privado "Personajes" (repo nadieteexplica/assets, secreto TOKEN) sin sacar los archivos del runner:
+# baja todo, comprueba que cada FBX esté completo (cabecera binaria y tamaño) y si trae malla (personaje) o sólo esqueleto
+# (movimiento). Al repo público sólo sube la lista (nombres, tamaños, estado); los FBX nunca salen (licencia de Mixamo).
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Bajar y revisar
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          mkdir -p priv d
+          gh release download Personajes -R nadieteexplica/assets -D priv
+          gh release view Personajes -R nadieteexplica/assets --json assets --jq '.assets[] | [.name, .size, .state] | @tsv' > d/release.tsv
+          python3 - <<'EOF'
+          import os, csv
+          rel = {r[0]: (int(r[1]), r[2]) for r in csv.reader(open("d/release.tsv"), delimiter="\t")}
+          filas = []
+          for n in sorted(rel):
+              p = os.path.join("priv", n)
+              tam, estado = rel[n]
+              if not os.path.exists(p):
+                  filas.append((n, tam, estado, "NO SE BAJÓ", "", 0, 0)); continue
+              b = open(p, "rb").read()
+              ok = len(b) == tam
+              binario = b[:18] == b"Kaydara FBX Binary"
+              geo = b.count(b"Geometry")
+              curvas = b.count(b"AnimationCurveNode")
+              if not n.lower().endswith(".fbx"):
+                  tipo = "otro archivo"
+              elif geo > 0:
+                  tipo = "personaje (con malla)" + (" + animación" if curvas > 50 else "")
+              else:
+                  tipo = "movimiento (sin malla)" if curvas else "SIN malla ni animación"
+              filas.append((n, tam, estado, "ok" if ok and (binario or not n.lower().endswith(".fbx")) else "INCOMPLETO o no es FBX binario", tipo, geo, curvas))
+          with open("d/personajes_revision.tsv", "w") as f:
+              f.write("archivo\tbytes\testado_release\tchequeo\ttipo\tgeometry\tcurvas\n")
+              for r in filas:
+                  f.write("\t".join(map(str, r)) + "\n")
+          mal = [r for r in filas if r[3] != "ok" or r[2] != "uploaded"]
+          print(len(filas), "archivos;", len(mal), "con problemas")
+          for r in mal: print("PROBLEMA", r)
+          EOF
+          cat d/personajes_revision.tsv
+      - name: Subir la lista (sin los FBX)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release view privados-lista >/dev/null 2>&1 || gh release create privados-lista --prerelease --title "privados-lista" --notes "Sólo la lista del Release privado Personajes (nombres y chequeos). Los archivos no salen del repo privado."
+          gh release upload privados-lista d/personajes_revision.tsv --clobber
