@@ -1,0 +1,8 @@
+[
+ {"nombre": "estiloA_rana",
+  "prompt": "Cinematic photorealistic macro film shot, 50mm lens, shallow depth of field, natural exposure, subtle film grain. A small live green frog floats calmly in mid-air with no strings or supports, slowly turning, legs relaxed and dangling, hovering inside the open top of the vertical bore of a massive steel laboratory electromagnet with copper water-cooling pipes and thick black cables. The frog's wet glossy skin shows natural mottled texture and tiny droplets catching the light. Dim physics laboratory at night, warm practical lamp and cool fluorescent light, light haze, background softly out of focus. Slow gentle push-in camera. The frog is calm and unharmed. No text.",
+  "modelo": "kling-3.0", "duracion": 5, "resolucion": "720p", "aspecto": "9:16"},
+ {"nombre": "estiloB_persona",
+  "prompt": "Cinematic photorealistic wide film shot, 24mm lens, natural exposure, subtle film grain, realistic scale. Inside a vast industrial hall, a colossal ring-shaped superconducting magnet lies horizontally, fifteen meters across, made of brushed steel and banded copper coils with frost on its surface, thick power cables running across the concrete floor to open hangar doors where the cooling towers of a nuclear power plant stand in the evening haze. In the center of the magnet's round bore, one ordinary adult man in jeans and a grey t-shirt floats calmly upright in mid-air with no strings or supports, arms relaxed, drifting very slowly. High three-quarter angle looking down into the bore, slow crane camera move. Cold blue work lights and warm sodium lamps, volumetric haze. No text.",
+  "modelo": "kling-3.0", "duracion": 5, "resolucion": "720p", "aspecto": "9:16"}
+]

@@ -41,7 +41,11 @@ def _img(ref, base_dir):
 
 
 def crear(clip, base_dir):
-    contents = [{"type": "prompt", "text": clip["prompt"]}, {"type": "first_frame", "url": _img(clip["inicio"], base_dir)}]
+    """Con "inicio" es image-to-video; sin "inicio" es text-to-video (Ep. 5, realismo: la toma sale entera de Kling)
+    y lleva "aspecto" (por defecto 9:16)."""
+    contents = [{"type": "prompt", "text": clip["prompt"]}]
+    if clip.get("inicio"):
+        contents.append({"type": "first_frame", "url": _img(clip["inicio"], base_dir)})
     if clip.get("final"):
         contents.append({"type": "last_frame", "url": _img(clip["final"], base_dir)})
     modelo = clip.get("modelo", "kling-3.0")
@@ -50,9 +54,14 @@ def crear(clip, base_dir):
         settings["audio"] = "off"
     if modelo.startswith("kling-3.0") and modelo != "kling-3.0-turbo":
         settings["multi_shot"] = False
+    if not clip.get("inicio"):
+        settings["aspect_ratio"] = clip.get("aspecto", "9:16")
+    if clip.get("negativo"):
+        contents.append({"type": "negative_prompt", "text": clip["negativo"]})
     body = {"contents": contents, "settings": settings,
             "options": {"external_task_id": f"{clip['nombre']}-{int(time.time())}", "watermark_info": {"enabled": False}}}
-    r = _req("POST", f"/image-to-video/{modelo}", body)
+    ruta = "/image-to-video/" if clip.get("inicio") else "/text-to-video/"
+    r = _req("POST", ruta + modelo, body)
     if r.get("code") not in (0, None):
         raise RuntimeError(f"Kling rechazó {clip['nombre']}: {r.get('code')} {r.get('message')}")
     return r["data"]["id"]
@@ -73,11 +82,17 @@ def pedido(path, out):
     clips = json.load(open(path))
     os.makedirs(out, exist_ok=True)
     ids = {}
+    res = []
     for c in clips:
-        tid = crear(c, base_dir)
+        try:
+            tid = crear(c, base_dir)
+        except RuntimeError as e:  # se anota y sigue con los demás (el mensaje de la API dice qué campo falló)
+            print(f"falló {c['nombre']}: {e}", flush=True)
+            res.append({"nombre": c["nombre"], "estado": "rechazado", "mensaje": str(e)})
+            continue
         ids[tid] = c
         print(f"enviado {c['nombre']} → tarea {tid}", flush=True)
-    pend, t0, res = set(ids), time.time(), []
+    pend, t0 = set(ids), time.time()
     while pend and time.time() - t0 < 40 * 60:
         time.sleep(15)
         st = consultar(sorted(pend))
