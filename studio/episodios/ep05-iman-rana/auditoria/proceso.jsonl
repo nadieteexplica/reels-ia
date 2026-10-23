@@ -91,3 +91,5 @@
 {"tipo": "chequeo", "id": "final 39940355233", "estado": "vivo (vigilante) · in_progress/- · 17/18 trabajos", "n": 91, "ts": "2026-10-23T08:52:15-03:00"}
 {"tipo": "aviso", "que": "final: las 16 máquinas terminaron (23–59 min) pero el armado se colgó 22 min en apt-get (instalar ffmpeg); se cancela y se re-ejecuta sólo el armado (los cuadros quedan)", "n": 92, "ts": "2026-10-23T08:59:27-03:00"}
 {"tipo": "chequeo", "id": "final 39940355233", "estado": "vivo (vigilante) · in_progress/- · 17/18 trabajos", "n": 93, "ts": "2026-10-23T09:07:19-03:00"}
+{"tipo": "aviso", "que": "el re-armado también se colgó en apt-get: se cancela y se arma con armar.yml nuevo (apt con tiempo máximo y reintentos) sobre los cuadros del run 39940355233", "n": 94, "ts": "2026-10-23T09:11:59-03:00"}
+{"tipo": "trabajo", "id": "final 39940355233", "estado": "fin", "n": 95, "ts": "2026-10-23T09:21:58-03:00"}

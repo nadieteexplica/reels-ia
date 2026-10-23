@@ -171,9 +171,18 @@ def p4(sc, a, b):
         rana_flota(rana, f)
         c = Vector((0, 0, RANA_Z + 0.003))
         p0 = orbita(Vector((0, 0, RANA_Z)), R_CERCA, -10, ALTO_CAM)
-        p1_ = Vector((0.004, -0.0185, RANA_Z + 0.0095))          # se frena 2 mm antes del vidrio (radio 15,8 mm), mirando un poco hacia abajo
+        # termina frente a la cabeza (el ojo al centro del cuadro): antes terminaba en el lomo y el ojo quedaba bajo la
+        # interfaz de la app (chequeo cara_bajo_ui, 5,77–5,87 s); se frena ~2,5 mm antes del vidrio (radio 15,8 mm)
+        ojos = [bpy.data.objects.get(n) for n in ("Rana_ojoL", "Rana_ojoR")]
+        bpy.context.view_layer.update()
+        cab = sum((o.matrix_world.translation for o in ojos if o), Vector()) / max(1, sum(1 for o in ojos if o))   # entre los ojos
+        lejos = (cab - p0); lejos.z = 0
+        p1_ = cab - lejos.normalized() * 0.0
+        dirc = (Vector((cab.x, cab.y, 0))).normalized() if Vector((cab.x, cab.y, 0)).length > 1e-6 else Vector((0, -1, 0))
+        # la cámara se frena ~2,5 mm antes del vidrio (radio 15,8 mm), por el lado de la cabeza y un poco desde arriba
+        p1_ = Vector((0, 0, 0)) + Vector((p0.x, p0.y, 0)).normalized() * 0.0183 + Vector((0, 0, cab.z + 0.006))
         p = p0.lerp(p1_, x)
-        mirar(cam, p, c + Vector((0, 0, -0.008 * (1 - x))), lente=100, foco=c)
+        mirar(cam, p, (c + Vector((0, 0, -0.008))).lerp(cab, x), lente=100, foco=c.lerp(cab, x))
         cam.data.dof.aperture_fstop = 5.6 + 6 * x
         return {}
     return {"actualizar": act}
