@@ -28,12 +28,18 @@ jobs:
       - name: ffmpeg y Python
         run: |
           # apt con tiempo máximo y reintentos (el 23-oct apt-get se colgó 20+ min dos veces sin límite)
-          for i in 1 2 3; do
-            timeout 240 sudo apt-get -qq -o Acquire::Retries=3 -o Acquire::http::Timeout=25 -o Acquire::ForceIPv4=true update \
-              && timeout 360 sudo apt-get -qq -o Acquire::Retries=3 -o Acquire::http::Timeout=25 -o Acquire::ForceIPv4=true \
+          for i in 1 2; do
+            timeout 150 sudo apt-get -qq -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::ForceIPv4=true update \
+              && timeout 240 sudo apt-get -qq -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::ForceIPv4=true \
                  install -y --no-install-recommends ffmpeg > /dev/null && break
             echo "apt: intento $i falló"
           done
+          if ! command -v ffmpeg >/dev/null; then
+            # respaldo desde PyPI (imageio-ffmpeg trae un ffmpeg estático; sin ffprobe: el QA se corre aparte)
+            pip install -q imageio-ffmpeg
+            sudo ln -sf "$(python -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" /usr/local/bin/ffmpeg
+          fi
+          ffmpeg -version | head -1
           command -v ffmpeg && ffmpeg -version | head -1
           pip install -q numpy scipy pillow bpy==5.2.0
       - name: Cuadros de los runs base
@@ -66,7 +72,7 @@ jobs:
           ffmpeg -y -v error -framerate 30 -i "$OUT/final/%05d.png" -i "$OUT/${EP%%-*}_mix.wav" \
             -vf "scale=1080:1920:flags=lanczos,format=yuv420p" -c:v libx264 -profile:v high -crf 18 -preset slow \
             -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT/$EP.mp4"
-          ffprobe -v error -show_entries format=duration:stream=width,height,r_frame_rate -of compact "$OUT/$EP.mp4"
+          ffprobe -v error -show_entries format=duration:stream=width,height,r_frame_rate -of compact "$OUT/$EP.mp4" || true
       - name: QA automático
         continue-on-error: true
         run: python tools/qa.py "_o/$EP.mp4" "_r" "_o/subs_log.json" | tee "_o/qa.txt"
