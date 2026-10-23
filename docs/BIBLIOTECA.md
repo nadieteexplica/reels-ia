@@ -31,7 +31,7 @@ Pedido de Tomás (23-oct-2026, 18:24): "limar la edición realista" con una base
   - **Reacciones de cuerpo (Mixamo no anima la cara):** ★ Clapping · ★ Cheering · ★ Waving · ★ Shocked · Disappointed · Angry · Defeated · Thumbs Up · Facepalm · Shivering · Wiping Sweat · Covering Ears · Yawn · Sneezing
   - **Física (caer, flotar, perder el equilibrio):** ★ Floating · ★ Falling Idle · ★ Falling · Hard Landing · ★ Jumping · Stumble · Slipping · ★ Getting Up · Hanging Idle · Treading Water · Swimming
   - **Esfuerzo:** Stretching · Push Up · Jumping Jacks · Out Of Breath
-- Van al Release privado `Personajes` de `nadieteexplica/assets` (como Pete). Nunca al repo público.
+- Van al Release privado `Personajes` de `nadieteexplica/assets` (como Pete), **personajes y movimientos juntos** (Tomás, 23-oct 19:15). Nunca al repo público. En `assets.txt`, `privados <patrón>` baja cualquiera de los dos y `pose <patrón>` busca primero en la carpeta `mixamo/` del repo privado y después en ese Release.
 - **Script para bajar todo Mixamo de una** (`gnuton/mixamo_anims_downloader`): existe y corre en el Chrome de Tomás con su sesión de Adobe. Es uso automatizado de su cuenta; los autores no se hacen responsables. Recomendación: no usarlo, lista a mano.
 
 ### Otros
