@@ -187,6 +187,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 (Se llenan con los datos de cada semana. Ver `docs/PUBLICADOS.md`.)
 - Antes de publicar, los aprendizajes vienen de videos ajenos: `docs/REFERENCIAS.md` §3. Se confirman o se descartan con nuestros datos.
 - **Lo que Tomás destacó (Ep. 4, 22-oct-2026, "anótalo"):** meterse **dentro** de lo que se explica (la ducha en corte, con la cortina que se vuelve transparente) y explicar todo **visualmente**: el remolino girando como rueda, la baja presión en el centro y el aire de afuera empujando, cada cosa dibujada en el momento en que la voz la nombra. Es la forma de explicar la mecánica a mitad de video que se busca en cada episodio de datos.
+- **El relato (Tomás, 23-oct-2026, sobre el Ep. 5):** le gustó el video, no el relato: lo más interesante (que una persona podría flotar en un imán enorme) no fue el centro y no enganchaba de una. Desde el Ep. 6 hay **torneo de guiones**: 4 guiones de verdad distintos + simulación rápida de espectadores, y gana el que más retiene y el más chistoso (lección 95).
 - **Errores de producción y sus reglas: `docs/LECCIONES.md`** (se lee antes de cada video). Del Ep. 1: interior "cabeza de vidrio" con un solo foco; manos con objetos → Kling partiendo con la mano libre; nunca mostrarle nada a Tomás sin revisión propia; horas solo con datos medidos; revisar cada 15 min lo que corre en paralelo.
 
 ## Documentos
