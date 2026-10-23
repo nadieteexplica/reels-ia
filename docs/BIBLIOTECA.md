@@ -34,6 +34,11 @@ Pedido de Tomás (23-oct-2026, 18:24): "limar la edición realista" con una base
 - Van al Release privado `Personajes` de `nadieteexplica/assets` (como Pete), **personajes y movimientos juntos** (Tomás, 23-oct 19:15). Nunca al repo público. En `assets.txt`, `privados <patrón>` baja cualquiera de los dos y `pose <patrón>` busca primero en la carpeta `mixamo/` del repo privado y después en ese Release.
 - **Script para bajar todo Mixamo de una** (`gnuton/mixamo_anims_downloader`): existe y corre en el Chrome de Tomás con su sesión de Adobe. Es uso automatizado de su cuenta; los autores no se hacen responsables. Recomendación: no usarlo, lista a mano.
 
+### Inventario del Release `Personajes` (revisado con `revisar-privados.yml`, 23-oct 19:20: 41 archivos, todos completos)
+- **Personajes (20):** Astra, Brian, Castle Guard (pesa 5 MB contra 30–140 MB del resto: puede venir sin texturas; se ve en la ficha), Chad, David, Dummy, Gas Mask, Joe, Lewis, Louise, Mannequin, Marta, Megan, Ortiz, Pete, Racer, Remy, Sophie, Steve, Suzie.
+- **Movimientos (20 + 1 pack):** Box Turn, Capoeira (+ Capoeira Pack.zip), Dancing Running Man, Defeated, Drunk Run Forward, Dying, Female Crouch Pose, Goalkeeper Body Block, Great Sword Walk, Jumping Down (3 variantes), Male Action Pose, Old Man Idle, Reaction (2 copias iguales), Right Block, Shoved Reaction With Spin, Sitting Laughing, Taunt. Más los 14 del Ep. 1 en la carpeta `mixamo/` del repo privado.
+- **Falta la base de uso diario** (caminar, quieto respirando, tomar, empujar, sentarse, caer, flotar…): se pide a Tomás cuando un guion la necesite.
+
 ### Otros
 - **Renderpeople (gratis):** 4 personas escaneadas de verdad, con esqueleto, uso comercial, con versión Blender (dato de 2017: confirmar que siguen gratis).
 - **Fab (Epic):** cada cierto tiempo regala packs por tiempo limitado que quedan en la cuenta para siempre. La licencia estándar de Fab permite usarlos en cualquier herramienta (Blender incluido) y en proyectos comerciales, sin dar crédito. Megascans ya no es gratis desde 2025.
