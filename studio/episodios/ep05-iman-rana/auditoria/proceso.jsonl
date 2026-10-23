@@ -3,3 +3,7 @@
 {"tipo": "trabajo", "id": "kling estilo 39889469315", "estado": "inicio", "n": 3, "ts": "2026-10-22T23:25:31-03:00"}
 {"tipo": "aviso", "que": "Tomás rechazó las imágenes de Canva (nada de nada): 'realismo' = estilo Zack D. Films (realista pero en un mundo animado). Se rehacen los cuadros de estilo en Blender; la prueba de Kling texto→video ya pedida se deja terminar y no se usa. Pregunta abierta: persona del imán (Mixamo With Skin vs. nueva)", "n": 4, "ts": "2026-10-22T23:26:47-03:00"}
 {"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 5, "ts": "2026-10-22T23:33:54-03:00"}
+{"tipo": "trabajo", "id": "kling estilo 39889469315", "estado": "fin", "n": 6, "ts": "2026-10-22T23:48:51-03:00"}
+{"tipo": "gasto", "servicio": "kling", "monto": 0.0, "nota": "prueba texto→video rechazada por la API (prompt vacío en el formato de texto); 0 unidades; ya no se usa (Tomás no quiere fotorrealismo IA)", "n": 7, "ts": "2026-10-22T23:48:51-03:00"}
+{"tipo": "aviso", "que": "23:46 Tomás subió 6 personajes de Mixamo al Release privado Personajes (assets); para el Ep. 5 usar PETE", "n": 8, "ts": "2026-10-22T23:48:51-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 9, "ts": "2026-10-22T23:48:54-03:00"}
