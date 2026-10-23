@@ -451,3 +451,57 @@ def flecha(coll, nombre, color, largo=0.35, grosor=0.03, curva=False, radio=0.18
     cuerpo.visible_shadow = False
     punta.visible_shadow = False
     return cuerpo
+
+
+# ---------------------------------------------------------------- mochila (plano 29: el brillo verde sale del cierre)
+def mochila(coll, nombre="Mochila"):
+    raiz = bpy.data.objects.new(nombre, None)
+    coll.objects.link(raiz)
+    m_tela = pintura("MochilaTela", (0.05, 0.14, 0.40), 0.25, escala=30)
+    m_tela.node_tree.nodes["Principled BSDF"].inputs["Sheen Weight"].default_value = 0.4
+    m_nar = pintura("MochilaNaranja", (0.95, 0.35, 0.02), 0.15)
+    cuerpo = blob(nombre + "_cuerpo", [((0, 0, 0.24), (0.17, 0.10, 0.22), (0, 0, 0)), ((0, 0, 0.40), (0.15, 0.09, 0.08), (0, 0, 0)),
+                                       ((0, 0, 0.08), (0.17, 0.10, 0.07), (0, 0, 0))], coll, voxel=0.008, suave=8)
+    cuerpo.data.materials.append(m_tela)
+    bolsillo = blob(nombre + "_bolsillo", [((0, -0.10, 0.16), (0.12, 0.04, 0.09), (0, 0, 0))], coll, voxel=0.008, suave=6)
+    bolsillo.data.materials.append(m_tela)
+    m_luz = bpy.data.materials.new("MochilaLuz")
+    m_luz.use_nodes = True
+    bl = m_luz.node_tree.nodes["Principled BSDF"]
+    bl.inputs["Base Color"].default_value = (0.1, 0.9, 0.3, 1)
+    bl.inputs["Emission Color"].default_value = (0.15, 1.0, 0.35, 1)
+    bl.inputs["Emission Strength"].default_value = 0.0
+    cierre = P.tube(nombre + "_cierre", [(0.15 * math.cos(a), -0.02 + 0.08 * math.sin(a) * 0.4, 0.42 + 0.04 * math.sin(a)) for a in
+                                         [math.radians(x) for x in range(-170, 171, 20)]], 0.012, coll, m=m_luz, res=6)
+    tirador = P.prim("cube", nombre + "_tirador", coll, m_nar)
+    tirador.scale = (0.02, 0.012, 0.05)
+    tirador.location = (0.13, -0.06, 0.40)
+    tiras = [P.tube(f"{nombre}_tira{s}", [(s * 0.09, 0.09, 0.42), (s * 0.12, 0.16, 0.25), (s * 0.10, 0.10, 0.05)], 0.018, coll, m=m_nar, res=8)
+             for s in (-1, 1)]
+    L = bpy.data.lights.new(nombre + "_luz", "POINT")
+    L.energy, L.color, L.shadow_soft_size = 0.0, (0.2, 1.0, 0.4), 0.1
+    luz = bpy.data.objects.new(nombre + "_luz", L)
+    coll.objects.link(luz)
+    luz.location = (0, -0.05, 0.47)
+    for o in [cuerpo, bolsillo, cierre, tirador, luz] + tiras:
+        o.parent = raiz
+    return raiz, m_luz, L
+
+
+def niebla(coll, nombre="Niebla", z_top=-0.05, densidad=0.06):
+    """Agua por dentro: un volumen azul bajo la superficie (planos bajo el agua), sin simular nada."""
+    c = P.prim("cube", nombre, coll, None)
+    c.scale = (220, 220, 30)
+    c.location = (0, 0, z_top - 15)
+    m = bpy.data.materials.new(nombre + "Mat")
+    m.use_nodes = True
+    nt = m.node_tree
+    nt.nodes.remove(nt.nodes["Principled BSDF"])
+    vol = nt.nodes.new("ShaderNodeVolumePrincipled")
+    vol.inputs["Color"].default_value = (0.08, 0.45, 0.62, 1)
+    vol.inputs["Density"].default_value = densidad
+    vol.inputs["Absorption Color"].default_value = (0.05, 0.25, 0.45, 1)
+    nt.links.new(vol.outputs[0], nt.nodes["Material Output"].inputs["Volume"])
+    c.data.materials.append(m)
+    c.visible_shadow = False
+    return c

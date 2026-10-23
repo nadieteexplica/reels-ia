@@ -129,7 +129,7 @@ neck = J["neck"]
 hem_z = J["pelvis"][2] - 0.035
 sleeve_x = B["LeftHand"].head_local.x - 0.012
 collar = (z > neck[2] - 0.055) & (np.hypot(x, (y - neck[1]) * 1.1) < 0.078 + np.clip((y - neck[1]) * 0.6, -0.01, 0.02))
-head = (z > neck[2] - 0.035)
+head = (z > neck[2] - 0.005) & (ax < 0.085)
 shirt_r = np.where((z >= hem_z) & (ax <= sleeve_x) & ~collar & ~head)[0]
 PEL = J["pelvis"][2]
 belly = np.clip(1 - np.abs(z - (PEL + 0.06)) / 0.14, 0, 1)

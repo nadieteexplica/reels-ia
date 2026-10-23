@@ -11,3 +11,5 @@
 {"tipo": "trabajo", "id": "auditor 3-storyboard r1", "estado": "inicio", "n": 11, "ts": "2026-10-22T22:33:02-03:00"}
 {"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 12, "ts": "2026-10-22T22:33:16-03:00"}
 {"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 13, "ts": "2026-10-22T22:48:16-03:00"}
+{"tipo": "trabajo", "id": "auditor 3-storyboard r1", "estado": "fin", "n": 14, "ts": "2026-10-22T22:55:46-03:00"}
+{"tipo": "aviso", "que": "22:52 Tomás: no cambiar nada del proyecto (es una publicidad, fuera del canal). Se devolvió tools/auditor/checks.py, el aviso pasó a la rama 'rhein' y se sacó de main (commit de limpieza); al terminar se borran la rama y las prerelease rhein01-*", "n": 15, "ts": "2026-10-22T22:55:46-03:00"}

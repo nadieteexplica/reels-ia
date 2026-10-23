@@ -28,7 +28,7 @@ FPS = 30
 Z_BOTE = 0.18                 # el bote flota más alto: la cubierta queda sobre el agua
 Z_PISO = -0.19                # piso de la cubierta (en coordenadas del bote)
 BASE_GRUA = (0.0, 1.25, Z_PISO + 0.02)
-METRAJE = (30, 31, 32, 33, 34, 35, 36, 38)
+METRAJE = (30, 31, 32, 33, 34, 35, 38)
 
 
 def TW(prefijo, desde=0.0):
@@ -188,8 +188,13 @@ def _e1(sc, a, b, k):
         h.parent = pj["gorro"]
         h.location = (0.0, 0.02, 0.10)
         h.rotation_euler = (0.2, 0.1, 0.9)
+    if k in (19, 23):
+        U.niebla(sc.collection)
+    flecha_roja = None
+    if k == 14:
+        flecha_roja = U.flecha(sc.collection, "TiraAgua", (1.0, 0.12, 0.05), largo=1.2, grosor=0.035)
     fill = None
-    if pj and k in (17, 20, 22, 24, 28, 37):
+    if pj and k in (2, 6, 8, 10, 14, 15, 17, 20, 22, 24, 26, 27, 28, 37):
         fill = True
     mojado = k in (27, 28, 37)
     if mojado and "Impermeable" in bpy.data.materials:
@@ -279,6 +284,11 @@ def _e1(sc, a, b, k):
             tiron = math.sin(math.pi * x) * 0.35
             bote_mece(S, t, extra_y=-tiron, extra_pitch=3 * math.sin(math.pi * x))
             colgar_racimo(S, t, balanceo=14)
+            tip = punta_pluma(S)                       # la flecha roja sale del agua y tira del cable
+            r0 = S["racimo"].location
+            flecha_roja.location = (r0.x, r0.y - 0.6, -0.4 + 0.6 * sale(lin(f, a, a + 6)))
+            flecha_roja.rotation_euler = (0, math.radians(90), 0)
+            flecha_roja.scale = (1, 1, 1)
             caida = sale(lin(f, a + 8, a + 16))
             N.pose(pj, f, expr={"susto": 1}, brazoL=N.brazo("arriba", caida), brazoR=N.brazo("arriba", caida), sentado=caida,
                    parpadeo=0)
@@ -505,6 +515,11 @@ def _e3(sc, a, b, k):
     cam = E.camara(sc, lens=50, fstop=2.0)
     esfera = None
     if k == 29:
+        S["mochila"], S["m_luz"], S["luz_m"] = U.mochila(sc.collection)
+        S["mochila"].parent = S["bote"]
+        S["mochila"].location = (-0.35, -0.95, Z_PISO)
+        S["mochila"].rotation_euler = (0, 0, math.radians(20))
+    if k == 29:
         import props as P
         m = bpy.data.materials.new("Energia")
         m.use_nodes = True
@@ -544,13 +559,21 @@ def _e3(sc, a, b, k):
             d = 0.13 * (1 - sale(u))
             U.radar_estado(barrido * 1.6, punto=(d * 0.8, d * 0.6), tam=0.012 + 0.008 * u, brillo=1.0)
             E.empujar(cam, f, a, b, P0 + normal * 0.55 + Vector((0.05, 0, 0.08)), P0, cuanto=0.15, lens=55)
-        elif k == 29:   # brilla y explota en energía verde
-            U.radar_estado(barrido * 3, punto=(0, 0), tam=0.02 + 0.13 * entra(u), brillo=1 + 25 * entra(u))
-            r = 0.02 + 3.5 * entra(lin(f, a + 10, b))
-            esfera.location = P0 + normal * 0.02
+        elif k == 29:   # la mochila brilla en verde por el cierre y explota en energía verde
+            U.radar_estado(barrido * 2, brillo=1.0)
+            bpy.context.view_layer.update()
+            Mm = S["mochila"].matrix_world
+            C = Mm @ Vector((0, -0.03, 0.43))
+            x = entra(u)
+            S["m_luz"].node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 2 + 60 * x
+            S["luz_m"].energy = 5 + 400 * x
+            S["mochila"].scale = (1 + 0.06 * math.sin(tl * 40) * x, 1 + 0.06 * math.sin(tl * 37) * x, 1 + 0.08 * x)
+            r = 0.02 + 3.0 * entra(lin(f, a + 26, b))
+            esfera.location = C
             esfera.scale = (r, r, r)
+            esfera.hide_render = r < 0.03
             bpy.data.materials["Energia"].node_tree.nodes["E"].inputs["Strength"].default_value = 6 + 30 * u
-            E.empujar(cam, f, a, b, P0 + normal * 0.6 + Vector((0.04, 0, 0.06)), P0, cuanto=0.45, lens=50, curva=entra)
+            E.empujar(cam, f, a, b, C + Vector((0.25, -0.85, 0.25)), C + Vector((0, 0, -0.08)), cuanto=0.35, lens=45, curva=entra)
         M.olas_t(S["mar"], t)
         bpy.context.view_layer.update()
         return {}

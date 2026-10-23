@@ -204,9 +204,9 @@ def mat_mosa():
     m.use_nodes = True
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
-    b.inputs["Roughness"].default_value = 0.38
-    b.inputs["Coat Weight"].default_value = 0.4
-    b.inputs["Coat Roughness"].default_value = 0.15
+    b.inputs["Roughness"].default_value = 0.46
+    b.inputs["Coat Weight"].default_value = 0.25          # piel mojada, pero no de plástico
+    b.inputs["Coat Roughness"].default_value = 0.2
     b.inputs["Subsurface Weight"].default_value = 0.05
     tc = nt.nodes.new("ShaderNodeTexCoord")
     sepn = nt.nodes.new("ShaderNodeSeparateXYZ")
@@ -217,8 +217,8 @@ def mat_mosa():
     nt.links.new(sepn.outputs["Z"], guata.inputs["Value"])
     base = nt.nodes.new("ShaderNodeMix")
     base.data_type = "RGBA"
-    base.inputs["A"].default_value = (0.03, 0.16, 0.24, 1)     # lomo azul petróleo
-    base.inputs["B"].default_value = (0.86, 0.80, 0.64, 1)     # guata crema
+    base.inputs["A"].default_value = (0.025, 0.075, 0.095, 1)  # lomo gris petróleo oscuro
+    base.inputs["B"].default_value = (0.62, 0.58, 0.48, 1)     # guata hueso
     nt.links.new(guata.outputs["Result"], base.inputs["Factor"])
     # franjas oscuras suaves en el lomo
     sep = nt.nodes.new("ShaderNodeSeparateXYZ")
@@ -253,17 +253,17 @@ def mat_mosa():
     nt.links.new(fra.outputs["Result"], b.inputs["Base Color"])
     # escamas: bump de voronoi
     vor = nt.nodes.new("ShaderNodeTexVoronoi")
-    vor.inputs["Scale"].default_value = 7.0
+    vor.inputs["Scale"].default_value = 26.0              # escamas chicas
     nt.links.new(tc.outputs["Object"], vor.inputs["Vector"])
     bump = nt.nodes.new("ShaderNodeBump")
-    bump.inputs["Strength"].default_value = 0.12
-    bump.inputs["Distance"].default_value = 0.02
+    bump.inputs["Strength"].default_value = 0.35
+    bump.inputs["Distance"].default_value = 0.01
     nt.links.new(vor.outputs["Distance"], bump.inputs["Height"])
     nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
     return m
 
 
-def _dientes(nombre, puntos, coll, m, hacia, largo=0.26, r=0.075):
+def _dientes(nombre, puntos, coll, m, hacia, largo=0.32, r=0.075):
     obs = []
     for i, p in enumerate(puntos):
         k = 0.75 + 0.25 * math.sin(i * 1.7)
@@ -355,9 +355,10 @@ def mosasaurio(coll, nombre="Mosa"):
     # ojos grandes amarillos con párpado entreabierto
     ojos = []
     for s, sx in (("L", 1), ("R", -1)):
-        o = ojo(f"{nombre}_ojo{s}", (sx * 0.56, -4.55, 0.40), 0.22, (sx * 3.0, -7.0, 0.7), coll, (0.98, 0.70, 0.02), iris_frac=0.75, pupila_frac=0.28)
-        pp = parpado(f"{nombre}_parpado{s}", o, 0.22, coll, m)
-        pp.rotation_euler = (math.radians(-72), 0, 0)
+        o = ojo(f"{nombre}_ojo{s}", (sx * 0.64, -4.45, 0.27), 0.12, (sx * 3.0, -6.0, 0.5), coll, (0.70, 0.62, 0.08), iris_frac=0.9, pupila_frac=0.22)
+        o.scale = (1.0, 1.0, 1.0)
+        pp = parpado(f"{nombre}_parpado{s}", o, 0.12, coll, m)
+        pp.rotation_euler = (math.radians(-62), 0, 0)
         ojos.append(o)
     for o in [cuerpo, aleta_c, paladar] + aletas + sup + ojos:
         colgar(o, raiz)

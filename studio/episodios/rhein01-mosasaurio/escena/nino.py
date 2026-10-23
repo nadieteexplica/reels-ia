@@ -48,11 +48,11 @@ def _gorro(rig, cuerpo):
     cab = co[(co[:, 2] > top - 0.055)]
     cx, cy = float(np.median(cab[:, 0])), float(np.median(cab[:, 1]))
     r = float(np.percentile(np.hypot(cab[:, 0] - cx, cab[:, 1] - cy), 99)) + 0.016
-    z0 = top - 0.050
+    z0 = top - 0.036
     bm = bmesh.new()
     n = 72
     perfil = [(r * 1.0, z0 - 0.004), (r * 1.0, z0 + 0.025), (r * 0.95, z0 + 0.052), (r * 0.80, z0 + 0.072), (r * 0.45, z0 + 0.084), (0.0, z0 + 0.087)]
-    ala = [(r * 1.0, z0 - 0.002), (r * 1.32, z0 - 0.020), (r * 1.46, z0 - 0.034)]
+    ala = [(r * 1.0, z0 - 0.002), (r * 1.20, z0 - 0.014), (r * 1.30, z0 - 0.026)]
     rings = []
     for (rr, zz) in list(reversed(ala))[:-1] + perfil:
         rings.append([bm.verts.new((cx + rr * math.cos(2 * math.pi * k / n), cy + rr * 1.06 * math.sin(2 * math.pi * k / n), zz)) for k in range(n)])
@@ -80,7 +80,7 @@ def _gorro(rig, cuerpo):
     nt.links.new(bp.outputs["Normal"], nt.nodes["Principled BSDF"].inputs["Normal"])
     me.materials.append(m)
     # costura del ala (una línea más oscura)
-    ob.rotation_euler = (math.radians(-10), 0, 0)            # inclinado hacia atrás: no tapa los ojos
+    ob.rotation_euler = (math.radians(-15), 0, 0)            # inclinado hacia atrás: no tapa los ojos
     ob.location = (0, 0.004, 0.0)
     _pegar(ob, rig, "Head")
     return ob
@@ -96,9 +96,17 @@ def cargar(sc, x=0.0, y=0.0, z=0.0, rot_z=0.0, sin_pelo=False):
     cuerpo = bpy.data.objects["Cuerpo"]
     piel = bpy.data.materials.get("Piel")
     if piel:
-        b = piel.node_tree.nodes["Principled BSDF"]
+        nt = piel.node_tree
+        b = nt.nodes["Principled BSDF"]
         b.inputs["Subsurface Weight"].default_value = 0.15
-        b.inputs["Roughness"].default_value = 0.48
+        b.inputs["Roughness"].default_value = 0.46
+        tex = next((n for n in nt.nodes if n.type == "TEX_IMAGE"), None)
+        if tex:                     # piel más viva (sin verse gris bajo el cielo)
+            hsv = nt.nodes.new("ShaderNodeHueSaturation")
+            hsv.inputs["Saturation"].default_value = 1.25
+            hsv.inputs["Value"].default_value = 1.05
+            nt.links.new(tex.outputs["Color"], hsv.inputs["Color"])
+            nt.links.new(hsv.outputs["Color"], b.inputs["Base Color"])
     imp = bpy.data.materials.get("Impermeable")
     if imp:
         b = imp.node_tree.nodes["Principled BSDF"]

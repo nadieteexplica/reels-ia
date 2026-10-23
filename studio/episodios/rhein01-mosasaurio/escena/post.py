@@ -33,9 +33,9 @@ DORADO = (255, 170, 40)            # los pollos
 VERDE_R = (60, 235, 110)           # el radar y la explosión (el verde de la portada)
 ROJO = (236, 60, 48)
 CLAVE = {"POLLOS": DORADO, "RADAR": VERDE_R, "MICRO": (255, 255, 255)}
-METRAJE_PL = (30, 31, 32, 33, 34, 35, 36, 38)
+METRAJE_PL = (30, 31, 32, 33, 34, 35, 38)
 # plano → (segundo de inicio en el video limpio de Rhein); el plano 38 usa la placa del cierre (cierre_rhein.png)
-FUENTE = {30: 0.60, 31: 3.75, 32: 12.75, 33: 11.30, 34: 13.95, 35: 15.60, 36: 4.95}
+FUENTE = {30: 9.40, 31: 3.65, 32: 12.75, 33: 11.30, 34: 0.60, 35: 15.40}
 DIR_MET = os.environ.get("METRAJE")
 BOX = (120, 888, 1000, 1250)
 META = {}
@@ -184,6 +184,9 @@ for g in grupos:
         g2.append(g)
 grupos = g2
 SIN_SUBS = set()
+for _k in (32, 38):                     # planos de marca: el texto grande es la marca (silencio del título)
+    _a, _b = E.FR(_k)
+    SIN_SUBS.update(range(_a, _b))
 SUB_LOG = []
 
 
@@ -305,7 +308,7 @@ def contador(im, f, k, hasta=200, texto="POLLOS"):
     a, b = FR[k]
     x = min(1.0, max(0.0, (f - a - 2) / max(1, (b - a) * 0.7)))
     n = int(round(hasta * (1 - (1 - x) ** 2)))
-    pildora(im, f"{n} {texto}", 540, 380, fondo=DORADO, tinta=(40, 20, 0), tam=72, s=pop(edad(f, k) - 0.05), tipo="pildora")
+    pildora(im, f"{n} {texto}", 370, 370, fondo=DORADO, tinta=(40, 20, 0), tam=64, s=pop(edad(f, k) - 0.05), tipo="pildora")
 
 
 def regla(im, f, k):
