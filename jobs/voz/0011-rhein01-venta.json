@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "id": "rhein01-venta",
+ "voice_settings": {
+  "stability": 0.28,
+  "similarity_boost": 0.8,
+  "style": 0.6,
+  "use_speaker_boost": true
+ },
+ "text": "¿Muy difícil? ¡Hay uno que cabe en tu mochila! ¡Llegaron los cuadernos Yurásic Uorld de Rain! Con el Ti Rex, el mosasaurio y el radar en sus portadas. ¡Y no necesitas ni un pollo! ¡Rain, siempre contigo!"
+}
