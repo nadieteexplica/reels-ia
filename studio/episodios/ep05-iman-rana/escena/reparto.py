@@ -9,7 +9,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import planos_ep05 as PL
 
-PESO = {"E1": 9, "E2": 16, "E3": 8, "E4": 9, "E5": 9}
+# medido en el animatic del 23-oct (run 39932351715, 540x960/8): E1 de cerca (vidrio + desenfoque) ~24 s/cuadro, E1 abierto
+# (plano 3) ~10, E2 ~26, E3 ~15, E4 ~19, E5 ~17
+PESO = {"E1": 24, "E2": 26, "E3": 15, "E4": 19, "E5": 17}
+PESO_PLANO = {3: 10}
 ARMADO = 90
 
 
@@ -18,7 +21,8 @@ def costo(pid, pz, muestras):
     n = b - a
     if muestras:
         n = min(n, muestras)
-    w = PESO.get(PL.ESCENA.get(int(pid.split("@")[0]), "E1"), 12)
+    k = int(pid.split("@")[0])
+    w = PESO_PLANO.get(k) or PESO.get(PL.ESCENA.get(k, "E1"), 12)
     return ARMADO + n * w
 
 

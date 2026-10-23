@@ -75,3 +75,9 @@
 {"tipo": "trabajo", "id": "sesion ep05 manana", "estado": "inicio", "n": 75, "ts": "2026-10-23T06:24:45-03:00"}
 {"tipo": "trabajo", "id": "auditor 4-cuadros r3", "estado": "inicio", "n": 76, "ts": "2026-10-23T06:24:51-03:00"}
 {"tipo": "trabajo", "id": "auditor 4-cuadros r3", "estado": "fin", "n": 77, "ts": "2026-10-23T06:28:06-03:00"}
+{"tipo": "aviso", "que": "puerta 4 r3: realismo 8 (todas las notas 8), 1 bloqueante B1 nuevo (pluma de vapor flotando sobre la torre, causado por el arreglo de r2). Se arregla (base de la pluma dentro de la torre, verificado en recorte a resolución completa) y se sigue: la regla de Tomás (realismo ≥ 8) se cumple y el bloqueante lo revisa la puerta 6 en los planos 15–17", "n": 78, "ts": "2026-10-23T06:30:31-03:00"}
+{"tipo": "trabajo", "que": "animatic 540x960/8, 15 partes", "id": "animatic 39932351715", "estado": "abierto", "n": 79, "ts": "2026-10-23T06:30:31-03:00"}
+{"tipo": "chequeo", "id": "animatic 39932351715", "estado": "vivo (vigilante) · in_progress/- · 2/16 trabajos", "n": 80, "ts": "2026-10-23T06:45:37-03:00"}
+{"tipo": "chequeo", "id": "animatic 39932351715", "estado": "vivo (vigilante) · in_progress/- · 10/16 trabajos", "n": 81, "ts": "2026-10-23T07:00:38-03:00"}
+{"tipo": "chequeo", "id": "animatic 39932351715", "estado": "vivo (vigilante) · in_progress/- · 16/17 trabajos", "n": 82, "ts": "2026-10-23T07:15:40-03:00"}
+{"tipo": "chequeo", "id": "animatic 39932351715", "estado": "vivo (vigilante) · completed/success · 17/17 trabajos", "n": 83, "ts": "2026-10-23T07:30:42-03:00"}

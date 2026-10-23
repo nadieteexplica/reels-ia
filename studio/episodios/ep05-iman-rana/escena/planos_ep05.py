@@ -67,7 +67,9 @@ def armar_E1(sc, fresa=False):
         oculto(rana)
         fr = fresa_obj(sc)
         fr.location = (0, 0, RANA_Z)
-    E.luz_area(sc, "Rebote", (-0.22, -0.32, BOCA + 0.12), (0, 0, RANA_Z), 3.5, (1.0, 0.88, 0.78), 0.3)
+    reb = E.luz_area(sc, "Rebote", (-0.22, -0.32, BOCA + 0.12), (0, 0, RANA_Z), 3.5, (1.0, 0.88, 0.78), 0.3)
+    if reb is not None:
+        reb.visible_glossy = False            # su reflejo en el vidrio se veía como una mancha clara junto a la rana (plano 8)
     cam = E.camara(sc, (0.021, -R_CERCA, RANA_Z + ALTO_CAM), (0, 0, RANA_Z), lente=100, fstop=8.0)
     return {"rana": rana, "tubo": tubo, "fresa": fr, "cam": cam}
 
@@ -139,7 +141,8 @@ def p2(sc, a, b):
         rana_flota(rana, f)
         p0 = orbita(c, R_CERCA, 20, ALTO_CAM)
         p1_ = Vector((0.03, -0.11, RANA_Z + 0.30))
-        mirar(cam, p0.lerp(p1_, x), c + Vector((0, 0, -0.008 * (1 - x))), lente=100 - 25 * x, foco=c + CABEZA * (1 - x))
+        off = Vector((0, 0, -0.008)).lerp(Vector((0, -0.009, -0.004)), x)     # la rana sobre la franja de subtítulos todo el plano
+        mirar(cam, p0.lerp(p1_, x), c + off, lente=100, foco=c + CABEZA * (1 - x))
         return {"rana": pantalla(sc, cam, rana.location)}
     return {"actualizar": act}
 
@@ -167,10 +170,10 @@ def p4(sc, a, b):
         x = lin(f, a, b - 1) ** 1.6
         rana_flota(rana, f)
         c = Vector((0, 0, RANA_Z + 0.003))
-        p0 = orbita(Vector((0, 0, RANA_Z)), 0.36, -10, 0.006)
-        p1_ = Vector((0.004, -0.0185, RANA_Z + 0.004))           # se frena 2 mm antes del vidrio (radio 15,8 mm)
+        p0 = orbita(Vector((0, 0, RANA_Z)), R_CERCA, -10, ALTO_CAM)
+        p1_ = Vector((0.004, -0.0185, RANA_Z + 0.0095))          # se frena 2 mm antes del vidrio (radio 15,8 mm), mirando un poco hacia abajo
         p = p0.lerp(p1_, x)
-        mirar(cam, p, c, lente=100, foco=c)
+        mirar(cam, p, c + Vector((0, 0, -0.008 * (1 - x))), lente=100, foco=c)
         cam.data.dof.aperture_fstop = 5.6 + 6 * x
         return {}
     return {"actualizar": act}
@@ -187,8 +190,9 @@ def p8(sc, a, b):
         sube = 0.004 * suave(lin(tf(f), t_gana - 0.6, t_gana + 0.6))
         rana_flota(rana, f, extra_z=sube)
         # la rana a la izquierda del centro: a la derecha va el par de flechas (post)
-        p = orbita(c, 0.40 - 0.03 * x, -32, 0.006)
-        mirar(cam, p, c + Vector((0.009, 0, -0.016)), foco=c)
+        r = 0.40 - 0.03 * x
+        p = orbita(c, r, 12, ALTO_CAM * r / R_CERCA)             # mismo ángulo que el cuadro A: de fondo la sal a contraluz
+        mirar(cam, p, c + Vector((0.009, 0, -0.016)), foco=c + CABEZA)
         return {"rana": pantalla(sc, cam, rana.location), "lado": pantalla(sc, cam, rana.location + Vector((0.016, 0.004, 0)))}
     return {"actualizar": act}
 
@@ -202,7 +206,7 @@ def p9(sc, a, b):
         x = suave(lin(f, a, b - 1))
         fr.location = (0, 0, RANA_Z + 0.0006 * math.sin(f / 30 * 2.1))
         fr.rotation_euler = (math.radians(8), math.radians(-5), math.radians(70 * x))
-        p = orbita(c, 0.36, 5 - 20 * x, 0.004)
+        p = orbita(c, 0.36, 5 - 20 * x, ALTO_CAM * 0.36 / R_CERCA)
         mirar(cam, p, c + Vector((0, 0, -0.016)), foco=c)
         return {}
     return {"actualizar": act}
@@ -474,8 +478,8 @@ def p10(sc, a, b):
         mira = suave(lin(tf(f), T[10][0] + 0.7, T[10][0] + 1.2))
         pose_pete(sc, P, f, cabeza=(-6 * mira, -28 * mira))
         abajo = suave(lin(tf(f), T[10][0] + 1.5, T[10][1] - 0.2))
-        p = Vector((0.6, -4.6, 1.35)).lerp(Vector((0.5, -4.0, 0.75)), abajo)
-        tgt = Vector((0.35, 0, 1.05)).lerp(Vector((0.3, 0, 0.35)), abajo)
+        p = Vector((0.6, -4.6, 1.35)).lerp(Vector((0.5, -4.1, 0.85)), abajo)
+        tgt = Vector((0.35, 0, 1.05)).lerp(Vector((0.3, 0, 0.5)), abajo)     # baja a los pies sin sacar la cara del cuadro
         mirar(cam, p, tgt, foco=Vector((0.2, 0, 0.9)))
         return {"pies": pantalla(sc, cam, (0, 0, 0.05))}
     return {"actualizar": act}
@@ -573,7 +577,7 @@ def p12(sc, a, b):
         x = suave(lin(f, a, b - 1))
         sube = suave(lin(tf(f), T[12][0] + 1.1, T[12][0] + 1.7))
         pose_pete(sc, P, f, cabeza=(-30 * sube, 0))
-        mirar(cam, Vector((6.0, -17.5, 1.8)).lerp(Vector((5.0, -14.5, 1.75)), x), Vector((-1.2, 0, 1.4)), lente=35, foco=PETE_E4 + Vector((0, 0, 1.6)))
+        mirar(cam, Vector((6.0, -17.5, 1.8)).lerp(Vector((5.0, -14.5, 1.75)), x), Vector((-2.0, -0.5, 1.5)), lente=35, foco=PETE_E4 + Vector((0, 0, 1.6)))
         return {}
     return {"actualizar": act}
 
@@ -596,8 +600,10 @@ def p13(sc, a, b):
         estado_iman(S, t, lambda o: lleg.get(round(o["z0"], 2), t1) if o in cuerpo else 999)
         pose_pete(sc, P, f, cabeza=(-25, 0))
         x = suave(lin(f, a, b - 1))
-        p = orbita(Vector((0, 0, 0)), 18.5, -14 + 12 * x, 2.6)     # de espaldas a la central: el vapor no sale "del imán" (puerta 4 r1)
-        mirar(cam, p, Vector((0, 0, 2.2)), lente=35, foco=Vector((0, 0, 2.0)))
+        # de espaldas a la central (el vapor no sale "del imán", puerta 4 r1); cámara a la altura de los ojos: Pete queda
+        # adentro del cuadro (~7° a la izquierda) y con la cara sobre la franja de subtítulos
+        p = orbita(Vector((0, 0, 0)), 18.5, -40 + 10 * x, 1.75)
+        mirar(cam, p, Vector((0, 0, 1.6)), lente=35, foco=Vector((0, 0, 2.0)))
         return {}
     return {"actualizar": act}
 
@@ -630,20 +636,25 @@ def p14(sc, a, b):
 
 
 def p15(sc, a, b):
+    # "…cerca de un gigavatio: un reactor nuclear entero": desde atrás del imán, los cables se encienden y la cámara sigue
+    # su recorrido por el salar hasta la central en el horizonte (antes la cámara quedaba delante y el imán tapaba la central)
     S = armar_E4(sc)
     cam, P = S["cam"], S["P"]
     oculto(P["arm"])
     estado_iman(S, 0, lambda o: None)
     t_gw = TW("gigavatio", 32.0)
+    t_re = TW("reactor", 34.0)
+    t0 = T[15][0]
 
     def act(f):
         t = tf(f)
-        x = suave(lin(f, a, b - 1))
-        cables(S, sale(lin(t, T[15][0], T[15][0] + 1.6)), brillo=2.5 * suave(lin(t, t_gw - 0.1, t_gw + 0.5)) * (0.75 + 0.25 * math.sin(t * 9)))
-        # paneo: del imán hacia la central en el horizonte, siguiendo los cables
-        d = (PLANTA - Vector((0, 0, 0))).normalized()
-        tgt = Vector((0, 0, 1.8)).lerp(Vector((0, 0, 1.0)) + d * 60, sale(x))
-        mirar(cam, Vector((5.5, -12.0, 2.2)).lerp(Vector((4.0, -8.5, 2.0)), x), tgt, lente=35, foco=tgt)
+        cables(S, sale(lin(t, t0, t0 + 1.2)), brillo=2.5 * suave(lin(t, t_gw - 0.1, t_gw + 0.5)) * (0.75 + 0.25 * math.sin(t * 9)))
+        pan = suave(lin(t, t0 + 0.4, t_re + 0.2))
+        pos = Vector((4.0, -2.0, 6.0)).lerp(Vector((3.0, 1.0, 4.6)), suave(lin(f, a, b - 1)))   # alta, sobre el imán
+        d0 = (Vector((-3.0, 8.0, 0.0)) - pos).normalized()           # parte mirando la tapa y los cables que salen por atrás
+        d1 = (PLANTA + Vector((0, 0, 50)) - pos).normalized()
+        tgt = pos + d0.slerp(d1, pan) * 10.0                     # gira la mirada (no el punto): paneo parejo
+        mirar(cam, pos, tgt, lente=35, foco=PLANTA if pan > 0.5 else Vector((-1.0, 3.0, 1.0)))
         cam.data.dof.aperture_fstop = 11
         return {"central": pantalla(sc, cam, PLANTA + Vector((0, 0, 80)))}
     return {"actualizar": act}
@@ -702,7 +713,7 @@ PIEZAS = {}
 for k in T:
     a, b = FR(k)
     n = b - a
-    partes = 2 if n > 75 else 1
+    partes = 2 if n > int(os.environ.get("PARTIR", 45)) else 1      # el final parte desde 45 cuadros (máquinas más parejas)
     if partes == 1:
         PIEZAS[str(k)] = {"a": a, "b": b, "fn": FUN[k], "base": str(k)}
     else:
