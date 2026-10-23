@@ -1,0 +1,103 @@
+{
+  "espectadores": [
+    {
+      "perfil": "Camila",
+      "videos": {
+        "X": {
+          "desliza": 30,
+          "por_que_desliza_o_sigue": "Los primeros 4 s casi la pierden: plano quieto del 4x4 abajo y una pregunta larga sobre 'tu auto' (no maneja). La salva lo raro del elenco (caballero con armadura y tipo con máscara antigás en un 4x4) y el inclinómetro, que sin sonido igual se lee como cuenta regresiva. Se queda a ver qué pasa en 27°, ve el CLAC visual y entra al pilar transparente (como estudiante de diseño, el corte es lo más lindo). Cuando corta al doctor cerrando los ojos (28-33 s) ya no pasa nada nuevo y el subtítulo habla de que el auto se da vuelta: desliza.",
+          "risas": [
+            {"s": 12, "que": "la gota de sudor corriendo por el vidrio de la máscara antigás"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "nadie", "por_que": "Es lindo de mirar pero no hay remate ni nada que le sirva a ella o a una amiga."},
+          "no_entendio": "Qué pasa entre 12° y 27° (el video salta de 'libre' a 'se traba' y no dice qué hay en el medio) y si 27° es mucho o poco en la vida real.",
+          "le_contaria": "Que adentro del cinturón hay una bolita de acero en una tacita que lo traba si el auto se inclina mucho.",
+          "nota": 6
+        },
+        "W": {
+          "desliza": "final",
+          "por_que_desliza_o_sigue": "Arranca con acción visible sin sonido: el caballero con armadura se tira por las papas y el cinturón lo rebota. Es algo que le pasó a todos y se entiende sólo con la imagen. El subtítulo '¿Cómo sabe?' la mete al pilar transparente, que le gusta visualmente. Las papas son la meta del caballero desde el segundo 0, así que aguanta la parte de explicación para ver si llega. La mímica lentísima del de la máscara la mantiene y el remate del doctor se entiende perfecto sin audio.",
+          "risas": [
+            {"s": 2, "que": "el caballero con armadura rebotando contra el asiento por unas papas (sonrisa)"},
+            {"s": 30, "que": "el de la máscara antigás haciendo la mímica en cámara lenta"},
+            {"s": 36, "que": "la bolsa vacía y el doctor masticando con la boca llena y cara de inocente"}
+          ],
+          "lo_manda": {"si": true, "a_quien": "una amiga de la facu que siempre se pelea con el cinturón", "por_que": "Por el remate del doctor; es el único que tiene un chiste que se puede mandar con un 'jajaja sos vos'."},
+          "no_entendio": "Por qué el pestillo 'sale disparado' cuando el carrete gira rápido (ve la flecha pero no entiende qué lo empuja).",
+          "le_contaria": "Que el cinturón tiene dos trabas, una si tirás rápido y otra con una bolita si el auto frena, y que el doctor se comió las papas del caballero.",
+          "nota": 8
+        },
+        "Q": {
+          "desliza": 20,
+          "por_que_desliza_o_sigue": "El arranque es rápido y prolijo: el caballero frenado y en 1,7 s dos piezas de colores (azul y naranja) con píldoras 1 y 2, buen diseño gráfico. 'Uno vigila el auto. El otro, a ti' le engancha. Pero sin sonido el 'concurso' pierde el ding y la energía: son muchas píldoras, números y subtítulos a la vez, y no puede adivinar nada porque no sabe qué hace cada guardia. En la segunda ronda (17-20 s) aparecen 'carrete', 'pestillo' y 'giró de golpe', se da cuenta de que es una clase de tres preguntas y desliza.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "nadie", "por_que": "Se siente como un ejercicio de clase; no tiene nada gracioso ni sorprendente para mandar."},
+          "no_entendio": "Qué es un pestillo y por qué se abre al girar; tampoco por qué lo llaman 'juego' si las respuestas llegan antes de que pueda pensar.",
+          "le_contaria": "Que el cinturón tiene dos piezas que lo traban: una mira el auto y la otra a vos.",
+          "nota": 5
+        },
+        "Z": {
+          "desliza": 32,
+          "por_que_desliza_o_sigue": "Muy buen arranque sin sonido: el caballero se estira por la bolsa que se resbala y queda a 5 cm, con la píldora 'BOLITA DE ACERO' apuntando al pilar. La frase rara la hace quedarse. La bolita brillando en la tacita es el plano más lindo del panel para ella. El caballero congelado mientras la bolsa sigue resbalando y su tirón enojado la mantienen. Pero a los 32 s corta a la bolita quieta en la tacita: se rompe la historia de las papas, no hay nada nuevo que ver y desliza antes del final.",
+          "risas": [
+            {"s": 15, "que": "el caballero congelado con la mano estirada mientras la bolsa de papas se le sigue yendo"},
+            {"s": 30, "que": "la mímica lentísima del de la máscara antigás"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "nadie", "por_que": "Le gustó mirarlo, pero no tiene un final que dé ganas de mandarlo."},
+          "no_entendio": "El 'compañero' pestillo del segundo 22 llega de golpe y no sabe dónde está ni cómo se relaciona con la bolita.",
+          "le_contaria": "Que lo que te frena el cinturón es una bolita de acero escondida que rueda cuando el auto frena o se inclina.",
+          "nota": 7
+        }
+      }
+    },
+    {
+      "perfil": "Martín",
+      "videos": {
+        "X": {
+          "desliza": 17,
+          "por_que_desliza_o_sigue": "La pregunta le sirve un poco porque maneja todos los días, y el inclinómetro le promete un número rápido. Pero los primeros 4,5 s son un plano quieto y 'la norma prohíbe que se trabe' suena a reglamento. Se queda sólo para escuchar el número: oye 'veintisiete grados... la norma exige que se trabe', tiene la respuesta y desliza. No le importa quién lo decide.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "nadie", "por_que": "Un número de norma no se manda; tampoco sabe si alguna vez va a estar a 27°."},
+          "no_entendio": "Si 27° es una calle empinada normal o algo que nunca le va a pasar manejando, y qué pasa entre 12° y 27°.",
+          "le_contaria": "Nada (como mucho, 'el cinturón se traba como a los 27 grados de inclinación').",
+          "nota": 5
+        },
+        "W": {
+          "desliza": 30,
+          "por_que_desliza_o_sigue": "Es el que más le habla: lo del tirón rápido le pasa todos los días y empieza con acción en el segundo 0. '¿Cómo sabe?' es una duda que siempre tuvo, así que se queda con el carrete y el pestillo, y la bolita le suma algo nuevo. A los 25 s 'nadie llega a las papas' se siente relleno, y cuando a los 29 s dice 'el truco: tira lento' (lo que ya dijo en el segundo 3 y que él ya sabe), desliza. No llega al chiste del doctor.",
+          "risas": [
+            {"s": 2, "que": "el caballero con armadura rebotando contra el asiento por unas papas (media sonrisa)"}
+          ],
+          "lo_manda": {"si": false, "a_quien": "nadie", "por_que": "Le pareció interesante, pero se fue antes del chiste, que era lo único que lo habría hecho mandarlo (quizás a su hijo)."},
+          "no_entendio": "Nada importante; quizás por qué el pestillo se abre con el giro.",
+          "le_contaria": "Que el cinturón tiene una traba que salta si tirás de golpe y otra con una bolita para cuando frenás o el auto se inclina.",
+          "nota": 7
+        },
+        "Q": {
+          "desliza": 14,
+          "por_que_desliza_o_sigue": "'Tu cinturón tiene dos guardias' y 'uno vigila el auto, el otro a ti' lo enganchan rápido. Pero el 'Juguemos' le suena a programa infantil. No puede adivinar la primera pregunta porque no le dieron con qué, así que la respuesta es una explicación disfrazada. Cuando empieza la segunda ronda ('¿Cuál?') entiende que van a ser varias y desliza.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "nadie", "por_que": "Se siente como una prueba del colegio."},
+          "no_entendio": "Nada; simplemente no tuvo paciencia para el formato.",
+          "le_contaria": "Que cuando frenás fuerte, el cinturón lo traba una bolita de acero que rueda.",
+          "nota": 5
+        },
+        "Z": {
+          "desliza": 20,
+          "por_que_desliza_o_sigue": "'A este caballero lo frenó una bolita de acero' es raro y le da curiosidad, y 'vive escondida en tu cinturón' lo hace sentir que le habla a él. La explicación de 6 a 17 s es corrida y clara: bolita, palanquita, rueda dentada, listo. Después viene un plano general lento con 'la bolita cree que el auto se va a dar vuelta', que siente como repetición, y desliza antes de que aparezca el 'compañero'.",
+          "risas": [],
+          "lo_manda": {"si": false, "a_quien": "nadie", "por_que": "Dato curioso para él, no para mandar."},
+          "no_entendio": "Nada.",
+          "le_contaria": "Que el cinturón se traba por una bolita de acero que rueda cuando frenás fuerte o el auto se inclina.",
+          "nota": 6
+        }
+      }
+    }
+  ],
+  "analisis": {
+    "X": "Engancha el inclinómetro como cuenta regresiva (0° a 27°) y la gota de sudor en la máscara (11-14 s). Hace deslizar el arranque quieto de 0 a 4,5 s con una pregunta abstracta, y que la respuesta llegue a los 15-19 s: el que quería el número se va ahí (17 s). Además, 27° es extremo, nadie sabe si le pasa en la vida real, 'la norma' suena a reglamento y el salto de 12° a 27° deja un hueco. El plano del doctor (28-33 s) no cambia nada y 'adiós papas' no es un remate.",
+    "W": "El mejor gancho del panel: acción en el segundo 0 más algo que todos vivieron ('tira rápido y te dice que no'), y '¿Cómo sabe?' a los 5 s abre una curiosidad real. Tiene el único remate que da risa de verdad y se manda (doctor con la bolsa vacía, 35 s). Hace deslizar el tramo de 25,5 a 32 s, que repite lo ya dicho ('nadie llega a las papas' y el truco ya contado en el 3 s): el impaciente se va justo antes del chiste. Hay que acortar o fusionar 25-32 s para que el remate llegue antes.",
+    "Q": "El arranque de 0 a 4,5 s es el más denso y claro ('dos guardias: uno vigila el auto, el otro a ti') y los colores 1/2 funcionan sin sonido. Hace deslizar el 'Juguemos', que se siente como clase infantil: el espectador no tiene con qué adivinar y la respuesta es una explicación disfrazada. Al iniciar la 2.ª ronda (14 s) el impaciente se va, sin sonido se cae a los 17-20 s por exceso de texto técnico, y la 3.ª ronda es predecible. Termina sin remate.",
+    "Z": "Engancha una frase contraintuitiva ('lo frenó una bolita de acero') con el caballero a 5 cm de las papas en el segundo 0. La bolita brillando (3-6 s) y el caballero congelado mientras la bolsa sigue resbalando (15 s) son los mejores planos visuales. Hace deslizar el plano general de 17 a 22 s, que repite 'cree que se va a dar vuelta' (el impaciente se va a los 20 s), y el pestillo como 'compañero' llega tarde (22 s). El corte a la bolita quieta (32 s) rompe la historia de las papas y el final no paga."
+  }
+}
