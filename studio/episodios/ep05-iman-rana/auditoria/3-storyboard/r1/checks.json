@@ -1,0 +1,19 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "19 planos: con algo que cambia cada 1–2 s, en 50 s hacen falta ~25–50 cambios; confirmar que la columna 'cambio' los cubre",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 10 dura 0.69 s (muy corto para leerse)",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "planos": 19,
+  "escenas": 5,
+  "planos_kling": [],
+  "estilo": "realista"
+ }
+}

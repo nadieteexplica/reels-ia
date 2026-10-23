@@ -346,7 +346,10 @@ def storyboard(ep_d, dur_voz=None):
         r["datos"]["planos_kling"] = kl
         if len(kl) > 3:
             _f(r, f"{len(kl)} planos de Kling {kl} (máximo 3)", bloqueante=True)
-        sin = [int(f[cols[0]]) for f in filas if any(k in norm(" ".join(f.values())) for k in CON_MANOS)
+        # la frase de la voz no es una acción ("nadie la sostiene" no es una mano con objeto): se mira sin esa columna (Ep. 5)
+        def _sin_voz(f):
+            return " ".join(v for c, v in f.items() if not re.search(r"frase|voz", norm(c)))
+        sin = [int(f[cols[0]]) for f in filas if any(k in norm(_sin_voz(f)) for k in CON_MANOS)
                and not re.search(r"(kling|bibliot)", norm(f.get(c_or, "")))]
         for n in sin:
             _f(r, f"plano {n} tiene manos con objeto o en la cara y sale de render (Blender no hace contacto de dedos)")
