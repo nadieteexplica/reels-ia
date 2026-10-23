@@ -55,3 +55,15 @@
 {"tipo": "trabajo", "id": "auditor 4-cuadros r1", "estado": "fin", "n": 55, "ts": "2026-10-23T01:38:55-03:00"}
 {"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 56, "ts": "2026-10-23T01:41:10-03:00"}
 {"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 57, "ts": "2026-10-23T01:56:10-03:00"}
+{"tipo": "trabajo", "que": "render HD de los cuadros de estilo v2 (A, B rediseñado, C) para la puerta 4 r2", "id": "cuadros v2 39903009847", "estado": "abierto", "n": 58, "ts": "2026-10-23T01:56:43-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 59, "ts": "2026-10-23T02:11:10-03:00"}
+{"tipo": "chequeo", "id": "cuadros v2 39903009847", "estado": "vivo (vigilante) · in_progress/- · 3/4 trabajos", "n": 60, "ts": "2026-10-23T02:11:48-03:00"}
+{"tipo": "trabajo", "id": "cuadros v2 39903009847", "estado": "fin", "n": 61, "ts": "2026-10-23T02:16:32-03:00"}
+{"tipo": "aviso", "que": "cuadros v2: B HD mostró a Pete como parado sobre los cables a lo lejos (no se leía que flota) y A quedó lavado contra el horizonte; se corrigen cámaras (B a ras de la tapa, A desde arriba) y se re-renderizan A y B (C v2 quedó bien)", "n": 62, "ts": "2026-10-23T02:16:32-03:00"}
+{"tipo": "trabajo", "que": "render HD de A y B v2.1", "id": "cuadros v2.1 39904832531", "estado": "abierto", "n": 63, "ts": "2026-10-23T02:16:32-03:00"}
+{"tipo": "aviso", "que": "B v2.1 HD: con la cámara sobre los pies, Pete parecía parado en el salar lejano; v2.2: cámara bajo sus pies y Pete a 1,2 m de la boca (run 39905370378)", "n": 64, "ts": "2026-10-23T02:22:27-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 65, "ts": "2026-10-23T02:26:10-03:00"}
+{"tipo": "trabajo", "id": "cuadros v2.1 39904832531", "estado": "fin", "n": 66, "ts": "2026-10-23T02:27:52-03:00"}
+{"tipo": "aviso", "que": "A v2.1 HD: mancha de brillo del sol en la sal detrás de la rana; sol a 35° y se re-renderiza A (run 39905867208)", "n": 67, "ts": "2026-10-23T02:27:52-03:00"}
+{"tipo": "trabajo", "id": "auditor 4-cuadros r2", "estado": "inicio", "n": 68, "ts": "2026-10-23T02:41:17-03:00"}
+{"tipo": "trabajo", "id": "auditor 4-cuadros r2", "estado": "fin", "n": 69, "ts": "2026-10-23T02:49:59-03:00"}

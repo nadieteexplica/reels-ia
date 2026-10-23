@@ -1,0 +1,24 @@
+{
+ "encargo": "cuadros",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "A (9): rana cálida contra el azul con profundidad de campo y vidrio con polvo; C (8): contraste fuerte, negros reales (p5=7), un solo foco; B (7): el sol bajo ya da negros (p5=19) y un lado del imán en sombra, pero la mitad inferior (y 700-1280 a 720) es sólo la pared del tanque y el suelo entre el imán y los cerros (y 595-660) es un plano beige liso."},
+  "personaje": {"nota": 9, "por_que": "Pete en B calza con la ficha (casco blanco, barba, chaleco naranjo con franjas amarillas, mangas oscuras, pantalón embarrado, botas café) y la rana de A es el mismo escaneo de la ficha; cara de Pete en y≈345/1920 con aire de cielo arriba."},
+  "manos": {"nota": 8, "por_que": "Ningún agarre: en B Pete tiene una mano en puño junto a la cadera y la otra suelta (x≈315 y x≈370, y≈355), sin dedos raros; en A los dedos delanteros de la rana están abiertos y completos."},
+  "anatomia": {"nota": 8, "por_que": "C muestra el interior del tejido con un solo foco (la molécula grande, en y≈420-960/1920, sobre la franja de subtítulos) y nada cortado; las venitas dibujadas sobre cada célula son una estilización (los capilares reales van entre células), pero se lee como tejido y no confunde."},
+  "realismo": {"nota": 7, "por_que": "A se ve 3D realista (rana escaneada, vidrio con manchas, desenfoque de lente): 9. C: moléculas son capa de explicación; el tejido tiene subsuperficie pero los brillos son manchas blancas iguales, algo de plástico: 8. B baja el conjunto: el imán (acero pintado con chorreados, pernos, tubos con abrazaderas) y Pete pasan, pero el fondo delata la maqueta: cerros de un solo café con facetas planas y sin bruma de distancia, la malla de los cerros flotando a la izquierda (ver problema 1), suelo del salar liso sin polígonos de sal, torres de bordes perfectos y vapor en conos idénticos. Para llegar a 8 en B: cambiar los cerros por un fondo de montaña real (HDRI de Poly Haven o terreno CC0 con textura de roca y variación de color) con algo de bruma, y darle al suelo textura de costra de sal (ambientCG) con su relieve."}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "tipo": "B1", "plano": "B", "segundo": "cuadro", "que": "Los cerros nuevos flotan: en x 0-230, y≈560-595 (a 720x1280; x 0-345, y 840-893 a 1080) se ve la parte de abajo de la malla de los cerros, dentada, con una franja clara de cielo entre ella y el suelo, que termina en un escalón vertical en x≈230 donde los cerros sí llegan al suelo. Kling va a copiar esa franja en todo el clip.", "arreglo": "Bajar el objeto de los cerros 2-3 m o alargarle la falda por debajo del nivel del suelo para que toque el horizonte en todo el ancho; volver a mirar sólo la franja y 540-600."}
+ ],
+ "verificacion": [
+  {"id": "A1", "arreglado": true, "por_que": "El imán ya se lee como máquina de acero pintado (chorreados, óxido abajo a la izquierda, pernos, bandas, tubos con abrazaderas, boca negra en la tapa), no como estanque de vidrio; las dos torres están enteras (x 365-605), separadas del imán y el vapor sale de sus bocas. Los cerros tienen crestas, pero siguen de un solo café y su cambio dejó el problema nuevo de la franja flotante (problema 1)."},
+  {"id": "A2", "arreglado": true, "por_que": "Sol bajo de costado desde la derecha: lado izquierdo del imán en sombra casi negra, lado derecho cálido, caras de los cerros con luz y sombra; negros p5=19 (antes 117) y brillo 93 (antes 182,8). La base del imán quedó fuera de cuadro, así que la sombra de contacto ya no aplica."},
+  {"id": "A3", "arreglado": true, "por_que": "Las botas de Pete quedan en y≈490, ~175 px sobre la boca (y≈665-690), recortadas contra los cerros y el cielo, sin tocar nada; la boca oscura se ve como franja en la tapa y Pete ocupa ~21 % del alto: se lee que flota."},
+  {"id": "A4", "arreglado": true, "por_que": "La rana ocupa ~52 % del ancho (x 210-585), está girada hacia cámara y se ven los dos ojos saltones; la franja de reflejo quedó a la izquierda (x≈170-250), fuera de la cabeza, y la cara ya no está lavada. El brillo en el ojo es débil, pero el ojo se lee."},
+  {"id": "A5", "arreglado": true, "por_que": "Detrás de la molécula grande ya no hay otra: la más cercana (x 155-275, y 600-710) queda ~40 px separada, mucho más chica y desenfocada, y la grande muestra sólo sus dos H; ya no se lee H3O."}
+ ],
+ "eventos": [],
+ "resumen": "Los 5 puntos de la ronda 1 quedaron arreglados (imán, luz, levitación, rana y molécula). No aprueba por un bloqueante nuevo barato (los cerros nuevos de B flotan sobre el suelo a la izquierda) y porque el fondo de B (cerros facetados de un solo color, suelo liso) deja realismo en 7."
+}

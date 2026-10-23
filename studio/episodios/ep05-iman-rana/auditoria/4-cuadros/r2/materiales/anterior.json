@@ -1,0 +1,57 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": "B",
+  "segundo": "cuadro",
+  "que": "El imán gigante no se lee como imán sino como estanque o edificio de vidrio: paneles azules con textura de nubes procedural, rejilla de acero limpia, base beige lisa. Además, la segunda columna de vapor (x≈140-220, y≈470-600) sale de detrás del borde del imán sin torre visible, como si el imán echara humo; la torre izquierda está cortada por el borde (x 0-70) y las montañas son bultos de greda.",
+  "arreglo": "Cambiar materiales: carcasa de acero pintado o cepillado con rayas y mugre (ambientCG/Poly Haven), pernos, 3-4 cilindros como tubos de enfriamiento y cables gruesos que bajan al suelo, base de hormigón con manchas. Mover las torres para que se vean enteras y separadas de la silueta del imán, con textura de hormigón. Usar un relieve o HDRI de montaña real.",
+  "de": "cuadros",
+  "asignado": "cuadros"
+ },
+ {
+  "id": "A2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": "B",
+  "segundo": "cuadro",
+  "que": "Luz pareja de mediodía con neblina: sin negros (p5=117, brillo 182,8) y sombras débiles; la base casi no tiene sombra de contacto. Además el salar de A es al atardecer y este no.",
+  "arreglo": "Bajar el sol a ~10° de elevación, cálido y de costado como en A: sombras largas sobre los polígonos de sal, un lado del imán en sombra con negros reales y sombra de contacto bajo la base. Esto también une el look de A y B.",
+  "de": "cuadros",
+  "asignado": "cuadros"
+ },
+ {
+  "id": "A3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": "B",
+  "segundo": "cuadro",
+  "que": "La levitación no se lee: las botas de Pete quedan ~8 px (a 720) sobre una tapa cerrada (y≈585). Parece parado en el techo, no hay boca del imán a la vista y Kling probablemente lo va a 'apoyar'.",
+  "arreglo": "Subir la cámara ~15° para ver una boca oscura en la tapa, poner a Pete 0,5-1 m sobre la boca con una sombra suave en la tapa y acercar la cámara o usar 50-85 mm para que Pete ocupe ~25 % del alto.",
+  "de": "cuadros",
+  "asignado": "cuadros"
+ },
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": "A",
+  "segundo": "cuadro",
+  "que": "En el cuadro 0 la cara de la rana queda lavada por la franja vertical de reflejo del tubo (x≈250-330, y≈470-520), no se ve ningún ojo, y la rana ocupa ~4 % del cuadro. Como gancho, el protagonista se pierde.",
+  "arreglo": "Mover la rana ~60 px a la derecha o rotar el HDRI para sacar la franja de la cabeza; girarla 20-30° hacia cámara para que se vea un ojo con brillo; acercar la cámara hasta que la rana ocupe ~50 % del ancho.",
+  "de": "cuadros",
+  "asignado": "cuadros"
+ },
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": "C",
+  "segundo": "cuadro",
+  "que": "Una molécula queda justo detrás de la grande: su H blanco (x≈340, y≈877) y el borde rojo de su O parecen pegados bajo el O grande, así que se lee una molécula de tres hidrógenos. Kling puede fundirlas en una sola.",
+  "arreglo": "Correr esa molécula ≥80 px a un lado o sacarla del cuadro, para que la grande muestre sólo sus dos H.",
+  "de": "cuadros",
+  "asignado": "cuadros"
+ }
+]

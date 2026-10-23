@@ -1,0 +1,35 @@
+[
+ {
+  "id": "cuadros",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "A_rana, B_persona_iman_gigante, C_adentro_agua",
+  "materiales": [
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/A_rana.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/B_persona_iman_gigante.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/C_adentro_agua.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/ref_1.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/ref_2.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/ref_3.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/ref_4.jpg",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/cuadros.json",
+   "studio/episodios/ep05-iman-rana/auditoria/4-cuadros/r2/materiales/anterior_cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "tools/auditor/prompts/estilos.md"
+  ],
+  "salida": "cuadros.json",
+  "notas_de_uso": "Ronda 2 (verifica los 8 problemas de r1). B rediseñado entero (no parchado): imán de acero pintado con chorreados y óxido, bridas con pernos, 6 tubos de enfriamiento con abrazaderas, tapa con bandas de cobre y boca negra; sol bajo (5°) de costado y menos cielo (negros reales, un lado del imán en sombra); torres con chorreados, enteras y a un lado del imán (el vapor ya no sale \"del imán\"); cerros con crestas y quebradas; Pete a 1,2 m sobre la boca con los pies sobre el horizonte (se recorta contra los cerros y el cielo: se lee que flota; ~21 % del alto). Con la cámara alta (boca muy visible) los pies quedaban contra el suelo lejano y parecía parado: se priorizó que se lea la levitación; la boca queda como una franja oscura. A: rana girada 3/4 hacia la cámara (se ve el ojo con brillo), cámara a 22 cm (≈50 % del ancho), un poco desde arriba (de fondo, la sal a contraluz, azul), sol a 35° (sin mancha de brillo detrás), vidrio con manchas y polvo; f/8 con foco en la cabeza. El aro de la boca no se sube a cuadro en A: el gancho es la rana y el imán entero aparece en el plano 3 (\"La levanta un imán gigante\"). C: sin moléculas detrás de la héroe (ya no se lee H3O), héroe en y≈700/1920 (fuera de la franja de subtítulos), tejido con venitas, subsuperficie variable y brillo húmedo irregular.",
+  "estilo": "realista",
+  "verificar_ids": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5"
+  ],
+  "modo": "verificacion"
+ }
+]

@@ -869,10 +869,15 @@ def mat_sal(nombre="costra_sal", escala=1.3):
     borde = _mapa(nt, vo.outputs["Distance"], 1.0, 0.0)
     borde.inputs["From Max"].default_value = 0.06
     grande = _ruido(nt, escala=0.08, detalle=6)
-    base = _rampa(nt, grande.outputs["Fac"], (0.62, 0.58, 0.53), (0.80, 0.77, 0.72))
+    base0 = _rampa(nt, grande.outputs["Fac"], (0.62, 0.58, 0.53), (0.80, 0.77, 0.72))
+    parche = _ruido(nt, escala=0.004, detalle=8)
+    kp = _mapa(nt, parche.outputs["Fac"], 0.0, 1.0); kp.inputs["From Min"].default_value = 0.42; kp.inputs["From Max"].default_value = 0.6
+    base = nt.nodes.new("ShaderNodeMix"); base.data_type = "RGBA"; base.blend_type = "MULTIPLY"
+    nt.links.new(kp.outputs[0], base.inputs[0]); nt.links.new(base0.outputs[0], base.inputs[6])
+    base.inputs[7].default_value = (0.78, 0.74, 0.7, 1)
     mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
     nt.links.new(borde.outputs[0], mix.inputs[0])
-    nt.links.new(base.outputs[0], mix.inputs[6])
+    nt.links.new(base.outputs[2], mix.inputs[6])
     mix.inputs[7].default_value = (0.93, 0.92, 0.9, 1)
     nt.links.new(mix.outputs[2], b.inputs["Base Color"])
     b.inputs["Roughness"].default_value = 0.88
@@ -885,7 +890,7 @@ def mat_sal(nombre="costra_sal", escala=1.3):
     return m
 
 
-def salar(sc, lado=6000.0):
+def salar(sc, lado=40000.0):
     bpy.ops.mesh.primitive_plane_add(size=lado, location=(0, 0, 0))
     piso = bpy.context.object
     piso.name = "Salar"
@@ -893,19 +898,25 @@ def salar(sc, lado=6000.0):
     return piso
 
 
-def mat_lejano(nombre, color, neblina=(0.78, 0.55, 0.52), k=0.55):
+def mat_lejano(nombre, color, neblina=(0.7, 0.6, 0.64), k=0.55, color2=(0.34, 0.29, 0.29)):
     """Cerros lejanos: roca + neblina del atardecer (perspectiva aérea falsa: se mezcla con el color del cielo)."""
     m = bpy.data.materials.new(nombre)
     m.use_nodes = True
     nt = m.node_tree
     b = nt.nodes["Principled BSDF"]
     nz = _ruido(nt, escala=0.004, detalle=10)
-    roca = _rampa(nt, nz.outputs["Fac"], tuple(c * 0.6 for c in color), color)
+    roca0 = _rampa(nt, nz.outputs["Fac"], tuple(c * 0.6 for c in color), color)
+    # vetas grandes de otra roca (más gris y clara): los cerros reales no son de un solo café
+    vt = _ruido(nt, escala=0.0012, detalle=6)
+    kv = _mapa(nt, vt.outputs["Fac"], 0.0, 1.0); kv.inputs["From Min"].default_value = 0.45; kv.inputs["From Max"].default_value = 0.62
+    roca = nt.nodes.new("ShaderNodeMix"); roca.data_type = "RGBA"
+    nt.links.new(kv.outputs[0], roca.inputs[0]); nt.links.new(roca0.outputs[0], roca.inputs[6])
+    roca.inputs[7].default_value = (*color2, 1)
     # quebradas: surcos verticales más oscuros (ruido estirado en z), como la roca erosionada de los cerros reales
     qb = _ruido(nt, escala=0.02, detalle=8, estirar=(1, 1, 0.12))
     kq = _mapa(nt, qb.outputs["Fac"], 0.0, 0.7); kq.inputs["From Min"].default_value = 0.5; kq.inputs["From Max"].default_value = 0.7
     mx0 = nt.nodes.new("ShaderNodeMix"); mx0.data_type = "RGBA"
-    nt.links.new(kq.outputs[0], mx0.inputs[0]); nt.links.new(roca.outputs[0], mx0.inputs[6])
+    nt.links.new(kq.outputs[0], mx0.inputs[0]); nt.links.new(roca.outputs[2], mx0.inputs[6])
     mx0.inputs[7].default_value = (color[0] * 0.35, color[1] * 0.33, color[2] * 0.33, 1)
     nt.links.new(mx0.outputs[2], b.inputs["Base Color"])
     b.inputs["Roughness"].default_value = 1.0
@@ -926,24 +937,28 @@ def cerros(sc, semilla=7):
                                                  (270, 12000, 1300, 10000), (110, 10000, 1100, 9000), (330, 9000, 800, 9000),
                                                  (20, 11000, 1000, 12000), (60, 10000, 900, 10000))):
         a = math.radians(ang)
-        bpy.ops.mesh.primitive_grid_add(x_subdivisions=420, y_subdivisions=60, size=1, location=(math.sin(a) * dist, math.cos(a) * dist, 0))
+        bpy.ops.mesh.primitive_grid_add(x_subdivisions=420, y_subdivisions=110, size=1, location=(math.sin(a) * dist, math.cos(a) * dist, 0))
         g = bpy.context.object
         g.name = f"Cerro{i}"
+        # falda: el relieve se apaga hacia los bordes de la malla, así el pie del cerro toca el suelo en todo el ancho
+        # (puerta 4 r2, B1: se veía una franja de cielo bajo los cerros)
+        vg = g.vertex_groups.new(name="falda")
+        for v in g.data.vertices:
+            wx = min(1.0, max(0.0, (0.5 - abs(v.co.x)) / 0.12))
+            wy = min(1.0, max(0.0, (0.5 - abs(v.co.y)) / 0.22))
+            w = wx * wy
+            vg.add([v.index], w * w * (3 - 2 * w), "REPLACE")
         g.scale = (ancho, ancho * 0.3, 1)
         g.rotation_euler = (0, 0, -a)
         bpy.ops.object.transform_apply(scale=True, rotation=True)
         tx = bpy.data.textures.new(f"cerro{i}", "CLOUDS"); tx.noise_scale = 2200; tx.noise_depth = 5
-        for v in g.data.vertices:
-            u = (v.co.x / ancho) if abs(math.cos(a)) > 0.5 else (v.co.y / ancho)
-            borde = max(0.0, 1 - abs(2 * (v.co - Vector((0, 0, 0))).length / ancho))
-            v.co.z = 0
         d = g.modifiers.new("relieve", "DISPLACE"); d.texture = tx; d.strength = alto * 2.2; d.mid_level = 0.35
-        d.texture_coords = "GLOBAL"
-        tx2 = bpy.data.textures.new(f"cerro_det{i}", "CLOUDS"); tx2.noise_scale = 260; tx2.noise_depth = 6; tx2.noise_type = "HARD_NOISE"
-        d2 = g.modifiers.new("detalle", "DISPLACE"); d2.texture = tx2; d2.strength = alto * 0.5; d2.mid_level = 0.5
-        d2.texture_coords = "GLOBAL"
+        d.texture_coords = "GLOBAL"; d.vertex_group = "falda"
+        tx2 = bpy.data.textures.new(f"cerro_det{i}", "CLOUDS"); tx2.noise_scale = 700; tx2.noise_depth = 6; tx2.noise_type = "HARD_NOISE"
+        d2 = g.modifiers.new("detalle", "DISPLACE"); d2.texture = tx2; d2.strength = alto * 0.2; d2.mid_level = 0.5
+        d2.texture_coords = "GLOBAL"; d2.vertex_group = "falda"
         liso(g, 180)
-        asignar(g, mat_lejano(f"cerro_m{i}", (0.2, 0.15, 0.14), k=0.42 + 0.12 * (dist > 10000)))
+        asignar(g, mat_lejano(f"cerro_m{i}", (0.2, 0.15, 0.14), k=0.62 + 0.14 * (dist > 10000)))
     # volcán (cono perfecto con cumbre nevada), lejos
     a = math.radians(205)
     dist = 14000
@@ -985,7 +1000,12 @@ def central_nuclear(sc, pos=(0, 2500, 0), rot=0.0):
         liso(t, 180); asignar(t, hormigon)
         torres.append(t)
         # vapor: volumen suave sobre la boca
-        caja(sc, f"Vapor{i}", (150, 150, 300), (px + dx + 25, py + i * 40 + 10, 150 + 150), mat_vapor(), 0)
+        vp = caja(sc, f"Vapor{i}", (150, 150, 300), (px + dx + 25, py + i * 40 + 10, 150 + 150), mat_vapor(), 0)
+        if vp is not None:
+            vp.rotation_euler.z = 2.3 * i + 0.6                 # cada pluma con su forma (antes, dos conos iguales)
+            vp.scale = (1.0 + 0.2 * i, 1.0 + 0.2 * i, 0.85 + 0.3 * i)
+        rt = 34 * math.sqrt(1 + ((150 - 105) / 55) ** 2)
+        tubo(sc, f"Torre_labio{i}", rt + 1.6, rt - 0.3, 3.0, (px + dx, py + i * 40, pz + 147), verts=96, mat=hormigon, bisel=0.3)
     # domo del reactor y casa de turbinas
     cilindro(sc, "Reactor", 24, 45, (px + 200, py - 30, pz), verts=64, mat=hormigon)
     bpy.ops.mesh.primitive_uv_sphere_add(radius=24, location=(px + 200, py - 30, pz + 45), segments=48, ring_count=24)
@@ -1023,6 +1043,10 @@ def mat_vapor():
     forma = m_("MAXIMUM", forma, 0.0)
     arriba = m_("SUBTRACT", None, sep.outputs["Z"], v1=1.0)
     nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 4.0; nz.inputs["Detail"].default_value = 8
+    # 4D: la W cambia con cada objeto (Object Info → Random): cada torre con su pluma distinta
+    nz.noise_dimensions = "4D"
+    oi = nt.nodes.new("ShaderNodeObjectInfo")
+    nt.links.new(m_("MULTIPLY", oi.outputs["Random"], 10.0), nz.inputs["W"])
     nt.links.new(tc.outputs["Generated"], nz.inputs["Vector"])
     nzr = _mapa(nt, nz.outputs["Fac"], 0.0, 1.0); nzr.inputs["From Min"].default_value = 0.42; nzr.inputs["From Max"].default_value = 0.72
     dens = m_("MULTIPLY", m_("MULTIPLY", forma, arriba), nzr.outputs[0])
