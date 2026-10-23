@@ -1,0 +1,229 @@
+{
+  "elenco": "Un 4x4 viejo, sin marca, polvoriento y con rayas, trepando un cerro de roca en el desierto de Atacama al atardecer (sol bajo de costado). Adentro van 4 personajes 3D realistas que no tienen nada que ver entre sí: maneja un PILOTO DE CARRERAS con buzo y casco (manejando a paso de tortuga); de copiloto, un CABALLERO con armadura completa; atrás, un tipo con MÁSCARA ANTIGÁS (tranquilo, impasible) y un DOCTOR de delantal blanco. En el tablero hay una bolsa de papas fritas que se resbala con la inclinación (se repite en todo el video). Las explicaciones entran al pilar del auto: el plástico se vuelve transparente y se ve el mecanismo real del cinturón (carrete con la cinta, rueda dentada, palanquita, la bolita de acero en su tacita, pestillo del carrete), con flechas y píldoras de texto encima.",
+  "guiones": {
+    "A": {
+      "titulo": "La bolita",
+      "centro": "Adentro del cinturón hay una bolita de acero que decide si te mueves; en una subida empinada cree que el auto se va a dar vuelta",
+      "estructura": "imagen absurda con la respuesta en el segundo 0 → entrar al mecanismo → el segundo sensor → truco → loop",
+      "gancho": "¿Sabías que…? (afirmación absurda con el centro dicho de inmediato)",
+      "tono": "narrador irónico",
+      "lineas": [
+        [
+          "A este caballero lo frenó una bolita de acero.",
+          "Dentro del 4x4 que trepa el cerro, el caballero estira la mano hacia la bolsa de papas que se resbala por el tablero; CLAC: el cinturón lo para en seco a 5 cm. Píldora BOLITA DE ACERO con una flecha hacia el pilar."
+        ],
+        [
+          "Vive escondida en tu cinturón, sentada en una tacita.",
+          "La cámara entra al pilar del auto, que se vuelve transparente: brilla una bolita de acero en su tacita, al lado del carrete con la cinta enrollada."
+        ],
+        [
+          "Si el auto frena fuerte... o se inclina mucho...",
+          "Afuera, el 4x4 se empina más; adentro del pilar, la tacita se inclina y la bolita rueda hacia el borde."
+        ],
+        [
+          "...la bolita rueda al borde y levanta una palanquita.",
+          "La bolita sube al borde; una palanquita se levanta (flecha naranja)."
+        ],
+        [
+          "Muerde una rueda dentada, y la cinta ya no sale.",
+          "La palanquita se engancha en los dientes de la rueda del carrete: CLAC. Corte al caballero congelado con la mano estirada; la bolsa de papas se sigue resbalando."
+        ],
+        [
+          "En esta subida, la bolita cree que el auto se va a dar vuelta.",
+          "Plano general: el 4x4 muy empinado en el cerro. Atrás, el doctor mira por la ventana hacia abajo y traga saliva."
+        ],
+        [
+          "Y tiene un compañero: si tiras de golpe...",
+          "El caballero, enojado, tira la cinta de un tirón."
+        ],
+        [
+          "...un pestillo sale disparado por el giro y también la traba.",
+          "Dentro del pilar: el carrete gira rápido, un pestillo se abre hacia afuera por el giro (flecha) y se engancha. CLAC."
+        ],
+        [
+          "¿El truco? Suéltalo un poquito... y tira lento.",
+          "El de la máscara antigás le hace la mímica, muy lento. El caballero suelta un poco la cinta y tira despacio: sale suave."
+        ],
+        [
+          "Lento, la bolita ni se entera.",
+          "Dentro del pilar, la bolita quieta en su tacita, tranquila."
+        ],
+        [
+          "Eso sí... en la próxima subida, despídete de las papas.",
+          "El 4x4 se vuelve a empinar, la bolsa se resbala lejos, CLAC: vuelve al mismo cuadro del inicio (loop)."
+        ]
+      ]
+    },
+    "B": {
+      "titulo": "Los dos guardias",
+      "centro": "El cinturón tiene dos guardias distintos: uno vigila el auto y el otro te vigila a ti",
+      "estructura": "concurso de 3 rondas (¿cuál te atrapó?) con la respuesta mostrada por dentro en cada ronda → truco → loop",
+      "gancho": "afirmación + juego con el espectador",
+      "tono": "concurso de la tele",
+      "lineas": [
+        [
+          "Tu cinturón tiene dos guardias.",
+          "El caballero se lanza hacia adelante y el cinturón lo para en seco (CLAC). Corte: dentro del pilar transparente se encienden dos piezas: la bolita de acero (azul, píldora 1) y el pestillo del carrete (naranja, píldora 2)."
+        ],
+        [
+          "Uno vigila el auto. El otro, a ti.",
+          "La píldora 1 apunta al 4x4 entero; la 2 apunta al caballero."
+        ],
+        [
+          "Juguemos. El piloto frena en seco. ¿Cuál te atrapa?",
+          "En un camino de ripio, el 4x4 frena en seco levantando polvo; los 4 se van un poquito adelante. Las píldoras 1 y 2 parpadean como en un concurso."
+        ],
+        [
+          "El uno: una bolita de acero rueda hacia adelante...",
+          "Dentro del pilar: la bolita rueda en su tacita hacia adelante. Se enciende la píldora 1 con un ding."
+        ],
+        [
+          "...levanta una palanquita y traba el carrete.",
+          "La palanquita sube y se engancha en la rueda dentada del carrete. CLAC."
+        ],
+        [
+          "Ahora el caballero se lanza por las papas. ¿Cuál?",
+          "El caballero se tira hacia la bolsa de papas del tablero. Píldoras 1 y 2 parpadean."
+        ],
+        [
+          "El dos: la cinta salió tan rápido...",
+          "Dentro del pilar: el carrete gira de golpe. Se enciende la píldora 2."
+        ],
+        [
+          "...que el carrete giró de golpe y sacó su pestillo.",
+          "Dentro del pilar: el carrete gira de golpe; un pestillo se abre hacia afuera por el giro (flecha) y se engancha en los dientes. CLAC. Se enciende la píldora 2."
+        ],
+        [
+          "La última: el auto trepa este cerro y nadie se mueve. ¿Cuál?",
+          "El 4x4 trepa un cerro muy empinado; los 4 están quietos y, uno tras otro, sus 4 cinturones hacen CLAC."
+        ],
+        [
+          "Otra vez el uno: cree que el auto se va a dar vuelta.",
+          "Dentro del pilar: la tacita inclinada y la bolita en el borde. Píldora 1."
+        ],
+        [
+          "¿Se te trabó? No pelees: suéltalo un poquito y tira lento.",
+          "El de la máscara antigás le muestra al caballero: suelta un poco y tira lento; la cinta sale suave."
+        ],
+        [
+          "Lento, ningún guardia se despierta.",
+          "Las dos piezas se apagan. El caballero por fin alcanza las papas... y el piloto frena en seco otra vez (vuelve al inicio, loop)."
+        ]
+      ]
+    },
+    "C": {
+      "titulo": "Veintisiete grados",
+      "centro": "Hay un ángulo exacto en el que el cinturón tiene que atraparte: hasta 12° no puede trabarse; pasado 27°, tiene que trabarse",
+      "estructura": "escalada con inclinómetro (0° → 5° → 12° → 20° → 27° CLAC) con SIMULACIÓN → quién lo decide (entrar) → truco → loop",
+      "gancho": "¿Qué pasaría si…? / pregunta con número para adivinar",
+      "tono": "suspenso cómico",
+      "lineas": [
+        [
+          "¿Cuánto se puede inclinar tu auto antes de que el cinturón te atrape?",
+          "El 4x4 al pie de un cerro de roca empinado; un inclinómetro grande en pantalla marca 0°. Los 4 miran hacia arriba. Píldora fija amarilla SIMULACIÓN arriba a la izquierda."
+        ],
+        [
+          "Cinco grados: el caballero todavía saca sus papas.",
+          "El 4x4 empieza a subir; inclinómetro 5°. El caballero se estira y saca una papa de la bolsa."
+        ],
+        [
+          "Doce grados: libre. Hasta aquí, la norma prohíbe que se trabe.",
+          "Inclinómetro 12°. El caballero se estira de nuevo; la cinta sale sin problema. Píldora HASTA 12°: LIBRE."
+        ],
+        [
+          "Veinte... el de la máscara empieza a sudar.",
+          "Inclinómetro 20°. El de la máscara antigás mira el precipicio por la ventana; una gota le corre por el vidrio de la máscara."
+        ],
+        [
+          "Veintisiete grados...",
+          "Inclinómetro 27°: CLAC en los 4 cinturones a la vez; los 4 quedan pegados al asiento."
+        ],
+        [
+          "...y pasado ese ángulo, la norma exige que se trabe.",
+          "Píldora MÁS DE 27°: SE TRABA. El caballero intenta estirarse y no puede."
+        ],
+        [
+          "¿Quién lo decide? Una bolita de acero, sentada en una tacita.",
+          "La cámara entra al pilar del auto, que se vuelve transparente: la bolita de acero en su tacita, junto al carrete."
+        ],
+        [
+          "Inclinada, la bolita rueda al borde...",
+          "La tacita se inclina con el auto y la bolita rueda hasta el borde."
+        ],
+        [
+          "...y levanta una palanquita que traba el carrete.",
+          "La palanquita sube y se engancha en la rueda dentada del carrete. CLAC."
+        ],
+        [
+          "Cree que el auto se va a dar vuelta... y no se arriesga.",
+          "Afuera, el 4x4 empinadísimo. Atrás, el doctor cierra los ojos."
+        ],
+        [
+          "¿Se te trabó? Suéltalo un poquito y tira lento.",
+          "El 4x4 ya arriba, en plano. El caballero suelta un poco la cinta y tira lento: sale suave."
+        ],
+        [
+          "Eso sí: a veintisiete grados, adiós papas.",
+          "El 4x4 vuelve a empinarse, la bolsa de papas se resbala lejos; el inclinómetro vuelve a 0° y empieza de nuevo (loop)."
+        ]
+      ]
+    },
+    "D": {
+      "titulo": "Tira lento",
+      "centro": "El cinturón mide qué tan rápido tiras: rápido se traba, lento te deja",
+      "estructura": "historia de comedia física (el caballero contra su cinturón) con la regla dicha en el segundo 0 → entrar al carrete → el segundo guardia → truco → remate con giro",
+      "gancho": "situación que le pasa a todos, dicha como regla",
+      "tono": "comedia física",
+      "lineas": [
+        [
+          "Tira rápido y tu cinturón te dice que no.",
+          "El caballero se lanza por la bolsa de papas del tablero; CLAC: el cinturón lo para y rebota contra el asiento."
+        ],
+        [
+          "Tira lento... y te deja.",
+          "Lo intenta despacio: la cinta sale suave y avanza unos centímetros."
+        ],
+        [
+          "¿Cómo sabe? La cinta vive enrollada en un carrete con dientes.",
+          "La cámara entra por la ranura del pilar, que se vuelve transparente: el carrete con la cinta enrollada y una rueda dentada."
+        ],
+        [
+          "Si tiras de golpe, el carrete gira tan rápido...",
+          "El carrete gira veloz."
+        ],
+        [
+          "...que un pestillo sale disparado y se engancha.",
+          "Un pestillo del carrete se abre hacia afuera por el giro (flecha) y se engancha. CLAC."
+        ],
+        [
+          "Lento, el pestillo ni se mueve.",
+          "El carrete gira lento; el pestillo quieto."
+        ],
+        [
+          "Y hay otro guardia: una bolita de acero que vigila el auto.",
+          "Al lado del carrete se enciende una bolita de acero en su tacita."
+        ],
+        [
+          "Si el auto frena o se inclina mucho, también lo traba.",
+          "Afuera, el 4x4 trepa un cerro empinado; la bolita rueda al borde de su tacita; CLAC en los 4 cinturones."
+        ],
+        [
+          "Por eso, en esta subida, nadie llega a las papas.",
+          "El caballero estira el brazo y no llega; el piloto y los de atrás también están trabados."
+        ],
+        [
+          "El truco: suéltalo un poquito... y tira lento.",
+          "El de la máscara antigás le hace la mímica, lentísimo. El caballero suelta y tira despacio."
+        ],
+        [
+          "Y ahí están, por fin, sus papas...",
+          "El caballero toma la bolsa con cuidado... está vacía."
+        ],
+        [
+          "...si el doctor no se las comió antes.",
+          "Atrás, el doctor mastica con la boca llena y cara de inocente. Corte al caballero lanzándose otra vez (loop)."
+        ]
+      ]
+    }
+  }
+}
