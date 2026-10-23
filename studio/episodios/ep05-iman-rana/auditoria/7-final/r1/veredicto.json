@@ -1,0 +1,25 @@
+{
+ "etapa": "7-final",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": null,
+ "notas": {},
+ "problemas": [],
+ "sugerencias": [],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "cara_al_borde · plano 10: Pete_ojoL en (319, 189)",
+   "evidencia": "20.90–21.30 s"
+  },
+  {
+   "que": "cara_al_borde · plano 10: Pete_ojoR en (279, 190)",
+   "evidencia": "20.90–21.20 s"
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "parar_y_preguntar": false
+}

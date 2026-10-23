@@ -1,0 +1,20 @@
+# 8-paquete · ronda 1 · **APROBADO** · estilo realista
+
+Promedio **8.0** (mínimo 8; ningún revisor bajo 7 en ningún criterio).
+
+| criterio | nota (promedio) | más baja | por qué (la más baja) |
+|---|---|---|---|
+| textos | 8.0 | 8 | El gancho de IG/TikTok es la primera frase de la voz ('Esta rana está flotando… y nadie la sostiene'); el dato repite el guion sin cambiar cifras (casi 40 T, cerca de 1 GW, 'un poquito', 'miles de veces'), con pregunta abierta ('¿Qué te gustaría ver flotar?') y llamada a enviar; el título de YouTube parte con la palabra clave ('Rana flotando con un imán') y no hay faltas ni tildes malas. Bajan: la palabra 'levitación' no aparece en ningún texto, y la descripción le atribuye a Berry haber hecho flotar la rana en Nijmegen. |
+| cumplimiento | 8.0 | 8 | Descripción y primer comentario traen 5 fuentes del guion con enlace (Geim y Berry 1997, Geim 1998, Harvard Gazette 2024, MIT TR 2009, DOE); checks.json sin fallas (título ≤ 60, 5 hashtags, IA en las 3 redes con isAiGeneratedContent true por ser realista, madeForKids false, título de TikTok). Revisé las fuentes: Physics Today 1998 dice 'almost 40 T and about one GW of continuous power', EJP 1997 'about 16 T' y Harvard Gazette 'Geim remains the only person to have won both an Ig Nobel and an actual Nobel'. Falta: los créditos CC-BY de los modelos 3D sólo van en la descripción de YouTube, no en Instagram ni en TikTok. |
+
+## Bloqueantes y fallas automáticas (impiden aprobar)
+
+Ninguno.
+
+## Sugerencias (las 5 más importantes; el resto queda en veredicto.json)
+
+1. Licencias: los 3 modelos CC-BY (rana de ffishAsia-and-floraZia, Strawberry de rodrigogelmi, Refrigerator de shedmon) se acreditan sólo en la descripción de YouTube. El mismo video sale en Instagram y TikTok sin crédito, y CC-BY lo exige en cada lugar donde se distribuye. Tampoco se dice la versión de la licencia ni el enlace de cada modelo.. **Arreglo:** Agregar al firstCommentText una línea con 'Modelos 3D (CC BY <versión que diga cada modelo>, Sketchfab): rana de ffishAsia-and-floraZia, Strawberry de rodrigogelmi, Refrigerator de shedmon'. Repetir esa línea corta al final del texto de TikTok, porque no se puede verificar desde este material que Metricool publique el primer comentario en TikTok. En la descripción de YouTube, poner la versión y el enlace de cada modelo.
+2. Descripción de YouTube: dice 'La rana la hicieron flotar Andre Geim y Michael Berry en el Laboratorio de Campos Magnéticos Altos de Nijmegen (1997)'. Según el propio EJP 1997 citado, los experimentos los hizo 'A K Geim with J C Maan, H Carmona and P Main'. Berry (de Bristol) escribió con Geim la teoría que los explica. El Ig Nobel sí se lo dieron a los dos.. **Arreglo:** Cambiar por: 'La hizo flotar Andre Geim con su equipo en el Laboratorio de Campos Magnéticos Altos de Nijmegen (1997), y la explicación la publicó con Michael Berry. Los dos ganaron el Ig Nobel de 2000; Geim, además, el Nobel de Física de 2010 por el grafeno.'
+3. Palabras de búsqueda: 'levitación' / 'levitación magnética' no aparece en ningún texto, aunque es lo que la gente busca de este video (YouTube primero). 'Diamagnetismo' sólo aparece en la descripción.. **Arreglo:** Abrir la descripción de YouTube con 'Levitación magnética: una rana viva flotó…'. En IG/TikTok, meterla en la línea del dato ('…ese empujón le gana a la gravedad: es la levitación magnética'). Opcional: cambiar #imanes por #levitacion.
+4. Título de TikTok: '(y lo que haría falta para ti)' se entiende a medias, porque no dice para qué.. **Arreglo:** 'Una rana que flota con un imán (¿y tú podrías flotar?) 🐸' o '…(y lo que haría falta para hacerte flotar a ti) 🐸'.
+5. Fuentes: el guion lista 6 fuentes y la descripción y el comentario traen 5. Falta Leicester (el cálculo de 70,6 T), que es justo lo que respalda decir 'casi 40' como piso y no como número exacto.. **Arreglo:** En la descripción de YouTube, después de la frase de Geim, agregar '(otro cálculo, de estudiantes de la U. de Leicester, da 70,6 T)' con su enlace en la lista de fuentes.

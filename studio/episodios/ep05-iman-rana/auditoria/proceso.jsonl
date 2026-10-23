@@ -98,3 +98,7 @@
 {"tipo": "aviso", "que": "el armado del parche del plano 4 se volvió a colgar en apt: se cancela y se arma con armar.yml (apt corto + respaldo de PyPI) sobre los runs 39940355233 + 39953337673 (run 39957593996)", "n": 98, "ts": "2026-10-23T10:00:02-03:00"}
 {"tipo": "trabajo", "id": "auditor 6-animatic r1", "estado": "inicio", "n": 99, "ts": "2026-10-23T10:12:00-03:00"}
 {"tipo": "trabajo", "id": "auditor 6-animatic r1", "estado": "fin", "n": 100, "ts": "2026-10-23T10:21:17-03:00"}
+{"tipo": "aviso", "que": "puerta 6 r1 APROBADO (8,0; 0 bloqueantes; gancho y animación 7). Se aplica la sugerencia de prioridad 1 que es sólo de post (píldora EN EL AIRE desde el cuadro 0) y se re-arma sin re-renderizar (run 39960544441); el resto de las sugerencias (rana quieta, Pete tieso, armado del P13, cables del P15) quedan anotadas", "n": 101, "ts": "2026-10-23T10:21:49-03:00"}
+{"tipo": "trabajo", "id": "auditor 7-final y 8-paquete r1", "estado": "inicio", "n": 102, "ts": "2026-10-23T10:33:29-03:00"}
+{"tipo": "trabajo", "id": "auditor 7-final y 8-paquete r1", "estado": "fin", "n": 103, "ts": "2026-10-23T10:39:10-03:00"}
+{"tipo": "aviso", "que": "puerta 7 APROBADO (0 bloqueantes) y puerta 8 APROBADO (textos 8, cumplimiento 8); aplicadas sus 2 sugerencias de texto (créditos CC-BY también en IG/TikTok y el primer comentario; el experimento fue del equipo de Geim, Berry co-escribió la explicación)", "n": 104, "ts": "2026-10-23T10:39:10-03:00"}
