@@ -275,7 +275,13 @@ def _detalle_movimiento(c, info, mdir, nombre):
 
 
 # ---------------- cuadros ----------------
-def cuadros(mdir, imagenes, ficha=None):
+RECORTES = (("arriba", 0.0, 0.40), ("medio", 0.30, 0.70), ("abajo", 0.60, 1.0))
+
+
+def cuadros(mdir, imagenes, ficha=None, recortes=False):
+    """Cuadros de estilo → materiales. Con `recortes` (estilo realista) agrega tres franjas a resolución completa por cuadro
+    (arriba = fondo y horizonte, medio = sujeto, abajo = suelo y base): en el Ep. 5 lo que delataba la maqueta (cerros
+    flotando, vapor cortado, cables como aletas) no se veía en el cuadro reducido a 720 y apareció de a poco en 3 rondas."""
     os.makedirs(mdir, exist_ok=True)
     out = []
     for f in imagenes:
@@ -284,11 +290,18 @@ def cuadros(mdir, imagenes, ficha=None):
         hsv = np.asarray(im.convert("HSV"))
         nombre = os.path.splitext(os.path.basename(f))[0]
         im.resize((720, 1280)).save(os.path.join(mdir, f"{nombre}.jpg"), quality=90)
-        out.append({"cuadro": nombre, "archivo": f"{nombre}.jpg", "res": f"{im.width}x{im.height}",
-                    "quemados_pct": round(float((a > 250).mean() * 100), 2), "brillo": round(float(a.mean()), 1),
-                    "saturacion": round(float(hsv[..., 1].mean()), 1),
-                    # lo más oscuro del cuadro (percentil 5 de la luz): alto = negros levantados, sin sombras = lavado
-                    "negros_p5": round(float(np.percentile(a, 5)), 1)})
+        c = {"cuadro": nombre, "archivo": f"{nombre}.jpg", "res": f"{im.width}x{im.height}",
+             "quemados_pct": round(float((a > 250).mean() * 100), 2), "brillo": round(float(a.mean()), 1),
+             "saturacion": round(float(hsv[..., 1].mean()), 1),
+             # lo más oscuro del cuadro (percentil 5 de la luz): alto = negros levantados, sin sombras = lavado
+             "negros_p5": round(float(np.percentile(a, 5)), 1)}
+        if recortes:
+            c["recortes"] = []
+            for zona, y0, y1 in RECORTES:
+                n = f"{nombre}_recorte_{zona}.jpg"
+                im.crop((0, int(y0 * im.height), im.width, int(y1 * im.height))).save(os.path.join(mdir, n), quality=90)
+                c["recortes"].append(n)
+        out.append(c)
     if ficha and os.path.exists(ficha):
         Image.open(ficha).convert("RGB").save(os.path.join(mdir, "ficha_personaje.jpg"), quality=90)
     comun.guardar(os.path.join(mdir, "cuadros.json"), out)

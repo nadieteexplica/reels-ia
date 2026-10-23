@@ -47,5 +47,27 @@
   "realismo_min": 8,
   "nota_duracion": "YouTube primero (Tomás, 21-oct-2026): meta 25–40 s, techo 45 s (en 108 mil Shorts la mediana de vistas es máxima en 11–20 s y cae fuerte sobre 30 s; el promedio visto por Short es ~16 s). Palabras: 25 s ≈ 72, 35 s ≈ 101, 40 s ≈ 115; techo 128 = voz de 45,1 s a la velocidad más lenta medida (Ep. 3: 181 palabras en 63,4 s = 2,855 palabras/s).",
   "horas_meta": 2.5
+ },
+ "realista": {
+  "nota": "Línea de la cuenta desde el Ep. 5 (Tomás, 23-oct-2026, docs/ESTILO_REALISTA.md). Medido en el Ep. 5: cuadros de estilo 1080x1920/64 en 5–17 min cada uno; animatic 540x960/8 50 min (casi lo mismo que el final) → en realista NO hay animatic: muestras (render-planos, muestras=3, 540x960, ~10 min) + revisión de la hoja → final 720x1280/8 en 16 máquinas (~60 min) → puerta 6 sobre el final + puerta 7 → parches por plano (piezas + base_run). Los topes de horas de proceso_v2 no cambian (los decide Tomás): con el kit del Ep. 5 se estiman ~4 h por video; el Ep. 5 tomó ~9 h (kit desde cero, 3 rondas de realismo y armados colgados).",
+  "animatics": 0,
+  "muestras_por_pieza": 3,
+  "final": {
+   "res": "720x1280",
+   "samples": 8,
+   "partes": 16,
+   "min_medidos": 60,
+   "partir_desde_cuadros": 45
+  },
+  "horas_estimadas_con_kit": 4,
+  "s_por_cuadro_540x960_8": {
+   "macro_con_vidrio": 24,
+   "plano_abierto": 10,
+   "interior_moleculas": 26,
+   "exterior_refri": 15,
+   "exterior_iman": 19,
+   "exterior_persona_flotando": 17
+  },
+  "negros_p5_max": 40
  }
 }

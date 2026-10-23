@@ -1,5 +1,15 @@
 # Kit de producción — lo que se reutiliza (proceso v2, 21-oct-2026)
 
+> **Desde el Ep. 5 (23-oct-2026) el estilo de la cuenta es el realista** (`docs/ESTILO_REALISTA.md`) y **el kit a copiar es el del Ep. 5**: `studio/episodios/ep05-iman-rana/escena/`.
+> - `ep05.py`: escena y cámara con lente real; cielo físico con sol bajo; materiales sucios (`mat_chorreado`, `mat_acero_industrial`, `mat_metal_cepillado`, `mat_cobre`, `mat_concreto`, `mat_cable`, `mat_sal`, `mat_lejano`, `mat_acrilico`, `tejido`, `mat_vapor`); salar de 40 km, cerros con falda y volcán; central nuclear; imán de laboratorio y gigante; rana escaneada con gotitas; Pete (Mixamo); moléculas, líneas de campo y flechas; marcas de ojos.
+> - `planos_ep05.py`, `plano.py`: planos por pieza.
+> - `post.py`: subtítulos, píldoras, flechas, SIMULACIÓN y grado.
+> - `audio.py`: música y efectos sintetizados.
+> - `reparto.py`: pesos medidos.
+> - `estilo_*.py`, `ficha.py`, `comparar.py`: cuadros de estilo, ficha y hoja de realismo.
+>
+> Lo de abajo (Ep. 2, animado) queda como referencia para el estilo animado.
+
 **Para qué:** que un video nuevo no tome 24 h. El Ep. 2 armó ~45 escenas una por una (45 funciones `pNN` en `planos_ep02.py`, 2.322 líneas, con sólo ~5 escenarios) y las reglas del auditor aparecían recién al final.
 
 **Dicho derecho (auditoría del 21-oct):** hoy este kit es un **catálogo de código del Ep. 2 para copiar**, no plantillas programadas. El ahorro **no está medido**: se mide en el Ep. 3 (horas por escena en la bitácora). El primer paso del Ep. 3 es convertir en funciones con parámetros las plantillas que ese video use (empezando por `detalle_lupa` con `graficos.lugar_libre`, que hoy existe pero ningún plano la usa).

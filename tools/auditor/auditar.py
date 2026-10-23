@@ -92,6 +92,11 @@ def anterior(ep, et, ronda):
     for i, p in enumerate(items, 1):
         out.append({"id": f"A{i}", "bloqueante": bool(p.get("bloqueante")), "tipo": p.get("tipo"), "plano": p.get("plano"),
                     "segundo": p.get("segundo"), "que": p.get("que"), "arreglo": p.get("arreglo"), "de": p.get("de")})
+    # realista: los delatores de la maqueta también se verifican (todos, no sólo los 5 primeros) → ids D1, D2…
+    for i, d in enumerate(v.get("delatores", []) or [], 1):
+        out.append({"id": f"D{i}", "bloqueante": False, "tipo": None, "plano": d.get("plano") or d.get("cuadro"),
+                    "segundo": d.get("segundo"), "que": f"[delator · {d.get('zona', '')}] {d.get('que', '')}",
+                    "arreglo": d.get("arreglo"), "de": d.get("de")})
     return out
 
 
@@ -196,7 +201,7 @@ def preparar(a):
         if not imgs:
             sys.exit("--imagenes no encontró archivos")
         ficha = a.ficha or comun.ficha(ep_d)
-        lista = materiales.cuadros(md, imgs, ficha)
+        lista = materiales.cuadros(md, imgs, ficha, recortes=(est["estilo"] == "realista"))
         res = checks.cuadros(lista, est["estilo"])
         nombres = {os.path.basename(i) for i in imgs}
         ped = {}
@@ -212,8 +217,9 @@ def preparar(a):
         extra = [R(os.path.join(md, "ficha_personaje.jpg"))] if os.path.exists(os.path.join(md, "ficha_personaje.jpg")) else []
         if est["estilo"] == "realista" and est["referencias"]:      # fotos reales para comparar el realismo
             extra += [R(os.path.join(md, x)) for x in materiales.referencias(md, est["referencias"])]
+        recs = [R(os.path.join(md, n)) for c in lista for n in c.get("recortes", [])]     # realista: franjas a resolución completa
         encs.append(encargo("cuadros", "4-cuadros.md", ", ".join(c["cuadro"] for c in lista),
-                            [R(os.path.join(md, c["archivo"])) for c in lista] + extra + [R(os.path.join(md, "cuadros.json"))],
+                            [R(os.path.join(md, c["archivo"])) for c in lista] + recs + extra + [R(os.path.join(md, "cuadros.json"))],
                             ctx_base + ["docs/MANUAL_PRODUCCION.md"], {"notas_de_uso": a.nota or ""}))
     elif et == "5-kling":
         import materiales
@@ -400,7 +406,7 @@ def cerrar(a):
     ant = comun.leer(os.path.join(rd, "materiales", "anterior.json"))
     # el estilo con que se preparó la ronda (queda en cada encargo); si no está (rondas viejas), el del episodio hoy
     estilo = next((e["estilo"] for e in encs if e.get("estilo")), None) or comun.estilo(comun.ep_dir(a.ep))["estilo"]
-    notas, problemas, sugerencias, verif = {}, [], [], []
+    notas, problemas, sugerencias, verif, delatores = {}, [], [], [], []
     for e in listos:
         o = comun.leer(os.path.join(rd, e["salida"]))
         for c, v in (o.get("notas") or {}).items():
@@ -428,6 +434,9 @@ def cerrar(a):
         for v in o.get("verificacion", []) or []:
             v["de"] = e["id"]
             verif.append(v)
+        for d in o.get("delatores", []) or []:          # realista: TODO lo que delata la maqueta (sin tope de 8)
+            d["de"] = e["id"]
+            delatores.append(d)
     # verificación: lo que sigue sin arreglar vuelve; un bloqueante sin arreglar sigue siendo bloqueante
     pendientes = []
     if ant:
@@ -460,7 +469,7 @@ def cerrar(a):
     ver = {"etapa": et, "ronda": ronda, "estilo": estilo, "veredicto": "APROBADO" if aprobado else "NO APROBADO",
            "promedio": promedio, "notas": {c: {"nota": medias[c], "min": v["min"], "por_que": v["por_que"], "de": v["de"]} for c, v in notas.items()},
            "problemas": problemas, "sugerencias": sugerencias, "verificacion": verif, "avisos": ch.get("avisos", []),
-           "criterios_sin_nota": falta_nota, "planos_dos_veces": dos_veces, "reemplazo": salida,
+           "criterios_sin_nota": falta_nota, "planos_dos_veces": dos_veces, "reemplazo": salida, "delatores": delatores,
            "parar_y_preguntar": bool(salida and "realismo" in criterios(et, estilo) and ("realismo" in bajos or "realismo" in falta_nota))}
     comun.guardar(os.path.join(rd, "veredicto.json"), ver)
     L = [f"# {et} · ronda {ronda} · **{ver['veredicto']}**" + (f" · estilo {estilo}" if et in CON_ESTILO else ""), ""]
@@ -495,6 +504,10 @@ def cerrar(a):
     L += ["", f"## Sugerencias (las {TOP_SUGERENCIAS} más importantes; el resto queda en veredicto.json)", ""]
     L += [f"{i}. {p['que']}" + (f" — {donde(p)}" if donde(p) else "") + (f". **Arreglo:** {p['arreglo']}" if p.get("arreglo") else "")
           for i, p in enumerate(sugerencias[:TOP_SUGERENCIAS], 1)] or ["Ninguna."]
+    if delatores:
+        L += ["", "## Delatores del realismo (lista completa: se arreglan TODOS antes de la ronda siguiente)", ""]
+        L += [f"- **{d.get('cuadro') or d.get('plano') or '?'}** · {d.get('zona', '')}: {d.get('que', '')}"
+              + (f" → {d['arreglo']}" if d.get("arreglo") else "") for d in delatores]
     if ant:
         L += ["", "## Verificación de la ronda anterior", "", "| id | qué | arreglado |", "|---|---|---|"]
         L += [f"| {x['id']} | {x['que'][:90]} | {'sí' if estado_id.get(x['id'], False) else '**no**'} |" for x in ant]

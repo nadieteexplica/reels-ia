@@ -372,6 +372,11 @@ LAVADO_BRILLO = 175          # brillo medio sobre esto + …
 LAVADO_SAT_ANIMADO = 70      # … poca saturación = lavado en el estilo animado (se pide color saturado)
 LAVADO_NEGROS_REALISTA = 120  # … negros levantados (percentil 5 sobre esto: todo gris claro, como neblina) = lavado en el realista
 LAVADO_NEGROS_AVISO = 90      # entre 90 y 120: aviso (un laboratorio blanco bien expuesto puede caer acá); lo decide el revisor
+# realista: sin negros de verdad no hay "realista" (Ep. 5, puerta 4 r1: B con negros en 117 se vio "maqueta, luz de mediodía").
+# Los cuadros aprobados del Ep. 5 quedaron con el percentil 5 en 5–22. Sobre 70 es falla (se arregla antes de abrir la ronda:
+# sol más bajo y de costado, menos luz de cielo, exposición); entre 40 y 70, aviso para el revisor.
+LUZ_PLANA_NEGROS = 70
+LUZ_PLANA_AVISO = 40
 
 
 def cuadros(lista, estilo="animado"):
@@ -387,7 +392,15 @@ def cuadros(lista, estilo="animado"):
             _f(r, f"{c['cuadro']}: {c['quemados_pct']} % de píxeles quemados (máx. 3 %)", bloqueante=True)
         if estilo == "realista":
             negros = c.get("negros_p5")
-            if c["brillo"] > LAVADO_BRILLO and negros is not None and negros > LAVADO_NEGROS_REALISTA:
+            if negros is not None and negros > LUZ_PLANA_NEGROS:
+                _f(r, f"{c['cuadro']}: luz plana, sin negros (lo más oscuro del cuadro en {negros}; en realista ≤ {LUZ_PLANA_AVISO}): "
+                      f"sol más bajo y de costado, menos luz de cielo o menos exposición (docs/ESTILO_REALISTA.md)")
+            elif negros is not None and negros > LUZ_PLANA_AVISO:
+                _a(r, f"{c['cuadro']}: pocos negros (percentil 5 en {negros}; los cuadros realistas aprobados quedaron en 5–22): "
+                      f"que el revisor diga si la luz se ve plana")
+            if negros is not None and negros > LUZ_PLANA_NEGROS:
+                pass                          # ya es falla: no repetir como lavado
+            elif c["brillo"] > LAVADO_BRILLO and negros is not None and negros > LAVADO_NEGROS_REALISTA:
                 _f(r, f"{c['cuadro']}: se ve lavado (brillo {c['brillo']}, lo más oscuro del cuadro en {negros}: no hay sombras)")
             elif c["brillo"] > LAVADO_BRILLO and negros is not None and negros > LAVADO_NEGROS_AVISO:
                 _a(r, f"{c['cuadro']}: muy claro y con pocas sombras (brillo {c['brillo']}, negros en {negros}): que el revisor "

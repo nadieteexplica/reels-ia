@@ -18,6 +18,7 @@ Tu encargo trae `estilo`. **Juzgas contra ese estilo, no contra el de otros vide
 - **Movimiento:** ves 6–12 cuadros por plano (4 por segundo), no el video corrido. Un parpadeo o un gesto chico puede caer entre dos cuadros. Antes de decir "congelado" o "tieso", mira en `planos.json` las medidas automáticas del plano: `mov_mediana` (cambio entre cuadros; bajo 0,5 = casi nada se mueve) y `quieto_max_s` (segundos seguidos sin cambio). Si `quieto_max_s` < 1, el plano **sí** se mueve: puedes decir que el movimiento es chico o poco expresivo, pero no que está congelado.
 - Los eventos automáticos (`eventos.json`, imágenes `eventos/E*.jpg`) son pistas: di para cada uno si es defecto o algo buscado.
 - Si algo no se alcanza a ver en el material, anótalo como sugerencia ("material insuficiente para verificar X"), no como bloqueante.
+- **Archivos temporales** (collages, recortes, cuadros sacados del video): en una carpeta propia, `/tmp/aud_<id de tu encargo>/`. Los revisores corren en paralelo y una carpeta común se pisa (pasó en el Ep. 5).
 
 ## Escala de notas (1–10)
 - **10:** al nivel de las mejores cuentas del formato. **9:** excelente. **8:** se publica sin vergüenza; un espectador atento no nota ningún error.
@@ -65,9 +66,10 @@ La ronda anterior dejó una lista corta (ids A1, A2…). Tu trabajo es:
  ],
  "verificacion": [{"id": "A1", "arreglado": true, "por_que": "en 22.20 la lupa ya no toca el ojo"}],
  "eventos": [{"id": "E3", "es_defecto": false, "por_que": "es la etiqueta que entra con su animación"}],
+ "delatores": [{"cuadro": "B", "plano": null, "segundo": null, "zona": "arriba", "que": "…", "arreglo": "…"}],
  "resumen": "una o dos frases"
 }
 ```
 - `veredicto` es tu opinión (APROBADO si no ves bloqueantes y tus notas dan ≥ 8 en promedio); el veredicto oficial lo calcula el sistema.
-- Usa exactamente los nombres de criterio que pide tu etapa. `verificacion` sólo en rondas de verificación.
+- Usa exactamente los nombres de criterio que pide tu etapa. `verificacion` sólo en rondas de verificación. `delatores` sólo en episodios realistas (puertas 4 y 6; ver `estilos.md`).
 - Sé rápido: no más de ~25 llamadas a herramientas y no releas imágenes. Si te cortan, se relanza tu encargo desde cero.

@@ -34,7 +34,7 @@ Hasta el Ep. 4 el auditor tenía metido el look animado: belleza pedía colores 
 | **Qué es** | el look de los Ep. 1–4 | "realista pero en un mundo animado" (Tomás; referencia de calidad: Zack D. Films). **No** es fotorrealismo de IA |
 | **Belleza** | luz suave de estudio, colores saturados, fondo vivo | luz con sombras reales, materiales con textura e imperfecciones, color natural con contraste, lente real |
 | **Criterio `realismo`** | no existe | obligatorio en cuadros (4) y animatic (6), con número; **ningún revisor bajo 8** (`presupuesto.json` → `realismo_min`). "No aplica" cuenta como falta |
-| **Lavado (automático, puerta 4)** | brillo > 175 y saturación < 70 | brillo > 175 y **sin negros** (percentil 5 > 120, como neblina); entre 90 y 120, o poco color con sombras reales, es aviso y lo decide el revisor |
+| **Lavado (automático, puerta 4)** | brillo > 175 y saturación < 70 | **luz plana: percentil 5 > 70 es falla** (aviso entre 40 y 70; 23-oct); además brillo > 175 y poco color con sombras reales es aviso y lo decide el revisor |
 | **B9** | estilo rechazado o imagen rota | lo mismo, más un plano o personaje **claramente** de dibujo animado (≤ 5 en la escala); las capas de explicación nunca, y lo "de plástico" va en la nota |
 | **Paquete** | etiqueta IA en IG y TikTok | además `isAiGeneratedContent: true` en YouTube (falla si falta) |
 | **Personajes** | los de la ficha del episodio | los de la ficha del episodio; el protagonista de MakeHuman ya no se usa |
@@ -42,6 +42,18 @@ Hasta el Ep. 4 el auditor tenía metido el look animado: belleza pedía colores 
 **Ficha:** un episodio nuevo se compara **sólo con su propia `ficha.jpg`**: el protagonista viejo ya no sirve de respaldo. Sin ficha, las puertas 4–7 fallan, salvo `--sin-personajes`.
 
 **Capas de explicación:** en realista, las líneas, flechas, cortes y etiquetas pueden ir estilizadas encima del mundo real (lo del Ep. 4) y no bajan el realismo.
+
+### El auditor realista (23-oct-2026, desde el Ep. 5: la línea de la cuenta)
+Tomás eligió el Ep. 5 como el estilo a seguir y pidió ajustar el auditor a él (receta en `docs/ESTILO_REALISTA.md`). En el Ep. 5 la puerta 4 necesitó 3 rondas porque lo que delataba la maqueta salía **de a una cosa por ronda**: primero la luz y los materiales, después el fondo, y después el vapor que dejó el arreglo del fondo. Y el animatic de baja resolución costó casi lo mismo que el final, sólo para encontrar problemas de composición que se ven en cuadros sueltos. Cambios:
+1. **Luz plana = falla automática** (puerta 4, realista): si lo más oscuro del cuadro (percentil 5) pasa de 70, no se abre la ronda. Entre 40 y 70 es aviso. Los cuadros aprobados del Ep. 5 quedaron en 5–22; el que se vio "maqueta" tenía 117 (`checks.py` → `LUZ_PLANA_*`).
+2. **Recortes a resolución completa:** en realista, cada cuadro de estilo va con tres franjas a 1080 de ancho (arriba = fondo y horizonte, medio = sujeto, abajo = suelo). Los cerros flotando y el vapor cortado no se veían en el cuadro reducido a 720.
+3. **Señales de maqueta:** una lista fija de 10 que el revisor recorre **completa** en cada cuadro (luz, superficies grandes, fondo lejano, repeticiones, lo que flota, lo que no debe flotar, líneas al punto de fuga, brillos sueltos, escala, negros puros; `prompts/estilos.md`).
+4. **`delatores`:** el revisor anota **todo** lo que delata la maqueta, sin el tope de 8 sugerencias. El veredicto lo muestra completo y en la ronda siguiente cada uno vuelve como `D1, D2…` para verificarlo, igual que los `A`. La idea es arreglar todo en una pasada.
+5. **Anclas de la escala con cuadros del Ep. 5** (6, 7, 8 y 9), para que "realismo 8" signifique lo mismo en cada ronda y en cada revisor.
+6. **Vida:** lo vivo nunca quieto más de 1 s (criterio `animacion`). En el Ep. 5 la rana quieta y Pete tieso dejaron la animación en 7.
+7. **Storyboard realista:** cada ficha dice dónde está el sol, qué hay detrás de lo que flota, el micro-movimiento de lo vivo y que nada tape lo que nombra la voz.
+8. **Sin animatic en realista:** muestras (3 cuadros por pieza a 540×960, ~10 min) + chequeo + revisión de la hoja → render final 720×1280/8 en 16 máquinas (~60 min) → **puerta 6 sobre el final** y **puerta 7 sobre el mismo render** → parches por plano (`piezas` + `base_run`). El código ya lo permite: `preparar <ep> animatic --video <MP4 final>`.
+9. **Revisores en paralelo:** cada uno usa su propia carpeta temporal (`/tmp/aud_<encargo>/`); en el Ep. 5 dos se pisaron un collage.
 
 ## Etapas
 | # | Etapa | Cuándo | Chequeo automático | Revisor |
@@ -51,7 +63,7 @@ Hasta el Ep. 4 el auditor tenía metido el look animado: belleza pedía colores 
 | 3 | **Storyboard (fichas de plano)** | antes de animar | columnas de la ficha (escena, plantilla, acción visible, cambio, cámara, cara, gráfico, origen), máx. 6 escenas (el id "E1" cuenta igual aunque diga "E1 patio") y 3 a medida, qué cambia en cada plano de más de 2 s, cara sobre y 1000, gráfico vs. cara, huecos, escala cada ≤ 12 s, Kling ≤ 3 | 1: foco, ritmo, viabilidad, gancho visual |
 | 4 | **Cuadros de estilo** | sólo si hay escenario nuevo | resolución, % quemado, lavado (según el estilo), oscuro, `estilo.json`, ficha del episodio | 1 (todos los cuadros en un encargo); en realista suma `realismo` |
 | 5 | **Clips de Kling** | si hay | resolución, palabras que activan el filtro, máx. 3 | 1 |
-| 6 | **Animatic** | video completo en baja resolución (540×960, 8 muestras), antes del render final | QA técnico, detectores (pantalla vacía, apariciones, luz), **chequeo por plano** (ojos tapados, quemado, plano quieto, poco movimiento, fondo liso, cara bajo la interfaz), **sin datos de ojos = falla** (salvo `--sin-personajes`), subtítulos contra `words.json`, audio | 1 por cada 10 planos + 1 global |
+| 6 | **Animatic** | video completo en baja resolución (540×960, 8 muestras), antes del render final. **En realista, sobre el render final** (después de las muestras) | QA técnico, detectores (pantalla vacía, apariciones, luz), **chequeo por plano** (ojos tapados, quemado, plano quieto, poco movimiento, fondo liso, cara bajo la interfaz), **sin datos de ojos = falla** (salvo `--sin-personajes`), subtítulos contra `words.json`, audio | 1 por cada 10 planos + 1 global |
 | 7 | **Final** | render final (720×1280, 16 muestras) | lo mismo que el animatic | 1: **sólo bloqueantes**, sin notas |
 | 8 | **Paquete** | antes del mensaje a Tomás | título ≤ 60, hashtags, pregunta, fuentes, `madeForKids`, título de TikTok, etiquetas IA | 1. La comprobación de la URL pública después del OK (`--url`) **no es una ronda** (queda en `8-paquete/url.json`) |
 | P | **Proceso** | al final | bitácora, horas prometidas, chequeos de 15 min, ≤ 16 máquinas, gasto, **todas las rondas por puerta** (las de carpetas archivadas o canceladas también cuentan), **horas activas** (huecos de más de 1 h sin anotar no cuentan; pasarse es falla), revisores e imágenes | — (es un informe: no tiene tope de rondas) |

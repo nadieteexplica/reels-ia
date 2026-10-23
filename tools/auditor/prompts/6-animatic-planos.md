@@ -3,6 +3,7 @@
 El animatic es el video **completo** con la voz, los subtítulos y los gráficos, renderizado más chico y con menos muestras (un poco de ruido es normal: no lo cuentes). Se revisa **antes** del render final: acá arreglar es barato. Otro revisor mira el video completo (gancho, ritmo general, subtítulos, audio); tú vas plano por plano.
 
 **Criterios (para todos los planos):** `belleza`, `animacion`, `claridad`, `ritmo` y, **sólo si el estilo del encargo es realista**, `realismo` (escala en `estilos.md`; di qué plano delata el 3D y por qué). Belleza se juzga según el estilo (`estilos.md`).
+**En realista** (`estilos.md`): recorre las **señales de maqueta** en tus planos y anota todas en `delatores` (plano, segundo, zona). Revisa la **vida**: lo vivo nunca quieto más de 1 s (una rana que respira, una persona que flota y busca el equilibrio). En realista la puerta 6 puede correr **sobre el render final** (no un animatic de baja resolución): juzga igual, pero el ruido de pocas muestras ya no es excusa.
 **Materiales:**
 - `planos/PNN.jpg`: 6–12 cuadros por plano (4 por segundo), en orden de tiempo (izquierda→derecha, arriba→abajo), con el segundo de cada uno.
 - `planos.json`: inicio, fin y origen de cada plano, y las **medidas automáticas**: `mov_mediana`, `quieto_max_s`, `fondo_liso` (ver comun.md, "Movimiento").

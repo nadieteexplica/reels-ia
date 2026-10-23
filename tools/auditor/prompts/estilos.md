@@ -59,6 +59,12 @@ El look de los primeros episodios: 3D semi-realista estilizado, tipo película a
 
 Más fotográfico no es más nota: el 10 es una animación 3D realista impecable, no un video que parezca grabado.
 
+**Anclas (cuadros reales del Ep. 5, el video que Tomás eligió como la línea de la cuenta; receta en `docs/ESTILO_REALISTA.md`):**
+- **6:** el imán gigante de la r1: paneles lisos de un solo color, luz pareja de mediodía sin negros (percentil 5 en 117), torre lisa, cerros de greda. Parecía estanque o maqueta.
+- **7:** el mismo imán ya de acero sucio con pernos y Pete con su ropa real, pero el fondo de juguete: cerros facetados de un solo café sin bruma, flotando sobre una franja de cielo, y dos plumas de vapor idénticas.
+- **8:** el cuadro final del imán: sol bajo de costado, negros reales, acero con chorreados y óxido, cerros con formas grandes y bruma que tocan el suelo, y Pete recortado contra los cerros.
+- **9:** la rana: un escaneo real con piel moteada y gotitas, vidrio con polvo y huellas, foco en el ojo y el fondo de sal a contraluz desenfocado como en un lente real.
+
 - **Evidencia:** di qué se ve real y qué **delata** el 3D, con plano y segundo. Delatores típicos:
   - piel lisa de muñeco, ojos grandes o brillantes de caricatura;
   - cabeza grande para el cuerpo;
@@ -69,6 +75,31 @@ Más fotográfico no es más nota: el 10 es una animación 3D realista impecable
   - agua o vidrio que no refractan.
 - **Si tus materiales traen `ref_*.jpg` (fotos reales del tema):** compara contra ellas. ¿Los materiales, la luz y la escala se parecen a la foto? Las fotos son sólo para comparar: no son parte del video.
 - **Una nota de realismo baja no es bloqueante:** es una nota, pero **más exigente que las otras**: en los demás criterios un revisor puede poner 7 y el video igual aprueba si el promedio da 8; en `realismo` **ningún revisor puede poner menos de 8** o no aprueba. "No aplica" no vale en un episodio realista.
+
+### Señales de maqueta: revísalas TODAS, en cada cuadro, en los recortes a resolución completa
+En el Ep. 5 lo que delataba la maqueta apareció de a poco, una cosa por ronda, porque no se vio en la miniatura. Por eso, en las puertas 4 y 6, recorre esta lista **completa** en cada cuadro o plano, usando los recortes `*_recorte_{arriba,medio,abajo}.jpg` (resolución completa) cuando los haya:
+1. **Luz:** ¿el sol es bajo y de costado o a contraluz? ¿Hay negros de verdad y sombras de contacto? (La luz pareja cenital es maqueta.)
+2. **Superficies grandes** (paredes, máquinas, torres, pisos): ¿tienen chorreados, mugre, rayas y variación? ¿O son lisas y de un solo color?
+3. **Fondo lejano** (cerros, ciudad, horizonte): ¿son formas grandes con bruma de distancia, que **tocan el suelo**? ¿O son de greda, facetados o flotan (con cielo debajo)?
+4. **Repeticiones:** ¿hay dos plumas, árboles, cerros o piezas idénticas?
+5. **Lo que flota a propósito** (la rana, la persona): ¿se recorta contra el fondo lejano o el cielo, con aire visible bajo él? Si sus pies quedan contra el suelo lejano, se lee "parado lejos". ¿Flota donde la física lo pondría (en un imán, dentro del hueco)?
+6. **Lo que no debe flotar** (vapor, cables, cerros, piezas): ¿cada cosa toca su base?
+7. **Líneas en el suelo** (cables, caminos) que van al punto de fuga del centro del cuadro: ¿se leen como una aleta vertical?
+8. **Brillos sueltos:** ¿hay una mancha del sol o del reflejo de una luz detrás del sujeto, que parece un objeto?
+9. **Escala:** ¿todo mide lo que mide en la vida real?
+10. **Material negro puro** o sin textura (un tubo, un hueco que es un agujero negro plano).
+
+**Toda señal que veas va en `delatores`** (ver abajo), aunque sea chica. No elijas sólo las peores: la meta es arreglarlas todas en **una** pasada.
+
+### `delatores` (sólo en realista, puertas 4 y 6)
+Además de `problemas`, tu JSON lleva `"delatores": [...]` con **todo** lo que delata la maqueta, **sin tope**:
+```json
+"delatores": [{"cuadro": "B", "plano": null, "segundo": null, "zona": "arriba", "que": "cerros facetados de un solo café, sin bruma", "arreglo": "formas grandes y bruma de distancia; que toquen el suelo"}]
+```
+(`zona`: arriba, medio o abajo; en la puerta 6, `plano` y `segundo` en vez de `cuadro`.) En la ronda de verificación vuelven como ids `D1, D2…` y se verifican igual que los `A`.
+
+### Vida (realista, puertas 6 y 7 → criterio `animacion`)
+Lo vivo **nunca está quieto más de 1 s**: un animal respira o parpadea, sus patas derivan; una persona que flota busca el equilibrio con los brazos (animación en loop, no una pose fija). Un animal o una persona quietos como estatua es un 7 en `animacion`, con la sugerencia concreta del micro-movimiento.
 
 ### Capas de explicación (permitidas)
 Las explicaciones pueden llevar **capas gráficas estilizadas encima del mundo real**, y eso **no baja el realismo**, siempre que el mundo de abajo sea real. Es lo que Tomás pidió que se repitiera del Ep. 4: meterse dentro de lo que se explica y dibujar cada cosa cuando la voz la nombra. Ejemplos:
