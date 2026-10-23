@@ -650,8 +650,8 @@ def p15(sc, a, b):
 
 
 def p16(sc, a, b):
-    # "Ahí sí flotarías": cámara alta (la del cuadro B v2) para ver la boca negra; Pete sale flotando del hueco y queda a
-    # 0,8 m sobre la boca
+    # "Ahí sí flotarías": la cámara del cuadro B v2.1 (apenas sobre la tapa); Pete sale flotando del hueco y queda a
+    # 1,2 m sobre la boca, recortado contra los cerros
     S = armar_E4(sc)
     cam, P = S["cam"], S["P"]
     estado_iman(S, 0, lambda o: None)
@@ -664,12 +664,12 @@ def p16(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        z = boca - 0.9 + 1.7 * sale(lin(f, a, b - 8))
+        z = boca - 0.9 + 2.1 * sale(lin(f, a, b - 8))      # sale del hueco y queda a 1,2 m sobre la boca (cuadro B)
         P["arm"].location = (0.0, 0.0, z + 0.03 * math.sin(f / 30 * 2.0))
         pose_pete(sc, P, f, cabeza=(-8, 0), cuadro_anim=20)
         d = 13.5 - 1.5 * x
-        pos = Vector((math.sin(az) * d, -math.cos(az) * d, 4.8))
-        mirar(cam, pos, Vector((0, 0, 4.3)), lente=35, foco=Vector((0, 0, boca + 1.7)))
+        pos = Vector((math.sin(az) * d, -math.cos(az) * d, 4.1))
+        mirar(cam, pos, Vector((0, 0, 3.8)), lente=35, foco=Vector((0, 0, boca + 2.1)))
         cam.data.dof.aperture_fstop = 8
         return {}
     return {"actualizar": act}
@@ -687,7 +687,7 @@ def p17(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        P["arm"].location = (0.0, 0.0, boca + 0.8 + 0.03 * math.sin(f / 30 * 2.0))
+        P["arm"].location = (0.0, 0.0, boca + 1.2 + 0.03 * math.sin(f / 30 * 2.0))
         pose_pete(sc, P, f, cabeza=(-8, 0), cuadro_anim=20)
         mirar(cam, Vector((8.0, -20.0, 1.6)).lerp(Vector((10.5, -27.0, 1.7)), x), Vector((-2.0, 0, 3.2)), lente=24, foco=Vector((0, 0, 3.0)))
         cam.data.dof.aperture_fstop = 11
