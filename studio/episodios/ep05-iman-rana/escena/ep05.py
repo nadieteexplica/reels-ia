@@ -583,7 +583,7 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45):
     goma = mat_goma("cable_g", (0.02, 0.02, 0.022), 0.5)
     hueco = mat_pintura("hueco_g", (0.02, 0.02, 0.025), rugo=(0.5, 0.7), sucio=0.0)
     esc = mat_pintura("escarcha", (0.62, 0.68, 0.74), rugo=(0.7, 0.95), sucio=0.45)
-    cilindro(sc, "G_plataforma", r * 1.18, z0, (0, 0, 0), verts=160, mat=mat_concreto("plataforma", (0.42, 0.42, 0.41), 1.0), bisel=0.02)
+    cilindro(sc, "G_plataforma", r * 1.18, z0, (0, 0, 0), verts=160, mat=mat_concreto("plataforma", (0.24, 0.24, 0.24), 1.0), bisel=0.02)
     tubo(sc, "G_cuerpo", r, r_hueco, alto, (0, 0, z0), verts=192, mat=pintura, bisel=0.03)
     tubo(sc, "G_escarcha", r * 1.004, r * 0.98, 0.35, (0, 0, z0), verts=192, mat=esc, bisel=0.02)
     tubo(sc, "G_hueco", r_hueco * 1.002, r_hueco * 0.97, alto * 1.01, (0, 0, z0), verts=160, mat=hueco, bisel=0)
@@ -627,7 +627,7 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45):
 
 
 def nave(sc, lado=80.0):
-    piso = caja(sc, "Piso_nave", (lado, lado, 0.02), (0, 0, -0.01), mat_concreto("concreto_nave", (0.38, 0.38, 0.37), 0.4), 0)
+    piso = caja(sc, "Piso_nave", (lado, lado, 0.02), (0, 0, -0.01), mat_concreto("concreto_nave", (0.27, 0.27, 0.26), 0.4), 0)
     # marcas amarillas de seguridad en el piso alrededor del imán (pintura gastada)
     amarillo = mat_pintura("amarillo", (0.75, 0.55, 0.05), rugo=(0.5, 0.8), sucio=0.4)
     tubo(sc, "linea_seg", 4.6, 4.45, 0.004, (0, 0, 0.0), verts=192, mat=amarillo, bisel=0)
@@ -697,3 +697,28 @@ def flecha(sc, nombre, base, largo=0.9, r=0.06, color=(1.0, 0.45, 0.05), fuerza=
     bpy.ops.mesh.primitive_cone_add(radius1=r * 2.4, depth=largo * 0.3, location=(bx, by, bz + largo * 0.85), vertices=24)
     p = bpy.context.object; asignar(p, m)
     return c, p
+
+
+def rotar_hueso_mundo(arm, sufijo, eje_mundo, grados):
+    """Gira un hueso alrededor de un eje del MUNDO que pasa por su cabeza (no depende de los ejes locales de Mixamo)."""
+    from mathutils import Matrix
+    bpy.context.view_layer.update()
+    pb = next(b for b in arm.pose.bones if b.name.endswith(":" + sufijo))
+    mw = arm.matrix_world @ pb.matrix
+    cabeza = mw.to_translation()
+    R = Matrix.Rotation(math.radians(grados), 4, Vector(eje_mundo))
+    nueva = Matrix.Translation(cabeza) @ R @ Matrix.Translation(-cabeza) @ mw
+    pb.matrix = arm.matrix_world.inverted() @ nueva
+    bpy.context.view_layer.update()
+
+
+def pose_flotando(arm):
+    """Desde la T de Mixamo: brazos abajo y un poco abiertos, codos apenas doblados, cabeza que mira abajo (sorpresa tranquila).
+    Pete mira hacia -Y; su brazo izquierdo apunta a +X."""
+    rotar_hueso_mundo(arm, "LeftArm", (0, 1, 0), 58)
+    rotar_hueso_mundo(arm, "RightArm", (0, 1, 0), -58)
+    rotar_hueso_mundo(arm, "LeftForeArm", (0, 1, 0), 12)
+    rotar_hueso_mundo(arm, "RightForeArm", (0, 1, 0), -12)
+    rotar_hueso_mundo(arm, "Head", (1, 0, 0), 14)
+    rotar_hueso_mundo(arm, "LeftUpLeg", (0, 1, 0), 4)
+    rotar_hueso_mundo(arm, "RightUpLeg", (0, 1, 0), -4)

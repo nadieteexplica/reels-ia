@@ -63,6 +63,7 @@ jobs:
           if [ -n "$PRIVADOS" ]; then GH_TOKEN="$GH_PRIV" gh release download Personajes -R nadieteexplica/assets -p "$PRIVADOS" -D _assets; fi
           pose=$(find priv_assets -iname "*happy*idle*.fbx" 2>/dev/null | head -1); echo "POSE=$GITHUB_WORKSPACE/$pose" >> "$GITHUB_ENV"
           ls -la _assets; echo "pose: $pose"
+          mkdir -p _out; (echo "pose: $pose"; find priv_assets -iname "*.fbx" 2>/dev/null | sed 's|.*/||' | sort) > _out/assets_lista.txt
       - name: Render ${{ matrix.escena }}
         env:
           EP: ${{ github.event.inputs.episodio }}
