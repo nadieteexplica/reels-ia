@@ -1,0 +1,99 @@
+{
+ "etapa": "3-storyboard",
+ "ronda": 2,
+ "veredicto": "APROBADO",
+ "promedio": 8.5,
+ "notas": {
+  "foco": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "cada frase tiene su imagen y una sola idea: 200 pollos con contador (2), micro al lado del lomo con regla 12 M (5), carrete transparente con engranajes (11), mosasaurio subiendo mientras el niño silba de espaldas (19-20), y ahora la mochila que explota en verde justo en 'cabe en tu mochila' (29)",
+   "de": "storyboard"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "37 planos en 42,27 s, ninguno pasa de 1,62 s y la escala alterna G/M/D/P todo el rato; lo flojo son los 4 planos de menos de 0,8 s (8 a 0,66 s con salpicadura y tambaleo, 17, 20, 33) que pueden no alcanzar a leerse",
+   "de": "storyboard"
+  },
+  "viabilidad": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "4 escenas (3 a medida), agua resuelta sin simular fluidos (Ocean + partículas en 8/25/26, niebla de volumen en 19/23), plan B Kling en el 25, ninguna mano con objeto, y la ficha declara las escenas ya programadas con una muestra por plano sin errores; queda el riesgo de calidad de las acciones de cuerpo entero sin plantilla (tambaleo 8, caída de poto 14) y del contacto barra-hombros del arnés (16), que se mira en el animatic",
+   "de": "storyboard"
+  },
+  "gancho_visual": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "cuadro 0 absurdo y en curso (racimo de pollos sobre el mar ya encuadrado, sombra cruzando por debajo); el racimo vuelve en 3, 10, 23 y 25 y el radar verde (18, 21) se paga con el match-cut de la explosión a la portada 'Untamed Waters' (29-30) y vuelve en 35; el cierre no hace loop a propósito por ser publicidad, pero el 37 ('ni un pollo') empalma con el gancho",
+   "de": "storyboard"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "id": "A2",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 7,
+   "segundo": "8.10",
+   "que": "[A2 sin arreglar] E2 son en realidad seis montajes distintos: pernos y torreta (7), cable trenzándose (9), carrete transparente (11), disco con pinza y chispas (12), trinquete (13) y arnés (16). E1 suma acciones de cuerpo entero que ninguna plantilla cubre: tambaleo (8) y caída de poto (14). El ritmo se apoya en armar piezas nuevas, no en cortar dentro de lo que ya está.",
+   "arreglo": "Que E2 sea un solo modelo: el carrete en corte. Los planos 11, 12 y 13 pasan a ser tres cámaras sobre ese mismo carrete transparente, que ya trae los engranajes verdes, la pinza roja y el pestillo amarillo, con push-in. El 7 se arma con la base de la grúa de E1 y flechas verdes en el post. El 16 es un detalle del mismo asiento del 15. El 9 es un macro del cable de E1 con un shader de torsión animado. En el 14, el niño se cae fuera del cuadro por abajo y sólo vuelven a entrar sus botas, y una flecha roja que sale del agua tira del cable para que el tirón tenga causa.",
+   "de": "verificación",
+   "asignado": "storyboard"
+  }
+ ],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "la ficha ya decide el agua: Ocean procedural con el interior del bote cortado, spray de partículas en 8, 25 y 26, niebla azul de volumen sin superficie en 19 y 23, plan B Kling para el 25 sin el niño, y el 26 pasó a plano general sin 'pelo al viento'",
+   "de": "storyboard"
+  },
+  {
+   "id": "A2",
+   "arreglado": false,
+   "por_que": "arreglo parcial: el 14 ya tiene la flecha roja que sale del agua y tira del cable, pero E2 sigue siendo seis montajes distintos (pernos 7, trenzado 9, carrete 11, disco 12, trinquete 13, arnés 16, este último todavía en E2 y no como detalle del asiento del 15) y el niño sigue cayéndose de poto en cuadro en el 14 y tambaleándose en el 8; lo atenúa que la ficha declara las 4 escenas ya programadas y muestreadas sin errores (era sugerencia, no bloqueante)",
+   "de": "storyboard"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "el plano 1 ahora parte 'ya encuadrado en el racimo (tercio superior), sólo push-in 8 %', sin paneo desde la polea, con la sombra cruzando por debajo",
+   "de": "storyboard"
+  },
+  {
+   "id": "A4",
+   "arreglado": true,
+   "por_que": "en el 29 la mochila escolar en la cubierta brilla por el cierre y explota en verde, y el 30 hace match-cut de ese verde a la portada del radar 'Untamed Waters', que vuelve en el 35",
+   "de": "storyboard"
+  },
+  {
+   "id": "A5",
+   "arreglado": true,
+   "por_que": "los subtítulos salen del guion de pantalla (Rhein, T. rex) y no de lo que leyó la voz, el 32 y el 38 van sin subtítulo, y el 2 ya separa en x la cara (x 600-900) del contador (x 150-600); el encuadre del metraje en y 300-950 no quedó escrito en la ficha, se verifica en el animatic",
+   "de": "storyboard"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "plano 8 dura 0.66 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 17 dura 0.74 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 20 dura 0.75 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 33 dura 0.68 s (muy corto para leerse)",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false
+}

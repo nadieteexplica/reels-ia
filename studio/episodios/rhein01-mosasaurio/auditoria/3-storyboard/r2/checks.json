@@ -1,0 +1,28 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "plano 8 dura 0.66 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 17 dura 0.74 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 20 dura 0.75 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 33 dura 0.68 s (muy corto para leerse)",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "planos": 37,
+  "escenas": 4,
+  "planos_kling": [
+   25
+  ]
+ }
+}

@@ -49,7 +49,7 @@ def cielo(sc, sol_energia=4.2, sol_dir=(-0.45, 0.55, 0.70)):
 
 def nubes(coll, semilla=3, n=9, radio=140, alto=(18, 34)):
     r = random.Random(semilla)
-    m = mat_simple("Nube", (1.0, 1.0, 1.0), rough=0.9, sss=0.3)
+    m = mat_simple("Nube", (1.0, 1.0, 1.0), rough=0.9, sss=0.0)
     obs = []
     for i in range(n):
         ang = r.uniform(-1.9, 1.9) - math.pi / 2           # nubes hacia adelante (-Y) y los lados

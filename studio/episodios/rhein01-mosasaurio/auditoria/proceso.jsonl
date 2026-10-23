@@ -13,3 +13,8 @@
 {"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 13, "ts": "2026-10-22T22:48:16-03:00"}
 {"tipo": "trabajo", "id": "auditor 3-storyboard r1", "estado": "fin", "n": 14, "ts": "2026-10-22T22:55:46-03:00"}
 {"tipo": "aviso", "que": "22:52 Tomás: no cambiar nada del proyecto (es una publicidad, fuera del canal). Se devolvió tools/auditor/checks.py, el aviso pasó a la rama 'rhein' y se sacó de main (commit de limpieza); al terminar se borran la rama y las prerelease rhein01-*", "n": 15, "ts": "2026-10-22T22:55:46-03:00"}
+{"tipo": "trabajo", "id": "auditor 3-storyboard r2", "estado": "inicio", "n": 16, "ts": "2026-10-22T23:01:59-03:00"}
+{"tipo": "trabajo", "id": "render-planos 39887262644 (muestras HD)", "estado": "inicio", "n": 17, "ts": "2026-10-22T23:01:59-03:00"}
+{"tipo": "chequeo", "id": "sesion 22-oct", "estado": "vivo (vigilante de sesión)", "n": 18, "ts": "2026-10-22T23:03:16-03:00"}
+{"tipo": "trabajo", "id": "auditor 3-storyboard r2", "estado": "fin", "n": 19, "ts": "2026-10-22T23:04:07-03:00"}
+{"tipo": "chequeo", "id": "render-planos 39887262644 (muestras HD)", "estado": "vivo: 5/15 partes listas a los 3 min; el resto (planos con el niño, el racimo y el mar) sigue", "n": 20, "ts": "2026-10-22T23:04:36-03:00"}

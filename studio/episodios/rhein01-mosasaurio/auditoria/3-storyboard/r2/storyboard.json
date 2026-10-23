@@ -1,0 +1,21 @@
+{
+ "encargo": "storyboard",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "foco": {"nota": 9, "por_que": "cada frase tiene su imagen y una sola idea: 200 pollos con contador (2), micro al lado del lomo con regla 12 M (5), carrete transparente con engranajes (11), mosasaurio subiendo mientras el niño silba de espaldas (19-20), y ahora la mochila que explota en verde justo en 'cabe en tu mochila' (29)"},
+  "ritmo": {"nota": 8, "por_que": "37 planos en 42,27 s, ninguno pasa de 1,62 s y la escala alterna G/M/D/P todo el rato; lo flojo son los 4 planos de menos de 0,8 s (8 a 0,66 s con salpicadura y tambaleo, 17, 20, 33) que pueden no alcanzar a leerse"},
+  "viabilidad": {"nota": 8, "por_que": "4 escenas (3 a medida), agua resuelta sin simular fluidos (Ocean + partículas en 8/25/26, niebla de volumen en 19/23), plan B Kling en el 25, ninguna mano con objeto, y la ficha declara las escenas ya programadas con una muestra por plano sin errores; queda el riesgo de calidad de las acciones de cuerpo entero sin plantilla (tambaleo 8, caída de poto 14) y del contacto barra-hombros del arnés (16), que se mira en el animatic"},
+  "gancho_visual": {"nota": 9, "por_que": "cuadro 0 absurdo y en curso (racimo de pollos sobre el mar ya encuadrado, sombra cruzando por debajo); el racimo vuelve en 3, 10, 23 y 25 y el radar verde (18, 21) se paga con el match-cut de la explosión a la portada 'Untamed Waters' (29-30) y vuelve en 35; el cierre no hace loop a propósito por ser publicidad, pero el 37 ('ni un pollo') empalma con el gancho"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A1", "arreglado": true, "por_que": "la ficha ya decide el agua: Ocean procedural con el interior del bote cortado, spray de partículas en 8, 25 y 26, niebla azul de volumen sin superficie en 19 y 23, plan B Kling para el 25 sin el niño, y el 26 pasó a plano general sin 'pelo al viento'"},
+  {"id": "A2", "arreglado": false, "por_que": "arreglo parcial: el 14 ya tiene la flecha roja que sale del agua y tira del cable, pero E2 sigue siendo seis montajes distintos (pernos 7, trenzado 9, carrete 11, disco 12, trinquete 13, arnés 16, este último todavía en E2 y no como detalle del asiento del 15) y el niño sigue cayéndose de poto en cuadro en el 14 y tambaleándose en el 8; lo atenúa que la ficha declara las 4 escenas ya programadas y muestreadas sin errores (era sugerencia, no bloqueante)"},
+  {"id": "A3", "arreglado": true, "por_que": "el plano 1 ahora parte 'ya encuadrado en el racimo (tercio superior), sólo push-in 8 %', sin paneo desde la polea, con la sombra cruzando por debajo"},
+  {"id": "A4", "arreglado": true, "por_que": "en el 29 la mochila escolar en la cubierta brilla por el cierre y explota en verde, y el 30 hace match-cut de ese verde a la portada del radar 'Untamed Waters', que vuelve en el 35"},
+  {"id": "A5", "arreglado": true, "por_que": "los subtítulos salen del guion de pantalla (Rhein, T. rex) y no de lo que leyó la voz, el 32 y el 38 van sin subtítulo, y el 2 ya separa en x la cara (x 600-900) del contador (x 150-600); el encuadre del metraje en y 300-950 no quedó escrito en la ficha, se verifica en el animatic"}
+ ],
+ "eventos": [],
+ "resumen": "Sin bloqueantes nuevos. A1, A3, A4 y A5 quedaron arreglados; A2 sólo en parte (flecha roja en el 14), pero era sugerencia y la ficha declara las escenas ya programadas y probadas."
+}

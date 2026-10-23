@@ -46,7 +46,7 @@ def armar(sc, quiero, mosa=True, nino=True, olas=0.34):
     S = {"quiero": quiero}
     sc.view_settings.exposure = -0.35
     S["sol"] = M.cielo(sc, sol_energia=4.0, sol_dir=(-0.35, 0.65, 0.68))
-    S["mar"] = M.mar(coll, tam=50, repetir=4, res=8, olas=olas)
+    S["mar"] = M.mar(coll, tam=60, repetir=3, res=7, olas=olas)
     M.nubes(coll)
     S["bote"] = bote = M.bote(coll)
     bote.location.z = Z_BOTE
