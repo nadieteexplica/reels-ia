@@ -12,3 +12,6 @@
 {"tipo": "trabajo", "id": "auditor 1-guion r1", "estado": "inicio", "n": 12, "ts": "2026-10-23T00:08:02-03:00"}
 {"tipo": "trabajo", "id": "estilos 39893200381", "estado": "fin", "n": 13, "ts": "2026-10-23T00:16:25-03:00"}
 {"tipo": "trabajo", "id": "estilos HD C 39893696054 · B2 39893836860 · A2 39894106192", "estado": "inicio", "n": 14, "ts": "2026-10-23T00:16:25-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 15, "ts": "2026-10-23T00:18:54-03:00"}
+{"tipo": "trabajo", "id": "estilos B3 39894344590", "estado": "inicio", "n": 16, "ts": "2026-10-23T00:19:10-03:00"}
+{"tipo": "aviso", "que": "B2 salió con Pete en T: el FBX With Skin trae una acción que pisa la pose; arreglado (animation_data_clear) y relanzado B3 39894344590", "n": 17, "ts": "2026-10-23T00:19:10-03:00"}

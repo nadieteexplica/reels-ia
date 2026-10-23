@@ -672,9 +672,15 @@ def tejido(sc, n=40, caja_xy=8.0, z=(-3, 6), semilla=5):
     b.inputs["Base Color"].default_value = (0.55, 0.11, 0.09, 1)
     b.inputs["Subsurface Weight"].default_value = 1.0
     b.inputs["Subsurface Radius"].default_value = (1.0, 0.3, 0.2)
-    b.inputs["Subsurface Scale"].default_value = 0.6
-    b.inputs["Roughness"].default_value = 0.25
-    b.inputs["Coat Weight"].default_value = 0.4
+    b.inputs["Subsurface Scale"].default_value = 0.9
+    b.inputs["Roughness"].default_value = 0.5
+    b.inputs["Coat Weight"].default_value = 0.15
+    b.inputs["Coat Roughness"].default_value = 0.3
+    # tejido: manchas y venitas (no un globo de plástico)
+    nz = _ruido(nt, escala=3.0, detalle=12, coord="Generated")
+    nt.links.new(_rampa(nt, nz.outputs["Fac"], (0.32, 0.05, 0.05), (0.62, 0.16, 0.12)).outputs[0], b.inputs["Base Color"])
+    fino = _ruido(nt, escala=40, detalle=6, coord="Generated")
+    _bump(nt, b, fino.outputs["Fac"], 0.25, 0.02)
     for i in range(n):
         x, y = random.uniform(-caja_xy, caja_xy), random.uniform(3, 14)
         bpy.ops.mesh.primitive_ico_sphere_add(radius=random.uniform(1.2, 2.4), subdivisions=4, location=(x, y, random.uniform(*z)))
