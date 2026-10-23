@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 2712,
+ "creditos_usados": 2948,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -31,5 +31,8 @@
  },
  "0009-ep04-cortina-ducha.json": {
   "tts": "ep04-cortina-ducha"
+ },
+ "0010-ep05-iman-rana.json": {
+  "tts": "ep05-iman-rana"
  }
 }
