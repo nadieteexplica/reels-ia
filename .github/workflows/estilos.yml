@@ -14,6 +14,12 @@ on:
         default: "1080x1920"
       samples:
         default: "64"
+      modelos:
+        description: "Prerelease pública con modelos CC0/CC-BY y HDRI que se bajan a $ASSETS (opcional, ej. ep05-modelos)"
+        default: ""
+      privados:
+        description: "Patrón de personajes del Release privado Personajes (repo assets) que se bajan a $ASSETS (opcional, ej. PETE*). Nunca se suben."
+        default: ""
 permissions:
   contents: write
 jobs:
@@ -38,6 +44,25 @@ jobs:
         with:
           python-version: "3.13"
       - run: pip install -q bpy==5.2.0 numpy pillow scipy
+      - name: Animaciones de Mixamo (repo privado)
+        if: ${{ github.event.inputs.privados != '' }}
+        uses: actions/checkout@v4
+        with:
+          repository: nadieteexplica/assets
+          token: ${{ secrets.TOKEN }}
+          path: priv_assets
+      - name: Assets (públicos y privados) → $ASSETS
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_PRIV: ${{ secrets.TOKEN }}
+          MODELOS: ${{ github.event.inputs.modelos }}
+          PRIVADOS: ${{ github.event.inputs.privados }}
+        run: |
+          mkdir -p _assets
+          if [ -n "$MODELOS" ]; then gh release download "$MODELOS" -R "$GITHUB_REPOSITORY" -D _assets -p "*.glb" -p "*.hdr" -p "*.jpg" -p "*.png" || true; fi
+          if [ -n "$PRIVADOS" ]; then GH_TOKEN="$GH_PRIV" gh release download Personajes -R nadieteexplica/assets -p "$PRIVADOS" -D _assets; fi
+          pose=$(find priv_assets -iname "*happy*idle*.fbx" 2>/dev/null | head -1); echo "POSE=$GITHUB_WORKSPACE/$pose" >> "$GITHUB_ENV"
+          ls -la _assets; echo "pose: $pose"
       - name: Render ${{ matrix.escena }}
         env:
           EP: ${{ github.event.inputs.episodio }}
@@ -45,6 +70,7 @@ jobs:
           RES: ${{ github.event.inputs.res }}
           SAMPLES: ${{ github.event.inputs.samples }}
           NOMBRE: estilo_${{ matrix.escena }}_HD
+          ASSETS: ${{ github.workspace }}/_assets
         run: |
           mkdir -p "$OUT"
           cd "studio/episodios/$EP/escena"

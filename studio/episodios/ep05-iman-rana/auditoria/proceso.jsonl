@@ -7,3 +7,4 @@
 {"tipo": "gasto", "servicio": "kling", "monto": 0.0, "nota": "prueba texto→video rechazada por la API (prompt vacío en el formato de texto); 0 unidades; ya no se usa (Tomás no quiere fotorrealismo IA)", "n": 7, "ts": "2026-10-22T23:48:51-03:00"}
 {"tipo": "aviso", "que": "23:46 Tomás subió 6 personajes de Mixamo al Release privado Personajes (assets); para el Ep. 5 usar PETE", "n": 8, "ts": "2026-10-22T23:48:51-03:00"}
 {"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 9, "ts": "2026-10-22T23:48:54-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05", "estado": "vivo (vigilante)", "n": 10, "ts": "2026-10-23T00:03:54-03:00"}
