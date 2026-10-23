@@ -1,0 +1,50 @@
+{
+ "encargo": "planos1",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "Contraluz azul con desenfoque real en la rana (P1 0.04), hora dorada en el salar con sombras largas (P3 4.21, P10 18.66) e interior rojo con negros de verdad (P6 9.70); lo único feo es el borrón oscuro sin sujeto de P2 2.86 a P3 3.18."},
+  "animacion": {"nota": 7, "por_que": "Cámara y capas muy bien animadas (flecha que nace y se achica en P6 9.70→10.87, flechitas que aparecen en cada molécula en P7 12.87), pero la rana es una estatua rígida en P1/P2/P4/P8 (misma pose en 14.09 y 16.96) y Pete sólo levanta la cabeza (P10, mov_mediana 0.75)."},
+  "claridad": {"nota": 8, "por_que": "Cada frase tiene su imagen (revelado del imán P3 3.44→4.21, 'cada molécula' P7 12.64–14.01, IMÁN vs GRAVEDAD P8 15.66), salvo el remate del gancho: en 2.86 y 3.18 la rana no se ve mientras la voz dice 'sostiene'."},
+  "ritmo": {"nota": 9, "por_que": "Todos los planos tienen quieto_max_s ≤ 0,33 y algo nuevo cada 0,5–1 s (líneas 8.83, flecha 9.70, píldora 10.87; flechas en P8 14.61/14.87/15.66); los planos de 2,5–3,3 s (E13, E17, E20, E25) siguen cambiando."},
+  "realismo": {"nota": 8, "por_que": "Rana escaneada (P1, comparable a la foto real 1), fresa con semillas (P9 17.35), imán con óxido y cables (P3 4.47) y salar de costra hexagonal (P10) se ven 3D realista con DdC y sombras de contacto; delatan el 3D las células lisas y brillantes como gelatina (P5 6.50), el refri de bordes perfectos sin manilla ni junta y el pantalón brillante tipo látex de Pete (P10 18.66)."}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": false, "plano": 2, "segundo": "2.86", "que": "El remate del gancho pierde a la rana: en 2.37–2.62 aparece duplicada (una segunda silueta de patas encima, probablemente el reflejo del vidrio) y de 2.74 a 3.25 (P2→P3 3.18) una forma oscura desenfocada llena la pantalla; la rana desaparece (2.86, 3.18) o es una mancha de 1 cm (3.10) justo cuando la voz dice 'SOSTIENE' y la píldora SIN HILOS apunta a nada.", "arreglo": "Mantener la cámara sobre la rana bien iluminada hasta que termine 'sostiene' (~3.10) con una trayectoria que no cruce las varillas frente al lente, y empezar el alejamiento recién en 'la levanta'; bajar la reflexión del vidrio (más rugosidad o cambiar el ángulo) para que no se vea una rana doble."},
+  {"prioridad": 1, "bloqueante": false, "plano": 1, "segundo": "0.93", "que": "Los pernos de la tapa del imán, desenfocados y encendidos por el sol cálido, se ven como un pedestal beige/oscuro justo bajo la rana (P1 0.93–1.07, E2) y como un dedo al lado de sus patas en todo P8 (14.09–16.96, también E21); contradice 'nadie la sostiene'.", "arreglo": "Sacar o correr los pernos que quedan en el eje de fondo de la cámara (o bajarles el brillo a gris oscuro) en los planos de la rana: P1, P2, P4 y P8."},
+  {"prioridad": 2, "bloqueante": false, "plano": 8, "segundo": "14.09", "que": "La rana viva no se mueve nada: es el escaneo rígido en la misma pose en P1, P2, P4 y P8 (14.09 = 16.96); se lee como un adorno colgado, no como un animal flotando.", "arreglo": "Lo más barato: giro lento continuo (5–10°/s) y un vaivén vertical de 1–2 mm en todos sus planos; si alcanza, una patada corta de una pata trasera en P8 (un hueso simple en el escaneo)."},
+  {"prioridad": 2, "bloqueante": false, "plano": 10, "segundo": "21.26", "que": "Pete sólo inclina la cabeza hacia arriba (sin acción que se lea en una foto) y el acercamiento final le deja los ojos en y≈190 (aviso cara_al_borde 20.90–21.30), sobre la franja segura 300–950.", "arreglo": "Terminar el acercamiento antes o inclinar la cámara para dejar la cara en y≥300, y darle una acción: que suba en la punta de los pies con los brazos un poco abiertos, como esperando flotar, y baje los talones al decir 'refri'."},
+  {"prioridad": 2, "bloqueante": false, "plano": 5, "segundo": "6.50", "que": "Delatores de realismo: las células del interior son bolas rojas idénticas, lisas y muy brillantes (gelatina/plástico) en P5–P7; el refri de P10 es una caja de bordes perfectos sin manilla ni junta de puerta; el pantalón de Pete brilla como látex (18.66).", "arreglo": "Células: menos especular, más subsurface, tamaños y formas variados; refri: junta de puerta, manilla y algo de huellas/rayas; pantalón: subir la rugosidad del material."},
+  {"prioridad": 3, "bloqueante": false, "plano": 8, "segundo": "15.66", "que": "Las flechas IMÁN/GRAVEDAD flotan a la derecha de la rana, encima de la varilla oscura; la gris de GRAVEDAD queda gris sobre gris y sobre el perno beige desenfocado, con poco contraste.", "arreglo": "Anclar las dos flechas al centro de la rana (la naranja saliendo del lomo, la de gravedad bajando del vientre) y hacer la de gravedad blanca con borde oscuro."},
+  {"prioridad": 3, "bloqueante": false, "plano": 6, "segundo": "9.70", "que": "El subtítulo cae encima de la molécula protagonista (el oxígeno) en P5 6.22–8.16 y P6 9.70–10.58; tapa medio foco.", "arreglo": "Inclinar la cámara para que la molécula quede centrada en y≈700 y el subtítulo caiga sobre las células de abajo."},
+  {"prioridad": 3, "bloqueante": false, "plano": 3, "segundo": "4.47", "que": "'Imán gigante' sin referencia de tamaño: el imán solo en el salar se lee como un termo o un tambor.", "arreglo": "Poner al lado un objeto de tamaño conocido (escalera de mantención, baranda o puerta de servicio) para que se lea su escala."}
+ ],
+ "eventos": [
+  {"id": "E1", "es_defecto": false, "por_que": "el fondo desenfocado se corre con el giro de cámara"},
+  {"id": "E2", "es_defecto": false, "por_que": "un perno desenfocado pasa por detrás de la rana con el giro; no es un corte, pero se lee como soporte (sugerencia 2)"},
+  {"id": "E3", "es_defecto": false, "por_que": "la cámara baja hacia el hueco oscuro del imán (buscado), aunque ahí se pierde la rana (sugerencia 1)"},
+  {"id": "E4", "es_defecto": false, "por_que": "giro de cámara alrededor de la rana y entrada de la píldora SIN HILOS"},
+  {"id": "E5", "es_defecto": false, "por_que": "una varilla desenfocada pasa frente al lente y tapa la rana; es el movimiento de cámara, pero se pierde el sujeto en 'sostiene' (sugerencia 1)"},
+  {"id": "E6", "es_defecto": false, "por_que": "sube la luz al salir del hueco hacia el salar de día (buscado)"},
+  {"id": "E7", "es_defecto": false, "por_que": "alejamiento rápido desde el hueco a la vista de arriba de las varillas (revelado buscado)"},
+  {"id": "E8", "es_defecto": false, "por_que": "sigue el alejamiento desde la tapa al imán completo"},
+  {"id": "E9", "es_defecto": false, "por_que": "la varilla sale de cuadro al acercarse a la rana"},
+  {"id": "E10", "es_defecto": false, "por_que": "la cámara entra a la cara de la rana para pasar al interior (buscado)"},
+  {"id": "E11", "es_defecto": false, "por_que": "cambio de palabra del subtítulo y deriva de la molécula"},
+  {"id": "E12", "es_defecto": false, "por_que": "entra la píldora AGUA cuando la voz dice 'agua'"},
+  {"id": "E13", "es_defecto": false, "por_que": "plano de 3,3 s con cambios cada ~1 s: líneas 8.83, flecha 9.70, flecha se achica 10.58, píldora 10.87"},
+  {"id": "E14", "es_defecto": false, "por_que": "aparecen las líneas del campo en 'y al agua, un imán' (buscado)"},
+  {"id": "E15", "es_defecto": false, "por_que": "nace la flecha del empujón en 'empuja' (buscado)"},
+  {"id": "E16", "es_defecto": false, "por_que": "entra la píldora UN POQUITO (buscado)"},
+  {"id": "E17", "es_defecto": false, "por_que": "plano de 2,6 s con alejamiento continuo y flechas que se multiplican"},
+  {"id": "E18", "es_defecto": false, "por_que": "aparecen flechitas en todas las moléculas en 'cada molécula' (buscado)"},
+  {"id": "E19", "es_defecto": false, "por_que": "otra flechita que nace sobre una molécula (buscado)"},
+  {"id": "E20", "es_defecto": false, "por_que": "plano de 2,95 s: flechas y píldoras entran en 14.61, 14.87, 15.13 y 15.66"},
+  {"id": "E21", "es_defecto": false, "por_que": "entra la flecha y la píldora GRAVEDAD (buscado)"},
+  {"id": "E22", "es_defecto": false, "por_que": "la flecha IMÁN crece en 'le gana' (buscado)"},
+  {"id": "E23", "es_defecto": false, "por_que": "paralaje del fondo desenfocado detrás de la fresa"},
+  {"id": "E24", "es_defecto": false, "por_que": "paralaje del fondo desenfocado"},
+  {"id": "E25", "es_defecto": false, "por_que": "plano de 2,7 s: Pete levanta la cabeza (19.70) y la cámara se acerca (20.48–21.30); cambia, aunque la actuación es mínima"}
+ ],
+ "resumen": "Planos 1–10 sin bloqueantes: buen 3D realista (rana escaneada, salar, imán) y explicación del interior muy clara. Lo que más sube la nota: no perder la rana en 'sostiene' (2.74–3.25), sacar los pernos que parecen sostenerla y darle algo de vida a la rana y a Pete."
+}

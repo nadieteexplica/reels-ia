@@ -93,3 +93,8 @@
 {"tipo": "chequeo", "id": "final 39940355233", "estado": "vivo (vigilante) · in_progress/- · 17/18 trabajos", "n": 93, "ts": "2026-10-23T09:07:19-03:00"}
 {"tipo": "aviso", "que": "el re-armado también se colgó en apt-get: se cancela y se arma con armar.yml nuevo (apt con tiempo máximo y reintentos) sobre los cuadros del run 39940355233", "n": 94, "ts": "2026-10-23T09:11:59-03:00"}
 {"tipo": "trabajo", "id": "final 39940355233", "estado": "fin", "n": 95, "ts": "2026-10-23T09:21:58-03:00"}
+{"tipo": "aviso", "que": "final armado (QA PASA, 1,0 % quemado). El chequeo de la puerta 6 no abre ronda: ojo de la rana bajo la interfaz 0,1 s al final del plano 4. Se rehace sólo el plano 4 (termina frente a los ojos) sobre el final (run 39953337673)", "n": 96, "ts": "2026-10-23T09:26:43-03:00"}
+{"tipo": "trabajo", "id": "parche p4 39953337673", "estado": "abierto", "n": 97, "ts": "2026-10-23T09:26:43-03:00"}
+{"tipo": "aviso", "que": "el armado del parche del plano 4 se volvió a colgar en apt: se cancela y se arma con armar.yml (apt corto + respaldo de PyPI) sobre los runs 39940355233 + 39953337673 (run 39957593996)", "n": 98, "ts": "2026-10-23T10:00:02-03:00"}
+{"tipo": "trabajo", "id": "auditor 6-animatic r1", "estado": "inicio", "n": 99, "ts": "2026-10-23T10:12:00-03:00"}
+{"tipo": "trabajo", "id": "auditor 6-animatic r1", "estado": "fin", "n": 100, "ts": "2026-10-23T10:21:17-03:00"}

@@ -289,10 +289,15 @@ def simulacion(im):
 
 def graficos(im, f, k):
     t = t_de(f)
-    if k == 2:
+    if k == 1:
+        # desde el cuadro 0: sin esto, la rana en el tubo azul se leía "en un acuario" (puerta 6 r1, gancho 7)
+        pildora(im, "EN EL AIRE", 540, 400)
+    elif k == 2:
         t0 = tw("nadie") + 0.1
         if t > t0:
             pildora(im, "SIN HILOS", 540, 400, s=pop(t - t0))
+        else:
+            pildora(im, "EN EL AIRE", 540, 400)
     elif k == 3:
         t0 = tw("imán", 3.0)
         if t > t0:

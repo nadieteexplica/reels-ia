@@ -7,3 +7,4 @@
 | 4-cuadros | r1 | NO APROBADO | 0 | 8 |
 | 4-cuadros | r2 | NO APROBADO | 1 | 1 |
 | 4-cuadros | r3 | NO APROBADO | 1 | 1 |
+| 6-animatic | r1 | APROBADO | 0 | 24 |

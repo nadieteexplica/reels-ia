@@ -1,0 +1,52 @@
+{
+ "encargo": "planos2",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "belleza": {"nota": 8, "por_que": "Sol bajo con sombras largas de contacto sobre el salar agrietado, imán de acero con óxido y pernos, revelado de bobinas de cobre (P14 30.16) y el cierre de la rana con desenfoque real (P18 41.04) se ven muy bien; bajan el refri gris plano que llena el cuadro (P11 22.73, fondo_liso 0,6) y los cables-cuchilla de P15 (33.39)."},
+  "animacion": {"nota": 7, "por_que": "Las cámaras (grúa en P12, paneo que sigue los cables en P15 34.10–36.56, órbita en P18) funcionan, pero en el remate Pete sale disparado del imán (P16 36.64→36.92 sube casi su altura en 0,28 s) y después flota tieso con los brazos abajo, y el armado de P13 son piezas que aparecen de golpe (27.33, 27.80)."},
+  "claridad": {"nota": 8, "por_que": "Cada frase tiene su imagen: imanes del refri con 'MILES DE VECES / MÁS DÉBIL' (P11), imán armándose en 'imán gigante' (P13), cables hasta las torres en 'gigavatio / reactor' (P15), Pete flotando en 'ahí sí flotarías' (P16) y la rana en 'sin hilos' (P18); sólo 'más del doble que el de la rana' (P14 31.69–32.61) no muestra el imán de la rana."},
+  "ritmo": {"nota": 9, "por_que": "quieto_max_s ≤ 0,13 en los 8 planos; algo cambia en cada palabra clave (píldoras 22.73, 29.85, 31.38, 34.07, 35.15; revelado 29.47; cables 33.07) y ningún tramo pasa 1 s sin cambio."},
+  "realismo": {"nota": 8, "por_que": "Mundo 3D realista: la rana escaneada con piel húmeda y escala real dentro del tubo (P18, coincide con ref_1), Pete con proporciones y ropa creíbles (P16 37.21), acero oxidado y salar con sombras reales; delatan el 3D el núcleo negro puro sin luz (P13 27.76), los cables como cuchillas planas con punta (P15 33.39), el vapor como columnas blancas rectas sin volumen (P14 32.61, P16 37.21) y los imanes del refri de formas perfectas (P11 22.73)."}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": false, "plano": 13, "segundo": "27.76", "que": "El armado del imán se ve como error de render: en 27.33 el tanque completo aparece de golpe flotando en el aire (E31, 1 cuadro), en 27.76 cae un cilindro negro puro sin luz ni material (E32) y la sombra en el suelo es la misma antes y después de que llegue el tanque (26.64 vs 28.88: misma área oscura, ~27 %), o sea la sombra del imán está antes que el imán.", "arreglo": "Que el tanque baje desde fuera del cuadro con desenfoque de movimiento (o suba desde el suelo) en vez de aparecer; darle al núcleo el mismo acero del tanque o dejarlo ya adentro; animar la visibilidad de sombras junto con la de cámara."},
+  {"prioridad": 1, "bloqueante": false, "plano": 15, "segundo": "33.39", "que": "Los 5 cables aparecen enteros en 1 cuadro (E41, 33.07) y se ven como cuchillas planas azul oscuro con punta afilada que terminan en el borde del imán sin conectarse (E42 33.60); la punta asoma como una aleta detrás del imán en P16 (37.21).", "arreglo": "Cables redondos de goma negra con una caja de conexión en el imán; que crezcan desde el imán hacia las torres con el frente avanzando (no de golpe), dejando la línea naranja como capa de energía encima."},
+  {"prioridad": 1, "bloqueante": false, "plano": 16, "segundo": "36.92", "que": "En 'ahí sí flotarías' Pete sale disparado del imán (36.64→36.92 sube casi su altura en 0,28 s, E46) y después flota tieso con los brazos pegados al cuerpo: se lee como salto, no como flotar.", "arreglo": "Subida con ease de ~0,8 s y una actuación de equilibrio: brazos un poco abiertos, mira sus pies y luego a cámara (sirve el clip de Mixamo de sorpresa)."},
+  {"prioridad": 2, "bloqueante": false, "plano": 18, "segundo": "39.14", "que": "Junto a la pata de la rana hay una mancha borrosa color piel, vertical y redondeada arriba (también en 39.41 y a la derecha en 40.50, E50): parece la yema de un dedo cerca de la rana justo antes de 'sin hilos'.", "arreglo": "Bajar el reflejo del vidrio del tubo o girar la órbita para que el reflejo de la panza no quede al lado de la rana."},
+  {"prioridad": 2, "bloqueante": false, "plano": 15, "segundo": "32.69", "que": "Cambio de material en el corte: en P14 (32.61) la tapa del imán es cobre brillante y las columnas acero oscuro; en P15 (32.69) la misma tapa es gris negruzca moteada y las columnas dorado-latón.", "arreglo": "Mismo material de cobre en P15 (subir el albedo o poner una luz de relleno sobre la tapa) para que se lea como el mismo imán."},
+  {"prioridad": 2, "bloqueante": false, "plano": 14, "segundo": "32.00", "que": "La voz dice 'más del doble que el de la rana' y sólo se ve la tapa del imán grande con la píldora 'MÁS DEL DOBLE': el espectador no ve con qué se compara.", "arreglo": "Meter al lado, chico, el imán de la rana de P3–P5 (o su silueta) cuando la voz dice 'la rana', para que la comparación se vea."},
+  {"prioridad": 3, "bloqueante": false, "plano": 12, "segundo": "25.25", "que": "Pete mide ~280 px y el subtítulo le cruza las piernas (24.21–26.56) y el torso en P13 (27.76 'IMÁN'): en 'hacerte flotar a ti' cuesta leer que él es el 'ti' (la cara queda libre).", "arreglo": "Acercar la cámara o subir a Pete en el cuadro para que quede entero sobre y≈1000, y que mire o se apunte cuando la voz dice 'ti'."},
+  {"prioridad": 3, "bloqueante": false, "plano": 11, "segundo": "22.73", "que": "La puerta gris llena tres cuartos del cuadro y 'miles de veces más débil' depende sólo de la píldora: no hay nada que muestre lo débil.", "arreglo": "Bajar la cámara al imán rojo con el fondo desenfocado y dibujar unas líneas de campo cortitas que apenas salen de él (capa de explicación)."}
+ ],
+ "eventos": [
+  {"id": "E26", "es_defecto": false, "por_que": "P11 de 2,9 s: entran píldoras en 22.73 y 23.01 y la cámara avanza; quieto_max 0,13 s"},
+  {"id": "E27", "es_defecto": false, "por_que": "entra la píldora 'MILES DE VECES'"},
+  {"id": "E28", "es_defecto": false, "por_que": "entra la píldora 'SIMULACIÓN'"},
+  {"id": "E29", "es_defecto": false, "por_que": "P13 de 2,6 s con el armado del imán en marcha todo el plano"},
+  {"id": "E30", "es_defecto": false, "por_que": "es el corte P12→P13 (26.60)"},
+  {"id": "E31", "es_defecto": false, "por_que": "aparición buscada del tanque en 'imán gigante', pero sale de la nada en el aire: ver sugerencia de P13"},
+  {"id": "E32", "es_defecto": false, "por_que": "pieza del armado (núcleo) que cae; buscada, pero negra pura sin material: ver sugerencia de P13"},
+  {"id": "E33", "es_defecto": false, "por_que": "pieza chica del armado cruzando la esquina; en el recorte sólo se ve cielo"},
+  {"id": "E34", "es_defecto": false, "por_que": "el anillo de la tapa baja sobre el tanque como parte del armado"},
+  {"id": "E35", "es_defecto": false, "por_que": "P14 de 3,4 s: revelado de bobinas 29.47, se encienden 30.16, píldoras 29.85 y 31.38"},
+  {"id": "E36", "es_defecto": false, "por_que": "revelado buscado de las bobinas de cobre en 'casi 40 teslas'"},
+  {"id": "E37", "es_defecto": false, "por_que": "cambio de subtítulo 'TESLAS' → 'MÁS DEL DOBLE'"},
+  {"id": "E38", "es_defecto": false, "por_que": "entra la píldora 'MÁS DEL DOBLE'"},
+  {"id": "E39", "es_defecto": false, "por_que": "la luz sube porque la cámara pasa de la tapa oscura del imán al cielo y las torres"},
+  {"id": "E40", "es_defecto": false, "por_que": "P15 de 4 s: cables 33.07, paneo, píldoras 34.07 y 35.15; algo cambia cada <1 s"},
+  {"id": "E41", "es_defecto": false, "por_que": "aparición buscada de los cables en 'gastaría', pero de golpe: ver sugerencia de P15"},
+  {"id": "E42", "es_defecto": false, "por_que": "son las puntas de los cables entrando; no es falla nueva, es parte de la sugerencia de P15"},
+  {"id": "E43", "es_defecto": false, "por_que": "entra la píldora '≈ 1 GIGAVATIO' con el paneo"},
+  {"id": "E44", "es_defecto": false, "por_que": "el paneo sube y muestra las torres"},
+  {"id": "E45", "es_defecto": false, "por_que": "entra la píldora '1 REACTOR NUCLEAR'"},
+  {"id": "E46", "es_defecto": false, "por_que": "Pete sale del imán (buscado), pero demasiado rápido: ver sugerencia de P16"},
+  {"id": "E47", "es_defecto": false, "por_que": "paralaje del suelo en el travelling de P17"},
+  {"id": "E48", "es_defecto": false, "por_que": "cambia el resaltado del subtítulo 'ESO' y avanza el travelling"},
+  {"id": "E49", "es_defecto": false, "por_que": "P18 de 2,8 s: órbita, píldora 'SIN HILOS' 40.77 y subtítulos"},
+  {"id": "E50", "es_defecto": false, "por_que": "reflejo desenfocado que se mueve con la órbita, no aparece de golpe; parece un dedo: ver sugerencia de P18"},
+  {"id": "E51", "es_defecto": false, "por_que": "el brillo del borde del tubo se corre con la órbita"},
+  {"id": "E52", "es_defecto": false, "por_que": "cambio de subtítulo 'ESTA RANA HACE' → 'SIN HILOS'"}
+ ],
+ "resumen": "Planos 11–18 sin bloqueantes: mundo realista coherente (rana, Pete, salar, imán) y ritmo alto. Lo que más sube la nota es arreglar el armado de P13 (tanque que aparece en el aire, núcleo negro puro, sombra antes del objeto), los cables-cuchilla de P15 y la subida disparada y tiesa de Pete en P16."
+}

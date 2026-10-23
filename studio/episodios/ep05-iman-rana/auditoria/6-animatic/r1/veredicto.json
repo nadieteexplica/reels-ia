@@ -1,0 +1,297 @@
+{
+ "etapa": "6-animatic",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": 8.0,
+ "notas": {
+  "belleza": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Contraluz azul con desenfoque real en la rana (P1 0.04), hora dorada en el salar con sombras largas (P3 4.21, P10 18.66) e interior rojo con negros de verdad (P6 9.70); lo único feo es el borrón oscuro sin sujeto de P2 2.86 a P3 3.18.",
+   "de": "planos1"
+  },
+  "animacion": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "Cámara y capas muy bien animadas (flecha que nace y se achica en P6 9.70→10.87, flechitas que aparecen en cada molécula en P7 12.87), pero la rana es una estatua rígida en P1/P2/P4/P8 (misma pose en 14.09 y 16.96) y Pete sólo levanta la cabeza (P10, mov_mediana 0.75).",
+   "de": "planos1"
+  },
+  "claridad": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Cada frase tiene su imagen (revelado del imán P3 3.44→4.21, 'cada molécula' P7 12.64–14.01, IMÁN vs GRAVEDAD P8 15.66), salvo el remate del gancho: en 2.86 y 3.18 la rana no se ve mientras la voz dice 'sostiene'.",
+   "de": "planos1"
+  },
+  "ritmo": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "Todos los planos tienen quieto_max_s ≤ 0,33 y algo nuevo cada 0,5–1 s (líneas 8.83, flecha 9.70, píldora 10.87; flechas en P8 14.61/14.87/15.66); los planos de 2,5–3,3 s (E13, E17, E20, E25) siguen cambiando.",
+   "de": "planos1"
+  },
+  "realismo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Rana escaneada (P1, comparable a la foto real 1), fresa con semillas (P9 17.35), imán con óxido y cables (P3 4.47) y salar de costra hexagonal (P10) se ven 3D realista con DdC y sombras de contacto; delatan el 3D las células lisas y brillantes como gelatina (P5 6.50), el refri de bordes perfectos sin manilla ni junta y el pantalón brillante tipo látex de Pete (P10 18.66).",
+   "de": "planos1"
+  },
+  "gancho": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "Cuadro 0 (0.00): rana real nítida al centro con las patas colgando, bonita y buena portada, pero el fondo azul del tubo se lee como acuario y 'flotando' en agua no sorprende; que está en el aire recién se insinúa con la píldora SIN HILOS en 2 s.",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "119/119 palabras, desfase 0 y 0 fuera de zona; tildes correctas en todo lo visible (CÓMO, IMÁN, MOLÉCULA, QUÉ, DÉBIL, GASTARÍA, AHÍ SÍ, FLOTARÍAS); lo flojo: 'HACERTE FLOTAR A' sale más chico (25,27 s) y el texto pisa el cuerpo de Pete en 25 s y 27-28 s (la cara no).",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "No lo puedo escuchar: -14,2 LUFS y -1,5 dBTP, ambos en rango; audio.json no trae la diferencia voz/música, así que el 15-20 dB del manual no se puede verificar.",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "Las píldoras calzan con el guion y las fuentes (≈ 40 TESLAS, MÁS DEL DOBLE, MILES DE VECES / MÁS DÉBIL, ≈ 1 GIGAVATIO / 1 REACTOR NUCLEAR, fresa de Harvard Gazette) y SIMULACIÓN cubre toda la parte hipotética (24-38 s); único detalle: en 37 s Pete flota ~1,4 m sobre el imán y no en su boca 'donde quepas', como la rana.",
+   "de": "global"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.93",
+   "que": "Los pernos de la tapa del imán, desenfocados y encendidos por el sol cálido, se ven como un pedestal beige/oscuro justo bajo la rana (P1 0.93–1.07, E2) y como un dedo al lado de sus patas en todo P8 (14.09–16.96, también E21); contradice 'nadie la sostiene'.",
+   "arreglo": "Sacar o correr los pernos que quedan en el eje de fondo de la cámara (o bajarles el brillo a gris oscuro) en los planos de la rana: P1, P2, P4 y P8.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "el fondo azul parejo del tubo hace que la rana se lea como si nadara en un acuario: 'esta rana está flotando' no parece imposible en el segundo que decide visto vs. deslizado",
+   "arreglo": "poner desde el cuadro 0 una píldora 'EN EL AIRE' (como la de SIN HILOS del final) y bajar la saturación del azul del fondo hacia el gris claro de laboratorio de la Foto real 1; si sobra tiempo, inclinar la cámara para que se vea el aire entre la rana y la boca oscura del imán",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 13,
+   "segundo": "27.76",
+   "que": "El armado del imán se ve como error de render: en 27.33 el tanque completo aparece de golpe flotando en el aire (E31, 1 cuadro), en 27.76 cae un cilindro negro puro sin luz ni material (E32) y la sombra en el suelo es la misma antes y después de que llegue el tanque (26.64 vs 28.88: misma área oscura, ~27 %), o sea la sombra del imán está antes que el imán.",
+   "arreglo": "Que el tanque baje desde fuera del cuadro con desenfoque de movimiento (o suba desde el suelo) en vez de aparecer; darle al núcleo el mismo acero del tanque o dejarlo ya adentro; animar la visibilidad de sombras junto con la de cámara.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 15,
+   "segundo": "33.39",
+   "que": "Los 5 cables aparecen enteros en 1 cuadro (E41, 33.07) y se ven como cuchillas planas azul oscuro con punta afilada que terminan en el borde del imán sin conectarse (E42 33.60); la punta asoma como una aleta detrás del imán en P16 (37.21).",
+   "arreglo": "Cables redondos de goma negra con una caja de conexión en el imán; que crezcan desde el imán hacia las torres con el frente avanzando (no de golpe), dejando la línea naranja como capa de energía encima.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 16,
+   "segundo": "36.92",
+   "que": "En 'ahí sí flotarías' Pete sale disparado del imán (36.64→36.92 sube casi su altura en 0,28 s, E46) y después flota tieso con los brazos pegados al cuerpo: se lee como salto, no como flotar.",
+   "arreglo": "Subida con ease de ~0,8 s y una actuación de equilibrio: brazos un poco abiertos, mira sus pies y luego a cámara (sirve el clip de Mixamo de sorpresa).",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 16,
+   "segundo": "37.00",
+   "que": "en el remate 'Ahí sí flotarías' Pete está tieso en pose de parado ~1,4 m por encima del borde del imán: se ve parado sobre una plataforma invisible, y no dentro de la boca 'donde quepas' como la rana",
+   "arreglo": "bajar a Pete hasta que las piernas queden dentro de la boca del imán y cambiar la pose a una suelta (brazos algo abiertos, rodillas flojas, la pose de 'Surprised' congelada) con un giro lento como el de la rana",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "2.86",
+   "que": "El remate del gancho pierde a la rana: en 2.37–2.62 aparece duplicada (una segunda silueta de patas encima, probablemente el reflejo del vidrio) y de 2.74 a 3.25 (P2→P3 3.18) una forma oscura desenfocada llena la pantalla; la rana desaparece (2.86, 3.18) o es una mancha de 1 cm (3.10) justo cuando la voz dice 'SOSTIENE' y la píldora SIN HILOS apunta a nada.",
+   "arreglo": "Mantener la cámara sobre la rana bien iluminada hasta que termine 'sostiene' (~3.10) con una trayectoria que no cruce las varillas frente al lente, y empezar el alejamiento recién en 'la levanta'; bajar la reflexión del vidrio (más rugosidad o cambiar el ángulo) para que no se vea una rana doble.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00-1.90",
+   "que": "la rana es un escaneo rígido: las patas y los dedos son idénticos en todos los cuadros (también en 14-17 s y 39-41 s); sólo gira",
+   "arreglo": "darle un vaivén lento a las patas traseras y un movimiento chico de dedos (2-3 huesos o shape keys) o, como mínimo, una respiración del cuerpo; con eso se ve viva sin tocar los encuadres",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "21.26",
+   "que": "Pete sólo inclina la cabeza hacia arriba (sin acción que se lea en una foto) y el acercamiento final le deja los ojos en y≈190 (aviso cara_al_borde 20.90–21.30), sobre la franja segura 300–950.",
+   "arreglo": "Terminar el acercamiento antes o inclinar la cámara para dejar la cara en y≥300, y darle una acción: que suba en la punta de los pies con los brazos un poco abiertos, como esperando flotar, y baje los talones al decir 'refri'.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "21.30-24.17",
+   "que": "el refri en primer plano es una plancha gris lisa de bordes perfectos con imanes que parecen puntos de plástico; es lo más 'de juguete' del video y ocupa el 70 % del cuadro durante casi 3 s",
+   "arreglo": "material de acero cepillado con huellas y variación de rugosidad, borde de puerta redondeado con burlete, e imanes de refri reconocibles (letras, una fruta) con sombra de contacto; o abrir el diafragma para desenfocar más el refri y dejar nítidos sólo los imanes",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 13,
+   "segundo": "27.50",
+   "que": "la palabra IMÁN del subtítulo queda encima del torso de Pete justo cuando la voz dice 'imán gigante donde quepas'; Pete es la referencia de escala y queda medio tapado (en 25 s 'HACERTE' también le pisa las piernas)",
+   "arreglo": "mover a Pete a la derecha del imán, fuera de la columna de los subtítulos (x > 890), o subir la cámara para que el suelo con Pete quede sobre y ≈ 950",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "32.00",
+   "que": "La voz dice 'más del doble que el de la rana' y sólo se ve la tapa del imán grande con la píldora 'MÁS DEL DOBLE': el espectador no ve con qué se compara.",
+   "arreglo": "Meter al lado, chico, el imán de la rana de P3–P5 (o su silueta) cuando la voz dice 'la rana', para que la comparación se vea.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 15,
+   "segundo": "32.69",
+   "que": "Cambio de material en el corte: en P14 (32.61) la tapa del imán es cobre brillante y las columnas acero oscuro; en P15 (32.69) la misma tapa es gris negruzca moteada y las columnas dorado-latón.",
+   "arreglo": "Mismo material de cobre en P15 (subir el albedo o poner una luz de relleno sobre la tapa) para que se lea como el mismo imán.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 18,
+   "segundo": "39.14",
+   "que": "Junto a la pata de la rana hay una mancha borrosa color piel, vertical y redondeada arriba (también en 39.41 y a la derecha en 40.50, E50): parece la yema de un dedo cerca de la rana justo antes de 'sin hilos'.",
+   "arreglo": "Bajar el reflejo del vidrio del tubo o girar la órbita para que el reflejo de la panza no quede al lado de la rana.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "6.50",
+   "que": "Delatores de realismo: las células del interior son bolas rojas idénticas, lisas y muy brillantes (gelatina/plástico) en P5–P7; el refri de P10 es una caja de bordes perfectos sin manilla ni junta de puerta; el pantalón de Pete brilla como látex (18.66).",
+   "arreglo": "Células: menos especular, más subsurface, tamaños y formas variados; refri: junta de puerta, manilla y algo de huellas/rayas; pantalón: subir la rugosidad del material.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "14.09",
+   "que": "La rana viva no se mueve nada: es el escaneo rígido en la misma pose en P1, P2, P4 y P8 (14.09 = 16.96); se lee como un adorno colgado, no como un animal flotando.",
+   "arreglo": "Lo más barato: giro lento continuo (5–10°/s) y un vaivén vertical de 1–2 mm en todos sus planos; si alcanza, una patada corta de una pata trasera en P8 (un hueso simple en el escaneo).",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "0.00-41.90",
+   "que": "audio.json no trae cuánto está la voz sobre la música y los efectos; material insuficiente para verificar el 15-20 dB del manual",
+   "arreglo": "agregar la medida voz/música al audio.json del render final",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "22.73",
+   "que": "La puerta gris llena tres cuartos del cuadro y 'miles de veces más débil' depende sólo de la píldora: no hay nada que muestre lo débil.",
+   "arreglo": "Bajar la cámara al imán rojo con el fondo desenfocado y dibujar unas líneas de campo cortitas que apenas salen de él (capa de explicación).",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "25.25",
+   "que": "Pete mide ~280 px y el subtítulo le cruza las piernas (24.21–26.56) y el torso en P13 (27.76 'IMÁN'): en 'hacerte flotar a ti' cuesta leer que él es el 'ti' (la cara queda libre).",
+   "arreglo": "Acercar la cámara o subir a Pete en el cuadro para que quede entero sobre y≈1000, y que mire o se apunte cuando la voz dice 'ti'.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "25.27-26.07",
+   "que": "'HACERTE FLOTAR A' sale en letra más chica que el resto (caja de 66 px de alto contra ~92 px), se nota el salto de tamaño",
+   "arreglo": "usar el mismo tamaño que los demás grupos y partirlo en dos líneas, como 'IMÁN BIEN / FUERTE'",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "29.00-30.00",
+   "que": "la tapa del imán pasa de café oscuro oxidado (29 s) a cobre brillante (30 s), junto con la píldora ≈ 40 TESLAS; a 1 cuadro por segundo no se ve si es un encendido gradual o un salto de color",
+   "arreglo": "si es el encendido, hacerlo en una rampa de ~0,5 s con un brillo leve y líneas de campo que suben, para que se lea como 'se prendió'; si no es buscado, dejar el mismo material todo el plano (verificar en la tira P14)",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "4.47",
+   "que": "'Imán gigante' sin referencia de tamaño: el imán solo en el salar se lee como un termo o un tambor.",
+   "arreglo": "Poner al lado un objeto de tamaño conocido (escalera de mantención, baranda o puerta de servicio) para que se lea su escala.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "9.70",
+   "que": "El subtítulo cae encima de la molécula protagonista (el oxígeno) en P5 6.22–8.16 y P6 9.70–10.58; tapa medio foco.",
+   "arreglo": "Inclinar la cámara para que la molécula quede centrada en y≈700 y el subtítulo caiga sobre las células de abajo.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "15.66",
+   "que": "Las flechas IMÁN/GRAVEDAD flotan a la derecha de la rana, encima de la varilla oscura; la gris de GRAVEDAD queda gris sobre gris y sobre el perno beige desenfocado, con poco contraste.",
+   "arreglo": "Anclar las dos flechas al centro de la rana (la naranja saliendo del lomo, la de gravedad bajando del vientre) y hacer la de gravedad blanca con borde oscuro.",
+   "de": "planos1"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "cara_al_borde · plano 10: Pete_ojoL en (319, 189)",
+   "evidencia": "20.90–21.30 s"
+  },
+  {
+   "que": "cara_al_borde · plano 10: Pete_ojoR en (279, 190)",
+   "evidencia": "20.90–21.20 s"
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "parar_y_preguntar": false
+}
