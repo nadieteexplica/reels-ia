@@ -24,10 +24,14 @@ SOL_AZ, SOL_ELEV = 240.0, 3.5
 FBX = {"piloto": "RACE.fbx", "caballero": "castle.guard.fbx", "mascara": "GAS.MASK.fbx", "doctor": "chad.fbx"}
 SENTADO_FBX = "Sitting.Laughing.fbx"
 # asientos (centro de la cadera sentada, en coordenadas del auto; medidos en el modelo: delanteros y ≈ 0,27, banca y ≈ 1,23)
-ASIENTO = {"piloto": (0.37, 0.36, 0.93), "caballero": (-0.37, 0.36, 0.93),
-           "doctor": (0.40, 1.30, 0.93), "mascara": (-0.40, 1.30, 0.93)}
-PILAR_GUIA = {"caballero": (-0.80, 0.58, 1.40), "piloto": (0.80, 0.58, 1.40),
-              "mascara": (-0.80, 1.55, 1.36), "doctor": (0.80, 1.55, 1.36)}
+# medidos con rayos en el modelo: cojín delantero z 0,92 (y −0,05…0,3), respaldo y 0,4–0,6; tablero arriba z 1,31–1,36
+# (y −0,6…−0,35), cara del tablero y −0,33; banca de atrás z 0,95 (y 0,8–1,0), respaldo y 1,2–1,35; pilar B x ±0,72, y 0,7–0,85
+ASIENTO = {"piloto": (0.37, 0.30, 1.00), "caballero": (-0.37, 0.30, 1.00),
+           "doctor": (0.40, 1.05, 1.03), "mascara": (-0.40, 1.05, 1.03)}
+PILAR_GUIA = {"caballero": (-0.68, 0.74, 1.45), "piloto": (0.68, 0.74, 1.45),
+              "mascara": (-0.68, 1.62, 1.42), "doctor": (0.68, 1.62, 1.42)}
+RETRACTOR = (-0.70, 0.78, 0.75)      # abajo en el pilar B del copiloto, a la altura del asiento
+TABLERO_CENTRO = (0.0, -0.42, 1.36)
 
 
 SOL_AZ_CERRO = 270.0     # en la subida (E3): de costado puro desde el lado del copiloto, para que la ladera reciba luz rasante
@@ -417,7 +421,7 @@ def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05):
     pecho = pos_hueso(arm, "Spine2") + frente * (0.12 + lejos_pecho)
     cad_ad = pos_hueso(arm, f"{lado_ad}UpLeg") + frente * (0.10 + separacion) + Vector((-afuera * 0.06, 0, 0.02))
     cad_af = pos_hueso(arm, f"{lado_af}UpLeg") + frente * (0.10 + separacion) + Vector((afuera * 0.08, 0, 0.02))
-    anc_af = Vector((ASIENTO[quien][0] + afuera * 0.32, ASIENTO[quien][1] + 0.05, 0.86))
+    anc_af = Vector((ASIENTO[quien][0] + afuera * 0.30, ASIENTO[quien][1] + 0.12, 0.90))
     n_f = Vector((0, -1, 0.2))
     a = cinta(sc, [g, hom, pecho, cad_ad], [Vector((-afuera, -0.6, 0)), n_f, n_f, n_f], nombre=f"Cinta_{quien}")
     b = cinta(sc, [cad_ad, (cad_ad + cad_af) / 2 + Vector((0, 0, 0.02)), cad_af, anc_af], [Vector((0, -0.3, 1))] * 4, nombre=f"Falda_{quien}")
@@ -500,8 +504,8 @@ def retractor(sc, pos=(0, 0, 0), escala=1.0, giro_carrete=0.0, pestillo=0.0, bol
     oscuro = mat_grasa("acero_osc", (0.16, 0.16, 0.17))
     objs = []
     # marco en U (chapa de acero)
-    for dx in (-0.032, 0.032):
-        objs.append(caja(sc, "Marco", (0.003 * s, 0.07 * s, 0.09 * s), (dx * s, 0.0, 0.0), mat=oscuro, bisel=0.0008))
+    # marco en U: sólo la chapa del lado de la rueda; la del lado del pestillo está cortada (capa de explicación)
+    objs.append(caja(sc, "Marco", (0.003 * s, 0.07 * s, 0.09 * s), (-0.036 * s, 0.0, 0.0), mat=oscuro, bisel=0.0008))
     objs.append(caja(sc, "MarcoAtras", (0.067 * s, 0.003 * s, 0.09 * s), (0.0, 0.035 * s, 0.0), mat=oscuro, bisel=0.0008))
     # carrete con la cinta enrollada (capas)
     eje = bpy.data.objects.new("EjeCarrete", None); sc.collection.objects.link(eje)
@@ -541,3 +545,76 @@ def retractor(sc, pos=(0, 0, 0), escala=1.0, giro_carrete=0.0, pestillo=0.0, bol
     for o in (eje, anillo, taza) + tuple(objs):
         o.parent = raiz
     return raiz
+
+
+# ---------------------------------------------------------------- posar personajes
+def apuntar_hueso(arm, sufijo, dir_mundo):
+    """Gira un hueso para que apunte (de cabeza a cola) en la dirección del mundo dada."""
+    bpy.context.view_layer.update()
+    pb = hueso(arm, sufijo)
+    if pb is None:
+        return
+    M = arm.matrix_world @ pb.matrix
+    actual = (M.to_3x3() @ Vector((0, 1, 0))).normalized()
+    q = actual.rotation_difference(Vector(dir_mundo).normalized())
+    R = q.to_matrix().to_4x4()
+    t = M.to_translation()
+    nueva = Matrix.Translation(t) @ R @ Matrix.Translation(-t) @ M
+    pb.matrix = arm.matrix_world.inverted() @ nueva
+    bpy.context.view_layer.update()
+
+
+def mirar_adelante(arm, adelante=Vector((0, -1, 0))):
+    """Gira el armature en z para que los pies (y el personaje) miren hacia `adelante`."""
+    bpy.context.view_layer.update()
+    try:
+        pie = pos_hueso(arm, "LeftToeBase") - pos_hueso(arm, "LeftFoot")
+    except Exception:
+        return
+    pie.z = 0
+    if pie.length < 1e-4:
+        return
+    ang = pie.to_2d().angle_signed(adelante.to_2d())
+    arm.rotation_euler.z -= ang
+    bpy.context.view_layer.update()
+
+
+def tiene_esqueleto(arm):
+    return hueso(arm, "Hips") is not None and hueso(arm, "Spine2") is not None
+
+
+def sentado(sc, quien, sentado_fbx, raiz=None, frame=1):
+    """Importa, sienta y ubica a un personaje en su asiento (mirando a la trompa, −y). Devuelve el armature o None."""
+    try:
+        arm = personaje(sc, quien)
+    except Exception as e:
+        print("sin personaje", quien, e)
+        return None
+    if not tiene_esqueleto(arm):
+        print("sin esqueleto Mixamo:", quien)
+        return arm
+    if sentado_fbx and os.path.isfile(sentado_fbx):
+        copiar_pose(arm, sentado_fbx, frame)
+    mirar_adelante(arm)
+    cad = pos_hueso(arm, "Hips")
+    arm.location += Vector(ASIENTO[quien]) - cad
+    bpy.context.view_layer.update()
+    return arm
+
+
+def lanzarse(arm, cuanto=1.0, hacia=Vector((0.35, -1.0, -0.15))):
+    """El caballero se lanza hacia la bolsa del centro del tablero: columna adelante y el brazo de adentro estirado."""
+    for s, g in (("Spine", 12), ("Spine1", 10), ("Spine2", 8)):
+        girar(arm, s, (1, 0, 0), g * cuanto)
+    lado = "Left"     # copiloto: su izquierda (+x) da a la consola
+    apuntar_hueso(arm, f"{lado}Arm", hacia)
+    apuntar_hueso(arm, f"{lado}ForeArm", hacia)
+    apuntar_hueso(arm, f"{lado}Hand", hacia + Vector((0, 0, -0.1)))
+
+
+def placeholder(sc, quien, alto=0.85):
+    """Muñeco de prueba (cilindro + esfera) donde va un personaje, para ajustar cámaras sin Mixamo (sólo pruebas locales)."""
+    x, y, z = ASIENTO[quien]
+    c = cilindro(sc, f"pp_{quien}", 0.16, alto * 0.7, (x, y, z), mat=K.mat_pintura("pp", (0.5, 0.3, 0.2)))
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.11, location=(x, y, z + alto * 0.7 + 0.12))
+    asignar(bpy.context.object, K.mat_pintura("pp2", (0.6, 0.45, 0.35)))

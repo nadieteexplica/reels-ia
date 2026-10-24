@@ -18,7 +18,7 @@ on:
         description: "Prerelease pública con modelos CC0/CC-BY y HDRI que se bajan a $ASSETS (opcional, ej. ep05-modelos)"
         default: ""
       privados:
-        description: "Patrón de personajes del Release privado Personajes (repo assets) que se bajan a $ASSETS (opcional, ej. PETE*). Nunca se suben."
+        description: "Patrones (separados por espacio) del Release privado Personajes (repo assets) que se bajan a $ASSETS (opcional, ej. PETE* chad.fbx). Nunca se suben."
         default: ""
 permissions:
   contents: write
@@ -60,7 +60,7 @@ jobs:
         run: |
           mkdir -p _assets
           if [ -n "$MODELOS" ]; then gh release download "$MODELOS" -R "$GITHUB_REPOSITORY" -D _assets -p "*.glb" -p "*.hdr" -p "*.jpg" -p "*.png" || true; fi
-          if [ -n "$PRIVADOS" ]; then GH_TOKEN="$GH_PRIV" gh release download Personajes -R nadieteexplica/assets -p "$PRIVADOS" -D _assets; fi
+          if [ -n "$PRIVADOS" ]; then args=(); for p in $PRIVADOS; do args+=(-p "$p"); done; GH_TOKEN="$GH_PRIV" gh release download Personajes -R nadieteexplica/assets "${args[@]}" -D _assets; fi
           pose=$(find priv_assets -iname "*happy*idle*.fbx" 2>/dev/null | head -1); echo "POSE=$GITHUB_WORKSPACE/$pose" >> "$GITHUB_ENV"
           ls -la _assets; echo "pose: $pose"
           mkdir -p _out; (echo "pose: $pose"; find priv_assets -iname "*.fbx" 2>/dev/null | sed 's|.*/||' | sort) > _out/assets_lista.txt
