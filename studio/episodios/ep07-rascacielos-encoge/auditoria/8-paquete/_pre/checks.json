@@ -1,0 +1,22 @@
+{
+ "fallas": [
+  {
+   "que": "la puerta 6-animatic no está APROBADA (último veredicto: NO APROBADO): el video no se empaqueta ni se le manda a Tomás; se rehace o se descarta (docs/AUDITOR.md)",
+   "evidencia": "studio/episodios/ep07-rascacielos-encoge/auditoria/6-animatic/r2",
+   "bloqueante": true
+  }
+ ],
+ "avisos": [],
+ "datos": {
+  "hashtags": [
+   "#curiosidades",
+   "#ingenieria",
+   "#japon",
+   "#rascacielos",
+   "#elviejodeldato"
+  ],
+  "titulo_youtube": "Rascacielos que se achicó piso por piso, sin explosión 🏢",
+  "estilo": "realista",
+  "url_mp4_http": "206"
+ }
+}

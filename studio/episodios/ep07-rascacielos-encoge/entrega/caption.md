@@ -46,4 +46,4 @@ Fuentes: AFP 2013, NBC 2013, Popular Science, Core77 (lista en YouTube). Recreac
 - Instagram: `instagramData.type: "REEL"`, `isAiGenerated: true` (voz sintética).
 - TikTok: `tiktokData.isAigc: true`, `title` arriba.
 - YouTube: `type: "short"`, `category: "EDUCATION"`, `madeForKids: false` (Tomás, 19-oct), `isAiGeneratedContent: true` (estilo realista).
-- Horario: lo decide Tomás (propuesta en el mensaje).
+- Horario (OK de Tomás, 24-oct 19:51: "publícalo para el martes"): martes 27-oct, Instagram 10:00 · TikTok 18:00 · YouTube 20:30. Metricool 405319541 / 405319549 / 405319556.
