@@ -1,0 +1,672 @@
+{
+ "etapa": "6-animatic",
+ "ronda": 2,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": 8.26,
+ "notas": {
+  "belleza": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "P1 0.04 y P2 1.99 con sol bajo, acero con pernos y óxido y cerros con bruma; macro de la rana con desenfoque real en P3/P5; P10 21.68 con sombras largas y mugre en la base. Bajan P4 7.42 (imán azul limpio de juguete) y el final borroso de P5 9.26.",
+   "de": "planos1"
+  },
+  "animacion": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "La rana cambia patas y giro en cada cuadro (P3, P8, quieto_max ≤ 0,33 s), Pete flota con las piernas sueltas en P1, flecta el brazo en P6 9.71 y camina y gesticula en P10; el hueco sube construyéndose en P10 19.97–20.54.",
+   "de": "planos1"
+  },
+  "claridad": {
+   "nota": 8.3,
+   "min": 8,
+   "por_que": "Cada frase tiene su imagen: rana con ESTO SÍ PASÓ (P3), flechas IMÁN contra GRAVEDAD con ≈16 TESLAS (P8 14.78), la molécula empujada 'un poquito' (P7 12.89) y PASO 1 · EL HUECO (P10). Lo flojo: en P4 6.88 la voz dice 'dentro' y la rana se ve encima del imán.",
+   "de": "planos1"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Ningún plano pasa 0,33 s quieto; los largos (P7 3,2 s, P8 3,5 s) suman líneas, flecha y píldoras cada 1–1,5 s.",
+   "de": "planos1"
+  },
+  "realismo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "La rana (P3, P5, P8) está al nivel del ancla 9 y P1/P2 al del ancla 8 (acero sucio, sol bajo, Pete contra los cerros). Delatan el 3D el tejido de bolas brillantes de P7 10.34, la boca negro puro de P8, el suelo de placas iguales de P9 17.04 y el imán azul liso de P4 7.42.",
+   "de": "planos1"
+  },
+  "gancho": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "cuadro 0: Pete en el aire con la punta de los pies estirada sobre un imán industrial con torres de reactor, sol bajo; se lee 'persona flotando' sin texto, y 'TU CUERPO REPELE' (0.00–1.20) es capcioso desde el primer cuadro",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "105 de 105 palabras, desfase 0 y fuera de zona 0 (cajas entre x 143–858 e y 1025–1218); tildes bien (FLOTARÍAS, CENTÍMETROS, NECESITÓ, EMPUJÓN); 'COMO TÚ' (9.5) y 'SOLO PARA TI' (36.5) quedan a la altura del torso de Pete y no le tapan la cara",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "no lo puedo escuchar: −13,9 LUFS y −1,5 dBTP en rango; la voz está 6,9 dB sobre las pausas, que es un mínimo con ducking",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "lo que sale en pantalla calza con el guion y las fuentes: ≈16 T de la rana, 3,2 cm del hueco (la voz dice 'tres', sin redondear hacia arriba), 40 T O MÁS, barras RANA 16 T contra TÚ 40 T, ≈1 GIGAVATIO y HASTA 60 % AGUA; la píldora SIMULACIÓN está en cada plano de Pete flotando",
+   "de": "global"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "id": "D40",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "[D40 sin arreglar] [delator · arriba] Pete flota varios metros sobre el imán y no sobre la boca del hueco, con los pies contra los cerros (también 37–38 s)",
+   "arreglo": "bajarlo a justo sobre la boca del hueco y bajar la cámara para que todo su cuerpo se recorte contra el cielo",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "A5",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 11,
+   "segundo": "24.34",
+   "que": "[A5 sin arreglar] 'ni tu mano cabe' no tiene imagen: en 24 s se ve el tubo chico sobre una plataforma y en 25 s ya es Pete junto al pilar; no hay mano en los cuadros vistos (material insuficiente para descartar una mano entre 24.3 y 25.0)",
+   "arreglo": "un plano de 1 s con una mano con guante de proporción real junto a la boca de 3 cm del tubo de la rana (o la mano intentando entrar y chocando con el borde)",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D19",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 11,
+   "segundo": "24.22",
+   "que": "[D19 sin arreglar] [delator · medio] El imán de la rana es un disco metálico de unos 7 cm sobre una mesa. A esa escala parece un juguete: el imán real de 16–20 T es una máquina grande.",
+   "arreglo": "Que la base del tubo sea el tope de una carcasa grande que sale del cuadro.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D20",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 11,
+   "segundo": "24.84",
+   "que": "[D20 sin arreglar] [delator · abajo] La mesa es lisa, de un solo azul gris, con el borde perfecto.",
+   "arreglo": "Agregar rayas finas, huellas o polvo, y biselar un poco el borde.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D37",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 11,
+   "segundo": "24.00",
+   "que": "[D37 sin arreglar] [delator · medio] plano pálido de luz pareja, sin negros, con disco metálico liso y pernos cúbicos perfectos; distinto al resto del video",
+   "arreglo": "el mismo sol bajo de costado del salar, rayas y huellas en el disco, profundidad de campo",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D22",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 12,
+   "segundo": "27.37",
+   "que": "[D22 sin arreglar] [delator · medio] Las 'bobinas' son discos de cobre lisos con bordes perfectos y sin espiras, y bajan del cielo sin grúa.",
+   "arreglo": "Mostrar las vueltas de alambre en el canto y darles reflejo metálico; bajada con leve vaivén o un cable de grúa que entra desde arriba.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D23",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 12,
+   "segundo": "25.54",
+   "que": "[D23 sin arreglar] [delator · arriba] Los cerros son siluetas gris violeta planas, de recorte, distintas de los cerros cafés con relieve de P13 y P16.",
+   "arreglo": "Usar los mismos cerros y la misma luz de P13, con bruma de distancia.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D26",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 13,
+   "segundo": "29.32",
+   "que": "[D26 sin arreglar] [delator · arriba] Dos plumas de vapor angostas y verticales con la misma forma (repetición), sin volumen que se abra.",
+   "arreglo": "Plumas anchas que se abran hacia arriba, con deriva de viento y forma y tiempo distintos.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D27",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 14,
+   "segundo": "32.58",
+   "que": "[D27 sin arreglar] [delator · medio] El cobre de las espiras es naranja mate, como plástico o madera, sin reflejo metálico ni oxidación.",
+   "arreglo": "Shader metálico con rugosidad variable y oxidación oscura en las ranuras.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D28",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 14,
+   "segundo": "34.05",
+   "que": "[D28 sin arreglar] [delator · abajo] Seis cables idénticos, perfectamente rectos y paralelos, como cintas planas con sombras largas: se leen como rieles o aletas que van al punto de fuga.",
+   "arreglo": "Cables redondos con aislación negra, curva leve y separación irregular, o una línea aérea sobre torres.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D29",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 14,
+   "segundo": "34.34",
+   "que": "[D29 sin arreglar] [delator · arriba] Las torres de enfriamiento son de concreto liso y uniforme, sin manchas de agua.",
+   "arreglo": "Chorreados verticales y variación de tono en el concreto.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D30",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 15,
+   "segundo": "35.59",
+   "que": "[D30 sin arreglar] [delator · medio] A la izquierda hay una forma color durazno a rayas, curva y desenfocada, que no se identifica y parece un brillo u objeto suelto.",
+   "arreglo": "Reencuadrar para que no quede detrás de Pete, u oscurecerla.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D32",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 16,
+   "segundo": "37.51",
+   "que": "[D32 sin arreglar] [delator · medio] Las botas de Pete coinciden con la línea del horizonte y con la base de las torres, así que puede leerse como 'parado lejos'. Además flota cerca de 1 m sobre el imán y no en la boca del hueco.",
+   "arreglo": "Bajar la cámara para que quede recortado contra el cielo con el borde del imán justo debajo, y que flote a la altura de la boca del hueco.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D13",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 2,
+   "segundo": "1.99",
+   "que": "[D13 sin arreglar] [delator · abajo] El suelo agrietado ocupa ~40 % del cuadro, con placas del mismo tamaño, el mismo reborde blanco y todo enfocado hasta el primer plano (lo mismo en P9 17.04).",
+   "arreglo": "Variar el tamaño de las placas, desenfocar el primer plano y bajar la proporción de suelo.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D8",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 4,
+   "segundo": "6.34",
+   "que": "[D8 sin arreglar] [delator · medio] El interior del tubo es negro opaco y la rana es una mancha café que parece hoja seca.",
+   "arreglo": "Iluminar el hueco desde abajo (blanco-cian, como la foto real 1) o quitar ese macro.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D9",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 4,
+   "segundo": "6.88",
+   "que": "[D9 sin arreglar] [delator · arriba] La rana flota sobre la boca del imán, entre dos varillas, y no dentro como dice la voz y como la pondría la física.",
+   "arreglo": "Bajarla hasta la boca del hueco o un poco más adentro.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D15",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 4,
+   "segundo": "7.42",
+   "que": "[D15 sin arreglar] [delator · abajo] La plataforma del imán de la rana es una losa lisa de un solo azul-gris.",
+   "arreglo": "Agregar mugre, juntas y marcas de uso.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D16",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 5,
+   "segundo": "9.26",
+   "que": "[D16 sin arreglar] [delator · medio] El acercamiento a la rana termina fuera de foco: la cara queda borrosa llenando el cuadro.",
+   "arreglo": "Que el foco siga al ojo durante el acercamiento.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D17",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "9.34",
+   "que": "[D17 sin arreglar] [delator · arriba] En el borde izquierdo hay una franja blanca vertical (una pluma de vapor cortada, x≈0–40, y≈0–500).",
+   "arreglo": "Encuadrar la torre o sacar la pluma del borde.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D14",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 7,
+   "segundo": "10.34",
+   "que": "[D14 sin arreglar] [delator · medio] El tejido de fondo son esferas rojas brillantes como plástico, con venas dibujadas y rojo saturado.",
+   "arreglo": "Bajar el especular y la saturación, darle textura húmeda subsuperficial y deformar las esferas perfectas.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D7",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 8,
+   "segundo": "13.54",
+   "que": "[D7 sin arreglar] [delator · abajo] La boca del imán es un agujero negro plano, sin pared interior (y≈1350–1550).",
+   "arreglo": "Pared interior metálica con reflejo y algo de luz.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D34",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 9,
+   "segundo": "18.00",
+   "que": "[D34 sin arreglar] [delator · abajo] base circular gris lisa, sin desgaste y de canto perfecto (17–27 s)",
+   "arreglo": "hormigón con manchas, polvo de sal acumulado en el borde y cantos gastados",
+   "de": "verificación",
+   "asignado": "global"
+  }
+ ],
+ "verificacion": [
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "En P10 21.68–21.96 el hueco ya es de acero oscuro con vetas verticales, brida con pernos arriba y pared interior con luz y degradé (no negro plano). Sigue siendo un tubo alto y sin escala en el cenital, pero ya no se lee como un basurero de plástico.",
+   "de": "planos1"
+  },
+  {
+   "id": "D1",
+   "arreglado": true,
+   "por_que": "P10 20.26–21.96: brida con pernos y vetas de acero en el cilindro. La costura de soldadura no se alcanza a ver a esta resolución.",
+   "de": "planos1"
+  },
+  {
+   "id": "D2",
+   "arreglado": true,
+   "por_que": "P10 21.96: la pared interior tiene un lado iluminado gris y degradé hacia abajo, no un negro plano.",
+   "de": "planos1"
+  },
+  {
+   "id": "D3",
+   "arreglado": true,
+   "por_que": "La base ya es gris-café con variación en P9 17.04, y en el primer plano de P10 21.68 la misma losa muestra manchas de mugre. Los bordes siguen nítidos.",
+   "de": "planos1"
+  },
+  {
+   "id": "D4",
+   "arreglado": true,
+   "por_que": "P8 13.54: a la derecha de la rana sólo queda la varilla; no hay ninguna mancha beige en x≈700–760.",
+   "de": "planos1"
+  },
+  {
+   "id": "D5",
+   "arreglado": true,
+   "por_que": "P8 13.54: arriba a la izquierda sólo se ve la varilla izquierda y el cielo. La mancha beige no está.",
+   "de": "planos1"
+  },
+  {
+   "id": "D6",
+   "arreglado": true,
+   "por_que": "P3 5.08–5.67: las varillas desenfocadas quedan pegadas a los bordes; nada cruza junto a la rana.",
+   "de": "planos1"
+  },
+  {
+   "id": "D7",
+   "arreglado": false,
+   "por_que": "P8 13.54–16.96 (y E15 15.74): la boca del imán sigue negro puro; sólo el borde tiene reflejo. Falta la pared interior con algo de luz.",
+   "de": "planos1"
+  },
+  {
+   "id": "D8",
+   "arreglado": false,
+   "por_que": "A medias: en P4 6.34 la rana ya se lee nítida con sus patas, pero el hueco de abajo (y≈1600–1900) sigue negro opaco, sin la luz blanco-cian de la foto real 1.",
+   "de": "planos1"
+  },
+  {
+   "id": "D9",
+   "arreglado": false,
+   "por_que": "P4 6.88–7.00 (y P8 entero): la rana sigue flotando entre las dos varillas, bien por encima de la boca del imán, justo cuando la voz dice 'dentro'.",
+   "de": "planos1"
+  },
+  {
+   "id": "D10",
+   "arreglado": true,
+   "por_que": "Pete bajó: en P2 1.99 sus pies quedan a ~¼ de cuerpo del borde del techo y en P1 0.04 a ~0,4 de cuerpo con cámara baja; ya no flota un cuerpo entero arriba.",
+   "de": "planos1"
+  },
+  {
+   "id": "D11",
+   "arreglado": true,
+   "por_que": "P1 0.04: el borde trasero del techo es una tapa redonda con pernos; no hay aleta ni rampa.",
+   "de": "planos1"
+  },
+  {
+   "id": "D12",
+   "arreglado": true,
+   "por_que": "P1 0.04 y P9 17.04: las plumas ya no son iguales (la izquierda más delgada y baja, la derecha más ancha y ondulada arriba). Siguen subiendo casi rectas.",
+   "de": "planos1"
+  },
+  {
+   "id": "D13",
+   "arreglado": false,
+   "por_que": "En P2 1.99 el suelo bajó a ~25 % del cuadro, pero en P9 17.04–19.61 sigue ~45 %, con placas del mismo tamaño, el mismo reborde blanco y todo enfocado hasta abajo.",
+   "de": "planos1"
+  },
+  {
+   "id": "D14",
+   "arreglado": false,
+   "por_que": "P7 10.34–13.46: las formas son más irregulares y el rojo más oscuro, pero el tejido sigue siendo de bolas brillantes con manchas especulares blancas de plástico y venas de línea.",
+   "de": "planos1"
+  },
+  {
+   "id": "D15",
+   "arreglado": false,
+   "por_que": "P4 7.42–7.96: se ven 2–3 juntas diagonales, pero la losa sigue lisa y de un solo azul-gris, sin mugre ni marcas de uso.",
+   "de": "planos1"
+  },
+  {
+   "id": "D16",
+   "arreglado": false,
+   "por_que": "P5 9.26: el acercamiento sigue terminando con la cara y los ojos de la rana borrosos llenando el cuadro.",
+   "de": "planos1"
+  },
+  {
+   "id": "D17",
+   "arreglado": false,
+   "por_que": "P6 9.34–10.26: sigue la franja blanca vertical de la pluma cortada en el borde izquierdo (x≈0–50, y≈0–480).",
+   "de": "planos1"
+  },
+  {
+   "id": "A4",
+   "arreglado": true,
+   "por_que": "Ya no se lee 'parado lejos': en 36.74 Pete está de pie sobre el borde del imán y en 37.51 despega con las piernas dobladas; flota más bajo (≈0,5 m) y la pose cambia (brazos abiertos en 38.03, distintos en 39.31). La cámara no bajó: las botas siguen en la línea del horizonte (ver D32).",
+   "de": "planos2"
+  },
+  {
+   "id": "D18",
+   "arreglado": true,
+   "por_que": "En 24.34–25.46 la superficie alrededor del imán está limpia: no quedan cubitos repetidos.",
+   "de": "planos2"
+  },
+  {
+   "id": "D19",
+   "arreglado": false,
+   "por_que": "Parcial: en 24.53–24.84 aparece una carcasa grande y redonda que sale del cuadro, pero encima sigue el mismo disco metálico de ~7 cm bajo el tubo, que todavía se lee como pieza de escritorio.",
+   "de": "planos2"
+  },
+  {
+   "id": "D20",
+   "arreglado": false,
+   "por_que": "En 24.34–24.84 la superficie sigue lisa, de un solo azul gris y con el borde redondo perfecto; no hay rayas, huellas ni polvo.",
+   "de": "planos2"
+  },
+  {
+   "id": "D21",
+   "arreglado": true,
+   "por_que": "En 25.54 el cilindro del hueco es acero oscuro con vetas verticales, variación de tono y pernos en el borde; ya no es negro puro.",
+   "de": "planos2"
+  },
+  {
+   "id": "D22",
+   "arreglado": false,
+   "por_que": "Parcial: el cobre ahora tiene pátina moteada y algo de reflejo (27.20–27.64), pero el canto sigue liso, sin espiras, y las bobinas siguen bajando del cielo sin grúa ni cable (26.06, 26.85, 27.20).",
+   "de": "planos2"
+  },
+  {
+   "id": "D23",
+   "arreglado": false,
+   "por_que": "En 25.54–28.16 los cerros siguen gris violeta y de picos recortados, distintos de los cerros cafés con relieve de P13 y P16.",
+   "de": "planos2"
+  },
+  {
+   "id": "D24",
+   "arreglado": true,
+   "por_que": "En 28.24–32.21 se ve la pared interior del lado lejano del hueco con una franja iluminada; abajo queda oscuro como un pozo hondo.",
+   "de": "planos2"
+  },
+  {
+   "id": "D25",
+   "arreglado": true,
+   "por_que": "En 28.24–28.67 los pernos están sobre la brida de la tapa; no hay anillo de pernos suelto en el aire.",
+   "de": "planos2"
+  },
+  {
+   "id": "D26",
+   "arreglado": false,
+   "por_que": "Parcial: en P14 y P16 las plumas ya tienen distinta altura, pero en P13 (28.24–32.21) siguen dos columnas angostas, verticales e iguales, sin abrirse ni derivar con el viento.",
+   "de": "planos2"
+  },
+  {
+   "id": "D27",
+   "arreglado": false,
+   "por_que": "Parcial: en 32.29–33.17 el cobre tiene algo de moteado, pero sigue leyéndose naranja mate, sin el reflejo metálico del cielo.",
+   "de": "planos2"
+  },
+  {
+   "id": "D28",
+   "arreglado": false,
+   "por_que": "Parcial: los cables ahora son curvos y separados irregularmente, pero siguen siendo cintas planas color salar con sombras azules largas, y en 34.05–35.51 se enroscan en un nudo vertical cerca del punto de fuga que se lee como aleta.",
+   "de": "planos2"
+  },
+  {
+   "id": "D29",
+   "arreglado": false,
+   "por_que": "Parcial / poco verificable a esta resolución: en 34.05–35.51 la torre izquierda muestra algo de variación de tono, pero la derecha sigue de concreto crema liso y parejo, sin chorreados.",
+   "de": "planos2"
+  },
+  {
+   "id": "D30",
+   "arreglado": false,
+   "por_que": "En 35.59–36.66 sigue a la izquierda, detrás del pilar, la forma durazno a rayas, curva y desenfocada, que no se identifica.",
+   "de": "planos2"
+  },
+  {
+   "id": "D31",
+   "arreglado": true,
+   "por_que": "En 36.74–39.31 el borde del fondo del imán es una línea limpia con pernos: ya no sobresale la aleta oscura de los cables.",
+   "de": "planos2"
+  },
+  {
+   "id": "D32",
+   "arreglado": false,
+   "por_que": "Parcial: la altura bajó (≈0,5 m sobre el imán) y el despegue lo ubica, pero la cámara no bajó: de 38.03 a 39.31 las botas siguen justo en la línea del horizonte, a la altura de la base de las torres.",
+   "de": "planos2"
+  },
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "en el cuadro 0, en x≈700 e y≈930, entre el horizonte y el borde del imán sólo queda suelo plano, y en 37.5 y 38.5 tampoco se ve la aleta: los cables no están en el plano",
+   "de": "global"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "el cilindro ya no es negro mate de juguete: es acero gris oscuro con costuras verticales, brida apernada y bisel iluminado (20.5, 21.5, 25.5); la base todavía se ve lisa (ver D34), pero el tramo ya no baja el realismo de 8",
+   "de": "global"
+  },
+  {
+   "id": "A5",
+   "arreglado": false,
+   "por_que": "a 24.5 s, mientras dice 'tu' y 0,2 s antes de 'mano', sigue el plano general del tubo sobre la plataforma sin ninguna mano; a 25.5 ya está Pete junto al hueco, y el plano 11 sigue siendo uno solo de 22.0 a 25.5 (sin inserto nuevo). No hay material para revisar 24.6–25.4",
+   "de": "global"
+  },
+  {
+   "id": "D33",
+   "arreglado": true,
+   "por_que": "a 21.5 y 25.5 s el cilindro tiene costuras verticales, una fila de pernos en la brida y el borde biselado con luz; no se alcanza a ver óxido ni chorreados en el contacto, pero ya no es un solo negro liso",
+   "de": "global"
+  },
+  {
+   "id": "D34",
+   "arreglado": false,
+   "por_que": "a 18.5 s la base sigue siendo un disco gris parejo con el canto perfecto, sin manchas ni polvo visibles; a 21.5 el tope se ve algo moteado con el sol, pero el canto sigue limpio",
+   "de": "global"
+  },
+  {
+   "id": "D35",
+   "arreglado": true,
+   "por_que": "ya no aparece la aleta gris detrás del borde del imán, ni en el cuadro 0 ni en 37.5–38.5 s",
+   "de": "global"
+  },
+  {
+   "id": "D36",
+   "arreglado": true,
+   "por_que": "entre 33.5 y 35.5 s los cables cruzan en curvas en S, en diagonal y con sombra sobre las grietas del salar: se leen como cables en el suelo, no como una rampa",
+   "de": "global"
+  },
+  {
+   "id": "D37",
+   "arreglado": false,
+   "por_que": "a 24.5 s el plano sigue pálido y de luz pareja, con cielo rosado, cerros lavanda y sin negros (abajo es gris malva), distinto al sol dorado del resto; mejoró en que ya no hay pernos cúbicos y el fondo tiene desenfoque",
+   "de": "global"
+  },
+  {
+   "id": "D38",
+   "arreglado": true,
+   "por_que": "en el plano 3 (4.5 y 5.5 s) y en 6.5 s la rana se ve dentro del tubo, de costado; en los cuadros muestreados ya no sale el interior negro visto desde arriba",
+   "de": "global"
+  },
+  {
+   "id": "D39",
+   "arreglado": true,
+   "por_que": "a 13.5 s (y a 6.5 s) la boca del soporte tiene el bisel con luz y reflejos de los postes en el labio interior antes de caer a negro: se lee como un agujero hondo, no como un disco plano",
+   "de": "global"
+  },
+  {
+   "id": "D40",
+   "arreglado": false,
+   "por_que": "es parcial: Pete ya está centrado sobre la boca del imán (x≈265 contra el centro del hueco ≈270 en el cuadro 0) y más bajo, pero la cámara no bajó y sus piernas y pies siguen contra los cerros (cuadro 0: pies en y≈415, horizonte en y≈445 de 960; igual en 37.5)",
+   "de": "global"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "fondo_liso · plano 5: 76 % del cuadro es superficie lisa",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [
+  {
+   "plano": 14,
+   "segundo": "34.05",
+   "zona": "medio",
+   "que": "Los cables siguen siendo cintas planas color salar con sombras azules largas, y cerca del punto de fuga se enroscan en un nudo vertical que se lee como aleta.",
+   "arreglo": "Cables redondos de aislación negra, apoyados en el suelo y abiertos hacia un costado del reactor (no al punto de fuga del centro), o sacarlos y dejar una línea aérea en torres.",
+   "de": "planos2"
+  },
+  {
+   "plano": 12,
+   "segundo": "25.54",
+   "zona": "arriba",
+   "que": "Cerros gris violeta de picos recortados, distintos de los cerros cafés con relieve de P13 y P16.",
+   "arreglo": "Usar los mismos cerros y la misma luz de P13, con bruma de distancia.",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "24.84",
+   "zona": "medio",
+   "que": "El tubo sigue apoyado en un disco metálico de ~7 cm encima de la carcasa grande: la pieza chica delata el juguete.",
+   "arreglo": "Sacar el disco y que el tubo entre directo en la tapa de la carcasa grande.",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "24.84",
+   "zona": "medio",
+   "que": "La tapa de la carcasa es lisa, de un solo azul gris y con el borde perfecto.",
+   "arreglo": "Rayas finas, huellas o polvo y un bisel leve en el borde.",
+   "de": "planos2"
+  },
+  {
+   "plano": 15,
+   "segundo": "35.59",
+   "zona": "medio",
+   "que": "Forma color durazno a rayas, curva y desenfocada, detrás del pilar izquierdo; no se identifica.",
+   "arreglo": "Reencuadrar para que quede fuera, u oscurecerla.",
+   "de": "planos2"
+  },
+  {
+   "plano": 16,
+   "segundo": "38.03",
+   "zona": "medio",
+   "que": "Las botas de Pete siguen justo en la línea del horizonte, a la altura de la base de las torres.",
+   "arreglo": "Bajar la cámara 10–15° para que Pete quede recortado contra el cielo con el borde del imán justo bajo sus pies.",
+   "de": "planos2"
+  },
+  {
+   "plano": 12,
+   "segundo": "26.85",
+   "zona": "arriba",
+   "que": "Las bobinas tienen el canto liso, sin espiras, y bajan del cielo sin grúa ni cable.",
+   "arreglo": "Vueltas de alambre visibles en el canto y un cable de grúa que entre desde arriba.",
+   "de": "planos2"
+  },
+  {
+   "plano": 14,
+   "segundo": "32.58",
+   "zona": "medio",
+   "que": "El cobre de las espiras sigue naranja mate, sin reflejo metálico.",
+   "arreglo": "Shader metálico con rugosidad más baja y variable, para que refleje el cielo.",
+   "de": "planos2"
+  },
+  {
+   "plano": 13,
+   "segundo": "29.32",
+   "zona": "arriba",
+   "que": "Dos plumas de vapor angostas, verticales e iguales (cortadas por el borde), sin abrirse ni derivar.",
+   "arreglo": "Plumas que se abran hacia arriba con deriva de viento, de forma y tiempo distintos.",
+   "de": "planos2"
+  },
+  {
+   "plano": 14,
+   "segundo": "34.34",
+   "zona": "arriba",
+   "que": "La torre de enfriamiento derecha es de concreto crema liso y parejo.",
+   "arreglo": "Chorreados verticales y variación de tono.",
+   "de": "planos2"
+  }
+ ],
+ "parar_y_preguntar": false
+}
