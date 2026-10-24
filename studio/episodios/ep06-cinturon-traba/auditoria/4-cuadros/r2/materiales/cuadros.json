@@ -1,0 +1,44 @@
+[
+ {
+  "cuadro": "A_caballero_se_lanza",
+  "archivo": "A_caballero_se_lanza.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.0,
+  "brillo": 108.8,
+  "saturacion": 102.8,
+  "negros_p5": 22.0,
+  "recortes": [
+   "A_caballero_se_lanza_recorte_arriba.jpg",
+   "A_caballero_se_lanza_recorte_medio.jpg",
+   "A_caballero_se_lanza_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "B_subida_cerro",
+  "archivo": "B_subida_cerro.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.01,
+  "brillo": 91.6,
+  "saturacion": 71.8,
+  "negros_p5": 24.0,
+  "recortes": [
+   "B_subida_cerro_recorte_arriba.jpg",
+   "B_subida_cerro_recorte_medio.jpg",
+   "B_subida_cerro_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "C_retractor_por_dentro",
+  "archivo": "C_retractor_por_dentro.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.27,
+  "brillo": 128.4,
+  "saturacion": 73.5,
+  "negros_p5": 31.0,
+  "recortes": [
+   "C_retractor_por_dentro_recorte_arriba.jpg",
+   "C_retractor_por_dentro_recorte_medio.jpg",
+   "C_retractor_por_dentro_recorte_abajo.jpg"
+  ]
+ }
+]

@@ -1,0 +1,17 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "estilo.json: la referencia 'referencias/*.jpg' no encontró archivos en la carpeta del episodio",
+   "evidencia": "estilo.json"
+  },
+  {
+   "que": "estilo realista sin referencias (fotos reales en estilo.json → referencias): el revisor juzga el realismo sin poder comparar",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "cuadros": 3,
+  "estilo": "realista"
+ }
+}
