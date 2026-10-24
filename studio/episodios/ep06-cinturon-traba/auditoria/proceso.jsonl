@@ -16,3 +16,4 @@
 {"tipo": "aviso", "que": "La r1 de la puerta 1 se volvió a preparar 2 veces antes de lanzar al revisor (un script falló a medias y después el chequeo pilló una frase de 20 palabras): sin revisión gastada", "n": 16, "ts": "2026-10-23T20:56:26-03:00"}
 {"tipo": "chequeo", "id": "sesion ep06", "estado": "vivo (vigilante)", "n": 17, "ts": "2026-10-23T21:06:19-03:00"}
 {"tipo": "trabajo", "id": "puerta1 r1", "estado": "fin", "n": 18, "ts": "2026-10-23T21:07:33-03:00"}
+{"tipo": "trabajo", "id": "voz 0011", "estado": "inicio", "n": 19, "ts": "2026-10-23T21:07:35-03:00"}
