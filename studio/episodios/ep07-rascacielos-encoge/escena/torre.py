@@ -420,7 +420,7 @@ def interior(sc, sb):
     col = E.mat_hormigon("columna", (0.5, 0.49, 0.47))
     acero = E.mat_acero_industrial("acero_temp", (0.24, 0.12, 0.07), sucio=0.5)            # vigas con anticorrosivo rojizo
     amarillo = E.mat_pintura("gata", (0.85, 0.6, 0.04), rugo=(0.35, 0.6), sucio=0.35, capa=0.2)
-    cromo = E.mat_metal_cepillado("piston", (0.8, 0.8, 0.82), rugo=(0.08, 0.2))
+    cromo = E.mat_metal_cepillado("piston", (0.62, 0.62, 0.63), rugo=(0.25, 0.4))
     out = {"obra": ob, "piezas": [], "cols_a": [], "cols_b": [], "gatas": [], "pistones": [], "temp": [], "lamparas": [], "luces": []}
     e = 0.3
     LY = 2 * (TR_LY - PROF)

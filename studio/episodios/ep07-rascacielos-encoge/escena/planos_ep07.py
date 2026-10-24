@@ -190,8 +190,8 @@ def fantasma(sc):
         v.co.x *= TR.LX + 0.6; v.co.y *= TR.LY + 0.6; v.co.z = v.co.z + 0.5
     bm.to_mesh(me); bm.free()
     o = bpy.data.objects.new("Fantasma", me); sc.collection.objects.link(o)
-    w = o.modifiers.new("alambre", "WIREFRAME"); w.thickness = 0.35; w.use_replace = True
-    o.data.materials.append(E.mat_emision("fantasma", (1.0, 1.0, 1.0), 1.6))
+    w = o.modifiers.new("alambre", "WIREFRAME"); w.thickness = 0.7; w.use_replace = True
+    o.data.materials.append(E.mat_emision("fantasma", (1.0, 1.0, 1.0), 3.0))
     for k in ("visible_shadow", "visible_diffuse", "visible_glossy", "visible_transmission"):
         setattr(o, k, False)
     o["bajos"] = [v.index for v in o.data.vertices if v.co.z < 0.5]
@@ -367,8 +367,8 @@ def armar_E3(sc):
     S["cam"] = cam
     S["Z0"] = H_CORTE * H
     c = S["corte"]
-    c["relleno"].energy = 5000.0
-    c["fondo"].energy = 2500.0
+    c["relleno"].energy = 1800.0          # poco relleno: que se vea el sol rasante que entra por el corte (negros reales)
+    c["fondo"].energy = 700.0
     return S
 
 
@@ -563,8 +563,8 @@ def p10(sc, a, b):
             on = suave((t - (t_pr + 0.2 * k)) / 0.08)
             TR.brillo(lm.data.materials[0], 14.0 * on)
             lt.energy = 3600.0 * on
-        c["relleno"].energy = 1400.0
-        c["fondo"].energy = 250.0
+        c["relleno"].energy = 900.0
+        c["fondo"].energy = 150.0
         mirar(S["cam"], Vector((-3, -27, Z0 + 2.6)).lerp(Vector((0, -24, Z0 + 2.8)), x), Vector((1, 3, Z0 + 4.4)), lente=28)
         return {}
     return {"actualizar": act}
