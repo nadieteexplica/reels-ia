@@ -38,7 +38,7 @@ RETRACTOR = (-0.62, 0.45, 0.75)      # abajo en el pilar B del copiloto, a la al
 TABLERO_CENTRO = (0.0, -0.40, 1.34)
 BOLSA = (0.0, -0.40, 1.36)
 # el techo de la cabina queda a 0,84 m del cojín: con su altura de Mixamo (1,77–1,97 m) las cabezas lo atraviesan
-ESCALA = {"caballero": 0.80, "piloto": 0.87, "mascara": 0.87, "doctor": 0.87}
+ESCALA = {"caballero": 0.75, "piloto": 0.87, "mascara": 0.87, "doctor": 0.87}
 
 
 SOL_AZ_CERRO = 270.0     # en la subida (E3): de costado puro desde el lado del copiloto, para que la ladera reciba luz rasante
@@ -221,7 +221,7 @@ def vidrio_delgado(m):
     gl = nt.nodes.new("ShaderNodeBsdfGlossy"); gl.inputs["Roughness"].default_value = 0.04
     fr = nt.nodes.new("ShaderNodeFresnel"); fr.inputs["IOR"].default_value = 1.52
     nz = _ruido(nt, escala=6.0, detalle=8)
-    polvo = _mapa(nt, nz.outputs["Fac"], 0.0, 0.10); polvo.inputs["From Min"].default_value = 0.45; polvo.inputs["From Max"].default_value = 0.75
+    polvo = _mapa(nt, nz.outputs["Fac"], 0.0, 0.04); polvo.inputs["From Min"].default_value = 0.45; polvo.inputs["From Max"].default_value = 0.75
     df = nt.nodes.new("ShaderNodeBsdfDiffuse"); df.inputs["Color"].default_value = (0.5, 0.42, 0.33, 1)
     mx1 = nt.nodes.new("ShaderNodeMixShader")
     nt.links.new(fr.outputs[0], mx1.inputs[0]); nt.links.new(tr.outputs[0], mx1.inputs[1]); nt.links.new(gl.outputs[0], mx1.inputs[2])
