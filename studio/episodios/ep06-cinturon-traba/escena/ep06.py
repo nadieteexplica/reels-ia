@@ -747,16 +747,19 @@ def apuntar_hueso(arm, sufijo, dir_mundo):
 
 
 def mirar_adelante(arm, adelante=Vector((0, -1, 0))):
-    """Gira el armature en z para que los pies (y el personaje) miren hacia `adelante`."""
+    """Gira el armature en z para que el personaje mire hacia `adelante`. Se orienta con la línea de las caderas (de la
+    derecha a la izquierda del personaje), no con los pies: sentado, los pies de Mixamo apuntan hacia afuera y el giro
+    dejaba al caballero mirando a la puerta (muestras v2)."""
     bpy.context.view_layer.update()
     try:
-        pie = pos_hueso(arm, "LeftToeBase") - pos_hueso(arm, "LeftFoot")
+        lado = pos_hueso(arm, "LeftUpLeg") - pos_hueso(arm, "RightUpLeg")
     except Exception:
         return
-    pie.z = 0
-    if pie.length < 1e-4:
+    lado.z = 0
+    if lado.length < 1e-4:
         return
-    ang = pie.to_2d().angle_signed(adelante.to_2d())
+    deseado = Vector((0, 0, 1)).cross(Vector(adelante))      # la izquierda de alguien que mira hacia `adelante`
+    ang = lado.to_2d().angle_signed(deseado.to_2d())
     arm.rotation_euler.z -= ang
     bpy.context.view_layer.update()
 
