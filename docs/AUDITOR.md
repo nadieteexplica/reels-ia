@@ -21,6 +21,8 @@ Cambios:
 6. **Un NO de calidad no llega a Tomás.** Después de 2 rondas de la puerta 6, si no llegan las notas o el promedio (`solo_bloqueantes` = false en el veredicto), el video **no sigue ni se le manda**: se le explica en dos líneas y se propone un reemplazo. Sólo si lo que queda son bloqueantes puntuales, esos planos se simplifican y decide la puerta 7. La **puerta 8 no empaqueta** sin la 6 y la 7 aprobadas (falla automática).
 7. **Límite que sigue:** nadie del auditor escucha el audio. La música la juzga Tomás; el revisor global anota de dónde sale y si es sintetizada.
 
+**Calibrado con el Ep. 6 (24-oct):** el `espectador` nuevo, sobre el mismo video que se le mandó a Tomás, dio **comprensión 5 y 8 bloqueantes** (3 B13: el caballero nunca jala ni lo frena nada, "se traban los cuatro" sin cinta a la vista, el truco final sin imagen; 4 B12: el dedo gigante desenfocado, la entrada al pilar café y negro, la máscara en negro, el pulgar en "sus papas"; 1 B14: el 4x4 en el desierto recién se ve a los 18 s). Con estas reglas no habría salido. Resultado en `studio/episodios/ep06-cinturon-traba/auditoria/calibracion-espectador/espectador.json`.
+
 ## Reglas v2 (con Tomás, 21-oct-2026; corregidas el mismo día tras una auditoría independiente)
 1. **El auditor es la receta, no el examen final.** Lo que va a exigir está escrito antes de animar: en la **ficha de plano** del storyboard y en el **chequeo automático** que el editor corre en cada prueba (`tools/prueba.py`) y el workflow en cada animatic.
 2. **Lo medible se arregla antes de gastar revisores:** si el chequeo automático de una puerta falla, `preparar` **no abre la ronda ni crea encargos** (queda en `<etapa>/_pre/checks.json`). Una ronda sólo se gasta en lo que necesita ojos.
