@@ -71,7 +71,12 @@ Cada episodio nuevo lleva `estilo.json` con `"estilo": "realista"` (copiar `stud
 - **Subtítulos** palabra a palabra en la franja y 1000–1250. Las palabras clave van en color (AGUA azul; TESLAS y GIGAVATIO naranjos) y los números en cifra ("40").
 - **Cada 1–2 s cambia algo:** un corte, una píldora, un movimiento de cámara.
 - **Audio:**
-  - Música sintetizada (pads en Re/Si m/Sol/La a 84 bpm), con la voz 15 dB arriba y todo a −14 LUFS.
+  - Música sintetizada **de tensión**, desde la v3.1 del Ep. 5 (los pads con campanitas "no llamaban la atención", lección 102). Lleva:
+    - Re menor a 96 bpm y bajo en corcheas que se abre de a poco;
+    - bombo desde la prueba real y tics durante la construcción;
+    - subidas antes de los cortes grandes y golpes en cada PASO;
+    - un acorde mayor abierto en el remate.
+  - La voz va 15 dB arriba de la música y todo a −14 LUFS. La música sola se revisa con `MUSICA_SOLA=1`.
   - Efectos sintetizados: viento, zumbido del imán, *dings*, golpes metálicos, zumbido eléctrico, *whoom*.
 - **Loop:** el último plano termina en la cámara exacta del cuadro 0.
 
