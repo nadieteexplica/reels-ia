@@ -2,7 +2,7 @@
 
 ## Instagram (Reel) y TikTok
 Tu cuerpo repele los imanes… y con el correcto, flotarías 🧲
-Una rana viva ya flotó así: es más que nada agua, al agua un imán la empuja un poquito, y con uno de unos 16 teslas ese empujón le gana a la gravedad. Para ti haría falta un hueco donde quepas, unos 40 teslas (o más) y cerca de un gigavatio: un reactor nuclear entero.
+Una rana viva ya levitó así: es más que nada agua, al agua un imán la empuja un poquito, y con uno de unos 16 teslas ese empujón le gana a la gravedad. Para ti haría falta un hueco donde quepas, unos 40 teslas (o más) y cerca de un gigavatio: un reactor nuclear entero.
 Dato extra: el que hizo flotar a la rana ganó un Ig Nobel por eso… y diez años después, el Nobel de Física de verdad (por el grafeno).
 ¿Qué harías si pudieras flotar 5 minutos? 👇
 #curiosidades #ciencia #fisica #imanes #elviejodeldato

@@ -16,3 +16,4 @@
 | 7-final | r1 | APROBADO | 0 | 0 |
 | 8-paquete | r1 | APROBADO | 0 | 7 |
 | 8-paquete | r1 | NO APROBADO | 0 | 8 |
+| 8-paquete | r2 | APROBADO | 0 | 1 |
