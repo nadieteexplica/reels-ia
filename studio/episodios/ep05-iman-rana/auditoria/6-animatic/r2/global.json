@@ -1,0 +1,32 @@
+{
+ "encargo": "global",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "gancho": {"nota": 8, "por_que": "cuadro 0: Pete en el aire con la punta de los pies estirada sobre un imán industrial con torres de reactor, sol bajo; se lee 'persona flotando' sin texto, y 'TU CUERPO REPELE' (0.00–1.20) es capcioso desde el primer cuadro"},
+  "claridad": {"nota": 8, "por_que": "casi cada idea tiene su imagen: rana flotando (4.5–8.5), 'como tú' con HASTA 60 % AGUA (9.5), molécula con líneas de campo (10.5–12.5), flechas IMÁN/GRAVEDAD (14.5–16.5), PASO 1-2-3 (20.5, 26.5, 33.5), barras 16 T contra 40 T (30.5); el hueco es 'ni tu mano cabe' (24.3–25.4), que sigue sin mano"},
+  "ritmo": {"nota": 8, "por_que": "16 planos en 39,33 s, algo cambia cada 1–2 s y la escala salta seguido (macro de rana, salar, molécula, imán); el plano 13 (28.2–32.25) dura 4 s pero entran las barras a 30.5; el loop empalma perfecto (fin −0.1 y 0.0: mismo encuadre y misma pose)"},
+  "belleza": {"nota": 8, "por_que": "sol bajo de costado con sombras largas y negros reales en el salar (21.5, 25.5), cobre con brillos (26.5–32.5), rana con fondo desenfocado (4.5–8.5); el único tramo con otro look es el plano pálido y lavanda de 24.5"},
+  "animacion": {"nota": 8, "por_que": "quieto_max_s bajo 1 s en los 16 planos (máx. 0,53 en el plano 11); Pete cambia brazos y piernas entre 0.0 y 1.9 s y otra vez en 37–39 s; la rana cambia la pose de las patas entre 4.5 y 8.5 s"},
+  "subtitulos": {"nota": 9, "por_que": "105 de 105 palabras, desfase 0 y fuera de zona 0 (cajas entre x 143–858 e y 1025–1218); tildes bien (FLOTARÍAS, CENTÍMETROS, NECESITÓ, EMPUJÓN); 'COMO TÚ' (9.5) y 'SOLO PARA TI' (36.5) quedan a la altura del torso de Pete y no le tapan la cara"},
+  "audio": {"nota": 8, "por_que": "no lo puedo escuchar: −13,9 LUFS y −1,5 dBTP en rango; la voz está 6,9 dB sobre las pausas, que es un mínimo con ducking"},
+  "precision": {"nota": 9, "por_que": "lo que sale en pantalla calza con el guion y las fuentes: ≈16 T de la rana, 3,2 cm del hueco (la voz dice 'tres', sin redondear hacia arriba), 40 T O MÁS, barras RANA 16 T contra TÚ 40 T, ≈1 GIGAVATIO y HASTA 60 % AGUA; la píldora SIMULACIÓN está en cada plano de Pete flotando"},
+  "realismo": {"nota": 8, "por_que": "imán de acero con óxido y pernos, sol bajo, rana igual al escaneo de la ficha, salar con grietas y sombras de contacto, bobinas de cobre con reflejos; el hueco ya es acero oscuro con costuras y brida apernada (20.5–27.5). Siguen delatando el plano pálido de 24.5, la base lisa (18.5) y las piernas de Pete contra los cerros (0.0, 37.5), igual que en el ancla 8 de estilos.md"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A1", "arreglado": true, "por_que": "en el cuadro 0, en x≈700 e y≈930, entre el horizonte y el borde del imán sólo queda suelo plano, y en 37.5 y 38.5 tampoco se ve la aleta: los cables no están en el plano"},
+  {"id": "A3", "arreglado": true, "por_que": "el cilindro ya no es negro mate de juguete: es acero gris oscuro con costuras verticales, brida apernada y bisel iluminado (20.5, 21.5, 25.5); la base todavía se ve lisa (ver D34), pero el tramo ya no baja el realismo de 8"},
+  {"id": "A5", "arreglado": false, "por_que": "a 24.5 s, mientras dice 'tu' y 0,2 s antes de 'mano', sigue el plano general del tubo sobre la plataforma sin ninguna mano; a 25.5 ya está Pete junto al hueco, y el plano 11 sigue siendo uno solo de 22.0 a 25.5 (sin inserto nuevo). No hay material para revisar 24.6–25.4"},
+  {"id": "D33", "arreglado": true, "por_que": "a 21.5 y 25.5 s el cilindro tiene costuras verticales, una fila de pernos en la brida y el borde biselado con luz; no se alcanza a ver óxido ni chorreados en el contacto, pero ya no es un solo negro liso"},
+  {"id": "D34", "arreglado": false, "por_que": "a 18.5 s la base sigue siendo un disco gris parejo con el canto perfecto, sin manchas ni polvo visibles; a 21.5 el tope se ve algo moteado con el sol, pero el canto sigue limpio"},
+  {"id": "D35", "arreglado": true, "por_que": "ya no aparece la aleta gris detrás del borde del imán, ni en el cuadro 0 ni en 37.5–38.5 s"},
+  {"id": "D36", "arreglado": true, "por_que": "entre 33.5 y 35.5 s los cables cruzan en curvas en S, en diagonal y con sombra sobre las grietas del salar: se leen como cables en el suelo, no como una rampa"},
+  {"id": "D37", "arreglado": false, "por_que": "a 24.5 s el plano sigue pálido y de luz pareja, con cielo rosado, cerros lavanda y sin negros (abajo es gris malva), distinto al sol dorado del resto; mejoró en que ya no hay pernos cúbicos y el fondo tiene desenfoque"},
+  {"id": "D38", "arreglado": true, "por_que": "en el plano 3 (4.5 y 5.5 s) y en 6.5 s la rana se ve dentro del tubo, de costado; en los cuadros muestreados ya no sale el interior negro visto desde arriba"},
+  {"id": "D39", "arreglado": true, "por_que": "a 13.5 s (y a 6.5 s) la boca del soporte tiene el bisel con luz y reflejos de los postes en el labio interior antes de caer a negro: se lee como un agujero hondo, no como un disco plano"},
+  {"id": "D40", "arreglado": false, "por_que": "es parcial: Pete ya está centrado sobre la boca del imán (x≈265 contra el centro del hueco ≈270 en el cuadro 0) y más bajo, pero la cámara no bajó y sus piernas y pies siguen contra los cerros (cuadro 0: pies en y≈415, horizonte en y≈445 de 960; igual en 37.5)"}
+ ],
+ "delatores": [],
+ "resumen": "No hay bloqueantes nuevos. Quedaron arreglados la aleta del cuadro 0 y el plano 16, el cilindro del hueco, los cables del paso 3 y las bocas negras planas. Siguen pendientes, sin ser bloqueantes: la mano de 'ni tu mano cabe' (A5), la base lisa (D34), el plano pálido de 24.5 (D37) y las piernas de Pete contra los cerros (D40). Realismo 8 y promedio 8,2."
+}
