@@ -1,0 +1,315 @@
+{
+ "encargo": "espectador",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "comprension": {
+   "nota": 7,
+   "por_que": "Sin sonido se entiende la historia: la torre se achica desde arriba (0–2 s), el techo baja un piso sobre gatos (18.4–20.7 s), se repite (21–25 s) y quedan 14 de 40 (34.7–37.3 s). Pero el paso 2 (12.4–16.4 s) no muestra ningún desarme, las planchas blancas de 15.3–16.4 s no se reconocen, y la electricidad y las luces (28.5–32.4 s) se entienden sólo por las píldoras."
+  },
+  "gancho": {
+   "nota": 8,
+   "por_que": "En 0–2 s se ve una torre en la ciudad con su caja fantasma 'ANTES: 40 PISOS' que crece mientras el contador baja de 36 a 30: es una imagen imposible y clara. Pierde fuerza al cortar a los 2.3 s a un primer plano casi quieto de la corona."
+  },
+  "claridad": {
+   "nota": 7,
+   "por_que": "Casi todas las líneas tienen su imagen a tiempo: techo marcado a los 6.7 s, gatos a los 11.3 s, techo bajando a los 18.4–19.7 s, 'otra vez' en 21–25 s, grúa con bloque en 26–28 s, calle a los 32.7 s. Sin embargo, 'desarman el piso de abajo' (14.45–16.08 s) no tiene imagen, y 'genera electricidad' y 'luces de la obra' son una lucecita y un blanco lechoso."
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B13",
+   "plano": null,
+   "segundo": "12.40–16.40",
+   "que": "Paso 2: la voz dice 'escondidos bajo el sombrero, desarman el piso de abajo' y la imagen muestra el mismo corte casi quieto (un piso con piedritas, un gato amarillo y la máquina colgada). Nada se desarma, no se ve qué pieza sale ni que el trabajo esté encerrado. Es la mecánica central del video.",
+   "arreglo": "En cámara rápida, que las piezas del piso de abajo (tabiques, pilares, losa) se corten y salgan una por una colgadas del gancho de la grúa, mientras el montón de escombros crece. Marcar el piso que se desarma con un contorno o un tinte, como el techo a los 6.7 s, y poner paneles alrededor del piso para el 'escondidos'."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": true,
+   "tipo": "B12",
+   "plano": null,
+   "segundo": "15.30–16.40",
+   "que": "Aparecen planchas blancas lisas, sin textura y casi translúcidas, que crecen y se inclinan sobre la mitad derecha del corte. No se reconoce qué son: no parecen la losa café del piso y se leen como una falla de render.",
+   "arreglo": "Si son la losa que se saca, darle el material de concreto del piso, con canto y espesor, y mostrar el cable del gancho de la grúa enganchado. Si no, sacarlas."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "28.45–29.90",
+   "que": "'La grúa que baja los escombros genera electricidad' es el giro del video. Lo único que lo muestra es una lucecita blanca que se prende junto a la máquina (28.7 s), una línea de luz en la viga y la píldora ELECTRICIDAD. Nada une el bloque que baja con la energía.",
+   "arreglo": "Agregar una capa de explicación: una línea que brilla y sale del tambor de la grúa mientras el bloque baja, recorre la viga y llega a las lámparas (o una batería que se llena), justo cuando la voz dice 'genera electricidad'."
+  },
+  {
+   "prioridad": 4,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "31.00–32.40",
+   "que": "Con 'prenden las luces de la obra', todo el interior se pone blanco lechoso. No se ven lámparas, y ese blanco se puede leer como polvo o neblina, que es justo lo contrario del 'sin polvo'. La píldora LUCES DE LA OBRA queda sobre la fila de ventanas y no sobre una luz.",
+   "arreglo": "Poner 3 o 4 lámparas visibles colgadas de la viga que se prenden una tras otra con charcos de luz cálida en el piso, manteniendo los negros. Apuntar la píldora a una lámpara."
+  },
+  {
+   "prioridad": 5,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "34.70–37.27",
+   "que": "En el remate, el subtítulo '2 PISOS MENOS' / 'CADA 10 DÍAS' cae justo encima del muñón de la torre, y los edificios de adelante tapan casi todo lo que queda. El sujeto del número final se ve a medias.",
+   "arreglo": "Subir la cámara o encuadrar la torre más arriba para que el muñón entero quede sobre la zona de subtítulos, o bajar los edificios de primer plano."
+  },
+  {
+   "prioridad": 6,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "8.30–12.40",
+   "que": "El 'sombrero gigante' no se ve como una pieza: el corte muestra vigas y pilares, pero nada junta el techo y el último piso en un solo bloque. Los gatos son cilindros chicos, del mismo tono que el interior, y la píldora GATOS HIDRÁULICOS queda en la viga, arriba de ellos.",
+   "arreglo": "Cuando la voz dice 'sombrero gigante' (9.44 s), contornear o teñir el techo y el último piso como un solo bloque, con la misma línea naranja del techo. A los 11.1 s, hacer pulsar los gatos en un amarillo más vivo y bajar la píldora para que apunte a uno."
+  },
+  {
+   "prioridad": 7,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "2.30–3.60",
+   "que": "Con 'piso por piso' se corta a un primer plano de la corona que se ve quieto: la acción del gancho queda sólo en el contador.",
+   "arreglo": "Mantener la toma aérea hasta los 3.6 s, o que en el primer plano se vea desaparecer una fila de ventanas bajo la corona."
+  },
+  {
+   "prioridad": 8,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "3.70–5.43",
+   "que": "El obrero aparece una sola vez, en una azotea cualquiera, y nunca se lo ve arriba de la torre mientras baja. La imagen absurda del 'obrero tranquilo arriba del edificio que se achica' no se arma.",
+   "arreglo": "Mostrarlo chico en el borde del techo en una de las tomas aéreas mientras la torre baja, o con una reacción breve en el cierre."
+  }
+ ],
+ "eventos": [],
+ "delatores": [
+  {
+   "plano": null,
+   "segundo": "9.00–20.70",
+   "zona": "medio",
+   "que": "Los gatos hidráulicos son cilindros amarillos lisos, como de juguete, sin pistón cromado, mangueras ni marcas.",
+   "arreglo": "Gato con cuerpo de acero pintado y gastado, vástago cromado y una manguera; que se vea el pistón que entra y sale."
+  },
+  {
+   "plano": null,
+   "segundo": "9.00–32.40",
+   "zona": "medio",
+   "que": "Los escombros del piso son bultos blancos redondeados, todos parecidos, como huevos o piedritas.",
+   "arreglo": "Trozos de concreto angulosos de tamaños distintos, con fierros y polvo gris, en montones."
+  },
+  {
+   "plano": null,
+   "segundo": "15.30–16.40",
+   "zona": "medio",
+   "que": "Planchas blancas planas sin textura ni espesor.",
+   "arreglo": "Material de concreto con canto, o sacarlas."
+  },
+  {
+   "plano": null,
+   "segundo": "16.70–20.70",
+   "zona": "medio",
+   "que": "Los bloques blancos verticales tienen bordes perfectos y caras limpias, sin rotura ni fierro a la vista.",
+   "arreglo": "Cantos rotos, fierros asomando y mugre en la base."
+  },
+  {
+   "plano": null,
+   "segundo": "2.30–32.40",
+   "zona": "abajo",
+   "que": "La fachada de cerca es un damero de paneles blancos y cafés perfectamente limpios y repetidos, sin chorreados ni desgaste.",
+   "arreglo": "Chorreados bajo los alféizares, variación de tono entre paneles y vidrios con reflejos distintos."
+  },
+  {
+   "plano": null,
+   "segundo": "21.00–25.40",
+   "zona": "abajo",
+   "que": "En la toma aérea, la base de la torre termina en un borde claro sobre una mancha oscura y se lee apoyada en un hoyo o flotando, no anclada a la calle. La ciudad alrededor es una alfombra de cajas casi iguales. Hay que confirmarlo a resolución completa: en este material cada cuadro es de 270×480.",
+   "arreglo": "Calle, veredas y sombra de contacto al pie de la torre; variar la altura y el remate de los edificios vecinos."
+  },
+  {
+   "plano": null,
+   "segundo": "32.70–34.50",
+   "zona": "medio",
+   "que": "La toma desde la calle tiene luz azul fría y vidrios oscuros, a diferencia del atardecer cálido del resto: parece otro momento del día.",
+   "arreglo": "Usar el mismo sol bajo y cálido, con la fachada iluminada de costado."
+  },
+  {
+   "plano": null,
+   "segundo": "3.70–5.43",
+   "zona": "abajo",
+   "que": "El pantalón del obrero brilla como cuero o plástico (hay que confirmarlo a resolución completa).",
+   "arreglo": "Tela mate de mezclilla o gabardina con polvo."
+  }
+ ],
+ "tramos": [
+  {
+   "desde": 0.0,
+   "hasta": 3.0,
+   "veo": "Una torre alta en una ciudad al atardecer, con una caja de líneas blancas encima ('ANTES: 40 PISOS'). El contador baja de 36 a 30 y la caja crece. A los 2.3 s se corta a la corona de la torre de cerca (QUEDAN 30→28).",
+   "entiendo": "Un rascacielos se está achicando desde arriba, en cámara rápida.",
+   "se_entiende": "si"
+  },
+  {
+   "desde": 3.0,
+   "hasta": 6.0,
+   "veo": "Un obrero con casco y chaleco naranjo parado en una azotea, con la ciudad atrás, abre los brazos. Aparece la píldora SIN EXPLOSIONES. A los 5.7 s se corta al borde del techo.",
+   "entiendo": "Lo achican sin explosiones y el obrero está tranquilo arriba.",
+   "se_entiende": "si"
+  },
+  {
+   "desde": 6.0,
+   "hasta": 9.0,
+   "veo": "El borde del techo de cerca, marcado con una línea naranja y la píldora EL TECHO QUEDA ENTERO. A los 8.3 s el cuadro baja a la franja de fachada bajo el techo.",
+   "entiendo": "El techo no se toca.",
+   "se_entiende": "si"
+  },
+  {
+   "desde": 9.0,
+   "hasta": 12.0,
+   "veo": "La franja bajo el techo se vuelve transparente. Adentro hay vigas naranjas, pilares plateados sobre cilindros amarillos, una máquina colgada y piedritas blancas, con las píldoras PASO 1 · SOMBRERO y GATOS HIDRÁULICOS.",
+   "entiendo": "Dejan el techo apoyado en pilares con gatos. Lo de 'sombrero' lo leo en la píldora: no se ve como una pieza.",
+   "se_entiende": "a_medias"
+  },
+  {
+   "desde": 12.0,
+   "hasta": 15.0,
+   "veo": "El mismo corte más de cerca, con CÁMARA RÁPIDA y PASO 2 · DESARMAN. El piso con piedritas, un gato amarillo y la máquina colgada casi no cambian de un cuadro a otro.",
+   "entiendo": "Por la píldora sé que desarman algo, pero no veo qué ni cómo.",
+   "se_entiende": "a_medias"
+  },
+  {
+   "desde": 15.0,
+   "hasta": 18.0,
+   "veo": "Entre 15.3 y 16.4 s aparecen planchas blancas lisas que crecen y se inclinan sobre el lado derecho. Después se corta a otro ángulo con bloques blancos parados, gatos y la píldora PASO 3 · BAJAN.",
+   "entiendo": "No reconozco las planchas blancas (¿una falla?, ¿una losa?) y el desarme del piso no se ve.",
+   "se_entiende": "no"
+  },
+  {
+   "desde": 18.0,
+   "hasta": 21.0,
+   "veo": "El techo y la viga naranja bajan, los pistones se acortan y el edificio vecino queda más a la vista. Aparece la píldora −1 PISO.",
+   "entiendo": "Los gatos bajan el techo un piso.",
+   "se_entiende": "si"
+  },
+  {
+   "desde": 21.0,
+   "hasta": 24.0,
+   "veo": "Toma aérea de la torre en la ciudad con bruma, con la caja fantasma alta encima. El contador baja de 24 a 21.",
+   "entiendo": "Lo repiten y la torre sigue bajando.",
+   "se_entiende": "si"
+  },
+  {
+   "desde": 24.0,
+   "hasta": 27.0,
+   "veo": "Sigue la toma aérea (de 20 a 17 pisos) con la píldora EN REVERSA. A los 25.7 s se corta adentro: una máquina colgada del techo baja un bloque de concreto con un cable.",
+   "entiendo": "Es como construir al revés, y una grúa de adentro baja los escombros.",
+   "se_entiende": "si"
+  },
+  {
+   "desde": 27.0,
+   "hasta": 30.0,
+   "veo": "El bloque baja hasta el piso. Se prende una lucecita blanca junto a la máquina y una línea de luz en la viga, con la píldora ELECTRICIDAD.",
+   "entiendo": "La grúa baja escombros y aparece electricidad, pero la relación entre el bloque que baja y la luz la da el texto.",
+   "se_entiende": "a_medias"
+  },
+  {
+   "desde": 30.0,
+   "hasta": 33.0,
+   "veo": "Corte interior más abierto. A los 31.0 s el interior se pone blanco lechoso, con la píldora LUCES DE LA OBRA sobre las ventanas. A los 32.7 s se corta a la torre vista desde abajo contra un cielo azul.",
+   "entiendo": "Se encienden luces, aunque el blanco lechoso también se puede leer como polvo. Después, la torre desde la calle.",
+   "se_entiende": "a_medias"
+  },
+  {
+   "desde": 33.0,
+   "hasta": 36.0,
+   "veo": "La torre desde abajo se ve normal (CASI NI SE NOTA). A los 34.7 s vuelve la toma inicial: la torre ya es un muñón entre los edificios, bajo la caja alta 'ANTES: 40 PISOS', con la píldora −2 PISOS.",
+   "entiendo": "Desde la calle no se nota, y la torre ya perdió más de la mitad.",
+   "se_entiende": "si"
+  },
+  {
+   "desde": 36.0,
+   "hasta": 37.27,
+   "veo": "La misma toma, con la píldora −2 PISOS · CADA 10 DÍAS y el contador de 15 a 14. El subtítulo queda encima del muñón.",
+   "entiendo": "Baja 2 pisos cada 10 días.",
+   "se_entiende": "si"
+  }
+ ],
+ "sin_guion": {
+  "de_que_trata": "Cómo achican un rascacielos piso por piso desde arriba, sin explosiones: dejan el techo sobre gatos, sacan el piso de abajo, lo bajan y repiten. Además, la grúa de adentro genera electricidad.",
+  "quien_y_donde": "La protagonista es la torre, en una ciudad al atardecer, y se reconoce siempre. Hay un obrero con casco en una azotea (3.7–5.4 s) que sale una sola vez y es reconocible. El resto pasa en el interior del último piso, visto en corte.",
+  "primeros_3s": "Una torre con su caja fantasma 'ANTES: 40 PISOS' y el contador bajando: se entiende y engancha, y me quedaría. Pierde algo al cortar a los 2.3 s a una corona casi quieta.",
+  "remate": "La torre quedó en 14 pisos bajo la caja de 40, con '2 pisos menos cada 10 días'. Se ve, aunque el subtítulo cae encima del muñón. El giro de la grúa que genera electricidad se entiende sólo por la píldora.",
+  "saltos": "No me pierdo de lugar: todo es la misma torre. El único tramo que no entiendo es 15.3–16.4 s (las planchas blancas), seguido del cambio de ángulo a los 16.7 s, donde aparecen bloques blancos parados que antes no se veían."
+ },
+ "lineas": [
+  {
+   "linea": "Este rascacielos se achicó... piso por piso.",
+   "se_ve": true,
+   "segundo": "0.00–3.34",
+   "por_que": "La torre baja con la caja fantasma y el contador de 36 a 28. En 2.3–3.3 s la corona se ve casi quieta."
+  },
+  {
+   "linea": "Sin una sola explosión.",
+   "se_ve": true,
+   "segundo": "3.73–5.18",
+   "por_que": "Un obrero tranquilo en la azotea y la píldora SIN EXPLOSIONES."
+  },
+  {
+   "linea": "El truco: nunca le sacan el techo.",
+   "se_ve": true,
+   "segundo": "5.50–7.92",
+   "por_que": "El techo se marca con una línea naranja y la píldora EL TECHO QUEDA ENTERO."
+  },
+  {
+   "linea": "Primero, lo vuelven un sombrero gigante, parado sobre gatos hidráulicos.",
+   "se_ve": true,
+   "segundo": "8.36–12.23",
+   "por_que": "El corte muestra vigas sobre pilares con gatos y la píldora. Se ve débil: el 'sombrero' no aparece como una pieza y los gatos son chicos y de bajo contraste."
+  },
+  {
+   "linea": "Después, escondidos bajo el sombrero, desarman el piso de abajo.",
+   "se_ve": false,
+   "segundo": "12.38–16.08",
+   "por_que": "Nada se desarma: el piso queda casi igual, salvo unas planchas blancas que no se reconocen (15.3–16.4 s), y no se ve ningún encierro."
+  },
+  {
+   "linea": "Y al final, los gatos bajan el sombrero... un piso.",
+   "se_ve": true,
+   "segundo": "16.46–20.38",
+   "por_que": "El techo y la viga bajan, los pistones se acortan y aparece −1 PISO."
+  },
+  {
+   "linea": "Y otra vez. Y otra vez. Como su construcción, en reversa.",
+   "se_ve": true,
+   "segundo": "20.89–25.41",
+   "por_que": "En la toma aérea el contador baja de 24 a 17 y la caja fantasma crece, con la píldora EN REVERSA."
+  },
+  {
+   "linea": "Y lo más loco: la grúa que baja los escombros genera electricidad.",
+   "se_ve": true,
+   "segundo": "25.50–29.62",
+   "por_que": "La grúa bajando el bloque sí se ve. La electricidad es sólo una lucecita y la píldora, sin nada que la una al bloque que baja."
+  },
+  {
+   "linea": "Con eso prenden las luces de la obra.",
+   "se_ve": true,
+   "segundo": "30.07–32.12",
+   "por_que": "El interior se ilumina a los 31.0 s, pero no se ven lámparas y el blanco lechoso puede leerse como polvo."
+  },
+  {
+   "linea": "Desde la calle, casi ni se nota:",
+   "se_ve": true,
+   "segundo": "32.56–34.41",
+   "por_que": "La torre vista desde abajo se ve entera y normal."
+  },
+  {
+   "linea": "dos pisos menos cada diez días.",
+   "se_ve": true,
+   "segundo": "34.65–36.87",
+   "por_que": "El contador baja de 16 a 14 bajo la caja de 40, con la píldora −2 PISOS · CADA 10 DÍAS. El subtítulo tapa parte del muñón."
+  }
+ ],
+ "resumen": "El video corrido se entiende casi entero: la torre que se achica, el techo sobre gatos que baja, la repetición y el remate con el número. Pero el paso 2, 'desarman el piso de abajo', no se ve, y las planchas blancas de 15.3–16.4 s no se reconocen (B13 + B12). Además, la electricidad y las luces dependen de las píldoras."
+}

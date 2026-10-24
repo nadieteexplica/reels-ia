@@ -1,0 +1,46 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "estilo.json: la referencia 'referencias/*.jpg' no encontró archivos en la carpeta del episodio",
+   "evidencia": "estilo.json"
+  },
+  {
+   "que": "estilo realista sin referencias (fotos reales en estilo.json → referencias): el revisor juzga el realismo sin poder comparar",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "qa": [
+   "✅ duración 25–45.5 s (meta 25–40 s, techo 45 s) 37.27 s",
+   "✅ 1080×1920 1080×1920",
+   "✅ 30 fps 30.00",
+   "✅ H.264 yuv420p h264 yuv420p",
+   "✅ pesa < 100 MB 24.9 MB",
+   "✅ volumen −14 ±1 LUFS -14.1 LUFS",
+   "✅ true peak ≤ −1 dBTP -3.1 dBTP",
+   "✅ sin negros > 0,5 s []",
+   "✅ sin congelados > 0,5 s []",
+   "RESULTADO: PASA"
+  ],
+  "subtitulos": {
+   "palabras": 92,
+   "en_pantalla": 92,
+   "faltan": 0,
+   "desfase": 0,
+   "fuera_de_zona": 0,
+   "sobran": 0,
+   "tiempos": {}
+  },
+  "audio": {
+   "lufs": -14.1,
+   "true_peak": -3.1,
+   "voz_db": -13.0,
+   "pausas_db": -21.3,
+   "voz_menos_pausas_db": 8.3,
+   "nota": "pausas = música + efectos sin voz; con ducking la música sube en las pausas, así que esto es un mínimo"
+  },
+  "planos": 12,
+  "estilo": "realista"
+ }
+}
