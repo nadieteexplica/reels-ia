@@ -60,3 +60,6 @@
 {"tipo": "trabajo", "id": "render-planos final 40110419554", "estado": "fin", "n": 60, "ts": "2026-10-24T16:13:32-03:00"}
 {"tipo": "trabajo", "id": "render-planos parche2 40124768713", "estado": "inicio", "n": 61, "ts": "2026-10-24T16:19:38-03:00"}
 {"tipo": "trabajo", "id": "render-planos parche2 40124768713", "estado": "fin", "n": 62, "ts": "2026-10-24T16:56:45-03:00"}
+{"tipo": "trabajo", "id": "render-planos parche3 40129992104", "estado": "inicio", "n": 63, "ts": "2026-10-24T17:29:25-03:00"}
+{"tipo": "trabajo", "id": "render-planos parche3 40129992104", "estado": "fin", "n": 64, "ts": "2026-10-24T19:02:15-03:00"}
+{"tipo": "aviso", "que": "Puerta 6 r2 NO: 0 bloqueantes, comprensión 8 en los 4 revisores (el espectador APROBADO); realismo 6–7. Se le pregunta a Tomás si sale igual (él eligió esta vía a las ~16:10)", "n": 65, "ts": "2026-10-24T19:37:22-03:00"}

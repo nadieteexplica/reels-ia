@@ -1,0 +1,222 @@
+[
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "6.55",
+  "que": "Realismo de la fachada (P2, P4–P7, P9, P10): cuadrícula perfecta, limpia y repetida, ventanas de negro puro y vidrio ocre plano sin reflejos. Es lo que más pantalla ocupa y lo que más delata la maqueta.",
+  "arreglo": "Shader de fachada con chorreados y mugre bajo cada ventana y variación de color por paño. Vidrio con reflejo del cielo, en gris oscuro y no negro, y algunas cortinas o luces distintas por ventana.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "A6",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "13.42",
+  "que": "Realismo: el interior parece maqueta. Gatos lisos de plástico amarillo, escombros blancos en forma de huevo y todos iguales, polipasto de juguete (esfera cromada y cilindro verde), vigas naranjas de un solo color y bloques blancos perfectos. Se repite en P5, P6, P7, P9 y P10.",
+  "arreglo": "Pasada de materiales sin reanimar: gatos de acero con vástago cromado, pintura gastada y grasa; escombros de hormigón roto con fierros y polvo, de tamaños distintos; vigas de acero con óxido y pintura saltada; polipasto industrial con gancho y cadena.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "A8",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 9,
+  "segundo": "29.10",
+  "que": "El giro del video («genera electricidad… prende las luces de la obra», P9 28.69 a P10 32.41) se muestra sólo con una línea blanca fina bajo la viga y un blanqueo general del interior que se lee como polvo o neblina. No hay ninguna lámpara.",
+  "arreglo": "Con «genera», que un pulso de luz salga del motor del polipasto y recorra el cable. Con «prenden» (P10 ~30.5), que se enciendan 3 o 4 focos de obra colgados bajo la viga, con su cono de luz en el suelo. Quitar la neblina blanca de 31.33–32.41.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.04",
+  "que": "[delator · abajo] El edificio del primer plano tiene techo plano liso, cajas grises sin detalle y una grilla de ventanas negras planas.",
+  "arreglo": "Equipos de techo con detalle (ductos, barandas), manchas de agua en el techo y ventanas con reflejo.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "1.07",
+  "que": "[delator · medio] La ciudad son cajas con la misma textura de ventanas repetida. La bruma está bien.",
+  "arreglo": "Variar alturas, coronas y colores, y agregar azoteas con detalle en los edificios cercanos.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 2,
+  "segundo": "2.47",
+  "que": "[delator · arriba] Los equipos del techo de la corona son cajas grises lisas de un solo color.",
+  "arreglo": "Equipos con rejillas, ductos y suciedad.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 3,
+  "segundo": "4.80",
+  "que": "[delator · medio] Las mangas de Pete brillan como goma o látex y el pantalón parece cuero brillante con barro pintado.",
+  "arreglo": "Tela mate con rugosidad (algodón) y barro con relieve, sin brillo especular.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 3,
+  "segundo": "3.69",
+  "que": "[delator · abajo] La azotea y el antepecho son de hormigón liso sin juntas, manchas ni utilería de obra.",
+  "arreglo": "Juntas, manchas de agua, algún tablón o balde, y sombra de contacto clara bajo Pete.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D6",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 3,
+  "segundo": "4.25",
+  "que": "[delator · medio] Los edificios del fondo son cajas nítidas con la misma ventana repetida.",
+  "arreglo": "Más bruma de distancia y variación de fachadas.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D7",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "6.55",
+  "que": "[delator · abajo] La fachada es una cuadrícula perfecta: balcones blancos impecables, ventanas negras puras y vidrio ocre plano sin reflejo.",
+  "arreglo": "Chorreados, mugre y variación por paño, y vidrio gris oscuro que refleje el cielo.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D8",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "11.54",
+  "que": "[delator · medio] Los gatos hidráulicos parecen cilindros amarillos de plástico, sin vástago ni mangueras.",
+  "arreglo": "Gato de acero pintado con vástago cromado, mangueras hidráulicas y desgaste.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D9",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "10.09",
+  "que": "[delator · medio] Las vigas naranjas son lisas y de un solo color, como de juguete.",
+  "arreglo": "Acero con pintura saltada, óxido, pernos y soldaduras.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D10",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "13.42",
+  "que": "[delator · medio] Los escombros son piedras blancas con forma de huevo, todas iguales y repetidas por el suelo.",
+  "arreglo": "Trozos de hormigón roto de tamaños distintos, con fierros a la vista y polvo.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D11",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "15.95",
+  "que": "[delator · medio] La losa que se mueve es un panel gris claro, plano y sin textura, que parece un plano técnico.",
+  "arreglo": "Losa de hormigón con canto roto, fierros y polvo, colgada del gancho.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D12",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 7,
+  "segundo": "17.55",
+  "que": "[delator · medio] Los pilares del piso que se desarma son cajas blancas perfectas, con aristas vivas.",
+  "arreglo": "Hormigón con bordes gastados, fisuras y fierros en los cortes.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D13",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 7,
+  "segundo": "19.50",
+  "que": "[delator · arriba] El edificio del fondo, a la izquierda, es un cubo beige sin ventanas ni detalle.",
+  "arreglo": "Fachada con ventanas o cambiarlo por otro edificio de la ciudad.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D14",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 8,
+  "segundo": "22.42",
+  "que": "[delator · abajo] El suelo de la ciudad es café plano, sin calles ni autos, y los edificios son cajas repetidas.",
+  "arreglo": "Trazar calles con luces, árboles y variación de techos.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D15",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 9,
+  "segundo": "27.88",
+  "que": "[delator · medio] El polipasto (esfera cromada, cilindro verde y placa amarilla) parece de juguete y el escombro es una caja limpia de aristas perfectas.",
+  "arreglo": "Polipasto industrial con gancho y cadena y un escombro de hormigón roto.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D16",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 9,
+  "segundo": "29.91",
+  "que": "[delator · abajo] Los paños blancos de los balcones son grandes y sin ninguna imperfección, y las ventanas son negro puro.",
+  "arreglo": "Suciedad, chorreados y vidrio con reflejo.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D17",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 10,
+  "segundo": "32.14",
+  "que": "[delator · medio] El interior se pone blanco lechoso y pierde contraste. Parece neblina y no luz de focos.",
+  "arreglo": "Focos visibles con su cono de luz, sin la neblina general.",
+  "de": "planos1",
+  "asignado": "planos1"
+ }
+]

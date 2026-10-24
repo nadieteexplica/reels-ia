@@ -1,0 +1,101 @@
+[
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "35.38",
+  "que": "La ciudad del plano final se ve de maqueta o videojuego: edificios-caja con la misma textura de ventanas, azoteas planas sin nada, bruma beige pareja sin negros, y el techo gris liso del primer plano ocupa el tercio de abajo. Es lo que deja el realismo en 7.",
+  "arreglo": "Lo más barato primero: bajar el sol a ~10° de costado para que tire sombras largas sobre las azoteas y oscurezca las caras en sombra (negros reales); repartir al azar estanques de agua, equipos de aire, antenas y ductos en las azoteas; variar tinte y rugosidad por edificio; y textura de membrana con mugre y charcos secos en el techo del primer plano.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D18",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "32.49",
+  "que": "[delator · medio] ventanas idénticas, negras, de bordes perfectos, repetidas en toda la grilla; ninguna cortina ni variación",
+  "arreglo": "variación al azar por ventana (cortina, reflejo, rugosidad)",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D19",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "33.36",
+  "que": "[delator · medio] paneles y aletas crema de un solo color, limpios, sin chorreados ni mugre bajo los alféizares",
+  "arreglo": "capa de chorreados y mugre por oclusión",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D20",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "34.51",
+  "que": "[delator · abajo] las bandas de los pisos bajos se leen como un patrón repetido ondulado (moiré), más textura que volumen del diente de sierra",
+  "arreglo": "más diferencia de luz entre las dos caras de cada diente y variación de reflejos en los vidrios",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D21",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "34.59",
+  "que": "[delator · medio] edificios del medio y del horizonte: cajas con la misma textura de ventanas, torres color tostado de forma parecida que se repiten",
+  "arreglo": "variar alturas, remates, materiales y tinte por edificio",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D22",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "35.38",
+  "que": "[delator · medio] azoteas planas y vacías, sin estanques, antenas ni ductos: se lee maqueta",
+  "arreglo": "repartir objetos de azotea al azar (instancias con rotación y escala aleatorias)",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D23",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "36.42",
+  "que": "[delator · medio] luz pareja: todos los edificios iluminados igual, sombras débiles, sin negros reales; bruma beige uniforme",
+  "arreglo": "sol bajo de costado con sombras largas y caras en sombra oscuras; la bruma sólo en la distancia",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D24",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "35.38",
+  "que": "[delator · abajo] techo del primer plano gris liso, limpio, de bordes perfectos, con cajas simples",
+  "arreglo": "membrana con mugre, parches, ductos y un parapeto gastado",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D25",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "37.21",
+  "que": "[delator · abajo] las ventanas del edificio del primer plano son rectángulos gris oscuro planos, sin reflejo",
+  "arreglo": "vidrio con reflejo del cielo y algo de rugosidad; algunas ventanas con interior",
+  "de": "planos2",
+  "asignado": "planos2"
+ }
+]

@@ -1,0 +1,341 @@
+{
+ "encargo": "planos1",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 7,
+   "por_que": "La luz es buena: sol bajo de costado, negros reales y bruma en la ciudad (P1 0.04, P8 20.74). Los materiales siguen siendo planos: la fachada en damero perfecto (P4 6.55, P9 29.91), las vigas naranjas lisas y los gatos amarillos de plástico (P6 13.42)."
+  },
+  "animacion": {
+   "nota": 8,
+   "por_que": "Siempre algo actúa: Pete se encoge de hombros con gesto claro (P3 4.53–5.08), la torre se achica con el contador (P1, P8), la losa sale (P6 14.87–15.95), el sombrero baja (P7 18.33–20.27), el polipasto baja la carga (P9 25.44–27.07) y se prenden los focos (P10 31.07)."
+  },
+  "claridad": {
+   "nota": 8,
+   "por_que": "Cada paso tiene su píldora (PASO 1/2/3, −1 PISO) y lo que dice la voz se ve: el cable con pulso en «genera» (P9 28.69) y los focos con su cono en «las luces» (P10 31.07). Lo único sucio son las líneas guía de P6, que apuntan fuera del cuadro (15.59–16.31)."
+  },
+  "ritmo": {
+   "nota": 8,
+   "por_que": "quieto_max_s ≤ 0,27 en los 10 planos; en los planos largos (P5–P9, 4–4,7 s) cambia algo cada ~0,5 s: la cámara, las píldoras, la losa y el contador."
+  },
+  "realismo": {
+   "nota": 6,
+   "por_que": "La luz y la bruma sí son reales, pero no se arregló ninguno de los delatores de materiales. El interior, que ocupa P5–P7 y P9–P10 (~2/3 del tramo), sigue de maqueta: gatos de plástico amarillo liso, vigas naranjas de un color, pilares blancos perfectos (P7 17.55) y escombros blancos todos iguales. La fachada sigue en damero limpio y la ropa de Pete brilla como goma (P3 4.80)."
+  },
+  "comprension": {
+   "nota": 8,
+   "por_que": "Sin sonido se entiende: la torre baja de piso con el contador y el contorno de lo que era (P1, P8), «sin explosiones» con Pete tranquilo (P3), los 3 pasos rotulados en el interior (P5–P7) y el cable con focos (P9–P10)."
+  }
+ },
+ "problemas": [],
+ "verificacion": [
+  {
+   "id": "A5",
+   "arreglado": false,
+   "por_que": "En P4 6.55 y en P9 29.91 la fachada sigue siendo una cuadrícula perfecta: losas blancas limpias, paños ocre de un solo tono y ventanas casi negras, sin chorreados y con un vidrio que no refleja."
+  },
+  {
+   "id": "A6",
+   "arreglado": false,
+   "por_que": "En P6 13.42 y P7 17.55 los gatos tienen vástago cromado, pero el cuerpo sigue de plástico amarillo liso. Las vigas siguen naranjas de un color, los pilares son cajas blancas perfectas y el polipasto sigue siendo esfera cromada con cilindro (P9 27.88)."
+  },
+  {
+   "id": "A8",
+   "arreglado": true,
+   "por_que": "En P9 28.69–29.10 aparece un cable amarillo con un pulso de luz que sale del polipasto y lleva la píldora ELECTRICIDAD. En P10 31.07 se prenden 2 focos bajo la viga con su cono de luz, a tiempo con «las luces». El interior conserva su contraste y sólo queda algo de polvo en el suelo en 32.41."
+  },
+  {
+   "id": "D1",
+   "arreglado": false,
+   "por_que": "En P1 0.04 los techos del primer plano siguen planos, con cajas grises simples y sin ductos ni barandas."
+  },
+  {
+   "id": "D2",
+   "arreglado": false,
+   "por_que": "En P1 1.07 la ciudad sigue hecha de cajas con la misma textura de ventanas repetida."
+  },
+  {
+   "id": "D3",
+   "arreglado": false,
+   "por_que": "En P2 2.47 los equipos de la corona siguen siendo cajas grises lisas."
+  },
+  {
+   "id": "D4",
+   "arreglado": false,
+   "por_que": "En P3 4.80 las mangas siguen brillantes como goma y el pantalón sigue brillando como cuero, con el barro pintado."
+  },
+  {
+   "id": "D5",
+   "arreglado": false,
+   "por_que": "En P3 3.69 la azotea y el antepecho siguen lisos, sin juntas ni utilería de obra; los pies de Pete quedan fuera del cuadro, así que no se ve su sombra de contacto."
+  },
+  {
+   "id": "D6",
+   "arreglado": false,
+   "por_que": "En P3 4.25 los edificios del fondo siguen siendo cajas con la misma ventana repetida."
+  },
+  {
+   "id": "D7",
+   "arreglado": false,
+   "por_que": "Igual que A5: el damero de P4 6.55 no cambió."
+  },
+  {
+   "id": "D8",
+   "arreglado": false,
+   "por_que": "En P5 11.54 y P7 17.55 hay vástago cromado y una línea fina que parece manguera, pero el cuerpo sigue de plástico amarillo liso, sin desgaste."
+  },
+  {
+   "id": "D9",
+   "arreglado": false,
+   "por_que": "En P5 10.09 y P6 13.42 las vigas siguen naranjas de un solo color, sin óxido ni pernos."
+  },
+  {
+   "id": "D10",
+   "arreglado": false,
+   "por_que": "En P6 13.42 hay más variedad (algunos ladrillos naranjas y bloques grises), pero la mayoría siguen siendo trozos blancos facetados del mismo tamaño, repartidos parejo y sin fierros ni polvo."
+  },
+  {
+   "id": "D11",
+   "arreglado": false,
+   "por_que": "En P6 14.87–16.31 la losa que sale sigue siendo un panel beige liso, sin canto roto ni fierros, y no se ve el gancho."
+  },
+  {
+   "id": "D12",
+   "arreglado": false,
+   "por_que": "En P7 17.55 los pilares siguen siendo cajas blancas con aristas vivas."
+  },
+  {
+   "id": "D13",
+   "arreglado": false,
+   "por_que": "En P7 19.50 sigue arriba a la izquierda el cubo beige sin ventanas."
+  },
+  {
+   "id": "D14",
+   "arreglado": false,
+   "por_que": "En P8 22.42 el suelo sigue café y plano, sin calles ni autos."
+  },
+  {
+   "id": "D15",
+   "arreglado": false,
+   "por_que": "En P9 27.88 el polipasto sigue siendo esfera cromada, cilindro y placa amarilla; la carga es una caja limpia y no hay gancho ni cadena."
+  },
+  {
+   "id": "D16",
+   "arreglado": false,
+   "por_que": "En P9 29.91 los balcones blancos siguen impecables y las ventanas oscuras no reflejan nada."
+  },
+  {
+   "id": "D17",
+   "arreglado": true,
+   "por_que": "En P10 32.14 ya no hay blanqueo general: se ven 2 focos con su cono y el interior conserva negros bajo la viga. Queda algo de polvo en el suelo, que se lee como polvo de obra."
+  }
+ ],
+ "eventos": [
+  {
+   "id": "E1",
+   "es_defecto": false,
+   "por_que": "el contador baja de 34 a 33 pisos; es buscado"
+  },
+  {
+   "id": "E2",
+   "es_defecto": false,
+   "por_que": "el contador baja de 32 a 31; es buscado"
+  },
+  {
+   "id": "E3",
+   "es_defecto": false,
+   "por_que": "la píldora ANTES: 40 PISOS sale justo antes del corte a P2"
+  },
+  {
+   "id": "E4",
+   "es_defecto": false,
+   "por_que": "entra la píldora SIN EXPLOSIONES, a tiempo con la voz"
+  },
+  {
+   "id": "E5",
+   "es_defecto": false,
+   "por_que": "es el gesto de Pete (brazos abiertos) y la mancha sobre el chaleco es la sombra de su mano"
+  },
+  {
+   "id": "E6",
+   "es_defecto": false,
+   "por_que": "es el corte de P3 a P4"
+  },
+  {
+   "id": "E7",
+   "es_defecto": false,
+   "por_que": "en el plano de 2,85 s cambian el subtítulo, el contorno del techo (6.83) y la píldora (7.66)"
+  },
+  {
+   "id": "E8",
+   "es_defecto": false,
+   "por_que": "con «nunca le sacan» el contorno del techo pasa de negro a naranja; es la capa de explicación. El contorno negro grueso previo (5.44–6.55) se lee como una ranura negra (ver delatores)"
+  },
+  {
+   "id": "E9",
+   "es_defecto": false,
+   "por_que": "entra la píldora EL TECHO QUEDA ENTERO"
+  },
+  {
+   "id": "E10",
+   "es_defecto": false,
+   "por_que": "en el plano de 4 s la cámara entra al interior y entran las píldoras"
+  },
+  {
+   "id": "E11",
+   "es_defecto": false,
+   "por_que": "entra la píldora PASO 1 · SOMBRERO"
+  },
+  {
+   "id": "E12",
+   "es_defecto": false,
+   "por_que": "cambia el subtítulo (segunda línea GIGANTE)"
+  },
+  {
+   "id": "E13",
+   "es_defecto": false,
+   "por_que": "la cámara baja y entra la píldora GATOS HIDRÁULICOS con su línea"
+  },
+  {
+   "id": "E14",
+   "es_defecto": false,
+   "por_que": "en el plano de 4 s entran las líneas guía y la losa se mueve"
+  },
+  {
+   "id": "E15",
+   "es_defecto": false,
+   "por_que": "la píldora PASO 1 cambia a PASO 2 · DESARMAN"
+  },
+  {
+   "id": "E16",
+   "es_defecto": false,
+   "por_que": "entra el recuadro guía con «escondidos bajo el»"
+  },
+  {
+   "id": "E17",
+   "es_defecto": false,
+   "por_que": "el recuadro sigue la losa, que se desliza a la derecha en cámara rápida"
+  },
+  {
+   "id": "E18",
+   "es_defecto": false,
+   "por_que": "sale el recuadro y entra el subtítulo SOMBRERO"
+  },
+  {
+   "id": "E19",
+   "es_defecto": false,
+   "por_que": "la sombra de la losa que se mueve barre el gato del borde derecho: a la sombra se funde con la pared y al sol vuelve a verse. Es luz, no un salto de geometría"
+  },
+  {
+   "id": "E20",
+   "es_defecto": false,
+   "por_que": "el recuadro sigue la losa que sale"
+  },
+  {
+   "id": "E21",
+   "es_defecto": false,
+   "por_que": "la losa sale por la derecha con su recuadro y cambia el subtítulo"
+  },
+  {
+   "id": "E22",
+   "es_defecto": true,
+   "por_que": "menor, no bloqueante: la línea guía salta del lado derecho al izquierdo y queda apuntando fuera del cuadro con «de abajo», sin objetivo visible"
+  },
+  {
+   "id": "E23",
+   "es_defecto": true,
+   "por_que": "menor, no bloqueante: en el último cuadro de P6 (16.34) queda la línea guía con su flecha, sin subtítulo y sin objetivo"
+  },
+  {
+   "id": "E24",
+   "es_defecto": false,
+   "por_que": "en el plano de 4,35 s el sombrero baja y cambian las píldoras"
+  },
+  {
+   "id": "E25",
+   "es_defecto": false,
+   "por_que": "entra la píldora PASO 3 · BAJAN"
+  },
+  {
+   "id": "E26",
+   "es_defecto": false,
+   "por_que": "los balcones pasan por cuadro mientras baja el sombrero"
+  },
+  {
+   "id": "E27",
+   "es_defecto": false,
+   "por_que": "es el mismo descenso, en la parte baja del cuadro"
+  },
+  {
+   "id": "E28",
+   "es_defecto": false,
+   "por_que": "la píldora PASO 3 cambia a −1 PISO"
+  },
+  {
+   "id": "E29",
+   "es_defecto": false,
+   "por_que": "en el plano de 4,7 s la torre se achica y el contador baja"
+  },
+  {
+   "id": "E30",
+   "es_defecto": false,
+   "por_que": "el contador baja de 24 a 23"
+  },
+  {
+   "id": "E31",
+   "es_defecto": false,
+   "por_que": "el subtítulo cambia de «Y OTRA» a «COMO»"
+  },
+  {
+   "id": "E32",
+   "es_defecto": false,
+   "por_que": "el contador baja de 21 a 20"
+  },
+  {
+   "id": "E33",
+   "es_defecto": false,
+   "por_que": "el contador baja de 18 a 17"
+  },
+  {
+   "id": "E34",
+   "es_defecto": false,
+   "por_que": "en el plano de 4,6 s la carga baja, aparece el cable y viaja el pulso"
+  },
+  {
+   "id": "E35",
+   "es_defecto": false,
+   "por_que": "es el corte de P8 a P9 y entra la flecha de la carga"
+  },
+  {
+   "id": "E36",
+   "es_defecto": false,
+   "por_que": "aparece el cable amarillo de la electricidad con «genera»"
+  },
+  {
+   "id": "E37",
+   "es_defecto": false,
+   "por_que": "entra la píldora ELECTRICIDAD"
+  },
+  {
+   "id": "E38",
+   "es_defecto": false,
+   "por_que": "en el plano de 2,5 s se prenden los focos"
+  },
+  {
+   "id": "E39",
+   "es_defecto": false,
+   "por_que": "la píldora LUCES DE LA OBRA entra escalando"
+  }
+ ],
+ "delatores": [
+  {
+   "plano": 4,
+   "segundo": "6.27",
+   "zona": "arriba",
+   "que": "El borde del techo lleva dos franjas negras puras y gruesas (5.44–6.55) que se leen como una ranura o un agujero negro plano, antes de pasar a naranja en 6.83.",
+   "arreglo": "Que el contorno parta directo en naranja, o en gris oscuro fino, con «el truco»."
+  }
+ ],
+ "resumen": "Sin bloqueantes nuevos. A8 y D17 quedaron arreglados: hay un cable con pulso y focos con su cono. A5, A6 y D1–D16 no cambiaron: la fachada en damero, el interior de maqueta y la ropa brillante de Pete. El realismo se queda en 6 y el video no llega a 8."
+}

@@ -1,0 +1,14 @@
+{
+ "fps": 3,
+ "seg_por_hoja": 6,
+ "hojas": [
+  "secuencia_01.jpg",
+  "secuencia_02.jpg",
+  "secuencia_03.jpg",
+  "secuencia_04.jpg",
+  "secuencia_05.jpg",
+  "secuencia_06.jpg",
+  "secuencia_07.jpg"
+ ],
+ "dur": 37.27
+}

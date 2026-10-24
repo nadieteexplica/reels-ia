@@ -1,0 +1,918 @@
+{
+ "etapa": "6-animatic",
+ "ronda": 2,
+ "estilo": "realista",
+ "veredicto": "NO APROBADO",
+ "promedio": 7.83,
+ "notas": {
+  "belleza": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "La luz es buena: sol bajo de costado, negros reales y bruma en la ciudad (P1 0.04, P8 20.74). Los materiales siguen siendo planos: la fachada en damero perfecto (P4 6.55, P9 29.91), las vigas naranjas lisas y los gatos amarillos de plástico (P6 13.42).",
+   "de": "planos1"
+  },
+  "animacion": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Siempre algo actúa: Pete se encoge de hombros con gesto claro (P3 4.53–5.08), la torre se achica con el contador (P1, P8), la losa sale (P6 14.87–15.95), el sombrero baja (P7 18.33–20.27), el polipasto baja la carga (P9 25.44–27.07) y se prenden los focos (P10 31.07).",
+   "de": "planos1"
+  },
+  "claridad": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Cada paso tiene su píldora (PASO 1/2/3, −1 PISO) y lo que dice la voz se ve: el cable con pulso en «genera» (P9 28.69) y los focos con su cono en «las luces» (P10 31.07). Lo único sucio son las líneas guía de P6, que apuntan fuera del cuadro (15.59–16.31).",
+   "de": "planos1"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "quieto_max_s ≤ 0,27 en los 10 planos; en los planos largos (P5–P9, 4–4,7 s) cambia algo cada ~0,5 s: la cámara, las píldoras, la losa y el contador.",
+   "de": "planos1"
+  },
+  "realismo": {
+   "nota": 6.3,
+   "min": 6,
+   "por_que": "La luz y la bruma sí son reales, pero no se arregló ninguno de los delatores de materiales. El interior, que ocupa P5–P7 y P9–P10 (~2/3 del tramo), sigue de maqueta: gatos de plástico amarillo liso, vigas naranjas de un color, pilares blancos perfectos (P7 17.55) y escombros blancos todos iguales. La fachada sigue en damero limpio y la ropa de Pete brilla como goma (P3 4.80).",
+   "de": "planos1"
+  },
+  "comprension": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Sin sonido se entiende: la torre baja de piso con el contador y el contorno de lo que era (P1, P8), «sin explosiones» con Pete tranquilo (P3), los 3 pasos rotulados en el interior (P5–P7) y el cable con focos (P9–P10).",
+   "de": "planos1"
+  },
+  "gancho": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "en 0,00–1,90 s la torre pierde 6 pisos a la vista (QUEDAN 36 → 30) con la caja de alambre de lo que falta: algo imposible pasa en el primer segundo; el cuadro 0 solo, sin movimiento, es una torre chica en el centro y depende de las píldoras",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "92/92 palabras, 0 desfase, 0 fuera de zona, tildes bien (ACHICÓ, EXPLOSIÓN, DESPUÉS, HIDRÁULICOS, GRÚA, CONSTRUCCIÓN, DÍAS); no tapan la cara de Pete (4 s); en 13–15 s la línea del llamado cruza 'EL' y toca 'ABAJO', se sigue leyendo",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "no lo escucho: −14,1 LUFS y −3,1 dBTP dentro de rango; la voz queda ≥ 8,3 dB sobre las pausas de música y efectos",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "el contador baja sin contradicciones (36→28, 23→18, 15→14), ANTES: 40 PISOS, '−2 PISOS · CADA 10 DÍAS', SIN EXPLOSIONES, EL TECHO QUEDA ENTERO y CÁMARA RÁPIDA en las tomas aceleradas coinciden con el guion y sus fuentes; el sombrero se muestra como el último piso sobre vigas y gatos, como dicen las fuentes",
+   "de": "global"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "id": "D39",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": "9.00–20.70",
+   "que": "[D39 sin arreglar] [delator · medio] Los gatos hidráulicos son cilindros amarillos lisos, como de juguete, sin pistón cromado, mangueras ni marcas.",
+   "arreglo": "Gato con cuerpo de acero pintado y gastado, vástago cromado y una manguera; que se vea el pistón que entra y sale.",
+   "de": "verificación",
+   "asignado": "espectador"
+  },
+  {
+   "id": "D40",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": "9.00–32.40",
+   "que": "[D40 sin arreglar] [delator · medio] Los escombros del piso son bultos blancos redondeados, todos parecidos, como huevos o piedritas.",
+   "arreglo": "Trozos de concreto angulosos de tamaños distintos, con fierros y polvo gris, en montones.",
+   "de": "verificación",
+   "asignado": "espectador"
+  },
+  {
+   "id": "D42",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": "16.70–20.70",
+   "que": "[D42 sin arreglar] [delator · medio] Los bloques blancos verticales tienen bordes perfectos y caras limpias, sin rotura ni fierro a la vista.",
+   "arreglo": "Cantos rotos, fierros asomando y mugre en la base.",
+   "de": "verificación",
+   "asignado": "espectador"
+  },
+  {
+   "id": "D43",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": "2.30–32.40",
+   "que": "[D43 sin arreglar] [delator · abajo] La fachada de cerca es un damero de paneles blancos y cafés perfectamente limpios y repetidos, sin chorreados ni desgaste.",
+   "arreglo": "Chorreados bajo los alféizares, variación de tono entre paneles y vidrios con reflejos distintos.",
+   "de": "verificación",
+   "asignado": "espectador"
+  },
+  {
+   "id": "D44",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": "21.00–25.40",
+   "que": "[D44 sin arreglar] [delator · abajo] En la toma aérea, la base de la torre termina en un borde claro sobre una mancha oscura y se lee apoyada en un hoyo o flotando, no anclada a la calle. La ciudad alrededor es una alfombra de cajas casi iguales. Hay que confirmarlo a resolución completa: en este material cada cuadro es de 270×480.",
+   "arreglo": "Calle, veredas y sombra de contacto al pie de la torre; variar la altura y el remate de los edificios vecinos.",
+   "de": "verificación",
+   "asignado": "espectador"
+  },
+  {
+   "id": "D45",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": "32.70–34.50",
+   "que": "[D45 sin arreglar] [delator · medio] La toma desde la calle tiene luz azul fría y vidrios oscuros, a diferencia del atardecer cálido del resto: parece otro momento del día.",
+   "arreglo": "Usar el mismo sol bajo y cálido, con la fachada iluminada de costado.",
+   "de": "verificación",
+   "asignado": "espectador"
+  },
+  {
+   "id": "D46",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": "3.70–5.43",
+   "que": "[D46 sin arreglar] [delator · abajo] El pantalón del obrero brilla como cuero o plástico (hay que confirmarlo a resolución completa).",
+   "arreglo": "Tela mate de mezclilla o gabardina con polvo.",
+   "de": "verificación",
+   "asignado": "espectador"
+  },
+  {
+   "id": "D1",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": "0.04",
+   "que": "[D1 sin arreglar] [delator · abajo] El edificio del primer plano tiene techo plano liso, cajas grises sin detalle y una grilla de ventanas negras planas.",
+   "arreglo": "Equipos de techo con detalle (ductos, barandas), manchas de agua en el techo y ventanas con reflejo.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D2",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": "1.07",
+   "que": "[D2 sin arreglar] [delator · medio] La ciudad son cajas con la misma textura de ventanas repetida. La bruma está bien.",
+   "arreglo": "Variar alturas, coronas y colores, y agregar azoteas con detalle en los edificios cercanos.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D33",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": "0.00–2.15",
+   "que": "[D33 sin arreglar] [delator · abajo] ciudad de cajas extruidas con la misma textura de ventanas repetida; edificios del primer plano con techo gris plano y una sola caja (también en P12)",
+   "arreglo": "3–4 texturas de fachada distintas, equipos en los techos (estanques, antenas, AC) y siluetas variadas",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D18",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 11,
+   "segundo": "32.49",
+   "que": "[D18 sin arreglar] [delator · medio] ventanas idénticas, negras, de bordes perfectos, repetidas en toda la grilla; ninguna cortina ni variación",
+   "arreglo": "variación al azar por ventana (cortina, reflejo, rugosidad)",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D19",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 11,
+   "segundo": "33.36",
+   "que": "[D19 sin arreglar] [delator · medio] paneles y aletas crema de un solo color, limpios, sin chorreados ni mugre bajo los alféizares",
+   "arreglo": "capa de chorreados y mugre por oclusión",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D36",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 11,
+   "segundo": "32.45–34.55",
+   "que": "[D36 sin arreglar] [delator · medio] fachada en contrapicado limpia y perfectamente regular, sin una mancha",
+   "arreglo": "la misma textura con chorreados del delator 1",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "A4",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 12,
+   "segundo": "35.38",
+   "que": "[A4 sin arreglar] La ciudad del plano final se ve de maqueta o videojuego: edificios-caja con la misma textura de ventanas, azoteas planas sin nada, bruma beige pareja sin negros, y el techo gris liso del primer plano ocupa el tercio de abajo. Es lo que deja el realismo en 7.",
+   "arreglo": "Lo más barato primero: bajar el sol a ~10° de costado para que tire sombras largas sobre las azoteas y oscurezca las caras en sombra (negros reales); repartir al azar estanques de agua, equipos de aire, antenas y ductos en las azoteas; variar tinte y rugosidad por edificio; y textura de membrana con mugre y charcos secos en el techo del primer plano.",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D21",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 12,
+   "segundo": "34.59",
+   "que": "[D21 sin arreglar] [delator · medio] edificios del medio y del horizonte: cajas con la misma textura de ventanas, torres color tostado de forma parecida que se repiten",
+   "arreglo": "variar alturas, remates, materiales y tinte por edificio",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D22",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 12,
+   "segundo": "35.38",
+   "que": "[D22 sin arreglar] [delator · medio] azoteas planas y vacías, sin estanques, antenas ni ductos: se lee maqueta",
+   "arreglo": "repartir objetos de azotea al azar (instancias con rotación y escala aleatorias)",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D23",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 12,
+   "segundo": "36.42",
+   "que": "[D23 sin arreglar] [delator · medio] luz pareja: todos los edificios iluminados igual, sombras débiles, sin negros reales; bruma beige uniforme",
+   "arreglo": "sol bajo de costado con sombras largas y caras en sombra oscuras; la bruma sólo en la distancia",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D25",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 12,
+   "segundo": "37.21",
+   "que": "[D25 sin arreglar] [delator · abajo] las ventanas del edificio del primer plano son rectángulos gris oscuro planos, sin reflejo",
+   "arreglo": "vidrio con reflejo del cielo y algo de rugosidad; algunas ventanas con interior",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D3",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 2,
+   "segundo": "2.47",
+   "que": "[D3 sin arreglar] [delator · arriba] Los equipos del techo de la corona son cajas grises lisas de un solo color.",
+   "arreglo": "Equipos con rejillas, ductos y suciedad.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D4",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 3,
+   "segundo": "4.80",
+   "que": "[D4 sin arreglar] [delator · medio] Las mangas de Pete brillan como goma o látex y el pantalón parece cuero brillante con barro pintado.",
+   "arreglo": "Tela mate con rugosidad (algodón) y barro con relieve, sin brillo especular.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D5",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 3,
+   "segundo": "3.69",
+   "que": "[D5 sin arreglar] [delator · abajo] La azotea y el antepecho son de hormigón liso sin juntas, manchas ni utilería de obra.",
+   "arreglo": "Juntas, manchas de agua, algún tablón o balde, y sombra de contacto clara bajo Pete.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D6",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 3,
+   "segundo": "4.25",
+   "que": "[D6 sin arreglar] [delator · medio] Los edificios del fondo son cajas nítidas con la misma ventana repetida.",
+   "arreglo": "Más bruma de distancia y variación de fachadas.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D37",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 3,
+   "segundo": "4.00",
+   "que": "[D37 sin arreglar] [delator · abajo] el pantalón café de Pete brilla como plástico o cuero",
+   "arreglo": "bajar el especular y darle rugosidad de tela con barro mate",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D38",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 3,
+   "segundo": "4.00",
+   "que": "[D38 sin arreglar] [delator · abajo] techo donde está Pete: piso gris plano liso y parapeto liso",
+   "arreglo": "membrana o gravilla con manchas de agua y equipos del techo detrás",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "A5",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 4,
+   "segundo": "6.55",
+   "que": "[A5 sin arreglar] Realismo de la fachada (P2, P4–P7, P9, P10): cuadrícula perfecta, limpia y repetida, ventanas de negro puro y vidrio ocre plano sin reflejos. Es lo que más pantalla ocupa y lo que más delata la maqueta.",
+   "arreglo": "Shader de fachada con chorreados y mugre bajo cada ventana y variación de color por paño. Vidrio con reflejo del cielo, en gris oscuro y no negro, y algunas cortinas o luces distintas por ventana.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D7",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 4,
+   "segundo": "6.55",
+   "que": "[D7 sin arreglar] [delator · abajo] La fachada es una cuadrícula perfecta: balcones blancos impecables, ventanas negras puras y vidrio ocre plano sin reflejo.",
+   "arreglo": "Chorreados, mugre y variación por paño, y vidrio gris oscuro que refleje el cielo.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D8",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 5,
+   "segundo": "11.54",
+   "que": "[D8 sin arreglar] [delator · medio] Los gatos hidráulicos parecen cilindros amarillos de plástico, sin vástago ni mangueras.",
+   "arreglo": "Gato de acero pintado con vástago cromado, mangueras hidráulicas y desgaste.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D9",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 5,
+   "segundo": "10.09",
+   "que": "[D9 sin arreglar] [delator · medio] Las vigas naranjas son lisas y de un solo color, como de juguete.",
+   "arreglo": "Acero con pintura saltada, óxido, pernos y soldaduras.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D28",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 5,
+   "segundo": "9.00–31.50",
+   "que": "[D28 sin arreglar] [delator · medio] vigas naranjas del sombrero lisas, de un solo color, sin pernos ni desgaste",
+   "arreglo": "acero con anticorrosivo gastado, platinas apernadas, raspones y óxido en los cantos",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "A6",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "13.42",
+   "que": "[A6 sin arreglar] Realismo: el interior parece maqueta. Gatos lisos de plástico amarillo, escombros blancos en forma de huevo y todos iguales, polipasto de juguete (esfera cromada y cilindro verde), vigas naranjas de un solo color y bloques blancos perfectos. Se repite en P5, P6, P7, P9 y P10.",
+   "arreglo": "Pasada de materiales sin reanimar: gatos de acero con vástago cromado, pintura gastada y grasa; escombros de hormigón roto con fierros y polvo, de tamaños distintos; vigas de acero con óxido y pintura saltada; polipasto industrial con gancho y cadena.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "A7",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "8.25–31.50",
+   "que": "[A7 sin arreglar] realismo 6 (mínimo 8): el interior y la fachada en primer plano parecen maqueta. Ver la lista completa en delatores",
+   "arreglo": "en una sola pasada: textura de hormigón con chorreados y variación en los paneles de fachada, vidrio con reflejo del cielo, vigas de acero pintado gastado con pernos, gatos de acero con vástago cromado, escombros de hormigón irregulares (rubble CC0 de Poly Haven) y polvo en el piso",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D10",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "13.42",
+   "que": "[D10 sin arreglar] [delator · medio] Los escombros son piedras blancas con forma de huevo, todas iguales y repetidas por el suelo.",
+   "arreglo": "Trozos de hormigón roto de tamaños distintos, con fierros a la vista y polvo.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D11",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "15.95",
+   "que": "[D11 sin arreglar] [delator · medio] La losa que se mueve es un panel gris claro, plano y sin textura, que parece un plano técnico.",
+   "arreglo": "Losa de hormigón con canto roto, fierros y polvo, colgada del gancho.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D26",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "2.00–31.50",
+   "que": "[D26 sin arreglar] [delator · abajo] fachada de damero: paneles blancos idénticos, lisos, de un solo color y con bordes perfectos, sin manchas ni chorreados (P2, P4–P7, P9–P10)",
+   "arreglo": "hormigón o pintura con chorreados bajo cada ventana, variación de tono por panel y mugre en las esquinas",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D27",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "12.00–34.50",
+   "que": "[D27 sin arreglar] [delator · abajo] ventanas café o negras planas, sin reflejo del cielo ni de la ciudad: vidrio que no refleja (P6–P11)",
+   "arreglo": "vidrio con reflejo del entorno y algo de suciedad; algunas con cortina o interior visible",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D30",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "12.00–30.00",
+   "que": "[D30 sin arreglar] [delator · abajo] escombros como bolitas blancas redondeadas e idénticas (parecen huevos o malvaviscos) (P6, P9)",
+   "arreglo": "trozos de hormigón irregulares de distintos tamaños, con fierro asomando y polvo gris alrededor",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D32",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "12.00–31.50",
+   "que": "[D32 sin arreglar] [delator · medio] muros interiores beige lisos, sin textura ni instalaciones",
+   "arreglo": "hormigón con marcas de moldaje, cañerías o ductos cortados y restos de terminaciones",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D12",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 7,
+   "segundo": "17.55",
+   "que": "[D12 sin arreglar] [delator · medio] Los pilares del piso que se desarma son cajas blancas perfectas, con aristas vivas.",
+   "arreglo": "Hormigón con bordes gastados, fisuras y fierros en los cortes.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D13",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 7,
+   "segundo": "19.50",
+   "que": "[D13 sin arreglar] [delator · arriba] El edificio del fondo, a la izquierda, es un cubo beige sin ventanas ni detalle.",
+   "arreglo": "Fachada con ventanas o cambiarlo por otro edificio de la ciudad.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D29",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 7,
+   "segundo": "11.00–20.50",
+   "que": "[D29 sin arreglar] [delator · medio] gatos hidráulicos como cápsulas amarillas de juguete, todos idénticos",
+   "arreglo": "cuerpo de acero pintado con vástago cromado, manguera hidráulica y placa base apernada; variar el desgaste entre ellos",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D14",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 8,
+   "segundo": "22.42",
+   "que": "[D14 sin arreglar] [delator · abajo] El suelo de la ciudad es café plano, sin calles ni autos, y los edificios son cajas repetidas.",
+   "arreglo": "Trazar calles con luces, árboles y variación de techos.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D34",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 8,
+   "segundo": "20.70–25.40",
+   "que": "[D34 sin arreglar] [delator · medio] neblina sepia que lava todo el cuadro (sin negros) y plaza bajo la torre como plano gris oscuro liso",
+   "arreglo": "menos densidad de bruma, sombras negras y plaza con calles, veredas y árboles",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D15",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 9,
+   "segundo": "27.88",
+   "que": "[D15 sin arreglar] [delator · medio] El polipasto (esfera cromada, cilindro verde y placa amarilla) parece de juguete y el escombro es una caja limpia de aristas perfectas.",
+   "arreglo": "Polipasto industrial con gancho y cadena y un escombro de hormigón roto.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D16",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 9,
+   "segundo": "29.91",
+   "que": "[D16 sin arreglar] [delator · abajo] Los paños blancos de los balcones son grandes y sin ninguna imperfección, y las ventanas son negro puro.",
+   "arreglo": "Suciedad, chorreados y vidrio con reflejo.",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D31",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 9,
+   "segundo": "25.40–31.50",
+   "que": "[D31 sin arreglar] [delator · medio] la grúa es un cilindro turquesa y una esfera de latón lisos, de juguete; la varilla del bloque es una barra rígida",
+   "arreglo": "polipasto industrial (tambor, motor y cable de acero con gancho), en metal gastado",
+   "de": "verificación",
+   "asignado": "global"
+  }
+ ],
+ "verificacion": [
+  {
+   "id": "A5",
+   "arreglado": false,
+   "por_que": "En P4 6.55 y en P9 29.91 la fachada sigue siendo una cuadrícula perfecta: losas blancas limpias, paños ocre de un solo tono y ventanas casi negras, sin chorreados y con un vidrio que no refleja.",
+   "de": "planos1"
+  },
+  {
+   "id": "A6",
+   "arreglado": false,
+   "por_que": "En P6 13.42 y P7 17.55 los gatos tienen vástago cromado, pero el cuerpo sigue de plástico amarillo liso. Las vigas siguen naranjas de un color, los pilares son cajas blancas perfectas y el polipasto sigue siendo esfera cromada con cilindro (P9 27.88).",
+   "de": "planos1"
+  },
+  {
+   "id": "A8",
+   "arreglado": true,
+   "por_que": "En P9 28.69–29.10 aparece un cable amarillo con un pulso de luz que sale del polipasto y lleva la píldora ELECTRICIDAD. En P10 31.07 se prenden 2 focos bajo la viga con su cono de luz, a tiempo con «las luces». El interior conserva su contraste y sólo queda algo de polvo en el suelo en 32.41.",
+   "de": "planos1"
+  },
+  {
+   "id": "D1",
+   "arreglado": false,
+   "por_que": "En P1 0.04 los techos del primer plano siguen planos, con cajas grises simples y sin ductos ni barandas.",
+   "de": "planos1"
+  },
+  {
+   "id": "D2",
+   "arreglado": false,
+   "por_que": "En P1 1.07 la ciudad sigue hecha de cajas con la misma textura de ventanas repetida.",
+   "de": "planos1"
+  },
+  {
+   "id": "D3",
+   "arreglado": false,
+   "por_que": "En P2 2.47 los equipos de la corona siguen siendo cajas grises lisas.",
+   "de": "planos1"
+  },
+  {
+   "id": "D4",
+   "arreglado": false,
+   "por_que": "En P3 4.80 las mangas siguen brillantes como goma y el pantalón sigue brillando como cuero, con el barro pintado.",
+   "de": "planos1"
+  },
+  {
+   "id": "D5",
+   "arreglado": false,
+   "por_que": "En P3 3.69 la azotea y el antepecho siguen lisos, sin juntas ni utilería de obra; los pies de Pete quedan fuera del cuadro, así que no se ve su sombra de contacto.",
+   "de": "planos1"
+  },
+  {
+   "id": "D6",
+   "arreglado": false,
+   "por_que": "En P3 4.25 los edificios del fondo siguen siendo cajas con la misma ventana repetida.",
+   "de": "planos1"
+  },
+  {
+   "id": "D7",
+   "arreglado": false,
+   "por_que": "Igual que A5: el damero de P4 6.55 no cambió.",
+   "de": "planos1"
+  },
+  {
+   "id": "D8",
+   "arreglado": false,
+   "por_que": "En P5 11.54 y P7 17.55 hay vástago cromado y una línea fina que parece manguera, pero el cuerpo sigue de plástico amarillo liso, sin desgaste.",
+   "de": "planos1"
+  },
+  {
+   "id": "D9",
+   "arreglado": false,
+   "por_que": "En P5 10.09 y P6 13.42 las vigas siguen naranjas de un solo color, sin óxido ni pernos.",
+   "de": "planos1"
+  },
+  {
+   "id": "D10",
+   "arreglado": false,
+   "por_que": "En P6 13.42 hay más variedad (algunos ladrillos naranjas y bloques grises), pero la mayoría siguen siendo trozos blancos facetados del mismo tamaño, repartidos parejo y sin fierros ni polvo.",
+   "de": "planos1"
+  },
+  {
+   "id": "D11",
+   "arreglado": false,
+   "por_que": "En P6 14.87–16.31 la losa que sale sigue siendo un panel beige liso, sin canto roto ni fierros, y no se ve el gancho.",
+   "de": "planos1"
+  },
+  {
+   "id": "D12",
+   "arreglado": false,
+   "por_que": "En P7 17.55 los pilares siguen siendo cajas blancas con aristas vivas.",
+   "de": "planos1"
+  },
+  {
+   "id": "D13",
+   "arreglado": false,
+   "por_que": "En P7 19.50 sigue arriba a la izquierda el cubo beige sin ventanas.",
+   "de": "planos1"
+  },
+  {
+   "id": "D14",
+   "arreglado": false,
+   "por_que": "En P8 22.42 el suelo sigue café y plano, sin calles ni autos.",
+   "de": "planos1"
+  },
+  {
+   "id": "D15",
+   "arreglado": false,
+   "por_que": "En P9 27.88 el polipasto sigue siendo esfera cromada, cilindro y placa amarilla; la carga es una caja limpia y no hay gancho ni cadena.",
+   "de": "planos1"
+  },
+  {
+   "id": "D16",
+   "arreglado": false,
+   "por_que": "En P9 29.91 los balcones blancos siguen impecables y las ventanas oscuras no reflejan nada.",
+   "de": "planos1"
+  },
+  {
+   "id": "D17",
+   "arreglado": true,
+   "por_que": "En P10 32.14 ya no hay blanqueo general: se ven 2 focos con su cono y el interior conserva negros bajo la viga. Queda algo de polvo en el suelo, que se lee como polvo de obra.",
+   "de": "planos1"
+  },
+  {
+   "id": "A4",
+   "arreglado": false,
+   "por_que": "Parcial: en 35.38 el techo gris liso del primer plano ya no está (ahora hay manzanas con calles oscuras y 1–2 cubos por azotea), pero la ciudad del medio sigue igual: cajas tostadas con la misma textura de ventanas, luz pareja y bruma beige; el realismo del plano sigue en 7. Lo más barato: lente más largo con profundidad de campo sobre la torre (la ciudad repetida queda desenfocada, que es el lente y no fondo liso) y sol más bajo de costado para oscurecer las caras en sombra.",
+   "de": "planos2"
+  },
+  {
+   "id": "D18",
+   "arreglado": false,
+   "por_que": "Abajo (34.51) los vidrios ya reflejan el cielo con algo de variación, pero arriba (32.49) las ventanas siguen siendo rectángulos casi negros idénticos, sin cortinas ni variación.",
+   "de": "planos2"
+  },
+  {
+   "id": "D19",
+   "arreglado": false,
+   "por_que": "La viga del sombrero ya tiene manchas visibles (33.36), pero las aletas crema siguen viéndose limpias y de un solo color; a la resolución de la tira no se alcanza a ver ningún chorreado bajo los alféizares.",
+   "de": "planos2"
+  },
+  {
+   "id": "D20",
+   "arreglado": true,
+   "por_que": "En 34.51 cada diente ya tiene una cara clara y otra oscura y los vidrios reflejan el cielo: se lee volumen de fachada en diente de sierra, no un moiré plano.",
+   "de": "planos2"
+  },
+  {
+   "id": "D21",
+   "arreglado": false,
+   "por_que": "En 34.59–37.21 los edificios del medio y del horizonte siguen siendo cajas tostadas de forma parecida con la misma grilla de ventanas, repetidas.",
+   "de": "planos2"
+  },
+  {
+   "id": "D22",
+   "arreglado": false,
+   "por_que": "Parcial: en el primer plano (35.38, 37.21) ya hay 1–2 cubos claros por azotea, pero son cajas simples y las azoteas de la media distancia siguen planas y vacías.",
+   "de": "planos2"
+  },
+  {
+   "id": "D23",
+   "arreglado": false,
+   "por_que": "Parcial: el primer plano ya tiene calles oscuras (percentil 5 ≈ 38), pero en 36.42 la ciudad del medio sigue iluminada pareja, sin sombras largas, con la bruma beige empezando desde la media distancia.",
+   "de": "planos2"
+  },
+  {
+   "id": "D24",
+   "arreglado": true,
+   "por_que": "En 35.38 el techo gris liso que ocupaba el tercio de abajo ya no está: el primer plano son manzanas vistas desde arriba con calles en sombra.",
+   "de": "planos2"
+  },
+  {
+   "id": "D25",
+   "arreglado": false,
+   "por_que": "En 37.21 las ventanas de los edificios del primer plano siguen siendo filas de rectángulos oscuros planos, iguales en todos, sin reflejo del cielo.",
+   "de": "planos2"
+  },
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "en 13 s un panel resaltado sube con flechas desde la losa y en 15 s sale por arriba a la derecha; la franja de losa que cruzaba el cuadro en 12–14 s ya no está en 15 s (se ve el muro del fondo y el pilar entero): 'piso entero' → 'piso pelado' se ve",
+   "de": "global"
+  },
+  {
+   "id": "A7",
+   "arreglado": false,
+   "por_que": "realismo sigue en 6: de los 13 delatores sólo quedaron resueltos D35 (y parciales D27, D29, D31, D33); el damero liso, los muros beige, las vigas naranjas y la bruma sepia de P8 siguen igual",
+   "de": "global"
+  },
+  {
+   "id": "D26",
+   "arreglado": false,
+   "por_que": "el antepecho beige tiene ahora manchas (2–3, 5–7 s), pero el damero de paneles blancos y cafés sigue liso, de un color y con bordes perfectos (8–11, 25–31 s)",
+   "de": "global"
+  },
+  {
+   "id": "D27",
+   "arreglado": false,
+   "por_que": "en P11 (32–34 s) el vidrio ya refleja el cielo, pero en P5–P10 las ventanas siguen negras o café planas, sin reflejo (8–31 s)",
+   "de": "global"
+  },
+  {
+   "id": "D28",
+   "arreglado": false,
+   "por_que": "las vigas del sombrero siguen naranjas lisas de un solo tono, sin pernos, raspones ni óxido visibles (9–31 s)",
+   "de": "global"
+  },
+  {
+   "id": "D29",
+   "arreglado": false,
+   "por_que": "parcial: ahora tienen vástago cromado hasta la viga (12–15 s), pero el cuerpo sigue dorado brillante, liso e idéntico en todos; no se ve manguera ni placa base",
+   "de": "global"
+  },
+  {
+   "id": "D30",
+   "arreglado": false,
+   "por_que": "aparecen algunos bloques angulosos y ladrillos (25–29 s), pero siguen las bolitas blancas redondeadas sobre el piso (12–15 s y 25–29 s, borde delantero)",
+   "de": "global"
+  },
+  {
+   "id": "D31",
+   "arreglado": false,
+   "por_que": "parcial: el cilindro turquesa pasó a tambor gris y la varilla a un cable fino (27 s), pero siguen las esferas cromadas lisas y el riel amarillo limpio (25–29 s), y no se ve gancho",
+   "de": "global"
+  },
+  {
+   "id": "D32",
+   "arreglado": false,
+   "por_que": "los muros interiores siguen beige lisos, sin marcas de moldaje ni ductos (12–15, 25–31 s)",
+   "de": "global"
+  },
+  {
+   "id": "D33",
+   "arreglado": false,
+   "por_que": "parcial: los edificios del primer plano tienen equipos en el techo (0 s, 35 s), pero toda la ciudad sigue con la misma textura de ventanas y cajas iguales",
+   "de": "global"
+  },
+  {
+   "id": "D34",
+   "arreglado": false,
+   "por_que": "P8 (21–24 s) sigue con bruma sepia pareja y sin negros; la plaza bajo la torre sigue siendo un plano gris oscuro liso",
+   "de": "global"
+  },
+  {
+   "id": "D35",
+   "arreglado": true,
+   "por_que": "en 32–34 s la luz en el alero y los paneles es baja y cálida como en P1 y hay nubes; el azul más profundo se explica por el contrapicado al cielo alto",
+   "de": "global"
+  },
+  {
+   "id": "D36",
+   "arreglado": false,
+   "por_que": "la fachada en contrapicado (32–34 s) sigue limpia y perfectamente regular; sólo el alero tiene algo de variación",
+   "de": "global"
+  },
+  {
+   "id": "D37",
+   "arreglado": false,
+   "por_que": "en 4 s el pantalón de Pete tiene barro, pero sigue con brillos especulares fuertes en muslos y rodillas: se lee cuero o plástico",
+   "de": "global"
+  },
+  {
+   "id": "D38",
+   "arreglado": false,
+   "por_que": "en 4 s el techo sigue siendo un piso gris casi liso y el parapeto de la derecha es un muro beige sin textura ni equipos",
+   "de": "global"
+  },
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "Entre 13.0 y 16.3 s, contornos blancos marcan uno tras otro trozos de la losa bajo el sombrero. Los trozos se corren, y entre 15.7 y 16.3 s una losa se inclina y baja al piso. El desarme ya se ve en el momento en que la voz lo dice. Lo de 'escondidos' (paneles alrededor) sigue sin verse, pero no es la mecánica central.",
+   "de": "espectador"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "Entre 15.3 y 16.3 s, las piezas ya tienen el color beige de la losa, con canto, cara de abajo más oscura y sombra propia, y el contorno blanco indica cuál es. Se leen como la losa que se saca, no como una falla de render. No se ve el gancho de la grúa: la losa baja sola, con la píldora de cámara rápida.",
+   "de": "espectador"
+  },
+  {
+   "id": "D39",
+   "arreglado": false,
+   "por_que": "Entre 9.0 y 20.7 s, los gatos siguen siendo cilindros amarillos limpios, sin mangueras ni desgaste. Ahora se ve el vástago de acero que sale de ellos (bajan.jpg, 19.7 s), pero el cuerpo sigue liso, como de juguete.",
+   "de": "espectador"
+  },
+  {
+   "id": "D40",
+   "arreglado": false,
+   "por_que": "Entre 12.3 y 16.3 s y entre 26.0 y 32.4 s, en el piso siguen los mismos trocitos blancos redondeados, todos parecidos. Se agregaron algunos bloques grises y ladrillos naranjos (26.0 s), pero no hay montones de concreto anguloso con fierros.",
+   "de": "espectador"
+  },
+  {
+   "id": "D41",
+   "arreglado": true,
+   "por_que": "Entre 15.3 y 16.3 s, las planchas ya tienen el material beige del concreto, con espesor y canto visibles.",
+   "de": "espectador"
+  },
+  {
+   "id": "D42",
+   "arreglado": false,
+   "por_que": "Entre 16.7 y 20.7 s, los bloques verticales siguen blancos, de cantos perfectos y caras limpias, sin rotura ni fierro a la vista.",
+   "de": "espectador"
+  },
+  {
+   "id": "D43",
+   "arreglado": false,
+   "por_que": "En 8.3–12.3 s y 25.7–32.4 s la fachada de cerca sigue siendo un damero limpio y repetido de paneles blancos y cafés. Sólo la banda del techo (2.3–8.2 s) tiene manchas de textura; bajo los alféizares no hay chorreados.",
+   "de": "espectador"
+  },
+  {
+   "id": "D44",
+   "arreglado": false,
+   "por_que": "En 21.0–25.3 s, la base de la torre termina en una franja iluminada sobre un plano gris oscuro y uniforme, sin calle ni vereda a la vista. Ya no se lee como un hoyo, pero no hay sombra de contacto clara y los edificios de alrededor siguen siendo cajas parecidas (21.0 s).",
+   "de": "espectador"
+  },
+  {
+   "id": "D45",
+   "arreglado": false,
+   "por_que": "Entre 32.7 y 34.5 s, la cornisa ya recibe luz cálida de costado, pero la fachada sigue azul fría y el cielo es un azul más profundo que el cielo brumoso de atardecer de las tomas aéreas (34.7 s). Sigue pareciendo otra hora del día, aunque menos que antes.",
+   "de": "espectador"
+  },
+  {
+   "id": "D46",
+   "arreglado": false,
+   "por_que": "Entre 3.7 y 5.4 s, el pantalón ahora tiene manchas de barro, pero sigue con brillos especulares en los muslos y se lee como cuero o plástico. Las mangas de la camisa café oscuro brillan igual.",
+   "de": "espectador"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "estilo.json: la referencia 'referencias/*.jpg' no encontró archivos en la carpeta del episodio",
+   "evidencia": "estilo.json"
+  },
+  {
+   "que": "estilo realista sin referencias (fotos reales en estilo.json → referencias): el revisor juzga el realismo sin poder comparar",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": true,
+ "delatores": [
+  {
+   "plano": 4,
+   "segundo": "6.27",
+   "zona": "arriba",
+   "que": "El borde del techo lleva dos franjas negras puras y gruesas (5.44–6.55) que se leen como una ranura o un agujero negro plano, antes de pasar a naranja en 6.83.",
+   "arreglo": "Que el contorno parta directo en naranja, o en gris oscuro fino, con «el truco».",
+   "de": "planos1"
+  }
+ ],
+ "solo_bloqueantes": false,
+ "parar_y_preguntar": true
+}

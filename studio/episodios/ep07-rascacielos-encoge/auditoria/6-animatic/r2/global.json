@@ -1,0 +1,38 @@
+{
+ "encargo": "global",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "gancho": {"nota": 8, "por_que": "en 0,00–1,90 s la torre pierde 6 pisos a la vista (QUEDAN 36 → 30) con la caja de alambre de lo que falta: algo imposible pasa en el primer segundo; el cuadro 0 solo, sin movimiento, es una torre chica en el centro y depende de las píldoras"},
+  "claridad": {"nota": 8, "por_que": "los 3 pasos tienen su imagen y su píldora (9 s sombrero sobre gatos, 13–15 s una pieza sube y sale, 18–20 s el sombrero baja con '−1 PISO') y el giro se ve (28–31 s bloque que baja, línea que se enciende y luces que prenden); P6 sigue siendo el tramo más cargado"},
+  "ritmo": {"nota": 8, "por_que": "algo cambia cada 1–2 s (cortes, píldoras, contador, bloque que baja); el interior P5–P7 (8,25–20,7 s) es la misma escala 12 s pero con dos cortes de cámara; el final empalma con el inicio en el mismo encuadre (la torre vuelve de 14 a 36 pisos, se lee como repetición); P12 queda quieto 1,0 s al cierre, bajo el tope de 2 s"},
+  "belleza": {"nota": 7, "por_que": "sol bajo y cálido con sombras reales en todo el video y bruma de distancia en P1/P12; pero el interior (P5–P7, P9–P10, ~20 s) es de maqueta limpia, P8 (21–24 s) sigue sepia y bajo contraste y P11 (32–34 s) tiene otro cielo, más profundo"},
+  "animacion": {"nota": 8, "por_que": "todos los planos se mueven (quieto_max_s ≤ 0,27 salvo P12 con 1,0 s); Pete gesticula en P3 (4 s); las máquinas actúan: gatos bajan el sombrero (16–20 s), la grúa baja el bloque (25–28 s), las luces se encienden (31 s)"},
+  "subtitulos": {"nota": 8, "por_que": "92/92 palabras, 0 desfase, 0 fuera de zona, tildes bien (ACHICÓ, EXPLOSIÓN, DESPUÉS, HIDRÁULICOS, GRÚA, CONSTRUCCIÓN, DÍAS); no tapan la cara de Pete (4 s); en 13–15 s la línea del llamado cruza 'EL' y toca 'ABAJO', se sigue leyendo"},
+  "audio": {"nota": 8, "por_que": "no lo escucho: −14,1 LUFS y −3,1 dBTP dentro de rango; la voz queda ≥ 8,3 dB sobre las pausas de música y efectos"},
+  "precision": {"nota": 9, "por_que": "el contador baja sin contradicciones (36→28, 23→18, 15→14), ANTES: 40 PISOS, '−2 PISOS · CADA 10 DÍAS', SIN EXPLOSIONES, EL TECHO QUEDA ENTERO y CÁMARA RÁPIDA en las tomas aceleradas coinciden con el guion y sus fuentes; el sombrero se muestra como el último piso sobre vigas y gatos, como dicen las fuentes"},
+  "comprension": {"nota": 8, "por_que": "en orden se entiende: torre que se achica en la ciudad, un obrero arriba, corte por dentro con el techo sobre gatos, se saca un piso, el techo baja, la grúa genera luz y desde la calle no se nota; el tramo menos claro es P4 (5–7 s), un borde de techo cerca"},
+  "realismo": {"nota": 6, "por_que": "la luz (sol bajo, sombras de contacto) es real, pero más de la mitad del video es interior y fachada de maqueta: damero blanco/café liso con bordes perfectos (2–3, 8–31 s), muros beige lisos y vigas naranjas de un color (12–31 s), gatos dorados idénticos, esferas cromadas en la grúa (25–29 s), ciudad de cajas con la misma textura (0–1 s, 35–36 s)"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A1", "arreglado": true, "por_que": "en 13 s un panel resaltado sube con flechas desde la losa y en 15 s sale por arriba a la derecha; la franja de losa que cruzaba el cuadro en 12–14 s ya no está en 15 s (se ve el muro del fondo y el pilar entero): 'piso entero' → 'piso pelado' se ve"},
+  {"id": "A7", "arreglado": false, "por_que": "realismo sigue en 6: de los 13 delatores sólo quedaron resueltos D35 (y parciales D27, D29, D31, D33); el damero liso, los muros beige, las vigas naranjas y la bruma sepia de P8 siguen igual"},
+  {"id": "D26", "arreglado": false, "por_que": "el antepecho beige tiene ahora manchas (2–3, 5–7 s), pero el damero de paneles blancos y cafés sigue liso, de un color y con bordes perfectos (8–11, 25–31 s)"},
+  {"id": "D27", "arreglado": false, "por_que": "en P11 (32–34 s) el vidrio ya refleja el cielo, pero en P5–P10 las ventanas siguen negras o café planas, sin reflejo (8–31 s)"},
+  {"id": "D28", "arreglado": false, "por_que": "las vigas del sombrero siguen naranjas lisas de un solo tono, sin pernos, raspones ni óxido visibles (9–31 s)"},
+  {"id": "D29", "arreglado": false, "por_que": "parcial: ahora tienen vástago cromado hasta la viga (12–15 s), pero el cuerpo sigue dorado brillante, liso e idéntico en todos; no se ve manguera ni placa base"},
+  {"id": "D30", "arreglado": false, "por_que": "aparecen algunos bloques angulosos y ladrillos (25–29 s), pero siguen las bolitas blancas redondeadas sobre el piso (12–15 s y 25–29 s, borde delantero)"},
+  {"id": "D31", "arreglado": false, "por_que": "parcial: el cilindro turquesa pasó a tambor gris y la varilla a un cable fino (27 s), pero siguen las esferas cromadas lisas y el riel amarillo limpio (25–29 s), y no se ve gancho"},
+  {"id": "D32", "arreglado": false, "por_que": "los muros interiores siguen beige lisos, sin marcas de moldaje ni ductos (12–15, 25–31 s)"},
+  {"id": "D33", "arreglado": false, "por_que": "parcial: los edificios del primer plano tienen equipos en el techo (0 s, 35 s), pero toda la ciudad sigue con la misma textura de ventanas y cajas iguales"},
+  {"id": "D34", "arreglado": false, "por_que": "P8 (21–24 s) sigue con bruma sepia pareja y sin negros; la plaza bajo la torre sigue siendo un plano gris oscuro liso"},
+  {"id": "D35", "arreglado": true, "por_que": "en 32–34 s la luz en el alero y los paneles es baja y cálida como en P1 y hay nubes; el azul más profundo se explica por el contrapicado al cielo alto"},
+  {"id": "D36", "arreglado": false, "por_que": "la fachada en contrapicado (32–34 s) sigue limpia y perfectamente regular; sólo el alero tiene algo de variación"},
+  {"id": "D37", "arreglado": false, "por_que": "en 4 s el pantalón de Pete tiene barro, pero sigue con brillos especulares fuertes en muslos y rodillas: se lee cuero o plástico"},
+  {"id": "D38", "arreglado": false, "por_que": "en 4 s el techo sigue siendo un piso gris casi liso y el parapeto de la derecha es un muro beige sin textura ni equipos"}
+ ],
+ "eventos": [],
+ "delatores": [],
+ "resumen": "Sin bloqueantes nuevos y A1 arreglado (en 13–15 s se ve sacar una pieza y el piso queda pelado), pero el realismo sigue en 6: de los delatores de fachada, interior y ciudad sólo se resolvió el cielo de P11, así que no llega al mínimo de 8. La música no aparece declarada en audio.json ni en el guion: no puedo decir de dónde sale ni si es sintetizada por código."
+}

@@ -1,0 +1,112 @@
+[
+ {
+  "id": "A2",
+  "bloqueante": true,
+  "tipo": "B13",
+  "plano": null,
+  "segundo": "12.40–16.40",
+  "que": "Paso 2: la voz dice 'escondidos bajo el sombrero, desarman el piso de abajo' y la imagen muestra el mismo corte casi quieto (un piso con piedritas, un gato amarillo y la máquina colgada). Nada se desarma, no se ve qué pieza sale ni que el trabajo esté encerrado. Es la mecánica central del video.",
+  "arreglo": "En cámara rápida, que las piezas del piso de abajo (tabiques, pilares, losa) se corten y salgan una por una colgadas del gancho de la grúa, mientras el montón de escombros crece. Marcar el piso que se desarma con un contorno o un tinte, como el techo a los 6.7 s, y poner paneles alrededor del piso para el 'escondidos'.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "A3",
+  "bloqueante": true,
+  "tipo": "B12",
+  "plano": null,
+  "segundo": "15.30–16.40",
+  "que": "Aparecen planchas blancas lisas, sin textura y casi translúcidas, que crecen y se inclinan sobre la mitad derecha del corte. No se reconoce qué son: no parecen la losa café del piso y se leen como una falla de render.",
+  "arreglo": "Si son la losa que se saca, darle el material de concreto del piso, con canto y espesor, y mostrar el cable del gancho de la grúa enganchado. Si no, sacarlas.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D39",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "9.00–20.70",
+  "que": "[delator · medio] Los gatos hidráulicos son cilindros amarillos lisos, como de juguete, sin pistón cromado, mangueras ni marcas.",
+  "arreglo": "Gato con cuerpo de acero pintado y gastado, vástago cromado y una manguera; que se vea el pistón que entra y sale.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D40",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "9.00–32.40",
+  "que": "[delator · medio] Los escombros del piso son bultos blancos redondeados, todos parecidos, como huevos o piedritas.",
+  "arreglo": "Trozos de concreto angulosos de tamaños distintos, con fierros y polvo gris, en montones.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D41",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "15.30–16.40",
+  "que": "[delator · medio] Planchas blancas planas sin textura ni espesor.",
+  "arreglo": "Material de concreto con canto, o sacarlas.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D42",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "16.70–20.70",
+  "que": "[delator · medio] Los bloques blancos verticales tienen bordes perfectos y caras limpias, sin rotura ni fierro a la vista.",
+  "arreglo": "Cantos rotos, fierros asomando y mugre en la base.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D43",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "2.30–32.40",
+  "que": "[delator · abajo] La fachada de cerca es un damero de paneles blancos y cafés perfectamente limpios y repetidos, sin chorreados ni desgaste.",
+  "arreglo": "Chorreados bajo los alféizares, variación de tono entre paneles y vidrios con reflejos distintos.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D44",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "21.00–25.40",
+  "que": "[delator · abajo] En la toma aérea, la base de la torre termina en un borde claro sobre una mancha oscura y se lee apoyada en un hoyo o flotando, no anclada a la calle. La ciudad alrededor es una alfombra de cajas casi iguales. Hay que confirmarlo a resolución completa: en este material cada cuadro es de 270×480.",
+  "arreglo": "Calle, veredas y sombra de contacto al pie de la torre; variar la altura y el remate de los edificios vecinos.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D45",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "32.70–34.50",
+  "que": "[delator · medio] La toma desde la calle tiene luz azul fría y vidrios oscuros, a diferencia del atardecer cálido del resto: parece otro momento del día.",
+  "arreglo": "Usar el mismo sol bajo y cálido, con la fachada iluminada de costado.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D46",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "3.70–5.43",
+  "que": "[delator · abajo] El pantalón del obrero brilla como cuero o plástico (hay que confirmarlo a resolución completa).",
+  "arreglo": "Tela mate de mezclilla o gabardina con polvo.",
+  "de": "espectador",
+  "asignado": "espectador"
+ }
+]

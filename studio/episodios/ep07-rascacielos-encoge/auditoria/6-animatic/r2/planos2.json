@@ -1,0 +1,33 @@
+{
+ "encargo": "planos2",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 7, "por_que": "P11 es lindo (sol bajo rasante sobre el diente de sierra, cielo azul profundo, la viga del sombrero con manchas), pero P12 (34.59–37.21), que es el remate, sigue con la ciudad del medio bajo una bruma beige-durazno pareja que se come los negros (percentil 5 de la franja media entre 65 y 77) y torres-caja tostadas iguales."},
+  "animacion": {"nota": 8, "por_que": "P11 tiene un paneo lento y continuo (quieto_max 0,2 s); en P12 la torre baja contra el contorno de alambre al ritmo del contador (16→15→14) y las píldoras entran con su animación; el último segundo (36.2–37.2) queda quieto, aceptable como cierre."},
+  "claridad": {"nota": 8, "por_que": "P12 se entiende solo: contorno de la altura original + ANTES: 40 PISOS + QUEDAN 14 PISOS + −2 PISOS · CADA 10 DÍAS justo cuando la voz lo dice; P11 (contrapicado de la fachada) muestra 'desde la calle' sin que haya calle a la vista, pero se lee como mirar el edificio desde abajo."},
+  "ritmo": {"nota": 8, "por_que": "Planos de 2,1 y 2,7 s; algo cambia cada ≤1 s (subtítulo, contador, píldoras); quieto_max_s 0,2 y 1,0."},
+  "realismo": {"nota": 7, "por_que": "P11 llega a 8 (proporciones reales, luz rasante con sombras, viga con manchas), pero P12 sigue delatando la maqueta: la ciudad del medio son cajas tostadas con la misma textura de ventanas que se repiten (35.38), luz pareja con bruma uniforme y azoteas lisas con cubos simples; el primer plano mejoró (calles oscuras, algo de equipos en azoteas) pero no alcanza."},
+  "comprension": {"nota": 8, "por_que": "Sin sonido se entiende: en P11 el subtítulo 'desde la calle casi ni se nota' sobre la fachada vista desde abajo; en P12 el contorno blanco de lo que medía y las píldoras dicen cuánto queda y a qué ritmo."}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A4", "arreglado": false, "por_que": "Parcial: en 35.38 el techo gris liso del primer plano ya no está (ahora hay manzanas con calles oscuras y 1–2 cubos por azotea), pero la ciudad del medio sigue igual: cajas tostadas con la misma textura de ventanas, luz pareja y bruma beige; el realismo del plano sigue en 7. Lo más barato: lente más largo con profundidad de campo sobre la torre (la ciudad repetida queda desenfocada, que es el lente y no fondo liso) y sol más bajo de costado para oscurecer las caras en sombra."},
+  {"id": "D18", "arreglado": false, "por_que": "Abajo (34.51) los vidrios ya reflejan el cielo con algo de variación, pero arriba (32.49) las ventanas siguen siendo rectángulos casi negros idénticos, sin cortinas ni variación."},
+  {"id": "D19", "arreglado": false, "por_que": "La viga del sombrero ya tiene manchas visibles (33.36), pero las aletas crema siguen viéndose limpias y de un solo color; a la resolución de la tira no se alcanza a ver ningún chorreado bajo los alféizares."},
+  {"id": "D20", "arreglado": true, "por_que": "En 34.51 cada diente ya tiene una cara clara y otra oscura y los vidrios reflejan el cielo: se lee volumen de fachada en diente de sierra, no un moiré plano."},
+  {"id": "D21", "arreglado": false, "por_que": "En 34.59–37.21 los edificios del medio y del horizonte siguen siendo cajas tostadas de forma parecida con la misma grilla de ventanas, repetidas."},
+  {"id": "D22", "arreglado": false, "por_que": "Parcial: en el primer plano (35.38, 37.21) ya hay 1–2 cubos claros por azotea, pero son cajas simples y las azoteas de la media distancia siguen planas y vacías."},
+  {"id": "D23", "arreglado": false, "por_que": "Parcial: el primer plano ya tiene calles oscuras (percentil 5 ≈ 38), pero en 36.42 la ciudad del medio sigue iluminada pareja, sin sombras largas, con la bruma beige empezando desde la media distancia."},
+  {"id": "D24", "arreglado": true, "por_que": "En 35.38 el techo gris liso que ocupaba el tercio de abajo ya no está: el primer plano son manzanas vistas desde arriba con calles en sombra."},
+  {"id": "D25", "arreglado": false, "por_que": "En 37.21 las ventanas de los edificios del primer plano siguen siendo filas de rectángulos oscuros planos, iguales en todos, sin reflejo del cielo."}
+ ],
+ "eventos": [
+  {"id": "E40", "es_defecto": false, "por_que": "Es el borde izquierdo de la silueta: con el paneo aparece un trocito de cielo entre la viga y el último diente de la fachada (paralaje), 1 celda."},
+  {"id": "E41", "es_defecto": false, "por_que": "P12 dura 2,7 s pero cambia cada ≤1 s: contador 16→15→14, píldora −2 PISOS que pasa a −2 PISOS · CADA 10 DÍAS y la torre bajando contra el contorno; el último segundo queda quieto como cierre."},
+  {"id": "E42", "es_defecto": false, "por_que": "Es el corte de P11 a P12 con las píldoras QUEDAN 16 PISOS, ANTES: 40 PISOS y −2 PISOS entrando con su animación (la chica en 34.67 está creciendo)."},
+  {"id": "E43", "es_defecto": false, "por_que": "Es el cambio buscado de la píldora −2 PISOS a −2 PISOS · CADA 10 DÍAS justo cuando la voz dice 'cada diez días' (en 35.90 se ve achicada a media transición)."}
+ ],
+ "delatores": [],
+ "resumen": "Sin bloqueantes nuevos y P11 bien (D20 y D24 arreglados), pero el plano final (P12) sigue con la ciudad de maqueta: cajas repetidas con la misma textura, luz pareja y bruma beige; realismo 7 y belleza 7, así que no llega. El arreglo más barato es simplificar P12: lente largo con profundidad de campo sobre la torre (la ciudad repetida queda desenfocada) y sol más bajo de costado para tener negros."
+}

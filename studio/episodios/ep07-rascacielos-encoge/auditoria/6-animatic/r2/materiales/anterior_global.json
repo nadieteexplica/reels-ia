@@ -1,0 +1,167 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": true,
+  "tipo": "B13",
+  "plano": 6,
+  "segundo": "12.30–16.35",
+  "que": "la voz dice 'escondidos bajo el sombrero, desarman el piso de abajo' y en 12, 13, 14 y 15 s el interior es el mismo: los mismos gatos, las mismas bolitas de escombro en su lugar y la grúa quieta. Sólo se aclara un muro del fondo en 15 s; no se ve ninguna pieza que se saque, y es el paso central de la mecánica",
+  "arreglo": "que el piso bajo el sombrero parta con muros o pilares a la vista y se vacíe en 2–3 golpes visibles (la grúa levanta un panel o un trozo de losa y lo saca de cuadro, y el muro desaparece con un pop y polvo). Si sale más barato: dos cortes, 'piso entero' en 12,9 s y 'piso pelado' en 15,1 s",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "A7",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "8.25–31.50",
+  "que": "realismo 6 (mínimo 8): el interior y la fachada en primer plano parecen maqueta. Ver la lista completa en delatores",
+  "arreglo": "en una sola pasada: textura de hormigón con chorreados y variación en los paneles de fachada, vidrio con reflejo del cielo, vigas de acero pintado gastado con pernos, gatos de acero con vástago cromado, escombros de hormigón irregulares (rubble CC0 de Poly Haven) y polvo en el piso",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D26",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "2.00–31.50",
+  "que": "[delator · abajo] fachada de damero: paneles blancos idénticos, lisos, de un solo color y con bordes perfectos, sin manchas ni chorreados (P2, P4–P7, P9–P10)",
+  "arreglo": "hormigón o pintura con chorreados bajo cada ventana, variación de tono por panel y mugre en las esquinas",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D27",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "12.00–34.50",
+  "que": "[delator · abajo] ventanas café o negras planas, sin reflejo del cielo ni de la ciudad: vidrio que no refleja (P6–P11)",
+  "arreglo": "vidrio con reflejo del entorno y algo de suciedad; algunas con cortina o interior visible",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D28",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "9.00–31.50",
+  "que": "[delator · medio] vigas naranjas del sombrero lisas, de un solo color, sin pernos ni desgaste",
+  "arreglo": "acero con anticorrosivo gastado, platinas apernadas, raspones y óxido en los cantos",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D29",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 7,
+  "segundo": "11.00–20.50",
+  "que": "[delator · medio] gatos hidráulicos como cápsulas amarillas de juguete, todos idénticos",
+  "arreglo": "cuerpo de acero pintado con vástago cromado, manguera hidráulica y placa base apernada; variar el desgaste entre ellos",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D30",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "12.00–30.00",
+  "que": "[delator · abajo] escombros como bolitas blancas redondeadas e idénticas (parecen huevos o malvaviscos) (P6, P9)",
+  "arreglo": "trozos de hormigón irregulares de distintos tamaños, con fierro asomando y polvo gris alrededor",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D31",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 9,
+  "segundo": "25.40–31.50",
+  "que": "[delator · medio] la grúa es un cilindro turquesa y una esfera de latón lisos, de juguete; la varilla del bloque es una barra rígida",
+  "arreglo": "polipasto industrial (tambor, motor y cable de acero con gancho), en metal gastado",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D32",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "12.00–31.50",
+  "que": "[delator · medio] muros interiores beige lisos, sin textura ni instalaciones",
+  "arreglo": "hormigón con marcas de moldaje, cañerías o ductos cortados y restos de terminaciones",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D33",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00–2.15",
+  "que": "[delator · abajo] ciudad de cajas extruidas con la misma textura de ventanas repetida; edificios del primer plano con techo gris plano y una sola caja (también en P12)",
+  "arreglo": "3–4 texturas de fachada distintas, equipos en los techos (estanques, antenas, AC) y siluetas variadas",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D34",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 8,
+  "segundo": "20.70–25.40",
+  "que": "[delator · medio] neblina sepia que lava todo el cuadro (sin negros) y plaza bajo la torre como plano gris oscuro liso",
+  "arreglo": "menos densidad de bruma, sombras negras y plaza con calles, veredas y árboles",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D35",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "32.45–34.55",
+  "que": "[delator · arriba] cielo azul saturado de mediodía, mientras P1, P8 y P12 son de atardecer con nubes rosadas: otra hora del día en el mismo relato",
+  "arreglo": "usar el mismo cielo y la misma hora que P1",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D36",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "32.45–34.55",
+  "que": "[delator · medio] fachada en contrapicado limpia y perfectamente regular, sin una mancha",
+  "arreglo": "la misma textura con chorreados del delator 1",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D37",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 3,
+  "segundo": "4.00",
+  "que": "[delator · abajo] el pantalón café de Pete brilla como plástico o cuero",
+  "arreglo": "bajar el especular y darle rugosidad de tela con barro mate",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D38",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 3,
+  "segundo": "4.00",
+  "que": "[delator · abajo] techo donde está Pete: piso gris plano liso y parapeto liso",
+  "arreglo": "membrana o gravilla con manchas de agua y equipos del techo detrás",
+  "de": "global",
+  "asignado": "global"
+ }
+]

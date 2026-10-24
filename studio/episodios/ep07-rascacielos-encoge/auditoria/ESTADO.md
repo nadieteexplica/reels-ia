@@ -6,4 +6,5 @@
 | 4-cuadros | r1 | NO APROBADO | 1 | 8 |
 | 4-cuadros | r2 | NO APROBADO | 1 | 17 |
 | 6-animatic | r1 | NO APROBADO | 3 | 31 |
+| 6-animatic | r2 | NO APROBADO | 0 | 45 |
 | 7-final | r1 | APROBADO | 0 | 0 |
