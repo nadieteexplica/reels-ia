@@ -1,0 +1,31 @@
+[
+ {
+  "id": "cuadros",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "A_caballero_se_lanza, B_subida_cerro, C_retractor_por_dentro",
+  "materiales": [
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/A_caballero_se_lanza.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/B_subida_cerro.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/C_retractor_por_dentro.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/A_caballero_se_lanza_recorte_arriba.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/A_caballero_se_lanza_recorte_medio.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/A_caballero_se_lanza_recorte_abajo.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/B_subida_cerro_recorte_arriba.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/B_subida_cerro_recorte_medio.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/B_subida_cerro_recorte_abajo.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/C_retractor_por_dentro_recorte_arriba.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/C_retractor_por_dentro_recorte_medio.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/C_retractor_por_dentro_recorte_abajo.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep06-cinturon-traba/auditoria/4-cuadros/r1/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "tools/auditor/prompts/estilos.md"
+  ],
+  "salida": "cuadros.json",
+  "notas_de_uso": "Cuadros de estilo del Ep. 6 (realista). A = plano 1 tal como sale (a través del parabrisas: el caballero se lanza por la bolsa, la capa roja es la cinta trabada); B = la subida al cerro (30°); C = el retractor por dentro (capa de explicación, macro 100 mm, sin carcasa). Personajes Mixamo: ficha.jpg.",
+  "estilo": "realista"
+ }
+]
