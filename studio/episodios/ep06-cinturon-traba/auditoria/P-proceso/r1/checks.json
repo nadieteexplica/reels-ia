@@ -1,0 +1,439 @@
+{
+ "fallas": [
+  {
+   "que": "'render-planos 40069304642' corrió 40 min y nadie lo revisó cada 15 min",
+   "evidencia": "03:12–03:52",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos 40064362093' corrió 65 min y nadie lo revisó cada 15 min",
+   "evidencia": "01:57–03:02",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos 40060980682' corrió 23 min y nadie lo revisó cada 15 min",
+   "evidencia": "01:05–01:28",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos 40058999385' corrió 62 min y nadie lo revisó cada 15 min",
+   "evidencia": "00:36–01:38",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos 40057817455' corrió 74 min y nadie lo revisó cada 15 min",
+   "evidencia": "00:19–01:33",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos 40055703164' corrió 77 min y nadie lo revisó cada 15 min",
+   "evidencia": "23:48–01:04",
+   "bloqueante": false
+  },
+  {
+   "que": "'render-planos 40049863541' corrió 61 min y nadie lo revisó cada 15 min",
+   "evidencia": "22:27–23:28",
+   "bloqueante": false
+  },
+  {
+   "que": "'sesion ep06' corrió 505 min y nadie lo revisó cada 15 min",
+   "evidencia": "21:21–21:51; 23:21–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'estilos 40046010876' corrió 382 min y nadie lo revisó cada 15 min",
+   "evidencia": "22:39–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'estilos 40050114591' corrió 331 min y nadie lo revisó cada 15 min",
+   "evidencia": "22:30–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'muestras 40050116969' corrió 331 min y nadie lo revisó cada 15 min",
+   "evidencia": "22:30–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'muestras 40051414174' corrió 313 min y nadie lo revisó cada 15 min",
+   "evidencia": "22:48–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'estilos 40051412466' corrió 313 min y nadie lo revisó cada 15 min",
+   "evidencia": "22:48–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'estilos 40057815610' corrió 222 min y nadie lo revisó cada 15 min",
+   "evidencia": "00:19–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'final 40057817455' corrió 222 min y nadie lo revisó cada 15 min",
+   "evidencia": "00:19–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'parche 40058999385' corrió 205 min y nadie lo revisó cada 15 min",
+   "evidencia": "00:36–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "'final2 40064362093' corrió 124 min y nadie lo revisó cada 15 min",
+   "evidencia": "01:57–04:01",
+   "bloqueante": false
+  },
+  {
+   "que": "21 máquinas de Actions corriendo a la vez a las 22:30 (máx. 16: deja 4 libres para Kling y RunPod)",
+   "evidencia": "23-10 22:30",
+   "bloqueante": false
+  },
+  {
+   "que": "el video lleva 5.3 h activas (tope 4 h; huecos de más de 1 h sin anotar no cuentan)",
+   "evidencia": "",
+   "bloqueante": false
+  }
+ ],
+ "avisos": [
+  {
+   "que": "'render-planos 40050116969' terminó en failure a las 22:45 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'render-planos 40050070200' terminó en cancelled a las 22:30 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  },
+  {
+   "que": "'estilos 40050068363' terminó en cancelled a las 22:31 sin chequeo ni aviso anotado",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "trabajos": [
+   {
+    "id": "render-planos 40069304642",
+    "desde": "24-10 03:12",
+    "hasta": "24-10 03:52",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40064362093",
+    "desde": "24-10 01:57",
+    "hasta": "24-10 03:02",
+    "estado": "success"
+   },
+   {
+    "id": "release 40062644550",
+    "desde": "24-10 01:30",
+    "hasta": "24-10 01:31",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40060980682",
+    "desde": "24-10 01:05",
+    "hasta": "24-10 01:28",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40058999385",
+    "desde": "24-10 00:36",
+    "hasta": "24-10 01:38",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40057817455",
+    "desde": "24-10 00:19",
+    "hasta": "24-10 01:33",
+    "estado": "success"
+   },
+   {
+    "id": "estilos 40057815610",
+    "desde": "24-10 00:19",
+    "hasta": "24-10 00:28",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40055703164",
+    "desde": "23-10 23:48",
+    "hasta": "24-10 01:04",
+    "estado": "success"
+   },
+   {
+    "id": "release 40054525646",
+    "desde": "23-10 23:31",
+    "hasta": "23-10 23:31",
+    "estado": "success"
+   },
+   {
+    "id": "estilos 40053705869",
+    "desde": "23-10 23:19",
+    "hasta": "23-10 23:30",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40053704266",
+    "desde": "23-10 23:19",
+    "hasta": "23-10 23:22",
+    "estado": "success"
+   },
+   {
+    "id": "estilos 40052951368",
+    "desde": "23-10 23:08",
+    "hasta": "23-10 23:18",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40052949506",
+    "desde": "23-10 23:08",
+    "hasta": "23-10 23:12",
+    "estado": "success"
+   },
+   {
+    "id": "estilos 40052705827",
+    "desde": "23-10 23:05",
+    "hasta": "23-10 23:07",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40052522456",
+    "desde": "23-10 23:02",
+    "hasta": "23-10 23:07",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40051414174",
+    "desde": "23-10 22:48",
+    "hasta": "23-10 22:57",
+    "estado": "success"
+   },
+   {
+    "id": "estilos 40051412466",
+    "desde": "23-10 22:48",
+    "hasta": "23-10 22:55",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40050116969",
+    "desde": "23-10 22:30",
+    "hasta": "23-10 22:45",
+    "estado": "failure"
+   },
+   {
+    "id": "estilos 40050114591",
+    "desde": "23-10 22:30",
+    "hasta": "23-10 22:41",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40050070200",
+    "desde": "23-10 22:30",
+    "hasta": "23-10 22:30",
+    "estado": "cancelled"
+   },
+   {
+    "id": "estilos 40050068363",
+    "desde": "23-10 22:30",
+    "hasta": "23-10 22:31",
+    "estado": "cancelled"
+   },
+   {
+    "id": "render-planos 40049863541",
+    "desde": "23-10 22:27",
+    "hasta": "23-10 23:28",
+    "estado": "success"
+   },
+   {
+    "id": "render-planos 40049182183",
+    "desde": "23-10 22:18",
+    "hasta": "23-10 22:24",
+    "estado": "success"
+   },
+   {
+    "id": "asr 40046788050",
+    "desde": "23-10 21:48",
+    "hasta": "23-10 21:49",
+    "estado": "success"
+   },
+   {
+    "id": "voz 40046755898",
+    "desde": "23-10 21:48",
+    "hasta": "23-10 21:48",
+    "estado": "success"
+   },
+   {
+    "id": "estilos 40046010876",
+    "desde": "23-10 21:38",
+    "hasta": "23-10 21:47",
+    "estado": "success"
+   },
+   {
+    "id": "descargar 40043488151",
+    "desde": "23-10 21:08",
+    "hasta": "23-10 21:09",
+    "estado": "success"
+   },
+   {
+    "id": "asr 40043426960",
+    "desde": "23-10 21:08",
+    "hasta": "23-10 21:09",
+    "estado": "success"
+   },
+   {
+    "id": "voz 40043393272",
+    "desde": "23-10 21:07",
+    "hasta": "23-10 21:08",
+    "estado": "success"
+   },
+   {
+    "id": "buscar-objaverse 40042450241",
+    "desde": "23-10 20:56",
+    "hasta": "23-10 20:59",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 40042216629",
+    "desde": "23-10 20:54",
+    "hasta": "23-10 20:54",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 40035543217",
+    "desde": "23-10 19:44",
+    "hasta": "23-10 19:46",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 40035384354",
+    "desde": "23-10 19:42",
+    "hasta": "23-10 19:43",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 40035206964",
+    "desde": "23-10 19:41",
+    "hasta": "23-10 19:43",
+    "estado": "success"
+   },
+   {
+    "id": "fuentes 40034831250",
+    "desde": "23-10 19:37",
+    "hasta": "23-10 19:40",
+    "estado": "success"
+   },
+   {
+    "id": "sesion ep06",
+    "desde": "23-10 19:36",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   },
+   {
+    "id": "simulacion r1",
+    "desde": "23-10 19:49",
+    "hasta": "23-10 19:55",
+    "estado": "success"
+   },
+   {
+    "id": "simulacion r2",
+    "desde": "23-10 19:55",
+    "hasta": "23-10 20:00",
+    "estado": "success"
+   },
+   {
+    "id": "puerta1 r1",
+    "desde": "23-10 20:55",
+    "hasta": "23-10 21:07",
+    "estado": "success"
+   },
+   {
+    "id": "voz 0011",
+    "desde": "23-10 21:07",
+    "hasta": "23-10 21:11",
+    "estado": "success"
+   },
+   {
+    "id": "puerta3 r1",
+    "desde": "23-10 21:12",
+    "hasta": "23-10 21:23",
+    "estado": "success"
+   },
+   {
+    "id": "puerta3 r2",
+    "desde": "23-10 21:23",
+    "hasta": "23-10 21:31",
+    "estado": "success"
+   },
+   {
+    "id": "estilos 40046010876",
+    "desde": "23-10 21:39",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   },
+   {
+    "id": "estilos 40050114591",
+    "desde": "23-10 22:30",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   },
+   {
+    "id": "muestras 40050116969",
+    "desde": "23-10 22:30",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   },
+   {
+    "id": "muestras 40051414174",
+    "desde": "23-10 22:48",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   },
+   {
+    "id": "estilos 40051412466",
+    "desde": "23-10 22:48",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   },
+   {
+    "id": "estilos 40057815610",
+    "desde": "24-10 00:19",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   },
+   {
+    "id": "final 40057817455",
+    "desde": "24-10 00:19",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   },
+   {
+    "id": "parche 40058999385",
+    "desde": "24-10 00:36",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   },
+   {
+    "id": "final2 40064362093",
+    "desde": "24-10 01:57",
+    "hasta": "24-10 04:01",
+    "estado": "?"
+   }
+  ],
+  "maquinas_pico": 21,
+  "gasto": {},
+  "rondas": {
+   "4-cuadros": 2,
+   "1-guion": 1,
+   "6-animatic": 2,
+   "3-storyboard": 2,
+   "7-final": 1,
+   "8-paquete": 1,
+   "2-voz": 1
+  },
+  "revisores_lanzados": 15,
+  "imagenes_a_revisores": 224,
+  "horas_bitacora": 7.6,
+  "horas_activas": 5.3,
+  "kling_unidades_restantes": 54.0
+ }
+}

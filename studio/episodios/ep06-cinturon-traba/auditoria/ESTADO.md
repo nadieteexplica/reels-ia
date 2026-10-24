@@ -8,4 +8,5 @@
 | 4-cuadros | r2 | NO APROBADO | 1 | 25 |
 | 6-animatic | r1 | NO APROBADO | 5 | 34 |
 | 6-animatic | r2 | NO APROBADO | 1 | 43 |
+| 7-final | r1 | APROBADO | 0 | 0 |
 | 8-paquete | r1 | APROBADO | 0 | 6 |
