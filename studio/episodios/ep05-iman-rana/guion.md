@@ -1,65 +1,73 @@
-# Ep. 5 — El imán que hace flotar a una rana
+# Ep. 5 — El imán que te haría flotar (v3)
 
-**Versión 2.1 (23-oct-2026, 00:45; puerta 1 APROBADO 8,25 con la v2).** v2.1 aplica sugerencias de la puerta 1: "fresa" en vez de "frutilla" (se entiende en toda Latam; el público de YouTube es sobre todo de México), 4 pausas en vez de 5, y el cierre "sin hilos" en vez de "tranquila" (Geim cuenta que la rana se desorientaba). No se aplicó: cambiar "casi cuarenta" por un rango (son los números de Geim que eligió Tomás; Leicester queda en los matices) ni sacar "Ahí sí flotarías" (es el remate que pidió Tomás).
-**Versión 2 (23-oct-2026, 00:30).** v2: la parte de la persona cuenta paso a paso cómo podría llegar a pasar (pedido de Tomás, 00:25), siempre en condicional; "miles de veces" con 2 fuentes; todo a escala real. Idea y forma decididas por Tomás (ficha en `docs/IDEAS.md` → "Ficha — El imán que hace flotar seres vivos", decisión del 22-oct 23:12 y pedido de las 23:16).
-**Voz:** Fernando Martínez · job `jobs/voz/0010-ep05-iman-rana.json` → `out/tts/ep05-iman-rana.mp3`.
-**Línea:** datos · **Gancho:** "¿Sabías que…?" (una rana flotando, real) + "¿Qué pasa si…?" (el imán para una persona) · **Área:** física / naturaleza · **Formato:** imagen imposible + mecánica por dentro (como el Ep. 4: la cámara entra a la rana hasta el agua) + megaproyecto hipotético con números reales.
-**Estilo:** **realista** (`estilo.json`): "realista pero en un mundo animado", referencia de calidad Zack D. Films (Tomás, 22-oct 23:26). Nada de fotorrealismo de IA.
-**Tono (decisión de Tomás):** directo, sin contar el estudio (nada de quién, cuándo, "científicos" ni premios: va en la descripción, el primer comentario y, la anécdota del Ig Nobel + Nobel, en el texto del post).
-**Acción buscada:** enviar. ¿A quién? A cualquiera: "mira, una rana flotando" se entiende sin sonido y el remate ("hacerte flotar a ti") tiene destinatario. Se guarda por el "por qué no" del imán del refri.
-**Puntaje de la idea:** 42,5 de 45 (IDEAS.md §2; mínimo 32 en datos). Curiosidad 5 (×1,5 = 7,5) · Universalidad 5 (×1,2 = 6: todos tienen un imán en el refri y todos tenemos agua) · Sorpresa 5 (×1,5 = 7,5) · Visual 3D 5 (×1,3 = 6,5) · Enseñanza 4 (×1 = 4) · Verificable 5 (×1 = 5) · Compartible 4 (×1,5 = 6).
-**Costo estimado:** ~40 s; 5 escenas (laboratorio con la rana, interior de la rana hasta el agua, refri, construcción del imán gigante, persona flotando dentro), 3 a medida; 0 clips de Kling (todo render 3D con el mismo look).
-**Duración estimada:** 119 palabras a ~2,9 palabras/s ≈ 41,0 s.
+**Versión 3 (23-oct-2026, 21:40; pedido y aprobado por Tomás).** Tomás vio el v2 programado y pidió rehacerlo: "la idea del video (que el humano puede llegar a flotar con el imán) se entiende demasiado tarde… mucho chamullo; recién al segundo 25 se da cuenta". Pidió también:
+- un gancho capcioso que enganche y un video más entretenido;
+- **sin la comparación del refri** ("no es interesante y se pierde");
+- **más énfasis y más chamullo en la construcción del imán**, la animación que le gustó.
 
-## Guion (119 palabras, ~41,0 s)
-Esta rana está flotando... y nadie la sostiene.
-La levanta un imán gigante.
-¿Cómo? La rana es, en gran parte, agua.
+**Qué cambia contra el v2:**
+- **"Tú" va desde el segundo 0:** "Tu cuerpo repele los imanes" (física real: todos somos diamagnéticos).
+- **La rana es la prueba de que pasa de verdad** (4–8 s) y la mecánica queda en 2 frases.
+- **La construcción se cuenta en 3 pasos** ("primero", "después", "al final"), con números de fuente, desde el segundo ~14.
+- **Sin refri y sin cierre de relleno:** termina con Pete flotando y vuelve al cuadro 0.
+
+**Voz:** Fernando Martínez · job `jobs/voz/0012-ep05-iman-rana-v3.json` → `out/tts/ep05-iman-rana-v3.mp3`.
+**Línea:** datos · **Gancho:** afirmación capciosa ("Tu cuerpo repele los imanes") + "¿Qué pasa si…?" (el imán para una persona) · **Área:** física / naturaleza · **Formato:** promesa imposible sobre ti → prueba real (la rana) → mecánica por dentro → megaproyecto hipotético en 3 pasos con números reales.
+**Estilo:** realista (`estilo.json`, la línea de la cuenta desde este episodio, `docs/ESTILO_REALISTA.md`).
+**Tono (decisión de Tomás):** directo, sin contar el estudio en la voz (quién, cuándo y premios van al post).
+**Acción buscada:** enviar ("mira, tu cuerpo repele los imanes"). Se guarda por los 3 pasos del imán.
+**Puntaje de la idea:** 42,5 de 45 (IDEAS.md §2; mínimo 32 en datos; el mismo del v2: la idea no cambia, cambia el orden).
+**Costo estimado:** ~36 s; las mismas 4 escenas del v2 sin el refri (E1 rana, E2 adentro, E4 imán gigante, E5 Pete flota); 0 clips de Kling.
+**Duración estimada:** 105 palabras a ~2,9 palabras/s ≈ 36 s. **Puerta 1 APROBADO (8,25)**; se aplicaron sus sugerencias 1, 2, 3, 4 y 5 ("como tú", nota del hueco, "cuarenta teslas o más", barras 16 T contra 40 T en pantalla y el gigavatio sólo escrito).
+
+## Guion (105 palabras, ~36 s)
+Tu cuerpo repele los imanes.
+Con el imán correcto, podrías flotar.
+Ya pasó con esta rana: flota sola dentro de un imán.
+Es más que nada agua, como tú.
 Y al agua, un imán la empuja... un poquito.
-Ese empujoncito lo recibe cada molécula.
-Y con un imán bien fuerte, le gana a la gravedad.
-Le pasa a una fresa... y a ti.
-¿Por qué no flotas junto al refri?
-Porque ese imán es miles de veces más débil.
-¿Y si quisiéramos hacerte flotar a ti?
-Haría falta un imán gigante donde quepas.
-Casi cuarenta teslas: más del doble que el de la rana.
-Y gastaría cerca de un gigavatio: un reactor nuclear entero.
-Ahí sí flotarías.
-Todo eso... para lo que esta rana hace sin hilos.
+Con uno bien fuerte, ese empujón le gana a la gravedad.
+¿Y para ti? Habría que construirlo.
+Primero: un hueco donde quepas.
+El de la rana mide tres centímetros: ni tu mano cabe.
+Después: bobinas y más bobinas, hasta cuarenta teslas o más.
+Más del doble de lo que necesitó la rana.
+Y al final, enchufarlo a un reactor nuclear entero... solo para ti.
+Ahí sí... flotarías.
 
 ## Verificación por afirmación
 | Afirmación del guion | Fuente(s) |
 |---|---|
-| Una rana viva puede flotar en el aire, sin nada que la sostenga, dentro de un imán | Geim y Berry, *European Journal of Physics* 1997 (rana viva levitando dentro de un imán de ~16 T); Geim, *Physics Today* 1998 ("Everyone's magnetism"); Harvard Gazette 2024 |
-| La levanta un imán gigante | Las mismas: un electroimán de laboratorio de campos altos (Nijmegen), del orden de 16 teslas; el aparato es enorme aunque el hueco donde flota es chico |
-| La rana es, en gran parte, agua | Harvard Gazette 2024 (Geim: el diamagnetismo que usa está en el agua, la comida y las moléculas orgánicas; primero vio flotar agua y después frutas y la rana); MIT Technology Review 2009 (lo que hace flotar a los ratones es el efecto del campo sobre las moléculas de agua). Geim no lo dice con esas palabras: es la explicación común de las dos fuentes |
-| Al agua, un imán la empuja apenas un poquito (diamagnetismo) | Geim y Berry 1997; Geim 1998 (el agua es diamagnética: un campo magnético la repele débilmente) |
-| Ese empujoncito lo recibe cada molécula; y con un imán bien fuerte, le gana a la gravedad | Geim y Berry 1997 (la fuerza diamagnética actúa sobre cada parte del cuerpo, por eso el objeto flota sin tensiones internas; con campo y gradiente suficientes iguala al peso) |
-| Le pasa a una fresa y también a ti (a todo lo que tiene agua) | Harvard Gazette 2024 (el diamagnetismo está en el agua, la comida y las moléculas orgánicas; después del agua hizo flotar frutillas y tomates cherry); Geim 1998 (todos somos diamagnéticos: "Everyone's magnetism") |
-| No flotas junto al refri porque ese imán es miles de veces más débil (el del refri también te empuja, muchísimo menos) | Harvard Gazette 2024 (el propio Geim: para hacer flotar una rana hace falta un campo "1,000 to 10,000 times stronger than a refrigerator magnet"); MIT Technology Review 2009 (17 T, "ten thousand times as strong as a typical fridge magnet"). Dos fuentes independientes coinciden en "miles"; no se da un número exacto |
-| ¿Y si quisiéramos hacerte flotar a ti? Haría falta un imán gigante con un hueco donde quepas, de casi 40 T, que gastaría cerca de un gigavatio; ahí sí flotarías | Geim 1998 (hacer flotar a una persona "requeriría un imán especial de casi 40 T y alrededor de un gigavatio" de consumo continuo). Son los números de la ficha (decisión de Tomás). Ojo: el cálculo de estudiantes de Leicester da 70,6 T con otros supuestos; por eso la voz dice "casi cuarenta" (el piso de Geim) y no "exactamente" |
-| Cerca de un gigavatio: un reactor nuclear entero (lo que produce un reactor típico) | Departamento de Energía de EE. UU. (un reactor típico produce ~1 gigavatio) |
-| Casi cuarenta teslas es más del doble que el imán de la rana | Geim y Berry 1997 (la rana flotó en ~16 T: 40/16 = 2,5) y Harvard Gazette (10 T: 4 veces). Con cualquiera de los dos, "más del doble" es cierto |
-| La rana flota sin hilos y no le pasa nada (cierre) | Geim 1998 y Harvard Gazette (la rana no sufrió efectos, salvo desorientarse por la falta de peso) |
+| Tu cuerpo repele los imanes (todos somos diamagnéticos: un campo magnético nos empuja, muy poquito) | Geim, *Physics Today* 1998, "Everyone's magnetism" (todos somos diamagnéticos; "in principle, even a child can be levitated by a magnet"); Simon y Geim, *J. Appl. Phys.* 2000 ("Living things mostly consist of diamagnetic molecules"; levitación con "the diamagnetism of human fingers"); MIT Technology Review 2009 (ratones vivos flotando por el efecto del campo sobre el agua de su cuerpo) |
+| Con el imán correcto, podrías flotar (en condicional) | Geim 1998 (hacer flotar a una persona "would require a special racetrack magnet of almost 40 T"); Simon y Geim 2000 ("Levitation of a person would require a new magnet design with a field of about 40 T and energy consumption of about GW"). Cálculo de la U. de Leicester: 70,6 T con otros supuestos |
+| Ya pasó con esta rana: flota sola dentro de un imán | Berry y Geim, *European Journal of Physics* 1997 (rana viva levitando dentro del imán; campos "close to the calculated 16 T"); Geim 1998 ("free-floating frog, in the bore of a 20 T magnet"); Harvard Gazette 2024 |
+| La rana es más que nada agua, como tú; y al agua un imán la empuja un poquito | Simon y Geim 2000 ("Diamagnetic substances include water, protein…"; los seres vivos son sobre todo moléculas diamagnéticas); Harvard Gazette 2024 (el diamagnetismo que usa Geim está en el agua y las moléculas orgánicas); MIT Technology Review 2009 (lo que levanta a los ratones es el efecto sobre el agua); Geim 1998 (los tejidos vivos se comportan como el agua); USGS (el cuerpo de un adulto es hasta ~60 % agua). Es la explicación de las fuentes, no un porcentaje de la rana |
+| Con uno bien fuerte, ese empujón le gana a la gravedad | Berry y Geim 1997 (con campo y gradiente suficientes, la fuerza diamagnética iguala al peso); Geim 1998 |
+| Primero: un hueco donde quepas (hoy no existe uno así) | Geim 1998 ("existing technology can accommodate objects up to about 15 cm"); Simon y Geim 2000 ("Existing technology can handle objects up to 15 cm in diameter") |
+| El de la rana mide tres centímetros: ni tu mano cabe | Geim 1998 (Fig. 1: el objeto "is placed in the 3.2 cm bore of a 20 T Bitter magnet", el imán de Nijmegen donde flotó la rana); National MagLab (los imanes de campo continuo más fuertes de hoy, como el híbrido de 45 T, tienen un hueco de "32 mm"). Una mano adulta mide bastante más de 3 cm de ancho. Ojo: la Fig. 1 de Geim es la de la avellana; la rana flotó en "the bore of a 20 T magnet" del mismo laboratorio, el mismo imán Bitter de 20 T de la Fig. 1 (inferencia razonable que anotó la puerta 1); la voz dice "tres" y la conclusión (no cabe la mano) no cambia |
+| Después: bobinas y más bobinas, hasta cuarenta teslas o más | Geim 1998 (casi 40 T); Simon y Geim 2000 (unos 40 T); U. de Leicester (70,6 T con otros supuestos): "cuarenta o más" cubre las dos estimaciones. Los electroimanes de campo alto se hacen de bobinas (Geim 1998, Fig. 1: "20 000 A through the coils"). En pantalla, barras "RANA 16 T" contra "TÚ: 40 T O MÁS" (sugerencia 4 de la puerta 1) |
+| Más del doble de lo que necesitó la rana | Berry y Geim 1997 (la rana flotó con unos 16 T: 40/16 = 2,5); Simon y Geim 2000 ("frog levitated in stable zone of a 16 T magnet") |
+| Y al final, enchufarlo a un reactor nuclear entero… solo para ti ("≈ 1 GIGAVATIO" sólo en pantalla) | Geim 1998 ("about one GW of continuous power consumption"); Simon y Geim 2000 ("energy consumption of about GW"); Departamento de Energía de EE. UU. (un reactor típico produce ~1 gigavatio) |
+| Ahí sí… flotarías (en condicional, como SIMULACIÓN) | Geim 1998 y Simon y Geim 2000 (con ese imán, una persona levitaría). En pantalla va la píldora SIMULACIÓN todo el tiempo que se ve a Pete |
 
 **Matices (para no exagerar):**
-- **No se dice que se haya hecho flotar a una persona.** La parte del humano es hipotética ("¿Y si quisiéramos…?", "haría falta", "gastaría") y en pantalla lleva una píldora fija de SIMULACIÓN mientras dura.
-- "Miles de veces más débil": Harvard Gazette (Geim en 2024: 1.000–10.000 veces) y MIT Technology Review (~10.000 para 17 T) coinciden en miles. Geim en 1998 había comparado 10 T con ~100 imanes de refri (depende del imán de refri que se tome): no se pone un número exacto.
-- Teslas para un humano: Geim (1998) dice casi 40 T; el trabajo de estudiantes de Leicester calcula 70,6 T. La voz usa el número de Geim (la ficha) y el texto del post no promete precisión.
-- "Le gana a la gravedad" simplifica: no basta con un campo fuerte, el campo también tiene que cambiar rápido con la altura (el empujón depende de los dos). El dibujo del imán muestra las líneas apretándose bajo la rana.
-- **Escala real (Tomás, 00:25):** la rana del experimento cabía en el hueco del imán, de ~3 cm: en la animación la rana es chica (~3 cm) y flota dentro de un tubo transparente en la boca del imán, que es grande (el aparato pesa toneladas aunque el hueco sea angosto). Pete mide 1,79 m, el refri es de tamaño normal y las torres de la central nuclear (~150 m) están lejos en el horizonte.
-- "Ahí sí flotarías": es lo que se deduce de Geim (1998), que da esos números como lo que haría falta para hacer flotar a una persona. Siempre en condicional ("haría falta", "gastaría", "flotarías") y con la píldora SIMULACIÓN.
-- Seguridad: nada imitable. Nadie acerca imanes a personas ni a animales en la animación; los animales se ven bien y tranquilos.
-- El estudio (Geim y Berry, Nijmegen, 1997; Ig Nobel 2000 y Nobel de Física 2010 por el grafeno) no se cuenta en la voz (decisión de Tomás): va en la descripción, el primer comentario y el texto del post.
+- **No se dice que se haya hecho flotar a una persona.** Lo del humano es hipotético ("podrías", "habría que", "flotarías") y va con la píldora fija de SIMULACIÓN desde el cuadro 0, porque el gancho muestra a Pete flotando. La rana lleva la píldora REAL.
+- "Tu cuerpo repele los imanes": es verdad para cualquier imán, pero muy débil. Por eso la frase siguiente dice "con el imán correcto" y después "un poquito".
+- "Ni tu mano cabe": el hueco del imán de la rana es de 3,2 cm. La voz dice "tres centímetros" (no redondea hacia arriba).
+- Teslas para un humano: Geim (1998, 2000) dice casi 40 T y Leicester calcula 70,6 T; la voz dice "cuarenta teslas o más", que cubre las dos.
+- "Más del doble": vale contra los ~16 T con que flotó la rana (el imán llegaba a 20 T; la frase dice "lo que necesitó", no "el imán").
+- Seguridad: nada imitable. Nadie acerca imanes a personas ni a animales.
 
 ## Fuentes
-- Geim y Berry, European Journal of Physics (1997) — Of flying frogs and levitrons: https://obelix.physik.uni-bielefeld.de/~schnack/Herbstakademie/CD-2008/frog-ejp.pdf
+- Berry y Geim, European Journal of Physics (1997) — Of flying frogs and levitrons: https://obelix.physik.uni-bielefeld.de/~schnack/Herbstakademie/CD-2008/frog-ejp.pdf
 - Andre Geim, Physics Today (1998) — Everyone's magnetism: https://www.physics.umd.edu/grt/taj/411c/EveryonesMagnetism.pdf
+- Simon y Geim, Journal of Applied Physics (2000) — Diamagnetic levitation: flying frogs and floating magnets: https://w.mriquestions.com/uploads/3/4/5/7/34572113/simon_and_geim._diamagnetic_levitation._j_appl_phys.pdf
 - Harvard Gazette (2024) — How did you get that frog to float?: https://news.harvard.edu/gazette/story/2024/04/how-did-you-get-that-frog-to-float
-- U.S. Department of Energy — How much power does a nuclear reactor produce?: https://www.energy.gov/ne/articles/infographic-how-much-power-does-nuclear-reactor-produce
 - MIT Technology Review (2009) — Magnetically levitating mice: https://www.technologyreview.com/2009/09/11/93412/magnetically-levitating-mice/
+- USGS — The water in you: water and the human body: https://www.usgs.gov/special-topics/water-science-school/science/water-you-water-and-human-body
+- National MagLab — Meet the 45 tesla hybrid magnet: https://nationalmaglab.org/about-the-maglab/around-the-lab/meet-the-magnets/meet-the-45-tesla-hybrid-magnet/
+- U.S. Department of Energy — How much power does a nuclear reactor produce?: https://www.energy.gov/ne/articles/infographic-how-much-power-does-nuclear-reactor-produce
 - Journal of Physics Special Topics, U. de Leicester — cálculo de levitación diamagnética de un humano: https://journals.le.ac.uk/index.php/pst/article/view/2049
 
 ## Plan de Kling
-**0 clips.** Tomás rechazó el fotorrealismo de IA (22-oct 23:26): todo es render 3D con el mismo look, así la rana y el laboratorio son siempre los mismos.
+**0 clips.** Todo es render 3D con el look realista del episodio.

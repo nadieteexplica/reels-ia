@@ -1,0 +1,119 @@
+{
+ "etapa": "1-guion",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": 8.25,
+ "notas": {
+  "precision": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "El dato central cuadra: el abstract de Geim y Berry (EJP 1997) dice 'levitated in a field of about 16 T', y Physics Today 1998 y Harvard Gazette hablan de unos 10 T con la rana ilesa. '40 T' y 'one GW' están textuales en Geim 1998 ('almost 40 T and about one GW of continuous power consumption'), el DOE da ~1 GW por reactor y Harvard (1.000–10.000 veces) más MIT (10.000 veces) respaldan 'miles'. No hay nada falso. Lo flojo: 'casi cuarenta' choca con los 70,6 T de Leicester, y 'en gran parte agua' se atribuye a dos fuentes que no lo dicen.",
+   "de": "guion"
+  },
+  "gancho": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "'Esta rana está flotando... y nadie la sostiene' es una imagen imposible y real desde la palabra 1. 'La levanta un imán gigante' contradice la intuición al toque, porque una rana no tiene metal.",
+   "de": "guion"
+  },
+  "claridad": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Ninguna frase pasa de 14 palabras y sigue la estructura del manual (gancho, giro, agua → empujón → gravedad, refri, megaproyecto, cierre en loop). Le bajan la nota los 40,5 s, que pasan la meta de 40, dos frases que se pueden sacar, 'teslas' sin explicar, 'frutilla' regional y 5 pausas.",
+   "de": "guion"
+  },
+  "compartible": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "'Mira, una rana flotando' se entiende sin sonido. 'Para hacerte flotar a ti haría falta un reactor nuclear' tiene destinatario y es un dato para contar ('tú también eres un poquito antimagnético').",
+   "de": "guion"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Casi cuarenta teslas: más del doble que el de la rana.",
+   "que": "La tabla dice que se usa 'el piso de Geim', pero 'casi cuarenta' significa menos de 40. La segunda fuente del cálculo (Leicester) da 70,6 T, y el manual §2.4 pide la cifra más conservadora o un rango cuando las fuentes no coinciden. Hoy la voz se apoya en una sola fuente y la otra la contradice.",
+   "arreglo": "Decir 'Unas cuarenta teslas, o más: más del doble que el de la rana.' (+2 palabras). Así calza con Geim y con Leicester, y 'más del doble' sigue siendo cierto con 10 o 16 T.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Ese empujoncito lo recibe cada molécula. / Ahí sí flotarías.",
+   "que": "Con 118 palabras y ~40,5 s el guion pasa la meta de 25–40 s. Hay dos frases que se pueden sacar sin perder la idea: 'Ahí sí flotarías' repite lo que ya dicen 'haría falta' y 'gastaría', y 'cada molécula' se puede meter en la frase siguiente.",
+   "arreglo": "Sacar 'Ahí sí flotarías.' y fundir las otras dos en 'Y con un imán bien fuerte, ese empujoncito le gana a la gravedad.' Quedan ~109 palabras, unos 37,5 s.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Le pasa a una frutilla... y a ti.",
+   "que": "'Frutilla' se dice en el Cono Sur. En México, Colombia, Perú, Centroamérica y el Caribe, que son la mayor parte del público latino de YouTube, se dice 'fresa'. El manual pide español latino neutro.",
+   "arreglo": "Cambiarlo por 'fresa' en la voz y en los subtítulos.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Le pasa a una frutilla... y a ti. / Todo eso... para lo que esta rana hace tranquila.",
+   "que": "Hay 5 pausas '...' y el manual pide de 2 a 4 (aviso del chequeo automático).",
+   "arreglo": "Quitar la pausa de 'frutilla...' o la de 'Todo eso...'. La de 'gigavatio... un reactor' se queda, porque es la que prepara la revelación.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "¿Cómo? La rana es, en gran parte, agua.",
+   "que": "La tabla atribuye 'los seres vivos están hechos sobre todo de agua' a Geim y Berry 1997 y a Geim 1998, pero ninguno de los dos lo dice así. Geim 1998 dice 'Biological systems are astonishingly homogeneous with respect to diamagnetic levitation', y el EJP sólo da la susceptibilidad del agua. Como las fuentes van en el comentario y en la descripción, alguien que las abra no va a encontrar esa frase.",
+   "arreglo": "Corregir la tabla: atribuir el papel del agua a MIT Technology Review ('distorts the movement of electrons in water molecules') y a Leicester ('diamagnetic response of water molecules'), o sumar una fuente institucional sobre el % de agua del cuerpo de una rana.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Todo eso... para lo que esta rana hace tranquila.",
+   "que": "Según Geim 1998 la rana se desorientaba por la falta de peso, así que 'tranquila' es una licencia. Además el cierre puede leerse como que la rana flota sola, cuando también necesitó un imán gigante.",
+   "arreglo": "Decir 'Todo eso... para hacer lo que esta rana ya hizo.' Es cierto, mantiene el loop con el inicio y no suma palabras.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Casi cuarenta teslas: más del doble que el de la rana.",
+   "que": "'Teslas' es una palabra técnica que no se explica al decirla. La comparación con la rana ayuda, pero un niño de 12 años no sabe qué mide.",
+   "arreglo": "Poner en pantalla una píldora que diga 'tesla = fuerza de un imán' cuando la voz diga la cifra (0 palabras extra).",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Porque ese imán es miles de veces más débil.",
+   "que": "'Miles' tiene respaldo de dos fuentes (Harvard 2024, con el propio Geim diciendo 1.000–10.000 veces, y MIT 2009 con 10.000 veces). Pero Geim 1998 dice 'only 100 times or so' para 10 T, y la ficha de IDEAS pedía resolver ese choque o decir 'cientos'. No es falso, pero la tabla no explica por qué gana 'miles'.",
+   "arreglo": "Anotar en la tabla que la cifra de 2024 actualiza la de 1998 del mismo autor y agregar un valor de referencia de un imán de refri típico (~5 mT, de una institución), que da ~2.000–3.200 veces para 10–16 T.",
+   "de": "guion"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "5 pausas '...' (el manual pide 2–4)",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "parar_y_preguntar": false
+}

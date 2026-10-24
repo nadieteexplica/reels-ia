@@ -2,21 +2,23 @@
  "fallas": [],
  "avisos": [
   {
-   "que": "5 pausas '...' (el manual pide 2–4)",
+   "que": "sin extractos de fuentes (workflow fuentes.yml): el revisor tendrá que buscar en la web",
    "evidencia": ""
   }
  ],
  "datos": {
-  "palabras": 118,
-  "duracion_estimada_s": 40.5,
-  "pausas": 5,
+  "palabras": 104,
+  "duracion_estimada_s": 35.7,
+  "pausas": 3,
   "fuentes": [
    "energy.gov",
    "journals.le.ac.uk",
+   "nationalmaglab.org",
    "news.harvard.edu",
    "obelix.physik.uni-bielefeld.de",
    "physics.umd.edu",
-   "technologyreview.com"
+   "technologyreview.com",
+   "w.mriquestions.com"
   ],
   "afirmaciones_verificadas": 11
  }

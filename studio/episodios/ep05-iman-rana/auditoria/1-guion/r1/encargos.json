@@ -4,8 +4,7 @@
   "prompt": "tools/auditor/prompts/1-guion.md",
   "alcance": "guion completo",
   "materiales": [
-   "studio/episodios/ep05-iman-rana/guion.md",
-   "studio/episodios/ep05-iman-rana/auditoria/1-guion/r1/materiales/fuentes.md"
+   "studio/episodios/ep05-iman-rana/guion.md"
   ],
   "contexto": [
    "docs/AUDITOR.md",

@@ -105,3 +105,8 @@
 {"tipo": "aviso", "que": "OK de Tomás (23-oct 18:19, 'si te doy el ok… dale nomás') para los 3 posts del Ep. 5: sábado 24-oct IG 10:00 · TikTok 18:00 · YouTube 20:30. release.yml → Release ep05 (run 40025936549)", "n": 105, "ts": "2026-10-23T18:19:47-03:00"}
 {"tipo": "aviso", "que": "programado en Metricool con OK de Tomás: IG 404575035 (sáb 24 10:00), TikTok 404575043 (18:00), YouTube 404575057 (20:30); MP4 del Release ep05 (URL responde 206)", "n": 106, "ts": "2026-10-23T18:21:44-03:00"}
 {"tipo": "trabajo", "id": "sesion ep05 manana", "estado": "fin", "n": 107, "ts": "2026-10-23T18:21:44-03:00"}
+{"tipo": "aviso", "que": "Tomás (21:20–21:38) pidió rehacer el Ep. 5: la idea se entiende tarde (s. 25), sin refri, más énfasis en la construcción del imán; aprobó el guion v3 y que el video programado se cambie por el nuevo. IG movido de 10:00 a 18:00 (Metricool 404682534) para que no salga el viejo", "n": 108, "ts": "2026-10-23T21:42:47-03:00"}
+{"tipo": "promesa", "hora": "02:30", "que": "Ep. 5 v3 listo y cambiado en los 3 posts", "dato": "v2: final 60 min con 16 máquinas, puertas ~45 min; v3 tiene ~1080 cuadros (v2 1257) y sin E3", "n": 109, "ts": "2026-10-23T21:42:47-03:00"}
+{"tipo": "trabajo", "id": "sesion ep05 v3", "estado": "inicio", "n": 110, "ts": "2026-10-23T21:42:47-03:00"}
+{"tipo": "trabajo", "id": "auditor 1-guion v3 r1", "estado": "inicio", "n": 111, "ts": "2026-10-23T21:43:08-03:00"}
+{"tipo": "trabajo", "id": "auditor 1-guion v3 r1", "estado": "fin", "n": 112, "ts": "2026-10-23T21:47:58-03:00"}
