@@ -157,7 +157,7 @@ def mat_paneles(nombre="paneles"):
     cost = _m(nt, "FRACT", _m(nt, "DIVIDE", u.outputs[0], vb=0.6))
     jun = _m(nt, "FRACT", _m(nt, "DIVIDE", sep.outputs[2], vb=1.75))
     rel = _m(nt, "ADD", _m(nt, "MULTIPLY", _m(nt, "LESS_THAN", cost, vb=0.12), vb=1.0), _m(nt, "LESS_THAN", jun, vb=0.03))
-    mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (0.08, 0.08, 0.008)
+    mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (0.12, 0.12, 0.04)
     nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
     ch = nt.nodes.new("ShaderNodeTexNoise"); ch.inputs["Scale"].default_value = 6.0; ch.inputs["Detail"].default_value = 12
     nt.links.new(mp.outputs[0], ch.inputs["Vector"])
@@ -318,8 +318,9 @@ def mat_techo(nombre="techo_ciudad", color=(0.34, 0.33, 0.31)):
     nt.links.new(c.outputs[0], mx.inputs[6])
     nt.links.new(E._rampa(nt, f.outputs["Fac"], (0.82, 0.82, 0.82), (1.05, 1.04, 1.02)).outputs[0], mx.inputs[7])
     nt.links.new(mx.outputs[2], b.inputs["Base Color"])
-    b.inputs["Roughness"].default_value = 0.92
-    E._bump(nt, b, E._ruido(nt, escala=40, detalle=3).outputs["Fac"], 0.15, 0.004)
+    b.inputs["Roughness"].default_value = 0.95
+    b.inputs["Specular IOR Level"].default_value = 0.15
+    E._bump(nt, b, E._ruido(nt, escala=40, detalle=3).outputs["Fac"], 0.3, 0.006)
     return neblina(m, 1100.0)
 
 
@@ -327,7 +328,7 @@ def mat_equipo(nombre="equipos"):
     """Equipos de techo (aire acondicionado, estanques): chapa pintada gris con óxido fino, no un granito gigante."""
     m, nt, b = E._nodos(nombre)
     g = E._ruido(nt, escala=6.0, detalle=6)
-    nt.links.new(E._rampa(nt, g.outputs["Fac"], (0.36, 0.36, 0.35), (0.55, 0.55, 0.53)).outputs[0], b.inputs["Base Color"])
+    nt.links.new(E._rampa(nt, g.outputs["Fac"], (0.44, 0.44, 0.43), (0.52, 0.52, 0.5)).outputs[0], b.inputs["Base Color"])
     nt.links.new(E._mapa(nt, g.outputs["Fac"], 0.35, 0.6).outputs[0], b.inputs["Roughness"])
     b.inputs["Metallic"].default_value = 0.5
     E._bump(nt, b, E._ruido(nt, escala=60, detalle=2, estirar=(1, 1, 8)).outputs["Fac"], 0.2, 0.003)
@@ -450,13 +451,13 @@ def torre(sc, corte=False):
     # sombrero: empty que baja; adentro el último piso (con su fachada), el techo, el parapeto y los equipos
     sb = bpy.data.objects.new("Sombrero", None); sc.collection.objects.link(sb)
     cap = prisma("SombreroPiso", planta_dentada(), H, (0, 0, 2 * H), blanco); cap.parent = sb
-    conc = E.mat_pintura("techo_h", (0.46, 0.43, 0.39), rugo=(0.8, 0.96), sucio=0.4, capa=0.0)   # membrana mate (el concreto pulido reflejaba el cielo)
+    conc = mat_techo("techo_h", (0.5, 0.47, 0.43))                                                   # membrana mate con manchas (se leía agua)
     techo = caja("Techo", (LX + 0.6, LY + 0.6, 0.45), (0, 0, 3 * H), conc); techo.parent = sb
     par = mat_simple("parapeto", (0.7, 0.69, 0.66), rugo=0.7, neb=True, k=3200.0)
     for nom, tam, pos in (("ParN", (LX + 0.6, 0.3, 1.1), (0, LY / 2 + 0.15, 3 * H + 0.45)), ("ParS", (LX + 0.6, 0.3, 1.1), (0, -LY / 2 - 0.15, 3 * H + 0.45)),
                           ("ParE", (0.3, LY + 0.6, 1.1), (LX / 2 + 0.15, 0, 3 * H + 0.45)), ("ParO", (0.3, LY + 0.6, 1.1), (-LX / 2 - 0.15, 0, 3 * H + 0.45))):
         o = caja(nom, tam, pos, par); o.parent = sb
-    eq = mat_simple("eq_techo", (0.5, 0.51, 0.5), rugo=0.45, metal=0.5, k=3200.0)
+    eq = mat_equipo("eq_techo")
     random.seed(5)
     for k, (x, y, w, d, h) in enumerate(((-12, 3, 9, 6, 3.2), (-3, 6, 6, 5, 2.6), (-6, -5, 5, 4, 2.0), (-20, -5, 4, 4, 4.5), (-23, 6.5, 3, 3, 1.8))):
         o = caja(f"EqT{k}", (w, d, h), (x, y, 3 * H + 0.45), eq); o.parent = sb
@@ -494,7 +495,7 @@ def interior(sc, sb):
     ob = bpy.data.objects.new("Obra", None); sc.collection.objects.link(ob)
     hor = E.mat_hormigon("losa", (0.42, 0.41, 0.39))
     col = E.mat_hormigon("columna", (0.5, 0.49, 0.47))
-    acero = E.mat_acero_industrial("acero_temp", (0.24, 0.12, 0.07), sucio=0.5)            # vigas con anticorrosivo rojizo
+    acero = mat_pintura_fina("acero_temp", (0.4, 0.15, 0.08), rugo=(0.45, 0.7), metal=0.2)      # vigas con anticorrosivo rojizo (sin veta)
     amarillo = mat_pintura_fina("gata", (0.82, 0.58, 0.05))
     cromo = E.mat_metal_cepillado("piston", (0.62, 0.62, 0.63), rugo=(0.25, 0.4))
     out = {"obra": ob, "piezas": [], "cols_a": [], "cols_b": [], "gatas": [], "pistones": [], "temp": [], "lamparas": [], "luces": []}
@@ -518,7 +519,7 @@ def interior(sc, sb):
     for k in range(70):
         x, y = random.uniform(-24, 24), random.choice([-1, 1]) * random.uniform(3.0, 7.6)
         r = random.uniform(0.08, 0.35)
-        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=r, location=(x, y, r * 0.4))
+        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=r, location=(x, y, r * 0.4))
         o = bpy.context.object; o.name = f"Escombro{k}"
         o.scale = (random.uniform(0.7, 1.6), random.uniform(0.7, 1.4), random.uniform(0.35, 0.8))
         o.rotation_euler = (random.uniform(0, 3), random.uniform(0, 3), random.uniform(0, 3))
@@ -542,7 +543,7 @@ def interior(sc, sb):
             o = caja(f"ColA{x}{y}", (0.8, 0.8, H - e), (x, y, H), col); o.parent = ob; out["cols_a"].append(o)
     for x in (-24.0, -16.0, -8.0, 8.0, 16.0, 24.0):
         for y in (-7.3, 7.3):
-            g = cilindro(f"Gata{x}{y}", 0.45, GATA, (x, y, 0.0), amarillo, verts=32); g.parent = ob
+            g = cilindro(f"Gata{x}{y}", 0.62, GATA, (x, y, 0.0), amarillo, verts=32); g.parent = ob
             p = cilindro(f"Piston{x}{y}", 0.25, 1.0, (x, y, GATA), cromo, verts=24); p.parent = ob
             t = caja(f"Temp{x}{y}", (0.62, 0.62, TEMP), (x, y, GATA + P0), acero); t.parent = sb
             out["gatas"].append(g); out["pistones"].append(p); out["temp"].append(t)

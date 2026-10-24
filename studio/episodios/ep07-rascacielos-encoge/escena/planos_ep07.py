@@ -376,7 +376,11 @@ def corte_abierto(S, x, borde=None):
     El borde naranja sólo se enciende mientras se abre (puerta 4 r1: las líneas fijas se leían como láseres)."""
     TR.set_alfa(S["pm_s"], 1.0 - 0.94 * x)
     TR.set_alfa(S["pm_o"], 1.0 - 0.97 * x)
-    TR.brillo(S["corte"]["borde"], (3.0 * x * (1 - x) * 4) if borde is None else borde)
+    v = (3.0 * x * (1 - x) * 4) if borde is None else borde
+    TR.brillo(S["corte"]["borde"], v)
+    for o in S["sombrero"].children:
+        if o.name.startswith("Borde"):
+            o.hide_render = v < 0.02          # apagado se veía como una línea negra cruzando el cuadro
 
 
 def gatos_brillan(S, x):
@@ -439,8 +443,8 @@ def p5(sc, a, b):
         corte_abierto(S, suave((t - t_pr) / 0.8))
         bv.inputs["Emission Strength"].default_value = 1.2 * suave((t - t_so) / 0.4) * (1 - 0.6 * suave((t - t_ga) / 0.5))
         gatos_brillan(S, suave((t - t_ga) / 0.35))
-        pos = Vector((-18, -58, Z0 + 5.0)).lerp(Vector((-12, -27, Z0 + 3.9)), x)
-        mirar(S["cam"], pos, Vector((-8, 0, Z0 + 2.6)), lente=28)
+        pos = Vector((-20, -64, Z0 + 5.5)).lerp(Vector((-15, -44, Z0 + 4.6)), x)     # afuera: se ve el techo, el corte y la fachada
+        mirar(S["cam"], pos, Vector((-5, 0, Z0 + 3.2)), lente=32)
         p = g0.matrix_world.translation + Vector((0, 0, 2.6))
         return {"gata": pantalla(sc, S["cam"], p)}
     return {"actualizar": act}
@@ -482,7 +486,6 @@ def p6(sc, a, b):
     def act(f):
         t = tf(f)
         x = suave(lin(f, a, b - 1))
-        TR.brillo(c["borde"], 0.0)
         pose_pete(sc, P, f, cabeza=(-6, 10), actua=("Pointing", F(t_ds) - 12, 0) if P["gestos"].get("Pointing") else None)
         for k, o in enumerate(c["cols_a"]):
             cut = suave((t - (t_es + 0.25 + 0.08 * k)) / 0.3)
@@ -494,7 +497,7 @@ def p6(sc, a, b):
             gancho(S, act_o.location.z + 1.0, act_o.location.x, act_o.location.y, con_bulto=False)
         else:
             gancho(S, 2 * H - 4.0, con_bulto=False)
-        mirar(S["cam"], Vector((-7, -25, Z0 + 4.0)).lerp(Vector((-4.5, -21, Z0 + 3.9)), x), Vector((0, 1, Z0 + 2.6)), lente=26)
+        mirar(S["cam"], Vector((-12, -40, Z0 + 5.0)).lerp(Vector((-10, -35, Z0 + 4.8)), x), Vector((-2, 1, Z0 + 3.0)), lente=30)
         return {}
     return {"actualizar": act}
 
@@ -543,7 +546,7 @@ def p9(sc, a, b):
         TR.brillo(c["aro"].data.materials[0], 9.0 * g * (0.8 + 0.2 * math.sin(t * 22)))
         TR.brillo(c["elec"], 5.0 * suave((t - t_ge - 0.3) / 0.5))
         mira = Vector((-1.0, 0, Z0 + 3.6)).lerp(Vector((-0.4, 0, Z0 + 1.2)), suave((t - t_gr) / 1.2) * (1 - 0.5 * g))
-        mirar(S["cam"], Vector((-4.5, -26.0, Z0 + 4.4)).lerp(Vector((-3.5, -16.5, Z0 + 4.3)), x), mira, lente=28, foco=Vector((-1.5, 0, Z0 + 3.6)))
+        mirar(S["cam"], Vector((-7.0, -32.0, Z0 + 4.6)).lerp(Vector((-6.0, -27.0, Z0 + 4.4)), x), mira, lente=32, foco=Vector((-1.5, 0, Z0 + 3.6)))
         return {}
     return {"actualizar": act}
 
@@ -569,7 +572,7 @@ def p10(sc, a, b):
             lt.energy = 3600.0 * on
         c["relleno"].energy = 900.0
         c["fondo"].energy = 150.0
-        mirar(S["cam"], Vector((-3, -27, Z0 + 2.6)).lerp(Vector((0, -24, Z0 + 2.8)), x), Vector((1, 3, Z0 + 4.4)), lente=28)
+        mirar(S["cam"], Vector((-6, -40, Z0 + 3.6)).lerp(Vector((-3, -36, Z0 + 3.7)), x), Vector((0, 3, Z0 + 4.0)), lente=30)
         return {}
     return {"actualizar": act}
 

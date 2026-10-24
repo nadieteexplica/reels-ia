@@ -25,3 +25,7 @@
 {"tipo": "trabajo", "id": "render-planos final 40107402027", "estado": "inicio", "n": 25, "ts": "2026-10-24T12:32:07-03:00"}
 {"tipo": "chequeo", "id": "render-planos estilos3 40107373985", "estado": "vivo (vigilante) · in_progress/- · 4/5 trabajos", "n": 26, "ts": "2026-10-24T12:47:08-03:00"}
 {"tipo": "chequeo", "id": "render-planos final 40107402027", "estado": "vivo (vigilante) · in_progress/- · 1/13 trabajos", "n": 27, "ts": "2026-10-24T12:47:08-03:00"}
+{"tipo": "chequeo", "id": "render-planos estilos3 40107373985", "estado": "vivo (vigilante) · completed/success · 6/6 trabajos", "n": 28, "ts": "2026-10-24T13:02:09-03:00"}
+{"tipo": "chequeo", "id": "render-planos final 40107402027", "estado": "vivo (vigilante) · in_progress/- · 1/13 trabajos", "n": 29, "ts": "2026-10-24T13:02:09-03:00"}
+{"tipo": "aviso", "que": "Puerta 4 r2 NO (realismo 7, B12 en el interior). Tomás (13:2x) eligió simplificar y terminar hoy: el interior pasa a corte visto desde afuera", "n": 30, "ts": "2026-10-24T13:05:10-03:00"}
+{"tipo": "trabajo", "id": "render-planos final 40107402027", "estado": "caido", "n": 31, "ts": "2026-10-24T13:05:19-03:00"}

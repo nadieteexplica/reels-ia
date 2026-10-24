@@ -359,7 +359,7 @@ def contador(im, f, k):
     pildora(im, f"QUEDAN {n} PISOS", 760, 330, fondo=(250, 250, 248), tinta=(24, 24, 28), tam=46)
     fx, fy = meta(k, f, "fant", (540, 300))
     if 380 < fy < 900:
-        pildora(im, "ANTES: 40 PISOS", max(220, min(860, fx)), max(430, fy - 70), fondo=(30, 32, 36), tinta=(255, 255, 255), tam=38)
+        pildora(im, "ANTES: 40 PISOS", max(260, min(860, fx + 340)), max(440, fy + 60), fondo=(30, 32, 36), tinta=(255, 255, 255), tam=38)
 
 
 def graficos(im, f, k):
@@ -370,7 +370,7 @@ def graficos(im, f, k):
         contador(im, f, k)
     P = [(540, 560), (540, 640)]
     if k == 3:
-        pild(im, f, 3, "sinex", "SIN EXPLOSIONES", tw("Sin", 3.5), P)
+        pild(im, f, 3, "sinex", "SIN EXPLOSIONES", tw("Sin", 3.5), [(740, 330), (740, 420)])
     elif k == 4:
         pild(im, f, 4, "techo", "EL TECHO QUEDA ENTERO", tw("techo", 7.0), P, fondo=NARANJO, tinta=(255, 255, 255))
     elif k == 5:

@@ -1,0 +1,551 @@
+{
+ "etapa": "4-cuadros",
+ "ronda": 2,
+ "estilo": "realista",
+ "veredicto": "NO APROBADO",
+ "promedio": 7.5,
+ "notas": {
+  "belleza": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "A, B y D ya tienen sol bajo de costado, bruma, nubes y negros reales (negros_p5 33/25/13); C baja el conjunto: caja amarilla, cilindro celeste y bola cromada sobre un estante, rocas low-poly y paneles crema planos con huecos negro puro (y≈0–300 y 1450–1920 en 1920)",
+   "de": "cuadros"
+  },
+  "personaje": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Pete en B calza con la ficha (casco blanco, barba oscura ahora con mechones, chaleco naranja con cintas, camisa oscura, pantalón embarrado), cara bien encuadrada en y≈570–780; sólo la píldora 'SIN EXPLOSIONES' queda pegada al casco (y≈565)",
+   "de": "cuadros"
+  },
+  "manos": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "B: las dos manos abiertas en gesto de duda, cinco dedos legibles en cada una, sin agarre ni deformación, y la sombra de la mano sobre el chaleco es coherente; algo lisas, tipo goma",
+   "de": "cuadros"
+  },
+  "anatomia": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "realismo": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "A y D se leen 3D realista (sol rasante, bruma, nubes, fachada con módulos en relieve) pero delatan el juguete los sombreros con veta de madera lisa, las fachadas impecables, los cubos de granito y las ventanas planas del primer plano de A; B pasa salvo el piso de ruido estirado; C es un 6 (primitivas en un estante, rocas low-poly, viga que parece tablón, sin nadie). Para llegar a 8: rehacer C con grúa/polipasto real, obreros y escombro de hormigón real, y poner juntas y chorreados en sombreros y fachadas",
+   "de": "cuadros"
+  }
+ },
+ "problemas": [
+  {
+   "id": "A1",
+   "bloqueante": true,
+   "tipo": "B12",
+   "plano": 6,
+   "segundo": null,
+   "que": "[A1 sin arreglar] Sin sonido no se entiende qué es: un interior oscuro con una caja amarilla y una celeste sobre una rueda negra puestas en una viga blanca (la 'grúa', x≈310–705, y≈690–885 en 1920), un cilindro amarillo chico (el 'gato', y≈980–1110), cajitas cafés y paneles en zigzag arriba y abajo cruzados por dos barras naranjas brillantes. No se lee que es el sombrero de una torre por dentro ni que alguien desarma un piso (la voz dice 'DESARMAN EL PISO' y no hay nadie ni nada desarmándose)",
+   "arreglo": "Rehacer el cuadro como corte legible: cámara más atrás que muestre el borde de la torre y el sombrero con el frente abierto (el exterior de la torre visible a un lado para dar contexto); grúa de verdad reconocible (pluma con cable y gancho levantando una losa), gatos hidráulicos como columnas de pistón bajo el techo, 1–2 obreros con casco y chaleco, la losa a medio cortar; iluminar el interior con focos de faena; si las barras naranjas son la línea de corte, que sea una sola, con píldora que lo diga",
+   "de": "verificación",
+   "asignado": "cuadros"
+  }
+ ],
+ "sugerencias": [
+  {
+   "id": "A2",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": null,
+   "que": "[A2 sin arreglar] La ciudad delata la maqueta: todas las torres usan la misma grilla de ventanas con ventanas blancas al azar (look de videojuego), los techos del primer plano de A son planos lisos con cubos de ruido gris y ventanas negras planas, y la avenida de D es asfalto liso sin un solo objeto (sin autos, postes, semáforos, soleras ni tapas)",
+   "arreglo": "En fachadas: vidrio con reflejo del cielo y del sol, montantes con relieve, chorreados bajo los antepechos y menos ventanas encendidas (de día casi ninguna). En techos de A: membrana o gravilla con juntas, manchas, equipos de clima y estanques de agua en vez de cubos. En D: asfalto con parches, grietas y desgaste en las líneas, 2–3 autos estacionados, postes de luz y semáforo a los lados (assets CC0)",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "A4",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": null,
+   "que": "[A4 sin arreglar] El gancho depende del fantasma de altura y en el cuadro 0 es una caja de alambre bajita (≈5 pisos, y≈360–495 en 1920) de línea delgada: no se lee de inmediato que la torre era más alta y se está encogiendo. La píldora 'QUEDAN 34 PISOS' toca la esquina de atrás del alambre",
+   "arreglo": "Que el fantasma muestre toda la altura que la torre tenía, como volumen translúcido (relleno blanco al 15–20 %) con una flecha hacia abajo sobre el sombrero; subir o correr la píldora para que no toque el alambre; contar que los pisos visibles bajo el sombrero coincidan con '34' (en el cuadro se cuentan ≈29–30 bandas)",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "A3",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 3,
+   "segundo": null,
+   "que": "[A3 sin arreglar] El techo donde está Pete (y > 1185 en 1920) es azul oscuro con un ruido ondulado horizontal: se lee como agua, Pete parece parado en un lago. Además Pete y su mitad baja están casi negros (negros_p5 = 0)",
+   "arreglo": "Al pasarlo a la parte con sol (ya anunciado), cambiar también el material del piso a membrana asfáltica gris clara o gravilla con juntas, una canaleta o un desagüe; verificar en el recorte abajo que se lea como techo",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "A6",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 3,
+   "segundo": null,
+   "que": "[A6 sin arreglar] La barba de Pete es una masa negra plana con borde dentado de recorte y la píldora 'SIN EXPLOSIONES' queda pegada al casco (borde de la píldora y≈562, casco y≈570)",
+   "arreglo": "Con el sol de costado la barba gana volumen; si sigue plana, aclararla a café oscuro y suavizar el borde; subir la píldora 40–60 px para dejar aire sobre el casco",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D2",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "A",
+   "segundo": null,
+   "que": "[D2 sin arreglar] [delator · medio] aristas y esquinas perfectas en todas las torres, sin cornisas, antenas ni equipos en los techos",
+   "arreglo": "bisel en esquinas, remates, antenas y equipos en los techos de las torres del fondo",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D3",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "A",
+   "segundo": null,
+   "que": "[D3 sin arreglar] [delator · abajo] techos del primer plano lisos de un solo color, sin juntas, manchas, desagües ni parapetos",
+   "arreglo": "membrana o gravilla con juntas, chorreados y un parapeto con remate",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D4",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "A",
+   "segundo": null,
+   "que": "[D4 sin arreglar] [delator · abajo] los equipos del techo son cubos con un ruido gris de escala gigante (textura tipo granito estirada)",
+   "arreglo": "reemplazar por equipos de clima, ductos o estanques (assets CC0) con textura a escala real",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D5",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "A",
+   "segundo": null,
+   "que": "[D5 sin arreglar] [delator · abajo] ventanas de los edificios del primer plano son huecos negros planos sin reflejo ni interior",
+   "arreglo": "vidrio con reflejo del cielo y algo de interior o cortinas",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D7",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "A",
+   "segundo": null,
+   "que": "[D7 sin arreglar] [delator · arriba] sombrero de la torre: banda beige lisa sin juntas ni manchas",
+   "arreglo": "paneles con juntas, chorreados y algo de óxido o polvo de faena",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D9",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "B",
+   "segundo": null,
+   "que": "[D9 sin arreglar] [delator · abajo] piso del techo azul oscuro con ruido ondulado: se lee como agua",
+   "arreglo": "membrana asfáltica gris clara o gravilla con juntas y un desagüe",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D11",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "B",
+   "segundo": null,
+   "que": "[D11 sin arreglar] [delator · medio] parapeto de la derecha liso, sin remate ni manchas",
+   "arreglo": "remate metálico o de hormigón con chorreados",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D14",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "C",
+   "segundo": null,
+   "que": "[D14 sin arreglar] [delator · medio] la 'grúa' son dos cajas (amarilla y celeste) y un disco negro: geometría primitiva de maqueta",
+   "arreglo": "modelo real de grúa o polipasto con pluma, cable y gancho",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D16",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "C",
+   "segundo": null,
+   "que": "[D16 sin arreglar] [delator · medio] la grúa está apoyada en una viga blanca delgada como en un estante; las cajas cafés del piso no tienen sombra de contacto",
+   "arreglo": "apoyar la grúa en la losa con su base y dar oclusión a todo lo que toca el piso",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D21",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "C",
+   "segundo": null,
+   "que": "[D21 sin arreglar] [delator · abajo] paneles en zigzag beige lisos con aristas perfectas y ventanas negras planas detrás",
+   "arreglo": "paneles con juntas y manchas, vidrio con reflejo",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D22",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "C",
+   "segundo": null,
+   "que": "[D22 sin arreglar] [delator · medio] sin personas ni nada de tamaño conocido: no se lee la escala del interior",
+   "arreglo": "poner 1–2 obreros como referencia de escala",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D28",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "D",
+   "segundo": null,
+   "que": "[D28 sin arreglar] [delator · arriba] sombrero de la torre: banda gris casi lisa con borde perfecto",
+   "arreglo": "paneles con juntas, chorreados y polvo de faena",
+   "de": "verificación",
+   "asignado": "cuadros"
+  }
+ ],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": false,
+   "por_que": "C sigue sin leerse sin sonido: la 'grúa de puente' es una caja amarilla, un cilindro celeste y una bola cromada sobre un estante blanco (y≈710–860), el 'gato' una varilla con un cilindro amarillo chico (y≈980–1100), no hay obreros, ni gancho levantando una losa, ni borde exterior que diga 'arriba de la torre'; sólo se lee un piso con escombros mientras dice 'DESARMAN EL PISO'. Sigue B12. Es la 2.ª falla del plano: simplificarlo (corte exterior de la torre con el sombrero abierto y una losa colgando de un gancho) en vez de seguir detallando el interior",
+   "de": "cuadros"
+  },
+  {
+   "id": "A2",
+   "arreglado": false,
+   "por_que": "Parcial: sin ventanas prendidas, con bruma y parapetos; pero en A abajo los equipos siguen siendo cubos con ruido de granito (x≈670–885, y≈1385–1475) y las ventanas del primer plano siguen como rectángulos café oscuro planos sin reflejo. La avenida de D ya no existe",
+   "de": "cuadros"
+  },
+  {
+   "id": "A3",
+   "arreglado": false,
+   "por_que": "Ya no es azul oscuro y Pete tiene luz (negros_p5 25), pero el piso de B (y > 1150) sigue con ruido ondulado horizontal estirado, sin juntas ni desagüe: en el recorte abajo se lee como agua quieta o arena mojada",
+   "de": "cuadros"
+  },
+  {
+   "id": "A4",
+   "arreglado": false,
+   "por_que": "Casi: el fantasma ahora mide ≈6 pisos (y≈400–535), cuadra con 40−34 y lo rotula 'ANTES: 40 PISOS'; pero sigue siendo sólo líneas finas sin relleno ni flecha, y esa píldora (y≈402–458) tapa el borde de arriba del alambre. Falta subirla sobre la caja (y < 390) y darle relleno al 15–20 %",
+   "de": "cuadros"
+  },
+  {
+   "id": "A5",
+   "arreglado": true,
+   "por_que": "D ya no muestra a Pete ni el suelo (es un contrapicado de la torre); no queda nada flotando",
+   "de": "cuadros"
+  },
+  {
+   "id": "A6",
+   "arreglado": false,
+   "por_que": "La barba ya tiene mechones y volumen con el sol de costado; pero la píldora 'SIN EXPLOSIONES' sigue pegada al casco (borde inferior y≈565, casco y≈568), sin aire",
+   "de": "cuadros"
+  },
+  {
+   "id": "D1",
+   "arreglado": true,
+   "por_que": "Con bruma y sin ventanas prendidas, las torres del fondo de A se leen lejanas y con 2–3 tipos de fachada; ya no es look de videojuego",
+   "de": "cuadros"
+  },
+  {
+   "id": "D2",
+   "arreglado": false,
+   "por_que": "Las torres del fondo siguen siendo cajas de aristas vivas sin remates ni equipos (A medio, x≈180–270); la bruma lo disimula",
+   "de": "cuadros"
+  },
+  {
+   "id": "D3",
+   "arreglado": false,
+   "por_que": "Ahora hay parapeto con remate, pero la superficie del techo sigue lisa de un tono, sin juntas, manchas ni desagües (A abajo, y≈1430–1550)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D4",
+   "arreglado": false,
+   "por_que": "Los equipos siguen siendo cubos con el mismo ruido de granito a escala gigante (A abajo, x≈670–885 y x≈280–360)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D5",
+   "arreglado": false,
+   "por_que": "Las ventanas del edificio del primer plano siguen como rectángulos café oscuro planos, sin reflejo ni interior (A abajo, y≈1530–1920)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D6",
+   "arreglado": true,
+   "por_que": "Ya no hay rectángulo de sombra en la cara del sombrero",
+   "de": "cuadros"
+  },
+  {
+   "id": "D7",
+   "arreglado": false,
+   "por_que": "El sombrero sigue sin juntas ni manchas y ahora tiene una veta de madera clara que lo hace ver de terciado (A arriba, y≈535–610)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D8",
+   "arreglado": true,
+   "por_que": "Cielo de atardecer con nubes rosadas",
+   "de": "cuadros"
+  },
+  {
+   "id": "D9",
+   "arreglado": false,
+   "por_que": "El piso de B sigue con ruido ondulado horizontal estirado: se lee como agua o arena mojada (recorte abajo)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D10",
+   "arreglado": true,
+   "por_que": "El bloque detrás de Pete se sacó; ahora se ve el skyline en bruma",
+   "de": "cuadros"
+  },
+  {
+   "id": "D11",
+   "arreglado": false,
+   "por_que": "El parapeto de B sigue liso, sin remate ni chorreados (derecha, y≈900–1160)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D12",
+   "arreglado": true,
+   "por_que": "Pete tiene sol de costado, se ven la tela y el barro del pantalón; negros_p5 25",
+   "de": "cuadros"
+  },
+  {
+   "id": "D13",
+   "arreglado": true,
+   "por_que": "La barba tiene mechones y volumen; ya no es una mancha plana con borde dentado",
+   "de": "cuadros"
+  },
+  {
+   "id": "D14",
+   "arreglado": false,
+   "por_que": "La grúa sigue siendo geometría primitiva: caja amarilla, cilindro celeste, bola cromada y cápsula oscura, sin pluma, cable ni gancho (C medio)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D15",
+   "arreglado": true,
+   "por_que": "El amarillo ya no es camuflaje: grano fino a escala (la caja se ve algo de esponja)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D16",
+   "arreglado": false,
+   "por_que": "Los objetos del piso ya tienen sombra, pero la grúa sigue apoyada en una viga blanca delgada como en un estante (y≈830–860)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D17",
+   "arreglado": true,
+   "por_que": "El piso ahora tiene escombros, fierros y bloques con luz rasante (las rocas son low-poly: nuevo delator)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D18",
+   "arreglado": true,
+   "por_que": "Sol rasante entrando por el corte, con sombras largas y dirección clara",
+   "de": "cuadros"
+  },
+  {
+   "id": "D19",
+   "arreglado": true,
+   "por_que": "Ya no hay brillo naranja suelto en el borde derecho",
+   "de": "cuadros"
+  },
+  {
+   "id": "D20",
+   "arreglado": true,
+   "por_que": "Se sacaron las barras naranjas; queda una barra oscura abajo (nuevo delator)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D21",
+   "arreglado": false,
+   "por_que": "Los paneles en zigzag siguen crema lisos, con aristas perfectas y huecos negro puro (C arriba, y≈0–300)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D22",
+   "arreglado": false,
+   "por_que": "Sigue sin personas ni nada de tamaño conocido en C",
+   "de": "cuadros"
+  },
+  {
+   "id": "D23",
+   "arreglado": true,
+   "por_que": "Ya no hay avenida en D",
+   "de": "cuadros"
+  },
+  {
+   "id": "D24",
+   "arreglado": true,
+   "por_que": "Ya no hay líneas de pista en D",
+   "de": "cuadros"
+  },
+  {
+   "id": "D25",
+   "arreglado": true,
+   "por_que": "Pete ya no está en D",
+   "de": "cuadros"
+  },
+  {
+   "id": "D26",
+   "arreglado": true,
+   "por_que": "Ya no hay avenida en D",
+   "de": "cuadros"
+  },
+  {
+   "id": "D27",
+   "arreglado": true,
+   "por_que": "Ya no hay torres laterales en D",
+   "de": "cuadros"
+  },
+  {
+   "id": "D28",
+   "arreglado": false,
+   "por_que": "El sombrero de D sigue liso, con borde perfecto, sin juntas ni chorreados, y ahora con veta de madera (D arriba)",
+   "de": "cuadros"
+  },
+  {
+   "id": "D29",
+   "arreglado": true,
+   "por_que": "Cielo azul profundo con nubes",
+   "de": "cuadros"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "estilo.json: la referencia 'referencias/*.jpg' no encontró archivos en la carpeta del episodio",
+   "evidencia": "estilo.json"
+  },
+  {
+   "que": "estilo realista sin referencias (fotos reales en estilo.json → referencias): el revisor juzga el realismo sin poder comparar",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [
+  "6"
+ ],
+ "reemplazo": true,
+ "delatores": [
+  {
+   "cuadro": "A",
+   "plano": null,
+   "segundo": null,
+   "zona": "medio",
+   "que": "fachada de la torre impecable y pareja de arriba abajo, sin chorreados bajo los antepechos ni variación de tono",
+   "arreglo": "chorreados verticales bajo los antepechos y 2–3 paneles de otro tono",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "B",
+   "plano": null,
+   "segundo": null,
+   "zona": "arriba",
+   "que": "nubes en vetas rosadas paralelas y parejas, con look de textura estirada",
+   "arreglo": "HDRI de atardecer con nubes de formas distintas",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "B",
+   "plano": null,
+   "segundo": null,
+   "zona": "medio",
+   "que": "mangas y pantalón de Pete brillan como cuero o goma; la tela no se lee como tela",
+   "arreglo": "subir la rugosidad y bajar el especular de la ropa (sin cambiar colores ni prendas de la ficha)",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "C",
+   "plano": null,
+   "segundo": null,
+   "zona": "abajo",
+   "que": "escombros blancos low-poly facetados, como gemas o terrones de azúcar (y≈1290–1370)",
+   "arreglo": "escombro de hormigón gris con bordes rotos (escaneo CC0) o sacarlos",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "C",
+   "plano": null,
+   "segundo": null,
+   "zona": "abajo",
+   "que": "barra oscura que cruza en diagonal la fachada de abajo (y≈1570–1670) sin objeto que la proyecte",
+   "arreglo": "sacarla o mostrar la viga que la proyecta",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "C",
+   "plano": null,
+   "segundo": null,
+   "zona": "arriba",
+   "que": "la viga naranja de la grúa tiene veta de madera: se lee tablón, no viga doble T de acero",
+   "arreglo": "acero pintado con el perfil doble T visible, pernos y óxido",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "C",
+   "plano": null,
+   "segundo": null,
+   "zona": "medio",
+   "que": "el 'gato' es una varilla delgada con un cilindro amarillo chico: escala de juguete para sostener el sombrero",
+   "arreglo": "gato hidráulico grueso bajo cada columna, con cuerpo y pistón a escala real",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "C",
+   "plano": null,
+   "segundo": null,
+   "zona": "medio",
+   "que": "bloque de hormigón y caja de madera del piso son cubos perfectos de aristas vivas",
+   "arreglo": "bisel y bordes rotos",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "D",
+   "plano": null,
+   "segundo": null,
+   "zona": "medio",
+   "que": "fachada sin una mancha: módulos idénticos y limpios en damero perfecto",
+   "arreglo": "chorreados bajo cada antepecho y variación de tono por piso",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "D",
+   "plano": null,
+   "segundo": null,
+   "zona": "abajo",
+   "que": "vidrios azul marino planos sin reflejo del cielo ni del sol",
+   "arreglo": "vidrio con reflejo del cielo y del sol rasante en los pisos de arriba",
+   "de": "cuadros"
+  }
+ ],
+ "solo_bloqueantes": false,
+ "parar_y_preguntar": true
+}
