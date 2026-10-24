@@ -1,0 +1,20 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ritmo de 2.1 palabras/s en 'Primero: un hueco donde quepas.'",
+   "evidencia": "19.51 s"
+  },
+  {
+   "que": "ritmo de 3.9 palabras/s en 'Más del doble de lo que necesitó la rana.'",
+   "evidencia": "29.79 s"
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 37.83,
+  "palabras_por_s": 2.78,
+  "creditos_restantes": 36574,
+  "asr_coincidencia": 1.0,
+  "asr_diferencias": []
+ }
+}
