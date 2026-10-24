@@ -1,0 +1,50 @@
+{
+ "encargo": "planos2",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 7, "por_que": "los exteriores (P13 18.90, P19 27.10, P21 31.16) tienen sol bajo de costado, negros reales y profundidad, y el macro de P17/P18 tiene desenfoque de lente; pero el cerro de bultos lisos repetidos domina P13/P19, la bolsa-huevo sin material ocupa el tercio de abajo en P14, y P22 (31.59–32.91) es un primer plano café turbio sin forma legible"},
+  "animacion": {"nota": 7, "por_que": "la bolsa ahora resbala en 0,5 s (P15 20.69→21.35) y la bolita rueda hacia el borde (P18 24.54→25.35), pero en los CLAC de P14 (19.89–20.61) nadie da un tirón contra el respaldo: los de atrás quedan casi quietos y el caballero sólo se acomoda en P16 (22.14)"},
+  "claridad": {"nota": 6, "por_que": "P17 ya se lee (bolita y píldora juntas en y≈420–520), pero el giro «se traban los cuatro / nadie jaló» (P14–P16) sigue sin una sola cinta a la vista; en P18 (25.62–26.16) el mordisco de la palanquita en el diente no se ve (el engranaje queda cortado arriba, en y 0–170, y la píldora TAMBIÉN EN FRENADAS tapa la palanquita); y en P22 «déjalo volver un poquito» no se distingue la cinta volviendo, sólo una flecha verde sobre una superficie café"},
+  "ritmo": {"nota": 8, "por_que": "todos los planos cambian antes de 1 s (quieto_max_s entre 0 y 0,47); el más largo, P20 (2,6 s), se sostiene con el cambio de subtítulos y el movimiento de la máscara"},
+  "realismo": {"nota": 7, "por_que": "la luz de los exteriores y el polvo nuevo en la carrocería (P21 30.74) se ven reales, pero siguen delatando la maqueta el cerro de bultos redondos y lisos (P13 18.90, P19 26.24), el camino café liso (P13 18.80), la bolsa como huevo de goma (P15 21.02), el bloque de cemento bajo el mecanismo (P17/P18, mitad de abajo) y el lente negro plano de la máscara (P20 28.04)"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A1", "arreglado": true, "por_que": "en P16 (21.59–22.76) el tercio de abajo muestra sólo el tablero: la bolsa ya no vuelve a aparecer en primer plano"},
+  {"id": "A2", "arreglado": true, "por_que": "en P15 la bolsa recorre 4 cuadros (20.69 izquierda → 20.85 centro → 21.02/21.18 sube y se aleja entre los asientos → 21.35 se pierde atrás); ya no desaparece en un cuadro (E23 muestra el movimiento)"},
+  {"id": "A6", "arreglado": false, "por_que": "en P13 (18.90) y P19 (26.24) el cerro sigue siendo un campo de bultos redondos y lisos de la misma forma, sin roca con estratos, y el camino sigue siendo un plano café liso sin gravilla ni huellas (E20, 18.80)"},
+  {"id": "A7", "arreglado": false, "por_que": "P14 (19.89–20.61) usa la misma cámara desde el tablero: no se ve ninguna cinta, nadie da un tirón en los CLAC y la bolsa desenfocada sigue en el tercio de abajo; P16 repite esa cámara en vez de mostrar las manos abiertas lejos del cinturón"},
+  {"id": "A8", "arreglado": false, "por_que": "arreglado a medias: en P17 (23.38–24.46) la bolita y la píldora BOLITA DE ACERO quedan juntas en y≈420–520 y «DE ACERO» (y≈1130) ya no las tapa; pero en P18 la bolita rueda sólo hasta el borde de la tacita (24.54→25.35) y el mordisco de la palanquita en un diente no se ve: el engranaje quedó cortado arriba (y 0–170), no hay sacudida en el CLAC y la píldora TAMBIÉN EN FRENADAS tapa la palanquita en 25.62–26.16"},
+  {"id": "D16", "arreglado": false, "por_que": "P13 18.90: el cerro sigue siendo de bultos redondos y lisos repetidos, sin estratos ni bloques de tamaños distintos"},
+  {"id": "D17", "arreglado": false, "por_que": "P19 26.24–27.96: los bultos son algo más grandes pero siguen redondos, lisos y repetidos; las piedras del primer plano de P21 (30.99) tienen el mismo material de masa"},
+  {"id": "D18", "arreglado": false, "por_que": "P13 18.80 (E20): el camino sigue siendo un plano café liso, sin piedras, huellas ni cambios de color"},
+  {"id": "D19", "arreglado": true, "por_que": "en P21 30.74 (E31) y P13 18.80 (E20) la parte baja de las puertas, los tapabarros y las llantas tienen una capa café de polvo; confirmar en el render final"},
+  {"id": "D20", "arreglado": false, "por_que": "P17/P18: la mitad de abajo del cuadro sigue siendo el bloque de cemento gris, y en contacto 16s (P11) el mecanismo sigue apoyado en el bloque frente a la pared café lisa"},
+  {"id": "D21", "arreglado": false, "por_que": "contacto 7s–11s y 16s (P11): la cinta sigue siendo un cilindro beige liso que entra al carrete, no una cinta plana con tejido"},
+  {"id": "D22", "arreglado": false, "por_que": "a medias: la palanquita de P17/P18 ya es de acero gris con brillo (22.84), pero el engranaje de arriba sigue gris claro liso con bordes perfectos y en contacto 16s (P11) el pestillo sigue siendo una barra blanca"},
+  {"id": "D23", "arreglado": false, "por_que": "P12 no está en mis materiales; en contacto 17s el ojo en la ranura de la visera todavía se ve como un punto celeste claro (verificar en el encargo planos1, que tiene P12)"},
+  {"id": "D24", "arreglado": false, "por_que": "P14 19.89 y P15 21.02 (E23): la bolsa sigue siendo un óvalo naranja y blanco liso, como un huevo de goma, sin arrugas ni reflejos metalizados"},
+  {"id": "D25", "arreglado": true, "por_que": "en P16 21.82 los respaldos de atrás ya muestran tela con dibujo en la parte baja y un ribete en el borde; ya no son beige parejo (confirmar costuras en el render final)"},
+  {"id": "D26", "arreglado": false, "por_que": "P20 28.04–30.56: el lente lejano sigue siendo un óvalo negro plano con apenas un borde, sin reflejo de la ventana ni gota"}
+ ],
+ "eventos": [
+  {"id": "E20", "es_defecto": false, "por_que": "la cámara sigue al auto en la subida; el borde del camino se mueve con ella"},
+  {"id": "E21", "es_defecto": false, "por_que": "el parachoques y el escape se mueven con el auto y la línea de sombra se corre"},
+  {"id": "E22", "es_defecto": false, "por_que": "en el borde derecho, desenfocado, un pasajero de atrás gira la cabeza y se apaga el reflejo de su lente; no se nota"},
+  {"id": "E23", "es_defecto": false, "por_que": "es la bolsa resbalando hacia atrás (el arreglo de A2)"},
+  {"id": "E24", "es_defecto": false, "por_que": "el caballero se acomoda en el asiento y la hombrera sube"},
+  {"id": "E25", "es_defecto": false, "por_que": "la píldora BOLITA DE ACERO entra con su animación de escala"},
+  {"id": "E26", "es_defecto": false, "por_que": "la píldora TAMBIÉN EN FRENADAS entra con su animación de escala"},
+  {"id": "E27", "es_defecto": false, "por_que": "el engranaje y la palanquita se mueven un poco bajo la píldora: es el movimiento buscado del mecanismo"},
+  {"id": "E28", "es_defecto": false, "por_que": "P20 dura 2,6 s, pero los subtítulos cambian cada ~0,5 s y la máscara se mueve (quieto_max_s 0)"},
+  {"id": "E29", "es_defecto": false, "por_que": "cambio de subtítulo TIENE QUE TRABARSE → CREE QUE TE"},
+  {"id": "E30", "es_defecto": false, "por_que": "cambia la palabra resaltada en VAS A VOLCAR"},
+  {"id": "E31", "es_defecto": false, "por_que": "es el corte de P20 a P21 (30.60)"},
+  {"id": "E32", "es_defecto": false, "por_que": "la rueda gira y su sombra se mueve: el auto avanza"},
+  {"id": "E33", "es_defecto": false, "por_que": "la pieza café del primer plano tapa la ventana clara al moverse; la luz no parpadea"},
+  {"id": "E34", "es_defecto": false, "por_que": "cambio de subtítulo DÉJALO VOLVER UN → POQUITO y la mano oscura se mueve"}
+ ],
+ "delatores": [],
+ "resumen": "Sin bloqueantes nuevos: A1 y A2 (la bolsa) quedaron arreglados, igual que D19 y D25. Siguen pendientes A6, A7 y A8 (A8 a medias: P17 ya se lee, pero en P18 no se ve trabarse el carrete) y casi todos los delatores (cerro de bultos, camino liso, bolsa de goma, bloque de cemento, cinta-tubo, lente negro). Claridad 6 y realismo 7 dejan el tramo bajo la vara."
+}

@@ -46,3 +46,4 @@
 {"tipo": "trabajo", "que": "12 piezas sobre el final 40057817455", "id": "parche 40058999385", "estado": "lanzado", "n": 46, "ts": "2026-10-24T00:36:43-03:00"}
 {"tipo": "aviso", "que": "puerta 6 con --sin-personajes", "nota": "chequeo de ojos sin datos: caras tapadas por diseño y vistas a través del vidrio; se revisan en las tiras", "n": 47, "ts": "2026-10-24T01:42:55-03:00"}
 {"tipo": "trabajo", "que": "render final completo con los arreglos de la puerta 6 r1 (casi todos los planos cambiaron)", "id": "final2 40064362093", "estado": "lanzado", "n": 48, "ts": "2026-10-24T01:57:31-03:00"}
+{"tipo": "aviso", "que": "puerta 6 r2 NO (7,71; realismo 7; 1 bloqueante nuevo en P25)", "nota": "Se arregla el bloqueante (cinta de la falda del doctor) con un parche de 25@1 y 25@2 sobre el final 2 y lo verifica la puerta 7. El realismo 7 queda como está: rondas agotadas; se le explica a Tomás con opciones.", "n": 49, "ts": "2026-10-24T03:12:46-03:00"}

@@ -1,0 +1,957 @@
+{
+ "etapa": "6-animatic",
+ "ronda": 2,
+ "estilo": "realista",
+ "veredicto": "NO APROBADO",
+ "promedio": 7.71,
+ "notas": {
+  "belleza": {
+   "nota": 6.8,
+   "min": 6,
+   "por_que": "P23 (32.99–33.91) se ve bien: luz cálida de costado y casco con óxido y abolladuras; pero P24 (33.99–36.01) tiene el foco en la armadura de arriba a la derecha y el dedo, que es el sujeto, borroso, y P25 (36.09–37.93) es plano y pastel (turquesa + durazno + crema, sin negros: percentil 5 de luminancia en 84) con una bolsa que parece cojín",
+   "de": "planos3"
+  },
+  "animacion": {
+   "nota": 7.2,
+   "min": 6,
+   "por_que": "P23 actúa (gira la cabeza, mov 7,81), pero en P24 la mano casi no se mueve en 2,1 s (mov 1,33; 33.99 y 36.01 son el mismo cuadro): no se lee 'estira la mano despacio y tantea'; en P25 la mano sale por arriba en 37.53 (E37) sin que se vea la papa, y el doctor no se congela ni se encoge de hombros",
+   "de": "planos3"
+  },
+  "claridad": {
+   "nota": 6.8,
+   "min": 6,
+   "por_que": "P17 ya se lee (bolita y píldora juntas en y≈420–520), pero el giro «se traban los cuatro / nadie jaló» (P14–P16) sigue sin una sola cinta a la vista; en P18 (25.62–26.16) el mordisco de la palanquita en el diente no se ve (el engranaje queda cortado arriba, en y 0–170, y la píldora TAMBIÉN EN FRENADAS tapa la palanquita); y en P22 «déjalo volver un poquito» no se distingue la cinta volviendo, sólo una flecha verde sobre una superficie café",
+   "de": "planos2"
+  },
+  "ritmo": {
+   "nota": 7.8,
+   "min": 7,
+   "por_que": "P23 (1 s) cambia con la píldora LENTO y el giro de cabeza; P24 son 2,1 s de casi la misma imagen, donde sólo cambian los subtítulos; P25 tiene la mano que sale (37.53) y el corte al loop en 38.20",
+   "de": "planos3"
+  },
+  "realismo": {
+   "nota": 6.8,
+   "min": 6,
+   "por_que": "lo real: el casco con óxido y abolladuras, la sobreveste con tela y las placas de la armadura en P23/P24. Lo que delata: los ojos celestes brillantes de muñeco dentro del visor (P23 33.17), el foco fuera del sujeto (P24) y P25, que es casi la mitad de este tramo y el remate: colores pastel sin negros, una bolsa lisa de plástico sin arrugas ni foil y el cinturón atravesado por la tela",
+   "de": "planos3"
+  },
+  "gancho": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "cuadro 0: un caballero con armadura dentro de un auto, lanzándose con la cinta tensa y sol bajo; absurdo y se entiende sin texto, aunque lo que busca (la bolsa) recién se ve en 1.4",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "109/109 palabras, desfase 0 y 0 fuera de zona (y 1022–1213); tildes bien (CINTURÓN, RÁPIDO, JALÓ, RODÓ, TRABÓ, DÉJALO, AHÍ, ESTÁN, COMIÓ) y ya dice 'PASADO 27 GRADOS'",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "no lo puedo escuchar: −14,1 LUFS, −1,4 dBTP y la voz 11,4 dB sobre las pausas (mínimo, con ducking), todo en rango",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "lo dibujado calza con el guion y las fuentes (pestillo hacia afuera, bolita en tacita que levanta la palanca, aguja que cruza 27° cuando la voz dice 27) y la bolsa ya no se contradice; detalle: el inclinómetro marca 30° en 19.5 y vuelve a 22° en 26.5",
+   "de": "global"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B1",
+   "plano": 25,
+   "segundo": "36.09",
+   "que": "la tela turquesa del pantalón del doctor atraviesa la cinta gris del cinturón de regazo: el borde inferior de la cinta queda cortado en dientes de sierra con parches turquesa (abajo al centro, y≈1550–1880, x≈480–920). Se ve igual en todo el plano (36.09–37.93) y ya se nota en la hoja de contacto (36 s y 37 s): la cinta parece rota. Antes no se veía porque el cuadro estaba casi negro (D36)",
+   "arreglo": "lo más barato es subir o acercar la cámara para que la parte baja de la cinta quede fuera de cuadro; si no, despegar la cinta de la ropa (desplazamiento del shrinkwrap/solidify hacia afuera, unos mm) o hundir la tela bajo la cinta",
+   "de": "planos3"
+  }
+ ],
+ "sugerencias": [
+  {
+   "id": "D5",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": "0.65",
+   "que": "[D5 sin arreglar] [delator · abajo] tablero beige liso sin textura ni desgaste (también P06 y P10)",
+   "arreglo": "grano de plástico, polvo y rayas en el tablero",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D43",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "[D43 sin arreglar] [delator · medio] patrón de cuadritos regulares detrás del caballero (también 9.5 y 20.5) que se lee como textura repetida, no como ventana",
+   "arreglo": "ventana trasera con el paisaje desenfocado o tapiz con tela creíble",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D20",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 11,
+   "segundo": "16.39",
+   "que": "[D20 sin arreglar] [delator · abajo] el mecanismo está apoyado sobre un bloque de cemento gris, frente a una pared café lisa: parece una maqueta de museo, no el interior del pilar (igual en P17 y P18)",
+   "arreglo": "cambiar el bloque por la chapa del pilar (acero pintado con puntos de soldadura) y el plástico del tapizado del pilar",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D21",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 11,
+   "segundo": "16.39",
+   "que": "[D21 sin arreglar] [delator · arriba] la cinta se ve como un tubo beige liso, sin tejido",
+   "arreglo": "cinta plana con textura de tejido (mapa de normales) y canto delgado",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D23",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 12,
+   "segundo": "17.39",
+   "que": "[D23 sin arreglar] [delator · arriba] por la ranura de la visera el ojo del caballero es un punto celeste brillante, como un LED (en la ficha la visera es oscura)",
+   "arreglo": "oscurecer el ojo y bajarle el brillo especular: en la sombra de la visera, casi negro con un reflejo cálido mínimo",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "A6",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 13,
+   "segundo": "18.90",
+   "que": "[A6 sin arreglar] el cerro son bultos redondos y lisos, todos de la misma forma (parecen masa o almohadas), y el camino es un plano café liso, sin huellas ni piedras (igual en P19, 26.24): es lo que más delata la maqueta en esta parte",
+   "arreglo": "cambiar el desplazamiento por roca de escaneo (Poly Haven, de cerro o de acantilado) con estratos y bloques de tamaños distintos; en el camino, gravilla, piedras sueltas, huellas de neumático y algo de polvo que levanten las ruedas",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D16",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 13,
+   "segundo": "18.90",
+   "que": "[D16 sin arreglar] [delator · arriba] el cerro es un campo de bultos redondos y lisos de la misma forma (masa, almohadas): repetición y superficie sin roca",
+   "arreglo": "roca de escaneo con estratos, fracturas y bloques de tamaños distintos; rodados sueltos",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D18",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 13,
+   "segundo": "18.29",
+   "que": "[D18 sin arreglar] [delator · abajo] el camino es un plano café liso y uniforme, sin huellas, piedras ni cambios de color",
+   "arreglo": "gravilla, piedras, huellas de neumático y variación de color; polvo en las ruedas",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D37",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 13,
+   "segundo": "18.50",
+   "que": "[D37 sin arreglar] [delator · arriba] ladera con decenas de montículos redondos casi idénticos, como burbujas o greda (también en P19, 26.5–27.5)",
+   "arreglo": "roca con estratos y aristas de tamaños variados; romper la repetición",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D38",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 13,
+   "segundo": "19.50",
+   "que": "[D38 sin arreglar] [delator · abajo] suelo bajo el auto liso y de un solo café, con una placa gris oscura de borde recto abajo a la izquierda (parece el borde del terreno)",
+   "arreglo": "textura de tierra con piedras y huellas; extender el terreno o tapar ese borde con la cámara",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "A7",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 14,
+   "segundo": "20.03",
+   "que": "[A7 sin arreglar] «y se traban los cuatro» / «nadie jaló» (P14–P16, 19.85–22.80): no se ve ninguna cinta ni nadie reacciona a los CLAC; los cuatro son siluetas oscuras al fondo y la bolsa desenfocada ocupa el tercio de abajo. Es el giro del video y no se lee sin la voz",
+   "arreglo": "en la misma escena, una cámara desde el parabrisas a la altura del pecho con las cuatro cintas a la vista, y a cada uno un tirón de 3–5 cm contra el respaldo en cada CLAC (0,15 s de separación). En P16, en vez de repetir la cámara de P14, las manos de los cuatro abiertas y lejos del cinturón («nadie jaló»)",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D24",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 14,
+   "segundo": "19.89",
+   "que": "[D24 sin arreglar] [delator · abajo] la bolsa de papas es una mancha naranja lisa, como un globo de goma, sin arrugas ni brillos de bolsa metalizada (igual en P16)",
+   "arreglo": "material de bolsa metalizada arrugada, con reflejos que se cortan en los pliegues",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D39",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 14,
+   "segundo": "20.50",
+   "que": "[D39 sin arreglar] [delator · abajo] bolsa de papas lisa, sin arrugas ni brillo metálico (óvalo naranjo de goma); igual en 22.5 y 36.5",
+   "arreglo": "bolsa de aluminio arrugada con sellado dentado y reflejos que se deforman",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "A8",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 17,
+   "segundo": "23.92",
+   "que": "[A8 sin arreglar] la bolita y su tacita quedan en y≈1000–1250, en la zona de subtítulos: «DE ACERO» tapa media bolita justo cuando la voz la nombra, y la píldora BOLITA DE ACERO está lejos (y≈420), arriba del engranaje. En P18 (25.62) «rodó y trabó» tampoco se lee: la bolita casi no rueda y la punta de la palanquita no se ve entrar en un diente",
+   "arreglo": "bajar la mira de la cámara (o desplazar el lente) unos 350 px para que la bolita, la palanquita y el diente queden en y 500–950, con la píldora al lado de la bolita; en P18, que la tacita se incline a la vista, que la bolita ruede al menos su diámetro y que la palanquita entre en un diente con una sacudida de 2 cuadros en el CLAC",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D22",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 17,
+   "segundo": "22.84",
+   "que": "[D22 sin arreglar] [delator · medio] el engranaje es gris claro liso y parejo, como de plástico, y la palanquita es una barra blanca pura con bordes perfectos (igual en P11 y P18)",
+   "arreglo": "acero con marcas de mecanizado, rayas, grasa en los dientes y bordes biselados; palanquita de acero, no blanca",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D17",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 19,
+   "segundo": "26.24",
+   "que": "[D17 sin arreglar] [delator · arriba] los mismos bultos redondos repetidos en todo el cerro detrás del auto",
+   "arreglo": "el mismo cambio de material del cerro que en P13",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D3",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 2,
+   "segundo": "1.44",
+   "que": "[D3 sin arreglar] [delator · medio] la mano es una masa color durazno lisa, de goma, sin piel ni uñas con detalle (también la mano estirada de P01 0.45 y P10 15.64)",
+   "arreglo": "piel con poros y nudillos, o un guantelete de cuero/metal que calce con la armadura",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D4",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 2,
+   "segundo": "1.75",
+   "que": "[D4 sin arreglar] [delator · medio] la bolsa de papas es una mancha naranja lisa sin arrugas ni brillo de envoltorio",
+   "arreglo": "bolsa metalizada arrugada con reflejos (sin marca)",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D41",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 2,
+   "segundo": "1.50",
+   "que": "[D41 sin arreglar] [delator · medio] en el macro, la mano del caballero es rosada y lisa, sin poros ni arrugas, y grande para el cuerpo (Castle Guard); igual en 34.5",
+   "arreglo": "guantelete o guante de cuero, o piel con poros y nudillos marcados",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D26",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 20,
+   "segundo": "28.04",
+   "que": "[D26 sin arreglar] [delator · medio] el lente lejano de la máscara es un óvalo negro plano, sin reflejo: parece un agujero (señal 10)",
+   "arreglo": "vidrio con el reflejo de la ventana, marcas y la gota",
+   "de": "verificación",
+   "asignado": "planos2"
+  },
+  {
+   "id": "D46",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 20,
+   "segundo": "29.50",
+   "que": "[D46 sin arreglar] [delator · medio] el lente derecho de la máscara antigás es un agujero negro plano, sin reflejo (28.5–30.5)",
+   "arreglo": "reflejo del cielo/ventana en el vidrio y la gota corriendo",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D27",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 21,
+   "segundo": "30.99",
+   "que": "[D27 sin arreglar] [delator · abajo] rocas del primer plano redondas y lisas, tipo canto rodado, varias con la misma forma",
+   "arreglo": "rocas angulosas y fracturadas de desierto (escaneos CC0) con escala y rotación variadas",
+   "de": "verificación",
+   "asignado": "planos3"
+  },
+  {
+   "id": "D28",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 21,
+   "segundo": "30.99",
+   "que": "[D28 sin arreglar] [delator · arriba] cerros del fondo de un solo tono rosado, laderas lisas con poca erosión y poca bruma de distancia",
+   "arreglo": "más bruma de distancia y textura de quebradas o erosión en las laderas",
+   "de": "verificación",
+   "asignado": "planos3"
+  },
+  {
+   "id": "D30",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 22,
+   "segundo": "32.12",
+   "que": "[D30 sin arreglar] [delator · medio] la cinta del cinturón, que ocupa medio cuadro, es una franja café lisa sin trama ni costuras",
+   "arreglo": "textura de tejido (sarga) con mapa de normales y un brillo leve de las fibras",
+   "de": "verificación",
+   "asignado": "planos3"
+  },
+  {
+   "id": "D31",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 22,
+   "segundo": "31.59",
+   "que": "[D31 sin arreglar] [delator · medio] forma negra pura sin textura a la izquierda (mano o guante), que se lee como un hueco",
+   "arreglo": "luz de relleno o de borde para que se lea la mano y su material",
+   "de": "verificación",
+   "asignado": "planos3"
+  },
+  {
+   "id": "D32",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 23,
+   "segundo": "33.17",
+   "que": "[D32 sin arreglar] [delator · medio] ojos celestes brillantes con reflejo fuerte dentro del visor",
+   "arreglo": "visor más oscuro por dentro e iris menos saturado y menos especular",
+   "de": "verificación",
+   "asignado": "planos3"
+  },
+  {
+   "id": "D35",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 24,
+   "segundo": "34.28",
+   "que": "[D35 sin arreglar] [delator · arriba] el plano de foco cae en la armadura de arriba a la derecha y el sujeto (mano y tablero) queda borroso: el foco no está donde lo pondría un camarógrafo",
+   "arreglo": "foco en las yemas de los dedos",
+   "de": "verificación",
+   "asignado": "planos3"
+  },
+  {
+   "id": "D36",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 25,
+   "segundo": "36.62",
+   "que": "[D36 sin arreglar] [delator · medio] ningún plano de foco (bolsa y doctor desenfocados) y cuadro casi sin luz; la bolsa se lee como un bulto naranja liso",
+   "arreglo": "foco en la mano con la papa y luz de ventana lateral; la misma bolsa con arrugas y foil",
+   "de": "verificación",
+   "asignado": "planos3"
+  },
+  {
+   "id": "D6",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 4,
+   "segundo": "5.90",
+   "que": "[D6 sin arreglar] [delator · medio] respaldos de asiento de plástico gris liso, sin costuras ni tela; pilar café plano sin textura",
+   "arreglo": "tapiz con trama, costuras y desgaste; plástico del pilar con grano",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D7",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 4,
+   "segundo": "6.20",
+   "que": "[D7 sin arreglar] [delator · medio] brillo suelto: mancha blanca quemada en la esquina del asiento a la derecha que parece un objeto",
+   "arreglo": "suavizar la luz que la produce o girar el asiento para que el brillo no quede aislado",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D8",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 4,
+   "segundo": "6.51",
+   "que": "[D8 sin arreglar] [delator · medio] plano casi negro y café: sin negros con detalle ni dirección de luz que se lea; parece una maqueta sin iluminar",
+   "arreglo": "una luz de sol entrando por la ventana que marque la ranura del pilar",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D9",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 5,
+   "segundo": "6.89",
+   "que": "[D9 sin arreglar] [delator · arriba] fondo de pared terracota lisa de un solo color detrás del mecanismo (también P07, P08, P09)",
+   "arreglo": "interior del auto desenfocado o el borde del pilar cortado en primer plano",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D10",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 5,
+   "segundo": "7.44",
+   "que": "[D10 sin arreglar] [delator · abajo] bloque gris de cemento como pedestal bajo el mecanismo: se lee como pieza de exhibición, no como algo dentro de un auto (también P07)",
+   "arreglo": "sacarlo o reemplazarlo por la base metálica del pilar con pernos",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D11",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 5,
+   "segundo": "7.16",
+   "que": "[D11 sin arreglar] [delator · arriba] la cinta es un bloque café liso y grueso, sin trama ni brillo de nylon; su escala no calza con el carrete (parece un poste de madera)",
+   "arreglo": "cinta más delgada con trama tejida, brillo de nylon y canto, del mismo color que la de afuera",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D15",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 5,
+   "segundo": "6.89",
+   "que": "[D15 sin arreglar] [delator · abajo] pieza negra con forma de ojo y un punto celeste abajo a la izquierda que no se entiende qué es (también P07)",
+   "arreglo": "convertirla en un perno o soporte reconocible, o sacarla",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D44",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 5,
+   "segundo": "7.50",
+   "que": "[D44 sin arreglar] [delator · medio] el mecanismo está sobre un bloque de concreto contra una pared café plana (7.5–16.5, 23.5–25.5): se lee como pieza en exhibición, no como el interior del pilar",
+   "arreglo": "dejar a la vista el borde cortado de la carcasa del pilar alrededor del mecanismo y el fondo oscuro del interior",
+   "de": "verificación",
+   "asignado": "global"
+  },
+  {
+   "id": "D1",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "9.44",
+   "que": "[D1 sin arreglar] [delator · arriba] el casco parece de piedra o cemento: áspero y mate, sin reflejos de metal que se deformen (igual en P01 0.04, P03 2.74 y P10 15.64)",
+   "arreglo": "subir el metálico/especular del casco y hombreras, con rayas que brillen y reflejos del sol que se muevan",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D2",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 6,
+   "segundo": "9.44",
+   "que": "[D2 sin arreglar] [delator · arriba] ojos celestes brillantes en la ranura de la visera, como luces de muñeco (también P10 15.77)",
+   "arreglo": "oscurecer el interior del casco: que los ojos casi no se vean o sean un brillo húmedo chico",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D14",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 7,
+   "segundo": "11.35",
+   "que": "[D14 sin arreglar] [delator · medio] giro rápido sin desenfoque de movimiento: el pestillo aparece nítido en otra posición en cada cuadro",
+   "arreglo": "activar desenfoque de movimiento en el render",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D12",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 8,
+   "segundo": "12.50",
+   "que": "[D12 sin arreglar] [delator · medio] disco gris plano de un solo tono, sin marcas de torno ni desgaste",
+   "arreglo": "acero con marcas circulares de torno, bordes gastados y un poco de grasa",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D13",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 8,
+   "segundo": "12.24",
+   "que": "[D13 sin arreglar] [delator · medio] pestillo blanco con bordes y esquinas perfectas, parece de papel o plástico",
+   "arreglo": "acero con bisel, canto con reflejo y alguna raya",
+   "de": "verificación",
+   "asignado": "planos1"
+  },
+  {
+   "id": "D40",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": 9,
+   "segundo": "9.50",
+   "que": "[D40 sin arreglar] [delator · arriba] ojos celestes brillantes del caballero dentro del casco, de muñeco (también 0.0, 3.5, 33.5)",
+   "arreglo": "iris oscuro y ojos en sombra dentro del casco; sin brillo propio",
+   "de": "verificación",
+   "asignado": "global"
+  }
+ ],
+ "verificacion": [
+  {
+   "id": "A10",
+   "arreglado": true,
+   "por_que": "En 13.82–14.61 el pestillo sube por la mitad de arriba (de las 4 a las 12), la punta de la flecha FUERZA DEL GIRO lo toca en 14.47 (E17) y llega a los dientes en 14.61; queda un resto: en 13.03–13.29, cuando la voz dice 'pestillo', todavía va escondido bajo el subtítulo y el centro del disco sigue en y≈950.",
+   "de": "planos1"
+  },
+  {
+   "id": "D1",
+   "arreglado": false,
+   "por_que": "En P06 9.44 y en P12 17.39–18.21 el casco sigue granuloso y mate como piedra o cemento; brillan sólo los bordes del visor y los remaches, sin reflejos de metal que se deformen.",
+   "de": "planos1"
+  },
+  {
+   "id": "D2",
+   "arreglado": false,
+   "por_que": "En P06 9.44 (y en E9 9.60 y P01 0.04) los ojos siguen celestes y brillantes en la ranura del visor; en P12 se ven como un punto celeste.",
+   "de": "planos1"
+  },
+  {
+   "id": "D3",
+   "arreglado": false,
+   "por_que": "En P02 1.14–2.66 la mano sigue siendo una masa color durazno lisa, sin piel, nudillos ni uñas, y no tiene guantelete.",
+   "de": "planos1"
+  },
+  {
+   "id": "D4",
+   "arreglado": false,
+   "por_que": "En P02 1.75 la bolsa sigue siendo una lámina naranja lisa con una franja crema, sin arrugas ni brillo metalizado.",
+   "de": "planos1"
+  },
+  {
+   "id": "D5",
+   "arreglado": false,
+   "por_que": "En P01 0.65 y P06 10.46 el tablero sigue beige liso, sin grano, polvo ni rayas.",
+   "de": "planos1"
+  },
+  {
+   "id": "D6",
+   "arreglado": false,
+   "por_que": "En P04 5.90–6.81 los respaldos siguen siendo de plástico gris liso, sin tela ni costuras, y el pilar café es plano.",
+   "de": "planos1"
+  },
+  {
+   "id": "D7",
+   "arreglado": false,
+   "por_que": "En P04 5.90, 6.20, 6.51 y 6.81 sigue la mancha blanca quemada en la esquina del asiento de la derecha.",
+   "de": "planos1"
+  },
+  {
+   "id": "D8",
+   "arreglado": false,
+   "por_que": "P04 sigue casi negro y café de 5.29 a 6.81; ninguna luz de sol entra a marcar la ranura del pilar.",
+   "de": "planos1"
+  },
+  {
+   "id": "D9",
+   "arreglado": false,
+   "por_que": "En P05 6.89, P07, P08, P09 y P11 sigue la pared terracota lisa de un solo color detrás del mecanismo.",
+   "de": "planos1"
+  },
+  {
+   "id": "D10",
+   "arreglado": false,
+   "por_que": "En P05 7.44, P07 y P11 sigue el bloque gris de cemento como pedestal bajo el mecanismo.",
+   "de": "planos1"
+  },
+  {
+   "id": "D11",
+   "arreglado": false,
+   "por_que": "En P05 7.16 la cinta sigue siendo un bloque grueso y liso (ahora café claro), sin trama ni brillo de nylon, y parece un poste.",
+   "de": "planos1"
+  },
+  {
+   "id": "D12",
+   "arreglado": false,
+   "por_que": "En P08 12.50–14.61 y P09 el disco sigue gris plano con un moteado leve, sin marcas de torno ni desgaste.",
+   "de": "planos1"
+  },
+  {
+   "id": "D13",
+   "arreglado": false,
+   "por_que": "En P08 13.82–14.61 (y en E12/E13) el pestillo sigue siendo un bloque blanco de bordes perfectos, sin bisel ni rayas.",
+   "de": "planos1"
+  },
+  {
+   "id": "D14",
+   "arreglado": false,
+   "por_que": "En P07 11.08–12.16 (E12 11.27, E13 11.74) el pestillo sale nítido en otra posición en cada cuadro, sin desenfoque de movimiento.",
+   "de": "planos1"
+  },
+  {
+   "id": "D15",
+   "arreglado": false,
+   "por_que": "En P05 6.89, P07 10.54 y P11 16.39 sigue abajo a la izquierda la pieza negra con forma de ojo y un punto celeste.",
+   "de": "planos1"
+  },
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "en P16 (21.59–22.76) el tercio de abajo muestra sólo el tablero: la bolsa ya no vuelve a aparecer en primer plano",
+   "de": "planos2"
+  },
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "en P15 la bolsa recorre 4 cuadros (20.69 izquierda → 20.85 centro → 21.02/21.18 sube y se aleja entre los asientos → 21.35 se pierde atrás); ya no desaparece en un cuadro (E23 muestra el movimiento)",
+   "de": "planos2"
+  },
+  {
+   "id": "A6",
+   "arreglado": false,
+   "por_que": "en P13 (18.90) y P19 (26.24) el cerro sigue siendo un campo de bultos redondos y lisos de la misma forma, sin roca con estratos, y el camino sigue siendo un plano café liso sin gravilla ni huellas (E20, 18.80)",
+   "de": "planos2"
+  },
+  {
+   "id": "A7",
+   "arreglado": false,
+   "por_que": "P14 (19.89–20.61) usa la misma cámara desde el tablero: no se ve ninguna cinta, nadie da un tirón en los CLAC y la bolsa desenfocada sigue en el tercio de abajo; P16 repite esa cámara en vez de mostrar las manos abiertas lejos del cinturón",
+   "de": "planos2"
+  },
+  {
+   "id": "A8",
+   "arreglado": false,
+   "por_que": "arreglado a medias: en P17 (23.38–24.46) la bolita y la píldora BOLITA DE ACERO quedan juntas en y≈420–520 y «DE ACERO» (y≈1130) ya no las tapa; pero en P18 la bolita rueda sólo hasta el borde de la tacita (24.54→25.35) y el mordisco de la palanquita en un diente no se ve: el engranaje quedó cortado arriba (y 0–170), no hay sacudida en el CLAC y la píldora TAMBIÉN EN FRENADAS tapa la palanquita en 25.62–26.16",
+   "de": "planos2"
+  },
+  {
+   "id": "D16",
+   "arreglado": false,
+   "por_que": "P13 18.90: el cerro sigue siendo de bultos redondos y lisos repetidos, sin estratos ni bloques de tamaños distintos",
+   "de": "planos2"
+  },
+  {
+   "id": "D17",
+   "arreglado": false,
+   "por_que": "P19 26.24–27.96: los bultos son algo más grandes pero siguen redondos, lisos y repetidos; las piedras del primer plano de P21 (30.99) tienen el mismo material de masa",
+   "de": "planos2"
+  },
+  {
+   "id": "D18",
+   "arreglado": false,
+   "por_que": "P13 18.80 (E20): el camino sigue siendo un plano café liso, sin piedras, huellas ni cambios de color",
+   "de": "planos2"
+  },
+  {
+   "id": "D19",
+   "arreglado": true,
+   "por_que": "en P21 30.74 (E31) y P13 18.80 (E20) la parte baja de las puertas, los tapabarros y las llantas tienen una capa café de polvo; confirmar en el render final",
+   "de": "planos2"
+  },
+  {
+   "id": "D20",
+   "arreglado": false,
+   "por_que": "P17/P18: la mitad de abajo del cuadro sigue siendo el bloque de cemento gris, y en contacto 16s (P11) el mecanismo sigue apoyado en el bloque frente a la pared café lisa",
+   "de": "planos2"
+  },
+  {
+   "id": "D21",
+   "arreglado": false,
+   "por_que": "contacto 7s–11s y 16s (P11): la cinta sigue siendo un cilindro beige liso que entra al carrete, no una cinta plana con tejido",
+   "de": "planos2"
+  },
+  {
+   "id": "D22",
+   "arreglado": false,
+   "por_que": "a medias: la palanquita de P17/P18 ya es de acero gris con brillo (22.84), pero el engranaje de arriba sigue gris claro liso con bordes perfectos y en contacto 16s (P11) el pestillo sigue siendo una barra blanca",
+   "de": "planos2"
+  },
+  {
+   "id": "D23",
+   "arreglado": false,
+   "por_que": "P12 no está en mis materiales; en contacto 17s el ojo en la ranura de la visera todavía se ve como un punto celeste claro (verificar en el encargo planos1, que tiene P12)",
+   "de": "planos2"
+  },
+  {
+   "id": "D24",
+   "arreglado": false,
+   "por_que": "P14 19.89 y P15 21.02 (E23): la bolsa sigue siendo un óvalo naranja y blanco liso, como un huevo de goma, sin arrugas ni reflejos metalizados",
+   "de": "planos2"
+  },
+  {
+   "id": "D25",
+   "arreglado": true,
+   "por_que": "en P16 21.82 los respaldos de atrás ya muestran tela con dibujo en la parte baja y un ribete en el borde; ya no son beige parejo (confirmar costuras en el render final)",
+   "de": "planos2"
+  },
+  {
+   "id": "D26",
+   "arreglado": false,
+   "por_que": "P20 28.04–30.56: el lente lejano sigue siendo un óvalo negro plano con apenas un borde, sin reflejo de la ventana ni gota",
+   "de": "planos2"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "en P24 (33.99–36.01) ya no hay bolsa en el tablero: el encuadre del plano 2 aparece vacío, con un par de migas en el borde izquierdo (36.01), y la bolsa está sólo en P25 con el doctor. Ya no está en dos lugares",
+   "de": "planos3"
+  },
+  {
+   "id": "D27",
+   "arreglado": false,
+   "por_que": "P21 no está en mis tiras; en contacto.jpg (31 s) las rocas del primer plano siguen redondeadas y lisas, varias con la misma forma de canto rodado (verificado a 180 px)",
+   "de": "planos3"
+  },
+  {
+   "id": "D28",
+   "arreglado": false,
+   "por_que": "en contacto.jpg (31 s) los cerros siguen de un solo tono rosado-café, con laderas lisas y poca bruma; hay algo de aire, pero no se ven quebradas ni erosión (a baja resolución)",
+   "de": "planos3"
+  },
+  {
+   "id": "D29",
+   "arreglado": true,
+   "por_que": "en contacto.jpg (31 s = 31.00) las cuatro ruedas apoyan en el camino con sombra de contacto; la trasera izquierda queda en la sombra del chasis, pero toca el suelo (a la resolución del contacto)",
+   "de": "planos3"
+  },
+  {
+   "id": "D30",
+   "arreglado": false,
+   "por_que": "no se puede verificar con mi material: P22 sólo aparece en contacto.jpg (32 s, 180 px), donde la franja café tiene grano pero no se ven trama ni costuras; que lo confirme el revisor de P22",
+   "de": "planos3"
+  },
+  {
+   "id": "D31",
+   "arreglado": false,
+   "por_que": "en contacto.jpg (32 s) la forma de la izquierda sigue casi negra; tiene un borde más claro arriba, pero no se lee como mano ni se ve su material (no verificable a resolución completa)",
+   "de": "planos3"
+  },
+  {
+   "id": "D32",
+   "arreglado": false,
+   "por_que": "en P23 33.17 y 33.54 los ojos siguen con esclerótica blanca, iris celeste saturado y brillo fuerte; el interior del visor está iluminado, no oscuro",
+   "de": "planos3"
+  },
+  {
+   "id": "D33",
+   "arreglado": true,
+   "por_que": "en 33.14 (E35, después) y 33.36 la barra café tiene grano y óxido, y la visera beige tiene manchas y marcas; el bloque de arriba a la derecha tiene grano. Ya no son de un solo color, aunque los bordes siguen bastante limpios",
+   "de": "planos3"
+  },
+  {
+   "id": "D34",
+   "arreglado": true,
+   "por_que": "la bolsa ya no sale en P24, así que este delator desaparece de ese plano; la misma bolsa lisa, sin arrugas ni foil, sigue en P25 (ver D36)",
+   "de": "planos3"
+  },
+  {
+   "id": "D35",
+   "arreglado": false,
+   "por_que": "en P24 33.99 y 36.01 las escamas de la armadura (arriba a la derecha) siguen nítidas, y la yema del dedo y el tablero desenfocados",
+   "de": "planos3"
+  },
+  {
+   "id": "D36",
+   "arreglado": false,
+   "por_que": "la luz quedó arreglada (P25 ya no está oscuro), pero la bolsa en 36.09–37.93 sigue siendo un bulto liso con degradado naranja-crema, sin arrugas, foil ni estampado; no se ve la papa en la mano, y las manos (arriba en 36.09 y abajo en 37.67) siguen desenfocadas",
+   "de": "planos3"
+  },
+  {
+   "id": "A4",
+   "arreglado": true,
+   "por_que": "en 20.5 la bolsa se va del tablero hacia atrás, en 22.5 ya no está, en 34.5–35.5 los dedos llegan a un tablero gris sin bolsa y en 36.5 la tiene el doctor en la falda: el remate ya no se contradice (el plano medio del doctor no se hizo; queda un macro de la falda)",
+   "de": "global"
+  },
+  {
+   "id": "A5",
+   "arreglado": true,
+   "por_que": "en 26.5 y 27.5 se lee 'PASADO 27 / GRADOS', sin el símbolo °",
+   "de": "global"
+  },
+  {
+   "id": "A9",
+   "arreglado": true,
+   "por_que": "en 23.5–25.5 la tacita, la bolita y la palanca quedan arriba (y ≈ 250–600), lejos de los subtítulos (y ≈ 1075), y la píldora BOLITA DE ACERO está pegada a la bolita",
+   "de": "global"
+  },
+  {
+   "id": "D37",
+   "arreglado": false,
+   "por_que": "en 18.5–19.5 y 26.5–27.5 la ladera sigue cubierta de decenas de montículos redondos parecidos, como burbujas",
+   "de": "global"
+  },
+  {
+   "id": "D38",
+   "arreglado": false,
+   "por_que": "en 19.5 sigue la mancha gris oscura de borde recto abajo a la izquierda y en 18.5 el suelo bajo el auto es café liso",
+   "de": "global"
+  },
+  {
+   "id": "D39",
+   "arreglado": false,
+   "por_que": "en 20.5 y 36.5–37.5 la bolsa sigue siendo un óvalo naranjo y crema liso, sin arrugas, sellado dentado ni reflejos metálicos",
+   "de": "global"
+  },
+  {
+   "id": "D40",
+   "arreglado": false,
+   "por_que": "en 0.0, 9.5 y 33.5 se siguen viendo los ojos celestes brillantes dentro del casco",
+   "de": "global"
+  },
+  {
+   "id": "D41",
+   "arreglado": false,
+   "por_que": "en 1.4–1.9 y 34.5–35.5 la mano sigue siendo piel rosada lisa con uñas, sin guante ni nudillos marcados",
+   "de": "global"
+  },
+  {
+   "id": "D42",
+   "arreglado": true,
+   "por_que": "en el cuadro 0 las molduras beige y el bloque de la derecha ya tienen grano y el techo café está moteado; ya no se leen lisas (costuras no se distinguen a esta resolución)",
+   "de": "global"
+  },
+  {
+   "id": "D43",
+   "arreglado": false,
+   "por_que": "en 0.0, 9.5 y 33.5 sigue la grilla regular de cuadritos detrás del caballero (y en 20.5/22.5 detrás del asiento trasero)",
+   "de": "global"
+  },
+  {
+   "id": "D44",
+   "arreglado": false,
+   "por_que": "en 7.5–16.5 y 23.5–25.5 el mecanismo sigue en una placa sobre un bloque de concreto gris contra la pared café (en 23.5–25.5 el bloque ocupa media pantalla); no se ve la carcasa cortada del pilar",
+   "de": "global"
+  },
+  {
+   "id": "D45",
+   "arreglado": true,
+   "por_que": "en 24.5 la tacita tiene degradé y un reflejo claro en el borde izquierdo, y en 25.5 un brillo suave en el canto; ya no es un hueco negro plano",
+   "de": "global"
+  },
+  {
+   "id": "D46",
+   "arreglado": false,
+   "por_que": "en 28.5–30.5 el lente derecho de la máscara sigue siendo un óvalo negro plano, sin reflejo ni gota",
+   "de": "global"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "sin datos de ojos en el meta: no se pudo comprobar 'cara tapada' (plano.py + studio/plantilla/caras.py)",
+   "evidencia": ""
+  },
+  {
+   "que": "poco_movimiento · plano 9: cambio mediano 0.06 (cámara fija y nada se mueve)",
+   "evidencia": ""
+  },
+  {
+   "que": "estilo.json: la referencia 'referencias/*.jpg' no encontró archivos en la carpeta del episodio",
+   "evidencia": "estilo.json"
+  },
+  {
+   "que": "estilo realista sin referencias (fotos reales en estilo.json → referencias): el revisor juzga el realismo sin poder comparar",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": true,
+ "delatores": [
+  {
+   "plano": 23,
+   "segundo": "33.17",
+   "zona": "medio",
+   "que": "(D32, sigue) ojos de muñeco dentro del visor: esclerótica blanca grande, iris celeste saturado y brillo fuerte, con el interior del casco iluminado",
+   "arreglo": "oscurecer el interior del visor (sombra o luz bloqueada) para que sólo brille un punto en cada ojo; iris más oscuro y menos especular",
+   "de": "planos3"
+  },
+  {
+   "plano": 24,
+   "segundo": "34.28",
+   "zona": "arriba",
+   "que": "(D35, sigue) el foco está en la armadura y no en la yema del dedo ni en el tablero vacío, que es el sujeto",
+   "arreglo": "poner el foco en la yema del dedo y el tablero; dejar la armadura desenfocada",
+   "de": "planos3"
+  },
+  {
+   "plano": 25,
+   "segundo": "36.09",
+   "zona": "medio",
+   "que": "(D36, sigue) la bolsa es un cojín liso con degradado naranja-crema, sin arrugas, foil ni pliegue de cierre",
+   "arreglo": "arrugas en el mapa de normales, brillo metálico en los pliegues y un estampado genérico; abrirla arriba para que se vea que es una bolsa",
+   "de": "planos3"
+  },
+  {
+   "plano": 25,
+   "segundo": "36.09",
+   "zona": "medio",
+   "que": "(nuevo con la luz nueva) cuadro pastel sin negros (percentil 5 de luminancia en 84): turquesa, durazno y crema con luz pareja, sin sombras de contacto debajo de la bolsa ni de las manos",
+   "arreglo": "luz de ventana lateral, más dura, que deje un lado del regazo en sombra profunda, y sombra de contacto de la bolsa sobre el pantalón",
+   "de": "planos3"
+  },
+  {
+   "plano": 25,
+   "segundo": "36.09",
+   "zona": "medio",
+   "que": "(nuevo) migas blancas nítidas sin sombra, algunas sobre el borde superior de la bolsa contra el fondo desenfocado: parecen pegadas o flotando",
+   "arreglo": "migas naranjas (de papa), con sombra de contacto, apoyadas sobre la bolsa y el pantalón",
+   "de": "planos3"
+  },
+  {
+   "plano": 21,
+   "segundo": "31.00",
+   "zona": "abajo",
+   "que": "(D27, sigue) rocas del primer plano redondeadas y lisas, varias con la misma forma",
+   "arreglo": "rocas angulosas y fracturadas, con escala y rotación variadas",
+   "de": "planos3"
+  },
+  {
+   "plano": 21,
+   "segundo": "31.00",
+   "zona": "arriba",
+   "que": "(D28, sigue) cerros de un solo tono, con laderas lisas",
+   "arreglo": "textura de quebradas o erosión y más bruma de distancia",
+   "de": "planos3"
+  }
+ ],
+ "parar_y_preguntar": true
+}

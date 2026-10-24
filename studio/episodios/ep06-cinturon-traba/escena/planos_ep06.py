@@ -170,7 +170,10 @@ class Cabina:
             for o in self.cintas.get(q, ()):
                 bpy.data.objects.remove(o, do_unlink=True)
             bpy.context.view_layer.update()
-            objs = list(E.cinturon_de(self.sc, a, q, raiz=None, comba=comba.get(q, 0.0)))
+            # el doctor (ropa holgada, se ve de cerca en el 25): la cinta de la falda va más arriba y más afuera, sobre la
+            # pelvis y no a través de los muslos (puerta 6 r2, B1)
+            extra = dict(falda_alto=0.11, falda_frente=0.07, separacion=0.05) if q == "doctor" else {}
+            objs = list(E.cinturon_de(self.sc, a, q, raiz=None, comba=comba.get(q, 0.0), **extra))
             if capa.get(q):
                 color = (0.95, 0.12, 0.08) if capa[q] == "roja" else (0.15, 0.85, 0.3)
                 E.capa_cinta(self.sc, objs[0], color)
@@ -190,7 +193,7 @@ def pieza_cabina(sc, a, b, k):
     cam = cam_cabina(sc, (0, 0, 0), (0, 1, 0))
     W = cab.mundo
     # atrás y en el pilar llega menos sol: la cámara expone más (como una de verdad), sin subir luces falsas
-    sc.view_settings.exposure = {25: 0.9, 4: 0.9, 22: 0.5, 20: 0.9}.get(k, 0.0)
+    sc.view_settings.exposure = {25: 0.4, 4: 0.9, 22: 0.5, 20: 0.9}.get(k, 0.0)
     # plano 1 (y su repetición en el 10 y el loop del 25): foco corto, la mano que se acerca queda blanda como en una cámara real
     cam.data.dof.use_dof = True
     cam.data.dof.aperture_fstop = {1: 2.0, 10: 2.0, 25: 2.8}.get(k, 5.6)
@@ -198,7 +201,7 @@ def pieza_cabina(sc, a, b, k):
         E.migas(sc, tuple(W((0.0, -0.40, 1.335))), n=60, r=0.07, semilla=5)
     if k == 25:      # el remate: migas naranjas sobre el delantal del doctor y luz que entra por su ventana al regazo
         E.migas(sc, tuple(W((0.40, 0.74, 1.17))), n=45, r=0.07, semilla=7)
-        luz = E.luz_area(sc, "LuzDoctor", tuple(W((0.62, 0.62, 1.66))), tuple(W((0.40, 0.80, 1.12))), 9.0, (1.0, 0.82, 0.62), 0.45, spread=70)
+        luz = E.luz_area(sc, "LuzDoctor", tuple(W((0.62, 0.62, 1.66))), tuple(W((0.40, 0.80, 1.12))), 6.0, (1.0, 0.80, 0.58), 0.35, spread=70)
         luz.visible_glossy = False
     t0, t1 = T[k]
 

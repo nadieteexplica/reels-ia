@@ -565,7 +565,7 @@ def capa_cinta(sc, cinta_obj, color, alfa=0.55):
     return None
 
 
-def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05, comba=0.0):
+def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05, comba=0.0, falda_alto=0.02, falda_frente=0.10):
     """Cinturón de tres puntas para un personaje sentado: guía del pilar → frente del hombro de afuera → pecho → hebilla
     en la cadera de adentro; y la parte de la falda de la hebilla al anclaje de afuera. Las anclas del cuerpo salen de los
     huesos con `separacion` sobre la ropa o la armadura (puerta 3: la cinta nunca la atraviesa)."""
@@ -576,8 +576,8 @@ def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05, co
     g = en_auto(PILAR_GUIA[quien])
     hom = pos_hueso(arm, f"{lado_af}Shoulder", cola=True) + frente * (0.06 + separacion) + arriba * 0.04
     pecho = pos_hueso(arm, "Spine2") + frente * (0.12 + lejos_pecho)
-    cad_ad = pos_hueso(arm, f"{lado_ad}UpLeg") + frente * (0.10 + separacion) + lado * (-afuera * 0.06) + arriba * 0.02
-    cad_af = pos_hueso(arm, f"{lado_af}UpLeg") + frente * (0.10 + separacion) + lado * (afuera * 0.08) + arriba * 0.02
+    cad_ad = pos_hueso(arm, f"{lado_ad}UpLeg") + frente * (falda_frente + separacion) + lado * (-afuera * 0.06) + arriba * falda_alto
+    cad_af = pos_hueso(arm, f"{lado_af}UpLeg") + frente * (falda_frente + separacion) + lado * (afuera * 0.08) + arriba * falda_alto
     anc_af = en_auto((ASIENTO[quien][0] + afuera * 0.30, ASIENTO[quien][1] + 0.12, 0.90))
     n_f = dir_auto((0, -1, 0.2))
     if comba > 0:      # cinta que salió con soltura: cuelga un poco entre la guía y el hombro
@@ -585,7 +585,7 @@ def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05, co
         a = cinta(sc, [g, medio, hom, pecho, cad_ad], [dir_auto((-afuera, -0.6, 0)), dir_auto((-afuera, -0.6, 0.3)), n_f, n_f, n_f], nombre=f"Cinta_{quien}")
     else:
         a = cinta(sc, [g, hom, pecho, cad_ad], [dir_auto((-afuera, -0.6, 0)), n_f, n_f, n_f], nombre=f"Cinta_{quien}")
-    b = cinta(sc, [cad_ad, (cad_ad + cad_af) / 2 + arriba * 0.02, cad_af, anc_af], [dir_auto((0, -0.3, 1))] * 4, nombre=f"Falda_{quien}")
+    b = cinta(sc, [cad_ad, (cad_ad + cad_af) / 2 + arriba * 0.02 + frente * 0.02, cad_af, anc_af], [dir_auto((0, -0.3, 1))] * 4, nombre=f"Falda_{quien}")
     for o in (a, b):
         if raiz is not None:
             o.parent = raiz; o.matrix_parent_inverse = raiz.matrix_world.inverted()
