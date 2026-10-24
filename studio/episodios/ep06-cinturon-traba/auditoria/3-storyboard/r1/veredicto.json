@@ -1,0 +1,128 @@
+{
+ "etapa": "3-storyboard",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "NO APROBADO",
+ "promedio": 7.5,
+ "notas": {
+  "foco": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "El mecanismo va con una idea por plano (5 carrete, 7 giro, 8 pestillo, 9 se engancha, 17-18 bolita y palanquita) y casi cada frase tiene su imagen. Falla en tres puntos: «déjalo volver un poquito», el paso útil del truco, cae sobre el exterior del plano 21 sin imagen propia; «lento» no se lee en una foto (3, 11, 12, 22); y en 18-19 hay más texto del que alcanza a leerse.",
+   "de": "storyboard"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "24 planos en 38,5 s, con mediana de ~1,6 s. Todos los planos de más de 2 s dicen qué cambia (3, 5, 8, 20, 23, 24), la escala salta entre P, D, M, I y G cada pocos segundos y los cortes salen de la misma escena (el 10 es otra cámara del 1 y el 12 del 3), sin transiciones especiales. El 10 (0,75 s) es un golpe buscado sobre «Clac» con una cámara ya vista y está bien; el 14 (0,8 s) lleva más acción de la que cabe.",
+   "de": "storyboard"
+  },
+  "viabilidad": {
+   "nota": 6.0,
+   "min": 6,
+   "por_que": "Escenas dentro del tope (5 escenas, 3 a medida), 0 Kling y nadie agarra nada con los dedos. El problema es que 12 planos son de cabina con 4 personajes de Mixamo sentados y con cinturón: la cinta va sobre la armadura y el caballero rebota contra el respaldo en 1 y 10, y la ficha no dice cómo se arma la cinta ni de dónde salen las actuaciones sentadas. Además, el sol se contradice entre el concepto y los planos 1, 6 y 13.",
+   "de": "storyboard"
+  },
+  "gancho_visual": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "El cuadro 0 es absurdo y trae la acción en curso: el caballero con armadura ya lanzado por unas papas, con el CLAC a 0,9 s. La bolsa vuelve como símbolo en 2, 14, 15, 23 y 24, y el 24 corta a la cámara y la pose del cuadro 0 para el loop.",
+   "de": "storyboard"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "La cinta cruza el cuerpo de los 4 personajes en los planos 1, 3, 4, 6, 10, 12, 14-16, 20, 22 y 24, y ninguna ficha dice cómo se arma. Al lanzarse (1, 6) y al rebotar contra el respaldo (1, 10), la cinta va a atravesar la hombrera del caballero o a despegarse del pecho, y la armadura va a entrar en el respaldo; en el render eso es B1. Tampoco se dice de dónde salen las actuaciones sentadas (lanzarse, estirarse, la mímica, encoger los hombros): la biblioteca de Mixamo de CONTEXTO es toda de pie. Y la cabina es a medida: un escaneo de Objaverse casi nunca trae interior.",
+   "arreglo": "Escribirlo en las fichas. La cinta es una malla sobre una curva con 3 anclas (ranura del pilar, hombro y hebilla en la cadera), colgadas de los huesos con 1-2 cm de separación sobre la armadura, y su largo se anima con un solo valor de 'cinta afuera'; los cinturones de atrás quedan quietos. El respaldo lleva una deformación que se hunde en el rebote, o el rebote para 2 cm antes. Para la actuación, una pose base sentada para los 4 más llaves a mano en columna, brazo y cabeza por plano (o la animación sentada de Mixamo, con su nombre en la ficha). Probar los planos 1 y 3 con prueba.py antes de armar E4 y E5. En los cuadros de estilo, elegir un auto con interior modelado, o armar la cabina y usar el escaneo sólo por fuera.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 21,
+   "segundo": "30.60",
+   "que": "«Déjalo volver un poquito...» es el primer paso del truco y lo útil que se lleva el espectador, pero cae sobre el exterior del 4x4 llegando arriba y no tiene imagen. El guion pedía que el caballero dejara volver la cinta; en el 22 sólo se ve «jala lento».",
+   "arreglo": "Partir el 21. Hasta el inicio de 'déjalo' (según words.json), el auto se nivela sobre 'Ya en plano'. En 'déjalo', corte a la cámara del plano 4 (el pilar junto al hombro, filmado en el set de E5): la cinta entra 3-4 cm en la ranura, con una flecha verde corta hacia adentro. Es otra cámara de la misma escena, no una escena nueva.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 24,
+   "segundo": "36.05",
+   "que": "El doctor es el único con la cara descubierta (los otros tres van con casco, visor o máscara, y eso está bien pensado). Mixamo no le anima la cara, y el 24 es un push-in de 50 mm sobre ella justo en el remate, la última imagen antes del loop: una cara quieta de videojuego en primer plano se lee muñeco (realismo 7). Además, las manos 'encima' de la bolsa son un contacto de dedos con un objeto blando en render.",
+   "arreglo": "Encuadrar el 24 del pecho para abajo, con la bolsa vacía y las migas del delantal en foco; la cara entra arriba, fuera de foco y con la cabeza gacha mirando la bolsa. El encogimiento de hombros de 1,3 s se lee igual. Las manos van sobre los muslos a los lados de la bolsa, no encima. En 15 y 16, el doctor a escala M y el foco en la bolsa.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "2.70",
+   "que": "«Lento» no se lee en una foto. En 3, 11, 12 y 22, un cuadro suelto del caballero inclinándose, o del carrete girando, se ve igual que el tirón rápido de 1 y 6, y la oposición rápido/lento es la idea del video. En el 3, además, la píldora (y 330-520) comparte franja con la cara (y 420-760), cosa que ya marcó el aviso automático, y no tiene x; y la cámara entre los hombros de los de atrás puede tapar la cinta cuando el de la máscara gira la cabeza a 2,0 s. En el 16 tampoco se ve 'nadie jaló': cuatro que se miran no muestran que nadie tiró.",
+   "arreglo": "Usar la cinta como señal. En rápido (1, 6, 10), recta y tensa, con la capa roja a lo largo; en lento (3, 12, 22), con una curva suelta y la capa verde. En el 11, una flecha verde corta y delgada junto al carrete, como espejo de la roja larga del 7. En el 3, la píldora en la x del lado contrario al casco, y la cámara terminando con el pilar y la cinta libres de las cabezas de adelante. En el 16, los tres que no manejan muestran las palmas, lejos de la cinta ('no fui yo'), mientras giran la cabeza.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "9.40",
+   "que": "El sol se contradice. El concepto lo hace entrar por las ventanas del piloto (lado izquierdo del auto), pero el plano 6, filmado desde afuera por la ventana del copiloto, dice 'sol detrás de la cámara a la izquierda', o sea sol del lado del copiloto; con el sol del concepto, ese plano quedaría con el sol de frente a la cámara, a contraluz a través de la cabina. El 1 dice 'ventana izquierda' con la cámara mirando hacia atrás, donde la izquierda del cuadro es la ventana del copiloto. El 13 pide 'contraluz parcial', que el mismo concepto prohíbe ('nunca detrás del sujeto'). Y con el sol del lado del piloto, el piloto le hace sombra al caballero. En el Ep. 5 esto costó un animatic.",
+   "arreglo": "Fijar el sol una sola vez, en coordenadas del auto. Recomendado: del lado del copiloto, de costado (~90 grados del eje del auto) y a 3-4 grados de altura; así le pega directo al caballero sin la sombra del piloto y el 6 queda casi como está escrito. Después escribir en cada ficha (1, 2, 3, 13, 19, 20, 21) 'izquierda o derecha del cuadro' sacado de eso, y filmar E3 a 3/4 del lado iluminado, que es también el del precipicio que mira el de la máscara en el 20 (va atrás a la derecha). En el 6, la ventana del copiloto abajo, para que el reflejo del cielo no tape al caballero. El polvo en los rayos va con partículas y rayos de post, no con volumen: a 8 muestras el volumen sale con ruido.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 19,
+   "segundo": "26.20",
+   "que": "Hay texto que no alcanza a leerse. En el 19 (1,8 s), después de que sube el inclinómetro, entra una píldora de 9 palabras (MÁS DE 12°: PUEDE · MÁS DE 27°: SE TRABA; el manual pide máximo 4), que queda ~1 s en pantalla. En el 18 (1,7 s), TAMBIÉN EN FRENADAS entra junto al CLAC de 1,2 s y queda ~0,5 s. Además, el 10 (CLAC grande) y el 22 (LENTO) no dicen dónde va el gráfico, y hay caras en y 380-700 y 400-720. VEINTISIETE va en naranja, que el código reserva para las fuerzas.",
+   "arreglo": "En el 19, poner los umbrales en el dial del inclinómetro (una banda ámbar de 12 a 27° 'PUEDE' y una roja sobre 27° 'SE TRABA'), con la aguja entrando al rojo cuando la voz dice 'veintisiete', y sacar la píldora larga. TAMBIÉN EN FRENADAS, desde el inicio del 18 (1,7 s en pantalla) y lejos de la flecha cian. El CLAC del 10, como la palabra del subtítulo en rojo grande en la zona y 1000-1250. La píldora del 22, con su zona escrita, lejos de las dos caras. VEINTISIETE en rojo (se traba).",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "5.25",
+   "que": "El retractor aparece 'junto al hombro' del caballero. En la mayoría de los autos, a la altura del hombro está sólo la guía de la cinta, y el retractor va abajo en el pilar, a la altura del asiento: un espectador que sabe de autos lo nota, y es lo único del corte que no es como en la realidad. Además, en el 9 el pestillo muerde 'los dientes del anillo', que nunca se presentó (en el 5 se presentó la rueda dentada del carrete).",
+   "arreglo": "En el 4, push-in a la ranura del hombro y después bajar siguiendo la cinta por el pilar hasta el retractor, a la altura del asiento; ahí el plástico se vuelve transparente. Seguir la cinta además muestra de dónde sale. En el 8, que se vea el anillo dentado fijo de la carcasa alrededor del disco antes de que salga el pestillo.",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "19.85",
+   "que": "La bolsa en la subida no cuadra. Desde el tablero frente al copiloto, no puede llegar a la falda del doctor (atrás a la izquierda) sin pasar por encima del caballero, y en un mundo realista ese salto se nota. Además, el 14 dura 0,8 s y lleva horizonte inclinado, bolsa que se resbala y dos CLAC (aviso automático). Y la ficha no dice que la bolsa sea genérica.",
+   "arreglo": "Poner la bolsa al centro del tablero desde el plano 1 y, en la subida, que se deslice hacia atrás por la consola central entre los dos asientos. En el 14 dejar sólo el horizonte inclinado y los dos CLAC; la bolsa resbalando pasa al comienzo del 15. Bolsa sin marca y sin los colores de una marca conocida.",
+   "de": "storyboard"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "plano 3: el gráfico (y 330–520) comparte franja con la cara (y 420–760): ubicarlo con graficos.lugar_libre y confirmarlo con tools/prueba.py",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 10 dura 0.75 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 14 dura 0.80 s (muy corto para leerse)",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [],
+ "parar_y_preguntar": false
+}

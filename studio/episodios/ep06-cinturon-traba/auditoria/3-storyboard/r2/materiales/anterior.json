@@ -1,0 +1,57 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "La cinta cruza el cuerpo de los 4 personajes en los planos 1, 3, 4, 6, 10, 12, 14-16, 20, 22 y 24, y ninguna ficha dice cómo se arma. Al lanzarse (1, 6) y al rebotar contra el respaldo (1, 10), la cinta va a atravesar la hombrera del caballero o a despegarse del pecho, y la armadura va a entrar en el respaldo; en el render eso es B1. Tampoco se dice de dónde salen las actuaciones sentadas (lanzarse, estirarse, la mímica, encoger los hombros): la biblioteca de Mixamo de CONTEXTO es toda de pie. Y la cabina es a medida: un escaneo de Objaverse casi nunca trae interior.",
+  "arreglo": "Escribirlo en las fichas. La cinta es una malla sobre una curva con 3 anclas (ranura del pilar, hombro y hebilla en la cadera), colgadas de los huesos con 1-2 cm de separación sobre la armadura, y su largo se anima con un solo valor de 'cinta afuera'; los cinturones de atrás quedan quietos. El respaldo lleva una deformación que se hunde en el rebote, o el rebote para 2 cm antes. Para la actuación, una pose base sentada para los 4 más llaves a mano en columna, brazo y cabeza por plano (o la animación sentada de Mixamo, con su nombre en la ficha). Probar los planos 1 y 3 con prueba.py antes de armar E4 y E5. En los cuadros de estilo, elegir un auto con interior modelado, o armar la cabina y usar el escaneo sólo por fuera.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 21,
+  "segundo": "30.60",
+  "que": "«Déjalo volver un poquito...» es el primer paso del truco y lo útil que se lleva el espectador, pero cae sobre el exterior del 4x4 llegando arriba y no tiene imagen. El guion pedía que el caballero dejara volver la cinta; en el 22 sólo se ve «jala lento».",
+  "arreglo": "Partir el 21. Hasta el inicio de 'déjalo' (según words.json), el auto se nivela sobre 'Ya en plano'. En 'déjalo', corte a la cámara del plano 4 (el pilar junto al hombro, filmado en el set de E5): la cinta entra 3-4 cm en la ranura, con una flecha verde corta hacia adentro. Es otra cámara de la misma escena, no una escena nueva.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 24,
+  "segundo": "36.05",
+  "que": "El doctor es el único con la cara descubierta (los otros tres van con casco, visor o máscara, y eso está bien pensado). Mixamo no le anima la cara, y el 24 es un push-in de 50 mm sobre ella justo en el remate, la última imagen antes del loop: una cara quieta de videojuego en primer plano se lee muñeco (realismo 7). Además, las manos 'encima' de la bolsa son un contacto de dedos con un objeto blando en render.",
+  "arreglo": "Encuadrar el 24 del pecho para abajo, con la bolsa vacía y las migas del delantal en foco; la cara entra arriba, fuera de foco y con la cabeza gacha mirando la bolsa. El encogimiento de hombros de 1,3 s se lee igual. Las manos van sobre los muslos a los lados de la bolsa, no encima. En 15 y 16, el doctor a escala M y el foco en la bolsa.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 3,
+  "segundo": "2.70",
+  "que": "«Lento» no se lee en una foto. En 3, 11, 12 y 22, un cuadro suelto del caballero inclinándose, o del carrete girando, se ve igual que el tirón rápido de 1 y 6, y la oposición rápido/lento es la idea del video. En el 3, además, la píldora (y 330-520) comparte franja con la cara (y 420-760), cosa que ya marcó el aviso automático, y no tiene x; y la cámara entre los hombros de los de atrás puede tapar la cinta cuando el de la máscara gira la cabeza a 2,0 s. En el 16 tampoco se ve 'nadie jaló': cuatro que se miran no muestran que nadie tiró.",
+  "arreglo": "Usar la cinta como señal. En rápido (1, 6, 10), recta y tensa, con la capa roja a lo largo; en lento (3, 12, 22), con una curva suelta y la capa verde. En el 11, una flecha verde corta y delgada junto al carrete, como espejo de la roja larga del 7. En el 3, la píldora en la x del lado contrario al casco, y la cámara terminando con el pilar y la cinta libres de las cabezas de adelante. En el 16, los tres que no manejan muestran las palmas, lejos de la cinta ('no fui yo'), mientras giran la cabeza.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "9.40",
+  "que": "El sol se contradice. El concepto lo hace entrar por las ventanas del piloto (lado izquierdo del auto), pero el plano 6, filmado desde afuera por la ventana del copiloto, dice 'sol detrás de la cámara a la izquierda', o sea sol del lado del copiloto; con el sol del concepto, ese plano quedaría con el sol de frente a la cámara, a contraluz a través de la cabina. El 1 dice 'ventana izquierda' con la cámara mirando hacia atrás, donde la izquierda del cuadro es la ventana del copiloto. El 13 pide 'contraluz parcial', que el mismo concepto prohíbe ('nunca detrás del sujeto'). Y con el sol del lado del piloto, el piloto le hace sombra al caballero. En el Ep. 5 esto costó un animatic.",
+  "arreglo": "Fijar el sol una sola vez, en coordenadas del auto. Recomendado: del lado del copiloto, de costado (~90 grados del eje del auto) y a 3-4 grados de altura; así le pega directo al caballero sin la sombra del piloto y el 6 queda casi como está escrito. Después escribir en cada ficha (1, 2, 3, 13, 19, 20, 21) 'izquierda o derecha del cuadro' sacado de eso, y filmar E3 a 3/4 del lado iluminado, que es también el del precipicio que mira el de la máscara en el 20 (va atrás a la derecha). En el 6, la ventana del copiloto abajo, para que el reflejo del cielo no tape al caballero. El polvo en los rayos va con partículas y rayos de post, no con volumen: a 8 muestras el volumen sale con ruido.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ }
+]

@@ -17,3 +17,8 @@
 {"tipo": "chequeo", "id": "sesion ep06", "estado": "vivo (vigilante)", "n": 17, "ts": "2026-10-23T21:06:19-03:00"}
 {"tipo": "trabajo", "id": "puerta1 r1", "estado": "fin", "n": 18, "ts": "2026-10-23T21:07:33-03:00"}
 {"tipo": "trabajo", "id": "voz 0011", "estado": "inicio", "n": 19, "ts": "2026-10-23T21:07:35-03:00"}
+{"tipo": "trabajo", "id": "voz 0011", "estado": "fin", "n": 20, "ts": "2026-10-23T21:11:42-03:00"}
+{"tipo": "trabajo", "id": "puerta3 r1", "estado": "inicio", "n": 21, "ts": "2026-10-23T21:12:28-03:00"}
+{"tipo": "chequeo", "id": "sesion ep06", "estado": "vivo (vigilante)", "n": 22, "ts": "2026-10-23T21:21:19-03:00"}
+{"tipo": "trabajo", "id": "puerta3 r1", "estado": "fin", "n": 23, "ts": "2026-10-23T21:23:08-03:00"}
+{"tipo": "trabajo", "id": "puerta3 r2", "estado": "inicio", "n": 24, "ts": "2026-10-23T21:23:08-03:00"}

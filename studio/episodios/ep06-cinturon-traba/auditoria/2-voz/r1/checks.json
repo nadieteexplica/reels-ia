@@ -1,0 +1,11 @@
+{
+ "fallas": [],
+ "avisos": [],
+ "datos": {
+  "duracion_voz_s": 38.17,
+  "palabras_por_s": 2.86,
+  "creditos_restantes": 36802,
+  "asr_coincidencia": 1.0,
+  "asr_diferencias": []
+ }
+}

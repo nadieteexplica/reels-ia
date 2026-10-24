@@ -1,0 +1,23 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "plano 3: el gráfico (y 330–520) comparte franja con la cara (y 420–760): ubicarlo con graficos.lugar_libre y confirmarlo con tools/prueba.py",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 10 dura 0.75 s (muy corto para leerse)",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 14 dura 0.80 s (muy corto para leerse)",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "planos": 24,
+  "escenas": 5,
+  "planos_kling": [],
+  "estilo": "realista"
+ }
+}
