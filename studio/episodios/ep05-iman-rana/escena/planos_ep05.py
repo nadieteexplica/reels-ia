@@ -111,7 +111,7 @@ def p4(sc, a, b):
     cam, rana = S["cam"], S["rana"]
     c = Vector((0, 0, RANA_Z))
     t0 = T[4][0]
-    arriba0 = Vector((0.02, -0.08, RANA_Z + 0.24))
+    arriba0 = Vector((0.03, -0.11, RANA_Z + 0.27))         # (más cerca se veía oscuro y turbio adentro del tubo: muestras v3)
     arriba1 = Vector((0.03, -0.11, RANA_Z + 0.30))
     lejos = Vector((1.5, -3.4, 1.05))
 
@@ -134,7 +134,7 @@ def p5(sc, a, b):
     cam, rana = S["cam"], S["rana"]
 
     def act(f):
-        x = lin(f, a, b - 1) ** 1.6
+        x = 0.78 * lin(f, a, b - 1) ** 1.6          # se frena a ~5 cm del ojo: más cerca, el escaneo era una mancha café (muestras v3)
         rana_flota(rana, f)
         c = Vector((0, 0, RANA_Z + 0.003))
         p0 = orbita(Vector((0, 0, RANA_Z)), R_CERCA, -10, ALTO_CAM)
@@ -384,6 +384,8 @@ def armar_E4(sc, bobinas=False, hueco_acero=False):
     G["cables"] = [o for o in piezas if o.name.startswith(("G_cable", "G_conector"))]
     for o in G["cuerpo"] + G["tapa"] + G["hueco"]:
         o["z0"] = o.location.z
+    # la tapa del hoyo en la losa por donde sale el hueco (puerta 3 r2: el tubo salía de la losa lisa)
+    E.cilindro(sc, "G_losa_hoyo", 1.02, 0.012, (0, 0, 0.445), verts=128, mat=E.mat_acero_industrial("hoyo_g", (0.03, 0.03, 0.035), sucio=0.3))
     if hueco_acero:
         # PASO 1 (planos 10 y 12): el hueco se ve solo, de pie en la losa; de negro plano se leía como un hoyo recortado,
         # no como una pieza de metal: acero oscuro con mugre (por dentro, ya tapado, vuelve a ser la boca negra)
@@ -503,7 +505,8 @@ def p9(sc, a, b):
         x = suave(lin(f, a, b - 1))
         sube = suave(lin(tf(f), T[9][0] + 1.1, T[9][0] + 1.7))
         pose_pete(sc, P, f, cabeza=(-30 * sube, 0))
-        mirar(cam, Vector((6.0, -17.5, 1.8)).lerp(Vector((5.0, -14.5, 1.75)), x), Vector((-2.0, -0.5, 1.5)), lente=35,
+        # mirada más baja que en el v2: la cara de Pete quedaba en la franja de subtítulos (puerta 3 r2)
+        mirar(cam, Vector((6.0, -17.5, 1.8)).lerp(Vector((5.0, -14.5, 1.75)), x), Vector((-2.0, -0.5, 0.3)), lente=35,
               foco=PETE_E4 + Vector((0, 0, 1.6)))
         return {}
     return {"actualizar": act}
@@ -533,9 +536,11 @@ def p10(sc, a, b):
             o.location.z = o["z0"] - 3.25 * (1 - s)
         mira = suave(lin(t, t_pri + 0.3, t_pri + 1.1))
         pose_pete(sc, P, f, cabeza=(-14 * mira, 0))
-        pos = C0 + r * (0.5 * x) + Vector((0, 0, 1.2)) + temblor(f, [t_lle], 0.02)
-        tgt = C0 + v * 9.0 + Vector((0, 0, 0.73)) + r * (0.3 * x)
-        mirar(cam, pos, tgt, lente=24, foco=PETE_E4 + Vector((0, 0, 1.4)))
+        # en "quepas" la grúa sube y mira adentro: se ve la boca del hueco (de lado se leía como un pilar: puerta 3 r2)
+        g = suave(lin(t, t_lle - 0.2, T[10][1] - 0.05))
+        pos = (C0 + r * (0.5 * x) + Vector((0, 0, 1.2))).lerp(-v * 5.5 + r * 0.6 + Vector((0, 0, 6.8)), g) + temblor(f, [t_lle], 0.02)
+        tgt = (C0 + v * 9.0 + Vector((0, 0, 0.73)) + r * (0.3 * x)).lerp(Vector((0, 0, 3.0)), g)
+        mirar(cam, pos, tgt, lente=24, foco=(PETE_E4 + Vector((0, 0, 1.4))).lerp(Vector((0, 0, 3.4)), g))
         cam.data.dof.aperture_fstop = 8
         return {"pete": pantalla(sc, cam, PETE_E4 + Vector((0, 0, 1.0))), "hueco": pantalla(sc, cam, (0, 0, 3.6))}
     return {"actualizar": act}
@@ -566,7 +571,7 @@ def p12(sc, a, b):
         # de espaldas a la central; cámara a la altura de los ojos: Pete adentro del cuadro y con la cara sobre la franja de
         # subtítulos (el plano 13 del v2)
         p = orbita(Vector((0, 0, 0)), 18.5, -40 + 10 * x, 1.75) + temblor(f, llega_b + [llega_c])
-        mirar(cam, p, Vector((0, 0, 1.6)), lente=35, foco=Vector((0, 0, 2.0)))
+        mirar(cam, p, Vector((0, 0, 0.9)), lente=35, foco=Vector((0, 0, 2.0)))     # (1,6 en el v2: Pete en los subtítulos)
         return {}
     return {"actualizar": act}
 
