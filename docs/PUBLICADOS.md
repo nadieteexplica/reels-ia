@@ -4,7 +4,7 @@ Va **una fila por red** (3 filas por video). Al publicar se llena hasta "Dur."; 
 **YouTube primero (21-oct-2026):** en las filas de YouTube la métrica principal es **visto vs. deslizado** (se anota en la columna "% visto" como `visto/deslizado · % visto`) y las vistas comprometidas; en Instagram y TikTok sigue siendo **envíos/alcance**. Los aprendizajes se escriben solo en `CONTEXTO.md` → "Aprendizajes".
 **Línea:** datos o historias. **Formato:** el de `REFERENCIAS.md` §5 (corte, objeto, lo conté yo, fábula…). **Cierre:** loop o envío (prueba del cierre que pide el envío).
 
-**Ep. 6** (el cinturón que se traba, 38,5 s, realista) listo el 24-oct: puertas 7 y 8 APROBADO; puerta 6 r2 7,71 (realismo 7). Propuesto **lunes 26-oct: Instagram 10:00 · YouTube 16:00 · TikTok 18:00**, esperando el OK de Tomás. MP4 en la prerelease `ep06-borrador` (el Release `ep06` se crea con `release.yml` después del OK); textos en `studio/episodios/ep06-cinturon-traba/entrega/caption.md`.
+**Ep. 6** (el cinturón que se traba): **NO SE PUBLICA** — Tomás lo calificó de vergüenza máxima (24-oct 08:17); lección 109.
 
 **Ep. 5 v3** (el imán que te haría flotar, 39,3 s, primer video realista — el estilo que Tomás eligió como línea de la cuenta) programado con OK de Tomás (24-oct 00:21: "el nuevo y elimina el otro") para el **sábado 24-oct: Instagram 10:00 · TikTok 18:00 · YouTube 20:30**.
 - **Metricool:** 404764457 / 404764617 / 404764622, con los mismos uuid de los posts del v2. El 24-oct a la 01:38 se cambiaron el video y los textos, así que el v2 no sale.
