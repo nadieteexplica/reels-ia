@@ -190,10 +190,16 @@ def pieza_cabina(sc, a, b, k):
     cam = cam_cabina(sc, (0, 0, 0), (0, 1, 0))
     W = cab.mundo
     # atrás y en el pilar llega menos sol: la cámara expone más (como una de verdad), sin subir luces falsas
-    sc.view_settings.exposure = {25: 0.7, 4: 0.4, 22: 0.4, 20: 0.3}.get(k, 0.0)
+    sc.view_settings.exposure = {25: 0.9, 4: 0.4, 22: 0.5, 20: 0.9}.get(k, 0.0)
     # plano 1 (y su repetición en el 10 y el loop del 25): foco corto, la mano que se acerca queda blanda como en una cámara real
     cam.data.dof.use_dof = True
     cam.data.dof.aperture_fstop = {1: 2.0, 10: 2.0, 25: 2.8}.get(k, 5.6)
+    if k == 24:      # la bolsa ya no está en el tablero (cayó atrás en la subida): sólo migas (puerta 6 r1, B2)
+        E.migas(sc, tuple(W((0.0, -0.40, 1.335))), n=60, r=0.07, semilla=5)
+    if k == 25:      # el remate: migas naranjas sobre el delantal del doctor y luz que entra por su ventana al regazo
+        E.migas(sc, tuple(W((0.40, 0.74, 1.17))), n=45, r=0.07, semilla=7)
+        luz = E.luz_area(sc, "LuzDoctor", tuple(W((0.62, 0.62, 1.66))), tuple(W((0.40, 0.80, 1.12))), 9.0, (1.0, 0.82, 0.62), 0.45, spread=70)
+        luz.visible_glossy = False
     t0, t1 = T[k]
 
     def actualizar(f):
@@ -226,6 +232,8 @@ def pieza_cabina(sc, a, b, k):
             cab.pose("caballero", f, lanza=suave(lin(t, t0, t0 + 0.5)))
             mirar(cam, W((-0.20, -1.55, 1.62)), W((-0.37, 0.30, 1.40)), lente=50, foco=W((-0.37, 0.25, 1.42)))
         elif k in (14, 15, 16, 20):
+            if k in (16, 20):
+                cab.bolsa.location = Vector((0.18, 0.80, 1.00))     # ya cayó atrás, junto al doctor (puerta 6 r1, B2)
             for q in cab.arms:
                 cab.pose(q, f, palmas=(suave(lin(t, t0 + 0.2, t0 + 0.7)) if (k == 16 and q != "piloto") else 0.0),
                          mira=(0.5 * math.sin(t * 2.0 + len(q)) * suave(lin(t, t0, t0 + 0.4)) if k == 16 else 0.0))
@@ -240,15 +248,19 @@ def pieza_cabina(sc, a, b, k):
             else:
                 mirar(cam, W((0.0, -1.05, 1.55)), W((0.0, 0.40, 1.50)), lente=35, foco=W((0.0, 0.3, 1.5)))
         elif k == 22:
-            cab.pose("caballero", f, lanza=0.15)
+            # "déjalo volver un poquito": se echa atrás y la cinta entra por la ranura; la cámara se acerca a la guía
+            cab.bolsa.location = Vector((0.40, 0.78, 1.14))
+            cab.pose("caballero", f, lanza=0.45 * (1 - suave(lin(t, t0 + 0.1, t0 + 0.9))))
             m = W(E.PILAR_GUIA["caballero"])
-            mirar(cam, W((-0.15, 0.85, 1.70)), m, lente=50, foco=m)
+            mirar(cam, W((-0.15, 0.85, 1.70)).lerp(m, 0.25 * suave(u)), m, lente=mezcla(50, 65, suave(u)), foco=m)
         elif k == 23:
+            cab.bolsa.location = Vector((0.40, 0.78, 1.14))
             cab.pose("caballero", f, lanza=0.5 * suave(lin(t, t0 + 0.3, t1)))
             cab.pose("mascara", f, mimica=suave(lin(t, t0, t0 + 0.3)))
             mirar(cam, W((-0.10, -1.05, 1.55)), W((-0.30, 0.60, 1.55)), lente=40, foco=W((-0.35, 0.30, 1.55)))
         elif k == 24:
             cab.pose("caballero", f, lanza=0.9)
+            cab.bolsa.location = Vector((0.40, 0.78, 1.14))     # en la falda del doctor, fuera de cuadro
             fo = W((-0.10, -0.28, 1.40)).lerp(W(E.TABLERO_CENTRO), suave(lin(t, t0 + 1.1, t0 + 1.5)))
             mirar(cam, W((0.12, -1.00, 1.45)), W(E.TABLERO_CENTRO), lente=85, foco=fo)
         elif k == 25:
@@ -306,7 +318,7 @@ def pieza_retractor(sc, a, b, k):
             mirar(cam, RET + Vector((0.42 + sac, -0.20, 0.08)), RET + Vector((0.033, 0, 0.012)), lente=100, foco=RET + Vector((0.033, 0, 0.012)))
         else:   # 17, 18: la tacita, abajo
             c = taza.matrix_world.translation
-            mirar(cam, c + Vector((0.30, -0.22, 0.10 + 0.02 * u)), c + Vector((0, 0, 0.01 + 0.01 * u)), lente=100, foco=c)
+            mirar(cam, c + Vector((0.30, -0.22, 0.10 + 0.02 * u)), c + Vector((0, 0, -0.022 + 0.01 * u)), lente=100, foco=c)
         return {}
 
     return {"actualizar": actualizar, "meta": {"escena": "E2"}}

@@ -36,7 +36,7 @@ CIAN = (40, 205, 255)              # el sensor del auto (la bolita)
 NARANJO = (255, 140, 30)           # fuerzas (flechas)
 AMBAR = (245, 170, 40)             # 12–27°: puede trabarse
 GRIS = (150, 156, 166)
-CLAVE = {"RÁPIDO": ROJO, "LENTO": VERDE, "27°": ROJO, "CLAC": ROJO}
+CLAVE = {"RÁPIDO": ROJO, "LENTO": VERDE, "27": ROJO, "CLAC": ROJO}
 BOX = (120, 888, 1000, 1250)
 META = {}
 for p in sorted(glob.glob(os.path.join(src, "meta", "*.json"))):
@@ -146,7 +146,7 @@ def suave(x):
     return x * x * (3 - 2 * x)
 
 # ---------------- subtítulos (palabra por palabra; cifras juntas) ----------------
-NUMEROS = [("veintisiete", "27°")]
+NUMEROS = [("veintisiete", "27")]        # "27° GRADOS" repetía el grado (puerta 6 r1, B10)
 
 
 def limpiar(w):
