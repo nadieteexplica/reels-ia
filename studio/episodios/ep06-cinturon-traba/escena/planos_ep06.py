@@ -105,6 +105,10 @@ class Cabina:
         reb = E.luz_area(sc, "Rebote", (0.1, -0.55, 1.5), (-0.37, 0.30, 1.45), 4, (1.0, 0.9, 0.82), 0.3, spread=60)
         reb.visible_glossy = False
         reb.parent = self.auto
+        # la luz que rebota en el tapiz de atrás: sin esto los de atrás quedan en negro (muestras v2)
+        reb2 = E.luz_area(sc, "Rebote2", (0.0, 1.55, 1.70), (0.0, 0.85, 1.30), 3.0, (1.0, 0.88, 0.75), 0.6, spread=70)
+        reb2.visible_glossy = False
+        reb2.parent = self.auto
         self.incl = incl
         self.poner(incl)
 
@@ -197,22 +201,22 @@ def pieza_cabina(sc, a, b, k):
             lanza = 1.0 if t < tc else max(0.0, 1.0 - 2.2 * (t - tc)) * 0.55 + 0.25 * math.exp(-6 * (t - tc))
             cab.pose("caballero", f, lanza=lanza)
             sac = 0.012 * math.exp(-18 * max(0, t - tc)) * math.sin(70 * max(0, t - tc)) if t >= tc else 0
-            mirar(cam, W((0.06 + sac, -0.26, 1.46 + sac)), W((-0.33, 0.22, 1.52)), lente=35, foco=W((-0.33, 0.10, 1.55)))
+            mirar(cam, W((-0.22 + sac, -1.05, 1.52 + sac)), W((-0.30, 0.15, 1.45)), lente=50, foco=W((-0.32, 0.05, 1.50)))
         elif k == 2:
             cab.pose("caballero", f, lanza=0.95)
             cab.bolsa.location.x = 0.03 * sale(lin(t, t0 + 0.6, t0 + 1.2))
             fo = W((-0.10, -0.28, 1.40)).lerp(W(E.BOLSA), suave(lin(t, t0 + 0.5, t0 + 0.9)))
-            mirar(cam, W((-0.52, 0.10, 1.45)), W(E.BOLSA), lente=85, foco=fo)
+            mirar(cam, W((0.12, -1.00, 1.45)), W(E.BOLSA), lente=85, foco=fo)
         elif k in (3, 12):
             cab.pose("caballero", f, lanza=0.6 * suave(lin(t, t0 + 0.4, t1)) + 0.15)
             cab.pose("mascara", f, mira=0.6 * suave(lin(t, t0 + 1.8, t0 + 2.3)) if k == 3 else 0.0)
             x = mezcla(0.02, -0.20, suave(u)); y = mezcla(0.90, 0.85, suave(u))
-            mirar(cam, W((x, y, 1.64)), W((-0.45, 0.25, 1.45)), lente=35, foco=W((-0.42, 0.30, 1.48)))
+            mirar(cam, W((1.05, mezcla(-0.25, -0.18, suave(u)), 1.47)), W((-0.40, 0.28, 1.48)), lente=50, foco=W((-0.40, 0.28, 1.50)))
         elif k == 4:
             cab.pose("caballero", f, lanza=0.15)
             guia = W(E.PILAR_GUIA["caballero"]); ret = W(E.RETRACTOR)
             m = guia.lerp(ret, 0.5 * suave(lin(t, t0 + 0.4, t1)))
-            mirar(cam, W((-0.50, -0.15, 1.50)), m, lente=50, foco=m)
+            mirar(cam, W((-0.15, 0.85, 1.70)), m, lente=50, foco=m)
         elif k == 6:
             cab.pose("caballero", f, lanza=suave(lin(t, t0, t0 + 0.5)))
             mirar(cam, W((-0.20, -1.55, 1.62)), W((-0.37, 0.30, 1.40)), lente=50, foco=W((-0.37, 0.25, 1.42)))
@@ -223,34 +227,34 @@ def pieza_cabina(sc, a, b, k):
             if k == 15:
                 cab.bolsa.location = Vector(E.BOLSA).lerp(Vector((0.18, 0.80, 1.00)), sale(lin(t, t0 + 0.05, t0 + 0.45)))
             if k == 20:
-                mirar(cam, W((0.05, 0.15, 1.50)), W((-0.40, 0.95, 1.62)), lente=85, foco=W((-0.40, 0.92, 1.65)))
+                mirar(cam, W((0.0, -0.05, 1.69)), W((-0.40, 0.95, 1.60)), lente=85, foco=W((-0.40, 0.90, 1.63)))
                 info["gota"] = round(lin(t, t0, t1), 3)
             elif k == 15:
                 fb = cab.bolsa.matrix_world.translation
-                mirar(cam, W((0.0, 1.00, 1.62)), W((0.0, -0.20, 1.25)), lente=35, foco=fb)
+                mirar(cam, W((0.0, 1.75, 1.64)), W((0.0, -0.20, 1.30)), lente=35, foco=fb)
             else:
                 mirar(cam, W((0.0, -1.05, 1.55)), W((0.0, 0.40, 1.50)), lente=35, foco=W((0.0, 0.3, 1.5)))
         elif k == 22:
             cab.pose("caballero", f, lanza=0.15)
             m = W(E.PILAR_GUIA["caballero"])
-            mirar(cam, W((-0.50, -0.15, 1.50)), m, lente=50, foco=m)
+            mirar(cam, W((-0.15, 0.85, 1.70)), m, lente=50, foco=m)
         elif k == 23:
             cab.pose("caballero", f, lanza=0.5 * suave(lin(t, t0 + 0.3, t1)))
             cab.pose("mascara", f, mimica=suave(lin(t, t0, t0 + 0.3)))
-            mirar(cam, W((0.08, -0.25, 1.50)), W((-0.30, 0.60, 1.58)), lente=35, foco=W((-0.35, 0.4, 1.58)))
+            mirar(cam, W((-0.10, -1.05, 1.55)), W((-0.30, 0.60, 1.55)), lente=40, foco=W((-0.35, 0.30, 1.55)))
         elif k == 24:
             cab.pose("caballero", f, lanza=0.9)
             fo = W((-0.10, -0.28, 1.40)).lerp(W(E.TABLERO_CENTRO), suave(lin(t, t0 + 1.1, t0 + 1.5)))
-            mirar(cam, W((-0.52, 0.10, 1.45)), W(E.TABLERO_CENTRO), lente=85, foco=fo)
+            mirar(cam, W((0.12, -1.00, 1.45)), W(E.TABLERO_CENTRO), lente=85, foco=fo)
         elif k == 25:
             cab.pose("doctor", f, encoge=suave(lin(t, t0 + 1.3, t0 + 1.8)))
             cab.bolsa.location = Vector((0.40, 0.78, 1.14))
             if t < t0 + 2.1:
-                mirar(cam, W((0.0, 0.35, 1.32)).lerp(W((0.02, 0.45, 1.30)), suave(u)), W((0.40, 0.85, 1.12)), lente=50, foco=W((0.40, 0.82, 1.08)))
+                mirar(cam, W((0.88, 0.66, 1.64)).lerp(W((0.84, 0.70, 1.60)), suave(u)), W((0.40, 0.80, 1.14)), lente=50, foco=W((0.40, 0.78, 1.14)))
             else:     # loop: corte a la cámara del cuadro 0
                 cab.bolsa.location = Vector(E.BOLSA)
                 cab.pose("caballero", f, lanza=1.0)
-                mirar(cam, W((0.06, -0.26, 1.46)), W((-0.33, 0.22, 1.52)), lente=35, foco=W((-0.33, 0.10, 1.55)))
+                mirar(cam, W((-0.22, -1.05, 1.52)), W((-0.30, 0.15, 1.45)), lente=50, foco=W((-0.32, 0.05, 1.50)))
         capa, comba = {}, {}
         if k in (1, 10):
             capa["caballero"] = "roja"          # trabada: la cinta recta y tensa
