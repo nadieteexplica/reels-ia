@@ -23,7 +23,7 @@ ret, RET = E.set_retractor(sc, giro=env("GIRO", 25), pestillo=env("PESTILLO", 0.
                            palanca=env("PALANCA", 0.0), key=env("KEY", 2.5), rebote=env("REBOTE", 6.0))
 # cámara macro desde adentro del auto, mirando al pilar en diagonal
 pos = RET + Vector((env("CAM_DX", 0.62), env("CAM_DY", -0.42), env("CAM_Z", 0.02)))
-E.camara(sc, pos, RET + Vector((0, 0, env("MIRA_DZ", -0.005))), lente=env("LENTE", 100), fstop=env("FSTOP", 8.0))
+E.camara(sc, pos, RET + Vector((0, 0, env("MIRA_DZ", -0.005))), lente=env("LENTE", 100), fstop=env("FSTOP", 5.6))
 sc.render.filepath = os.path.join(out, os.environ.get("NOMBRE", "estilo_C_HD") + ".png")
 bpy.ops.render.render(write_still=True)
 print("ok", sc.render.filepath)

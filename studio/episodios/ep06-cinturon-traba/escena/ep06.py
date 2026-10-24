@@ -49,6 +49,26 @@ def sol(sc, fuerza_cielo=0.22, sol=4.0, az=None, elev=None):
 
 
 # ---------------------------------------------------------------- suelo del desierto y cerro de roca
+def huellas(mat, separacion=0.80, ancho=0.16):
+    """Dos huellas de neumático a lo largo del camino (y): tierra más oscura y apretada, con el dibujo del neumático."""
+    nt = mat.node_tree
+    b = next(n for n in nt.nodes if n.type == "BSDF_PRINCIPLED")
+    ent = b.inputs["Base Color"]; src = ent.links[0].from_socket; nt.links.remove(ent.links[0])
+    tc = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    nt.links.new(tc.outputs["Object"], sep.inputs[0])
+    ab = nt.nodes.new("ShaderNodeMath"); ab.operation = "ABSOLUTE"; nt.links.new(sep.outputs["X"], ab.inputs[0])
+    dif = nt.nodes.new("ShaderNodeMath"); dif.operation = "SUBTRACT"; dif.inputs[1].default_value = separacion
+    nt.links.new(ab.outputs[0], dif.inputs[0])
+    ab2 = nt.nodes.new("ShaderNodeMath"); ab2.operation = "ABSOLUTE"; nt.links.new(dif.outputs[0], ab2.inputs[0])
+    banda = _mapa(nt, ab2.outputs[0], 1.0, 0.0); banda.inputs["From Max"].default_value = ancho
+    nz = _ruido(nt, escala=4.0, detalle=6)
+    k = nt.nodes.new("ShaderNodeMath"); k.operation = "MULTIPLY"
+    nt.links.new(banda.outputs[0], k.inputs[0]); nt.links.new(_mapa(nt, nz.outputs["Fac"], 0.35, 0.8).outputs[0], k.inputs[1])
+    mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"; mx.blend_type = "MULTIPLY"
+    nt.links.new(k.outputs[0], mx.inputs[0]); nt.links.new(src, mx.inputs[6]); mx.inputs[7].default_value = (0.55, 0.5, 0.46, 1)
+    nt.links.new(mx.outputs[2], ent)
+
+
 def mat_tierra(nombre="tierra", escala=1.0):
     """Tierra suelta del desierto: polvo café claro con manchas grandes, piedrecillas (voronoi) y huellas finas."""
     m, nt, b = _nodos(nombre)
@@ -116,7 +136,7 @@ def desierto(sc, lado=40000.0):
     return cerca
 
 
-def cerro_roca(sc, pendiente=30.0, origen=(0.0, -2.0, 0.0), largo=20.0, ancho=30.0):
+def cerro_roca(sc, pendiente=30.0, origen=(0.0, -2.0, 0.0), largo=28.0, ancho=30.0, subida=18.4):
     """Ladera de roca que sube hacia −y con la pendiente dada (el camino que trepa el 4x4) y que cae a un precipicio del lado −x.
     Devuelve una función z(y) de la ladera para apoyar el auto."""
     ox, oy, oz = origen
@@ -125,7 +145,7 @@ def cerro_roca(sc, pendiente=30.0, origen=(0.0, -2.0, 0.0), largo=20.0, ancho=30
     g = bpy.context.object; g.name = "Cerro"
     for v in g.data.vertices:
         x = v.co.x * ancho; y = -v.co.y * largo - largo / 2      # de y = 0 a y = −largo
-        z = min(max(0.0, -y), largo * 0.92) * t        # arriba, una cima plana (plano 21)
+        z = min(max(0.0, -y), subida) * t        # arriba, una cima plana larga (plano 21: el auto no queda al borde)
         # precipicio del lado −x (donde mira el de la máscara): el borde cae
         if x < -6:
             z -= (-6 - x) ** 1.6 * 0.9
@@ -137,25 +157,36 @@ def cerro_roca(sc, pendiente=30.0, origen=(0.0, -2.0, 0.0), largo=20.0, ancho=30
         vg.add([v.index], k, "REPLACE")
     tx = bpy.data.textures.new("rocas", "CLOUDS"); tx.noise_scale = 2.4; tx.noise_depth = 6; tx.noise_type = "HARD_NOISE"
     d = g.modifiers.new("rocas", "DISPLACE"); d.texture = tx; d.strength = 1.1; d.mid_level = 0.45; d.texture_coords = "GLOBAL"; d.vertex_group = "roca"
+    # bloques con caras planas (voronoi): sin esto la ladera se leía "de greda" (puerta 4 r1)
+    tx2 = bpy.data.textures.new("bloques", "VORONOI"); tx2.noise_scale = 1.1; tx2.distance_metric = "DISTANCE"
+    d2 = g.modifiers.new("bloques", "DISPLACE"); d2.texture = tx2; d2.strength = 0.5; d2.mid_level = 0.5; d2.texture_coords = "GLOBAL"; d2.vertex_group = "roca"
     tx3 = bpy.data.textures.new("piedrecillas", "CLOUDS"); tx3.noise_scale = 0.25; tx3.noise_depth = 3
     d3 = g.modifiers.new("piedrecillas", "DISPLACE"); d3.texture = tx3; d3.strength = 0.05; d3.texture_coords = "GLOBAL"
     liso(g, 180)
-    g.data.materials.append(mat_roca()); g.data.materials.append(mat_tierra("tierra_camino", escala=1.5))
+    camino = mat_tierra("tierra_camino", escala=1.5); huellas(camino)
+    g.data.materials.append(mat_roca()); g.data.materials.append(camino)
     for p in g.data.polygons:
         c = sum((g.data.vertices[i].co for i in p.vertices), Vector()) / len(p.vertices)
         p.material_index = 1 if abs(c.x - ox) < 1.6 else 0
     # piedras sueltas al lado del camino
     random.seed(4)
     roca = mat_roca("roca_suelta", (0.34, 0.25, 0.2), escala=2.0)
+    roca2 = mat_roca("roca_suelta_gris", (0.30, 0.27, 0.25), escala=3.0)
     for i in range(45):
-        y = -random.uniform(0, largo * 0.9); x = random.choice((-1, 1)) * random.uniform(2.4, 7)
-        z = min(max(0.0, -y), largo * 0.92) * t
-        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=random.uniform(0.15, 0.6), location=(ox + x, oy + y, oz + z))
-        p = bpy.context.object; p.scale = (1, random.uniform(0.6, 1.3), random.uniform(0.4, 0.8))
-        p.rotation_euler = (random.random() * 3, random.random() * 3, random.random() * 3)
-        dd = p.modifiers.new("d", "DISPLACE"); tt = bpy.data.textures.new(f"p{i}", "CLOUDS"); tt.noise_scale = 0.4; dd.texture = tt; dd.strength = 0.12
-        liso(p, 180); asignar(p, roca)
-    return lambda y: min(max(0.0, -(y - oy)), largo * 0.92) * t + oz
+        y = -random.uniform(0, largo * 0.95); x = random.choice((-1, 1)) * random.uniform(2.4, 7)
+        z = min(max(0.0, -y), subida) * t
+        # piedras de caras planas (cubo subdividido y deformado), no huevos: tamaño, forma y giro distintos
+        r = random.uniform(0.12, 0.75)
+        bpy.ops.mesh.primitive_cube_add(size=r * 2, location=(ox + x, oy + y, oz + z + r * 0.15))
+        p = bpy.context.object
+        p.scale = (random.uniform(0.7, 1.4), random.uniform(0.6, 1.5), random.uniform(0.3, 0.75))
+        p.rotation_euler = (random.uniform(-0.4, 0.4), random.uniform(-0.4, 0.4), random.random() * 6.3)
+        sub = p.modifiers.new("s", "SUBSURF"); sub.levels = 2; sub.render_levels = 2; sub.subdivision_type = "SIMPLE"
+        dd = p.modifiers.new("d", "DISPLACE"); tt = bpy.data.textures.new(f"p{i}", "VORONOI"); tt.noise_scale = random.uniform(0.2, 0.5)
+        dd.texture = tt; dd.strength = r * 0.35; dd.texture_coords = "GLOBAL"
+        p.modifiers.new("b", "BEVEL").width = 0.01
+        liso(p, 35); asignar(p, roca if i % 3 else roca2)
+    return lambda y: min(max(0.0, -(y - oy)), subida) * t + oz
 
 
 # ---------------------------------------------------------------- el 4x4
@@ -648,6 +679,8 @@ def set_retractor(sc, giro=25.0, pestillo=0.0, bolita=0.35, palanca=0.0, key=2.5
     chapa = K.mat_acero_industrial("chapa_pilar", (0.13, 0.135, 0.14), sucio=0.9)
     # soporte del pilar: sólo la placa donde va apernado (capa de explicación); atrás, el mundo desenfocado
     caja(sc, "ChapaPilar", (0.004, 0.075, 0.13), tuple(RET + Vector((-0.045, 0.0, 0.0))), mat=chapa, bisel=0.002)
+    # el pilar sigue hacia abajo (plástico del tapiz, cortado arriba): el mecanismo tiene dónde apoyarse
+    caja(sc, "PilarAbajo", (0.06, 0.11, 0.45), tuple(RET + Vector((-0.035, 0.0, -0.278))), mat=mat_plastico_pilar("pilar_abajo"), bisel=0.004)
     # pernos que sujetan el marco al pilar (lo que no está apernado parece maqueta)
     for dy, dz in ((0.028, 0.036), (0.028, -0.036)):
         cilindro(sc, "Perno", 0.0045, 0.004, tuple(RET + Vector((-0.033, dy, dz))), verts=6,
@@ -724,6 +757,11 @@ def retractor(sc, pos=(0, 0, 0), escala=1.0, giro_carrete=0.0, pestillo=0.0, bol
     piv2.location = (0, 0.012 * s, 0.014 * s)
     pal = caja(sc, "Palanquita", (0.004 * s, 0.028 * s, 0.0025 * s), (0, -0.012 * s, 0), mat=mat_grasa("palanca", (0.6, 0.58, 0.55)), bisel=0.0004)
     pal.parent = piv2; piv2.rotation_euler = (math.radians(-22 * palanca), 0, 0)
+    # el eje de la palanquita y su soporte (sin esto la palanca "flota", puerta 4 r1)
+    eje_p = cilindro(sc, "EjePalanca", 0.0016, 0.012 * s, (0, 0.012 * s, 0.014 * s), verts=16, mat=acero)
+    eje_p.rotation_euler = (0, math.radians(90), 0); eje_p.parent = taza
+    sop = caja(sc, "SoportePalanca", (0.0025 * s, 0.004 * s, 0.016 * s), (-0.0055 * s, 0.012 * s, 0.006 * s), mat=oscuro, bisel=0.0004)
+    sop.parent = taza
     for o in (eje, anillo, taza) + tuple(objs):
         o.parent = raiz
     return raiz

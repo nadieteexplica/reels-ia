@@ -278,7 +278,7 @@ def pieza_retractor(sc, a, b, k):
     eje = bpy.data.objects["EjeCarrete"]; pes = bpy.data.objects["PivotePestillo"]
     taza = bpy.data.objects["Taza"]; bola = bpy.data.objects["Bolita"]; pal = bpy.data.objects["PivotePalanca"]
     bola0 = bola.location.copy()
-    cam = E.camara(sc, tuple(RET + Vector((0.62, -0.42, 0.14))), tuple(RET), lente=100, fstop=8.0)
+    cam = E.camara(sc, tuple(RET + Vector((0.62, -0.42, 0.14))), tuple(RET), lente=100, fstop=5.6)
     t0, t1 = T[k]
     giro = {"g": 0.0, "f": None}
 
@@ -344,9 +344,11 @@ def pieza_exterior(sc, a, b, k):
         E.poner_auto(auto, ang + 0.4 * math.sin(f * 0.9), y_contacto=yr + E.EJE_TRASERO_Y - 1.44, z_contacto=zr)
         c = auto.matrix_world @ Vector((0, 0.3, 1.2))
         az = math.radians(225)
-        d = {13: 12.0, 19: 10.0, 21: 12.0}[k]
-        pos = c + Vector((math.sin(az) * d, -math.cos(az) * d, -0.8))
-        mirar(cam, pos, c + Vector((0, 0, 0.9)), lente={13: 35, 19: 50, 21: 35}[k], foco=c)
+        d = {13: 12.0, 19: 13.0, 21: 12.0}[k]
+        # cámara un poco sobre el auto mirando a la ladera: menos cielo vacío y, a la izquierda, el llano de abajo como
+        # referencia horizontal de los 30° (puerta 4 r1)
+        pos = c + Vector((math.sin(az) * d, -math.cos(az) * d, 0.8))
+        mirar(cam, pos, c + Vector((0, 0, 0.5)), lente={13: 35, 19: 40, 21: 35}[k], foco=c)
         return {"inclinacion": round(ang, 1)}
 
     return {"actualizar": actualizar, "meta": {"escena": "E3"}}
