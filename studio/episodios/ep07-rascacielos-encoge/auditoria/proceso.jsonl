@@ -29,3 +29,17 @@
 {"tipo": "chequeo", "id": "render-planos final 40107402027", "estado": "vivo (vigilante) · in_progress/- · 1/13 trabajos", "n": 29, "ts": "2026-10-24T13:02:09-03:00"}
 {"tipo": "aviso", "que": "Puerta 4 r2 NO (realismo 7, B12 en el interior). Tomás (13:2x) eligió simplificar y terminar hoy: el interior pasa a corte visto desde afuera", "n": 30, "ts": "2026-10-24T13:05:10-03:00"}
 {"tipo": "trabajo", "id": "render-planos final 40107402027", "estado": "caido", "n": 31, "ts": "2026-10-24T13:05:19-03:00"}
+{"tipo": "trabajo", "id": "render-planos final 40110419554", "estado": "inicio", "n": 32, "ts": "2026-10-24T13:11:51-03:00"}
+{"tipo": "promesa", "hora": "14:55", "que": "render final 720x1280/8 en 16 máquinas", "dato": "Ep. 5: ~60 min; esta escena arma ~2,5 min por pieza", "n": 33, "ts": "2026-10-24T13:11:51-03:00"}
+{"tipo": "chequeo", "id": "render-planos estilos3 40107373985", "estado": "vivo (vigilante) · completed/success · 6/6 trabajos", "n": 34, "ts": "2026-10-24T13:17:10-03:00"}
+{"tipo": "chequeo", "id": "render-planos final 40110419554", "estado": "vivo (vigilante) · in_progress/- · 1/17 trabajos", "n": 35, "ts": "2026-10-24T13:26:53-03:00"}
+{"tipo": "chequeo", "id": "render-planos estilos3 40107373985", "estado": "vivo (vigilante) · completed/success · 6/6 trabajos", "n": 36, "ts": "2026-10-24T13:32:11-03:00"}
+{"tipo": "chequeo", "id": "render-planos final 40110419554", "estado": "vivo (vigilante) · in_progress/- · 2/17 trabajos", "n": 37, "ts": "2026-10-24T13:41:54-03:00"}
+{"tipo": "chequeo", "id": "render-planos estilos3 40107373985", "estado": "vivo (vigilante) · completed/success · 6/6 trabajos", "n": 38, "ts": "2026-10-24T13:47:13-03:00"}
+{"tipo": "chequeo", "id": "render-planos final 40110419554", "estado": "vivo (vigilante) · in_progress/- · 7/17 trabajos", "n": 39, "ts": "2026-10-24T13:56:56-03:00"}
+{"tipo": "chequeo", "id": "render-planos estilos3 40107373985", "estado": "vivo (vigilante) · completed/success · 6/6 trabajos", "n": 40, "ts": "2026-10-24T14:02:14-03:00"}
+{"tipo": "chequeo", "id": "render-planos final 40110419554", "estado": "vivo (vigilante) · in_progress/- · 10/17 trabajos", "n": 41, "ts": "2026-10-24T14:11:57-03:00"}
+{"tipo": "chequeo", "id": "render-planos estilos3 40107373985", "estado": "vivo (vigilante) · completed/success · 6/6 trabajos", "n": 42, "ts": "2026-10-24T14:17:16-03:00"}
+{"tipo": "chequeo", "id": "render-planos final 40110419554", "estado": "vivo (vigilante) · in_progress/- · 15/17 trabajos", "n": 43, "ts": "2026-10-24T14:26:59-03:00"}
+{"tipo": "chequeo", "id": "render-planos estilos3 40107373985", "estado": "vivo (vigilante) · completed/success · 6/6 trabajos", "n": 44, "ts": "2026-10-24T14:32:17-03:00"}
+{"tipo": "chequeo", "id": "render-planos final 40110419554", "estado": "vivo (vigilante) · completed/success · 18/18 trabajos", "n": 45, "ts": "2026-10-24T14:42:00-03:00"}

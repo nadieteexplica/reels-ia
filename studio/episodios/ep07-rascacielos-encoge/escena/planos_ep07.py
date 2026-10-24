@@ -411,7 +411,7 @@ def p4(sc, a, b):
     mat_b = E.mat_emision("techo_marca", (1.0, 0.45, 0.08), 0.0)
     marca = TR.caja("TechoMarca", (TR.LX + 1.4, TR.LY + 1.4, H + 1.75), (0, 0, 2 * H - 0.05), mat_b)
     marca.parent = S["sombrero"]; marca.visible_shadow = False
-    marco = marca.modifiers.new("alambre", "WIREFRAME"); marco.thickness = 0.28; marco.use_replace = True
+    marco = marca.modifiers.new("alambre", "WIREFRAME"); marco.thickness = 1.0; marco.use_replace = True       # 0,28 m no se veía a 80 m
     gancho(S, 2 * H - 4.0, con_bulto=False)
     corte_abierto(S, 0.0)
 
@@ -419,7 +419,7 @@ def p4(sc, a, b):
         t = tf(f)
         x = suave(lin(f, a, b - 1))
         late = suave((t - t_nu) / 0.4) * (0.75 + 0.25 * math.sin((t - t_nu) * 9))
-        TR.brillo(mat_b, 7.0 * late)
+        TR.brillo(mat_b, 10.0 * late)
         mirar(S["cam"], Vector((-30 + 8 * x, -86 + 14 * x, R + 9 - 2 * x)), Vector((2, 0, R - 5)), lente=40)
         return {}
     return {"actualizar": act}
@@ -450,6 +450,16 @@ def p5(sc, a, b):
     return {"actualizar": act}
 
 
+def _marca_pieza(o, k):
+    """La losa que la grúa está sacando se marca con un brillo blanco suave (capa de explicación)."""
+    m = o.data.materials[0]
+    if not m.name.startswith("losa_mov"):
+        m = m.copy(); m.name = f"losa_mov_{o.name}"; o.data.materials[0] = m
+    b = m.node_tree.nodes["Principled BSDF"]
+    b.inputs["Emission Color"].default_value = (1.0, 0.95, 0.85, 1)
+    b.inputs["Emission Strength"].default_value = 1.2 * k
+
+
 def _losas(S, t, t0, paso=0.42, dur=0.9):
     """Las 8 piezas de la losa de arriba: cada una sube 0,4 m, se corre al pozo y baja por él (colgada del gancho)."""
     c = S["corte"]
@@ -464,6 +474,7 @@ def _losas(S, t, t0, paso=0.42, dur=0.9):
         if x >= 1:
             oculto(o, True); continue
         oculto(o, False)
+        _marca_pieza(o, math.sin(math.pi * clamp(x)))
         sube = suave(x / 0.25) * 0.5
         corre = suave((x - 0.2) / 0.45)
         baja = suave((x - 0.6) / 0.4) * 9.0
@@ -497,7 +508,7 @@ def p6(sc, a, b):
             gancho(S, act_o.location.z + 1.0, act_o.location.x, act_o.location.y, con_bulto=False)
         else:
             gancho(S, 2 * H - 4.0, con_bulto=False)
-        mirar(S["cam"], Vector((-12, -40, Z0 + 5.0)).lerp(Vector((-10, -35, Z0 + 4.8)), x), Vector((-2, 1, Z0 + 3.0)), lente=30)
+        mirar(S["cam"], Vector((-11, -38, Z0 + 4.2)).lerp(Vector((-9, -33, Z0 + 4.0)), x), Vector((-2, 1, Z0 + 2.9)), lente=30)
         return {}
     return {"actualizar": act}
 
@@ -540,11 +551,11 @@ def p9(sc, a, b):
     def act(f):
         t = tf(f)
         x = suave(lin(f, a, b - 1))
-        z = (2 * H - 4.4) - 4.4 * suave((t - t_lo) / 4.0)
+        z = 3.9 - 4.4 * suave((t - t_lo) / 3.9)          # el bulto se ve bajar desde el carro hasta entrar al pozo
         gancho(S, z, 0.0, 0.0, con_bulto=True)
         g = suave((t - t_ge) / 0.4)
-        TR.brillo(c["aro"].data.materials[0], 9.0 * g * (0.8 + 0.2 * math.sin(t * 22)))
-        TR.brillo(c["elec"], 5.0 * suave((t - t_ge - 0.3) / 0.5))
+        TR.brillo(c["aro"].data.materials[0], 16.0 * g * (0.75 + 0.25 * math.sin(t * 22)))
+        TR.brillo(c["elec"], 10.0 * suave((t - t_ge - 0.3) / 0.5) * (0.8 + 0.2 * math.sin(t * 15)))
         mira = Vector((-1.0, 0, Z0 + 3.6)).lerp(Vector((-0.4, 0, Z0 + 1.2)), suave((t - t_gr) / 1.2) * (1 - 0.5 * g))
         mirar(S["cam"], Vector((-7.0, -32.0, Z0 + 4.6)).lerp(Vector((-6.0, -27.0, Z0 + 4.4)), x), mira, lente=32, foco=Vector((-1.5, 0, Z0 + 3.6)))
         return {}

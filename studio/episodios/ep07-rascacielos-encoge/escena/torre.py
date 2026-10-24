@@ -533,7 +533,7 @@ def interior(sc, sb):
     for i in range(4):
         for j, (y0, y1) in enumerate(((-LY / 2, -POZO / 2), (POZO / 2, LY / 2))):
             x0, x1 = xs[i], xs[i + 1]
-            o = caja(f"Pieza{i}{j}", (x1 - x0 - 0.15, y1 - y0 - 0.15, e), ((x0 + x1) / 2, (y0 + y1) / 2, H - e), hor)
+            o = caja(f"Pieza{i}{j}", (x1 - x0 - 0.15, y1 - y0 - 0.15, 0.45), ((x0 + x1) / 2, (y0 + y1) / 2, H - 0.45), hor)
             o.parent = ob
             o["base"] = tuple(o.location)
             out["piezas"].append(o)
@@ -569,7 +569,7 @@ def interior(sc, sb):
         po = cilindro(f"Polea{k}", 0.2, 0.08, (xp, 0.0, 0.5), acero, verts=20); po.rotation_euler.x = math.radians(90); po.parent = gancho
     bulto = caja("Bulto", (3.0, 2.2, 1.4), (0, 0, 0), saco); bulto.parent = sb
     elec = mat_brillo("elec", (1.0, 0.78, 0.22), 0.0)
-    ce = caja("CableLuz", (LX - 8, 0.16, 0.16), (0, -0.75, 2 * H - 1.95), elec); ce.parent = sb; ce.visible_shadow = False
+    ce = caja("CableLuz", (LX - 8, 0.3, 0.3), (0, -0.85, 2 * H - 2.05), elec); ce.parent = sb; ce.visible_shadow = False
     for k, x in enumerate((-20, -13, -5, 5, 13, 20)):
         lm = caja(f"Lampara{k}", (1.3, 0.5, 0.22), (x, 3.6, 2 * H - 1.75), mat_brillo(f"lamp{k}", (1.0, 0.86, 0.65), 0.0)); lm.parent = sb
         lm.visible_shadow = False
