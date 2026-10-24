@@ -1,0 +1,98 @@
+{
+ "etapa": "1-guion",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": 8.0,
+ "notas": {
+  "precision": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "Las 12 afirmaciones calzan con los extractos: 40 pisos (Prince Hotels 地上40階建て, AFP '40-floor', Core77 '40-story'); piso por piso sin explosiones (AFP 'none of the explosions', Core77: se descartó dinamitarlo, Prince １フロアずつ); techo como tapa sobre gatas (Prince 既存の屋根をジャッキで支えて蓋に, AFP '15 hydraulic jacks on which this lid now sits', NBC); las gatas bajan la tapa al despejar un piso (NBC, PopSci); 'construcción en reversa' (Prince 新築工事を巻き戻す); grúa que genera electricidad (PopSci, Core77 frenado regenerativo, AFP poleas) para luces y ventilación (AFP, Core77, 99PI); 'sin que te des cuenta' (Ichihara, AFP/NBC) y 2 pisos cada 10 días (AFP '6.4 metres, every 10 days', NBC). El dato central tiene 4+ fuentes independientes. Única debilidad menor: el ritmo de 2 pisos/10 días es una sola cita primaria (Ichihara vía AFP; NBC repite la misma cita).",
+   "de": "guion"
+  },
+  "gancho": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "La imagen es fuerte, imposible y real, y el giro ('Sin una sola explosión. El truco: nunca le sacan el techo') contradice la intuición en los segundos 3–6; pero el centro 'se achicó' cae en la palabra 7 (16 sílabas, ≈2,3–2,5 s) por el 'de cuarenta pisos' intercalado, y 'piso por piso' llega después de la pausa (≈3 s). Lección 95: el centro va en los primeros 2 s.",
+   "de": "guion"
+  },
+  "claridad": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Estructura limpia (gancho → giro → 3 pasos marcados 'Primero / Después / Y al final' → repetición → 'lo más loco' → remate con cifra), frases de ≤ 12 palabras, una idea por frase y cada línea es filmable en un solo espacio (la torre en la ciudad); baja de 9 porque 'gatas hidráulicas' es regional (fuera de Chile y Perú se dice 'gato') y no se explica al decirlo.",
+   "de": "guion"
+  },
+  "compartible": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Se envía ('mira, un edificio que se achica solo y encima genera luz') a cualquiera que vio el Ep. 3 o le gusta la ingeniería; el giro de la electricidad da algo que contar. Menos guardable (no enseña algo que uno vaya a usar) y medio quemado en inglés desde 2013.",
+   "de": "guion"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Este rascacielos de cuarenta pisos se achicó... piso por piso.",
+   "que": "El centro ('se achicó piso por piso') llega a los ≈2,3–2,5 s ('se achicó') y ≈3 s ('piso por piso'), porque 'de cuarenta pisos' se mete entre el sujeto y el verbo. El pedido de Tomás era arrancar al tiro con 'este rascacielos se achicó piso por piso sin explosión'.",
+   "arreglo": "Primera línea: 'Este rascacielos se achicó... piso por piso.' (6 palabras, 'se achicó' a ≈1 s). El 40 pasa a la segunda: 'Cuarenta pisos. Sin una sola explosión.' (una palabra menos en total) o queda como texto en pantalla '40 PISOS'.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Primero, lo vuelven un sombrero gigante, parado sobre gatas hidráulicas. / Y al final, las gatas bajan el sombrero... un piso.",
+   "que": "'Gatas' es chilenismo (en México, Colombia, Venezuela, Argentina y España es 'gato'); para gran parte de Latam 'las gatas bajan el sombrero' suena a otra cosa, y la palabra no se explica al decirla (regla del manual: español latino neutro; cada palabra técnica explicada).",
+   "arreglo": "Cambiar por 'pistones hidráulicos' / 'los pistones bajan el sombrero' (mismo largo, se entiende en todos lados y se ve en la imagen como cilindros que se acortan). Subtítulos igual.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Y lo más loco: la grúa que baja los escombros genera electricidad. Con eso prenden las luces de la obra.",
+   "que": "Son dos frases para una sola idea; la segunda depende de 'con eso' y la primera ('genera electricidad') no se ve en imagen por sí sola.",
+   "arreglo": "Fundirlas: 'Lo más loco: la grúa que baja los escombros prende las luces.' (11 palabras en vez de 20, ≈3 s menos). La imagen se arma sola: baja el balde de escombros → se encienden los focos. Respaldo igual (AFP: 'generates the electricity used to power lighting'; Core77; 99PI).",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Desde la calle, casi ni se nota: dos pisos menos cada diez días.",
+   "que": "El cierre no empalma con el inicio (el manual pide cierre en loop) y termina en una cifra, que es el momento más bajo de energía después del giro de la electricidad.",
+   "arreglo": "Sin cambiar texto: que la última imagen sea la torre entera vista desde la calle, igual al cuadro 0, para que la cifra caiga sobre la misma toma con la que parte el video y el loop sea limpio.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Este rascacielos...",
+   "que": "'Este' le dice al espectador que la torre en pantalla es la real; si el modelo no se parece al edificio de verdad (fachada en zigzag de Tange, 40 pisos), en los comentarios van a decir que es otro edificio.",
+   "arreglo": "En el storyboard, modelar la silueta reconocible (planta en V con fachada dentada) y contar 40 pisos; si no se puede, decir 'Un rascacielos así...' en vez de 'Este'.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "dos pisos menos cada diez días.",
+   "que": "La cifra es correcta pero tiene una sola fuente primaria: el gerente de la constructora (Ichihara) citado por AFP; NBC repite la misma cita textual.",
+   "arreglo": "Dejarla en la voz, y en el primer comentario atribuirla: 'según la constructora (AFP, 2013)'.",
+   "de": "guion"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [],
+ "solo_bloqueantes": true,
+ "parar_y_preguntar": false
+}

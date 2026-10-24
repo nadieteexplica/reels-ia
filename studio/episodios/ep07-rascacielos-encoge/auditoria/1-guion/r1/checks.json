@@ -1,0 +1,23 @@
+{
+ "fallas": [],
+ "avisos": [],
+ "datos": {
+  "palabras": 95,
+  "duracion_estimada_s": 32.6,
+  "pausas": 2,
+  "fuentes": [
+   "99percentinvisible.org",
+   "core77.com",
+   "inhabitat.com",
+   "iol.co.za",
+   "japantimes.co.jp",
+   "nbcnews.com",
+   "newswitch.jp",
+   "popsci.com",
+   "president.jp",
+   "princehotels.co.jp",
+   "spoon-tamago.com"
+  ],
+  "afirmaciones_verificadas": 12
+ }
+}
