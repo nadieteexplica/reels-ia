@@ -1,0 +1,74 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ronda 1 abierta con --forzar: los cuatro personajes llevan la cara tapada por diseño (casco, máscara antigás, casco de piloto, mascarilla) y casi todos se ven a través del parabrisas: el chequeo de ojos no tiene ojos a la vista que medir; las caras se revisan en las tiras",
+   "evidencia": ""
+  },
+  {
+   "que": "sin datos de ojos en el meta: no se pudo comprobar 'cara tapada' (plano.py + studio/plantilla/caras.py)",
+   "evidencia": ""
+  },
+  {
+   "que": "poco_movimiento · plano 9: cambio mediano 0.06 (cámara fija y nada se mueve)",
+   "evidencia": ""
+  },
+  {
+   "que": "poco_movimiento · plano 14: cambio mediano 0.37 (cámara fija y nada se mueve)",
+   "evidencia": ""
+  },
+  {
+   "que": "poco_movimiento · plano 15: cambio mediano 0.34 (cámara fija y nada se mueve)",
+   "evidencia": ""
+  },
+  {
+   "que": "quieto_1s · plano 22: 1.3 s sin cambio visible",
+   "evidencia": ""
+  },
+  {
+   "que": "poco_movimiento · plano 22: cambio mediano 0.28 (cámara fija y nada se mueve)",
+   "evidencia": ""
+  },
+  {
+   "que": "estilo.json: la referencia 'referencias/*.jpg' no encontró archivos en la carpeta del episodio",
+   "evidencia": "estilo.json"
+  },
+  {
+   "que": "estilo realista sin referencias (fotos reales en estilo.json → referencias): el revisor juzga el realismo sin poder comparar",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "qa": [
+   "✅ duración 25–45.5 s (meta 25–40 s, techo 45 s) 38.50 s",
+   "✅ 1080×1920 1080×1920",
+   "✅ 30 fps 30.00",
+   "✅ H.264 yuv420p h264 yuv420p",
+   "✅ pesa < 100 MB 25.9 MB",
+   "✅ volumen −14 ±1 LUFS -14.1 LUFS",
+   "✅ true peak ≤ −1 dBTP -1.4 dBTP",
+   "✅ sin negros > 0,5 s []",
+   "✅ sin congelados > 0,5 s []",
+   "RESULTADO: PASA"
+  ],
+  "subtitulos": {
+   "palabras": 109,
+   "en_pantalla": 109,
+   "faltan": 0,
+   "desfase": 0,
+   "fuera_de_zona": 0,
+   "sobran": 0,
+   "tiempos": {}
+  },
+  "audio": {
+   "lufs": -14.1,
+   "true_peak": -1.4,
+   "voz_db": -13.1,
+   "pausas_db": -24.5,
+   "voz_menos_pausas_db": 11.4,
+   "nota": "pausas = música + efectos sin voz; con ducking la música sube en las pausas, así que esto es un mínimo"
+  },
+  "planos": 25,
+  "estilo": "realista"
+ }
+}
