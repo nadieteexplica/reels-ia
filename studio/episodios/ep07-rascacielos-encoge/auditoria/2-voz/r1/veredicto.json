@@ -1,0 +1,72 @@
+{
+ "etapa": "2-voz",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": 8.5,
+ "notas": {
+  "pronunciacion": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "la transcripción coincide en 98,9 % y la única diferencia ('rascacielos' → 'rascacielo', 0.34–0.91 s) se explica por la -s final pegada a la s de 'se' (la alineación le da a 'se' sólo 0.06 s y no hay silencio entre las dos): es un error de la transcripción, no de la voz; las cifras del remate ('dos', 'diez', 34.65–36.13) y 'hidráulicos', 'achicó', 'gatos' salen bien.",
+   "de": "voz"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "ninguna palabra pasa de 1,2 s (la más larga, 'electricidad.', 0.82 s), los dos '...' sí hacen pausa (0.67 s en 1.78 y 0.77 s en 19.22) y dura 36.87 s (37.3 con la cola, dentro de la meta); las frases 'lentas' que avisa el chequeo (3.34 y 23.05) se miden contando la pausa anterior: habladas van a 2.8 y 2.5 palabras/s, normales para frases cortas de golpe. Lo flojo: las pausas de punto (0.50–0.65 s) casi igualan a las de '...' y el conjunto queda en 2.5 palabras/s, más lento que el ~2.9 habitual de Fernando.",
+   "de": "voz"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "7.92",
+   "que": "las pausas de fin de frase son casi tan largas como las dramáticas: 'techo.' 0.65 s (7.92), 'abajo.' 0.57 (16.08), 'final,' 0.52 en una coma (17.14), 'piso.' 0.60 (20.38), 'vez.' 0.62 (21.78), 'obra.' 0.61 (32.12), contra 0.67 y 0.77 de los '...'; suman ~9 s de silencio en 36.9 s y el '...' no se distingue como pausa buscada",
+   "arreglo": "con tools/pausas.py (0 créditos) dejar las pausas de punto y coma en ~0.35 s y mantener los '...' en 0.6–0.8 s: el '...' vuelve a sonar dramático y la voz baja a ~34.5 s",
+   "de": "voz"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "25.41",
+   "que": "la pausa antes del giro ('Y lo más loco:') es la más corta de todo el video (0.23 s después de 'reversa.'), así que el giro se pega a la frase anterior justo donde debería marcarse; la del remate ('dos pisos menos cada diez días', después de 'nota:' en 34.41) es 0.36 s",
+   "arreglo": "con tools/pausas.py alargar a ~0.5 s la pausa después de 'reversa.' y dejar en ~0.45 s la de 'nota:', para que el giro y la cifra final sean las dos pausas marcadas del tramo final",
+   "de": "voz"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "0.34",
+   "que": "la transcripción entendió 'rascacielo' en 'Este rascacielos se achicó'; es la -s final fundida con la s de 'se' (en el habla corrida suenan como una sola), error de la transcripción, no de la voz; no se puede confirmar sin escuchar",
+   "arreglo": "no regenerar; Tomás lo confirma al escuchar el primer segundo en el mensaje de aprobación (y aunque se oyera 'rascacielo', es la forma común al hablar y nadie lo notaría como error)",
+   "de": "voz"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "ritmo de 2.2 palabras/s en 'Sin una sola explosión.'",
+   "evidencia": "3.34 s"
+  },
+  {
+   "que": "ritmo de 2.1 palabras/s en 'Como su construcción, en reversa.'",
+   "evidencia": "23.05 s"
+  },
+  {
+   "que": "se escucha 'rascacielo' donde el guion dice 'rascacielos'",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [],
+ "solo_bloqueantes": true,
+ "parar_y_preguntar": false
+}

@@ -1,7 +1,7 @@
 """Renderiza una o varias piezas de planos del Ep. 5.
 
 Uso: PIEZAS=1,2,23L RES=720x1280 SAMPLES=16 DIR=carpeta [MUESTRAS=3] [CUADROS=a-b] [DEVICE=OPTIX] python3 plano.py
-- Cada pieza (planos_ep05.PIEZAS) arma su escena desde cero en un proceso nuevo y renderiza sus cuadros.
+- Cada pieza (planos_ep07.PIEZAS) arma su escena desde cero en un proceso nuevo y renderiza sus cuadros.
 - Las piezas principales escriben DIR/NNNNN.png (cuadro global); las auxiliares (lupas, recuadros) DIR/aux/<pieza>_NNNNN.png.
 - MUESTRAS=n renderiza sólo n cuadros repartidos en cada pieza (revisión rápida).
 - Escribe DIR/meta/<pieza>.json con datos para el post (posiciones en pantalla, etc.).
@@ -22,9 +22,9 @@ if os.environ.get("_PIEZA") is None:
 
 sys.path.insert(0, HERE)
 import bpy
-import ep05 as E2
-import planos_ep05 as PL
-import caras            # studio/plantilla/caras.py (planos_ep05 deja studio/plantilla en sys.path)
+import ep07 as E2
+import planos_ep07 as PL
+import caras            # studio/plantilla/caras.py (planos_ep07 deja studio/plantilla en sys.path)
 
 pid = os.environ["_PIEZA"]
 pz = PL.PIEZAS[pid]

@@ -1,6 +1,6 @@
 """Audio del Ep. 5: voz + música sintetizada (v3.1: tensión en Re menor, 96 bpm, con golpes en cada paso) con ducking, viento del salar de
 fondo (lo que amarra el exterior), zumbido grave del imán en los planos de la rana y los efectos de la columna SFX del
-storyboard → OUT/ep05_mix.wav (−14 LUFS, TP ≤ −1,5 dBTP). Todo sintetizado."""
+storyboard → OUT/ep07_mix.wav (−14 LUFS, TP ≤ −1,5 dBTP). Todo sintetizado."""
 import glob, json, os, subprocess, sys
 import numpy as np
 from scipy.io import wavfile
@@ -8,7 +8,7 @@ from scipy.signal import butter, sosfilt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import ep05 as E
+import ep07 as E
 
 OUT = os.environ.get("OUT", os.path.join(HERE, "out"))
 REPO = os.environ.get("REPO", os.path.abspath(os.path.join(HERE, "../../../..")))
@@ -27,7 +27,7 @@ def W(prefix, after=0.0):
 
 
 def voz():
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, os.environ.get("VOZ", "out/tts/ep05-iman-rana-v3.mp3")), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, os.environ.get("VOZ", "out/tts/ep07-rascacielos-encoge.mp3")), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
                          capture_output=True).stdout
     v = np.frombuffer(raw, np.float32).copy()
     v = np.pad(v, (0, max(0, N - len(v))))[:N]
@@ -285,63 +285,49 @@ def golpe(g=1.0, cola=1.6):
 
 
 def musica():
+    """Ep. 7: la misma música de tensión del Ep. 5 v3.1 (Re menor, 96 bpm), con la forma de este relato: pulso de bajo
+    desde el cuadro 0, bombo desde "El truco", negras desde el PASO 1, tics en semicorcheas mientras desarman, golpes en
+    PASO 1/2/3, subida antes de "lo más loco" y un acorde abierto en las luces."""
     out = np.zeros(N)
-    t9, t16 = E.T[9][0], E.T[16][0]
-    t_ent = E.T[3][0]
-    pasos = [W("primero", 19.0), W("después", 25.0), W("final", 32.0)]
+    t_tr, t_lo, t_lu = E.T[4][0], E.T[9][0], W("prenden", 30.0)
+    pasos = [W("Primero", 8.0), W("Después", 12.0), W("final", 16.5)]
     prog = [(50, 53, 57), (46, 50, 53), (43, 46, 50), (45, 49, 52)]           # Dm Bb Gm A
     raiz = [38, 34, 31, 33]
     nb = int(DUR / COMPAS) + 2
     for b in range(nb):
         i0 = b * COMPAS
-        if i0 >= t16:
+        if i0 >= DUR:
             break
-        fin = min(COMPAS + 0.5, t16 - i0 + 0.3)
-        add(out, pad_oscuro(prog[b % 4], fin, 700 + 900 * min(1, i0 / t16)), i0, 0.55)
-    # pulso de bajo en corcheas; el filtro se abre de a poco hasta "Ahí sí"
+        add(out, pad_oscuro(prog[b % 4], COMPAS + 0.5, 700 + 900 * min(1, i0 / t_lo)), i0, 0.5)
     k = 0
     while k * NEGRA / 2 < DUR:
         t = k * NEGRA / 2
         b = int(t / COMPAS) % 4
-        corte = 350 + 1300 * min(1.0, t / t16) if t < t16 else 500
+        corte = 350 + 1400 * min(1.0, t / t_lo)
         g = 0.75 if (k % 2 == 0) else 0.5
-        if E.T[7][0] <= t < E.T[7][1]:
-            g *= 0.55                       # adentro de la rana: más íntimo
-        if t >= t16:
-            g *= 0.45
-            raiz_b = 38
-        else:
-            raiz_b = raiz[b]
-        add(out, nota_bajo(hz(raiz_b), corte), t, g)
+        add(out, nota_bajo(hz(raiz[b]), corte), t, g)
         k += 1
-    # bombo: en 1 y 3 desde la rana; en negras desde "¿Y para ti?"; nada al final
     k = 0
-    while k * NEGRA < t16 - 0.05:
+    while k * NEGRA < DUR - 0.3:
         t = k * NEGRA
-        if t >= t9 or (t >= t_ent and k % 2 == 0):
-            add(out, bombo(0.9 if t >= t9 else 0.6), t)
+        if t >= pasos[0] or (t >= t_tr and k % 2 == 0):
+            add(out, bombo(0.9 if t >= pasos[0] else 0.6), t)
         k += 1
-    # tics en semicorcheas durante la construcción; abiertos en contratiempo desde el PASO 2
     k = 0
-    while k * NEGRA / 4 < t16 - 0.1:
+    while k * NEGRA / 4 < DUR - 0.3:
         t = k * NEGRA / 4
-        if t >= t9:
-            add(out, tic_hat(), t, 0.35 if k % 2 else 0.18)
-            if t >= pasos[1] and k % 4 == 2:
-                add(out, tic_hat(True), t, 0.25)
+        if pasos[1] <= t < E.T[8][0] or t >= t_lo:
+            add(out, tic_hat(), t, 0.33 if k % 2 else 0.16)
+            if t >= t_lo and k % 4 == 2:
+                add(out, tic_hat(True), t, 0.22)
         k += 1
-    # subidas y golpes
-    add(out, subida(1.6), t9 - 1.6, 0.45)
+    add(out, golpe(0.7, 1.2), 0.0)
     for tp in pasos:
         add(out, subida(0.45), tp - 0.45, 0.35)
         add(out, golpe(0.8), tp - 0.02)
-    add(out, golpe(0.7, 1.2), 0.0)
-    add(out, subida(2.2), t16 - 2.2, 0.6)
-    add(out, golpe(1.1, 2.4), t16 - 0.02)
-    # final: Re mayor abierto que crece (asombro), con una cuerda aguda
-    fin = DUR - t16 + 0.2
-    add(out, pad_oscuro((50, 54, 57, 62), fin, 2200), t16, 0.8)
-    add(out, pad_oscuro((74, 78, 81), fin, 5000), t16 + 0.3, 0.25)
+    add(out, subida(1.8), t_lo - 1.8, 0.55)
+    add(out, golpe(1.0, 2.0), t_lo - 0.02)
+    add(out, pad_oscuro((50, 54, 57, 62), 2.6, 2400), t_lu, 0.55)            # las luces: Re mayor abierto
     out = filt(out, 30, 9000)
     return out / (np.abs(out).max() + 1e-9)
 
@@ -365,62 +351,43 @@ _mr = np.sqrt(np.mean((m * 0.45)[m != 0] ** 2) + 1e-12)
 m *= (_vr / 10 ** (15.0 / 20)) / _mr        # música a 15 dB bajo la voz (mínimo del manual)
 
 fx = np.zeros(N)
-add(fx, viento(DUR), 0.0, 0.8)
-def rumor(d):
-    """El hueco que sale del suelo: rumor grave de máquina que sube."""
-    t = tt(d)
-    x = filt(ruido(len(t)), 40, 300) * 0.5 + np.sin(2 * np.pi * np.cumsum(45 + 25 * t / d) / SR) * 0.25
-    return x * np.minimum(1, t / 0.15) * np.minimum(1, (d - t) / 0.1)
-
-
-for k in (3, 4, 5, 8, 11):                                         # v3 · el imán de la rana prendido
-    a, b = E.T[k]
-    add(fx, zumbido_iman(b - a + 0.1), a, 0.7)
-for k in (1, 2, 15, 16):                                           # el imán gigante prendido (más grave)
-    a, b = E.T[k]
-    add(fx, zumbido_iman(b - a + 0.1, 38), a, 0.6)
-add(fx, whoom(1.4), 0.0, 0.8)                                      # cuadro 0: Pete flotando
-add(fx, ding(1320, 0.6), W("flotar", 3.0), 0.4)
-add(fx, whoosh(0.6, True), T(3) - 0.15, 0.6)                       # a la rana real
-add(fx, ding(1568, 0.5), W("pasó", 4.0), 0.35)                     # ESTO SÍ PASÓ
-add(fx, ding(1320, 0.6), W("sola", 6.0), 0.4)                      # SIN HILOS
-add(fx, golpe_grave(), W("imán", 7.0), 0.5)                        # aparece el electroimán
-add(fx, whoosh(0.8, True), T(5), 0.6)                              # push-in a la piel
-add(fx, ding(1175, 0.5), W("nada", 8.0), 0.3)                      # AGUA
-add(fx, ding(988, 0.5), W("como", 9.0), 0.3)                       # como tú
-add(fx, glup(), T(7, 0.05), 0.8)                                   # adentro
-add(fx, tic(3000), W("empuja", 10.0), 0.9)                         # nace el empujón
-add(fx, ding(1568, 0.5), W("poquito", 12.0), 0.35)
-add(fx, ding(1046, 0.5), W("fuerte", 14.0), 0.3)                   # ≈ 16 TESLAS
-add(fx, whoom(1.4), W("gana", 14.0) - 0.5, 0.8)                    # le gana a la gravedad
-add(fx, whoosh(0.9, False), T(9, 0.0), 0.5)                        # la parte hipotética
-t_pri = W("primero", 19.0)
-add(fx, ding(1175, 0.5), t_pri, 0.35)                              # PASO 1
-add(fx, rumor(1.45), t_pri + 0.15, 0.7)                            # el hueco sale del suelo
-add(fx, golpe_grave(), t_pri + 1.55, 0.6)
-add(fx, tic(2600), W("tres", 22.0), 0.9)                           # la cota
-add(fx, golpecito(700), W("mano", 23.0), 0.6)                      # no cabe
-add(fx, ding(1175, 0.5), W("después", 25.0), 0.35)                 # PASO 2
-bob, carc = E.bobinas_t()
-for i, tl in enumerate(bob):                                       # las bobinas que caen
-    add(fx, clank(190 + 18 * i), tl, 0.6)
-add(fx, golpe_grave(), carc, 0.8)                                  # la carcasa
-add(fx, clank(140), carc + 0.02, 0.5)
-add(fx, clank(150), T(13, 0.4), 0.8)                               # la tapa
-add(fx, ding(1046, 0.7), W("cuarenta", 28.0) + 0.05, 0.4)
-add(fx, electrico(1.2), W("teslas", 28.0) - 0.2, 0.6)              # el cobre se enciende
-add(fx, ding(1318, 0.6), W("doble", 30.0), 0.35)                   # las barras
-add(fx, ding(1175, 0.5), W("final", 32.0), 0.35)                   # PASO 3
-add(fx, electrico(E.T[14][1] - E.T[14][0]), T(14), 0.9)            # los cables a la central
-add(fx, ding(1568, 0.6), W("entero", 34.0), 0.4)                   # ≈ 1 GIGAVATIO
-add(fx, whoom(1.5), T(16, 0.0), 0.9)                               # Pete sube
+import planos_ep07 as PL
+add(fx, viento(DUR), 0.0, 0.6)
+AFUERA = (1, 2, 3, 8, 11, 12)
+for t0, n, d in PL.CLONCS:                                       # cada bajada del sombrero en las tomas de afuera
+    if 0 <= t0 + d < DUR and any(E.T[k][0] <= t0 + d < E.T[k][1] for k in AFUERA):
+        if n == 1:
+            add(fx, clank(150), t0 + d - 0.02, 0.55)
+add(fx, whoom(1.2), 0.0, 0.7)
+add(fx, viento(E.T[3][1] - E.T[3][0]), T(3), 0.9)               # arriba, en el techo
+add(fx, whoosh(0.5, True), W("explosión", 4.0) - 0.3, 0.4)        # se encoge de hombros
+add(fx, ding(880, 0.8), W("techo", 7.0), 0.45)                     # EL TECHO SE QUEDA
+add(fx, pfff(), W("Primero", 8.0) + 0.1, 0.8)                      # se abre el frente
+add(fx, ding(1175, 0.5), W("sombrero", 9.0), 0.3)
+add(fx, ding(1318, 0.6), W("gatos", 10.8), 0.4)                    # GATOS HIDRÁULICOS
+t_es, t_ds = W("escondidos", 12.5), W("desarman", 14.0)
+for i in range(8):
+    add(fx, tic(1800), t_es + 0.25 + 0.08 * i, 0.35)               # columnas cortadas
+    add(fx, golpecito(320), t_ds + 0.42 * i + 0.1, 0.6)            # cada losa que sale
+    add(fx, thud(), t_ds + 0.42 * i + 0.75, 0.35)                  # y baja por el pozo
+t_ba, t_pi = W("bajan", 17.9), W("piso", 19.5)
+add(fx, zumbido_iman(t_pi - t_ba + 0.2, 62), t_ba, 0.8)            # hidráulico
+add(fx, golpe_grave(), t_pi - 0.05, 0.8)
+add(fx, clank(120), t_pi - 0.03, 0.7)
+add(fx, whoosh(1.6, False), W("Como", 23.0), 0.6)                  # rebobinado
+add(fx, ding(1046, 0.6), W("reversa", 24.5), 0.35)
+add(fx, electrico(2.0), W("genera", 28.2), 0.8)                     # el generador
+add(fx, ding(1568, 0.6), W("electricidad", 28.5), 0.35)
+for i in range(6):
+    add(fx, tic(2600), W("prenden", 30.2) + 0.2 * i, 0.7)          # cada lámpara
+add(fx, ding(988, 0.5), W("dos", 34.3), 0.35)
 mix = v * 1.0 + m * 0.45 + fx * 0.45          # música 1 dB más baja: quedaba a 14,9 dB bajo la voz (meta ≥ 15)
 mix = np.tanh(mix * 1.1) / 1.1
 mix = mix / (np.abs(mix).max() + 1e-9) * 0.9
 os.makedirs(OUT, exist_ok=True)
-tmp = os.path.join(OUT, "ep05_pre.wav")
+tmp = os.path.join(OUT, "ep07_pre.wav")
 wavfile.write(tmp, SR, (mix * 32767).astype(np.int16))
-dst = os.path.join(OUT, "ep05_mix.wav")
+dst = os.path.join(OUT, "ep07_mix.wav")
 subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", tmp, "-af", "alimiter=limit=0.6:level=false,loudnorm=I=-14:TP=-2.5:LRA=11", "-ar", "48000", dst], check=True)
 vr = np.sqrt(np.mean(v[np.abs(v) > 0.02] ** 2))
 mr = np.sqrt(np.mean((m * 0.45)[(m != 0)] ** 2) + 1e-12)

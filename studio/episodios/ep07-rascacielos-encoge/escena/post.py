@@ -1,4 +1,4 @@
-"""Post del Ep. 5: arma los cuadros finales (1080x1920) desde los renders de plano.py.
+"""Post del Ep. 7 (sobre el del Ep. 5): arma los cuadros finales (1080x1920) desde los renders de plano.py.
 
 Uso: python3 post.py <carpeta_render> <salida>   (OUT=carpeta de datos, LISTA=cuadros opcionales, MUESTRAS=1 en pruebas)
 - Gradación común (grado.py), píldoras (v3: ESTO SÍ PASÓ, SIN HILOS, IMÁN, AGUA, HASTA 60 % AGUA, UN POQUITO, ≈ 16 TESLAS,
@@ -6,7 +6,7 @@ Uso: python3 post.py <carpeta_render> <salida>   (OUT=carpeta de datos, LISTA=cu
   lado de la rana (gris = gravedad, naranja = imán), la cota de 3 cm, el contorno de una mano real, las barras 16 T
   contra 40 T y los subtítulos palabra por palabra (franja y 1000–1250). Las posiciones salen del meta de cada cuadro
   (pantalla() de la escena) y las píldoras se ubican sin tapar ojos (graficos.lugar_libre).
-- Escribe subs_log.json, graficos.json y ep05_planos.json en OUT.
+- Escribe subs_log.json, graficos.json y ep07_planos.json en OUT.
 """
 import glob, json, math, os, sys
 import numpy as np
@@ -15,7 +15,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.abspath(os.path.join(HERE, "../../../plantilla")))
-import ep05 as E
+import ep07 as E
 import graficos as G
 from grado import grado
 
@@ -35,7 +35,7 @@ AZUL = (60, 140, 255)              # agua
 CIAN = (40, 205, 255)              # líneas del imán
 NARANJO = (255, 140, 30)           # el empujón del imán
 GRIS = (150, 156, 166)             # la gravedad
-CLAVE = {"AGUA": AZUL, "TESLAS": NARANJO, "GIGAVATIO": NARANJO}
+CLAVE = {"SOMBRERO": NARANJO, "ELECTRICIDAD": (255, 190, 40), "EXPLOSIÓN": (255, 140, 30)}
 BOX = (120, 888, 1000, 1250)
 META = {}
 for p in sorted(glob.glob(os.path.join(src, "meta", "*.json"))):
@@ -145,7 +145,7 @@ def suave(x):
     return x * x * (3 - 2 * x)
 
 # ---------------- subtítulos (palabra por palabra; cifras juntas) ----------------
-NUMEROS = [("cuarenta", "40"), ("tres", "3")]
+NUMEROS = [("diez", "10"), ("dos", "2")]
 
 
 def limpiar(w):
@@ -343,149 +343,60 @@ def texto_sombra(d, xy, texto, fnt, col=(255, 255, 255), a=255, ancla="mm"):
     d.text((x, y), texto, font=fnt, fill=(*col, a), stroke_width=5, stroke_fill=(0, 0, 0, int(0.8 * a)), anchor=ancla)
 
 
-def cota(im, f, a=1.0):
-    """Cota de 3 cm de pared a pared del tubo, 9 mm POR ENCIMA de la rana (puerta 3: sobre la rana le tapaba los ojos),
-    con flechas en los bordes reales del tubo (calculados en la escena) y "3 cm" encima."""
-    if a <= 0.01:
+DORADO = (255, 190, 40)            # la electricidad
+RAPIDO = {1, 2, 3, 6, 8, 11, 12}      # tomas en cámara rápida (la torre real baja ~2 pisos cada 10 días)
+CONTADOR = {1, 2, 8, 12}
+
+
+def camara_rapida(im):
+    pildora(im, "CÁMARA RÁPIDA", 250, 330, fondo=(30, 32, 36), tinta=(255, 255, 255), tam=40)
+
+
+def contador(im, f, k):
+    n = meta(k, f, "pisos", None)
+    if n is None:
         return
-    (xi, yi), (xd, yd) = meta(11, f, "izq"), meta(11, f, "der")
-    yl = (yi + yd) / 2
-    lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
-    d = ImageDraw.Draw(lay)
-    al = int(255 * a)
-    for (x0, y0, x1, y1, w) in ((xi, yl - 34, xi, yl + 34, 5), (xd, yl - 34, xd, yl + 34, 5), (xi, yl, xd, yl, 7)):
-        d.line((x0 + 2, y0 + 4, x1 + 2, y1 + 4), fill=(0, 0, 0, int(0.5 * al)), width=w + 4)
-        d.line((x0, y0, x1, y1), fill=(255, 255, 255, al), width=w)
-    for x, s in ((xi, 1), (xd, -1)):
-        d.polygon([(x, yl), (x + 26 * s, yl - 12), (x + 26 * s, yl + 12)], fill=(255, 255, 255, al))
-    texto_sombra(d, ((xi + xd) / 2, yl - 70), "3,2 cm", ImageFont.truetype(FONT, 64), a=al)
-    im.paste(lay, (0, 0), lay)
-    G.registrar("cota", (xi - 30, yl - 110, xd + 30, yl + 40))
-
-
-def mano(im, f, a=1.0):
-    """Contorno blanco de una mano adulta a escala real (palma de 8,5 cm, 20 cm de largo, dedos hacia arriba) al lado del
-    tubo de la rana, con la misma proyección de la escena: se ve cuántas veces más ancha es que el hueco (puerta 3 v3)."""
-    if a <= 0.01:
-        return
-    cx, cy = meta(11, f, "mano_c")
-    mx, _my = meta(11, f, "mano_m")
-    pxm = (mx - cx) * 100.0
-    if pxm <= 0:
-        return
-    S = 2
-    m = Image.new("L", (W * S, H * S), 0)
-    d = ImageDraw.Draw(m)
-
-    def P(x, y):            # x: a lo largo de los dedos (hacia arriba), y: a lo ancho (+ hacia el tubo)
-        return (cx + y * pxm) * S, (cy - x * pxm) * S
-
-    def caps(x0, y0, x1, y1, r):
-        a_, b_ = P(x0, y0), P(x1, y1)
-        rr = r * pxm * S
-        d.line((a_, b_), fill=255, width=int(2 * rr))
-        for (x, y) in (a_, b_):
-            d.ellipse((x - rr, y - rr, x + rr, y + rr), fill=255)
-
-    (x0, y0), (x1, y1) = P(0.05, -0.0425), P(-0.05, 0.0425)
-    d.rounded_rectangle((min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1)), radius=0.016 * pxm * S, fill=255)
-    for y, largo in ((-0.031, 0.072), (-0.0105, 0.080), (0.0105, 0.075), (0.031, 0.060)):   # índice, medio, anular, meñique
-        caps(0.04, y * 0.95, 0.04 + largo, y * 1.12, 0.0088)
-    caps(-0.005, -0.034, 0.045, -0.078, 0.0108)                                      # pulgar, hacia afuera (lejos del tubo)
-    caps(-0.06, 0.0, -0.085, 0.0, 0.028)                                             # muñeca
-    m = m.filter(ImageFilter.GaussianBlur(1.2 * S))
-    borde = m.filter(ImageFilter.MaxFilter(13))
-    contorno = Image.fromarray(np.clip(np.asarray(borde, np.int16) - np.asarray(m, np.int16), 0, 255).astype(np.uint8))
-    contorno = contorno.resize((W, H), Image.LANCZOS)
-    relleno = m.resize((W, H), Image.LANCZOS)
-    blanco = Image.new("RGBA", im.size, (255, 255, 255, 0))
-    blanco.putalpha(Image.fromarray(np.clip(np.asarray(contorno, np.float32) * 1.6 * a + np.asarray(relleno, np.float32) * 0.12 * a, 0, 255).astype(np.uint8)))
-    sombra = Image.new("RGBA", im.size, (0, 0, 0, 0))
-    sombra.putalpha(Image.fromarray((np.asarray(contorno.filter(ImageFilter.GaussianBlur(4)), np.float32) * 0.6 * a).astype(np.uint8)))
-    im.paste(sombra, (3, 5), sombra)
-    im.paste(blanco, (0, 0), blanco)
-    G.registrar("mano", tuple(int(v) for v in contorno.getbbox() or (0, 0, 0, 0)))
-
-
-def barras(im, f, t0):
-    """RANA 16 T contra TÚ 40 T O MÁS, en proporción real (16/40), sobre un panel oscuro."""
-    t = t_de(f)
-    if t < t0:
-        return
-    x0, L = 140, 800
-    lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
-    d = ImageDraw.Draw(lay)
-    d.rounded_rectangle((x0 - 30, 520, x0 + L + 30, 712), radius=28, fill=(10, 12, 16, int(150 * min(1, (t - t0) / 0.2))))
-    fnt = ImageFont.truetype(FONT, 40)
-    for i, (txt, val, col, tinta) in enumerate((("RANA · 16 T", 16, CIAN, (10, 30, 40)), ("TÚ · 40 T O MÁS", 40, NARANJO, (255, 255, 255)))):
-        x = sale(min(1.0, max(0.0, (t - t0 - 0.12 * i) / 0.5)))
-        if x <= 0:
-            continue
-        y = 548 + 92 * i
-        w = max(60, L * val / 40 * x)
-        d.rounded_rectangle((x0, y, x0 + w, y + 64), radius=32, fill=(*col, 245))
-        d.text((x0 + 26, y + 32), txt, font=fnt, fill=tinta, anchor="lm")
-    im.paste(lay, (0, 0), lay)
-    G.registrar("barras", (x0 - 30, 520, x0 + L + 30, 712))
-
-
-SIM = {1, 2, 10, 12, 13, 14, 15, 16}
+    pildora(im, f"QUEDAN {n} PISOS", 760, 330, fondo=(250, 250, 248), tinta=(24, 24, 28), tam=46)
+    fx, fy = meta(k, f, "fant", (540, 300))
+    if 380 < fy < 900:
+        pildora(im, "ANTES: 40 PISOS", max(220, min(860, fx)), max(430, fy - 70), fondo=(30, 32, 36), tinta=(255, 255, 255), tam=38)
 
 
 def graficos(im, f, k):
     t = t_de(f)
-    if k in SIM or k == 9:            # desde el corte del 9 (17,0 s), no a mitad del plano (puerta 6 v3)
-        simulacion(im)
+    if k in RAPIDO:
+        camara_rapida(im)
+    if k in CONTADOR:
+        contador(im, f, k)
+    P = [(540, 560), (540, 640)]
     if k == 3:
-        pild(im, f, 3, "real", "ESTO SÍ PASÓ", tw("pasó", 4.0), [(540, 330), (540, 400)], marca="v")
+        pild(im, f, 3, "sinex", "SIN EXPLOSIONES", tw("Sin", 3.5), P)
     elif k == 4:
-        t_im = tw("imán", 7.0)
-        pild(im, f, 4, "hilos", "SIN HILOS", tw("sola", 6.0), [(540, 330), (540, 400)], hasta=t_im)
-        pild(im, f, 4, "iman", "IMÁN", t_im, [(540, 330), (540, 400)], fondo=CIAN, tinta=(10, 30, 40))
+        pild(im, f, 4, "techo", "EL TECHO QUEDA ENTERO", tw("techo", 7.0), P, fondo=NARANJO, tinta=(255, 255, 255))
     elif k == 5:
-        pild(im, f, 5, "agua", "AGUA", tw("nada", 8.0), [(540, 330), (540, 400)], fondo=AZUL, tinta=(255, 255, 255))
+        t_so, t_ga = tw("sombrero", 9.0), tw("gatos", 10.8)
+        pild(im, f, 5, "p1", "PASO 1 · SOMBRERO", tw("Primero", 8.0), P, tam=50, hasta=t_ga)
+        if t >= t_ga:
+            gx, gy = meta(5, f, "gata", (420, 1150))
+            gy = max(560, min(900, gy - 200))
+            gx = max(260, min(820, gx))
+            pildora(im, "GATOS HIDRÁULICOS", gx, gy, fondo=AMARILLO, tinta=(24, 24, 28), s=pop(t - t_ga), tam=48)
     elif k == 6:
-        pild(im, f, 6, "agua", "HASTA 60 % AGUA", T0(6) + 0.05, [(540, 400), (540, 330)], fondo=AZUL, tinta=(255, 255, 255))
+        pild(im, f, 6, "p2", "PASO 2 · DESARMAN", tw("Después", 12.0), P, tam=50)
     elif k == 7:
-        t_e = tw("empuja", 10.0)
-        pild(im, f, 7, "agua", "AGUA", T0(7), [(540, 400), (540, 330)], fondo=AZUL, tinta=(255, 255, 255), hasta=t_e)
-        pild(im, f, 7, "poco", "UN POQUITO", tw("poquito", 12.0), [(540, 400), (540, 330)])
+        t_pi = tw("piso", 19.5)
+        pild(im, f, 7, "p3", "PASO 3 · BAJAN", tw("final", 16.5), P, tam=50, hasta=t_pi)
+        pild(im, f, 7, "menos1", "−1 PISO", t_pi, P, tam=58)
     elif k == 8:
-        rx, y0 = meta(8, f, "rana", (440, 650))
-        x = min(980, max(640, rx + 230))
-        t_g, t_i, t_w = T0(8) + 0.3, T0(8) + 0.8, tw("gana", 14.0)
-        if t > t_g:
-            L = 170 * sale(min(1, (t - t_g) / 0.3))
-            flecha(im, x + 40, y0, x + 40, y0 + L, GRIS, ancho=16)
-            pildora(im, "GRAVEDAD", x + 40, y0 + 260, fondo=GRIS, tinta=(255, 255, 255), tam=38, s=pop(t - t_g))
-        if t > t_i:
-            L = 120 + 120 * suave(min(1, (t - t_i) / max(0.3, t_w + 0.3 - t_i)))
-            flecha(im, x - 40, y0, x - 40, y0 - L, NARANJO, ancho=16)
-            pildora(im, "IMÁN", x - 40, y0 - L - 70, fondo=NARANJO, tinta=(255, 255, 255), tam=38, s=pop(t - t_i))
-        pild(im, f, 8, "t16", "≈ 16 TESLAS", tw("fuerte", 14.0), [(300, 330), (300, 400)], fondo=NARANJO, tinta=(255, 255, 255), tam=50)
+        pild(im, f, 8, "rev", "EN REVERSA", tw("reversa", 24.5), P)
+    elif k == 9:
+        pild(im, f, 9, "elec", "ELECTRICIDAD", tw("electricidad", 28.5), P, fondo=DORADO, tinta=(24, 24, 28))
     elif k == 10:
-        pild(im, f, 10, "p1", "PASO 1 · EL HUECO", tw("primero", 19.0), [(330, 470), (540, 470)], tam=48)
-    elif k == 11:
-        t_tres, t_mano = tw("tres", 22.0), tw("mano", 23.0)
-        if t >= t_tres:
-            cota(im, f, a=min(1.0, (t - t_tres) / 0.15) * (1 - suave(min(1.0, max(0.0, (t - t_mano + 0.75) / 0.25)))))
-        mano(im, f, a=suave(min(1.0, max(0.0, (t - t_mano + 0.15) / 0.28))))
-        pild(im, f, 11, "nocabe", "NO CABE", t_mano, [(790, 330), (790, 400)])
+        pild(im, f, 10, "luces", "LUCES DE LA OBRA", tw("luces", 30.8), P, fondo=DORADO, tinta=(24, 24, 28))
     elif k == 12:
-        pild(im, f, 12, "p2", "PASO 2 · BOBINAS", tw("después", 25.0), [(330, 470), (540, 470)], tam=48)
-    elif k == 13:
-        pild(im, f, 13, "t40", "≈ 40 TESLAS O MÁS", tw("cuarenta", 28.0) + 0.05, [(540, 450)], fondo=NARANJO, tinta=(255, 255, 255))
-        barras(im, f, tw("más", 30.0))          # con "Más del doble", la frase que las explica (puerta 6 v3)
-    elif k == 14:
-        t_re = tw("reactor", 33.0)
-        pild(im, f, 14, "p3", "PASO 3 · ENERGÍA", tw("final", 32.0), [(540, 470), (330, 470)], tam=48, hasta=t_re)
-        t_gw = tw("entero", 34.0)
-        if t >= t_gw:
-            cxp, cyp = meta(14, f, "central", (700, 780))
-            pildora(im, "≈ 1 GIGAVATIO", min(330, cxp - 290), max(430, min(760, cyp - 120)), fondo=NARANJO,
-                    tinta=(255, 255, 255), s=pop(t - t_gw), tam=52)
-
-
+        t_di = tw("diez", 35.5)
+        pild(im, f, 12, "menos2", "−2 PISOS", tw("dos", 34.3), P, hasta=t_di)
+        pild(im, f, 12, "diez", "−2 PISOS · CADA 10 DÍAS", t_di, P, tam=50)
 
 
 def procesar(f):
@@ -511,5 +422,5 @@ if __name__ == "__main__":
     json.dump(SUB_LOG, open(os.path.join(OUT, "subs_log.json"), "w"))
     G.guardar(os.path.join(OUT, "graficos.json"))
     json.dump({"T": {str(k): list(v) for k, v in E.T.items()}, "FR": {str(k): list(v) for k, v in FR.items()}, "END": END},
-              open(os.path.join(OUT, "ep05_planos.json"), "w"))
+              open(os.path.join(OUT, "ep07_planos.json"), "w"))
     print("ok post", len(list(cuadros)) - len(faltan), "cuadros; faltan", len(faltan), faltan[:20])

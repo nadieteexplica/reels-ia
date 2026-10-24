@@ -1,0 +1,21 @@
+[
+ {
+  "id": "storyboard",
+  "prompt": "tools/auditor/prompts/3-storyboard.md",
+  "alcance": "storyboard completo (fichas de plano)",
+  "materiales": [
+   "studio/episodios/ep07-rascacielos-encoge/storyboard.md",
+   "studio/episodios/ep07-rascacielos-encoge/guion.md",
+   "studio/episodios/ep07-rascacielos-encoge/ficha.jpg"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "CONTEXTO.md",
+   "studio/plantilla/KIT.md",
+   "tools/auditor/prompts/estilos.md"
+  ],
+  "salida": "storyboard.json",
+  "estilo": "realista"
+ }
+]

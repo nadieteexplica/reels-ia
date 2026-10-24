@@ -7,12 +7,12 @@ C 500 s → ~1/32 del costo): E1 ~9, E2 ~16, E3/E4/E5 ~8 (con el vapor de la cen
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import planos_ep05 as PL
+import planos_ep07 as PL
 
 # medido en el animatic del 23-oct (run 39932351715, 540x960/8): E1 de cerca (vidrio + desenfoque) ~24 s/cuadro, E1 abierto
 # (plano 3) ~10, E2 ~26, E3 ~15, E4 ~19, E5 ~17
-PESO = {"E1": 24, "E2": 26, "E3": 15, "E4": 19, "E5": 17}
-PESO_PLANO = {4: 16}
+PESO = {"E1": 16, "E2": 18, "E3": 22, "E4": 18}
+PESO_PLANO = {}
 ARMADO = 90
 
 

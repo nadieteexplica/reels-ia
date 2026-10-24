@@ -1,0 +1,29 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ritmo de 2.2 palabras/s en 'Sin una sola explosión.'",
+   "evidencia": "3.34 s"
+  },
+  {
+   "que": "ritmo de 2.1 palabras/s en 'Como su construcción, en reversa.'",
+   "evidencia": "23.05 s"
+  },
+  {
+   "que": "se escucha 'rascacielo' donde el guion dice 'rascacielos'",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 36.87,
+  "palabras_por_s": 2.5,
+  "creditos_restantes": 36348,
+  "asr_coincidencia": 0.989,
+  "asr_diferencias": [
+   [
+    "rascacielos",
+    "rascacielo"
+   ]
+  ]
+ }
+}
