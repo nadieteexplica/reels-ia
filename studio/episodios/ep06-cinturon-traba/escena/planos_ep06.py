@@ -173,7 +173,7 @@ class Cabina:
             objs = list(E.cinturon_de(self.sc, a, q, raiz=None, comba=comba.get(q, 0.0)))
             if capa.get(q):
                 color = (0.95, 0.12, 0.08) if capa[q] == "roja" else (0.15, 0.85, 0.3)
-                objs.append(E.capa_cinta(self.sc, objs[0], color))
+                E.capa_cinta(self.sc, objs[0], color)
             self.cintas[q] = tuple(objs)
 
 
@@ -191,6 +191,9 @@ def pieza_cabina(sc, a, b, k):
     W = cab.mundo
     # atrás y en el pilar llega menos sol: la cámara expone más (como una de verdad), sin subir luces falsas
     sc.view_settings.exposure = {25: 0.7, 4: 0.4, 22: 0.4, 20: 0.3}.get(k, 0.0)
+    # plano 1 (y su repetición en el 10 y el loop del 25): foco corto, la mano que se acerca queda blanda como en una cámara real
+    cam.data.dof.use_dof = True
+    cam.data.dof.aperture_fstop = {1: 2.0, 10: 2.0, 25: 2.8}.get(k, 5.6)
     t0, t1 = T[k]
 
     def actualizar(f):
@@ -203,7 +206,7 @@ def pieza_cabina(sc, a, b, k):
             lanza = 1.0 if t < tc else max(0.0, 1.0 - 2.2 * (t - tc)) * 0.55 + 0.25 * math.exp(-6 * (t - tc))
             cab.pose("caballero", f, lanza=lanza)
             sac = 0.012 * math.exp(-18 * max(0, t - tc)) * math.sin(70 * max(0, t - tc)) if t >= tc else 0
-            mirar(cam, W((-0.08 + sac, -1.30, 1.50 + sac)), W((-0.25, 0.10, 1.40)), lente=35, foco=W((-0.32, 0.05, 1.45)))
+            mirar(cam, W((-0.08 + sac, -1.30, 1.58 + sac)), W((-0.25, 0.10, 1.42)), lente=35, foco=W((-0.32, 0.10, 1.50)))
         elif k == 2:
             cab.pose("caballero", f, lanza=0.95)
             cab.bolsa.location.x = 0.03 * sale(lin(t, t0 + 0.6, t0 + 1.2))
@@ -256,7 +259,7 @@ def pieza_cabina(sc, a, b, k):
             else:     # loop: corte a la cámara del cuadro 0
                 cab.bolsa.location = Vector(E.BOLSA)
                 cab.pose("caballero", f, lanza=1.0)
-                mirar(cam, W((-0.08, -1.30, 1.50)), W((-0.25, 0.10, 1.40)), lente=35, foco=W((-0.32, 0.05, 1.45)))
+                mirar(cam, W((-0.08, -1.30, 1.58)), W((-0.25, 0.10, 1.42)), lente=35, foco=W((-0.32, 0.10, 1.50)))
         capa, comba = {}, {}
         if k in (1, 10):
             capa["caballero"] = "roja"          # trabada: la cinta recta y tensa

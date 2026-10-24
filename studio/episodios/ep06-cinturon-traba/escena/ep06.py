@@ -357,6 +357,8 @@ def personaje(sc, quien):
         if o.type == "MESH":
             liso(o, 180)
             o["personaje"] = quien
+            # Mixamo es de pocos polígonos: de cerca (la mano del caballero) se notaban las aristas (puerta 4 r1)
+            sub = o.modifiers.new("suave", "SUBSURF"); sub.levels = 0; sub.render_levels = 1
     return arm
 
 
@@ -552,15 +554,15 @@ def mat_capa(nombre, color, alfa=0.55, fuerza=2.5):
 
 
 def capa_cinta(sc, cinta_obj, color, alfa=0.55):
-    """Copia la cinta un pelo más gruesa con la capa de color encima (no proyecta sombra ni se refleja)."""
-    o = cinta_obj.copy(); o.data = cinta_obj.data.copy(); sc.collection.objects.link(o)
-    o.name = cinta_obj.name + "_capa"
-    for md in o.modifiers:
-        if md.type == "SOLIDIFY":
-            md.thickness = md.thickness + 0.004; md.offset = 0.0
-    o.data.materials.clear(); o.data.materials.append(mat_capa(o.name, color, alfa))
-    o.visible_shadow = False; o.visible_glossy = False; o.visible_diffuse = False
-    return o
+    """Capa de explicación SOBRE la propia cinta (no una copia aparte): la tela se tiñe del color y brilla un poco, con su
+    sombra y su trama. La copia transparente se leía como "un polígono rosado plano" (puerta 4 r1)."""
+    m = mat_cinta(cinta_obj.name + "_capa", tuple(c * 0.35 for c in color))
+    nt = m.node_tree
+    b = next(n for n in nt.nodes if n.type == "BSDF_PRINCIPLED")
+    b.inputs["Emission Color"].default_value = (*color, 1)
+    b.inputs["Emission Strength"].default_value = 0.5
+    cinta_obj.data.materials.clear(); cinta_obj.data.materials.append(m)
+    return None
 
 
 def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05, comba=0.0):
