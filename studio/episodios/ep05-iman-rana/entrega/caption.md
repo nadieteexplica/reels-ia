@@ -54,4 +54,7 @@ Fuentes: Berry y Geim 1997, Geim 1998, Simon y Geim 2000 (lista completa en YouT
 - Instagram: `instagramData.type: "REEL"`, `isAiGenerated: true` (voz sintética).
 - TikTok: `tiktokData.isAigc: true`, `title` arriba.
 - YouTube: `type: "short"`, `category: "EDUCATION"`, `madeForKids: false` (decidido por Tomás el 19-oct), `isAiGeneratedContent: true` (estilo realista: regla del manual y decisión de Tomás del 22-oct).
-- Horario (sábado 24-oct; OK de Tomás del 23-oct, 21:38, para cambiar el video programado por este): Instagram 18:00 (se movió desde las 10:00 para que no saliera el v2) · TikTok 18:00 · YouTube 20:30.
+- Horario: sábado 24-oct, Instagram 10:00 · TikTok 18:00 · YouTube 20:30.
+  - OK de Tomás del 24-oct a las 00:21, dado sobre este video v3: "quiero este video subido mañana a las 10 en insta y las otras horas que quedamos para las otras plataformas… el nuevo y elimina el otro".
+  - Antes, el 23-oct a las 21:38, ya había aprobado cambiar el video programado.
+  - Se reemplaza el video y los textos dentro de los 3 posts ya programados, así que el v2 no sale.

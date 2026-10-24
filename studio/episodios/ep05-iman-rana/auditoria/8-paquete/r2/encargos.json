@@ -1,0 +1,27 @@
+[
+ {
+  "id": "paquete",
+  "prompt": "tools/auditor/prompts/8-paquete.md",
+  "alcance": "textos de publicación",
+  "materiales": [
+   "studio/episodios/ep05-iman-rana/entrega/caption.md",
+   "studio/episodios/ep05-iman-rana/guion.md",
+   "studio/episodios/ep05-iman-rana/auditoria/8-paquete/r2/materiales/anterior_paquete.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "tools/auditor/prompts/estilos.md"
+  ],
+  "salida": "paquete.json",
+  "estilo": "realista",
+  "verificar_ids": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5"
+  ],
+  "modo": "verificacion"
+ }
+]

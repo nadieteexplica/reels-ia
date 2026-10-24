@@ -1,0 +1,57 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": null,
+  "que": "Primer comentario: lista 6 de las 9 fuentes del guion. Faltan la U. de Leicester (respalda el '40 teslas (o más)' del texto de IG/TikTok), National MagLab (hueco de 32 mm de los imanes de hoy) y MIT Technology Review. En IG y TikTok ese comentario es la única lista de fuentes.",
+  "arreglo": "Agregar esas 3 líneas con su enlace al firstCommentText (queda en ~1.500 caracteres, bajo el tope de 2.200 de Instagram).",
+  "de": "paquete",
+  "asignado": "paquete"
+ },
+ {
+  "id": "A2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": null,
+  "que": "Afirmaciones del post que no están en la tabla de verificación ni tienen fuente propia: 'ganó un Ig Nobel por eso… y diez años después, el Nobel de Física (por el grafeno)' (IG/TikTok y descripción) y 'sin que le pasara nada' (descripción). Las fechas que conozco calzan (Ig Nobel de Física 2000 a Geim y Berry; Nobel de Física 2010 a Geim y Novoselov), pero no pude abrir la Harvard Gazette (bloqueada en esta sesión) para ver si lo dice.",
+  "arreglo": "Agregar al guion y a las fuentes de la descripción y del primer comentario nobelprize.org (Física 2010) y improbable.com (ganadores Ig Nobel 2000). Para 'sin que le pasara nada': citar la frase de Geim que lo dice o borrar esas 5 palabras.",
+  "de": "paquete",
+  "asignado": "paquete"
+ },
+ {
+  "id": "A3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": null,
+  "que": "'Datos para Metricool' cita el 'OK de Tomás del 23-oct, 21:38' como aprobación del horario, pero el guion v3 es de las 21:40: ese OK no cubre estos textos ni el MP4 final del v3.",
+  "arreglo": "En el mensaje a Tomás, listar los 3 posts (IG 18:00, TikTok 18:00, YouTube 20:30, sábado 24-oct) con estos textos y el MP4 final, y programar recién con su OK a ese mensaje.",
+  "de": "paquete",
+  "asignado": "paquete"
+ },
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": null,
+  "que": "Línea del dato en IG/TikTok: 'Una rana viva ya flotó así: el agua es empujada un poquito por un imán…' no dice por qué importa el agua; quien no vio el video no conecta la rana con el agua.",
+  "arreglo": "Usar la frase del guion: 'Una rana viva ya flotó así: es más que nada agua, como tú, y al agua un imán la empuja un poquito; con uno de unos 16 teslas, ese empujón le gana a la gravedad.'",
+  "de": "paquete",
+  "asignado": "paquete"
+ },
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": null,
+  "que": "No aparece 'levitación' ni 'levitar' en ningún texto, y es lo que se busca ('levitación magnética', 'rana levitando'). Sólo están 'imanes', 'flotar', 'teslas' y 'diamagnéticos'.",
+  "arreglo": "Abrir la descripción de YouTube con 'Levitación magnética: todos somos diamagnéticos…' y meter 'levitó' en la línea del dato de IG/TikTok.",
+  "de": "paquete",
+  "asignado": "paquete"
+ }
+]
