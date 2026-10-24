@@ -75,6 +75,13 @@ Cada episodio nuevo lleva `estilo.json` con `"estilo": "realista"` (copiar `stud
 - **Dato real + "¿y si…?" hipotético con números reales**, contado paso a paso y siempre en condicional ("haría falta", "gastaría", "flotarías"), con SIMULACIÓN en pantalla. Es lo que pidió Tomás: "no es desinformar".
 - **Sin nombres, años ni premios en la voz.** Van en el texto del post, la descripción y el primer comentario (la anécdota del Ig Nobel + Nobel fue al post).
 - **Gancho que se entiende sin sonido:** una imagen imposible y real desde el cuadro 0, con su píldora.
+- **El relato (v3 del Ep. 5, pedido de Tomás del 23-oct 21:20):**
+  - **La promesa sobre el espectador va en la primera frase** ("Tu cuerpo repele los imanes. Con el imán correcto, podrías flotar"), con la imagen de esa promesa en el cuadro 0 (Pete flotando, con SIMULACIÓN).
+  - **La prueba real va justo después** (la rana a los 4 s, con ESTO SÍ PASÓ) y la mecánica en 2 frases como máximo.
+  - **Lo que más le gusta a la gente se cuenta en pasos** ("Primero… Después… Y al final…"), cada uno con su píldora PASO N y su número de fuente.
+  - **Nada de comparaciones que no empujen la idea central:** el refri del v2 "no es interesante y se pierde".
+  - El v2 contaba primero el experimento y el "¿y tú?" llegaba al segundo 25: "mucho chamullo" (lección 96).
+- **Medidas a escala:** se dibujan con la proyección real de la escena (`pantalla()`): la cota va de pared a pared, fuera del personaje, y una mano adulta se dibuja a escala al lado del hueco de 3 cm.
 
 ---
 

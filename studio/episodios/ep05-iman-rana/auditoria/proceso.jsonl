@@ -116,3 +116,4 @@
 {"tipo": "chequeo", "que": "prueba local de los 16 planos OK; muestras en Actions (16 máquinas) terminando; plano 11 rehecho de costado (cota sobre la rana + mano a escala)", "id": "sesion ep05 v3", "n": 116, "ts": "2026-10-23T22:23:16-03:00"}
 {"tipo": "promesa", "hora": "00:00", "que": "Ep. 5 v3 renderizado, auditado y cambiado en los 3 posts de Metricool", "dato": "render final de 16 máquinas ~60 min (v2: 60 min a 720x1280/8) + puertas 6-8 ~20 min", "id": "ep05 v3 listo", "n": 117, "ts": "2026-10-23T22:27:45-03:00"}
 {"tipo": "chequeo", "id": "sesion ep05 v3", "estado": "vivo (vigilante)", "n": 118, "ts": "2026-10-23T22:28:08-03:00"}
+{"tipo": "chequeo", "que": "render final v3 en Actions (16 máquinas, run 40049863541); puerta 3 cerrada APROBADO 8,25; lecciones 96–100 escritas", "id": "sesion ep05 v3", "n": 119, "ts": "2026-10-23T22:29:48-03:00"}
