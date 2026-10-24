@@ -1,0 +1,43 @@
+{
+ "encargo": "planos3",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 6, "por_que": "P23 (32.99–33.91) se ve bien: luz cálida de costado y casco con óxido y abolladuras; pero P24 (33.99–36.01) tiene el foco en la armadura de arriba a la derecha y el dedo, que es el sujeto, borroso, y P25 (36.09–37.93) es plano y pastel (turquesa + durazno + crema, sin negros: percentil 5 de luminancia en 84) con una bolsa que parece cojín"},
+  "animacion": {"nota": 6, "por_que": "P23 actúa (gira la cabeza, mov 7,81), pero en P24 la mano casi no se mueve en 2,1 s (mov 1,33; 33.99 y 36.01 son el mismo cuadro): no se lee 'estira la mano despacio y tantea'; en P25 la mano sale por arriba en 37.53 (E37) sin que se vea la papa, y el doctor no se congela ni se encoge de hombros"},
+  "claridad": {"nota": 6, "por_que": "en P24 un pulgar desenfocado ocupa medio cuadro y que el tablero está vacío sólo se entiende si uno recuerda el plano 2; en P25 (36.09–37.93) se ve un bulto naranja-crema sobre el regazo turquesa, sin papa en la mano ni gesto de comer: el remate 'si el doctor no se las comió antes' se apoya sólo en el color de la bolsa y las migas"},
+  "ritmo": {"nota": 7, "por_que": "P23 (1 s) cambia con la píldora LENTO y el giro de cabeza; P24 son 2,1 s de casi la misma imagen, donde sólo cambian los subtítulos; P25 tiene la mano que sale (37.53) y el corte al loop en 38.20"},
+  "realismo": {"nota": 6, "por_que": "lo real: el casco con óxido y abolladuras, la sobreveste con tela y las placas de la armadura en P23/P24. Lo que delata: los ojos celestes brillantes de muñeco dentro del visor (P23 33.17), el foco fuera del sujeto (P24) y P25, que es casi la mitad de este tramo y el remate: colores pastel sin negros, una bolsa lisa de plástico sin arrugas ni foil y el cinturón atravesado por la tela"}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "tipo": "B1", "plano": 25, "segundo": "36.09", "que": "la tela turquesa del pantalón del doctor atraviesa la cinta gris del cinturón de regazo: el borde inferior de la cinta queda cortado en dientes de sierra con parches turquesa (abajo al centro, y≈1550–1880, x≈480–920). Se ve igual en todo el plano (36.09–37.93) y ya se nota en la hoja de contacto (36 s y 37 s): la cinta parece rota. Antes no se veía porque el cuadro estaba casi negro (D36)", "arreglo": "lo más barato es subir o acercar la cámara para que la parte baja de la cinta quede fuera de cuadro; si no, despegar la cinta de la ropa (desplazamiento del shrinkwrap/solidify hacia afuera, unos mm) o hundir la tela bajo la cinta"}
+ ],
+ "verificacion": [
+  {"id": "A3", "arreglado": true, "por_que": "en P24 (33.99–36.01) ya no hay bolsa en el tablero: el encuadre del plano 2 aparece vacío, con un par de migas en el borde izquierdo (36.01), y la bolsa está sólo en P25 con el doctor. Ya no está en dos lugares"},
+  {"id": "D27", "arreglado": false, "por_que": "P21 no está en mis tiras; en contacto.jpg (31 s) las rocas del primer plano siguen redondeadas y lisas, varias con la misma forma de canto rodado (verificado a 180 px)"},
+  {"id": "D28", "arreglado": false, "por_que": "en contacto.jpg (31 s) los cerros siguen de un solo tono rosado-café, con laderas lisas y poca bruma; hay algo de aire, pero no se ven quebradas ni erosión (a baja resolución)"},
+  {"id": "D29", "arreglado": true, "por_que": "en contacto.jpg (31 s = 31.00) las cuatro ruedas apoyan en el camino con sombra de contacto; la trasera izquierda queda en la sombra del chasis, pero toca el suelo (a la resolución del contacto)"},
+  {"id": "D30", "arreglado": false, "por_que": "no se puede verificar con mi material: P22 sólo aparece en contacto.jpg (32 s, 180 px), donde la franja café tiene grano pero no se ven trama ni costuras; que lo confirme el revisor de P22"},
+  {"id": "D31", "arreglado": false, "por_que": "en contacto.jpg (32 s) la forma de la izquierda sigue casi negra; tiene un borde más claro arriba, pero no se lee como mano ni se ve su material (no verificable a resolución completa)"},
+  {"id": "D32", "arreglado": false, "por_que": "en P23 33.17 y 33.54 los ojos siguen con esclerótica blanca, iris celeste saturado y brillo fuerte; el interior del visor está iluminado, no oscuro"},
+  {"id": "D33", "arreglado": true, "por_que": "en 33.14 (E35, después) y 33.36 la barra café tiene grano y óxido, y la visera beige tiene manchas y marcas; el bloque de arriba a la derecha tiene grano. Ya no son de un solo color, aunque los bordes siguen bastante limpios"},
+  {"id": "D34", "arreglado": true, "por_que": "la bolsa ya no sale en P24, así que este delator desaparece de ese plano; la misma bolsa lisa, sin arrugas ni foil, sigue en P25 (ver D36)"},
+  {"id": "D35", "arreglado": false, "por_que": "en P24 33.99 y 36.01 las escamas de la armadura (arriba a la derecha) siguen nítidas, y la yema del dedo y el tablero desenfocados"},
+  {"id": "D36", "arreglado": false, "por_que": "la luz quedó arreglada (P25 ya no está oscuro), pero la bolsa en 36.09–37.93 sigue siendo un bulto liso con degradado naranja-crema, sin arrugas, foil ni estampado; no se ve la papa en la mano, y las manos (arriba en 36.09 y abajo en 37.67) siguen desenfocadas"}
+ ],
+ "eventos": [
+  {"id": "E35", "es_defecto": false, "por_que": "es el corte de P22 a P23 y la píldora LENTO, que entra creciendo (chica en 32.99, entera en 33.17)"},
+  {"id": "E36", "es_defecto": false, "por_que": "el caballero gira la cabeza: la piel de la mejilla, que se veía por la ranura del visor junto al ojo izquierdo en 33.54, queda tapada por el casco en 33.74. Son 90 px en el borde del cuadro y se lee como movimiento"},
+  {"id": "E37", "es_defecto": false, "por_que": "la mano del doctor sube y sale de cuadro (gesto hacia la boca); el movimiento es buscado, pero como no se ve la papa no se entiende (va en claridad)"}
+ ],
+ "delatores": [
+  {"plano": 23, "segundo": "33.17", "zona": "medio", "que": "(D32, sigue) ojos de muñeco dentro del visor: esclerótica blanca grande, iris celeste saturado y brillo fuerte, con el interior del casco iluminado", "arreglo": "oscurecer el interior del visor (sombra o luz bloqueada) para que sólo brille un punto en cada ojo; iris más oscuro y menos especular"},
+  {"plano": 24, "segundo": "34.28", "zona": "arriba", "que": "(D35, sigue) el foco está en la armadura y no en la yema del dedo ni en el tablero vacío, que es el sujeto", "arreglo": "poner el foco en la yema del dedo y el tablero; dejar la armadura desenfocada"},
+  {"plano": 25, "segundo": "36.09", "zona": "medio", "que": "(D36, sigue) la bolsa es un cojín liso con degradado naranja-crema, sin arrugas, foil ni pliegue de cierre", "arreglo": "arrugas en el mapa de normales, brillo metálico en los pliegues y un estampado genérico; abrirla arriba para que se vea que es una bolsa"},
+  {"plano": 25, "segundo": "36.09", "zona": "medio", "que": "(nuevo con la luz nueva) cuadro pastel sin negros (percentil 5 de luminancia en 84): turquesa, durazno y crema con luz pareja, sin sombras de contacto debajo de la bolsa ni de las manos", "arreglo": "luz de ventana lateral, más dura, que deje un lado del regazo en sombra profunda, y sombra de contacto de la bolsa sobre el pantalón"},
+  {"plano": 25, "segundo": "36.09", "zona": "medio", "que": "(nuevo) migas blancas nítidas sin sombra, algunas sobre el borde superior de la bolsa contra el fondo desenfocado: parecen pegadas o flotando", "arreglo": "migas naranjas (de papa), con sombra de contacto, apoyadas sobre la bolsa y el pantalón"},
+  {"plano": 21, "segundo": "31.00", "zona": "abajo", "que": "(D27, sigue) rocas del primer plano redondeadas y lisas, varias con la misma forma", "arreglo": "rocas angulosas y fracturadas, con escala y rotación variadas"},
+  {"plano": 21, "segundo": "31.00", "zona": "arriba", "que": "(D28, sigue) cerros de un solo tono, con laderas lisas", "arreglo": "textura de quebradas o erosión y más bruma de distancia"}
+ ],
+ "resumen": "A3 quedó arreglado: la bolsa ya no vuelve al tablero en P24. Pero el re-render de P25 iluminó un bloqueante nuevo: la ropa del doctor atraviesa la cinta del cinturón (36.09–37.93). Además, P25 (el remate) se ve pastel y de plástico, sin papa visible, y P24 sigue con el foco fuera del sujeto, así que el realismo queda en 6."
+}

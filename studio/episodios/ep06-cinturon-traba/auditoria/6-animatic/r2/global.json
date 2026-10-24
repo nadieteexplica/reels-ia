@@ -1,0 +1,35 @@
+{
+ "encargo": "global",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "gancho": {"nota": 8, "por_que": "cuadro 0: un caballero con armadura dentro de un auto, lanzándose con la cinta tensa y sol bajo; absurdo y se entiende sin texto, aunque lo que busca (la bolsa) recién se ve en 1.4"},
+  "claridad": {"nota": 8, "por_que": "cada idea tiene su imagen: CARRETE con dientes (8.5), FUERZA DEL GIRO empujando el pestillo (13.5–14.5), BOLITA DE ACERO pegada a la bolita (23.5) e inclinómetro 22°→30° con PUEDE/SE TRABA (26.5–27.5); lo más flojo es 32.5 ('POQUITO'), un primer plano café con una flecha verde chica"},
+  "ritmo": {"nota": 8, "por_que": "algo cambia cada 1–2 s (el plano más largo, P20 de 2,6 s, se mueve: mov 3,95), hay cambios de escala macro→interior→exterior (1.5, 7.5, 18.5, 26.5, 31.5) y el final corta limpio al cuadro 0 en fin −0.1"},
+  "belleza": {"nota": 7, "por_que": "sol bajo, negros reales en la máscara (28.5–30.5) y latón con óxido se ven bien, pero el cierre (36.5–38.5) es un macro de tonos pastel menta/durazno con una bolsa lisa de goma, y la ladera de 18.5/26.5 sigue de burbujas"},
+  "animacion": {"nota": 8, "por_que": "quieto_max_s < 0,5 en todos los planos; el caballero se lanza, rebota y se estira, y los cuatro se traban en 20.5–22.5; la papa a la boca y el encogimiento del doctor no se alcanzan a ver a 1 cuadro por segundo (material insuficiente)"},
+  "subtitulos": {"nota": 9, "por_que": "109/109 palabras, desfase 0 y 0 fuera de zona (y 1022–1213); tildes bien (CINTURÓN, RÁPIDO, JALÓ, RODÓ, TRABÓ, DÉJALO, AHÍ, ESTÁN, COMIÓ) y ya dice 'PASADO 27 GRADOS'"},
+  "audio": {"nota": 9, "por_que": "no lo puedo escuchar: −14,1 LUFS, −1,4 dBTP y la voz 11,4 dB sobre las pausas (mínimo, con ducking), todo en rango"},
+  "precision": {"nota": 8, "por_que": "lo dibujado calza con el guion y las fuentes (pestillo hacia afuera, bolita en tacita que levanta la palanca, aguja que cruza 27° cuando la voz dice 27) y la bolsa ya no se contradice; detalle: el inclinómetro marca 30° en 19.5 y vuelve a 22° en 26.5"},
+  "realismo": {"nota": 7, "por_que": "mundo real (sol bajo, armadura con textura, latón oxidado), pero siguen los delatores de juguete: ojos celestes brillantes del caballero (0.0, 9.5, 33.5), mano rosada lisa (1.4, 34.5), bolsa de goma (20.5, 36.5), grilla de cuadritos (0.0), ladera de burbujas (18.5, 26.5), lente negro plano (28.5) y el cierre en pastel"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A4", "arreglado": true, "por_que": "en 20.5 la bolsa se va del tablero hacia atrás, en 22.5 ya no está, en 34.5–35.5 los dedos llegan a un tablero gris sin bolsa y en 36.5 la tiene el doctor en la falda: el remate ya no se contradice (el plano medio del doctor no se hizo; queda un macro de la falda)"},
+  {"id": "A5", "arreglado": true, "por_que": "en 26.5 y 27.5 se lee 'PASADO 27 / GRADOS', sin el símbolo °"},
+  {"id": "A9", "arreglado": true, "por_que": "en 23.5–25.5 la tacita, la bolita y la palanca quedan arriba (y ≈ 250–600), lejos de los subtítulos (y ≈ 1075), y la píldora BOLITA DE ACERO está pegada a la bolita"},
+  {"id": "D37", "arreglado": false, "por_que": "en 18.5–19.5 y 26.5–27.5 la ladera sigue cubierta de decenas de montículos redondos parecidos, como burbujas"},
+  {"id": "D38", "arreglado": false, "por_que": "en 19.5 sigue la mancha gris oscura de borde recto abajo a la izquierda y en 18.5 el suelo bajo el auto es café liso"},
+  {"id": "D39", "arreglado": false, "por_que": "en 20.5 y 36.5–37.5 la bolsa sigue siendo un óvalo naranjo y crema liso, sin arrugas, sellado dentado ni reflejos metálicos"},
+  {"id": "D40", "arreglado": false, "por_que": "en 0.0, 9.5 y 33.5 se siguen viendo los ojos celestes brillantes dentro del casco"},
+  {"id": "D41", "arreglado": false, "por_que": "en 1.4–1.9 y 34.5–35.5 la mano sigue siendo piel rosada lisa con uñas, sin guante ni nudillos marcados"},
+  {"id": "D42", "arreglado": true, "por_que": "en el cuadro 0 las molduras beige y el bloque de la derecha ya tienen grano y el techo café está moteado; ya no se leen lisas (costuras no se distinguen a esta resolución)"},
+  {"id": "D43", "arreglado": false, "por_que": "en 0.0, 9.5 y 33.5 sigue la grilla regular de cuadritos detrás del caballero (y en 20.5/22.5 detrás del asiento trasero)"},
+  {"id": "D44", "arreglado": false, "por_que": "en 7.5–16.5 y 23.5–25.5 el mecanismo sigue en una placa sobre un bloque de concreto gris contra la pared café (en 23.5–25.5 el bloque ocupa media pantalla); no se ve la carcasa cortada del pilar"},
+  {"id": "D45", "arreglado": true, "por_que": "en 24.5 la tacita tiene degradé y un reflejo claro en el borde izquierdo, y en 25.5 un brillo suave en el canto; ya no es un hueco negro plano"},
+  {"id": "D46", "arreglado": false, "por_que": "en 28.5–30.5 el lente derecho de la máscara sigue siendo un óvalo negro plano, sin reflejo ni gota"}
+ ],
+ "eventos": [],
+ "delatores": [],
+ "resumen": "Los tres arreglos de la ronda 1 (bolsa que se contradecía, '27° GRADOS' y la bolita bajo los subtítulos) quedaron bien y no veo bloqueantes nuevos. No aprueba por realismo 7: de los 10 delatores, 8 siguen igual (ojos celestes, mano lisa, bolsa de goma, grilla, ladera de burbujas, suelo, bloque de exhibición, lente negro)."
+}
