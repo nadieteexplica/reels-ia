@@ -156,15 +156,21 @@ class Cabina:
             E.girar(a, "Neck", (0, 0, 1), 35 * mira)
             E.girar(a, "Head", (0, 0, 1), 25 * mira)
 
-    def cinturones(self, quienes=None, tension=None):
-        """Rehace las cintas de los que se movieron (una curva de 3 anclas colgada de los huesos)."""
+    def cinturones(self, quienes=None, capa=None, comba=None):
+        """Rehace las cintas de los que se movieron (una curva de 3 anclas colgada de los huesos). `capa` = {quien: "roja" |
+        "verde"} pone la capa de explicación (roja = trabada y tensa, verde = suelta); `comba` = {quien: metros}."""
+        capa = capa or {}; comba = comba or {}
         for q, a in self.arms.items():
             if quienes is not None and q not in quienes and q in self.cintas:
                 continue
             for o in self.cintas.get(q, ()):
                 bpy.data.objects.remove(o, do_unlink=True)
             bpy.context.view_layer.update()
-            self.cintas[q] = E.cinturon_de(self.sc, a, q, raiz=None)
+            objs = list(E.cinturon_de(self.sc, a, q, raiz=None, comba=comba.get(q, 0.0)))
+            if capa.get(q):
+                color = (0.95, 0.12, 0.08) if capa[q] == "roja" else (0.15, 0.85, 0.3)
+                objs.append(E.capa_cinta(self.sc, objs[0], color))
+            self.cintas[q] = tuple(objs)
 
 
 # ------------------------------------------------------------------ escenas
@@ -245,7 +251,15 @@ def pieza_cabina(sc, a, b, k):
                 cab.bolsa.location = Vector(E.BOLSA)
                 cab.pose("caballero", f, lanza=1.0)
                 mirar(cam, W((0.06, -0.26, 1.46)), W((-0.33, 0.22, 1.52)), lente=35, foco=W((-0.33, 0.10, 1.55)))
-        cab.cinturones(quienes=("caballero",) if k not in (14, 15, 16, 20) else None)
+        capa, comba = {}, {}
+        if k in (1, 10):
+            capa["caballero"] = "roja"          # trabada: la cinta recta y tensa
+        elif k in (3, 12, 23):
+            capa["caballero"] = "verde"         # suelta: sale con comba
+            comba["caballero"] = 0.035 * suave(lin(t, t0 + 0.8, t0 + 1.6)) if k in (3, 23) else 0.035
+        elif k == 22:
+            capa["caballero"] = "verde"
+        cab.cinturones(quienes=("caballero",) if k not in (14, 15, 16, 20) else None, capa=capa, comba=comba)
         return info
 
     return {"actualizar": actualizar, "meta": {"escena": ESCENA[k]}}

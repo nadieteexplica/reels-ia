@@ -18,6 +18,7 @@ import kit5 as K
 from kit5 import (asset, escena, camara, apuntar, luz_area, luz_punto, asignar, liso, cilindro, caja, _nodos, _ruido,
                   _rampa, _mapa, _bump, mat_metal_cepillado, mat_pintura, mat_goma, mat_emision, mat_vidrio, mat_lejano,
                   cerros, cielo_atardecer)
+from kit5 import T, F, FR, FPS, FIN     # tiempos de los planos (la hoja de muestras de render-planos los lee de acá)
 
 AUTO_GLB = "343551d39d87444997962ed73a924917.glb"
 SOL_AZ, SOL_ELEV = 240.0, 3.5
@@ -501,7 +502,36 @@ def cinta(sc, puntos, normales, ancho=0.048, nombre="Cinta", mat=None, res=10):
     return o
 
 
-def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05):
+def mat_capa(nombre, color, alfa=0.55, fuerza=2.5):
+    """Capa de explicación sobre la cinta: color que brilla un poco y deja ver la tela (rojo = tensa/trabada, verde = suelta)."""
+    m = bpy.data.materials.new(nombre); m.use_nodes = True
+    nt = m.node_tree; nt.nodes.clear()
+    out = nt.nodes.new("ShaderNodeOutputMaterial")
+    em = nt.nodes.new("ShaderNodeEmission"); em.inputs[0].default_value = (*color, 1); em.inputs[1].default_value = fuerza
+    tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+    mx = nt.nodes.new("ShaderNodeMixShader"); mx.inputs[0].default_value = alfa
+    nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2])
+    nt.links.new(mx.outputs[0], out.inputs["Surface"])
+    try:
+        m.surface_render_method = "BLENDED"
+    except Exception:
+        pass
+    return m
+
+
+def capa_cinta(sc, cinta_obj, color, alfa=0.55):
+    """Copia la cinta un pelo más gruesa con la capa de color encima (no proyecta sombra ni se refleja)."""
+    o = cinta_obj.copy(); o.data = cinta_obj.data.copy(); sc.collection.objects.link(o)
+    o.name = cinta_obj.name + "_capa"
+    for md in o.modifiers:
+        if md.type == "SOLIDIFY":
+            md.thickness = md.thickness + 0.004; md.offset = 0.0
+    o.data.materials.clear(); o.data.materials.append(mat_capa(o.name, color, alfa))
+    o.visible_shadow = False; o.visible_glossy = False; o.visible_diffuse = False
+    return o
+
+
+def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05, comba=0.0):
     """Cinturón de tres puntas para un personaje sentado: guía del pilar → frente del hombro de afuera → pecho → hebilla
     en la cadera de adentro; y la parte de la falda de la hebilla al anclaje de afuera. Las anclas del cuerpo salen de los
     huesos con `separacion` sobre la ropa o la armadura (puerta 3: la cinta nunca la atraviesa)."""
@@ -516,7 +546,11 @@ def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05):
     cad_af = pos_hueso(arm, f"{lado_af}UpLeg") + frente * (0.10 + separacion) + lado * (afuera * 0.08) + arriba * 0.02
     anc_af = en_auto((ASIENTO[quien][0] + afuera * 0.30, ASIENTO[quien][1] + 0.12, 0.90))
     n_f = dir_auto((0, -1, 0.2))
-    a = cinta(sc, [g, hom, pecho, cad_ad], [dir_auto((-afuera, -0.6, 0)), n_f, n_f, n_f], nombre=f"Cinta_{quien}")
+    if comba > 0:      # cinta que salió con soltura: cuelga un poco entre la guía y el hombro
+        medio = g.lerp(hom, 0.5) - arriba * comba + frente * (comba * 0.5)
+        a = cinta(sc, [g, medio, hom, pecho, cad_ad], [dir_auto((-afuera, -0.6, 0)), dir_auto((-afuera, -0.6, 0.3)), n_f, n_f, n_f], nombre=f"Cinta_{quien}")
+    else:
+        a = cinta(sc, [g, hom, pecho, cad_ad], [dir_auto((-afuera, -0.6, 0)), n_f, n_f, n_f], nombre=f"Cinta_{quien}")
     b = cinta(sc, [cad_ad, (cad_ad + cad_af) / 2 + arriba * 0.02, cad_af, anc_af], [dir_auto((0, -0.3, 1))] * 4, nombre=f"Falda_{quien}")
     for o in (a, b):
         if raiz is not None:
