@@ -1,0 +1,58 @@
+[
+ {
+  "cuadro": "A_cuadro0_HD",
+  "archivo": "A_cuadro0_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.46,
+  "brillo": 112.5,
+  "saturacion": 72.0,
+  "negros_p5": 33.0,
+  "recortes": [
+   "A_cuadro0_HD_recorte_arriba.jpg",
+   "A_cuadro0_HD_recorte_medio.jpg",
+   "A_cuadro0_HD_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "B_pete_techo_HD",
+  "archivo": "B_pete_techo_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.29,
+  "brillo": 130.9,
+  "saturacion": 89.7,
+  "negros_p5": 25.0,
+  "recortes": [
+   "B_pete_techo_HD_recorte_arriba.jpg",
+   "B_pete_techo_HD_recorte_medio.jpg",
+   "B_pete_techo_HD_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "C_corte_HD",
+  "archivo": "C_corte_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 1.63,
+  "brillo": 112.4,
+  "saturacion": 117.7,
+  "negros_p5": 24.0,
+  "recortes": [
+   "C_corte_HD_recorte_arriba.jpg",
+   "C_corte_HD_recorte_medio.jpg",
+   "C_corte_HD_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "D_calle_HD",
+  "archivo": "D_calle_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.25,
+  "brillo": 71.5,
+  "saturacion": 110.4,
+  "negros_p5": 13.0,
+  "recortes": [
+   "D_calle_HD_recorte_arriba.jpg",
+   "D_calle_HD_recorte_medio.jpg",
+   "D_calle_HD_recorte_abajo.jpg"
+  ]
+ }
+]
