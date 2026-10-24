@@ -1,0 +1,18 @@
+[
+ {
+  "id": "paquete",
+  "prompt": "tools/auditor/prompts/8-paquete.md",
+  "alcance": "textos de publicación",
+  "materiales": [
+   "studio/episodios/ep06-cinturon-traba/entrega/caption.md",
+   "studio/episodios/ep06-cinturon-traba/guion.md"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "tools/auditor/prompts/estilos.md"
+  ],
+  "salida": "paquete.json",
+  "estilo": "realista"
+ }
+]
