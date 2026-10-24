@@ -25,6 +25,10 @@ Cada episodio nuevo lleva `estilo.json` con `"estilo": "realista"` (copiar `stud
 - **Animales y objetos:** escaneos 3D reales con licencia **CC-BY** (Objaverse/Sketchfab, se buscan con `buscar-objaverse.yml`; crédito en la descripción **y** en el primer comentario). La rana del Ep. 5 es un escaneo de una rana de verdad.
 - **Personas:** personajes **Mixamo "With Skin"** (Pete: obrero con casco, chaleco, ropa con barro). Viven en el Release privado `Personajes` del repo `nadieteexplica/assets`, nunca en el público, y los workflows los bajan con `assets.txt` (`privados PETE*`, `pose *happy*idle*.fbx`).
   - Al importar hay que borrar su acción (`animation_data_clear`), si no sale en T.
+  - **Pete actúa cada frase en que sale** (puerta 6 del v3: "como estatua" bajaba animación a 7).
+    - Se usan los gestos de Mixamo del repo privado (`priv_assets/mixamo`: Pointing, Shrugging, Surprised, Head_Nod_Yes, Relieved_Sigh, Thinking, Talking…), con `gestos mixamo` en `assets.txt` → `GESTOS`.
+    - En la escena, `gesto(P, "Pointing")` y `pose_pete(..., actua=("Pointing", cuadro_inicio, adelanto))`.
+    - Al flotar va una capa encima del idle: brazos abiertos con vaivén, rodillas que se mueven y la punta de los pies hacia abajo.
 - **Nada del protagonista de MakeHuman.**
 
 ### Materiales (todos procedurales, en `studio/episodios/ep05-iman-rana/escena/ep05.py`)
