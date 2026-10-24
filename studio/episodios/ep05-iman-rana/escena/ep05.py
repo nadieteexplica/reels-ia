@@ -205,6 +205,24 @@ def mat_cobre(nombre="cobre"):
     return m
 
 
+def mat_bobina(nombre="bobina"):
+    """Bobina de cobre (v3, plano 12): cobre con las vueltas del alambre (bandas horizontales finas en relieve), zonas más
+    oscuras y barniz (capa). Coordenadas de objeto: cada bobina con su origen en el centro."""
+    m, nt, b = _nodos(nombre)
+    b.inputs["Metallic"].default_value = 1.0
+    nz = _ruido(nt, escala=3, detalle=8)
+    nt.links.new(_rampa(nt, nz.outputs["Fac"], (0.42, 0.18, 0.09), (0.86, 0.48, 0.3), pos=(0.3, 0.7)).outputs[0], b.inputs["Base Color"])
+    nt.links.new(_mapa(nt, nz.outputs["Fac"], 0.25, 0.45).outputs[0], b.inputs["Roughness"])
+    b.inputs["Coat Weight"].default_value = 0.35
+    b.inputs["Coat Roughness"].default_value = 0.15
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    wv = nt.nodes.new("ShaderNodeTexWave"); wv.wave_type = "BANDS"; wv.bands_direction = "Z"
+    wv.inputs["Scale"].default_value = 18.0; wv.inputs["Distortion"].default_value = 0.6; wv.inputs["Detail"].default_value = 1.0
+    nt.links.new(tc.outputs["Object"], wv.inputs["Vector"])
+    _bump(nt, b, wv.outputs["Fac"], 0.35, 0.004)
+    return m
+
+
 def mat_goma(nombre="goma", color=(0.025, 0.025, 0.028), rugo=0.55):
     m, nt, b = _nodos(nombre)
     nz = _ruido(nt, escala=30, detalle=6)
@@ -1132,6 +1150,18 @@ def t_palabra(prefijo, desde=0.0):
         if w["s"] >= desde - 1e-6 and w["w"].lower().strip("¡!¿?.,:;…").startswith(prefijo.lower()):
             return w["s"]
     raise KeyError(prefijo)
+
+
+def bobinas_t():
+    """v3, plano 12 ("Después: bobinas y más bobinas"): llegada de las 5 bobinas y de la carcasa (con los aros y los tubos),
+    en s. Las usan planos_ep05 (caída) y audio (el golpe de cada una)."""
+    a, b = T[12]
+    t1 = t_palabra("bobinas", a) - 0.03
+    bob = [t1 + 0.33 * i for i in range(5)]
+    return bob, b - 0.3
+
+
+CAIDA = 0.5        # s que tarda cada pieza en caer (entra desde fuera del cuadro)
 
 
 def clamp(x, a=0.0, b=1.0):

@@ -1,18 +1,19 @@
-"""Planos del Ep. 5 (proceso v2, estilo realista): 5 escenas, 18 planos (storyboard.md v2).
+"""Planos del Ep. 5 v3 (proceso v2, estilo realista): 4 escenas, 16 planos (storyboard.md v3).
 
 E1 imán de la rana — el electroimán sobre su losa en medio del salar al atardecer; la rana (escaneo real, 2,2 cm) flota
-                     dentro del tubo de vidrio en la boca. Planos 1–4, 8, 9 (la fresa) y 18 (loop al cuadro 0).
-E2 adentro         — moléculas de agua entre células del tejido; las líneas del imán suben y a cada molécula le sale su
-                     empujón. Planos 5–7.
-E3 el refri        — Pete de pie junto a un refri en el salar: no flota. Planos 10–11.
-E4 imán gigante    — se arma el imán para una persona; los cables cruzan el salar hasta la central nuclear. Planos 12–15.
-E5 Pete flota      — Pete sube y flota sobre la boca del imán gigante (SIMULACIÓN). Planos 16–17.
+                     dentro del tubo de vidrio en la boca. Planos 3, 4, 5, 8 y 11 (el hueco de 3 cm visto desde arriba).
+E2 adentro         — moléculas de agua entre células del tejido; las líneas del imán suben y a la molécula le sale su
+                     empujón. Plano 7.
+E4 imán gigante    — Pete en el salar ("como tú"); se arma el imán para una persona en 3 pasos: el hueco sale del suelo,
+                     caen las bobinas y la carcasa, cae la tapa, y los cables cruzan el salar hasta la central nuclear.
+                     Planos 6, 9, 10, 12, 13, 14 y 15.
+E5 Pete flota      — Pete flota sobre la boca del imán gigante (SIMULACIÓN). Planos 1 (cuadro 0), 2 y 16 (vuelve al 0).
 
 Cada pieza arma su escena y devuelve actualizar(f) (todo calculado por cuadro, sin keyframes) y su meta para el post.
 """
 import math, os, random, sys
 import bpy
-from mathutils import Vector
+from mathutils import Vector, Matrix
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -22,8 +23,8 @@ from ep05 import F, FR, T, lin, suave, sale, tramo, ruido, clamp, mirar, orbita,
 
 FPS = 30
 POSE = os.environ.get("POSE", "")
-ESCENA = {1: "E1", 2: "E1", 3: "E1", 4: "E1", 5: "E2", 6: "E2", 7: "E2", 8: "E1", 9: "E1", 10: "E3", 11: "E3",
-          12: "E4", 13: "E4", 14: "E4", 15: "E4", 16: "E5", 17: "E5", 18: "E1"}
+ESCENA = {1: "E5", 2: "E5", 3: "E1", 4: "E1", 5: "E1", 6: "E4", 7: "E2", 8: "E1", 9: "E4", 10: "E4", 11: "E1",
+          12: "E4", 13: "E4", 14: "E4", 15: "E4", 16: "E5"}
 
 
 def TW(prefijo, desde=0.0):
@@ -43,9 +44,11 @@ ROT0 = (math.radians(6), math.radians(-6), math.radians(78))     # 3/4 hacia cá
 ALTO_CAM = 0.075                                                  # cámara 7,5 cm sobre la rana: de fondo, el salar a contraluz (azul)
 R_CERCA = 0.22                                                   # la rana ocupa ~la mitad del ancho (cuadro A v2)
 CABEZA = Vector((-0.008, -0.004, 0.002))                         # foco en la cabeza (el ojo), no en el centro
+R_TUBO = 0.0158                                                  # tubo de vidrio: 3,16 cm de ancho (el hueco de 3,2 cm de Geim)
+TOPE_TUBO = BOCA - 0.01 + 0.11
 
 
-def armar_E1(sc, fresa=False):
+def armar_E1(sc):
     E.cielo_atardecer(sc, elev=2.5, rot=35, fuerza=0.35, sol=3.5)     # como el cuadro A v2.1
     sc.view_settings.exposure = -0.2
     E.salar(sc)
@@ -57,57 +60,31 @@ def armar_E1(sc, fresa=False):
     rana = E.rana(sc, LARGO_RANA)
     rana.location = (0, 0, RANA_Z)
     rana.rotation_euler = ROT0
+    rana["s0"] = rana.scale.x
     bpy.context.view_layer.update()
     E.gotitas(sc, rana, 10, (0.00012, 0.00025))      # antes del tubo: los rayos de las gotitas tienen que tocar la piel, no el vidrio
-    tubo = E.tubo(sc, "Tubo_vidrio", 0.0158, 0.0148, 0.11, (0, 0, BOCA - 0.01), verts=96, mat=E.mat_acrilico(), bisel=0.0004)
+    tubo = E.tubo(sc, "Tubo_vidrio", R_TUBO, 0.0148, 0.11, (0, 0, BOCA - 0.01), verts=96, mat=E.mat_acrilico(), bisel=0.0004)
     tubo["no_tapa_ojos"] = 1
     E.ojos_rana(sc, rana, LARGO_RANA)
-    fr = None
-    if fresa:
-        oculto(rana)
-        fr = fresa_obj(sc)
-        fr.location = (0, 0, RANA_Z)
     reb = E.luz_area(sc, "Rebote", (-0.22, -0.32, BOCA + 0.12), (0, 0, RANA_Z), 3.5, (1.0, 0.88, 0.78), 0.3)
     if reb is not None:
-        reb.visible_glossy = False            # su reflejo en el vidrio se veía como una mancha clara junto a la rana (plano 8)
+        reb.visible_glossy = False            # su reflejo en el vidrio se veía como una mancha clara junto a la rana (plano 8 v2)
     cam = E.camara(sc, (0.021, -R_CERCA, RANA_Z + ALTO_CAM), (0, 0, RANA_Z), lente=100, fstop=8.0)
-    return {"rana": rana, "tubo": tubo, "fresa": fr, "cam": cam}
-
-
-def fresa_obj(sc, largo=0.024):
-    """Fresa (modelo CC-BY 'Strawberry' de rodrigogelmi, Sketchfab) al tamaño de una fresa chica que cabe en el tubo."""
-    antes = set(bpy.data.objects)
-    bpy.ops.import_scene.gltf(filepath=E.asset("dd6a424807614544835c8cc4529d6f0d.glb"))
-    nuevos = [o for o in bpy.data.objects if o not in antes]
-    mallas = [o for o in nuevos if o.type == "MESH"]
-    pts = [o.matrix_world @ Vector(c) for o in mallas for c in o.bound_box]
-    lo = Vector([min(p[i] for p in pts) for i in range(3)])
-    hi = Vector([max(p[i] for p in pts) for i in range(3)])
-    centro = (lo + hi) / 2
-    padre = bpy.data.objects.new("Fresa", None)
-    sc.collection.objects.link(padre)
-    for o in [o for o in nuevos if o.parent is None]:
-        o.location -= centro
-        o.parent = padre
-    padre.scale = [largo / max(hi - lo)] * 3
-    for m in {s.material for o in mallas for s in o.material_slots if s.material}:
-        b = next((n for n in m.node_tree.nodes if n.type == "BSDF_PRINCIPLED"), None)
-        if b:
-            b.inputs["Coat Weight"].default_value = 0.5
-            b.inputs["Coat Roughness"].default_value = 0.1
-    for o in mallas:
-        E.liso(o, 180)
-    return padre
+    return {"rana": rana, "tubo": tubo, "cam": cam}
 
 
 def rana_flota(rana, f, extra_z=0.0, giro=0.0):
-    """Flota quieta en el aire: sube y baja 0,6 mm y gira apenas (±8° como máximo: nunca toca el vidrio)."""
+    """Flota quieta en el aire: sube y baja 0,6 mm, gira apenas (±8° como máximo: nunca toca el vidrio) y respira (el
+    cuerpo se infla 0,7 % y vuelve, ~1 vez por segundo: en el v2 se veía quieta como un modelo)."""
     rana.location = (0.0005 * ruido(f, 3, 0.4), 0.0005 * ruido(f, 4, 0.4), RANA_Z + 0.0006 * math.sin(f / 30 * 2.1) + extra_z)
     rana.rotation_euler = (ROT0[0] + math.radians(2.5 * ruido(f, 5, 0.3)), ROT0[1] + math.radians(2.5 * ruido(f, 6, 0.3)),
                            ROT0[2] + math.radians(giro))
+    resp = 0.5 - 0.5 * math.cos(2 * math.pi * (f - 1) / 30 * 1.1)
+    s0 = rana.get("s0", rana.scale.x)
+    rana.scale = (s0 * (1 + 0.004 * resp), s0 * (1 + 0.007 * resp), s0 * (1 + 0.007 * resp))
 
 
-def p_orbita(sc, a, b, ang0, ang1, pieza_inicio_cuadro0=False):
+def p_orbita(sc, a, b, ang0, ang1):
     S = armar_E1(sc)
     cam, rana = S["cam"], S["rana"]
     c = Vector((0, 0, RANA_Z))
@@ -122,47 +99,37 @@ def p_orbita(sc, a, b, ang0, ang1, pieza_inicio_cuadro0=False):
     return {"actualizar": act}
 
 
-def p1(sc, a, b):
+def p3(sc, a, b):
+    # "Ya pasó con esta rana: flota…": la rana real (el cuadro A del v2), órbita de 35°
     return p_orbita(sc, a, b, -15, 20)
 
 
-def p18(sc, a, b):
-    # loop: termina exacto en la cámara del cuadro 0 (ángulo -15 del plano 1) y la rana en su pose del cuadro 0
-    return p_orbita(sc, a, b, 30, -15)
-
-
-def p2(sc, a, b):
+def p4(sc, a, b):
+    # "…sola dentro de un imán.": desde arriba por la boca del tubo (no hay nada sobre la rana) y la grúa se aleja hasta
+    # el electroimán entero sobre su losa en el salar (los planos 2 y 3 del v2 en uno)
     S = armar_E1(sc)
     cam, rana = S["cam"], S["rana"]
     c = Vector((0, 0, RANA_Z))
+    t0 = T[4][0]
+    arriba0 = Vector((0.02, -0.08, RANA_Z + 0.24))
+    arriba1 = Vector((0.03, -0.11, RANA_Z + 0.30))
+    lejos = Vector((1.5, -3.4, 1.05))
 
     def act(f):
-        x = suave(lin(f, a, b - 1))
+        t = tf(f)
         rana_flota(rana, f)
-        p0 = orbita(c, R_CERCA, 20, ALTO_CAM)
-        p1_ = Vector((0.03, -0.11, RANA_Z + 0.30))
-        off = Vector((0, 0, -0.008)).lerp(Vector((0, -0.009, -0.004)), x)     # la rana sobre la franja de subtítulos todo el plano
-        mirar(cam, p0.lerp(p1_, x), c + off, lente=100, foco=c + CABEZA * (1 - x))
-        return {"rana": pantalla(sc, cam, rana.location)}
-    return {"actualizar": act}
-
-
-def p3(sc, a, b):
-    S = armar_E1(sc)
-    cam, rana = S["cam"], S["rana"]
-    cam.data.dof.aperture_fstop = 8.0
-
-    def act(f):
-        x = suave(lin(f, a, b - 1))
-        rana_flota(rana, f)
-        p = Vector((0.03, -0.11, RANA_Z + 0.30)).lerp(Vector((1.5, -3.4, 1.05)), sale(x))
-        tgt = Vector((0, 0, RANA_Z)).lerp(Vector((0, 0, 0.85)), sale(x))
-        mirar(cam, p, tgt, lente=75 - 45 * sale(x), foco=Vector((0, 0, 0.9)) if x > 0.3 else tgt)
+        x1 = suave(lin(t, t0, t0 + 0.55))
+        x2 = sale(suave(lin(t, t0 + 0.45, T[4][1] - 0.05)))
+        p = arriba0.lerp(arriba1, x1).lerp(lejos, x2)
+        tgt = (c + Vector((0, -0.009, -0.004))).lerp(Vector((0, 0, 0.85)), x2)
+        lente = 100 - 25 * x1 - 45 * x2
+        mirar(cam, p, tgt, lente=lente, foco=Vector((0, 0, 0.9)) if x2 > 0.3 else c)
         return {"iman": pantalla(sc, cam, (0, 0, 0.9)), "rana": pantalla(sc, cam, (0, 0, RANA_Z))}
     return {"actualizar": act}
 
 
-def p4(sc, a, b):
+def p5(sc, a, b):
+    # "Es más que nada agua,": push-in hasta el ojo y la piel mojada (el plano 4 del v2)
     S = armar_E1(sc)
     cam, rana = S["cam"], S["rana"]
 
@@ -171,16 +138,12 @@ def p4(sc, a, b):
         rana_flota(rana, f)
         c = Vector((0, 0, RANA_Z + 0.003))
         p0 = orbita(Vector((0, 0, RANA_Z)), R_CERCA, -10, ALTO_CAM)
-        # termina frente a la cabeza (el ojo al centro del cuadro): antes terminaba en el lomo y el ojo quedaba bajo la
-        # interfaz de la app (chequeo cara_bajo_ui, 5,77–5,87 s); se frena ~2,5 mm antes del vidrio (radio 15,8 mm)
+        # termina frente a la cabeza (el ojo al centro del cuadro, nunca bajo la interfaz: chequeo cara_bajo_ui del v2);
+        # se frena ~2,5 mm antes del vidrio (radio 15,8 mm), por el lado de la cabeza y un poco desde arriba
         ojos = [bpy.data.objects.get(n) for n in ("Rana_ojoL", "Rana_ojoR")]
         bpy.context.view_layer.update()
-        cab = sum((o.matrix_world.translation for o in ojos if o), Vector()) / max(1, sum(1 for o in ojos if o))   # entre los ojos
-        lejos = (cab - p0); lejos.z = 0
-        p1_ = cab - lejos.normalized() * 0.0
-        dirc = (Vector((cab.x, cab.y, 0))).normalized() if Vector((cab.x, cab.y, 0)).length > 1e-6 else Vector((0, -1, 0))
-        # la cámara se frena ~2,5 mm antes del vidrio (radio 15,8 mm), por el lado de la cabeza y un poco desde arriba
-        p1_ = Vector((0, 0, 0)) + Vector((p0.x, p0.y, 0)).normalized() * 0.0183 + Vector((0, 0, cab.z + 0.006))
+        cab = sum((o.matrix_world.translation for o in ojos if o), Vector()) / max(1, sum(1 for o in ojos if o))
+        p1_ = Vector((p0.x, p0.y, 0)).normalized() * 0.0183 + Vector((0, 0, cab.z + 0.006))
         p = p0.lerp(p1_, x)
         mirar(cam, p, (c + Vector((0, 0, -0.008))).lerp(cab, x), lente=100, foco=c.lerp(cab, x))
         cam.data.dof.aperture_fstop = 5.6 + 6 * x
@@ -189,6 +152,7 @@ def p4(sc, a, b):
 
 
 def p8(sc, a, b):
+    # "Con uno bien fuerte, ese empujón le gana a la gravedad.": flechas al lado de la rana (post); sube 4 mm en "gana"
     S = armar_E1(sc)
     cam, rana = S["cam"], S["rana"]
     c = Vector((0, 0, RANA_Z))
@@ -198,7 +162,6 @@ def p8(sc, a, b):
         x = suave(lin(f, a, b - 1))
         sube = 0.004 * suave(lin(tf(f), t_gana - 0.6, t_gana + 0.6))
         rana_flota(rana, f, extra_z=sube)
-        # la rana a la izquierda del centro: a la derecha va el par de flechas (post)
         r = 0.40 - 0.03 * x
         p = orbita(c, r, 12, ALTO_CAM * r / R_CERCA)             # mismo ángulo que el cuadro A: de fondo la sal a contraluz
         mirar(cam, p, c + Vector((0.009, 0, -0.016)), foco=c + CABEZA)
@@ -206,18 +169,30 @@ def p8(sc, a, b):
     return {"actualizar": act}
 
 
-def p9(sc, a, b):
-    S = armar_E1(sc, fresa=True)
-    cam, fr = S["cam"], S["fresa"]
-    c = Vector((0, 0, RANA_Z))
+def p11(sc, a, b):
+    # "El de la rana mide tres centímetros: ni tu mano cabe.": desde arriba, la boca del imán de la rana con el tubo y la
+    # rana adentro; la cámara baja hacia la boca. El post dibuja la cota de lado a lado del tubo (bordes reales proyectados)
+    S = armar_E1(sc)
+    cam, rana = S["cam"], S["rana"]
+    cam.data.dof.aperture_fstop = 5.6
+
+    t_tres = TW("tres", 22.0)
+    t_mano = TW("mano", 23.0)
 
     def act(f):
-        x = suave(lin(f, a, b - 1))
-        fr.location = (0, 0, RANA_Z + 0.0006 * math.sin(f / 30 * 2.1))
-        fr.rotation_euler = (math.radians(8), math.radians(-5), math.radians(70 * x))
-        p = orbita(c, 0.36, 5 - 20 * x, ALTO_CAM * 0.36 / R_CERCA)
-        mirar(cam, p, c + Vector((0, 0, -0.016)), foco=c)
-        return {}
+        t = tf(f)
+        rana_flota(rana, f, giro=6 * math.sin((f - 1) / 30 * 0.5))
+        # baja hasta la boca para la cota de 3 cm y en "mano" sube a 1,1 m: ahí cabe el contorno de una mano real (post)
+        baja = sale(suave(lin(t, T[11][0], t_tres + 0.5)))
+        sube = suave(lin(t, t_mano - 0.6, t_mano + 0.35))
+        alto = 0.72 - 0.42 * baja + 0.80 * sube
+        ty = -0.085 * alto                     # el tubo queda en y ~620: lejos de los subtítulos
+        p = Vector((0.0, ty - 0.03, BOCA + alto))
+        tgt = Vector((0.0, ty, BOCA))
+        mirar(cam, p, tgt, lente=50, foco=Vector((0, 0, RANA_Z + 0.006)))
+        return {"izq": pantalla(sc, cam, (-R_TUBO, 0, TOPE_TUBO)), "der": pantalla(sc, cam, (R_TUBO, 0, TOPE_TUBO)),
+                "arriba": pantalla(sc, cam, (0, R_TUBO, TOPE_TUBO)), "centro": pantalla(sc, cam, (0, 0, BOCA)),
+                "m": pantalla(sc, cam, (0.01, 0, BOCA)), "rana": pantalla(sc, cam, rana.location)}
     return {"actualizar": act}
 
 
@@ -247,16 +222,11 @@ def armar_E2(sc):
         pts = [(x * 0.35, y, -4.0), (x * 0.5, y, -1.0), (x * 0.8, y, 2.0), (x * 1.3, y, 5.0), (x * 2.0, y, 8.0)]
         lineas.append(E.linea_campo(sc, f"campo{i}", pts, 0.012, (0.15, 0.75, 1.0), 1.6))
     fl_h = E.flecha(sc, "empujon_heroe", (0.0, 0.0, 2.45), 1.2, 0.05)
-    flechas = []
-    for m in mols:
-        if m.location.y < 4.5 and abs(m.location.x) < 3.4:
-            c, p = E.flecha(sc, f"emp_{m.name}", tuple(m.location + Vector((0, 0, 0.35))), 0.5, 0.025, fuerza=1.8)
-            flechas.append((m, c, p, m.location.copy()))
     E.luz_area(sc, "Llave", (-3.5, -4.0, 6.0), (0, 0, 1.9), 900, (1.0, 0.9, 0.82), 2.5)
     E.luz_area(sc, "Contra", (2.5, 4.0, 4.5), (0, 0, 1.9), 600, (0.5, 0.8, 1.0), 1.5)
     E.luz_punto(sc, "Brillo_abajo", (0, 1.5, -2.0), 300, (0.25, 0.8, 1.0), 1.0)
     cam = E.camara(sc, (1.3, -8.8, 2.7), (0, 0, 2.1), lente=50, fstop=2.2)
-    return {"mols": mols, "heroe": heroe, "lineas": lineas, "fl_h": fl_h, "flechas": flechas, "cam": cam}
+    return {"mols": mols, "heroe": heroe, "lineas": lineas, "fl_h": fl_h, "cam": cam}
 
 
 def _giro_mols(S, f):
@@ -266,50 +236,23 @@ def _giro_mols(S, f):
     S["heroe"].rotation_euler.z = math.radians(35) + 0.25 * math.sin(f / 30 * 0.8)
 
 
-def _escala(obs, s):
-    for o in obs:
-        o.scale = (max(s, 0.001),) * 3
-        o.hide_render = s <= 0.002
-
-
 def _lineas(S, x):
     for l in S["lineas"]:
         l.data.bevel_factor_end = max(0.001, x)
         l.hide_render = x <= 0.002
 
 
-def _flechas_chicas(S, edad_fn):
-    for (m, c, p, base) in S["flechas"]:
-        s = edad_fn(m)
-        for o in (c, p):
-            o.hide_render = s <= 0.002
-            o.scale = (1, 1, max(s, 0.001)) if o is c else (max(s, 0.001),) * 3
-            o.location = base + Vector((0, 0, 0.35 + (0.175 if o is c else 0.425) * max(s, 0.001)))
-
-
-def p5(sc, a, b):
+def p7(sc, a, b):
+    # "Y al agua, un imán la empuja... un poquito.": suben las líneas del imán y a la molécula le sale su empujón
     S = armar_E2(sc)
     cam = S["cam"]
-    _lineas(S, 0); _escala(S["fl_h"], 0); _flechas_chicas(S, lambda m: 0)
+    t_emp = TW("empuja", 10.0)
+    t0 = T[7][0]
 
     def act(f):
         x = suave(lin(f, a, b - 1))
         _giro_mols(S, f)
-        mirar(cam, Vector((1.6, -11.5, 2.9)).lerp(Vector((1.3, -8.8, 2.7)), x), Vector((0, 0, 2.1)), foco=Vector((0, 0, 1.9)))
-        return {}
-    return {"actualizar": act}
-
-
-def p6(sc, a, b):
-    S = armar_E2(sc)
-    cam = S["cam"]
-    t_emp = TW("empuja", 8.0)
-    _flechas_chicas(S, lambda m: 0)
-
-    def act(f):
-        x = suave(lin(f, a, b - 1))
-        _giro_mols(S, f)
-        _lineas(S, sale(lin(tf(f), T[6][0] + 0.2, T[6][0] + 1.6)))
+        _lineas(S, sale(lin(tf(f), t0 + 0.2, t0 + 1.6)))
         s = sale(lin(tf(f), t_emp, t_emp + 0.35))
         for o in S["fl_h"]:
             o.hide_render = s <= 0.002
@@ -324,30 +267,7 @@ def p6(sc, a, b):
     return {"actualizar": act}
 
 
-def p7(sc, a, b):
-    S = armar_E2(sc)
-    cam = S["cam"]
-    _lineas(S, 1.0)
-    c, p = S["fl_h"]
-    c.scale = (1, 1, 1); c.location = (0, 0, 2.87); p.location = (0, 0, 3.47)
-    S["heroe"].location.z = 1.96
-    t0, t1 = T[7][0] + 0.15, T[7][1] - 0.5
-    dmax = max((m.location - Vector((0, 0, 1.9))).length for (m, *_r) in S["flechas"]) or 1.0
-
-    def act(f):
-        x = suave(lin(f, a, b - 1))
-        _giro_mols(S, f)
-        t = tf(f)
-        _flechas_chicas(S, lambda m: sale(lin(t, t0 + (t1 - t0) * (m.location - Vector((0, 0, 1.9))).length / dmax,
-                                              t0 + (t1 - t0) * (m.location - Vector((0, 0, 1.9))).length / dmax + 0.3)))
-        mirar(cam, Vector((1.3, -9.4, 2.7)).lerp(Vector((1.8, -15.5, 3.2)), x), Vector((0, 1.0, 2.1)), lente=50 - 15 * x,
-              foco=Vector((0, 1.0, 2.0)))
-        cam.data.dof.aperture_fstop = 2.2 + 2.0 * x
-        return {}
-    return {"actualizar": act}
-
-
-# ===================================== E3 · el refri en el salar ======================================
+# ===================================== Pete ======================================
 def cargar_pete(sc):
     if os.path.exists(os.path.join(E.ASSETS, E.PETE_FBX)):
         arm = E.pete(sc, None)
@@ -366,13 +286,22 @@ def cargar_pete(sc):
     return {"arm": o, "anim": None, "pestanas": None, "ojos": []}
 
 
+def _largo_anim(anim):
+    ad = anim.animation_data
+    if ad and ad.action:
+        a, b = ad.action.frame_range
+        return int(a), max(2, int(round(b - a)))
+    return 1, 60
+
+
 def pose_pete(sc, P, f, cabeza=(0.0, 0.0), cuadro_anim=None):
-    """Pose de Pete en el cuadro f: copia la de Happy Idle (en loop) y gira la cabeza (pitch, yaw en grados)."""
+    """Pose de Pete en el cuadro f: copia la de Happy Idle (en loop con todo el largo de la animación de Mixamo, que
+    empalma) y gira la cabeza (pitch, yaw en grados). cuadro_anim = índice dentro de la animación (por defecto, f)."""
     arm, anim = P["arm"], P["anim"]
     if anim is None or arm.type != "ARMATURE":
         return
-    n = 60
-    fa = 1 + ((cuadro_anim if cuadro_anim is not None else f) % n)
+    a0, n = _largo_anim(anim)
+    fa = a0 + ((cuadro_anim if cuadro_anim is not None else f) % n)
     sc.frame_set(fa)
     dst = {b.name.split(":")[-1]: b for b in arm.pose.bones}
     for b in anim.pose.bones:
@@ -381,10 +310,23 @@ def pose_pete(sc, P, f, cabeza=(0.0, 0.0), cuadro_anim=None):
             d.rotation_mode = "QUATERNION"
             d.rotation_quaternion = b.rotation_quaternion.copy()
     bpy.context.view_layer.update()
+    rz = Matrix.Rotation(math.radians(P.get("giro", 0.0)), 3, "Z")
+    eje_x, eje_y = rz @ Vector((1, 0, 0)), rz @ Vector((0, 1, 0))     # izquierda y atrás de Pete (mira hacia -Y sin girar)
     if cabeza != (0.0, 0.0):
-        E.rotar_hueso_mundo(arm, "Head", (1, 0, 0), cabeza[0])
+        E.rotar_hueso_mundo(arm, "Head", eje_x, cabeza[0])
         if cabeza[1]:
             E.rotar_hueso_mundo(arm, "Head", (0, 0, 1), cabeza[1])
+    if P.get("flota"):
+        # capa de flotar sobre el idle (puerta 3 v3): brazos abiertos con un vaivén lento de equilibrio, rodillas sueltas y
+        # la punta de los pies hacia abajo (el idle de pie se leía "parado sobre un vidrio")
+        i = cuadro_anim if cuadro_anim is not None else f
+        sw = 4 * math.sin(i / 30 * 1.3)
+        E.rotar_hueso_mundo(arm, "LeftArm", eje_y, -(18 + sw))
+        E.rotar_hueso_mundo(arm, "RightArm", eje_y, 18 + sw)
+        E.rotar_hueso_mundo(arm, "LeftLeg", eje_x, 12)
+        E.rotar_hueso_mundo(arm, "RightLeg", eje_x, 8)
+        E.rotar_hueso_mundo(arm, "LeftFoot", eje_x, 22)
+        E.rotar_hueso_mundo(arm, "RightFoot", eje_x, 26)
     ojos_pete(sc, P)
 
 
@@ -415,109 +357,14 @@ def armar_salar_tarde(sc):
     E.cerros(sc)
 
 
-def refri_obj(sc, alto=1.75):
-    """Refri (modelo CC-BY 'Refrigerator' de shedmon, Sketchfab) a tamaño real, con imanes de colores en la puerta."""
-    antes = set(bpy.data.objects)
-    bpy.ops.import_scene.gltf(filepath=E.asset("64a8489527994fb498af1cca4a6fda9f.glb"))
-    nuevos = [o for o in bpy.data.objects if o not in antes]
-    mallas = [o for o in nuevos if o.type == "MESH"]
-    pts = [o.matrix_world @ Vector(c) for o in mallas for c in o.bound_box]
-    lo = Vector([min(p[i] for p in pts) for i in range(3)])
-    hi = Vector([max(p[i] for p in pts) for i in range(3)])
-    padre = bpy.data.objects.new("Refri", None)
-    sc.collection.objects.link(padre)
-    base = Vector(((lo.x + hi.x) / 2, (lo.y + hi.y) / 2, lo.z))
-    for o in [o for o in nuevos if o.parent is None]:
-        o.location -= base
-        o.parent = padre
-    k = alto / (hi.z - lo.z)
-    kx = 0.78 / (hi.x - lo.x)                # un refri de 78 cm de ancho y 75 de fondo (el modelo es más ancho)
-    ky = 0.75 / (hi.y - lo.y)
-    padre.scale = (kx, ky, k)
-    return padre, Vector((0.78, 0.75, alto))
-
-
-def imanes_refri(sc, refri, dims):
-    """Imanes de refri en la puerta (cara -Y): discos y cuadrados de colores, con brillo de plástico."""
-    random.seed(4)
-    cols = [(0.6, 0.03, 0.02), (0.02, 0.15, 0.55), (0.7, 0.45, 0.0), (0.03, 0.35, 0.08), (0.55, 0.05, 0.3)]
-    out = []
-    y = -dims.y / 2 - 0.004
-    for i in range(7):
-        x = random.uniform(-dims.x * 0.32, dims.x * 0.32)
-        z = random.uniform(dims.z * 0.45, dims.z * 0.85)
-        m = E.mat_pintura(f"iman_refri{i}", cols[i % len(cols)], rugo=(0.2, 0.35), sucio=0.05, capa=0.6)
-        if i % 2:
-            o = E.cilindro(sc, f"ImanRefri{i}", 0.028, 0.008, (x, y, z), verts=32, mat=m, bisel=0.002)
-            o.rotation_euler = (math.radians(90), 0, 0)
-        else:
-            o = E.caja(sc, f"ImanRefri{i}", (0.05, 0.008, 0.035), (x, y, z), m, 0.003)
-        out.append(o)
-    return out
-
-
-REFRI_POS = Vector((1.05, 0.15, 0.0))
-
-
-def armar_E3(sc):
-    armar_salar_tarde(sc)
-    refri, dims = refri_obj(sc)
-    refri.location = REFRI_POS
-    bpy.context.view_layer.update()
-    imanes = imanes_refri(sc, refri, dims)
-    for o in imanes:
-        o.location = REFRI_POS + Vector(o.location)
-    P = cargar_pete(sc)
-    P["arm"].location = (0, 0, 0)
-    if P["arm"].type == "ARMATURE":
-        base = P["arm"].rotation_euler.copy()
-        P["arm"].rotation_euler = (base.x, base.y, base.z + math.radians(8))
-    E.luz_area(sc, "RellenoPete", (2.5, -5, 2.6), (0.2, 0, 1.2), 40, (1.0, 0.86, 0.75), 2.0, spread=40)
-    cam = E.camara(sc, (0.6, -4.6, 1.35), (0.35, 0, 1.05), lente=35, fstop=4.0)
-    return {"P": P, "refri": refri, "dims": dims, "imanes": imanes, "cam": cam}
-
-
-def p10(sc, a, b):
-    S = armar_E3(sc)
-    cam, P = S["cam"], S["P"]
-    t_ref = TW("refri", 19.0)
-
-    def act(f):
-        x = suave(lin(f, a, b - 1))
-        mira = suave(lin(tf(f), T[10][0] + 0.7, T[10][0] + 1.2))
-        pose_pete(sc, P, f, cabeza=(-6 * mira, -28 * mira))
-        abajo = suave(lin(tf(f), T[10][0] + 1.5, T[10][1] - 0.2))
-        p = Vector((0.6, -4.6, 1.35)).lerp(Vector((0.5, -4.1, 0.85)), abajo)
-        tgt = Vector((0.35, 0, 1.05)).lerp(Vector((0.3, 0, 0.5)), abajo)     # baja a los pies sin sacar la cara del cuadro
-        mirar(cam, p, tgt, foco=Vector((0.2, 0, 0.9)))
-        return {"pies": pantalla(sc, cam, (0, 0, 0.05))}
-    return {"actualizar": act}
-
-
-def p11(sc, a, b):
-    S = armar_E3(sc)
-    cam = S["cam"]
-    oculto(S["P"]["arm"])
-    ims = S["imanes"]
-    c = sum((Vector(o.location) for o in ims), Vector()) / len(ims)
-    im = min(ims, key=lambda o: (Vector(o.location) - c).length)
-    cam.data.dof.aperture_fstop = 4.0
-
-    def act(f):
-        x = suave(lin(f, a, b - 1))
-        p = c + Vector((-1.25 + 0.2 * x, -1.6 + 0.35 * x, 0.25))
-        mirar(cam, p, c + Vector((0.12, 0, -0.1)), lente=35, foco=Vector(im.location))
-        return {"iman_refri": pantalla(sc, cam, im.location)}
-    return {"actualizar": act}
-
-
 # ===================================== E4 / E5 · el imán gigante ======================================
 PLANTA = Vector((-1150, 2080, 0))
 PETE_E4 = Vector((-3.4, -1.6, 0.0))
 PETE_GIRO = -23            # Pete de 3/4 hacia la cámara alta del cuadro B v2
+R_BOBINA = (2.4, 0.975)    # bobinas de cobre adentro de la carcasa (r 2,5 / hueco 0,95): quedan tapadas al llegar la carcasa
 
 
-def armar_E4(sc):
+def armar_E4(sc, bobinas=False, hueco_acero=False):
     armar_salar_tarde(sc)
     E.central_nuclear(sc, pos=tuple(PLANTA))
     antes = set(bpy.data.objects)
@@ -525,38 +372,57 @@ def armar_E4(sc):
     piezas = [o for o in bpy.data.objects if o not in antes]
     G = {"boca": boca}
     G["plataforma"] = [o for o in piezas if o.name.startswith("G_plataforma")]
-    G["cuerpo"] = [o for o in piezas if o.name.startswith(("G_cuerpo", "G_escarcha", "G_hueco", "G_aro", "G_costilla"))]
+    G["hueco"] = [o for o in piezas if o.name.startswith("G_hueco")]
+    G["cuerpo"] = [o for o in piezas if o.name.startswith(("G_cuerpo", "G_escarcha", "G_aro", "G_costilla"))]
     G["tapa"] = [o for o in piezas if o.name.startswith(("G_tapa", "G_cobre", "G_perno"))]
     G["cables"] = [o for o in piezas if o.name.startswith(("G_cable", "G_conector"))]
-    for o in G["cuerpo"] + G["tapa"]:
+    for o in G["cuerpo"] + G["tapa"] + G["hueco"]:
         o["z0"] = o.location.z
+    if hueco_acero:
+        # PASO 1 (planos 10 y 12): el hueco se ve solo, de pie en la losa; de negro plano se leía como un hoyo recortado,
+        # no como una pieza de metal: acero oscuro con mugre (por dentro, ya tapado, vuelve a ser la boca negra)
+        m = E.mat_acero_industrial("hueco_acero", (0.075, 0.08, 0.085), sucio=0.35, rugo=(0.35, 0.7))
+        for o in G["hueco"]:
+            E.asignar(o, m)
+    G["bobinas"] = []
+    if bobinas:
+        mb = E.mat_bobina()
+        z0, alto = 0.45, 3.1
+        for i in range(5):
+            h = alto / 5
+            o = E.tubo(sc, f"G_bobina{i}", R_BOBINA[0], R_BOBINA[1], h * 0.97, (0, 0, z0 + h * i), verts=192, mat=mb, bisel=0.02)
+            o["z0"] = o.location.z
+            G["bobinas"].append(o)
     P = cargar_pete(sc)
     E.luz_area(sc, "RellenoPete", (5.0, -13.2, 8.1), (0, 0, 4.4), 25, (1.0, 0.9, 0.82), 2.0, spread=30)   # como en el cuadro B v2
     cam = E.camara(sc, (7.0, -18.5, 3.4), (0, 0, 2.4), lente=35, fstop=8.0)
     return {"G": G, "P": P, "cam": cam}
 
 
-def construir(S, t_cuerpo0=None, t_cuerpo1=None, t_tapa=None, cables=1.0, brillo_cables=0.0):
-    """Estado del imán en el tiempo t: el cuerpo llega en tandas (de abajo hacia arriba, cayendo desde 6 m), la tapa cae
-    después; los cables crecen desde el imán hacia la central."""
-    G = S["G"]
-    cuerpo = sorted(G["cuerpo"], key=lambda o: o["z0"])
-    for o in cuerpo + G["tapa"]:
+def caer(o, t, tl, alto=9.0, dur=None):
+    """La pieza o cae desde alto m sobre su lugar y llega en tl (acelera como algo pesado; rebota 2 cm al llegar)."""
+    dur = dur or E.CAIDA
+    if tl is None:
         o.hide_render = False
-    return cuerpo
+        o.location.z = o["z0"]
+        return
+    x = lin(t, tl - dur, tl)
+    o.hide_render = t < tl - dur
+    rebote = 0.02 * math.sin(math.pi * clamp((t - tl) / 0.18)) if t > tl else 0.0
+    o.location.z = o["z0"] + alto * (1 - x * x) + rebote
 
 
 def estado_iman(S, t, llegada):
-    """llegada(o) → t en que esa pieza termina de caer (None = ya está)."""
+    """llegada(o) → t en que esa pieza (carcasa, aros, tubos o tapa) termina de caer (None = ya está)."""
     for o in S["G"]["cuerpo"] + S["G"]["tapa"]:
-        tl = llegada(o)
-        if tl is None:
-            o.hide_render = False
-            o.location.z = o["z0"]
-            continue
-        x = lin(t, tl - 0.35, tl)
-        o.hide_render = t < tl - 0.35
-        o.location.z = o["z0"] + 6.0 * (1 - sale(x))
+        caer(o, t, llegada(o), alto=6.0, dur=0.35) if llegada(o) is not None else caer(o, t, None)
+
+
+def sin_iman(S):
+    """El salar vacío: sólo la losa (para los planos 6 y 9)."""
+    for o in S["G"]["cuerpo"] + S["G"]["tapa"] + S["G"]["hueco"] + S["G"]["bobinas"]:
+        o.hide_render = True
+    cables(S, 0)
 
 
 def cables(S, x, brillo=0.0):
@@ -572,96 +438,173 @@ def cables(S, x, brillo=0.0):
                 b.inputs["Emission Strength"].default_value = brillo
 
 
-def p12(sc, a, b):
-    S = armar_E4(sc)
-    cam, P = S["cam"], S["P"]
-    estado_iman(S, 0, lambda o: 999)
-    cables(S, 0)
-    P["arm"].location = PETE_E4
+def brillo_cobre(S, brillo):
+    for o in S["G"]["tapa"]:
+        if not o.name.startswith("G_cobre"):
+            continue
+        for s in o.material_slots:
+            if s.material:
+                bsdf = s.material.node_tree.nodes.get("Principled BSDF")
+                if bsdf:
+                    bsdf.inputs["Emission Color"].default_value = (1.0, 0.45, 0.15, 1)
+                    bsdf.inputs["Emission Strength"].default_value = brillo
+
+
+def girar_pete(P, grados, x=0.0, y=0.0):
+    P["giro"] = grados
     if P["arm"].type == "ARMATURE":
         base = P["arm"].rotation_euler.copy()
-        P["arm"].rotation_euler = (base.x, base.y, base.z + math.radians(25))
+        P["arm"].rotation_euler = (base.x + math.radians(x), base.y + math.radians(y), base.z + math.radians(grados))
+    P["rot0"] = P["arm"].rotation_euler.copy()
+
+
+def temblor(f, golpes, amp=0.035, dur=0.3):
+    """Sacudón corto de la cámara en cada llegada (el peso de las piezas)."""
+    t = tf(f)
+    k = sum(max(0.0, 1 - (t - g) / dur) for g in golpes if 0 <= t - g < dur)
+    return Vector((ruido(f, 21, 9.0), ruido(f, 22, 9.0), ruido(f, 23, 9.0))) * amp * min(1.0, k)
+
+
+def p6(sc, a, b):
+    # "como tú.": Pete de pie en el salar vacío, de 3/4 hacia la cámara, cámara al pecho (15° al lado del plano 9: la
+    # central queda fuera del cuadro)
+    S = armar_E4(sc)
+    cam, P = S["cam"], S["P"]
+    sin_iman(S)
+    P["arm"].location = PETE_E4
+    girar_pete(P, 25)
+    d = Vector((0.309, -0.951, 0))
+    cam.data.dof.aperture_fstop = 2.8
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        sube = suave(lin(tf(f), T[12][0] + 1.1, T[12][0] + 1.7))
+        pose_pete(sc, P, f)
+        pos = PETE_E4 + d * (8.0 - 0.6 * x) + Vector((0, 0, 1.25))
+        mirar(cam, pos, PETE_E4 + Vector((0, 0, 0.9)), lente=50, foco=PETE_E4 + Vector((0, 0, 1.5)))
+        return {"pete": pantalla(sc, cam, PETE_E4 + Vector((0, 0, 1.0)))}
+    return {"actualizar": act}
+
+
+def p9(sc, a, b):
+    # "¿Y para ti? Habría que construirlo.": Pete junto a la losa vacía mira hacia arriba (el plano 12 del v2)
+    S = armar_E4(sc)
+    cam, P = S["cam"], S["P"]
+    sin_iman(S)
+    P["arm"].location = PETE_E4
+    girar_pete(P, 25)
+
+    def act(f):
+        x = suave(lin(f, a, b - 1))
+        sube = suave(lin(tf(f), T[9][0] + 1.1, T[9][0] + 1.7))
         pose_pete(sc, P, f, cabeza=(-30 * sube, 0))
-        mirar(cam, Vector((6.0, -17.5, 1.8)).lerp(Vector((5.0, -14.5, 1.75)), x), Vector((-2.0, -0.5, 1.5)), lente=35, foco=PETE_E4 + Vector((0, 0, 1.6)))
+        mirar(cam, Vector((6.0, -17.5, 1.8)).lerp(Vector((5.0, -14.5, 1.75)), x), Vector((-2.0, -0.5, 1.5)), lente=35,
+              foco=PETE_E4 + Vector((0, 0, 1.6)))
         return {}
     return {"actualizar": act}
 
 
-def p13(sc, a, b):
-    S = armar_E4(sc)
+def p10(sc, a, b):
+    # "Primero: un hueco donde quepas.": PASO 1, el hueco (tubo de acero de 1,9 m de ancho y 3,1 m de alto) sale del
+    # suelo en la losa, a la derecha de Pete (desde la dirección del plano 12: la luz que aprobó el v2)
+    S = armar_E4(sc, hueco_acero=True)
     cam, P = S["cam"], S["P"]
-    cables(S, 0)
-    cuerpo = sorted(S["G"]["cuerpo"], key=lambda o: o["z0"])
-    t0, t1 = T[13][0] + 0.2, T[13][1] - 0.25
-    zs = sorted({round(o["z0"], 2) for o in cuerpo})
-    lleg = {z: t0 + (t1 - t0) * i / max(1, len(zs) - 1) for i, z in enumerate(zs)}
+    sin_iman(S)
+    for o in S["G"]["hueco"]:
+        o.hide_render = False
     P["arm"].location = PETE_E4
-    if P["arm"].type == "ARMATURE":
-        base = P["arm"].rotation_euler.copy()
-        P["arm"].rotation_euler = (base.x, base.y, base.z + math.radians(25))
+    girar_pete(P, 25)
+    t_pri = TW("primero", 19.0)
+    t_lle = t_pri + 1.55
+    v = Vector((0.469, 0.883, 0))                  # dirección de la mirada (62°: el sol queda 32° fuera del cuadro)
+    r = Vector((0.883, -0.469, 0))
+    C0 = PETE_E4 - v * 6.0 + r * 1.0               # Pete a 6 m (a la izquierda), el hueco a 9 m (a la derecha)
 
     def act(f):
         t = tf(f)
-        estado_iman(S, t, lambda o: lleg.get(round(o["z0"], 2), t1) if o in cuerpo else 999)
+        x = suave(lin(f, a, b - 1))
+        s = sale(suave(lin(t, t_pri + 0.15, t_lle)))
+        for o in S["G"]["hueco"]:
+            o.location.z = o["z0"] - 3.25 * (1 - s)
+        mira = suave(lin(t, t_pri + 0.3, t_pri + 1.1))
+        pose_pete(sc, P, f, cabeza=(-14 * mira, 0))
+        pos = C0 + r * (0.5 * x) + Vector((0, 0, 1.2)) + temblor(f, [t_lle], 0.02)
+        tgt = C0 + v * 9.0 + Vector((0, 0, 0.73)) + r * (0.3 * x)
+        mirar(cam, pos, tgt, lente=24, foco=PETE_E4 + Vector((0, 0, 1.4)))
+        cam.data.dof.aperture_fstop = 8
+        return {"pete": pantalla(sc, cam, PETE_E4 + Vector((0, 0, 1.0))), "hueco": pantalla(sc, cam, (0, 0, 3.6))}
+    return {"actualizar": act}
+
+
+def p12(sc, a, b):
+    # "Después: bobinas y más bobinas,": PASO 2, 5 bobinas de cobre caen del cielo una tras otra alrededor del hueco y al
+    # final la carcasa (con los aros y los tubos) baja encima como una funda; la cámara tiembla en cada golpe
+    S = armar_E4(sc, bobinas=True, hueco_acero=True)
+    cam, P = S["cam"], S["P"]
+    cables(S, 0)
+    for o in S["G"]["tapa"]:
+        o.hide_render = True
+    for o in S["G"]["hueco"]:
+        o.hide_render = False
+    llega_b, llega_c = E.bobinas_t()
+    P["arm"].location = PETE_E4
+    girar_pete(P, 25)
+
+    def act(f):
+        t = tf(f)
+        for o, tl in zip(S["G"]["bobinas"], llega_b):
+            caer(o, t, tl)
+        for o in S["G"]["cuerpo"]:
+            caer(o, t, llega_c, alto=9.0)
         pose_pete(sc, P, f, cabeza=(-25, 0))
         x = suave(lin(f, a, b - 1))
-        # de espaldas a la central (el vapor no sale "del imán", puerta 4 r1); cámara a la altura de los ojos: Pete queda
-        # adentro del cuadro (~7° a la izquierda) y con la cara sobre la franja de subtítulos
-        p = orbita(Vector((0, 0, 0)), 18.5, -40 + 10 * x, 1.75)
+        # de espaldas a la central; cámara a la altura de los ojos: Pete adentro del cuadro y con la cara sobre la franja de
+        # subtítulos (el plano 13 del v2)
+        p = orbita(Vector((0, 0, 0)), 18.5, -40 + 10 * x, 1.75) + temblor(f, llega_b + [llega_c])
         mirar(cam, p, Vector((0, 0, 1.6)), lente=35, foco=Vector((0, 0, 2.0)))
         return {}
     return {"actualizar": act}
 
 
-def p14(sc, a, b):
+def p13(sc, a, b):
+    # "hasta cuarenta teslas o más. Más del doble…": cae la tapa y el cobre se enciende en "teslas" (el plano 14 del v2)
     S = armar_E4(sc)
     cam, P = S["cam"], S["P"]
     cables(S, 0)
-    t_tapa = T[14][0] + 0.4
+    t_tapa = T[13][0] + 0.4
     oculto(P["arm"])
-    cobre = [o for o in S["G"]["tapa"] if o.name.startswith("G_cobre")]
-    t_tes = TW("teslas", 29.0)
+    t_tes = TW("teslas", 28.0)
 
     def act(f):
         t = tf(f)
         estado_iman(S, t, lambda o: (t_tapa + 0.05 * (o.name.startswith("G_perno"))) if o in S["G"]["tapa"] else None)
-        brillo = 0.6 * suave(lin(t, t_tes - 0.2, t_tes + 0.4))
-        for o in cobre:
-            for s in o.material_slots:
-                if not s.material:
-                    continue
-                bsdf = s.material.node_tree.nodes.get("Principled BSDF")
-                if bsdf:
-                    bsdf.inputs["Emission Color"].default_value = (1.0, 0.45, 0.15, 1)
-                    bsdf.inputs["Emission Strength"].default_value = brillo
+        brillo_cobre(S, 0.6 * suave(lin(t, t_tes - 0.2, t_tes + 0.4)))
         x = suave(lin(f, a, b - 1))
-        mirar(cam, Vector((4.2, -7.5, 6.2)).lerp(Vector((3.4, -6.4, 5.4)), x), Vector((0, 0, 3.4)), lente=24, foco=Vector((0, 0, 3.5)))
+        pos = Vector((4.2, -7.5, 6.2)).lerp(Vector((3.4, -6.4, 5.4)), x) + temblor(f, [t_tapa], 0.03)
+        mirar(cam, pos, Vector((0, 0, 3.4)), lente=24, foco=Vector((0, 0, 3.5)))
         return {}
     return {"actualizar": act}
 
 
-def p15(sc, a, b):
-    # "…cerca de un gigavatio: un reactor nuclear entero": desde atrás del imán, los cables se encienden y la cámara sigue
-    # su recorrido por el salar hasta la central en el horizonte (antes la cámara quedaba delante y el imán tapaba la central)
+def p14(sc, a, b):
+    # "Y al final, enchufarlo a un reactor nuclear entero...": PASO 3, desde atrás del imán los cables crecen y se
+    # encienden y la cámara sigue su recorrido por el salar hasta la central en el horizonte (el plano 15 del v2)
     S = armar_E4(sc)
     cam, P = S["cam"], S["P"]
     oculto(P["arm"])
     estado_iman(S, 0, lambda o: None)
-    t_gw = TW("gigavatio", 32.0)
-    t_re = TW("reactor", 34.0)
-    t0 = T[15][0]
+    brillo_cobre(S, 0.3)
+    t_enc = TW("enchufarlo", 32.0)
+    t_re = TW("reactor", 33.0)
+    t0 = T[14][0]
 
     def act(f):
         t = tf(f)
-        cables(S, sale(lin(t, t0, t0 + 1.2)), brillo=2.5 * suave(lin(t, t_gw - 0.1, t_gw + 0.5)) * (0.75 + 0.25 * math.sin(t * 9)))
-        pan = suave(lin(t, t0 + 0.4, t_re + 0.2))
+        cables(S, sale(lin(t, t0 + 0.1, t0 + 1.3)), brillo=2.5 * suave(lin(t, t_enc - 0.1, t_enc + 0.5)) * (0.75 + 0.25 * math.sin(t * 9)))
+        pan = suave(lin(t, t0 + 0.5, t_re + 0.25))
         pos = Vector((4.0, -2.0, 6.0)).lerp(Vector((3.0, 1.0, 4.6)), suave(lin(f, a, b - 1)))   # alta, sobre el imán
         d0 = (Vector((-3.0, 8.0, 0.0)) - pos).normalized()           # parte mirando la tapa y los cables que salen por atrás
-        d1 = (PLANTA + Vector((0, 0, 50)) - pos).normalized()
+        # al final la central queda a la derecha y sobre los subtítulos (x ~700, y ~780): a la izquierda va ≈ 1 GIGAVATIO
+        d1 = Matrix.Rotation(math.radians(3.3), 3, "Z") @ (PLANTA + Vector((0, 0, -100)) - pos).normalized()
         tgt = pos + d0.slerp(d1, pan) * 10.0                     # gira la mirada (no el punto): paneo parejo
         mirar(cam, pos, tgt, lente=35, foco=PLANTA if pan > 0.5 else Vector((-1.0, 3.0, 1.0)))
         cam.data.dof.aperture_fstop = 11
@@ -669,55 +612,115 @@ def p15(sc, a, b):
     return {"actualizar": act}
 
 
-def p16(sc, a, b):
-    # "Ahí sí flotarías": la cámara del cuadro B v2.1 (apenas sobre la tapa); Pete sale flotando del hueco y queda a
-    # 1,2 m sobre la boca, recortado contra los cerros
+def p15(sc, a, b):
+    # "solo para ti.": Pete de pie al pie del imán terminado (cables encendidos), mirando hacia arriba; cámara baja
     S = armar_E4(sc)
     cam, P = S["cam"], S["P"]
     estado_iman(S, 0, lambda o: None)
-    cables(S, 1.0, 0.3)
-    boca = S["G"]["boca"]
-    if P["arm"].type == "ARMATURE":
-        base = P["arm"].rotation_euler.copy()
-        P["arm"].rotation_euler = (base.x + math.radians(4), base.y + math.radians(-3), base.z + math.radians(PETE_GIRO))
-    az = math.radians(33)
+    cables(S, 1.0, 1.6)
+    brillo_cobre(S, 0.3)
+    P["arm"].location = PETE_E4
+    girar_pete(P, 25)
+    u = Vector((math.cos(math.radians(236)), math.sin(math.radians(236)), 0))      # de Pete hacia la cámara (la del plano 12)
+    cam.data.dof.aperture_fstop = 4.0
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        z = boca - 0.9 + 2.1 * sale(lin(f, a, b - 8))      # sale del hueco y queda a 1,2 m sobre la boca (cuadro B)
-        P["arm"].location = (0.0, 0.0, z + 0.03 * math.sin(f / 30 * 2.0))
-        pose_pete(sc, P, f, cabeza=(-8, 0), cuadro_anim=20)
-        d = 13.5 - 1.5 * x
-        pos = Vector((math.sin(az) * d, -math.cos(az) * d, 4.1))
-        mirar(cam, pos, Vector((0, 0, 3.8)), lente=35, foco=Vector((0, 0, boca + 2.1)))
-        cam.data.dof.aperture_fstop = 8
+        pose_pete(sc, P, f, cabeza=(-22, 0))
+        d = 5.3 - 0.5 * x
+        pos = PETE_E4 + u * d + Vector((0, 0, 0.7))
+        tgt = PETE_E4 + Vector((0, 0, 0.7 + d * math.tan(math.radians(3.6))))
+        mirar(cam, pos, tgt, lente=35, foco=PETE_E4 + Vector((0, 0, 1.5)))
+        return {"pete": pantalla(sc, cam, PETE_E4 + Vector((0, 0, 1.0)))}
+    return {"actualizar": act}
+
+
+# --- E5 · Pete flota (planos 1, 2 y 16): el mismo Happy Idle en loop; el 16 termina en la pose y cámara del cuadro 0 ---
+AZ_B = math.radians(33)
+
+
+def _idx_e5(f):
+    """Índice de la animación en E5: el último cuadro del video (plano 16) calza con el cuadro 1 (loop)."""
+    if f >= FR(16)[0]:
+        return f - (E.FIN - 1) + 1
+    return f
+
+
+def _pete_flota(sc, S, f, extra=0.0):
+    P = S["P"]
+    i = _idx_e5(f)
+    P["arm"].location = (0.0, 0.0, S["G"]["boca"] + 1.2 + extra + 0.04 * math.sin(i / 30 * 2.0))
+    if P["arm"].type == "ARMATURE":
+        P["arm"].rotation_euler.z = P["rot0"].z + math.radians(4 * math.sin(i / 30 * 0.9))     # gira apenas, suelto en el aire
+    pose_pete(sc, P, f, cabeza=(-8, 0), cuadro_anim=i)
+
+
+def armar_E5(sc):
+    S = armar_E4(sc)
+    estado_iman(S, 0, lambda o: None)
+    cables(S, 1.0, 0.3)
+    girar_pete(S["P"], PETE_GIRO, 4, -3)
+    S["P"]["flota"] = True
+    return S
+
+
+def cam_B(cam, d, boca, az=AZ_B):
+    pos = Vector((math.sin(az) * d, -math.cos(az) * d, 4.1))
+    mirar(cam, pos, Vector((0, 0, 3.8)), lente=35, foco=Vector((0, 0, boca + 2.1)))
+    cam.data.dof.aperture_fstop = 8
+
+
+def p1(sc, a, b):
+    # CUADRO 0 · "Tu cuerpo repele los imanes.": Pete flotando a 1,2 m sobre la boca (la cámara del cuadro B v2.1),
+    # dolly in lento desde la cámara exacta en que termina el plano 16
+    S = armar_E5(sc)
+    cam, boca = S["cam"], S["G"]["boca"]
+
+    def act(f):
+        x = suave(lin(f, a, b - 1))
+        _pete_flota(sc, S, f)
+        cam_B(cam, 12.0 - 1.2 * x, boca, AZ_B + math.radians(4) * x)
         return {}
     return {"actualizar": act}
 
 
-def p17(sc, a, b):
-    S = armar_E4(sc)
-    cam, P = S["cam"], S["P"]
-    estado_iman(S, 0, lambda o: None)
-    cables(S, 1.0, 0.3)
-    boca = S["G"]["boca"]
-    if P["arm"].type == "ARMATURE":
-        base = P["arm"].rotation_euler.copy()
-        P["arm"].rotation_euler = (base.x + math.radians(4), base.y + math.radians(-3), base.z + math.radians(PETE_GIRO))
+def p2(sc, a, b):
+    # "Con el imán correcto, podrías flotar.": todo el imán, los cables y la central; el cobre brilla en "imán" y Pete
+    # sube 5 cm en "flotar" (el plano 17 del v2)
+    S = armar_E5(sc)
+    cam, boca = S["cam"], S["G"]["boca"]
+    t_im = TW("imán", 2.0)
+    t_fl = TW("flotar", 3.0)
 
     def act(f):
+        t = tf(f)
         x = suave(lin(f, a, b - 1))
-        P["arm"].location = (0.0, 0.0, boca + 1.2 + 0.03 * math.sin(f / 30 * 2.0))
-        pose_pete(sc, P, f, cabeza=(-8, 0), cuadro_anim=20)
+        brillo_cobre(S, 0.5 * math.sin(math.pi * clamp((t - t_im) / 0.8)))
+        _pete_flota(sc, S, f, extra=0.05 * suave(lin(t, t_fl - 0.1, t_fl + 0.5)))
         mirar(cam, Vector((8.0, -20.0, 1.6)).lerp(Vector((10.5, -27.0, 1.7)), x), Vector((-2.0, 0, 3.2)), lente=24, foco=Vector((0, 0, 3.0)))
         cam.data.dof.aperture_fstop = 11
         return {}
     return {"actualizar": act}
 
 
+def p16(sc, a, b):
+    # "Ahí sí... flotarías.": Pete sale flotando del hueco y queda a 1,2 m sobre la boca; termina exacto en la cámara y la
+    # pose del cuadro 0 (loop)
+    S = armar_E5(sc)
+    cam, boca = S["cam"], S["G"]["boca"]
+
+    def act(f):
+        x = suave(lin(f, a, b - 1))
+        sube = sale(lin(f, a, b - 8))
+        _pete_flota(sc, S, f, extra=-2.1 * (1 - sube))
+        cam_B(cam, 13.5 - 1.5 * x, boca)
+        return {}
+    return {"actualizar": act}
+
+
 # ===================================== piezas ======================================
 FUN = {1: p1, 2: p2, 3: p3, 4: p4, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p10, 11: p11, 12: p12, 13: p13, 14: p14,
-       15: p15, 16: p16, 17: p17, 18: p18}
+       15: p15, 16: p16}
 PIEZAS = {}
 for k in T:
     a, b = FR(k)

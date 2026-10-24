@@ -1,0 +1,19 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "16 planos: con algo que cambia cada 1–2 s, en 50 s hacen falta ~25–50 cambios; confirmar que la columna 'cambio' los cubre",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 4: el gráfico (y 400–520) comparte franja con la cara (y 450–800): ubicarlo con graficos.lugar_libre y confirmarlo con tools/prueba.py",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "planos": 16,
+  "escenas": 4,
+  "planos_kling": [],
+  "estilo": "realista"
+ }
+}

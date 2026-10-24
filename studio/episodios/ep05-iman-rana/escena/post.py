@@ -1,10 +1,11 @@
 """Post del Ep. 5: arma los cuadros finales (1080x1920) desde los renders de plano.py.
 
 Uso: python3 post.py <carpeta_render> <salida>   (OUT=carpeta de datos, LISTA=cuadros opcionales, MUESTRAS=1 en pruebas)
-- Gradación común (grado.py), píldoras (SIN HILOS, IMÁN, AGUA, UN POQUITO, MILES DE VECES, SIMULACIÓN fija en la parte
-  hipotética, ≈ 40 TESLAS, MÁS DEL DOBLE, ≈ 1 GIGAVATIO, 1 REACTOR NUCLEAR), flechas de fuerza al lado de la rana (gris =
-  gravedad, naranja = imán) y del imán del refri, y los subtítulos palabra por palabra (franja y 1000–1250). Las
-  posiciones salen del meta de cada cuadro (pantalla() de la escena).
+- Gradación común (grado.py), píldoras (v3: ESTO SÍ PASÓ, SIN HILOS, IMÁN, AGUA, HASTA 60 % AGUA, UN POQUITO, ≈ 16 TESLAS,
+  PASO 1/2/3, NO CABE, ≈ 40 TESLAS O MÁS, ≈ 1 GIGAVATIO y SIMULACIÓN fija en todo lo hipotético), flechas de fuerza al
+  lado de la rana (gris = gravedad, naranja = imán), la cota de 3 cm, el contorno de una mano real, las barras 16 T
+  contra 40 T y los subtítulos palabra por palabra (franja y 1000–1250). Las posiciones salen del meta de cada cuadro
+  (pantalla() de la escena) y las píldoras se ubican sin tapar ojos (graficos.lugar_libre).
 - Escribe subs_log.json, graficos.json y ep05_planos.json en OUT.
 """
 import glob, json, math, os, sys
@@ -144,7 +145,7 @@ def suave(x):
     return x * x * (3 - 2 * x)
 
 # ---------------- subtítulos (palabra por palabra; cifras juntas) ----------------
-NUMEROS = [("cuarenta", "40")]
+NUMEROS = [("cuarenta", "40"), ("tres", "3")]
 
 
 def limpiar(w):
@@ -274,7 +275,7 @@ def subtitulos(img, f):
             x += tw + (gap(font, tok, line[ti + 1]) if ti + 1 < len(line) else 0)
 
 
-# ---------------- gráficos por plano ----------------
+# ---------------- gráficos por plano (v3) ----------------
 def edad(f, k, desde=0.0):
     return t_de(f) - E.T[k][0] - desde
 
@@ -283,35 +284,146 @@ def tw(prefijo, desde=0.0):
     return E.t_palabra(prefijo, desde)
 
 
+def T0(k):
+    return E.T[k][0]
+
+
 def simulacion(im):
     pildora(im, "SIMULACIÓN", 250, 330, fondo=AMARILLO, tinta=(24, 24, 28), tam=44)
 
 
+_LUGAR = {}
+
+
+def libre(k, clave, texto, pref, tam=58, marca=None):
+    """Lugar fijo (por plano) para una píldora que no tape ningún ojo en todo el plano (graficos.lugar_libre)."""
+    if (k, clave) not in _LUGAR:
+        fnt = ImageFont.truetype(FONT, tam)
+        w = fnt.getlength(texto) + 64 + (tam if marca else 0) + 16
+        h = tam * 1.45 + 16
+        ojos = [o for c in META.get(str(k), {}).get("cuadros", {}).values() for o in c.get("ojos", [])]
+        _LUGAR[(k, clave)] = G.lugar_libre(w, h, ojos, preferidos=pref) or pref[0]
+    return _LUGAR[(k, clave)]
+
+
+def pild(im, f, k, clave, texto, t0, pref, fondo=(250, 250, 248), tinta=(24, 24, 28), tam=58, marca=None, hasta=None):
+    t = t_de(f)
+    if t < t0 or (hasta is not None and t >= hasta):
+        return
+    cx, cy = libre(k, clave, texto, pref, tam, marca)
+    pildora(im, texto, cx, cy, fondo=fondo, tinta=tinta, s=pop(t - t0), tam=tam, marca=marca)
+
+
+def texto_sombra(d, xy, texto, fnt, col=(255, 255, 255), a=255, ancla="mm"):
+    x, y = xy
+    d.text((x + 3, y + 5), texto, font=fnt, fill=(0, 0, 0, int(0.45 * a)), anchor=ancla)
+    d.text((x, y), texto, font=fnt, fill=(*col, a), stroke_width=5, stroke_fill=(0, 0, 0, int(0.8 * a)), anchor=ancla)
+
+
+def cota(im, f, a=1.0):
+    """Cota de 3 cm FUERA del tubo (puerta 3: encima tapaba a la rana): línea de medida tangente al borde de arriba, con
+    líneas de extensión que bajan a los bordes izquierdo y derecho del tubo (calculados en la escena), y "3 cm" encima."""
+    if a <= 0.01:
+        return
+    (xi, yi), (xd, yd), (_xa, ya) = meta(11, f, "izq"), meta(11, f, "der"), meta(11, f, "arriba")
+    yl = ya - 44
+    lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(lay)
+    al = int(255 * a)
+    for (x0, y0, x1, y1, w) in ((xi, yi - 16, xi, yl - 18, 5), (xd, yd - 16, xd, yl - 18, 5), (xi, yl, xd, yl, 7)):
+        d.line((x0 + 2, y0 + 4, x1 + 2, y1 + 4), fill=(0, 0, 0, int(0.5 * al)), width=w + 4)
+        d.line((x0, y0, x1, y1), fill=(255, 255, 255, al), width=w)
+    for x, s in ((xi, 1), (xd, -1)):
+        d.polygon([(x, yl), (x + 26 * s, yl - 12), (x + 26 * s, yl + 12)], fill=(255, 255, 255, al))
+    texto_sombra(d, ((xi + xd) / 2, yl - 46), "3 cm", ImageFont.truetype(FONT, 64), a=al)
+    im.paste(lay, (0, 0), lay)
+    G.registrar("cota", (xi - 30, yl - 90, xd + 30, yl + 20))
+
+
+def mano(im, f, a=1.0):
+    """Contorno blanco de una mano adulta a escala real (palma de 8,5 cm, 19 cm de largo) sobre la cara del imán de la
+    rana, con el hueco de 3,2 cm debajo de la palma: se ve cuántas veces más grande es (puerta 3 v3)."""
+    if a <= 0.01:
+        return
+    cx, cy = meta(11, f, "centro")
+    mx, _my = meta(11, f, "m")
+    pxm = (mx - cx) * 100.0
+    if pxm <= 0:
+        return
+    S = 2
+    m = Image.new("L", (W * S, H * S), 0)
+    d = ImageDraw.Draw(m)
+    ox, oy = (cx - 0.01 * pxm) * S, cy * S          # centro de la palma, apenas a la izquierda del hueco
+
+    def caps(x0, y0, x1, y1, r):
+        pts = [(ox + x0 * pxm * S, oy + y0 * pxm * S), (ox + x1 * pxm * S, oy + y1 * pxm * S)]
+        d.line(pts, fill=255, width=int(2 * r * pxm * S))
+        for (x, y) in pts:
+            d.ellipse((x - r * pxm * S, y - r * pxm * S, x + r * pxm * S, y + r * pxm * S), fill=255)
+
+    d.rounded_rectangle((ox - 0.05 * pxm * S, oy - 0.0425 * pxm * S, ox + 0.05 * pxm * S, oy + 0.0425 * pxm * S),
+                        radius=0.016 * pxm * S, fill=255)
+    for y, largo in ((-0.031, 0.072), (-0.0105, 0.080), (0.0105, 0.075), (0.031, 0.060)):   # índice, medio, anular, meñique
+        caps(0.04, y * 0.95, 0.04 + largo, y * 1.12, 0.0088)
+    caps(-0.005, 0.034, 0.045, 0.078, 0.0108)                                        # pulgar, hacia abajo
+    caps(-0.06, 0.0, -0.085, 0.0, 0.028)                                             # muñeca
+    m = m.filter(ImageFilter.GaussianBlur(1.2 * S))
+    borde = Image.eval(m.filter(ImageFilter.MaxFilter(13)), lambda v: v)
+    contorno = Image.fromarray(np.clip(np.asarray(borde, np.int16) - np.asarray(m, np.int16), 0, 255).astype(np.uint8))
+    contorno = contorno.resize((W, H), Image.LANCZOS)
+    relleno = m.resize((W, H), Image.LANCZOS)
+    blanco = Image.new("RGBA", im.size, (255, 255, 255, 0))
+    blanco.putalpha(Image.fromarray(np.clip(np.asarray(contorno, np.float32) * 1.6 * a + np.asarray(relleno, np.float32) * 0.10 * a, 0, 255).astype(np.uint8)))
+    sombra = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    sombra.putalpha(Image.fromarray((np.asarray(contorno.filter(ImageFilter.GaussianBlur(4)), np.float32) * 0.6 * a).astype(np.uint8)))
+    im.paste(sombra, (3, 5), sombra)
+    im.paste(blanco, (0, 0), blanco)
+    G.registrar("mano", tuple(int(v) for v in contorno.getbbox() or (0, 0, 0, 0)))
+
+
+def barras(im, f, t0):
+    """RANA 16 T contra TÚ 40 T O MÁS, en proporción real (16/40), sobre un panel oscuro."""
+    t = t_de(f)
+    if t < t0:
+        return
+    x0, L = 140, 800
+    lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(lay)
+    d.rounded_rectangle((x0 - 30, 520, x0 + L + 30, 712), radius=28, fill=(10, 12, 16, int(150 * min(1, (t - t0) / 0.2))))
+    fnt = ImageFont.truetype(FONT, 40)
+    for i, (txt, val, col, tinta) in enumerate((("RANA · 16 T", 16, CIAN, (10, 30, 40)), ("TÚ · 40 T O MÁS", 40, NARANJO, (255, 255, 255)))):
+        x = sale(min(1.0, max(0.0, (t - t0 - 0.12 * i) / 0.5)))
+        if x <= 0:
+            continue
+        y = 548 + 92 * i
+        w = max(60, L * val / 40 * x)
+        d.rounded_rectangle((x0, y, x0 + w, y + 64), radius=32, fill=(*col, 245))
+        d.text((x0 + 26, y + 32), txt, font=fnt, fill=tinta, anchor="lm")
+    im.paste(lay, (0, 0), lay)
+    G.registrar("barras", (x0 - 30, 520, x0 + L + 30, 712))
+
+
+SIM = {1, 2, 10, 12, 13, 14, 15, 16}
+
+
 def graficos(im, f, k):
     t = t_de(f)
-    if k == 1:
-        # desde el cuadro 0: sin esto, la rana en el tubo azul se leía "en un acuario" (puerta 6 r1, gancho 7)
-        pildora(im, "EN EL AIRE", 540, 400)
-    elif k == 2:
-        t0 = tw("nadie") + 0.1
-        if t > t0:
-            pildora(im, "SIN HILOS", 540, 400, s=pop(t - t0))
-        else:
-            pildora(im, "EN EL AIRE", 540, 400)
-    elif k == 3:
-        t0 = tw("imán", 3.0)
-        if t > t0:
-            pildora(im, "IMÁN", 540, 400, fondo=CIAN, tinta=(10, 30, 40), s=pop(t - t0))
+    if k in SIM or (k == 9 and t >= tw("construirlo", 17.0)):
+        simulacion(im)
+    if k == 3:
+        pild(im, f, 3, "real", "ESTO SÍ PASÓ", tw("pasó", 4.0), [(540, 330), (540, 400)], marca="v")
+    elif k == 4:
+        t_im = tw("imán", 7.0)
+        pild(im, f, 4, "hilos", "SIN HILOS", tw("sola", 6.0), [(540, 330), (540, 400)], hasta=t_im)
+        pild(im, f, 4, "iman", "IMÁN", t_im, [(540, 330), (540, 400)], fondo=CIAN, tinta=(10, 30, 40))
     elif k == 5:
-        t0 = tw("agua", 6.0) - 0.05
-        if t > t0:
-            pildora(im, "AGUA", 540, 400, fondo=AZUL, tinta=(255, 255, 255), s=pop(t - t0))
+        pild(im, f, 5, "agua", "AGUA", tw("nada", 8.0), [(540, 330), (540, 400)], fondo=AZUL, tinta=(255, 255, 255))
     elif k == 6:
-        if t < tw("empuja", 8.0):
-            pildora(im, "AGUA", 540, 400, fondo=AZUL, tinta=(255, 255, 255))
-        t0 = tw("poquito", 10.0)
-        if t > t0:
-            pildora(im, "UN POQUITO", 540, 400, s=pop(t - t0))
+        pild(im, f, 6, "agua", "HASTA 60 % AGUA", T0(6) + 0.05, [(540, 400), (540, 330)], fondo=AZUL, tinta=(255, 255, 255))
+    elif k == 7:
+        t_e = tw("empuja", 10.0)
+        pild(im, f, 7, "agua", "AGUA", T0(7), [(540, 400), (540, 330)], fondo=AZUL, tinta=(255, 255, 255), hasta=t_e)
+        pild(im, f, 7, "poco", "UN POQUITO", tw("poquito", 12.0), [(540, 400), (540, 330)])
     elif k == 8:
         rx, y0 = meta(8, f, "rana", (440, 650))
         x = min(980, max(640, rx + 230))
@@ -324,39 +436,30 @@ def graficos(im, f, k):
             L = 120 + 120 * suave(min(1, (t - t_i) / max(0.3, t_w + 0.3 - t_i)))
             flecha(im, x - 40, y0, x - 40, y0 - L, NARANJO, ancho=16)
             pildora(im, "IMÁN", x - 40, y0 - L - 70, fondo=NARANJO, tinta=(255, 255, 255), tam=38, s=pop(t - t_i))
+        pild(im, f, 8, "t16", "≈ 16 TESLAS", tw("fuerte", 14.0), [(300, 330), (300, 400)], fondo=NARANJO, tinta=(255, 255, 255), tam=50)
+    elif k == 10:
+        pild(im, f, 10, "p1", "PASO 1 · EL HUECO", tw("primero", 19.0), [(330, 470), (540, 470)], tam=48)
     elif k == 11:
-        cx, cy = meta(11, f, "iman_refri", (540, 760))
-        t0 = T0(11) + 0.3
-        if t > t0:
-            flecha(im, cx, cy - 40, cx, cy - 40 - 26 * sale(min(1, (t - t0) / 0.3)), NARANJO, ancho=8)
-        t1 = tw("miles", 21.0)
-        if t > t1:
-            pildora(im, "MILES DE VECES", 540, 420, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t - t1))
-            pildora(im, "MÁS DÉBIL", 540, 540, tam=44, s=pop(t - t1 - 0.25))
-    if 12 <= k <= 17 and t > T0(12) + 0.3:
-        simulacion(im)
-    if k == 14:
-        t0 = tw("cuarenta", 29.0) + 0.1
-        if t > t0:
-            pildora(im, "≈ 40 TESLAS", 540, 440, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t - t0))
-        t1 = tw("doble", 30.0)
-        if t > t1:
-            pildora(im, "MÁS DEL DOBLE", 540, 560, tam=44, s=pop(t - t1))
-    elif k == 15:
-        t0 = tw("gigavatio", 32.0)
-        if t > t0:
-            pildora(im, "≈ 1 GIGAVATIO", 540, 440, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t - t0))
-        t1 = tw("reactor", 34.0)
-        if t > t1:
-            pildora(im, "1 REACTOR NUCLEAR", 540, 560, tam=44, s=pop(t - t1))
-    elif k == 18:
-        t0 = tw("sin", 40.0)
-        if t > t0:
-            pildora(im, "SIN HILOS", 540, 400, s=pop(t - t0))
+        t_tres, t_mano = tw("tres", 22.0), tw("mano", 23.0)
+        if t >= t_tres:
+            cota(im, f, a=pop(t - t_tres) * (1 - suave(min(1.0, max(0.0, (t - t_mano + 0.4) / 0.3)))))
+        mano(im, f, a=suave(min(1.0, max(0.0, (t - t_mano + 0.03) / 0.3))))
+        pild(im, f, 11, "nocabe", "NO CABE", t_mano, [(540, 330), (540, 300)])
+    elif k == 12:
+        pild(im, f, 12, "p2", "PASO 2 · BOBINAS", tw("después", 25.0), [(330, 470), (540, 470)], tam=48)
+    elif k == 13:
+        pild(im, f, 13, "t40", "≈ 40 TESLAS O MÁS", tw("cuarenta", 28.0) + 0.05, [(540, 450)], fondo=NARANJO, tinta=(255, 255, 255))
+        barras(im, f, tw("doble", 30.0))
+    elif k == 14:
+        t_re = tw("reactor", 33.0)
+        pild(im, f, 14, "p3", "PASO 3 · ENERGÍA", tw("final", 32.0), [(540, 470), (330, 470)], tam=48, hasta=t_re)
+        t_gw = tw("entero", 34.0)
+        if t >= t_gw:
+            cxp, cyp = meta(14, f, "central", (700, 780))
+            pildora(im, "≈ 1 GIGAVATIO", min(330, cxp - 290), max(430, min(760, cyp - 120)), fondo=NARANJO,
+                    tinta=(255, 255, 255), s=pop(t - t_gw), tam=52)
 
 
-def T0(k):
-    return E.T[k][0]
 
 
 def procesar(f):

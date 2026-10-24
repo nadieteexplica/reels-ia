@@ -12,7 +12,7 @@ import planos_ep05 as PL
 # medido en el animatic del 23-oct (run 39932351715, 540x960/8): E1 de cerca (vidrio + desenfoque) ~24 s/cuadro, E1 abierto
 # (plano 3) ~10, E2 ~26, E3 ~15, E4 ~19, E5 ~17
 PESO = {"E1": 24, "E2": 26, "E3": 15, "E4": 19, "E5": 17}
-PESO_PLANO = {3: 10}
+PESO_PLANO = {4: 16}
 ARMADO = 90
 
 

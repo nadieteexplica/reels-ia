@@ -27,7 +27,7 @@ def W(prefix, after=0.0):
 
 
 def voz():
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, "out/tts/ep05-iman-rana.mp3"), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, os.environ.get("VOZ", "out/tts/ep05-iman-rana-v3.mp3")), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
                          capture_output=True).stdout
     v = np.frombuffer(raw, np.float32).copy()
     v = np.pad(v, (0, max(0, N - len(v))))[:N]
@@ -252,37 +252,54 @@ m *= 1.0 - 0.55 * np.clip(envv / 0.15, 0, 1)
 
 fx = np.zeros(N)
 add(fx, viento(DUR), 0.0, 0.8)
-for k in (1, 2, 3, 4, 8, 9, 18):                                   # el imán de la rana prendido
+def rumor(d):
+    """El hueco que sale del suelo: rumor grave de máquina que sube."""
+    t = tt(d)
+    x = filt(ruido(len(t)), 40, 300) * 0.5 + np.sin(2 * np.pi * np.cumsum(45 + 25 * t / d) / SR) * 0.25
+    return x * np.minimum(1, t / 0.15) * np.minimum(1, (d - t) / 0.1)
+
+
+for k in (3, 4, 5, 8, 11):                                         # v3 · el imán de la rana prendido
     a, b = E.T[k]
     add(fx, zumbido_iman(b - a + 0.1), a, 0.7)
-add(fx, ding(1320, 0.6), W("nadie") + 0.1, 0.45)                   # SIN HILOS
-add(fx, golpe_grave(), W("imán", 3.0), 0.55)                       # el imán gigante
-add(fx, ding(988, 0.6), W("imán", 3.0) + 0.05, 0.35)
-add(fx, whoosh(0.8, True), T(4), 0.7)                              # se lanza hacia la rana
-add(fx, glup(), T(5, 0.05), 0.8)                                   # adentro
-add(fx, ding(1175, 0.5), W("agua", 6.0), 0.35)                     # AGUA
-add(fx, tic(3000), W("empuja", 8.0), 0.9)                          # nace el empujón
-add(fx, ding(1568, 0.5), W("poquito", 10.0), 0.35)
-for i in range(14):                                               # las flechas en cascada
-    add(fx, tic(2200 + 90 * i), T(7, 0.2 + i * 0.15), 0.5)
+for k in (1, 2, 15, 16):                                           # el imán gigante prendido (más grave)
+    a, b = E.T[k]
+    add(fx, zumbido_iman(b - a + 0.1, 38), a, 0.6)
+add(fx, whoom(1.4), 0.0, 0.8)                                      # cuadro 0: Pete flotando
+add(fx, ding(1320, 0.6), W("flotar", 3.0), 0.4)
+add(fx, whoosh(0.6, True), T(3) - 0.15, 0.6)                       # a la rana real
+add(fx, ding(1568, 0.5), W("pasó", 4.0), 0.35)                     # ESTO SÍ PASÓ
+add(fx, ding(1320, 0.6), W("sola", 6.0), 0.4)                      # SIN HILOS
+add(fx, golpe_grave(), W("imán", 7.0), 0.5)                        # aparece el electroimán
+add(fx, whoosh(0.8, True), T(5), 0.6)                              # push-in a la piel
+add(fx, ding(1175, 0.5), W("nada", 8.0), 0.3)                      # AGUA
+add(fx, ding(988, 0.5), W("como", 9.0), 0.3)                       # como tú
+add(fx, glup(), T(7, 0.05), 0.8)                                   # adentro
+add(fx, tic(3000), W("empuja", 10.0), 0.9)                         # nace el empujón
+add(fx, ding(1568, 0.5), W("poquito", 12.0), 0.35)
+add(fx, ding(1046, 0.5), W("fuerte", 14.0), 0.3)                   # ≈ 16 TESLAS
 add(fx, whoom(1.4), W("gana", 14.0) - 0.5, 0.8)                    # le gana a la gravedad
-add(fx, glup(), T(9, 0.05), 0.5)                                   # la fresa
-add(fx, golpecito(700), T(10, 1.0), 0.6)                           # "boing" chico (no flota)
-add(fx, pfff(), W("débil", 21.0) - 0.1, 0.9)                       # miles de veces más débil
-add(fx, ding(1320, 0.6), W("miles", 21.0), 0.35)
-add(fx, whoosh(0.9, False), T(12, 0.0), 0.5)                       # la parte hipotética
-a13, b13 = E.T[13]
-for i in range(6):                                               # los anillos que caen
-    add(fx, clank(180 + 15 * i), a13 + 0.2 + (b13 - 0.25 - a13 - 0.2) * i / 5, 0.55)
-add(fx, clank(150), T(14, 0.4), 0.8)                               # la tapa
-add(fx, ding(1046, 0.7), W("cuarenta", 29.0) + 0.1, 0.4)
-add(fx, ding(1318, 0.6), W("doble", 30.0), 0.35)
-add(fx, electrico(E.T[15][1] - E.T[15][0]), T(15), 0.9)            # los cables a la central
-add(fx, ding(1175, 0.6), W("gigavatio", 32.0), 0.4)
-add(fx, ding(1568, 0.6), W("reactor", 34.0), 0.4)
+add(fx, whoosh(0.9, False), T(9, 0.0), 0.5)                        # la parte hipotética
+t_pri = W("primero", 19.0)
+add(fx, ding(1175, 0.5), t_pri, 0.35)                              # PASO 1
+add(fx, rumor(1.45), t_pri + 0.15, 0.7)                            # el hueco sale del suelo
+add(fx, golpe_grave(), t_pri + 1.55, 0.6)
+add(fx, tic(2600), W("tres", 22.0), 0.9)                           # la cota
+add(fx, golpecito(700), W("mano", 23.0), 0.6)                      # no cabe
+add(fx, ding(1175, 0.5), W("después", 25.0), 0.35)                 # PASO 2
+bob, carc = E.bobinas_t()
+for i, tl in enumerate(bob):                                       # las bobinas que caen
+    add(fx, clank(190 + 18 * i), tl, 0.6)
+add(fx, golpe_grave(), carc, 0.8)                                  # la carcasa
+add(fx, clank(140), carc + 0.02, 0.5)
+add(fx, clank(150), T(13, 0.4), 0.8)                               # la tapa
+add(fx, ding(1046, 0.7), W("cuarenta", 28.0) + 0.05, 0.4)
+add(fx, electrico(1.2), W("teslas", 28.0) - 0.2, 0.6)              # el cobre se enciende
+add(fx, ding(1318, 0.6), W("doble", 30.0), 0.35)                   # las barras
+add(fx, ding(1175, 0.5), W("final", 32.0), 0.35)                   # PASO 3
+add(fx, electrico(E.T[14][1] - E.T[14][0]), T(14), 0.9)            # los cables a la central
+add(fx, ding(1568, 0.6), W("entero", 34.0), 0.4)                   # ≈ 1 GIGAVATIO
 add(fx, whoom(1.5), T(16, 0.0), 0.9)                               # Pete sube
-add(fx, ding(1320, 0.6), W("sin", 40.0), 0.4)                      # SIN HILOS (eco)
-
 mix = v * 1.0 + m * 0.5 + fx * 0.45
 mix = np.tanh(mix * 1.1) / 1.1
 mix = mix / (np.abs(mix).max() + 1e-9) * 0.9

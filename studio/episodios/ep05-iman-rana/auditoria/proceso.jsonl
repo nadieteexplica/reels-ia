@@ -110,3 +110,6 @@
 {"tipo": "trabajo", "id": "sesion ep05 v3", "estado": "inicio", "n": 110, "ts": "2026-10-23T21:42:47-03:00"}
 {"tipo": "trabajo", "id": "auditor 1-guion v3 r1", "estado": "inicio", "n": 111, "ts": "2026-10-23T21:43:08-03:00"}
 {"tipo": "trabajo", "id": "auditor 1-guion v3 r1", "estado": "fin", "n": 112, "ts": "2026-10-23T21:47:58-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05 v3", "estado": "vivo (vigilante)", "n": 113, "ts": "2026-10-23T21:58:08-03:00"}
+{"tipo": "chequeo", "id": "sesion ep05 v3", "estado": "vivo (vigilante)", "n": 114, "ts": "2026-10-23T22:13:08-03:00"}
+{"tipo": "chequeo", "que": "puerta 2 APROBADO (8,5); storyboard v3 de 16 planos (puerta 3 r1: 1 bloqueante, la cota del plano 11; arreglado, r2 en curso); código de planos, post y audio v3 listo; prueba local corriendo", "id": "sesion ep05 v3", "n": 115, "ts": "2026-10-23T22:16:33-03:00"}
