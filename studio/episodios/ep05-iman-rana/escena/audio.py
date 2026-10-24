@@ -1,4 +1,4 @@
-"""Audio del Ep. 5: voz + música sintetizada (pulso suave y luminoso, de asombro) con ducking, viento del salar de
+"""Audio del Ep. 5: voz + música sintetizada (v3.1: tensión en Re menor, 96 bpm, con golpes en cada paso) con ducking, viento del salar de
 fondo (lo que amarra el exterior), zumbido grave del imán en los planos de la rana y los efectos de la columna SFX del
 storyboard → OUT/ep05_mix.wav (−14 LUFS, TP ≤ −1,5 dBTP). Todo sintetizado."""
 import glob, json, os, subprocess, sys
@@ -92,7 +92,8 @@ def whoosh(d=0.45, up=True):
 
 
 def ding(f=1320, d=0.7):
-    return (tono(f, d, 0.002, 0.25) + 0.4 * tono(f * 2.01, d, 0.002, 0.12)) * 0.5
+    # v3.1: más corto y más bajo (con la música nueva, las campanitas sonaban a infantil)
+    return (tono(f, d, 0.002, 0.12) + 0.3 * tono(f * 2.01, d, 0.002, 0.06)) * 0.3
 
 
 def ducha(d):
@@ -209,33 +210,140 @@ def pfff():
     return filt(ruido(n), 600, 3000) * env(n, 0.02, 0.15) * 0.4
 
 
-# ---------------- música: pads de asombro (Re mayor / Si menor), 84 bpm ----------------
-def pad(f, d):
+# ---------------- música v3.1: tensión (Re menor, 96 bpm) ----------------
+# Tomás (24-oct 08:14): la música de pads con campanitas "no llama la atención". Ahora: pulso de bajo en corcheas, pad
+# oscuro, bombo que entra con la rana y va en negras desde "¿Y para ti?", tics en semicorcheas durante la construcción,
+# subidas antes de cada corte grande, golpes en PASO 1/2/3 y un acorde mayor abierto en "Ahí sí… flotarías".
+BPM = 96
+NEGRA = 60 / BPM
+COMPAS = 4 * NEGRA
+
+
+def hz(m):
+    return 440.0 * 2 ** ((m - 69) / 12)
+
+
+def sierra(f, d, k=10):
+    """Diente de sierra aditivo (sin aliasing): k armónicos con 1/n."""
     t = tt(d)
-    x = sum(np.sin(2 * np.pi * f * (1 + dt) * t) for dt in (-0.003, 0.0, 0.004)) / 3
-    return x * np.minimum(1, t / 0.6) * np.minimum(1, (d - t) / 0.6)
+    return sum(np.sin(2 * np.pi * f * n * t) / n for n in range(1, k + 1) if f * n < 12000) * 0.6
 
 
-def campanita(f, d=1.2):
-    return (tono(f, d, 0.002, 0.6) + 0.3 * tono(f * 2.0, d, 0.002, 0.3)) * 0.35
+def pad_oscuro(notas, d, corte=900):
+    t = tt(d)
+    x = np.zeros(len(t))
+    for m in notas:
+        for dt in (-0.004, 0.0, 0.005):
+            x += sierra(hz(m) * (1 + dt), d, 8)[: len(t)]
+    x = filt(x / (3 * len(notas)), 40, corte)
+    return x * np.minimum(1, t / 0.4) * np.minimum(1, np.maximum(0, d - t) / 0.4)
+
+
+def nota_bajo(f, corte, d=None):
+    d = d or NEGRA / 2
+    n = int(d * SR)
+    x = filt(sierra(f, d, 14)[:n], 30, corte)
+    return x * env(n, 0.004, 0.16)
+
+
+def bombo(g=1.0):
+    d = 0.4
+    x = tono(np.linspace(130, 42, int(d * SR)), d, 0.001, 0.12) * 1.0
+    n = int(0.012 * SR)
+    x[:n] += filt(ruido(n), 1500, 6000) * 0.4
+    return x * g
+
+
+def tic_hat(abierto=False):
+    d = 0.18 if abierto else 0.05
+    n = int(d * SR)
+    return filt(ruido(n), 7000, None) * env(n, 0.001, 0.06 if abierto else 0.012) * 0.5
+
+
+def subida(d):
+    """Ruido que sube de tono y de volumen hasta el golpe."""
+    n = int(d * SR)
+    x = ruido(n)
+    out = np.zeros(n)
+    seg = 1024
+    for a in range(0, n, seg):
+        b = min(n, a + seg)
+        c = 300 + 5200 * (a / n) ** 2
+        out[a:b] = filt(x[max(0, a - 4096):b], c * 0.7, c * 1.3)[-(b - a):]
+    return out * np.linspace(0, 1, n) ** 2 * 0.7
+
+
+def golpe(g=1.0, cola=1.6):
+    """Impacto de tráiler: bombo + boom de 45 Hz con cola + ráfaga de ruido."""
+    n = int(cola * SR)
+    x = tono(np.linspace(70, 38, n), cola, 0.002, cola * 0.35) * 1.1
+    m = int(0.25 * SR)
+    x[:m] += filt(ruido(m), 200, 5000) * env(m, 0.001, 0.05) * 0.8
+    b = bombo(1.0)
+    x[: len(b)] += b
+    return x * g
 
 
 def musica():
     out = np.zeros(N)
-    bpm = 84
-    compas = 60 / bpm * 4
-    prog = [(50, 62, 66, 69), (47, 62, 66, 71), (43, 59, 62, 67), (45, 61, 64, 69)]      # D Bm G A
-    arpe = [0, 1, 2, 1, 3, 2, 1, 2]
-    for b in range(int(DUR / compas) + 2):
-        ch = prog[b % 4]
-        i0 = b * compas
-        for m in ch[1:]:
-            add(out, pad(440 * 2 ** ((m - 69) / 12), compas + 0.6) * 0.12, i0)
-        add(out, pad(440 * 2 ** ((ch[0] - 69) / 12), compas + 0.6) * 0.18, i0)
-        for k, p in enumerate(arpe):
-            m = ch[1 + p % 3] + 12
-            add(out, campanita(440 * 2 ** ((m - 69) / 12)), i0 + k * compas / 8, 0.22 if k % 2 == 0 else 0.15)
-    return filt(out, 50, 8000)
+    t9, t16 = E.T[9][0], E.T[16][0]
+    t_ent = E.T[3][0]
+    pasos = [W("primero", 19.0), W("después", 25.0), W("final", 32.0)]
+    prog = [(50, 53, 57), (46, 50, 53), (43, 46, 50), (45, 49, 52)]           # Dm Bb Gm A
+    raiz = [38, 34, 31, 33]
+    nb = int(DUR / COMPAS) + 2
+    for b in range(nb):
+        i0 = b * COMPAS
+        if i0 >= t16:
+            break
+        fin = min(COMPAS + 0.5, t16 - i0 + 0.3)
+        add(out, pad_oscuro(prog[b % 4], fin, 700 + 900 * min(1, i0 / t16)), i0, 0.55)
+    # pulso de bajo en corcheas; el filtro se abre de a poco hasta "Ahí sí"
+    k = 0
+    while k * NEGRA / 2 < DUR:
+        t = k * NEGRA / 2
+        b = int(t / COMPAS) % 4
+        corte = 350 + 1300 * min(1.0, t / t16) if t < t16 else 500
+        g = 0.75 if (k % 2 == 0) else 0.5
+        if E.T[7][0] <= t < E.T[7][1]:
+            g *= 0.55                       # adentro de la rana: más íntimo
+        if t >= t16:
+            g *= 0.45
+            raiz_b = 38
+        else:
+            raiz_b = raiz[b]
+        add(out, nota_bajo(hz(raiz_b), corte), t, g)
+        k += 1
+    # bombo: en 1 y 3 desde la rana; en negras desde "¿Y para ti?"; nada al final
+    k = 0
+    while k * NEGRA < t16 - 0.05:
+        t = k * NEGRA
+        if t >= t9 or (t >= t_ent and k % 2 == 0):
+            add(out, bombo(0.9 if t >= t9 else 0.6), t)
+        k += 1
+    # tics en semicorcheas durante la construcción; abiertos en contratiempo desde el PASO 2
+    k = 0
+    while k * NEGRA / 4 < t16 - 0.1:
+        t = k * NEGRA / 4
+        if t >= t9:
+            add(out, tic_hat(), t, 0.35 if k % 2 else 0.18)
+            if t >= pasos[1] and k % 4 == 2:
+                add(out, tic_hat(True), t, 0.25)
+        k += 1
+    # subidas y golpes
+    add(out, subida(1.6), t9 - 1.6, 0.45)
+    for tp in pasos:
+        add(out, subida(0.45), tp - 0.45, 0.35)
+        add(out, golpe(0.8), tp - 0.02)
+    add(out, golpe(0.7, 1.2), 0.0)
+    add(out, subida(2.2), t16 - 2.2, 0.6)
+    add(out, golpe(1.1, 2.4), t16 - 0.02)
+    # final: Re mayor abierto que crece (asombro), con una cuerda aguda
+    fin = DUR - t16 + 0.2
+    add(out, pad_oscuro((50, 54, 57, 62), fin, 2200), t16, 0.8)
+    add(out, pad_oscuro((74, 78, 81), fin, 5000), t16 + 0.3, 0.25)
+    out = filt(out, 30, 9000)
+    return out / (np.abs(out).max() + 1e-9)
 
 
 def add(buf, x, at, g=1.0):
@@ -249,6 +357,12 @@ v = voz()
 m = musica()
 envv = np.convolve(np.abs(v), np.ones(int(0.08 * SR)) / int(0.08 * SR), mode="same")
 m *= 1.0 - 0.55 * np.clip(envv / 0.15, 0, 1)
+if os.environ.get("MUSICA_SOLA"):                 # para revisar la música sin la voz
+    os.makedirs(OUT, exist_ok=True)
+    wavfile.write(os.path.join(OUT, "musica_sola.wav"), SR, (m / (np.abs(m).max() + 1e-9) * 0.8 * 32767).astype(np.int16))
+_vr = np.sqrt(np.mean(v[np.abs(v) > 0.02] ** 2))
+_mr = np.sqrt(np.mean((m * 0.45)[m != 0] ** 2) + 1e-12)
+m *= (_vr / 10 ** (15.0 / 20)) / _mr        # música a 15 dB bajo la voz (mínimo del manual)
 
 fx = np.zeros(N)
 add(fx, viento(DUR), 0.0, 0.8)
