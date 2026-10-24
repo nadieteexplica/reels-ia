@@ -1,0 +1,20 @@
+# 8-paquete · ronda 1 · **APROBADO** · estilo realista
+
+Promedio **8.0** (mínimo 8; ningún revisor bajo 7 en ningún criterio).
+
+| criterio | nota (promedio) | más baja | por qué (la más baja) |
+|---|---|---|---|
+| textos | 8.0 | 8 | La primera línea («Jala rápido y tu cinturón te dice que no») es la primera frase del video. El título de YouTube tiene 57 caracteres y empieza con «Cinturón de seguridad». El de TikTok es una búsqueda natural, la pregunta invita a etiquetar, hay 5 hashtags y no hay faltas ni tildes malas. Pero «en una subida empinada se traba solo» es menos exacto que el guion, que dice pasado 27° tiene que trabarse y desde 12° puede. |
+| cumplimiento | 8.0 | 8 | Todas las fuentes de la descripción (9) y del primer comentario (4) están en el guion y llevan enlace, y entre ellas cubren cada afirmación. Etiqueta de IA en IG, TikTok y YouTube (realista), madeForKids false, TikTok con título, sin «sígueme», y el crédito del auto va en los 3 textos. Falta completar la atribución CC BY (versión y enlace de la licencia, enlace al modelo, «modificado»), y el comentario usa la copia del Reglamento 16 subida por una empresa en vez de la oficial. |
+
+## Bloqueantes y fallas automáticas (impiden aprobar)
+
+Ninguno.
+
+## Sugerencias (las 5 más importantes; el resto queda en veredicto.json)
+
+1. En el texto de IG/TikTok (línea 2), «en una subida empinada se traba solo», y en la descripción de YouTube, «en una subida empinada se traban todos los cinturones», generalizan lo que el guion acota con el ángulo: pasado 27° tiene que trabarse, entre 12° y 27° puede, y con 12° o menos no debe. Una calle empinada normal (10–20 %, unos 6–11°) queda bajo 12°: el que lo pruebe ahí va a ver que no pasa. En la descripción, la frase siguiente lo matiza; en IG/TikTok no hay nada que lo matice.. **Arreglo:** IG/TikTok: «Y en una subida muy empinada (pasado 27°) se traba solo, aunque nadie jale: …». YouTube: «Por eso en una subida muy empinada (más de 27°) se traban todos los cinturones sin que nadie jale.»
+2. En la descripción de YouTube, «Si se te traba: deja que la cinta vuelva un poquito y jala lento» se salta la condición del guion («ya en plano»): según sus matices, con el auto inclinado la bolita lo sigue trabando y el truco no sirve.. **Arreglo:** «Si se te traba (con el auto en plano): deja que la cinta vuelva un poquito y jala lento.»
+3. La atribución CC BY del auto («Auto 3D CC-BY: "A Land Explorer (Free)" de Danila Davydov (Sketchfab)») no trae la versión ni el enlace de la licencia, el enlace al modelo, ni dice si fue modificado. CC BY 4.0 lo pide cuando es razonablemente posible, y en la descripción de YouTube y en el comentario lo es.. **Arreglo:** En la descripción y el primer comentario: «Auto 3D: "A Land Explorer (Free)" de Danila Davydov (Sketchfab, <URL del modelo>), CC BY 4.0 https://creativecommons.org/licenses/by/4.0/ — modificado.» En IG/TikTok puede quedar la versión corta.
+4. La única fuente del 27°/12° en el primer comentario es una copia del Reglamento 16 que subió una empresa (euroamerica-llc.com). La original oficial (MLIT Japón) está en el guion y en la descripción, pero no en el comentario.. **Arreglo:** En el comentario, poner primero el enlace de MLIT (UN_R016.pdf); la copia de euroamerica puede quedar segunda o salir.
+5. El primer comentario no trae Indiana Public Media, que en la tabla del guion es la fuente del pestillo que sale por el giro: el mecanismo de toda la primera mitad del video.. **Arreglo:** Agregar al comentario: «• Indiana Public Media, A Moment of Science (carrete y pestillo): https://indianapublicmedia.org/amomentofscience/seatbelts/».

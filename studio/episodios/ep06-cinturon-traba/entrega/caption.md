@@ -2,7 +2,7 @@
 
 ## Instagram (Reel) y TikTok
 Jala rápido y tu cinturón te dice que no 🚗
-Adentro del pilar hay un carrete con dientes: si gira de golpe, un pestillo se engancha. Y en una subida empinada se traba solo, aunque nadie jale: una bolita de acero rueda y cree que te vas a volcar.
+Adentro del pilar hay un carrete con dientes: si gira de golpe, un pestillo se engancha. Y si el auto se inclina pasado 27° se traba solo, aunque nadie jale: una bolita de acero rueda y cree que te vas a volcar.
 ¿A quién le mandarías esto? 👇
 #curiosidades #autos #cinturondeseguridad #ciencia #elviejodeldato
 Auto 3D CC-BY: "A Land Explorer (Free)" de Danila Davydov (Sketchfab). Personajes: Mixamo.
@@ -14,7 +14,7 @@ Auto 3D CC-BY: "A Land Explorer (Free)" de Danila Davydov (Sketchfab). Personaje
 **Descripción:**
 El cinturón de seguridad se enrolla en un carrete con dientes dentro del pilar del auto. Si jalas la cinta de golpe, el carrete gira muy rápido y un pestillo sale hacia afuera y se engancha: la cinta queda trabada. Si jalas despacio, el giro no alcanza y la cinta sale.
 Además hay un segundo sensor que no depende de la cinta: una bolita de acero en una tacita (o un péndulo). Si el auto frena fuerte o se inclina mucho, la bolita rueda, levanta una palanquita y traba el carrete. Por eso en una subida empinada se traban todos los cinturones sin que nadie jale. La norma de la ONU (Reglamento 16) pide que el retractor no se trabe con 12° de inclinación o menos y que sí se trabe pasado 27°.
-Si se te traba: deja que la cinta vuelva un poquito y jala lento.
+Si se te traba: con el auto en plano, deja que la cinta vuelva un poquito y jala lento.
 Fuentes:
 • Reglamento 16 de la ONU (CEPE), texto: https://euroamerica-llc.com/wp-content/uploads/2021/01/ECE-R-16-Regulation.pdf
 • Reglamento 16 de la ONU, original (MLIT Japón): https://www.mlit.go.jp/jidosha/un/UN_R016.pdf
