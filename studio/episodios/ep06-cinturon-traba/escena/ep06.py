@@ -162,7 +162,7 @@ def cerro_roca(sc, pendiente=30.0, origen=(0.0, -2.0, 0.0), largo=28.0, ancho=30
     d2 = g.modifiers.new("bloques", "DISPLACE"); d2.texture = tx2; d2.strength = 0.5; d2.mid_level = 0.5; d2.texture_coords = "GLOBAL"; d2.vertex_group = "roca"
     tx3 = bpy.data.textures.new("piedrecillas", "CLOUDS"); tx3.noise_scale = 0.25; tx3.noise_depth = 3
     d3 = g.modifiers.new("piedrecillas", "DISPLACE"); d3.texture = tx3; d3.strength = 0.05; d3.texture_coords = "GLOBAL"
-    liso(g, 180)
+    liso(g, 35)      # bordes vivos en los bloques: con todo suavizado la ladera parecía masa (puerta 6 r1)
     camino = mat_tierra("tierra_camino", escala=1.5); huellas(camino)
     g.data.materials.append(mat_roca()); g.data.materials.append(camino)
     for p in g.data.polygons:
@@ -480,7 +480,7 @@ def sentar(arm, quien, raiz_auto=None, sentado_fbx=None, frame=1):
 
 
 # ---------------------------------------------------------------- cinturón (cinta)
-def mat_cinta(nombre="cinta", color=(0.02, 0.02, 0.023)):
+def mat_cinta(nombre="cinta", color=(0.055, 0.055, 0.06)):     # gris oscuro (se ve sobre la túnica roja y la armadura)
     """Cinta del cinturón: trama tejida (rayas finas a lo largo), bordes cosidos y polvo."""
     m, nt, b = _nodos(nombre)
     tc = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")

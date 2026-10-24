@@ -333,7 +333,7 @@ def graficos(im, f, k):
         if t > t0:
             pildora(im, "FUERZA DEL GIRO", 540, 425, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t - t0))
             L = 150 * sale(min(1, (t - t0) / 0.4))
-            flecha(im, 640, 760, 640 + L, 760 - L * 0.4, NARANJO, ancho=14)
+            flecha(im, 600, 700, 600 + L * 0.8, 700 - L * 0.7, NARANJO, ancho=14)     # hacia afuera, donde se traba el pestillo (arriba a la derecha)
     elif k == 11:
         t0 = T0(11) + 0.2
         if t > t0:

@@ -190,7 +190,7 @@ def pieza_cabina(sc, a, b, k):
     cam = cam_cabina(sc, (0, 0, 0), (0, 1, 0))
     W = cab.mundo
     # atrás y en el pilar llega menos sol: la cámara expone más (como una de verdad), sin subir luces falsas
-    sc.view_settings.exposure = {25: 0.9, 4: 0.4, 22: 0.5, 20: 0.9}.get(k, 0.0)
+    sc.view_settings.exposure = {25: 0.9, 4: 0.9, 22: 0.5, 20: 0.9}.get(k, 0.0)
     # plano 1 (y su repetición en el 10 y el loop del 25): foco corto, la mano que se acerca queda blanda como en una cámara real
     cam.data.dof.use_dof = True
     cam.data.dof.aperture_fstop = {1: 2.0, 10: 2.0, 25: 2.8}.get(k, 5.6)
@@ -238,13 +238,28 @@ def pieza_cabina(sc, a, b, k):
                 cab.pose(q, f, palmas=(suave(lin(t, t0 + 0.2, t0 + 0.7)) if (k == 16 and q != "piloto") else 0.0),
                          mira=(0.5 * math.sin(t * 2.0 + len(q)) * suave(lin(t, t0, t0 + 0.4)) if k == 16 else 0.0))
             if k == 15:
-                cab.bolsa.location = Vector(E.BOLSA).lerp(Vector((0.18, 0.80, 1.00)), sale(lin(t, t0 + 0.05, t0 + 0.45)))
+                # la bolsa resbala por el tablero, baja a la consola, pasa entre los asientos y cae atrás (todo el plano,
+                # con giros): en 0,4 s desaparecía de un cuadro al otro (puerta 6 r1, B2)
+                ruta = [Vector(E.BOLSA), Vector((0.10, -0.27, 1.37)), Vector((0.05, 0.05, 1.16)), Vector((0.18, 0.80, 1.00))]
+                tt = lin(t, t0 + 0.02, t1 - 0.05)
+                v = 1.0 * suave(tt / 0.6) if tt < 0.6 else 1.0 + 2.0 * suave((tt - 0.6) / 0.4)    # 60 % del plano resbalando a la vista
+                i = min(int(v), len(ruta) - 2)
+                cab.bolsa.location = ruta[i].lerp(ruta[i + 1], v - i)
+                cab.bolsa.rotation_euler = (math.radians(-80 + 70 * v), math.radians(25 * v), math.radians(15 + 40 * v))
+            if k in (14, 15):
+                tcs = {"piloto": 0.15, "caballero": 0.35, "mascara": 0.55, "doctor": 0.70} if k == 14 else \
+                      {"piloto": -0.6, "caballero": -0.4, "mascara": 0.15, "doctor": 0.35}
+                for q, a_ in cab.arms.items():
+                    tc = t0 + tcs[q]
+                    if t > tc:
+                        g = 7.0 * math.exp(-7 * (t - tc)) * math.cos(18 * (t - tc))
+                        E.girar(a_, "Spine1", (1, 0, 0), -g); E.girar(a_, "Head", (1, 0, 0), -0.6 * g)
             if k == 20:
                 mirar(cam, W((0.0, -0.05, 1.69)), W((-0.40, 0.95, 1.52)), lente=85, foco=W((-0.40, 0.90, 1.55)))
                 info["gota"] = round(lin(t, t0, t1), 3)
             elif k == 15:
                 fb = cab.bolsa.matrix_world.translation
-                mirar(cam, W((0.10, -1.10, 1.50)), W((0.10, 0.60, 1.25)), lente=35, foco=fb)
+                mirar(cam, W((0.16, -1.10, 1.76)), W((0.05, 0.40, 1.10)), lente=35, foco=fb)
             else:
                 mirar(cam, W((0.0, -1.05, 1.55)), W((0.0, 0.40, 1.50)), lente=35, foco=W((0.0, 0.3, 1.5)))
         elif k == 22:
@@ -299,7 +314,10 @@ def pieza_retractor(sc, a, b, k):
         t = tf(f)
         u = lin(t, t0, t1)
         vel = {5: 0.6, 7: 6.0 + 18 * u, 8: 3.0, 9: 0.0, 11: 0.7, 17: 0.0, 18: 0.0}.get(k, 0.0)
-        giro["g"] = (f - a) * vel
+        # el pestillo tiene que trabarse ARRIBA a la derecha (donde apunta la flecha y lejos de los subtítulos): el giro
+        # parte desfasado en el 8 y el 9 sigue donde terminó el 8 (puerta 6 r1)
+        a8, b8 = FR(8)
+        giro["g"] = (f - a) * vel + {8: 90.0, 9: 90.0 + 3.0 * (b8 - a8)}.get(k, 0.0)
         eje.rotation_euler.x = math.radians(giro["g"])
         pes.rotation_euler.x = math.radians(-38 * (suave(lin(t, t0 + 1.3, t1)) if k == 8 else (1.0 if k == 9 else 0.0)))
         tilt = 0.0
