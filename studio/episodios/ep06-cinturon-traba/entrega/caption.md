@@ -42,4 +42,4 @@ Auto 3D CC-BY: "A Land Explorer (Free)" de Danila Davydov (Sketchfab). Personaje
 - Instagram: `instagramData.type: "REEL"`, `isAiGenerated: true` (voz sintética).
 - TikTok: `tiktokData.isAigc: true`, `title` arriba.
 - YouTube: `type: "short"`, `category: "EDUCATION"`, `madeForKids: false` (Tomás, 19-oct), `isAiGeneratedContent: true` (estilo realista).
-- Horario: se propone con la mejor hora de Metricool al entregar; sólo se programa con el OK de Tomás.
+- Horario propuesto (mejor hora de Metricool para el lunes 26-oct; el sábado 24 sale el Ep. 5): Instagram 10:00 · YouTube 16:00 · TikTok 18:00. Sólo se programa con el OK de Tomás.
