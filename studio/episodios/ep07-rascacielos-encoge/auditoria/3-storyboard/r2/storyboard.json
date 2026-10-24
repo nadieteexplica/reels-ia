@@ -1,0 +1,91 @@
+{
+ "encargo": "storyboard",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "foco": {
+   "nota": 8,
+   "por_que": "cada frase tiene su imagen y un solo foco por plano (techo marcado naranja en el 4, gatos amarillos en el 5, losas por el pozo en el 6, aro dorado en el 9, lámparas en el 10) y la columna 'sin sonido' cuenta la historia completa; lo flojo es el 6, donde 'se cortan las columnas del piso de arriba' no dice cuáles ni sobre qué siguen parados los gatos"
+  },
+  "ritmo": {
+   "nota": 8,
+   "por_que": "algo cambia cada ~1 s en los 12 planos (p. ej. 4: 6,53 / 7,41; 9: 26,05 / 27,06 / 28,45), 4 escenas filmadas con varias cámaras, la escala cambia G→M→P→G cada ≤ 10 s y no hay transiciones especiales; flojo: el contador del 1 termina 0,15 s antes del corte (la regla es ≥ 0,5 s) y las 8 losas del 6 (cada 0,35 s desde 14,45) no caben en el 1,9 s que queda"
+  },
+  "viabilidad": {
+   "nota": 7,
+   "por_que": "4 escenas (2 a medida), 0 Kling, ninguna mano con objeto, y cada ficha dice sol, flotantes, vida y que nada tape; pero las cámaras escritas no dan el encuadre que promete la ficha (3: 40 mm a 6 m da a Pete de cuerpo entero con los ojos en y≈900, no 600–800; 11: Pete ocupa 1/5 del alto, metido en los subtítulos; 1: '47 % del alto' no calza con '32 px por piso'), en el 11 rascarse la cabeza con casco es contacto mano-casco en render, y el interior en penumbra del 10 va a 8 muestras"
+  },
+  "gancho_visual": {
+   "nota": 7,
+   "por_que": "el cuadro 0 es de situación con la acción en curso, el símbolo se repite (fantasma + clonc + contador) y el 12 vuelve a la cámara del cuadro 0; pero en la portada el hueco bajo el fantasma es de sólo 1,5 pisos (~35–50 px de 1920) y la etiqueta ANTES: 40 PISOS va en y ≥ 430, dentro de ese mismo hueco: como foto quieta no se lee 'le falta un pedazo'"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B2",
+   "plano": 2,
+   "segundo": "2.15",
+   "que": "El contador QUEDAN N PISOS salta de 32 (fin del plano 1: 'QUEDAN 38 → 32', sombrero de 38,5 a 32,5) a 38 al empezar el 2 ('contador 38 → 37 → 36'): el número vuelve a subir 6 pisos en el corte y el sombrero 'reaparece' arriba. La cuenta tampoco cierra al final: desde 32 quedan 32−2−3−1−10−1−2 = 13 (o 19 desde 38) contra 'unos 15 pisos' del 12.",
+   "arreglo": "Poner en el storyboard una tabla de pisos por plano (inicio → fin) y que el contador la siga: el 2 sigue 32 → 31 → 30 (o el que corresponda al nuevo inicio del cuadro 0); ajustar el tramo rápido del 8 para terminar exacto en los pisos que se ven en el 12; y que en el 1 y el 8 el contador quede quieto ≥ 0,5 s antes del corte (hoy 0,15 s y 0,4 s)."
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "Portada débil: en el cuadro 0 el hueco bajo el fantasma es de 1,5 pisos, ~35–50 px de 1920 según la propia ficha, que se contradice: 47 % del alto da ~22 px por piso y también dice 32 px. Con 32 mm a 400 m, en la cuenta da ~15 px por piso, o sea ~25 px de hueco. En miniatura se ve una torre blanca con una raya fina encima. Además ANTES: 40 PISOS en y ≥ 430 cae dentro de ese hueco, sobre el techo del sombrero, que arranca en y≈430.",
+   "arreglo": "Partir con ≥ 5 pisos ya perdidos (hueco ≥ 110 px) y bajar 4–6 más en el plano; poner ANTES: 40 PISOS al costado de la punta del fantasma, fuera del hueco, con una línea fina que la apunte. Rehacer la tabla de pisos del bloqueante con este inicio."
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "3.65",
+   "que": "Con 40 mm a 6 m y la cámara horizontal a 1,5 m (sensor de 36 mm a lo alto), se ven ~5,4 m de alto: Pete sale de cuerpo entero en ~1/3 del cuadro, no 'de las rodillas para arriba'. Los ojos quedan en y≈900 (la ficha dice 600–800), el encogimiento de hombros cae sobre la franja de subtítulos y los pies quedan bajo y 1250. Si los ojos quedaran de verdad en 600, la píldora SIN EXPLOSIONES (540, 560) quedaría sobre el casco.",
+   "arreglo": "Usar 40 mm a ~2 m (o 60 mm a ~3 m) con el centro del cuadro a ~1,4 m de alto: queda de las rodillas para arriba, con los ojos en y≈690 y el casco desde y≈430. Dejar a Pete en el tercio derecho, con el parapeto y la ciudad abajo a la izquierda, y sacar la píldora SIN EXPLOSIONES de encima de la cabeza: a la izquierda (x≈300, y≈560), sobre el cielo. Medir los ojos con pantalla() en la prueba."
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "32.45",
+   "que": "Con 24 mm, Pete a 6 m y la cámara a 1,2 m, Pete mide ~1/5 del alto (~380 px), con la nuca en y 900–960 y el cuerpo dentro de la franja de subtítulos (1000–1250) y bajo ella: el gesto que cuenta 'casi ni se nota' no se va a leer. Además 'rascarse la cabeza' con casco es mano contra casco en render: la mano atraviesa el casco (B1 en el render).",
+   "arreglo": "Pete a ~3 m en el tercio izquierdo (x≈300) y la cámara a ~0,8 m: la nuca queda en y≈730 y la cintura en y≈980 y la torre libre a la derecha (punta en y≈590). Cambiar el gesto por uno sin contacto que se lea de espaldas: Shaking Head No, o mirar arriba con las manos en la cintura."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "12.30",
+   "que": "La mecánica de 5–7 no dice sobre qué se apoyan los 14 gatos. Si están sobre el piso que en el 6 se desarma, en el 6 y el 7 los gatos y el sombrero quedan sin apoyo (B1 en el render). 'Se cortan las columnas del piso de arriba' no dice cuáles: sin sonido parece que cortan lo que sostiene el techo. Y las 8 losas, una cada 0,35 s desde 14,45, necesitan 2,8 s y sólo queda 1,9 s.",
+   "arreglo": "En la ficha 5, cada gato se apoya en la cabeza de una columna de acero que sigue hacia abajo y queda a la vista. En el 6 se sacan losas y vigas alrededor de esas columnas y se cortan sólo las del piso que se desarma; en el 7 el sombrero baja hasta las columnas del piso siguiente. Sacar 5 losas, o una cada 0,22 s."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "29.95",
+   "que": "'Oscuro → iluminado' en riesgo: en el 5 y el 6 el sol rasante entra por el mismo corte, así que el piso de trabajo no va a estar en penumbra y las 6 lámparas casi no cambian la imagen. A 8 muestras (plan de render), un interior oscuro iluminado por lámparas chicas deja ruido y manchas del denoiser.",
+   "arreglo": "Apuntar la cámara del 10 hacia el fondo del piso, donde la franja de sol del corte no llega (que quede en el borde o fuera de cuadro). Renderizar el 9 y el 10 con ≥ 32 muestras (GPU) o usar lámparas emisivas grandes con relleno suave. Comprobar en la muestra que antes y después se distinguen en una foto."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "31.05",
+   "que": "Todas las píldoras de E3 van en (540, 560) sin decir dónde queda lo que nombran. En el 10 la cámara está 'un poco más baja que las lámparas', así que las lámparas quedan en la mitad de arriba (y≈400–800) y LUCES DE LA OBRA puede taparlas justo cuando se prenden. Lo mismo con el techo naranja del 4 (EL TECHO QUEDA ENTERO) y del 5 (SOMBRERO).",
+   "arreglo": "Anotar en cada ficha la y de lo que se nombra y ubicar la píldora con lugar_libre al otro lado, por ejemplo en el 10 abajo (y≈900, sobre el piso) y en el 4 bajo el sombrero, sobre la fachada."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "Riesgo de maqueta (señal 4: repeticiones): ~1.000 edificios con sólo 5 fachadas en los planos generales de 400 m (1 y 12) y 280 m (8); torres iguales lado a lado delatan la ciudad procedural. Además, CÁMARA RÁPIDA falta en el 7 (el sombrero baja un piso entero, 3,5 m, en 1,7 s), aunque el concepto dice que toda toma del achique la lleva. Y '−2 PISOS · CADA 10 DÍAS' tiene 5 palabras (máx. 4).",
+   "arreglo": "Variar por edificio y al azar el tono (±10 %), la altura de piso, la grilla de ventanas y el remate del techo, sin dos iguales vecinos, y revisarlo en el recorte de arriba del cuadro de estilo (puerta 4). Agregar CÁMARA RÁPIDA en el 7. En 'diez', que la píldora pase de −2 PISOS a CADA 10 DÍAS."
+  }
+ ],
+ "resumen": "Storyboard bien armado: 12 planos, 4 escenas, un solo espacio, situación en 0–3 s y cada frase con su imagen. Pero el contador salta de 32 a 38 en el corte 1→2 (B2), y varias cámaras escritas no dan el encuadre que promete la ficha: el hueco del cuadro 0 y Pete en el 3 y el 11. La ronda llegó sin anterior.json, así que la revisión fue completa."
+}

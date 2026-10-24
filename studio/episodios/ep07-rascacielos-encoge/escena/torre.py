@@ -268,7 +268,7 @@ def cajas_unidas(nombre, lista, mat):
 
 # ---------------------------------------------------------------- la ciudad
 LOTE = (70.0, 52.0)        # medio ancho del lote despejado alrededor de la torre (plaza + calles)
-VECINA = (-120.0, 110.0)   # torre vecina de vidrio (al noroeste): de fondo de Pete en el techo
+VECINA = (120.0, 110.0)    # torre vecina de vidrio (al noreste): de fondo de Pete en el techo
 
 
 VISTAS = [((172, -360, 30), (0, 0, 8)), ((110, -230, 30), (0, 0, 8)), ((60, -260, 130), (0, 0, 8)), ((40.5, -142, 2.3), (0, 0, 10))]
@@ -376,7 +376,7 @@ def torre(sc, corte=False):
     # sombrero: empty que baja; adentro el último piso (con su fachada), el techo, el parapeto y los equipos
     sb = bpy.data.objects.new("Sombrero", None); sc.collection.objects.link(sb)
     cap = prisma("SombreroPiso", planta_dentada(), H, (0, 0, 2 * H), blanco); cap.parent = sb
-    conc = E.mat_concreto("techo_h", (0.33, 0.33, 0.31), escala=0.6)
+    conc = E.mat_pintura("techo_h", (0.31, 0.30, 0.28), rugo=(0.78, 0.95), sucio=0.45, capa=0.0)   # membrana mate (el concreto pulido reflejaba el cielo)
     techo = caja("Techo", (LX + 0.6, LY + 0.6, 0.45), (0, 0, 3 * H), conc); techo.parent = sb
     par = mat_simple("parapeto", (0.7, 0.69, 0.66), rugo=0.7, neb=True, k=3200.0)
     for nom, tam, pos in (("ParN", (LX + 0.6, 0.3, 1.1), (0, LY / 2 + 0.15, 3 * H + 0.45)), ("ParS", (LX + 0.6, 0.3, 1.1), (0, -LY / 2 - 0.15, 3 * H + 0.45)),
@@ -384,7 +384,7 @@ def torre(sc, corte=False):
         o = caja(nom, tam, pos, par); o.parent = sb
     eq = mat_simple("eq_techo", (0.5, 0.51, 0.5), rugo=0.45, metal=0.5, k=3200.0)
     random.seed(5)
-    for k, (x, y, w, d, h) in enumerate(((14, 3, 9, 6, 3.2), (5, 5, 6, 5, 2.6), (8, -4, 5, 4, 2.0), (22, -4, 4, 4, 4.5), (-23, 6.5, 3, 3, 1.8))):
+    for k, (x, y, w, d, h) in enumerate(((-12, 3, 9, 6, 3.2), (5, 5, 6, 5, 2.6), (8, -4, 5, 4, 2.0), (23, 6, 4, 4, 4.5), (-23, 6.5, 3, 3, 1.8))):
         o = caja(f"EqT{k}", (w, d, h), (x, y, 3 * H + 0.45), eq); o.parent = sb
     # envoltura: 4 paños de paneles que tapan los 2 pisos de trabajo (un poco más grandes que la planta)
     pm = mat_paneles()
@@ -450,7 +450,7 @@ def interior(sc, sb):
         for y in (-6.5, 6.5):
             o = caja(f"ColB{x}{y}", (0.8, 0.8, H - e), (x, y, 0.0), col); o.parent = ob; out["cols_b"].append(o)
             o = caja(f"ColA{x}{y}", (0.8, 0.8, H - e), (x, y, H), col); o.parent = ob; out["cols_a"].append(o)
-    for x in (-24.0, -16.0, -8.0, 0.0, 8.0, 16.0, 24.0):
+    for x in (-24.0, -16.0, -8.0, 8.0, 16.0, 24.0):
         for y in (-7.3, 7.3):
             g = cilindro(f"Gata{x}{y}", 0.45, GATA, (x, y, 0.0), amarillo, verts=32); g.parent = ob
             p = cilindro(f"Piston{x}{y}", 0.25, 1.0, (x, y, GATA), cromo, verts=24); p.parent = ob
@@ -463,14 +463,14 @@ def interior(sc, sb):
     tambor = cilindro("GruaTambor", 0.5, 2.0, (0, 1.0, 2 * H - 3.1), E.mat_metal_cepillado("tambor", (0.55, 0.55, 0.57)), verts=32)
     tambor.rotation_euler.x = math.radians(90); tambor.parent = sb
     motor = caja("GruaMotor", (1.3, 1.6, 1.1), (-2.0, 0, 2 * H - 2.75), E.mat_pintura("motor", (0.12, 0.3, 0.42), capa=0.2)); motor.parent = sb
-    aro = cilindro("GeneradorAro", 0.7, 0.22, (-2.75, 0, 2 * H - 2.2), mat_brillo("gen_brillo", (1.0, 0.72, 0.18), 0.0), verts=40)
+    aro = cilindro("GeneradorAro", 0.85, 0.3, (-2.75, 0, 2 * H - 2.2), mat_brillo("gen_brillo", (1.0, 0.72, 0.18), 0.0), verts=40)
     aro.rotation_euler.y = math.radians(90); aro.parent = sb; aro.visible_shadow = False
     bat = caja("Bateria", (2.4, 1.2, 1.4), (-17.0, 6.2, 0.0), E.mat_pintura("bateria", (0.2, 0.22, 0.24), capa=0.1)); bat.parent = ob
     cable = cilindro("GruaCable", 0.035, 1.0, (0, 0, 0), E.mat_cable("cable_grua", (0.09, 0.09, 0.09)), verts=8); cable.parent = sb
     gancho = caja("Gancho", (0.5, 0.35, 0.7), (0, 0, 0), E.mat_pintura("gancho", (0.85, 0.45, 0.05), capa=0.2)); gancho.parent = sb
     bulto = caja("Bulto", (3.0, 2.2, 1.4), (0, 0, 0), saco); bulto.parent = sb
     elec = mat_brillo("elec", (1.0, 0.78, 0.22), 0.0)
-    ce = caja("CableLuz", (LX - 8, 0.14, 0.14), (0, 0.8, 2 * H - 1.45), elec); ce.parent = sb; ce.visible_shadow = False
+    ce = caja("CableLuz", (LX - 8, 0.16, 0.16), (0, -0.75, 2 * H - 1.95), elec); ce.parent = sb; ce.visible_shadow = False
     for k, x in enumerate((-20, -13, -5, 5, 13, 20)):
         lm = caja(f"Lampara{k}", (1.3, 0.5, 0.22), (x, 3.6, 2 * H - 1.75), mat_brillo(f"lamp{k}", (1.0, 0.86, 0.65), 0.0)); lm.parent = sb
         lm.visible_shadow = False

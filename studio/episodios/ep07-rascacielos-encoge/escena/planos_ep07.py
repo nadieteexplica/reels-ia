@@ -144,16 +144,17 @@ def ojos_pete(sc, P, cam=None):
 
 # ===================================== la torre en cámara rápida ======================================
 DUR = 0.45                 # s que tarda el sombrero en bajar un piso (cada "clonc")
-H_CORTE = 24.0             # pisos bajo la envoltura en las escenas por dentro (E3)
-H_INI = 35.5               # al cuadro 0 ya bajó un piso y medio (se ve el hueco bajo el fantasma) y sigue bajando
+H_CORTE = 22.0             # pisos bajo la envoltura en las escenas por dentro (E3)
+H_INI = 33.2               # al cuadro 0 ya bajó 4 pisos (se ve el hueco de 14 m bajo el fantasma) y sigue bajando
 
 
 def _cloncs():
     """(inicio, pisos, duración) de cada bajada del sombrero en las tomas de afuera (E1, E2, E4)."""
-    c = [(-0.1, 6, 2.0), (TW("piso"), 1, DUR), (TW("piso", 2.5), 1, DUR)]
+    c = [(-0.03, 6, 2.0), (TW("piso"), 1, DUR), (TW("piso", 2.5), 1, DUR)]
     a3, b3 = T[3]
     c += [(a3 + 0.15, 1, DUR), (a3 + 0.75, 1, DUR), (a3 + 1.35, 1, DUR)]
-    c += [(TW("otra", 20.5), 1, DUR), (TW("otra", 22.0), 1, DUR), (TW("Como", 23.0), 8, 1.6)]
+    c += [(TW("bajan", 17.9), 1, 1.7)]                                     # la bajada del plano 7 (adentro)
+    c += [(TW("otra", 20.5), 1, DUR), (TW("otra", 22.0), 1, DUR), (TW("Como", 23.0), 5, 1.6)]
     a11, b11 = T[11]
     c += [(a11 + 0.4, 1, 1.4)]
     c += [(TW("dos", 34.0) - 0.05, 1, DUR), (TW("diez", 35.5) - 0.05, 1, DUR)]
@@ -302,7 +303,8 @@ def armar_pete(sc, S, pos, giro):
 def p3(sc, a, b):
     # "Sin una sola explosión.": Pete tranquilo en el techo; la vecina de vidrio "sube" detrás (el techo baja)
     S = armar_E1(sc, con_fantasma=False)
-    P = armar_pete(sc, S, Vector((-20.0, -5.5, 0)), -20)
+    P = armar_pete(sc, S, Vector((20.0, -5.5, 0)), -30)
+    vista = Vector((0.36, 0.93, 0)).normalized()
     gesto(P, "Shrugging")
     t_ex = TW("explosión", 4.0)
 
@@ -312,7 +314,8 @@ def p3(sc, a, b):
         P["arm"].location.z = R
         pose_pete(sc, P, f, cabeza=(-4, 0), actua=("Shrugging", F(t_ex) - 10, 0) if P["gestos"].get("Shrugging") else None)
         x = lin(f, a, b - 1)
-        mirar(S["cam"], Vector((-17.6 + 0.3 * x, -11.4 + 0.4 * x, R + 1.5)), Vector((-34, 30, R - 1.2)), lente=40, foco=Vector((-20.0, -5.5, R + 1.6)))
+        cam = Vector((20.0, -5.5, R + 1.5)) - vista * (3.6 - 0.25 * x)
+        mirar(S["cam"], cam, cam + vista * 40 + Vector((0, 0, -40 * math.tan(math.radians(2.5)))), lente=40, foco=Vector((20.0, -5.5, R + 1.65)))
         S["cam"].data.dof.aperture_fstop = 5.6
         return {}
     return {"actualizar": act}
@@ -329,8 +332,8 @@ def p11(sc, a, b):
         estado_afuera(S, f)
         pose_pete(sc, P, f, cabeza=(-28, 0), actua=("Thinking", a - 6, 0) if P["gestos"].get("Thinking") else None)
         x = suave(lin(f, a, b - 1))
-        cam = Vector((40.5 - 0.3 * x, -142.0 + 0.8 * x, 1.2))
-        mirar(S["cam"], cam, Vector((0, 0, 1.2 + 145 * math.tan(math.radians(4.6)))), lente=24, foco=Vector((38.8, -136.2, 1.7)))
+        cam = Vector((40.5 - 0.3 * x, -142.0 + 0.8 * x, 1.0))
+        mirar(S["cam"], cam, Vector((0, 0, 1.0 + 145 * math.tan(math.radians(4.6)))), lente=24, foco=Vector((38.8, -136.2, 1.7)))
         S["cam"].data.dof.aperture_fstop = 11
         return {}
     return {"actualizar": act}
@@ -530,13 +533,13 @@ def p9(sc, a, b):
     def act(f):
         t = tf(f)
         x = suave(lin(f, a, b - 1))
-        z = (2 * H - 4.4) - 9.0 * suave((t - t_lo) / 3.6)
+        z = (2 * H - 4.4) - 4.4 * suave((t - t_lo) / 4.0)
         gancho(S, z, 0.0, 0.0, con_bulto=True)
         g = suave((t - t_ge) / 0.4)
         TR.brillo(c["aro"].data.materials[0], 9.0 * g * (0.8 + 0.2 * math.sin(t * 22)))
         TR.brillo(c["elec"], 5.0 * suave((t - t_ge - 0.3) / 0.5))
         mira = Vector((-1.0, 0, Z0 + 3.6)).lerp(Vector((-0.4, 0, Z0 + 1.2)), suave((t - t_gr) / 1.2) * (1 - 0.5 * g))
-        mirar(S["cam"], Vector((-9.5, -26.0, Z0 + 4.4)).lerp(Vector((-8.0, -16.5, Z0 + 4.2)), x), mira, lente=28, foco=Vector((-1.5, 0, Z0 + 3.6)))
+        mirar(S["cam"], Vector((-4.5, -26.0, Z0 + 4.4)).lerp(Vector((-3.5, -16.5, Z0 + 4.3)), x), mira, lente=28, foco=Vector((-1.5, 0, Z0 + 3.6)))
         return {}
     return {"actualizar": act}
 

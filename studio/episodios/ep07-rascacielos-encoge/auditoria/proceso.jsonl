@@ -1,1 +1,8 @@
 {"tipo": "trabajo", "id": "sesion ep07", "estado": "inicio", "n": 1, "ts": "2026-10-24T10:52:25-03:00"}
+{"tipo": "trabajo", "id": "render-planos muestras 40102481544", "estado": "inicio", "n": 2, "ts": "2026-10-24T11:26:31-03:00"}
+{"tipo": "trabajo", "id": "render-planos estilos 40102483108", "estado": "inicio", "n": 3, "ts": "2026-10-24T11:26:31-03:00"}
+{"tipo": "promesa", "hora": "12:15", "que": "muestras + cuadros de estilo", "dato": "render-planos ~10–20 min (Ep. 5: muestras ~10 min)", "n": 4, "ts": "2026-10-24T11:26:31-03:00"}
+{"tipo": "aviso", "que": "Puerta 3 r2 NO (1 bloqueante de texto: contador desactualizado en la ficha 2; arreglado). Tomás (12:3x) eligió seguir sin 3.ª ronda: el video final lo juzgan las puertas 6 y 7", "n": 5, "ts": "2026-10-24T11:39:35-03:00"}
+{"tipo": "chequeo", "id": "sesion ep07", "estado": "vivo (vigilante)", "n": 6, "ts": "2026-10-24T11:41:39-03:00"}
+{"tipo": "chequeo", "id": "render-planos estilos 40102483108", "estado": "vivo (vigilante) · in_progress/- · 4/5 trabajos", "n": 7, "ts": "2026-10-24T11:41:40-03:00"}
+{"tipo": "chequeo", "id": "render-planos muestras 40102481544", "estado": "vivo (vigilante) · completed/success · 14/14 trabajos", "n": 8, "ts": "2026-10-24T11:41:41-03:00"}

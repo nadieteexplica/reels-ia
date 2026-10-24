@@ -379,7 +379,7 @@ def graficos(im, f, k):
         if t >= t_ga:
             gx, gy = meta(5, f, "gata", (420, 1150))
             gy = max(560, min(900, gy - 200))
-            gx = max(260, min(820, gx))
+            gx = max(350, min(730, gx))
             pildora(im, "GATOS HIDRÁULICOS", gx, gy, fondo=AMARILLO, tinta=(24, 24, 28), s=pop(t - t_ga), tam=48)
     elif k == 6:
         pild(im, f, 6, "p2", "PASO 2 · DESARMAN", tw("Después", 12.0), P, tam=50)
