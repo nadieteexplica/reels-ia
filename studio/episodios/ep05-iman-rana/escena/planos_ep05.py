@@ -125,7 +125,7 @@ def p4(sc, a, b):
         x1 = suave(lin(t, t0, t0 + 0.6))
         x2 = sale(suave(lin(t, t0 + 0.5, T[4][1] - 0.05)))
         p = arriba0.lerp(arriba1, x1).lerp(lejos, x2)
-        tgt = (c + Vector((0, 0, 0.012))).lerp(Vector((0, 0, 0.85)), x2)
+        tgt = (c - Vector((0, 0, 0.012))).lerp(Vector((0, 0, 0.85)), x2)    # la rana en y ~640 (con +12 mm quedaba bajo "DENTRO")
         lente = 100 - 25 * x1 - 45 * x2
         mirar(cam, p, tgt, lente=lente, foco=Vector((0, 0, 0.9)) if x2 > 0.3 else c)
         return {"iman": pantalla(sc, cam, (0, 0, 0.9)), "rana": pantalla(sc, cam, (0, 0, RANA_Z))}
