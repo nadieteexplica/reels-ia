@@ -421,7 +421,10 @@ def p4(sc, a, b):
         late = suave((t - t_nu) / 0.4) * (0.75 + 0.25 * math.sin((t - t_nu) * 9))
         TR.brillo(mat_b, 10.0 * late)
         mirar(S["cam"], Vector((-30 + 8 * x, -86 + 14 * x, R + 9 - 2 * x)), Vector((2, 0, R - 5)), lente=40)
-        return {}
+        # el contorno del sombrero también se dibuja en el post (el alambre 3D no se veía en el render)
+        esq = [pantalla(sc, S["cam"], (sx * (TR.LX / 2 + 0.7), sy * (TR.LY / 2 + 0.7), Z0 + z))
+               for sx in (-1, 1) for sy in (-1, 1) for z in (2 * H - 0.3, 3 * H + 1.6)]
+        return {"techo": esq, "late": round(late, 3)}
     return {"actualizar": act}
 
 

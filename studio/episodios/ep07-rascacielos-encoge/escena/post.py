@@ -362,6 +362,40 @@ def contador(im, f, k):
         pildora(im, "ANTES: 40 PISOS", max(260, min(860, fx + 340)), max(440, fy + 60), fondo=(30, 32, 36), tinta=(255, 255, 255), tam=38)
 
 
+def _envolvente(pts):
+    pts = sorted(set(map(tuple, pts)))
+    if len(pts) < 3:
+        return pts
+    def cruz(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+    abajo, arriba = [], []
+    for p in pts:
+        while len(abajo) >= 2 and cruz(abajo[-2], abajo[-1], p) <= 0:
+            abajo.pop()
+        abajo.append(p)
+    for p in reversed(pts):
+        while len(arriba) >= 2 and cruz(arriba[-2], arriba[-1], p) <= 0:
+            arriba.pop()
+        arriba.append(p)
+    return abajo[:-1] + arriba[:-1]
+
+
+def contorno_techo(im, f):
+    """Plano 4: contorno naranja que late alrededor de todo el sombrero (el último piso y su techo), desde "nunca"."""
+    esq = meta(4, f, "techo", None)
+    late = meta(4, f, "late", 0.0) or 0.0
+    if not esq or late <= 0.01:
+        return
+    poli = _envolvente(esq)
+    capa = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(capa)
+    a = int(255 * min(1.0, late))
+    d.line(poli + [poli[0]], fill=(*NARANJO, a), width=12, joint="curve")
+    glow = capa.filter(ImageFilter.GaussianBlur(10))
+    im.paste(glow, (0, 0), glow)
+    im.paste(capa, (0, 0), capa)
+
+
 def graficos(im, f, k):
     t = t_de(f)
     if k in RAPIDO:
@@ -372,6 +406,7 @@ def graficos(im, f, k):
     if k == 3:
         pild(im, f, 3, "sinex", "SIN EXPLOSIONES", tw("Sin", 3.5), [(740, 330), (740, 420)])
     elif k == 4:
+        contorno_techo(im, f)
         pild(im, f, 4, "techo", "EL TECHO QUEDA ENTERO", tw("techo", 7.0), P, fondo=NARANJO, tinta=(255, 255, 255))
     elif k == 5:
         t_so, t_ga = tw("sombrero", 9.0), tw("gatos", 10.8)
