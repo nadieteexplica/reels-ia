@@ -115,9 +115,9 @@ jobs:
           python-version: "3.13"
       - run: |
           # apt con tiempo máximo y reintentos (el 23-oct se colgó 20+ min dos veces sin límite)
-          for i in 1 2; do
-            timeout 150 sudo apt-get -qq -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::ForceIPv4=true update \
-              && timeout 240 sudo apt-get -qq -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::ForceIPv4=true \
+          for i in 1; do
+            timeout 60 sudo apt-get -qq -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::ForceIPv4=true update \
+              && timeout 120 sudo apt-get -qq -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::ForceIPv4=true \
                  install -y --no-install-recommends ffmpeg > /dev/null && break
             echo "apt: intento $i falló"
           done
