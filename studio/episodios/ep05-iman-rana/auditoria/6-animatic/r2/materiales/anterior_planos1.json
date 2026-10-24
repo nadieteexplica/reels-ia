@@ -1,0 +1,200 @@
+[
+ {
+  "id": "A2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 10,
+  "segundo": "21.68",
+  "que": "El 'hueco' del paso 1 es un cilindro negro mate sin textura, con bordes perfectos y el interior negro plano. Desde arriba (21.68–21.96) se lee como un basurero de plástico, y es lo que más delata la maqueta en estos planos.",
+  "arreglo": "Darle material de acero con chorreados y óxido como el imán de P1, agregar una brida con pernos y una costura de soldadura arriba, y mostrar la pared interior metálica con un reflejo del cielo en vez de negro puro. Si Pete entra en el cenital, sirve como escala.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 10,
+  "segundo": "20.54",
+  "que": "[delator · medio] El hueco es un cilindro negro mate sin textura y con bordes perfectos. Desde arriba (21.68–21.96) parece un basurero de plástico.",
+  "arreglo": "Acero con chorreados y óxido, brida con pernos y costura de soldadura.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 10,
+  "segundo": "21.96",
+  "que": "[delator · medio] El interior del hueco es negro puro y plano.",
+  "arreglo": "Pared interior metálica con reflejo del cielo y luz rasante.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 9,
+  "segundo": "17.04",
+  "que": "[delator · medio] La base oscura con el agujero (y≈930–1000) es lisa, de un solo gris y con bordes perfectos.",
+  "arreglo": "Hormigón o acero con manchas, juntas, pernos de anclaje y polvo de sal en el borde.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 8,
+  "segundo": "13.54",
+  "que": "[delator · medio] Hay un objeto beige vertical desenfocado a la derecha de la rana (x≈700–760, y≈650–900) que parece un dedo detrás del vidrio.",
+  "arreglo": "Sacarlo del campo de cámara u oscurecerlo al color del metal.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 8,
+  "segundo": "13.54",
+  "que": "[delator · arriba] Hay una segunda mancha beige desenfocada arriba a la izquierda (x≈200, y≈80–200).",
+  "arreglo": "Igual que la anterior: sacarla del campo de cámara u oscurecerla.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D6",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 3,
+  "segundo": "5.38",
+  "que": "[delator · medio] Una mancha oscura con un parche beige cruza junto a la rana entre 5.20 y 5.67 y parece un objeto.",
+  "arreglo": "Sacar del campo esos pernos o postes.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D7",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 8,
+  "segundo": "13.54",
+  "que": "[delator · abajo] La boca del imán es un agujero negro plano, sin pared interior (y≈1350–1550).",
+  "arreglo": "Pared interior metálica con reflejo y algo de luz.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D8",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "6.34",
+  "que": "[delator · medio] El interior del tubo es negro opaco y la rana es una mancha café que parece hoja seca.",
+  "arreglo": "Iluminar el hueco desde abajo (blanco-cian, como la foto real 1) o quitar ese macro.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D9",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "6.88",
+  "que": "[delator · arriba] La rana flota sobre la boca del imán, entre dos varillas, y no dentro como dice la voz y como la pondría la física.",
+  "arreglo": "Bajarla hasta la boca del hueco o un poco más adentro.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D10",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.04",
+  "que": "[delator · arriba] Pete flota casi un cuerpo por encima del techo del imán. Con un imán de verdad flotaría en la boca del hueco.",
+  "arreglo": "Bajarlo hasta que los pies queden cerca del borde del hueco. Afecta también al plano del loop final.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D11",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.04",
+  "que": "[delator · medio] En el borde trasero del techo del imán (x≈700, y≈950) hay una pieza gris inclinada que se lee como aleta o rampa.",
+  "arreglo": "Sacarla o girarla para que no apunte al punto de fuga.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D12",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 9,
+  "segundo": "17.04",
+  "que": "[delator · arriba] Las dos plumas de vapor son columnas rectas como velas, con la misma forma y sin viento (también en P1 0.04).",
+  "arreglo": "Darle a cada una una deriva lateral distinta y anchos diferentes.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D13",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 2,
+  "segundo": "1.99",
+  "que": "[delator · abajo] El suelo agrietado ocupa ~40 % del cuadro, con placas del mismo tamaño, el mismo reborde blanco y todo enfocado hasta el primer plano (lo mismo en P9 17.04).",
+  "arreglo": "Variar el tamaño de las placas, desenfocar el primer plano y bajar la proporción de suelo.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D14",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 7,
+  "segundo": "10.34",
+  "que": "[delator · medio] El tejido de fondo son esferas rojas brillantes como plástico, con venas dibujadas y rojo saturado.",
+  "arreglo": "Bajar el especular y la saturación, darle textura húmeda subsuperficial y deformar las esferas perfectas.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D15",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "7.42",
+  "que": "[delator · abajo] La plataforma del imán de la rana es una losa lisa de un solo azul-gris.",
+  "arreglo": "Agregar mugre, juntas y marcas de uso.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D16",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "9.26",
+  "que": "[delator · medio] El acercamiento a la rana termina fuera de foco: la cara queda borrosa llenando el cuadro.",
+  "arreglo": "Que el foco siga al ojo durante el acercamiento.",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D17",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "9.34",
+  "que": "[delator · arriba] En el borde izquierdo hay una franja blanca vertical (una pluma de vapor cortada, x≈0–40, y≈0–500).",
+  "arreglo": "Encuadrar la torre o sacar la pluma del borde.",
+  "de": "planos1",
+  "asignado": "planos1"
+ }
+]

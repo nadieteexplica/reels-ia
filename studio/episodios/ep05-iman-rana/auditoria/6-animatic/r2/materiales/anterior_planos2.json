@@ -1,0 +1,178 @@
+[
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 16,
+  "segundo": "37.51",
+  "que": "En el remate, Pete flota cerca de 1 m sobre el imán, fuera del hueco (la rana flotaba adentro), y sus botas quedan justo en la línea del horizonte y a la altura de la base de las torres: se puede leer como 'parado allá lejos'. Además flota con la pose casi fija.",
+  "arreglo": "Bajar la cámara 10–15° para que Pete quede recortado contra el cielo, con el borde del imán justo bajo sus pies. Que flote a la altura de la boca del hueco, con un loop de brazos buscando el equilibrio y la cabeza mirando sus pies (sorpresa).",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D18",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "24.84",
+  "que": "[delator · medio] Unos 20 cubitos oscuros idénticos repartidos por la mesa (repetición, sin función).",
+  "arreglo": "Sacarlos, o dejar 1–2 objetos de laboratorio distintos (una moneda como escala).",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D19",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "24.22",
+  "que": "[delator · medio] El imán de la rana es un disco metálico de unos 7 cm sobre una mesa. A esa escala parece un juguete: el imán real de 16–20 T es una máquina grande.",
+  "arreglo": "Que la base del tubo sea el tope de una carcasa grande que sale del cuadro.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D20",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "24.84",
+  "que": "[delator · abajo] La mesa es lisa, de un solo azul gris, con el borde perfecto.",
+  "arreglo": "Agregar rayas finas, huellas o polvo, y biselar un poco el borde.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D21",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "25.54",
+  "que": "[delator · medio] El cilindro del hueco (paso 1) es negro puro y liso, sin textura.",
+  "arreglo": "Acero oscuro con rayas y reflejo, o un tubo hueco con la pared interior iluminada.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D22",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "27.37",
+  "que": "[delator · medio] Las 'bobinas' son discos de cobre lisos con bordes perfectos y sin espiras, y bajan del cielo sin grúa.",
+  "arreglo": "Mostrar las vueltas de alambre en el canto y darles reflejo metálico; bajada con leve vaivén o un cable de grúa que entra desde arriba.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D23",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "25.54",
+  "que": "[delator · arriba] Los cerros son siluetas gris violeta planas, de recorte, distintas de los cerros cafés con relieve de P13 y P16.",
+  "arreglo": "Usar los mismos cerros y la misma luz de P13, con bruma de distancia.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D24",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 13,
+  "segundo": "28.96",
+  "que": "[delator · abajo] El hueco del imán es una elipse de negro puro: no se ve la pared interior.",
+  "arreglo": "Pared interior de acero con el lado lejano iluminado, o un brillo tenue adentro.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D25",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 13,
+  "segundo": "28.60",
+  "que": "[delator · arriba] Hay un anillo de pernos suspendido en el aire sin la placa que los sostiene.",
+  "arreglo": "Emparentar los pernos con la brida y verificar que la placa se vea durante la bajada.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D26",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 13,
+  "segundo": "29.32",
+  "que": "[delator · arriba] Dos plumas de vapor angostas y verticales con la misma forma (repetición), sin volumen que se abra.",
+  "arreglo": "Plumas anchas que se abran hacia arriba, con deriva de viento y forma y tiempo distintos.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D27",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 14,
+  "segundo": "32.58",
+  "que": "[delator · medio] El cobre de las espiras es naranja mate, como plástico o madera, sin reflejo metálico ni oxidación.",
+  "arreglo": "Shader metálico con rugosidad variable y oxidación oscura en las ranuras.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D28",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 14,
+  "segundo": "34.05",
+  "que": "[delator · abajo] Seis cables idénticos, perfectamente rectos y paralelos, como cintas planas con sombras largas: se leen como rieles o aletas que van al punto de fuga.",
+  "arreglo": "Cables redondos con aislación negra, curva leve y separación irregular, o una línea aérea sobre torres.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D29",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 14,
+  "segundo": "34.34",
+  "que": "[delator · arriba] Las torres de enfriamiento son de concreto liso y uniforme, sin manchas de agua.",
+  "arreglo": "Chorreados verticales y variación de tono en el concreto.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D30",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 15,
+  "segundo": "35.59",
+  "que": "[delator · medio] A la izquierda hay una forma color durazno a rayas, curva y desenfocada, que no se identifica y parece un brillo u objeto suelto.",
+  "arreglo": "Reencuadrar para que no quede detrás de Pete, u oscurecerla.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D31",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 16,
+  "segundo": "36.74",
+  "que": "[delator · medio] Una aleta triangular oscura sobresale del borde del fondo del imán (los cables vistos de punta hacia el punto de fuga) y se ve en todo el plano.",
+  "arreglo": "Que los cables salgan hacia el costado, esconderlos tras el borde o sacarlos de este plano.",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D32",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 16,
+  "segundo": "37.51",
+  "que": "[delator · medio] Las botas de Pete coinciden con la línea del horizonte y con la base de las torres, así que puede leerse como 'parado lejos'. Además flota cerca de 1 m sobre el imán y no en la boca del hueco.",
+  "arreglo": "Bajar la cámara para que quede recortado contra el cielo con el borde del imán justo debajo, y que flote a la altura de la boca del hueco.",
+  "de": "planos2",
+  "asignado": "planos2"
+ }
+]

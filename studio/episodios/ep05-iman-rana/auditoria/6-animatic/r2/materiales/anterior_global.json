@@ -1,0 +1,123 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "en el cuadro 0 (portada) y en todo el plano 16 se ve una aleta gris vertical detrás del borde del imán, centro-derecha (x≈700, y≈930): son los cables al reactor vistos de canto, leídos como una pieza que sale del imán",
+  "arreglo": "ocultar o bajar los cables en esos dos planos (no hacen falta en el gancho), o sacarlos del imán hacia un costado fuera de cuadro",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "A3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 10,
+  "segundo": "20.00",
+  "que": "el 'hueco' (planos 10–12, 19.65–28.2 s) es un cilindro negro mate sin textura ni desgaste, de bordes perfectos, sobre una base gris lisa (planos 9–12, desde 17.0 s): es lo único de juguete en un mundo real y dura ~10 s; deja el realismo en 7",
+  "arreglo": "cambio de material, sin re-animar: al cilindro el mismo acero sucio del imán (chorreados, óxido, una brida con pernos, bisel en los bordes) y a la base hormigón con manchas, polvo y cantos gastados; que la boca del cilindro muestre que es hueco (borde iluminado, interior con reflejo)",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "24.34",
+  "que": "'ni tu mano cabe' no tiene imagen: en 24 s se ve el tubo chico sobre una plataforma y en 25 s ya es Pete junto al pilar; no hay mano en los cuadros vistos (material insuficiente para descartar una mano entre 24.3 y 25.0)",
+  "arreglo": "un plano de 1 s con una mano con guante de proporción real junto a la boca de 3 cm del tubo de la rana (o la mano intentando entrar y chocando con el borde)",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D33",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 10,
+  "segundo": "20.00",
+  "que": "[delator · medio] cilindro 'hueco' negro mate de un solo color, sin rayas, mugre ni pernos, bordes perfectos (también 21 s y 25–27 s)",
+  "arreglo": "acero sucio como el imán: chorreados, óxido, brida apernada, bisel; boca con reflejo para que se lea hueco",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D34",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 9,
+  "segundo": "18.00",
+  "que": "[delator · abajo] base circular gris lisa, sin desgaste y de canto perfecto (17–27 s)",
+  "arreglo": "hormigón con manchas, polvo de sal acumulado en el borde y cantos gastados",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D35",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "[delator · medio] aleta gris vertical detrás del borde del imán (cables al punto de fuga vistos de canto); igual en el plano 16 (36.7–39.35 s)",
+  "arreglo": "ocultar o bajar los cables en estos planos, o sacarlos hacia un costado",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D36",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 14,
+  "segundo": "33.00",
+  "que": "[delator · medio] el haz de cables rectos y paralelos que va al centro del cuadro hacia las torres se lee como una rampa o riel que sube (33–35 s)",
+  "arreglo": "cámara más lateral para que crucen en diagonal, cables con curva, tierra encima y sombra de contacto, o enterrarlos en zanja",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D37",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "24.00",
+  "que": "[delator · medio] plano pálido de luz pareja, sin negros, con disco metálico liso y pernos cúbicos perfectos; distinto al resto del video",
+  "arreglo": "el mismo sol bajo de costado del salar, rayas y huellas en el disco, profundidad de campo",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D38",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 3,
+  "segundo": "6.00",
+  "que": "[delator · medio] interior del tubo visto desde arriba es negro puro plano, y la rana no se ve en ese cuadro",
+  "arreglo": "luz de rebote o reflejo en la pared interior y la rana visible al fondo",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D39",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 8,
+  "segundo": "13.00",
+  "que": "[delator · abajo] la boca del soporte bajo el tubo es un disco negro puro plano",
+  "arreglo": "degradado y reflejo en la pared interior del agujero",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D40",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "[delator · arriba] Pete flota varios metros sobre el imán y no sobre la boca del hueco, con los pies contra los cerros (también 37–38 s)",
+  "arreglo": "bajarlo a justo sobre la boca del hueco y bajar la cámara para que todo su cuerpo se recorte contra el cielo",
+  "de": "global",
+  "asignado": "global"
+ }
+]
