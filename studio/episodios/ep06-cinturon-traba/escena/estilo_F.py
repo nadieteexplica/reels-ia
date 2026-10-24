@@ -37,7 +37,7 @@ for q, x in xs.items():
     else:
         a.location = (x, 0, 0); reg.append(f"{q}: sin esqueleto Mixamo")
 centro = Vector((0, 0, 1.0))
-pos = Vector((env("CAM_X", 0.6), env("CAM_Y", 7.5), env("CAM_Z", 1.2)))
+pos = Vector((env("CAM_X", 0.0), env("CAM_Y", 8.6), env("CAM_Z", 1.15)))
 f = E.luz_area(sc, "Rebote", tuple(pos + Vector((-1.5, 0, 1.0))), tuple(centro), env("FILL", 30), (1.0, 0.9, 0.82), 2.0, spread=40)
 f.visible_glossy = False
 E.camara(sc, pos, centro + Vector((0, 0, 0.0)), lente=env("LENTE", 35), fstop=env("FSTOP", 8.0))

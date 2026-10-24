@@ -1,4 +1,4 @@
-"""Post del Ep. 5: arma los cuadros finales (1080x1920) desde los renders de plano.py.
+"""Post del Ep. 6 (copiado del Ep. 5): arma los cuadros finales (1080x1920) desde los renders de plano.py.
 
 Uso: python3 post.py <carpeta_render> <salida>   (OUT=carpeta de datos, LISTA=cuadros opcionales, MUESTRAS=1 en pruebas)
 - Gradación común (grado.py), píldoras (SIN HILOS, IMÁN, AGUA, UN POQUITO, MILES DE VECES, SIMULACIÓN fija en la parte
@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.abspath(os.path.join(HERE, "../../../plantilla")))
-import ep05 as E
+import kit5 as E
 import graficos as G
 from grado import grado
 
@@ -30,11 +30,13 @@ FONTS = os.path.abspath(os.path.join(HERE, "../../../plantilla/fonts"))
 FONT = os.path.join(FONTS, "Inter-Black.otf")
 FONT_B = os.path.join(FONTS, "Inter-ExtraBold.otf")
 AMARILLO = (255, 210, 63)          # palabra activa (manual §6) y SIMULACIÓN
-AZUL = (60, 140, 255)              # agua
-CIAN = (40, 205, 255)              # líneas del imán
-NARANJO = (255, 140, 30)           # el empujón del imán
-GRIS = (150, 156, 166)             # la gravedad
-CLAVE = {"AGUA": AZUL, "TESLAS": NARANJO, "GIGAVATIO": NARANJO}
+ROJO = (235, 60, 45)               # rápido / se traba (CLAC)
+VERDE = (70, 200, 110)             # lento / te deja
+CIAN = (40, 205, 255)              # el sensor del auto (la bolita)
+NARANJO = (255, 140, 30)           # fuerzas (flechas)
+AMBAR = (245, 170, 40)             # 12–27°: puede trabarse
+GRIS = (150, 156, 166)
+CLAVE = {"RÁPIDO": ROJO, "LENTO": VERDE, "27°": ROJO, "CLAC": ROJO}
 BOX = (120, 888, 1000, 1250)
 META = {}
 for p in sorted(glob.glob(os.path.join(src, "meta", "*.json"))):
@@ -144,7 +146,7 @@ def suave(x):
     return x * x * (3 - 2 * x)
 
 # ---------------- subtítulos (palabra por palabra; cifras juntas) ----------------
-NUMEROS = [("cuarenta", "40")]
+NUMEROS = [("veintisiete", "27°")]
 
 
 def limpiar(w):
@@ -283,76 +285,81 @@ def tw(prefijo, desde=0.0):
     return E.t_palabra(prefijo, desde)
 
 
-def simulacion(im):
-    pildora(im, "SIMULACIÓN", 250, 330, fondo=AMARILLO, tinta=(24, 24, 28), tam=44)
+def inclinometro(im, grados, cx=250, cy=380, r=120, bandas=False, s=1.0):
+    """Dial del inclinómetro (vista de costado del auto que se inclina). Con bandas: 12–27° ámbar (PUEDE) y más de 27°
+    rojo (SE TRABA), como pidió la puerta 3."""
+    if s <= 0.02:
+        return
+    r = r * s
+    lay = Image.new("RGBA", im.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
+    d.ellipse((cx - r - 10, cy - r - 10, cx + r + 10, cy + r + 10), fill=(18, 18, 22, 200))
+    def arco(g0, g1, col, w):
+        d.arc((cx - r, cy - r, cx + r, cy + r), start=180 + g0 * 2, end=180 + g1 * 2, fill=col, width=int(w))
+    arco(0, 12, (200, 200, 205, 255), 14 * s)
+    if bandas:
+        arco(12, 27, (*AMBAR, 255), 18 * s); arco(27, 45, (*ROJO, 255), 22 * s)
+        fb = ImageFont.truetype(FONT, int(30 * s))
+        d.text((cx - r * 0.95, cy + r * 0.28), "PUEDE", font=fb, fill=(*AMBAR, 255))
+        d.text((cx - r * 0.10, cy + r * 0.28), "SE TRABA", font=fb, fill=(*ROJO, 255))
+    else:
+        arco(12, 45, (200, 200, 205, 120), 10 * s)
+    a = math.radians(180 + grados * 2)
+    d.line((cx, cy, cx + math.cos(a) * r * 0.92, cy + math.sin(a) * r * 0.92), fill=(255, 255, 255, 255), width=int(9 * s))
+    d.ellipse((cx - 12 * s, cy - 12 * s, cx + 12 * s, cy + 12 * s), fill=(255, 255, 255, 255))
+    f = ImageFont.truetype(FONT, int(54 * s))
+    txt = f"{int(round(grados))}°"
+    d.text((cx - f.getlength(txt) / 2, cy - r * 0.62), txt, font=f, fill=(255, 255, 255, 255), stroke_width=4, stroke_fill=(0, 0, 0, 255))
+    im.paste(lay, (0, 0), lay)
+    G.registrar("contador", (cx - r - 10, cy - r - 10, cx + r + 10, cy + r + 10))
 
 
 def graficos(im, f, k):
     t = t_de(f)
-    if k == 1:
-        # desde el cuadro 0: sin esto, la rana en el tubo azul se leía "en un acuario" (puerta 6 r1, gancho 7)
-        pildora(im, "EN EL AIRE", 540, 400)
-    elif k == 2:
-        t0 = tw("nadie") + 0.1
+    if k == 3:
+        t0 = T0(3) + 0.8
         if t > t0:
-            pildora(im, "SIN HILOS", 540, 400, s=pop(t - t0))
-        else:
-            pildora(im, "EN EL AIRE", 540, 400)
-    elif k == 3:
-        t0 = tw("imán", 3.0)
-        if t > t0:
-            pildora(im, "IMÁN", 540, 400, fondo=CIAN, tinta=(10, 30, 40), s=pop(t - t0))
+            pildora(im, "LENTO", 300, 360, fondo=VERDE, tinta=(255, 255, 255), s=pop(t - t0))
     elif k == 5:
-        t0 = tw("agua", 6.0) - 0.05
+        t0 = tw("carrete", 6.0)
         if t > t0:
-            pildora(im, "AGUA", 540, 400, fondo=AZUL, tinta=(255, 255, 255), s=pop(t - t0))
-    elif k == 6:
-        if t < tw("empuja", 8.0):
-            pildora(im, "AGUA", 540, 400, fondo=AZUL, tinta=(255, 255, 255))
-        t0 = tw("poquito", 10.0)
+            pildora(im, "CARRETE", 540, 425, s=pop(t - t0))
+    elif k == 7:
+        t0 = T0(7) + 0.2
         if t > t0:
-            pildora(im, "UN POQUITO", 540, 400, s=pop(t - t0))
+            L = 140 + 60 * suave(min(1, (t - t0) / 1.2))
+            flecha(im, 860, 640, 860, 640 - L, ROJO, ancho=14)
     elif k == 8:
-        rx, y0 = meta(8, f, "rana", (440, 650))
-        x = min(980, max(640, rx + 230))
-        t_g, t_i, t_w = T0(8) + 0.3, T0(8) + 0.8, tw("gana", 14.0)
-        if t > t_g:
-            L = 170 * sale(min(1, (t - t_g) / 0.3))
-            flecha(im, x + 40, y0, x + 40, y0 + L, GRIS, ancho=16)
-            pildora(im, "GRAVEDAD", x + 40, y0 + 260, fondo=GRIS, tinta=(255, 255, 255), tam=38, s=pop(t - t_g))
-        if t > t_i:
-            L = 120 + 120 * suave(min(1, (t - t_i) / max(0.3, t_w + 0.3 - t_i)))
-            flecha(im, x - 40, y0, x - 40, y0 - L, NARANJO, ancho=16)
-            pildora(im, "IMÁN", x - 40, y0 - L - 70, fondo=NARANJO, tinta=(255, 255, 255), tam=38, s=pop(t - t_i))
+        t0 = T0(8) + 0.6
+        if t > t0:
+            pildora(im, "FUERZA DEL GIRO", 540, 425, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t - t0))
+            L = 150 * sale(min(1, (t - t0) / 0.4))
+            flecha(im, 640, 760, 640 + L, 760 - L * 0.4, NARANJO, ancho=14)
     elif k == 11:
-        cx, cy = meta(11, f, "iman_refri", (540, 760))
-        t0 = T0(11) + 0.3
+        t0 = T0(11) + 0.2
         if t > t0:
-            flecha(im, cx, cy - 40, cx, cy - 40 - 26 * sale(min(1, (t - t0) / 0.3)), NARANJO, ancho=8)
-        t1 = tw("miles", 21.0)
-        if t > t1:
-            pildora(im, "MILES DE VECES", 540, 420, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t - t1))
-            pildora(im, "MÁS DÉBIL", 540, 540, tam=44, s=pop(t - t1 - 0.25))
-    if 12 <= k <= 17 and t > T0(12) + 0.3:
-        simulacion(im)
-    if k == 14:
-        t0 = tw("cuarenta", 29.0) + 0.1
+            flecha(im, 860, 640, 860, 640 - 70 * sale(min(1, (t - t0) / 0.3)), VERDE, ancho=8)
+    elif k in (13, 21):
+        g = meta(k, f, "inclinacion", 0.0) or 0.0
+        inclinometro(im, max(0.0, g), cx=250, cy=400, r=95)
+    elif k == 17:
+        t0 = tw("bolita", 22.0)
         if t > t0:
-            pildora(im, "≈ 40 TESLAS", 540, 440, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t - t0))
-        t1 = tw("doble", 30.0)
-        if t > t1:
-            pildora(im, "MÁS DEL DOBLE", 540, 560, tam=44, s=pop(t - t1))
-    elif k == 15:
-        t0 = tw("gigavatio", 32.0)
-        if t > t0:
-            pildora(im, "≈ 1 GIGAVATIO", 540, 440, fondo=NARANJO, tinta=(255, 255, 255), s=pop(t - t0))
-        t1 = tw("reactor", 34.0)
-        if t > t1:
-            pildora(im, "1 REACTOR NUCLEAR", 540, 560, tam=44, s=pop(t - t1))
+            pildora(im, "BOLITA DE ACERO", 540, 425, fondo=CIAN, tinta=(10, 30, 40), s=pop(t - t0))
     elif k == 18:
-        t0 = tw("sin", 40.0)
+        pildora(im, "TAMBIÉN EN FRENADAS", 540, 390, tam=40, s=pop(t - T0(18)))
+        t0 = T0(18) + 0.6
         if t > t0:
-            pildora(im, "SIN HILOS", 540, 400, s=pop(t - t0))
+            flecha(im, 420, 900, 420, 900 - 110 * sale(min(1, (t - t0) / 0.3)), CIAN, ancho=12)
+    elif k == 19:
+        tv = tw("veintisiete", 26.0)
+        g = 12 + 15 * suave(min(1, (t - T0(19)) / max(0.3, tv - T0(19)))) if t < tv else 27 + 3 * suave(min(1, (t - tv) / 0.5))
+        inclinometro(im, g, cx=540, cy=470, r=150, bandas=True)
+    elif k == 22:
+        t0 = T0(22) + 0.4
+        if t > t0:
+            flecha(im, 420, 520, 420 - 70 * sale(min(1, (t - t0) / 0.3)), 520 - 70 * sale(min(1, (t - t0) / 0.3)), VERDE, ancho=10)
+    elif k == 23:
+        pildora(im, "LENTO", 540, 310, fondo=VERDE, tinta=(255, 255, 255), s=pop(t - T0(23)))
 
 
 def T0(k):
@@ -382,5 +389,5 @@ if __name__ == "__main__":
     json.dump(SUB_LOG, open(os.path.join(OUT, "subs_log.json"), "w"))
     G.guardar(os.path.join(OUT, "graficos.json"))
     json.dump({"T": {str(k): list(v) for k, v in E.T.items()}, "FR": {str(k): list(v) for k, v in FR.items()}, "END": END},
-              open(os.path.join(OUT, "ep05_planos.json"), "w"))
+              open(os.path.join(OUT, "ep06_planos.json"), "w"))
     print("ok post", len(list(cuadros)) - len(faltan), "cuadros; faltan", len(faltan), faltan[:20])

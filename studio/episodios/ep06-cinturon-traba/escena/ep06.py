@@ -26,12 +26,18 @@ SENTADO_FBX = "Sitting.Laughing.fbx"
 # asientos (centro de la cadera sentada, en coordenadas del auto; medidos en el modelo: delanteros y ≈ 0,27, banca y ≈ 1,23)
 # medidos con rayos en el modelo: cojín delantero z 0,92 (y −0,05…0,3), respaldo y 0,4–0,6; tablero arriba z 1,31–1,36
 # (y −0,6…−0,35), cara del tablero y −0,33; banca de atrás z 0,95 (y 0,8–1,0), respaldo y 1,2–1,35; pilar B x ±0,72, y 0,7–0,85
-ASIENTO = {"piloto": (0.37, 0.30, 1.00), "caballero": (-0.37, 0.30, 1.00),
-           "doctor": (0.40, 1.05, 1.03), "mascara": (-0.40, 1.05, 1.03)}
-PILAR_GUIA = {"caballero": (-0.68, 0.74, 1.45), "piloto": (0.68, 0.74, 1.45),
-              "mascara": (-0.68, 1.62, 1.42), "doctor": (0.68, 1.62, 1.42)}
-RETRACTOR = (-0.70, 0.78, 0.75)      # abajo en el pilar B del copiloto, a la altura del asiento
-TABLERO_CENTRO = (0.0, -0.42, 1.36)
+# medido con rayos en el modelo (23-oct): cojín adelante z 0,92 y respaldo en y 0,34–0,54; cojín atrás z 0,95 y respaldo en
+# y 1,1–1,3; techo por dentro a 1,73–1,79; tablero arriba z ~1,32 entre y −0,55 y −0,29; parabrisas muy inclinado de
+# (y −0,55, z 1,33) a (y −0,15, z 1,70); pilar B en y ~0,40–0,45 (cara de adentro en |x| 0,59); pilar C en y ~1,2–1,4.
+ASIENTO = {"piloto": (0.37, 0.20, 1.00), "caballero": (-0.37, 0.20, 1.00),
+           "doctor": (0.40, 0.95, 1.03), "mascara": (-0.40, 0.95, 1.03)}
+PILAR_GUIA = {"caballero": (-0.60, 0.45, 1.55), "piloto": (0.60, 0.45, 1.55),
+              "mascara": (-0.62, 1.25, 1.55), "doctor": (0.62, 1.25, 1.55)}
+RETRACTOR = (-0.62, 0.45, 0.75)      # abajo en el pilar B del copiloto, a la altura del asiento
+TABLERO_CENTRO = (0.0, -0.40, 1.34)
+BOLSA = (0.0, -0.40, 1.36)
+# el techo de la cabina queda a 0,84 m del cojín: con su altura de Mixamo (1,77–1,97 m) las cabezas lo atraviesan
+ESCALA = {"caballero": 0.80, "piloto": 0.87, "mascara": 0.87, "doctor": 0.87}
 
 
 SOL_AZ_CERRO = 270.0     # en la subida (E3): de costado puro desde el lado del copiloto, para que la ladera reciba luz rasante
@@ -118,7 +124,7 @@ def cerro_roca(sc, pendiente=30.0, origen=(0.0, -2.0, 0.0), largo=20.0, ancho=30
     g = bpy.context.object; g.name = "Cerro"
     for v in g.data.vertices:
         x = v.co.x * ancho; y = -v.co.y * largo - largo / 2      # de y = 0 a y = −largo
-        z = max(0.0, -y) * t
+        z = min(max(0.0, -y), largo * 0.92) * t        # arriba, una cima plana (plano 21)
         # precipicio del lado −x (donde mira el de la máscara): el borde cae
         if x < -6:
             z -= (-6 - x) ** 1.6 * 0.9
@@ -142,13 +148,13 @@ def cerro_roca(sc, pendiente=30.0, origen=(0.0, -2.0, 0.0), largo=20.0, ancho=30
     roca = mat_roca("roca_suelta", (0.34, 0.25, 0.2), escala=2.0)
     for i in range(45):
         y = -random.uniform(0, largo * 0.9); x = random.choice((-1, 1)) * random.uniform(2.4, 7)
-        z = max(0.0, -y) * t
+        z = min(max(0.0, -y), largo * 0.92) * t
         bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=random.uniform(0.15, 0.6), location=(ox + x, oy + y, oz + z))
         p = bpy.context.object; p.scale = (1, random.uniform(0.6, 1.3), random.uniform(0.4, 0.8))
         p.rotation_euler = (random.random() * 3, random.random() * 3, random.random() * 3)
         dd = p.modifiers.new("d", "DISPLACE"); tt = bpy.data.textures.new(f"p{i}", "CLOUDS"); tt.noise_scale = 0.4; dd.texture = tt; dd.strength = 0.12
         liso(p, 180); asignar(p, roca)
-    return lambda y: max(0.0, -(y - oy)) * t + oz
+    return lambda y: min(max(0.0, -(y - oy)), largo * 0.92) * t + oz
 
 
 # ---------------------------------------------------------------- el 4x4
@@ -191,16 +197,40 @@ def auto(sc, sin_vidrios=False):
     for o in nuevos:
         if o.parent is None:
             o.parent = raiz
-        if o.type == "MESH" and "Glass" in o.name and sin_vidrios:
-            o.hide_render = True
+        if o.type == "MESH" and "Glass" in o.name:
+            o.hide_render = sin_vidrios
+            # en Cycles el vidrio con transmisión corta el sol directo: la cabina quedaba negra. El vidrio refleja
+            # igual, pero deja pasar la sombra (la luz del sol entra por las ventanas como en la vida real).
+            o.visible_shadow = False
     for m in {s.material for o in nuevos if o.type == "MESH" for s in o.material_slots if s.material}:
         if "glass" not in m.name.lower():
             ensuciar(m)
         else:
-            b = next((n for n in m.node_tree.nodes if n.type == "BSDF_PRINCIPLED"), None)
-            if b:
-                b.inputs["Roughness"].default_value = 0.08   # vidrio con polvo: un poco de difusión
+            vidrio_delgado(m)
     return raiz
+
+
+def vidrio_delgado(m):
+    """El vidrio del modelo era alfa con una textura en grilla (oscuro y con cuadritos desde adentro). Lo cambio por vidrio
+    delgado: transparente levemente verdoso + reflejo según Fresnel, con polvo que lo opaca un poco en manchas."""
+    nt = m.node_tree
+    nt.nodes.clear()
+    out = nt.nodes.new("ShaderNodeOutputMaterial")
+    tr = nt.nodes.new("ShaderNodeBsdfTransparent"); tr.inputs["Color"].default_value = (0.86, 0.9, 0.88, 1)
+    gl = nt.nodes.new("ShaderNodeBsdfGlossy"); gl.inputs["Roughness"].default_value = 0.04
+    fr = nt.nodes.new("ShaderNodeFresnel"); fr.inputs["IOR"].default_value = 1.52
+    nz = _ruido(nt, escala=6.0, detalle=8)
+    polvo = _mapa(nt, nz.outputs["Fac"], 0.0, 0.10); polvo.inputs["From Min"].default_value = 0.45; polvo.inputs["From Max"].default_value = 0.75
+    df = nt.nodes.new("ShaderNodeBsdfDiffuse"); df.inputs["Color"].default_value = (0.5, 0.42, 0.33, 1)
+    mx1 = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(fr.outputs[0], mx1.inputs[0]); nt.links.new(tr.outputs[0], mx1.inputs[1]); nt.links.new(gl.outputs[0], mx1.inputs[2])
+    mx2 = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(polvo.outputs[0], mx2.inputs[0]); nt.links.new(mx1.outputs[0], mx2.inputs[1]); nt.links.new(df.outputs[0], mx2.inputs[2])
+    nt.links.new(mx2.outputs[0], out.inputs["Surface"])
+    try:
+        m.surface_render_method = "BLENDED"
+    except Exception:
+        pass
 
 
 EJE_TRASERO_Y = 1.44     # contacto de la rueda de atrás con el suelo (medido en el modelo; trompa a −y)
@@ -214,6 +244,8 @@ def poner_auto(raiz, grados=0.0, y_contacto=EJE_TRASERO_Y, z_contacto=0.0):
     raiz.rotation_euler = (math.radians(-grados), 0, 0)
     raiz.location = Vector((0, y_contacto, z_contacto)) - (R @ piv)
     bpy.context.view_layer.update()
+    global MARCO
+    MARCO = raiz.matrix_world.copy()
 
 
 # ---------------------------------------------------------------- bolsa de papas genérica
@@ -261,11 +293,20 @@ def personaje(sc, quien):
     """Importa un personaje de Mixamo, le baja el brillo (el especular de Mixamo lo deja de plástico mojado), le borra la
     acción en T y devuelve el armature."""
     antes = set(bpy.data.objects)
-    bpy.ops.import_scene.fbx(filepath=asset(FBX[quien]), automatic_bone_orientation=False)
+    ruta = os.path.join(K.ASSETS, FBX[quien])
+    proxy = not os.path.isfile(ruta) and os.path.isfile(os.environ.get("PROXY_FBX", ""))
+    if not proxy:
+        ruta = asset(FBX[quien])
+    bpy.ops.import_scene.fbx(filepath=os.environ["PROXY_FBX"] if proxy else ruta, automatic_bone_orientation=False)
     nuevos = [o for o in bpy.data.objects if o not in antes]
     arm = next(o for o in nuevos if o.type == "ARMATURE")
     arm.animation_data_clear()
     arm.name = quien
+    arm.scale = arm.scale * ESCALA.get(quien, 1.0)
+    bpy.context.view_layer.update()
+    if proxy:
+        maniqui(sc, arm, quien)
+        return arm
     for m in {s.material for o in nuevos if o.type == "MESH" for s in o.material_slots if s.material}:
         b = next((n for n in m.node_tree.nodes if n.type == "BSDF_PRINCIPLED"), None) if m.node_tree else None
         if not b:
@@ -285,6 +326,43 @@ def personaje(sc, quien):
             liso(o, 180)
             o["personaje"] = quien
     return arm
+
+
+def maniqui(sc, arm, quien):
+    """Sólo pruebas locales (los personajes están en el repo privado): un maniquí de cápsulas colgadas de los huesos de un
+    esqueleto Mixamo (PROXY_FBX), con las proporciones del personaje, para ajustar cámaras, poses y cinturones."""
+    bpy.context.view_layer.update()
+    color = {"caballero": (0.45, 0.42, 0.38), "piloto": (0.6, 0.08, 0.05), "mascara": (0.1, 0.1, 0.1), "doctor": (0.3, 0.6, 0.6)}[quien]
+    mat = K.mat_pintura("maniqui_" + quien, color)
+    radio = {"Hips": 0.13, "Spine": 0.14, "Spine1": 0.15, "Spine2": 0.16, "Neck": 0.05, "Head": 0.10, "Shoulder": 0.05,
+             "Arm": 0.055, "ForeArm": 0.045, "Hand": 0.04, "UpLeg": 0.08, "Leg": 0.06, "Foot": 0.045}
+    for pb in arm.pose.bones:
+        n = pb.name.split(":")[-1]
+        clave = next((k for k in sorted(radio, key=len, reverse=True) if n.endswith(k) and not n.endswith("Top_End")), None)
+        if clave is None or "Index" in n or "Thumb" in n or "Toe" in n:
+            continue
+        h = (arm.matrix_world @ pb.bone.head_local); t = (arm.matrix_world @ pb.bone.tail_local)
+        largo = max((t - h).length, 0.02)
+        r = radio[clave]
+        if clave == "Head":
+            bpy.ops.mesh.primitive_uv_sphere_add(radius=r, location=h + (t - h) * 0.5)
+        else:
+            bpy.ops.mesh.primitive_cylinder_add(radius=r, depth=largo, location=(h + t) / 2)
+            o = bpy.context.object
+            o.rotation_mode = "QUATERNION"; o.rotation_quaternion = Vector((0, 0, 1)).rotation_difference((t - h).normalized())
+        o = bpy.context.object; o.name = f"mq_{quien}_{n}"; asignar(o, mat); o["personaje"] = quien
+        mw = o.matrix_world.copy()
+        o.parent = arm; o.parent_type = "BONE"; o.parent_bone = pb.name
+        bpy.context.view_layer.update()
+        o.matrix_world = mw
+
+
+def sentar_a_mano(arm):
+    """Sin la pose de sentado (pruebas locales): muslos adelante, piernas abajo, pies adelante."""
+    for lado in ("Left", "Right"):
+        apuntar_hueso(arm, f"{lado}UpLeg", Vector((0, -1, -0.12)))
+        apuntar_hueso(arm, f"{lado}Leg", Vector((0, -0.15, -1)))
+        apuntar_hueso(arm, f"{lado}Foot", Vector((0, -1, -0.4)))
 
 
 def hueso(arm, sufijo):
@@ -321,15 +399,28 @@ def copiar_pose(arm, fbx, frame, solo=None, excepto=()):
     bpy.context.view_layer.update()
 
 
+# marco del auto: los ejes de las poses y las anclas de los cinturones están en coordenadas del auto (trompa a −y). Con el
+# auto inclinado en la subida (E4) hay que pasarlos al mundo; Cabina.poner lo actualiza.
+MARCO = Matrix.Identity(4)
+
+
+def en_auto(p):
+    return MARCO @ Vector(p)
+
+
+def dir_auto(v):
+    return (MARCO.to_3x3().normalized() @ Vector(v))
+
+
 def girar(arm, sufijo, eje_mundo, grados):
-    """Gira un hueso alrededor de un eje del mundo (más fácil de pensar que en el espacio del hueso)."""
+    """Gira un hueso alrededor de un eje del auto (más fácil de pensar que en el espacio del hueso)."""
     bpy.context.view_layer.update()
     pb = hueso(arm, sufijo)
     if pb is None:
         return
     pb.rotation_mode = "QUATERNION"
     m = (arm.matrix_world @ pb.matrix).to_3x3()
-    eje_local = (m.inverted() @ Vector(eje_mundo)).normalized()
+    eje_local = (m.inverted() @ dir_auto(eje_mundo)).normalized()
     pb.rotation_quaternion = pb.rotation_quaternion @ Quaternion(eje_local, math.radians(grados))
     bpy.context.view_layer.update()
 
@@ -355,7 +446,7 @@ def sentar(arm, quien, raiz_auto=None, sentado_fbx=None, frame=1):
 
 
 # ---------------------------------------------------------------- cinturón (cinta)
-def mat_cinta(nombre="cinta", color=(0.06, 0.06, 0.065)):
+def mat_cinta(nombre="cinta", color=(0.035, 0.035, 0.04)):
     """Cinta del cinturón: trama tejida (rayas finas a lo largo), bordes cosidos y polvo."""
     m, nt, b = _nodos(nombre)
     tc = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
@@ -365,8 +456,10 @@ def mat_cinta(nombre="cinta", color=(0.06, 0.06, 0.065)):
     nz = _ruido(nt, escala=8, detalle=6)
     col = _rampa(nt, nz.outputs["Fac"], color, tuple(min(1, c * 2.2) for c in color))
     nt.links.new(col.outputs[0], b.inputs["Base Color"])
-    b.inputs["Roughness"].default_value = 0.75
-    b.inputs["Sheen Weight"].default_value = 0.4
+    b.inputs["Roughness"].default_value = 0.85
+    b.inputs["Specular IOR Level"].default_value = 0.2   # tela de poliéster: brillo bajo, sin manchas blancas
+    b.inputs["Sheen Weight"].default_value = 0.15
+    b.inputs["Sheen Tint"].default_value = (0.5, 0.5, 0.52, 1)
     _bump(nt, b, wave.outputs["Fac"], 0.3, 0.0006)
     return m
 
@@ -415,16 +508,16 @@ def cinturon_de(sc, arm, quien, raiz=None, separacion=0.03, lejos_pecho=0.05):
     afuera = -1 if ASIENTO[quien][0] < 0 else 1          # el pilar está del lado de afuera del asiento
     lado_af = "Right" if afuera < 0 else "Left"          # mirando a −y, la derecha del personaje es −x
     lado_ad = "Left" if afuera < 0 else "Right"
-    frente = Vector((0, -1, 0))
-    g = Vector(PILAR_GUIA[quien])
-    hom = pos_hueso(arm, f"{lado_af}Shoulder", cola=True) + frente * (0.06 + separacion) + Vector((0, 0, 0.04))
+    frente = dir_auto((0, -1, 0)); arriba = dir_auto((0, 0, 1)); lado = dir_auto((1, 0, 0))
+    g = en_auto(PILAR_GUIA[quien])
+    hom = pos_hueso(arm, f"{lado_af}Shoulder", cola=True) + frente * (0.06 + separacion) + arriba * 0.04
     pecho = pos_hueso(arm, "Spine2") + frente * (0.12 + lejos_pecho)
-    cad_ad = pos_hueso(arm, f"{lado_ad}UpLeg") + frente * (0.10 + separacion) + Vector((-afuera * 0.06, 0, 0.02))
-    cad_af = pos_hueso(arm, f"{lado_af}UpLeg") + frente * (0.10 + separacion) + Vector((afuera * 0.08, 0, 0.02))
-    anc_af = Vector((ASIENTO[quien][0] + afuera * 0.30, ASIENTO[quien][1] + 0.12, 0.90))
-    n_f = Vector((0, -1, 0.2))
-    a = cinta(sc, [g, hom, pecho, cad_ad], [Vector((-afuera, -0.6, 0)), n_f, n_f, n_f], nombre=f"Cinta_{quien}")
-    b = cinta(sc, [cad_ad, (cad_ad + cad_af) / 2 + Vector((0, 0, 0.02)), cad_af, anc_af], [Vector((0, -0.3, 1))] * 4, nombre=f"Falda_{quien}")
+    cad_ad = pos_hueso(arm, f"{lado_ad}UpLeg") + frente * (0.10 + separacion) + lado * (-afuera * 0.06) + arriba * 0.02
+    cad_af = pos_hueso(arm, f"{lado_af}UpLeg") + frente * (0.10 + separacion) + lado * (afuera * 0.08) + arriba * 0.02
+    anc_af = en_auto((ASIENTO[quien][0] + afuera * 0.30, ASIENTO[quien][1] + 0.12, 0.90))
+    n_f = dir_auto((0, -1, 0.2))
+    a = cinta(sc, [g, hom, pecho, cad_ad], [dir_auto((-afuera, -0.6, 0)), n_f, n_f, n_f], nombre=f"Cinta_{quien}")
+    b = cinta(sc, [cad_ad, (cad_ad + cad_af) / 2 + arriba * 0.02, cad_af, anc_af], [dir_auto((0, -0.3, 1))] * 4, nombre=f"Falda_{quien}")
     for o in (a, b):
         if raiz is not None:
             o.parent = raiz; o.matrix_parent_inverse = raiz.matrix_world.inverted()
@@ -481,6 +574,55 @@ def mat_grasa(nombre="acero_grasa", color=(0.5, 0.5, 0.52)):
     return m
 
 
+def mat_zinc(nombre="zinc"):
+    """Acero zincado amarillo (el marco de un retractor de verdad): dorado verdoso tornasol, manchado, con grasa y polvo."""
+    m, nt, b = _nodos(nombre)
+    nz = _ruido(nt, escala=9, detalle=10)
+    col = _rampa(nt, nz.outputs["Fac"], (0.46, 0.41, 0.28), (0.38, 0.39, 0.34), pos=(0.3, 0.7))
+    nz2 = _ruido(nt, escala=35, detalle=6)
+    k = _mapa(nt, nz2.outputs["Fac"], 0.0, 0.85); k.inputs["From Min"].default_value = 0.52; k.inputs["From Max"].default_value = 0.72
+    mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"
+    nt.links.new(k.outputs[0], mix.inputs[0]); nt.links.new(col.outputs[0], mix.inputs[6]); mix.inputs[7].default_value = (0.07, 0.06, 0.04, 1)
+    nt.links.new(mix.outputs[2], b.inputs["Base Color"])
+    b.inputs["Metallic"].default_value = 0.9
+    r = _mapa(nt, nz2.outputs["Fac"], 0.35, 0.7); nt.links.new(r.outputs[0], b.inputs["Roughness"])
+    for clave, v in (("Thin Film Thickness", 220.0), ("Thin Film IOR", 1.45)):
+        if clave in b.inputs:
+            b.inputs[clave].default_value = v
+    _bump(nt, b, nz2.outputs["Fac"], 0.12, 0.0004)
+    return m
+
+
+def mat_pom(nombre="pom", color=(0.025, 0.025, 0.027)):
+    """Plástico negro de ingeniería (el disco del sensor y la tacita): satinado, con rayas finas y polvo en lo que mira arriba."""
+    m, nt, b = _nodos(nombre)
+    nz = _ruido(nt, escala=60, detalle=4, estirar=(1, 1, 12))
+    nt.links.new(_rampa(nt, nz.outputs["Fac"], color, tuple(c * 3.0 for c in color)).outputs[0], b.inputs["Base Color"])
+    r = _mapa(nt, nz.outputs["Fac"], 0.3, 0.55); nt.links.new(r.outputs[0], b.inputs["Roughness"])
+    return m
+
+
+def set_retractor(sc, giro=25.0, pestillo=0.0, bolita=0.35, palanca=0.0, key=2.5, rebote=6.0, fondo=True):
+    """El set completo del retractor (estilo C y planos de E2): el mecanismo en el pilar, la chapa del pilar angosta detrás
+    (10 cm, como un pilar B de verdad) con el desierto desenfocado a los lados, la cinta que sube y la luz del sol de la
+    ventana. Devuelve (raiz, RET)."""
+    RET = Vector(RETRACTOR)
+    if fondo:
+        desierto(sc); cerros(sc)
+    ret = retractor(sc, tuple(RET), giro_carrete=giro, pestillo=pestillo, bolita=bolita, palanca=palanca)
+    chapa = K.mat_acero_industrial("chapa_pilar", (0.2, 0.21, 0.22), sucio=0.6)
+    # soporte del pilar: sólo la placa donde va apernado (capa de explicación); atrás, el mundo desenfocado
+    caja(sc, "ChapaPilar", (0.004, 0.085, 0.16), tuple(RET + Vector((-0.045, 0.0, 0.0))), mat=chapa, bisel=0.002)
+    # la cinta sale tangente por delante del rollo (−y) y sube; la cara mira hacia −y, el ancho va a lo largo del eje (x)
+    cinta(sc, [RET + Vector((0.0, -0.0175, 0.012)), RET + Vector((0.0, -0.0185, 0.06)), RET + Vector((0.0, -0.02, 0.6))],
+          [Vector((0, -1, 0))] * 3, nombre="CintaSube")
+    luz_area(sc, "SolVentana", tuple(RET + Vector((-0.45, -0.5, 0.3))), tuple(RET), key, (1.0, 0.72, 0.5), 0.5, spread=50)
+    luz_area(sc, "Contra", tuple(RET + Vector((-0.35, 0.25, 0.2))), tuple(RET), key * 0.35, (1.0, 0.8, 0.6), 0.15, spread=50)
+    # el rebote del tapiz crema del otro lado: es lo que reflejan las caras de metal que miran a la cámara (brillo del metal)
+    luz_area(sc, "Rebote", tuple(RET + Vector((0.45, 0.35, 0.12))), tuple(RET), rebote, (1.0, 0.9, 0.78), 0.7)
+    return ret, RET
+
+
 def mat_plastico_pilar(nombre="plastico_pilar", alfa=1.0):
     """Plástico gris texturado del pilar (con su grano y rayas); con alfa < 1 se ve el retractor a través (capa de explicación)."""
     m, nt, b = _nodos(nombre)
@@ -500,8 +642,9 @@ def retractor(sc, pos=(0, 0, 0), escala=1.0, giro_carrete=0.0, pestillo=0.0, bol
     s = escala
     raiz = bpy.data.objects.new("Retractor", None); sc.collection.objects.link(raiz)
     raiz.location = pos
-    acero = mat_grasa("acero_ret")
-    oscuro = mat_grasa("acero_osc", (0.16, 0.16, 0.17))
+    acero = mat_grasa("acero_ret", (0.62, 0.62, 0.64))
+    oscuro = mat_zinc("zinc_marco")          # marco y anillo: acero zincado amarillo, como los de verdad
+    pom = mat_pom("pom_sensor")              # disco del sensor y tacita: plástico negro
     objs = []
     # marco en U (chapa de acero)
     # marco en U: sólo la chapa del lado de la rueda; la del lado del pestillo está cortada (capa de explicación)
@@ -517,7 +660,7 @@ def retractor(sc, pos=(0, 0, 0), escala=1.0, giro_carrete=0.0, pestillo=0.0, bol
         o = bpy.context.object; o.name = "Tapa"; asignar(o, acero); o.parent = eje
     rueda = engranaje(sc, "RuedaDentada", 0.022 * s, 0.004 * s, 18, 0.0035 * s, mat=acero, pos=(-0.0305 * s, 0, 0)); rueda.parent = eje
     # disco del sensor de la cinta con su pestillo (del lado +x) dentro del anillo dentado fijo
-    disco = cilindro(sc, "DiscoPestillo", 0.02 * s, 0.003 * s, (0.031 * s, 0, 0), mat=acero)
+    disco = cilindro(sc, "DiscoPestillo", 0.02 * s, 0.003 * s, (0.031 * s, 0, 0), mat=pom)
     disco.rotation_euler = (0, math.radians(90), 0); disco.parent = eje
     piv = bpy.data.objects.new("PivotePestillo", None); sc.collection.objects.link(piv)
     piv.parent = eje; piv.location = (0.033 * s, 0.0, 0.011 * s)
@@ -532,7 +675,7 @@ def retractor(sc, pos=(0, 0, 0), escala=1.0, giro_carrete=0.0, pestillo=0.0, bol
     bpy.ops.mesh.primitive_cube_add(size=0.03 * s, location=(0, 0, 0.023 * s)); cortador = bpy.context.object; cortador.hide_render = True
     cortador.display_type = "WIRE"; bm_cut.object = cortador
     sol = cup.modifiers.new("grosor", "SOLIDIFY"); sol.thickness = 0.0012 * s
-    asignar(cup, oscuro); cup.parent = taza; cortador.parent = taza
+    asignar(cup, pom); cup.parent = taza; cortador.parent = taza
     ang = bolita * 0.85
     bpy.ops.mesh.primitive_uv_sphere_add(segments=48, ring_count=24, radius=0.0055 * s,
                                           location=(0, -math.sin(ang) * 0.007 * s, 0.0055 * s + (1 - math.cos(ang)) * 0.006 * s))
@@ -595,7 +738,10 @@ def sentado(sc, quien, sentado_fbx, raiz=None, frame=1):
         return arm
     if sentado_fbx and os.path.isfile(sentado_fbx):
         copiar_pose(arm, sentado_fbx, frame)
-    mirar_adelante(arm)
+        mirar_adelante(arm)
+    else:
+        mirar_adelante(arm)
+        sentar_a_mano(arm)
     cad = pos_hueso(arm, "Hips")
     arm.location += Vector(ASIENTO[quien]) - cad
     bpy.context.view_layer.update()
@@ -604,12 +750,15 @@ def sentado(sc, quien, sentado_fbx, raiz=None, frame=1):
 
 def lanzarse(arm, cuanto=1.0, hacia=Vector((0.35, -1.0, -0.15))):
     """El caballero se lanza hacia la bolsa del centro del tablero: columna adelante y el brazo de adentro estirado."""
-    for s, g in (("Spine", 12), ("Spine1", 10), ("Spine2", 8)):
+    for s, g in (("Spine", 8), ("Spine1", 6), ("Spine2", 5)):     # el CLAC lo para a los pocos cm
         girar(arm, s, (1, 0, 0), g * cuanto)
     lado = "Left"     # copiloto: su izquierda (+x) da a la consola
-    apuntar_hueso(arm, f"{lado}Arm", hacia)
-    apuntar_hueso(arm, f"{lado}ForeArm", hacia)
-    apuntar_hueso(arm, f"{lado}Hand", hacia + Vector((0, 0, -0.1)))
+    hacia = Vector(hacia).normalized()
+    c = max(0.0, min(1.0, cuanto))
+    for parte in ("Arm", "ForeArm", "Hand"):
+        d0 = (pos_hueso(arm, f"{lado}{parte}", cola=True) - pos_hueso(arm, f"{lado}{parte}")).normalized()
+        d = d0.lerp(hacia + (dir_auto((0, 0, -0.1)) if parte == "Hand" else Vector()), c)
+        apuntar_hueso(arm, f"{lado}{parte}", d)
 
 
 def placeholder(sc, quien, alto=0.85):

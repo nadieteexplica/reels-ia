@@ -1,4 +1,4 @@
-"""Reparte las piezas del Ep. 5 en N trabajos parejos (por costo estimado) → matriz JSON para Actions.
+"""Reparte las piezas del Ep. 6 en N trabajos parejos (por costo estimado) → matriz JSON para Actions.
 
 Uso: python3 reparto.py N [piezas,separadas,por,coma] [muestras]
 Costo (s por cuadro a 540x960 y 8 muestras en Actions) estimado de los cuadros de estilo (1080x1920/64: A 245 s, B 207 s,
@@ -7,12 +7,13 @@ C 500 s → ~1/32 del costo): E1 ~9, E2 ~16, E3/E4/E5 ~8 (con el vapor de la cen
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import planos_ep05 as PL
+import planos_ep06 as PL
 
 # medido en el animatic del 23-oct (run 39932351715, 540x960/8): E1 de cerca (vidrio + desenfoque) ~24 s/cuadro, E1 abierto
 # (plano 3) ~10, E2 ~26, E3 ~15, E4 ~19, E5 ~17
-PESO = {"E1": 24, "E2": 26, "E3": 15, "E4": 19, "E5": 17}
-PESO_PLANO = {3: 10}
+# Ep. 6: estimado antes de medir (cabina con 4 personajes y vidrios ~30, retractor macro ~20, exterior ~18); se corrige con las muestras
+PESO = {"E1": 30, "E2": 20, "E3": 18, "E4": 32, "E5": 30}
+PESO_PLANO = {}
 ARMADO = 90
 
 

@@ -23,3 +23,11 @@
 {"tipo": "trabajo", "id": "puerta3 r1", "estado": "fin", "n": 23, "ts": "2026-10-23T21:23:08-03:00"}
 {"tipo": "trabajo", "id": "puerta3 r2", "estado": "inicio", "n": 24, "ts": "2026-10-23T21:23:08-03:00"}
 {"tipo": "trabajo", "id": "puerta3 r2", "estado": "fin", "n": 25, "ts": "2026-10-23T21:31:24-03:00"}
+{"tipo": "trabajo", "id": "estilos 40046010876", "estado": "inicio", "n": 26, "ts": "2026-10-23T21:39:09-03:00"}
+{"tipo": "chequeo", "id": "sesion ep06", "estado": "vivo (vigilante)", "n": 27, "ts": "2026-10-23T21:51:53-03:00"}
+{"tipo": "chequeo", "id": "estilos 40046010876", "estado": "vivo (vigilante) · completed/success · 5/5 trabajos", "n": 28, "ts": "2026-10-23T21:54:18-03:00"}
+{"tipo": "aviso", "que": "tope 4 h", "nota": "2,3 h activas a las 22:00; estimado total ~5 h (render final 60 min + vueltas de muestras con personajes privados). Avisado a Tomás con 3 opciones; recomendé seguir.", "n": 29, "ts": "2026-10-23T21:57:05-03:00"}
+{"tipo": "chequeo", "id": "sesion ep06", "estado": "vivo (vigilante)", "n": 30, "ts": "2026-10-23T22:06:53-03:00"}
+{"tipo": "chequeo", "id": "estilos 40046010876", "estado": "vivo (vigilante) · completed/success · 5/5 trabajos", "n": 31, "ts": "2026-10-23T22:09:20-03:00"}
+{"tipo": "chequeo", "id": "sesion ep06", "estado": "vivo (vigilante)", "n": 32, "ts": "2026-10-23T22:21:53-03:00"}
+{"tipo": "chequeo", "id": "estilos 40046010876", "estado": "vivo (vigilante) · completed/success · 5/5 trabajos", "n": 33, "ts": "2026-10-23T22:24:21-03:00"}

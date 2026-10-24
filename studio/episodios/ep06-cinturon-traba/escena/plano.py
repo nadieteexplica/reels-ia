@@ -1,4 +1,4 @@
-"""Renderiza una o varias piezas de planos del Ep. 5.
+"""Renderiza una o varias piezas de planos del Ep. 6.
 
 Uso: PIEZAS=1,2,23L RES=720x1280 SAMPLES=16 DIR=carpeta [MUESTRAS=3] [CUADROS=a-b] [DEVICE=OPTIX] python3 plano.py
 - Cada pieza (planos_ep05.PIEZAS) arma su escena desde cero en un proceso nuevo y renderiza sus cuadros.
@@ -22,8 +22,8 @@ if os.environ.get("_PIEZA") is None:
 
 sys.path.insert(0, HERE)
 import bpy
-import ep05 as E2
-import planos_ep05 as PL
+import ep06 as E2
+import planos_ep06 as PL
 import caras            # studio/plantilla/caras.py (planos_ep05 deja studio/plantilla en sys.path)
 
 pid = os.environ["_PIEZA"]

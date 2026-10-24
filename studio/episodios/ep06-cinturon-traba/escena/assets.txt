@@ -1,0 +1,6 @@
+modelos ep06-modelos
+privados RACE.fbx
+privados castle.guard.fbx
+privados GAS.MASK.fbx
+privados chad.fbx
+privados Sitting.Laughing.fbx

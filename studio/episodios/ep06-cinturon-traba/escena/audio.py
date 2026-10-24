@@ -1,6 +1,6 @@
-"""Audio del Ep. 5: voz + música sintetizada (pulso suave y luminoso, de asombro) con ducking, viento del salar de
-fondo (lo que amarra el exterior), zumbido grave del imán en los planos de la rana y los efectos de la columna SFX del
-storyboard → OUT/ep05_mix.wav (−14 LUFS, TP ≤ −1,5 dBTP). Todo sintetizado."""
+"""Audio del Ep. 6 (copiado del Ep. 5): voz + música sintetizada con ducking, viento del desierto de fondo, el motor del
+4x4 y los efectos de la columna SFX del storyboard (CLAC del cinturón, carrete, tics del mecanismo, la bolsa, el grillo
+cuando se corta la música) → OUT/ep06_mix.wav (−14 LUFS, TP ≤ −1,5 dBTP). Todo sintetizado."""
 import glob, json, os, subprocess, sys
 import numpy as np
 from scipy.io import wavfile
@@ -8,7 +8,7 @@ from scipy.signal import butter, sosfilt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import ep05 as E
+import kit5 as E
 
 OUT = os.environ.get("OUT", os.path.join(HERE, "out"))
 REPO = os.environ.get("REPO", os.path.abspath(os.path.join(HERE, "../../../..")))
@@ -27,7 +27,7 @@ def W(prefix, after=0.0):
 
 
 def voz():
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, "out/tts/ep05-iman-rana.mp3"), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, "out/tts/ep06-cinturon-traba.mp3"), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
                          capture_output=True).stdout
     v = np.frombuffer(raw, np.float32).copy()
     v = np.pad(v, (0, max(0, N - len(v))))[:N]
@@ -250,46 +250,88 @@ m = musica()
 envv = np.convolve(np.abs(v), np.ones(int(0.08 * SR)) / int(0.08 * SR), mode="same")
 m *= 1.0 - 0.55 * np.clip(envv / 0.15, 0, 1)
 
-fx = np.zeros(N)
-add(fx, viento(DUR), 0.0, 0.8)
-for k in (1, 2, 3, 4, 8, 9, 18):                                   # el imán de la rana prendido
-    a, b = E.T[k]
-    add(fx, zumbido_iman(b - a + 0.1), a, 0.7)
-add(fx, ding(1320, 0.6), W("nadie") + 0.1, 0.45)                   # SIN HILOS
-add(fx, golpe_grave(), W("imán", 3.0), 0.55)                       # el imán gigante
-add(fx, ding(988, 0.6), W("imán", 3.0) + 0.05, 0.35)
-add(fx, whoosh(0.8, True), T(4), 0.7)                              # se lanza hacia la rana
-add(fx, glup(), T(5, 0.05), 0.8)                                   # adentro
-add(fx, ding(1175, 0.5), W("agua", 6.0), 0.35)                     # AGUA
-add(fx, tic(3000), W("empuja", 8.0), 0.9)                          # nace el empujón
-add(fx, ding(1568, 0.5), W("poquito", 10.0), 0.35)
-for i in range(14):                                               # las flechas en cascada
-    add(fx, tic(2200 + 90 * i), T(7, 0.2 + i * 0.15), 0.5)
-add(fx, whoom(1.4), W("gana", 14.0) - 0.5, 0.8)                    # le gana a la gravedad
-add(fx, glup(), T(9, 0.05), 0.5)                                   # la fresa
-add(fx, golpecito(700), T(10, 1.0), 0.6)                           # "boing" chico (no flota)
-add(fx, pfff(), W("débil", 21.0) - 0.1, 0.9)                       # miles de veces más débil
-add(fx, ding(1320, 0.6), W("miles", 21.0), 0.35)
-add(fx, whoosh(0.9, False), T(12, 0.0), 0.5)                       # la parte hipotética
-a13, b13 = E.T[13]
-for i in range(6):                                               # los anillos que caen
-    add(fx, clank(180 + 15 * i), a13 + 0.2 + (b13 - 0.25 - a13 - 0.2) * i / 5, 0.55)
-add(fx, clank(150), T(14, 0.4), 0.8)                               # la tapa
-add(fx, ding(1046, 0.7), W("cuarenta", 29.0) + 0.1, 0.4)
-add(fx, ding(1318, 0.6), W("doble", 30.0), 0.35)
-add(fx, electrico(E.T[15][1] - E.T[15][0]), T(15), 0.9)            # los cables a la central
-add(fx, ding(1175, 0.6), W("gigavatio", 32.0), 0.4)
-add(fx, ding(1568, 0.6), W("reactor", 34.0), 0.4)
-add(fx, whoom(1.5), T(16, 0.0), 0.9)                               # Pete sube
-add(fx, ding(1320, 0.6), W("sin", 40.0), 0.4)                      # SIN HILOS (eco)
+def clac(g=1.0):
+    """El cinturón que se traba: golpe metálico seco y corto (trinquete) + tirón de tela."""
+    n = int(0.25 * SR)
+    x = (tono(1650, 0.25, 0.0005, 0.02) + 0.6 * tono(3300, 0.25, 0.0005, 0.012)) * 0.7
+    x[: int(0.03 * SR)] += filt(ruido(int(0.03 * SR)), 1500, 7000) * 0.7
+    tela = filt(ruido(n), 300, 2500) * env(n, 0.002, 0.05) * 0.35
+    return (x + tela) * g
 
-mix = v * 1.0 + m * 0.5 + fx * 0.45
+
+def armadura():
+    n = int(0.5 * SR)
+    return (clank(330) * 0.5)[:n] + filt(ruido(n), 1200, 6000) * env(n, 0.002, 0.08) * 0.25
+
+
+def motor(d, carga=0.5):
+    t = tt(d)
+    f0 = 38 + 22 * carga
+    x = np.sin(2 * np.pi * f0 * t) * 0.18 + np.sin(2 * np.pi * f0 * 2.02 * t) * 0.10 + filt(ruido(len(t)), 60, 400) * 0.06
+    x *= 0.8 + 0.2 * np.sin(2 * np.pi * 5.5 * t)
+    return x * np.minimum(1, t / 0.3) * np.minimum(1, (d - t) / 0.3)
+
+
+def carrete(d, rapido=True):
+    t = tt(d)
+    f = (180 + 900 * t / d) if rapido else 120 + 0 * t
+    return np.sin(2 * np.pi * np.cumsum(f) / SR) * 0.08 * np.minimum(1, t / 0.1) * np.minimum(1, (d - t) / 0.1) + filt(ruido(len(t)), 2000, 7000) * 0.02
+
+
+def bolsa():
+    n = int(0.35 * SR)
+    return filt(ruido(n), 1500, 9000) * env(n, 0.003, 0.09) * 0.5
+
+
+def grillo(d=1.2):
+    out = np.zeros(int(d * SR))
+    for i in range(int(d / 0.35)):
+        x = tono(4300, 0.12, 0.002, 0.03) * (np.sin(2 * np.pi * 45 * tt(0.12)) > 0)
+        add2 = int(i * 0.35 * SR)
+        out[add2:add2 + len(x)] += x[: len(out) - add2] * 0.35
+    return out
+
+
+fx = np.zeros(N)
+add(fx, viento(DUR), 0.0, 0.7)
+add(fx, clac(), T(1, 0.9), 1.0); add(fx, armadura(), T(1, 0.92), 0.6)        # CUADRO 0: el caballero contra el cinturón
+add(fx, bolsa(), T(2, 0.6), 0.6)
+add(fx, carrete(1.2, False), T(3, 1.0), 0.6)                                   # la cinta sale lento
+add(fx, whoosh(0.5, True), T(4, 0.6), 0.6)                                     # entramos al pilar
+add(fx, ding(1320, 0.5), W("carrete", 6.0), 0.35)
+add(fx, ding(1568, 0.5), W("dientes", 7.0), 0.3)
+add(fx, carrete(E.T[7][1] - E.T[7][0], True), T(7), 0.9)                       # el carrete gira rápido
+add(fx, tic(2600), T(8, 1.5), 0.9)                                             # el pestillo sale
+add(fx, clac(1.2), T(9, 0.4), 1.0)                                             # se engancha
+add(fx, clac(1.3), T(10, 0.02), 1.0); add(fx, armadura(), T(10, 0.05), 0.6)   # Clac.
+add(fx, carrete(1.0, False), T(11), 0.5)
+add(fx, motor(E.T[13][1] - E.T[13][0] + 0.3, 0.8), T(13), 0.9)                 # el 4x4 trepa
+for i, dt in enumerate((0.4, 0.55)):
+    add(fx, clac(), T(14, dt), 0.9)
+add(fx, bolsa(), T(15, 0.1), 0.7)
+for dt in (0.45, 0.6):
+    add(fx, clac(), T(15, dt), 0.9)
+add(fx, grillo(1.2), T(16, 0.0), 0.8)                                          # "Nadie jaló": se corta la música
+add(fx, tic(3000), T(17, 0.5), 0.6); add(fx, tic(2600), T(17, 1.1), 0.5)       # la bolita rueda
+add(fx, clac(1.1), T(18, 1.2), 1.0)
+add(fx, motor(E.T[19][1] - E.T[19][0] + 0.2, 1.0), T(19), 0.9)
+add(fx, ding(1046, 0.6), W("veintisiete", 26.0) + 0.1, 0.4)
+add(fx, motor(E.T[21][1] - E.T[21][0], 0.3), T(21), 0.7)
+add(fx, carrete(0.8, False), T(22, 0.4), 0.5)
+add(fx, carrete(0.9, False), T(23, 0.5), 0.5)
+add(fx, bolsa(), T(25, 0.3), 0.6)
+# la música se corta en "Nadie jaló" y en las papas (recurso cómico) y vuelve después
+for (a_, b_) in ((T(16), T(17)), (T(24, 1.0), T(25, 1.6))):
+    i, j = int(a_ * SR), int(b_ * SR)
+    m[i:j] *= 0.0
+
+mix = v * 1.0 + m * 0.42 + fx * 0.45
 mix = np.tanh(mix * 1.1) / 1.1
 mix = mix / (np.abs(mix).max() + 1e-9) * 0.9
 os.makedirs(OUT, exist_ok=True)
-tmp = os.path.join(OUT, "ep05_pre.wav")
+tmp = os.path.join(OUT, "ep06_pre.wav")
 wavfile.write(tmp, SR, (mix * 32767).astype(np.int16))
-dst = os.path.join(OUT, "ep05_mix.wav")
+dst = os.path.join(OUT, "ep06_mix.wav")
 subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", tmp, "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "48000", dst], check=True)
 vr = np.sqrt(np.mean(v[np.abs(v) > 0.02] ** 2))
 mr = np.sqrt(np.mean((m * 0.5)[(m != 0)] ** 2) + 1e-12)

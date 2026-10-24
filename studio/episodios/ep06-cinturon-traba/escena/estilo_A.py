@@ -39,7 +39,7 @@ E.bolsa(sc, BOLSA, rot=(math.radians(-80), 0, math.radians(15)))
 # rebote suave del lado de la cámara (invisible en reflejos), como en el Ep. 5
 f = E.luz_area(sc, "Rebote", (0.1, -0.55, 1.5), (-0.37, 0.30, 1.45), env("FILL", 4), (1.0, 0.9, 0.82), 0.3, spread=60)
 f.visible_glossy = False
-pos = Vector((env("CAM_X", -0.10), env("CAM_Y", -0.58), env("CAM_Z", 1.47)))
+pos = Vector((env("CAM_X", -0.05), env("CAM_Y", -0.30), env("CAM_Z", 1.43)))
 mira = Vector((env("MIRA_X", -0.36), env("MIRA_Y", 0.30), env("MIRA_Z", 1.38)))
 E.camara(sc, pos, mira, lente=env("LENTE", 35), fstop=env("FSTOP", 5.6), foco=(Vector((-0.37, 0.15, 1.45)) - pos).length)
 sc.render.filepath = os.path.join(out, os.environ.get("NOMBRE", "estilo_A_HD") + ".png")
