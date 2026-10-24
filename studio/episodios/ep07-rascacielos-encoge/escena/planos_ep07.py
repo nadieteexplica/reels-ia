@@ -448,8 +448,14 @@ def p5(sc, a, b):
         gatos_brillan(S, suave((t - t_ga) / 0.35))
         pos = Vector((-20, -64, Z0 + 5.5)).lerp(Vector((-15, -44, Z0 + 4.6)), x)     # afuera: se ve el techo, el corte y la fachada
         mirar(S["cam"], pos, Vector((-5, 0, Z0 + 3.2)), lente=32)
-        p = g0.matrix_world.translation + Vector((0, 0, 2.6))
-        return {"gata": pantalla(sc, S["cam"], p)}
+        mejor = None
+        for g in S["corte"]["gatas"]:
+            q = pantalla(sc, S["cam"], g.matrix_world.translation + Vector((0, 0, 1.0)))
+            if 150 < q[0] < 930 and 600 < q[1] < 990:
+                d = abs(q[0] - 540) + abs(q[1] - 850)
+                if mejor is None or d < mejor[0]:
+                    mejor = (d, q)
+        return {"gata": mejor[1] if mejor else pantalla(sc, S["cam"], g0.matrix_world.translation + Vector((0, 0, 1.0)))}
     return {"actualizar": act}
 
 
@@ -477,8 +483,7 @@ def _losas(S, t, t0, paso=0.42, dur=0.9):
         if x >= 1:
             oculto(o, True); continue
         oculto(o, False)
-        _marca_pieza(o, math.sin(math.pi * clamp(x)))
-        sube = suave(x / 0.25) * 0.5
+        sube = suave(x / 0.25) * 0.8
         corre = suave((x - 0.2) / 0.45)
         baja = suave((x - 0.6) / 0.4) * 9.0
         o.location = Vector((base.x * (1 - corre), base.y * (1 - corre), base.z + sube - baja))
@@ -506,13 +511,17 @@ def p6(sc, a, b):
             o.scale.z = max(0.001, 1 - cut)
             o.location.z = TR.H * cut
             oculto(o, cut >= 0.999)
-        act_o = _losas(S, t, t_ds)
+        act_o = _losas(S, t, t_de + 0.5, paso=0.45, dur=1.5)
         if act_o is not None:
-            gancho(S, act_o.location.z + 1.0, act_o.location.x, act_o.location.y, con_bulto=False)
+            gancho(S, act_o.location.z + 1.6, act_o.location.x, act_o.location.y, con_bulto=False)
         else:
             gancho(S, 2 * H - 4.0, con_bulto=False)
         mirar(S["cam"], Vector((-11, -38, Z0 + 4.2)).lerp(Vector((-9, -33, Z0 + 4.0)), x), Vector((-2, 1, Z0 + 2.9)), lente=30)
-        return {}
+        info = {"pozo": pantalla(sc, S["cam"], (0, 0, Z0 + 0.3)), "pozo_abajo": pantalla(sc, S["cam"], (0, 0, Z0 - 6.0))}
+        if act_o is not None:
+            mw = act_o.matrix_world
+            info["pieza"] = [pantalla(sc, S["cam"], mw @ Vector(v.co)) for v in act_o.data.vertices]
+        return info
     return {"actualizar": act}
 
 
@@ -550,18 +559,36 @@ def p9(sc, a, b):
     _sin_piso_arriba(S)
     c = S["corte"]
     t_lo, t_gr, t_ge = TW("loco", 25.8), TW("grúa", 26.8), TW("genera", 28.2)
+    pulsos = []
+    for k in range(3):                      # la electricidad que sale del generador y corre por el cable
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.32, location=(0, 0, 0))
+        pu = bpy.context.object; pu.name = f"Pulso{k}"
+        pu.data.materials.append(E.mat_emision(f"pulso{k}", (1.0, 0.72, 0.18), 12.0)); pu.parent = S["sombrero"]
+        pu.visible_shadow = False
+        pulsos.append(pu)
 
     def act(f):
         t = tf(f)
         x = suave(lin(f, a, b - 1))
-        z = 3.9 - 4.4 * suave((t - t_lo) / 3.9)          # el bulto se ve bajar desde el carro hasta entrar al pozo
+        z = 3.9 - 4.6 * suave((t - T[9][0]) / 4.2)       # baja desde el primer cuadro del plano hasta entrar al pozo
         gancho(S, z, 0.0, 0.0, con_bulto=True)
         g = suave((t - t_ge) / 0.4)
-        TR.brillo(c["aro"].data.materials[0], 16.0 * g * (0.75 + 0.25 * math.sin(t * 22)))
-        TR.brillo(c["elec"], 10.0 * suave((t - t_ge - 0.3) / 0.5) * (0.8 + 0.2 * math.sin(t * 15)))
-        mira = Vector((-1.0, 0, Z0 + 3.6)).lerp(Vector((-0.4, 0, Z0 + 1.2)), suave((t - t_gr) / 1.2) * (1 - 0.5 * g))
+        TR.brillo(c["aro"].data.materials[0], 5.0 * g * (0.8 + 0.2 * math.sin(t * 22)))      # dorado, sin quemarse a blanco
+        TR.brillo(c["elec"], 3.0 * suave((t - t_ge - 0.3) / 0.5))
+        for k, pu in enumerate(pulsos):
+            u = ((t - t_ge - 0.2) / 0.9 - k * 0.33)
+            on = 0.0 <= u <= 1.0
+            oculto(pu, not on)
+            if on:
+                pu.location = (-2.35 - 17.0 * u, -0.85, 2 * H - 1.9)
+        mira = Vector((-1.0, 0, Z0 + 3.6)).lerp(Vector((-0.8, 0, Z0 + 2.4)), suave((t - T[9][0]) / 4.2))
         mirar(S["cam"], Vector((-7.0, -32.0, Z0 + 4.6)).lerp(Vector((-6.0, -27.0, Z0 + 4.4)), x), mira, lente=32, foco=Vector((-1.5, 0, Z0 + 3.6)))
-        return {}
+        zc = Z0 + 2 * H - 1.9
+        camino = [(-2.35, 0.0, Z0 + 2 * H - 2.75), (-2.35, -0.85, zc), (-20.0, -0.85, zc), (-20.0, 3.6, Z0 + 2 * H - 1.8)]
+        camino2 = [(-2.35, -0.85, zc), (20.0, -0.85, zc), (20.0, 3.6, Z0 + 2 * H - 1.8)]
+        bw = c["bulto"].matrix_world.translation + Vector((0, 0, 0.7))
+        return {"cable": [pantalla(sc, S["cam"], q) for q in camino], "cable2": [pantalla(sc, S["cam"], q) for q in camino2],
+                "bulto": pantalla(sc, S["cam"], bw), "carro": pantalla(sc, S["cam"], (0, 0, Z0 + 2 * H - 2.4))}
     return {"actualizar": act}
 
 
@@ -582,12 +609,13 @@ def p10(sc, a, b):
         x = suave(lin(f, a, b - 1))
         for k, (lm, lt) in enumerate(zip(c["lamparas"], c["luces"])):
             on = suave((t - (t_pr + 0.2 * k)) / 0.08)
-            TR.brillo(lm.data.materials[0], 14.0 * on)
-            lt.energy = 3600.0 * on
+            TR.brillo(lm.data.materials[0], 6.0 * on)
+            lt.energy = 1600.0 * on
         c["relleno"].energy = 900.0
         c["fondo"].energy = 150.0
         mirar(S["cam"], Vector((-6, -40, Z0 + 3.6)).lerp(Vector((-3, -36, Z0 + 3.7)), x), Vector((0, 3, Z0 + 4.0)), lente=30)
-        return {}
+        return {"lamparas": [pantalla(sc, S["cam"], lm.matrix_world.translation) for lm in c["lamparas"]],
+                "piso": [pantalla(sc, S["cam"], lm.matrix_world.translation - Vector((0, 0, 4.6))) for lm in c["lamparas"]]}
     return {"actualizar": act}
 
 

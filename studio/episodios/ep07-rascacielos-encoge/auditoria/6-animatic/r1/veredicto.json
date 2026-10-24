@@ -1,0 +1,741 @@
+{
+ "etapa": "6-animatic",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "NO APROBADO",
+ "promedio": 7.7,
+ "notas": {
+  "belleza": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "P1 y P8 tienen sol bajo de costado, negros de verdad y bruma de ciudad (0.04, 20.74). Pero P4–P7 y P9–P10 repiten el mismo encuadre frontal en tres franjas: corona arriba, interior beige y naranjo al medio y fachada a cuadros abajo. La fachada a cuadros es muy cargada, el interior se ve barroso (16.39, 25.44) y en P10 32.14–32.41 hay una neblina blanca.",
+   "de": "planos1"
+  },
+  "animacion": {
+   "nota": 7.3,
+   "min": 7,
+   "por_que": "Se leen bien el gesto de Pete encogiéndose de hombros (P3 4.53–5.36, sin pausas) y el sombrero que baja en P7 (en 19.11–20.66 suben los edificios del fondo). En cambio, las losas de P6 aparecen y desaparecen (14.87–16.31, E17–E19) y en P9 el bloque primero sube hasta el polipasto (25.44–27.07), así que no se entiende que la grúa lo esté bajando.",
+   "de": "planos1"
+  },
+  "claridad": {
+   "nota": 7.2,
+   "min": 7,
+   "por_que": "El gancho de P1 es clarísimo (el edificio se encoge dentro de la caja de alambre, con el contador) y las píldoras PASO 1/2/3 ordenan la explicación. Pero en P5 11.54 el subtítulo tapa el gato del centro, en P6 13.42 los obreros escondidos miden unos 30×60 px y en P9–P10 la electricidad y las luces son sólo una línea blanca y una neblina (29.10, 31.33).",
+   "de": "planos1"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "En los 10 planos quieto_max_s ≤ 0,27. P5, P6 y P7 duran unos 4 s, pero adentro siempre cambia algo cada 1 s o menos: cámara, píldoras, contador o subtítulo.",
+   "de": "planos1"
+  },
+  "realismo": {
+   "nota": 6.3,
+   "min": 6,
+   "por_que": "Unos 22 s de 32 son fachada e interior que parecen maqueta: fachada a cuadros perfecta con ventanas negras puras y vidrio ocre sin reflejos (P4 6.55), gatos como cilindros amarillos de plástico, escombros blancos con forma de huevo, todos iguales, y un polipasto de juguete (esfera cromada y cilindro verde; P6 13.42, P9 27.88). P1 y P8 llegan a un 7–8. Pete (P3 4.80) tiene mangas brillantes como de goma.",
+   "de": "planos1"
+  },
+  "comprension": {
+   "nota": 7.2,
+   "min": 7,
+   "por_que": "Sin sonido se entienden P1 (el edificio se achica) y P7 (−1 PISO). En P5–P6 el mecanismo sólo se entiende leyendo las píldoras, porque gatos y obreros casi no se ven. El giro de P9–P10 (la grúa genera electricidad y prende las luces) no se entiende sin la voz.",
+   "de": "planos1"
+  },
+  "gancho": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "cuadro 0 con la torre en la ciudad, la caja fantasma encima y QUEDAN 36 / ANTES 40; en 0–2 s el contador baja cada 0,3 s y la caja crece: el encogimiento se ve sin sonido. La torre ocupa poco del cuadro y la imagen es tranquila: es un 8, no un 9",
+   "de": "global"
+  },
+  "subtitulos": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "92/92 palabras a tiempo y dentro de la zona; tildes bien (DESPUÉS, HIDRÁULICOS, GRÚA, CONSTRUCCIÓN, DÍAS), sin puntos suspensivos, y no tapan la cara de Pete en 4 s. Detalle: en 13 s el 'EL' queda solo en la 2.ª línea, y el texto blanco sobre el beige de 13 s y 30 s queda justo de contraste",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "no lo escucho. Las cifras dan −14,1 LUFS y −3,1 dBTP (en rango), y la voz va 8,3 dB sobre las pausas (es un mínimo, con ducking). No se puede verificar que la música vaya 15–20 dB bajo la voz, y el origen de la música no está declarado",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "ANTES 40 PISOS, −1 PISO, −2 PISOS · CADA 10 DÍAS, GATOS HIDRÁULICOS y EL TECHO QUEDA ENTERO calzan con el guion y sus fuentes, y la píldora CÁMARA RÁPIDA está en las tomas que se encogen. La grúa sólo baja el bloque un piso (no por un pozo), pero eso no contradice nada",
+   "de": "global"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B13",
+   "plano": 6,
+   "segundo": "12.30–16.35",
+   "que": "la voz dice 'escondidos bajo el sombrero, desarman el piso de abajo' y en 12, 13, 14 y 15 s el interior es el mismo: los mismos gatos, las mismas bolitas de escombro en su lugar y la grúa quieta. Sólo se aclara un muro del fondo en 15 s; no se ve ninguna pieza que se saque, y es el paso central de la mecánica",
+   "arreglo": "que el piso bajo el sombrero parta con muros o pilares a la vista y se vacíe en 2–3 golpes visibles (la grúa levanta un panel o un trozo de losa y lo saca de cuadro, y el muro desaparece con un pop y polvo). Si sale más barato: dos cortes, 'piso entero' en 12,9 s y 'piso pelado' en 15,1 s",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B13",
+   "plano": null,
+   "segundo": "12.40–16.40",
+   "que": "Paso 2: la voz dice 'escondidos bajo el sombrero, desarman el piso de abajo' y la imagen muestra el mismo corte casi quieto (un piso con piedritas, un gato amarillo y la máquina colgada). Nada se desarma, no se ve qué pieza sale ni que el trabajo esté encerrado. Es la mecánica central del video.",
+   "arreglo": "En cámara rápida, que las piezas del piso de abajo (tabiques, pilares, losa) se corten y salgan una por una colgadas del gancho de la grúa, mientras el montón de escombros crece. Marcar el piso que se desarma con un contorno o un tinte, como el techo a los 6.7 s, y poner paneles alrededor del piso para el 'escondidos'.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": true,
+   "tipo": "B12",
+   "plano": null,
+   "segundo": "15.30–16.40",
+   "que": "Aparecen planchas blancas lisas, sin textura y casi translúcidas, que crecen y se inclinan sobre la mitad derecha del corte. No se reconoce qué son: no parecen la losa café del piso y se leen como una falla de render.",
+   "arreglo": "Si son la losa que se saca, darle el material de concreto del piso, con canto y espesor, y mostrar el cable del gancho de la grúa enganchado. Si no, sacarlas.",
+   "de": "espectador"
+  }
+ ],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "35.38",
+   "que": "La ciudad del plano final se ve de maqueta o videojuego: edificios-caja con la misma textura de ventanas, azoteas planas sin nada, bruma beige pareja sin negros, y el techo gris liso del primer plano ocupa el tercio de abajo. Es lo que deja el realismo en 7.",
+   "arreglo": "Lo más barato primero: bajar el sol a ~10° de costado para que tire sombras largas sobre las azoteas y oscurezca las caras en sombra (negros reales); repartir al azar estanques de agua, equipos de aire, antenas y ductos en las azoteas; variar tinte y rugosidad por edificio; y textura de membrana con mugre y charcos secos en el techo del primer plano.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "6.55",
+   "que": "Realismo de la fachada (P2, P4–P7, P9, P10): cuadrícula perfecta, limpia y repetida, ventanas de negro puro y vidrio ocre plano sin reflejos. Es lo que más pantalla ocupa y lo que más delata la maqueta.",
+   "arreglo": "Shader de fachada con chorreados y mugre bajo cada ventana y variación de color por paño. Vidrio con reflejo del cielo, en gris oscuro y no negro, y algunas cortinas o luces distintas por ventana.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "13.42",
+   "que": "Realismo: el interior parece maqueta. Gatos lisos de plástico amarillo, escombros blancos en forma de huevo y todos iguales, polipasto de juguete (esfera cromada y cilindro verde), vigas naranjas de un solo color y bloques blancos perfectos. Se repite en P5, P6, P7, P9 y P10.",
+   "arreglo": "Pasada de materiales sin reanimar: gatos de acero con vástago cromado, pintura gastada y grasa; escombros de hormigón roto con fierros y polvo, de tamaños distintos; vigas de acero con óxido y pintura saltada; polipasto industrial con gancho y cadena.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "8.25–31.50",
+   "que": "realismo 6 (mínimo 8): el interior y la fachada en primer plano parecen maqueta. Ver la lista completa en delatores",
+   "arreglo": "en una sola pasada: textura de hormigón con chorreados y variación en los paneles de fachada, vidrio con reflejo del cielo, vigas de acero pintado gastado con pernos, gatos de acero con vástago cromado, escombros de hormigón irregulares (rubble CC0 de Poly Haven) y polvo en el piso",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "29.10",
+   "que": "El giro del video («genera electricidad… prende las luces de la obra», P9 28.69 a P10 32.41) se muestra sólo con una línea blanca fina bajo la viga y un blanqueo general del interior que se lee como polvo o neblina. No hay ninguna lámpara.",
+   "arreglo": "Con «genera», que un pulso de luz salga del motor del polipasto y recorra el cable. Con «prenden» (P10 ~30.5), que se enciendan 3 o 4 focos de obra colgados bajo la viga, con su cono de luz en el suelo. Quitar la neblina blanca de 31.33–32.41.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "33.36",
+   "que": "'Desde la calle' sólo se sugiere por el contrapicado: no hay nada de calle en el cuadro (sólo fachada y cielo), y el chiste de 'casi ni se nota' no se ve.",
+   "arreglo": "Meter un elemento de calle en primer plano, en la franja y 1000–1250 (un poste de luz o semáforo y ramas de un árbol fuera de foco). Si cabe en el presupuesto, un peatón que pasa sin mirar arriba vende 'casi ni se nota' sin palabras.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "35.11",
+   "que": "Cuando la voz dice '2 pisos menos', el techo baja de forma continua y muy lenta (~40 px en todo el plano): el '−2' lo cuenta el contador, no la torre.",
+   "arreglo": "Que el techo baje un piso en un solo paso con easing, justo en cada cambio del contador (35.11 y 36.16), y quede quieto entre medio: dos 'escalones' que el ojo ve.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "3.33",
+   "que": "«Piso por piso»: el primer plano de la corona sobre una fachada repetida no muestra un piso que desaparece. Como la cuadrícula se repite, el deslizamiento no se nota y sólo el contador avisa que algo cambia.",
+   "arreglo": "Marcar en naranjo el piso que está justo bajo la corona y hacerlo desaparecer con un «−1» cada vez, o dejar una franja de la ciudad al costado como referencia de que la corona baja.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "4.00",
+   "que": "la píldora SIN EXPLOSIONES se monta sobre CÁMARA RÁPIDA (se tocan y se cortan), y CÁMARA RÁPIDA no tiene sentido sobre Pete, que no se está achicando",
+   "arreglo": "sacar CÁMARA RÁPIDA en P3 y dejar sólo SIN EXPLOSIONES",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "11.54",
+   "que": "Mientras la voz dice «parado sobre gatos hidráulicos» (10.46–12.26), el subtítulo tapa el gato amarillo del centro. La píldora GATOS HIDRÁULICOS queda a la izquierda, sobre la viga y un poste, y no apunta a ningún gato.",
+   "arreglo": "Mover la píldora junto a un gato con una línea guía. Bajar o acercar la cámara para que los gatos queden en y 700–950, sobre los subtítulos, y marcarlos con un contorno naranjo cuando se diga «gatos».",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "13.42",
+   "que": "«Escondidos bajo el sombrero, desarman el piso de abajo»: el único obrero visible mide unos 30×60 px y está pegado al borde izquierdo (E16). El desarme son losas blancas que aparecen y desaparecen entre cuadros (14.87–16.31, E17–E19). Con 4 cuadros por segundo no alcanzo a verificar si se mueven o si saltan.",
+   "arreglo": "Acercar la cámara para que se vean 2 o 3 obreros en y 600–950 cortando o soltando una losa. Que baje una sola losa a la vez, colgada del gancho con el cable visible. Revisar en el video que ninguna losa aparezca de golpe.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "20.70–25.40",
+   "que": "la aérea alta está lavada por una neblina sepia: todo el cuadro gris anaranjado, sin negros (p1 ≈ 31, p5 ≈ 43), y la plaza bajo la torre es un plano gris oscuro liso",
+   "arreglo": "bajar la densidad de la bruma a la de P1, oscurecer las sombras y darle textura a la plaza (calles, veredas, árboles)",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "27.06",
+   "que": "'la grúa' no se reconoce: es un cilindro turquesa con una esfera de latón sobre un riel amarillo, colgando de una varilla, sin gancho, sin cable y sin rótulo cuando la voz la nombra",
+   "arreglo": "píldora GRÚA en 27,06 s apuntando al aparato; que sea un polipasto con tambor, cable de acero y gancho, y que el bloque baje por un hueco del piso y salga de cuadro (así se entiende 'baja los escombros')",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "28.45–29.90",
+   "que": "'La grúa que baja los escombros genera electricidad' es el giro del video. Lo único que lo muestra es una lucecita blanca que se prende junto a la máquina (28.7 s), una línea de luz en la viga y la píldora ELECTRICIDAD. Nada une el bloque que baja con la energía.",
+   "arreglo": "Agregar una capa de explicación: una línea que brilla y sale del tambor de la grúa mientras el bloque baja, recorre la viga y llega a las lámparas (o una batería que se llena), justo cuando la voz dice 'genera electricidad'.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "32.49",
+   "que": "La fachada se ve de juguete: ventanas idénticas negras de bordes perfectos y paneles crema sin chorreados bajo los alféizares.",
+   "arreglo": "Variar cada ventana al azar (cortina, reflejo, rugosidad del vidrio) y poner una capa de chorreados y mugre guiada por oclusión bajo cada alféizar.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "34.51",
+   "que": "El cielo de P11 es azul profundo saturado y el de P12 es pálido y rosado con bruma: en el corte de 34.55 parece otra hora del día.",
+   "arreglo": "Entibiar un poco las nubes y bajar la saturación del cielo de P11 hacia el de P12, o meterle algo de bruma cálida.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "36.42",
+   "que": "Arriba hay 4 píldoras y además el subtítulo; '−2 PISOS · CADA 10 DÍAS' repite el subtítulo 'CADA 10 DÍAS' y queda a ~20 px de 'ANTES: 40 PISOS'.",
+   "arreglo": "Sacar 'ANTES: 40 PISOS' en este plano (el fantasma ya lo dice) o bajar la píldora larga 40 px dentro del fantasma para que respire.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "35.90",
+   "que": "En el cambio de '−2 PISOS' a '−2 PISOS · CADA 10 DÍAS', la píldora se encoge a una rayita gris en medio del fantasma y vuelve a crecer: un parpadeo.",
+   "arreglo": "Alargar la píldora hacia la derecha dejando '−2 PISOS' fijo (animar el ancho), sin encogerla a cero.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "36.27–37.25",
+   "que": "el último segundo queda quieto (quieto_max 1,0 s, el contador parado en 14)",
+   "arreglo": "que el contador baje a 13 en 36,9 s, o un empuje lento de cámara hasta el último cuadro, para que el loop no se note pegado",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "3.97",
+   "que": "Pete está en una azotea genérica: nada lo une a la torre que se achica. La píldora CÁMARA RÁPIDA aparece aunque él se mueve a velocidad normal, y la píldora SIN EXPLOSIONES se monta sobre ella (3.97–5.36).",
+   "arreglo": "Quitar CÁMARA RÁPIDA en P3, lo que de paso arregla la superposición, y meter detrás de él el borde de la corona o la caja de alambre de 40 pisos para que se sepa que está arriba de esa torre.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "3.65–5.40",
+   "que": "el obrero tranquilo arriba, que el guion pide como contraste absurdo, sale sólo 1,75 s y nunca sobre la torre que se achica",
+   "arreglo": "reusar su loop de Mixamo: que aparezca tras la baranda del sombrero cuando éste baja (P7, 18–20 s), encogiéndose de hombros",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "8.25–20.70",
+   "que": "12,4 s seguidos en la misma escala del corte (P5–P7) y otros 7 s en el mismo interior (P9–P10); se pasa de los 8–12 s por cambio de escala",
+   "arreglo": "abrir P6 a un plano medio de la punta de la torre completa (sombrero más el piso de abajo en corte), que además sirve para mostrar el desarme del bloqueante 1",
+   "de": "global"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "20.74",
+   "que": "En el plano aéreo la parte de arriba de la caja de alambre queda fuera del cuadro y falta ANTES: 40 PISOS, así que se pierde la comparación con la altura original. Además, la píldora EN REVERSA repite el subtítulo (24.94).",
+   "arreglo": "Inclinar o alejar la cámara para que el techo de la caja de alambre quede cerca de y 400, y volver a poner ANTES: 40 PISOS. Sacar la píldora EN REVERSA.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 4,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "31.00–32.40",
+   "que": "Con 'prenden las luces de la obra', todo el interior se pone blanco lechoso. No se ven lámparas, y ese blanco se puede leer como polvo o neblina, que es justo lo contrario del 'sin polvo'. La píldora LUCES DE LA OBRA queda sobre la fila de ventanas y no sobre una luz.",
+   "arreglo": "Poner 3 o 4 lámparas visibles colgadas de la viga que se prenden una tras otra con charcos de luz cálida en el piso, manteniendo los negros. Apuntar la píldora a una lámpara.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 5,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "34.70–37.27",
+   "que": "En el remate, el subtítulo '2 PISOS MENOS' / 'CADA 10 DÍAS' cae justo encima del muñón de la torre, y los edificios de adelante tapan casi todo lo que queda. El sujeto del número final se ve a medias.",
+   "arreglo": "Subir la cámara o encuadrar la torre más arriba para que el muñón entero quede sobre la zona de subtítulos, o bajar los edificios de primer plano.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 6,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "8.30–12.40",
+   "que": "El 'sombrero gigante' no se ve como una pieza: el corte muestra vigas y pilares, pero nada junta el techo y el último piso en un solo bloque. Los gatos son cilindros chicos, del mismo tono que el interior, y la píldora GATOS HIDRÁULICOS queda en la viga, arriba de ellos.",
+   "arreglo": "Cuando la voz dice 'sombrero gigante' (9.44 s), contornear o teñir el techo y el último piso como un solo bloque, con la misma línea naranja del techo. A los 11.1 s, hacer pulsar los gatos en un amarillo más vivo y bajar la píldora para que apunte a uno.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 7,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "2.30–3.60",
+   "que": "Con 'piso por piso' se corta a un primer plano de la corona que se ve quieto: la acción del gancho queda sólo en el contador.",
+   "arreglo": "Mantener la toma aérea hasta los 3.6 s, o que en el primer plano se vea desaparecer una fila de ventanas bajo la corona.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 8,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "3.70–5.43",
+   "que": "El obrero aparece una sola vez, en una azotea cualquiera, y nunca se lo ve arriba de la torre mientras baja. La imagen absurda del 'obrero tranquilo arriba del edificio que se achica' no se arma.",
+   "arreglo": "Mostrarlo chico en el borde del techo en una de las tomas aéreas mientras la torre baja, o con una reacción breve en el cierre.",
+   "de": "espectador"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "estilo.json: la referencia 'referencias/*.jpg' no encontró archivos en la carpeta del episodio",
+   "evidencia": "estilo.json"
+  },
+  {
+   "que": "estilo realista sin referencias (fotos reales en estilo.json → referencias): el revisor juzga el realismo sin poder comparar",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [
+  {
+   "plano": 1,
+   "segundo": "0.04",
+   "zona": "abajo",
+   "que": "El edificio del primer plano tiene techo plano liso, cajas grises sin detalle y una grilla de ventanas negras planas.",
+   "arreglo": "Equipos de techo con detalle (ductos, barandas), manchas de agua en el techo y ventanas con reflejo.",
+   "de": "planos1"
+  },
+  {
+   "plano": 1,
+   "segundo": "1.07",
+   "zona": "medio",
+   "que": "La ciudad son cajas con la misma textura de ventanas repetida. La bruma está bien.",
+   "arreglo": "Variar alturas, coronas y colores, y agregar azoteas con detalle en los edificios cercanos.",
+   "de": "planos1"
+  },
+  {
+   "plano": 2,
+   "segundo": "2.47",
+   "zona": "arriba",
+   "que": "Los equipos del techo de la corona son cajas grises lisas de un solo color.",
+   "arreglo": "Equipos con rejillas, ductos y suciedad.",
+   "de": "planos1"
+  },
+  {
+   "plano": 3,
+   "segundo": "4.80",
+   "zona": "medio",
+   "que": "Las mangas de Pete brillan como goma o látex y el pantalón parece cuero brillante con barro pintado.",
+   "arreglo": "Tela mate con rugosidad (algodón) y barro con relieve, sin brillo especular.",
+   "de": "planos1"
+  },
+  {
+   "plano": 3,
+   "segundo": "3.69",
+   "zona": "abajo",
+   "que": "La azotea y el antepecho son de hormigón liso sin juntas, manchas ni utilería de obra.",
+   "arreglo": "Juntas, manchas de agua, algún tablón o balde, y sombra de contacto clara bajo Pete.",
+   "de": "planos1"
+  },
+  {
+   "plano": 3,
+   "segundo": "4.25",
+   "zona": "medio",
+   "que": "Los edificios del fondo son cajas nítidas con la misma ventana repetida.",
+   "arreglo": "Más bruma de distancia y variación de fachadas.",
+   "de": "planos1"
+  },
+  {
+   "plano": 4,
+   "segundo": "6.55",
+   "zona": "abajo",
+   "que": "La fachada es una cuadrícula perfecta: balcones blancos impecables, ventanas negras puras y vidrio ocre plano sin reflejo.",
+   "arreglo": "Chorreados, mugre y variación por paño, y vidrio gris oscuro que refleje el cielo.",
+   "de": "planos1"
+  },
+  {
+   "plano": 5,
+   "segundo": "11.54",
+   "zona": "medio",
+   "que": "Los gatos hidráulicos parecen cilindros amarillos de plástico, sin vástago ni mangueras.",
+   "arreglo": "Gato de acero pintado con vástago cromado, mangueras hidráulicas y desgaste.",
+   "de": "planos1"
+  },
+  {
+   "plano": 5,
+   "segundo": "10.09",
+   "zona": "medio",
+   "que": "Las vigas naranjas son lisas y de un solo color, como de juguete.",
+   "arreglo": "Acero con pintura saltada, óxido, pernos y soldaduras.",
+   "de": "planos1"
+  },
+  {
+   "plano": 6,
+   "segundo": "13.42",
+   "zona": "medio",
+   "que": "Los escombros son piedras blancas con forma de huevo, todas iguales y repetidas por el suelo.",
+   "arreglo": "Trozos de hormigón roto de tamaños distintos, con fierros a la vista y polvo.",
+   "de": "planos1"
+  },
+  {
+   "plano": 6,
+   "segundo": "15.95",
+   "zona": "medio",
+   "que": "La losa que se mueve es un panel gris claro, plano y sin textura, que parece un plano técnico.",
+   "arreglo": "Losa de hormigón con canto roto, fierros y polvo, colgada del gancho.",
+   "de": "planos1"
+  },
+  {
+   "plano": 7,
+   "segundo": "17.55",
+   "zona": "medio",
+   "que": "Los pilares del piso que se desarma son cajas blancas perfectas, con aristas vivas.",
+   "arreglo": "Hormigón con bordes gastados, fisuras y fierros en los cortes.",
+   "de": "planos1"
+  },
+  {
+   "plano": 7,
+   "segundo": "19.50",
+   "zona": "arriba",
+   "que": "El edificio del fondo, a la izquierda, es un cubo beige sin ventanas ni detalle.",
+   "arreglo": "Fachada con ventanas o cambiarlo por otro edificio de la ciudad.",
+   "de": "planos1"
+  },
+  {
+   "plano": 8,
+   "segundo": "22.42",
+   "zona": "abajo",
+   "que": "El suelo de la ciudad es café plano, sin calles ni autos, y los edificios son cajas repetidas.",
+   "arreglo": "Trazar calles con luces, árboles y variación de techos.",
+   "de": "planos1"
+  },
+  {
+   "plano": 9,
+   "segundo": "27.88",
+   "zona": "medio",
+   "que": "El polipasto (esfera cromada, cilindro verde y placa amarilla) parece de juguete y el escombro es una caja limpia de aristas perfectas.",
+   "arreglo": "Polipasto industrial con gancho y cadena y un escombro de hormigón roto.",
+   "de": "planos1"
+  },
+  {
+   "plano": 9,
+   "segundo": "29.91",
+   "zona": "abajo",
+   "que": "Los paños blancos de los balcones son grandes y sin ninguna imperfección, y las ventanas son negro puro.",
+   "arreglo": "Suciedad, chorreados y vidrio con reflejo.",
+   "de": "planos1"
+  },
+  {
+   "plano": 10,
+   "segundo": "32.14",
+   "zona": "medio",
+   "que": "El interior se pone blanco lechoso y pierde contraste. Parece neblina y no luz de focos.",
+   "arreglo": "Focos visibles con su cono de luz, sin la neblina general.",
+   "de": "planos1"
+  },
+  {
+   "plano": 11,
+   "segundo": "32.49",
+   "zona": "medio",
+   "que": "ventanas idénticas, negras, de bordes perfectos, repetidas en toda la grilla; ninguna cortina ni variación",
+   "arreglo": "variación al azar por ventana (cortina, reflejo, rugosidad)",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "33.36",
+   "zona": "medio",
+   "que": "paneles y aletas crema de un solo color, limpios, sin chorreados ni mugre bajo los alféizares",
+   "arreglo": "capa de chorreados y mugre por oclusión",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "34.51",
+   "zona": "abajo",
+   "que": "las bandas de los pisos bajos se leen como un patrón repetido ondulado (moiré), más textura que volumen del diente de sierra",
+   "arreglo": "más diferencia de luz entre las dos caras de cada diente y variación de reflejos en los vidrios",
+   "de": "planos2"
+  },
+  {
+   "plano": 12,
+   "segundo": "34.59",
+   "zona": "medio",
+   "que": "edificios del medio y del horizonte: cajas con la misma textura de ventanas, torres color tostado de forma parecida que se repiten",
+   "arreglo": "variar alturas, remates, materiales y tinte por edificio",
+   "de": "planos2"
+  },
+  {
+   "plano": 12,
+   "segundo": "35.38",
+   "zona": "medio",
+   "que": "azoteas planas y vacías, sin estanques, antenas ni ductos: se lee maqueta",
+   "arreglo": "repartir objetos de azotea al azar (instancias con rotación y escala aleatorias)",
+   "de": "planos2"
+  },
+  {
+   "plano": 12,
+   "segundo": "36.42",
+   "zona": "medio",
+   "que": "luz pareja: todos los edificios iluminados igual, sombras débiles, sin negros reales; bruma beige uniforme",
+   "arreglo": "sol bajo de costado con sombras largas y caras en sombra oscuras; la bruma sólo en la distancia",
+   "de": "planos2"
+  },
+  {
+   "plano": 12,
+   "segundo": "35.38",
+   "zona": "abajo",
+   "que": "techo del primer plano gris liso, limpio, de bordes perfectos, con cajas simples",
+   "arreglo": "membrana con mugre, parches, ductos y un parapeto gastado",
+   "de": "planos2"
+  },
+  {
+   "plano": 12,
+   "segundo": "37.21",
+   "zona": "abajo",
+   "que": "las ventanas del edificio del primer plano son rectángulos gris oscuro planos, sin reflejo",
+   "arreglo": "vidrio con reflejo del cielo y algo de rugosidad; algunas ventanas con interior",
+   "de": "planos2"
+  },
+  {
+   "plano": 6,
+   "segundo": "2.00–31.50",
+   "zona": "abajo",
+   "que": "fachada de damero: paneles blancos idénticos, lisos, de un solo color y con bordes perfectos, sin manchas ni chorreados (P2, P4–P7, P9–P10)",
+   "arreglo": "hormigón o pintura con chorreados bajo cada ventana, variación de tono por panel y mugre en las esquinas",
+   "de": "global"
+  },
+  {
+   "plano": 6,
+   "segundo": "12.00–34.50",
+   "zona": "abajo",
+   "que": "ventanas café o negras planas, sin reflejo del cielo ni de la ciudad: vidrio que no refleja (P6–P11)",
+   "arreglo": "vidrio con reflejo del entorno y algo de suciedad; algunas con cortina o interior visible",
+   "de": "global"
+  },
+  {
+   "plano": 5,
+   "segundo": "9.00–31.50",
+   "zona": "medio",
+   "que": "vigas naranjas del sombrero lisas, de un solo color, sin pernos ni desgaste",
+   "arreglo": "acero con anticorrosivo gastado, platinas apernadas, raspones y óxido en los cantos",
+   "de": "global"
+  },
+  {
+   "plano": 7,
+   "segundo": "11.00–20.50",
+   "zona": "medio",
+   "que": "gatos hidráulicos como cápsulas amarillas de juguete, todos idénticos",
+   "arreglo": "cuerpo de acero pintado con vástago cromado, manguera hidráulica y placa base apernada; variar el desgaste entre ellos",
+   "de": "global"
+  },
+  {
+   "plano": 6,
+   "segundo": "12.00–30.00",
+   "zona": "abajo",
+   "que": "escombros como bolitas blancas redondeadas e idénticas (parecen huevos o malvaviscos) (P6, P9)",
+   "arreglo": "trozos de hormigón irregulares de distintos tamaños, con fierro asomando y polvo gris alrededor",
+   "de": "global"
+  },
+  {
+   "plano": 9,
+   "segundo": "25.40–31.50",
+   "zona": "medio",
+   "que": "la grúa es un cilindro turquesa y una esfera de latón lisos, de juguete; la varilla del bloque es una barra rígida",
+   "arreglo": "polipasto industrial (tambor, motor y cable de acero con gancho), en metal gastado",
+   "de": "global"
+  },
+  {
+   "plano": 6,
+   "segundo": "12.00–31.50",
+   "zona": "medio",
+   "que": "muros interiores beige lisos, sin textura ni instalaciones",
+   "arreglo": "hormigón con marcas de moldaje, cañerías o ductos cortados y restos de terminaciones",
+   "de": "global"
+  },
+  {
+   "plano": 1,
+   "segundo": "0.00–2.15",
+   "zona": "abajo",
+   "que": "ciudad de cajas extruidas con la misma textura de ventanas repetida; edificios del primer plano con techo gris plano y una sola caja (también en P12)",
+   "arreglo": "3–4 texturas de fachada distintas, equipos en los techos (estanques, antenas, AC) y siluetas variadas",
+   "de": "global"
+  },
+  {
+   "plano": 8,
+   "segundo": "20.70–25.40",
+   "zona": "medio",
+   "que": "neblina sepia que lava todo el cuadro (sin negros) y plaza bajo la torre como plano gris oscuro liso",
+   "arreglo": "menos densidad de bruma, sombras negras y plaza con calles, veredas y árboles",
+   "de": "global"
+  },
+  {
+   "plano": 11,
+   "segundo": "32.45–34.55",
+   "zona": "arriba",
+   "que": "cielo azul saturado de mediodía, mientras P1, P8 y P12 son de atardecer con nubes rosadas: otra hora del día en el mismo relato",
+   "arreglo": "usar el mismo cielo y la misma hora que P1",
+   "de": "global"
+  },
+  {
+   "plano": 11,
+   "segundo": "32.45–34.55",
+   "zona": "medio",
+   "que": "fachada en contrapicado limpia y perfectamente regular, sin una mancha",
+   "arreglo": "la misma textura con chorreados del delator 1",
+   "de": "global"
+  },
+  {
+   "plano": 3,
+   "segundo": "4.00",
+   "zona": "abajo",
+   "que": "el pantalón café de Pete brilla como plástico o cuero",
+   "arreglo": "bajar el especular y darle rugosidad de tela con barro mate",
+   "de": "global"
+  },
+  {
+   "plano": 3,
+   "segundo": "4.00",
+   "zona": "abajo",
+   "que": "techo donde está Pete: piso gris plano liso y parapeto liso",
+   "arreglo": "membrana o gravilla con manchas de agua y equipos del techo detrás",
+   "de": "global"
+  },
+  {
+   "plano": null,
+   "segundo": "9.00–20.70",
+   "zona": "medio",
+   "que": "Los gatos hidráulicos son cilindros amarillos lisos, como de juguete, sin pistón cromado, mangueras ni marcas.",
+   "arreglo": "Gato con cuerpo de acero pintado y gastado, vástago cromado y una manguera; que se vea el pistón que entra y sale.",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "9.00–32.40",
+   "zona": "medio",
+   "que": "Los escombros del piso son bultos blancos redondeados, todos parecidos, como huevos o piedritas.",
+   "arreglo": "Trozos de concreto angulosos de tamaños distintos, con fierros y polvo gris, en montones.",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "15.30–16.40",
+   "zona": "medio",
+   "que": "Planchas blancas planas sin textura ni espesor.",
+   "arreglo": "Material de concreto con canto, o sacarlas.",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "16.70–20.70",
+   "zona": "medio",
+   "que": "Los bloques blancos verticales tienen bordes perfectos y caras limpias, sin rotura ni fierro a la vista.",
+   "arreglo": "Cantos rotos, fierros asomando y mugre en la base.",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "2.30–32.40",
+   "zona": "abajo",
+   "que": "La fachada de cerca es un damero de paneles blancos y cafés perfectamente limpios y repetidos, sin chorreados ni desgaste.",
+   "arreglo": "Chorreados bajo los alféizares, variación de tono entre paneles y vidrios con reflejos distintos.",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "21.00–25.40",
+   "zona": "abajo",
+   "que": "En la toma aérea, la base de la torre termina en un borde claro sobre una mancha oscura y se lee apoyada en un hoyo o flotando, no anclada a la calle. La ciudad alrededor es una alfombra de cajas casi iguales. Hay que confirmarlo a resolución completa: en este material cada cuadro es de 270×480.",
+   "arreglo": "Calle, veredas y sombra de contacto al pie de la torre; variar la altura y el remate de los edificios vecinos.",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "32.70–34.50",
+   "zona": "medio",
+   "que": "La toma desde la calle tiene luz azul fría y vidrios oscuros, a diferencia del atardecer cálido del resto: parece otro momento del día.",
+   "arreglo": "Usar el mismo sol bajo y cálido, con la fachada iluminada de costado.",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "3.70–5.43",
+   "zona": "abajo",
+   "que": "El pantalón del obrero brilla como cuero o plástico (hay que confirmarlo a resolución completa).",
+   "arreglo": "Tela mate de mezclilla o gabardina con polvo.",
+   "de": "espectador"
+  }
+ ],
+ "solo_bloqueantes": false,
+ "parar_y_preguntar": false
+}

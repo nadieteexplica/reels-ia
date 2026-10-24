@@ -1,0 +1,209 @@
+{
+ "encargo": "global",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "gancho": {
+   "nota": 8,
+   "por_que": "cuadro 0 con la torre en la ciudad, la caja fantasma encima y QUEDAN 36 / ANTES 40; en 0–2 s el contador baja cada 0,3 s y la caja crece: el encogimiento se ve sin sonido. La torre ocupa poco del cuadro y la imagen es tranquila: es un 8, no un 9"
+  },
+  "claridad": {
+   "nota": 7,
+   "por_que": "los pasos 1 (8–12 s) y 3 (16–20 s, el sombrero baja con −1 PISO) se entienden, pero el paso 2 (12–16 s) no muestra nada desarmándose, y la grúa de 27 s (cilindro turquesa con esfera de latón, sin gancho ni rótulo) no se reconoce como grúa"
+  },
+  "ritmo": {
+   "nota": 8,
+   "por_que": "12 planos en 37 s con cámara siempre en movimiento (quieto_max < 0,3 s salvo P12); pero 8,25–20,7 s son 12,4 s seguidos en la misma escala del corte, y 12–16 s y 25–30 s se ven casi iguales cuadro a cuadro. El loop empalma: misma cámara y mismas píldoras, y sólo la torre vuelve de 14 a 36 pisos"
+  },
+  "belleza": {
+   "nota": 7,
+   "por_que": "las vistas aéreas (0–2 s y 35–37 s) se ven bonitas, con sol bajo, bruma y nubes rosadas; el interior (8–20 s y 25–31 s) es un damero beige, naranja y amarillo cargado y monocromo, y en 21–24 s la neblina sepia lava el cuadro (p1 ≈ 31, sin negros)"
+  },
+  "animacion": {
+   "nota": 7,
+   "por_que": "la mecánica se mueve: la torre se encoge (0–2 s y 21–24 s), el sombrero baja (16–20 s) y la grúa baja el bloque (26–28 s), y Pete actúa en P3; pero en el paso 2 (12–16 s) nada se desarma, los escombros no se mueven y el último 1,0 s (P12) queda quieto"
+  },
+  "subtitulos": {
+   "nota": 9,
+   "por_que": "92/92 palabras a tiempo y dentro de la zona; tildes bien (DESPUÉS, HIDRÁULICOS, GRÚA, CONSTRUCCIÓN, DÍAS), sin puntos suspensivos, y no tapan la cara de Pete en 4 s. Detalle: en 13 s el 'EL' queda solo en la 2.ª línea, y el texto blanco sobre el beige de 13 s y 30 s queda justo de contraste"
+  },
+  "audio": {
+   "nota": 8,
+   "por_que": "no lo escucho. Las cifras dan −14,1 LUFS y −3,1 dBTP (en rango), y la voz va 8,3 dB sobre las pausas (es un mínimo, con ducking). No se puede verificar que la música vaya 15–20 dB bajo la voz, y el origen de la música no está declarado"
+  },
+  "precision": {
+   "nota": 9,
+   "por_que": "ANTES 40 PISOS, −1 PISO, −2 PISOS · CADA 10 DÍAS, GATOS HIDRÁULICOS y EL TECHO QUEDA ENTERO calzan con el guion y sus fuentes, y la píldora CÁMARA RÁPIDA está en las tomas que se encogen. La grúa sólo baja el bloque un piso (no por un pozo), pero eso no contradice nada"
+  },
+  "realismo": {
+   "nota": 6,
+   "por_que": "la luz es real (sol bajo de costado, negros en las ventanas) y Pete calza con su ficha, pero más de la mitad del video (8–20 s y 25–31 s) es un interior de maqueta: fachada de damero blanco perfecto, vigas naranjas lisas, gatos amarillos de cápsula idénticos, escombros como bolitas blancas, una grúa de juguete y ventanas sin reflejo. Las aéreas son ciudad de cajas con textura repetida (7)"
+  },
+  "comprension": {
+   "nota": 7,
+   "por_que": "en orden se entiende la torre que se achica, el techo sobre gatos que baja un piso y el remate de 2 pisos cada 10 días; no se entiende qué pasa en 12–16 s (¿qué desarman?) ni qué es el aparato de 25–29 s hasta que aparece ELECTRICIDAD"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B13",
+   "plano": 6,
+   "segundo": "12.30–16.35",
+   "que": "la voz dice 'escondidos bajo el sombrero, desarman el piso de abajo' y en 12, 13, 14 y 15 s el interior es el mismo: los mismos gatos, las mismas bolitas de escombro en su lugar y la grúa quieta. Sólo se aclara un muro del fondo en 15 s; no se ve ninguna pieza que se saque, y es el paso central de la mecánica",
+   "arreglo": "que el piso bajo el sombrero parta con muros o pilares a la vista y se vacíe en 2–3 golpes visibles (la grúa levanta un panel o un trozo de losa y lo saca de cuadro, y el muro desaparece con un pop y polvo). Si sale más barato: dos cortes, 'piso entero' en 12,9 s y 'piso pelado' en 15,1 s"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "8.25–31.50",
+   "que": "realismo 6 (mínimo 8): el interior y la fachada en primer plano parecen maqueta. Ver la lista completa en delatores",
+   "arreglo": "en una sola pasada: textura de hormigón con chorreados y variación en los paneles de fachada, vidrio con reflejo del cielo, vigas de acero pintado gastado con pernos, gatos de acero con vástago cromado, escombros de hormigón irregulares (rubble CC0 de Poly Haven) y polvo en el piso"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "27.06",
+   "que": "'la grúa' no se reconoce: es un cilindro turquesa con una esfera de latón sobre un riel amarillo, colgando de una varilla, sin gancho, sin cable y sin rótulo cuando la voz la nombra",
+   "arreglo": "píldora GRÚA en 27,06 s apuntando al aparato; que sea un polipasto con tambor, cable de acero y gancho, y que el bloque baje por un hueco del piso y salga de cuadro (así se entiende 'baja los escombros')"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "20.70–25.40",
+   "que": "la aérea alta está lavada por una neblina sepia: todo el cuadro gris anaranjado, sin negros (p1 ≈ 31, p5 ≈ 43), y la plaza bajo la torre es un plano gris oscuro liso",
+   "arreglo": "bajar la densidad de la bruma a la de P1, oscurecer las sombras y darle textura a la plaza (calles, veredas, árboles)"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "4.00",
+   "que": "la píldora SIN EXPLOSIONES se monta sobre CÁMARA RÁPIDA (se tocan y se cortan), y CÁMARA RÁPIDA no tiene sentido sobre Pete, que no se está achicando",
+   "arreglo": "sacar CÁMARA RÁPIDA en P3 y dejar sólo SIN EXPLOSIONES"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "8.25–20.70",
+   "que": "12,4 s seguidos en la misma escala del corte (P5–P7) y otros 7 s en el mismo interior (P9–P10); se pasa de los 8–12 s por cambio de escala",
+   "arreglo": "abrir P6 a un plano medio de la punta de la torre completa (sombrero más el piso de abajo en corte), que además sirve para mostrar el desarme del bloqueante 1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "3.65–5.40",
+   "que": "el obrero tranquilo arriba, que el guion pide como contraste absurdo, sale sólo 1,75 s y nunca sobre la torre que se achica",
+   "arreglo": "reusar su loop de Mixamo: que aparezca tras la baranda del sombrero cuando éste baja (P7, 18–20 s), encogiéndose de hombros"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "36.27–37.25",
+   "que": "el último segundo queda quieto (quieto_max 1,0 s, el contador parado en 14)",
+   "arreglo": "que el contador baje a 13 en 36,9 s, o un empuje lento de cámara hasta el último cuadro, para que el loop no se note pegado"
+  }
+ ],
+ "eventos": [],
+ "delatores": [
+  {
+   "plano": 6,
+   "segundo": "2.00–31.50",
+   "zona": "abajo",
+   "que": "fachada de damero: paneles blancos idénticos, lisos, de un solo color y con bordes perfectos, sin manchas ni chorreados (P2, P4–P7, P9–P10)",
+   "arreglo": "hormigón o pintura con chorreados bajo cada ventana, variación de tono por panel y mugre en las esquinas"
+  },
+  {
+   "plano": 6,
+   "segundo": "12.00–34.50",
+   "zona": "abajo",
+   "que": "ventanas café o negras planas, sin reflejo del cielo ni de la ciudad: vidrio que no refleja (P6–P11)",
+   "arreglo": "vidrio con reflejo del entorno y algo de suciedad; algunas con cortina o interior visible"
+  },
+  {
+   "plano": 5,
+   "segundo": "9.00–31.50",
+   "zona": "medio",
+   "que": "vigas naranjas del sombrero lisas, de un solo color, sin pernos ni desgaste",
+   "arreglo": "acero con anticorrosivo gastado, platinas apernadas, raspones y óxido en los cantos"
+  },
+  {
+   "plano": 7,
+   "segundo": "11.00–20.50",
+   "zona": "medio",
+   "que": "gatos hidráulicos como cápsulas amarillas de juguete, todos idénticos",
+   "arreglo": "cuerpo de acero pintado con vástago cromado, manguera hidráulica y placa base apernada; variar el desgaste entre ellos"
+  },
+  {
+   "plano": 6,
+   "segundo": "12.00–30.00",
+   "zona": "abajo",
+   "que": "escombros como bolitas blancas redondeadas e idénticas (parecen huevos o malvaviscos) (P6, P9)",
+   "arreglo": "trozos de hormigón irregulares de distintos tamaños, con fierro asomando y polvo gris alrededor"
+  },
+  {
+   "plano": 9,
+   "segundo": "25.40–31.50",
+   "zona": "medio",
+   "que": "la grúa es un cilindro turquesa y una esfera de latón lisos, de juguete; la varilla del bloque es una barra rígida",
+   "arreglo": "polipasto industrial (tambor, motor y cable de acero con gancho), en metal gastado"
+  },
+  {
+   "plano": 6,
+   "segundo": "12.00–31.50",
+   "zona": "medio",
+   "que": "muros interiores beige lisos, sin textura ni instalaciones",
+   "arreglo": "hormigón con marcas de moldaje, cañerías o ductos cortados y restos de terminaciones"
+  },
+  {
+   "plano": 1,
+   "segundo": "0.00–2.15",
+   "zona": "abajo",
+   "que": "ciudad de cajas extruidas con la misma textura de ventanas repetida; edificios del primer plano con techo gris plano y una sola caja (también en P12)",
+   "arreglo": "3–4 texturas de fachada distintas, equipos en los techos (estanques, antenas, AC) y siluetas variadas"
+  },
+  {
+   "plano": 8,
+   "segundo": "20.70–25.40",
+   "zona": "medio",
+   "que": "neblina sepia que lava todo el cuadro (sin negros) y plaza bajo la torre como plano gris oscuro liso",
+   "arreglo": "menos densidad de bruma, sombras negras y plaza con calles, veredas y árboles"
+  },
+  {
+   "plano": 11,
+   "segundo": "32.45–34.55",
+   "zona": "arriba",
+   "que": "cielo azul saturado de mediodía, mientras P1, P8 y P12 son de atardecer con nubes rosadas: otra hora del día en el mismo relato",
+   "arreglo": "usar el mismo cielo y la misma hora que P1"
+  },
+  {
+   "plano": 11,
+   "segundo": "32.45–34.55",
+   "zona": "medio",
+   "que": "fachada en contrapicado limpia y perfectamente regular, sin una mancha",
+   "arreglo": "la misma textura con chorreados del delator 1"
+  },
+  {
+   "plano": 3,
+   "segundo": "4.00",
+   "zona": "abajo",
+   "que": "el pantalón café de Pete brilla como plástico o cuero",
+   "arreglo": "bajar el especular y darle rugosidad de tela con barro mate"
+  },
+  {
+   "plano": 3,
+   "segundo": "4.00",
+   "zona": "abajo",
+   "que": "techo donde está Pete: piso gris plano liso y parapeto liso",
+   "arreglo": "membrana o gravilla con manchas de agua y equipos del techo detrás"
+  }
+ ],
+ "resumen": "Gancho y mecánica general bien contados (la torre que se encoge con contador, el sombrero sobre gatos que baja −1 PISO, el remate de 2 pisos cada 10 días) y subtítulos impecables, pero el paso 2 'desarman el piso de abajo' no se ve (B13) y el realismo queda en 6: el interior es maqueta (damero perfecto, gatos de cápsula, escombros de bolitas, grúa de juguete). Música: ni audio.json ni el guion dicen de dónde sale; si es sintetizada por código, ojo (Tomás la encontró 'mala' en el Ep. 6)."
+}

@@ -396,6 +396,84 @@ def contorno_techo(im, f):
     im.paste(capa, (0, 0), capa)
 
 
+def _capa():
+    return Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+
+
+def _pegar(im, capa, glow=8):
+    if glow:
+        g = capa.filter(ImageFilter.GaussianBlur(glow))
+        im.paste(g, (0, 0), g)
+    im.paste(capa, (0, 0), capa)
+
+
+def _trazo(pts, u):
+    """El tramo de la polilínea pts recorrido hasta la fracción u (0–1) de su largo."""
+    L = [math.dist(a, b) for a, b in zip(pts, pts[1:])]
+    tot = sum(L) or 1
+    obj = u * tot
+    out = [tuple(pts[0])]
+    for (a, b), l in zip(zip(pts, pts[1:]), L):
+        if obj >= l:
+            out.append(tuple(b)); obj -= l
+        else:
+            r = obj / l if l else 0
+            out.append((a[0] + (b[0] - a[0]) * r, a[1] + (b[1] - a[1]) * r)); break
+    return out
+
+
+def capa_pieza(im, f):
+    """Plano 6: contorno blanco de la losa que la grúa está sacando y flecha hacia el pozo y hacia abajo."""
+    esq = meta(6, f, "pieza", None)
+    if not esq or str(f) not in META.get("6", {}).get("cuadros", {}) or "pieza" not in META["6"]["cuadros"][str(f)]:
+        return
+    poli = _envolvente(esq)
+    c = _capa(); d = ImageDraw.Draw(c)
+    d.line(poli + [poli[0]], fill=(255, 255, 255, 235), width=7, joint="curve")
+    _pegar(im, c, 6)
+    cx = sum(p[0] for p in poli) / len(poli); cy = sum(p[1] for p in poli) / len(poli)
+    px, py = meta(6, f, "pozo", (540, 900)); qx, qy = meta(6, f, "pozo_abajo", (540, 1100))
+    flecha(im, cx, cy, px, py, (255, 255, 255), ancho=8)
+    flecha(im, px, py, qx, min(qy, 1000), (255, 255, 255), ancho=8)
+
+
+def capa_electricidad(im, f, t):
+    """Plano 9: la electricidad sale del generador y corre dorada por el cable hacia las lámparas (desde "genera")."""
+    t_ge = tw("genera", 28.2)
+    c = _capa(); d = ImageDraw.Draw(c)
+    bx, by = meta(9, f, "bulto", (540, 900)); kx, ky = meta(9, f, "carro", (540, 700))
+    if t < t_ge + 0.6:
+        flecha(im, kx + 60, ky + 40, bx + 60, by, (255, 255, 255), ancho=8)          # el bulto baja
+    if t >= t_ge:
+        u = min(1.0, (t - t_ge) / 1.0)
+        for clave in ("cable", "cable2"):
+            pts = meta(9, f, clave, None)
+            if pts:
+                tr = _trazo(pts, u)
+                if len(tr) > 1:
+                    d.line(tr, fill=(*DORADO, 255), width=12, joint="curve")
+                    hx, hy = tr[-1]
+                    d.ellipse((hx - 16, hy - 16, hx + 16, hy + 16), fill=(255, 245, 200, 255))
+        _pegar(im, c, 10)
+
+
+def capa_luces(im, f, t):
+    """Plano 10: cada lámpara se prende con su resplandor y su cono de luz hacia el piso."""
+    t_pr = tw("prenden", 30.2)
+    lam = meta(10, f, "lamparas", None); pis = meta(10, f, "piso", None)
+    if not lam or not pis:
+        return
+    c = _capa(); d = ImageDraw.Draw(c)
+    for k, ((lx, ly), (fx, fy)) in enumerate(zip(lam, pis)):
+        on = min(1.0, max(0.0, (t - (t_pr + 0.2 * k)) / 0.1))
+        if on <= 0 or not (0 < lx < 1080 and 0 < ly < 1920):
+            continue
+        w = max(30, abs(fy - ly) * 0.55)
+        d.polygon([(lx - 18, ly), (lx + 18, ly), (fx + w, fy), (fx - w, fy)], fill=(255, 214, 140, int(70 * on)))
+        d.ellipse((lx - 26, ly - 14, lx + 26, ly + 14), fill=(255, 236, 190, int(255 * on)))
+    _pegar(im, c, 12)
+
+
 def graficos(im, f, k):
     t = t_de(f)
     if k in RAPIDO:
@@ -412,11 +490,14 @@ def graficos(im, f, k):
         t_so, t_ga = tw("sombrero", 9.0), tw("gatos", 10.8)
         pild(im, f, 5, "p1", "PASO 1 · SOMBRERO", tw("Primero", 8.0), P, tam=50, hasta=t_ga)
         if t >= t_ga:
-            gx, gy = meta(5, f, "gata", (420, 1150))
-            gy = max(560, min(900, gy - 200))
-            gx = max(350, min(730, gx))
-            pildora(im, "GATOS HIDRÁULICOS", gx, gy, fondo=AMARILLO, tinta=(24, 24, 28), s=pop(t - t_ga), tam=48)
+            gx, gy = meta(5, f, "gata", (540, 900))
+            py = max(520, min(760, gy - 230))
+            px = max(350, min(730, gx))
+            if gy - py > 90:
+                flecha(im, px, py + 45, gx, gy - 20, AMARILLO, ancho=9)
+            pildora(im, "GATOS HIDRÁULICOS", px, py, fondo=AMARILLO, tinta=(24, 24, 28), s=pop(t - t_ga), tam=48)
     elif k == 6:
+        capa_pieza(im, f)
         pild(im, f, 6, "p2", "PASO 2 · DESARMAN", tw("Después", 12.0), P, tam=50)
     elif k == 7:
         t_pi = tw("piso", 19.5)
@@ -425,8 +506,10 @@ def graficos(im, f, k):
     elif k == 8:
         pild(im, f, 8, "rev", "EN REVERSA", tw("reversa", 24.5), P)
     elif k == 9:
+        capa_electricidad(im, f, t)
         pild(im, f, 9, "elec", "ELECTRICIDAD", tw("electricidad", 28.5), P, fondo=DORADO, tinta=(24, 24, 28))
     elif k == 10:
+        capa_luces(im, f, t)
         pild(im, f, 10, "luces", "LUCES DE LA OBRA", tw("luces", 30.8), P, fondo=DORADO, tinta=(24, 24, 28))
     elif k == 12:
         t_di = tw("diez", 35.5)

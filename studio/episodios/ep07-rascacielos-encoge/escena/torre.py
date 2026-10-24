@@ -367,6 +367,8 @@ def ciudad(sc, semilla=11, radio=1100.0, lejos=5000.0):
             alto = random.choice([random.uniform(10, 30)] * 5 + [random.uniform(30, 70)] * 3 + [random.uniform(70, 130)])
             alto = min(alto, 24.0 if d < 260 else 55.0 if d < 600 else 999)
             alto = _bajo_vista(cx, cy, alto, max(w, dd))
+            if math.hypot(cx - 172, cy + 360) < 170:
+                alto = min(alto, 11.0)
             o = caja(f"Edif{i}_{j}", (w, dd, alto), (cx, cy, 0), random.choice(mats))
             rz = math.radians(random.choice([0, 0, 0, 2, -2]))
             o.rotation_euler.z = rz
@@ -434,8 +436,8 @@ def torre(sc, corte=False):
     """La torre: 40 objetos-piso (fachada blanca de bandas), el sombrero (último piso + techo con parapeto y equipos) y la
     envoltura de paneles. Con corte=True arma además lo de adentro de la zona de trabajo (columnas temporales, gatas,
     losa en piezas, pozo, grúa de techo, lámparas)."""
-    blanco = mat_fachada("f_torre", piso=H, modulo=1.8, banda=(0.36, 0.9), marco=0.1, col_panel=(0.8, 0.79, 0.76), metal=0.3,
-                         luces=0.0, cortinas=(0.035, 0.11), k_neblina=3200.0)
+    blanco = mat_fachada("f_torre", piso=H, modulo=1.8, banda=(0.36, 0.9), marco=0.1, col_panel=(0.78, 0.77, 0.74), metal=0.3,
+                         luces=0.0, cortinas=(0.07, 0.16), vidrio_oscuro=0.06, k_neblina=3200.0)
     pisos = []
     pl = planta_dentada()
     base = prisma("PisoBase", pl, H, (0, 0, 0), blanco)
@@ -493,10 +495,12 @@ def interior(sc, sb):
     gatas y la losa de arriba en 8 piezas) y el sombrero (baja: columnas temporales, vigas, grúa, lámparas, borde del
     corte). Coordenadas locales: z = 0 es la losa de abajo; z = 2H es la cara de abajo del sombrero."""
     ob = bpy.data.objects.new("Obra", None); sc.collection.objects.link(ob)
+    roto = E.mat_hormigon("escombro", (0.36, 0.35, 0.33))
+    acero_g = E.mat_metal_cepillado("acero_gata", (0.42, 0.42, 0.43), rugo=(0.35, 0.6))
     hor = E.mat_hormigon("losa", (0.42, 0.41, 0.39))
     col = E.mat_hormigon("columna", (0.5, 0.49, 0.47))
     acero = mat_pintura_fina("acero_temp", (0.4, 0.15, 0.08), rugo=(0.45, 0.7), metal=0.2)      # vigas con anticorrosivo rojizo (sin veta)
-    amarillo = mat_pintura_fina("gata", (0.82, 0.58, 0.05))
+    amarillo = mat_pintura_fina("gata", (0.78, 0.55, 0.06), rugo=(0.5, 0.78))
     cromo = E.mat_metal_cepillado("piston", (0.62, 0.62, 0.63), rugo=(0.25, 0.4))
     out = {"obra": ob, "piezas": [], "cols_a": [], "cols_b": [], "gatas": [], "pistones": [], "temp": [], "lamparas": [], "luces": []}
     e = 0.3
@@ -515,11 +519,10 @@ def interior(sc, sb):
         m = fierro if k % 3 == 0 else saco
         o = caja(f"Saco{k}", (random.uniform(0.8, 1.8), random.uniform(0.7, 1.3), random.uniform(0.4, 0.9)), (x, y, 0), m)
         o.rotation_euler.z = random.uniform(-0.4, 0.4); o.parent = ob
-    roto = E.mat_hormigon("escombro", (0.46, 0.45, 0.42))
     for k in range(70):
         x, y = random.uniform(-24, 24), random.choice([-1, 1]) * random.uniform(3.0, 7.6)
         r = random.uniform(0.08, 0.35)
-        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=r, location=(x, y, r * 0.4))
+        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=r, location=(x, y, r * 0.4))
         o = bpy.context.object; o.name = f"Escombro{k}"
         o.scale = (random.uniform(0.7, 1.6), random.uniform(0.7, 1.4), random.uniform(0.35, 0.8))
         o.rotation_euler = (random.uniform(0, 3), random.uniform(0, 3), random.uniform(0, 3))
@@ -533,7 +536,7 @@ def interior(sc, sb):
     for i in range(4):
         for j, (y0, y1) in enumerate(((-LY / 2, -POZO / 2), (POZO / 2, LY / 2))):
             x0, x1 = xs[i], xs[i + 1]
-            o = caja(f"Pieza{i}{j}", (x1 - x0 - 0.15, y1 - y0 - 0.15, 0.45), ((x0 + x1) / 2, (y0 + y1) / 2, H - 0.45), hor)
+            o = caja(f"Pieza{i}{j}", (x1 - x0 - 0.3, y1 - y0 - 0.3, 1.1), ((x0 + x1) / 2, (y0 + y1) / 2, H - 0.45), roto)
             o.parent = ob
             o["base"] = tuple(o.location)
             out["piezas"].append(o)
@@ -544,6 +547,10 @@ def interior(sc, sb):
     for x in (-24.0, -16.0, -8.0, 8.0, 16.0, 24.0):
         for y in (-7.3, 7.3):
             g = cilindro(f"Gata{x}{y}", 0.62, GATA, (x, y, 0.0), amarillo, verts=32); g.parent = ob
+            pl = caja(f"GataBase{x}{y}", (1.7, 1.7, 0.14), (x, y, 0.0), acero_g); pl.parent = ob
+            co = cilindro(f"GataCollar{x}{y}", 0.7, 0.22, (x, y, GATA - 0.22), acero_g, verts=32); co.parent = ob
+            mg = cilindro(f"GataManguera{x}{y}", 0.05, 1.4, (x + 0.62, y, 0.3), E.mat_cable("manguera", (0.05, 0.05, 0.05)), verts=8)
+            mg.rotation_euler.y = math.radians(70); mg.parent = ob
             p = cilindro(f"Piston{x}{y}", 0.25, 1.0, (x, y, GATA), cromo, verts=24); p.parent = ob
             t = caja(f"Temp{x}{y}", (0.62, 0.62, TEMP), (x, y, GATA + P0), acero); t.parent = sb
             out["gatas"].append(g); out["pistones"].append(p); out["temp"].append(t)
@@ -556,9 +563,9 @@ def interior(sc, sb):
     carro = caja("GruaCarro", (2.4, 1.9, 0.7), (0, 0, zv - 0.75), amarillo); carro.parent = sb
     for k, (xr, yr) in enumerate(((-0.9, -0.65), (0.9, -0.65), (-0.9, 0.65), (0.9, 0.65))):
         r = cilindro(f"Rueda{k}", 0.18, 0.12, (xr, yr - 0.06, zv + 0.05), acero, verts=20); r.rotation_euler.x = math.radians(90); r.parent = sb
-    tambor = cilindro("GruaTambor", 0.42, 1.5, (0, 0.75, zv - 1.05), E.mat_metal_cepillado("tambor", (0.55, 0.55, 0.57)), verts=32)
+    tambor = cilindro("GruaTambor", 0.42, 1.5, (0, 0.75, zv - 1.05), E.mat_metal_cepillado("tambor", (0.4, 0.4, 0.41), rugo=(0.4, 0.65)), verts=32)
     tambor.rotation_euler.x = math.radians(90); tambor.parent = sb
-    motor = cilindro("GruaMotor", 0.45, 1.1, (-1.75, 0.0, zv - 1.0), mat_pintura_fina("motor", (0.12, 0.3, 0.42)), verts=32)
+    motor = cilindro("GruaMotor", 0.45, 1.1, (-1.75, 0.0, zv - 1.0), mat_pintura_fina("motor", (0.16, 0.17, 0.18), rugo=(0.45, 0.7)), verts=32)
     motor.rotation_euler.y = math.radians(90); motor.parent = sb
     aro = cilindro("GeneradorAro", 0.52, 0.18, (-2.35, 0, zv - 1.0), mat_brillo("gen_brillo", (1.0, 0.72, 0.18), 0.0), verts=40)
     aro.rotation_euler.y = math.radians(90); aro.parent = sb; aro.visible_shadow = False
@@ -571,7 +578,8 @@ def interior(sc, sb):
     elec = mat_brillo("elec", (1.0, 0.78, 0.22), 0.0)
     ce = caja("CableLuz", (LX - 8, 0.3, 0.3), (0, -0.85, 2 * H - 2.05), elec); ce.parent = sb; ce.visible_shadow = False
     for k, x in enumerate((-20, -13, -5, 5, 13, 20)):
-        lm = caja(f"Lampara{k}", (1.3, 0.5, 0.22), (x, 3.6, 2 * H - 1.75), mat_brillo(f"lamp{k}", (1.0, 0.86, 0.65), 0.0)); lm.parent = sb
+        cas = caja(f"LamparaCaja{k}", (1.4, 0.6, 0.32), (x, 3.6, 2 * H - 1.75), acero_g); cas.parent = sb
+        lm = caja(f"Lampara{k}", (1.2, 0.45, 0.04), (x, 3.6, 2 * H - 1.80), mat_brillo(f"lamp{k}", (1.0, 0.82, 0.55), 0.0)); lm.parent = sb
         lm.visible_shadow = False
         lt = bpy.data.lights.new(f"LuzObra{k}", "AREA"); lt.energy = 0.0; lt.size = 1.3; lt.color = (1.0, 0.84, 0.62)
         lo = bpy.data.objects.new(f"LuzObra{k}", lt); sc.collection.objects.link(lo); lo.parent = sb
