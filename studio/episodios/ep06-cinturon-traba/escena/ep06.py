@@ -447,7 +447,7 @@ def sentar(arm, quien, raiz_auto=None, sentado_fbx=None, frame=1):
 
 
 # ---------------------------------------------------------------- cinturón (cinta)
-def mat_cinta(nombre="cinta", color=(0.035, 0.035, 0.04)):
+def mat_cinta(nombre="cinta", color=(0.02, 0.02, 0.023)):
     """Cinta del cinturón: trama tejida (rayas finas a lo largo), bordes cosidos y polvo."""
     m, nt, b = _nodos(nombre)
     tc = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
@@ -458,9 +458,10 @@ def mat_cinta(nombre="cinta", color=(0.035, 0.035, 0.04)):
     col = _rampa(nt, nz.outputs["Fac"], color, tuple(min(1, c * 2.2) for c in color))
     nt.links.new(col.outputs[0], b.inputs["Base Color"])
     b.inputs["Roughness"].default_value = 0.85
-    b.inputs["Specular IOR Level"].default_value = 0.2   # tela de poliéster: brillo bajo, sin manchas blancas
-    b.inputs["Sheen Weight"].default_value = 0.15
-    b.inputs["Sheen Tint"].default_value = (0.5, 0.5, 0.52, 1)
+    # tela de poliéster negra: casi sin brillo (con 0,2 de especular la cinta reflejaba el desierto y se veía café claro)
+    b.inputs["Specular IOR Level"].default_value = 0.04
+    b.inputs["Sheen Weight"].default_value = 0.06
+    b.inputs["Sheen Tint"].default_value = (0.35, 0.35, 0.37, 1)
     _bump(nt, b, wave.outputs["Fac"], 0.3, 0.0006)
     return m
 
@@ -644,9 +645,13 @@ def set_retractor(sc, giro=25.0, pestillo=0.0, bolita=0.35, palanca=0.0, key=2.5
     if fondo:
         desierto(sc); cerros(sc)
     ret = retractor(sc, tuple(RET), giro_carrete=giro, pestillo=pestillo, bolita=bolita, palanca=palanca)
-    chapa = K.mat_acero_industrial("chapa_pilar", (0.2, 0.21, 0.22), sucio=0.6)
+    chapa = K.mat_acero_industrial("chapa_pilar", (0.13, 0.135, 0.14), sucio=0.9)
     # soporte del pilar: sólo la placa donde va apernado (capa de explicación); atrás, el mundo desenfocado
-    caja(sc, "ChapaPilar", (0.004, 0.085, 0.16), tuple(RET + Vector((-0.045, 0.0, 0.0))), mat=chapa, bisel=0.002)
+    caja(sc, "ChapaPilar", (0.004, 0.075, 0.13), tuple(RET + Vector((-0.045, 0.0, 0.0))), mat=chapa, bisel=0.002)
+    # pernos que sujetan el marco al pilar (lo que no está apernado parece maqueta)
+    for dy, dz in ((0.028, 0.036), (0.028, -0.036)):
+        cilindro(sc, "Perno", 0.0045, 0.004, tuple(RET + Vector((-0.033, dy, dz))), verts=6,
+                 mat=mat_grasa("perno", (0.4, 0.4, 0.42))).rotation_euler = (0, math.radians(90), 0)
     # la cinta sale tangente por delante del rollo (−y) y sube; la cara mira hacia −y, el ancho va a lo largo del eje (x)
     cinta(sc, [RET + Vector((0.0, -0.0175, 0.012)), RET + Vector((0.0, -0.0185, 0.06)), RET + Vector((0.0, -0.02, 0.6))],
           [Vector((0, -1, 0))] * 3, nombre="CintaSube")
