@@ -31,7 +31,11 @@ CAMBIO_MAX_S = float(_T["cambio_max_s"])
 FICHA = {                        # columnas obligatorias de la ficha de plano (storyboard.md) → clave normalizada
     "escena": ("escena",), "plantilla": ("plantilla",), "accion": ("accion visible", "accion"), "cambio": ("cambio",), "camara": ("camara",),
     "cara": ("cara",), "grafico": ("grafico",), "origen": ("origen", "fuente", "sale de"),
+    # Ep. 6 (vergüenza máxima, 24-oct-2026): cada ficha dice qué entiende alguien que lo ve SIN sonido (quién, dónde, qué pasa)
+    "sin_sonido": ("sin sonido", "se entiende"),
 }
+SITUACION_S = 3.0                # en los primeros 3 s, un plano de situación (G): quién, dónde y la acción del gancho
+PLANOS_AVISO = 16                # más de 16 planos en ≤ 45 s se vio como "escenas pegadas" (Ep. 6: 25 planos en 38 s)
 
 
 def _f(r, que, evidencia="", bloqueante=False):
@@ -280,14 +284,15 @@ def storyboard(ep_d, dur_voz=None):
         medida = sorted(e for e, pts in escenas.items() if any("medida" in p for p in pts))
         if len(medida) > A_MEDIDA_MAX:
             _f(r, f"{len(medida)} escenas a medida ({', '.join(medida)}; máx. {A_MEDIDA_MAX}): usar plantillas del kit", bloqueante=True)
-    if filas and len(filas) < 20:
-        _a(r, f"{len(filas)} planos: con algo que cambia cada 1–2 s, en 50 s hacen falta ~25–50 cambios; confirmar que la columna 'cambio' los cubre")
+    if len(filas) > PLANOS_AVISO:
+        _a(r, f"{len(filas)} planos: más de {PLANOS_AVISO} en un video corto se vio como 'escenas pegadas' (Ep. 6). Los cambios cada "
+              "1–2 s salen de la acción y la cámara dentro de cada plano, no de cortar a otro lugar")
     if faltan_col:
         _f(r, f"a la ficha de plano le faltan columnas: {', '.join(faltan_col)} (plantilla en studio/plantilla/storyboard.md)", bloqueante=True)
     vacio = lambda x: not x or norm(x).strip() in ("", "-", "—", "?", "x")
     for f in filas:
         n = f[cols[0]]
-        for k in ("escena", "accion", "camara", "origen", "plantilla"):      # "cara" y "gráfico" pueden ser "—" (plano sin personaje)
+        for k in ("escena", "accion", "camara", "origen", "plantilla", "sin_sonido"):      # "cara" y "gráfico" pueden ser "—"
             c = ci(*FICHA[k])
             if c and vacio(f.get(c, "")):
                 _f(r, f"plano {n}: la ficha no dice '{c}'")
@@ -325,6 +330,17 @@ def storyboard(ep_d, dur_voz=None):
             _a(r, f"plano {n} dura {d:.2f} s (muy corto para leerse)")
     if tiempos and dur_voz and abs(tiempos[-1][2] - dur_voz) > 1.0:
         _a(r, f"el storyboard termina en {tiempos[-1][2]:.1f} s y la voz en {dur_voz:.1f} s")
+    # Ep. 6: plano de situación al inicio y aire (no todo detalles y primeros planos)
+    if c_pl and tiempos:
+        esc = lambda f: ((f.get(c_pl, "") or "?").strip().split() or ["?"])[0][:1].upper()
+        inicio = [f for n, a, b, f in tiempos if a < SITUACION_S]
+        if not any(esc(f) == "G" or re.search(r"situacion|general", norm(f.get(c_pl, ""))) for f in inicio):
+            _f(r, f"falta un plano de situación (escala G) en los primeros {SITUACION_S:g} s: que se vea quién, dónde y la acción del "
+                  "gancho (Ep. 6: abrió con un primer plano a través del parabrisas y no se entendía nada)", bloqueante=True)
+        cerca = [n for n, a, b, f in tiempos if esc(f) in ("P", "D")]
+        if tiempos and len(cerca) / len(tiempos) > 0.5:
+            _a(r, f"{len(cerca)} de {len(tiempos)} planos son primer plano o detalle: falta aire (Tomás, Ep. 4 y Ep. 6); "
+                  "cada escena abre con un plano donde se reconoce el lugar y a los personajes")
     # escala: cambio cada 8–12 s
     if c_pl and tiempos:
         esc_prev, t_prev = None, 0.0

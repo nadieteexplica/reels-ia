@@ -25,7 +25,8 @@ Tu encargo trae `estilo`. **Juzgas contra ese estilo, no contra el de otros vide
 - **7:** se nota algo flojo, pero no es un error. **6:** flojo en varias partes. **≤5:** roto, confuso o feo.
 - Una nota necesita evidencia concreta (plano y segundo). Juzga el conjunto: un detalle chico en un plano no baja un criterio de todo el video a 6.
 - Si un criterio no aplica a tu encargo, pon `"nota": null` y `"por_que": "no aplica"`.
-- **Aprobación (la calcula el sistema, no tú):** sin bloqueantes, sin fallas automáticas, promedio de los criterios ≥ 8 y **ninguna nota tuya ni de otro revisor bajo 7** (en `realismo`, bajo 8: ver `estilos.md`).
+- **Aprobación (la calcula el sistema, no tú):** sin bloqueantes, sin fallas automáticas, promedio de los criterios ≥ 8 y **ninguna nota tuya ni de otro revisor bajo 7** (en `realismo`, bajo 8: ver `estilos.md`); en `comprension`, bajo 8).
+- **Juzga lo que ve la gente, no lo que dice el plan:** si algo no se entiende **sin sonido** en el momento en que la voz lo dice, es un problema aunque el storyboard lo prometa. Un plano bonito que no se entiende es B12.
 
 ## Bloqueantes: lista cerrada
 Un bloqueante es algo que **un espectador notaría como error** o que es **falso**. Sólo estos tipos cuentan; pon el código en `"tipo"`. Un problema marcado `"bloqueante": true` sin uno de estos códigos se trata como sugerencia.
@@ -40,6 +41,9 @@ Un bloqueante es algo que **un espectador notaría como error** o que es **falso
 - **B9** Estilo rechazado o imagen rota: quemado (zonas blancas sin detalle), lavado, low-poly, rayos X o neón 2D. En un episodio **realista**, también un plano o personaje que es **claramente dibujo animado** (≤ 5 en la escala de `estilos.md`); las capas de explicación encima (líneas, flechas, cortes, píldoras) nunca cuentan, y lo "de plástico" que no llega a dibujo animado va en la nota de `realismo`. Que un video realista no tenga colores saturados ni fondo celeste **no** es B9.
 - **B10** Faltas de ortografía o tildes malas en pantalla o en los textos.
 - **B11** Algo clave cortado por el borde o bajo la interfaz de la app (y > 1250) justo cuando la voz lo nombra.
+- **B12** Un tramo de ≥ 1 s donde no se reconoce qué se está viendo (desenfocado, oscuro, sujeto cortado o tapado, un detalle sin contexto) o que alguien sin sonido no entiende. (Ep. 6, "vergüenza máxima": una mano desenfocada gigante y un pilar oscuro pasaron igual.)
+- **B13** Lo que la voz dice que pasa **no se ve**: la acción del gancho, la mecánica que se explica o el remate no aparecen en la imagen (Ep. 6: "jala rápido y tu cinturón te dice que no" sin nadie jalando ni una cinta a la vista).
+- **B14** Sin plano de situación en los primeros 3 s (quién, dónde y la acción del gancho), un personaje del relato que nunca aparece reconocible, o escenas pegadas sin un espacio que las una.
 
 Todo lo demás (luz mejorable, una pose que podría ser más expresiva, un fondo simple, un encuadre que podría ser mejor) es **sugerencia**, aunque sea importante.
 

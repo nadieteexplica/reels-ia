@@ -21,4 +21,6 @@ El animatic es el video **completo** con voz, subtítulos y gráficos, renderiza
 6. **Subtítulos:** ¿todas las palabras aparecen, a tiempo y dentro de la zona? ¿Tapan una cara? ¿Ortografía y tildes?
 7. **Audio:** volumen y pico en rango; la voz claramente sobre la música. No puedes escucharlo: juzga con las cifras y dilo.
 8. **Precisión:** lo que muestran las imágenes y etiquetas no contradice el guion ni las fuentes.
-Además, busca **bloqueantes** de la lista cerrada en el contacto. Ordena tus sugerencias por impacto (máximo 8).
+9. **Comprensión** (criterio `comprension`, mínimo 8): mirando el contacto **en orden** y antes de releer el guion, ¿de qué se trata, quién sale, dónde están y cuál es el remate? ¿Hay tramos donde no se sabe qué se mira? Otro encargo (`espectador`) lo mira corrido a 3 cuadros/s; tú das tu nota igual.
+10. **Música:** nadie del auditor la escucha. Di de dónde sale (en `audio.json` o el guion) y, si es sintetizada por código, anótalo en `resumen` (Tomás la encontró "mala" en el Ep. 6).
+Además, busca **bloqueantes** de la lista cerrada en el contacto, incluidos **B12–B14** (lo que no se entiende, lo que la voz dice y no se ve, el inicio sin plano de situación). Ordena tus sugerencias por impacto (máximo 8).

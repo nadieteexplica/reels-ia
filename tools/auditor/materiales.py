@@ -91,6 +91,10 @@ def video(mdir, mp4, planos=None, subs_log=None, words=None, kling_planos=None, 
         comun.grilla([fs[i] for i in idx], rot, 3 if len(idx) <= 6 else 4, os.path.join(mdir, p["tira"]), (270, 480))
     comun.guardar(os.path.join(mdir, "planos.json"), planos)
 
+    # --- secuencia corrida para el espectador (Ep. 6, vergüenza máxima): el video entero en orden, 3 cuadros por segundo,
+    #     6 s por hoja, con el subtítulo quemado tal como lo ve la gente. Nadie lo había mirado corrido. ---
+    secuencia(mdir, mp4, dur)
+
     # --- subtítulos contra words.json ---
     sub = tabla_subtitulos(subs, comun.leer(words, []) if words else [], os.path.join(mdir, "subtitulos.md")) if subs else None
 
@@ -99,6 +103,21 @@ def video(mdir, mp4, planos=None, subs_log=None, words=None, kling_planos=None, 
     comun.guardar(os.path.join(mdir, "audio.json"), aud)
     subprocess.run(["rm", "-rf", os.path.join(mdir, "tmp")])
     return {"info": info, "planos": planos, "eventos": eventos, "subtitulos": sub, "audio": aud, "chequeo": chq}
+
+
+def secuencia(mdir, mp4, dur, fps=3, seg_por_hoja=6):
+    """Hojas secuencia_01.jpg, secuencia_02.jpg…: el video completo en orden, `fps` cuadros por segundo, `seg_por_hoja` s
+    por hoja (filas de `fps` cuadros = 1 s por fila). Es lo que mira el encargo 'espectador' (6-espectador.md)."""
+    ts = [i / fps for i in range(int(dur * fps))]
+    fs = comun.extraer(mp4, ts, os.path.join(mdir, "tmp", "s%s.jpg"), 270, 480)
+    por = fps * seg_por_hoja
+    hojas = []
+    for h in range(0, len(fs), por):
+        nombre = f"secuencia_{h // por + 1:02d}.jpg"
+        comun.grilla(fs[h:h + por], [f"{t:.1f}s" for t in ts[h:h + por]], fps * 2, os.path.join(mdir, nombre), (270, 480))
+        hojas.append(nombre)
+    comun.guardar(os.path.join(mdir, "secuencia.json"), {"fps": fps, "seg_por_hoja": seg_por_hoja, "hojas": hojas, "dur": round(dur, 2)})
+    return hojas
 
 
 def _imagenes_eventos(mdir, mp4, eventos):

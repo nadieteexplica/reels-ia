@@ -269,7 +269,7 @@ Desde el 19-oct-2026 la revisión independiente la hace el **auditor por etapas*
   7. **Audio:** ¿la mezcla y el volumen están bien?
   8. **Precisión:** ¿cada dato está respaldado?
 - **Regla de aprobación (v2, 21-oct-2026):**
-  - **Ningún bloqueante** de la lista cerrada B1–B11 (piezas que se atraviesan o flotan, cambios de golpe, pantalla vacía, personaje distinto, cara tapada, dato falso, interior confuso, lista negra, estilo rechazado o quemado, faltas de ortografía, algo clave cortado), ninguna falla automática, **promedio ≥ 8 y ninguna nota de ningún revisor bajo 7**.
+  - **Ningún bloqueante** de la lista cerrada B1–B14 (piezas que se atraviesan o flotan, cambios de golpe, pantalla vacía, personaje distinto, cara tapada, dato falso, interior confuso, lista negra, estilo rechazado o quemado, faltas de ortografía, algo clave cortado), ninguna falla automática, **promedio ≥ 8 y ninguna nota de ningún revisor bajo 7**.
   - El veredicto muestra sólo las 5 sugerencias más importantes.
   - **Máximo 2 rondas:** la 2.ª sólo verifica lo de la 1.ª (cada cosa la verifica el revisor de ese plano). Con fallas automáticas no se abre ronda: se arreglan primero. Lo que sigue fallando después de 2 rondas se simplifica o se cambia por una plantilla y el video sigue a la puerta 7, que revisa bloqueantes en todo el render final; si igual no llega, se le explica a Tomás y se propone un reemplazo.
 

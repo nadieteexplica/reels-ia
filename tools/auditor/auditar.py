@@ -7,7 +7,7 @@
 
 Etapas: 1 guion · 2 voz · 3 storyboard · 4 cuadros · 5 kling · 6 animatic · 7 final · 8 paquete · P proceso.
 Reglas v2 (docs/AUDITOR.md): sin ronda si falla lo automático, máx. 2 rondas (la 2.ª verifica), 1 revisor por cada 10 planos + 1 global,
-bloqueantes sólo de la lista cerrada (B1–B11), aprueba con promedio ≥ 8 y ningún criterio bajo 7, y se muestran sólo las
+bloqueantes sólo de la lista cerrada (B1–B14), aprueba con promedio ≥ 8 y ningún criterio bajo 7, y se muestran sólo las
 5 sugerencias más importantes. Todo queda en studio/episodios/<ep>/auditoria/<etapa>/rN/.
 """
 import argparse, glob, json, os, re, sys
@@ -24,8 +24,11 @@ PROMEDIO_MIN, NOTA_MIN = float(TOPES["promedio_min"]), int(TOPES["nota_min_revis
 REALISMO_MIN = float(TOPES["realismo_min"])   # en un episodio realista el realismo pide ≥ 8 por sí solo (estilos.md)
 
 
+COMPRENSION_MIN = float(TOPES.get("comprension_min", 8))   # Ep. 6: si no se entiende corrido y sin sonido, no sale
+
+
 def nota_min(c):
-    return REALISMO_MIN if c == "realismo" else NOTA_MIN
+    return REALISMO_MIN if c == "realismo" else COMPRENSION_MIN if c == "comprension" else NOTA_MIN
 BLOQUEANTES = {   # lista cerrada: un "bloqueante" sin uno de estos tipos se trata como sugerencia
     "B1": "piezas que se atraviesan o flotan a la vista (dedos, objetos, cuerpos, hojas, frutos)",
     "B2": "algo aparece, desaparece o cambia de forma/color de golpe sin querer; utilería técnica a la vista",
@@ -39,6 +42,12 @@ BLOQUEANTES = {   # lista cerrada: un "bloqueante" sin uno de estos tipos se tra
           "personaje que es claramente dibujo animado (realismo ≤ 5; las capas de explicación encima no cuentan)",
     "B10": "faltas de ortografía o tildes en pantalla o en los textos",
     "B11": "algo clave cortado por el borde o bajo la interfaz de la app (y > 1250) mientras la voz lo nombra",
+    # Ep. 6 (vergüenza máxima, 24-oct-2026): cada plano pasaba solo y el video no se entendía
+    "B12": "un tramo de ≥ 1 s donde no se reconoce qué se está viendo (desenfocado, oscuro, sujeto cortado o tapado, un detalle "
+           "sin contexto) o que alguien sin sonido no entiende",
+    "B13": "lo que la voz dice que pasa no se ve: la acción del gancho, la mecánica que se explica o el remate no aparecen en la imagen",
+    "B14": "sin plano de situación en los primeros 3 s (quién, dónde y la acción del gancho) o un personaje del relato que nunca "
+           "aparece reconocible; escenas pegadas sin un espacio que las una",
 }
 CRITERIOS = {
     "1-guion": ["precision", "gancho", "claridad", "compartible"],
@@ -46,7 +55,7 @@ CRITERIOS = {
     "3-storyboard": ["foco", "ritmo", "viabilidad", "gancho_visual"],
     "4-cuadros": ["belleza", "personaje", "manos", "anatomia"],
     "5-kling": ["manos", "objeto", "personaje", "estabilidad"],
-    "6-animatic": ["gancho", "claridad", "ritmo", "belleza", "animacion", "subtitulos", "audio", "precision"],
+    "6-animatic": ["gancho", "claridad", "ritmo", "belleza", "animacion", "subtitulos", "audio", "precision", "comprension"],
     "7-final": [],                 # sólo bloqueantes
     "8-paquete": ["textos", "cumplimiento"],
     "P-proceso": [],
@@ -291,11 +300,31 @@ def preparar(a):
                                     {"planos": [p["plano"] for p in parte], "eventos": [e["id"] for e in ev_p]}))
             encs.append(encargo("global", "6-animatic-global.md", "video completo (gancho, ritmo, loop, subtítulos, audio, precisión)",
                                 glob_mats + [R(os.path.join(md, "planos.json"))], ctx))
+            # Ep. 6 (vergüenza máxima): un espectador que ve el video ENTERO corrido, sin guion, y dice qué entendió; recién
+            # después lee el guion y marca lo que la voz dice y no se ve. Va en todas las rondas (el video entero cambia).
+            sec = comun.leer(os.path.join(md, "secuencia.json"), {}) or {}
+            encs.append(encargo("espectador", "6-espectador.md", "el video completo corrido, como lo ve la gente (sin guion primero)",
+                                [R(os.path.join(md, h)) for h in sec.get("hojas", [])] + [R(os.path.join(md, "cuadro0.jpg"))],
+                                ctx_base, {"despues": [R(os.path.join(ep_d, "guion.md")), R(os.path.join(md, "subtitulos.md"))],
+                                           "criterios_propios": ["comprension", "gancho", "claridad"]}))
         else:
             encs.append(encargo("final", "7-final.md", "render final: sólo bloqueantes",
                                 glob_mats + [R(os.path.join(md, p["tira"])) for p in P] + evs + [R(os.path.join(md, "planos.json"))], ctx))
     elif et == "8-paquete":
         res = checks.paquete(ep_d, a.url)
+        # Ep. 6 (vergüenza máxima): se le mandó a Tomás un video que la puerta 6 NO aprobó. Sin 6 y 7 APROBADO no hay paquete.
+        vs = {}
+        for et_q in ("6-animatic", "7-final"):
+            rq, _n = comun.ronda_dir(a.ep, et_q)
+            vs[et_q] = (rq, comun.leer(os.path.join(rq, "veredicto.json"), {}) or {})
+        for et_q, (rq, vv) in vs.items():
+            vq = vv.get("veredicto")
+            # la 6 vale si aprobó, o si sólo le quedaron bloqueantes puntuales que la 7 ya verificó en el render final
+            ok6 = et_q == "6-animatic" and vv.get("solo_bloqueantes") and vs["7-final"][1].get("veredicto") == "APROBADO"
+            if vq != "APROBADO" and not ok6:
+                res["fallas"].append({"que": f"la puerta {et_q} no está APROBADA (último veredicto: {vq or 'sin revisión'}): el video no se "
+                                             "empaqueta ni se le manda a Tomás; se rehace o se descarta (docs/AUDITOR.md)",
+                                      "evidencia": rel(rq, comun.RAIZ), "bloqueante": True})
         encs.append(encargo("paquete", "8-paquete.md", "textos de publicación",
                             [R(os.path.join(ep_d, "entrega", "caption.md")), R(os.path.join(ep_d, "guion.md"))],
                             ctx_base + ["docs/MANUAL_PRODUCCION.md"]))
@@ -428,7 +457,7 @@ def cerrar(a):
                 problemas.append(p)
             else:
                 if p.get("bloqueante"):
-                    p["nota_auditor"] = "marcado bloqueante sin un tipo B1–B11: queda como sugerencia"
+                    p["nota_auditor"] = "marcado bloqueante sin un tipo B1–B14: queda como sugerencia"
                 p["bloqueante"] = False
                 sugerencias.append(p)
         for v in o.get("verificacion", []) or []:
@@ -459,7 +488,7 @@ def cerrar(a):
     # ningún revisor bajo el mínimo en ningún criterio (el promedio no esconde al revisor que sí miró)
     bajos = {c: v["min"] for c, v in notas.items() if v["min"] is not None and v["min"] < nota_min(c)}
     # el realismo de un episodio realista necesita una nota de verdad: "no aplica" no cuenta
-    falta_nota = [c for c in criterios(et, estilo) if (c not in notas or (c == "realismo" and not notas[c]["notas"])) and encs]
+    falta_nota = [c for c in criterios(et, estilo) if (c not in notas or (c in ("realismo", "comprension") and not notas[c]["notas"])) and encs]
     auto_fallas = [f for f in ch["fallas"]]
     aprobado = (not auto_fallas and not [p for p in problemas if p.get("bloqueante") or p.get("de") == "checks"] and not bajos and not falta_nota
                 and (promedio is None or promedio >= PROMEDIO_MIN))
@@ -470,6 +499,9 @@ def cerrar(a):
            "promedio": promedio, "notas": {c: {"nota": medias[c], "min": v["min"], "por_que": v["por_que"], "de": v["de"]} for c, v in notas.items()},
            "problemas": problemas, "sugerencias": sugerencias, "verificacion": verif, "avisos": ch.get("avisos", []),
            "criterios_sin_nota": falta_nota, "planos_dos_veces": dos_veces, "reemplazo": salida, "delatores": delatores,
+           # sólo fallan bloqueantes puntuales (las notas y el promedio llegan): se simplifican esos planos y la puerta 7 decide.
+           # Si falla una nota (comprensión, realismo, cualquiera) o el promedio, el video NO sigue ni se le manda a Tomás.
+           "solo_bloqueantes": bool(not auto_fallas and not bajos and not falta_nota and (promedio is None or promedio >= PROMEDIO_MIN)),
            "parar_y_preguntar": bool(salida and "realismo" in criterios(et, estilo) and ("realismo" in bajos or "realismo" in falta_nota))}
     comun.guardar(os.path.join(rd, "veredicto.json"), ver)
     L = [f"# {et} · ronda {ronda} · **{ver['veredicto']}**" + (f" · estilo {estilo}" if et in CON_ESTILO else ""), ""]
@@ -482,10 +514,14 @@ def cerrar(a):
         L += [f"**{MAX_RONDAS} rondas sin llegar a realismo {REALISMO_MIN:g}: no se abre otra y el video NO sigue.** No se reemplaza "
               f"por plantillas del kit (son animadas). Se para y se le pregunta a Tomás con opciones (otra vía para lo que se ve "
               f"de juguete, por ejemplo Kling o sacar a la persona de cuadro; aceptar el nivel actual; o cambiar el episodio a animado).", ""]
+    elif salida and et == "6-animatic" and not ver["solo_bloqueantes"]:
+        L += [f"**{MAX_RONDAS} rondas sin aprobar y no llegan las notas (o el promedio): el video NO sigue y NO se le manda a Tomás** "
+              f"(Ep. 6, vergüenza máxima: se le mandó uno así). Se le explica por qué en dos líneas y se propone un reemplazo: otra "
+              f"idea o rehacer desde el storyboard. Nada de 'mandarlo con opciones'.", ""]
     elif salida:
-        L += [f"**{MAX_RONDAS} rondas sin aprobar: no se abre otra.** Lo que sigue fallando se simplifica o se reemplaza por una "
-              f"plantilla del kit y el video sigue: en el animatic, la puerta 7 revisa bloqueantes en todo el render final (incluidos "
-              f"los planos simplificados). Si es guion o storyboard, se cambia la idea o se le pregunta a Tomás.", ""]
+        L += [f"**{MAX_RONDAS} rondas sin aprobar: no se abre otra.** Lo que sigue fallando son bloqueantes puntuales: esos planos se "
+              f"simplifican o se reemplazan por una plantilla del kit y la puerta 7 revisa bloqueantes en todo el render final. Si es "
+              f"guion o storyboard, se cambia la idea o se le pregunta a Tomás.", ""]
     if dos_veces:
         L += [f"**Planos que fallaron dos veces → simplificar o reemplazar (no parchar otra vez):** {', '.join(dos_veces)}", ""]
     if notas:

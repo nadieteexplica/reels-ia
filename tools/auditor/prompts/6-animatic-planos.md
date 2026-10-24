@@ -22,3 +22,5 @@ El animatic es el video **completo** con la voz, los subtítulos y los gráficos
 7. **Cada evento:** ¿defecto o buscado? Respóndelo en `eventos`.
 
 Al final, ordena tus sugerencias por impacto (máximo 8). En `problemas`, `plano` es el número del plano y `segundo` el tiempo exacto del cuadro donde se ve (el rótulo de la imagen).
+
+**Desde el Ep. 6 (vergüenza máxima):** en cada plano pregúntate también si **se reconoce qué se está viendo** y si **la imagen muestra lo que dice la voz en ese momento**. Un plano desenfocado u oscuro de ≥ 1 s, un detalle sin contexto o una línea que no se ve son **B12/B13** aunque el plano esté bien hecho. Pon nota en `comprension` (tus planos, mínimo 8) o `null` si no alcanzas a juzgarla.

@@ -6,4 +6,5 @@ El video ya pasó el **animatic** (puerta 6), con los mismos planos, cámaras y 
 
 - **No** escribas sugerencias de mejora: esta etapa no las usa. Si ves algo que no es bloqueante pero vale la pena para el próximo video, ponlo en `resumen` en una frase.
 - `veredicto`: APROBADO si no hay ningún bloqueante.
-- Cada bloqueante con `tipo` (B1–B11), plano, segundo y el arreglo más barato (normalmente rehacer sólo ese plano).
+- Cada bloqueante con `tipo` (B1–B14), plano, segundo y el arreglo más barato (normalmente rehacer sólo ese plano).
+- **B12–B14 también cuentan aquí** (`comun.md`): un tramo que no se entiende, una línea de la voz que no se ve o un inicio sin plano de situación. Si los planos parchados después de la puerta 6 los traen, es bloqueante.

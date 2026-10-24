@@ -20,3 +20,5 @@
 5. **Reglas duras:** tema de la lista negra; salud como indicación médica (debe ser información general y "si te pasa seguido, consulta" cuando aplique); tema ya publicado (PUBLICADOS); frases prohibidas ("en este video", "sígueme"…); duración estimada de 25 a 45 s (70–128 palabras). La meta es 25–40 s (YouTube Shorts rinde más corto) y más corto es mejor si se entiende igual; un guion más largo es sugerencia de recorte, no un mérito; puntaje de la idea sobre el mínimo.
 
 En `problemas`, usa `"plano": null` y en `"segundo"` pon la frase del guion afectada.
+
+**Filmable y entendible sin sonido (Ep. 6, vergüenza máxima):** en `claridad`, cada línea tiene que poder **verse**: una acción concreta que se entienda en una imagen en el set que propone el guion. Una línea que sólo funciona narrada, o un guion con más de 3 pasos de explicación en 40 s (el Ep. 6 tenía carrete, pestillo, bolita, 27°, truco y remate), es sugerencia de prioridad 1 y `claridad` ≤ 6.
