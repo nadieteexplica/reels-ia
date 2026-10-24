@@ -779,8 +779,12 @@ def sentado(sc, quien, sentado_fbx, raiz=None, frame=1):
         print("sin esqueleto Mixamo:", quien)
         return arm
     if sentado_fbx and os.path.isfile(sentado_fbx):
-        copiar_pose(arm, sentado_fbx, frame)
+        # de Sitting Laughing sólo las piernas y la cadera: en ese cuadro está doblado de risa (cabeza 30 cm adelante y
+        # 25 cm más abajo, muestras v2). El torso va derecho apoyado en el respaldo y las manos sobre los muslos.
+        copiar_pose(arm, sentado_fbx, frame, excepto=("Spine", "Neck", "Head", "LeftShoulder", "RightShoulder", "LeftArm",
+                                                      "RightArm", "LeftForeArm", "RightForeArm", "LeftHand", "RightHand"))
         mirar_adelante(arm)
+        enderezar(arm)
     else:
         mirar_adelante(arm)
         sentar_a_mano(arm)
@@ -788,6 +792,17 @@ def sentado(sc, quien, sentado_fbx, raiz=None, frame=1):
     arm.location += Vector(ASIENTO[quien]) - cad
     bpy.context.view_layer.update()
     return arm
+
+
+def enderezar(arm):
+    """Torso apoyado en el respaldo (≈17° hacia atrás), cabeza mirando adelante y manos sobre los muslos."""
+    apuntar_hueso(arm, "Spine", dir_auto((0, 0.30, 1)))
+    apuntar_hueso(arm, "Neck", dir_auto((0, 0.05, 1)))
+    apuntar_hueso(arm, "Head", dir_auto((0, -0.12, 1)))
+    for lado, sx in (("Left", 1), ("Right", -1)):
+        apuntar_hueso(arm, f"{lado}Arm", dir_auto((sx * 0.18, -0.25, -1)))
+        apuntar_hueso(arm, f"{lado}ForeArm", dir_auto((sx * 0.05, -1, -0.35)))
+        apuntar_hueso(arm, f"{lado}Hand", dir_auto((0, -1, -0.6)))
 
 
 def lanzarse(arm, cuanto=1.0, hacia=Vector((0.35, -1.0, -0.15))):
