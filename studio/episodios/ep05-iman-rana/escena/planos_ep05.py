@@ -57,6 +57,8 @@ def armar_E1(sc):
     piezas = E.iman_lab(sc, alto=1.25, r=0.42, r_hueco=0.017)
     for p in piezas:
         p.location.z += Z0
+        if p.name.startswith("perno"):
+            p.hide_render = True      # desenfocados detrás de la rana se leían como un dedo beige (puerta 6 v3); nunca se ven nítidos
     rana = E.rana(sc, LARGO_RANA)
     rana.location = (0, 0, RANA_Z)
     rana.rotation_euler = ROT0
@@ -81,7 +83,7 @@ def rana_flota(rana, f, extra_z=0.0, giro=0.0):
                            ROT0[2] + math.radians(giro))
     resp = 0.5 - 0.5 * math.cos(2 * math.pi * (f - 1) / 30 * 1.1)
     s0 = rana.get("s0", rana.scale.x)
-    rana.scale = (s0 * (1 + 0.004 * resp), s0 * (1 + 0.007 * resp), s0 * (1 + 0.007 * resp))
+    rana.scale = (s0 * (1 + 0.008 * resp), s0 * (1 + 0.015 * resp), s0 * (1 + 0.015 * resp))
 
 
 def p_orbita(sc, a, b, ang0, ang1):
@@ -111,17 +113,19 @@ def p4(sc, a, b):
     cam, rana = S["cam"], S["rana"]
     c = Vector((0, 0, RANA_Z))
     t0 = T[4][0]
-    arriba0 = Vector((0.03, -0.11, RANA_Z + 0.27))         # (más cerca se veía oscuro y turbio adentro del tubo: muestras v3)
-    arriba1 = Vector((0.03, -0.11, RANA_Z + 0.30))
+    # (desde arriba se veía el interior negro del tubo y la rana casi no aparecía: puerta 6 v3) → parte de costado y un poco
+    # arriba: se ve el tubo vacío sobre la rana
+    arriba0 = orbita(c, 0.30, 20, 0.06)
+    arriba1 = orbita(c, 0.34, 22, 0.09)
     lejos = Vector((1.5, -3.4, 1.05))
 
     def act(f):
         t = tf(f)
         rana_flota(rana, f)
-        x1 = suave(lin(t, t0, t0 + 0.55))
-        x2 = sale(suave(lin(t, t0 + 0.45, T[4][1] - 0.05)))
+        x1 = suave(lin(t, t0, t0 + 0.6))
+        x2 = sale(suave(lin(t, t0 + 0.5, T[4][1] - 0.05)))
         p = arriba0.lerp(arriba1, x1).lerp(lejos, x2)
-        tgt = (c + Vector((0, -0.009, -0.004))).lerp(Vector((0, 0, 0.85)), x2)
+        tgt = (c + Vector((0, 0, 0.012))).lerp(Vector((0, 0, 0.85)), x2)
         lente = 100 - 25 * x1 - 45 * x2
         mirar(cam, p, tgt, lente=lente, foco=Vector((0, 0, 0.9)) if x2 > 0.3 else c)
         return {"iman": pantalla(sc, cam, (0, 0, 0.9)), "rana": pantalla(sc, cam, (0, 0, RANA_Z))}
@@ -187,7 +191,7 @@ def p11(sc, a, b):
         r = 0.32 - 0.05 * x1 + (1.4 - 0.27) * x2
         lente = 100 - 40 * x2
         ang = -6 + 6 * x1 + 4 * x2
-        p = orbita(c, r, ang, 0.02 + 0.08 * x2)
+        p = orbita(c, r, ang, 0.02)        # a la altura de la rana: de fondo, la sal a contraluz (desde arriba, la tapa pálida: puerta 6)
         der = Vector((math.cos(math.radians(ang)), math.sin(math.radians(ang)), 0))
         # la rana en y ~620 (sobre los subtítulos) y, ya lejos, en x ~700 (a la izquierda va la mano)
         baja = 0.354 * r * 12 / lente
@@ -268,7 +272,7 @@ def p7(sc, a, b):
         S["heroe"].location.z = 1.9 + 0.06 * sale(lin(tf(f), t_emp + 0.2, t_emp + 1.2))
         ang = -8 + 14 * x
         p_ = orbita(Vector((0, 0, 2.1)), 9.2, ang, 0.6)
-        mirar(cam, p_, Vector((0, 0, 2.1)), foco=Vector((0, 0, 1.9)))
+        mirar(cam, p_, Vector((0, 0, 1.55)), foco=Vector((0, 0, 1.9)))      # la molécula quedaba bajo los subtítulos (puerta 6)
         return {"heroe": pantalla(sc, cam, (0, 0, 1.9))}
     return {"actualizar": act}
 
@@ -287,9 +291,28 @@ def cargar_pete(sc):
                 o.hide_render = True
         pestanas = next((o for o in sc.objects if o.type == "MESH" and "Eyelash" in o.name), None)
         ojos = [E.marca_ojo(sc, f"Pete_ojo{l}", None, (0, 0, 0), 0.012) for l in "LR"]
-        return {"arm": arm, "anim": anim, "pestanas": pestanas, "ojos": ojos}
+        return {"arm": arm, "anim": anim, "pestanas": pestanas, "ojos": ojos, "gestos": {}}
     o = E.cilindro(sc, "Pete_prueba", 0.22, 1.79, (0, 0, 0), mat=E.mat_pintura("prueba", (0.7, 0.3, 0.1)))
-    return {"arm": o, "anim": None, "pestanas": None, "ojos": []}
+    return {"arm": o, "anim": None, "pestanas": None, "ojos": [], "gestos": {}}
+
+
+GESTOS = os.environ.get("GESTOS", "")      # carpeta de animaciones de Mixamo del repo privado (assets.txt: "gestos mixamo")
+
+
+def gesto(P, nombre):
+    """Carga una animación de Mixamo (Without Skin) para actuar en un plano (puerta 6 v3: "Pete no actúa, queda como
+    estatua"). Si no está (prueba local), Pete sigue con Happy Idle."""
+    ruta = os.path.join(GESTOS, nombre + ".fbx") if GESTOS else ""
+    if not ruta or not os.path.isfile(ruta) or P["arm"].type != "ARMATURE":
+        return None
+    antes = set(bpy.data.objects)
+    bpy.ops.import_scene.fbx(filepath=ruta, automatic_bone_orientation=False)
+    nuevos = [o for o in bpy.data.objects if o not in antes]
+    arm = next((o for o in nuevos if o.type == "ARMATURE"), None)
+    for o in nuevos:
+        o.hide_render = True
+    P["gestos"][nombre] = arm
+    return arm
 
 
 def _largo_anim(anim):
@@ -300,15 +323,23 @@ def _largo_anim(anim):
     return 1, 60
 
 
-def pose_pete(sc, P, f, cabeza=(0.0, 0.0), cuadro_anim=None):
+def pose_pete(sc, P, f, cabeza=(0.0, 0.0), cuadro_anim=None, actua=None):
     """Pose de Pete en el cuadro f: copia la de Happy Idle (en loop con todo el largo de la animación de Mixamo, que
-    empalma) y gira la cabeza (pitch, yaw en grados). cuadro_anim = índice dentro de la animación (por defecto, f)."""
+    empalma) y gira la cabeza (pitch, yaw en grados). cuadro_anim = índice dentro de la animación (por defecto, f).
+    actua = (nombre, cuadro de inicio, cuadros de adelanto): en vez del idle, un gesto de Mixamo una vez desde ese cuadro
+    (se queda en su último cuadro)."""
     arm, anim = P["arm"], P["anim"]
-    if anim is None or arm.type != "ARMATURE":
+    g = P.get("gestos", {}).get(actua[0]) if actua else None
+    if g is not None:
+        a0, n = _largo_anim(g)
+        sc.frame_set(a0 + int(clamp(f - actua[1] + actua[2], 0, n)))
+        anim = g
+    elif anim is None or arm.type != "ARMATURE":
         return
-    a0, n = _largo_anim(anim)
-    fa = a0 + ((cuadro_anim if cuadro_anim is not None else f) % n)
-    sc.frame_set(fa)
+    else:
+        a0, n = _largo_anim(anim)
+        sc.frame_set(a0 + ((cuadro_anim if cuadro_anim is not None else f) % n))
+    fa = None
     dst = {b.name.split(":")[-1]: b for b in arm.pose.bones}
     for b in anim.pose.bones:
         d = dst.get(b.name.split(":")[-1])
@@ -326,11 +357,11 @@ def pose_pete(sc, P, f, cabeza=(0.0, 0.0), cuadro_anim=None):
         # capa de flotar sobre el idle (puerta 3 v3): brazos abiertos con un vaivén lento de equilibrio, rodillas sueltas y
         # la punta de los pies hacia abajo (el idle de pie se leía "parado sobre un vidrio")
         i = cuadro_anim if cuadro_anim is not None else f
-        sw = 4 * math.sin(i / 30 * 1.3)
-        E.rotar_hueso_mundo(arm, "LeftArm", eje_y, -(18 + sw))
-        E.rotar_hueso_mundo(arm, "RightArm", eje_y, 18 + sw)
-        E.rotar_hueso_mundo(arm, "LeftLeg", eje_x, 12)
-        E.rotar_hueso_mundo(arm, "RightLeg", eje_x, 8)
+        sw = 8 * math.sin(i / 30 * 1.3)                  # vaivén de equilibrio más amplio (puerta 6: "pose casi fija")
+        E.rotar_hueso_mundo(arm, "LeftArm", eje_y, -(20 + sw))
+        E.rotar_hueso_mundo(arm, "RightArm", eje_y, 20 - 0.6 * sw)
+        E.rotar_hueso_mundo(arm, "LeftLeg", eje_x, 12 + 7 * math.sin(i / 30 * 1.1))
+        E.rotar_hueso_mundo(arm, "RightLeg", eje_x, 10 + 7 * math.sin(i / 30 * 1.1 + 2.0))
         E.rotar_hueso_mundo(arm, "LeftFoot", eje_x, 22)
         E.rotar_hueso_mundo(arm, "RightFoot", eje_x, 26)
     ojos_pete(sc, P)
@@ -389,9 +420,21 @@ def armar_E4(sc, bobinas=False, hueco_acero=False):
     if hueco_acero:
         # PASO 1 (planos 10 y 12): el hueco se ve solo, de pie en la losa; de negro plano se leía como un hoyo recortado,
         # no como una pieza de metal: acero oscuro con mugre (por dentro, ya tapado, vuelve a ser la boca negra)
-        m = E.mat_acero_industrial("hueco_acero", (0.075, 0.08, 0.085), sucio=0.35, rugo=(0.35, 0.7))
+        # (v3.0: negro mate liso, "basurero de plástico", puerta 6) → el acero sucio del imán, bisel, y una brida con pernos arriba
+        m = E.mat_acero_industrial("hueco_acero", (0.15, 0.16, 0.17), sucio=0.55, rugo=(0.4, 0.75))
+        ac = E.mat_metal_cepillado("brida_hueco", (0.3, 0.31, 0.33), (0.3, 0.55))
         for o in G["hueco"]:
             E.asignar(o, m)
+            bv = o.modifiers.new("bisel", "BEVEL"); bv.width = 0.012; bv.segments = 3; bv.limit_method = "ANGLE"
+        tope = G["hueco"][0]["z0"] + G["hueco"][0].dimensions.z / 2
+        br = E.tubo(sc, "G_hueco_brida", 1.07, 0.93, 0.09, (0, 0, tope - 0.09), verts=160, mat=ac, bisel=0.01)
+        extra = [br]
+        for j in range(24):
+            an = 2 * math.pi * j / 24
+            extra.append(E.cilindro(sc, f"G_hueco_perno{j}", 0.022, 0.03, (1.0 * math.cos(an), 1.0 * math.sin(an), tope), verts=6, mat=ac, bisel=0.004))
+        for o in extra:
+            o["z0"] = o.location.z
+            G["hueco"].append(o)
     G["bobinas"] = []
     if bobinas:
         mb = E.mat_bobina()
@@ -483,10 +526,11 @@ def p6(sc, a, b):
     girar_pete(P, 25)
     d = Vector((0.309, -0.951, 0))
     cam.data.dof.aperture_fstop = 2.8
+    gesto(P, "Pointing")                     # "como TÚ": apunta hacia la cámara
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        pose_pete(sc, P, f)
+        pose_pete(sc, P, f, actua=("Pointing", a, 8))
         pos = PETE_E4 + d * (8.0 - 0.6 * x) + Vector((0, 0, 1.25))
         mirar(cam, pos, PETE_E4 + Vector((0, 0, 0.9)), lente=50, foco=PETE_E4 + Vector((0, 0, 1.5)))
         return {"pete": pantalla(sc, cam, PETE_E4 + Vector((0, 0, 1.0)))}
@@ -500,11 +544,12 @@ def p9(sc, a, b):
     sin_iman(S)
     P["arm"].location = PETE_E4
     girar_pete(P, 25)
+    gesto(P, "Shrugging")                    # "¿Y para ti?": se encoge de hombros y después mira hacia arriba
 
     def act(f):
         x = suave(lin(f, a, b - 1))
         sube = suave(lin(tf(f), T[9][0] + 1.1, T[9][0] + 1.7))
-        pose_pete(sc, P, f, cabeza=(-30 * sube, 0))
+        pose_pete(sc, P, f, cabeza=(-30 * sube, 0), actua=("Shrugging", a, 0))
         # mirada más baja que en el v2: la cara de Pete quedaba en la franja de subtítulos (puerta 3 r2)
         mirar(cam, Vector((6.0, -17.5, 1.8)).lerp(Vector((5.0, -14.5, 1.75)), x), Vector((-2.0, -0.5, 0.3)), lente=35,
               foco=PETE_E4 + Vector((0, 0, 1.6)))
@@ -524,6 +569,7 @@ def p10(sc, a, b):
     girar_pete(P, 25)
     t_pri = TW("primero", 19.0)
     t_lle = t_pri + 1.55
+    gesto(P, "Surprised")                    # se sorprende cuando el hueco sale del suelo
     v = Vector((0.469, 0.883, 0))                  # dirección de la mirada (62°: el sol queda 32° fuera del cuadro)
     r = Vector((0.883, -0.469, 0))
     C0 = PETE_E4 - v * 6.0 + r * 1.0               # Pete a 6 m (a la izquierda), el hueco a 9 m (a la derecha)
@@ -535,7 +581,7 @@ def p10(sc, a, b):
         for o in S["G"]["hueco"]:
             o.location.z = o["z0"] - 3.25 * (1 - s)
         mira = suave(lin(t, t_pri + 0.3, t_pri + 1.1))
-        pose_pete(sc, P, f, cabeza=(-14 * mira, 0))
+        pose_pete(sc, P, f, cabeza=(-14 * mira, 0), actua=("Surprised", F(t_pri + 0.1), 0))
         # en "quepas" la grúa sube y mira adentro: se ve la boca del hueco (de lado se leía como un pilar: puerta 3 r2)
         g = suave(lin(t, t_lle - 0.2, T[10][1] - 0.05))
         pos = (C0 + r * (0.5 * x) + Vector((0, 0, 1.2))).lerp(-v * 5.5 + r * 0.6 + Vector((0, 0, 6.8)), g) + temblor(f, [t_lle], 0.02)
@@ -559,6 +605,7 @@ def p12(sc, a, b):
     llega_b, llega_c = E.bobinas_t()
     P["arm"].location = PETE_E4
     girar_pete(P, 25)
+    gesto(P, "Head_Nod_Yes")                 # asiente mirando cómo caen las bobinas
 
     def act(f):
         t = tf(f)
@@ -566,7 +613,7 @@ def p12(sc, a, b):
             caer(o, t, tl)
         for o in S["G"]["cuerpo"]:
             caer(o, t, llega_c, alto=9.0)
-        pose_pete(sc, P, f, cabeza=(-25, 0))
+        pose_pete(sc, P, f, cabeza=(-25, 0), actua=("Head_Nod_Yes", a, 0))
         x = suave(lin(f, a, b - 1))
         # de espaldas a la central; cámara a la altura de los ojos: Pete adentro del cuadro y con la cara sobre la franja de
         # subtítulos (el plano 13 del v2)
@@ -587,7 +634,7 @@ def p13(sc, a, b):
 
     def act(f):
         t = tf(f)
-        estado_iman(S, t, lambda o: (t_tapa + 0.05 * (o.name.startswith("G_perno"))) if o in S["G"]["tapa"] else None)
+        estado_iman(S, t, lambda o: t_tapa if o in S["G"]["tapa"] else None)
         brillo_cobre(S, 0.6 * suave(lin(t, t_tes - 0.2, t_tes + 0.4)))
         x = suave(lin(f, a, b - 1))
         pos = Vector((4.2, -7.5, 6.2)).lerp(Vector((3.4, -6.4, 5.4)), x) + temblor(f, [t_tapa], 0.03)
@@ -634,10 +681,11 @@ def p15(sc, a, b):
     girar_pete(P, 25)
     u = Vector((math.cos(math.radians(236)), math.sin(math.radians(236)), 0))      # de Pete hacia la cámara (la del plano 12)
     cam.data.dof.aperture_fstop = 4.0
+    gesto(P, "Relieved_Sigh")                # suspira mirando el imán terminado
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        pose_pete(sc, P, f, cabeza=(-22, 0))
+        pose_pete(sc, P, f, cabeza=(-22, 0), actua=("Relieved_Sigh", a, 0))
         d = 5.3 - 0.5 * x
         pos = PETE_E4 + u * d + Vector((0, 0, 0.7))
         tgt = PETE_E4 + Vector((0, 0, 0.7 + d * math.tan(math.radians(3.6))))
@@ -660,16 +708,20 @@ def _idx_e5(f):
 def _pete_flota(sc, S, f, extra=0.0):
     P = S["P"]
     i = _idx_e5(f)
-    P["arm"].location = (0.0, 0.0, S["G"]["boca"] + 1.2 + extra + 0.04 * math.sin(i / 30 * 2.0))
+    P["arm"].location = (0.0, 0.0, S["G"]["boca"] + ALTO_E5 + extra + 0.04 * math.sin(i / 30 * 2.0))
     if P["arm"].type == "ARMATURE":
         P["arm"].rotation_euler.z = P["rot0"].z + math.radians(4 * math.sin(i / 30 * 0.9))     # gira apenas, suelto en el aire
     pose_pete(sc, P, f, cabeza=(-8, 0), cuadro_anim=i)
 
 
-def armar_E5(sc):
+ALTO_E5 = 0.8              # m de aire bajo los pies de Pete (1,2 en el v2: "flota lejos de la boca", puerta 6 v3)
+
+
+def armar_E5(sc, con_cables=True):
     S = armar_E4(sc)
     estado_iman(S, 0, lambda o: None)
-    cables(S, 1.0, 0.3)
+    # en los planos 1 y 16 los cables se veían de canto como una aleta gris detrás del imán (puerta 6 v3)
+    cables(S, 1.0 if con_cables else 0.0, 0.3)
     girar_pete(S["P"], PETE_GIRO, 4, -3)
     S["P"]["flota"] = True
     return S
@@ -677,14 +729,14 @@ def armar_E5(sc):
 
 def cam_B(cam, d, boca, az=AZ_B):
     pos = Vector((math.sin(az) * d, -math.cos(az) * d, 4.1))
-    mirar(cam, pos, Vector((0, 0, 3.8)), lente=35, foco=Vector((0, 0, boca + 2.1)))
+    mirar(cam, pos, Vector((0, 0, 3.8)), lente=35, foco=Vector((0, 0, boca + ALTO_E5 + 0.9)))
     cam.data.dof.aperture_fstop = 8
 
 
 def p1(sc, a, b):
     # CUADRO 0 · "Tu cuerpo repele los imanes.": Pete flotando a 1,2 m sobre la boca (la cámara del cuadro B v2.1),
     # dolly in lento desde la cámara exacta en que termina el plano 16
-    S = armar_E5(sc)
+    S = armar_E5(sc, con_cables=False)
     cam, boca = S["cam"], S["G"]["boca"]
 
     def act(f):
@@ -708,7 +760,8 @@ def p2(sc, a, b):
         x = suave(lin(f, a, b - 1))
         brillo_cobre(S, 0.5 * math.sin(math.pi * clamp((t - t_im) / 0.8)))
         _pete_flota(sc, S, f, extra=0.05 * suave(lin(t, t_fl - 0.1, t_fl + 0.5)))
-        mirar(cam, Vector((8.0, -20.0, 1.6)).lerp(Vector((10.5, -27.0, 1.7)), x), Vector((-2.0, 0, 3.2)), lente=24, foco=Vector((0, 0, 3.0)))
+        # más cerca y a 35 mm (en el v3.0 Pete medía ~40 px justo en "podrías flotar": puerta 6)
+        mirar(cam, Vector((7.5, -17.5, 1.7)).lerp(Vector((9.0, -21.0, 1.75)), x), Vector((-1.5, 0, 3.4)), lente=35, foco=Vector((0, 0, 4.0)))
         cam.data.dof.aperture_fstop = 11
         return {}
     return {"actualizar": act}
@@ -717,13 +770,13 @@ def p2(sc, a, b):
 def p16(sc, a, b):
     # "Ahí sí... flotarías.": Pete sale flotando del hueco y queda a 1,2 m sobre la boca; termina exacto en la cámara y la
     # pose del cuadro 0 (loop)
-    S = armar_E5(sc)
+    S = armar_E5(sc, con_cables=False)
     cam, boca = S["cam"], S["G"]["boca"]
 
     def act(f):
         x = suave(lin(f, a, b - 1))
         sube = sale(lin(f, a, b - 8))
-        _pete_flota(sc, S, f, extra=-2.1 * (1 - sube))
+        _pete_flota(sc, S, f, extra=-(0.9 + ALTO_E5) * (1 - sube))
         cam_B(cam, 13.5 - 1.5 * x, boca)
         return {}
     return {"actualizar": act}

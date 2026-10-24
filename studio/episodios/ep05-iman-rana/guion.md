@@ -68,6 +68,8 @@ Ahí sí... flotarías.
 - National MagLab — Meet the 45 tesla hybrid magnet: https://nationalmaglab.org/about-the-maglab/around-the-lab/meet-the-magnets/meet-the-45-tesla-hybrid-magnet/
 - U.S. Department of Energy — How much power does a nuclear reactor produce?: https://www.energy.gov/ne/articles/infographic-how-much-power-does-nuclear-reactor-produce
 - Journal of Physics Special Topics, U. de Leicester — cálculo de levitación diamagnética de un humano: https://journals.le.ac.uk/index.php/pst/article/view/2049
+- Premio Nobel de Física 2010 (Andre Geim, grafeno) — sólo para el texto del post: https://www.nobelprize.org/prizes/physics/2010/summary/
+- Ig Nobel de Física 2000 (Andre Geim y Michael Berry, la rana que levita) — sólo para el texto del post: https://improbable.com/ig/winners/
 
 ## Plan de Kling
 **0 clips.** Todo es render 3D con el look realista del episodio.

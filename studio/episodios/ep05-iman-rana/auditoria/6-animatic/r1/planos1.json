@@ -1,0 +1,352 @@
+{
+ "encargo": "planos1",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 8,
+   "por_que": "Lo más fuerte es la luz de sol bajo con sombras largas (P10 20.26) y el macro de la rana con desenfoque de lente (P3 4.49, P8 13.54). Bajan la nota el hueco negro mate de P10 (21.68), el suelo agrietado que ocupa ~40 % del cuadro en P2 (1.99) y P9 (17.04), y el tejido rojo brillante de P7 (10.34)."
+  },
+  "animacion": {
+   "nota": 7,
+   "por_que": "Siempre se mueve algo en pantalla (quieto_max ≤ 0,27 s): el cilindro crece (P10 20.0–20.5) y las flechas crecen (P8). Pero lo vivo no actúa. Pete tiene la misma pose de pie en P6 (9.34–10.26), P9 (17.04–19.61) y P10, sin un gesto en '¿y para ti?'. La rana mantiene la misma pose rígida en P3, P5 y P8 (13.54–16.96, 3,5 s) y sólo gira como un modelo en un plato giratorio."
+  },
+  "claridad": {
+   "nota": 8,
+   "por_que": "Cada etiqueta entra con su palabra: IMÁN 7.42, AGUA 8.77, GRAVEDAD 13.85, ≈16 TESLAS 14.47, PASO 1 19.97. Los puntos débiles: en 'flota sola dentro' (6.34–6.88) la rana casi no se ve y después aparece sobre la boca del imán; el subtítulo dice 'NADA AGUA' (8.77); y una mancha beige junto a la rana en P8 parece un dedo."
+  },
+  "ritmo": {
+   "nota": 8,
+   "por_que": "Nada queda quieto más de 0,27 s. P7 (3,2 s) y P8 (3,5 s) suman un elemento cada ≤ 1 s. Lo flojo: P4 mete 4 imágenes en 1,7 s (6.34 tubo negro, 6.88 cenital, 7.15 costado, 7.42 general) y la rana sale sólo 0,27 s."
+  },
+  "realismo": {
+   "nota": 8,
+   "por_que": "La rana escaneada, con manchas, gotitas, desenfoque y tubo de vidrio (P3 4.49, P8 13.54), es un 9. El imán de acero con óxido y pernos bajo sol bajo, con Pete recortado contra el cielo (P1 0.04), es un 8. Delatan el 3D: el hueco, un cilindro negro mate sin textura que desde arriba parece un basurero plástico (P10 20.54–21.96, un 7 en ese plano); la base lisa de un solo gris (P9); el tejido rojo de plástico (P7); y las manchas beige junto a la rana (P8)."
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 10,
+   "segundo": "21.68",
+   "que": "El 'hueco' del paso 1 es un cilindro negro mate sin textura, con bordes perfectos y el interior negro plano. Desde arriba (21.68–21.96) se lee como un basurero de plástico, y es lo que más delata la maqueta en estos planos.",
+   "arreglo": "Darle material de acero con chorreados y óxido como el imán de P1, agregar una brida con pernos y una costura de soldadura arriba, y mostrar la pared interior metálica con un reflejo del cielo en vez de negro puro. Si Pete entra en el cenital, sirve como escala."
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "13.54",
+   "que": "Durante todo el plano hay un objeto beige vertical desenfocado a la derecha de la rana, detrás del vidrio (x≈700–760, y≈650–900), y otra mancha beige arriba a la izquierda. Se leen como un dedo justo cuando la voz dice que flota sola. Lo mismo cruza junto a la rana en P3, entre 5.20 y 5.67.",
+   "arreglo": "Sacar del campo de cámara los pernos o postes beige del fondo (los de P4 6.88), u oscurecerlos al color del metal, para que detrás de la rana sólo quede el fondo azul desenfocado."
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 4,
+   "segundo": "6.34",
+   "que": "En 'flota sola dentro' se ve primero 0,5 s el interior negro de un tubo, donde la rana es una mancha café que parece hoja seca (6.34–6.61). Después hay 0,27 s de un cenital con la rana sobre la boca del imán, no dentro (6.88).",
+   "arreglo": "Cambiar 6.30–6.90 por un solo cenital de 0,6 s mirando dentro del hueco iluminado desde abajo (blanco-cian, como la foto real 1), con la rana a la altura de la boca. Eliminar el macro negro."
+  },
+  {
+   "prioridad": 4,
+   "bloqueante": false,
+   "plano": 9,
+   "segundo": "17.30",
+   "que": "Pete tiene la misma pose de pie, con los brazos abajo, en P6 (9.34–10.26), P9 (17.04–19.61) y P10 (19.69–21.11). No reacciona a 'como tú', '¿y para ti?' ni 'habría que construirlo'.",
+   "arreglo": "Usar los clips de Mixamo del proyecto: Pointing o Shrugging en '¿y para ti?' (17.3), Thinking o mirar la base en 'habría que construirlo' (18.3) y Head Nod en 'como tú' (9.5)."
+  },
+  {
+   "prioridad": 5,
+   "bloqueante": false,
+   "plano": 8,
+   "segundo": "15.09",
+   "que": "La rana mantiene la misma pose rígida, con las patas fijas, en P3, P5 y los 3,5 s de P8 (13.54–16.96). Sólo gira entera, como un modelo en un plato giratorio: le falta vida.",
+   "arreglo": "Agregar un loop de micro-movimiento: las patas traseras derivan unos ±10° cada 1–2 s y la garganta respira cada ~1 s. La rotación lenta puede quedar."
+  },
+  {
+   "prioridad": 6,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "8.77",
+   "que": "El subtítulo se corta como 'ES MÁS QUE' / 'NADA AGUA', y 'NADA AGUA' se lee como 'nada de agua', lo contrario de lo que dice la voz.",
+   "arreglo": "Cortar como 'ES MÁS QUE NADA' / 'AGUA'."
+  },
+  {
+   "prioridad": 7,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "3.33",
+   "que": "En 'podrías flotar', Pete mide ~40 px de alto y el suelo agrietado ocupa ~40 % del cuadro, así que la persona que flota apenas se ve.",
+   "arreglo": "Usar un lente más largo o acercar la cámara para que Pete mida ≥ 150 px, y levantar el encuadre para que el suelo no pase de un cuarto del cuadro."
+  },
+  {
+   "prioridad": 8,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "11.76",
+   "que": "Los subtítulos ('EMPUJA', 'UN POQUITO', y≈1080–1180) quedan encima de la molécula protagonista y tapan el oxígeno justo cuando entra la flecha.",
+   "arreglo": "Inclinar la cámara para dejar la molécula central en y≈500–900, con la flecha encima, y que el subtítulo caiga sobre el tejido de fondo."
+  }
+ ],
+ "eventos": [
+  {
+   "id": "E1",
+   "es_defecto": false,
+   "por_que": "Es el cambio de subtítulo de 'TU CUERPO REPELE' a 'LOS IMANES'."
+  },
+  {
+   "id": "E2",
+   "es_defecto": false,
+   "por_que": "Es el paralaje de las grietas del suelo con el avance de la cámara."
+  },
+  {
+   "id": "E3",
+   "es_defecto": false,
+   "por_que": "Es el cambio de subtítulo de 'CORRECTO' a 'PODRÍAS FLOTAR'."
+  },
+  {
+   "id": "E4",
+   "es_defecto": false,
+   "por_que": "Es el paralaje de las grietas con el avance de la cámara."
+  },
+  {
+   "id": "E5",
+   "es_defecto": false,
+   "por_que": "Es la píldora 'ESTO SÍ PASÓ' que entra con la voz."
+  },
+  {
+   "id": "E6",
+   "es_defecto": false,
+   "por_que": "La mancha beige sale del cuadro con el giro de cámara y no corta de golpe. Igual es un delator (ver delatores)."
+  },
+  {
+   "id": "E7",
+   "es_defecto": false,
+   "por_que": "Es el borde de la varilla del tubo, que se mueve con el giro de cámara."
+  },
+  {
+   "id": "E8",
+   "es_defecto": false,
+   "por_que": "Son 3 cortes buscados que el detector juntó en un plano: macro oscuro (6.34) → cenital (6.88) → exterior de día (7.15). El macro oscuro igual es un problema de claridad (sugerencia 3)."
+  },
+  {
+   "id": "E9",
+   "es_defecto": false,
+   "por_que": "Es el corte del macro negro al cenital de la boca del imán (sugerencia 3)."
+  },
+  {
+   "id": "E10",
+   "es_defecto": false,
+   "por_que": "Es la cámara que se aleja del imán azul y la píldora 'IMÁN', que entra con la voz."
+  },
+  {
+   "id": "E11",
+   "es_defecto": false,
+   "por_que": "Es la píldora 'AGUA' que entra con la palabra."
+  },
+  {
+   "id": "E12",
+   "es_defecto": false,
+   "por_que": "Es el acercamiento rápido a la rana como transición y el corte a Pete. La cara de la rana queda fuera de foco en 9.14–9.26 (delator)."
+  },
+  {
+   "id": "E13",
+   "es_defecto": false,
+   "por_que": "P7 dura 3,2 s, pero cambia algo cada ≤ 1 s: las líneas de campo en 10.91, la flecha en 11.76 y la píldora en 12.89."
+  },
+  {
+   "id": "E14",
+   "es_defecto": false,
+   "por_que": "Son las líneas de campo, que entran con 'un imán'."
+  },
+  {
+   "id": "E15",
+   "es_defecto": false,
+   "por_que": "Sale la píldora 'AGUA' y empieza la flecha de 'empuja'."
+  },
+  {
+   "id": "E16",
+   "es_defecto": false,
+   "por_que": "Es el movimiento de la cámara y de las líneas sobre la molécula."
+  },
+  {
+   "id": "E17",
+   "es_defecto": false,
+   "por_que": "Es la píldora 'UN POQUITO', que entra con la voz."
+  },
+  {
+   "id": "E18",
+   "es_defecto": false,
+   "por_que": "P8 dura 3,5 s, pero entra algo cada ≤ 1 s: GRAVEDAD en 13.85, IMÁN y ≈16 T en 14.47, y las flechas crecen. La rana rígida va como sugerencia 5."
+  },
+  {
+   "id": "E19",
+   "es_defecto": false,
+   "por_que": "Son la flecha y la etiqueta 'GRAVEDAD', que entran con la voz."
+  },
+  {
+   "id": "E20",
+   "es_defecto": false,
+   "por_que": "Es la píldora '≈ 16 TESLAS', que entra escalando."
+  },
+  {
+   "id": "E21",
+   "es_defecto": false,
+   "por_que": "Es el cambio de subtítulo; las etiquetas suben con su animación."
+  },
+  {
+   "id": "E22",
+   "es_defecto": false,
+   "por_que": "P9 dura 2,65 s, con un dolly continuo y la píldora en 18.73. Pete no actúa (sugerencia 4)."
+  },
+  {
+   "id": "E23",
+   "es_defecto": false,
+   "por_que": "La píldora 'SIMULACIÓN' entra a propósito, pero a mitad del plano. Según el guion va siempre que se ve a Pete: conviene que entre en el corte de 17.00."
+  },
+  {
+   "id": "E24",
+   "es_defecto": false,
+   "por_que": "Es la píldora 'PASO 1 · EL HUECO', que entra con 'primero'."
+  },
+  {
+   "id": "E25",
+   "es_defecto": false,
+   "por_que": "Es el cilindro del hueco, que crece desde la base: la construcción buscada."
+  },
+  {
+   "id": "E26",
+   "es_defecto": false,
+   "por_que": "Es la grúa de cámara que sube hacia el cilindro."
+  },
+  {
+   "id": "E27",
+   "es_defecto": false,
+   "por_que": "La grúa sigue sobre la boca del cilindro y cambia el color del karaoke."
+  }
+ ],
+ "delatores": [
+  {
+   "plano": 10,
+   "segundo": "20.54",
+   "zona": "medio",
+   "que": "El hueco es un cilindro negro mate sin textura y con bordes perfectos. Desde arriba (21.68–21.96) parece un basurero de plástico.",
+   "arreglo": "Acero con chorreados y óxido, brida con pernos y costura de soldadura."
+  },
+  {
+   "plano": 10,
+   "segundo": "21.96",
+   "zona": "medio",
+   "que": "El interior del hueco es negro puro y plano.",
+   "arreglo": "Pared interior metálica con reflejo del cielo y luz rasante."
+  },
+  {
+   "plano": 9,
+   "segundo": "17.04",
+   "zona": "medio",
+   "que": "La base oscura con el agujero (y≈930–1000) es lisa, de un solo gris y con bordes perfectos.",
+   "arreglo": "Hormigón o acero con manchas, juntas, pernos de anclaje y polvo de sal en el borde."
+  },
+  {
+   "plano": 8,
+   "segundo": "13.54",
+   "zona": "medio",
+   "que": "Hay un objeto beige vertical desenfocado a la derecha de la rana (x≈700–760, y≈650–900) que parece un dedo detrás del vidrio.",
+   "arreglo": "Sacarlo del campo de cámara u oscurecerlo al color del metal."
+  },
+  {
+   "plano": 8,
+   "segundo": "13.54",
+   "zona": "arriba",
+   "que": "Hay una segunda mancha beige desenfocada arriba a la izquierda (x≈200, y≈80–200).",
+   "arreglo": "Igual que la anterior: sacarla del campo de cámara u oscurecerla."
+  },
+  {
+   "plano": 3,
+   "segundo": "5.38",
+   "zona": "medio",
+   "que": "Una mancha oscura con un parche beige cruza junto a la rana entre 5.20 y 5.67 y parece un objeto.",
+   "arreglo": "Sacar del campo esos pernos o postes."
+  },
+  {
+   "plano": 8,
+   "segundo": "13.54",
+   "zona": "abajo",
+   "que": "La boca del imán es un agujero negro plano, sin pared interior (y≈1350–1550).",
+   "arreglo": "Pared interior metálica con reflejo y algo de luz."
+  },
+  {
+   "plano": 4,
+   "segundo": "6.34",
+   "zona": "medio",
+   "que": "El interior del tubo es negro opaco y la rana es una mancha café que parece hoja seca.",
+   "arreglo": "Iluminar el hueco desde abajo (blanco-cian, como la foto real 1) o quitar ese macro."
+  },
+  {
+   "plano": 4,
+   "segundo": "6.88",
+   "zona": "arriba",
+   "que": "La rana flota sobre la boca del imán, entre dos varillas, y no dentro como dice la voz y como la pondría la física.",
+   "arreglo": "Bajarla hasta la boca del hueco o un poco más adentro."
+  },
+  {
+   "plano": 1,
+   "segundo": "0.04",
+   "zona": "arriba",
+   "que": "Pete flota casi un cuerpo por encima del techo del imán. Con un imán de verdad flotaría en la boca del hueco.",
+   "arreglo": "Bajarlo hasta que los pies queden cerca del borde del hueco. Afecta también al plano del loop final."
+  },
+  {
+   "plano": 1,
+   "segundo": "0.04",
+   "zona": "medio",
+   "que": "En el borde trasero del techo del imán (x≈700, y≈950) hay una pieza gris inclinada que se lee como aleta o rampa.",
+   "arreglo": "Sacarla o girarla para que no apunte al punto de fuga."
+  },
+  {
+   "plano": 9,
+   "segundo": "17.04",
+   "zona": "arriba",
+   "que": "Las dos plumas de vapor son columnas rectas como velas, con la misma forma y sin viento (también en P1 0.04).",
+   "arreglo": "Darle a cada una una deriva lateral distinta y anchos diferentes."
+  },
+  {
+   "plano": 2,
+   "segundo": "1.99",
+   "zona": "abajo",
+   "que": "El suelo agrietado ocupa ~40 % del cuadro, con placas del mismo tamaño, el mismo reborde blanco y todo enfocado hasta el primer plano (lo mismo en P9 17.04).",
+   "arreglo": "Variar el tamaño de las placas, desenfocar el primer plano y bajar la proporción de suelo."
+  },
+  {
+   "plano": 7,
+   "segundo": "10.34",
+   "zona": "medio",
+   "que": "El tejido de fondo son esferas rojas brillantes como plástico, con venas dibujadas y rojo saturado.",
+   "arreglo": "Bajar el especular y la saturación, darle textura húmeda subsuperficial y deformar las esferas perfectas."
+  },
+  {
+   "plano": 4,
+   "segundo": "7.42",
+   "zona": "abajo",
+   "que": "La plataforma del imán de la rana es una losa lisa de un solo azul-gris.",
+   "arreglo": "Agregar mugre, juntas y marcas de uso."
+  },
+  {
+   "plano": 5,
+   "segundo": "9.26",
+   "zona": "medio",
+   "que": "El acercamiento a la rana termina fuera de foco: la cara queda borrosa llenando el cuadro.",
+   "arreglo": "Que el foco siga al ojo durante el acercamiento."
+  },
+  {
+   "plano": 6,
+   "segundo": "9.34",
+   "zona": "arriba",
+   "que": "En el borde izquierdo hay una franja blanca vertical (una pluma de vapor cortada, x≈0–40, y≈0–500).",
+   "arreglo": "Encuadrar la torre o sacar la pluma del borde."
+  }
+ ],
+ "resumen": "No hay bloqueantes en los planos 1–10. El macro de la rana y la luz de sol bajo sostienen el realismo (8), pero el hueco negro de P10 y las manchas beige junto a la rana delatan la maqueta. Animación queda en 7 porque Pete y la rana no actúan; con eso el promedio da 7,8."
+}

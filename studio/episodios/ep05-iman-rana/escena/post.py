@@ -183,10 +183,33 @@ if cur:
 g2 = []
 for g in grupos:
     if any(len(TOK[j][0]) >= 11 for j in g) and len(g) > 1:
-        g2 += [[j] for j in g]
+        # la palabra larga va sola, pero las cortas de al lado quedan juntas (v3.0: "QUE" salía sola 0,1 s, puerta 6)
+        cur = []
+        for j in g:
+            if len(TOK[j][0]) >= 11:
+                if cur:
+                    g2.append(cur)
+                g2.append([j])
+                cur = []
+            else:
+                cur.append(j)
+        if cur:
+            g2.append(cur)
     else:
         g2.append(g)
 grupos = g2
+# "Es más que nada agua": cortado en "NADA AGUA" se leía "nada de agua" (puerta 6 v3) → ES MÁS QUE NADA / AGUA, / COMO TÚ
+_i = next((i for i, w in enumerate(words) if limpiar(w["w"]) == "NADA"), None)
+if _i is not None:
+    _js = [j for j, (tx, idx, fin) in enumerate(TOK) if idx[0] in range(_i - 3, _i + 1)]
+    g3 = []
+    for g in grupos:
+        resto = [j for j in g if j not in _js]
+        if any(j in _js for j in g) and _js[0] in g:
+            g3.append(_js)
+        if resto and resto != g or not any(j in _js for j in g):
+            g3.append(resto)
+    grupos = [g for g in g3 if g]
 SIN_SUBS = set()
 SUB_LOG = []
 
@@ -335,7 +358,7 @@ def cota(im, f, a=1.0):
         d.line((x0, y0, x1, y1), fill=(255, 255, 255, al), width=w)
     for x, s in ((xi, 1), (xd, -1)):
         d.polygon([(x, yl), (x + 26 * s, yl - 12), (x + 26 * s, yl + 12)], fill=(255, 255, 255, al))
-    texto_sombra(d, ((xi + xd) / 2, yl - 70), "3 cm", ImageFont.truetype(FONT, 64), a=al)
+    texto_sombra(d, ((xi + xd) / 2, yl - 70), "3,2 cm", ImageFont.truetype(FONT, 64), a=al)
     im.paste(lay, (0, 0), lay)
     G.registrar("cota", (xi - 30, yl - 110, xd + 30, yl + 40))
 
@@ -411,7 +434,7 @@ SIM = {1, 2, 10, 12, 13, 14, 15, 16}
 
 def graficos(im, f, k):
     t = t_de(f)
-    if k in SIM or (k == 9 and t >= tw("construirlo", 17.0)):
+    if k in SIM or k == 9:            # desde el corte del 9 (17,0 s), no a mitad del plano (puerta 6 v3)
         simulacion(im)
     if k == 3:
         pild(im, f, 3, "real", "ESTO SÍ PASÓ", tw("pasó", 4.0), [(540, 330), (540, 400)], marca="v")
@@ -446,13 +469,13 @@ def graficos(im, f, k):
         t_tres, t_mano = tw("tres", 22.0), tw("mano", 23.0)
         if t >= t_tres:
             cota(im, f, a=min(1.0, (t - t_tres) / 0.15) * (1 - suave(min(1.0, max(0.0, (t - t_mano + 0.75) / 0.25)))))
-        mano(im, f, a=suave(min(1.0, max(0.0, (t - t_mano - 0.02) / 0.28))))
-        pild(im, f, 11, "nocabe", "NO CABE", t_mano + 0.1, [(790, 330), (790, 400)])
+        mano(im, f, a=suave(min(1.0, max(0.0, (t - t_mano + 0.15) / 0.28))))
+        pild(im, f, 11, "nocabe", "NO CABE", t_mano, [(790, 330), (790, 400)])
     elif k == 12:
         pild(im, f, 12, "p2", "PASO 2 · BOBINAS", tw("después", 25.0), [(330, 470), (540, 470)], tam=48)
     elif k == 13:
         pild(im, f, 13, "t40", "≈ 40 TESLAS O MÁS", tw("cuarenta", 28.0) + 0.05, [(540, 450)], fondo=NARANJO, tinta=(255, 255, 255))
-        barras(im, f, tw("doble", 30.0))
+        barras(im, f, tw("más", 30.0))          # con "Más del doble", la frase que las explica (puerta 6 v3)
     elif k == 14:
         t_re = tw("reactor", 33.0)
         pild(im, f, 14, "p3", "PASO 3 · ENERGÍA", tw("final", 32.0), [(540, 470), (330, 470)], tam=48, hasta=t_re)

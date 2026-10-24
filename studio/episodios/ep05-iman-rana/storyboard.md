@@ -97,3 +97,35 @@ Tiempos reales de `words.json` (voz v3 con `tools/pausas.py`: 4 pausas recortada
 
 ## Cambios (cada 1–2 s)
 Ningún tramo pasa 2 s sin cambio. Cada plano de más de 2 s trae su cambio interno en la columna "Cambio" (píldora, flecha, pieza que cae o cambio de cámara). Los cortes caen en el comienzo de cada frase.
+
+## Cambios tras la puerta 6 r1 (sobre el final v3.0: 7,96, realismo 7 y animación 7)
+- **El hueco (planos 10 y 12):** pasa a ser de acero sucio como el imán, con bisel, una brida apernada arriba y la boca a la vista. Antes era negro mate liso, "basurero de plástico".
+- **La losa del imán gigante:** hormigón a la intemperie, con manchas, polvo de sal, poros, grietas y cantos gastados. Antes era gris liso.
+- **Cables:**
+  - serpentean, se separan y van medio enterrados en la sal. Rectos y paralelos se leían como un riel o una rampa (plano 14);
+  - no aparecen en los planos 1 y 16, donde de canto se veían como una aleta gris.
+- **Pete actúa (Mixamo del repo privado):**
+  - apunta a la cámara en "como tú" (6);
+  - se encoge de hombros en "¿y para ti?" (9);
+  - se sorprende cuando sale el hueco (10);
+  - asiente mientras caen las bobinas (12);
+  - suspira mirando el imán (15).
+- **Pete flotando (1, 2 y 16):**
+  - el vaivén de brazos y piernas es más amplio;
+  - flota a 0,8 m de la boca, no a 1,2;
+  - el plano 2 va a 35 mm y más cerca (Pete medía ~40 px).
+- **E1:**
+  - el hueco del imán de la rana es acero con reflejo, no negro plano;
+  - se sacaron los pernos de la tapa: desenfocados detrás de la rana parecían un dedo beige;
+  - la rana respira el doble;
+  - el plano 4 parte de costado (desde arriba se veía el tubo negro);
+  - el 11 se queda a la altura de la rana, así que de fondo se ve la sal a contraluz, no la tapa pálida.
+- **E2:** la molécula sube sobre los subtítulos.
+- **Plano 13:** los pernos de la tapa caen con la placa (se veía un anillo de pernos en el aire).
+- **Post y audio:**
+  - SIMULACIÓN desde el corte del 9;
+  - barras en "Más del doble";
+  - "3,2 cm" en la cota;
+  - subtítulos ES MÁS QUE NADA / AGUA y HABRÍA QUE / CONSTRUIRLO;
+  - la mano entra antes;
+  - la música baja 1 dB.

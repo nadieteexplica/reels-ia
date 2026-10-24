@@ -201,7 +201,7 @@ def mat_cobre(nombre="cobre"):
     b.inputs["Metallic"].default_value = 1.0
     nz = _ruido(nt, escala=12, detalle=8)
     nt.links.new(_rampa(nt, nz.outputs["Fac"], (0.55, 0.26, 0.14), (0.93, 0.56, 0.38)).outputs[0], b.inputs["Base Color"])
-    nt.links.new(_mapa(nt, nz.outputs["Fac"], 0.22, 0.42).outputs[0], b.inputs["Roughness"])
+    nt.links.new(_mapa(nt, nz.outputs["Fac"], 0.14, 0.32).outputs[0], b.inputs["Roughness"])     # (0,22–0,42 se veía mate, como plástico: puerta 6 v3)
     return m
 
 
@@ -212,8 +212,8 @@ def mat_bobina(nombre="bobina"):
     b.inputs["Metallic"].default_value = 1.0
     nz = _ruido(nt, escala=3, detalle=8)
     nt.links.new(_rampa(nt, nz.outputs["Fac"], (0.42, 0.18, 0.09), (0.86, 0.48, 0.3), pos=(0.3, 0.7)).outputs[0], b.inputs["Base Color"])
-    nt.links.new(_mapa(nt, nz.outputs["Fac"], 0.25, 0.45).outputs[0], b.inputs["Roughness"])
-    b.inputs["Coat Weight"].default_value = 0.35
+    nt.links.new(_mapa(nt, nz.outputs["Fac"], 0.15, 0.32).outputs[0], b.inputs["Roughness"])
+    b.inputs["Coat Weight"].default_value = 0.5
     b.inputs["Coat Roughness"].default_value = 0.15
     tc = nt.nodes.new("ShaderNodeTexCoord")
     wv = nt.nodes.new("ShaderNodeTexWave"); wv.wave_type = "BANDS"; wv.bands_direction = "Z"
@@ -240,6 +240,36 @@ def mat_concreto(nombre="concreto", color=(0.36, 0.36, 0.35), escala=3.0):
     nt.links.new(_rampa(nt, grande.outputs["Fac"], tuple(c * 0.7 for c in color), color).outputs[0], b.inputs["Base Color"])
     nt.links.new(_mapa(nt, grande.outputs["Fac"], 0.25, 0.75).outputs[0], b.inputs["Roughness"])
     _bump(nt, b, poros.outputs["Fac"], 0.08, 0.001)
+    return m
+
+
+def mat_hormigon(nombre="hormigon", color=(0.33, 0.31, 0.29)):
+    """Hormigón a la intemperie en el salar (v3, puerta 6: la losa lisa delataba la maqueta): manchas grandes de humedad,
+    polvo de sal pegado, poros y grietas finas, y cantos gastados más claros (Pointiness)."""
+    m, nt, b = _nodos(nombre)
+    grande = _ruido(nt, escala=0.5, detalle=10)
+    medio = _ruido(nt, escala=5, detalle=8)
+    sal = _ruido(nt, escala=2.2, detalle=6)
+    c1 = _rampa(nt, grande.outputs["Fac"], tuple(c * 0.55 for c in color), color, pos=(0.3, 0.7))
+    c2 = _rampa(nt, medio.outputs["Fac"], (0.8, 0.8, 0.8), (1.05, 1.05, 1.05))
+    mul = nt.nodes.new("ShaderNodeMix"); mul.data_type = "RGBA"; mul.blend_type = "MULTIPLY"; mul.inputs[0].default_value = 1.0
+    nt.links.new(c1.outputs[0], mul.inputs[6]); nt.links.new(c2.outputs[0], mul.inputs[7])
+    polvo = nt.nodes.new("ShaderNodeMix"); polvo.data_type = "RGBA"
+    k = _mapa(nt, sal.outputs["Fac"], 0.0, 0.45); k.inputs["From Min"].default_value = 0.55; k.inputs["From Max"].default_value = 0.75
+    nt.links.new(k.outputs[0], polvo.inputs[0]); nt.links.new(mul.outputs[2], polvo.inputs[6])
+    polvo.inputs[7].default_value = (0.78, 0.75, 0.70, 1)
+    geo = nt.nodes.new("ShaderNodeNewGeometry")
+    canto = _mapa(nt, geo.outputs["Pointiness"], 0.0, 0.5); canto.inputs["From Min"].default_value = 0.52; canto.inputs["From Max"].default_value = 0.6
+    gast = nt.nodes.new("ShaderNodeMix"); gast.data_type = "RGBA"
+    nt.links.new(canto.outputs[0], gast.inputs[0]); nt.links.new(polvo.outputs[2], gast.inputs[6])
+    gast.inputs[7].default_value = (0.62, 0.6, 0.57, 1)
+    nt.links.new(gast.outputs[2], b.inputs["Base Color"])
+    nt.links.new(_mapa(nt, medio.outputs["Fac"], 0.8, 0.95).outputs[0], b.inputs["Roughness"])
+    poros = _ruido(nt, escala=300, detalle=2)
+    grietas = _ruido(nt, escala=12, detalle=12)
+    suma = nt.nodes.new("ShaderNodeMath"); suma.operation = "ADD"
+    nt.links.new(poros.outputs["Fac"], suma.inputs[0]); nt.links.new(grietas.outputs["Fac"], suma.inputs[1])
+    _bump(nt, b, suma.outputs[0], 0.25, 0.003)
     return m
 
 
@@ -449,7 +479,7 @@ def iman_lab(sc, alto=1.25, r=0.42, r_hueco=0.028):
     piezas.append(tubo(sc, "Iman_tapa", r * 1.02, r_hueco, 0.08, (0, 0, alto - 0.08), mat=acero, bisel=0.006))
     piezas.append(tubo(sc, "Iman_boca", r_hueco * 1.6, r_hueco, 0.025, (0, 0, alto), mat=mat_metal_cepillado("boca", (0.32, 0.33, 0.35), (0.08, 0.18)), bisel=0.003))
     # el hueco: un tubo negro mate que baja hondo (se lee como agujero, no como plato)
-    negro = mat_pintura("hueco_negro", (0.01, 0.01, 0.012), rugo=(0.6, 0.8), sucio=0.0)
+    negro = mat_metal_cepillado("hueco_negro", (0.07, 0.07, 0.075), (0.25, 0.45), 4.0)    # v3: no negro plano (puerta 6)
     piezas.append(tubo(sc, "Iman_hueco", r_hueco * 1.02, r_hueco * 0.94, 0.6, (0, 0, alto - 0.58), mat=negro, bisel=0))
     piezas.append(cilindro(sc, "Iman_fondo_hueco", r_hueco, 0.01, (0, 0, alto - 0.58), mat=negro))
     piezas.append(tubo(sc, "Iman_base", r * 1.08, r * 0.3, 0.06, (0, 0, 0), mat=oscuro, bisel=0.008))
@@ -673,7 +703,7 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
     goma = mat_cable("cable_g")
     hueco = mat_pintura("hueco_g", (0.008, 0.008, 0.01), rugo=(0.6, 0.8), sucio=0.0, capa=0.0)
     tubos = mat_metal_cepillado("tubos_g", (0.32, 0.33, 0.34), (0.35, 0.65), escala=2.0)
-    cilindro(sc, "G_plataforma", r * 1.18, z0, (0, 0, 0), verts=160, mat=mat_concreto("plataforma", (0.3, 0.29, 0.28), 0.6), bisel=0.02)
+    cilindro(sc, "G_plataforma", r * 1.18, z0, (0, 0, 0), verts=160, mat=mat_hormigon("plataforma"), bisel=0.05)
     tubo(sc, "G_cuerpo", r, r_hueco, alto, (0, 0, z0), verts=192, mat=pintura, bisel=0.03)
     tubo(sc, "G_hueco", r_hueco * 1.002, r_hueco * 0.97, alto * 1.01, (0, 0, z0), verts=160, mat=hueco, bisel=0)
     # bridas (anillos salientes con pernos) en la base, al medio y arriba
@@ -710,10 +740,17 @@ def iman_gigante(sc, r=2.5, r_hueco=0.95, alto=3.1, z0=0.45, portico=False):
         zc = z0 + 0.9 + 0.12 * (i % 3)
         lejos = Vector((-1150, 2080, 0)) - Vector((x, y, 0))
         lejos.normalize()
+        perp = Vector((-lejos.y, lejos.x, 0))
         p2 = Vector((x, y, 0)) + out * 2.0
+        # v3 (puerta 6): rectos y paralelos se leían como un riel o una rampa; ahora serpentean, se separan y van medio
+        # enterrados en la sal (la sección asoma ~4 cm)
+        rnd = random.Random(40 + i)
+        lado = [rnd.uniform(-1, 1) for _ in range(6)]
         pts = [(x, y, zc), (x + out.x * 0.5, y + out.y * 0.5, zc - 0.2), (x + out.x * 1.2, y + out.y * 1.2, 0.35),
-               (p2.x, p2.y, 0.04), tuple(p2 + lejos * 12 + Vector((0.12 * i, 0, 0.03))), tuple(p2 + lejos * 60 + Vector((0.12 * i, 0, 0.03))),
-               tuple(p2 + lejos * 400 + Vector((0.12 * i, 0, 0.03)))]
+               (p2.x, p2.y, 0.0)]
+        for d_, amp, k_ in ((6, 0.25, 0), (14, 0.7, 1), (30, 1.6, 2), (70, 3.5, 3), (160, 7, 4), (400, 15, 5)):
+            q = p2 + lejos * d_ + perp * (0.14 * i + amp * lado[k_])
+            pts.append((q.x, q.y, -0.02))
         manguera(sc, f"G_cable{i}", pts, 0.06, goma)
         cilindro(sc, f"G_conector{i}", 0.13, 0.25, (x, y, zc - 0.12), verts=32, mat=conector, bisel=0.01).rotation_euler = (0, math.radians(90), a)
     return z0 + alto

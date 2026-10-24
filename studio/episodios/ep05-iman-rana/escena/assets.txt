@@ -1,3 +1,4 @@
 modelos ep05-modelos
 privados PETE*
 pose *happy*idle*.fbx
+gestos mixamo

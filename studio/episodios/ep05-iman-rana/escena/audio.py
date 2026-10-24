@@ -300,7 +300,7 @@ add(fx, ding(1175, 0.5), W("final", 32.0), 0.35)                   # PASO 3
 add(fx, electrico(E.T[14][1] - E.T[14][0]), T(14), 0.9)            # los cables a la central
 add(fx, ding(1568, 0.6), W("entero", 34.0), 0.4)                   # ≈ 1 GIGAVATIO
 add(fx, whoom(1.5), T(16, 0.0), 0.9)                               # Pete sube
-mix = v * 1.0 + m * 0.5 + fx * 0.45
+mix = v * 1.0 + m * 0.45 + fx * 0.45          # música 1 dB más baja: quedaba a 14,9 dB bajo la voz (meta ≥ 15)
 mix = np.tanh(mix * 1.1) / 1.1
 mix = mix / (np.abs(mix).max() + 1e-9) * 0.9
 os.makedirs(OUT, exist_ok=True)
@@ -309,5 +309,5 @@ wavfile.write(tmp, SR, (mix * 32767).astype(np.int16))
 dst = os.path.join(OUT, "ep05_mix.wav")
 subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", tmp, "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "48000", dst], check=True)
 vr = np.sqrt(np.mean(v[np.abs(v) > 0.02] ** 2))
-mr = np.sqrt(np.mean((m * 0.5)[(m != 0)] ** 2) + 1e-12)
+mr = np.sqrt(np.mean((m * 0.45)[(m != 0)] ** 2) + 1e-12)
 print("ok audio", dst, "voz/música dB:", round(20 * np.log10(vr / mr), 1))

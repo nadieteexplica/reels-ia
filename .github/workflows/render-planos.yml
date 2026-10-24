@@ -81,6 +81,8 @@ jobs:
                 pose) p=$(find priv_assets -iname "$valor" 2>/dev/null | head -1)
                       if [ -z "$p" ]; then GH_TOKEN="$GH_PRIV" gh release download Personajes -R nadieteexplica/assets -p "$valor" -D _assets/poses 2>/dev/null || true; p=$(find _assets/poses -iname "$valor" 2>/dev/null | head -1); fi
                       [ -n "$p" ] && echo "POSE=$GITHUB_WORKSPACE/$p" >> "$GITHUB_ENV" ;;
+                gestos) d=$(find priv_assets -type d -iname "$valor" 2>/dev/null | head -1)
+                        [ -n "$d" ] && echo "GESTOS=$GITHUB_WORKSPACE/$d" >> "$GITHUB_ENV" && ls "$d" ;;
               esac
             done < "$A"
           fi

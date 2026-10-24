@@ -1,0 +1,22 @@
+{
+ "etapa": "7-final",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": null,
+ "notas": {},
+ "problemas": [],
+ "sugerencias": [],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "fondo_liso · plano 5: 76 % del cuadro es superficie lisa",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [],
+ "parar_y_preguntar": false
+}
