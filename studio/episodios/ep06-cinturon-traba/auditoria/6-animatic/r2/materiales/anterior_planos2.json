@@ -1,0 +1,178 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": true,
+  "tipo": "B2",
+  "plano": 16,
+  "segundo": "21.59",
+  "que": "la bolsa de papas vuelve a estar en el tablero, en primer plano y en el mismo lugar que en P14, justo después de que en P15 se fue: entre planos salta de lugar (y el remate depende de que esté atrás, con el doctor)",
+  "arreglo": "en P16 usar el tramo de la animación posterior al deslizamiento (bolsa ya atrás) o borrar la bolsa del tablero en esa toma",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "A2",
+  "bloqueante": true,
+  "tipo": "B2",
+  "plano": 15,
+  "segundo": "20.69",
+  "que": "la bolsa está a la izquierda en 20.69 y en 20.85 ya no está: desaparece en un cuadro (E23, puntaje 101) en vez de verse resbalar hacia atrás",
+  "arreglo": "animar el deslizamiento en 0,4–0,6 s por el tablero hacia el asiento de atrás, con desenfoque de movimiento; si no hay tiempo, partir P15 cuando la bolsa ya se fue",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "A6",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 13,
+  "segundo": "18.90",
+  "que": "el cerro son bultos redondos y lisos, todos de la misma forma (parecen masa o almohadas), y el camino es un plano café liso, sin huellas ni piedras (igual en P19, 26.24): es lo que más delata la maqueta en esta parte",
+  "arreglo": "cambiar el desplazamiento por roca de escaneo (Poly Haven, de cerro o de acantilado) con estratos y bloques de tamaños distintos; en el camino, gravilla, piedras sueltas, huellas de neumático y algo de polvo que levanten las ruedas",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "A7",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 14,
+  "segundo": "20.03",
+  "que": "«y se traban los cuatro» / «nadie jaló» (P14–P16, 19.85–22.80): no se ve ninguna cinta ni nadie reacciona a los CLAC; los cuatro son siluetas oscuras al fondo y la bolsa desenfocada ocupa el tercio de abajo. Es el giro del video y no se lee sin la voz",
+  "arreglo": "en la misma escena, una cámara desde el parabrisas a la altura del pecho con las cuatro cintas a la vista, y a cada uno un tirón de 3–5 cm contra el respaldo en cada CLAC (0,15 s de separación). En P16, en vez de repetir la cámara de P14, las manos de los cuatro abiertas y lejos del cinturón («nadie jaló»)",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "A8",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 17,
+  "segundo": "23.92",
+  "que": "la bolita y su tacita quedan en y≈1000–1250, en la zona de subtítulos: «DE ACERO» tapa media bolita justo cuando la voz la nombra, y la píldora BOLITA DE ACERO está lejos (y≈420), arriba del engranaje. En P18 (25.62) «rodó y trabó» tampoco se lee: la bolita casi no rueda y la punta de la palanquita no se ve entrar en un diente",
+  "arreglo": "bajar la mira de la cámara (o desplazar el lente) unos 350 px para que la bolita, la palanquita y el diente queden en y 500–950, con la píldora al lado de la bolita; en P18, que la tacita se incline a la vista, que la bolita ruede al menos su diámetro y que la palanquita entre en un diente con una sacudida de 2 cuadros en el CLAC",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D16",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 13,
+  "segundo": "18.90",
+  "que": "[delator · arriba] el cerro es un campo de bultos redondos y lisos de la misma forma (masa, almohadas): repetición y superficie sin roca",
+  "arreglo": "roca de escaneo con estratos, fracturas y bloques de tamaños distintos; rodados sueltos",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D17",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 19,
+  "segundo": "26.24",
+  "que": "[delator · arriba] los mismos bultos redondos repetidos en todo el cerro detrás del auto",
+  "arreglo": "el mismo cambio de material del cerro que en P13",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D18",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 13,
+  "segundo": "18.29",
+  "que": "[delator · abajo] el camino es un plano café liso y uniforme, sin huellas, piedras ni cambios de color",
+  "arreglo": "gravilla, piedras, huellas de neumático y variación de color; polvo en las ruedas",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D19",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 13,
+  "segundo": "18.29",
+  "que": "[delator · medio] a esta resolución la carrocería se ve limpia, sin polvo, en pleno desierto (verificar en el render final)",
+  "arreglo": "capa de polvo en la parte baja de las puertas, en los tapabarros y en las llantas",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D20",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "16.39",
+  "que": "[delator · abajo] el mecanismo está apoyado sobre un bloque de cemento gris, frente a una pared café lisa: parece una maqueta de museo, no el interior del pilar (igual en P17 y P18)",
+  "arreglo": "cambiar el bloque por la chapa del pilar (acero pintado con puntos de soldadura) y el plástico del tapizado del pilar",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D21",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 11,
+  "segundo": "16.39",
+  "que": "[delator · arriba] la cinta se ve como un tubo beige liso, sin tejido",
+  "arreglo": "cinta plana con textura de tejido (mapa de normales) y canto delgado",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D22",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 17,
+  "segundo": "22.84",
+  "que": "[delator · medio] el engranaje es gris claro liso y parejo, como de plástico, y la palanquita es una barra blanca pura con bordes perfectos (igual en P11 y P18)",
+  "arreglo": "acero con marcas de mecanizado, rayas, grasa en los dientes y bordes biselados; palanquita de acero, no blanca",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D23",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 12,
+  "segundo": "17.39",
+  "que": "[delator · arriba] por la ranura de la visera el ojo del caballero es un punto celeste brillante, como un LED (en la ficha la visera es oscura)",
+  "arreglo": "oscurecer el ojo y bajarle el brillo especular: en la sombra de la visera, casi negro con un reflejo cálido mínimo",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D24",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 14,
+  "segundo": "19.89",
+  "que": "[delator · abajo] la bolsa de papas es una mancha naranja lisa, como un globo de goma, sin arrugas ni brillos de bolsa metalizada (igual en P16)",
+  "arreglo": "material de bolsa metalizada arrugada, con reflejos que se cortan en los pliegues",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D25",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 16,
+  "segundo": "21.82",
+  "que": "[delator · medio] los asientos de atrás son beige parejo, sin costuras ni desgaste visibles (material insuficiente para verificarlo bien)",
+  "arreglo": "tela con costuras, arrugas en el asiento y algo de polvo",
+  "de": "planos2",
+  "asignado": "planos2"
+ },
+ {
+  "id": "D26",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 20,
+  "segundo": "28.04",
+  "que": "[delator · medio] el lente lejano de la máscara es un óvalo negro plano, sin reflejo: parece un agujero (señal 10)",
+  "arreglo": "vidrio con el reflejo de la ventana, marcas y la gota",
+  "de": "planos2",
+  "asignado": "planos2"
+ }
+]

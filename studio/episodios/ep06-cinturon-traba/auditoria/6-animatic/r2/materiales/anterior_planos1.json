@@ -1,0 +1,178 @@
+[
+ {
+  "id": "A10",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 8,
+  "segundo": "13.29",
+  "que": "mientras la voz dice 'empuja un pestillo hacia afuera' (13.03–14.35) el pestillo blanco recorre la mitad de abajo del disco, justo debajo de la línea de subtítulos ('PESTILLO', 'HACIA AFUERA' lo tapan), y la flecha naranja FUERZA DEL GIRO apunta a las 2 en punto mientras el pestillo está a las 7→4: el espectador no ve qué se mueve ni hacia dónde",
+  "arreglo": "bajar la cámara (o subir el disco) para que el centro del disco quede en y≈700 y ajustar el giro para que el pestillo esté en la mitad de arriba cuando la voz lo nombra; pegar la flecha al pestillo, radial, creciendo mientras el pestillo sale hasta los dientes",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "9.44",
+  "que": "[delator · arriba] el casco parece de piedra o cemento: áspero y mate, sin reflejos de metal que se deformen (igual en P01 0.04, P03 2.74 y P10 15.64)",
+  "arreglo": "subir el metálico/especular del casco y hombreras, con rayas que brillen y reflejos del sol que se muevan",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 6,
+  "segundo": "9.44",
+  "que": "[delator · arriba] ojos celestes brillantes en la ranura de la visera, como luces de muñeco (también P10 15.77)",
+  "arreglo": "oscurecer el interior del casco: que los ojos casi no se vean o sean un brillo húmedo chico",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 2,
+  "segundo": "1.44",
+  "que": "[delator · medio] la mano es una masa color durazno lisa, de goma, sin piel ni uñas con detalle (también la mano estirada de P01 0.45 y P10 15.64)",
+  "arreglo": "piel con poros y nudillos, o un guantelete de cuero/metal que calce con la armadura",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 2,
+  "segundo": "1.75",
+  "que": "[delator · medio] la bolsa de papas es una mancha naranja lisa sin arrugas ni brillo de envoltorio",
+  "arreglo": "bolsa metalizada arrugada con reflejos (sin marca)",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.65",
+  "que": "[delator · abajo] tablero beige liso sin textura ni desgaste (también P06 y P10)",
+  "arreglo": "grano de plástico, polvo y rayas en el tablero",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D6",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "5.90",
+  "que": "[delator · medio] respaldos de asiento de plástico gris liso, sin costuras ni tela; pilar café plano sin textura",
+  "arreglo": "tapiz con trama, costuras y desgaste; plástico del pilar con grano",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D7",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "6.20",
+  "que": "[delator · medio] brillo suelto: mancha blanca quemada en la esquina del asiento a la derecha que parece un objeto",
+  "arreglo": "suavizar la luz que la produce o girar el asiento para que el brillo no quede aislado",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D8",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "6.51",
+  "que": "[delator · medio] plano casi negro y café: sin negros con detalle ni dirección de luz que se lea; parece una maqueta sin iluminar",
+  "arreglo": "una luz de sol entrando por la ventana que marque la ranura del pilar",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D9",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "6.89",
+  "que": "[delator · arriba] fondo de pared terracota lisa de un solo color detrás del mecanismo (también P07, P08, P09)",
+  "arreglo": "interior del auto desenfocado o el borde del pilar cortado en primer plano",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D10",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "7.44",
+  "que": "[delator · abajo] bloque gris de cemento como pedestal bajo el mecanismo: se lee como pieza de exhibición, no como algo dentro de un auto (también P07)",
+  "arreglo": "sacarlo o reemplazarlo por la base metálica del pilar con pernos",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D11",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "7.16",
+  "que": "[delator · arriba] la cinta es un bloque café liso y grueso, sin trama ni brillo de nylon; su escala no calza con el carrete (parece un poste de madera)",
+  "arreglo": "cinta más delgada con trama tejida, brillo de nylon y canto, del mismo color que la de afuera",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D12",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 8,
+  "segundo": "12.50",
+  "que": "[delator · medio] disco gris plano de un solo tono, sin marcas de torno ni desgaste",
+  "arreglo": "acero con marcas circulares de torno, bordes gastados y un poco de grasa",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D13",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 8,
+  "segundo": "12.24",
+  "que": "[delator · medio] pestillo blanco con bordes y esquinas perfectas, parece de papel o plástico",
+  "arreglo": "acero con bisel, canto con reflejo y alguna raya",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D14",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 7,
+  "segundo": "11.35",
+  "que": "[delator · medio] giro rápido sin desenfoque de movimiento: el pestillo aparece nítido en otra posición en cada cuadro",
+  "arreglo": "activar desenfoque de movimiento en el render",
+  "de": "planos1",
+  "asignado": "planos1"
+ },
+ {
+  "id": "D15",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "6.89",
+  "que": "[delator · abajo] pieza negra con forma de ojo y un punto celeste abajo a la izquierda que no se entiende qué es (también P07)",
+  "arreglo": "convertirla en un perno o soporte reconocible, o sacarla",
+  "de": "planos1",
+  "asignado": "planos1"
+ }
+]

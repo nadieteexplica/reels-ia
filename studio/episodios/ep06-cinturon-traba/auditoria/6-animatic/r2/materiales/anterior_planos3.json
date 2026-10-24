@@ -1,0 +1,123 @@
+[
+ {
+  "id": "A3",
+  "bloqueante": true,
+  "tipo": "B2",
+  "plano": 24,
+  "segundo": "33.99",
+  "que": "la bolsa de papas vuelve a aparecer en el tablero, delante de la mano del caballero (el mismo encuadre del plano 2), aunque en la subida (~20–22 s) cayó al asiento de atrás y en P25 (36.09) ya la tiene el doctor: está en dos lugares y el remate 'si el doctor no se las comió antes' pierde sentido. El guion pide 'la bolsa ya no está'",
+  "arreglo": "re-renderizar P24 con la misma cámara del plano 2 pero con la bolsa oculta: la mano llega despacio al tablero vacío y los dedos tantean el hueco (un par de migas naranjas sirven de pista)",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D27",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 21,
+  "segundo": "30.99",
+  "que": "[delator · abajo] rocas del primer plano redondas y lisas, tipo canto rodado, varias con la misma forma",
+  "arreglo": "rocas angulosas y fracturadas de desierto (escaneos CC0) con escala y rotación variadas",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D28",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 21,
+  "segundo": "30.99",
+  "que": "[delator · arriba] cerros del fondo de un solo tono rosado, laderas lisas con poca erosión y poca bruma de distancia",
+  "arreglo": "más bruma de distancia y textura de quebradas o erosión en las laderas",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D29",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 21,
+  "segundo": "31.00",
+  "que": "[delator · abajo] base de la rueda trasera izquierda: mancha oscura que la cubre y luego un parche iluminado bajo la goma (E30); no se puede confirmar el contacto con el suelo",
+  "arreglo": "revisar que la rueda apoye sobre el terreno, sin hundirse, con su sombra de contacto",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D30",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 22,
+  "segundo": "32.12",
+  "que": "[delator · medio] la cinta del cinturón, que ocupa medio cuadro, es una franja café lisa sin trama ni costuras",
+  "arreglo": "textura de tejido (sarga) con mapa de normales y un brillo leve de las fibras",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D31",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 22,
+  "segundo": "31.59",
+  "que": "[delator · medio] forma negra pura sin textura a la izquierda (mano o guante), que se lee como un hueco",
+  "arreglo": "luz de relleno o de borde para que se lea la mano y su material",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D32",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 23,
+  "segundo": "33.17",
+  "que": "[delator · medio] ojos celestes brillantes con reflejo fuerte dentro del visor",
+  "arreglo": "visor más oscuro por dentro e iris menos saturado y menos especular",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D33",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 23,
+  "segundo": "33.36",
+  "que": "[delator · arriba] barras y bloque beige del techo o la visera: lisos, de un solo color y con bordes perfectos",
+  "arreglo": "textura de tapiz o plástico con desgaste, polvo y bisel en las esquinas",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D34",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 24,
+  "segundo": "34.57",
+  "que": "[delator · medio] bolsa de papas naranja lisa, sin arrugas ni brillo de foil",
+  "arreglo": "arrugas en el mapa de normales, interior metalizado y estampado genérico",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D35",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 24,
+  "segundo": "34.28",
+  "que": "[delator · arriba] el plano de foco cae en la armadura de arriba a la derecha y el sujeto (mano y tablero) queda borroso: el foco no está donde lo pondría un camarógrafo",
+  "arreglo": "foco en las yemas de los dedos",
+  "de": "planos3",
+  "asignado": "planos3"
+ },
+ {
+  "id": "D36",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 25,
+  "segundo": "36.62",
+  "que": "[delator · medio] ningún plano de foco (bolsa y doctor desenfocados) y cuadro casi sin luz; la bolsa se lee como un bulto naranja liso",
+  "arreglo": "foco en la mano con la papa y luz de ventana lateral; la misma bolsa con arrugas y foil",
+  "de": "planos3",
+  "asignado": "planos3"
+ }
+]

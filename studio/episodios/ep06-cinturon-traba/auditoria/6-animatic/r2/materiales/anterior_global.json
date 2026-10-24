@@ -1,0 +1,145 @@
+[
+ {
+  "id": "A4",
+  "bloqueante": true,
+  "tipo": "B2",
+  "plano": 24,
+  "segundo": "35.50",
+  "que": "la bolsa está en el tablero bajo los dedos del caballero en 34.5–35.5 ('Y AHÍ ESTÁN / SUS PAPAS', el mismo macro de 1.5) y un segundo después está en la falda del doctor (36.5); además en la subida nunca se cae hacia atrás (sigue en el tablero en 20.5 y 22.5). El remate se contradice: las papas están ahí y a la vez se las comió el doctor",
+  "arreglo": "en P13–P16 que la bolsa resbale por el tablero y salga del cuadro hacia atrás; en P24 la mano llega al tablero vacío (sólo unas migas); en P25 un plano medio iluminado del doctor con la bolsa en la falda, la papa camino a la boca y el encogimiento de hombros",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "A5",
+  "bloqueante": true,
+  "tipo": "B10",
+  "plano": 19,
+  "segundo": "26.50",
+  "que": "el subtítulo dice 'PASADO 27° GRADOS': símbolo de grado más la palabra 'grados' (se lee 'veintisiete grados grados'); sigue en 27.5",
+  "arreglo": "escribir 'PASADO 27 GRADOS' (o '27°' sin 'GRADOS') en el texto de subtítulos de la palabra 73",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "A9",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 17,
+  "segundo": "23.50",
+  "que": "la tacita negra y la bolita (y ≈ 1000–1270) quedan justo bajo la línea de subtítulos 'FUE UNA BOLITA', 'RODÓ Y TRABÓ', 'EL CARRETE' (23.5–25.5): lo que hace el giro del video queda tapado o pegado al texto, y la píldora BOLITA DE ACERO queda arriba, junto al engranaje, lejos de la bolita",
+  "arreglo": "subir la cámara/bajar el encuadre para que tacita, bolita y palanca queden entre y 550 y 950, y poner la píldora al lado de la bolita",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D37",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 13,
+  "segundo": "18.50",
+  "que": "[delator · arriba] ladera con decenas de montículos redondos casi idénticos, como burbujas o greda (también en P19, 26.5–27.5)",
+  "arreglo": "roca con estratos y aristas de tamaños variados; romper la repetición",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D38",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 13,
+  "segundo": "19.50",
+  "que": "[delator · abajo] suelo bajo el auto liso y de un solo café, con una placa gris oscura de borde recto abajo a la izquierda (parece el borde del terreno)",
+  "arreglo": "textura de tierra con piedras y huellas; extender el terreno o tapar ese borde con la cámara",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D39",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 14,
+  "segundo": "20.50",
+  "que": "[delator · abajo] bolsa de papas lisa, sin arrugas ni brillo metálico (óvalo naranjo de goma); igual en 22.5 y 36.5",
+  "arreglo": "bolsa de aluminio arrugada con sellado dentado y reflejos que se deforman",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D40",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 9,
+  "segundo": "9.50",
+  "que": "[delator · arriba] ojos celestes brillantes del caballero dentro del casco, de muñeco (también 0.0, 3.5, 33.5)",
+  "arreglo": "iris oscuro y ojos en sombra dentro del casco; sin brillo propio",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D41",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 2,
+  "segundo": "1.50",
+  "que": "[delator · medio] en el macro, la mano del caballero es rosada y lisa, sin poros ni arrugas, y grande para el cuerpo (Castle Guard); igual en 34.5",
+  "arreglo": "guantelete o guante de cuero, o piel con poros y nudillos marcados",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D42",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "[delator · arriba] molduras del techo y del parabrisas beige lisas, sin grano ni desgaste; el tablero de abajo igual",
+  "arreglo": "plástico granulado con polvo, costuras y rayas",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D43",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "[delator · medio] patrón de cuadritos regulares detrás del caballero (también 9.5 y 20.5) que se lee como textura repetida, no como ventana",
+  "arreglo": "ventana trasera con el paisaje desenfocado o tapiz con tela creíble",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D44",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "7.50",
+  "que": "[delator · medio] el mecanismo está sobre un bloque de concreto contra una pared café plana (7.5–16.5, 23.5–25.5): se lee como pieza en exhibición, no como el interior del pilar",
+  "arreglo": "dejar a la vista el borde cortado de la carcasa del pilar alrededor del mecanismo y el fondo oscuro del interior",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D45",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 17,
+  "segundo": "24.50",
+  "que": "[delator · medio] tacita de la bolita negra pura, sin textura ni reflejo (23.5–25.5)",
+  "arreglo": "metal oscuro con bisel y un reflejo suave",
+  "de": "global",
+  "asignado": "global"
+ },
+ {
+  "id": "D46",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 20,
+  "segundo": "29.50",
+  "que": "[delator · medio] el lente derecho de la máscara antigás es un agujero negro plano, sin reflejo (28.5–30.5)",
+  "arreglo": "reflejo del cielo/ventana en el vidrio y la gota corriendo",
+  "de": "global",
+  "asignado": "global"
+ }
+]
