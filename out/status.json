@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 2948,
+ "creditos_usados": 3198,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -34,5 +34,8 @@
  },
  "0010-ep05-iman-rana.json": {
   "tts": "ep05-iman-rana"
+ },
+ "0011-ep06-cinturon-traba.json": {
+  "tts": "ep06-cinturon-traba"
  }
 }
