@@ -321,59 +321,62 @@ def texto_sombra(d, xy, texto, fnt, col=(255, 255, 255), a=255, ancla="mm"):
 
 
 def cota(im, f, a=1.0):
-    """Cota de 3 cm FUERA del tubo (puerta 3: encima tapaba a la rana): línea de medida tangente al borde de arriba, con
-    líneas de extensión que bajan a los bordes izquierdo y derecho del tubo (calculados en la escena), y "3 cm" encima."""
+    """Cota de 3 cm de pared a pared del tubo, 9 mm POR ENCIMA de la rana (puerta 3: sobre la rana le tapaba los ojos),
+    con flechas en los bordes reales del tubo (calculados en la escena) y "3 cm" encima."""
     if a <= 0.01:
         return
-    (xi, yi), (xd, yd), (_xa, ya) = meta(11, f, "izq"), meta(11, f, "der"), meta(11, f, "arriba")
-    yl = ya - 44
+    (xi, yi), (xd, yd) = meta(11, f, "izq"), meta(11, f, "der")
+    yl = (yi + yd) / 2
     lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
     d = ImageDraw.Draw(lay)
     al = int(255 * a)
-    for (x0, y0, x1, y1, w) in ((xi, yi - 16, xi, yl - 18, 5), (xd, yd - 16, xd, yl - 18, 5), (xi, yl, xd, yl, 7)):
+    for (x0, y0, x1, y1, w) in ((xi, yl - 34, xi, yl + 34, 5), (xd, yl - 34, xd, yl + 34, 5), (xi, yl, xd, yl, 7)):
         d.line((x0 + 2, y0 + 4, x1 + 2, y1 + 4), fill=(0, 0, 0, int(0.5 * al)), width=w + 4)
         d.line((x0, y0, x1, y1), fill=(255, 255, 255, al), width=w)
     for x, s in ((xi, 1), (xd, -1)):
         d.polygon([(x, yl), (x + 26 * s, yl - 12), (x + 26 * s, yl + 12)], fill=(255, 255, 255, al))
-    texto_sombra(d, ((xi + xd) / 2, yl - 46), "3 cm", ImageFont.truetype(FONT, 64), a=al)
+    texto_sombra(d, ((xi + xd) / 2, yl - 70), "3 cm", ImageFont.truetype(FONT, 64), a=al)
     im.paste(lay, (0, 0), lay)
-    G.registrar("cota", (xi - 30, yl - 90, xd + 30, yl + 20))
+    G.registrar("cota", (xi - 30, yl - 110, xd + 30, yl + 40))
 
 
 def mano(im, f, a=1.0):
-    """Contorno blanco de una mano adulta a escala real (palma de 8,5 cm, 19 cm de largo) sobre la cara del imán de la
-    rana, con el hueco de 3,2 cm debajo de la palma: se ve cuántas veces más grande es (puerta 3 v3)."""
+    """Contorno blanco de una mano adulta a escala real (palma de 8,5 cm, 20 cm de largo, dedos hacia arriba) al lado del
+    tubo de la rana, con la misma proyección de la escena: se ve cuántas veces más ancha es que el hueco (puerta 3 v3)."""
     if a <= 0.01:
         return
-    cx, cy = meta(11, f, "centro")
-    mx, _my = meta(11, f, "m")
+    cx, cy = meta(11, f, "mano_c")
+    mx, _my = meta(11, f, "mano_m")
     pxm = (mx - cx) * 100.0
     if pxm <= 0:
         return
     S = 2
     m = Image.new("L", (W * S, H * S), 0)
     d = ImageDraw.Draw(m)
-    ox, oy = (cx - 0.01 * pxm) * S, cy * S          # centro de la palma, apenas a la izquierda del hueco
+
+    def P(x, y):            # x: a lo largo de los dedos (hacia arriba), y: a lo ancho (+ hacia el tubo)
+        return (cx + y * pxm) * S, (cy - x * pxm) * S
 
     def caps(x0, y0, x1, y1, r):
-        pts = [(ox + x0 * pxm * S, oy + y0 * pxm * S), (ox + x1 * pxm * S, oy + y1 * pxm * S)]
-        d.line(pts, fill=255, width=int(2 * r * pxm * S))
-        for (x, y) in pts:
-            d.ellipse((x - r * pxm * S, y - r * pxm * S, x + r * pxm * S, y + r * pxm * S), fill=255)
+        a_, b_ = P(x0, y0), P(x1, y1)
+        rr = r * pxm * S
+        d.line((a_, b_), fill=255, width=int(2 * rr))
+        for (x, y) in (a_, b_):
+            d.ellipse((x - rr, y - rr, x + rr, y + rr), fill=255)
 
-    d.rounded_rectangle((ox - 0.05 * pxm * S, oy - 0.0425 * pxm * S, ox + 0.05 * pxm * S, oy + 0.0425 * pxm * S),
-                        radius=0.016 * pxm * S, fill=255)
+    (x0, y0), (x1, y1) = P(0.05, -0.0425), P(-0.05, 0.0425)
+    d.rounded_rectangle((min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1)), radius=0.016 * pxm * S, fill=255)
     for y, largo in ((-0.031, 0.072), (-0.0105, 0.080), (0.0105, 0.075), (0.031, 0.060)):   # índice, medio, anular, meñique
         caps(0.04, y * 0.95, 0.04 + largo, y * 1.12, 0.0088)
-    caps(-0.005, 0.034, 0.045, 0.078, 0.0108)                                        # pulgar, hacia abajo
+    caps(-0.005, -0.034, 0.045, -0.078, 0.0108)                                      # pulgar, hacia afuera (lejos del tubo)
     caps(-0.06, 0.0, -0.085, 0.0, 0.028)                                             # muñeca
     m = m.filter(ImageFilter.GaussianBlur(1.2 * S))
-    borde = Image.eval(m.filter(ImageFilter.MaxFilter(13)), lambda v: v)
+    borde = m.filter(ImageFilter.MaxFilter(13))
     contorno = Image.fromarray(np.clip(np.asarray(borde, np.int16) - np.asarray(m, np.int16), 0, 255).astype(np.uint8))
     contorno = contorno.resize((W, H), Image.LANCZOS)
     relleno = m.resize((W, H), Image.LANCZOS)
     blanco = Image.new("RGBA", im.size, (255, 255, 255, 0))
-    blanco.putalpha(Image.fromarray(np.clip(np.asarray(contorno, np.float32) * 1.6 * a + np.asarray(relleno, np.float32) * 0.10 * a, 0, 255).astype(np.uint8)))
+    blanco.putalpha(Image.fromarray(np.clip(np.asarray(contorno, np.float32) * 1.6 * a + np.asarray(relleno, np.float32) * 0.12 * a, 0, 255).astype(np.uint8)))
     sombra = Image.new("RGBA", im.size, (0, 0, 0, 0))
     sombra.putalpha(Image.fromarray((np.asarray(contorno.filter(ImageFilter.GaussianBlur(4)), np.float32) * 0.6 * a).astype(np.uint8)))
     im.paste(sombra, (3, 5), sombra)
@@ -442,9 +445,9 @@ def graficos(im, f, k):
     elif k == 11:
         t_tres, t_mano = tw("tres", 22.0), tw("mano", 23.0)
         if t >= t_tres:
-            cota(im, f, a=pop(t - t_tres) * (1 - suave(min(1.0, max(0.0, (t - t_mano + 0.4) / 0.3)))))
-        mano(im, f, a=suave(min(1.0, max(0.0, (t - t_mano + 0.03) / 0.3))))
-        pild(im, f, 11, "nocabe", "NO CABE", t_mano, [(540, 330), (540, 300)])
+            cota(im, f, a=min(1.0, (t - t_tres) / 0.15) * (1 - suave(min(1.0, max(0.0, (t - t_mano + 0.75) / 0.25)))))
+        mano(im, f, a=suave(min(1.0, max(0.0, (t - t_mano - 0.02) / 0.28))))
+        pild(im, f, 11, "nocabe", "NO CABE", t_mano + 0.1, [(790, 330), (790, 400)])
     elif k == 12:
         pild(im, f, 12, "p2", "PASO 2 · BOBINAS", tw("después", 25.0), [(330, 470), (540, 470)], tam=48)
     elif k == 13:

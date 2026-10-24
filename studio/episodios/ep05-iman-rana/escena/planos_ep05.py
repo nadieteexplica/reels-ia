@@ -170,29 +170,35 @@ def p8(sc, a, b):
 
 
 def p11(sc, a, b):
-    # "El de la rana mide tres centímetros: ni tu mano cabe.": desde arriba, la boca del imán de la rana con el tubo y la
-    # rana adentro; la cámara baja hacia la boca. El post dibuja la cota de lado a lado del tubo (bordes reales proyectados)
+    # "El de la rana mide tres centímetros: ni tu mano cabe.": de costado y de cerca, el tubo con la rana adentro (la cota
+    # de 3 cm va de pared a pared, 9 mm por ENCIMA de la rana: puerta 3 r1); en "mano" la cámara se aleja y el post dibuja el
+    # contorno de una mano adulta a escala real al lado del tubo (misma proyección)
     S = armar_E1(sc)
     cam, rana = S["cam"], S["rana"]
-    cam.data.dof.aperture_fstop = 5.6
-
+    c = Vector((0, 0, RANA_Z))
     t_tres = TW("tres", 22.0)
     t_mano = TW("mano", 23.0)
 
     def act(f):
         t = tf(f)
-        rana_flota(rana, f, giro=6 * math.sin((f - 1) / 30 * 0.5))
-        # baja hasta la boca para la cota de 3 cm y en "mano" sube a 1,1 m: ahí cabe el contorno de una mano real (post)
-        baja = sale(suave(lin(t, T[11][0], t_tres + 0.5)))
-        sube = suave(lin(t, t_mano - 0.6, t_mano + 0.35))
-        alto = 0.72 - 0.42 * baja + 0.80 * sube
-        ty = -0.085 * alto                     # el tubo queda en y ~620: lejos de los subtítulos
-        p = Vector((0.0, ty - 0.03, BOCA + alto))
-        tgt = Vector((0.0, ty, BOCA))
-        mirar(cam, p, tgt, lente=50, foco=Vector((0, 0, RANA_Z + 0.006)))
-        return {"izq": pantalla(sc, cam, (-R_TUBO, 0, TOPE_TUBO)), "der": pantalla(sc, cam, (R_TUBO, 0, TOPE_TUBO)),
-                "arriba": pantalla(sc, cam, (0, R_TUBO, TOPE_TUBO)), "centro": pantalla(sc, cam, (0, 0, BOCA)),
-                "m": pantalla(sc, cam, (0.01, 0, BOCA)), "rana": pantalla(sc, cam, rana.location)}
+        rana_flota(rana, f, giro=4 * math.sin((f - 1) / 30 * 0.6))
+        x1 = suave(lin(t, T[11][0], t_tres + 0.4))
+        x2 = suave(lin(t, t_mano - 0.75, t_mano + 0.15))
+        r = 0.32 - 0.05 * x1 + (1.4 - 0.27) * x2
+        lente = 100 - 40 * x2
+        ang = -6 + 6 * x1 + 4 * x2
+        p = orbita(c, r, ang, 0.02 + 0.08 * x2)
+        der = Vector((math.cos(math.radians(ang)), math.sin(math.radians(ang)), 0))
+        # la rana en y ~620 (sobre los subtítulos) y, ya lejos, en x ~700 (a la izquierda va la mano)
+        baja = 0.354 * r * 12 / lente
+        izq = 0.296 * r * 6.75 / lente * x2
+        mirar(cam, p, c - Vector((0, 0, baja)) - der * izq, lente=lente, foco=c + CABEZA)
+        cam.data.dof.aperture_fstop = 8 + 8 * x2
+        zc = RANA_Z + 0.009
+        return {"izq": pantalla(sc, cam, -der * R_TUBO + Vector((0, 0, zc))), "der": pantalla(sc, cam, der * R_TUBO + Vector((0, 0, zc))),
+                "mano_c": pantalla(sc, cam, c - der * 0.09 + Vector((0, 0, -0.012))),
+                "mano_m": pantalla(sc, cam, c - der * 0.08 + Vector((0, 0, -0.012))),
+                "rana": pantalla(sc, cam, rana.location)}
     return {"actualizar": act}
 
 

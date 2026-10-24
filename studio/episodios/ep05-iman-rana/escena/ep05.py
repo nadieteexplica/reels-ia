@@ -1228,6 +1228,7 @@ def orbita(centro, radio, ang, alto):
 
 def pantalla(sc, cam, punto):
     from bpy_extras.object_utils import world_to_camera_view
+    bpy.context.view_layer.update()       # la cámara recién movida (si no, en un render de muestras toma la del cuadro anterior)
     v = world_to_camera_view(sc, cam, Vector(punto))
     return round(v.x * 1080), round((1 - v.y) * 1920)
 
