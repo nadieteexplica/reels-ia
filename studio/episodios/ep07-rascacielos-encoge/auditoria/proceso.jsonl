@@ -6,3 +6,5 @@
 {"tipo": "chequeo", "id": "sesion ep07", "estado": "vivo (vigilante)", "n": 6, "ts": "2026-10-24T11:41:39-03:00"}
 {"tipo": "chequeo", "id": "render-planos estilos 40102483108", "estado": "vivo (vigilante) · in_progress/- · 4/5 trabajos", "n": 7, "ts": "2026-10-24T11:41:40-03:00"}
 {"tipo": "chequeo", "id": "render-planos muestras 40102481544", "estado": "vivo (vigilante) · completed/success · 14/14 trabajos", "n": 8, "ts": "2026-10-24T11:41:41-03:00"}
+{"tipo": "trabajo", "id": "render-planos final 40104244183", "estado": "inicio", "n": 9, "ts": "2026-10-24T11:50:00-03:00"}
+{"tipo": "trabajo", "id": "render-planos final 40104244183", "estado": "caido", "n": 10, "ts": "2026-10-24T11:50:43-03:00"}
