@@ -260,14 +260,12 @@ def pieza_cabina(sc, a, b, k):
                 cab.bolsa.location = Vector(E.BOLSA)
                 cab.pose("caballero", f, lanza=1.0)
                 mirar(cam, W((-0.08, -1.30, 1.58)), W((-0.25, 0.10, 1.42)), lente=35, foco=W((-0.32, 0.10, 1.50)))
+        # sin capa de color en 3D: la cinta teñida no pasó la puerta 4 en dos rondas (se leía como una franja plana); la
+        # cinta queda negra de verdad y el rojo/verde lo ponen las píldoras y los subtítulos del post (regla v2: lo que falla
+        # dos veces se simplifica)
         capa, comba = {}, {}
-        if k in (1, 10):
-            capa["caballero"] = "roja"          # trabada: la cinta recta y tensa
-        elif k in (3, 12, 23):
-            capa["caballero"] = "verde"         # suelta: sale con comba
+        if k in (3, 12, 23):
             comba["caballero"] = 0.035 * suave(lin(t, t0 + 0.8, t0 + 1.6)) if k in (3, 23) else 0.035
-        elif k == 22:
-            capa["caballero"] = "verde"
         cab.cinturones(quienes=("caballero",) if k not in (14, 15, 16, 20) else None, capa=capa, comba=comba)
         return info
 

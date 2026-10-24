@@ -181,7 +181,7 @@ def cerro_roca(sc, pendiente=30.0, origen=(0.0, -2.0, 0.0), largo=28.0, ancho=30
         p = bpy.context.object
         p.scale = (random.uniform(0.7, 1.4), random.uniform(0.6, 1.5), random.uniform(0.3, 0.75))
         p.rotation_euler = (random.uniform(-0.4, 0.4), random.uniform(-0.4, 0.4), random.random() * 6.3)
-        sub = p.modifiers.new("s", "SUBSURF"); sub.levels = 2; sub.render_levels = 2; sub.subdivision_type = "SIMPLE"
+        sub = p.modifiers.new("s", "SUBSURF"); sub.levels = 2; sub.render_levels = 2     # redondeadas: con "SIMPLE" parecían cajas
         dd = p.modifiers.new("d", "DISPLACE"); tt = bpy.data.textures.new(f"p{i}", "VORONOI"); tt.noise_scale = random.uniform(0.2, 0.5)
         dd.texture = tt; dd.strength = r * 0.35; dd.texture_coords = "GLOBAL"
         p.modifiers.new("b", "BEVEL").width = 0.01
