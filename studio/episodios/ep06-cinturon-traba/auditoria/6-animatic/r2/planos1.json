@@ -1,0 +1,51 @@
+{
+ "encargo": "planos1",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {"nota": 7, "por_que": "P01/P06/P12 tienen buen contraluz de atardecer y la tela del tabardo y el escocés con textura, y el aro de bronce con óxido y pernos de P05–P09 se ve bien, pero P04 (5.29–6.81) sigue siendo un plano oscuro y turbio con un brillo quemado en la esquina del asiento, y todo el mecanismo está delante de una pared terracota lisa sobre un bloque de cemento."},
+  "animacion": {"nota": 8, "por_que": "El lanzamiento y el rebote del caballero se leen (P01 0.86→1.06), el estirón lento también (P12 17.39–18.21) y el contraste entre el giro rápido (P07) y el lento (P11) funciona; lo más flojo es P06 (9.44–10.46), donde el 'jala de golpe' casi no se ve: sólo cabecea."},
+  "claridad": {"nota": 7, "por_que": "Carrete, dientes, giro y pestillo enganchado se entienden (P05 7.99, P08 14.61, P09 14.69), pero en P04 la voz dice '¿Cómo sabe? La cinta vive…' sobre respaldos oscuros y no se ve que la cámara entre al pilar, y en 13.03–13.29 la voz dice 'pestillo' cuando éste todavía va escondido bajo el subtítulo."},
+  "ritmo": {"nota": 8, "por_que": "Todos los planos tienen quieto_max_s < 1 y algo cambia cada 1–2 s; P09 (0.95 s, quieto) es el enganche que se busca y P05 (2.55 s) tiene el giro continuo y la píldora que entra en 7.93."},
+  "realismo": {"nota": 7, "por_que": "Lo real es la luz de atardecer a contraluz en P01/P06/P12, el bronce oxidado con pernos y la profundidad de campo del mecanismo; lo delata casi todo lo que marcó la r1 y sigue igual: casco de piedra con ojos celestes brillantes (P06 9.44), mano y bolsa lisas de goma (P02 1.44–1.75), tablero beige liso (P01 0.65), asientos de plástico (P04 5.90), pared terracota y pedestal de cemento (P05 6.89), disco gris plano y pestillo blanco de bordes perfectos (P08 13.82), y el giro sin desenfoque de movimiento (P07 11.35)."}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A10", "arreglado": true, "por_que": "En 13.82–14.61 el pestillo sube por la mitad de arriba (de las 4 a las 12), la punta de la flecha FUERZA DEL GIRO lo toca en 14.47 (E17) y llega a los dientes en 14.61; queda un resto: en 13.03–13.29, cuando la voz dice 'pestillo', todavía va escondido bajo el subtítulo y el centro del disco sigue en y≈950."},
+  {"id": "D1", "arreglado": false, "por_que": "En P06 9.44 y en P12 17.39–18.21 el casco sigue granuloso y mate como piedra o cemento; brillan sólo los bordes del visor y los remaches, sin reflejos de metal que se deformen."},
+  {"id": "D2", "arreglado": false, "por_que": "En P06 9.44 (y en E9 9.60 y P01 0.04) los ojos siguen celestes y brillantes en la ranura del visor; en P12 se ven como un punto celeste."},
+  {"id": "D3", "arreglado": false, "por_que": "En P02 1.14–2.66 la mano sigue siendo una masa color durazno lisa, sin piel, nudillos ni uñas, y no tiene guantelete."},
+  {"id": "D4", "arreglado": false, "por_que": "En P02 1.75 la bolsa sigue siendo una lámina naranja lisa con una franja crema, sin arrugas ni brillo metalizado."},
+  {"id": "D5", "arreglado": false, "por_que": "En P01 0.65 y P06 10.46 el tablero sigue beige liso, sin grano, polvo ni rayas."},
+  {"id": "D6", "arreglado": false, "por_que": "En P04 5.90–6.81 los respaldos siguen siendo de plástico gris liso, sin tela ni costuras, y el pilar café es plano."},
+  {"id": "D7", "arreglado": false, "por_que": "En P04 5.90, 6.20, 6.51 y 6.81 sigue la mancha blanca quemada en la esquina del asiento de la derecha."},
+  {"id": "D8", "arreglado": false, "por_que": "P04 sigue casi negro y café de 5.29 a 6.81; ninguna luz de sol entra a marcar la ranura del pilar."},
+  {"id": "D9", "arreglado": false, "por_que": "En P05 6.89, P07, P08, P09 y P11 sigue la pared terracota lisa de un solo color detrás del mecanismo."},
+  {"id": "D10", "arreglado": false, "por_que": "En P05 7.44, P07 y P11 sigue el bloque gris de cemento como pedestal bajo el mecanismo."},
+  {"id": "D11", "arreglado": false, "por_que": "En P05 7.16 la cinta sigue siendo un bloque grueso y liso (ahora café claro), sin trama ni brillo de nylon, y parece un poste."},
+  {"id": "D12", "arreglado": false, "por_que": "En P08 12.50–14.61 y P09 el disco sigue gris plano con un moteado leve, sin marcas de torno ni desgaste."},
+  {"id": "D13", "arreglado": false, "por_que": "En P08 13.82–14.61 (y en E12/E13) el pestillo sigue siendo un bloque blanco de bordes perfectos, sin bisel ni rayas."},
+  {"id": "D14", "arreglado": false, "por_que": "En P07 11.08–12.16 (E12 11.27, E13 11.74) el pestillo sale nítido en otra posición en cada cuadro, sin desenfoque de movimiento."},
+  {"id": "D15", "arreglado": false, "por_que": "En P05 6.89, P07 10.54 y P11 16.39 sigue abajo a la izquierda la pieza negra con forma de ojo y un punto celeste."}
+ ],
+ "eventos": [
+  {"id": "E1", "es_defecto": false, "por_que": "Es el CLAC: el cinturón para al caballero y su brazo vuelve atrás de golpe entre 0.87 y 1.07, como pide el guion."},
+  {"id": "E2", "es_defecto": false, "por_que": "Es el cambio de subtítulo ('TU CINTURÓN TE' a 'DICE')."},
+  {"id": "E5", "es_defecto": false, "por_que": "La cámara avanza y un respaldo cruza delante en 5.80–6.00; es un movimiento de cámara, no un salto."},
+  {"id": "E6", "es_defecto": false, "por_que": "Es el mismo avance de cámara, con el respaldo llenando el cuadro (6.20–6.40); el subtítulo sólo cambia de lugar."},
+  {"id": "E7", "es_defecto": false, "por_que": "P05 dura 2.55 s pero el disco gira todo el tiempo (quieto_max_s 0) y la píldora CARRETE entra en 7.93."},
+  {"id": "E8", "es_defecto": false, "por_que": "Es la píldora CARRETE que entra a propósito en 7.93."},
+  {"id": "E9", "es_defecto": false, "por_que": "El caballero mueve la cabeza hacia adelante entre 9.60 y 9.80 (la actuación del tirón); no hay salto de forma."},
+  {"id": "E10", "es_defecto": false, "por_que": "Es el cambio de subtítulo ('JALAS' a 'GOLPE') sobre el escudo desenfocado."},
+  {"id": "E11", "es_defecto": false, "por_que": "Es el pestillo girando rápido con el disco (10.54→10.74), que es lo buscado; la falta de desenfoque de movimiento ya está en D14."},
+  {"id": "E12", "es_defecto": false, "por_que": "Es el mismo giro rápido del pestillo (11.07→11.27)."},
+  {"id": "E13", "es_defecto": false, "por_que": "Es el mismo giro rápido del pestillo (11.54→11.74)."},
+  {"id": "E14", "es_defecto": false, "por_que": "El pestillo sale de esa zona porque el disco gira (12.00→12.20)."},
+  {"id": "E15", "es_defecto": false, "por_que": "La píldora FUERZA DEL GIRO y su flecha entran a propósito en 12.93; en 12.80 ya asoma la punta de la flecha creciendo."},
+  {"id": "E16", "es_defecto": false, "por_que": "Es un cambio mínimo en el borde izquierdo desenfocado (13.54→13.74), ruido del animatic o el aro en movimiento; no se ve nada que aparezca."},
+  {"id": "E17", "es_defecto": false, "por_que": "Es el pestillo que llega a los dientes en 14.67 empujado por la flecha (se engancha), que es lo buscado."},
+  {"id": "E19", "es_defecto": false, "por_que": "El caballero se inclina hacia adelante y la manga escocesa tapa el tabardo (18.00→18.20); es el estirón despacito del guion."}
+ ],
+ "delatores": [],
+ "resumen": "No hay bloqueantes nuevos y A10 quedó arreglado en lo principal: el pestillo sube por la mitad de arriba y la flecha lo lleva a los dientes. Pero ninguno de los 15 delatores (D1–D15) cambió, así que realismo se queda en 7, bajo el mínimo de 8."
+}
