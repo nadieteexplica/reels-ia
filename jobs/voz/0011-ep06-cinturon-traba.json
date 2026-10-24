@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "id": "ep06-cinturon-traba",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.32,
+  "use_speaker_boost": true
+ },
+ "text": "Jala rápido y tu cinturón te dice que no. Jala lento... y te deja. ¿Cómo sabe? La cinta vive en un carrete con dientes. Si jalas de golpe, el carrete gira muy rápido. Y el giro empuja un pestillo hacia afuera: se engancha. Clac. Lento, el giro no alcanza. Pero el auto sube el cerro... y se traban los cuatro. Nadie jaló. Fue una bolita de acero: rodó y trabó el carrete. Pasado veintisiete grados, tiene que trabarse: cree que te vas a volcar. Ya en plano: déjalo volver un poquito... y jala lento. Y ahí están, por fin, sus papas... si el doctor no se las comió antes."
+}

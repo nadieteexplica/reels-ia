@@ -1,7 +1,7 @@
 # Ep. 6 — El cinturón que se traba
 
-**Versión 2.1 (23-oct-2026, 20:00) — ganador del torneo de guiones (lección 95); OK de Tomás a las 20:53 ("sí a todo": guion, "jala" y voz).** Sale de la ronda 2: el guion D ("Tira lento", ganador de la ronda 1 entre 4) mezclado con lo mejor de A (la mano a 5 cm de la bolsa), C (27° con inclinómetro y la gota en la máscara) y la revisión de producción (remate del doctor resuelto con el cuerpo, sin cara). v2.1 aplica lo que marcó la ronda 2: "jala" en vez de "tira" (público de YouTube sobre todo de México, Colombia y Perú), la bolsa cae atrás con la subida (así el doctor puede tenerla), píldora TAMBIÉN EN FRENADAS y DESDE 12° PUEDE. Torneo completo en `torneo/` (guiones, paquetes a ciegas y resultados) e investigación en `investigacion.md`.
-**Voz:** Fernando Martínez · job pendiente (`jobs/voz/NNNN-ep06-cinturon-traba.json`), recién con el OK de Tomás.
+**Versión 2.2 (23-oct-2026, 21:15; puerta 1 APROBADO 8,0, con sus sugerencias aplicadas: «déjalo volver» en vez de «suéltalo», píldora MÁS DE 12°, inclinómetro en 30°, tabla de fuentes precisada). Versión 2.1 (20:00) — ganador del torneo de guiones (lección 95); OK de Tomás a las 20:53 ("sí a todo": guion, "jala" y voz).** Sale de la ronda 2: el guion D ("Tira lento", ganador de la ronda 1 entre 4) mezclado con lo mejor de A (la mano a 5 cm de la bolsa), C (27° con inclinómetro y la gota en la máscara) y la revisión de producción (remate del doctor resuelto con el cuerpo, sin cara). v2.1 aplica lo que marcó la ronda 2: "jala" en vez de "tira" (público de YouTube sobre todo de México, Colombia y Perú), la bolsa cae atrás con la subida (así el doctor puede tenerla), píldora TAMBIÉN EN FRENADAS y DESDE 12° PUEDE. Torneo completo en `torneo/` (guiones, paquetes a ciegas y resultados) e investigación en `investigacion.md`.
+**Voz:** Fernando Martínez · job `jobs/voz/0011-ep06-cinturon-traba.json` → `out/tts/ep06-cinturon-traba.mp3`.
 **Línea:** datos · **Gancho:** "¿Cómo funciona por dentro?" dicho como regla que le pasa a todos ("jala rápido y te dice que no") · **Área:** tecnología cotidiana (auto) · **Formato:** comedia física + corte (entrar al pilar) + giro a mitad de video ("nadie jaló").
 **Centro (en los primeros 2 s):** el cinturón mide qué tan rápido jalas: rápido se traba, lento te deja. El giro del medio: en la subida se traban los cuatro sin que nadie jale, porque una bolita de acero cree que te vas a volcar.
 **Estilo:** realista (`estilo.json`), el del Ep. 5. Mundo abierto: camino de tierra y cerro de roca en el desierto de Atacama al atardecer, sol bajo de costado.
@@ -10,7 +10,7 @@
 **Acción buscada:** enviar ("a ese que siempre pelea con el cinturón") y guardar el truco.
 **Cuidado con el tema (Tomás):** nada que invite a no usar el cinturón, nada de choques ni heridas, nada de cómo manipular piezas, salud sólo general. Nadie se saca el cinturón en el video.
 
-## Guion (108 palabras, ~40 s estimados a 2,9 palabras/s; se ajusta con `pausas.py`)
+## Guion (109 palabras, ~40 s estimados a 2,9 palabras/s; se ajusta con `pausas.py`)
 Jala rápido y tu cinturón te dice que no.
 Jala lento... y te deja.
 ¿Cómo sabe? La cinta vive en un carrete con dientes.
@@ -20,7 +20,7 @@ Lento, el giro no alcanza.
 Pero el auto sube el cerro... y se traban los cuatro.
 Nadie jaló. Fue una bolita de acero: rodó y trabó el carrete.
 Pasado veintisiete grados, tiene que trabarse: cree que te vas a volcar.
-Ya en plano: suéltalo un poquito... y jala lento.
+Ya en plano: déjalo volver un poquito... y jala lento.
 Y ahí están, por fin, sus papas...
 si el doctor no se las comió antes.
 
@@ -33,10 +33,10 @@ si el doctor no se las comió antes.
 | 4 | Si jalas de golpe, el carrete gira muy rápido. | Corte de 1 s afuera: el caballero jala de golpe. Corte adentro: el carrete gira veloz. |
 | 5 | Y el giro empuja un pestillo hacia afuera: se engancha. Clac. | Adentro: una flecha FUERZA DEL GIRO empuja el pestillo hacia afuera y se engancha en los dientes. Corte afuera: el caballero rebota otra vez. |
 | 6 | Lento, el giro no alcanza. | Mitad de pantalla: adentro el carrete gira lento y el pestillo quieto; afuera el caballero se estira despacito. |
-| 7 | Pero el auto sube el cerro... y se traban los cuatro. | Afuera: el 4x4 se empina en el cerro; la bolsa de papas se resbala hacia atrás por el tablero y cae al asiento de atrás, junto al doctor. CLAC, CLAC, CLAC, CLAC: los 4 cinturones se traban uno tras otro y los 4 quedan pegados al asiento. Inclinómetro chico en la esquina subiendo. Nadie tiró. |
+| 7 | Pero el auto sube el cerro... y se traban los cuatro. | Afuera: el 4x4 se empina en el cerro; la bolsa de papas se resbala hacia atrás por el tablero y cae al asiento de atrás, junto al doctor. CLAC, CLAC, CLAC, CLAC: los 4 cinturones se traban uno tras otro y los 4 quedan pegados al asiento. Inclinómetro chico en la esquina subiendo (los CLAC pasan con más de 12°). Nadie jaló. |
 | 8 | Nadie jaló. Fue una bolita de acero: rodó y trabó el carrete. | Adentro del pilar: al lado del carrete, una bolita de acero en su tacita; la tacita se inclina, la bolita rueda al borde, levanta una palanquita (flecha) y la palanquita muerde la rueda dentada. CLAC. Píldora chica: TAMBIÉN EN FRENADAS. |
-| 9 | Pasado veintisiete grados, tiene que trabarse: cree que te vas a volcar. | Afuera: el inclinómetro marca 27° y la píldora dice DESDE 12° PUEDE · MÁS DE 27°: SE TRABA. El de la máscara antigás mira el precipicio por la ventana y una gota le corre por el vidrio de la máscara. |
-| 10 | Ya en plano: suéltalo un poquito... y jala lento. | El 4x4 llega arriba, al plano. El de la máscara le hace la mímica al caballero, lentísimo; el caballero suelta un poco la cinta y jala despacio: sale suave. |
+| 9 | Pasado veintisiete grados, tiene que trabarse: cree que te vas a volcar. | Afuera: el inclinómetro marca 30° (la pendiente del cerro) y la píldora dice MÁS DE 12°: PUEDE · MÁS DE 27°: SE TRABA. El de la máscara antigás mira el precipicio por la ventana y una gota le corre por el vidrio de la máscara. |
+| 10 | Ya en plano: déjalo volver un poquito... y jala lento. | El 4x4 llega arriba, al plano. El de la máscara le hace la mímica al caballero, lentísimo; el caballero deja que la cinta vuelva un poco y jala despacio: sale suave. |
 | 11 | Y ahí están, por fin, sus papas... | El caballero estira la mano despacio hacia el tablero... la bolsa ya no está. |
 | 12 | si el doctor no se las comió antes. | Atrás, el doctor tiene la bolsa en la falda, una papa en la mano camino a la boca y migas naranjas en el delantal blanco; lo pillan, se congela y se encoge de hombros. Corte al caballero lanzándose otra vez (loop al cuadro 0). |
 
@@ -51,16 +51,16 @@ Panel de 10 espectadores simulados (hombres y mujeres de 16 a 35, de México, Ar
 |---|---|
 | Si jalas rápido el cinturón se traba; si jalas lento, te deja | Manual del Nissan Juke 2025 (el retractor se traba en una frenada brusca; tirar lento deja moverse) · Autoliv (el sensor de la cinta traba si se tira demasiado rápido) · manual Mazda CX-5 |
 | La cinta vive enrollada en un carrete con una rueda dentada | Indiana Public Media, A Moment of Science (carrete con resorte y rueda dentada unida al carrete) · Gobierno de Montana, "How Seat Belts Work" (carrete y resorte) |
-| Si jalas de golpe, el giro rápido del carrete empuja un pestillo hacia afuera y se engancha en los dientes | Indiana Public Media (la fuerza centrífuga de un tirón brusco saca hacia afuera una palanca unida al carrete, que engancha la rueda dentada) · patente US5451009 (la masa de inercia se queda atrás cuando el carrete acelera y bloquea el giro) · Safe Ride News (traba cuando la cinta sale rápido) |
+| Si jalas de golpe, el giro rápido del carrete empuja un pestillo hacia afuera y se engancha en los dientes | Indiana Public Media (la fuerza centrífuga de un tirón brusco saca hacia afuera una palanca unida al carrete, que engancha la rueda dentada). Que un giro brusco del carrete lo traba: patente US5451009 (una masa de inercia se queda atrás cuando el carrete acelera y bloquea el giro; es otra forma del mismo sensor) · Safe Ride News (traba cuando la cinta sale rápido). El dibujo usa el pestillo de Indiana Public Media |
 | Lento, el giro no alcanza para trabarlo | Las mismas: el bloqueo de la cinta sólo actúa sobre cierta aceleración (US5451009: "above a first predetermined rate"); el Reglamento 16 prohíbe que se trabe con tirones de menos de 0,8 g |
 | En la subida se traban sin que nadie jale: una bolita de acero rueda y traba el carrete | Safe Ride News (bola de acero en el anillo de un platillo: un cambio de velocidad o de orientación del auto la saca de su lugar y levanta la palanca hacia la rueda dentada) · artículo PMC3274245 en PubMed Central (copa en el pilar, bola de acero y uña que traba el cinturón cuando el auto se inclina) · Autoliv (el sensor del auto traba con aceleración, frenada o inclinación) |
 | También en frenadas (píldora) | Indiana Public Media (en una frenada el peso se va adelante y traba) · Safe Ride News · Autoliv |
-| Pasado 27° tiene que trabarse (desde 12° ya puede) | Reglamento 16 de la ONU §6.2.5.3.1.3–4 (no debe trabarse con 12° o menos; debe trabarse con más de 27° en los cinturones tipo 4) · PMC3274245 (traba cuando la carrocería pasa el ángulo permitido, 12–27°) |
-| Cree que te vas a volcar (para eso es) | PMC3274245 (en un vuelco el bloqueo pasa a la fase que traba según el ángulo permitido) · Safe Ride News (cambio de orientación del vehículo) |
+| Pasado 27° tiene que trabarse (con más de 12° ya puede) | Reglamento 16 de la ONU: §6.2.5.3.1.3 (con el sensor inclinado 12° o menos en cualquier dirección, no debe trabarse) y §6.2.5.3.1.4 (debe trabarse con más de 27° en los cinturones tipo 4; 40° en el tipo 4N) · PMC3274245, sección 2.2 (el bloqueo con bola traba cuando la carrocería pasa el ángulo permitido, 12–27°; extracto completo en `fuentes_ep06-cinturon-traba-r3.md` de la prerelease `ep06-fuentes`: el de la bajada del guion se cortó antes). Ojo: el «tiene que» es del Reglamento 16; la norma de EE. UU. (FMVSS 209) usa otros ángulos, por eso la voz no dice «por ley» ni «en todos los autos» |
+| Cree que te vas a volcar (para eso es) | PMC3274245, sección 2.2 (en un vuelco el bloqueo pasa a la fase que traba según el ángulo permitido; extracto r3) · Safe Ride News (un cambio de orientación del vehículo lo traba) |
 | Si se trabó: déjalo recoger un poquito y jala lento | Manual Mazda CX-5 y CX-3 (si está trabado, recogerlo una vez y sacarlo lento) · manual Nissan Juke (tirar firme, soltar y sacarlo suave) |
 
 **Matices (para no exagerar):**
-- "Tiene que trabarse" pasado 27° es lo que exige el Reglamento 16 de la ONU a los cinturones tipo 4 (autos); entre 12° y 27° la norma deja que cada fabricante elija (por eso la píldora DESDE 12° PUEDE). La norma de EE. UU. (FMVSS 209) usa otros ángulos: la voz no dice "por ley" ni "en todos los autos".
+- "Tiene que trabarse" pasado 27° es lo que exige el Reglamento 16 de la ONU a los cinturones tipo 4 (autos); entre 12° y 27° la norma deja que cada fabricante elija (por eso la píldora MÁS DE 12°: PUEDE). La norma de EE. UU. (FMVSS 209) usa otros ángulos: la voz no dice "por ley" ni "en todos los autos".
 - La bolita puede ser un péndulo en otros modelos (US4166592A: "pendulum mounted weight or rolling ball"); se muestra la bolita porque es la más común en las explicaciones (Safe Ride News) y la del paper.
 - La inclinación del cerro (~30°) es fuerte pero real para un 4x4; no se presenta como una calle común.
 - El truco sólo sirve para el sensor de la cinta: por eso el guion lo usa "ya en plano" (con el auto inclinado la bolita lo sigue trabando).
