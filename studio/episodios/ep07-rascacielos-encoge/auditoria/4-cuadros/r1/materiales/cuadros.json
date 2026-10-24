@@ -1,0 +1,58 @@
+[
+ {
+  "cuadro": "A_cuadro0_HD",
+  "archivo": "A_cuadro0_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.27,
+  "brillo": 90.0,
+  "saturacion": 95.3,
+  "negros_p5": 9.0,
+  "recortes": [
+   "A_cuadro0_HD_recorte_arriba.jpg",
+   "A_cuadro0_HD_recorte_medio.jpg",
+   "A_cuadro0_HD_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "B_pete_techo_HD",
+  "archivo": "B_pete_techo_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.26,
+  "brillo": 65.0,
+  "saturacion": 111.3,
+  "negros_p5": 0.0,
+  "recortes": [
+   "B_pete_techo_HD_recorte_arriba.jpg",
+   "B_pete_techo_HD_recorte_medio.jpg",
+   "B_pete_techo_HD_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "C_corte_HD",
+  "archivo": "C_corte_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 1.62,
+  "brillo": 73.8,
+  "saturacion": 83.5,
+  "negros_p5": 10.0,
+  "recortes": [
+   "C_corte_HD_recorte_arriba.jpg",
+   "C_corte_HD_recorte_medio.jpg",
+   "C_corte_HD_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "D_avenida_HD",
+  "archivo": "D_avenida_HD.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.25,
+  "brillo": 55.1,
+  "saturacion": 113.3,
+  "negros_p5": 12.0,
+  "recortes": [
+   "D_avenida_HD_recorte_arriba.jpg",
+   "D_avenida_HD_recorte_medio.jpg",
+   "D_avenida_HD_recorte_abajo.jpg"
+  ]
+ }
+]

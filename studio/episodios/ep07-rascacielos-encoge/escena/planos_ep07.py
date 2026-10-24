@@ -20,7 +20,7 @@ from ep07 import F, FR, T, lin, suave, sale, tramo, ruido, clamp, mirar, orbita,
 
 FPS = 30
 POSE = os.environ.get("POSE", "")
-ESCENA = {1: "E1", 2: "E1", 3: "E2", 4: "E3", 5: "E3", 6: "E3", 7: "E3", 8: "E1", 9: "E3", 10: "E3", 11: "E4", 12: "E1"}
+ESCENA = {1: "E1", 2: "E1", 3: "E2", 4: "E3", 5: "E3", 6: "E3", 7: "E3", 8: "E1", 9: "E3", 10: "E3", 11: "E1", 12: "E1"}
 H = TR.H
 
 
@@ -228,7 +228,7 @@ def estado_afuera(S, f):
     return h
 
 
-CAM0 = (Vector((172, -360, 30)), Vector((0, 0, 50.3)))
+CAM0 = (Vector((172, -360, 45)), Vector((0, 0, 58.0)))
 
 
 def cam_cuadro0(cam, x=0.0):
@@ -303,7 +303,7 @@ def armar_pete(sc, S, pos, giro):
 def p3(sc, a, b):
     # "Sin una sola explosión.": Pete tranquilo en el techo; la vecina de vidrio "sube" detrás (el techo baja)
     S = armar_E1(sc, con_fantasma=False)
-    P = armar_pete(sc, S, Vector((20.0, -5.5, 0)), -30)
+    P = armar_pete(sc, S, Vector((20.0, -1.0, 0)), -30)
     vista = Vector((0.36, 0.93, 0)).normalized()
     gesto(P, "Shrugging")
     t_ex = TW("explosión", 4.0)
@@ -314,8 +314,8 @@ def p3(sc, a, b):
         P["arm"].location.z = R
         pose_pete(sc, P, f, cabeza=(-4, 0), actua=("Shrugging", F(t_ex) - 10, 0) if P["gestos"].get("Shrugging") else None)
         x = lin(f, a, b - 1)
-        cam = Vector((20.0, -5.5, R + 1.5)) - vista * (3.6 - 0.25 * x)
-        mirar(S["cam"], cam, cam + vista * 40 + Vector((0, 0, -40 * math.tan(math.radians(2.5)))), lente=40, foco=Vector((20.0, -5.5, R + 1.65)))
+        cam = Vector((20.0, -1.0, R + 1.5)) - vista * (3.6 - 0.25 * x)
+        mirar(S["cam"], cam, cam + vista * 40 + Vector((0, 0, -40 * math.tan(math.radians(2.5)))), lente=40, foco=Vector((20.0, -1.0, R + 1.65)))
         S["cam"].data.dof.aperture_fstop = 5.6
         return {}
     return {"actualizar": act}
@@ -323,17 +323,16 @@ def p3(sc, a, b):
 
 # ===================================== E4 · la calle ======================================
 def p11(sc, a, b):
-    # "Desde la calle, casi ni se nota:": Pete en la vereda mira la torre; postes con cables y paso de cebra
+    # "Desde la calle, casi ni se nota:": al pie de la torre, mirando hacia arriba; la fachada dentada sube hasta el
+    # sombrero contra el cielo y el sombrero baja despacio (Tomás, puerta 4 r1: enfocado en el edificio, no en la ciudad)
     S = armar_E1(sc, con_fantasma=False)
-    P = armar_pete(sc, S, Vector((38.8, -136.2, 0.16)), -164)
-    gesto(P, "Thinking")
 
     def act(f):
         estado_afuera(S, f)
-        pose_pete(sc, P, f, cabeza=(-28, 0), actua=("Thinking", a - 6, 0) if P["gestos"].get("Thinking") else None)
         x = suave(lin(f, a, b - 1))
-        cam = Vector((40.5 - 0.3 * x, -142.0 + 0.8 * x, 1.0))
-        mirar(S["cam"], cam, Vector((0, 0, 1.0 + 145 * math.tan(math.radians(4.6)))), lente=24, foco=Vector((38.8, -136.2, 1.7)))
+        cam = Vector((24.0 - 1.0 * x, -42.0 + 1.0 * x, 1.6))
+        d = (Vector((0, -10, 0)) - cam).length
+        mirar(S["cam"], cam, Vector((0, -10, 1.6 + d * math.tan(math.radians(36 + 1.5 * x)))), lente=20)
         S["cam"].data.dof.aperture_fstop = 11
         return {}
     return {"actualizar": act}
@@ -372,10 +371,12 @@ def armar_E3(sc):
     return S
 
 
-def corte_abierto(S, x):
-    """x = 0: envoltura cerrada; x = 1: frente transparente con el borde naranja encendido."""
-    TR.set_alfa(S["pm_s"], 1.0 - 0.92 * x)
-    TR.brillo(S["corte"]["borde"], 6.0 * x)
+def corte_abierto(S, x, borde=None):
+    """x = 0: envoltura cerrada; x = 1: corte de esquina (frente sur y lado oeste transparentes: entra el sol rasante).
+    El borde naranja sólo se enciende mientras se abre (puerta 4 r1: las líneas fijas se leían como láseres)."""
+    TR.set_alfa(S["pm_s"], 1.0 - 0.94 * x)
+    TR.set_alfa(S["pm_o"], 1.0 - 0.97 * x)
+    TR.brillo(S["corte"]["borde"], (3.0 * x * (1 - x) * 4) if borde is None else borde)
 
 
 def gatos_brillan(S, x):
@@ -388,7 +389,7 @@ def gatos_brillan(S, x):
 def gancho(S, z_local, x=0.0, y=0.0, con_bulto=True):
     """Gancho de la grúa a z_local (coordenadas del sombrero), con el cable desde el carro."""
     c = S["corte"]
-    top = 2 * H - 3.1
+    top = 2 * H - 2.8
     c["gancho"].location = (x, y, z_local)
     c["cable"].location = (x, y, z_local + 0.7)
     c["cable"].scale.z = max(0.05, top - (z_local + 0.7))
@@ -472,14 +473,17 @@ def p6(sc, a, b):
     # "Después, escondidos bajo el sombrero, desarman el piso de abajo.": columnas cortadas y losas que bajan por el pozo
     S = armar_E3(sc)
     Z0 = S["Z0"]
-    corte_abierto(S, 1.0)
+    corte_abierto(S, 1.0, borde=0.0)
     t_de, t_es, t_ds = TW("Después", 12.0), TW("escondidos", 12.5), TW("desarman", 14.0)
     c = S["corte"]
+    P = armar_pete(sc, S, Vector((-8.5, -3.4, Z0)), 60)       # un obrero adentro: da la escala (puerta 4 r1)
+    gesto(P, "Pointing")
 
     def act(f):
         t = tf(f)
         x = suave(lin(f, a, b - 1))
-        TR.brillo(c["borde"], 6.0 + 10.0 * math.exp(-((t - t_es - 0.25) / 0.25) ** 2))
+        TR.brillo(c["borde"], 0.0)
+        pose_pete(sc, P, f, cabeza=(-6, 10), actua=("Pointing", F(t_ds) - 12, 0) if P["gestos"].get("Pointing") else None)
         for k, o in enumerate(c["cols_a"]):
             cut = suave((t - (t_es + 0.25 + 0.08 * k)) / 0.3)
             o.scale.z = max(0.001, 1 - cut)
@@ -505,7 +509,7 @@ def p7(sc, a, b):
     # "Y al final, los gatos bajan el sombrero... un piso.": los pistones se recogen y el sombrero baja 3,5 m
     S = armar_E3(sc)
     Z0 = S["Z0"]
-    corte_abierto(S, 1.0)
+    corte_abierto(S, 1.0, borde=0.0)
     _sin_piso_arriba(S)
     t_ga, t_ba, t_pi = TW("gatos", 17.5), TW("bajan", 17.9), TW("piso", 19.5)
 
@@ -525,7 +529,7 @@ def p9(sc, a, b):
     # "Y lo más loco: la grúa que baja los escombros genera electricidad.": el bulto baja por el pozo; el aro se enciende
     S = armar_E3(sc)
     Z0 = S["Z0"]
-    corte_abierto(S, 1.0)
+    corte_abierto(S, 1.0, borde=0.0)
     _sin_piso_arriba(S)
     c = S["corte"]
     t_lo, t_gr, t_ge = TW("loco", 25.8), TW("grúa", 26.8), TW("genera", 28.2)
@@ -548,7 +552,7 @@ def p10(sc, a, b):
     # "Con eso prenden las luces de la obra.": la electricidad llega a las lámparas y se prenden de a una
     S = armar_E3(sc)
     Z0 = S["Z0"]
-    corte_abierto(S, 1.0)
+    corte_abierto(S, 1.0, borde=0.0)
     _sin_piso_arriba(S)
     c = S["corte"]
     TR.brillo(c["aro"].data.materials[0], 7.0)

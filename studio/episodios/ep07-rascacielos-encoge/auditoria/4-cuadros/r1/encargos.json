@@ -1,0 +1,35 @@
+[
+ {
+  "id": "cuadros",
+  "prompt": "tools/auditor/prompts/4-cuadros.md",
+  "alcance": "A_cuadro0_HD, B_pete_techo_HD, C_corte_HD, D_avenida_HD",
+  "materiales": [
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/A_cuadro0_HD.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/B_pete_techo_HD.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/C_corte_HD.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/D_avenida_HD.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/A_cuadro0_HD_recorte_arriba.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/A_cuadro0_HD_recorte_medio.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/A_cuadro0_HD_recorte_abajo.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/B_pete_techo_HD_recorte_arriba.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/B_pete_techo_HD_recorte_medio.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/B_pete_techo_HD_recorte_abajo.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/C_corte_HD_recorte_arriba.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/C_corte_HD_recorte_medio.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/C_corte_HD_recorte_abajo.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/D_avenida_HD_recorte_arriba.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/D_avenida_HD_recorte_medio.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/D_avenida_HD_recorte_abajo.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/ficha_personaje.jpg",
+   "studio/episodios/ep07-rascacielos-encoge/auditoria/4-cuadros/r1/materiales/cuadros.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "tools/auditor/prompts/estilos.md"
+  ],
+  "salida": "cuadros.json",
+  "notas_de_uso": "A = cuadro 0 (plano 1, la torre con el fantasma de su altura y el sombrero bajando, cámara rápida); B = plano 3 (Pete en el techo del sombrero, se encoge de hombros); C = plano 6 (el sombrero por dentro con el frente abierto: gatos, losas, grúa); D = plano 11 (la torre al fondo de la avenida, Pete de espaldas). Son cuadros del post (con subtítulos y píldoras). Ya corregido después de estos cuadros: en B se saca el bloque de equipos que queda detrás de Pete y Pete pasa a la parte con sol del techo",
+  "estilo": "realista"
+ }
+]

@@ -8,3 +8,16 @@
 {"tipo": "chequeo", "id": "render-planos muestras 40102481544", "estado": "vivo (vigilante) · completed/success · 14/14 trabajos", "n": 8, "ts": "2026-10-24T11:41:41-03:00"}
 {"tipo": "trabajo", "id": "render-planos final 40104244183", "estado": "inicio", "n": 9, "ts": "2026-10-24T11:50:00-03:00"}
 {"tipo": "trabajo", "id": "render-planos final 40104244183", "estado": "caido", "n": 10, "ts": "2026-10-24T11:50:43-03:00"}
+{"tipo": "trabajo", "id": "render-planos final 40104375703", "estado": "inicio", "n": 11, "ts": "2026-10-24T11:52:05-03:00"}
+{"tipo": "trabajo", "id": "render-planos estilos2 40104381622", "estado": "inicio", "n": 12, "ts": "2026-10-24T11:52:05-03:00"}
+{"tipo": "promesa", "hora": "13:10", "que": "render final 720x1280/8 en 12 máquinas", "dato": "Ep. 5: 16 máquinas ~60 min; aquí 12 (4 para cuadros HD)", "n": 13, "ts": "2026-10-24T11:52:05-03:00"}
+{"tipo": "chequeo", "id": "sesion ep07", "estado": "vivo (vigilante)", "n": 14, "ts": "2026-10-24T11:56:39-03:00"}
+{"tipo": "chequeo", "id": "render-planos estilos 40102483108", "estado": "vivo (vigilante) · completed/success · 6/6 trabajos", "n": 15, "ts": "2026-10-24T11:56:42-03:00"}
+{"tipo": "chequeo", "id": "render-planos muestras 40102481544", "estado": "vivo (vigilante) · completed/success · 14/14 trabajos", "n": 16, "ts": "2026-10-24T11:56:42-03:00"}
+{"tipo": "trabajo", "id": "render-planos estilos2 40104381622", "estado": "fin", "n": 17, "ts": "2026-10-24T12:06:28-03:00"}
+{"tipo": "trabajo", "id": "render-planos estilos 40102483108", "estado": "fin", "n": 18, "ts": "2026-10-24T12:06:28-03:00"}
+{"tipo": "trabajo", "id": "render-planos muestras 40102481544", "estado": "fin", "n": 19, "ts": "2026-10-24T12:06:28-03:00"}
+{"tipo": "chequeo", "id": "render-planos final 40104375703", "estado": "vivo (vigilante) · in_progress/- · 1/13 trabajos", "n": 20, "ts": "2026-10-24T12:07:07-03:00"}
+{"tipo": "chequeo", "id": "sesion ep07", "estado": "vivo (vigilante)", "n": 21, "ts": "2026-10-24T12:11:39-03:00"}
+{"tipo": "trabajo", "id": "render-planos final 40104375703", "estado": "caido", "n": 22, "ts": "2026-10-24T12:25:19-03:00"}
+{"tipo": "aviso", "que": "Puerta 4 r1 NO (realismo 6, 1 B12 en el corte). Tomás (12:2x): 'más enfocado al edificio, no tanto ciudad'. Se rehace: ciudad baja y con bruma, toma de calle a la base, corte de esquina con sol, interior con Pete para la escala", "n": 23, "ts": "2026-10-24T12:25:19-03:00"}

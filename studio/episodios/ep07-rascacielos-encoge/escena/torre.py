@@ -69,7 +69,9 @@ def mat_fachada(nombre, piso=3.5, modulo=1.8, banda=(0.32, 0.94), marco=0.12, co
     ax = _m(nt, "GREATER_THAN", _m(nt, "ABSOLUTE", sn.outputs[0]), vb=0.5)            # 1 = cara que mira a ±X
     u = nt.nodes.new("ShaderNodeMix"); u.data_type = "FLOAT"
     nt.links.new(ax, u.inputs[0]); nt.links.new(sep.outputs[0], u.inputs[2]); nt.links.new(sep.outputs[1], u.inputs[3])
-    uu = _m(nt, "DIVIDE", u.outputs[0], vb=modulo)
+    oi0 = nt.nodes.new("ShaderNodeObjectInfo")
+    mod = _m(nt, "MULTIPLY", _m(nt, "ADD", _m(nt, "MULTIPLY", oi0.outputs["Random"], vb=0.7), vb=0.65), vb=modulo)
+    uu = _m(nt, "DIVIDE", u.outputs[0], mod)
     zz = _m(nt, "DIVIDE", sep.outputs[2], vb=piso)
     fu = _m(nt, "FRACT", uu); fz = _m(nt, "FRACT", zz)
     cu = _m(nt, "FLOOR", uu); cz = _m(nt, "FLOOR", zz)
@@ -115,7 +117,7 @@ def mat_fachada(nombre, piso=3.5, modulo=1.8, banda=(0.32, 0.94), marco=0.12, co
     met = nt.nodes.new("ShaderNodeMix"); met.data_type = "FLOAT"
     nt.links.new(vent, met.inputs[0]); met.inputs[2].default_value = metal; met.inputs[3].default_value = 0.0
     nt.links.new(_m(nt, "MULTIPLY", met.outputs[0], _m(nt, "SUBTRACT", va=1.0, b=horiz)), b.inputs["Metallic"])
-    b.inputs["Specular IOR Level"].default_value = 0.5
+    b.inputs["Specular IOR Level"].default_value = 0.75
     # ventanas prendidas (atardecer)
     if luces > 0:
         on = _m(nt, "MULTIPLY", vent, _m(nt, "GREATER_THAN", wn.outputs["Value"], vb=1.0 - luces))
@@ -162,11 +164,11 @@ def mat_paneles(nombre="paneles"):
     g = E._ruido(nt, escala=0.05, detalle=6)
     base = E._rampa(nt, g.outputs["Fac"], (0.36, 0.37, 0.37), (0.48, 0.49, 0.48))
     mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"
-    k = E._mapa(nt, ch.outputs["Fac"], 0.0, 0.5); k.inputs["From Min"].default_value = 0.5; k.inputs["From Max"].default_value = 0.72
-    nt.links.new(k.outputs[0], mx.inputs[0]); nt.links.new(base.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (0.32, 0.31, 0.29, 1)
+    k = E._mapa(nt, ch.outputs["Fac"], 0.0, 0.7); k.inputs["From Min"].default_value = 0.46; k.inputs["From Max"].default_value = 0.7
+    nt.links.new(k.outputs[0], mx.inputs[0]); nt.links.new(base.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (0.24, 0.23, 0.21, 1)
     nt.links.new(mx.outputs[2], b.inputs["Base Color"])
     nt.links.new(E._mapa(nt, ch.outputs["Fac"], 0.5, 0.85).outputs[0], b.inputs["Roughness"])
-    E._bump(nt, b, rel, 0.35, 0.04)
+    E._bump(nt, b, rel, 0.7, 0.06)
     # alfa para el corte (0 = transparente): lo maneja set_alfa()
     tr = nt.nodes.new("ShaderNodeBsdfTransparent")
     mxs = nt.nodes.new("ShaderNodeMixShader"); mxs.name = "ALFA"; mxs.inputs[0].default_value = 1.0
@@ -177,6 +179,22 @@ def mat_paneles(nombre="paneles"):
 
 def set_alfa(m, a):
     m.node_tree.nodes["ALFA"].inputs[0].default_value = a
+
+
+def mat_pintura_fina(nombre, color, rugo=(0.35, 0.55), metal=0.1):
+    """Pintura de máquina con desgaste fino (rayas y polvo a escala de centímetros), sin manchas gigantes."""
+    m, nt, b = E._nodos(nombre)
+    f = E._ruido(nt, escala=30.0, detalle=6)
+    g = E._ruido(nt, escala=3.0, detalle=4)
+    c = E._rampa(nt, f.outputs["Fac"], tuple(x * 0.78 for x in color), color, pos=(0.3, 0.7))
+    mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"
+    k = E._mapa(nt, g.outputs["Fac"], 0.0, 0.35); k.inputs["From Min"].default_value = 0.55; k.inputs["From Max"].default_value = 0.75
+    nt.links.new(k.outputs[0], mx.inputs[0]); nt.links.new(c.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (0.3, 0.28, 0.25, 1)
+    nt.links.new(mx.outputs[2], b.inputs["Base Color"])
+    nt.links.new(E._mapa(nt, f.outputs["Fac"], *rugo).outputs[0], b.inputs["Roughness"])
+    b.inputs["Metallic"].default_value = metal
+    E._bump(nt, b, E._ruido(nt, escala=120, detalle=2).outputs["Fac"], 0.08, 0.0008)
+    return m
 
 
 def mat_brillo(nombre, color, fuerza):
@@ -271,7 +289,7 @@ LOTE = (70.0, 52.0)        # medio ancho del lote despejado alrededor de la torr
 VECINA = (120.0, 110.0)    # torre vecina de vidrio (al noreste): de fondo de Pete en el techo
 
 
-VISTAS = [((172, -360, 30), (0, 0, 8)), ((110, -230, 30), (0, 0, 8)), ((60, -260, 130), (0, 0, 8)), ((40.5, -142, 2.3), (0, 0, 10))]
+VISTAS = [((172, -360, 45), (0, 0, 8)), ((60, -260, 130), (0, 0, 8))]
 AVENIDA = (16.0, 64.0, -215.0, -60.0)     # avenida despejada al sur de la torre (plano 11: la torre al fondo de la calle)
 
 
@@ -290,19 +308,49 @@ def _bajo_vista(cx, cy, alto, ancho):
     return lim
 
 
+def mat_techo(nombre="techo_ciudad", color=(0.34, 0.33, 0.31)):
+    """Techos planos: membrana con manchas de agua, parches y polvo (escala de metros, no de cuadras)."""
+    m, nt, b = E._nodos(nombre)
+    g = E._ruido(nt, escala=0.35, detalle=8)
+    f = E._ruido(nt, escala=3.0, detalle=6)
+    c = E._rampa(nt, g.outputs["Fac"], tuple(x * 0.62 for x in color), color, pos=(0.32, 0.68))
+    mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"; mx.blend_type = "MULTIPLY"; mx.inputs[0].default_value = 1.0
+    nt.links.new(c.outputs[0], mx.inputs[6])
+    nt.links.new(E._rampa(nt, f.outputs["Fac"], (0.82, 0.82, 0.82), (1.05, 1.04, 1.02)).outputs[0], mx.inputs[7])
+    nt.links.new(mx.outputs[2], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.92
+    E._bump(nt, b, E._ruido(nt, escala=40, detalle=3).outputs["Fac"], 0.15, 0.004)
+    return neblina(m, 1100.0)
+
+
+def mat_equipo(nombre="equipos"):
+    """Equipos de techo (aire acondicionado, estanques): chapa pintada gris con óxido fino, no un granito gigante."""
+    m, nt, b = E._nodos(nombre)
+    g = E._ruido(nt, escala=6.0, detalle=6)
+    nt.links.new(E._rampa(nt, g.outputs["Fac"], (0.36, 0.36, 0.35), (0.55, 0.55, 0.53)).outputs[0], b.inputs["Base Color"])
+    nt.links.new(E._mapa(nt, g.outputs["Fac"], 0.35, 0.6).outputs[0], b.inputs["Roughness"])
+    b.inputs["Metallic"].default_value = 0.5
+    E._bump(nt, b, E._ruido(nt, escala=60, detalle=2, estirar=(1, 1, 8)).outputs["Fac"], 0.2, 0.003)
+    return neblina(m, 1100.0)
+
+
 def ciudad(sc, semilla=11, radio=1100.0, lejos=5000.0):
+    """Tomás (24-oct, puerta 4 r1): 'más enfocado al edificio, no tanto ciudad que opaca'. La ciudad es fondo: baja
+    alrededor de la torre (≤ 24 m a 260 m, ≤ 55 m a 600 m), sin ventanas prendidas, con bruma fuerte (k 1.100 m) y con
+    parapetos y equipos en los techos cercanos."""
     random.seed(semilla)
     asf = mat_asfalto()
     piso = caja("Suelo", (14000, 14000, 0.2), (0, 0, -0.2), asf)
-    # vereda y plaza alrededor de la torre
-    vereda = mat_simple("vereda", (0.32, 0.31, 0.29), rugo=0.8)
+    vereda = mat_simple("vereda", (0.36, 0.35, 0.33), rugo=0.85)
     caja("Plaza", (2 * LOTE[0] - 24, 2 * LOTE[1] - 24, 0.18), (0, 0, 0), vereda)
-    mats = [mat_fachada("f_hormigon", piso=3.6, modulo=2.4, banda=(0.38, 0.9), col_panel=(0.5, 0.48, 0.45), metal=0.0, luces=0.03, cortinas=(0.03, 0.06)),
-            mat_fachada("f_beige", piso=3.3, modulo=1.6, banda=(0.36, 0.88), col_panel=(0.62, 0.55, 0.46), metal=0.0, luces=0.04, cortinas=(0.03, 0.06)),
-            mat_fachada("f_vidrio", piso=4.0, modulo=1.5, banda=(0.08, 0.97), marco=0.04, col_panel=(0.2, 0.24, 0.27), metal=0.6, luces=0.02, cortinas=(0.02, 0.05)),
-            mat_fachada("f_gris", piso=3.8, modulo=3.0, banda=(0.3, 0.86), col_panel=(0.4, 0.41, 0.42), metal=0.2, luces=0.03, cortinas=(0.03, 0.06)),
-            mat_fachada("f_ladrillo", piso=3.2, modulo=2.0, banda=(0.4, 0.86), col_panel=(0.42, 0.26, 0.2), metal=0.0, luces=0.04, cortinas=(0.03, 0.06))]
-    equipo = mat_simple("equipos", (0.45, 0.46, 0.45), rugo=0.5, metal=0.4)
+    K = 1100.0
+    mats = [mat_fachada("f_hormigon", piso=3.6, modulo=2.4, banda=(0.38, 0.9), col_panel=(0.5, 0.48, 0.45), metal=0.0, cortinas=(0.04, 0.07), k_neblina=K, techo=(0.34, 0.33, 0.31)),
+            mat_fachada("f_beige", piso=3.3, modulo=1.6, banda=(0.36, 0.88), col_panel=(0.62, 0.55, 0.46), metal=0.0, cortinas=(0.04, 0.07), k_neblina=K, techo=(0.36, 0.34, 0.31)),
+            mat_fachada("f_vidrio", piso=4.0, modulo=1.5, banda=(0.08, 0.97), marco=0.04, col_panel=(0.2, 0.24, 0.27), metal=0.6, cortinas=(0.03, 0.06), k_neblina=K),
+            mat_fachada("f_gris", piso=3.8, modulo=3.0, banda=(0.3, 0.86), col_panel=(0.42, 0.43, 0.44), metal=0.2, cortinas=(0.04, 0.07), k_neblina=K),
+            mat_fachada("f_ladrillo", piso=3.2, modulo=2.0, banda=(0.4, 0.86), col_panel=(0.42, 0.27, 0.21), metal=0.0, cortinas=(0.04, 0.07), k_neblina=K)]
+    techo = mat_techo()
+    equipo = mat_equipo()
     paso = 46.0
     n = int(radio / paso)
     edificios = []
@@ -312,40 +360,66 @@ def ciudad(sc, semilla=11, radio=1100.0, lejos=5000.0):
             d = math.hypot(cx, cy)
             if d > radio or (abs(cx) < LOTE[0] + 14 and abs(cy) < LOTE[1] + 14):
                 continue
-            if AVENIDA[0] - 14 < cx < AVENIDA[1] + 14 and AVENIDA[2] < cy < AVENIDA[3]:
-                continue
             if random.random() < 0.08:
-                continue                                                   # un estacionamiento o una plaza
+                continue
             w, dd = random.uniform(18, 34), random.uniform(16, 32)
-            alto = random.choice([random.uniform(12, 40)] * 5 + [random.uniform(40, 90)] * 3 + [random.uniform(90, 150)])
-            alto *= max(0.45, 1.15 - d / radio * 0.6)
+            alto = random.choice([random.uniform(10, 30)] * 5 + [random.uniform(30, 70)] * 3 + [random.uniform(70, 130)])
+            alto = min(alto, 24.0 if d < 260 else 55.0 if d < 600 else 999)
             alto = _bajo_vista(cx, cy, alto, max(w, dd))
             o = caja(f"Edif{i}_{j}", (w, dd, alto), (cx, cy, 0), random.choice(mats))
-            o.rotation_euler.z = math.radians(random.choice([0, 0, 0, 2, -2]))
+            rz = math.radians(random.choice([0, 0, 0, 2, -2]))
+            o.rotation_euler.z = rz
             edificios.append(o)
-            if d < 400 and random.random() < 0.7:                          # equipos en el techo (aire, estanques)
-                for _ in range(random.randint(1, 3)):
-                    ew, ed, eh = random.uniform(2, 6), random.uniform(2, 5), random.uniform(1.2, 3.5)
-                    e = caja(f"Eq{i}_{j}_{_}", (ew, ed, eh), (cx + random.uniform(-w / 3, w / 3), cy + random.uniform(-dd / 3, dd / 3), alto), equipo)
-    # la vecina alta (vidrio), al este de la torre
+            if d < 700:
+                t = caja(f"Te{i}_{j}", (w - 0.6, dd - 0.6, 0.12), (cx, cy, alto), techo); t.rotation_euler.z = rz
+                for k, (sx, sy, pw, pd) in enumerate(((0, dd / 2 - 0.15, w, 0.3), (0, -dd / 2 + 0.15, w, 0.3), (w / 2 - 0.15, 0, 0.3, dd), (-w / 2 + 0.15, 0, 0.3, dd))):
+                    p = caja(f"Pa{i}_{j}_{k}", (pw, pd, 0.9), (cx + sx, cy + sy, alto), mats[0]); p.rotation_euler.z = rz
+                for _ in range(random.randint(1, 4)):
+                    ew, ed, eh = random.uniform(1.5, 5), random.uniform(1.5, 4), random.uniform(1.0, 3.0)
+                    caja(f"Eq{i}_{j}_{_}", (ew, ed, eh), (cx + random.uniform(-w / 3, w / 3), cy + random.uniform(-dd / 3, dd / 3), alto + 0.12), equipo)
     v = caja("Vecina", (34, 30, 125), (VECINA[0], VECINA[1], 0), mats[2])
     caja("VecinaTecho", (30, 26, 4), (VECINA[0], VECINA[1], 125), equipo)
-    # la avenida: veredas con solera y líneas de pista
-    for x in (AVENIDA[0] + 4, AVENIDA[1] - 4):
-        caja(f"Vereda{x}", (8, AVENIDA[3] - AVENIDA[2], 0.16), (x, (AVENIDA[2] + AVENIDA[3]) / 2, 0), vereda)
-    linea = mat_simple("linea_pista", (0.7, 0.69, 0.64), rugo=0.75)
-    for k in range(int((AVENIDA[3] - AVENIDA[2]) / 9)):
-        caja(f"Linea{k}", (0.18, 4.0, 0.02), ((AVENIDA[0] + AVENIDA[1]) / 2, AVENIDA[2] + 4 + 9 * k, 0), linea)
-    # ciudad lejana: una sola malla
     lst = []
     for _ in range(5200):
         a = random.uniform(0, 2 * math.pi)
         d = random.uniform(radio, lejos)
         lst.append((math.cos(a) * d, math.sin(a) * d, random.uniform(14, 40), random.uniform(14, 40),
                     random.choice([random.uniform(10, 35)] * 4 + [random.uniform(35, 90)])))
-    lej = mat_fachada("f_lejos", piso=3.6, modulo=2.2, col_panel=(0.5, 0.47, 0.44), metal=0.1, luces=0.03, cortinas=(0.03, 0.05), k_neblina=1500.0)
+    lej = mat_fachada("f_lejos", piso=3.6, modulo=2.2, col_panel=(0.5, 0.47, 0.44), metal=0.1, cortinas=(0.04, 0.06), k_neblina=700.0)
     cajas_unidas("CiudadLejos", lst, lej)
+    nubes(sc)
     return {"edificios": edificios, "vecina": v}
+
+
+def nubes(sc):
+    """Una capa de nubes altas y finas (2,5 km), iluminadas de rosado por el sol bajo: el cielo deja de ser un degradé."""
+    me = bpy.data.meshes.new("Nubes")
+    bm = bmesh.new()
+    bmesh.ops.create_grid(bm, x_segments=1, y_segments=1, size=30000)
+    bm.to_mesh(me); bm.free()
+    o = bpy.data.objects.new("Nubes", me); sc.collection.objects.link(o)
+    o.location = (0, 0, 2500)
+    m = bpy.data.materials.new("nubes"); m.use_nodes = True
+    nt = m.node_tree
+    for nd in list(nt.nodes):
+        if nd.type != "OUTPUT_MATERIAL":
+            nt.nodes.remove(nd)
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (0.00022, 0.0006, 1)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 3.0; nz.inputs["Detail"].default_value = 10; nz.inputs["Roughness"].default_value = 0.62
+    nt.links.new(mp.outputs[0], nz.inputs["Vector"])
+    k = nt.nodes.new("ShaderNodeMapRange"); k.inputs["From Min"].default_value = 0.52; k.inputs["From Max"].default_value = 0.72
+    nt.links.new(nz.outputs["Fac"], k.inputs["Value"])
+    em = nt.nodes.new("ShaderNodeEmission"); em.inputs[0].default_value = (1.0, 0.62, 0.52, 1); em.inputs[1].default_value = 0.55
+    tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+    mx = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(k.outputs[0], mx.inputs[0]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2])
+    nt.links.new(mx.outputs[0], nt.nodes["Material Output"].inputs[0])
+    o.data.materials.append(m)
+    for a in ("visible_shadow", "visible_diffuse", "visible_glossy", "visible_transmission"):
+        setattr(o, a, False)
+    return o
 
 
 def cielo(sc):
@@ -376,7 +450,7 @@ def torre(sc, corte=False):
     # sombrero: empty que baja; adentro el último piso (con su fachada), el techo, el parapeto y los equipos
     sb = bpy.data.objects.new("Sombrero", None); sc.collection.objects.link(sb)
     cap = prisma("SombreroPiso", planta_dentada(), H, (0, 0, 2 * H), blanco); cap.parent = sb
-    conc = E.mat_pintura("techo_h", (0.31, 0.30, 0.28), rugo=(0.78, 0.95), sucio=0.45, capa=0.0)   # membrana mate (el concreto pulido reflejaba el cielo)
+    conc = E.mat_pintura("techo_h", (0.46, 0.43, 0.39), rugo=(0.8, 0.96), sucio=0.4, capa=0.0)   # membrana mate (el concreto pulido reflejaba el cielo)
     techo = caja("Techo", (LX + 0.6, LY + 0.6, 0.45), (0, 0, 3 * H), conc); techo.parent = sb
     par = mat_simple("parapeto", (0.7, 0.69, 0.66), rugo=0.7, neb=True, k=3200.0)
     for nom, tam, pos in (("ParN", (LX + 0.6, 0.3, 1.1), (0, LY / 2 + 0.15, 3 * H + 0.45)), ("ParS", (LX + 0.6, 0.3, 1.1), (0, -LY / 2 - 0.15, 3 * H + 0.45)),
@@ -384,7 +458,7 @@ def torre(sc, corte=False):
         o = caja(nom, tam, pos, par); o.parent = sb
     eq = mat_simple("eq_techo", (0.5, 0.51, 0.5), rugo=0.45, metal=0.5, k=3200.0)
     random.seed(5)
-    for k, (x, y, w, d, h) in enumerate(((-12, 3, 9, 6, 3.2), (5, 5, 6, 5, 2.6), (8, -4, 5, 4, 2.0), (23, 6, 4, 4, 4.5), (-23, 6.5, 3, 3, 1.8))):
+    for k, (x, y, w, d, h) in enumerate(((-12, 3, 9, 6, 3.2), (-3, 6, 6, 5, 2.6), (-6, -5, 5, 4, 2.0), (-20, -5, 4, 4, 4.5), (-23, 6.5, 3, 3, 1.8))):
         o = caja(f"EqT{k}", (w, d, h), (x, y, 3 * H + 0.45), eq); o.parent = sb
     # envoltura: 4 paños de paneles que tapan los 2 pisos de trabajo (un poco más grandes que la planta)
     pm = mat_paneles()
@@ -397,7 +471,9 @@ def torre(sc, corte=False):
     # el frente (S) con su propio material para poder volverlo transparente en el corte
     pm_s = pm.copy(); pm_s.name = "paneles_frente"
     env["EnvS"].data = env["EnvS"].data.copy(); env["EnvS"].data.materials[0] = pm_s
-    S = {"pisos": pisos, "sombrero": sb, "cap": cap, "env": env, "pm_s": pm_s, "h": H0, "corte": None}
+    pm_o = pm.copy(); pm_o.name = "paneles_oeste"
+    env["EnvO"].data = env["EnvO"].data.copy(); env["EnvO"].data.materials[0] = pm_o
+    S = {"pisos": pisos, "sombrero": sb, "cap": cap, "env": env, "pm_s": pm_s, "pm_o": pm_o, "h": H0, "corte": None}
     if corte:
         S["corte"] = interior(sc, sb)
     estado(S, H0)
@@ -419,7 +495,7 @@ def interior(sc, sb):
     hor = E.mat_hormigon("losa", (0.42, 0.41, 0.39))
     col = E.mat_hormigon("columna", (0.5, 0.49, 0.47))
     acero = E.mat_acero_industrial("acero_temp", (0.24, 0.12, 0.07), sucio=0.5)            # vigas con anticorrosivo rojizo
-    amarillo = E.mat_pintura("gata", (0.85, 0.6, 0.04), rugo=(0.35, 0.6), sucio=0.35, capa=0.2)
+    amarillo = mat_pintura_fina("gata", (0.82, 0.58, 0.05))
     cromo = E.mat_metal_cepillado("piston", (0.62, 0.62, 0.63), rugo=(0.25, 0.4))
     out = {"obra": ob, "piezas": [], "cols_a": [], "cols_b": [], "gatas": [], "pistones": [], "temp": [], "lamparas": [], "luces": []}
     e = 0.3
@@ -438,6 +514,20 @@ def interior(sc, sb):
         m = fierro if k % 3 == 0 else saco
         o = caja(f"Saco{k}", (random.uniform(0.8, 1.8), random.uniform(0.7, 1.3), random.uniform(0.4, 0.9)), (x, y, 0), m)
         o.rotation_euler.z = random.uniform(-0.4, 0.4); o.parent = ob
+    roto = E.mat_hormigon("escombro", (0.46, 0.45, 0.42))
+    for k in range(70):
+        x, y = random.uniform(-24, 24), random.choice([-1, 1]) * random.uniform(3.0, 7.6)
+        r = random.uniform(0.08, 0.35)
+        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=r, location=(x, y, r * 0.4))
+        o = bpy.context.object; o.name = f"Escombro{k}"
+        o.scale = (random.uniform(0.7, 1.6), random.uniform(0.7, 1.4), random.uniform(0.35, 0.8))
+        o.rotation_euler = (random.uniform(0, 3), random.uniform(0, 3), random.uniform(0, 3))
+        o.data.materials.append(roto); o.parent = ob
+    for k in range(10):
+        x, y = random.uniform(-22, 22), random.choice([-1, 1]) * random.uniform(3.5, 7.0)
+        for j in range(5):
+            f_ = cilindro(f"Fierro{k}_{j}", 0.012, random.uniform(2.5, 4.0), (x + 0.05 * j, y, 0.05), fierro, verts=6)
+            f_.rotation_euler = (math.radians(90), 0, random.uniform(-0.3, 0.3)); f_.parent = ob
     xs = (-LX / 2, -LX / 4, 0, LX / 4, LX / 2)
     for i in range(4):
         for j, (y0, y1) in enumerate(((-LY / 2, -POZO / 2), (POZO / 2, LY / 2))):
@@ -458,16 +548,24 @@ def interior(sc, sb):
             out["gatas"].append(g); out["pistones"].append(p); out["temp"].append(t)
     for y in (-7.3, 0.0, 7.3):
         o = caja(f"VigaR{y}", (LX - 1, 0.6, 0.9), (0, y, 2 * H - 0.9), acero); o.parent = sb
-    viga = caja("GruaViga", (LX - 4, 1.0, 0.8), (0, 0, 2 * H - 1.75), acero); viga.parent = sb
-    carro = caja("GruaCarro", (2.6, 2.2, 0.9), (0, 0, 2 * H - 2.65), amarillo); carro.parent = sb
-    tambor = cilindro("GruaTambor", 0.5, 2.0, (0, 1.0, 2 * H - 3.1), E.mat_metal_cepillado("tambor", (0.55, 0.55, 0.57)), verts=32)
+    zv = 2 * H - 1.75
+    for k, yv in enumerate((-0.65, 0.65)):                       # puente grúa: dos vigas doble T
+        for nom, tam, dz in (("Alma", (LX - 4, 0.06, 0.8), 0.0), ("AlaInf", (LX - 4, 0.36, 0.05), 0.0), ("AlaSup", (LX - 4, 0.36, 0.05), 0.75)):
+            o = caja(f"Grua{nom}{k}", tam, (0, yv, zv + dz), acero); o.parent = sb
+    carro = caja("GruaCarro", (2.4, 1.9, 0.7), (0, 0, zv - 0.75), amarillo); carro.parent = sb
+    for k, (xr, yr) in enumerate(((-0.9, -0.65), (0.9, -0.65), (-0.9, 0.65), (0.9, 0.65))):
+        r = cilindro(f"Rueda{k}", 0.18, 0.12, (xr, yr - 0.06, zv + 0.05), acero, verts=20); r.rotation_euler.x = math.radians(90); r.parent = sb
+    tambor = cilindro("GruaTambor", 0.42, 1.5, (0, 0.75, zv - 1.05), E.mat_metal_cepillado("tambor", (0.55, 0.55, 0.57)), verts=32)
     tambor.rotation_euler.x = math.radians(90); tambor.parent = sb
-    motor = caja("GruaMotor", (1.3, 1.6, 1.1), (-2.0, 0, 2 * H - 2.75), E.mat_pintura("motor", (0.12, 0.3, 0.42), capa=0.2)); motor.parent = sb
-    aro = cilindro("GeneradorAro", 0.85, 0.3, (-2.75, 0, 2 * H - 2.2), mat_brillo("gen_brillo", (1.0, 0.72, 0.18), 0.0), verts=40)
+    motor = cilindro("GruaMotor", 0.45, 1.1, (-1.75, 0.0, zv - 1.0), mat_pintura_fina("motor", (0.12, 0.3, 0.42)), verts=32)
+    motor.rotation_euler.y = math.radians(90); motor.parent = sb
+    aro = cilindro("GeneradorAro", 0.52, 0.18, (-2.35, 0, zv - 1.0), mat_brillo("gen_brillo", (1.0, 0.72, 0.18), 0.0), verts=40)
     aro.rotation_euler.y = math.radians(90); aro.parent = sb; aro.visible_shadow = False
     bat = caja("Bateria", (2.4, 1.2, 1.4), (-17.0, 6.2, 0.0), E.mat_pintura("bateria", (0.2, 0.22, 0.24), capa=0.1)); bat.parent = ob
     cable = cilindro("GruaCable", 0.035, 1.0, (0, 0, 0), E.mat_cable("cable_grua", (0.09, 0.09, 0.09)), verts=8); cable.parent = sb
-    gancho = caja("Gancho", (0.5, 0.35, 0.7), (0, 0, 0), E.mat_pintura("gancho", (0.85, 0.45, 0.05), capa=0.2)); gancho.parent = sb
+    gancho = caja("Gancho", (0.7, 0.45, 0.6), (0, 0, 0), mat_pintura_fina("gancho", (0.85, 0.45, 0.05))); gancho.parent = sb
+    for k, xp in enumerate((-0.22, 0.22)):                     # poleas del motón
+        po = cilindro(f"Polea{k}", 0.2, 0.08, (xp, 0.0, 0.5), acero, verts=20); po.rotation_euler.x = math.radians(90); po.parent = gancho
     bulto = caja("Bulto", (3.0, 2.2, 1.4), (0, 0, 0), saco); bulto.parent = sb
     elec = mat_brillo("elec", (1.0, 0.78, 0.22), 0.0)
     ce = caja("CableLuz", (LX - 8, 0.16, 0.16), (0, -0.75, 2 * H - 1.95), elec); ce.parent = sb; ce.visible_shadow = False
