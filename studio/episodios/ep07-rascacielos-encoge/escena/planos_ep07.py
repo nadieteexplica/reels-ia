@@ -448,6 +448,8 @@ def corte_abierto(S, x, borde=None):
     El borde naranja sólo se enciende mientras se abre (puerta 4 r1: las líneas fijas se leían como láseres)."""
     TR.set_alfa(S["pm_s"], 1.0 - 0.94 * x)
     TR.set_alfa(S["pm_o"], 1.0 - 0.97 * x)
+    for ven in S.get("ventanas", []):                 # las ventanas de la envoltura tapaban el corte (v2, 27-oct)
+        oculto(ven, x > 0.02)
     v = (3.0 * x * (1 - x) * 4) if borde is None else borde
     TR.brillo(S["corte"]["borde"], v)
     for o in S["sombrero"].children:
