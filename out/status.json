@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 3652,
+ "creditos_usados": 3860,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -43,5 +43,8 @@
  },
  "0013-ep07-rascacielos-encoge.json": {
   "tts": "ep07-rascacielos-encoge"
+ },
+ "0015-ep07-rascacielos-encoge-v2.json": {
+  "tts": "ep07-rascacielos-encoge-v2"
  }
 }
