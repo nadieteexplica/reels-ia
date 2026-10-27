@@ -20,7 +20,8 @@ from ep07 import F, FR, T, lin, suave, sale, tramo, ruido, clamp, mirar, orbita,
 
 FPS = 30
 POSE = os.environ.get("POSE", "")
-ESCENA = {1: "E1", 2: "E1", 3: "E2", 4: "E3", 5: "E3", 6: "E3", 7: "E3", 8: "E1", 9: "E3", 10: "E3", 11: "E1", 12: "E1"}
+ESCENA = {1: "E1", 2: "E1", 3: "E2", 4: "E3", 5: "E3", 6: "E3", 7: "E3", 8: "E1", 9: "E3", 10: "E3", 11: "E1", 12: "E3", 13: "E3",
+          14: "E1", 15: "E1", 16: "E1"}
 H = TR.H
 
 
@@ -149,15 +150,16 @@ H_INI = 33.2               # al cuadro 0 ya bajó 4 pisos (se ve el hueco de 14 
 
 
 def _cloncs():
-    """(inicio, pisos, duración) de cada bajada del sombrero en las tomas de afuera (E1, E2, E4)."""
-    c = [(-0.03, 6, 2.0), (TW("piso"), 1, DUR), (TW("piso", 2.5), 1, DUR)]
+    """(inicio, pisos, duración) de cada bajada del sombrero en las tomas de afuera (v2)."""
+    c = [(-0.03, 6, 2.2)]                                                  # gancho: 6 pisos a la vista
+    c += [(TW("piso", 4.3), 1, DUR), (TW("piso", 4.9), 1, DUR)]           # "piso por piso"
     a3, b3 = T[3]
-    c += [(a3 + 0.15, 1, DUR), (a3 + 0.75, 1, DUR), (a3 + 1.35, 1, DUR)]
-    c += [(TW("bajan", 17.9), 1, 1.7)]                                     # la bajada del plano 7 (adentro)
-    c += [(TW("otra", 20.5), 1, DUR), (TW("otra", 22.0), 1, DUR), (TW("Como", 23.0), 5, 1.6)]
-    a11, b11 = T[11]
-    c += [(a11 + 0.4, 1, 1.4)]
-    c += [(TW("dos", 34.0) - 0.05, 1, DUR), (TW("diez", 35.5) - 0.05, 1, DUR)]
+    c += [(a3 + 0.1, 1, DUR), (a3 + 0.6, 1, DUR), (a3 + 1.1, 1, DUR)]      # Pete en el techo
+    c += [(T[8][0] + 0.3, 1, 1.3)]                                         # desde la calle
+    c += [(TW("bajan", 28.0), 1, 1.7)]                                     # la bajada del plano 10 (adentro)
+    c += [(TW("otra", 29.9), 1, DUR), (TW("otra", 30.6), 1, DUR), (TW("Como", 31.2), 5, 1.6)]
+    c += [(TW("Dos", 39.0) - 0.05, 1, DUR), (TW("diez", 39.9) - 0.05, 1, DUR)]
+    c += [(TW("Siete", 40.6) + 0.1, 16, 3.3)]                              # siete meses: hasta el suelo (h → −1 = desaparece)
     return c
 
 
@@ -177,7 +179,7 @@ def pisos_en(t):
     for t0, n, d in CLONCS:
         x = clamp((t - t0) / d)
         h -= n * x if n > 1 else (1 if x >= 0.7 else 0)
-    return int(math.floor(h + 1e-6)) + 3
+    return max(0, int(math.floor(h + 1e-6)) + 3)
 
 
 def fantasma(sc):
@@ -261,7 +263,7 @@ def p2(sc, a, b):
     return {"actualizar": act}
 
 
-def p8(sc, a, b):
+def p11(sc, a, b):
     # "Y otra vez. Y otra vez. Como su construcción, en reversa.": la torre entera de 3/4, órbita lenta
     S = armar_E1(sc)
     cen = Vector((0, 0, 0))
@@ -275,14 +277,38 @@ def p8(sc, a, b):
     return {"actualizar": act}
 
 
-def p12(sc, a, b):
-    # "dos pisos menos cada diez días.": dolly out hasta la cámara exacta del cuadro 0 (loop)
+def p14(sc, a, b):
+    # "Dos pisos cada diez días.": general desde otro lado, dolly in corto
     S = armar_E1(sc)
 
     def act(f):
         estado_afuera(S, f)
-        cam_cuadro0(S["cam"], 1.0 - sale(lin(f, a, b - 6)))
+        x = suave(lin(f, a, b - 1))
+        mirar(S["cam"], Vector((-150 + 8 * x, -330, 60)), Vector((0, 0, 40)), lente=35)
         return {"pisos": pisos_en(tf(f)), "fant": pantalla(sc, S["cam"], (0, -TR.LY / 2, NP_ALTO))}
+    return {"actualizar": act}
+
+
+def p15(sc, a, b):
+    # "Siete meses después, donde había un rascacielos de cuarenta pisos... no quedaba nada.": la torre baja hasta el suelo
+    # y desaparece; queda el contorno fantasma entero. Cámara del cuadro 0, acercándose
+    S = armar_E1(sc)
+
+    def act(f):
+        estado_afuera(S, f)
+        cam_cuadro0(S["cam"], 0.6 * suave(lin(f, a, b - 1)))
+        return {"pisos": pisos_en(tf(f)), "fant": pantalla(sc, S["cam"], (0, -TR.LY / 2, NP_ALTO)), "base": pantalla(sc, S["cam"], (0, -TR.LY / 2, 0))}
+    return {"actualizar": act}
+
+
+def p16(sc, a, b):
+    # "Y nadie lo vio caer.": el lote vacío con el fantasma, dolly out hasta la cámara exacta del cuadro 0 (loop)
+    S = armar_E1(sc)
+
+    def act(f):
+        estado_afuera(S, f)
+        cam_cuadro0(S["cam"], 0.6 * (1 - sale(lin(f, a, b - 6))))
+        return {"fant": pantalla(sc, S["cam"], (0, -TR.LY / 2, NP_ALTO))}
     return {"actualizar": act}
 
 
@@ -306,7 +332,7 @@ def p3(sc, a, b):
     P = armar_pete(sc, S, Vector((20.0, -1.0, 0)), -30)
     vista = Vector((0.36, 0.93, 0)).normalized()
     gesto(P, "Shrugging")
-    t_ex = TW("explosión", 4.0)
+    t_ex = TW("explosión", 6.0)
 
     def act(f):
         h = estado_afuera(S, f)
@@ -322,8 +348,8 @@ def p3(sc, a, b):
 
 
 # ===================================== E4 · la calle ======================================
-def p11(sc, a, b):
-    # "Desde la calle, casi ni se nota:": al pie de la torre, mirando hacia arriba; la fachada dentada sube hasta el
+def p8(sc, a, b):
+    # "desde la calle parece un piso más": al pie de la torre, mirando hacia arriba; la fachada dentada sube hasta el
     # sombrero contra el cielo y el sombrero baja despacio (Tomás, puerta 4 r1: enfocado en el edificio, no en la ciudad)
     S = armar_E1(sc, con_fantasma=False)
 
@@ -335,6 +361,52 @@ def p11(sc, a, b):
         mirar(S["cam"], cam, Vector((0, -10, 1.6 + d * math.tan(math.radians(36 + 1.5 * x)))), lente=20)
         S["cam"].data.dof.aperture_fstop = 11
         return {}
+    return {"actualizar": act}
+
+
+
+
+def p6(sc, a, b):
+    # "Solo armar eso toma dos meses.": el sombrero de cerca desde afuera, cerrado; un calendario de píldora cuenta los días
+    S = armar_E3(sc)
+    Z0 = S["Z0"]
+    R = Z0 + 3 * H
+    gancho(S, 2 * H - 4.0, con_bulto=False)
+    corte_abierto(S, 0.0)
+    for v in S["ventanas"]:
+        oculto(v, True)
+
+    def act(f):
+        x = suave(lin(f, a, b - 1))
+        mirar(S["cam"], Vector((-24 + 6 * x, -80 + 8 * x, R + 7)), Vector((2, 0, R - 5)), lente=40)
+        return {}
+    return {"actualizar": act}
+
+
+def p7(sc, a, b):
+    # "Después, lo cierran con paneles con ventanas a la misma altura que las del hotel": los 4 paños suben desde abajo del
+    # sombrero y se cierran; las ventanas de la envoltura se alinean con las del hotel
+    S = armar_E3(sc)
+    Z0 = S["Z0"]
+    R = Z0 + 3 * H
+    gancho(S, 2 * H - 4.0, con_bulto=False)
+    corte_abierto(S, 0.0)
+    t_ci, t_ve = TW("cierran", 18.0), TW("ventanas", 19.3)
+    env = S["env"]
+    base = {k: v.location.z for k, v in env.items()}
+    basev = {v.name: v.location.z for v in S["ventanas"]}
+
+    def act(f):
+        t = tf(f)
+        x = suave(lin(f, a, b - 1))
+        sube = suave((t - t_ci + 0.2) / 1.3)
+        for k, v in env.items():
+            v.location.z = base[k] - 2 * H * (1 - sube)
+        for v in S["ventanas"]:
+            v.location.z = basev[v.name] - 2 * H * (1 - sube)
+            oculto(v, sube < 0.999)
+        mirar(S["cam"], Vector((-30 + 4 * x, -70 + 6 * x, Z0 + 4.5)), Vector((0, 0, Z0 + 5.0)), lente=38)
+        return {"ventana": pantalla(sc, S["cam"], (-10, -TR.LY / 2 - 1.1, Z0 + 2.2))}
     return {"actualizar": act}
 
 
@@ -406,7 +478,7 @@ def p4(sc, a, b):
     S = armar_E3(sc)
     Z0 = S["Z0"]
     R = Z0 + 3 * H
-    t_nu = TW("nunca", 6.0)
+    t_nu = TW("nunca", 8.0)
     techo = S["sombrero"].children
     mat_b = E.mat_emision("techo_marca", (1.0, 0.45, 0.08), 0.0)
     marca = TR.caja("TechoMarca", (TR.LX + 1.4, TR.LY + 1.4, H + 1.75), (0, 0, 2 * H - 0.05), mat_b)
@@ -432,7 +504,7 @@ def p5(sc, a, b):
     # "Primero, lo vuelven un sombrero gigante, parado sobre gatos hidráulicos.": se abre el frente y se ven los gatos
     S = armar_E3(sc)
     Z0 = S["Z0"]
-    t_pr, t_so, t_ga = TW("Primero", 8.0), TW("sombrero", 9.0), TW("gatos", 10.8)
+    t_pr, t_so, t_ga = TW("Primero", 9.5), TW("sombrero", 14.0), TW("gatos", 12.5)
     gancho(S, 2 * H - 4.0, con_bulto=False)
     vigas = [o for o in S["sombrero"].children if o.name.startswith("VigaR") or o.name.startswith("Temp")]
     m_viga = vigas[0].data.materials[0]
@@ -444,7 +516,8 @@ def p5(sc, a, b):
         t = tf(f)
         x = suave(lin(f, a, b - 1))
         corte_abierto(S, suave((t - t_pr) / 0.8))
-        bv.inputs["Emission Strength"].default_value = 1.2 * suave((t - t_so) / 0.4) * (1 - 0.6 * suave((t - t_ga) / 0.5))
+        t_co = TW("columnas", 10.5)
+        bv.inputs["Emission Strength"].default_value = 1.2 * suave((t - t_co) / 0.4) * (1 - 0.6 * suave((t - t_ga) / 0.5))
         gatos_brillan(S, suave((t - t_ga) / 0.35))
         pos = Vector((-20, -64, Z0 + 5.5)).lerp(Vector((-15, -44, Z0 + 4.6)), x)     # afuera: se ve el techo, el corte y la fachada
         mirar(S["cam"], pos, Vector((-5, 0, Z0 + 3.2)), lente=32)
@@ -492,12 +565,12 @@ def _losas(S, t, t0, paso=0.42, dur=0.9):
     return activa
 
 
-def p6(sc, a, b):
+def p9(sc, a, b):
     # "Después, escondidos bajo el sombrero, desarman el piso de abajo.": columnas cortadas y losas que bajan por el pozo
     S = armar_E3(sc)
     Z0 = S["Z0"]
     corte_abierto(S, 1.0, borde=0.0)
-    t_de, t_es, t_ds = TW("Después", 12.0), TW("escondidos", 12.5), TW("desarman", 14.0)
+    t_de, t_es, t_ds = TW("adentro", 23.5), TW("escondidos", 24.0), TW("desarman", 25.0)
     c = S["corte"]
     P = armar_pete(sc, S, Vector((-8.5, -3.4, Z0)), 60)       # un obrero adentro: da la escala (puerta 4 r1)
     gesto(P, "Pointing")
@@ -531,13 +604,13 @@ def _sin_piso_arriba(S):
         oculto(o, True)
 
 
-def p7(sc, a, b):
+def p10(sc, a, b):
     # "Y al final, los gatos bajan el sombrero... un piso.": los pistones se recogen y el sombrero baja 3,5 m
     S = armar_E3(sc)
     Z0 = S["Z0"]
     corte_abierto(S, 1.0, borde=0.0)
     _sin_piso_arriba(S)
-    t_ga, t_ba, t_pi = TW("gatos", 17.5), TW("bajan", 17.9), TW("piso", 19.5)
+    t_ga, t_ba, t_pi = TW("gatos", 27.5), TW("bajan", 28.0), TW("piso", 29.2)
 
     def act(f):
         t = tf(f)
@@ -551,14 +624,14 @@ def p7(sc, a, b):
     return {"actualizar": act}
 
 
-def p9(sc, a, b):
+def p12(sc, a, b):
     # "Y lo más loco: la grúa que baja los escombros genera electricidad.": el bulto baja por el pozo; el aro se enciende
     S = armar_E3(sc)
     Z0 = S["Z0"]
     corte_abierto(S, 1.0, borde=0.0)
     _sin_piso_arriba(S)
     c = S["corte"]
-    t_lo, t_gr, t_ge = TW("loco", 25.8), TW("grúa", 26.8), TW("genera", 28.2)
+    t_lo, t_gr, t_ge = TW("loco", 33.5), TW("grúa", 34.2), TW("genera", 35.5)
     pulsos = []
     for k in range(3):                      # la electricidad que sale del generador y corre por el cable
         bpy.ops.mesh.primitive_uv_sphere_add(radius=0.32, location=(0, 0, 0))
@@ -570,7 +643,7 @@ def p9(sc, a, b):
     def act(f):
         t = tf(f)
         x = suave(lin(f, a, b - 1))
-        z = 3.9 - 4.6 * suave((t - T[9][0]) / 4.2)       # baja desde el primer cuadro del plano hasta entrar al pozo
+        z = 3.9 - 4.6 * suave((t - T[12][0]) / 4.2)       # baja desde el primer cuadro del plano hasta entrar al pozo
         gancho(S, z, 0.0, 0.0, con_bulto=True)
         g = suave((t - t_ge) / 0.4)
         TR.brillo(c["aro"].data.materials[0], 5.0 * g * (0.8 + 0.2 * math.sin(t * 22)))      # dorado, sin quemarse a blanco
@@ -581,7 +654,7 @@ def p9(sc, a, b):
             oculto(pu, not on)
             if on:
                 pu.location = (-2.35 - 17.0 * u, -0.85, 2 * H - 1.9)
-        mira = Vector((-1.0, 0, Z0 + 3.6)).lerp(Vector((-0.8, 0, Z0 + 2.4)), suave((t - T[9][0]) / 4.2))
+        mira = Vector((-1.0, 0, Z0 + 3.6)).lerp(Vector((-0.8, 0, Z0 + 2.4)), suave((t - T[12][0]) / 4.2))
         mirar(S["cam"], Vector((-7.0, -32.0, Z0 + 4.6)).lerp(Vector((-6.0, -27.0, Z0 + 4.4)), x), mira, lente=32, foco=Vector((-1.5, 0, Z0 + 3.6)))
         zc = Z0 + 2 * H - 1.9
         camino = [(-2.35, 0.0, Z0 + 2 * H - 2.75), (-2.35, -0.85, zc), (-20.0, -0.85, zc), (-20.0, 3.6, Z0 + 2 * H - 1.8)]
@@ -592,7 +665,7 @@ def p9(sc, a, b):
     return {"actualizar": act}
 
 
-def p10(sc, a, b):
+def p13(sc, a, b):
     # "Con eso prenden las luces de la obra.": la electricidad llega a las lámparas y se prenden de a una
     S = armar_E3(sc)
     Z0 = S["Z0"]
@@ -602,7 +675,7 @@ def p10(sc, a, b):
     TR.brillo(c["aro"].data.materials[0], 7.0)
     TR.brillo(c["elec"], 5.0)
     gancho(S, 2 * H - 4.0, con_bulto=False)
-    t_pr = TW("prenden", 30.2)
+    t_pr = TW("prenden", 37.3)
 
     def act(f):
         t = tf(f)
@@ -620,7 +693,7 @@ def p10(sc, a, b):
 
 
 # ===================================== piezas ======================================
-FUN = {1: p1, 2: p2, 3: p3, 4: p4, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p10, 11: p11, 12: p12}
+FUN = {1: p1, 2: p2, 3: p3, 4: p4, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p10, 11: p11, 12: p12, 13: p13, 14: p14, 15: p15, 16: p16}
 PIEZAS = {}
 for k in T:
     a, b = FR(k)

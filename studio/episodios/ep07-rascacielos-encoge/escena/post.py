@@ -35,7 +35,7 @@ AZUL = (60, 140, 255)              # agua
 CIAN = (40, 205, 255)              # líneas del imán
 NARANJO = (255, 140, 30)           # el empujón del imán
 GRIS = (150, 156, 166)             # la gravedad
-CLAVE = {"SOMBRERO": NARANJO, "ELECTRICIDAD": (255, 190, 40), "EXPLOSIÓN": (255, 140, 30)}
+CLAVE = {"SOMBRERO": NARANJO, "ELECTRICIDAD": (255, 190, 40), "EXPLOSIÓN": (255, 140, 30), "NADIE": (255, 140, 30)}
 BOX = (120, 888, 1000, 1250)
 META = {}
 for p in sorted(glob.glob(os.path.join(src, "meta", "*.json"))):
@@ -145,7 +145,7 @@ def suave(x):
     return x * x * (3 - 2 * x)
 
 # ---------------- subtítulos (palabra por palabra; cifras juntas) ----------------
-NUMEROS = [("diez", "10"), ("dos", "2")]
+NUMEROS = [("diez", "10"), ("dos", "2"), ("quince", "15"), ("siete", "7"), ("cuarenta", "40")]
 
 
 def limpiar(w):
@@ -344,8 +344,8 @@ def texto_sombra(d, xy, texto, fnt, col=(255, 255, 255), a=255, ancla="mm"):
 
 
 DORADO = (255, 190, 40)            # la electricidad
-RAPIDO = {1, 2, 3, 6, 8, 11, 12}      # tomas en cámara rápida (la torre real baja ~2 pisos cada 10 días)
-CONTADOR = {1, 2, 8, 12}
+RAPIDO = {1, 2, 3, 8, 9, 11, 14, 15}      # tomas en cámara rápida (la torre real baja ~2 pisos cada 10 días)
+CONTADOR = {1, 2, 11, 14, 15}
 
 
 def camara_rapida(im):
@@ -424,30 +424,30 @@ def _trazo(pts, u):
 
 def capa_pieza(im, f):
     """Plano 6: contorno blanco de la losa que la grúa está sacando y flecha hacia el pozo y hacia abajo."""
-    esq = meta(6, f, "pieza", None)
-    if not esq or str(f) not in META.get("6", {}).get("cuadros", {}) or "pieza" not in META["6"]["cuadros"][str(f)]:
+    esq = meta(9, f, "pieza", None)
+    if not esq or str(f) not in META.get("9", {}).get("cuadros", {}) or "pieza" not in META["9"]["cuadros"][str(f)]:
         return
     poli = _envolvente(esq)
     c = _capa(); d = ImageDraw.Draw(c)
     d.line(poli + [poli[0]], fill=(255, 255, 255, 235), width=7, joint="curve")
     _pegar(im, c, 6)
     cx = sum(p[0] for p in poli) / len(poli); cy = sum(p[1] for p in poli) / len(poli)
-    px, py = meta(6, f, "pozo", (540, 900)); qx, qy = meta(6, f, "pozo_abajo", (540, 1100))
+    px, py = meta(9, f, "pozo", (540, 900)); qx, qy = meta(9, f, "pozo_abajo", (540, 1100))
     flecha(im, cx, cy, px, py, (255, 255, 255), ancho=8)
     flecha(im, px, py, qx, min(qy, 1000), (255, 255, 255), ancho=8)
 
 
 def capa_electricidad(im, f, t):
     """Plano 9: la electricidad sale del generador y corre dorada por el cable hacia las lámparas (desde "genera")."""
-    t_ge = tw("genera", 28.2)
+    t_ge = tw("genera", 35.5)
     c = _capa(); d = ImageDraw.Draw(c)
-    bx, by = meta(9, f, "bulto", (540, 900)); kx, ky = meta(9, f, "carro", (540, 700))
+    bx, by = meta(12, f, "bulto", (540, 900)); kx, ky = meta(12, f, "carro", (540, 700))
     if t < t_ge + 0.6:
         flecha(im, kx + 60, ky + 40, bx + 60, by, (255, 255, 255), ancho=8)          # el bulto baja
     if t >= t_ge:
         u = min(1.0, (t - t_ge) / 1.0)
         for clave in ("cable", "cable2"):
-            pts = meta(9, f, clave, None)
+            pts = meta(12, f, clave, None)
             if pts:
                 tr = _trazo(pts, u)
                 if len(tr) > 1:
@@ -459,8 +459,8 @@ def capa_electricidad(im, f, t):
 
 def capa_luces(im, f, t):
     """Plano 10: cada lámpara se prende con su resplandor y su cono de luz hacia el piso."""
-    t_pr = tw("prenden", 30.2)
-    lam = meta(10, f, "lamparas", None); pis = meta(10, f, "piso", None)
+    t_pr = tw("prenden", 37.3)
+    lam = meta(13, f, "lamparas", None); pis = meta(13, f, "piso", None)
     if not lam or not pis:
         return
     c = _capa(); d = ImageDraw.Draw(c)
@@ -481,40 +481,64 @@ def graficos(im, f, k):
     if k in CONTADOR:
         contador(im, f, k)
     P = [(540, 560), (540, 640)]
-    if k == 3:
-        pild(im, f, 3, "sinex", "SIN EXPLOSIONES", tw("Sin", 3.5), [(740, 330), (740, 420)])
+    if k == 1:
+        pild(im, f, 1, "alto", "EL MÁS ALTO QUE JAPÓN HA BOTADO", tw("alto", 1.0), P, tam=44)
+    elif k == 2:
+        pild(im, f, 2, "sinex", "SIN EXPLOSIONES", tw("sin", 5.3), P)
+    elif k == 3:
+        pild(im, f, 3, "sinex", "SIN EXPLOSIONES", T0(3), [(740, 330), (740, 420)])
     elif k == 4:
         contorno_techo(im, f)
-        pild(im, f, 4, "techo", "EL TECHO QUEDA ENTERO", tw("techo", 7.0), P, fondo=NARANJO, tinta=(255, 255, 255))
+        pild(im, f, 4, "techo", "EL TECHO QUEDA ENTERO", tw("techo", 8.0), P, fondo=NARANJO, tinta=(255, 255, 255))
     elif k == 5:
-        t_so, t_ga = tw("sombrero", 9.0), tw("gatos", 10.8)
-        pild(im, f, 5, "p1", "PASO 1 · SOMBRERO", tw("Primero", 8.0), P, tam=50, hasta=t_ga)
+        t_co, t_ga = tw("columnas", 10.5), tw("gatos", 12.5)
+        pild(im, f, 5, "p1", "PASO 1 · COLUMNAS DE ACERO", tw("Primero", 9.5), P, tam=46, hasta=t_ga)
         if t >= t_ga:
             gx, gy = meta(5, f, "gata", (540, 900))
             py = max(520, min(760, gy - 230))
             px = max(350, min(730, gx))
             if gy - py > 90:
                 flecha(im, px, py + 45, gx, gy - 20, AMARILLO, ancho=9)
-            pildora(im, "GATOS HIDRÁULICOS", px, py, fondo=AMARILLO, tinta=(24, 24, 28), s=pop(t - t_ga), tam=48)
+            pildora(im, "15 GATOS HIDRÁULICOS", px, py, fondo=AMARILLO, tinta=(24, 24, 28), s=pop(t - t_ga), tam=46)
     elif k == 6:
-        capa_pieza(im, f)
-        pild(im, f, 6, "p2", "PASO 2 · DESARMAN", tw("Después", 12.0), P, tam=50)
+        t_me = tw("dos", 16.8)
+        dias = int(min(60, 60 * (t - T0(6)) / max(0.3, t_me - T0(6))))
+        pildora(im, f"DÍA {dias}", 540, 560, s=pop(t - T0(6)), tam=56)
+        pild(im, f, 6, "meses", "SOLO ARMARLO: 2 MESES", t_me, [(540, 650)], tam=46)
     elif k == 7:
-        t_pi = tw("piso", 19.5)
-        pild(im, f, 7, "p3", "PASO 3 · BAJAN", tw("final", 16.5), P, tam=50, hasta=t_pi)
-        pild(im, f, 7, "menos1", "−1 PISO", t_pi, P, tam=58)
+        t_ve = tw("ventanas", 19.3)
+        pild(im, f, 7, "pan", "PANELES", tw("paneles", 18.8), P, hasta=t_ve)
+        if t >= t_ve:
+            vx, vy = meta(7, f, "ventana", (400, 800))
+            px, py = max(330, min(750, vx)), max(540, min(820, vy - 170))
+            flecha(im, px, py + 40, vx, vy - 10, (255, 255, 255), ancho=8)
+            pildora(im, "VENTANAS A LA MISMA ALTURA", px, py, s=pop(t - t_ve), tam=42)
     elif k == 8:
-        pild(im, f, 8, "rev", "EN REVERSA", tw("reversa", 24.5), P)
+        pild(im, f, 8, "mas", "PARECE UN PISO MÁS", tw("parece", 22.5), P)
     elif k == 9:
-        capa_electricidad(im, f, t)
-        pild(im, f, 9, "elec", "ELECTRICIDAD", tw("electricidad", 28.5), P, fondo=DORADO, tinta=(24, 24, 28))
+        capa_pieza(im, f)
+        pild(im, f, 9, "p2", "PASO 2 · DESARMAN", tw("adentro", 23.5), P, tam=50)
     elif k == 10:
-        capa_luces(im, f, t)
-        pild(im, f, 10, "luces", "LUCES DE LA OBRA", tw("luces", 30.8), P, fondo=DORADO, tinta=(24, 24, 28))
+        t_pi = tw("piso", 29.2)
+        pild(im, f, 10, "p3", "PASO 3 · BAJAN", tw("Cuando", 26.5), P, tam=50, hasta=t_pi)
+        pild(im, f, 10, "menos1", "−1 PISO", t_pi, P, tam=58)
+    elif k == 11:
+        pild(im, f, 11, "rev", "EN REVERSA", tw("reversa", 32.4), P)
     elif k == 12:
-        t_di = tw("diez", 35.5)
-        pild(im, f, 12, "menos2", "−2 PISOS", tw("dos", 34.3), P, hasta=t_di)
-        pild(im, f, 12, "diez", "−2 PISOS · CADA 10 DÍAS", t_di, P, tam=50)
+        capa_electricidad(im, f, t)
+        pild(im, f, 12, "elec", "ELECTRICIDAD", tw("electricidad", 36.0), P, fondo=DORADO, tinta=(24, 24, 28))
+    elif k == 13:
+        capa_luces(im, f, t)
+        pild(im, f, 13, "luces", "LUCES DE LA OBRA", tw("luces", 38.0), P, fondo=DORADO, tinta=(24, 24, 28))
+    elif k == 14:
+        pild(im, f, 14, "diez", "−2 PISOS · CADA 10 DÍAS", tw("Dos", 39.0), P, tam=50)
+    elif k == 15:
+        pild(im, f, 15, "siete", "≈ 7 MESES", tw("Siete", 40.6), P, tam=56)
+        if t >= tw("nada", 44.8):
+            bx, by = meta(15, f, "base", (540, 1000))
+            pildora(im, "NADA", 540, max(700, min(960, by - 60)), fondo=(30, 32, 36), tinta=(255, 255, 255), s=pop(t - tw("nada", 44.8)), tam=56)
+    elif k == 16:
+        pild(im, f, 16, "nadie", "NADIE LO VIO CAER", T0(16) + 0.1, P, fondo=(30, 32, 36), tinta=(255, 255, 255), tam=50)
 
 
 def procesar(f):

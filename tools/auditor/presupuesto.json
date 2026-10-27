@@ -36,11 +36,11 @@
   "cambio_max_s": 2.0,
   "palabras": [
    70,
-   145
+   150
   ],
   "duracion_s": [
    25.0,
-   50.0
+   52.0
   ],
   "promedio_min": 8.0,
   "nota_min_revisor": 7,

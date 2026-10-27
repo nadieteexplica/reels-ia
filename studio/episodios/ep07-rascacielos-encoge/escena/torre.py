@@ -474,9 +474,16 @@ def torre(sc, corte=False):
     # el frente (S) con su propio material para poder volverlo transparente en el corte
     pm_s = pm.copy(); pm_s.name = "paneles_frente"
     env["EnvS"].data = env["EnvS"].data.copy(); env["EnvS"].data.materials[0] = pm_s
+    vid = mat_fachada("f_envoltura", piso=H, modulo=1.8, banda=(0.36, 0.9), marco=0.1, col_panel=(0.42, 0.43, 0.43), metal=0.2,
+                      luces=0.0, cortinas=(0.05, 0.12), vidrio_oscuro=0.05, k_neblina=3200.0)
+    ventanas = []
+    for nom, tam, pos in (("VentS", (LX + 2 * m - 0.4, 0.06, 2 * H), (0, -LY / 2 - m - 0.16, 0)), ("VentN", (LX + 2 * m - 0.4, 0.06, 2 * H), (0, LY / 2 + m + 0.16, 0)),
+                          ("VentE", (0.06, LY + 2 * m - 0.4, 2 * H), (LX / 2 + m + 0.16, 0, 0)), ("VentO", (0.06, LY + 2 * m - 0.4, 2 * H), (-LX / 2 - m - 0.16, 0, 0))):
+        o = caja(nom, tam, pos, vid); o.parent = sb
+        ventanas.append(o)
     pm_o = pm.copy(); pm_o.name = "paneles_oeste"
     env["EnvO"].data = env["EnvO"].data.copy(); env["EnvO"].data.materials[0] = pm_o
-    S = {"pisos": pisos, "sombrero": sb, "cap": cap, "env": env, "pm_s": pm_s, "pm_o": pm_o, "h": H0, "corte": None}
+    S = {"pisos": pisos, "sombrero": sb, "cap": cap, "env": env, "pm_s": pm_s, "pm_o": pm_o, "ventanas": ventanas, "h": H0, "corte": None}
     if corte:
         S["corte"] = interior(sc, sb)
     estado(S, H0)
@@ -608,7 +615,11 @@ def estado(S, h, baja=0.0):
     """Deja la torre con h pisos bajo la envoltura (float). Con corte, la losa de abajo y las gatas ("Obra") quedan en
     h·H y el sombrero baja `baja` m sobre ellas (0 = gatas estiradas; H = bajó un piso)."""
     S["h"] = h
-    S["sombrero"].location.z = h * H - baja
+    S["sombrero"].location.z = max(h, 0.0) * H - baja
+    ido = h <= -0.999
+    S["sombrero"].hide_render = ido; S["sombrero"].hide_viewport = ido
+    for ch in S["sombrero"].children_recursive:
+        ch.hide_render = ido; ch.hide_viewport = ido
     tope = math.ceil(h - 1e-6)
     for i, o in enumerate(S["pisos"]):
         vis = i < tope
