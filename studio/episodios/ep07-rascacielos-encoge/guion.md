@@ -12,22 +12,30 @@
 - Ep. 6 (vergüenza máxima): cada frase se puede **ver**; plano de situación en los primeros 3 s; un solo espacio (la torre en la ciudad) que une todo; 12 planos; nada de primeros planos sin contexto.
 **Duración estimada:** 88 palabras a ~2,9 palabras/s ≈ 32 s + pausas ≈ 34 s.
 
-## Guion (90 palabras, ~33 s)
-Este rascacielos se achicó... piso por piso.
-Sin una sola explosión.
-El truco: nunca le sacan el techo.
-Primero, lo vuelven un sombrero gigante, parado sobre gatos hidráulicos.
-Después, escondidos bajo el sombrero, desarman el piso de abajo.
-Y al final, los gatos bajan el sombrero... un piso.
+## Guion v2 (27-oct-2026; 146 palabras, ~46 s; Tomás autorizó pasar de 45 s)
+Este es el edificio más alto que Japón ha botado.
+Y lo más impresionante: lo demolieron piso por piso... sin ninguna explosión.
+El truco: el techo nunca se saca.
+Primero, meten columnas de acero y lo paran sobre quince gatos hidráulicos, como un sombrero gigante.
+Solo armar eso toma dos meses.
+Después, lo cierran con paneles con ventanas a la misma altura que las del hotel: desde la calle parece un piso más.
+Y adentro, escondidos, desarman el piso de abajo.
+Cuando queda vacío, los gatos bajan el sombrero... un piso.
 Y otra vez. Y otra vez. Como su construcción, en reversa.
-Y lo más loco: la grúa que baja los escombros genera electricidad.
-Con eso prenden las luces de la obra.
-Desde la calle, casi ni se nota:
-dos pisos menos cada diez días.
+Y lo más loco: la grúa que baja los escombros genera electricidad... y con eso prenden las luces de la obra.
+Dos pisos cada diez días.
+Siete meses después, donde había un rascacielos de cuarenta pisos... no quedaba nada.
+Y nadie lo vio caer.
 
-## Verificación por afirmación
+## Verificación por afirmación (v2: filas nuevas arriba)
 | Afirmación del guion | Fuente(s) |
 |---|---|
+| El edificio más alto que Japón ha botado | Popular Science 2013 ("the tallest building torn down in Japan to date"); Japan Times 2013 (Taisei: la mayoría de los rascacielos de más de 100 m se botan a los 30–40 años) |
+| Meten columnas de acero (temporales) y lo paran sobre 15 gatos hidráulicos; solo armar eso toma dos meses | AFP vía IOL 2013 ("15 hydraulic jacks on which this lid now sits"; "external support frame"); Taisei, Informe técnico n.º 48 (2015), §18-1: en el Tecorep tradicional los gatos van sobre columnas temporales de ~20 t y montarlas toma 1–2 meses: https://www.taisei.co.jp/giken/report/2015_48/paper/A048_018.pdf |
+| Paneles con ventanas a la misma altura que las del hotel: desde la calle parece un piso más | Nikkei (2013): paneles acústicos en el perímetro del último piso con ventanas de luz natural a la altura de las ventanas del edificio, para que pasen desapercibidos: https://www.nikkei.com/article/DGXNASFK2600S_W3A121C1000000/ ; Prince Hotels (防音パネルで閉鎖空間) |
+| Siete meses después… no quedaba nada (cálculo: 140 m a 6,4 m cada 10 días ≈ 220 días ≈ 7 meses; en pantalla "≈ 7 MESES") | AFP 2013 (2 pisos = 6,4 m cada 10 días); Nikkei (cada ciclo de 2 pisos ≈ 10 días). Es un cálculo con el ritmo de la empresa, no una fecha de fuente: se dice "siete meses" como orden de magnitud y en pantalla va "≈" |
+| Nadie lo vio caer | Ichihara (Taisei) en AFP y NBC: "the building shrinks and disappears without you noticing"; no hubo demolición por caída ni explosión (AFP) |
+
 | Este rascacielos (en pantalla: 40 PISOS; el Grand Prince Hotel Akasaka, Tokio; ~140 m) | Prince Hotels, sitio oficial (高さ約140m、地上40階建て: unos 140 m y 40 pisos); AFP vía IOL 2013 ("a 40-floor hotel", "140-metre"); Core77 ("a 40-story building") |
 | Se achicó piso por piso | AFP vía IOL 2013 (se achicó a cerca de la mitad de su altura; "remove one floor at a time"); NBC News 2013 ("the building is losing its height"); Core77 ("shrinks buildings story by story"); Prince Hotels (１フロアずつ: un piso a la vez) |
 | Sin una sola explosión | AFP vía IOL 2013 ("with none of the explosions or dust normally associated with the demolition of skyscrapers"); Core77 (dinamitarlo se descartó por el ruido y el polvo) |
@@ -60,6 +68,8 @@ dos pisos menos cada diez días.
 - Prince Hotels, sitio oficial (Figure 100, n.º 04) — el desarme del ex Grand Prince Hotel Akasaka: https://www.princehotels.co.jp/kioicho/figure/detail/004.html
 - Newswitch / Nikkan Kogyo Shimbun — técnicas de desarme de rascacielos (Tecorep): https://newswitch.jp/p/10143
 - President Online — el proyecto que reemplazó al hotel: https://president.jp/articles/-/20590
+- Taisei, Informe del Centro Técnico n.º 48 (2015), nuevo sistema de gatos del Tecorep (PDF): https://www.taisei.co.jp/giken/report/2015_48/paper/A048_018.pdf
+- Nikkei (2013) — 静かに消えた「赤プリ」: https://www.nikkei.com/article/DGXNASFK2600S_W3A121C1000000/
 - The Japan Times (2013) — Razing skyscrapers from the inside: https://www.japantimes.co.jp/news/2013/01/08/national/razing-skyscrapers-from-the-inside/
 
 ## Plan de Kling

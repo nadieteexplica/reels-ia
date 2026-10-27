@@ -36,16 +36,16 @@
   "cambio_max_s": 2.0,
   "palabras": [
    70,
-   128
+   145
   ],
   "duracion_s": [
    25.0,
-   45.5
+   50.0
   ],
   "promedio_min": 8.0,
   "nota_min_revisor": 7,
   "realismo_min": 8,
-  "nota_duracion": "YouTube primero (Tomás, 21-oct-2026): meta 25–40 s, techo 45 s (en 108 mil Shorts la mediana de vistas es máxima en 11–20 s y cae fuerte sobre 30 s; el promedio visto por Short es ~16 s). Palabras: 25 s ≈ 72, 35 s ≈ 101, 40 s ≈ 115; techo 128 = voz de 45,1 s a la velocidad más lenta medida (Ep. 3: 181 palabras en 63,4 s = 2,855 palabras/s).",
+  "nota_duracion": "YouTube primero (Tomás, 21-oct-2026): meta 25–40 s, techo 45 s (en 108 mil Shorts la mediana de vistas es máxima en 11–20 s y cae fuerte sobre 30 s; el promedio visto por Short es ~16 s). Palabras: 25 s ≈ 72, 35 s ≈ 101, 40 s ≈ 115; techo 128 = voz de 45,1 s a la velocidad más lenta medida (Ep. 3: 181 palabras en 63,4 s = 2,855 palabras/s). Ep. 7 v2 (27-oct-2026): Tomás autorizó pasar de 45 s para sumar mecánica; techo temporal 50 s / 145 palabras.",
   "horas_meta": 2.5,
   "comprension_min": 8,
   "nota_comprension": "Ep. 6 (24-oct-2026, 'vergüenza máxima' de Tomás): el video pasó plano por plano y corrido no se entendía. Encargo 'espectador' en la puerta 6 (mira el video entero a 3 cuadros/s sin guion primero), criterio 'comprension' con mínimo 8, bloqueantes B12–B14, y la puerta 8 no empaqueta sin la 6 y la 7 aprobadas."
