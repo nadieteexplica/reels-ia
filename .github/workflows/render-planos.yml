@@ -232,9 +232,16 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          ffmpeg -y -v error -i "_o/$EP.mp4" -vf "fps=1,scale=216:384,tile=12x7" -frames:v 1 "_o/contacto.jpg"
+          ffmpeg -y -v error -i "_o/$EP.mp4" -vf "fps=1,scale=216:384,tile=12x7" -frames:v 1 "_o/contacto.jpg" || true
           B="$(echo "$EP" | cut -d- -f1)-borrador"
           gh release view "$B" >/dev/null 2>&1 || gh release create "$B" --prerelease --title "$EP (borrador para revisión)" --notes "Borrador interno para la revisión. No publicar."
           cp _o/${EP%%-*}_planos.json _o/planos.json
-          gh release upload "$B" "_o/$EP.mp4" _o/contacto.jpg _o/qa.txt _o/subs_log.json _o/planos.json --clobber
-          for x in graficos.json chequeo.json chequeo.txt meta.zip; do [ -f "_o/$x" ] && gh release upload "$B" "_o/$x" --clobber; done
+          for x in "$EP.mp4" contacto.jpg qa.txt subs_log.json planos.json graficos.json chequeo.json chequeo.txt meta.zip; do
+            [ -f "_o/$x" ] || continue
+            for i in 1 2 3; do gh release upload "$B" "_o/$x" --clobber && break || { echo "reintento $i: $x"; sleep 15; }; done
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: video
+          path: _o/*
