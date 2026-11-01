@@ -1,0 +1,66 @@
+{
+  "perfil": "Carlos",
+  "videos": [
+    {
+      "codigo": "XL",
+      "se_queda_2s": true,
+      "por_que_2s": "Se ve la cortina de ducha pegándose al tipo, una molestia que conozco y nunca supe por qué pasa; el muñeco con espuma es medio raro pero se entiende al tiro.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 60,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué la cortina se me pega encima si ni siquiera es el aire caliente?"
+    },
+    {
+      "codigo": "SY",
+      "se_queda_2s": false,
+      "por_que_2s": "Muñeco 3D comiendo helado y agarrándose la cabeza: el dolor de frente por helado lo sabe todo el mundo, se ve genérico y de IA.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "LS",
+      "se_queda_2s": true,
+      "por_que_2s": "Un rascacielos al que le van bajando el contador de pisos (36, 34, 33...) sin explosión ni nada: quiero ver cómo lo hacen.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 72,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo botan un edificio de 40 pisos piso por piso, sin explosión y sin que se caiga?"
+    },
+    {
+      "codigo": "JV",
+      "se_queda_2s": true,
+      "por_que_2s": "Un ratón echando fuego al lado de un pájaro con un ají en el pico, tranquilo: es caricatura pero gracioso, y quiero saber por qué al pájaro no le pasa nada.",
+      "se_va_en": "En Arizona, científicos filmaron un chiltepín",
+      "lo_ve_entero_pct": 30,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante y el ratón sí?"
+    },
+    {
+      "codigo": "KS",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio de ladrillo de cinco pisos parado sobre un montón de patas hidráulicas: mecánica real, y quiero ver cómo camina eso.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 72,
+      "lo_manda": true,
+      "a_quien": "a un colega ingeniero civil",
+      "pregunta_que_te_dejo": "¿Cómo hace un edificio de cinco pisos para caminar sobre patas?"
+    },
+    {
+      "codigo": "CP",
+      "se_queda_2s": true,
+      "por_que_2s": "Un tipo con casco flotando sobre un cilindro enorme, con cartel de SIMULACIÓN: la levitación diamagnética es real y me pica saber cuánto imán hace falta.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 62,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cuánto imán haría falta para hacer flotar a una persona?"
+    }
+  ],
+  "orden": ["KS", "LS", "XL", "CP", "JV", "SY"]
+}

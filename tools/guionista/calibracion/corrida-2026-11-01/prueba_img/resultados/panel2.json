@@ -1,0 +1,66 @@
+{
+  "perfil": "Valentina",
+  "videos": [
+    {
+      "codigo": "NA",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio con patitas amarillas y azules abajo, y el subtítulo dice que se fue caminando: absurdo, quiero ver cómo camina.",
+      "se_va_en": "Pesa más de siete mil seiscientas toneladas.",
+      "lo_ve_entero_pct": 20,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo va a caminar un edificio entero?"
+    },
+    {
+      "codigo": "QU",
+      "se_queda_2s": true,
+      "por_que_2s": "Un ratoncito echando fuego por la boca al lado de un pájaro que se come el ají con cara de nada: es un meme, me da risa.",
+      "se_va_en": "En Arizona, científicos filmaron un chiltepín",
+      "lo_ve_entero_pct": 35,
+      "lo_manda": true,
+      "a_quien": "a mi amigo que come ají con todo y dice que no pica",
+      "pregunta_que_te_dejo": "¿Por qué el ratón echa fuego y el pájaro ni se inmuta?"
+    },
+    {
+      "codigo": "XN",
+      "se_queda_2s": false,
+      "por_que_2s": "Un rascacielos gris de ciudad con cuatro cartelitos chicos y un contador de pisos: no entiendo qué miro y parece una clase.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 3,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "LY",
+      "se_queda_2s": true,
+      "por_que_2s": "Un tipo con casco y chaleco flotando en el aire arriba de un tambor gigante en el desierto: raro, quiero saber qué onda.",
+      "se_va_en": "Y al agua, un imán la empuja... un poquito.",
+      "lo_ve_entero_pct": 30,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Se puede flotar de verdad con un imán?"
+    },
+    {
+      "codigo": "BG",
+      "se_queda_2s": true,
+      "por_que_2s": "Un chico con hielo en la frente pone cara de susto con el helado y después se agarra la cabeza: el cerebro congelado, lo conozco de memoria.",
+      "se_va_en": "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara.",
+      "lo_ve_entero_pct": 25,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "Si el frío no toca el cerebro, ¿por qué me duele la frente?"
+    },
+    {
+      "codigo": "ZB",
+      "se_queda_2s": true,
+      "por_que_2s": "Un señor con bigote lleno de espuma y la cortina de ducha pegándosele al cuerpo: me pasa siempre y me da risa la espuma.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 62,
+      "lo_manda": true,
+      "a_quien": "a mi amiga que siempre se queja de que la cortina de la ducha la ataca",
+      "pregunta_que_te_dejo": "¿Por qué la cortina siempre se me pega encima?"
+    }
+  ],
+  "orden": ["QU", "ZB", "BG", "NA", "LY", "XN"]
+}

@@ -1,0 +1,66 @@
+{
+  "perfil": "Diego",
+  "videos": [
+    {
+      "codigo": "FZ",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio de ladrillo parado sobre patas mecánicas y la voz dice que se fue caminando; se entiende al instante y está bien loco.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 55,
+      "lo_manda": true,
+      "a_quien": "Al grupo de amigos, sobre todo a mi primo el de ingeniería civil",
+      "pregunta_que_te_dejo": "¿Cómo le hicieron para que un edificio entero caminara?"
+    },
+    {
+      "codigo": "QP",
+      "se_queda_2s": false,
+      "por_que_2s": "Un niño de caricatura 3D comiendo helado, se ve genérico y de IA, y lo del dolor de frente por helado ya me lo sé.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 2,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "UT",
+      "se_queda_2s": true,
+      "por_que_2s": "Un ratón rosa echando fuego por la boca en el desierto me dio risa, y el chile me toca de cerca, aunque aquí le decimos chile y no ají.",
+      "se_va_en": "El ají trae capsaicina, una molécula que las hace sonar.",
+      "lo_ve_entero_pct": 30,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"
+    },
+    {
+      "codigo": "ZF",
+      "se_queda_2s": true,
+      "por_que_2s": "Vi un rascacielos achicándose mientras el contador de pisos bajaba, y la voz dice que es el más alto que Japón ha botado; me dio curiosidad cómo lo hacen, aunque el edificio se ve chiquito y hay mucho letrero.",
+      "se_va_en": "Solo armar eso toma dos meses.",
+      "lo_ve_entero_pct": 35,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo tiran un rascacielos piso por piso sin explosión?"
+    },
+    {
+      "codigo": "DO",
+      "se_queda_2s": false,
+      "por_que_2s": "Un cilindro enorme y un señor chiquito flotando allá lejos, no capto qué estoy viendo, dice SIMULACIÓN y suena a clase de física.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 3,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "JE",
+      "se_queda_2s": true,
+      "por_que_2s": "Un viejito con shampoo en la ducha y la cortina que se le pega a la espalda, eso nos ha pasado a todos y me dio risa.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 70,
+      "lo_manda": true,
+      "a_quien": "Al grupo de amigos y a mis roomies, que siempre se quejan de la cortina",
+      "pregunta_que_te_dejo": "¿Por qué la cortina se me pega aunque el agua esté fría?"
+    }
+  ],
+  "orden": ["FZ", "JE", "ZF", "UT", "DO", "QP"]
+}

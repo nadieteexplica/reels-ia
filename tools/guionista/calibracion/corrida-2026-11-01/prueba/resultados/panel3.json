@@ -1,0 +1,66 @@
+{
+  "perfil": "Carlos, 35, Bogotá (Colombia). Ingeniero, escéptico",
+  "videos": [
+    {
+      "codigo": "OS",
+      "se_queda_2s": true,
+      "por_que_2s": "Una cortina de ducha que se te pega encima, eso me pasa todos los días y nunca supe por qué; el monito 3D no me convence mucho, pero la pregunta sí.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 60,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué la cortina se me pega siempre cuando me ducho?"
+    },
+    {
+      "codigo": "GQ",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio de ladrillo parado sobre patas mecánicas y que camina; raro de verdad, quiero ver si es real o puro render.",
+      "se_va_en": "Y lo más loco: Shanghái ya tenía práctica.",
+      "lo_ve_entero_pct": 45,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo hace caminar un edificio de cinco pisos sin que se agriete?"
+    },
+    {
+      "codigo": "HU",
+      "se_queda_2s": true,
+      "por_que_2s": "Un tipo diminuto flotando sobre un cilindro gigante y dice 'simulación', o sea no me engaña; y lo del cuerpo repeliendo imanes me suena a física real.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 55,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cuánto imán haría falta para flotar de verdad?"
+    },
+    {
+      "codigo": "JP",
+      "se_queda_2s": false,
+      "por_que_2s": "Un muñeco 3D comiendo helado y agarrándose la cabeza; todo el mundo sabe lo del helado y se ve genérico, de IA.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 3,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "AV",
+      "se_queda_2s": true,
+      "por_que_2s": "Un rascacielos que se va achicando con el contador bajando, y dicen que Japón lo botó; quiero saber cómo bota uno de 40 pisos sin explosión.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 65,
+      "lo_manda": true,
+      "a_quien": "un colega ingeniero civil",
+      "pregunta_que_te_dejo": "¿Cómo se bota un rascacielos de 40 pisos sin explotarlo?"
+    },
+    {
+      "codigo": "CO",
+      "se_queda_2s": false,
+      "por_que_2s": "Caricatura de ratón escupiendo fuego en un desierto; se ve infantil y ya sé que los pájaros no sienten el picante.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 15,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    }
+  ],
+  "orden": ["AV", "OS", "HU", "GQ", "CO", "JP"]
+}

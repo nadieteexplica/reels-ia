@@ -1,0 +1,139 @@
+{
+ "paneles": 5,
+ "calibracion": {
+  "rho_quedan_vs_yt_se_quedo": 0.68,
+  "rho_quedan_vs_ig_pasa_3s": 0.49,
+  "rho_borda_vs_yt_vistas": 0.06,
+  "peor_real": "ep05",
+  "peor_real_en_ultimo_tercio": true,
+  "se_puede_usar_para_descartar": false
+ },
+ "videos": {
+  "ep04": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 61.4,
+   "manda": 60.0,
+   "borda": 0.24,
+   "se_va_en": [
+    "final",
+    "final",
+    "final",
+    "En el centro del remolino, la presión baja.",
+    "final"
+   ],
+   "por_que_2s": [
+    "Un wey con espuma y bigote en la regadera y la cortina que se le pega, me pasa todos los días y se ve chistoso.",
+    "Un señor con bigote lleno de espuma y la cortina de ducha pegándosele al cuerpo: me pasa siempre y me da risa la espuma.",
+    "Se ve la cortina de ducha pegándose al tipo, una molestia que conozco y nunca supe por qué pasa; el muñeco con espuma es medio raro pero se entiende al tiro.",
+    "Un flaco con bigote y espuma en la cabeza y la cortina que se le pega como un monstruo, es gracioso y me ha pasado.",
+    "Alguien en la ducha con espuma y la cortina que se le pega: eso me pasa a mí cada semana y quiero saber por qué."
+   ]
+  },
+  "ep02": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 38.0,
+   "manda": 80.0,
+   "borda": 0.32,
+   "se_va_en": [
+    "En Arizona, científicos filmaron un chiltepín",
+    "En Arizona, científicos filmaron un chiltepín",
+    "En Arizona, científicos filmaron un chiltepín",
+    "Tu lengua tiene sensores de calor, como alarmas de incendio.",
+    "final"
+   ],
+   "por_que_2s": [
+    "Un ratón echando fuego por el chile y un pájaro tan tranquilo con el chile en el pico, me da risa y quiero saber por qué.",
+    "Un ratoncito echando fuego por la boca al lado de un pájaro que se come el ají con cara de nada: es un meme, me da risa.",
+    "Un ratón echando fuego al lado de un pájaro con un ají en el pico, tranquilo: es caricatura pero gracioso, y quiero saber por qué al pájaro no le pasa nada.",
+    "Un ratón echando una llamarada por la boca al lado de un pájaro con un ají en el pico como si nada, me río, quiero saber qué pasa.",
+    "Un ratoncito echando fuego por la boca al lado de un pájaro con un chile atravesado y cara de nada; me dio risa y el chile es de todos los días."
+   ]
+  },
+  "ep07": {
+   "tipo": "ancla",
+   "quedan_2s": 40.0,
+   "entero": 20.4,
+   "manda": 0.0,
+   "borda": 0.8,
+   "se_va_en": [
+    "Solo armar eso toma dos meses.",
+    "cuadro0",
+    "final",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Entendí que un edificio de 40 pisos lo van bajando piso por piso y quiero ver cómo, aunque tiene muchos letreritos chicos.",
+    "Un rascacielos gris de ciudad con cuatro cartelitos chicos y un contador de pisos: no entiendo qué miro y parece una clase.",
+    "Un rascacielos al que le van bajando el contador de pisos (36, 34, 33...) sin explosión ni nada: quiero ver cómo lo hacen.",
+    "Un edificio con cuatro cartelitos chiquitos y un contador de pisos, se ve como infografía de noticiero, no entiendo qué tengo que mirar.",
+    "Veo una ciudad de maqueta con muchos letreritos chicos y números que bajan, no entiendo qué miro ni me toca a mí; parece un simulador."
+   ]
+  },
+  "ep05": {
+   "tipo": "ancla",
+   "quedan_2s": 40.0,
+   "entero": 18.4,
+   "manda": 0.0,
+   "borda": 0.8,
+   "se_va_en": [
+    "cuadro0",
+    "Y al agua, un imán la empuja... un poquito.",
+    "final",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Un señor con casco flotando sobre un tambor gigante con torres nucleares atrás, no sé qué estoy viendo y se ve como CG genérico.",
+    "Un tipo con casco y chaleco flotando en el aire arriba de un tambor gigante en el desierto: raro, quiero saber qué onda.",
+    "Un tipo con casco flotando sobre un cilindro enorme, con cartel de SIMULACIÓN: la levitación diamagnética es real y me pica saber cuánto imán hace falta.",
+    "Un tipo con casco flotando frente a un tanque en el desierto, no entiendo qué es el tanque, la píldora 'SIMULACIÓN' y la voz suenan a clase de física.",
+    "Un señor con casco flotando junto a unas torres con humo; no sé qué es ni qué tiene que ver conmigo, y dice 'simulación'."
+   ]
+  },
+  "ep01": {
+   "tipo": "ancla",
+   "quedan_2s": 80.0,
+   "entero": 23.4,
+   "manda": 40.0,
+   "borda": 0.56,
+   "se_va_en": [
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+    "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara.",
+    "cuadro0",
+    "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara.",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada."
+   ],
+   "por_que_2s": [
+    "El cuate se come el helado, se le congela la frente y pone cara de dolor, todos hemos pasado por eso.",
+    "Un chico con hielo en la frente pone cara de susto con el helado y después se agarra la cabeza: el cerebro congelado, lo conozco de memoria.",
+    "Muñeco 3D comiendo helado y agarrándose la cabeza: el dolor de frente por helado lo sabe todo el mundo, se ve genérico y de IA.",
+    "El flaco con hielo en la frente poniendo cara de susto y luego agarrándose la cabeza, es el congelamiento del helado, me pasa siempre.",
+    "Un muchacho comiendo helado y se agarra la cabeza con cara de dolor; ese dolor de frente lo conozco y los niños lo sufren siempre."
+   ]
+  },
+  "ep03": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 41.4,
+   "manda": 60.0,
+   "borda": 0.28,
+   "se_va_en": [
+    "final",
+    "Pesa más de siete mil seiscientas toneladas.",
+    "final",
+    "Las patas van en dos grupos. Uno aguanta el peso.",
+    "Las patas van en dos grupos. Uno aguanta el peso."
+   ],
+   "por_que_2s": [
+    "Un edificio de cinco pisos caminando sobre patitas, quiero ver cómo hicieron eso.",
+    "Un edificio con patitas amarillas y azules abajo, y el subtítulo dice que se fue caminando: absurdo, quiero ver cómo camina.",
+    "Un edificio de ladrillo de cinco pisos parado sobre un montón de patas hidráulicas: mecánica real, y quiero ver cómo camina eso.",
+    "Un edificio entero con un montón de patitas robot abajo, y dicen que se fue caminando, quiero ver cómo camina eso.",
+    "Un edificio de ladrillo parado sobre patitas de colores y dice que se fue caminando; no lo entiendo pero me da curiosidad, aunque se ve como juego de computadora."
+   ]
+  }
+ }
+}
