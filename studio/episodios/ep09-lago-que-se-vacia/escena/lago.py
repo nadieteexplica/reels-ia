@@ -142,7 +142,7 @@ def mat_valle(nombre="valle"):
     vor = nt.nodes.new("ShaderNodeTexVoronoi"); vor.feature = "DISTANCE_TO_EDGE"; vor.inputs["Scale"].default_value = 0.35
     nt.links.new(tc.outputs["Object"], vor.inputs["Vector"])
     manchas = K._ruido(nt, escala=0.35, detalle=6)
-    barro = K._rampa(nt, manchas.outputs["Fac"], (0.05, 0.049, 0.047), (0.16, 0.152, 0.142), (0.3, 0.72))
+    barro = K._rampa(nt, manchas.outputs["Fac"], (0.075, 0.064, 0.052), (0.21, 0.18, 0.145), (0.3, 0.72))
     limo = K._rampa(nt, grande.outputs["Fac"], (0.17, 0.16, 0.145), (0.27, 0.255, 0.23))
     lavada = K._rampa(nt, medio.outputs["Fac"], (0.13, 0.125, 0.115), (0.24, 0.23, 0.21))
     bosque = K._rampa(nt, fino.outputs["Fac"], (0.012, 0.02, 0.01), (0.035, 0.05, 0.022), (0.35, 0.7))
@@ -217,7 +217,12 @@ def mat_valle(nombre="valle"):
     nt.links.new(b.outputs[0], mxs.inputs[1]); nt.links.new(em.outputs[0], mxs.inputs[2])
     nt.links.new(mxs.outputs[0], nt.nodes["Material Output"].inputs[0])
     # brillo: barro mojado en los bajos (0,22) y en las grietas; limo y laderas mates
-    rug = rango(zz, -31.0, -22.0, 0.16, 0.55)
+    charco = K._ruido(nt, escala=0.09, detalle=4)                                  # charcos: brillan y reflejan el cielo
+    kch = rango(charco.outputs["Fac"], 0.6, 0.63)
+    rug0 = rango(zz, -31.0, -22.0, 0.5, 0.75)
+    rug = nt.nodes.new("ShaderNodeMix"); rug.data_type = "FLOAT"
+    nt.links.new(kch, rug.inputs[0]); nt.links.new(rug0, rug.inputs[2]); rug.inputs[3].default_value = 0.03
+    rug = rug.outputs[0]
     rug2 = nt.nodes.new("ShaderNodeMath"); rug2.operation = "MAXIMUM"
     nt.links.new(rug, rug2.inputs[0]); nt.links.new(rango(zz, -2, 6, 0.0, 0.92), rug2.inputs[1])
     nt.links.new(rug2.outputs[0], b.inputs["Roughness"])
@@ -507,6 +512,7 @@ def valle(sc, nivel=NIVEL_LLENO, detalle=1.0, sol_elev=14.0, sol_rot=78.0, xmax=
             if o["x"] + max(o.dimensions) * 0.6 > xmax:
                 o.hide_render = True
     su = sueltos(sc, xmax=xmax)
+    su += sueltos(sc, centro=(86.0, 418.0), radio=55.0, n_piedras=260, n_hielo=45, semilla=6, xmax=xmax)   # cerca de la cámara del cuadro 0
     ag = agua(sc, nivel, xmax)
     ubicar_tempanos(tem, nivel)
     return {"terreno": t, "glaciar": g, "muro": muro, "tempanos": tem, "sueltos": su, "agua": ag, "sol": sol}

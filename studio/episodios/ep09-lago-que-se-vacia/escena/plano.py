@@ -40,7 +40,7 @@ if pz.get("cuadrado"):
 sc.render.resolution_x, sc.render.resolution_y = w, h
 sc.render.resolution_percentage = 100
 sc.cycles.samples = int(os.environ.get("SAMPLES", 16)) if not pz.get("muestras_extra") else int(int(os.environ.get("SAMPLES", 16)) * pz["muestras_extra"])
-sc.render.use_persistent_data = True
+sc.render.use_persistent_data = PL.ESCENA.get(int(pz["base"])) != "E4"   # en E4 un cuadro salió con la tierra negra (puerta 7)
 dev = os.environ.get("DEVICE", "").upper()
 if dev:
     prefs = bpy.context.preferences.addons["cycles"].preferences

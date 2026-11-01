@@ -309,8 +309,9 @@ def p12(sc, a, b):
         L.ubicar_tempanos(S["tempanos"], nivel)
         cae(0.0)
         fase_agua(S, f)
-        p = Vector((p_fin.x, p_fin.y, max(p_fin.z, nivel + 2.4)))
-        mirar(S["cam"], p, m_fin + Vector((0, 0, p.z - p_fin.z)) * 0.6, lente=C0["lente"])
+        pf, mf = c0_pose(-1.6 * (1.0 - x))          # llega a la cámara del cuadro 0 avanzando (antes quedaba quieta 1,6 s)
+        p = Vector((pf.x, pf.y, max(pf.z, nivel + 2.4)))
+        mirar(S["cam"], p, mf + Vector((0, 0, p.z - pf.z)) * 0.6, lente=C0["lente"])
         return cuadro0_meta(sc, S)
     return {"actualizar": act}
 
