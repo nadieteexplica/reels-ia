@@ -74,10 +74,11 @@ def trozo_que_cae(sc, S):
     puerta 3: "no hay acción en curso en el primer segundo")."""
     t0 = S["tempanos"][0]
     tr = L.roca_hielo(sc, "TrozoCae", (1.6, 1.2, 1.0), 77, bpy.data.materials["hielo_tempano"])
-    tope = t0.matrix_world.translation + Vector((t0.dimensions.x * 0.33, t0.dimensions.y * 0.38, t0.dimensions.z * 0.3))
-    piso = V.z_suelo(tope.x, tope.y) + 0.35
+    off = Vector((t0.dimensions.x * 0.33, t0.dimensions.y * 0.38, t0.dimensions.z * 0.3))
 
     def pos(t):
+        tope = t0.location + off            # sigue al témpano (si flota, sube con él; puerta 4: quedaba en el cielo)
+        piso = V.z_suelo(tope.x, tope.y) + 0.35
         caida = max(0.0, t - 0.12)
         z = max(piso, tope.z - 0.5 * 9.81 * caida * caida)
         rot = min(1.0, caida / 0.75)
@@ -226,7 +227,7 @@ def p7(sc, a, b):
 
     def act(f):
         t = tf(f)
-        r = 0.5 + 5.5 * suave(lin(t, t0, b / FPS - 0.15))
+        r = 0.5 + 8.0 * suave(lin(t, t0, b / FPS - 0.15))
         C.estado(0.0, lift=7.0 - 4.0 * lin(t, t0, b / FPS), lengua=-420.0, radio=r, fase=-0.035 * f)
         fase_agua(S, f)
         cam_corte(S, "cerca", 1.0 - 0.6 * suave(lin(f, a, b - 1)))
@@ -241,7 +242,7 @@ def p8(sc, a, b):
     def act(f):
         x = lin(f, a, b - 1)
         nivel = -14.0 * x
-        C.estado(nivel, lift=3.0 * (1 - x), lengua=-420.0, radio=6.0 + 1.5 * x, fase=-0.07 * f)
+        C.estado(nivel, lift=3.0 * (1 - x), lengua=-420.0, radio=8.5 + 1.0 * x, fase=-0.07 * f)
         fase_agua(S, f)
         cam_corte(S, "lejos", -0.5 * suave(x))
         return meta_corte(sc, S, C)
@@ -271,7 +272,7 @@ def p10(sc, a, b):
 
     def act(f):
         t = tf(f)
-        r = 7.5 * (1 - sale(lin(t, t0, b / FPS - 0.25)))
+        r = 9.5 * (1 - sale(lin(t, t0, b / FPS - 0.25)))
         C.estado(L.NIVEL_VACIO, lift=0.0, lengua=-420.0 if r > 0.3 else 0.0, radio=r, fase=-0.02 * f)
         fase_agua(S, f)
         cam_corte(S, "cerca", suave(lin(f, a, b - 1)))
@@ -299,13 +300,14 @@ def p12(sc, a, b):
     # "y otra vez…": el lago se vuelve a ir; la cámara baja con el agua y termina en la cámara exacta del cuadro 0 (loop)
     S = armar_valle(sc, 0.0)
     p_fin, m_fin = c0_pose(0.0)
-    trozo_que_cae(sc, S)(0.0)                    # el trozo que cae en el plano 1 todavía está arriba (loop)
+    cae = trozo_que_cae(sc, S)                   # el trozo que cae en el plano 1 todavía está arriba del témpano (loop)
 
     def act(f):
         x = lin(f, a, b - 1)
         nivel = L.NIVEL_VACIO * sale(min(1.0, x * 1.15))
         S["agua"].location.z = nivel
         L.ubicar_tempanos(S["tempanos"], nivel)
+        cae(0.0)
         fase_agua(S, f)
         p = Vector((p_fin.x, p_fin.y, max(p_fin.z, nivel + 2.4)))
         mirar(S["cam"], p, m_fin + Vector((0, 0, p.z - p_fin.z)) * 0.6, lente=C0["lente"])
@@ -349,7 +351,7 @@ def p_flota(sc, a, b):
 def armar_rio(sc):
     R = L.rio(sc, detalle=DET)
     R["cam"] = E.camara(sc, (0, 0, 0), (0, -1, 0), lente=26, fstop=None)
-    sc.view_settings.exposure = EXPO + 0.3
+    sc.view_settings.exposure = EXPO + 0.6
     return R
 
 

@@ -480,9 +480,18 @@ def apunta(im, f, k, clave, texto, t0, punto, fondo=(250, 250, 248), tinta=(24, 
     if t < t0 or (hasta is not None and t >= hasta):
         return
     px, py = meta(k, f, punto, None) or (540, 700)
-    cy = max(470, min(800, py - 230))
     cx = max(330, min(750, px))
     s = pop(t - t0)
+    if py > 1290:      # lo que nombra está bajo los subtítulos: la píldora va debajo y la flecha sube (no cruza el texto)
+        cy = min(1600, py + 150)
+        if cy - py > 100 and s > 0.5:
+            flecha(im, cx, cy - 46, px, py + 14, col, ancho=8)
+        pildora(im, texto, cx, cy, fondo=fondo, tinta=tinta, s=s, tam=tam)
+        return
+    cy = max(470, min(800, py - 230))
+    if py > 960:       # caería sobre los subtítulos: sin flecha
+        pildora(im, texto, cx, cy, fondo=fondo, tinta=tinta, s=s, tam=tam)
+        return
     if py - cy > 120 and s > 0.5:
         flecha(im, cx, cy + 46, px, py - 14, col, ancho=8)
     pildora(im, texto, cx, cy, fondo=fondo, tinta=tinta, s=s, tam=tam)
@@ -524,7 +533,7 @@ def graficos(im, f, k):
     elif k == 11:
         t_rio = tw("río", a0)
         apunta(im, f, 11, "sale", "SALE BAJO EL GLACIAR", tw("Sale", a0), "boca", hasta=t_rio - 0.1, tam=44)
-        apunta(im, f, 11, "x3", "EL RÍO × 3", tw("triplica", a0), "rio")
+        pild(im, f, 11, "x3", "EL RÍO × 3", tw("triplica", a0), P)       # puerta 4: la flecha salía del cuadro
     elif k == 12:
         apunta(im, f, 12, "atras", "← RÍO ARRIBA", tw("atrás", a0), "atras")
     elif k == 13:

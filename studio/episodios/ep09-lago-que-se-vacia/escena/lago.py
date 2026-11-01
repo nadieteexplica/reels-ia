@@ -553,8 +553,8 @@ def mat_roca_corte():
     """Roca cortada: estratos ondulados grises y cafés con vetas claras y fracturas finas."""
     m, nt, b = K._nodos("roca_corte")
     m["corte"] = 1
-    capas = K._ruido(nt, escala=0.09, detalle=8, estirar=(0.14, 0.14, 1.0))
-    capas.inputs["Distortion"].default_value = 2.2
+    capas = K._ruido(nt, escala=0.09, detalle=8, estirar=(0.4, 0.4, 1.0))
+    capas.inputs["Distortion"].default_value = 2.5
     r = nt.nodes.new("ShaderNodeValToRGB")
     els = r.color_ramp.elements
     els[0].position, els[0].color = 0.3, (0.05, 0.045, 0.04, 1)
@@ -562,7 +562,7 @@ def mat_roca_corte():
     e = els.new(0.47); e.color = (0.16, 0.13, 0.1, 1)
     e = els.new(0.55); e.color = (0.24, 0.23, 0.21, 1)
     nt.links.new(capas.outputs["Fac"], r.inputs[0])
-    veta = K._ruido(nt, escala=0.25, detalle=4, estirar=(0.03, 0.03, 1.0))
+    veta = K._ruido(nt, escala=0.25, detalle=6, estirar=(0.25, 0.25, 1.0))
     kv = K._mapa(nt, veta.outputs["Fac"], 0.0, 1.0); kv.inputs["From Min"].default_value = 0.66; kv.inputs["From Max"].default_value = 0.7
     mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"
     k2 = nt.nodes.new("ShaderNodeMath"); k2.operation = "MULTIPLY"; k2.inputs[1].default_value = 0.6
@@ -573,9 +573,16 @@ def mat_roca_corte():
     cg = nt.nodes.new("ShaderNodeCombineColor"); [nt.links.new(kg.outputs[0], cg.inputs[i]) for i in range(3)]
     mm = nt.nodes.new("ShaderNodeMix"); mm.data_type = "RGBA"; mm.blend_type = "MULTIPLY"; mm.inputs[0].default_value = 1.0
     nt.links.new(mx.outputs[2], mm.inputs[6]); nt.links.new(cg.outputs[0], mm.inputs[7])
-    nt.links.new(mm.outputs[2], b.inputs["Base Color"])
+    cl = nt.nodes.new("ShaderNodeTexVoronoi"); cl.inputs["Scale"].default_value = 0.9; cl.inputs["Randomness"].default_value = 1.0
+    tcr = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tcr.outputs["Object"], cl.inputs["Vector"])
+    kcl = K._mapa(nt, cl.outputs["Distance"], 0.0, 1.0); kcl.inputs["From Min"].default_value = 0.0; kcl.inputs["From Max"].default_value = 0.35
+    mcl = nt.nodes.new("ShaderNodeMix"); mcl.data_type = "RGBA"; mcl.blend_type = "MULTIPLY"
+    kk = nt.nodes.new("ShaderNodeMath"); kk.operation = "SUBTRACT"; kk.inputs[0].default_value = 1.0; nt.links.new(kcl.outputs[0], kk.inputs[1])
+    kk2 = nt.nodes.new("ShaderNodeMath"); kk2.operation = "MULTIPLY"; kk2.inputs[1].default_value = 0.45; nt.links.new(kk.outputs[0], kk2.inputs[0])
+    nt.links.new(kk2.outputs[0], mcl.inputs[0]); nt.links.new(mm.outputs[2], mcl.inputs[6]); mcl.inputs[7].default_value = (0.45, 0.42, 0.38, 1)
+    nt.links.new(mcl.outputs[2], b.inputs["Base Color"])
     b.inputs["Roughness"].default_value = 0.9
-    s = nt.nodes.new("ShaderNodeMath"); s.operation = "ADD"; nt.links.new(gr.outputs["Fac"], s.inputs[0]); nt.links.new(capas.outputs["Fac"], s.inputs[1])
+    s = nt.nodes.new("ShaderNodeMath"); s.operation = "ADD"; nt.links.new(gr.outputs["Fac"], s.inputs[0]); nt.links.new(cl.outputs["Distance"], s.inputs[1])
     K._bump(nt, b, s.outputs[0], 0.8, 0.6)
     return m
 
@@ -1059,21 +1066,58 @@ def flecha_plana(sc, nombre, pos, largo=130.0, ancho=34.0, color=(0.6, 0.88, 1.0
 
 
 def casa(sc, nombre, pos, giro=0.0, color=(0.55, 0.12, 0.08)):
-    """Casa chica de campo patagónica (7 × 5 m, techo de zinc a dos aguas), vista de lejos."""
+    """Casa de campo patagónica (7 × 5 m): techo de zinc a dos aguas con aleros, chimenea, puerta y ventanas con marco."""
     x, y, z = pos
-    cuerpo = K.caja(sc, nombre, (7.0, 5.0, 3.0), (x, y, z + 1.5), mat=K.mat_pintura(nombre + "_m", color, sucio=0.4), rot=(0, 0, giro))
-    bpy.ops.mesh.primitive_cone_add(vertices=4, radius1=4.9, depth=2.0, location=(x, y, z + 4.0), rotation=(0, 0, math.radians(45) + giro))
-    techo = bpy.context.object; techo.name = nombre + "_techo"; techo.scale = (1.0, 0.72, 1.0)
-    K.asignar(techo, K.mat_metal_cepillado(nombre + "_zinc", (0.42, 0.43, 0.45), rugo=(0.4, 0.7)))
-    # puerta y ventanas en las dos caras largas (se ve que es una casa, no una caja)
     c, s = math.cos(giro), math.sin(giro)
-    oscuro = K.mat_pintura(nombre + "_vano", (0.05, 0.05, 0.055), sucio=0.2)
-    vidrio = K.mat_pintura(nombre + "_vidrio", (0.12, 0.16, 0.2), sucio=0.1)
+    def en(lx, ly, lz):
+        return (x + lx * c - ly * s, y + lx * s + ly * c, z + lz)
+    cuerpo = K.caja(sc, nombre, (7.0, 5.0, 3.0), en(0, 0, 1.5), mat=K.mat_pintura(nombre + "_m", color, sucio=0.55), rot=(0, 0, giro))
+    K.caja(sc, nombre + "_zocalo", (7.1, 5.1, 0.5), en(0, 0, 0.1), mat=K.mat_concreto(nombre + "_zc"), rot=(0, 0, giro))
+    # techo: dos planchas inclinadas (cumbrera a lo largo), con 0,5 m de alero
+    zinc = K.mat_metal_cepillado(nombre + "_zinc", (0.36, 0.37, 0.39), rugo=(0.35, 0.75))
     for lado in (1, -1):
-        for (lx, lz, ancho, alto, mat) in ((1.6, 1.0, 0.95, 2.0, oscuro), (-1.4, 1.65, 1.2, 0.9, vidrio), (-0.1, 1.65, 0.9, 0.9, vidrio)):
-            ly = lado * 2.53
-            K.caja(sc, f"{nombre}_v{lado}{lx}", (ancho, 0.08, alto), (x + lx * c - ly * s, y + lx * s + ly * c, z + lz), mat=mat, rot=(0, 0, giro))
+        ang = math.atan2(1.6, 3.1)
+        K.caja(sc, f"{nombre}_techo{lado}", (8.0, math.hypot(3.1, 1.6) + 0.1, 0.12), en(0, lado * 1.55, 3.0 + 0.85),
+               mat=zinc, rot=(-lado * ang, 0, giro))
+    # hastiales (los triángulos de los extremos)
+    for lx in (3.5, -3.5):
+        v = [en(lx, -2.5, 3.0), en(lx, 2.5, 3.0), en(lx, 0, 4.6)]
+        me = bpy.data.meshes.new(nombre + "_hast"); me.from_pydata(v, [], [(0, 1, 2)]); me.update()
+        o = bpy.data.objects.new(nombre + "_hast", me); sc.collection.objects.link(o); K.asignar(o, bpy.data.materials[nombre + "_m"])
+    K.caja(sc, nombre + "_chim", (0.6, 0.6, 1.6), en(-2.0, 0.9, 4.5), mat=K.mat_concreto(nombre + "_ch", (0.3, 0.29, 0.28)), rot=(0, 0, giro))
+    oscuro = K.mat_pintura(nombre + "_vano", (0.06, 0.05, 0.045), sucio=0.2)
+    vidrio = K.mat_vidrio(nombre + "_vidrio") if hasattr(K, "mat_vidrio") else oscuro
+    marco = K.mat_pintura(nombre + "_marco", (0.85, 0.84, 0.8), sucio=0.3)
+    for lado in (1, -1):
+        for (lx, lz, ancho, alto, mat) in ((1.6, 1.05, 0.95, 2.0, oscuro), (-1.4, 1.7, 1.2, 0.95, vidrio), (-0.1, 1.7, 0.9, 0.95, vidrio)):
+            K.caja(sc, f"{nombre}_mc{lado}{lx}", (ancho + 0.2, 0.06, alto + 0.2), en(lx, lado * 2.52, lz), mat=marco, rot=(0, 0, giro))
+            K.caja(sc, f"{nombre}_v{lado}{lx}", (ancho, 0.08, alto), en(lx, lado * 2.54, lz), mat=mat if mat is oscuro else oscuro, rot=(0, 0, giro))
     return cuerpo
+
+
+def cerca(sc, p0, p1, z_fn):
+    """Cerca de campo: postes cada 3 m y dos alambres (da la escala)."""
+    mat = K.mat_pintura("cerca_m", (0.22, 0.17, 0.12), sucio=0.6)
+    n = int(math.dist(p0, p1) / 3.0) + 1
+    for i in range(n):
+        u = i / max(1, n - 1)
+        xx, yy = p0[0] + (p1[0] - p0[0]) * u, p0[1] + (p1[1] - p0[1]) * u
+        K.caja(sc, f"Poste{i}", (0.14, 0.14, 1.3), (xx, yy, z_fn(xx, yy) + 0.6), mat=mat, bisel=0)
+
+
+def sirena(sc, x, y, z):
+    """Sirena de alerta en un poste: dos bocinas grises hacia los lados y una baliza roja arriba."""
+    K.cilindro(sc, "Poste", 0.16, 9.0, (x, y, z), verts=12, mat=K.mat_pintura("poste", (0.45, 0.46, 0.47), sucio=0.5))
+    gris = K.mat_pintura("bocina", (0.8, 0.8, 0.78), sucio=0.3)
+    for lado in (1, -1):
+        bpy.ops.mesh.primitive_cone_add(vertices=16, radius1=0.65, radius2=0.18, depth=1.3, location=(x + lado * 0.75, y, z + 8.4),
+                                        rotation=(0, -lado * math.pi / 2, 0))
+        o = bpy.context.object; o.name = f"Bocina{lado}"; K.asignar(o, gris)
+    K.caja(sc, "CajaSirena", (0.5, 0.5, 0.6), (x, y, z + 8.4), mat=gris)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=16, radius=0.28, depth=0.45, location=(x, y, z + 9.2))
+    luz = bpy.context.object; luz.name = "Baliza"
+    K.asignar(luz, K.mat_emision("baliza", (1.0, 0.06, 0.03), 0.0))
+    return luz
 
 
 def mat_rio_suelo(nombre="suelo_rio"):
@@ -1096,7 +1140,12 @@ def mat_rio_suelo(nombre="suelo_rio"):
     pasto = K._rampa(nt, medio.outputs["Fac"], (0.07, 0.08, 0.035), (0.16, 0.15, 0.07), (0.3, 0.7))
     bosque = K._rampa(nt, medio.outputs["Fac"], (0.012, 0.022, 0.01), (0.035, 0.05, 0.022), (0.35, 0.7))
     roca = K._rampa(nt, medio.outputs["Fac"], (0.06, 0.06, 0.062), (0.19, 0.19, 0.19))
-    c1 = mezclar(rango(zz, 21.5, 23.5), ripio.outputs[0], pasto.outputs[0])
+    mojado = nt.nodes.new("ShaderNodeMix"); mojado.data_type = "RGBA"; mojado.blend_type = "MULTIPLY"
+    kmj = nt.nodes.new("ShaderNodeMath"); kmj.operation = "MULTIPLY"
+    nt.links.new(rango(sp.outputs["Z"], 18.0, 19.8), kmj.inputs[0]); nt.links.new(rango(sp.outputs["Z"], 22.4, 20.8), kmj.inputs[1])
+    km2 = nt.nodes.new("ShaderNodeMath"); km2.operation = "MULTIPLY"; km2.inputs[1].default_value = 0.7; nt.links.new(kmj.outputs[0], km2.inputs[0])
+    nt.links.new(km2.outputs[0], mojado.inputs[0]); nt.links.new(ripio.outputs[0], mojado.inputs[6]); mojado.inputs[7].default_value = (0.32, 0.27, 0.22, 1)
+    c1 = mezclar(rango(zz, 21.5, 23.5), mojado.outputs[2], pasto.outputs[0])
     c2 = mezclar(rango(zz, 30.0, 45.0), c1, bosque.outputs[0])
     c3 = mezclar(rango(zz, 380.0, 480.0), c2, roca.outputs[0])
     ao = nt.nodes.new("ShaderNodeAmbientOcclusion"); ao.inputs["Distance"].default_value = 15.0; ao.samples = 6
@@ -1109,7 +1158,7 @@ def mat_rio_suelo(nombre="suelo_rio"):
     fino = K._ruido(nt, escala=1.2, detalle=6)
     K._bump(nt, b, fino.outputs["Fac"], 0.5, 0.15)
     camd = nt.nodes.new("ShaderNodeCameraData")
-    kh = rango(camd.outputs["View Distance"], 400.0, 6000.0, 0.0, 0.5)
+    kh = rango(camd.outputs["View Distance"], 600.0, 7000.0, 0.0, 0.3)
     em = nt.nodes.new("ShaderNodeEmission"); em.inputs[0].default_value = (0.52, 0.62, 0.78, 1); em.inputs[1].default_value = 0.42
     mxs = nt.nodes.new("ShaderNodeMixShader"); nt.links.new(kh, mxs.inputs[0])
     nt.links.new(b.outputs[0], mxs.inputs[1]); nt.links.new(em.outputs[0], mxs.inputs[2])
@@ -1117,10 +1166,54 @@ def mat_rio_suelo(nombre="suelo_rio"):
     return m
 
 
-def rio(sc, detalle=1.0, sol_elev=22.0, sol_rot=60.0):
-    w, sol, d = K.cielo_atardecer(sc, elev=sol_elev, rot=sol_rot, fuerza=0.14, sol=3.0, color_sol=(1.0, 0.84, 0.7))
+def arboles(sc, detalle=1.0, n=26000, semilla=11):
+    """Bosque (lenga/ñirre de lejos): conos oscuros en manchas sobre las terrazas y laderas bajas, no en el ripio inundable,
+    no sobre el glaciar ni encima de las casas. Da la escala a las tomas aéreas."""
+    r = np.random.default_rng(semilla)
+    # bosquecitos: centros al azar y ~40 árboles apretados alrededor de cada uno (de lejos se lee bosque, no puntos sueltos)
+    cx = r.uniform(-2100, 2100, 4000).astype(np.float32); cy = r.uniform(-1900, 1300, 4000).astype(np.float32)
+    hc = altura_rio(cx, cy)
+    okc = (hc > 3.2) & (hc < 340) & (fbm(cx, cy, 101, 220.0, 3) > 0.0)
+    cx, cy = cx[okc][:int(n / 32)], cy[okc][:int(n / 32)]
+    m_ = 40
+    x = (np.repeat(cx, m_) + r.normal(0, 32, len(cx) * m_)).astype(np.float32)
+    y = (np.repeat(cy, m_) + r.normal(0, 32, len(cy) * m_)).astype(np.float32)
+    h = altura_rio(x, y)
+    hielo = (y < Y_HOCICO + 20) & (np.abs(x - xt_rio(y)) < 520)
+    casas = np.hypot(x - 655, y + 220) < 70
+    ok = (h > 3.0) & (h < 380) & ~hielo & ~casas
+    x, y, h = x[ok][:n], y[ok][:n], h[ok][:n]
+    alto = r.uniform(9, 18, len(x)).astype(np.float32); rad = alto * r.uniform(0.22, 0.32, len(x)).astype(np.float32)
+    k = 7
+    ang = np.linspace(0, 2 * np.pi, k, endpoint=False)
+    vs = []
+    for i in range(k):
+        vs.append(np.stack([x + rad * np.cos(ang[i]), y + rad * np.sin(ang[i]), h + 20.0 + 0.6], 1))
+    vs.append(np.stack([x, y, h + 20.0 + alto], 1))
+    V = np.stack(vs, 1).reshape(-1, 3)
+    base = (np.arange(len(x)) * (k + 1))[:, None]
+    caras = np.concatenate([np.stack([base[:, 0] + i, base[:, 0] + (i + 1) % k, base[:, 0] + k], 1) for i in range(k)], 0)
+    me = bpy.data.meshes.new("Arboles")
+    me.vertices.add(len(V)); me.vertices.foreach_set("co", V.ravel())
+    me.loops.add(len(caras) * 3); me.loops.foreach_set("vertex_index", caras.ravel())
+    me.polygons.add(len(caras)); me.polygons.foreach_set("loop_start", np.arange(0, len(caras) * 3, 3)); me.polygons.foreach_set("loop_total", np.full(len(caras), 3))
+    me.update(); me.validate()
+    o = bpy.data.objects.new("Arboles", me); sc.collection.objects.link(o)
+    m, nt, b = K._nodos("arbol")
+    nz = K._ruido(nt, escala=0.02, detalle=3)
+    c = K._rampa(nt, nz.outputs["Fac"], (0.018, 0.035, 0.014), (0.06, 0.075, 0.03))
+    nt.links.new(c.outputs[0], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.85
+    hoja = K._ruido(nt, escala=1.5, detalle=6)
+    K._bump(nt, b, hoja.outputs["Fac"], 0.8, 0.5)
+    K.asignar(o, m)
+    return o
+
+
+def rio(sc, detalle=1.0, sol_elev=15.0, sol_rot=78.0):     # sol a lo largo del valle (si no, los cerros lo tapan y la luz queda plana)
+    w, sol, d = K.cielo_atardecer(sc, elev=sol_elev, rot=sol_rot, fuerza=0.14, sol=3.8, color_sol=(1.0, 0.82, 0.66))
     sky = next(n for n in w.node_tree.nodes if n.type == "TEX_SKY")
-    sky.altitude = 300; sky.aerosol_density = 2.2; sky.sun_disc = False
+    sky.altitude = 300; sky.aerosol_density = 1.3; sky.sun_disc = False
     mv = mat_rio_suelo()
     n = int(520 * detalle)
     f = malla_altura("RioValle", -2200, 2200, -2000, 1400, n, int(n * 0.78), lambda x, y: altura_rio(x, y) + 20.0, mv)
@@ -1134,12 +1227,10 @@ def rio(sc, detalle=1.0, sol_elev=22.0, sol_rot=60.0):
     casas = [casa(sc, f"Casa{i}", (cx, cy, float(altura_rio(np.array([cx], np.float32), np.array([cy], np.float32))[0]) + 20.0), g, c)
              for i, (cx, cy, g, c) in enumerate(((644, -212, 0.3, (0.55, 0.12, 0.08)), (664, -222, 0.1, (0.82, 0.78, 0.66)),
                                                   (634, -230, 0.5, (0.2, 0.32, 0.45)), (674, -238, 0.2, (0.42, 0.4, 0.36))))]
-    zs = float(altura_rio(np.array([654.0], np.float32), np.array([-204.0], np.float32))[0]) + 20.0
-    K.cilindro(sc, "Poste", 0.18, 10.0, (654.0, -204.0, zs), verts=12, mat=K.mat_pintura("poste", (0.3, 0.3, 0.3), sucio=0.5))
-    K.caja(sc, "Bocina", (1.4, 0.9, 0.9), (654.0, -204.0, zs + 9.6), mat=K.mat_pintura("bocina", (0.85, 0.85, 0.82), sucio=0.3))
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.55, location=(654.0, -204.0, zs + 10.6))
-    luz = bpy.context.object; luz.name = "Baliza"
-    K.asignar(luz, K.mat_emision("baliza", (1.0, 0.08, 0.04), 0.0))
+    zfn = lambda xx, yy: float(altura_rio(np.array([xx], np.float32), np.array([yy], np.float32))[0]) + 20.0
+    sirena(sc, 654.0, -204.0, zfn(654.0, -204.0))
+    cerca(sc, (612.0, -196.0), (700.0, -206.0), zfn)
+    arboles(sc, detalle)
     flechas = []
     for i, x in enumerate((-520.0, -330.0, -150.0, 250.0, 450.0)):
         yy = 30.0 * math.sin(x / 400.0)
