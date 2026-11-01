@@ -5,3 +5,7 @@
 {"tipo": "trabajo", "id": "muestras 540x960 (3 por pieza)", "estado": "inicio", "n": 5, "ts": "2026-11-01T15:14:22-03:00"}
 {"tipo": "aviso", "que": "2 h 10 min: puerta 3 r2 NO (el río no se une al lago); cuadros HD: valle bien, corte y río se ven de diagrama. Se le pregunta a Tomás (A rehacer corte y río ~2-3 h más / B simplificar ~1,5 h / C parar)", "n": 6, "ts": "2026-11-01T15:24:57-03:00"}
 {"tipo": "promesa", "hora": "18:30", "que": "video del lago listo para revisar", "dato": "Tomás eligió rehacer corte y río (15:26); medido: cuadro HD ~10 min, final estimado ~70 min con 16 máquinas", "n": 7, "ts": "2026-11-01T15:29:46-03:00"}
+{"tipo": "chequeo", "id": "sesion", "estado": "corte y río rehechos; puerta 3 r3 (forzada) APROBADO; puerta 4 r1 NO (realismo 6); arreglos de los 42 delatores y final lanzado (run 41344361837)", "n": 8, "ts": "2026-11-01T16:58:26-03:00"}
+{"tipo": "aviso", "que": "puerta 4 r1 NO (realismo 6): se avisa a Tomás que el video llega ~20:00 en vez de 18:30", "n": 9, "ts": "2026-11-01T16:58:26-03:00"}
+{"tipo": "promesa", "hora": "20:00", "que": "video del lago listo para revisar", "dato": "final lanzado 16:58 (~65 min medido en el 1.er intento de muestras HD + armado), puertas 4 r2, 6 y 7 ~30 min", "n": 10, "ts": "2026-11-01T16:58:26-03:00"}
+{"tipo": "trabajo", "id": "final 720x1280/8 (16 máquinas)", "estado": "inicio", "n": 11, "ts": "2026-11-01T16:58:26-03:00"}

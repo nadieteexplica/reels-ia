@@ -28,7 +28,7 @@ Fuentes:
 • Pelto, From a Glacier's Perspective: https://glacierchange.blog/2011/03/24/colonia-glacier-retreat-and-glacier-lake-outburst-floods/
 • Codexverde, alertas del lago Cachet: https://codexverde.cl/tag/lago-cachet
 • Piscina olímpica 50 × 25 × 2 m (FINA/World Aquatics): https://resources.fina.org/fina/document/2023/04/18/59a9d18e-7d76-448f-ae5d-6e9871a29c3f/fina_swimming_pool_certificate_for_og_wc_february_2020_1.pdf
-Animación 3D propia: el valle, el glaciar y el río son una recreación, no el lugar exacto. El corte de la represa exagera un poco el levantamiento del hielo para que se vea. Las tomas del lago y del río van en cámara rápida.
+Animación 3D propia: el valle, el glaciar y el río son una recreación, no el lugar exacto. El corte de la represa exagera el levantamiento del hielo y el tamaño del túnel para que se vean. Las tomas del lago y del río van en cámara rápida.
 El viejo del dato 🧓: datos raros y reales, explicados en un minuto.
 
 ## Primer comentario (firstCommentText) — Instagram y YouTube
