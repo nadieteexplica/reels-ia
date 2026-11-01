@@ -1,0 +1,184 @@
+{
+ "paneles": 4,
+ "calibracion": {
+  "rho_quedan_vs_yt_se_quedo": 0.85,
+  "rho_quedan_vs_ig_pasa_3s": 0.44,
+  "rho_borda_vs_yt_vistas": 0.49,
+  "peor_real": "ep05",
+  "peor_real_en_ultimo_tercio": true,
+  "se_puede_usar_para_descartar": false
+ },
+ "videos": {
+  "ep01": {
+   "tipo": "ancla",
+   "quedan_2s": 75.0,
+   "entero": 10.8,
+   "manda": 0.0,
+   "borda": 0.719,
+   "se_va_en": [
+    "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara.",
+    "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara.",
+    "cuadro0",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada."
+   ],
+   "por_que_2s": [
+    "Un muñeco 3D comiendo helado y agarrándose la cabeza: el dolor de frente del helado me ha pasado siempre, se entiende solo, aunque el dibujo se ve medio genérico.",
+    "Un chico con helado que se agarra la cabeza con escarcha saliéndole de la frente: me pasa y está bueno.",
+    "Dibujito 3D de un chico comiendo helado, se ve como video para niños y el dolor de frente por helado ya me lo sé de memoria.",
+    "Un chavo comiendo helado que de repente se agarra la cabeza; eso me pasa y lo entendí al instante, además se ve chistoso lo de la escarcha."
+   ]
+  },
+  "s5": {
+   "tipo": "candidato",
+   "quedan_2s": 50.0,
+   "entero": 33.8,
+   "manda": 25.0,
+   "borda": 0.438,
+   "se_va_en": [
+    "final",
+    "cuadro0",
+    "final",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Veo una casa de verdad flotando detrás de una lancha, amarrada con una cuerda, y dice 'así te mudas': entiendo todo y quiero saber cómo hicieron eso.",
+    "Otra casa flotando, ya la vi recién y la lancha ya muestra el truco: no hay nada que averiguar.",
+    "Una casa de madera flotando detrás de una lancha, amarrada con una cuerda tensa: raro, concreto y quiero ver cómo hacen eso.",
+    "Otra vez la casa flotando en el mar, ya la vi en el video de hace rato; deslizo."
+   ]
+  },
+  "s4": {
+   "tipo": "candidato",
+   "quedan_2s": 75.0,
+   "entero": 41.2,
+   "manda": 50.0,
+   "borda": 0.406,
+   "se_va_en": [
+    "final",
+    "final",
+    "cuadro0",
+    "final"
+   ],
+   "por_que_2s": [
+    "Bueyes jalando una casa de madera hacia el mar, se entiende al instante y es absurdo; aunque ya vi algo parecido en el video anterior.",
+    "Una casa de madera arrastrada por bueyes hacia el mar: es absurdo y se entiende al toque.",
+    "Bueyes arrastrando una casa a la playa: es el mismo cuento de la casa en Chile que ya me contaron dos veces, ya sé el final.",
+    "Una casa de madera arrastrada por bueyes hacia el mar; no sé qué onda pero quiero ver cómo la meten al agua."
+   ]
+  },
+  "ep02": {
+   "tipo": "ancla",
+   "quedan_2s": 75.0,
+   "entero": 13.2,
+   "manda": 0.0,
+   "borda": 0.531,
+   "se_va_en": [
+    "Tu lengua tiene sensores de calor, como alarmas de incendio.",
+    "Para el ají, tú y este ratón son lo mismo: mamíferos.",
+    "cuadro0",
+    "El ají trae capsaicina, una molécula que las hace sonar."
+   ],
+   "por_que_2s": [
+    "Un ratón escupiendo fuego y un pájaro tragándose un ají tranquilo; me da risa y en México el chile es tema serio.",
+    "Un ratón rosa tirando fuego por la boca en un dibujito de desierto: absurdo y gracioso.",
+    "Caricatura con un ratón rosado escupiendo fuego en un desierto de cactus, se ve infantil y no me dice qué voy a aprender.",
+    "Un ratón escupiendo fuego y un pájaro tranquilísimo con el chile en el pico; me dio risa y soy de México, el chile me importa."
+   ]
+  },
+  "ep03": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 39.2,
+   "manda": 75.0,
+   "borda": 0.125,
+   "se_va_en": [
+    "Los rieles no doblan, y había que girarla veintiún grados.",
+    "Pesa más de siete mil seiscientas toneladas.",
+    "Y lo más loco: Shanghái ya tenía práctica.",
+    "¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados."
+   ],
+   "por_que_2s": [
+    "Un edificio de ladrillo parado sobre patas mecánicas y que camina: no necesito que me expliquen nada, es lo más raro que he visto hoy.",
+    "Un edificio de ladrillo con patitas mecánicas que camina: absurdo, parece un meme.",
+    "Un edificio de ladrillo de cinco pisos sobre patas mecánicas que camina: no tengo idea de cómo se hace eso y quiero ver.",
+    "Un edificio de ladrillo con patitas mecánicas que camina; nunca había visto algo así, quiero ver cómo."
+   ]
+  },
+  "s6": {
+   "tipo": "candidato",
+   "quedan_2s": 25.0,
+   "entero": 6.2,
+   "manda": 0.0,
+   "borda": 0.656,
+   "se_va_en": [
+    "cuadro0",
+    "Los vecinos la montaron sobre troncos, y sus bueyes la arrastraron hasta la orilla.",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Otra vez la casa en el mar, ya la vi dos veces; sola me quedaría por el 'no se está hundiendo', pero repetida deslizo.",
+    "Una casa en medio del mar sin ninguna lancha, 'esta casa sabe nadar': quiero ver cómo se mueve, aunque ya vi una casa en el mar antes.",
+    "Casa de madera en medio del mar con una cuerda tensa: es la misma casa del video de la lancha (HD) que ya vi, ya sé cómo termina; sin eso, el 'no se está hundiendo' me habría dejado un segundo más.",
+    "Otra casa en el mar, es la tercera vez que veo lo mismo; ya me la sé."
+   ]
+  },
+  "ep05": {
+   "tipo": "ancla",
+   "quedan_2s": 25.0,
+   "entero": 13.8,
+   "manda": 0.0,
+   "borda": 0.875,
+   "se_va_en": [
+    "cuadro0",
+    "cuadro0",
+    "final",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Un cilindro gigante y un tipito diminuto allá lejos con letrero de SIMULACIÓN; no entiendo qué miro y se ve falso.",
+    "Un hombre diminuto flotando sobre un cilindro enorme con cartel de SIMULACIÓN: no entiendo qué estoy mirando y parece CGI de clase.",
+    "Un tipo flotando sobre un cilindro gigante con la etiqueta SIMULACIÓN: raro, pero al menos avisa que es simulación y lo de flotar con un imán me pica la ingeniería.",
+    "No entiendo qué veo: un cilindro enorme y un hombrecito chiquito allá lejos, quieto, y dice 'simulación'; se siente falso y aburrido."
+   ]
+  },
+  "ep04": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 57.5,
+   "manda": 50.0,
+   "borda": 0.219,
+   "se_va_en": [
+    "En el centro del remolino, la presión baja.",
+    "En el centro del remolino, la presión baja.",
+    "final",
+    "final"
+   ],
+   "por_que_2s": [
+    "Cortina de baño que se te pega cuando te bañas, me pasa todos los días y el viejito con shampoo da risa.",
+    "Un viejo con shampoo en el pelo y la cortina que se le pega a la espalda: me pasa todos los días.",
+    "La cortina de la ducha pegándose a uno, me ha pasado mil veces y nunca supe por qué; el viejito es caricatura pero la pregunta es real.",
+    "El señor con espuma en la cabeza y la cortina que se le pega por la espalda; me pasa siempre y me dio risa."
+   ]
+  },
+  "ep07": {
+   "tipo": "ancla",
+   "quedan_2s": 50.0,
+   "entero": 26.2,
+   "manda": 25.0,
+   "borda": 0.531,
+   "se_va_en": [
+    "Solo armar eso toma dos meses.",
+    "cuadro0",
+    "final",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Mucho texto chico que no alcanzo a leer con el ruido, pero el edificio se va achicando mientras baja el contador y dicen 'el más alto que Japón ha botado': quiero ver cómo lo hicieron.",
+    "Un edificio chiquito en una ciudad con tres carteles y números que bajan; no sé dónde mirar y parece noticiero.",
+    "El contador de pisos bajando mientras el edificio se acorta: entiendo al tiro que lo están desarmando de arriba para abajo y quiero saber cómo sin explosión (aunque hay muchas pastillas de texto).",
+    "Mil etiquetas con letras chiquitas y el edificio se ve diminuto; parece clase o infografía, además no sé si 'botado' es tirado a la basura."
+   ]
+  }
+ }
+}

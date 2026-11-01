@@ -1,153 +1,181 @@
 {
  "panel1": {
-  "DA": {
-   "id": "ep01",
-   "tipo": "ancla"
-  },
-  "HM": {
-   "id": "s5",
-   "tipo": "candidato"
-  },
-  "XN": {
-   "id": "s4",
-   "tipo": "candidato"
-  },
-  "IQ": {
-   "id": "ep02",
-   "tipo": "ancla"
-  },
-  "ZK": {
+  "MN": {
    "id": "ep03",
    "tipo": "ancla"
   },
-  "UV": {
-   "id": "s6",
-   "tipo": "candidato"
+  "AB": {
+   "id": "ep01",
+   "tipo": "ancla"
   },
-  "XM": {
+  "DO": {
    "id": "ep05",
    "tipo": "ancla"
   },
-  "ER": {
-   "id": "ep04",
+  "UH": {
+   "id": "ep07",
    "tipo": "ancla"
   },
-  "BE": {
-   "id": "ep07",
+  "ZL": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "CP": {
+   "id": "s4",
+   "tipo": "candidato"
+  },
+  "KT": {
+   "id": "ep04",
    "tipo": "ancla"
   }
  },
  "panel2": {
-  "WU": {
-   "id": "ep05",
-   "tipo": "ancla"
-  },
-  "CJ": {
-   "id": "s4",
-   "tipo": "candidato"
-  },
-  "NC": {
+  "NZ": {
    "id": "ep07",
    "tipo": "ancla"
   },
-  "QP": {
-   "id": "s5",
-   "tipo": "candidato"
-  },
-  "UT": {
-   "id": "ep04",
-   "tipo": "ancla"
-  },
-  "EV": {
+  "NV": {
    "id": "ep02",
    "tipo": "ancla"
   },
-  "ZN": {
+  "ZV": {
+   "id": "s5",
+   "tipo": "candidato"
+  },
+  "SQ": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "GR": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "VN": {
    "id": "ep03",
    "tipo": "ancla"
   },
-  "QK": {
-   "id": "s6",
-   "tipo": "candidato"
-  },
-  "AN": {
-   "id": "ep01",
+  "JI": {
+   "id": "ep04",
    "tipo": "ancla"
   }
  },
  "panel3": {
-  "SY": {
-   "id": "ep01",
-   "tipo": "ancla"
-  },
-  "AM": {
-   "id": "ep02",
-   "tipo": "ancla"
-  },
-  "HD": {
-   "id": "s5",
-   "tipo": "candidato"
-  },
-  "RG": {
+  "YJ": {
    "id": "ep05",
    "tipo": "ancla"
   },
-  "HQ": {
+  "SW": {
    "id": "s6",
    "tipo": "candidato"
   },
-  "LB": {
+  "UP": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "MT": {
    "id": "ep07",
    "tipo": "ancla"
   },
-  "IC": {
-   "id": "ep04",
+  "YD": {
+   "id": "ep03",
    "tipo": "ancla"
   },
-  "ZI": {
-   "id": "s4",
-   "tipo": "candidato"
+  "XL": {
+   "id": "ep01",
+   "tipo": "ancla"
   },
-  "GX": {
-   "id": "ep03",
+  "EI": {
+   "id": "ep04",
    "tipo": "ancla"
   }
  },
  "panel4": {
-  "KD": {
-   "id": "ep01",
-   "tipo": "ancla"
-  },
-  "SS": {
-   "id": "s4",
-   "tipo": "candidato"
-  },
-  "KA": {
-   "id": "s5",
-   "tipo": "candidato"
-  },
-  "BY": {
-   "id": "ep02",
-   "tipo": "ancla"
-  },
-  "LA": {
-   "id": "ep04",
-   "tipo": "ancla"
-  },
-  "OX": {
+  "FN": {
    "id": "ep03",
    "tipo": "ancla"
   },
-  "IP": {
+  "UU": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "NO": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "JT": {
+   "id": "s4",
+   "tipo": "candidato"
+  },
+  "VE": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "KX": {
    "id": "ep05",
    "tipo": "ancla"
   },
-  "UB": {
+  "WU": {
+   "id": "ep01",
+   "tipo": "ancla"
+  }
+ },
+ "panel5": {
+  "RE": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "NE": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "JA": {
+   "id": "s5",
+   "tipo": "candidato"
+  },
+  "BX": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "BY": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "UJ": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "DA": {
+   "id": "ep05",
+   "tipo": "ancla"
+  }
+ },
+ "panel6": {
+  "EF": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "WO": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "LH": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "CA": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "XG": {
    "id": "s6",
    "tipo": "candidato"
   },
-  "XG": {
-   "id": "ep07",
+  "IP": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "AE": {
+   "id": "ep05",
    "tipo": "ancla"
   }
  }

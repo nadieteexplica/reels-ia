@@ -1,0 +1,96 @@
+{
+  "perfil": "Carlos",
+  "videos": [
+    {
+      "codigo": "SY",
+      "se_queda_2s": false,
+      "por_que_2s": "Dibujito 3D de un chico comiendo helado, se ve como video para niños y el dolor de frente por helado ya me lo sé de memoria.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 3,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "AM",
+      "se_queda_2s": false,
+      "por_que_2s": "Caricatura con un ratón rosado escupiendo fuego en un desierto de cactus, se ve infantil y no me dice qué voy a aprender.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 4,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "HD",
+      "se_queda_2s": true,
+      "por_que_2s": "Una casa de madera flotando detrás de una lancha, amarrada con una cuerda tensa: raro, concreto y quiero ver cómo hacen eso.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 70,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo diablos se lleva una casa por el mar?"
+    },
+    {
+      "codigo": "RG",
+      "se_queda_2s": true,
+      "por_que_2s": "Un tipo flotando sobre un cilindro gigante con la etiqueta SIMULACIÓN: raro, pero al menos avisa que es simulación y lo de flotar con un imán me pica la ingeniería.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 55,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cuántas teslas necesitaría un humano para flotar?"
+    },
+    {
+      "codigo": "HQ",
+      "se_queda_2s": false,
+      "por_que_2s": "Casa de madera en medio del mar con una cuerda tensa: es la misma casa del video de la lancha (HD) que ya vi, ya sé cómo termina; sin eso, el 'no se está hundiendo' me habría dejado un segundo más.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 8,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "LB",
+      "se_queda_2s": true,
+      "por_que_2s": "El contador de pisos bajando mientras el edificio se acorta: entiendo al tiro que lo están desarmando de arriba para abajo y quiero saber cómo sin explosión (aunque hay muchas pastillas de texto).",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 65,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo botas un rascacielos de 40 pisos sin explosión?"
+    },
+    {
+      "codigo": "IC",
+      "se_queda_2s": true,
+      "por_que_2s": "La cortina de la ducha pegándose a uno, me ha pasado mil veces y nunca supe por qué; el viejito es caricatura pero la pregunta es real.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 75,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué la cortina se me pega al cuerpo?"
+    },
+    {
+      "codigo": "ZI",
+      "se_queda_2s": false,
+      "por_que_2s": "Bueyes arrastrando una casa a la playa: es el mismo cuento de la casa en Chile que ya me contaron dos veces, ya sé el final.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "GX",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio de ladrillo de cinco pisos sobre patas mecánicas que camina: no tengo idea de cómo se hace eso y quiero ver.",
+      "se_va_en": "Y lo más loco: Shanghái ya tenía práctica.",
+      "lo_ve_entero_pct": 55,
+      "lo_manda": true,
+      "a_quien": "un amigo ingeniero civil",
+      "pregunta_que_te_dejo": "¿Cómo camina un edificio de cinco pisos?"
+    }
+  ],
+  "orden": ["GX", "LB", "HD", "IC", "RG", "HQ", "ZI", "AM", "SY"]
+}

@@ -9,7 +9,9 @@ Escribe en studio/episodios/<ep>/guionista/prueba/:
                 sin decir cuáles son reales ni cómo les fue
   clave.json    código -> id, por panel (sólo para puntuar.py; no se le pasa a nadie)
 
-Cada panel lleva todas las anclas y todos los candidatos en un orden distinto, para que el orden no decida.
+Cada panel lleva todas las anclas y UN candidato (rotando; --paneles = múltiplo del número de candidatos), en un orden
+distinto, para que ni el orden ni la repetición decidan. Con --juntos van todos los candidatos en cada panel (sólo para
+ideas distintas entre sí).
 """
 import argparse, json, random, string
 from pathlib import Path
@@ -66,6 +68,9 @@ def main():
     ap.add_argument("ep")
     ap.add_argument("--paneles", type=int, default=5)
     ap.add_argument("--semilla", type=int, default=None)
+    ap.add_argument("--juntos", action="store_true",
+                    help="todos los candidatos en cada panel (sólo si son ideas DISTINTAS; con guiones de la misma idea el "
+                         "espectador castiga la repetición: Ep. 8, 1-nov-2026)")
     ap.add_argument("--imagenes", action="store_true",
                     help="usar la tira de cuadros reales de 0–3 s ('tira' en el paquete; anclas: calibracion/<id>_0-3s.jpg)")
     a = ap.parse_args()
@@ -90,8 +95,12 @@ def main():
         (out / "img").mkdir(exist_ok=True)
     clave = {}
     usados = set()
+    anclas_items = [("A", p) for p in anclas]
     for n in range(1, a.paneles + 1):
-        orden = items[:]
+        if a.juntos or not cand:
+            orden = items[:]
+        else:  # un solo candidato por panel, rotando: cada guion se ve fresco, como en el feed real
+            orden = [("C", cand[(n - 1) % len(cand)])] + anclas_items
         rnd.shuffle(orden)
         clave[f"panel{n}"] = {}
         texto = []
