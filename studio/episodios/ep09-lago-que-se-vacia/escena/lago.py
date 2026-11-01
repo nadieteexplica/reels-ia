@@ -1065,6 +1065,14 @@ def casa(sc, nombre, pos, giro=0.0, color=(0.55, 0.12, 0.08)):
     bpy.ops.mesh.primitive_cone_add(vertices=4, radius1=4.9, depth=2.0, location=(x, y, z + 4.0), rotation=(0, 0, math.radians(45) + giro))
     techo = bpy.context.object; techo.name = nombre + "_techo"; techo.scale = (1.0, 0.72, 1.0)
     K.asignar(techo, K.mat_metal_cepillado(nombre + "_zinc", (0.42, 0.43, 0.45), rugo=(0.4, 0.7)))
+    # puerta y ventanas en las dos caras largas (se ve que es una casa, no una caja)
+    c, s = math.cos(giro), math.sin(giro)
+    oscuro = K.mat_pintura(nombre + "_vano", (0.05, 0.05, 0.055), sucio=0.2)
+    vidrio = K.mat_pintura(nombre + "_vidrio", (0.12, 0.16, 0.2), sucio=0.1)
+    for lado in (1, -1):
+        for (lx, lz, ancho, alto, mat) in ((1.6, 1.0, 0.95, 2.0, oscuro), (-1.4, 1.65, 1.2, 0.9, vidrio), (-0.1, 1.65, 0.9, 0.9, vidrio)):
+            ly = lado * 2.53
+            K.caja(sc, f"{nombre}_v{lado}{lx}", (ancho, 0.08, alto), (x + lx * c - ly * s, y + lx * s + ly * c, z + lz), mat=mat, rot=(0, 0, giro))
     return cuerpo
 
 
@@ -1124,12 +1132,12 @@ def rio(sc, detalle=1.0, sol_elev=22.0, sol_rot=60.0):
     K.asignar(ag, mat_agua_rio())
     ag.visible_shadow = False
     casas = [casa(sc, f"Casa{i}", (cx, cy, float(altura_rio(np.array([cx], np.float32), np.array([cy], np.float32))[0]) + 20.0), g, c)
-             for i, (cx, cy, g, c) in enumerate(((640, -208, 0.3, (0.55, 0.12, 0.08)), (664, -224, 0.1, (0.82, 0.78, 0.66)),
-                                                  (628, -236, 0.5, (0.2, 0.32, 0.45)), (684, -240, 0.2, (0.42, 0.4, 0.36))))]
-    zs = float(altura_rio(np.array([652.0], np.float32), np.array([-200.0], np.float32))[0]) + 20.0
-    K.cilindro(sc, "Poste", 0.18, 10.0, (652.0, -200.0, zs), verts=12, mat=K.mat_pintura("poste", (0.3, 0.3, 0.3), sucio=0.5))
-    K.caja(sc, "Bocina", (1.4, 0.9, 0.9), (652.0, -200.0, zs + 9.6), mat=K.mat_pintura("bocina", (0.85, 0.85, 0.82), sucio=0.3))
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.55, location=(652.0, -200.0, zs + 10.6))
+             for i, (cx, cy, g, c) in enumerate(((644, -212, 0.3, (0.55, 0.12, 0.08)), (664, -222, 0.1, (0.82, 0.78, 0.66)),
+                                                  (634, -230, 0.5, (0.2, 0.32, 0.45)), (674, -238, 0.2, (0.42, 0.4, 0.36))))]
+    zs = float(altura_rio(np.array([654.0], np.float32), np.array([-204.0], np.float32))[0]) + 20.0
+    K.cilindro(sc, "Poste", 0.18, 10.0, (654.0, -204.0, zs), verts=12, mat=K.mat_pintura("poste", (0.3, 0.3, 0.3), sucio=0.5))
+    K.caja(sc, "Bocina", (1.4, 0.9, 0.9), (654.0, -204.0, zs + 9.6), mat=K.mat_pintura("bocina", (0.85, 0.85, 0.82), sucio=0.3))
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.55, location=(654.0, -204.0, zs + 10.6))
     luz = bpy.context.object; luz.name = "Baliza"
     K.asignar(luz, K.mat_emision("baliza", (1.0, 0.08, 0.04), 0.0))
     flechas = []

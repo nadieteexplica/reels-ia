@@ -432,7 +432,7 @@ def p_rio2(sc, a, b):
 def p_rio3(sc, a, b):
     # "Por eso hay una alarma que avisa a los que viven río abajo.": casas en la orilla, la sirena prende y el río crece
     R = armar_rio(sc)
-    p0, m0 = Vector((655, -100, 26)), Vector((656, -226, 22))   # desde el brazo crecido hacia las casas (sobre los subtítulos)
+    p0, m0 = Vector((655, -128, 25)), Vector((655, -226, 24))   # desde el brazo crecido hacia las casas (sobre los subtítulos)
     em = bpy.data.materials["baliza"].node_tree.nodes["Emission"]
     t_al = TW("alarma", a / FPS - 0.3)
 
@@ -441,11 +441,11 @@ def p_rio3(sc, a, b):
         L.estado_rio(R, L.RIO_CRECIDA, -760.0, 2500.0)
         flechas_rio(R, L.RIO_CRECIDA, 1.0, f)
         fase_rio(f)
-        em.inputs[1].default_value = 0.0 if t < t_al - 0.1 else (60.0 if (f // 6) % 2 == 0 else 4.0)
+        em.inputs[1].default_value = 0.6 if t < t_al - 0.1 else (60.0 if (f // 6) % 2 == 0 else 4.0)
         x = suave(lin(f, a, b - 1))
-        mirar(R["cam"], p0 + (m0 - p0) * 0.1 * x, m0, lente=30)
+        mirar(R["cam"], p0 + (m0 - p0) * 0.1 * x, m0, lente=42)
         return {"casas": pantalla(sc, R["cam"], R["casas"][0].matrix_world.translation + Vector((0, 0, 6))),
-                "sirena": pantalla(sc, R["cam"], Vector((652.0, -200.0, R["casas"][0].matrix_world.translation.z + 9.0)))}
+                "sirena": pantalla(sc, R["cam"], Vector((654.0, -204.0, R["casas"][0].matrix_world.translation.z + 9.0)))}
     return {"actualizar": act}
 
 
