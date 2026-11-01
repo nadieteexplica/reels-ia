@@ -402,6 +402,7 @@ add(fx, ding(1175, 0.6), Wk("túnel", 8), 0.35)
 add(fx, agua_corre(T(11) - T(9) + 0.4, 1.0, 1500), T(9), 1.0)                 # el pago: el lago se va
 add(fx, ding(988, 0.6), Wk("noche", 9), 0.35)
 add(fx, agua_corre(T(14) - T(11), 0.8, 900), T(11), 1.0)                      # el río crecido
+add(fx, agua_corre(Wk("río", 11) - T(11) + 0.2, 0.9, 2200), T(11), 0.9)       # la boca del glaciar: el agua sale a presión
 add(fx, ding(1318, 0.6), Wk("triplica", 11), 0.35)
 add(fx, whoosh(1.0, False), Wk("atrás", 12) - 0.5, 0.6)
 for i in range(6):                                                            # la alarma: sirena lejana que sube y baja
