@@ -1,0 +1,66 @@
+{
+  "_que_es": "Los 6 videos publicados, descritos en el mismo formato que un candidato (paquete de gancho: lo que se ve y se oye en 0–3 s + el resto del guion). Sirven para calibrar el simulador: los espectadores los reciben mezclados con los candidatos, sin saber cuáles son reales ni cómo les fue. Las descripciones salen de los cuadros reales (calibracion/<ep>_0-3s.jpg: 0, 0.5, 1, 1.5, 2 y 3 s), escritas sin mirar los resultados. Los resultados van en 'real' y NUNCA se le pasan a un espectador.",
+  "_actualizado": "2026-11-01",
+  "anclas": [
+    {
+      "id": "ep01",
+      "dur_s": 73,
+      "cuadro0": "Primer plano de un joven 3D de dibujo animado (polera coral con estrella) comiéndose un cono de helado de 3 bolas; la cara ocupa el tercio superior, fondo de parque desenfocado.",
+      "0_3s": "0–1 s: sigue comiendo. 1,5 s: abre los ojos y la boca. 2 s: primerísimo plano, escarcha que le sale de la frente, ojos apretados. 3 s: plano medio, se agarra la cabeza con las dos manos.",
+      "texto_pantalla_0_3s": "Subtítulos palabra por palabra.",
+      "voz_0_3s": "Te comes un helado rápido y... ¡zas! Te duele la frente.",
+      "resto": "Pero el frío nunca tocó tu cerebro. ¿Qué pasó? Rebobinemos. Día de calor. Pides el helado más grande del carrito... y te lo comes como si alguien te lo fuera a quitar. El helado toca el techo de tu boca y lo enfría de golpe. Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente. Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara. Una de sus ramas llega a la frente, y tu cerebro se confunde: cree que el dolor viene de ahí. En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada. [...] Y lo más loco: tu cerebro no siente dolor. [...] El truco: aprieta la lengua contra el paladar para calentarlo, o toma algo tibio. [...] La próxima vez, come más lento... aunque, seamos honestos, nadie come helado lento.",
+      "real": {"yt_vistas": 4077, "yt_se_quedo": 77.5, "yt_pct_visto": 55.9, "ig_vistas": 826, "ig_pasa_3s": 75.8, "ig_pct_visto": 42, "ig_envios": 20}
+    },
+    {
+      "id": "ep02",
+      "dur_s": 75,
+      "cuadro0": "Desierto de dibujo animado con cactus. En primer plano un pájaro gris con un ají rojo en el pico; detrás, un ratón rosado que escupe una llamarada de fuego por la boca.",
+      "0_3s": "0–1,5 s: el mismo cuadro, la llamarada sigue. 2 s: primer plano del pájaro tragándose el ají, tranquilo. 3 s: el pájaro de perfil.",
+      "texto_pantalla_0_3s": "Subtítulos palabra por palabra.",
+      "voz_0_3s": "Este pájaro se come un ají y ni lo siente.",
+      "resto": "Este ratón lo prueba... y echa fuego. Para el ají, tú y este ratón son lo mismo: mamíferos. Tu lengua tiene sensores de calor, como alarmas de incendio. [...] El ají trae capsaicina, una molécula que las hace sonar. [...] Los pájaros tienen la misma alarma, pero la capsaicina no la activa. [...] En Arizona, científicos filmaron un chiltepín [...] El pájaro se las traga enteras, y salen en su caca listas para brotar. [...] Y lo más loco: hay un mamífero que casi no lo siente. La tupaya, de China. [...] Toma leche, aunque sea descremada. [...] Mándaselo al que se cree inmune al picante. Para el ají... es un ratón más.",
+      "real": {"yt_vistas": 1306, "yt_se_quedo": 73.4, "yt_pct_visto": 43.4, "ig_vistas": 5446, "ig_pasa_3s": 80.1, "ig_pct_visto": 48, "ig_envios": 57}
+    },
+    {
+      "id": "ep03",
+      "dur_s": 64,
+      "cuadro0": "Un edificio de ladrillo de 5 pisos, entero, solo en una explanada vacía, visto desde abajo en diagonal; en la base, en vez de cimientos, una hilera de patas mecánicas cortas (amarillas y azules). Cielo azul.",
+      "0_3s": "0–1 s: el edificio sobre sus patas. 1,5 s: corte a la base: la hilera de patas de cerca, píldora 'CÁMARA RÁPIDA'. 2–3 s: las patas se mueven y el edificio avanza.",
+      "texto_pantalla_0_3s": "Subtítulos palabra por palabra; píldora 'CÁMARA RÁPIDA'.",
+      "voz_0_3s": "Este edificio de cinco pisos se fue caminando.",
+      "resto": "Y no, no es broma... tiene patas. Es una escuela de mil novecientos treinta y cinco, en Shanghái. Pesa más de siete mil seiscientas toneladas. Y en dos mil veinte estorbaba: ahí iban a hacer oficinas y tiendas. En vez de demolerla, la movieron. Primero cavaron alrededor. Le metieron debajo ciento noventa y ocho patas robóticas. Cortaron las columnas... y las patas la alzaron entera. Las patas van en dos grupos. Uno aguanta el peso. El otro se alza y da un paso. Luego cambian. Como tú cuando caminas. [...] ¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados. Caminó sesenta y dos metros. Se demoró dieciocho días. Tú caminas eso en menos de un minuto. Y lo más loco: Shanghái ya tenía práctica. En dos mil tres movió su sala de conciertos... para que pasara una autopista. Así que esta escuela, a los ochenta y cinco años... por fin aprendió a caminar.",
+      "real": {"yt_vistas": 13894, "yt_se_quedo": 75.3, "yt_pct_visto": 73.7, "ig_vistas": 901103, "ig_pasa_3s": 83.3, "ig_pct_visto": 79, "ig_envios": 9776, "tiktok_vistas": 118000}
+    },
+    {
+      "id": "ep04",
+      "dur_s": 37,
+      "cuadro0": "Primer plano de un hombre mayor 3D con bigote, ojos cerrados y espuma de shampoo en el pelo, tranquilo bajo la ducha; detrás, una cortina a rayas turquesa; la espuma le tapa el pecho.",
+      "0_3s": "0–1 s: el mismo plano, tranquilo. 1,5–2 s: corte: la cortina se infla hacia adentro y se le pega por la espalda. 3 s: plano de espalda con la cortina encima.",
+      "texto_pantalla_0_3s": "Subtítulos palabra por palabra.",
+      "voz_0_3s": "Te estás duchando... y la cortina se te viene encima.",
+      "resto": "¿Un fantasma? No. Y tampoco es solo el aire caliente. Con agua caliente pasa más fuerte, pero pasa hasta con agua fría. Mira la ducha por dentro. El chorro arrastra el aire hacia abajo... y arma un remolino acostado, que gira como una rueda. En el centro del remolino, la presión baja. Y el aire de afuera, que empuja más, mete la cortina hacia ti. ¿La solución? Una cortina más pesada. Al remolino le cuesta moverla. Y si esa igual se mueve... ahí sí es un fantasma.",
+      "real": {"yt_vistas": 2992, "yt_se_quedo": 79.9, "yt_pct_visto": 75.8, "ig_vistas": 10779, "ig_pasa_3s": 67.4, "ig_pct_visto": 39, "ig_envios": 52}
+    },
+    {
+      "id": "ep05",
+      "dur_s": 40,
+      "cuadro0": "Plano general de un salar al atardecer: un cilindro metálico oscuro enorme ocupa la mitad de abajo del cuadro; arriba, chico y lejos, un hombre con chaleco naranja flota en el aire; dos columnas de vapor blanco detrás. Píldora 'SIMULACIÓN' arriba a la izquierda.",
+      "0_3s": "0–1,5 s: el mismo plano, el hombre flota quieto. 2–3 s: la cámara se aleja: el cilindro entero en el salar y el hombre flotando sobre él.",
+      "texto_pantalla_0_3s": "Píldora 'SIMULACIÓN'; subtítulos palabra por palabra.",
+      "voz_0_3s": "Tu cuerpo repele los imanes. Con el imán correcto, podrías flotar.",
+      "resto": "Ya pasó con esta rana: flota sola dentro de un imán. Es más que nada agua, como tú. Y al agua, un imán la empuja... un poquito. Con uno bien fuerte, ese empujón le gana a la gravedad. ¿Y para ti? Habría que construirlo. Primero: un hueco donde quepas. El de la rana mide tres centímetros: ni tu mano cabe. Después: bobinas y más bobinas, hasta cuarenta teslas o más. Más del doble de lo que necesitó la rana. Y al final, enchufarlo a un reactor nuclear entero... solo para ti. Ahí sí... flotarías.",
+      "real": {"yt_vistas": 1626, "yt_se_quedo": 39.7, "yt_pct_visto": 63.7, "ig_vistas": 4450, "ig_pasa_3s": 58.1, "ig_pct_visto": 42, "ig_envios": 50}
+    },
+    {
+      "id": "ep07",
+      "dur_s": 48,
+      "cuadro0": "Plano general de una ciudad al atardecer: un rascacielos en el centro (ocupa ~1/4 del alto del cuadro) con una caja de andamios en la punta. Píldoras arriba: 'CÁMARA RÁPIDA', 'QUEDAN 36 PISOS', 'ANTES: 40 PISOS'.",
+      "0_3s": "0–2 s: el contador baja (36, 34, 33, 32, 30) mientras el edificio se acorta; a 1,5 s aparece la píldora 'EL MÁS ALTO QUE JAPÓN HA BOTADO'. 3 s: corte a la fachada de cerca.",
+      "texto_pantalla_0_3s": "3–4 píldoras con texto chico + subtítulos.",
+      "voz_0_3s": "Este es el edificio más alto que Japón ha botado.",
+      "resto": "Y lo más impresionante: lo demolieron piso por piso... sin ninguna explosión. El truco: el techo nunca se saca. Primero, meten columnas de acero y lo paran sobre quince gatos hidráulicos, como un sombrero gigante. Solo armar eso toma dos meses. Después, lo cierran con paneles con ventanas a la misma altura que las del hotel: desde la calle parece un piso más. Y adentro, escondidos, desarman el piso de abajo. Cuando queda vacío, los gatos bajan el sombrero... un piso. Y otra vez. Y otra vez. Como su construcción, en reversa. Y lo más loco: la grúa que baja los escombros genera electricidad... y con eso prenden las luces de la obra. Dos pisos cada diez días. Siete meses después, donde había un rascacielos de cuarenta pisos... no quedaba nada. Y nadie lo vio caer.",
+      "real": {"yt_vistas": 13595, "yt_se_quedo": 70.7, "yt_pct_visto": 89.3, "ig_vistas": 18862, "ig_pasa_3s": 76.7, "ig_pct_visto": 66, "ig_envios": 11}
+    }
+  ]
+}

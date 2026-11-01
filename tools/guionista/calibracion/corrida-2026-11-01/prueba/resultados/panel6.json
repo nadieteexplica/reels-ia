@@ -1,0 +1,66 @@
+{
+  "perfil": "Andrea, 41, Guatemala",
+  "videos": [
+    {
+      "codigo": "KA",
+      "se_queda_2s": true,
+      "por_que_2s": "Un señor con shampoo en la ducha y la cortina que se le pega, eso me pasa a mí todos los días, lo entendí al instante.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 80,
+      "lo_manda": true,
+      "a_quien": "A mi esposo y a mi hermana por WhatsApp, porque en mi casa nos pasa siempre y siempre nos peleamos con la cortina.",
+      "pregunta_que_te_dejo": "¿Por qué la cortina se me pega cuando me ducho, y qué hago para que no pase?"
+    },
+    {
+      "codigo": "NY",
+      "se_queda_2s": false,
+      "por_que_2s": "Veo una ciudad lejos, un edificio chiquito, un montón de letreros con números y no entiendo qué estoy mirando; sin sonido me pierdo.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 4,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "DE",
+      "se_queda_2s": true,
+      "por_que_2s": "Un muchacho comiendo helado y de repente se agarra la cabeza, ya sé qué es: ese dolor de frente que les da a mis hijos.",
+      "se_va_en": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+      "lo_ve_entero_pct": 35,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "Si el frío está en la boca, ¿por qué me duele la frente?"
+    },
+    {
+      "codigo": "HW",
+      "se_queda_2s": false,
+      "por_que_2s": "Un cilindro oscuro gigante y un hombrecito flotando allá arriba con letrero de simulación, no sé qué es ni a mí qué me importa.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 3,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "DA",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio de ladrillo entero parado sobre patitas de máquina y que camina, nunca había visto algo así, quiero saber si es de verdad.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 55,
+      "lo_manda": true,
+      "a_quien": "A mi esposo y al grupo de la familia, con un '¿viste esto? un edificio caminando'.",
+      "pregunta_que_te_dejo": "¿Cómo puede caminar un edificio de cinco pisos entero?"
+    },
+    {
+      "codigo": "BO",
+      "se_queda_2s": true,
+      "por_que_2s": "Un ratón rosado echando fuego por comerse el chile y el pajarito tan tranquilo, me dio risa y el chile lo conozco de mi cocina.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 60,
+      "lo_manda": true,
+      "a_quien": "A mi hermano, que presume que a él nada le pica, y al grupo de la familia.",
+      "pregunta_que_te_dejo": "¿Por qué al pájaro no le pica el chile y a nosotros sí?"
+    }
+  ],
+  "orden": ["KA", "BO", "DA", "DE", "NY", "HW"]
+}

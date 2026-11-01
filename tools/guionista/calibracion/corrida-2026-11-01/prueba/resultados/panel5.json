@@ -1,0 +1,66 @@
+{
+  "perfil": "Luis, 16, Lima (Perú)",
+  "videos": [
+    {
+      "codigo": "AG",
+      "se_queda_2s": false,
+      "por_que_2s": "Una ciudad lejos con un edificio chiquito y como cuatro letreros con letra chica, y la voz suena a noticiero: no entendí qué mirar y me dio flojera.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 4,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "GB",
+      "se_queda_2s": true,
+      "por_que_2s": "Un tipo flotando en el aire sobre un cilindro gigante en medio del salar, raro y exagerado; quiero ver cómo así flota.",
+      "se_va_en": "Después: bobinas y más bobinas, hasta cuarenta teslas o más.",
+      "lo_ve_entero_pct": 40,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo así un tipo flotando sobre esa cosa gigante?"
+    },
+    {
+      "codigo": "PM",
+      "se_queda_2s": true,
+      "por_que_2s": "Un ratón de dibujos echando una llamarada por la boca mientras el pájaro se come el ají tranquilo: me hizo gracia al toque.",
+      "se_va_en": "El ají trae capsaicina, una molécula que las hace sonar.",
+      "lo_ve_entero_pct": 22,
+      "lo_manda": true,
+      "a_quien": "a mi pata que se cree bien ajicero y dice que el picante no le hace nada",
+      "pregunta_que_te_dejo": "¿Por qué el ratón echa fuego y el pájaro ni se inmuta?"
+    },
+    {
+      "codigo": "WM",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio entero caminando sobre patas mecánicas, algo gigante e imposible que se entiende de una.",
+      "se_va_en": "Las patas van en dos grupos.",
+      "lo_ve_entero_pct": 40,
+      "lo_manda": true,
+      "a_quien": "a mis patas del colegio, en el grupo de WhatsApp",
+      "pregunta_que_te_dejo": "¿Cómo hacen para que un edificio de cinco pisos camine?"
+    },
+    {
+      "codigo": "NC",
+      "se_queda_2s": false,
+      "por_que_2s": "Un muñeco 3D comiendo helado en primer plano, no sé qué estoy mirando y el tema del dolor de frente ya lo sabe todo el mundo, suena a clase.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "SU",
+      "se_queda_2s": true,
+      "por_que_2s": "La cortina que se le pega al viejo en plena ducha, eso me pasa a mí y es cómico, y se ve cortito.",
+      "se_va_en": "Mira la ducha por dentro.",
+      "lo_ve_entero_pct": 30,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué la cortina siempre se te pega encima?"
+    }
+  ],
+  "orden": ["WM", "PM", "GB", "SU", "NC", "AG"]
+}

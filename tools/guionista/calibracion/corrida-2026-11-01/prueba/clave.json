@@ -1,0 +1,158 @@
+{
+ "panel1": {
+  "FZ": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "QP": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "UT": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "ZF": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "DO": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "JE": {
+   "id": "ep04",
+   "tipo": "ancla"
+  }
+ },
+ "panel2": {
+  "OU": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "XT": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "UF": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "TA": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "QC": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "BB": {
+   "id": "ep01",
+   "tipo": "ancla"
+  }
+ },
+ "panel3": {
+  "OS": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "GQ": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "HU": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "JP": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "AV": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "CO": {
+   "id": "ep02",
+   "tipo": "ancla"
+  }
+ },
+ "panel4": {
+  "WI": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "KY": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "HQ": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "JA": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "CS": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "YD": {
+   "id": "ep07",
+   "tipo": "ancla"
+  }
+ },
+ "panel5": {
+  "AG": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "GB": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "PM": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "WM": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "NC": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "SU": {
+   "id": "ep04",
+   "tipo": "ancla"
+  }
+ },
+ "panel6": {
+  "KA": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "NY": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "DE": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "HW": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "DA": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "BO": {
+   "id": "ep02",
+   "tipo": "ancla"
+  }
+ }
+}

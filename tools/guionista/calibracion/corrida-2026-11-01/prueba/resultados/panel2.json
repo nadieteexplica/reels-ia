@@ -1,0 +1,66 @@
+{
+  "perfil": "Valentina",
+  "videos": [
+    {
+      "codigo": "OU",
+      "se_queda_2s": true,
+      "por_que_2s": "Un viejito con shampoo en la cabeza y la cortina de la ducha pegándosele encima: me pasa todos los días, me dio risa.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 55,
+      "lo_manda": true,
+      "a_quien": "al grupo de amigas, con un 'literal yo en la ducha'",
+      "pregunta_que_te_dejo": "¿Por qué la cortina de la ducha se me pega encima?"
+    },
+    {
+      "codigo": "XT",
+      "se_queda_2s": true,
+      "por_que_2s": "Un ratón rosa escupiendo fuego y un pájaro re tranquilo comiéndose el ají: absurdo, me hizo gracia.",
+      "se_va_en": "Tu lengua tiene sensores de calor, como alarmas de incendio.",
+      "lo_ve_entero_pct": 8,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo hace el pájaro para no sentir el picante?"
+    },
+    {
+      "codigo": "UF",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio entero de ladrillo caminando con patitas mecánicas, qué es esto, quiero ver cómo sigue.",
+      "se_va_en": "Las patas van en dos grupos.",
+      "lo_ve_entero_pct": 22,
+      "lo_manda": true,
+      "a_quien": "a un amigo que manda cosas raras, tipo 'mirá este edificio caminando'",
+      "pregunta_que_te_dejo": "¿Cómo se camina un edificio de cinco pisos?"
+    },
+    {
+      "codigo": "TA",
+      "se_queda_2s": false,
+      "por_que_2s": "Una ciudad con un edificio chiquito y un montón de cartelitos con letra chica; no entiendo qué miro y parece un documental.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 2,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "QC",
+      "se_queda_2s": false,
+      "por_que_2s": "Un tipo diminuto flotando lejos arriba de un cilindro gigante, con cartel de 'simulación' y la frase suena a clase de física.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 4,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "BB",
+      "se_queda_2s": true,
+      "por_que_2s": "El pibe comiendo helado y de golpe se agarra la cabeza con escarcha saliéndole de la frente: me pasa siempre, es re gracioso.",
+      "se_va_en": "Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente.",
+      "lo_ve_entero_pct": 12,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué me duele la frente si el frío está en la boca?"
+    }
+  ],
+  "orden": ["OU", "UF", "BB", "XT", "QC", "TA"]
+}

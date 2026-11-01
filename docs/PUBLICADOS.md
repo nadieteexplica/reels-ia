@@ -4,6 +4,20 @@ Va **una fila por red** (3 filas por video). Al publicar se llena hasta "Dur."; 
 **YouTube primero (21-oct-2026):** en las filas de YouTube la métrica principal es **visto vs. deslizado** (se anota en la columna "% visto" como `visto/deslizado · % visto`) y las vistas comprometidas; en Instagram y TikTok sigue siendo **envíos/alcance**. Los aprendizajes se escriben solo en `CONTEXTO.md` → "Aprendizajes".
 **Línea:** datos o historias. **Formato:** el de `REFERENCIAS.md` §5 (corte, objeto, lo conté yo, fábula…). **Cierre:** loop o envío (prueba del cierre que pide el envío).
 
+## Corte al 1-nov-2026 (01:30; YouTube Studio modo avanzado, últimos 28 días · Instagram por Metricool)
+"Se quedó" = visto vs. deslizado (YouTube) · "pasa 3 s" = reel view rate (Instagram, % de vistas que pasan los 3 s). Es la tabla con la que se calibra el guionista (`docs/GUIONISTA.md`).
+
+| Ep | Dur. | YT vistas | YT comprometidas | YT se quedó | YT % visto | YT prom. | IG vistas | IG pasa 3 s | IG prom. (% del video) | IG envíos |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 helado | 1:13 | 4.077 | 3.027 | 77,5 % | 55,9 % | 0:40 | 826 | 75,8 % | 29,9 s (42 %) | 20 |
+| 2 picante | 1:15 | 1.306 | 944 | 73,4 % | 43,4 % | 0:32 | 5.446 | 80,1 % | 35,8 s (48 %) | 57 |
+| **3 edificio que caminó** | 1:04 | **13.894** | **8.214** | 75,3 % | 73,7 % | 0:47 | **901.103** | **83,3 %** | 50,6 s (**79 %**) | **9.776** |
+| 4 cortina | 0:37 | 2.992 | 2.069 | **79,9 %** | 75,8 % | 0:28 | 10.779 | 67,4 % | 13,8 s (39 %) | 52 |
+| 5 imán | 0:40 | 1.626 | 602 | **39,7 %** | 63,7 % | 0:25 | 4.450 | **58,1 %** | 16,7 s (42 %) | 50 |
+| **7 rascacielos** | 0:48 | **13.595** | **7.295** | 70,7 % | **89,3 %** | 0:42 | 18.862 | 76,7 % | 31,2 s (66 %) | 11 |
+
+Canal: 56 suscriptores, 37,5 mil vistas en 28 días, 72,6 % se queda, 94,4 % viene del feed de Shorts. TikTok no aparece en Metricool (conector vacío). Lectura en `docs/GUIONISTA.md` §1.
+
 **Ep. 7 v2** (el edificio más alto que Japón ha botado, 47,0 s, realista; guion rehecho el 27-oct a pedido de Tomás: gancho con el dato grande, 2 mecánicas más y cierre "nadie lo vio caer") publicado con OK de Tomás (27-oct 12:45: "súbelo a todas las plataformas ahora") el **martes 27-oct a las 12:58 en las 3 redes**. Metricool 407979199 (IG) / 407979256 (TikTok) / 407979284 (YouTube). MP4 `ep07-rascacielos-encoge-v2.mp4` en el Release `ep07`; portada en 0,5 s; el v1 del 24-oct no salió (Tomás lo rechazó el 25-oct por el guion); textos en `studio/episodios/ep07-rascacielos-encoge/entrega/caption.md`. **Ojo:** la puerta 6 no lo aprobó (r2: 0 bloqueantes y comprensión 8, pero realismo 6–7); Tomás decidió publicarlo igual. La puerta 7 sí lo aprobó.
 
 **Ep. 6** (el cinturón que se traba): **NO SE PUBLICA** — Tomás lo calificó de vergüenza máxima (24-oct 08:17); lección 109.
