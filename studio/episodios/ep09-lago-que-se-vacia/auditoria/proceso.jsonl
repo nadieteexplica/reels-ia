@@ -2,3 +2,5 @@
 {"tipo": "cumplida", "id": "0", "n": 2, "ts": "2026-11-01T13:51:06-03:00"}
 {"tipo": "chequeo", "id": "sesion", "estado": "guion y voz aprobados; set del valle en pruebas locales", "n": 3, "ts": "2026-11-01T14:20:59-03:00"}
 {"tipo": "trabajo", "id": "estilos HD (render-planos muestras=1)", "estado": "inicio", "n": 4, "ts": "2026-11-01T14:29:54-03:00"}
+{"tipo": "trabajo", "id": "muestras 540x960 (3 por pieza)", "estado": "inicio", "n": 5, "ts": "2026-11-01T15:14:22-03:00"}
+{"tipo": "aviso", "que": "2 h 10 min: puerta 3 r2 NO (el río no se une al lago); cuadros HD: valle bien, corte y río se ven de diagrama. Se le pregunta a Tomás (A rehacer corte y río ~2-3 h más / B simplificar ~1,5 h / C parar)", "n": 6, "ts": "2026-11-01T15:24:57-03:00"}
