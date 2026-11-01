@@ -2,6 +2,7 @@
 
 14 paquetes de 6 tipos (§5.3). **★ = los 6 que siguen al duelo** (ids `g1`…`g6` en `candidatos.json`).
 La receta G1–G14 (§5.2) va contestada en cada paquete. Cuando hay un "no", al lado va el porqué.
+Las descripciones de cuadro 0 de aquí son las largas y sirven para el storyboard. En `candidatos.json` van recortadas a ≤ 40 palabras (`cuadro0`) y ≤ 35 (`0_3s`), secas, como las de las anclas.
 
 ## Cómo se va a ver de verdad (vale para todos)
 - **Casa:** modelo procedural nuestro, porque no hay escaneo CC-BY de casa chilota. Es de un piso con techo a dos aguas, tejuelas de madera pintadas y desteñidas (rojo o amarillo gastado), chorreados de lluvia y musgo en la base, y una puerta y dos ventanas que le dan "cara".

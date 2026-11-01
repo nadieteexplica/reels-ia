@@ -1,0 +1,2066 @@
+{
+ "items": [
+  "g1",
+  "g2",
+  "g3",
+  "g4",
+  "g5",
+  "g6",
+  "ep01",
+  "ep02",
+  "ep03",
+  "ep04",
+  "ep05",
+  "ep07"
+ ],
+ "jueces": {
+  "juez1": {
+   "P1": {
+    "codigos": {
+     "BE": "g3",
+     "PG": "ep03"
+    },
+    "orden": [
+     "g3",
+     "ep03"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "IV": "g6",
+     "NY": "ep07"
+    },
+    "orden": [
+     "g6",
+     "ep07"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "UJ": "g3",
+     "NQ": "g2"
+    },
+    "orden": [
+     "g3",
+     "g2"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "MS": "ep03",
+     "LR": "g2"
+    },
+    "orden": [
+     "ep03",
+     "g2"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "SN": "g5",
+     "SH": "g1"
+    },
+    "orden": [
+     "g5",
+     "g1"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "KV": "g6",
+     "AI": "ep02"
+    },
+    "orden": [
+     "g6",
+     "ep02"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "TV": "ep05",
+     "WF": "g2"
+    },
+    "orden": [
+     "ep05",
+     "g2"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "WK": "ep03",
+     "RS": "g6"
+    },
+    "orden": [
+     "ep03",
+     "g6"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "SD": "g1",
+     "WU": "ep07"
+    },
+    "orden": [
+     "g1",
+     "ep07"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "GU": "g1",
+     "SI": "ep02"
+    },
+    "orden": [
+     "g1",
+     "ep02"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "JD": "g3",
+     "CP": "ep01"
+    },
+    "orden": [
+     "g3",
+     "ep01"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "UP": "ep07",
+     "CL": "g3"
+    },
+    "orden": [
+     "ep07",
+     "g3"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "ZC": "g6",
+     "NE": "g4"
+    },
+    "orden": [
+     "g6",
+     "g4"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "AJ": "g4",
+     "ND": "ep05"
+    },
+    "orden": [
+     "g4",
+     "ep05"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "BT": "g5",
+     "TY": "g2"
+    },
+    "orden": [
+     "g5",
+     "g2"
+    ]
+   },
+   "P16": {
+    "codigos": {
+     "BM": "g3",
+     "WS": "g5"
+    },
+    "orden": [
+     "g3",
+     "g5"
+    ]
+   },
+   "P17": {
+    "codigos": {
+     "KR": "ep05",
+     "IQ": "g1"
+    },
+    "orden": [
+     "ep05",
+     "g1"
+    ]
+   },
+   "P18": {
+    "codigos": {
+     "HB": "g3",
+     "JA": "g1"
+    },
+    "orden": [
+     "g3",
+     "g1"
+    ]
+   },
+   "P19": {
+    "codigos": {
+     "CD": "g2",
+     "TR": "ep04"
+    },
+    "orden": [
+     "g2",
+     "ep04"
+    ]
+   },
+   "P20": {
+    "codigos": {
+     "BG": "ep01",
+     "NJ": "g1"
+    },
+    "orden": [
+     "ep01",
+     "g1"
+    ]
+   },
+   "P21": {
+    "codigos": {
+     "TI": "g1",
+     "EW": "g4"
+    },
+    "orden": [
+     "g1",
+     "g4"
+    ]
+   },
+   "P22": {
+    "codigos": {
+     "BK": "g4",
+     "KL": "g3"
+    },
+    "orden": [
+     "g4",
+     "g3"
+    ]
+   },
+   "P23": {
+    "codigos": {
+     "EM": "ep01",
+     "MO": "g5"
+    },
+    "orden": [
+     "ep01",
+     "g5"
+    ]
+   },
+   "P24": {
+    "codigos": {
+     "QM": "g6",
+     "UT": "ep04"
+    },
+    "orden": [
+     "g6",
+     "ep04"
+    ]
+   },
+   "P25": {
+    "codigos": {
+     "VR": "g5",
+     "DT": "ep04"
+    },
+    "orden": [
+     "g5",
+     "ep04"
+    ]
+   },
+   "P26": {
+    "codigos": {
+     "ZQ": "g3",
+     "IN": "ep05"
+    },
+    "orden": [
+     "g3",
+     "ep05"
+    ]
+   },
+   "P27": {
+    "codigos": {
+     "UX": "g4",
+     "WH": "ep01"
+    },
+    "orden": [
+     "g4",
+     "ep01"
+    ]
+   },
+   "P28": {
+    "codigos": {
+     "JN": "ep03",
+     "JR": "g1"
+    },
+    "orden": [
+     "ep03",
+     "g1"
+    ]
+   },
+   "P29": {
+    "codigos": {
+     "KA": "ep03",
+     "ZN": "g5"
+    },
+    "orden": [
+     "ep03",
+     "g5"
+    ]
+   },
+   "P30": {
+    "codigos": {
+     "SK": "ep04",
+     "AM": "g3"
+    },
+    "orden": [
+     "ep04",
+     "g3"
+    ]
+   },
+   "P31": {
+    "codigos": {
+     "TS": "g2",
+     "UE": "ep07"
+    },
+    "orden": [
+     "g2",
+     "ep07"
+    ]
+   },
+   "P32": {
+    "codigos": {
+     "BU": "ep02",
+     "UK": "g3"
+    },
+    "orden": [
+     "ep02",
+     "g3"
+    ]
+   },
+   "P33": {
+    "codigos": {
+     "OL": "ep02",
+     "VL": "g4"
+    },
+    "orden": [
+     "ep02",
+     "g4"
+    ]
+   },
+   "P34": {
+    "codigos": {
+     "TW": "ep05",
+     "IX": "g5"
+    },
+    "orden": [
+     "ep05",
+     "g5"
+    ]
+   },
+   "P35": {
+    "codigos": {
+     "PA": "g2",
+     "SB": "g4"
+    },
+    "orden": [
+     "g2",
+     "g4"
+    ]
+   },
+   "P36": {
+    "codigos": {
+     "VA": "g2",
+     "LI": "g6"
+    },
+    "orden": [
+     "g2",
+     "g6"
+    ]
+   },
+   "P37": {
+    "codigos": {
+     "UO": "ep04",
+     "JS": "g4"
+    },
+    "orden": [
+     "ep04",
+     "g4"
+    ]
+   },
+   "P38": {
+    "codigos": {
+     "TK": "g2",
+     "FL": "ep02"
+    },
+    "orden": [
+     "g2",
+     "ep02"
+    ]
+   },
+   "P39": {
+    "codigos": {
+     "FK": "g5",
+     "YL": "ep07"
+    },
+    "orden": [
+     "g5",
+     "ep07"
+    ]
+   },
+   "P40": {
+    "codigos": {
+     "JZ": "g1",
+     "MD": "g2"
+    },
+    "orden": [
+     "g1",
+     "g2"
+    ]
+   },
+   "P41": {
+    "codigos": {
+     "YA": "ep01",
+     "SV": "g6"
+    },
+    "orden": [
+     "ep01",
+     "g6"
+    ]
+   },
+   "P42": {
+    "codigos": {
+     "XE": "g1",
+     "JQ": "g6"
+    },
+    "orden": [
+     "g1",
+     "g6"
+    ]
+   },
+   "P43": {
+    "codigos": {
+     "HU": "ep05",
+     "ZI": "g6"
+    },
+    "orden": [
+     "ep05",
+     "g6"
+    ]
+   },
+   "P44": {
+    "codigos": {
+     "HK": "g5",
+     "FV": "ep02"
+    },
+    "orden": [
+     "g5",
+     "ep02"
+    ]
+   },
+   "P45": {
+    "codigos": {
+     "NU": "g4",
+     "WD": "g5"
+    },
+    "orden": [
+     "g4",
+     "g5"
+    ]
+   },
+   "P46": {
+    "codigos": {
+     "KK": "g5",
+     "VH": "g6"
+    },
+    "orden": [
+     "g5",
+     "g6"
+    ]
+   },
+   "P47": {
+    "codigos": {
+     "OZ": "g6",
+     "FC": "g3"
+    },
+    "orden": [
+     "g6",
+     "g3"
+    ]
+   },
+   "P48": {
+    "codigos": {
+     "KX": "g1",
+     "UG": "ep04"
+    },
+    "orden": [
+     "g1",
+     "ep04"
+    ]
+   },
+   "P49": {
+    "codigos": {
+     "SO": "g4",
+     "IH": "ep03"
+    },
+    "orden": [
+     "g4",
+     "ep03"
+    ]
+   },
+   "P50": {
+    "codigos": {
+     "ZD": "ep07",
+     "BQ": "g4"
+    },
+    "orden": [
+     "ep07",
+     "g4"
+    ]
+   },
+   "P51": {
+    "codigos": {
+     "GK": "ep01",
+     "ZS": "g2"
+    },
+    "orden": [
+     "ep01",
+     "g2"
+    ]
+   }
+  },
+  "juez2": {
+   "P1": {
+    "codigos": {
+     "AP": "g4",
+     "XD": "g6"
+    },
+    "orden": [
+     "g4",
+     "g6"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "FQ": "g3",
+     "JH": "ep04"
+    },
+    "orden": [
+     "g3",
+     "ep04"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "VA": "ep04",
+     "QR": "g5"
+    },
+    "orden": [
+     "ep04",
+     "g5"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "NB": "ep07",
+     "TD": "g6"
+    },
+    "orden": [
+     "ep07",
+     "g6"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "KE": "g3",
+     "IR": "ep02"
+    },
+    "orden": [
+     "g3",
+     "ep02"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "PZ": "ep02",
+     "ZB": "g6"
+    },
+    "orden": [
+     "ep02",
+     "g6"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "LH": "ep07",
+     "GD": "g2"
+    },
+    "orden": [
+     "ep07",
+     "g2"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "RD": "ep01",
+     "FH": "g4"
+    },
+    "orden": [
+     "ep01",
+     "g4"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "ZI": "ep05",
+     "ZE": "g4"
+    },
+    "orden": [
+     "ep05",
+     "g4"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "US": "g4",
+     "MB": "g2"
+    },
+    "orden": [
+     "g4",
+     "g2"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "YI": "ep05",
+     "HI": "g3"
+    },
+    "orden": [
+     "ep05",
+     "g3"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "TQ": "ep04",
+     "QN": "g6"
+    },
+    "orden": [
+     "ep04",
+     "g6"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "BP": "ep01",
+     "KY": "g3"
+    },
+    "orden": [
+     "ep01",
+     "g3"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "AB": "g1",
+     "YE": "g5"
+    },
+    "orden": [
+     "g1",
+     "g5"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "BD": "ep03",
+     "BC": "g4"
+    },
+    "orden": [
+     "ep03",
+     "g4"
+    ]
+   },
+   "P16": {
+    "codigos": {
+     "PB": "ep07",
+     "WC": "g1"
+    },
+    "orden": [
+     "ep07",
+     "g1"
+    ]
+   },
+   "P17": {
+    "codigos": {
+     "QQ": "g1",
+     "PK": "ep05"
+    },
+    "orden": [
+     "g1",
+     "ep05"
+    ]
+   },
+   "P18": {
+    "codigos": {
+     "FK": "g3",
+     "CL": "g6"
+    },
+    "orden": [
+     "g3",
+     "g6"
+    ]
+   },
+   "P19": {
+    "codigos": {
+     "MU": "g6",
+     "MS": "g2"
+    },
+    "orden": [
+     "g6",
+     "g2"
+    ]
+   },
+   "P20": {
+    "codigos": {
+     "JL": "g1",
+     "IG": "g3"
+    },
+    "orden": [
+     "g1",
+     "g3"
+    ]
+   },
+   "P21": {
+    "codigos": {
+     "KN": "g1",
+     "DE": "ep03"
+    },
+    "orden": [
+     "g1",
+     "ep03"
+    ]
+   },
+   "P22": {
+    "codigos": {
+     "RA": "g6",
+     "WX": "g5"
+    },
+    "orden": [
+     "g6",
+     "g5"
+    ]
+   },
+   "P23": {
+    "codigos": {
+     "MZ": "g5",
+     "CS": "g4"
+    },
+    "orden": [
+     "g5",
+     "g4"
+    ]
+   },
+   "P24": {
+    "codigos": {
+     "FB": "ep02",
+     "LO": "g2"
+    },
+    "orden": [
+     "ep02",
+     "g2"
+    ]
+   },
+   "P25": {
+    "codigos": {
+     "TU": "g2",
+     "ZR": "ep05"
+    },
+    "orden": [
+     "g2",
+     "ep05"
+    ]
+   },
+   "P26": {
+    "codigos": {
+     "TN": "g2",
+     "BL": "ep01"
+    },
+    "orden": [
+     "g2",
+     "ep01"
+    ]
+   },
+   "P27": {
+    "codigos": {
+     "UP": "g2",
+     "YW": "g1"
+    },
+    "orden": [
+     "g2",
+     "g1"
+    ]
+   },
+   "P28": {
+    "codigos": {
+     "WN": "ep02",
+     "OA": "g1"
+    },
+    "orden": [
+     "ep02",
+     "g1"
+    ]
+   },
+   "P29": {
+    "codigos": {
+     "HG": "g6",
+     "RI": "g1"
+    },
+    "orden": [
+     "g6",
+     "g1"
+    ]
+   },
+   "P30": {
+    "codigos": {
+     "WS": "g2",
+     "CZ": "g5"
+    },
+    "orden": [
+     "g2",
+     "g5"
+    ]
+   },
+   "P31": {
+    "codigos": {
+     "NH": "g5",
+     "NE": "ep05"
+    },
+    "orden": [
+     "g5",
+     "ep05"
+    ]
+   },
+   "P32": {
+    "codigos": {
+     "AK": "g4",
+     "LR": "g1"
+    },
+    "orden": [
+     "g4",
+     "g1"
+    ]
+   },
+   "P33": {
+    "codigos": {
+     "DO": "g6",
+     "WD": "ep01"
+    },
+    "orden": [
+     "g6",
+     "ep01"
+    ]
+   },
+   "P34": {
+    "codigos": {
+     "XV": "g4",
+     "QZ": "ep04"
+    },
+    "orden": [
+     "g4",
+     "ep04"
+    ]
+   },
+   "P35": {
+    "codigos": {
+     "MV": "ep02",
+     "DX": "g5"
+    },
+    "orden": [
+     "ep02",
+     "g5"
+    ]
+   },
+   "P36": {
+    "codigos": {
+     "KS": "g6",
+     "ZS": "ep03"
+    },
+    "orden": [
+     "g6",
+     "ep03"
+    ]
+   },
+   "P37": {
+    "codigos": {
+     "WA": "ep07",
+     "PE": "g5"
+    },
+    "orden": [
+     "ep07",
+     "g5"
+    ]
+   },
+   "P38": {
+    "codigos": {
+     "HY": "g3",
+     "QC": "ep07"
+    },
+    "orden": [
+     "g3",
+     "ep07"
+    ]
+   },
+   "P39": {
+    "codigos": {
+     "SD": "g6",
+     "VM": "ep05"
+    },
+    "orden": [
+     "g6",
+     "ep05"
+    ]
+   },
+   "P40": {
+    "codigos": {
+     "FA": "g4",
+     "KD": "ep02"
+    },
+    "orden": [
+     "g4",
+     "ep02"
+    ]
+   },
+   "P41": {
+    "codigos": {
+     "AD": "ep04",
+     "VP": "g2"
+    },
+    "orden": [
+     "ep04",
+     "g2"
+    ]
+   },
+   "P42": {
+    "codigos": {
+     "WJ": "ep03",
+     "SJ": "g3"
+    },
+    "orden": [
+     "ep03",
+     "g3"
+    ]
+   },
+   "P43": {
+    "codigos": {
+     "ZC": "ep04",
+     "BY": "g1"
+    },
+    "orden": [
+     "ep04",
+     "g1"
+    ]
+   },
+   "P44": {
+    "codigos": {
+     "SQ": "g4",
+     "QW": "ep07"
+    },
+    "orden": [
+     "g4",
+     "ep07"
+    ]
+   },
+   "P45": {
+    "codigos": {
+     "HD": "g5",
+     "RX": "g3"
+    },
+    "orden": [
+     "g5",
+     "g3"
+    ]
+   },
+   "P46": {
+    "codigos": {
+     "DR": "g5",
+     "BR": "ep01"
+    },
+    "orden": [
+     "g5",
+     "ep01"
+    ]
+   },
+   "P47": {
+    "codigos": {
+     "FC": "g1",
+     "HF": "ep01"
+    },
+    "orden": [
+     "g1",
+     "ep01"
+    ]
+   },
+   "P48": {
+    "codigos": {
+     "UH": "g5",
+     "OT": "ep03"
+    },
+    "orden": [
+     "g5",
+     "ep03"
+    ]
+   },
+   "P49": {
+    "codigos": {
+     "WY": "g3",
+     "MI": "g4"
+    },
+    "orden": [
+     "g3",
+     "g4"
+    ]
+   },
+   "P50": {
+    "codigos": {
+     "LT": "g2",
+     "ML": "ep03"
+    },
+    "orden": [
+     "g2",
+     "ep03"
+    ]
+   },
+   "P51": {
+    "codigos": {
+     "RN": "g2",
+     "CM": "g3"
+    },
+    "orden": [
+     "g2",
+     "g3"
+    ]
+   }
+  },
+  "juez3": {
+   "P1": {
+    "codigos": {
+     "WT": "g2",
+     "GO": "g6"
+    },
+    "orden": [
+     "g2",
+     "g6"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "SU": "ep05",
+     "RA": "g2"
+    },
+    "orden": [
+     "ep05",
+     "g2"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "PX": "g4",
+     "CM": "ep03"
+    },
+    "orden": [
+     "g4",
+     "ep03"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "ZX": "g4",
+     "BO": "g3"
+    },
+    "orden": [
+     "g4",
+     "g3"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "HH": "g3",
+     "UW": "g1"
+    },
+    "orden": [
+     "g3",
+     "g1"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "YV": "g2",
+     "CG": "g4"
+    },
+    "orden": [
+     "g2",
+     "g4"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "IH": "ep05",
+     "GY": "g6"
+    },
+    "orden": [
+     "ep05",
+     "g6"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "IE": "g6",
+     "FT": "g3"
+    },
+    "orden": [
+     "g6",
+     "g3"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "WV": "ep01",
+     "BI": "g1"
+    },
+    "orden": [
+     "ep01",
+     "g1"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "FB": "g1",
+     "KF": "g4"
+    },
+    "orden": [
+     "g1",
+     "g4"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "NC": "g5",
+     "XZ": "g1"
+    },
+    "orden": [
+     "g5",
+     "g1"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "CD": "g6",
+     "CI": "ep07"
+    },
+    "orden": [
+     "g6",
+     "ep07"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "JB": "g3",
+     "LO": "g5"
+    },
+    "orden": [
+     "g3",
+     "g5"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "SX": "ep01",
+     "VK": "g6"
+    },
+    "orden": [
+     "ep01",
+     "g6"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "AA": "g1",
+     "KK": "g2"
+    },
+    "orden": [
+     "g1",
+     "g2"
+    ]
+   },
+   "P16": {
+    "codigos": {
+     "NM": "g2",
+     "PC": "ep07"
+    },
+    "orden": [
+     "g2",
+     "ep07"
+    ]
+   },
+   "P17": {
+    "codigos": {
+     "GU": "ep04",
+     "PM": "g3"
+    },
+    "orden": [
+     "ep04",
+     "g3"
+    ]
+   },
+   "P18": {
+    "codigos": {
+     "ER": "ep07",
+     "KD": "g3"
+    },
+    "orden": [
+     "ep07",
+     "g3"
+    ]
+   },
+   "P19": {
+    "codigos": {
+     "IC": "g5",
+     "VN": "g6"
+    },
+    "orden": [
+     "g5",
+     "g6"
+    ]
+   },
+   "P20": {
+    "codigos": {
+     "DO": "g5",
+     "QI": "g2"
+    },
+    "orden": [
+     "g5",
+     "g2"
+    ]
+   },
+   "P21": {
+    "codigos": {
+     "DQ": "g5",
+     "WL": "ep04"
+    },
+    "orden": [
+     "g5",
+     "ep04"
+    ]
+   },
+   "P22": {
+    "codigos": {
+     "VY": "ep03",
+     "LY": "g2"
+    },
+    "orden": [
+     "ep03",
+     "g2"
+    ]
+   },
+   "P23": {
+    "codigos": {
+     "OJ": "ep03",
+     "VV": "g1"
+    },
+    "orden": [
+     "ep03",
+     "g1"
+    ]
+   },
+   "P24": {
+    "codigos": {
+     "VU": "ep05",
+     "ZI": "g5"
+    },
+    "orden": [
+     "ep05",
+     "g5"
+    ]
+   },
+   "P25": {
+    "codigos": {
+     "DY": "g2",
+     "KV": "ep02"
+    },
+    "orden": [
+     "g2",
+     "ep02"
+    ]
+   },
+   "P26": {
+    "codigos": {
+     "SR": "g2",
+     "QD": "ep04"
+    },
+    "orden": [
+     "g2",
+     "ep04"
+    ]
+   },
+   "P27": {
+    "codigos": {
+     "VP": "ep03",
+     "QL": "g5"
+    },
+    "orden": [
+     "ep03",
+     "g5"
+    ]
+   },
+   "P28": {
+    "codigos": {
+     "BW": "ep04",
+     "JV": "g4"
+    },
+    "orden": [
+     "ep04",
+     "g4"
+    ]
+   },
+   "P29": {
+    "codigos": {
+     "XS": "g3",
+     "XF": "ep01"
+    },
+    "orden": [
+     "g3",
+     "ep01"
+    ]
+   },
+   "P30": {
+    "codigos": {
+     "UU": "g1",
+     "XU": "ep04"
+    },
+    "orden": [
+     "g1",
+     "ep04"
+    ]
+   },
+   "P31": {
+    "codigos": {
+     "EF": "g1",
+     "LU": "g6"
+    },
+    "orden": [
+     "g1",
+     "g6"
+    ]
+   },
+   "P32": {
+    "codigos": {
+     "OD": "g3",
+     "DR": "g2"
+    },
+    "orden": [
+     "g3",
+     "g2"
+    ]
+   },
+   "P33": {
+    "codigos": {
+     "EK": "g3",
+     "UX": "ep05"
+    },
+    "orden": [
+     "g3",
+     "ep05"
+    ]
+   },
+   "P34": {
+    "codigos": {
+     "UT": "g5",
+     "NR": "ep02"
+    },
+    "orden": [
+     "g5",
+     "ep02"
+    ]
+   },
+   "P35": {
+    "codigos": {
+     "JU": "g6",
+     "FO": "g4"
+    },
+    "orden": [
+     "g6",
+     "g4"
+    ]
+   },
+   "P36": {
+    "codigos": {
+     "PJ": "g1",
+     "ZF": "ep02"
+    },
+    "orden": [
+     "g1",
+     "ep02"
+    ]
+   },
+   "P37": {
+    "codigos": {
+     "WC": "g6",
+     "DW": "ep02"
+    },
+    "orden": [
+     "g6",
+     "ep02"
+    ]
+   },
+   "P38": {
+    "codigos": {
+     "FY": "ep01",
+     "RR": "g5"
+    },
+    "orden": [
+     "ep01",
+     "g5"
+    ]
+   },
+   "P39": {
+    "codigos": {
+     "ML": "ep02",
+     "DI": "g3"
+    },
+    "orden": [
+     "ep02",
+     "g3"
+    ]
+   },
+   "P40": {
+    "codigos": {
+     "IM": "ep05",
+     "BE": "g1"
+    },
+    "orden": [
+     "ep05",
+     "g1"
+    ]
+   },
+   "P41": {
+    "codigos": {
+     "BP": "g4",
+     "HW": "g5"
+    },
+    "orden": [
+     "g4",
+     "g5"
+    ]
+   },
+   "P42": {
+    "codigos": {
+     "YQ": "ep02",
+     "LK": "g4"
+    },
+    "orden": [
+     "ep02",
+     "g4"
+    ]
+   },
+   "P43": {
+    "codigos": {
+     "MO": "ep07",
+     "RZ": "g4"
+    },
+    "orden": [
+     "ep07",
+     "g4"
+    ]
+   },
+   "P44": {
+    "codigos": {
+     "YC": "g4",
+     "LP": "ep05"
+    },
+    "orden": [
+     "g4",
+     "ep05"
+    ]
+   },
+   "P45": {
+    "codigos": {
+     "DE": "g5",
+     "IS": "ep07"
+    },
+    "orden": [
+     "g5",
+     "ep07"
+    ]
+   },
+   "P46": {
+    "codigos": {
+     "DV": "g6",
+     "DS": "ep04"
+    },
+    "orden": [
+     "g6",
+     "ep04"
+    ]
+   },
+   "P47": {
+    "codigos": {
+     "YX": "g1",
+     "DF": "ep07"
+    },
+    "orden": [
+     "g1",
+     "ep07"
+    ]
+   },
+   "P48": {
+    "codigos": {
+     "WG": "ep03",
+     "SN": "g6"
+    },
+    "orden": [
+     "ep03",
+     "g6"
+    ]
+   },
+   "P49": {
+    "codigos": {
+     "VX": "g3",
+     "MX": "ep03"
+    },
+    "orden": [
+     "g3",
+     "ep03"
+    ]
+   },
+   "P50": {
+    "codigos": {
+     "ES": "ep01",
+     "TE": "g2"
+    },
+    "orden": [
+     "ep01",
+     "g2"
+    ]
+   },
+   "P51": {
+    "codigos": {
+     "MZ": "g4",
+     "GR": "ep01"
+    },
+    "orden": [
+     "g4",
+     "ep01"
+    ]
+   }
+  },
+  "juez4": {
+   "P1": {
+    "codigos": {
+     "TH": "g6",
+     "QC": "ep03"
+    },
+    "orden": [
+     "g6",
+     "ep03"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "PR": "g5",
+     "AK": "ep03"
+    },
+    "orden": [
+     "g5",
+     "ep03"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "KK": "g3",
+     "LW": "ep04"
+    },
+    "orden": [
+     "g3",
+     "ep04"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "WE": "ep02",
+     "CT": "g6"
+    },
+    "orden": [
+     "ep02",
+     "g6"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "YB": "g5",
+     "WC": "ep05"
+    },
+    "orden": [
+     "g5",
+     "ep05"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "XK": "g3",
+     "ZG": "ep02"
+    },
+    "orden": [
+     "g3",
+     "ep02"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "CG": "g1",
+     "NW": "ep05"
+    },
+    "orden": [
+     "g1",
+     "ep05"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "YH": "g4",
+     "PK": "g1"
+    },
+    "orden": [
+     "g4",
+     "g1"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "DZ": "g6",
+     "BN": "g1"
+    },
+    "orden": [
+     "g6",
+     "g1"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "WF": "g4",
+     "MP": "ep07"
+    },
+    "orden": [
+     "g4",
+     "ep07"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "PW": "g5",
+     "CR": "g3"
+    },
+    "orden": [
+     "g5",
+     "g3"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "NG": "g6",
+     "UP": "ep05"
+    },
+    "orden": [
+     "g6",
+     "ep05"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "JA": "ep04",
+     "OO": "g1"
+    },
+    "orden": [
+     "ep04",
+     "g1"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "YW": "g2",
+     "MO": "g5"
+    },
+    "orden": [
+     "g2",
+     "g5"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "FO": "ep02",
+     "BX": "g5"
+    },
+    "orden": [
+     "ep02",
+     "g5"
+    ]
+   },
+   "P16": {
+    "codigos": {
+     "IL": "ep01",
+     "LO": "g4"
+    },
+    "orden": [
+     "ep01",
+     "g4"
+    ]
+   },
+   "P17": {
+    "codigos": {
+     "QL": "g2",
+     "TM": "ep03"
+    },
+    "orden": [
+     "g2",
+     "ep03"
+    ]
+   },
+   "P18": {
+    "codigos": {
+     "HA": "g3",
+     "IZ": "ep07"
+    },
+    "orden": [
+     "g3",
+     "ep07"
+    ]
+   },
+   "P19": {
+    "codigos": {
+     "LE": "g6",
+     "OR": "g2"
+    },
+    "orden": [
+     "g6",
+     "g2"
+    ]
+   },
+   "P20": {
+    "codigos": {
+     "GF": "g6",
+     "GA": "ep01"
+    },
+    "orden": [
+     "g6",
+     "ep01"
+    ]
+   },
+   "P21": {
+    "codigos": {
+     "FS": "g1",
+     "MQ": "ep01"
+    },
+    "orden": [
+     "g1",
+     "ep01"
+    ]
+   },
+   "P22": {
+    "codigos": {
+     "FU": "g2",
+     "AE": "ep01"
+    },
+    "orden": [
+     "g2",
+     "ep01"
+    ]
+   },
+   "P23": {
+    "codigos": {
+     "DT": "g1",
+     "PF": "ep03"
+    },
+    "orden": [
+     "g1",
+     "ep03"
+    ]
+   },
+   "P24": {
+    "codigos": {
+     "BA": "g3",
+     "KN": "g4"
+    },
+    "orden": [
+     "g3",
+     "g4"
+    ]
+   },
+   "P25": {
+    "codigos": {
+     "BW": "g5",
+     "WB": "ep01"
+    },
+    "orden": [
+     "g5",
+     "ep01"
+    ]
+   },
+   "P26": {
+    "codigos": {
+     "HM": "g1",
+     "BM": "g5"
+    },
+    "orden": [
+     "g1",
+     "g5"
+    ]
+   },
+   "P27": {
+    "codigos": {
+     "PA": "g2",
+     "HH": "g1"
+    },
+    "orden": [
+     "g2",
+     "g1"
+    ]
+   },
+   "P28": {
+    "codigos": {
+     "DM": "g6",
+     "PG": "g5"
+    },
+    "orden": [
+     "g6",
+     "g5"
+    ]
+   },
+   "P29": {
+    "codigos": {
+     "FK": "ep07",
+     "TD": "g5"
+    },
+    "orden": [
+     "ep07",
+     "g5"
+    ]
+   },
+   "P30": {
+    "codigos": {
+     "LD": "ep02",
+     "TB": "g1"
+    },
+    "orden": [
+     "ep02",
+     "g1"
+    ]
+   },
+   "P31": {
+    "codigos": {
+     "ZX": "ep03",
+     "JI": "g4"
+    },
+    "orden": [
+     "ep03",
+     "g4"
+    ]
+   },
+   "P32": {
+    "codigos": {
+     "ZO": "ep04",
+     "ZJ": "g5"
+    },
+    "orden": [
+     "ep04",
+     "g5"
+    ]
+   },
+   "P33": {
+    "codigos": {
+     "PH": "g5",
+     "RI": "g4"
+    },
+    "orden": [
+     "g5",
+     "g4"
+    ]
+   },
+   "P34": {
+    "codigos": {
+     "UL": "ep04",
+     "KC": "g6"
+    },
+    "orden": [
+     "ep04",
+     "g6"
+    ]
+   },
+   "P35": {
+    "codigos": {
+     "BV": "ep07",
+     "NC": "g6"
+    },
+    "orden": [
+     "ep07",
+     "g6"
+    ]
+   },
+   "P36": {
+    "codigos": {
+     "ST": "g4",
+     "AD": "g6"
+    },
+    "orden": [
+     "g4",
+     "g6"
+    ]
+   },
+   "P37": {
+    "codigos": {
+     "AV": "g2",
+     "CA": "ep05"
+    },
+    "orden": [
+     "g2",
+     "ep05"
+    ]
+   },
+   "P38": {
+    "codigos": {
+     "FQ": "g4",
+     "BP": "ep04"
+    },
+    "orden": [
+     "g4",
+     "ep04"
+    ]
+   },
+   "P39": {
+    "codigos": {
+     "BG": "ep07",
+     "UQ": "g2"
+    },
+    "orden": [
+     "ep07",
+     "g2"
+    ]
+   },
+   "P40": {
+    "codigos": {
+     "KG": "ep01",
+     "YP": "g3"
+    },
+    "orden": [
+     "ep01",
+     "g3"
+    ]
+   },
+   "P41": {
+    "codigos": {
+     "KZ": "ep03",
+     "PL": "g3"
+    },
+    "orden": [
+     "ep03",
+     "g3"
+    ]
+   },
+   "P42": {
+    "codigos": {
+     "VB": "ep05",
+     "MJ": "g3"
+    },
+    "orden": [
+     "ep05",
+     "g3"
+    ]
+   },
+   "P43": {
+    "codigos": {
+     "YT": "g1",
+     "UM": "g3"
+    },
+    "orden": [
+     "g1",
+     "g3"
+    ]
+   },
+   "P44": {
+    "codigos": {
+     "CJ": "ep04",
+     "FN": "g2"
+    },
+    "orden": [
+     "ep04",
+     "g2"
+    ]
+   },
+   "P45": {
+    "codigos": {
+     "DQ": "g3",
+     "MR": "g6"
+    },
+    "orden": [
+     "g3",
+     "g6"
+    ]
+   },
+   "P46": {
+    "codigos": {
+     "KR": "ep02",
+     "VY": "g2"
+    },
+    "orden": [
+     "ep02",
+     "g2"
+    ]
+   },
+   "P47": {
+    "codigos": {
+     "MF": "g4",
+     "XX": "g2"
+    },
+    "orden": [
+     "g4",
+     "g2"
+    ]
+   },
+   "P48": {
+    "codigos": {
+     "LF": "g2",
+     "LZ": "g3"
+    },
+    "orden": [
+     "g2",
+     "g3"
+    ]
+   },
+   "P49": {
+    "codigos": {
+     "NO": "ep05",
+     "HO": "g4"
+    },
+    "orden": [
+     "ep05",
+     "g4"
+    ]
+   },
+   "P50": {
+    "codigos": {
+     "IF": "ep07",
+     "QX": "g1"
+    },
+    "orden": [
+     "ep07",
+     "g1"
+    ]
+   },
+   "P51": {
+    "codigos": {
+     "WW": "g4",
+     "BE": "ep02"
+    },
+    "orden": [
+     "g4",
+     "ep02"
+    ]
+   }
+  }
+ }
+}
