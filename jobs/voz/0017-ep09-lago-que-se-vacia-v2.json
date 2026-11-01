@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "id": "ep09-lago-que-se-vacia-v2",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.32,
+  "use_speaker_boost": true
+ },
+ "text": "Anoche, aquí había un lago. En la Patagonia chilena, un glaciar lo tapaba como una represa. Ochenta mil piscinas olímpicas de agua. ¿Por dónde se fueron? El hielo flota, como el de tu vaso. Por eso, cuando el lago se llena, levanta el borde del glaciar. Y el agua se cuela por abajo. Al pasar, derrite el hielo y abre un túnel cada vez más ancho. Así que en una sola noche, el lago entero se va por ahí. Sale por el otro lado, y el río más caudaloso de Chile se triplica. Es tanta agua que frena al río y lo empuja hacia atrás. Por eso hay una alarma que avisa a los que viven río abajo. El hielo se cierra, el lago se llena... Ya van más de veinte veces, y otra vez..."
+}

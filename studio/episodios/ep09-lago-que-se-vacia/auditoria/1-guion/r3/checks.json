@@ -1,0 +1,37 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ronda 3 abierta con --forzar: bloqueante puntual B6 (Fluidra citada para 2.500 m³): se sacó la fuente, el arreglo exacto que pidió el auditor; la voz no cambia",
+   "evidencia": ""
+  },
+  {
+   "que": "1 pausas '...' (el manual pide 2–4)",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "palabras": 135,
+  "duracion_estimada_s": 46.4,
+  "pausas": 1,
+  "fuentes": [
+   "boku.ac.at",
+   "cambridge.org",
+   "codexverde.cl",
+   "cooperativa.cl",
+   "emol.com",
+   "glacierchange.blog",
+   "glaciologia.cl",
+   "infraestructurapublica.cl",
+   "laestrella.com.pa",
+   "meetingorganizer.copernicus.org",
+   "ncse.ngo",
+   "pubs.usgs.gov",
+   "resources.fina.org",
+   "solardaily.com",
+   "usgs.gov",
+   "weather.gov"
+  ],
+  "afirmaciones_verificadas": 13
+ }
+}

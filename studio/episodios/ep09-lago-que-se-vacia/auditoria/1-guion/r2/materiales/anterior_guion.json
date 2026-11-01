@@ -1,0 +1,57 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "Anoche, aquí había un lago. (píldora del cuadro 0)",
+  "que": "La píldora dice AQUÍ HABÍA UN LAGO, sin 'anoche'. En mudo se lee como un lago seco por sequía (un tropo conocido en Chile); lo imposible, que se vació en una noche, sólo lo dice la voz.",
+  "arreglo": "Píldora ANOCHE AQUÍ HABÍA UN LAGO (5 palabras, dentro de la regla de 5) o SE VACIÓ EN UNA NOCHE; misma voz.",
+  "de": "guion",
+  "asignado": "guion"
+ },
+ {
+  "id": "A2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "(Loop: \"…y otra vez: anoche, aquí había un lago.\")",
+  "que": "El chequeo automático cuenta 95 palabras y el guion 86: la diferencia (9) es justo la línea de la nota del loop, que está dentro de la sección '## Guion'. Si el job de voz toma esa sección, Fernando lee 'Loop…' y se pierde una toma (~1.200 créditos).",
+  "arreglo": "Sacar la nota del loop de la sección '## Guion' (pasarla a 'Formato' o a la tabla) antes de mandar el texto a ElevenLabs.",
+  "de": "guion",
+  "asignado": "guion"
+ },
+ {
+  "id": "A3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "En la Patagonia chilena, un glaciar lo tapaba como una represa.",
+  "que": "El tramo 2–6 s dice dónde y cómo, pero no cuánto: es contexto sin giro y el lago lleno se ve menos raro que el fondo seco (el guionista predice la fuga aquí).",
+  "arreglo": "Mover la píldora ≈ 80.000 PISCINAS OLÍMPICAS al plano del lago lleno (2–6 s, junto a ANTES o en su lugar), para que se vea el tamaño de lo que desaparece; en el pago queda sola EN UNA NOCHE. No cambia la voz.",
+  "de": "guion",
+  "asignado": "guion"
+ },
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "Al pasar, derrite el hielo y abre un túnel cada vez más ancho.",
+  "que": "La tabla propone un 'brillo naranja del roce' en las paredes del túnel: el naranja se lee como agua caliente o lava, y el agua está apenas sobre 0 °C (el calor es del roce, poco).",
+  "arreglo": "Mostrar el derretimiento con las paredes que se retiran y un borde blanco o celeste brillante, sin naranja.",
+  "de": "guion",
+  "asignado": "guion"
+ },
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "(Pantalla) ≈ 80.000 PISCINAS OLÍMPICAS",
+  "que": "La cuenta usa la piscina de profundidad mínima (2 m, 2.500 m³), que da el número más grande, y el 2.500 m³ no tiene fuente con URL en 'Fuentes'.",
+  "arreglo": "Agregar a 'Fuentes' la norma de World Aquatics (50 × 25 m, 2 m mínimo) o la convención de 2.500 m³ como unidad; el ≈ se queda.",
+  "de": "guion",
+  "asignado": "guion"
+ }
+]

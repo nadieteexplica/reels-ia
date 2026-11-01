@@ -1,0 +1,34 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "frase de 17 palabras (máx. 14)",
+   "evidencia": "El hielo se cierra, el lago se llena… Ya van más de veinte veces, y otra vez…"
+  }
+ ],
+ "datos": {
+  "palabras": 135,
+  "duracion_estimada_s": 46.4,
+  "pausas": 2,
+  "fuentes": [
+   "boku.ac.at",
+   "cambridge.org",
+   "codexverde.cl",
+   "cooperativa.cl",
+   "emol.com",
+   "fluidra.com",
+   "glacierchange.blog",
+   "glaciologia.cl",
+   "infraestructurapublica.cl",
+   "laestrella.com.pa",
+   "meetingorganizer.copernicus.org",
+   "ncse.ngo",
+   "pubs.usgs.gov",
+   "resources.fina.org",
+   "solardaily.com",
+   "usgs.gov",
+   "weather.gov"
+  ],
+  "afirmaciones_verificadas": 13
+ }
+}

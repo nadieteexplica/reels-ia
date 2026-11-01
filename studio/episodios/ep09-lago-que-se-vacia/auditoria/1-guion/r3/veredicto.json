@@ -1,0 +1,59 @@
+{
+ "etapa": "1-guion",
+ "ronda": 3,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": 8.25,
+ "notas": {
+  "precision": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "Fluidra ya no aparece en guion.md (0 menciones); las filas de la voz y de la pantalla y 'Fuentes' citan sólo el certificado FINA/World Aquatics, que dice 'Length: 50.0m', ancho 25.00 m y 'Depth: 2 Metres (minimum)' (leído con WebFetch): 50 × 25 × 2 = 2.500 m³ y 200 millones de m³ / 2.500 = 80.000; el resto de la tabla sigue con 2 o más fuentes independientes.",
+   "de": "guion"
+  },
+  "gancho": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "'Anoche, aquí había un lago.' dice el centro en ~1,4 s y el cuadro 0 lo muestra (lecho seco con témpanos varados y el muro de hielo atrás); la pregunta '¿Por dónde se fueron?' llega a los ~6 s.",
+   "de": "guion"
+  },
+  "claridad": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "Cada frase tiene su imagen y ninguna pasa de 14 palabras, pero son 135 palabras (sobre el tope de 128; checks estima 46,4 s, sobre el techo de 45) y la alarma río abajo es un dato lateral después del pago; queda así por pedido explícito de Tomás de 45 s y más datos.",
+   "de": "guion"
+  },
+  "compartible": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Se manda con 'mira, en Chile hay un lago que se va por debajo de un glaciar'; el lago que se vacía y el río que se devuelve son los dos momentos para mandarlo.",
+   "de": "guion"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "Fluidra se sacó de las filas 'Ochenta mil piscinas olímpicas' y '(Pantalla) ≈ 80.000 PISCINAS OLÍMPICAS' y de 'Fuentes'; ahora citan sólo el certificado FINA (50 × 25 m, 2 m de profundidad mínima), que confirma esas medidas, así que el 80.000 queda respaldado. La voz y la píldora no cambian.",
+   "de": "guion"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "ronda 3 abierta con --forzar: bloqueante puntual B6 (Fluidra citada para 2.500 m³): se sacó la fuente, el arreglo exacto que pidió el auditor; la voz no cambia",
+   "evidencia": ""
+  },
+  {
+   "que": "1 pausas '...' (el manual pide 2–4)",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [],
+ "solo_bloqueantes": true,
+ "parar_y_preguntar": false
+}

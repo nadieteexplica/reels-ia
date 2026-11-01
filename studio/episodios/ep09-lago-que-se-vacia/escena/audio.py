@@ -317,7 +317,7 @@ def musica():
     cuadro 0, bombo desde la mecánica ("Por eso"), tics en semicorcheas mientras el túnel crece, subida antes del pago
     ("Así que en una sola noche"), golpe en el pago y un acorde abierto que se queda colgado en "y otra vez" (loop)."""
     out = np.zeros(N)
-    t_me, t_tu, t_pa, t_ot = E.T[5][0], W("derrite", 15.0), E.T[8][0], E.T[12][0]
+    t_me, t_tu, t_pa, t_ot = E.T[5][0], W("derrite", E.T[7][0] - 0.3), E.T[8][0], E.T[15][0]
     prog = [(50, 53, 57), (46, 50, 53), (43, 46, 50), (45, 49, 52)]           # Dm Bb Gm A
     raiz = [38, 34, 31, 33]
     nb = int(DUR / COMPAS) + 2
@@ -342,7 +342,7 @@ def musica():
     k = 0
     while k * NEGRA / 4 < DUR - 0.3:
         t = k * NEGRA / 4
-        if t_tu <= t < E.T[10][0]:
+        if t_tu <= t < E.T[13][0]:
             add(out, tic_hat(), t, 0.33 if k % 2 else 0.16)
         k += 1
     add(out, golpe(0.7, 1.2), 0.0)
@@ -351,7 +351,8 @@ def musica():
     add(out, golpe(0.8), t_me - 0.02)
     add(out, subida(1.6), t_pa - 1.6, 0.55)                                    # subida al pago
     add(out, golpe(1.0, 2.0), t_pa - 0.02)
-    add(out, golpe(0.8, 1.6), E.T[10][0] - 0.02)                               # el hielo se cierra
+    add(out, golpe(0.9, 1.6), E.T[10][0] - 0.02)                               # el río se triplica
+    add(out, golpe(0.8, 1.6), E.T[13][0] - 0.02)                               # el hielo se cierra
     add(out, pad_oscuro((50, 54, 57, 62), DUR - t_ot + 0.3, 2600), t_ot, 0.7)  # "y otra vez": acorde abierto colgado (loop)
     out = filt(out, 30, 9000)
     return out / (np.abs(out).max() + 1e-9)
@@ -376,29 +377,40 @@ _mr = np.sqrt(np.mean((m * 0.45)[m != 0] ** 2) + 1e-12)
 m *= (_vr / 10 ** (15.0 / 20)) / _mr        # música a 15 dB bajo la voz (mínimo del manual)
 
 fx = np.zeros(N)
+
+
+def Wk(prefix, k):
+    """Primera palabra con ese prefijo desde el inicio del plano k (los tiempos cambian con la voz)."""
+    return W(prefix, T(k) - 0.3)
+
+
 add(fx, viento(DUR), 0.0, 0.6)
 add(fx, whoom(1.2), 0.0, 0.6)
-for i in range(5):
-    add(fx, golpecito(1700 + 300 * (i % 3)), 0.25 + 0.31 * i, 0.25)            # goteo de los témpanos
-add(fx, ding(1046, 0.7), W("lago", 1.0), 0.35)                               # ANOCHE AQUÍ HABÍA UN LAGO
+add(fx, thud(), 0.55, 0.7)                                                    # el trozo de hielo cae al barro
+add(fx, ding(1046, 0.7), Wk("lago", 1), 0.35)                                # ANOCHE AQUÍ HABÍA UN LAGO
 add(fx, whoosh(0.5, True), T(2) - 0.25, 0.45)                                  # corte al "antes"
-add(fx, ding(880, 0.6), W("Patagonia", 1.9), 0.3)                            # 80.000 PISCINAS
-add(fx, ding(1318, 0.6), W("represa", 4.5), 0.35)
-add(fx, agua_corre(1.6, 0.25, 500), T(3), 1.0)                               # a ras del agua
-add(fx, tintineo(), W("flota", 7.0) - 0.1, 0.7)
-add(fx, tintineo(), W("vaso", 8.0), 0.5)
+add(fx, ding(1318, 0.6), Wk("represa", 2), 0.35)
+add(fx, agua_corre(T(4) - T(3), 0.25, 500), T(3), 1.0)                         # a ras del agua
+add(fx, ding(880, 0.6), Wk("Ochenta", 3), 0.3)
+add(fx, ding(1175, 0.5), Wk("dónde", 3), 0.3)
+add(fx, tintineo(), Wk("flota", 4) - 0.1, 0.7)
 add(fx, agua_corre(1.8, 0.35, 500), T(5) + 0.2, 1.0)                         # el lago sube
-add(fx, crujido(1.1), W("levanta", 9.4) - 0.05, 0.9)
-add(fx, agua_corre(2.0, 0.45, 700), W("agua", 12.9), 1.0)                    # se cuela por abajo
-add(fx, agua_corre(3.4, 0.55, 1100), W("derrite", 15.0) - 0.3, 1.0)          # el túnel crece
-add(fx, ding(1175, 0.6), W("túnel", 16.5), 0.35)
-add(fx, agua_corre(3.6, 1.0, 1500), T(8), 1.0)                               # el pago: el lago se va
-add(fx, ding(988, 0.6), W("noche", 18.7), 0.35)
-add(fx, crujido(1.0), W("hielo", 22.2), 0.8)
-add(fx, golpe_grave(), W("cierra", 22.5) + 0.25, 0.8)
-add(fx, agua_corre(1.7, 0.4, 600), T(11), 1.0)                               # el lago sube otra vez
-add(fx, agua_corre(1.9, 0.6, 1200), T(12), 1.0)                              # y otra vez se va
-add(fx, ding(1046, 0.6), W("otra", 25.0), 0.35)
+add(fx, crujido(1.1), Wk("levanta", 5) - 0.05, 0.9)
+add(fx, agua_corre(2.0, 0.45, 700), Wk("agua", 6), 1.0)                      # se cuela por abajo
+add(fx, agua_corre(T(8) - T(7) + 0.2, 0.55, 1100), Wk("derrite", 7) - 0.3, 1.0)
+add(fx, ding(1175, 0.6), Wk("túnel", 7), 0.35)
+add(fx, agua_corre(T(10) - T(8) + 0.4, 1.0, 1500), T(8), 1.0)                 # el pago: el lago se va
+add(fx, ding(988, 0.6), Wk("noche", 8), 0.35)
+add(fx, agua_corre(T(13) - T(10), 0.8, 900), T(10), 1.0)                      # el río crecido
+add(fx, ding(1318, 0.6), Wk("triplica", 10), 0.35)
+add(fx, whoosh(1.0, False), Wk("atrás", 11) - 0.5, 0.6)
+for i in range(6):                                                            # la alarma: sirena lejana que sube y baja
+    add(fx, tono(np.linspace(620, 900, int(0.45 * SR)), 0.45, 0.02, 0.3) * 0.5, Wk("alarma", 12) + 0.45 * i, 0.35)
+add(fx, crujido(1.0), Wk("hielo", 13), 0.8)
+add(fx, golpe_grave(), Wk("cierra", 13) + 0.25, 0.8)
+add(fx, agua_corre(T(15) - T(14), 0.4, 600), T(14), 1.0)                      # el lago sube otra vez
+add(fx, agua_corre(DUR - T(15), 0.6, 1200), T(15), 1.0)                       # y otra vez se va
+add(fx, ding(1046, 0.6), Wk("veinte", 15), 0.35)
 mix = v * 1.0 + m * 0.45 + fx * 0.45          # música 1 dB más baja: quedaba a 14,9 dB bajo la voz (meta ≥ 15)
 mix = np.tanh(mix * 1.1) / 1.1
 mix = mix / (np.abs(mix).max() + 1e-9) * 0.9

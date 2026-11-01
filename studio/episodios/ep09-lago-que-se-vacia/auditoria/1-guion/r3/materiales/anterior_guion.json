@@ -1,0 +1,13 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": true,
+  "tipo": "B6",
+  "plano": null,
+  "segundo": "Ochenta mil piscinas olímpicas de agua. / (Pantalla) ≈ 80.000 PISCINAS OLÍMPICAS",
+  "que": "La tabla de verificación (filas de la voz y de la pantalla) y 'Fuentes' le atribuyen a Fluidra '50 × 25 × 2 m ≈ 2.500 m³'. Esa página no da ningún volumen y dice que las piscinas olímpicas de Juegos Olímpicos y Mundiales deben tener 2,50 m de profundidad mínima, lo que daría unas 64.000 piscinas, no 80.000. Es una fuente que no dice lo que afirma el guion, y va al comentario fijado, donde cualquiera puede abrirla y ver que la cifra no le cuadra.",
+  "arreglo": "Sacar Fluidra de las dos filas y de 'Fuentes'. La cifra ya está respaldada por el certificado FINA/World Aquatics (largo 50 m, ancho 25 m, 'Depth: 2 Metres (minimum)'), que da 2.500 m³ y por lo tanto 80.000. La voz y la píldora no cambian.",
+  "de": "guion",
+  "asignado": "guion"
+ }
+]

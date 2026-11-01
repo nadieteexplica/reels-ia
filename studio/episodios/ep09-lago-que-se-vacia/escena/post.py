@@ -344,7 +344,7 @@ def texto_sombra(d, xy, texto, fnt, col=(255, 255, 255), a=255, ancla="mm"):
 
 
 DORADO = (255, 190, 40)            # la electricidad
-RAPIDO = {8, 9, 11, 12}      # el lago bajando o subiendo (el vaciamiento real dura horas; el llenado, semanas)
+RAPIDO = {5, 8, 9, 10, 11, 13, 14, 15}      # el lago bajando o subiendo (el vaciamiento real dura horas; el llenado, semanas)
 CONTADOR = set()
 
 
@@ -488,8 +488,12 @@ def apunta(im, f, k, clave, texto, t0, punto, fondo=(250, 250, 248), tinta=(24, 
     pildora(im, texto, cx, cy, fondo=fondo, tinta=tinta, s=s, tam=tam)
 
 
+ROJO = (225, 45, 40)
+
+
 def graficos(im, f, k):
     t = t_de(f)
+    a0 = T0(k) - 0.3
     if k in RAPIDO:
         camara_rapida(im)
     P = [(540, 560), (540, 640)]
@@ -497,28 +501,39 @@ def graficos(im, f, k):
         pild(im, f, 1, "anoche", "ANOCHE AQUÍ HABÍA UN LAGO", T0(1), P, tam=48)
     elif k == 2:
         pildora(im, "ANTES", 250, 330, fondo=(30, 32, 36), tinta=(255, 255, 255), tam=40)
-        t_gl, t_re = tw("glaciar", 3.0), tw("represa", 4.5)
-        pild(im, f, 2, "pisc", "≈ 80.000 PISCINAS OLÍMPICAS", tw("Patagonia", 1.9), P, tam=44, hasta=t_gl)
+        t_gl, t_re = tw("glaciar", a0), tw("represa", a0)
         apunta(im, f, 2, "gl", "GLACIAR", t_gl, "glaciar", hasta=t_re)
         apunta(im, f, 2, "rep", "REPRESA DE HIELO", t_re, "glaciar")
     elif k == 3:
-        pild(im, f, 3, "donde", "¿POR DÓNDE?", tw("dónde", 5.5), P)
+        t_do = tw("dónde", a0)
+        pild(im, f, 3, "pisc", "≈ 80.000 PISCINAS OLÍMPICAS", tw("Ochenta", a0), P, tam=44, hasta=t_do)
+        pild(im, f, 3, "donde", "¿POR DÓNDE?", t_do, P)
     elif k == 4:
-        pild(im, f, 4, "flota", "EL HIELO FLOTA", tw("flota", 7.0), P)
+        apunta(im, f, 4, "flota", "EL HIELO FLOTA", tw("flota", a0), "tempano")
     elif k == 5:
-        t_ll, t_lv = tw("llena", 9.4), tw("levanta", 9.4)
+        t_ll, t_lv = tw("llena", a0), tw("levanta", a0)
         apunta(im, f, 5, "llena", "SE LLENA", t_ll, "lago", hasta=t_lv)
         apunta(im, f, 5, "lev", "↑ SE LEVANTA", t_lv, "pie")
     elif k == 6:
-        apunta(im, f, 6, "abajo", "POR ABAJO", tw("cuela", 13.0), "lengua", fondo=AZUL, tinta=(255, 255, 255))
+        apunta(im, f, 6, "abajo", "POR ABAJO", tw("cuela", a0), "lengua", fondo=AZUL, tinta=(255, 255, 255))
     elif k == 7:
-        apunta(im, f, 7, "tunel", "TÚNEL", tw("túnel", 16.5), "tunel", fondo=AZUL, tinta=(255, 255, 255))
+        apunta(im, f, 7, "tunel", "TÚNEL", tw("túnel", a0), "tunel", fondo=AZUL, tinta=(255, 255, 255))
     elif k == 8:
-        pild(im, f, 8, "noche", "EN UNA NOCHE", tw("noche", 18.7), P)
+        pild(im, f, 8, "noche", "EN UNA NOCHE", tw("noche", a0), P)
     elif k == 10:
-        apunta(im, f, 10, "cierra", "SE CIERRA", tw("cierra", 22.3), "tunel")
+        apunta(im, f, 10, "x3", "EL RÍO × 3", tw("triplica", a0), "rio")
+    elif k == 11:
+        apunta(im, f, 11, "atras", "← RÍO ARRIBA", tw("atrás", a0), "atras")
     elif k == 12:
-        pild(im, f, 12, "veces", "MÁS DE 20 VECES", tw("otra", 25.0), P)
+        t_al = tw("alarma", a0)
+        if t >= t_al:
+            late = 0.5 + 0.5 * math.sin((t - t_al) * 9.0)
+            col = tuple(int(ROJO[i] * (0.75 + 0.25 * late)) for i in range(3))
+            apunta(im, f, 12, "alerta", "⚠ ALERTA", t_al, "casas", fondo=col, tinta=(255, 255, 255))
+    elif k == 13:
+        apunta(im, f, 13, "cierra", "SE CIERRA", tw("cierra", a0), "tunel")
+    elif k == 15:
+        pild(im, f, 15, "veces", "MÁS DE 20 VECES", tw("veinte", a0), P)
 
 
 def procesar(f):

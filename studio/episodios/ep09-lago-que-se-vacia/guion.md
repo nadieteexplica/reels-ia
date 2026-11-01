@@ -1,6 +1,6 @@
 # Ep. 9 — El lago que se vacía solo
 
-**Versión 1.0 (1-nov-2026).** Guion del método del guionista (`docs/GUIONISTA.md` §4, pasos 1–6). Trabajo previo en `guionista/`: `premisa.md`, `ganchos.md` (14 paquetes), `duelo/duelo.md`, `guiones.md` (3 guiones) y `prueba/puntaje.md`. Va a la puerta 1 del auditor.
+**Versión 2.0 (1-nov-2026, 14:45: Tomás pidió 45 s y más datos relacionados).** La v1.0 (86 palabras, 26,5 s de voz) pasó la puerta 1 r1; la v2 agrega el tamaño (80.000 piscinas), el río que se triplica y se frena, la alarma río abajo y las más de 20 veces, con 2 o más fuentes cada uno. Guion del método del guionista (`docs/GUIONISTA.md` §4, pasos 1–6). Trabajo previo en `guionista/`: `premisa.md`, `ganchos.md` (14 paquetes), `duelo/duelo.md`, `guiones.md` (3 guiones) y `prueba/puntaje.md`. Va a la puerta 1 del auditor.
 **Pruebas:**
 - **Duelo de ganchos entre sí (`guionista/duelo/duelo.md`, 4 jueces ciegos, cada par en los dos órdenes):** g4 "Anoche, aquí había un lago" ganó 18 de 20 (90 %); g7 "Este glaciar se está tragando un lago entero", 80 %; g5 "Acampas junto a un lago…", 60 %. **La propuesta de Tomás ("¿Sabías que en Chile hay un lago que se vacía solo?", g6) quedó última con 0 de 20:** perdió 4–0 incluso contra el g1, que tenía exactamente la misma imagen; los 4 jueces dijeron lo mismo con otras palabras ("suena a clase", "el gancho más gastado del feed", "largo y de manual"). Además la palabra que crea la tensión ("vacía") cae a ~2,9 s (receta G12) y la frase tiene 11 palabras (regla 2). Chile no se pierde: va en la segunda frase.
 - **Cazadores de fugas (`guionista/prueba/puntaje.md`, un guion por panel, 2 espectadores por guion):** con s1 nadie se fue antes del pago; uno se fue en la última frase ("Más de veinte veces, y otra vez"), por eso se acortó el cierre y la cifra pasó a la pantalla. Los dos que vieron s1 lo mandarían. (s3 retuvo igual y también se mandaba; s2 retuvo pero nadie lo mandaba.) El simulador no reprodujo los resultados reales en esta corrida: es orientación, no veredicto.
@@ -14,37 +14,45 @@
 **Formato:** clímax primero → la represa de hielo → la mecánica en 3 pasos en corte del glaciar (flota, se cuela, derrite el túnel) → el pago (el lago entero se va por el túnel) → cierre en loop. Estilo realista (`estilo.json`).
 **Tono:** serio contra lo absurdo: la voz cuenta que un lago desaparece como si fuera un trámite.
 **Acción buscada:** enviar ("mira, en Chile hay un lago que se va por debajo de un glaciar").
-**Escenas:** 3 de 6 como máximo (2 a medida).
+**Escenas:** 3 de 6 como máximo (3 a medida).
 - E1: el valle (un solo set): el fondo seco con témpanos varados, el lago lleno contra el glaciar y el lago bajando. El nivel del agua es un parámetro.
-- E2: corte del glaciar (a medida): la represa de hielo abierta de costado, con el lago a un lado, la roca abajo y el túnel que crece.
-- E3: el vaso con hielo (a medida, un plano): un vaso de agua con un cubo de hielo flotando, apoyado en una roca de la orilla, con el glaciar desenfocado detrás.
-**Duración estimada:** 86 palabras a ~2,9 palabras/s más pausas ≈ 31 s.
+- E2: corte del glaciar: la represa de hielo abierta de costado, con el lago a un lado (y un témpano flotando en corte: casi todo bajo el agua), la roca abajo y el túnel que crece.
+- E4: el río de abajo (la junta con el río grande): el agua café del vaciamiento entra, el río se triplica, se frena y se devuelve; casas chicas en la orilla para la alarma.
+**Duración estimada:** 135 palabras; Fernando leyó la v1 a 3,3 palabras/s → ~41 s de voz + pausas ≈ 44 s (pedido de Tomás: 45 s).
 
-## Guion (86 palabras, ≈ 31 s)
+## Guion (135 palabras, ≈ 44 s)
 Anoche, aquí había un lago.
 En la Patagonia chilena, un glaciar lo tapaba como una represa.
-¿Por dónde se fue el agua?
+Ochenta mil piscinas olímpicas de agua. ¿Por dónde se fueron?
 El hielo flota, como el de tu vaso.
 Por eso, cuando el lago se llena, levanta el borde del glaciar.
 Y el agua se cuela por abajo.
 Al pasar, derrite el hielo y abre un túnel cada vez más ancho.
 Así que en una sola noche, el lago entero se va por ahí.
-El hielo se cierra, el lago se llena… y otra vez:
+Sale por el otro lado, y el río más caudaloso de Chile se triplica.
+Es tanta agua que frena al río y lo empuja hacia atrás.
+Por eso hay una alarma que avisa a los que viven río abajo.
+El hielo se cierra, el lago se llena.
+Ya van más de veinte veces, y otra vez…
 
-## Una frase, una imagen (tiempos estimados; los reales salen de la voz)
+## Una frase, una imagen (tiempos reales en `storyboard.md`)
 *Loop: "…y otra vez: anoche, aquí había un lago."*
 
-| t (s) | % | Frase | Imagen |
-|---|---|---|---|
-| 0,0–2,0 | 0–6 | Anoche, aquí había un lago. | E1: fondo seco al amanecer, témpanos del tamaño de una casa varados en el barro, charcos, el muro de hielo detrás. Píldora ANOCHE AQUÍ HABÍA UN LAGO |
-| 2,0–6,0 | 6–19 | En la Patagonia chilena, un glaciar lo tapaba como una represa. | E1 general alto: el mismo valle con el lago lleno (corte seco al "antes"), el glaciar cruzando el valle de lado a lado como un muro. Píldoras ANTES · ≈ 80.000 PISCINAS OLÍMPICAS (la escala, sugerencia 3) |
-| 6,0–8,2 | 19–26 | ¿Por dónde se fue el agua? | E1 a ras del agua llena: la cámara avanza hacia el pie del muro de hielo |
-| 8,2–10,8 | 26–35 | El hielo flota, como el de tu vaso. | E3: el vaso en una roca de la orilla, el cubo de hielo flotando y girando apenas; el glaciar desenfocado detrás |
-| 10,8–14,9 | 35–48 | Por eso, cuando el lago se llena, levanta el borde del glaciar. | E2 corte: el lago sube contra la represa de hielo y el pie del glaciar se despega de la roca unos centímetros (flecha hacia arriba) |
-| 14,9–17,2 | 48–55 | Y el agua se cuela por abajo. | E2 corte: una lengua de agua azul entra bajo el hielo, entre el hielo y la roca |
-| 17,2–21,5 | 55–69 | Al pasar, derrite el hielo y abre un túnel cada vez más ancho. | E2 corte: el conducto crece de un hilo a un túnel; el hielo de las paredes se retira y el agua corre con estelas claras (sin brillo de fuego: el roce entibia, no quema; sugerencia 4) |
-| 21,5–26,0 | 69–84 | Así que en una sola noche, el lago entero se va por ahí. | E2 corte → E1: el agua corre por el túnel y el nivel del lago baja a toda velocidad; los témpanos se posan en el barro (**pago**). Píldora EN UNA NOCHE |
-| 26,0–30,8 | 84–100 | El hielo se cierra, el lago se llena… y otra vez: | E2 corte: el túnel se aprieta y se cierra; E1: el agua vuelve a subir y, cuando está llena, baja de golpe → termina en la cámara del cuadro 0 (loop). Píldora MÁS DE 20 VECES |
+| Frase | Imagen |
+|---|---|
+| Anoche, aquí había un lago. | E1: fondo seco, témpano varado del tamaño de una casa, un trozo de hielo cae al barro; el muro de hielo atrás. Píldora ANOCHE AQUÍ HABÍA UN LAGO |
+| En la Patagonia chilena, un glaciar lo tapaba como una represa. | E1 general alto: el lago lleno contra el glaciar (ANTES); GLACIAR → REPRESA DE HIELO sobre el frente |
+| Ochenta mil piscinas olímpicas de agua. ¿Por dónde se fueron? | E1 a ras del agua hacia el pie del muro; píldora ≈ 80.000 PISCINAS OLÍMPICAS → ¿POR DÓNDE? |
+| El hielo flota, como el de tu vaso. | E2 corte: un témpano cortado flota en el lago con casi todo bajo el agua (línea del agua marcada). EL HIELO FLOTA |
+| Por eso, cuando el lago se llena, levanta el borde del glaciar. | E2 corte: el lago sube contra la represa; en "levanta", corte cercano: el pie de hielo se despega de la roca ↑ |
+| Y el agua se cuela por abajo. | E2 corte: una lengua de agua azul entra bajo el hielo |
+| Al pasar, derrite el hielo y abre un túnel cada vez más ancho. | E2 corte: el túnel crece; estelas que corren. TÚNEL |
+| Así que en una sola noche, el lago entero se va por ahí. | E2 corte → E1 desde arriba: el lago baja hasta el barro (**pago**). EN UNA NOCHE |
+| Sale por el otro lado, y el río más caudaloso de Chile se triplica. | E4: la junta de los ríos; el agua café entra y el río grande se ensancha. EL RÍO × 3 |
+| Es tanta agua que frena al río y lo empuja hacia atrás. | E4: las flechas del río grande se dan vuelta y el agua café sube río arriba. RÍO ARRIBA |
+| Por eso hay una alarma que avisa a los que viven río abajo. | E4: casas chicas en la orilla; la píldora ALERTA late en rojo |
+| El hielo se cierra, el lago se llena… | E2 corte: el túnel se cierra; E1: el lago vuelve a subir. SE CIERRA |
+| Ya van más de veinte veces, y otra vez… | E1: el lago se vuelve a ir y la cámara baja con el agua hasta el cuadro 0 (loop). MÁS DE 20 VECES |
 
 ## Paquete de gancho
 - **Cuadro 0:**
@@ -55,14 +63,14 @@ El hielo se cierra, el lago se llena… y otra vez:
 - **Texto en pantalla (0–3 s):** ANOCHE AQUÍ HABÍA UN LAGO (una píldora, 5 palabras; sugerencia 1 de la puerta 1). Sin SIMULACIÓN: es real.
 - **Voz 0–2 s:** "Anoche, aquí había un lago." (5 palabras; "había" a ~0,8 s y "lago" a ~1,4 s)
 - **Pregunta que abre:** ¿por dónde se fue un lago entero en una noche? (se dice en voz alta a los ~6 s)
-- **Segundo en que se paga:** ~21,5–26 s (69–84 %): el agua corriendo por el túnel bajo el hielo y el lago bajando hasta el barro.
-- **Momento para mandarlo:** el lago entero bajando en segundos hasta dejar los témpanos varados (22–26 s); y el cuadro 0 mismo ("mira, aquí había un lago").
+- **Segundo en que se paga:** ~25–29 s (~60 %): el agua corriendo por el túnel bajo el hielo y el lago bajando hasta el barro; el segundo golpe ("frena al río y lo empuja hacia atrás") a ~33 s.
+- **Momento para mandarlo:** el lago entero bajando hasta dejar los témpanos varados (~27 s) y el río que se da vuelta (~33 s); y el cuadro 0 mismo.
 
 ## Predicción (§7; se revisa a las 48 h)
 - **Se quedó (YouTube):** sobre el promedio del canal (72,6 %).
 - **% visto (YouTube):** sobre 75 %.
 - **Envíos en IG por cada mil vistas:** sobre la mediana del canal (10,6).
-- **Dónde se va la gente:** en "En la Patagonia chilena, un glaciar lo tapaba como una represa" (2–6 s): es contexto y el lago lleno se ve menos raro que el fondo seco. Segundo candidato: "levanta el borde del glaciar", si el corte no se entiende en mudo.
+- **Dónde se va la gente:** en "Por eso hay una alarma…" (~36 s): es el dato más lateral y viene después del pago. Segundo candidato: "En la Patagonia chilena…" (2–6 s).
 - **Predicción del simulador (paso 8, con el plano 1 renderizado):** pendiente.
 
 ## Verificación por afirmación
@@ -75,14 +83,19 @@ El hielo se cierra, el lago se llena… y otra vez:
 | Al pasar, derrite el hielo y abre un túnel cada vez más ancho | Björnsson 2010 (el túnel se expande por retroalimentación: sus paredes se derriten con el calor del roce del agua); NOAA Alaska-Pacific RFC (al pasar, el agua agranda la abertura derritiéndola con el calor del agua que fluye) |
 | En una sola noche, el lago entero se va | CECS en Cooperativa y Emol 2008 (se vació casi completamente en pocas horas, entre la noche del 6 y la madrugada del 7 de abril); USGS, Documenting 35 years (toda el agua, ~200 millones de m³, drena rápido); Dussaillant, póster (200 hm³ en menos de 24 h); NCSE y AFP 2012 (desapareció en una noche, en horas) |
 | El hielo se cierra, el lago se vuelve a llenar… y otra vez | NOAA Alaska-Pacific RFC (después del vaciamiento la abertura se cierra y el lago se vuelve a llenar, a intervalos semirregulares); Dussaillant et al. 2010 (se rellenó rápido; se esperan nuevas crecidas); póster de Dussaillant (se rellenó en 2 meses) |
-| (Pantalla) MÁS DE 20 VECES | Bertrand et al., EGU21-14687 (21 vaciamientos entre 2008 y 2017); DGA-Casassa en Infraestructura Pública (más de 25 veces en una década); glaciologia.cl (más de 28 desde 2008) |
-| (Pantalla) ≈ 80.000 PISCINAS OLÍMPICAS | ~200 millones de m³ por vaciamiento (Dussaillant et al. 2010; USGS; EGU2009-1442); una piscina olímpica mide 50 × 25 m con 2 m de profundidad mínima (certificado de piscinas de FINA/World Aquatics; Fluidra) = 2.500 m³: 200.000.000 / 2.500 = 80.000 |
+| Ochenta mil piscinas olímpicas de agua (la voz; ~200 millones de m³) | Dussaillant et al. 2010 y EGU2009-1442 (cada vaciamiento libera ~200 millones de m³); USGS, Documenting 35 years (~200 millones de m³); una piscina olímpica = 50 × 25 × 2 m = 2.500 m³ (certificado de piscina de FINA/World Aquatics: 50 × 25 m, 2 m de profundidad mínima): 200.000.000 / 2.500 = 80.000 |
+| Sale por el otro lado, y el río más caudaloso de Chile se triplica | EGU2009-13147 (el Baker, cerca de la junta con el Colonia, pasó de 1.200 m³/s a 3.570 m³/s en menos de 48 h); AFP 2012 en Solar Daily (el agua triplicó el volumen del río Baker en horas); Pelto (el Baker se triplicó en menos de 48 h). Más caudaloso: USGS SIM 3322 (el Baker, el río más grande de Chile por volumen de agua); NCSE/AFP (el río más grande de Chile) |
+| Es tanta agua que frena al río y lo empuja hacia atrás | Bertrand et al., EGU21-14687 (la crecida del Colonia bloquea el flujo normal del Baker e inunda el Valle Grande, ~4 km aguas arriba de la junta); glaciologia.cl (foto: el río Baker fluyendo "contra corriente" por las aguas turbias del Colonia); EGU2009-13147 (la crecida afectó el Baker hasta 25 km aguas arriba de la junta) |
+| Por eso hay una alarma que avisa a los que viven río abajo | AFP 2012 en Solar Daily y La Estrella (cuando el lago empieza a vaciarse se activa una alarma que da a los pobladores hasta 8 horas para mover sus animales); Codexverde (instalan un nuevo sistema de alertas en el lago Cachet 2; alertas tempranas para Cochrane y Tortel); glaciologia.cl (ONEMI: alerta temprana preventiva para Cochrane y Tortel, contacto radial con los pobladores) |
+| Ya van más de veinte veces (la voz) | Bertrand et al., EGU21-14687 (21 vaciamientos entre 2008 y 2017); DGA-Casassa en Infraestructura Pública (más de 25 veces en una década); glaciologia.cl (más de 28 desde 2008) |
+| (Pantalla) ≈ 80.000 PISCINAS OLÍMPICAS | ~200 millones de m³ por vaciamiento (Dussaillant et al. 2010; USGS; EGU2009-1442); una piscina olímpica mide 50 × 25 m con 2 m de profundidad mínima (certificado de piscina de FINA/World Aquatics: 50 m de largo, 25 m de ancho, 2 m de profundidad mínima) = 2.500 m³: 200.000.000 / 2.500 = 80.000 |
 
 **Matices (para no exagerar):**
 - **"En una sola noche":** el paper fecha cada evento en dos días (6–7 de abril de 2008); el vaciamiento mismo duró horas, de noche (CECS, AFP, NCSE). El río abajo tardó hasta 48 h en llegar al máximo. La voz dice "una noche" sólo del lago.
 - **"El lago entero":** USGS dice "toda el agua"; el CECS, "casi completamente" (quedan charcos). La imagen deja charcos.
 - **"Levanta el borde del glaciar":** es el mecanismo general de los lagos represados por hielo (Björnsson, NOAA) y el que describe Pelto para el Cachet 2; la otra vía que da NOAA es una grieta en el hielo. En el corte, el levantamiento es de centímetros a metros y se exagera un poco para que se vea (capa de explicación).
-- **Lo que no va en la voz:** el nombre del lago y del glaciar (Cachet 2, Colonia), los años, el río Baker que se triplica, los 200 millones de m³ y los científicos. Van al post y al comentario fijado.
+- **Lo que no va en la voz:** el nombre del lago, del glaciar y de los ríos (Cachet 2, Colonia, Baker), los años, los 200 millones de m³, las 8 horas de la alarma y los científicos. Van al post y al comentario fijado.
+- **"Lo empuja hacia atrás":** las fuentes dicen que la crecida bloquea el Baker y lo inunda río arriba (hasta 4 km según Bertrand; efectos hasta 25 km según Casassa et al.). La imagen muestra el agua café subiendo río arriba cerca de la junta, no el río entero corriendo al revés.
 - **Seguridad:** el valle es remoto y no aparece nadie. Nada imitable.
 - **Clima:** las fuentes (AFP, CECS) relacionan los vaciamientos con el calentamiento; la voz no lo dice para no afirmar una causa que el paper no cierra para este lago.
 
@@ -104,7 +117,7 @@ El hielo se cierra, el lago se llena… y otra vez:
 - Emol 2008: https://www.emol.com/noticias/nacional/2008/04/09/299847/nuevo-lago-de-origen-glacial-desaparecio-en-el-sur-de-chile.html
 - NCSE, When a Big Lake Disappears Overnight: https://ncse.ngo/when-big-lake-disappears-overnight
 - FINA/World Aquatics, certificado de piscina para Juegos Olímpicos (50 m de largo, 2 m de profundidad mínima): https://resources.fina.org/fina/document/2023/04/18/59a9d18e-7d76-448f-ae5d-6e9871a29c3f/fina_swimming_pool_certificate_for_og_wc_february_2020_1.pdf
-- Fluidra, Olympic swimming pool size (50 × 25 × 2 m ≈ 2.500 m³): https://www.fluidra.com/projects/olympic-swimming-pool-size/
+- Codexverde, etiqueta lago Cachet (alertas y sistema de alarma): https://codexverde.cl/tag/lago-cachet
 - Infraestructura Pública (DGA, Casassa): https://www.infraestructurapublica.cl/chile-tendra-primer-inventario-lagos-glaciares-mapa-riesgos-crecidas/
 
 ## Plan de Kling

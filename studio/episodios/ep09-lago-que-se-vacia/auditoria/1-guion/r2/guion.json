@@ -1,0 +1,23 @@
+{
+ "encargo": "guion",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "precision": {"nota": 7, "por_que": "Las 5 afirmaciones nuevas están en los extractos con 2 o más fuentes: 200 millones de m³ (Dussaillant 2010, EGU2009-1442, USGS); Baker de 1.200 a 3.570 m³/s, o sea ×2,98 (EGU2009-13147), y 'tripling its volume' (AFP), 'tripled in size' (Pelto), 'tres veces su caudal' (La Estrella); el más grande de Chile por volumen (USGS SIM 3322, NCSE); 'blocks the regular flow' e inunda 4 km río arriba (Bertrand EGU21), 'fluyendo contra corriente' (glaciologia.cl) y hasta 25 km río arriba (EGU2009-13147); alarma para los pobladores (AFP, La Estrella, Codexverde, glaciologia.cl/ONEMI); 21 vaciamientos 2008–2017 (Bertrand), más de 25 (DGA/Casassa) y más de 28 (glaciologia.cl), así que 'más de veinte' se queda corto, no exagera. Baja a 7 por la cita de Fluidra, que contradice la profundidad usada para las 80.000 piscinas (problema 1)."},
+  "gancho": {"nota": 9, "por_que": "'Anoche, aquí había un lago.' pone lo central en 5 palabras (~1,4 s) sobre el fondo seco con témpanos varados, y la píldora ahora dice ANOCHE AQUÍ HABÍA UN LAGO, así que lo imposible se entiende sin sonido. Desde el paquete de gancho se cumplen G1 (mudo), G2 (lo imposible a la vista), G3 (concreto) y G13 (prueba a la vista: témpanos varados y la marca del nivel en las laderas). GUIONISTA.md no está en mis materiales, así que no revisé G1–G14 y §6.2 completos."},
+  "claridad": {"nota": 7, "por_que": "Las 13 frases tienen 14 palabras o menos (la más larga es 'Sale por el otro lado…', con 14), se pueden filmar y la mecánica sigue en 3 pasos (flota y levanta, se cuela, derrite el túnel). Pero después del pago (~27 s) vienen 3 datos más; la alarma es lateral y el propio guion predice que la gente se va ahí (~36 s). Además, con 135 palabras queda en el techo (el check estima 46,4 s y el guion ~44 s)."},
+  "compartible": {"nota": 9, "por_que": "Se manda solo ('mira, en Chile hay un lago que se va por debajo de un glaciar'), y la v2 suma un segundo momento para mandarlo: el río más caudaloso de Chile que se frena y se devuelve (~33 s)."}
+ },
+ "problemas": [
+  {"prioridad": 1, "bloqueante": true, "tipo": "B6", "plano": null, "segundo": "Ochenta mil piscinas olímpicas de agua. / (Pantalla) ≈ 80.000 PISCINAS OLÍMPICAS", "que": "La tabla de verificación (filas de la voz y de la pantalla) y 'Fuentes' le atribuyen a Fluidra '50 × 25 × 2 m ≈ 2.500 m³'. Esa página no da ningún volumen y dice que las piscinas olímpicas de Juegos Olímpicos y Mundiales deben tener 2,50 m de profundidad mínima, lo que daría unas 64.000 piscinas, no 80.000. Es una fuente que no dice lo que afirma el guion, y va al comentario fijado, donde cualquiera puede abrirla y ver que la cifra no le cuadra.", "arreglo": "Sacar Fluidra de las dos filas y de 'Fuentes'. La cifra ya está respaldada por el certificado FINA/World Aquatics (largo 50 m, ancho 25 m, 'Depth: 2 Metres (minimum)'), que da 2.500 m³ y por lo tanto 80.000. La voz y la píldora no cambian."}
+ ],
+ "verificacion": [
+  {"id": "A1", "arreglado": true, "por_que": "La píldora del cuadro 0 ahora es ANOCHE AQUÍ HABÍA UN LAGO, tanto en la tabla 'Una frase, una imagen' como en el 'Paquete de gancho' (texto en pantalla 0–3 s)."},
+  {"id": "A2", "arreglado": true, "por_que": "La nota del loop salió de '## Guion' y quedó bajo '## Una frase, una imagen'. '## Guion' tiene sólo las 13 líneas de voz, y el check cuenta 135 palabras, igual que el guion."},
+  {"id": "A3", "arreglado": true, "por_que": "El tamaño ahora va en la voz y en la píldora ('Ochenta mil piscinas olímpicas…', ≈ 80.000 PISCINAS OLÍMPICAS → ¿POR DÓNDE?) sobre el lago lleno, a ras del agua (~5–7 s), y en el pago queda sola EN UNA NOCHE."},
+  {"id": "A4", "arreglado": true, "por_que": "En la fila del túnel ahora dice 'el túnel crece; estelas que corren. TÚNEL'. Ya no aparece ningún naranja en guion.md."},
+  {"id": "A5", "arreglado": true, "por_que": "Se agregó a 'Fuentes', con su URL, el certificado FINA/World Aquatics para los Juegos Olímpicos. Lo leí y dice 50 m de largo, 25 m de ancho y 'Depth: 2 Metres (minimum)', o sea 2.500 m³. La segunda fuente agregada (Fluidra) no lo respalda: ver problema 1."}
+ ],
+ "eventos": [],
+ "resumen": "Los 5 arreglos de la ronda 1 quedaron hechos, y los datos nuevos (río ×3, el río que se frena y se devuelve, la alarma, más de 20 veces) están en las fuentes con 2 o más cada uno. El único bloqueante es la cita de Fluidra, que contradice la profundidad de la piscina; se arregla en un minuto borrándola, sin tocar la voz. Aviso, que no es bloqueante: 135 palabras está sobre las 128 de la regla y el check estima 46,4 s, así que hay que confirmar que la toma real de Fernando quede en 45 s o menos."
+}

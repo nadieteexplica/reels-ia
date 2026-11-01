@@ -1,4 +1,4 @@
-"""Planos del Ep. 9 (estilo realista): 3 escenas, 12 planos (storyboard.md v1).
+"""Planos del Ep. 9 (estilo realista): 3 escenas, 15 planos (storyboard.md v2, 45 s).
 
 E1 valle — el lago (lleno, vaciándose o vacío) contra el glaciar: planos 1, 2, 3, 9, 11 y 12.
 E2 corte — la represa de hielo abierta de costado: planos 5, 6, 7, 8 y 10.
@@ -19,7 +19,7 @@ import vistas as V
 from ep09 import F, FR, T, lin, suave, sale, tramo, ruido, clamp, mirar, pantalla, oculto
 
 FPS = 30
-ESCENA = {1: "E1", 2: "E1", 3: "E1", 4: "E3", 5: "E2", 6: "E2", 7: "E2", 8: "E2", 9: "E1", 10: "E2", 11: "E1", 12: "E1"}
+ESCENA = {1: "E1", 2: "E1", 3: "E1", 4: "E2", 5: "E2", 6: "E2", 7: "E2", 8: "E2", 9: "E1", 10: "E4", 11: "E4", 12: "E4", 13: "E2", 14: "E1", 15: "E1"}
 DET = float(os.environ.get("DET", 1.0))
 EXPO = -0.8
 
@@ -69,12 +69,31 @@ def cuadro0_meta(sc, S):
             "muro": pantalla(sc, S["cam"], Vector((20, -4, 30)))}
 
 
+def trozo_que_cae(sc, S):
+    """Un trozo de hielo (~1,6 m) se suelta del borde del témpano del cuadro 0 y cae al barro (acción desde el cuadro 0;
+    puerta 3: "no hay acción en curso en el primer segundo")."""
+    t0 = S["tempanos"][0]
+    tr = L.roca_hielo(sc, "TrozoCae", (1.6, 1.2, 1.0), 77, bpy.data.materials["hielo_tempano"])
+    tope = t0.matrix_world.translation + Vector((t0.dimensions.x * 0.33, t0.dimensions.y * 0.38, t0.dimensions.z * 0.3))
+    piso = V.z_suelo(tope.x, tope.y) + 0.35
+
+    def pos(t):
+        caida = max(0.0, t - 0.12)
+        z = max(piso, tope.z - 0.5 * 9.81 * caida * caida)
+        rot = min(1.0, caida / 0.75)
+        tr.location = (tope.x + 0.6 * rot, tope.y + 0.4 * rot, z)
+        tr.rotation_euler = (1.4 * rot, 0.5 * rot, 0.3)
+    return pos
+
+
 def p1(sc, a, b):
     # CUADRO 0 · "Anoche, aquí había un lago.": el fondo vacío, témpanos varados, el muro de hielo atrás
     S = armar_valle(sc, L.NIVEL_VACIO)
+    cae = trozo_que_cae(sc, S)
 
     def act(f):
         fase_agua(S, f)
+        cae(tf(f))
         p, m = c0_pose(sale(lin(f, a, b - 1)))
         mirar(S["cam"], p, m, lente=C0["lente"])
         return cuadro0_meta(sc, S)
@@ -120,7 +139,7 @@ def p4(sc, a, b):
     rel.visible_glossy = False
     cubo = VV["cubo"]
     c0 = cubo.location.copy()
-    t_fl = TW("flota", 7.0)
+    t_fl = TW("flota", a / FPS - 0.3)
 
     def act(f):
         fase_agua(S, f)
@@ -136,27 +155,31 @@ def p4(sc, a, b):
 
 
 # ---------------------------------------------------------------- E2: el corte
-CAM_CORTE = (Vector((L.XC + 250, 45, 62)), Vector((L.XC, -18, -14)))
+CAMS_CORTE = {   # (posición, mira): el contacto hielo-roca queda sobre la franja de subtítulos (y ≈ 820–890)
+    "lejos": (Vector((L.XC + 200, 30, 15)), Vector((L.XC, -5, -40))),
+    "cerca": (Vector((L.XC + 110, 16, -15)), Vector((L.XC, 2, -40))),
+}
 
 
 def armar_corte(sc, nivel):
     # en el corte el sol entra del noreste y más alto: rasante sobre la cara cortada (de frente quedaba plana y blanca)
     # y sin la sombra del glaciar que queda fuera del corte
-    S = armar_valle(sc, nivel, sol_elev=20.0, sol_rot=35.0)
+    S = armar_valle(sc, nivel, sol_elev=20.0, sol_rot=35.0, xmax=L.XC)
     C = L.Corte(sc, S)
     return S, C
 
 
-def cam_corte(S, x=0.0, cerca=0.0, lente=30):
-    p, m = CAM_CORTE
-    p = p + Vector((-70 * cerca, -15 * cerca, -30 * cerca)) + Vector((-10, -6, -4)) * x
-    mirar(S["cam"], p, m + Vector((0, 0, -6 * cerca)), lente=lente)
+def cam_corte(S, modo="lejos", x=0.0, lente=30):
+    """modo = "lejos" | "cerca"; x = avance del dolly (0–1)."""
+    p, m = CAMS_CORTE[modo]
+    p = p + (m - p) * 0.06 * x
+    mirar(S["cam"], p, m, lente=lente)
 
 
 def meta_corte(sc, S, C, extra=None):
-    d = {"pie": pantalla(sc, S["cam"], Vector((L.XC, -40, float(C.bed[C.hielo_y][-40]) + 4))),
-         "tunel": pantalla(sc, S["cam"], Vector((L.XC, -60, float(C.bed[C.hielo_y][-60]) + 3))),
-         "lago": pantalla(sc, S["cam"], Vector((L.XC, 60, -10)))}
+    d = {"pie": pantalla(sc, S["cam"], Vector(C.contacto(L.Y_FRENTE + 8)) + Vector((0, 0, 3))),
+         "tunel": pantalla(sc, S["cam"], Vector(C.contacto(-12)) + Vector((0, 0, 2))),
+         "lago": pantalla(sc, S["cam"], Vector((L.XC, 30, -12)))}
     d.update(extra or {})
     return d
 
@@ -164,7 +187,7 @@ def meta_corte(sc, S, C, extra=None):
 def p5(sc, a, b):
     # "Por eso, cuando el lago se llena, levanta el borde del glaciar.": el agua sube contra el hielo y el pie se despega
     S, C = armar_corte(sc, -8.0)
-    t_ll, t_lv = TW("llena", 9.4), TW("levanta", 9.4)
+    t_ll, t_lv = TW("llena", a / FPS - 0.3), TW("levanta", a / FPS - 0.3)
 
     def act(f):
         t = tf(f)
@@ -172,7 +195,10 @@ def p5(sc, a, b):
         lift = 4.0 * suave(lin(t, t_lv, t_lv + 0.9))
         C.estado(nivel, lift=lift, fase=0.0)
         fase_agua(S, f)
-        cam_corte(S, suave(lin(f, a, b - 1)))
+        if t < t_lv - 0.05:                     # puerta 3: en "levanta", corte seco a la cámara cercana (4 m de lejos no se ven)
+            cam_corte(S, "lejos", suave(lin(t, a / FPS, t_lv)))
+        else:
+            cam_corte(S, "cerca", suave(lin(t, t_lv, b / FPS)))
         return meta_corte(sc, S, C, {"lift": round(lift, 2)})
     return {"actualizar": act}
 
@@ -180,29 +206,29 @@ def p5(sc, a, b):
 def p6(sc, a, b):
     # "Y el agua se cuela por abajo.": una lengua de agua avanza bajo el hielo
     S, C = armar_corte(sc, 0.0)
-    t0 = TW("agua", 12.9)
+    t0 = TW("agua", a / FPS - 0.3)
 
     def act(f):
         t = tf(f)
-        len_ = -6.0 - 400.0 * sale(lin(t, t0 - 0.2, b / FPS - 0.2))
+        len_ = L.Y_FRENTE + L.TOE - (L.TOE + 420.0) * sale(lin(t, t0 - 0.2, b / FPS - 0.2))
         C.estado(0.0, lift=4.0, lengua=len_, fase=-0.02 * f)
         fase_agua(S, f)
-        cam_corte(S, 0.4 + 0.3 * suave(lin(f, a, b - 1)), cerca=0.35)
-        return meta_corte(sc, S, C, {"lengua": pantalla(sc, S["cam"], Vector((L.XC, max(len_, -400), -30)))})
+        cam_corte(S, "cerca", suave(lin(f, a, b - 1)))
+        return meta_corte(sc, S, C, {"lengua": pantalla(sc, S["cam"], Vector(C.contacto(max(len_ * 0.06, -22))) + Vector((0, 0, 1)))})
     return {"actualizar": act}
 
 
 def p7(sc, a, b):
     # "Al pasar, derrite el hielo y abre un túnel cada vez más ancho.": el conducto crece de un hilo a un túnel
     S, C = armar_corte(sc, 0.0)
-    t0 = TW("derrite", 15.0)
+    t0 = TW("derrite", a / FPS - 0.3)
 
     def act(f):
         t = tf(f)
         r = 0.5 + 5.5 * suave(lin(t, t0, b / FPS - 0.15))
         C.estado(0.0, lift=4.0 - 2.5 * lin(t, t0, b / FPS), lengua=-420.0, radio=r, fase=-0.035 * f)
         fase_agua(S, f)
-        cam_corte(S, 0.2 * suave(lin(f, a, b - 1)), cerca=0.25)
+        cam_corte(S, "cerca", 1.0 - 0.6 * suave(lin(f, a, b - 1)))
         return meta_corte(sc, S, C, {"radio": round(r, 2)})
     return {"actualizar": act}
 
@@ -216,7 +242,7 @@ def p8(sc, a, b):
         nivel = -14.0 * x
         C.estado(nivel, lift=1.5 * (1 - x), lengua=-420.0, radio=6.0 + 1.5 * x, fase=-0.07 * f)
         fase_agua(S, f)
-        cam_corte(S, -0.3 * suave(x), cerca=0.0)
+        cam_corte(S, "lejos", -0.5 * suave(x))
         return meta_corte(sc, S, C)
     return {"actualizar": act}
 
@@ -240,14 +266,14 @@ def p9(sc, a, b):
 def p10(sc, a, b):
     # "El hielo se cierra,": vacío el lago, el hielo baja y aprieta el túnel hasta cerrarlo
     S, C = armar_corte(sc, L.NIVEL_VACIO)
-    t0 = TW("hielo", 22.2)
+    t0 = TW("hielo", a / FPS - 0.3)
 
     def act(f):
         t = tf(f)
         r = 7.5 * (1 - sale(lin(t, t0, b / FPS - 0.25)))
         C.estado(L.NIVEL_VACIO, lift=0.0, lengua=-420.0 if r > 0.3 else 0.0, radio=r, fase=-0.02 * f)
         fase_agua(S, f)
-        cam_corte(S, 0.5 + 0.3 * suave(lin(f, a, b - 1)), cerca=0.3)
+        cam_corte(S, "cerca", suave(lin(f, a, b - 1)))
         return meta_corte(sc, S, C, {"radio": round(r, 2)})
     return {"actualizar": act}
 
@@ -272,6 +298,7 @@ def p12(sc, a, b):
     # "y otra vez…": el lago se vuelve a ir; la cámara baja con el agua y termina en la cámara exacta del cuadro 0 (loop)
     S = armar_valle(sc, 0.0)
     p_fin, m_fin = c0_pose(0.0)
+    trozo_que_cae(sc, S)(0.0)                    # el trozo que cae en el plano 1 todavía está arriba (loop)
 
     def act(f):
         x = lin(f, a, b - 1)
@@ -285,8 +312,106 @@ def p12(sc, a, b):
     return {"actualizar": act}
 
 
+# ---------------------------------------------------------------- v2 (45 s): el témpano en corte y el río de abajo
+def p_flota(sc, a, b):
+    # "El hielo flota, como el de tu vaso.": en el corte, un témpano flota en el lago con casi todo bajo el agua
+    S, C = armar_corte(sc, 0.0)
+    C.estado(0.0)
+    tem = L.tempano_corte(sc)
+    z0 = tem.location.z
+    p0, m0 = Vector((L.XC + 175, 95, 6)), Vector((L.XC, 52, -12))
+
+    def act(f):
+        t = tf(f)
+        tem.location.z = z0 + 0.35 * math.sin(t * 2.2)            # se mece en el agua
+        fase_agua(S, f)
+        x = suave(lin(f, a, b - 1))
+        mirar(S["cam"], p0 + (m0 - p0) * 0.07 * x, m0, lente=30)
+        return {"tempano": pantalla(sc, S["cam"], Vector((L.XC, 58, 2))), "linea": pantalla(sc, S["cam"], Vector((L.XC, 30, 0)))}
+    return {"actualizar": act}
+
+
+def armar_rio(sc):
+    R = L.rio(sc, detalle=DET)
+    R["cam"] = E.camara(sc, (0, 0, 0), (0, -1, 0), lente=26, fstop=None)
+    sc.view_settings.exposure = EXPO
+    return R
+
+
+def fase_rio(f):
+    m = bpy.data.materials.get("agua_rio")
+    if m:
+        for n in m.node_tree.nodes:
+            if n.type == "MAPPING":
+                n.inputs["Location"].default_value = (0.03 * f, 0.0, 0.0)
+
+
+def flechas_rio(R, nivel, atras=0.0, f=0):
+    """Flechas del río grande: río abajo (+x); con 'atras' (0–1) las de río arriba (x < 0) se dan vuelta."""
+    for fl in R["flechas"]:
+        fl.location.z = 20.0 + nivel + 0.6
+        gira = atras if fl.location.x < 0 else 0.0
+        fl.rotation_euler = (0, 0, math.pi * suave(gira))
+        fl.location.x = fl.get("x0", fl.location.x)
+        fl["x0"] = fl.get("x0", fl.location.x)
+        fl.location.x = fl["x0"] + (12.0 if gira < 0.5 else -12.0) * math.sin(f * 0.12)
+
+
+CAM_RIO = (Vector((-420, 620, 230)), Vector((180, -120, 12)))
+
+
+def p_rio1(sc, a, b):
+    # "Sale por el otro lado, y el río más caudaloso de Chile se triplica.": el agua café entra y el río se ensancha
+    R = armar_rio(sc)
+    t_tr = TW("triplica", a / FPS - 0.3)
+
+    def act(f):
+        t = tf(f)
+        k = suave(lin(t, a / FPS + 0.3, t_tr + 0.4))
+        nivel = L.RIO_NORMAL + (L.RIO_CRECIDA - L.RIO_NORMAL) * k
+        L.estado_rio(R, nivel, 0.0 - 50 * k, -1000.0 + 3500.0 * sale(lin(t, a / FPS, a / FPS + 1.4)))
+        flechas_rio(R, nivel, 0.0, f)
+        fase_rio(f)
+        p, m = CAM_RIO
+        mirar(R["cam"], p + (m - p) * 0.08 * suave(lin(f, a, b - 1)), m, lente=26)
+        return {"rio": pantalla(sc, R["cam"], Vector((150, 0, 20 + nivel))), "junta": pantalla(sc, R["cam"], Vector((0, -80, 20 + nivel)))}
+    return {"actualizar": act}
+
+
+def p_rio2(sc, a, b):
+    # "Es tanta agua que frena al río y lo empuja hacia atrás.": las flechas de río arriba se dan vuelta y el café sube
+    R = armar_rio(sc)
+    t_at = TW("atrás", a / FPS - 0.3)
+    p0, m0 = Vector((-650, 420, 190)), Vector((-120, -40, 14))
+
+    def act(f):
+        t = tf(f)
+        k = suave(lin(t, TW("frena", a / FPS - 0.3) - 0.2, t_at + 0.3))
+        L.estado_rio(R, L.RIO_CRECIDA, -60.0 - 700.0 * k, 2500.0)
+        flechas_rio(R, L.RIO_CRECIDA, k, f)
+        fase_rio(f)
+        mirar(R["cam"], p0 + (m0 - p0) * 0.08 * suave(lin(f, a, b - 1)), m0, lente=26)
+        return {"atras": pantalla(sc, R["cam"], Vector((-330, 0, 20 + L.RIO_CRECIDA)))}
+    return {"actualizar": act}
+
+
+def p_rio3(sc, a, b):
+    # "Por eso hay una alarma que avisa a los que viven río abajo.": casas en la orilla, río abajo
+    R = armar_rio(sc)
+    p0, m0 = Vector((380, 60, 95)), Vector((660, -370, 22))
+
+    def act(f):
+        L.estado_rio(R, L.RIO_CRECIDA, -760.0, 2500.0)
+        flechas_rio(R, L.RIO_CRECIDA, 1.0, f)
+        fase_rio(f)
+        x = suave(lin(f, a, b - 1))
+        mirar(R["cam"], p0 + (m0 - p0) * 0.12 * x, m0, lente=35)
+        return {"casas": pantalla(sc, R["cam"], R["casas"][0].matrix_world.translation + Vector((0, 0, 6)))}
+    return {"actualizar": act}
+
+
 # ===================================== piezas ======================================
-FUN = {1: p1, 2: p2, 3: p3, 4: p4, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p10, 11: p11, 12: p12}
+FUN = {1: p1, 2: p2, 3: p3, 4: p_flota, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p_rio1, 11: p_rio2, 12: p_rio3, 13: p10, 14: p11, 15: p12}
 PIEZAS = {}
 for k in T:
     a, b = FR(k)

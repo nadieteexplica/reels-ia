@@ -1,0 +1,23 @@
+[
+ {
+  "id": "guion",
+  "prompt": "tools/auditor/prompts/1-guion.md",
+  "alcance": "guion completo",
+  "materiales": [
+   "studio/episodios/ep09-lago-que-se-vacia/guion.md",
+   "studio/episodios/ep09-lago-que-se-vacia/auditoria/1-guion/r3/materiales/fuentes.md",
+   "studio/episodios/ep09-lago-que-se-vacia/auditoria/1-guion/r3/materiales/anterior_guion.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "docs/IDEAS.md",
+   "docs/PUBLICADOS.md"
+  ],
+  "salida": "guion.json",
+  "verificar_ids": [
+   "A1"
+  ],
+  "modo": "verificacion"
+ }
+]
