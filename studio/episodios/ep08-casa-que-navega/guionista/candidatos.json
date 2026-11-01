@@ -1,60 +1,33 @@
 {
  "ep": "ep08-casa-que-navega",
- "nota": "6 ganchos para el duelo (paso 3). Formato de anclas.json sin 'real'; cuadro0 ≤ 40 y 0_3s ≤ 35 palabras, secos. Las descripciones largas para el storyboard están en ganchos.md. 'resto' = borrador de una línea desde los ~3 s.",
+ "nota": "3 guiones completos para los cazadores de fugas (paso 5). Formato de anclas.json sin 'real'. voz_0_3s + resto = la voz entera, sin solaparse; resto sigue desde ~3 s. Detalle, tiempos y 12 reglas en guiones.md. Ganchos del duelo en candidatos_ganchos.json.",
  "candidatos": [
   {
-   "id": "g1",
-   "dur_s": 34,
-   "cuadro0": "Casa de madera de un piso flotando en el mar, al centro, media pantalla de ancho. Una cuerda tensa la une a una lancha chica en el borde derecho, con un hombre al timón. Cerros al fondo.",
-   "0_3s": "La casa avanza con una estela corta, la cuerda vibra y la cámara la sigue de costado. A los 2 s, corte a la puerta con el agua pegando en la base.",
-   "texto_pantalla_0_3s": "Píldora 'SE MUDA POR EL MAR' + subtítulos",
-   "voz_0_3s": "Esta casa está cruzando el mar. Es una mudanza…",
-   "resto": "…en unas islas del sur de Chile: aquí te llevas la casa entera. Los vecinos la montan sobre troncos que ruedan, y sus bueyes la arrastran hasta la orilla. Pero el terreno nuevo está al otro lado del agua… por eso la casa sigue sola: es de madera, y flota. Una lancha la remolca, hasta que otros bueyes la sacan en la otra orilla. Al final, comida y baile para todos los que ayudaron. Así que aquí, en día de mudanza… [loop] esta casa está cruzando el mar."
-  },
-  {
-   "id": "g2",
-   "dur_s": 35,
-   "cuadro0": "Cámara a ras del agua. Casa de madera de un piso flotando, dos tercios del ancho; el agua le llega a las tejuelas de abajo. A la derecha, más chica, una lancha la tira con una cuerda tensa.",
-   "0_3s": "Una ola chica pega en el costado; la casa se mece y no se hunde. A los 2,5 s, corte a la lancha de frente con la casa detrás.",
-   "texto_pantalla_0_3s": "Píldora 'NO SE HUNDE: SE MUDA' + subtítulos",
-   "voz_0_3s": "Esta casa no se hunde: se está mudando.",
-   "resto": "En unas islas del sur de Chile, cuando te mudas, te llevas la casa. Los vecinos la montan sobre troncos que ruedan, y sus bueyes la arrastran hasta la orilla. Pero el terreno nuevo queda al otro lado del agua… por eso la casa entra al mar: es de madera, y flota. Una lancha la remolca, hasta que otros bueyes la sacan en la otra orilla. Al final, comida y baile para todos los que ayudaron. Así que si ves una casa en el mar, tranquilo: [loop] esta casa no se hunde, se está mudando."
-  },
-  {
-   "id": "g3",
-   "dur_s": 34,
-   "cuadro0": "Orilla de piedras, cámara baja. Una casa de madera de un piso sale del agua hacia la cámara, chorreando, media pantalla de ancho. Abajo, cortados por el cuadro, dos bueyes con yugo tiran de cadenas.",
-   "0_3s": "Los bueyes dan un paso y la casa avanza unos centímetros, chorreando. A los 1,5 s, primer plano de un buey; a los 2,5 s, las tejuelas mojadas.",
-   "texto_pantalla_0_3s": "Píldora 'LLEGÓ POR EL MAR' + subtítulos",
-   "voz_0_3s": "Esta casa está saliendo del mar. Y entró…",
-   "resto": "…a propósito: es una mudanza, en unas islas del sur de Chile. Los vecinos la montaron sobre troncos que ruedan, y sus bueyes la arrastraron hasta la orilla. Pero el terreno nuevo estaba al otro lado del agua… por eso la casa entró al mar: es de madera, y flota. Una lancha la remolcó hasta aquí, y estos bueyes la sacan. Al final, comida y baile para todos los que ayudaron. Así que si ves una casa en el mar, espera un poco: [loop] esta casa está saliendo del mar."
-  },
-  {
-   "id": "g4",
-   "dur_s": 33,
+   "id": "s4",
+   "dur_s": 29,
    "cuadro0": "Playa de arena oscura. Una casa de madera de un piso sobre troncos, tirada por dos yuntas de bueyes; la casa ocupa media pantalla y los bueyes un cuarto abajo. El mar, unos metros adelante.",
    "0_3s": "Los bueyes tiran, un tronco sale rodando por atrás y se levanta arena. A los 2 s, corte desde el agua: la casa viene de frente hacia la cámara.",
    "texto_pantalla_0_3s": "Píldora 'DIRECTO AL MAR' + subtítulos",
-   "voz_0_3s": "Bueyes arrastrando una casa… al mar. No es broma:",
-   "resto": "es una mudanza, en unas islas del sur de Chile. Los vecinos ponen sus bueyes, y la casa rueda sobre troncos hasta la orilla. Pero el terreno nuevo está al otro lado del agua… por eso la casa sigue sola: es de madera, y flota. Una lancha la remolca, hasta que otros bueyes la sacan en la otra orilla. Al final, comida y baile para todos los que ayudaron. Así que si ves bueyes en la playa, ya sabes: [loop] están arrastrando una casa al mar."
+   "voz_0_3s": "Bueyes arrastrando una casa… al mar. Es una mudanza,",
+   "resto": "en unas islas del sur de Chile. Aquí, cuando te mudas, te llevas la casa entera. Los vecinos ponen sus bueyes, y la casa rueda sobre troncos. Pero el terreno nuevo está al otro lado del agua. Por eso, en la orilla, los bueyes se quedan… y la casa sigue sin ellos. Es de madera: flota, remolcada por una lancha. Así que aquí, en día de mudanza, vas a ver…"
   },
   {
-   "id": "g5",
-   "dur_s": 34,
+   "id": "s5",
+   "dur_s": 30,
    "cuadro0": "Vista desde una lancha mirando hacia atrás: abajo, la popa, el motor y la estela. Una cuerda tensa sube hasta una casa de madera de un piso que flota detrás, de frente, media pantalla de ancho.",
    "0_3s": "La cámara se mece con el bote, la estela corre y la casa avanza detrás. A los 2 s, corte lateral: la lancha chica tirando de la casa.",
    "texto_pantalla_0_3s": "Píldora 'MUDANZA POR EL MAR' + subtítulos",
-   "voz_0_3s": "Tu casa te sigue… por el mar.",
-   "resto": "En unas islas del sur de Chile no mudas tus cosas: mudas la casa entera. Tus vecinos traen sus bueyes, y la casa rueda sobre troncos hasta la orilla. Pero tu terreno nuevo está al otro lado del agua… por eso la casa entra al mar: es de madera, y flota. Una lancha la remolca, hasta que otros bueyes la sacan en la otra orilla. Al final, comida y baile para todos los que ayudaron. Así que si te mudas aquí, no mires atrás: [loop] tu casa te sigue por el mar."
+   "voz_0_3s": "Tu casa te sigue… por el mar. Así te mudas",
+   "resto": "en unas islas del sur de Chile. Primero, le pides ayuda a tus vecinos: traen sus bueyes. Montan tu casa sobre troncos, y los bueyes la arrastran hasta la orilla. Pero tu terreno nuevo queda al otro lado del agua. Por eso la amarran a una lancha… y tu casa se mete al mar. Es de madera: flota, y te sigue. Así que si te mudas aquí, no mires atrás:"
   },
   {
-   "id": "g6",
-   "dur_s": 32,
+   "id": "s6",
+   "dur_s": 28,
    "cuadro0": "Plano cerrado: casa de madera de un piso en medio del mar, dos tercios del ancho, cámara baja. No se ve lancha; sólo una cuerda tensa que sale por el borde derecho. Cerros al fondo.",
-   "0_3s": "Una ola chica pega en el costado; la casa se mece y avanza, con estela. A los 2 s se abre el plano y aparece la lancha que la tira.",
-   "texto_pantalla_0_3s": "Píldora 'LA CASA QUE NADA' + subtítulos",
-   "voz_0_3s": "Esta casa sabe nadar. Bueno, flota: es de madera…",
-   "resto": "…y una lancha la remolca. Es una mudanza, en unas islas del sur de Chile. Los vecinos la montan sobre troncos que ruedan, y sus bueyes la arrastran hasta la orilla. Pero el terreno nuevo está al otro lado del agua… por eso la casa se mete al mar. En la otra orilla, otros bueyes la sacan del agua. Al final, comida y baile para todos los que ayudaron. Así que en el sur de Chile, hasta… [loop] esta casa sabe nadar."
+   "0_3s": "Una ola chica pega en el costado; la casa se mece y avanza, con estela. A los 2 s, corte lateral a ras del agua: la cuerda sigue saliendo de cuadro.",
+   "texto_pantalla_0_3s": "Píldora 'LA CASA QUE NADA' (a los 2 s cambia a 'SE ESTÁ MUDANDO') + subtítulos",
+   "voz_0_3s": "Esta casa sabe nadar. No se está hundiendo:",
+   "resto": "se está mudando, en Chiloé, al sur de Chile. ¿Y cómo llegó hasta aquí? Los vecinos la montaron sobre troncos, y sus bueyes la arrastraron hasta la orilla. Pero en la orilla, los bueyes se quedaron… y la casa siguió sola, mar adentro. ¿Nadar? No tanto: es de madera, flota… y la remolca una lancha. Así que si ves una casa en el mar, tranquilo:"
   }
  ]
 }

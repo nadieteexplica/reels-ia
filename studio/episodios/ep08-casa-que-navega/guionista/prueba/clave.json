@@ -1,0 +1,154 @@
+{
+ "panel1": {
+  "DA": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "HM": {
+   "id": "s5",
+   "tipo": "candidato"
+  },
+  "XN": {
+   "id": "s4",
+   "tipo": "candidato"
+  },
+  "IQ": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "ZK": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "UV": {
+   "id": "s6",
+   "tipo": "candidato"
+  },
+  "XM": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "ER": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "BE": {
+   "id": "ep07",
+   "tipo": "ancla"
+  }
+ },
+ "panel2": {
+  "WU": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "CJ": {
+   "id": "s4",
+   "tipo": "candidato"
+  },
+  "NC": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "QP": {
+   "id": "s5",
+   "tipo": "candidato"
+  },
+  "UT": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "EV": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "ZN": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "QK": {
+   "id": "s6",
+   "tipo": "candidato"
+  },
+  "AN": {
+   "id": "ep01",
+   "tipo": "ancla"
+  }
+ },
+ "panel3": {
+  "SY": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "AM": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "HD": {
+   "id": "s5",
+   "tipo": "candidato"
+  },
+  "RG": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "HQ": {
+   "id": "s6",
+   "tipo": "candidato"
+  },
+  "LB": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "IC": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "ZI": {
+   "id": "s4",
+   "tipo": "candidato"
+  },
+  "GX": {
+   "id": "ep03",
+   "tipo": "ancla"
+  }
+ },
+ "panel4": {
+  "KD": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "SS": {
+   "id": "s4",
+   "tipo": "candidato"
+  },
+  "KA": {
+   "id": "s5",
+   "tipo": "candidato"
+  },
+  "BY": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "LA": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "OX": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "IP": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "UB": {
+   "id": "s6",
+   "tipo": "candidato"
+  },
+  "XG": {
+   "id": "ep07",
+   "tipo": "ancla"
+  }
+ }
+}
