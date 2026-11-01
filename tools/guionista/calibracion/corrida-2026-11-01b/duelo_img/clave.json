@@ -1,0 +1,620 @@
+{
+ "items": [
+  "ep01",
+  "ep02",
+  "ep03",
+  "ep04",
+  "ep05",
+  "ep07"
+ ],
+ "jueces": {
+  "juez1": {
+   "P1": {
+    "codigos": {
+     "GH": "ep01",
+     "PU": "ep04"
+    },
+    "orden": [
+     "ep01",
+     "ep04"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "TY": "ep01",
+     "UQ": "ep03"
+    },
+    "orden": [
+     "ep01",
+     "ep03"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "GM": "ep03",
+     "KP": "ep07"
+    },
+    "orden": [
+     "ep03",
+     "ep07"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "EN": "ep01",
+     "OX": "ep07"
+    },
+    "orden": [
+     "ep01",
+     "ep07"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "WW": "ep02",
+     "VB": "ep03"
+    },
+    "orden": [
+     "ep02",
+     "ep03"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "QH": "ep02",
+     "YI": "ep07"
+    },
+    "orden": [
+     "ep02",
+     "ep07"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "OP": "ep01",
+     "PI": "ep02"
+    },
+    "orden": [
+     "ep01",
+     "ep02"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "BF": "ep05",
+     "UY": "ep07"
+    },
+    "orden": [
+     "ep05",
+     "ep07"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "DB": "ep03",
+     "MI": "ep04"
+    },
+    "orden": [
+     "ep03",
+     "ep04"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "AF": "ep01",
+     "GG": "ep05"
+    },
+    "orden": [
+     "ep01",
+     "ep05"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "DL": "ep04",
+     "EH": "ep07"
+    },
+    "orden": [
+     "ep04",
+     "ep07"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "WZ": "ep02",
+     "UG": "ep05"
+    },
+    "orden": [
+     "ep02",
+     "ep05"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "NH": "ep03",
+     "JU": "ep05"
+    },
+    "orden": [
+     "ep03",
+     "ep05"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "LG": "ep02",
+     "JJ": "ep04"
+    },
+    "orden": [
+     "ep02",
+     "ep04"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "KO": "ep04",
+     "YH": "ep05"
+    },
+    "orden": [
+     "ep04",
+     "ep05"
+    ]
+   }
+  },
+  "juez2": {
+   "P1": {
+    "codigos": {
+     "LD": "ep07",
+     "GS": "ep04"
+    },
+    "orden": [
+     "ep07",
+     "ep04"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "KA": "ep05",
+     "CV": "ep02"
+    },
+    "orden": [
+     "ep05",
+     "ep02"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "QM": "ep07",
+     "SK": "ep02"
+    },
+    "orden": [
+     "ep07",
+     "ep02"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "DJ": "ep07",
+     "XF": "ep01"
+    },
+    "orden": [
+     "ep07",
+     "ep01"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "IT": "ep03",
+     "VP": "ep01"
+    },
+    "orden": [
+     "ep03",
+     "ep01"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "WJ": "ep05",
+     "UU": "ep03"
+    },
+    "orden": [
+     "ep05",
+     "ep03"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "ER": "ep04",
+     "FV": "ep01"
+    },
+    "orden": [
+     "ep04",
+     "ep01"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "RO": "ep07",
+     "EO": "ep05"
+    },
+    "orden": [
+     "ep07",
+     "ep05"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "BA": "ep07",
+     "FL": "ep03"
+    },
+    "orden": [
+     "ep07",
+     "ep03"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "XU": "ep04",
+     "OO": "ep02"
+    },
+    "orden": [
+     "ep04",
+     "ep02"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "XT": "ep05",
+     "EA": "ep01"
+    },
+    "orden": [
+     "ep05",
+     "ep01"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "PD": "ep04",
+     "ZF": "ep03"
+    },
+    "orden": [
+     "ep04",
+     "ep03"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "UA": "ep02",
+     "BZ": "ep01"
+    },
+    "orden": [
+     "ep02",
+     "ep01"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "UC": "ep05",
+     "PM": "ep04"
+    },
+    "orden": [
+     "ep05",
+     "ep04"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "AL": "ep03",
+     "GQ": "ep02"
+    },
+    "orden": [
+     "ep03",
+     "ep02"
+    ]
+   }
+  },
+  "juez3": {
+   "P1": {
+    "codigos": {
+     "VP": "ep03",
+     "TF": "ep07"
+    },
+    "orden": [
+     "ep03",
+     "ep07"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "CH": "ep02",
+     "OP": "ep03"
+    },
+    "orden": [
+     "ep02",
+     "ep03"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "TZ": "ep02",
+     "HC": "ep07"
+    },
+    "orden": [
+     "ep02",
+     "ep07"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "RG": "ep03",
+     "AB": "ep04"
+    },
+    "orden": [
+     "ep03",
+     "ep04"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "NB": "ep04",
+     "UK": "ep07"
+    },
+    "orden": [
+     "ep04",
+     "ep07"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "QU": "ep01",
+     "WT": "ep04"
+    },
+    "orden": [
+     "ep01",
+     "ep04"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "MM": "ep01",
+     "SP": "ep07"
+    },
+    "orden": [
+     "ep01",
+     "ep07"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "LJ": "ep01",
+     "EH": "ep02"
+    },
+    "orden": [
+     "ep01",
+     "ep02"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "GD": "ep02",
+     "TR": "ep05"
+    },
+    "orden": [
+     "ep02",
+     "ep05"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "RX": "ep02",
+     "YR": "ep04"
+    },
+    "orden": [
+     "ep02",
+     "ep04"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "MR": "ep01",
+     "RD": "ep05"
+    },
+    "orden": [
+     "ep01",
+     "ep05"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "IH": "ep01",
+     "UJ": "ep03"
+    },
+    "orden": [
+     "ep01",
+     "ep03"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "TW": "ep04",
+     "IZ": "ep05"
+    },
+    "orden": [
+     "ep04",
+     "ep05"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "HL": "ep05",
+     "TN": "ep07"
+    },
+    "orden": [
+     "ep05",
+     "ep07"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "TO": "ep03",
+     "EB": "ep05"
+    },
+    "orden": [
+     "ep03",
+     "ep05"
+    ]
+   }
+  },
+  "juez4": {
+   "P1": {
+    "codigos": {
+     "LV": "ep05",
+     "IU": "ep03"
+    },
+    "orden": [
+     "ep05",
+     "ep03"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "GG": "ep04",
+     "JG": "ep01"
+    },
+    "orden": [
+     "ep04",
+     "ep01"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "FO": "ep02",
+     "AW": "ep01"
+    },
+    "orden": [
+     "ep02",
+     "ep01"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "BW": "ep03",
+     "KZ": "ep01"
+    },
+    "orden": [
+     "ep03",
+     "ep01"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "JK": "ep04",
+     "GE": "ep02"
+    },
+    "orden": [
+     "ep04",
+     "ep02"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "EX": "ep07",
+     "MA": "ep01"
+    },
+    "orden": [
+     "ep07",
+     "ep01"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "AB": "ep07",
+     "JY": "ep04"
+    },
+    "orden": [
+     "ep07",
+     "ep04"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "WM": "ep07",
+     "KE": "ep03"
+    },
+    "orden": [
+     "ep07",
+     "ep03"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "SC": "ep07",
+     "MB": "ep05"
+    },
+    "orden": [
+     "ep07",
+     "ep05"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "VS": "ep03",
+     "OL": "ep02"
+    },
+    "orden": [
+     "ep03",
+     "ep02"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "VE": "ep05",
+     "JI": "ep02"
+    },
+    "orden": [
+     "ep05",
+     "ep02"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "RN": "ep05",
+     "KF": "ep01"
+    },
+    "orden": [
+     "ep05",
+     "ep01"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "WG": "ep07",
+     "IZ": "ep02"
+    },
+    "orden": [
+     "ep07",
+     "ep02"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "YV": "ep05",
+     "VG": "ep04"
+    },
+    "orden": [
+     "ep05",
+     "ep04"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "NV": "ep04",
+     "WL": "ep03"
+    },
+    "orden": [
+     "ep04",
+     "ep03"
+    ]
+   }
+  }
+ }
+}

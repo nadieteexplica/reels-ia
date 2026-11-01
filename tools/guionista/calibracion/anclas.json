@@ -1,13 +1,13 @@
 {
- "_que_es": "Los 6 videos publicados, descritos en el mismo formato que un candidato (paquete de gancho: lo que se ve y se oye en 0–3 s + el resto del guion). Sirven para calibrar el simulador: los espectadores los reciben mezclados con los candidatos, sin saber cuáles son reales ni cómo les fue. Las descripciones salen de los cuadros reales (calibracion/<ep>_0-3s.jpg: 0, 0.5, 1, 1.5, 2 y 3 s), escritas sin mirar los resultados. Los resultados van en 'real' y NUNCA se le pasan a un espectador. Desde el 1-nov 05:00 'resto' es la narración completa (sin '[...]': delataba a las anclas).",
+ "_que_es": "Los 6 videos publicados en el mismo formato que un candidato. Desde el 1-nov 05:30 'cuadro0', '0_3s' y 'texto_pantalla_0_3s' los escribió un descriptor ciego que sólo vio las tiras (calibracion/<ep>_0-3s.jpg) con nombres al azar y sin saber los resultados (la versión anterior, escrita por quien conocía los resultados, queda en '_v1_sesgada'). 'resto' es la narración completa. 'real' nunca se le pasa a un juez.",
  "_actualizado": "2026-11-01",
  "anclas": [
   {
    "id": "ep01",
    "dur_s": 73,
-   "cuadro0": "Primer plano de un joven 3D de dibujo animado (polera coral con estrella) comiéndose un cono de helado de 3 bolas; la cara ocupa el tercio superior, fondo de parque desenfocado.",
-   "0_3s": "0–1 s: sigue comiendo. 1,5 s: abre los ojos y la boca. 2 s: primerísimo plano, escarcha que le sale de la frente, ojos apretados. 3 s: plano medio, se agarra la cabeza con las dos manos.",
-   "texto_pantalla_0_3s": "Subtítulos palabra por palabra.",
+   "cuadro0": "Personaje 3D de pelo negro y polera salmón; cabeza ocupa ~37 % del alto y ~63 % del ancho; muerde un cono de tres bolas abajo a la izquierda; parche blanco en la frente; fondo borroso. Sin otro texto.",
+   "0_3s": "0,5 s ojos abiertos hacia el helado. 1,5 s boca abierta, cejas arriba. 2 s ojos cerrados, el parche blanco de la frente crece. 3 s corte a plano abierto: manos en la cabeza, frente roja.",
+   "texto_pantalla_0_3s": "sólo subtítulos",
    "voz_0_3s": "Te comes un helado rápido y... ¡zas! Te duele la frente.",
    "resto": "Pero el frío nunca tocó tu cerebro. ¿Qué pasó? Rebobinemos. Día de calor. Pides el helado más grande del carrito... y te lo comes como si alguien te lo fuera a quitar. El helado toca el techo de tu boca y lo enfría de golpe. Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente. Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara. Una de sus ramas llega a la frente, y tu cerebro se confunde: cree que el dolor viene de ahí. En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada. Justo cuando les dolía, una arteria de su cerebro se ensanchaba. Al volver a su tamaño, el dolor se iba. Y lo más loco: tu cerebro no siente dolor. Lo que duele son los vasos y nervios que lo rodean. Su nombre científico es ganglioneuralgia esfenopalatina. Sí, en serio. El truco: aprieta la lengua contra el paladar para calentarlo, o toma algo tibio. Dura de segundos a un par de minutos, y no es peligroso. La próxima vez, come más lento... aunque, seamos honestos, nadie come helado lento.",
    "real": {
@@ -18,14 +18,19 @@
     "ig_pasa_3s": 75.8,
     "ig_pct_visto": 42,
     "ig_envios": 20
+   },
+   "_v1_sesgada": {
+    "cuadro0": "Primer plano de un joven 3D de dibujo animado (polera coral con estrella) comiéndose un cono de helado de 3 bolas; la cara ocupa el tercio superior, fondo de parque desenfocado.",
+    "0_3s": "0–1 s: sigue comiendo. 1,5 s: abre los ojos y la boca. 2 s: primerísimo plano, escarcha que le sale de la frente, ojos apretados. 3 s: plano medio, se agarra la cabeza con las dos manos.",
+    "texto_pantalla_0_3s": "Subtítulos palabra por palabra."
    }
   },
   {
    "id": "ep02",
    "dur_s": 75,
-   "cuadro0": "Desierto de dibujo animado con cactus. En primer plano un pájaro gris con un ají rojo en el pico; detrás, un ratón rosado que escupe una llamarada de fuego por la boca.",
-   "0_3s": "0–1,5 s: el mismo cuadro, la llamarada sigue. 2 s: primer plano del pájaro tragándose el ají, tranquilo. 3 s: el pájaro de perfil.",
-   "texto_pantalla_0_3s": "Subtítulos palabra por palabra.",
+   "cuadro0": "Desierto con cactus verdes; pájaro gris con un ají rojo en el pico a la izquierda (~31 % del alto, ~28 % del ancho); detrás un ratón sobre escalones lanza una llama naranja hacia arriba. Sin otro texto.",
+   "0_3s": "0–1,5 s plano fijo, pájaro quieto, la llama del ratón cambia de forma. Entre 1,5 y 2 s corte a primer plano de la cabeza del pájaro, fondo borroso. 3 s pico entreabierto con el ají asomando.",
+   "texto_pantalla_0_3s": "sólo subtítulos",
    "voz_0_3s": "Este pájaro se come un ají y ni lo siente.",
    "resto": "Este ratón lo prueba... y echa fuego. Para el ají, tú y este ratón son lo mismo: mamíferos. Tu lengua tiene sensores de calor, como alarmas de incendio. Suenan con lo que quema de verdad. El ají trae capsaicina, una molécula que las hace sonar. Tu cerebro cree que te quemas, aunque nada esté caliente. Los pájaros tienen la misma alarma, pero la capsaicina no la activa. Sienten el calor... no el picante. ¿Por qué? En Arizona, científicos filmaron un chiltepín, un ají silvestre. Ratones y ratas ni lo tocaban. Los pájaros se lo devoraban. Si se lo comiera, el ratón molería las semillas. El pájaro se las traga enteras, y salen en su caca listas para brotar. Los científicos creen que el picante es un guardia. Espanta a los que destruyen semillas. Y lo más loco: hay un mamífero que casi no lo siente. La tupaya, de China. Un solo cambio en su alarma... y come plantas picantes como si nada. ¿Y tú? Toma leche, aunque sea descremada. En un estudio con 72 personas, fue de lo que más bajó el ardor. Las bebidas con gas funcionaron mal. Mándaselo al que se cree inmune al picante. Para el ají... es un ratón más.",
    "real": {
@@ -36,14 +41,19 @@
     "ig_pasa_3s": 80.1,
     "ig_pct_visto": 48,
     "ig_envios": 57
+   },
+   "_v1_sesgada": {
+    "cuadro0": "Desierto de dibujo animado con cactus. En primer plano un pájaro gris con un ají rojo en el pico; detrás, un ratón rosado que escupe una llamarada de fuego por la boca.",
+    "0_3s": "0–1,5 s: el mismo cuadro, la llamarada sigue. 2 s: primer plano del pájaro tragándose el ají, tranquilo. 3 s: el pájaro de perfil.",
+    "texto_pantalla_0_3s": "Subtítulos palabra por palabra."
    }
   },
   {
    "id": "ep03",
    "dur_s": 64,
-   "cuadro0": "Un edificio de ladrillo de 5 pisos, entero, solo en una explanada vacía, visto desde abajo en diagonal; en la base, en vez de cimientos, una hilera de patas mecánicas cortas (amarillas y azules). Cielo azul.",
-   "0_3s": "0–1 s: el edificio sobre sus patas. 1,5 s: corte a la base: la hilera de patas de cerca, píldora 'CÁMARA RÁPIDA'. 2–3 s: las patas se mueven y el edificio avanza.",
-   "texto_pantalla_0_3s": "Subtítulos palabra por palabra; píldora 'CÁMARA RÁPIDA'.",
+   "cuadro0": "Edificio de fachada de ladrillo de cinco pisos sobre una fila de soportes cilíndricos azules y amarillos (~77 % del ancho, ~47 % del alto); cielo arriba, suelo gris-café en la mitad inferior; conos naranjos. Sin otro texto.",
+   "0_3s": "0–1 s plano general fijo. Entre 1 y 1,5 s corte a plano cercano de la base con soportes. Desde 1,5 s aparece la etiqueta «CÁMARA RÁPIDA»; plano casi igual hasta 3 s.",
+   "texto_pantalla_0_3s": "«CÁMARA RÁPIDA» desde ~1,5 s; de 0 a 1 s sólo subtítulos",
    "voz_0_3s": "Este edificio de cinco pisos se fue caminando.",
    "resto": "Y no, no es broma... tiene patas. Es una escuela de mil novecientos treinta y cinco, en Shanghái. Pesa más de siete mil seiscientas toneladas. Y en dos mil veinte estorbaba: ahí iban a hacer oficinas y tiendas. En vez de demolerla, la movieron. Primero cavaron alrededor. Le metieron debajo ciento noventa y ocho patas robóticas. Cortaron las columnas... y las patas la alzaron entera. Las patas van en dos grupos. Uno aguanta el peso. El otro se alza y da un paso. Luego cambian. Como tú cuando caminas. Según el jefe técnico, es como ponerle muletas para que se pare y camine. ¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados. Caminó sesenta y dos metros. Se demoró dieciocho días. Tú caminas eso en menos de un minuto. Y lo más loco: Shanghái ya tenía práctica. En dos mil tres movió su sala de conciertos... para que pasara una autopista. Así que esta escuela, a los ochenta y cinco años... por fin aprendió a caminar.",
    "real": {
@@ -55,14 +65,19 @@
     "ig_pct_visto": 79,
     "ig_envios": 9776,
     "tiktok_vistas": 118000
+   },
+   "_v1_sesgada": {
+    "cuadro0": "Un edificio de ladrillo de 5 pisos, entero, solo en una explanada vacía, visto desde abajo en diagonal; en la base, en vez de cimientos, una hilera de patas mecánicas cortas (amarillas y azules). Cielo azul.",
+    "0_3s": "0–1 s: el edificio sobre sus patas. 1,5 s: corte a la base: la hilera de patas de cerca, píldora 'CÁMARA RÁPIDA'. 2–3 s: las patas se mueven y el edificio avanza.",
+    "texto_pantalla_0_3s": "Subtítulos palabra por palabra; píldora 'CÁMARA RÁPIDA'."
    }
   },
   {
    "id": "ep04",
    "dur_s": 37,
-   "cuadro0": "Primer plano de un hombre mayor 3D con bigote, ojos cerrados y espuma de shampoo en el pelo, tranquilo bajo la ducha; detrás, una cortina a rayas turquesa; la espuma le tapa el pecho.",
-   "0_3s": "0–1 s: el mismo plano, tranquilo. 1,5–2 s: corte: la cortina se infla hacia adentro y se le pega por la espalda. 3 s: plano de espalda con la cortina encima.",
-   "texto_pantalla_0_3s": "Subtítulos palabra por palabra.",
+   "cuadro0": "Baño con cortina de rayas verde agua y blancas; hombre de bigote, ojos cerrados, espuma en cabeza y torso, ocupa ~75 % del ancho y ~80 % del alto (cortado abajo); ducha arriba a la derecha. Sin otro texto.",
+   "0_3s": "0–1 s plano frontal casi fijo. ~1,5 s corte a vista lateral: la cortina se curva hacia el hombre (él ocupa ~25 % del ancho). ~3 s corte a plano de espalda con espuma.",
+   "texto_pantalla_0_3s": "sólo subtítulos",
    "voz_0_3s": "Te estás duchando... y la cortina se te viene encima.",
    "resto": "¿Un fantasma? No. Y tampoco es solo el aire caliente. Con agua caliente pasa más fuerte, pero pasa hasta con agua fría. Mira la ducha por dentro. El chorro arrastra el aire hacia abajo... y arma un remolino acostado, que gira como una rueda. En el centro del remolino, la presión baja. Y el aire de afuera, que empuja más, mete la cortina hacia ti. ¿La solución? Una cortina más pesada. Al remolino le cuesta moverla. Y si esa igual se mueve... ahí sí es un fantasma.",
    "real": {
@@ -73,14 +88,19 @@
     "ig_pasa_3s": 67.4,
     "ig_pct_visto": 39,
     "ig_envios": 52
+   },
+   "_v1_sesgada": {
+    "cuadro0": "Primer plano de un hombre mayor 3D con bigote, ojos cerrados y espuma de shampoo en el pelo, tranquilo bajo la ducha; detrás, una cortina a rayas turquesa; la espuma le tapa el pecho.",
+    "0_3s": "0–1 s: el mismo plano, tranquilo. 1,5–2 s: corte: la cortina se infla hacia adentro y se le pega por la espalda. 3 s: plano de espalda con la cortina encima.",
+    "texto_pantalla_0_3s": "Subtítulos palabra por palabra."
    }
   },
   {
    "id": "ep05",
    "dur_s": 40,
-   "cuadro0": "Plano general de un salar al atardecer: un cilindro metálico oscuro enorme ocupa la mitad de abajo del cuadro; arriba, chico y lejos, un hombre con chaleco naranja flota en el aire; dos columnas de vapor blanco detrás. Píldora 'SIMULACIÓN' arriba a la izquierda.",
-   "0_3s": "0–1,5 s: el mismo plano, el hombre flota quieto. 2–3 s: la cámara se aleja: el cilindro entero en el salar y el hombre flotando sobre él.",
-   "texto_pantalla_0_3s": "Píldora 'SIMULACIÓN'; subtítulos palabra por palabra.",
+   "cuadro0": "Cielo, montañas y dos chimeneas con vapor al fondo; hombre con casco blanco y chaleco naranja en el aire arriba a la izquierda (~23 % del alto, ~15 % del ancho); estructura cilíndrica en la mitad inferior. Texto: «SIMULACIÓN».",
+   "0_3s": "0–1,5 s plano fijo, el hombre asciende levemente. ~2 s corte a plano más abierto sobre suelo agrietado: hombre ocupa ~11–13 % del alto, sobre la estructura cilíndrica. «SIMULACIÓN» se mantiene.",
+   "texto_pantalla_0_3s": "«SIMULACIÓN» (etiqueta amarilla arriba a la izquierda, presente de 0 a 3 s)",
    "voz_0_3s": "Tu cuerpo repele los imanes. Con el imán correcto, podrías flotar.",
    "resto": "Ya pasó con esta rana: flota sola dentro de un imán. Es más que nada agua, como tú. Y al agua, un imán la empuja... un poquito. Con uno bien fuerte, ese empujón le gana a la gravedad. ¿Y para ti? Habría que construirlo. Primero: un hueco donde quepas. El de la rana mide tres centímetros: ni tu mano cabe. Después: bobinas y más bobinas, hasta cuarenta teslas o más. Más del doble de lo que necesitó la rana. Y al final, enchufarlo a un reactor nuclear entero... solo para ti. Ahí sí... flotarías.",
    "real": {
@@ -91,14 +111,19 @@
     "ig_pasa_3s": 58.1,
     "ig_pct_visto": 42,
     "ig_envios": 50
+   },
+   "_v1_sesgada": {
+    "cuadro0": "Plano general de un salar al atardecer: un cilindro metálico oscuro enorme ocupa la mitad de abajo del cuadro; arriba, chico y lejos, un hombre con chaleco naranja flota en el aire; dos columnas de vapor blanco detrás. Píldora 'SIMULACIÓN' arriba a la izquierda.",
+    "0_3s": "0–1,5 s: el mismo plano, el hombre flota quieto. 2–3 s: la cámara se aleja: el cilindro entero en el salar y el hombre flotando sobre él.",
+    "texto_pantalla_0_3s": "Píldora 'SIMULACIÓN'; subtítulos palabra por palabra."
    }
   },
   {
    "id": "ep07",
    "dur_s": 48,
-   "cuadro0": "Plano general de una ciudad al atardecer: un rascacielos en el centro (ocupa ~1/4 del alto del cuadro) con una caja de andamios en la punta. Píldoras arriba: 'CÁMARA RÁPIDA', 'QUEDAN 36 PISOS', 'ANTES: 40 PISOS'.",
-   "0_3s": "0–2 s: el contador baja (36, 34, 33, 32, 30) mientras el edificio se acorta; a 1,5 s aparece la píldora 'EL MÁS ALTO QUE JAPÓN HA BOTADO'. 3 s: corte a la fachada de cerca.",
-   "texto_pantalla_0_3s": "3–4 píldoras con texto chico + subtítulos.",
+   "cuadro0": "Ciudad al atardecer; torre de fachada cuadriculada en el centro (~34 % del ancho, ~47 % del alto) con un contorno blanco de caja sobre su techo; edificios bajos abajo. Textos: «CÁMARA RÁPIDA», «QUEDAN 36 PISOS», «ANTES: 40 PISOS».",
+   "0_3s": "0–2 s mismo plano; la parte alta de la torre baja y el contador va 36→34→33→32→30. ~1,5 s aparece «EL MÁS ALTO QUE JAPÓN HA BOTADO». ~3 s corte a plano cercano de fachada.",
+   "texto_pantalla_0_3s": "«CÁMARA RÁPIDA» (fijo); contador «QUEDAN 36 / 34 / 33 / 32 / 30 PISOS»; «ANTES: 40 PISOS»; desde ~1,5 s «EL MÁS ALTO QUE JAPÓN HA BOTADO»",
    "voz_0_3s": "Este es el edificio más alto que Japón ha botado.",
    "resto": "Y lo más impresionante: lo demolieron piso por piso... sin ninguna explosión. El truco: el techo nunca se saca. Primero, meten columnas de acero y lo paran sobre quince gatos hidráulicos, como un sombrero gigante. Solo armar eso toma dos meses. Después, lo cierran con paneles con ventanas a la misma altura que las del hotel: desde la calle parece un piso más. Y adentro, escondidos, desarman el piso de abajo. Cuando queda vacío, los gatos bajan el sombrero... un piso. Y otra vez. Y otra vez. Como su construcción, en reversa. Y lo más loco: la grúa que baja los escombros genera electricidad... y con eso prenden las luces de la obra. Dos pisos cada diez días. Siete meses después, donde había un rascacielos de cuarenta pisos... no quedaba nada. Y nadie lo vio caer.",
    "real": {
@@ -109,6 +134,11 @@
     "ig_pasa_3s": 76.7,
     "ig_pct_visto": 66,
     "ig_envios": 11
+   },
+   "_v1_sesgada": {
+    "cuadro0": "Plano general de una ciudad al atardecer: un rascacielos en el centro (ocupa ~1/4 del alto del cuadro) con una caja de andamios en la punta. Píldoras arriba: 'CÁMARA RÁPIDA', 'QUEDAN 36 PISOS', 'ANTES: 40 PISOS'.",
+    "0_3s": "0–2 s: el contador baja (36, 34, 33, 32, 30) mientras el edificio se acorta; a 1,5 s aparece la píldora 'EL MÁS ALTO QUE JAPÓN HA BOTADO'. 3 s: corte a la fachada de cerca.",
+    "texto_pantalla_0_3s": "3–4 píldoras con texto chico + subtítulos."
    }
   }
  ]
