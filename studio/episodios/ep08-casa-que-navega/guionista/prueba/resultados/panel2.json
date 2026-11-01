@@ -1,0 +1,76 @@
+{
+  "perfil": "Valentina",
+  "videos": [
+    {
+      "codigo": "NZ",
+      "se_queda_2s": false,
+      "por_que_2s": "Una ciudad con un edificio chiquito, un contador bajando y tres textitos que no se leen sin sonido; no entendí qué estaba mirando y parece clase de ingeniería.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 3,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "NV",
+      "se_queda_2s": true,
+      "por_que_2s": "Un ratón rosa escupiendo fuego al lado de un pájaro tranquilo con un ají en el pico: absurdo y gracioso, me quedo a ver qué onda.",
+      "se_va_en": "Tu lengua tiene sensores de calor, como alarmas de incendio.",
+      "lo_ve_entero_pct": 8,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante y el ratón sí?"
+    },
+    {
+      "codigo": "ZV",
+      "se_queda_2s": true,
+      "por_que_2s": "Una casa entera flotando detrás de una lancha como si nada. Absurdo total, quiero saber cómo es eso.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 75,
+      "lo_manda": true,
+      "a_quien": "Al grupo de amigas, o a mi amiga que se está por mudar",
+      "pregunta_que_te_dejo": "¿Cómo carajo se muda una casa por el mar?"
+    },
+    {
+      "codigo": "SQ",
+      "se_queda_2s": false,
+      "por_que_2s": "Un cilindro oscuro gigante y un tipito diminuto flotando lejos; no entendí qué era y el cartel dice SIMULACIÓN, o sea que es falso.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 3,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "GR",
+      "se_queda_2s": true,
+      "por_que_2s": "El chabón comiendo helado que de golpe se agarra la cabeza con escarcha saliéndole de la frente: me pasa siempre, me hizo reír.",
+      "se_va_en": "Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente.",
+      "lo_ve_entero_pct": 10,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué me duele la frente si el helado va a la boca?"
+    },
+    {
+      "codigo": "VN",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio de ladrillo de cinco pisos parado sobre patitas mecánicas, y se mueve. Qué locura, tengo que ver esto.",
+      "se_va_en": "¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados.",
+      "lo_ve_entero_pct": 25,
+      "lo_manda": true,
+      "a_quien": "Al grupo de amigas, con un 'mirá este edificio caminando'",
+      "pregunta_que_te_dejo": "¿Cómo hace un edificio de cinco pisos para caminar?"
+    },
+    {
+      "codigo": "JI",
+      "se_queda_2s": true,
+      "por_que_2s": "El viejo con shampoo en el pelo y la cortina de la ducha que se le pega: me pasa todos los días, quiero ver por qué.",
+      "se_va_en": "En el centro del remolino, la presión baja.",
+      "lo_ve_entero_pct": 35,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué la cortina siempre se me pega encima?"
+    }
+  ],
+  "orden": ["ZV", "VN", "JI", "GR", "NV", "NZ", "SQ"]
+}
