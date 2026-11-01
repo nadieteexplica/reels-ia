@@ -1,9 +1,9 @@
 {
- "paneles": 5,
+ "paneles": 6,
  "calibracion": {
-  "rho_quedan_vs_yt_se_quedo": 0.68,
-  "rho_quedan_vs_ig_pasa_3s": 0.49,
-  "rho_borda_vs_yt_vistas": 0.06,
+  "rho_quedan_vs_yt_se_quedo": 0.77,
+  "rho_quedan_vs_ig_pasa_3s": 0.41,
+  "rho_borda_vs_yt_vistas": 0.0,
   "peor_real": "ep05",
   "peor_real_en_ultimo_tercio": true,
   "se_puede_usar_para_descartar": false
@@ -12,12 +12,13 @@
   "ep03": {
    "tipo": "ancla",
    "quedan_2s": 100.0,
-   "entero": 45.4,
-   "manda": 100.0,
-   "borda": 0.16,
+   "entero": 45.3,
+   "manda": 83.3,
+   "borda": 0.233,
    "se_va_en": [
     "final",
     "Las patas van en dos grupos.",
+    "Y lo más loco: Shanghái ya tenía práctica.",
     "final",
     "Las patas van en dos grupos.",
     "final"
@@ -25,6 +26,7 @@
    "por_que_2s": [
     "Un edificio de ladrillo parado sobre patas mecánicas y la voz dice que se fue caminando; se entiende al instante y está bien loco.",
     "Un edificio entero de ladrillo caminando con patitas mecánicas, qué es esto, quiero ver cómo sigue.",
+    "Un edificio de ladrillo parado sobre patas mecánicas y que camina; raro de verdad, quiero ver si es real o puro render.",
     "Un edificio de ladrillo con patitas mecánicas caminando; no entiendo cómo, pero se ve absurdo y quiero ver qué onda.",
     "Un edificio entero caminando sobre patas mecánicas, algo gigante e imposible que se entiende de una.",
     "Un edificio de ladrillo entero parado sobre patitas de máquina y que camina, nunca había visto algo así, quiero saber si es de verdad."
@@ -32,13 +34,14 @@
   },
   "ep01": {
    "tipo": "ancla",
-   "quedan_2s": 60.0,
-   "entero": 15.4,
+   "quedan_2s": 50.0,
+   "entero": 12.8,
    "manda": 0.0,
-   "borda": 0.68,
+   "borda": 0.733,
    "se_va_en": [
     "cuadro0",
     "Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente.",
+    "cuadro0",
     "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara.",
     "cuadro0",
     "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada."
@@ -46,6 +49,7 @@
    "por_que_2s": [
     "Un niño de caricatura 3D comiendo helado, se ve genérico y de IA, y lo del dolor de frente por helado ya me lo sé.",
     "El pibe comiendo helado y de golpe se agarra la cabeza con escarcha saliéndole de la frente: me pasa siempre, es re gracioso.",
+    "Un muñeco 3D comiendo helado y agarrándose la cabeza; todo el mundo sabe lo del helado y se ve genérico, de IA.",
     "Un chavo con helado y le sale escarcha de la frente; ya sé qué es, pero se ve chistoso y quiero ver el zas.",
     "Un muñeco 3D comiendo helado en primer plano, no sé qué estoy mirando y el tema del dolor de frente ya lo sabe todo el mundo, suena a clase.",
     "Un muchacho comiendo helado y de repente se agarra la cabeza, ya sé qué es: ese dolor de frente que les da a mis hijos."
@@ -53,13 +57,14 @@
   },
   "ep02": {
    "tipo": "ancla",
-   "quedan_2s": 100.0,
-   "entero": 30.0,
-   "manda": 40.0,
-   "borda": 0.4,
+   "quedan_2s": 83.3,
+   "entero": 25.0,
+   "manda": 33.3,
+   "borda": 0.467,
    "se_va_en": [
     "El ají trae capsaicina, una molécula que las hace sonar.",
     "Tu lengua tiene sensores de calor, como alarmas de incendio.",
+    "cuadro0",
     "Los pájaros tienen la misma alarma, pero la capsaicina no la activa.",
     "El ají trae capsaicina, una molécula que las hace sonar.",
     "final"
@@ -67,6 +72,7 @@
    "por_que_2s": [
     "Un ratón rosa echando fuego por la boca en el desierto me dio risa, y el chile me toca de cerca, aunque aquí le decimos chile y no ají.",
     "Un ratón rosa escupiendo fuego y un pájaro re tranquilo comiéndose el ají: absurdo, me hizo gracia.",
+    "Caricatura de ratón escupiendo fuego en un desierto; se ve infantil y ya sé que los pájaros no sienten el picante.",
     "Un ratón rosa escupiendo fuego junto a un pájaro bien tranquilo, caricatura chistosa, quiero ver qué le pasó.",
     "Un ratón de dibujos echando una llamarada por la boca mientras el pájaro se come el ají tranquilo: me hizo gracia al toque.",
     "Un ratón rosado echando fuego por comerse el chile y el pajarito tan tranquilo, me dio risa y el chile lo conozco de mi cocina."
@@ -74,13 +80,14 @@
   },
   "ep07": {
    "tipo": "ancla",
-   "quedan_2s": 20.0,
-   "entero": 7.0,
-   "manda": 0.0,
-   "borda": 0.84,
+   "quedan_2s": 33.3,
+   "entero": 16.7,
+   "manda": 16.7,
+   "borda": 0.7,
    "se_va_en": [
     "Solo armar eso toma dos meses.",
     "cuadro0",
+    "final",
     "cuadro0",
     "cuadro0",
     "cuadro0"
@@ -88,6 +95,7 @@
    "por_que_2s": [
     "Vi un rascacielos achicándose mientras el contador de pisos bajaba, y la voz dice que es el más alto que Japón ha botado; me dio curiosidad cómo lo hacen, aunque el edificio se ve chiquito y hay mucho letrero.",
     "Una ciudad con un edificio chiquito y un montón de cartelitos con letra chica; no entiendo qué miro y parece un documental.",
+    "Un rascacielos que se va achicando con el contador bajando, y dicen que Japón lo botó; quiero saber cómo bota uno de 40 pisos sin explosión.",
     "Muchos letreritos chiquitos, un edificio lejos y otro 'este es el más alto de...'; me da flojera leer todo eso.",
     "Una ciudad lejos con un edificio chiquito y como cuatro letreros con letra chica, y la voz suena a noticiero: no entendí qué mirar y me dio flojera.",
     "Veo una ciudad lejos, un edificio chiquito, un montón de letreros con números y no entiendo qué estoy mirando; sin sonido me pierdo."
@@ -95,13 +103,14 @@
   },
   "ep05": {
    "tipo": "ancla",
-   "quedan_2s": 20.0,
-   "entero": 8.0,
+   "quedan_2s": 33.3,
+   "entero": 15.8,
    "manda": 0.0,
-   "borda": 0.76,
+   "borda": 0.7,
    "se_va_en": [
     "cuadro0",
     "cuadro0",
+    "final",
     "cuadro0",
     "Después: bobinas y más bobinas, hasta cuarenta teslas o más.",
     "cuadro0"
@@ -109,6 +118,7 @@
    "por_que_2s": [
     "Un cilindro enorme y un señor chiquito flotando allá lejos, no capto qué estoy viendo, dice SIMULACIÓN y suena a clase de física.",
     "Un tipo diminuto flotando lejos arriba de un cilindro gigante, con cartel de 'simulación' y la frase suena a clase de física.",
+    "Un tipo diminuto flotando sobre un cilindro gigante y dice 'simulación', o sea no me engaña; y lo del cuerpo repeliendo imanes me suena a física real.",
     "No entendí nada: un cilindro enorme y un hombrecito diminuto flotando allá lejos, y encima dice 'simulación'.",
     "Un tipo flotando en el aire sobre un cilindro gigante en medio del salar, raro y exagerado; quiero ver cómo así flota.",
     "Un cilindro oscuro gigante y un hombrecito flotando allá arriba con letrero de simulación, no sé qué es ni a mí qué me importa."
@@ -117,10 +127,11 @@
   "ep04": {
    "tipo": "ancla",
    "quedan_2s": 100.0,
-   "entero": 63.0,
-   "manda": 80.0,
-   "borda": 0.16,
+   "entero": 62.5,
+   "manda": 66.7,
+   "borda": 0.167,
    "se_va_en": [
+    "final",
     "final",
     "final",
     "final",
@@ -130,6 +141,7 @@
    "por_que_2s": [
     "Un viejito con shampoo en la ducha y la cortina que se le pega a la espalda, eso nos ha pasado a todos y me dio risa.",
     "Un viejito con shampoo en la cabeza y la cortina de la ducha pegándosele encima: me pasa todos los días, me dio risa.",
+    "Una cortina de ducha que se te pega encima, eso me pasa todos los días y nunca supe por qué; el monito 3D no me convence mucho, pero la pregunta sí.",
     "Un señor en la regadera con espuma y la cortina se le pega en la espalda; me pasa siempre y me dio risa.",
     "La cortina que se le pega al viejo en plena ducha, eso me pasa a mí y es cómico, y se ve cortito.",
     "Un señor con shampoo en la ducha y la cortina que se le pega, eso me pasa a mí todos los días, lo entendí al instante."
