@@ -1,0 +1,115 @@
+{
+ "gana": {
+  "g1": 21,
+  "g2": 29,
+  "g3": 29,
+  "g4": 40,
+  "g5": 28,
+  "g6": 34,
+  "ep01": 0,
+  "ep02": 0,
+  "ep03": 21,
+  "ep04": 2,
+  "ep05": 0,
+  "ep07": 0
+ },
+ "juega": {
+  "g1": 44,
+  "g2": 44,
+  "g3": 44,
+  "g4": 44,
+  "g5": 44,
+  "g6": 44,
+  "ep01": 24,
+  "ep02": 24,
+  "ep03": 24,
+  "ep04": 24,
+  "ep05": 24,
+  "ep07": 24
+ },
+ "decisiones": {
+  "ep01 vs g1": "g1",
+  "ep01 vs g2": "g2",
+  "ep01 vs g3": "g3",
+  "ep01 vs g4": "g4",
+  "ep01 vs g5": "g5",
+  "ep01 vs g6": "g6",
+  "ep02 vs g1": "g1",
+  "ep02 vs g2": "g2",
+  "ep02 vs g3": "g3",
+  "ep02 vs g4": "g4",
+  "ep02 vs g5": "g5",
+  "ep02 vs g6": "g6",
+  "ep03 vs g1": "ep03",
+  "ep03 vs g2": "ep03",
+  "ep03 vs g3": "ep03",
+  "ep03 vs g4": "empate",
+  "ep03 vs g5": "empate",
+  "ep03 vs g6": "empate",
+  "ep04 vs g1": "empate",
+  "ep04 vs g2": "g2",
+  "ep04 vs g3": "g3",
+  "ep04 vs g4": "g4",
+  "ep04 vs g5": "empate",
+  "ep04 vs g6": "g6",
+  "ep05 vs g1": "g1",
+  "ep05 vs g2": "g2",
+  "ep05 vs g3": "g3",
+  "ep05 vs g4": "g4",
+  "ep05 vs g5": "g5",
+  "ep05 vs g6": "g6",
+  "ep07 vs g1": "g1",
+  "ep07 vs g2": "g2",
+  "ep07 vs g3": "g3",
+  "ep07 vs g4": "g4",
+  "ep07 vs g5": "g5",
+  "ep07 vs g6": "g6",
+  "g1 vs g2": "g2",
+  "g1 vs g3": "empate",
+  "g1 vs g4": "g4",
+  "g1 vs g5": "empate",
+  "g1 vs g6": "g6",
+  "g2 vs g3": "empate",
+  "g2 vs g4": "g4",
+  "g2 vs g5": "empate",
+  "g2 vs g6": "empate",
+  "g3 vs g4": "g4",
+  "g3 vs g5": "empate",
+  "g3 vs g6": "empate",
+  "g4 vs g5": "empate",
+  "g4 vs g6": "g4",
+  "g5 vs g6": "empate"
+ },
+ "contra_anclas": {
+  "g3": {
+   "gana": 20,
+   "anclas_vencidas": 5,
+   "anclas": 6
+  },
+  "g6": {
+   "gana": 21,
+   "anclas_vencidas": 5,
+   "anclas": 6
+  },
+  "g2": {
+   "gana": 20,
+   "anclas_vencidas": 5,
+   "anclas": 6
+  },
+  "g1": {
+   "gana": 19,
+   "anclas_vencidas": 5,
+   "anclas": 6
+  },
+  "g4": {
+   "gana": 21,
+   "anclas_vencidas": 5,
+   "anclas": 6
+  },
+  "g5": {
+   "gana": 20,
+   "anclas_vencidas": 5,
+   "anclas": 6
+  }
+ }
+}
