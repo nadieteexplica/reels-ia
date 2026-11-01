@@ -1,0 +1,24 @@
+[
+ {
+  "id": "voz",
+  "prompt": "tools/auditor/prompts/2-voz.md",
+  "alcance": "voz completa",
+  "materiales": [
+   "studio/episodios/ep09-lago-que-se-vacia/auditoria/2-voz/r2/materiales/voz.md",
+   "studio/episodios/ep09-lago-que-se-vacia/guion.md",
+   "studio/episodios/ep09-lago-que-se-vacia/auditoria/2-voz/r2/materiales/anterior_voz.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md"
+  ],
+  "salida": "voz.json",
+  "verificar_ids": [
+   "A1",
+   "A2",
+   "A3",
+   "A4"
+  ],
+  "modo": "verificacion"
+ }
+]

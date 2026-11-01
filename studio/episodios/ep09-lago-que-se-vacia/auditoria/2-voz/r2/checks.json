@@ -1,0 +1,16 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "pausa de 1.02 s después de '(silencio)'",
+   "evidencia": "34.16 s"
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 44.17,
+  "palabras_por_s": 3.06,
+  "creditos_restantes": 35375,
+  "asr_coincidencia": 1.0,
+  "asr_diferencias": []
+ }
+}

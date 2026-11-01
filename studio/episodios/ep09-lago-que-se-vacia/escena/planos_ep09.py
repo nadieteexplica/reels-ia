@@ -1,4 +1,4 @@
-"""Planos del Ep. 9 (estilo realista): 3 escenas, 15 planos (storyboard.md v2, 45 s).
+"""Planos del Ep. 9 (estilo realista): 3 escenas, 16 planos (storyboard.md v2, 45 s).
 
 E1 valle — el lago (lleno, vaciándose o vacío) contra el glaciar: planos 1, 2, 3, 9, 11 y 12.
 E2 corte — la represa de hielo abierta de costado: planos 5, 6, 7, 8 y 10.
@@ -19,7 +19,7 @@ import vistas as V
 from ep09 import F, FR, T, lin, suave, sale, tramo, ruido, clamp, mirar, pantalla, oculto
 
 FPS = 30
-ESCENA = {1: "E1", 2: "E1", 3: "E1", 4: "E2", 5: "E2", 6: "E2", 7: "E2", 8: "E2", 9: "E1", 10: "E4", 11: "E4", 12: "E4", 13: "E2", 14: "E1", 15: "E1"}
+ESCENA = {1: "E1", 2: "E1", 3: "E1", 4: "E1", 5: "E2", 6: "E2", 7: "E2", 8: "E2", 9: "E2", 10: "E1", 11: "E4", 12: "E4", 13: "E4", 14: "E2", 15: "E1", 16: "E1"}
 DET = float(os.environ.get("DET", 1.0))
 EXPO = -0.8
 
@@ -312,6 +312,20 @@ def p12(sc, a, b):
     return {"actualizar": act}
 
 
+
+def p_pisc(sc, a, b):
+    # "Ochenta mil piscinas olímpicas de agua.": el lago lleno entero, desde arriba al norte, hasta el glaciar
+    S = armar_valle(sc, L.NIVEL_LLENO)
+    pa, pb = Vector((-140, 1650, 170)), Vector((-120, 1450, 150))
+
+    def act(f):
+        fase_agua(S, f)
+        x = suave(lin(f, a, b - 1))
+        mirar(S["cam"], pa.lerp(pb, x), Vector((20, 250, -5)), lente=30)
+        return {"lago": pantalla(sc, S["cam"], Vector((20, 700, 0)))}
+    return {"actualizar": act}
+
+
 # ---------------------------------------------------------------- v2 (45 s): el témpano en corte y el río de abajo
 def p_flota(sc, a, b):
     # "El hielo flota, como el de tu vaso.": en el corte, un témpano flota en el lago con casi todo bajo el agua
@@ -334,7 +348,7 @@ def p_flota(sc, a, b):
 def armar_rio(sc):
     R = L.rio(sc, detalle=DET)
     R["cam"] = E.camara(sc, (0, 0, 0), (0, -1, 0), lente=26, fstop=None)
-    sc.view_settings.exposure = EXPO
+    sc.view_settings.exposure = EXPO + 0.3
     return R
 
 
@@ -357,7 +371,7 @@ def flechas_rio(R, nivel, atras=0.0, f=0):
         fl.location.x = fl["x0"] + (12.0 if gira < 0.5 else -12.0) * math.sin(f * 0.12)
 
 
-CAM_RIO = (Vector((-420, 620, 230)), Vector((180, -120, 12)))
+CAM_RIO = (Vector((-330, 480, 480)), Vector((120, -140, 12)))
 
 
 def p_rio1(sc, a, b):
@@ -382,7 +396,7 @@ def p_rio2(sc, a, b):
     # "Es tanta agua que frena al río y lo empuja hacia atrás.": las flechas de río arriba se dan vuelta y el café sube
     R = armar_rio(sc)
     t_at = TW("atrás", a / FPS - 0.3)
-    p0, m0 = Vector((-650, 420, 190)), Vector((-120, -40, 14))
+    p0, m0 = Vector((-560, 360, 420)), Vector((-150, -60, 14))
 
     def act(f):
         t = tf(f)
@@ -398,20 +412,20 @@ def p_rio2(sc, a, b):
 def p_rio3(sc, a, b):
     # "Por eso hay una alarma que avisa a los que viven río abajo.": casas en la orilla, río abajo
     R = armar_rio(sc)
-    p0, m0 = Vector((380, 60, 95)), Vector((660, -370, 22))
+    p0, m0 = Vector((540, -180, 70)), Vector((660, -370, 23))
 
     def act(f):
         L.estado_rio(R, L.RIO_CRECIDA, -760.0, 2500.0)
         flechas_rio(R, L.RIO_CRECIDA, 1.0, f)
         fase_rio(f)
         x = suave(lin(f, a, b - 1))
-        mirar(R["cam"], p0 + (m0 - p0) * 0.12 * x, m0, lente=35)
+        mirar(R["cam"], p0 + (m0 - p0) * 0.12 * x, m0, lente=45)
         return {"casas": pantalla(sc, R["cam"], R["casas"][0].matrix_world.translation + Vector((0, 0, 6)))}
     return {"actualizar": act}
 
 
 # ===================================== piezas ======================================
-FUN = {1: p1, 2: p2, 3: p3, 4: p_flota, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p_rio1, 11: p_rio2, 12: p_rio3, 13: p10, 14: p11, 15: p12}
+FUN = {1: p1, 2: p2, 3: p_pisc, 4: p3, 5: p_flota, 6: p5, 7: p6, 8: p7, 9: p8, 10: p9, 11: p_rio1, 12: p_rio2, 13: p_rio3, 14: p10, 15: p11, 16: p12}
 PIEZAS = {}
 for k in T:
     a, b = FR(k)

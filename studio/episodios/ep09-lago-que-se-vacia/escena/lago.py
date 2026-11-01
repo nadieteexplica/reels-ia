@@ -296,7 +296,7 @@ def terreno(sc, detalle=1.0, xmax=None):
     fx1 = 1600 if xmax is None else xmax
     fondo = malla_altura("Fondo", -1600, fx1, -260, 2200, int(n * 1.5 * (fx1 + 1600) / 3200), int(n * 1.1), altura_terreno, mv)
     vx1 = 6000 if xmax is None else xmax
-    lejos = malla_altura("Valle", -6000, vx1, -4500, 9000, int(300 * detalle * (vx1 + 6000) / 12000), int(330 * detalle),
+    lejos = malla_altura("Valle", -6000, vx1, -14000, 9000, int(300 * detalle * (vx1 + 6000) / 12000), int(560 * detalle),
                          lambda x, y: np.where((np.abs(x) < 1580) & (y > -250) & (y < 2180), -60.0, altura_terreno(x, y)), mv)
     # cerros lejanos con bruma (formas grandes que llegan al suelo; ESTILO_REALISTA §4.3)
     def picos(x, y):
@@ -462,13 +462,14 @@ def nivel_agua(o, nivel):
     o.location.z = nivel
 
 
-def valle(sc, nivel=NIVEL_LLENO, detalle=1.0, sol_elev=11.0, sol_rot=105.0, xmax=None):
-    """Arma el set completo. Sol de la mañana desde el este-sureste (11°, el de noviembre en Aysén): cruza bajo sobre la ladera este (baja) y deja a contraluz de costado los témpanos y el frente: pasa sobre la ladera este (más baja) y le pega de
+def valle(sc, nivel=NIVEL_LLENO, detalle=1.0, sol_elev=14.0, sol_rot=78.0, xmax=None):
+    """Arma el set completo. Sol de la mañana desde el este (14°): cruza bajo sobre la ladera este (baja) y le pega de costado a los témpanos y al frente; desde un poco al norte para que la sombra del glaciar no caiga sobre el lago: pasa sobre la ladera este (más baja) y le pega de
     costado al frente del glaciar, que mira al norte. Nunca de frente ni detrás de la cámara (luz plana)."""
-    w, sol, d = K.cielo_atardecer(sc, elev=sol_elev, rot=sol_rot, fuerza=0.14, sol=3.0, color_sol=(1.0, 0.84, 0.7))
+    w, sol, d = K.cielo_atardecer(sc, elev=sol_elev, rot=sol_rot, fuerza=0.14, sol=3.4, color_sol=(1.0, 0.82, 0.66))
     sky = next(n for n in w.node_tree.nodes if n.type == "TEX_SKY")
     sky.altitude = 400
     sky.aerosol_density = 2.2
+    sky.sun_disc = False          # el disco del cielo físico suma un segundo sol (con el sol a 11–20° lo lavaba todo)
     t = terreno(sc, detalle, xmax)
     g, muro = glaciar(sc, detalle, xmax)
     tem = tempanos(sc)
@@ -760,18 +761,18 @@ def mat_agua_rio():
             else:
                 nt.links.new(s, n.inputs[i])
         return n.outputs[0]
-    borde = op("MULTIPLY", nz.outputs["Fac"], 90.0)
+    borde = op("MULTIPLY", op("SUBTRACT", nz.outputs["Fac"], 0.5), 420.0)
     xr = op("ADD", sp.outputs["X"], borde)
     k1 = op("GREATER_THAN", xr, v_ar.outputs[0])
     k2 = op("LESS_THAN", xr, v_ab.outputs[0])
     trib = op("LESS_THAN", sp.outputs["Y"], -40.0)
     k = op("MAXIMUM", op("MULTIPLY", k1, k2), op("MULTIPLY", trib, op("GREATER_THAN", v_ab.outputs[0], -500.0)))
     turq = K._rampa(nt, nz.outputs["Fac"], (0.03, 0.2, 0.24), (0.06, 0.3, 0.33))
-    cafe = K._rampa(nt, nz.outputs["Fac"], (0.14, 0.11, 0.08), (0.23, 0.19, 0.14))
+    cafe = K._rampa(nt, nz.outputs["Fac"], (0.2, 0.15, 0.1), (0.32, 0.25, 0.17))
     mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"
     nt.links.new(k, mx.inputs[0]); nt.links.new(turq.outputs[0], mx.inputs[6]); nt.links.new(cafe.outputs[0], mx.inputs[7])
     nt.links.new(mx.outputs[2], b.inputs["Base Color"])
-    rg = nt.nodes.new("ShaderNodeMapRange"); nt.links.new(k, rg.inputs["Value"]); rg.inputs["To Min"].default_value = 0.04; rg.inputs["To Max"].default_value = 0.18
+    rg = nt.nodes.new("ShaderNodeMapRange"); nt.links.new(k, rg.inputs["Value"]); rg.inputs["To Min"].default_value = 0.12; rg.inputs["To Max"].default_value = 0.32
     nt.links.new(rg.outputs[0], b.inputs["Roughness"])
     on = K._ruido(nt, escala=0.08, detalle=6, estirar=(0.35, 1.0, 1.0))
     K._bump(nt, b, on.outputs["Fac"], 0.25, 0.25)
@@ -841,10 +842,10 @@ def mat_rio_suelo(nombre="suelo_rio"):
     return m
 
 
-def rio(sc, detalle=1.0, sol_elev=12.0, sol_rot=60.0):
+def rio(sc, detalle=1.0, sol_elev=22.0, sol_rot=60.0):
     w, sol, d = K.cielo_atardecer(sc, elev=sol_elev, rot=sol_rot, fuerza=0.14, sol=3.0, color_sol=(1.0, 0.84, 0.7))
     sky = next(n for n in w.node_tree.nodes if n.type == "TEX_SKY")
-    sky.altitude = 300; sky.aerosol_density = 2.2
+    sky.altitude = 300; sky.aerosol_density = 2.2; sky.sun_disc = False
     mv = mat_rio_suelo()
     n = int(520 * detalle)
     f = malla_altura("RioValle", -2200, 2200, -2000, 1400, n, int(n * 0.78), lambda x, y: altura_rio(x, y) + 20.0, mv)

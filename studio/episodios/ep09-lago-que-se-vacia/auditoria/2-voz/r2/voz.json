@@ -1,0 +1,18 @@
+{
+ "encargo": "voz",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "pronunciacion": {"nota": 9, "por_que": "la transcripción automática calza 100 % con el guion v2.1 (asr_coincidencia 1.0, sin diferencias): las 135 palabras de voz.md son las del guion en orden; 'igual que en tu vaso' (11,41–12,64 s) ya no sale como 'tubazo', y 'Patagonia', 'olímpicas', 'caudaloso', 'triplica', 'Ochenta mil' y 'veinte' se entienden bien"},
+  "ritmo": {"nota": 8, "por_que": "3,06 palabras/s en total, ninguna palabra estirada (la más larga, 'triplica.', 0,72 s), cierres de frase con 0,31–0,68 s de silencio real y los dos '…' con pausa dentro de rango ('llena...' 0,32 s, 'vez...' 0,37 s); lo flojo: 1,02 s de silencio real después de 'atrás.' (34,34 s), fuera de un '…' y justo antes de 'Por eso hay una alarma' (el punto de fuga que predice el guion), y 0,00 s de pausa después de 'noche,' (24,56 s) en el pago; las dos se arreglan con tools/pausas.py (0 créditos): bajar la de 'atrás.' a ~0,5 s y dar ~0,2 s después de 'noche,'"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A1", "arreglado": false, "por_que": "a medias: la pausa que prepara el pago ya está (0,56 s de silencio real después de 'ancho.', 22,69 s) y la frase bajó de 4,2 a 3,87 palabras/s (12 palabras en 23,20–26,30 s), pero la frase sigue a 4,2 palabras/s (13 palabras en 23,20–26,30 s; son cortas, ~21 sílabas, ritmo normal en español) y después de 'noche,' (24,56 s) sigue habiendo 0,00 s de silencio real: 'en una sola noche' no tiene su golpe; arreglo con tools/pausas.py: +0,2 s después de 'noche,' (la frase queda en ~3,9 palabras/s)"},
+  {"id": "A2", "arreglado": true, "por_que": "después de 'represa.' (5,64 s) hay 0,35 s de silencio real, y la pregunta '¿Por dónde se fueron?' (8,52–9,86 s, 2,99 palabras/s) entra despegada con 0,43 s después de 'agua.'"},
+  {"id": "A3", "arreglado": false, "por_que": "no verificable en esta etapa: la toma nueva repite el patrón ('vez...' termina en 44,17 s con 0,37 s de silencio real y 1,00 s de hueco en la alineación); en el armado hay que dejar 0,4–0,8 s en total entre 'vez' y el 'Anoche' del reinicio y recortar el sobrante, que además mantiene el video bajo el techo de 45,5 s (44,17 + 1,00 + 0,4 de cola = 45,57 s si se deja todo)"},
+  {"id": "A4", "arreglado": false, "por_que": "storyboard.md no está en mis materiales; la estimación del guion (~44 s) ya calza con la voz real (44,17 s), pero los tiempos por frase tienen que salir de esta alineación: pregunta 8,52–9,86 s (el paquete de gancho todavía dice ~6 s), pago 23,20–26,30 s, 'frena al río… hacia atrás' 31,07–34,34 s, alarma 35,14–38,39 s"}
+ ],
+ "eventos": [],
+ "resumen": "No escuché el audio: juzgo con la alineación, el silencio medido y la transcripción. La transcripción calza 100 % con el guion v2.1 y la voz dura 44,17 s (44,57 con la cola, dentro de 45,5); sin bloqueantes. Quedan dos ajustes de pausa con tools/pausas.py (0 créditos) que además ganan ~0,3 s: bajar a ~0,5 s el silencio de 1,02 s después de 'atrás.' y dar ~0,2 s después de 'noche,'."
+}
