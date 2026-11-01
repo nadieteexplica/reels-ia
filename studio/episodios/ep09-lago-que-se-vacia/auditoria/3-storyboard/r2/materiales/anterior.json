@@ -1,0 +1,57 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 1,
+  "segundo": "0.00",
+  "que": "El cuadro 0 depende de la píldora para decir 'aquí había un lago'. La ficha sacó la marca del nivel del agua en las laderas que traía el paquete de gancho del guion. Además, lo único que se mueve es un dolly de 2,2 m (el témpano crece ~5 %), así que la acción no está en curso en el primer segundo (manual §4, Imagen).",
+  "arreglo": "Poner la línea del nivel viejo en las dos laderas y en el frente del glaciar, a 31 m sobre el fondo: barro oscuro y mojado abajo, roca seca y clara arriba. Sin sonido se lee como 'aquí había agua'. Y que algo esté pasando desde el cuadro 0: agua que todavía chorrea del témpano y corre por un canal del barro hacia un charco (una textura animada sobre una malla delgada es barata).",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A2",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 4,
+  "segundo": "7.25",
+  "que": "Estos son los dos planos con más riesgo de verse de juguete en realista. En el vaso (plano 4): un cubo perfecto, vidrio limpio y tres volúmenes que refractan (vidrio, agua, hielo) a 8 muestras dan ruido y negros en el vidrio. Además, si la cámara no queda a la altura del agua no se ve la parte hundida del cubo, que es lo que dice 'flota' en una foto. En el agua a ras (plano 3): la cámara va a 2 m del agua y avanza 80 m en 1,55 s (≈ 190 km/h), y el agua de cerca es lo más difícil de hacer creíble.",
+  "arreglo": "Vaso: cubo con bordes derretidos y centro blanco con burbujas, vidrio con gotas de condensación y marcas, y menisco. Cámara a la altura de la línea del agua, para ver el ~90 % hundido a través del vidrio. Renderizar sólo este plano (66 cuadros) con 64 muestras y 12 rebotes de transmisión o más. Plano 3: subir la cámara a 6–8 m y acortar el avance a ~35 m, con desenfoque de movimiento y trozos de hielo en primer plano, para que se sienta la velocidad sin mostrar el agua tan de cerca.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A3",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "11.31",
+  "que": "En 'levanta', el pie del hielo sube 4 m visto a ~230 m con 30 mm. En vertical 1080×1920 son unos 16–28 px (≤ 1,5 % del alto): en el teléfono el despegue no se ve y la mecánica queda sostenida sólo por la flecha y SE LEVANTA. Es riesgo de B13 justo en la frase que el guion marca como segundo punto de fuga.",
+  "arreglo": "Corte seco en 'levanta' (11,31) a otra cámara de E2 (gratis, es la misma escena) a 80 m o menos del pie, encuadrando el contacto hielo-roca con el agua entrando en el hueco. Así los 4 m ocupan 80 px o más. El plano 5 queda en 9,45–11,31 (G: el lago sube y SE LLENA) y el corte nuevo va de 11,31 a 12,98, empalmando con la cámara del 6.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A4",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "9.45",
+  "que": "Como no hay personajes, la columna 'Cara (y)' queda en '—' y ninguna ficha dice a qué altura del cuadro cae lo que nombra la voz. En E2 la cámara mira ~25° hacia abajo con la roca abajo. El contacto hielo-roca, donde pasan el levantamiento, la lengua y el túnel (planos 5–8 y 10), puede caer en la franja de subtítulos (y 1000–1250) y quedar tapado justo cuando la voz lo nombra. En el plano 1 pasa lo mismo: con la cámara nivelada a 1,7 m, la base del témpano sobre el barro (lo que dice 'varado') cae en y≈1020. Las píldoras 'sobre la lengua' y 'sobre el túnel' tampoco dicen si van encima o al lado.",
+  "arreglo": "Agregar a cada ficha una columna 'Foco (y)'. En los planos 5–8 y 10, el contacto hielo-roca y el túnel entre y 500 y 900 (subir o inclinar más la cámara). En el plano 1, la base del témpano entre y 700 y 960 (inclinar la cámara ~3° hacia abajo, sin que la píldora en y 560 pise la punta del témpano). Las píldoras de E2 van 120 px por encima del foco con una flecha fina, nunca encima de la lengua ni del túnel. Comprobarlo en la prueba por plano.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ },
+ {
+  "id": "A5",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": 5,
+  "segundo": "9.45",
+  "que": "La entrada al corte no tiene puente: se salta de un vaso a una tajada del valle sin un plano que muestre que es el mismo glaciar abierto (en el Ep. 4 la cortina se volvía transparente; en el Ep. 7 el corte se veía desde afuera). Además, con la cámara 85 m sobre el lago, ~25° hacia abajo y 30 mm, el borde de abajo del cuadro mira ~250 m bajo el nivel del lago. Si la roca cortada no llega tan hondo, abajo se ve vacío (B2/B3), sobre todo en el plano 8, donde la cámara se aleja.",
+  "arreglo": "En los primeros ~0,6 s del plano 5, que la misma cámara muestre el glaciar entero y que la mitad de adelante baje o se desvanezca, dejando la cara cortada con un contorno blanco fino en el borde (eso la marca como capa de explicación). Hacer la roca del corte de 350 m o más bajo el lago y más ancha que el cuadro del plano 8.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ }
+]
