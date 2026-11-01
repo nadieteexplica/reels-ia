@@ -16,7 +16,7 @@ from mathutils import Vector
 import ep09 as K
 
 NIVEL_LLENO = 0.0
-NIVEL_VACIO = -31.0
+NIVEL_VACIO = -30.2
 LARGO = 1900.0          # largo del lago (y)
 ANCHO = 360.0           # medio ancho del fondo del valle en el lago (x)
 PROF = 33.0             # profundidad máxima del fondo, junto a la represa
@@ -88,8 +88,8 @@ def altura_terreno(x, y):
     fondo = -prof * np.clip(1 - u ** 2, 0, 1) ** 0.6
     # laderas fuera del fondo: suben empinadas
     lad = np.clip(u - 1.0, 0, None) * w
-    alto_lado = np.where(xc > 0, 110.0, 950.0)                 # la ladera este es más baja: entra el sol de la mañana
-    pared = 0.45 * np.minimum(lad, 300.0) + alto_lado * suave(lad / 1100.0) ** 1.4
+    alto_lado = np.where(xc > 0, 45.0, 950.0)                 # la ladera este es más baja: entra el sol de la mañana
+    pared = np.where(xc > 0, 0.18, 0.45) * np.minimum(lad, 300.0) + alto_lado * suave(lad / 1100.0) ** 1.4
     z = np.where(u < 1.0, fondo, pared)
     # cabecera (norte) sube suave hacia el valle de arriba
     z += 22.0 * suave((y - 1700) / 500.0)
@@ -142,7 +142,7 @@ def mat_valle(nombre="valle"):
     vor = nt.nodes.new("ShaderNodeTexVoronoi"); vor.feature = "DISTANCE_TO_EDGE"; vor.inputs["Scale"].default_value = 0.35
     nt.links.new(tc.outputs["Object"], vor.inputs["Vector"])
     manchas = K._ruido(nt, escala=0.35, detalle=6)
-    barro = K._rampa(nt, manchas.outputs["Fac"], (0.045, 0.04, 0.034), (0.15, 0.135, 0.115), (0.3, 0.72))
+    barro = K._rampa(nt, manchas.outputs["Fac"], (0.05, 0.049, 0.047), (0.16, 0.152, 0.142), (0.3, 0.72))
     limo = K._rampa(nt, grande.outputs["Fac"], (0.17, 0.16, 0.145), (0.27, 0.255, 0.23))
     lavada = K._rampa(nt, medio.outputs["Fac"], (0.13, 0.125, 0.115), (0.24, 0.23, 0.21))
     bosque = K._rampa(nt, fino.outputs["Fac"], (0.012, 0.02, 0.01), (0.035, 0.05, 0.022), (0.35, 0.7))
@@ -177,10 +177,6 @@ def mat_valle(nombre="valle"):
     emp = rango(pend.outputs["Z"], 0.34, 0.2)
     c4 = mezclar(emp, c3, roca.outputs[0])                                            # roca en lo empinado
     c5 = mezclar(rango(zz, 380, 560), c4, roca.outputs[0])                            # sobre el bosque, roca
-    alto_n = rango(zz, 950, 1100)
-    plano_n = rango(pend.outputs["Z"], 0.5, 0.78)
-    kn = nt.nodes.new("ShaderNodeMath"); kn.operation = "MULTIPLY"; kn.use_clamp = True
-    nt.links.new(alto_n, kn.inputs[0]); nt.links.new(plano_n, kn.inputs[1])
     arb = nt.nodes.new("ShaderNodeTexVoronoi"); arb.inputs["Scale"].default_value = 0.22
     nt.links.new(tc.outputs["Object"], arb.inputs["Vector"])
     ka = rango(arb.outputs["Distance"], 0.0, 0.35, 0.45, 1.0)                          # copas: puntos más oscuros
@@ -194,7 +190,12 @@ def mat_valle(nombre="valle"):
     nt.links.new(c5a.outputs[2], c5b.inputs[6])
     cg2 = nt.nodes.new("ShaderNodeCombineColor"); nt.links.new(kao, cg2.inputs[0]); nt.links.new(kao, cg2.inputs[1]); nt.links.new(kao, cg2.inputs[2])
     nt.links.new(cg2.outputs[0], c5b.inputs[7])
-    nt.links.new(c5b.outputs[2], b.inputs["Base Color"])
+    alto_n = rango(zz, 640, 760)                                                      # nieve arriba, en lo menos empinado
+    plano_n = rango(pend.outputs["Z"], 0.45, 0.7)
+    kn = nt.nodes.new("ShaderNodeMath"); kn.operation = "MULTIPLY"; kn.use_clamp = True
+    nt.links.new(alto_n, kn.inputs[0]); nt.links.new(plano_n, kn.inputs[1])
+    c6 = mezclar(kn.outputs[0], c5b.outputs[2], nieve.outputs[0])
+    nt.links.new(c6, b.inputs["Base Color"])
     camd = nt.nodes.new("ShaderNodeCameraData")
     kh = rango(camd.outputs["View Distance"], 250.0, 5000.0, 0.0, 0.55)
     em = nt.nodes.new("ShaderNodeEmission"); em.inputs[0].default_value = (0.52, 0.62, 0.78, 1); em.inputs[1].default_value = 0.42
@@ -202,7 +203,7 @@ def mat_valle(nombre="valle"):
     nt.links.new(b.outputs[0], mxs.inputs[1]); nt.links.new(em.outputs[0], mxs.inputs[2])
     nt.links.new(mxs.outputs[0], nt.nodes["Material Output"].inputs[0])
     # brillo: barro mojado en los bajos (0,22) y en las grietas; limo y laderas mates
-    rug = rango(zz, -31.5, -28.5, 0.2, 0.68)
+    rug = rango(zz, -31.0, -22.0, 0.16, 0.55)
     rug2 = nt.nodes.new("ShaderNodeMath"); rug2.operation = "MAXIMUM"
     nt.links.new(rug, rug2.inputs[0]); nt.links.new(rango(zz, -2, 6, 0.0, 0.92), rug2.inputs[1])
     nt.links.new(rug2.outputs[0], b.inputs["Roughness"])
@@ -214,7 +215,7 @@ def mat_valle(nombre="valle"):
     copa = K._ruido(nt, escala=0.25, detalle=4)                                  # copas del bosque (~4 m)
     s3 = nt.nodes.new("ShaderNodeMath"); s3.operation = "MULTIPLY_ADD"; s3.inputs[1].default_value = 3.0
     nt.links.new(copa.outputs["Fac"], s3.inputs[0]); nt.links.new(s2.outputs[0], s3.inputs[2])
-    K._bump(nt, b, s3.outputs[0], 0.9, 0.12)
+    K._bump(nt, b, s3.outputs[0], 0.35, 0.05)
     return m
 
 

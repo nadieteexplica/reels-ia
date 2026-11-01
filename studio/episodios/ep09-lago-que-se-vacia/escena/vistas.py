@@ -10,7 +10,7 @@ def z_suelo(x, y):
 
 VISTAS = {
     # cuadro 0: en el fondo seco, a 2,2 m del barro, entre témpanos, mirando al muro de hielo (sur)
-    "c0": dict(pos=(110, 440, None, 1.7), mira=(50, 330, -18), lente=26),
+    "c0": dict(pos=(95, 450, None, 2.5), mira=(40, 330, -16), lente=24),
     # general: el lago lleno contra el glaciar, desde la ladera este a ~120 m de alto
     "lleno": dict(pos=(230, 1350, 230, None), mira=(-20, 40, 5), lente=30),
     # a ras del agua, avanzando hacia el pie del muro

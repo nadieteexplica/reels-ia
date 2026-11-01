@@ -128,9 +128,9 @@ def p4(sc, a, b):
         x = lin(f, a, b - 1)
         cubo.location = c0 + Vector((0.004 * math.sin(t * 2.1), 0.003 * math.sin(t * 1.6), 0.0018 * math.sin(t * 3.3)))
         cubo.rotation_euler = (0.04 * math.sin(t * 2.7), 0.03 * math.sin(t * 2.2), 0.6 + 0.25 * t)
-        ojo = g + Vector((0.16, 0.30, 0.31)) - Vector((0.03, 0.05, 0.02)) * x
-        mira = g + Vector((0, 0, 0.255))
-        mirar(cam, ojo, mira, lente=50, foco=mira)
+        ojo = g + Vector((0.30, 0.40, 0.30)) - Vector((0.036, 0.048, 0.0)) * x
+        mira = g + Vector((0, 0, 0.27))
+        mirar(cam, ojo, mira, lente=42, foco=mira)
         return {"cubo": pantalla(sc, cam, cubo.location), "vaso": pantalla(sc, cam, g + Vector((0, 0, 0.36)))}
     return {"actualizar": act}
 

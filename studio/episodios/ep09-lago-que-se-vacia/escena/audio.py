@@ -1,6 +1,6 @@
-"""Audio del Ep. 5: voz + música sintetizada (v3.1: tensión en Re menor, 96 bpm, con golpes en cada paso) con ducking, viento del salar de
+"""Audio del Ep. 9 (sobre el del Ep. 5 y el Ep. 7): voz + música sintetizada (v3.1: tensión en Re menor, 96 bpm, con golpes en cada paso) con ducking, viento del salar de
 fondo (lo que amarra el exterior), zumbido grave del imán en los planos de la rana y los efectos de la columna SFX del
-storyboard → OUT/ep07_mix.wav (−14 LUFS, TP ≤ −1,5 dBTP). Todo sintetizado."""
+storyboard → OUT/ep09_mix.wav (−14 LUFS, TP ≤ −1,5 dBTP). Todo sintetizado."""
 import glob, json, os, subprocess, sys
 import numpy as np
 from scipy.io import wavfile
@@ -8,7 +8,7 @@ from scipy.signal import butter, sosfilt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import ep07 as E
+import ep09 as E
 
 OUT = os.environ.get("OUT", os.path.join(HERE, "out"))
 REPO = os.environ.get("REPO", os.path.abspath(os.path.join(HERE, "../../../..")))
@@ -27,7 +27,7 @@ def W(prefix, after=0.0):
 
 
 def voz():
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, os.environ.get("VOZ", "out/tts/ep07-rascacielos-encoge-v2.mp3")), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, os.environ.get("VOZ", "out/tts/ep09-lago-que-se-vacia.mp3")), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
                          capture_output=True).stdout
     v = np.frombuffer(raw, np.float32).copy()
     v = np.pad(v, (0, max(0, N - len(v))))[:N]
@@ -284,13 +284,40 @@ def golpe(g=1.0, cola=1.6):
     return x * g
 
 
+def agua_corre(d, g=1.0, hi=900):
+    """Rugido de agua (ruido grave filtrado con pulsos lentos)."""
+    n = int(d * SR)
+    x = filt(ruido(n), 60, hi)
+    lfo = 0.75 + 0.25 * np.sin(np.linspace(0, d * 2 * np.pi * 0.7, n))
+    e = np.minimum(1, np.linspace(0, d / 0.25, n)) * np.minimum(1, np.linspace(d / 0.4, 0, n))
+    return x * lfo * e * g
+
+
+def crujido(d=0.9):
+    """Hielo que cruje: chasquidos secos sobre un gemido grave."""
+    n = int(d * SR)
+    x = np.zeros(n)
+    for _ in range(14):
+        i = rng.integers(0, max(1, n - 2000))
+        k = filt(ruido(1800), 900, 5000) * np.exp(-np.linspace(0, 9, 1800))
+        x[i:i + 1800] += k * rng.uniform(0.3, 1.0)
+    gem = np.sin(2 * np.pi * np.cumsum(np.linspace(70, 48, n)) / SR) * env(n, 0.05, d * 0.8)
+    return x * 0.8 + gem * 0.5
+
+
+def tintineo():
+    """Hielo contra vidrio."""
+    a = tono(2350, 0.5, 0.001, 0.12) * 0.6
+    a[: int(0.4 * SR)] += tono(3170, 0.4, 0.001, 0.08) * 0.4
+    return a
+
+
 def musica():
-    """Ep. 7: la misma música de tensión del Ep. 5 v3.1 (Re menor, 96 bpm), con la forma de este relato: pulso de bajo
-    desde el cuadro 0, bombo desde "El truco", negras desde el PASO 1, tics en semicorcheas mientras desarman, golpes en
-    PASO 1/2/3, subida antes de "lo más loco" y un acorde abierto en las luces."""
+    """Ep. 9: la música de tensión del Ep. 5 v3.1 (Re menor, 96 bpm) con la forma de este relato: pulso de bajo desde el
+    cuadro 0, bombo desde la mecánica ("Por eso"), tics en semicorcheas mientras el túnel crece, subida antes del pago
+    ("Así que en una sola noche"), golpe en el pago y un acorde abierto que se queda colgado en "y otra vez" (loop)."""
     out = np.zeros(N)
-    t_tr, t_lo, t_lu = E.T[4][0], E.T[12][0], W("prenden", 37.3)
-    pasos = [W("Primero", 9.5), W("adentro", 23.5), W("Cuando", 26.5)]
+    t_me, t_tu, t_pa, t_ot = E.T[5][0], W("derrite", 15.0), E.T[8][0], E.T[12][0]
     prog = [(50, 53, 57), (46, 50, 53), (43, 46, 50), (45, 49, 52)]           # Dm Bb Gm A
     raiz = [38, 34, 31, 33]
     nb = int(DUR / COMPAS) + 2
@@ -298,40 +325,34 @@ def musica():
         i0 = b * COMPAS
         if i0 >= DUR:
             break
-        add(out, pad_oscuro(prog[b % 4], COMPAS + 0.5, 700 + 900 * min(1, i0 / t_lo)), i0, 0.5)
+        add(out, pad_oscuro(prog[b % 4], COMPAS + 0.5, 700 + 900 * min(1, i0 / t_pa)), i0, 0.5)
     k = 0
     while k * NEGRA / 2 < DUR:
         t = k * NEGRA / 2
         b = int(t / COMPAS) % 4
-        corte = 350 + 1400 * min(1.0, t / t_lo)
-        g = 0.75 if (k % 2 == 0) else 0.5
-        add(out, nota_bajo(hz(raiz[b]), corte), t, g)
+        corte = 350 + 1400 * min(1.0, t / t_pa)
+        add(out, nota_bajo(hz(raiz[b]), corte), t, 0.75 if k % 2 == 0 else 0.5)
         k += 1
     k = 0
     while k * NEGRA < DUR - 0.3:
         t = k * NEGRA
-        if t >= pasos[0] or (t >= t_tr and k % 2 == 0):
-            add(out, bombo(0.9 if t >= pasos[0] else 0.6), t)
+        if t >= t_me:
+            add(out, bombo(0.9 if t >= t_tu else 0.6), t)
         k += 1
     k = 0
     while k * NEGRA / 4 < DUR - 0.3:
         t = k * NEGRA / 4
-        if pasos[1] <= t < E.T[11][0] or t >= t_lo:
+        if t_tu <= t < E.T[10][0]:
             add(out, tic_hat(), t, 0.33 if k % 2 else 0.16)
-            if t >= t_lo and k % 4 == 2:
-                add(out, tic_hat(True), t, 0.22)
         k += 1
     add(out, golpe(0.7, 1.2), 0.0)
-    for tp in pasos:
-        add(out, subida(0.45), tp - 0.45, 0.35)
-        add(out, golpe(0.8), tp - 0.02)
-    add(out, subida(1.8), t_lo - 1.8, 0.55)
-    add(out, golpe(1.0, 2.0), t_lo - 0.02)
-    add(out, pad_oscuro((50, 54, 57, 62), 2.6, 2400), t_lu, 0.55)            # las luces: Re mayor abierto
-    t_si = W("Siete", 40.6)
-    add(out, subida(1.4), t_si - 1.4, 0.5)                                     # subida al remate
-    add(out, golpe(1.0, 2.2), t_si - 0.02)
-    add(out, pad_oscuro((50, 54, 57, 62), DUR - E.T[16][0] + 0.3, 2600), E.T[16][0], 0.7)   # "nadie lo vio caer": acorde abierto, se apaga
+    add(out, golpe(0.6), E.T[2][0] - 0.02)                                    # corte al "antes"
+    add(out, subida(0.45), t_me - 0.45, 0.35)
+    add(out, golpe(0.8), t_me - 0.02)
+    add(out, subida(1.6), t_pa - 1.6, 0.55)                                    # subida al pago
+    add(out, golpe(1.0, 2.0), t_pa - 0.02)
+    add(out, golpe(0.8, 1.6), E.T[10][0] - 0.02)                               # el hielo se cierra
+    add(out, pad_oscuro((50, 54, 57, 62), DUR - t_ot + 0.3, 2600), t_ot, 0.7)  # "y otra vez": acorde abierto colgado (loop)
     out = filt(out, 30, 9000)
     return out / (np.abs(out).max() + 1e-9)
 
@@ -355,53 +376,36 @@ _mr = np.sqrt(np.mean((m * 0.45)[m != 0] ** 2) + 1e-12)
 m *= (_vr / 10 ** (15.0 / 20)) / _mr        # música a 15 dB bajo la voz (mínimo del manual)
 
 fx = np.zeros(N)
-import planos_ep07 as PL
 add(fx, viento(DUR), 0.0, 0.6)
-AFUERA = (1, 2, 3, 8, 11, 14, 15)
-for t0, n, d in PL.CLONCS:
-    if 0 <= t0 + d < DUR and any(E.T[k][0] <= t0 + d < E.T[k][1] for k in AFUERA) and n == 1:
-        add(fx, clank(150), t0 + d - 0.02, 0.55)
-add(fx, whoom(1.2), 0.0, 0.7)
-add(fx, ding(1046, 0.7), W("alto", 1.0), 0.4)                      # EL MÁS ALTO
-add(fx, viento(E.T[3][1] - E.T[3][0]), T(3), 0.9)
-add(fx, whoosh(0.5, True), W("explosión", 6.0) - 0.3, 0.4)
-add(fx, ding(880, 0.8), W("techo", 8.0), 0.45)
-add(fx, pfff(), W("Primero", 9.5) + 0.1, 0.8)
-add(fx, clank(190), W("columnas", 10.5), 0.6)                     # columnas de acero
-add(fx, ding(1318, 0.6), W("gatos", 12.5), 0.4)                    # 15 GATOS
-for i in range(6):
-    add(fx, tic(2200), T(6) + 0.3 * i, 0.5)                        # el calendario corre
-add(fx, ding(1175, 0.6), W("dos", 16.8), 0.4)                      # 2 MESES
-add(fx, zumbido_iman(1.4, 70), W("cierran", 18.0) - 0.2, 0.7)     # los paneles suben
-add(fx, clank(130), W("cierran", 18.0) + 1.1, 0.7)
-add(fx, ding(1318, 0.6), W("ventanas", 19.3), 0.4)
-add(fx, ding(1046, 0.6), W("parece", 22.5), 0.35)
-t_es, t_ds = W("escondidos", 24.0), W("desarman", 25.0)
-for i in range(8):
-    add(fx, tic(1800), t_es + 0.25 + 0.08 * i, 0.35)
-    add(fx, golpecito(320), T(9) + 0.5 + 0.45 * i + 0.1, 0.6)
-    add(fx, thud(), T(9) + 0.5 + 0.45 * i + 0.9, 0.35)
-t_ba, t_pi = W("bajan", 28.0), W("piso", 29.2)
-add(fx, zumbido_iman(t_pi - t_ba + 0.2, 62), t_ba, 0.8)
-add(fx, golpe_grave(), t_pi - 0.05, 0.8)
-add(fx, clank(120), t_pi - 0.03, 0.7)
-add(fx, whoosh(1.6, False), W("Como", 31.2), 0.6)
-add(fx, ding(1046, 0.6), W("reversa", 32.4), 0.35)
-add(fx, electrico(2.0), W("genera", 35.5), 0.8)
-add(fx, ding(1568, 0.6), W("electricidad", 36.0), 0.35)
-for i in range(6):
-    add(fx, tic(2600), W("prenden", 37.3) + 0.2 * i, 0.7)
-add(fx, ding(988, 0.5), W("Dos", 39.0), 0.35)
-add(fx, whoosh(2.8, False), W("Siete", 40.6) + 0.1, 0.7)           # la torre baja entera
-add(fx, ding(1175, 0.7), W("nada", 44.8), 0.4)
-add(fx, whoom(1.6), T(16), 0.6)
+add(fx, whoom(1.2), 0.0, 0.6)
+for i in range(5):
+    add(fx, golpecito(1700 + 300 * (i % 3)), 0.25 + 0.31 * i, 0.25)            # goteo de los témpanos
+add(fx, ding(1046, 0.7), W("lago", 1.0), 0.35)                               # ANOCHE AQUÍ HABÍA UN LAGO
+add(fx, whoosh(0.5, True), T(2) - 0.25, 0.45)                                  # corte al "antes"
+add(fx, ding(880, 0.6), W("Patagonia", 1.9), 0.3)                            # 80.000 PISCINAS
+add(fx, ding(1318, 0.6), W("represa", 4.5), 0.35)
+add(fx, agua_corre(1.6, 0.25, 500), T(3), 1.0)                               # a ras del agua
+add(fx, tintineo(), W("flota", 7.0) - 0.1, 0.7)
+add(fx, tintineo(), W("vaso", 8.0), 0.5)
+add(fx, agua_corre(1.8, 0.35, 500), T(5) + 0.2, 1.0)                         # el lago sube
+add(fx, crujido(1.1), W("levanta", 9.4) - 0.05, 0.9)
+add(fx, agua_corre(2.0, 0.45, 700), W("agua", 12.9), 1.0)                    # se cuela por abajo
+add(fx, agua_corre(3.4, 0.55, 1100), W("derrite", 15.0) - 0.3, 1.0)          # el túnel crece
+add(fx, ding(1175, 0.6), W("túnel", 16.5), 0.35)
+add(fx, agua_corre(3.6, 1.0, 1500), T(8), 1.0)                               # el pago: el lago se va
+add(fx, ding(988, 0.6), W("noche", 18.7), 0.35)
+add(fx, crujido(1.0), W("hielo", 22.2), 0.8)
+add(fx, golpe_grave(), W("cierra", 22.5) + 0.25, 0.8)
+add(fx, agua_corre(1.7, 0.4, 600), T(11), 1.0)                               # el lago sube otra vez
+add(fx, agua_corre(1.9, 0.6, 1200), T(12), 1.0)                              # y otra vez se va
+add(fx, ding(1046, 0.6), W("otra", 25.0), 0.35)
 mix = v * 1.0 + m * 0.45 + fx * 0.45          # música 1 dB más baja: quedaba a 14,9 dB bajo la voz (meta ≥ 15)
 mix = np.tanh(mix * 1.1) / 1.1
 mix = mix / (np.abs(mix).max() + 1e-9) * 0.9
 os.makedirs(OUT, exist_ok=True)
-tmp = os.path.join(OUT, "ep07_pre.wav")
+tmp = os.path.join(OUT, "ep09_pre.wav")
 wavfile.write(tmp, SR, (mix * 32767).astype(np.int16))
-dst = os.path.join(OUT, "ep07_mix.wav")
+dst = os.path.join(OUT, "ep09_mix.wav")
 subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", tmp, "-af", "alimiter=limit=0.6:level=false,loudnorm=I=-14:TP=-2.5:LRA=11", "-ar", "48000", dst], check=True)
 vr = np.sqrt(np.mean(v[np.abs(v) > 0.02] ** 2))
 mr = np.sqrt(np.mean((m * 0.45)[(m != 0)] ** 2) + 1e-12)

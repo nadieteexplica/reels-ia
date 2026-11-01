@@ -1,3 +1,4 @@
 {"tipo": "trabajo", "id": "sesion", "estado": "inicio", "n": 1, "ts": "2026-11-01T13:29:57-03:00"}
 {"tipo": "cumplida", "id": "0", "n": 2, "ts": "2026-11-01T13:51:06-03:00"}
 {"tipo": "chequeo", "id": "sesion", "estado": "guion y voz aprobados; set del valle en pruebas locales", "n": 3, "ts": "2026-11-01T14:20:59-03:00"}
+{"tipo": "trabajo", "id": "estilos HD (render-planos muestras=1)", "estado": "inicio", "n": 4, "ts": "2026-11-01T14:29:54-03:00"}
