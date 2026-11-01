@@ -46,7 +46,7 @@ def fase_agua(S, f):
         return
     for n in m.node_tree.nodes:
         if n.type == "MAPPING":
-            n.inputs["Location"].default_value = (0.004 * f, 0.011 * f, 0.0)
+            n.inputs["Location"].default_value = (0.03 * f, 0.08 * f, 0.0)   # en metros (el plano ya no va escalado)
 
 
 # ---------------------------------------------------------------- cámaras de E1
@@ -155,9 +155,9 @@ def p4(sc, a, b):
 
 
 # ---------------------------------------------------------------- E2: el corte
-CAMS_CORTE = {   # (posición, mira): el contacto hielo-roca queda sobre la franja de subtítulos (y ≈ 820–890)
-    "lejos": (Vector((L.XC + 200, 30, 15)), Vector((L.XC, -5, -40))),
-    "cerca": (Vector((L.XC + 110, 16, -15)), Vector((L.XC, 2, -40))),
+CAMS_CORTE = {   # (posición, mira): el contacto hielo-roca queda bajo los subtítulos (~60 % desde arriba) y la roca no se come el cuadro
+    "lejos": (Vector((L.XC + 200, 30, 25)), Vector((L.XC, -5, -15))),
+    "cerca": (Vector((L.XC + 105, 10, 2)), Vector((L.XC, 0, -22))),
 }
 
 
@@ -353,11 +353,19 @@ def armar_rio(sc):
 
 
 def fase_rio(f):
-    m = bpy.data.materials.get("agua_rio")
-    if m:
+    """El agua corre: el río grande en +x y el afluente en +y (en metros por cuadro, cámara rápida)."""
+    for nombre in ("agua_rio", "espuma"):
+        m = bpy.data.materials.get(nombre)
+        if not m:
+            continue
         for n in m.node_tree.nodes:
             if n.type == "MAPPING":
-                n.inputs["Location"].default_value = (0.03 * f, 0.0, 0.0)
+                if n.name == "flujo_y":
+                    n.inputs["Location"].default_value = (0.0, -0.05 * f, 0.0)      # escala 0.12 en y: ~0,4 m por cuadro
+                elif nombre == "espuma":
+                    n.inputs["Location"].default_value = (0.0, -0.4 * f, 0.0)
+                else:
+                    n.inputs["Location"].default_value = (-0.15 * f, 0.0, 0.0)
 
 
 def flechas_rio(R, nivel, atras=0.0, f=0):
@@ -371,24 +379,35 @@ def flechas_rio(R, nivel, atras=0.0, f=0):
         fl.location.x = fl["x0"] + (12.0 if gira < 0.5 else -12.0) * math.sin(f * 0.12)
 
 
-CAM_RIO = (Vector((-330, 480, 480)), Vector((120, -140, 12)))
+CAM_RIO = (Vector((-330, 480, 480)), Vector((60, -300, 12)))      # el glaciar (y la boca) queda arriba a la derecha
+CAM_BOCA = (Vector((75, -600, 34)), Vector((40, -770, 30)))         # al pie del glaciar, mirando la boca
 
 
 def p_rio1(sc, a, b):
-    # "Sale por el otro lado, y el río más caudaloso de Chile se triplica.": el agua café entra y el río se ensancha
+    # "Sale por el otro lado, y el río más caudaloso de Chile se triplica.": primero la boca del glaciar escupiendo el
+    # agua café (el lago sale por ahí); en "río", corte al valle de abajo: el afluente café baja del glaciar al río
+    # grande, que se ensancha
     R = armar_rio(sc)
-    t_tr = TW("triplica", a / FPS - 0.3)
+    t_rio, t_tr = TW("río", a / FPS - 0.3), TW("triplica", a / FPS - 0.3)
 
     def act(f):
         t = tf(f)
-        k = suave(lin(t, a / FPS + 0.3, t_tr + 0.4))
-        nivel = L.RIO_NORMAL + (L.RIO_CRECIDA - L.RIO_NORMAL) * k
-        L.estado_rio(R, nivel, 0.0 - 50 * k, -1000.0 + 3500.0 * sale(lin(t, a / FPS, a / FPS + 1.4)))
-        flechas_rio(R, nivel, 0.0, f)
         fase_rio(f)
+        if t < t_rio - 0.1:
+            L.estado_rio(R, L.RIO_NORMAL + 0.8, 0.0, 2500.0)
+            flechas_rio(R, L.RIO_NORMAL, 0.0, f)
+            p, m = CAM_BOCA
+            x = suave(lin(t, a / FPS, t_rio))
+            mirar(R["cam"], p + (m - p) * 0.12 * x + Vector((0, 0, -3.0 * x)), m, lente=32)
+            return {"boca": pantalla(sc, R["cam"], Vector((40.0 * math.sin(L.Y_HOCICO / 160.0), L.Y_HOCICO, 27.0)))}
+        k = suave(lin(t, t_rio, t_tr + 0.4))
+        nivel = L.RIO_NORMAL + (L.RIO_CRECIDA - L.RIO_NORMAL) * k
+        L.estado_rio(R, nivel, 0.0 - 50 * k, -400.0 + 2900.0 * sale(lin(t, t_rio - 0.1, t_rio + 1.2)))
+        flechas_rio(R, nivel, 0.0, f)
         p, m = CAM_RIO
-        mirar(R["cam"], p + (m - p) * 0.08 * suave(lin(f, a, b - 1)), m, lente=26)
-        return {"rio": pantalla(sc, R["cam"], Vector((150, 0, 20 + nivel))), "junta": pantalla(sc, R["cam"], Vector((0, -80, 20 + nivel)))}
+        mirar(R["cam"], p + (m - p) * 0.08 * suave(lin(t, t_rio, b / FPS)), m, lente=26)
+        return {"rio": pantalla(sc, R["cam"], Vector((150, 0, 20 + nivel))), "junta": pantalla(sc, R["cam"], Vector((0, -80, 20 + nivel))),
+                "glaciar": pantalla(sc, R["cam"], Vector((40, L.Y_HOCICO - 40, 60)))}
     return {"actualizar": act}
 
 
@@ -410,17 +429,22 @@ def p_rio2(sc, a, b):
 
 
 def p_rio3(sc, a, b):
-    # "Por eso hay una alarma que avisa a los que viven río abajo.": casas en la orilla, río abajo
+    # "Por eso hay una alarma que avisa a los que viven río abajo.": casas en la orilla, la sirena prende y el río crece
     R = armar_rio(sc)
-    p0, m0 = Vector((540, -180, 70)), Vector((660, -370, 23))
+    p0, m0 = Vector((702, -318, 44)), Vector((640, -120, 22))
+    em = bpy.data.materials["baliza"].node_tree.nodes["Emission"]
+    t_al = TW("alarma", a / FPS - 0.3)
 
     def act(f):
+        t = tf(f)
         L.estado_rio(R, L.RIO_CRECIDA, -760.0, 2500.0)
         flechas_rio(R, L.RIO_CRECIDA, 1.0, f)
         fase_rio(f)
+        em.inputs[1].default_value = 0.0 if t < t_al - 0.1 else (60.0 if (f // 6) % 2 == 0 else 4.0)
         x = suave(lin(f, a, b - 1))
-        mirar(R["cam"], p0 + (m0 - p0) * 0.12 * x, m0, lente=45)
-        return {"casas": pantalla(sc, R["cam"], R["casas"][0].matrix_world.translation + Vector((0, 0, 6)))}
+        mirar(R["cam"], p0 + (m0 - p0) * 0.12 * x, m0, lente=35)
+        return {"casas": pantalla(sc, R["cam"], R["casas"][0].matrix_world.translation + Vector((0, 0, 6))),
+                "sirena": pantalla(sc, R["cam"], Vector((652.0, -200.0, R["casas"][0].matrix_world.translation.z + 9.0)))}
     return {"actualizar": act}
 
 

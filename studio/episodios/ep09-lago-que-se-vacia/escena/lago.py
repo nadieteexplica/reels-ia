@@ -453,6 +453,7 @@ def agua(sc, nivel=NIVEL_LLENO, xmax=None):
     o = bpy.context.object
     o.name = "Agua"
     o.scale = (x1 - x0, 2400, 1)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
     K.asignar(o, mat_agua_glaciar())
     o.visible_shadow = False
     return o
@@ -490,13 +491,20 @@ Y_FRENTE = -5.0                # el frente de hielo en el corte
 
 
 def _perfil_hielo(y):
-    """Techo del hielo en el corte (z), del glaciar real del set."""
+    """Techo del hielo en el corte (z), del glaciar real del set, con grietas en V (el glaciar se parte arriba)."""
     g = np.asarray(y, np.float32)
     x = np.full_like(g, XC)
     base = altura_terreno(x, g)
     serac = 14.0 * (cresta(x, g, 43, 55.0, 4) - 0.45) + 4.0 * fbm(x, g, 47, 12.0, 3)
     zi = NIVEL_LLENO + 38.0 + 0.035 * np.maximum(-g, 20.0) + serac
-    return np.maximum(zi, base + 30.0)
+    r = random.Random(17)
+    grietas = np.zeros_like(g)
+    yc = Y_FRENTE - 14.0
+    while yc > Y0C:
+        w, d = r.uniform(2.0, 4.5), r.uniform(10.0, 24.0)
+        grietas = np.maximum(grietas, d * np.clip(1 - np.abs(g - yc) / w, 0, 1) ** 0.7)
+        yc -= r.uniform(22.0, 48.0)
+    return np.maximum(zi - grietas, base + 30.0)
 
 
 def recortar(sc, excepto=()):
@@ -532,66 +540,128 @@ def recortar(sc, excepto=()):
 
 
 def mat_roca_corte():
+    """Roca cortada: estratos ondulados grises y cafés con vetas claras y fracturas finas."""
     m, nt, b = K._nodos("roca_corte")
     m["corte"] = 1
-    capas = K._ruido(nt, escala=0.05, detalle=6, estirar=(0.08, 0.08, 1.0))
-    c = K._rampa(nt, capas.outputs["Fac"], (0.035, 0.034, 0.033), (0.12, 0.112, 0.105), (0.4, 0.6))
-    gr = K._ruido(nt, escala=1.2, detalle=6)
-    mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"; mx.blend_type = "MULTIPLY"; mx.inputs[0].default_value = 0.25
-    nt.links.new(c.outputs[0], mx.inputs[6]); nt.links.new(gr.outputs["Color"], mx.inputs[7])
-    nt.links.new(mx.outputs[2], b.inputs["Base Color"])
+    capas = K._ruido(nt, escala=0.09, detalle=8, estirar=(0.04, 0.04, 1.0))
+    capas.inputs["Distortion"].default_value = 1.4
+    r = nt.nodes.new("ShaderNodeValToRGB")
+    els = r.color_ramp.elements
+    els[0].position, els[0].color = 0.3, (0.05, 0.045, 0.04, 1)
+    els[1].position, els[1].color = 0.72, (0.3, 0.27, 0.22, 1)
+    e = els.new(0.47); e.color = (0.16, 0.13, 0.1, 1)
+    e = els.new(0.55); e.color = (0.24, 0.23, 0.21, 1)
+    nt.links.new(capas.outputs["Fac"], r.inputs[0])
+    veta = K._ruido(nt, escala=0.25, detalle=4, estirar=(0.03, 0.03, 1.0))
+    kv = K._mapa(nt, veta.outputs["Fac"], 0.0, 1.0); kv.inputs["From Min"].default_value = 0.66; kv.inputs["From Max"].default_value = 0.7
+    mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"
+    k2 = nt.nodes.new("ShaderNodeMath"); k2.operation = "MULTIPLY"; k2.inputs[1].default_value = 0.6
+    nt.links.new(kv.outputs[0], k2.inputs[0]); nt.links.new(k2.outputs[0], mx.inputs[0])
+    nt.links.new(r.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (0.5, 0.48, 0.44, 1)
+    gr = K._ruido(nt, escala=0.8, detalle=10)
+    kg = K._mapa(nt, gr.outputs["Fac"], 0.7, 1.15)
+    cg = nt.nodes.new("ShaderNodeCombineColor"); [nt.links.new(kg.outputs[0], cg.inputs[i]) for i in range(3)]
+    mm = nt.nodes.new("ShaderNodeMix"); mm.data_type = "RGBA"; mm.blend_type = "MULTIPLY"; mm.inputs[0].default_value = 1.0
+    nt.links.new(mx.outputs[2], mm.inputs[6]); nt.links.new(cg.outputs[0], mm.inputs[7])
+    nt.links.new(mm.outputs[2], b.inputs["Base Color"])
     b.inputs["Roughness"].default_value = 0.9
-    K._bump(nt, b, gr.outputs["Fac"], 0.4, 0.3)
+    s = nt.nodes.new("ShaderNodeMath"); s.operation = "ADD"; nt.links.new(gr.outputs["Fac"], s.inputs[0]); nt.links.new(capas.outputs["Fac"], s.inputs[1])
+    K._bump(nt, b, s.outputs[0], 0.8, 0.6)
+    return m
+
+
+def mat_till_corte():
+    """La morrena de fondo bajo el hielo: ripio café."""
+    m, nt, b = K._nodos("till_corte")
+    m["corte"] = 1
+    n = K._ruido(nt, escala=2.5, detalle=6)
+    c = K._rampa(nt, n.outputs["Fac"], (0.12, 0.09, 0.06), (0.3, 0.24, 0.17))
+    nt.links.new(c.outputs[0], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.95
+    K._bump(nt, b, n.outputs["Fac"], 0.6, 0.2)
     return m
 
 
 def mat_hielo_corte():
-    """La cara del hielo cortado: blanco azulado con capas (años de nieve apretada) y burbujas; más azul en lo profundo."""
+    """La cara del hielo cortado: blanca arriba, celeste al medio y azul profunda abajo (el hielo viejo y apretado es azul),
+    con capas finas de polvo (años de nieve), burbujas y grietas que se ven azul oscuro."""
     m, nt, b = K._nodos("hielo_corte")
     m["corte"] = 1
     tc = nt.nodes.new("ShaderNodeTexCoord")
     sp = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Object"], sp.inputs[0])
-    prof = K._mapa(nt, sp.outputs["Z"], 0.0, 1.0); prof.inputs["From Min"].default_value = -30; prof.inputs["From Max"].default_value = 60
-    base = K._rampa(nt, prof.outputs[0], (0.04, 0.2, 0.42), (0.5, 0.68, 0.84), (0.0, 1.0))
-    capas = K._ruido(nt, escala=0.12, detalle=6, estirar=(0.05, 0.05, 1.0))
-    kc = K._mapa(nt, capas.outputs["Fac"], 0.0, 1.0); kc.inputs["From Min"].default_value = 0.48; kc.inputs["From Max"].default_value = 0.6
+    prof = K._mapa(nt, sp.outputs["Z"], 0.0, 1.0); prof.inputs["From Min"].default_value = -34; prof.inputs["From Max"].default_value = 55
+    r = nt.nodes.new("ShaderNodeValToRGB")
+    els = r.color_ramp.elements
+    els[0].position, els[0].color = 0.0, (0.02, 0.1, 0.26, 1)
+    els[1].position, els[1].color = 1.0, (0.62, 0.72, 0.8, 1)
+    e = els.new(0.4); e.color = (0.1, 0.3, 0.52, 1)
+    e = els.new(0.75); e.color = (0.32, 0.53, 0.7, 1)
+    nt.links.new(prof.outputs[0], r.inputs[0])
+    capas = K._ruido(nt, escala=0.3, detalle=6, estirar=(0.02, 0.02, 1.0))
+    capas.inputs["Distortion"].default_value = 0.8
+    kc = K._mapa(nt, capas.outputs["Fac"], 0.0, 1.0); kc.inputs["From Min"].default_value = 0.56; kc.inputs["From Max"].default_value = 0.64
     mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"; mx.blend_type = "MULTIPLY"
-    f = nt.nodes.new("ShaderNodeMath"); f.operation = "MULTIPLY"; f.inputs[1].default_value = 0.6
+    f = nt.nodes.new("ShaderNodeMath"); f.operation = "MULTIPLY"; f.inputs[1].default_value = 0.55
     nt.links.new(kc.outputs[0], f.inputs[0]); nt.links.new(f.outputs[0], mx.inputs[0])
-    nt.links.new(base.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (0.4, 0.37, 0.34, 1)
+    nt.links.new(r.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (0.42, 0.38, 0.34, 1)
     nt.links.new(mx.outputs[2], b.inputs["Base Color"])
-    b.inputs["Roughness"].default_value = 0.35
-    b.inputs["Subsurface Weight"].default_value = 0.2
-    b.inputs["Subsurface Radius"].default_value = (0.3, 0.8, 1.5)
-    b.inputs["Subsurface Scale"].default_value = 0.3
-    bub = K._ruido(nt, escala=3.0, detalle=4)
-    K._bump(nt, b, bub.outputs["Fac"], 0.25, 0.1)
+    b.inputs["Roughness"].default_value = 0.55
+    bub = K._ruido(nt, escala=4.0, detalle=4)
+    est = K._ruido(nt, escala=0.6, detalle=6, estirar=(1.0, 1.0, 0.15))
+    s = nt.nodes.new("ShaderNodeMath"); s.operation = "ADD"; nt.links.new(bub.outputs["Fac"], s.inputs[0]); nt.links.new(est.outputs["Fac"], s.inputs[1])
+    K._bump(nt, b, s.outputs[0], 0.35, 0.15)
     return m
 
 
 def mat_agua_corte(nombre="agua_corte", brillo=0.0):
-    """El agua cortada: azul verdoso translúcido con limo, más oscura abajo; el agua del túnel tiene estelas que corren
-    (valor "fase" que se mueve por cuadro)."""
+    """El agua cortada: turquesa arriba y oscura abajo, con limo en suspensión y rayos de luz que bajan. El agua del túnel
+    tiene estelas claras que corren (valor "fase" que se mueve por cuadro)."""
     m, nt, b = K._nodos(nombre)
     m["corte"] = 1
     tc = nt.nodes.new("ShaderNodeTexCoord")
     mp = nt.nodes.new("ShaderNodeMapping"); nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
-    mp.inputs["Scale"].default_value = (1.0, 0.04, 1.0)
-    st = nt.nodes.new("ShaderNodeTexNoise"); st.inputs["Scale"].default_value = 3.0; st.inputs["Detail"].default_value = 3
+    mp.inputs["Scale"].default_value = (1.0, 0.05, 1.0)
+    st = nt.nodes.new("ShaderNodeTexNoise"); st.inputs["Scale"].default_value = 0.7; st.inputs["Detail"].default_value = 3
     nt.links.new(mp.outputs[0], st.inputs["Vector"])
     m["mapping"] = mp.name
     sp = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Object"], sp.inputs[0])
-    prof = K._mapa(nt, sp.outputs["Z"], 0.0, 1.0); prof.inputs["From Min"].default_value = -34; prof.inputs["From Max"].default_value = 2
-    c = K._rampa(nt, prof.outputs[0], (0.02, 0.09, 0.12), (0.1, 0.34, 0.38), (0.0, 1.0))
-    est = K._mapa(nt, st.outputs["Fac"], 0.0, 1.0); est.inputs["From Min"].default_value = 0.55; est.inputs["From Max"].default_value = 0.7
+    prof = K._mapa(nt, sp.outputs["Z"], 0.0, 1.0); prof.inputs["From Min"].default_value = -36; prof.inputs["From Max"].default_value = 1
+    c = K._rampa(nt, prof.outputs[0], (0.015, 0.07, 0.1), (0.1, 0.36, 0.4), (0.0, 1.0))
+    limo = K._ruido(nt, escala=0.12, detalle=5)
+    kl = K._mapa(nt, limo.outputs["Fac"], 0.85, 1.15)
+    rayos = K._ruido(nt, escala=0.05, detalle=2, estirar=(1.0, 1.0, 0.04))
+    kr = K._mapa(nt, rayos.outputs["Fac"], 0.0, 1.0); kr.inputs["From Min"].default_value = 0.55; kr.inputs["From Max"].default_value = 0.75
+    luz = nt.nodes.new("ShaderNodeMath"); luz.operation = "MULTIPLY"; nt.links.new(kr.outputs[0], luz.inputs[0]); nt.links.new(prof.outputs[0], luz.inputs[1])
+    c2 = nt.nodes.new("ShaderNodeMix"); c2.data_type = "RGBA"; c2.blend_type = "MULTIPLY"; c2.inputs[0].default_value = 1.0
+    nt.links.new(c.outputs[0], c2.inputs[6])
+    cg = nt.nodes.new("ShaderNodeCombineColor"); [nt.links.new(kl.outputs[0], cg.inputs[i]) for i in range(3)]
+    nt.links.new(cg.outputs[0], c2.inputs[7])
+    c3 = nt.nodes.new("ShaderNodeMix"); c3.data_type = "RGBA"; c3.blend_type = "ADD"
+    k3 = nt.nodes.new("ShaderNodeMath"); k3.operation = "MULTIPLY"; k3.inputs[1].default_value = 0.12
+    nt.links.new(luz.outputs[0], k3.inputs[0]); nt.links.new(k3.outputs[0], c3.inputs[0])
+    nt.links.new(c2.outputs[2], c3.inputs[6]); c3.inputs[7].default_value = (0.6, 0.9, 0.95, 1)
+    est = K._mapa(nt, st.outputs["Fac"], 0.0, 1.0); est.inputs["From Min"].default_value = 0.52; est.inputs["From Max"].default_value = 0.75
     mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"
-    k = nt.nodes.new("ShaderNodeMath"); k.operation = "MULTIPLY"; k.inputs[1].default_value = 0.0 if not brillo else 0.6
+    k = nt.nodes.new("ShaderNodeMath"); k.operation = "MULTIPLY"; k.inputs[1].default_value = 0.0 if not brillo else 0.45
     nt.links.new(est.outputs[0], k.inputs[0]); nt.links.new(k.outputs[0], mx.inputs[0])
-    nt.links.new(c.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (0.55, 0.82, 0.88, 1)
+    nt.links.new(c3.outputs[2], mx.inputs[6]); mx.inputs[7].default_value = (0.75, 0.93, 0.97, 1)
     nt.links.new(mx.outputs[2], b.inputs["Base Color"])
-    b.inputs["Roughness"].default_value = 0.12
+    b.inputs["Roughness"].default_value = 0.15
     b.inputs["Emission Color"].default_value = (0.3, 0.75, 0.85, 1)
-    nt.links.new(k.outputs[0], b.inputs["Emission Strength"])
+    ke = nt.nodes.new("ShaderNodeMath"); ke.operation = "MULTIPLY"; ke.inputs[1].default_value = 0.25
+    nt.links.new(k.outputs[0], ke.inputs[0]); nt.links.new(ke.outputs[0], b.inputs["Emission Strength"])
+    return m
+
+
+def mat_hueco_tunel():
+    """La pared del fondo del túnel (detrás del agua que corre): hielo azul oscuro en sombra."""
+    m, nt, b = K._nodos("hueco_tunel")
+    m["corte"] = 1
+    n = K._ruido(nt, escala=0.12, detalle=3, estirar=(1.0, 0.3, 1.0))
+    c = K._rampa(nt, n.outputs["Fac"], (0.005, 0.03, 0.07), (0.02, 0.09, 0.16))
+    nt.links.new(c.outputs[0], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.25
+    K._bump(nt, b, n.outputs["Fac"], 0.2, 0.3)
     return m
 
 
@@ -623,51 +693,59 @@ TOE = 28.0                     # el pie de hielo sumergido que entra en el lago 
 
 
 class Corte:
-    """La represa abierta de costado, en el set del valle. estado(nivel, lift, lengua, radio, fase) la mueve por cuadro:
-    nivel = nivel del lago (m) · lift = cuánto se despega el pie del hielo (m, exagerado para que se vea) · lengua = hasta
-    dónde llega el agua bajo el hielo (y, de 0 a Y0C) · radio = medio alto del túnel (m) · fase = corrida de las estelas.
-    El frente tiene un pie sumergido en cuña (TOE m dentro del lago, delgado): con el lago lleno el agua lo cubre casi
-    entero, así que flota (como el cubo del vaso) — es la parte que se levanta (puerta 3: "el hielo se levanta con el agua
-    a menos de la mitad de su alto")."""
+    """La represa abierta de costado, en el set del valle (geometría sólo hasta x = XC). estado(nivel, lift, lengua, radio,
+    fase) la mueve por cuadro: nivel = nivel del lago (m) · lift = cuánto se despega el pie del hielo (m, un poco
+    exagerado para que se vea) · lengua = hasta dónde llega el agua bajo el hielo (y) · radio = medio alto del túnel (m)
+    · fase = corrida de las estelas. El frente tiene un pie sumergido en cuña (TOE m dentro del lago, ~7 m de hielo bajo
+    ~25 m de agua): flota, como el témpano del plano 5, y es lo que se levanta. Encima de la cara cortada va una línea
+    clara (capa de explicación: "esto es un corte")."""
 
     def __init__(self, sc, S):
         self.S = S
-        self.ys = np.linspace(Y0C, Y1C, 841).astype(np.float32)
+        self.ys = np.linspace(Y0C, Y1C, 1681).astype(np.float32)
         y = self.ys
         self.bed = altura_terreno(np.full_like(y, XC), y)
         techo = _perfil_hielo(y)
-        cuna = np.clip((Y_FRENTE + TOE - y) / TOE, 0, 1)                 # 1 en el frente → 0 en la punta del pie
-        pie = self.bed + 7.0 * np.sqrt(cuna)                               # el pie: ~7 m de hielo sobre la roca, bajo ~25 m de agua
+        cuna = np.clip((Y_FRENTE + TOE - y) / TOE, 0, 1)
+        pie = self.bed + 3.0 + 7.0 * np.sqrt(cuna)
         self.techo = np.where(y <= Y_FRENTE, techo, np.where(y <= Y_FRENTE + TOE, pie, self.bed))
         self.hay_hielo = y <= Y_FRENTE + TOE
-        z0 = np.full_like(y, -160.0)
-        self.roca = _franja("CorteRoca", y, z0, self.bed, mat_roca_corte())
+        z0 = np.full_like(y, -420.0)
+        till = self.bed - 3.0 - 1.2 * fbm(np.full_like(y, 5.0), y, 71, 9.0, 3)
+        self.roca = _franja("CorteRoca", y, z0, till, mat_roca_corte())
+        self.till = _franja("CorteTill", y, till, self.bed, mat_till_corte(), x=XC + 0.02)
         self.hielo = _franja("CorteHielo", y, self.bed, self.techo, mat_hielo_corte())
-        self.tunel = _franja("CorteTunel", y, self.bed, self.bed, mat_agua_corte("agua_tunel", brillo=1))
+        self.hueco = _franja("CorteHueco", y, self.bed, self.bed, mat_hueco_tunel(), x=XC - 2.0)
+        self.tunel = _franja("CorteTunel", y, self.bed, self.bed, mat_agua_corte("agua_tunel", brillo=1), x=XC + 0.04)
         self.lado_lago = y > Y_FRENTE
         yl = y[self.lado_lago]
         self.lago = _franja("CorteLago", yl, self.bed[self.lado_lago], self.bed[self.lado_lago], mat_agua_corte())
+        self.linea = _franja("CorteLinea", y, self.bed, self.bed, K.mat_emision("linea_corte", (1.0, 0.82, 0.55), 2.2), x=XC + 0.12)
+        self.linea.visible_shadow = False
 
     def estado(self, nivel, lift=0.0, lengua=0.0, radio=0.0, fase=0.0):
         y, bed = self.ys, self.bed
         h = self.hay_hielo
-        lev = lift * suave((y + 110.0) / 105.0) * h                        # el pie del hielo se despega (más en la punta)
-        hl = np.where((y >= lengua) & h, 1.6, 0.0) * (lengua < 0)          # la lengua de agua bajo el hielo
+        lev = lift * suave((y + 110.0) / 105.0) * h
+        hl = np.where((y >= lengua) & h, 1.6, 0.0) * (lengua < 0)
         tun = radio * 2.0 * (0.85 + 0.15 * suave((y + 300) / 300)) * (y <= Y_FRENTE + TOE * 0.5)
         hueco = (lev + hl + tun) * h
         abajo = bed + hueco
         arriba = np.where(h, self.techo + lev * np.where(y > Y_FRENTE, 1.0, 0.3), bed)
         _mover_franja(self.hielo, abajo, arriba)
-        _mover_franja(self.tunel, bed, np.where(hueco > 0.05, bed + hueco, bed))
+        agua_t = np.where(hueco > 0.05, bed + np.where(tun > 0.5, 0.62 * hueco, hueco), bed)
+        _mover_franja(self.tunel, bed, agua_t)
+        _mover_franja(self.hueco, bed, np.where(hueco > 0.05, abajo + 0.3, bed))
         fondo_lago = np.where(h, np.maximum(arriba, bed), bed)[self.lado_lago]
         _mover_franja(self.lago, fondo_lago, np.maximum(nivel, fondo_lago))
+        tope = np.where(h & (y <= Y_FRENTE), arriba, np.maximum(bed, np.where(self.lado_lago, np.maximum(nivel, np.where(h, arriba, bed)), bed)))
+        _mover_franja(self.linea, tope - 0.55, tope + 0.05)
         self.S["agua"].location.z = nivel
         ubicar_tempanos(self.S["tempanos"], nivel)
         mt = bpy.data.materials["agua_tunel"].node_tree
         mt.nodes[bpy.data.materials["agua_tunel"]["mapping"]].inputs["Location"].default_value = (0.0, fase, 0.0)
 
     def contacto(self, y=-20.0):
-        """Punto del contacto hielo-roca (para encuadrar y para el post)."""
         i = int(np.argmin(np.abs(self.ys - y)))
         return (XC, float(self.ys[i]), float(self.bed[i]))
 
@@ -727,21 +805,171 @@ def tempano_corte(sc, y0=38.0, y1=78.0, alto=26.0, nivel=NIVEL_LLENO):
 
 # ================================================================ E4: el río de abajo (la junta con el río grande)
 RIO_NORMAL = -1.6
-RIO_CRECIDA = 1.1
+RIO_CRECIDA = 0.5
+
+
+Y_HOCICO = -760.0               # el frente del glaciar Colonia en E4: de ahí sale el río que trae el agua del lago
+
+
+def xt_rio(y):
+    """Eje del afluente (el río que sale del glaciar)."""
+    return 40.0 * np.sin(np.asarray(y, np.float32) / 160.0)
 
 
 def altura_rio(x, y):
     """Valle ancho con una llanura de ripio: el río grande corre en x (de izquierda a derecha, río abajo = +x) y el
-    afluente (el que trae el agua del lago) entra desde el sur (y < 0) en x ≈ 0."""
+    afluente (el que trae el agua del lago) entra desde el sur (y < 0) en x ≈ 0; viene de un valle lateral que nace en
+    el frente del glaciar (Y_HOCICO)."""
     xx = np.asarray(x, np.float32); yy = np.asarray(y, np.float32)
     lado = np.abs(yy - 30.0 * np.sin(xx / 400.0))
-    llanura = 1.7 * fbm(xx, yy, 61, 90.0, 5) + 0.3 * fbm(xx, yy, 63, 9.0, 3) + 0.0035 * np.abs(xx) * 0
-    cauce = -4.5 * np.exp(-(lado / 70.0) ** 2)                                         # el río grande
-    trib = -3.5 * np.exp(-((xx - 40.0 * np.sin(yy / 160.0)) / 45.0) ** 2) * suave((-yy + 20.0) / 80.0)   # el afluente
+    llanura = 1.6 + 1.7 * fbm(xx, yy, 61, 90.0, 5) + 0.3 * fbm(xx, yy, 63, 9.0, 3)
+    cauce = -6.0 * np.exp(-(lado / 75.0) ** 2)                                         # el río grande
+    dx = xx - xt_rio(yy)
+    an = 50.0 + 45.0 * suave((-yy - 450.0) / 250.0)
+    trib = -8.0 * np.exp(-(dx / an) ** 2) * suave((-yy + 20.0) / 80.0)                 # el afluente
     trenzas = -1.2 * (cresta(xx * 0.5, yy, 65, 50.0, 3) > 0.62) * suave((-yy - 60.0) / 200.0) * (np.abs(xx) < 260)
-    terraza = 3.0 * suave((lado - 380.0) / 60.0)
+    V = np.exp(-(dx / 260.0) ** 2) * suave((-yy - 250.0) / 300.0)                      # el valle lateral del glaciar
+    terraza = 3.0 * suave((lado - 380.0) / 60.0) * (1 - V)
     ladera = 520.0 * suave((lado - 650.0) / 900.0) ** 1.3 + 90.0 * (cresta(xx, yy, 67, 300.0, 5) - 0.4) * suave((lado - 650.0) / 200.0)
-    return llanura + np.minimum(0.0, cauce + trib) + trenzas + terraza + ladera
+    ladera = ladera * (1 - 0.9 * V)
+    loma = 2.6 * np.exp(-(((xx - 655.0) / 70.0) ** 2 + ((yy + 222.0) / 45.0) ** 2))       # la lomita de las casas
+    brazo = -3.6 * np.exp(-((yy + 150.0 - 0.1 * (xx - 650.0)) / 32.0) ** 2) * np.exp(-((xx - 650.0) / 420.0) ** 2)   # un brazo del río junto a las casas
+    return loma + brazo + llanura + np.minimum(0.0, cauce + trib) + trenzas + terraza + ladera
+
+
+def hocico(sc, detalle=1.0):
+    """El frente del glaciar Colonia (vista E4): una lengua ancha de hielo que termina en un muro de ~32 m sobre el río,
+    con seracs y grietas, y una boca oscura abajo al medio, por donde sale el agua del lago."""
+    xs = np.linspace(-700, 760, int(380 * detalle) + 2, dtype=np.float32)
+    # filas densas cerca del frente (el muro es casi vertical) y ralas atrás
+    d = np.concatenate([np.linspace(-30, 40, int(70 * detalle) + 2), np.linspace(42, 2400, int(140 * detalle) + 2)[1:]]).astype(np.float32)
+    X, Dd = np.meshgrid(xs, d)
+    curva = 0.0022 * (X - 40.0) ** 2                                   # el frente es un lóbulo: los lados quedan atrás
+    Y = Y_HOCICO - Dd - curva
+    base = altura_rio(X, Y) + 20.0
+    serac = 7.0 * (cresta(X, Y, 81, 40.0, 4) - 0.45) + 2.5 * fbm(X, Y, 83, 9.0, 3)
+    transv = np.abs(np.sin((Y + 14.0 * fbm(X, Y, 85, 150.0, 3)) / 8.0)) ** 0.3
+    serac = serac + 6.0 * (transv - 0.8)
+    H = -6.0 + 40.0 * suave((Dd + 2.0) / 9.0) + 0.05 * np.maximum(Dd, 0) + serac * suave(Dd / 12.0)
+    lado = np.abs(X - xt_rio(Y))
+    k = suave((520.0 - lado) / 220.0)
+    zi = 20.0 + H * k - 8.0 * (1 - k)
+    Z = np.where(zi > base, zi, base - 4.0)
+    xb0 = 40.0 * math.sin(Y_HOCICO / 160.0)
+    hueco = (np.abs(X - xb0) < 19.0) & (Dd < 26.0)          # el túnel de la boca pasa por aquí (la cara de atrás queda detrás)
+    Z = np.where(hueco, base - 4.0, Z)
+    verts = np.stack([X.ravel(), Y.ravel(), Z.ravel()], 1)
+    nx, ny = len(xs), len(d)
+    idx = np.arange(nx * ny).reshape(ny, nx)
+    a = idx[:-1, :-1].ravel(); b_ = idx[:-1, 1:].ravel(); c = idx[1:, 1:].ravel(); dd = idx[1:, :-1].ravel()
+    caras = np.stack([a, dd, c, b_], 1)
+    me = bpy.data.meshes.new("Hocico")
+    me.vertices.add(len(verts)); me.vertices.foreach_set("co", verts.ravel())
+    me.loops.add(len(caras) * 4); me.loops.foreach_set("vertex_index", caras.ravel())
+    me.polygons.add(len(caras)); me.polygons.foreach_set("loop_start", np.arange(0, len(caras) * 4, 4)); me.polygons.foreach_set("loop_total", np.full(len(caras), 4))
+    me.update(); me.validate()
+    o = bpy.data.objects.new("Hocico", me); sc.collection.objects.link(o)
+    for pgn in me.polygons:
+        pgn.use_smooth = True
+    K.asignar(o, mat_hielo("hielo_hocico", sucio=0.45))
+    # el muro: malla vertical por delante del borde, con columnas y seracs, y un hueco en arco (la boca)
+    xb = 40.0 * math.sin(Y_HOCICO / 160.0)
+    R, Hb, P = 17.0, 15.0, 24.0
+    xs3 = np.linspace(xb - 340, xb + 340, int(340 * detalle) + 2, dtype=np.float32)
+    zs3 = np.linspace(10.0, 70.0, int(90 * detalle) + 2, dtype=np.float32)
+    Xm, Zm = np.meshgrid(xs3, zs3)
+    yfr = Y_HOCICO - 0.0022 * (Xm - 40.0) ** 2
+    Ym = (yfr + 1.5 - 6.0 * (cresta(Xm, Zm * 0.3, 91, 14.0, 4) - 0.45) - 1.6 * fbm(Xm, Zm, 93, 6.0, 4))
+    def sup_en(x, dd):
+        yy = Y_HOCICO - dd - 0.0022 * (x - 40.0) ** 2
+        bb = altura_rio(x, yy) + 20.0
+        s_ = 7.0 * (cresta(x, yy, 81, 40.0, 4) - 0.45) + 2.5 * fbm(x, yy, 83, 9.0, 3)
+        tv = np.abs(np.sin((yy + 14.0 * fbm(x, yy, 85, 150.0, 3)) / 8.0)) ** 0.3
+        s_ = s_ + 6.0 * (tv - 0.8)
+        hh = -6.0 + 40.0 * suave((dd + 2.0) / 9.0) + 0.05 * np.maximum(dd, 0) + s_ * suave(dd / 12.0)
+        kk = suave((520.0 - np.abs(x - xt_rio(yy))) / 220.0)
+        zz = 20.0 + hh * kk - 8.0 * (1 - kk)
+        return np.where(zz > bb, zz, bb - 4.0), bb
+    techo, piso = sup_en(xs3, np.full_like(xs3, 9.0))
+    techo = techo - 1.0
+    Zc = np.clip(Zm, piso[None, :] - 3.0, techo[None, :])
+    Ym = np.where(Zm > techo[None, :] - 6.0, Ym - 6.0 * np.clip((Zm - techo[None, :] + 6.0) / 6.0, 0, 1), Ym)
+    nx3, nz3 = len(xs3), len(zs3)
+    verts = np.stack([Xm.ravel(), Ym.ravel(), Zc.ravel()], 1)
+    idx = np.arange(nx3 * nz3).reshape(nz3, nx3)
+    a_ = idx[:-1, :-1].ravel(); b_ = idx[:-1, 1:].ravel(); c_ = idx[1:, 1:].ravel(); d_ = idx[1:, :-1].ravel()
+    cx = (Xm[:-1, :-1] + Xm[1:, 1:]).ravel() / 2; cz = (Zm[:-1, :-1] + Zm[1:, 1:]).ravel() / 2
+    fuera = ((cx - xb) / R) ** 2 + ((cz - 17.0) / Hb) ** 2 > 1.0
+    # los vértices del borde del hueco se llevan al óvalo (si no, el borde queda en escalera)
+    vx, vz = verts[:, 0], verts[:, 2]
+    e = ((vx - xb) / R) ** 2 + ((vz - 17.0) / Hb) ** 2
+    dentro = (e < 1.0) & (vz > 12.0)
+    s_ = 1.0 / np.sqrt(np.maximum(e, 1e-4))
+    verts[dentro, 0] = xb + (vx[dentro] - xb) * s_[dentro]
+    verts[dentro, 2] = 17.0 + (vz[dentro] - 17.0) * s_[dentro]
+    caras = np.stack([a_, b_, c_, d_], 1)[fuera]
+    me = bpy.data.meshes.new("MuroHocico")
+    me.vertices.add(len(verts)); me.vertices.foreach_set("co", verts.ravel())
+    me.loops.add(len(caras) * 4); me.loops.foreach_set("vertex_index", caras.ravel())
+    me.polygons.add(len(caras)); me.polygons.foreach_set("loop_start", np.arange(0, len(caras) * 4, 4)); me.polygons.foreach_set("loop_total", np.full(len(caras), 4))
+    me.update(); me.validate()
+    mu = bpy.data.objects.new("MuroHocico", me); sc.collection.objects.link(mu)
+    for pgn in me.polygons:
+        pgn.use_smooth = True
+    K.asignar(mu, mat_hielo("hielo_muro_rio", sucio=0.5))
+    # la boca: túnel en medio óvalo que se mete P m en el hielo (oscuro adentro)
+    yb = Y_HOCICO + 1.5
+    n = 48
+    ang = np.linspace(0, math.pi, n)
+    verts, caras = [], []
+    for j, prof in enumerate((0.0, 0.4, 1.0)):
+        esc = (1.0, 0.85, 0.55)[j]
+        for t_ in ang:
+            verts.append((xb + R * esc * math.cos(t_), yb - prof * P, 17.0 + Hb * esc * math.sin(t_)))
+    for j in range(2):
+        for i in range(n - 1):
+            caras.append((j * n + i, (j + 1) * n + i, (j + 1) * n + i + 1, j * n + i + 1))
+    verts.append((xb, yb - P, 17.0))
+    for i in range(n - 1):
+        caras.append((2 * n + i, len(verts) - 1, 2 * n + i + 1))
+    me = bpy.data.meshes.new("Boca"); me.from_pydata(verts, [], caras); me.update()
+    bo = bpy.data.objects.new("Boca", me); sc.collection.objects.link(bo)
+    for pgn in me.polygons:
+        pgn.use_smooth = True
+    m, nt, bs = K._nodos("boca")
+    sp = nt.nodes.new("ShaderNodeSeparateXYZ"); tcb = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tcb.outputs["Object"], sp.inputs[0])
+    pr = K._mapa(nt, sp.outputs["Y"], 0.0, 1.0); pr.inputs["From Min"].default_value = yb - P; pr.inputs["From Max"].default_value = yb - 2.0
+    cc = K._rampa(nt, pr.outputs[0], (0.0, 0.004, 0.012), (0.05, 0.2, 0.36), (0.5, 0.97))
+    nt.links.new(cc.outputs[0], bs.inputs["Base Color"])
+    bs.inputs["Roughness"].default_value = 0.15
+    est = K._ruido(nt, escala=0.3, detalle=6, estirar=(1.0, 1.0, 0.2))
+    K._bump(nt, bs, est.outputs["Fac"], 0.6, 0.5)
+    K.asignar(bo, m)
+    # el borbollón: el agua sale empujando y se levanta en un domo de espuma café
+    xs2 = np.linspace(xb - 60, xb + 60, int(90 * detalle) + 2, dtype=np.float32)
+    ys2 = np.linspace(Y_HOCICO - 4, Y_HOCICO + 90, int(140 * detalle) + 2, dtype=np.float32)
+    def domo(x, y):
+        r2 = ((x - xb) / 24.0) ** 2 + ((y - Y_HOCICO - 14.0) / 26.0) ** 2
+        return 2.4 * np.exp(-r2) * (0.7 + 0.6 * fbm(x, y, 87, 6.0, 3)) + 0.25 * fbm(x, y, 89, 3.0, 3) - 0.3
+    bb = malla_altura("Borbollon", xs2[0], xs2[-1], ys2[0], ys2[-1], len(xs2), len(ys2), domo, mat_espuma())
+    bb.location.z = 20.0 + RIO_NORMAL
+    bb.visible_shadow = False
+    return o, bb
+
+
+def mat_espuma():
+    """Agua café revuelta con espuma blanca (donde el agua sale a presión)."""
+    m, nt, b = K._nodos("espuma")
+    n = K._ruido(nt, escala=0.35, detalle=8)
+    n2 = K._ruido(nt, escala=0.06, detalle=4)
+    s = nt.nodes.new("ShaderNodeMath"); s.operation = "ADD"; nt.links.new(n.outputs["Fac"], s.inputs[0]); nt.links.new(n2.outputs["Fac"], s.inputs[1])
+    c = K._rampa(nt, s.outputs[0], (0.2, 0.15, 0.1), (0.72, 0.68, 0.6), (0.95, 1.2))
+    nt.links.new(c.outputs[0], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.35
+    K._bump(nt, b, n.outputs["Fac"], 0.5, 0.4)
+    tr = nt.nodes.new("ShaderNodeMapping")  # (marcador para mover la espuma)
+    m["flujo"] = 1
+    return m
 
 
 def mat_agua_rio():
@@ -763,16 +991,32 @@ def mat_agua_rio():
         return n.outputs[0]
     borde = op("MULTIPLY", op("SUBTRACT", nz.outputs["Fac"], 0.5), 420.0)
     xr = op("ADD", sp.outputs["X"], borde)
-    k1 = op("GREATER_THAN", xr, v_ar.outputs[0])
-    k2 = op("LESS_THAN", xr, v_ab.outputs[0])
+    k1 = op("MINIMUM", op("MAXIMUM", op("DIVIDE", op("SUBTRACT", xr, v_ar.outputs[0]), 90.0), 0.0), 1.0)
+    k2 = op("MINIMUM", op("MAXIMUM", op("DIVIDE", op("SUBTRACT", v_ab.outputs[0], xr), 90.0), 0.0), 1.0)
     trib = op("LESS_THAN", sp.outputs["Y"], -40.0)
     k = op("MAXIMUM", op("MULTIPLY", k1, k2), op("MULTIPLY", trib, op("GREATER_THAN", v_ab.outputs[0], -500.0)))
     turq = K._rampa(nt, nz.outputs["Fac"], (0.03, 0.2, 0.24), (0.06, 0.3, 0.33))
-    cafe = K._rampa(nt, nz.outputs["Fac"], (0.2, 0.15, 0.1), (0.32, 0.25, 0.17))
+    cafe = K._rampa(nt, nz.outputs["Fac"], (0.15, 0.095, 0.045), (0.29, 0.19, 0.09))
     mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"
     nt.links.new(k, mx.inputs[0]); nt.links.new(turq.outputs[0], mx.inputs[6]); nt.links.new(cafe.outputs[0], mx.inputs[7])
-    nt.links.new(mx.outputs[2], b.inputs["Base Color"])
-    rg = nt.nodes.new("ShaderNodeMapRange"); nt.links.new(k, rg.inputs["Value"]); rg.inputs["To Min"].default_value = 0.12; rg.inputs["To Max"].default_value = 0.32
+    # estelas: ruido estirado a lo largo del afluente, que corre (nodo "flujo_y")
+    tcs = nt.nodes.new("ShaderNodeTexCoord")
+    fy = nt.nodes.new("ShaderNodeMapping"); fy.name = "flujo_y"; fy.inputs["Scale"].default_value = (1.0, 0.12, 1.0)
+    nt.links.new(tcs.outputs["Object"], fy.inputs["Vector"])
+    ns = nt.nodes.new("ShaderNodeTexNoise"); ns.inputs["Scale"].default_value = 0.06; ns.inputs["Detail"].default_value = 6
+    nt.links.new(fy.outputs[0], ns.inputs["Vector"])
+    ks = op("MULTIPLY", op("MINIMUM", op("MAXIMUM", op("DIVIDE", op("SUBTRACT", ns.outputs["Fac"], 0.55), 0.2), 0.0), 1.0), 0.25)
+    xt = op("MULTIPLY", op("SINE", op("DIVIDE", sp.outputs["Y"], 160.0), 0), 40.0)
+    en_trib = op("MULTIPLY", op("LESS_THAN", op("ABSOLUTE", op("SUBTRACT", sp.outputs["X"], xt), 0), 70.0), op("LESS_THAN", sp.outputs["Y"], -60.0))
+    # al pie del glaciar el agua sale revuelta: espuma que se apaga a ~250 m
+    dy = op("SUBTRACT", sp.outputs["Y"], -760.0)
+    cerca = op("SUBTRACT", 1.0, op("MINIMUM", op("DIVIDE", op("ABSOLUTE", dy, 0), 180.0), 1.0))
+    sp_ = op("ADD", op("MULTIPLY", ks, en_trib), op("MULTIPLY", op("MULTIPLY", cerca, cerca), op("MULTIPLY", en_trib, op("MINIMUM", op("MAXIMUM", op("DIVIDE", op("SUBTRACT", ns.outputs["Fac"], 0.42), 0.15), 0.0), 1.0))))
+    esp = op("MULTIPLY", op("MINIMUM", sp_, 1.0), op("GREATER_THAN", v_ab.outputs[0], -500.0))
+    mxe = nt.nodes.new("ShaderNodeMix"); mxe.data_type = "RGBA"
+    nt.links.new(esp, mxe.inputs[0]); nt.links.new(mx.outputs[2], mxe.inputs[6]); mxe.inputs[7].default_value = (0.62, 0.58, 0.52, 1)
+    nt.links.new(mxe.outputs[2], b.inputs["Base Color"])
+    rg = nt.nodes.new("ShaderNodeMapRange"); nt.links.new(k, rg.inputs["Value"]); rg.inputs["To Min"].default_value = 0.12; rg.inputs["To Max"].default_value = 0.55
     nt.links.new(rg.outputs[0], b.inputs["Roughness"])
     on = K._ruido(nt, escala=0.08, detalle=6, estirar=(0.35, 1.0, 1.0))
     K._bump(nt, b, on.outputs["Fac"], 0.25, 0.25)
@@ -853,20 +1097,30 @@ def rio(sc, detalle=1.0, sol_elev=22.0, sol_rot=60.0):
                        lambda x, y: np.where((np.abs(x) < 2150) & (y > -1950) & (y < 1350), -60.0, altura_rio(x, y) + 20.0 + 900 * suave((np.abs(y) - 1500) / 4000)), mv)
     bpy.ops.mesh.primitive_plane_add(size=1, location=(0, -300, RIO_NORMAL + 20.0))
     ag = bpy.context.object; ag.name = "AguaRio"; ag.scale = (4400, 3400, 1)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
     K.asignar(ag, mat_agua_rio())
     ag.visible_shadow = False
     casas = [casa(sc, f"Casa{i}", (cx, cy, float(altura_rio(np.array([cx], np.float32), np.array([cy], np.float32))[0]) + 20.0), g, c)
-             for i, (cx, cy, g, c) in enumerate(((620, -330, 0.3, (0.55, 0.12, 0.08)), (700, -360, 0.1, (0.82, 0.78, 0.66)),
-                                                  (660, -410, 0.5, (0.2, 0.32, 0.45))))]
+             for i, (cx, cy, g, c) in enumerate(((640, -208, 0.3, (0.55, 0.12, 0.08)), (664, -224, 0.1, (0.82, 0.78, 0.66)),
+                                                  (628, -236, 0.5, (0.2, 0.32, 0.45)), (684, -240, 0.2, (0.42, 0.4, 0.36))))]
+    zs = float(altura_rio(np.array([652.0], np.float32), np.array([-200.0], np.float32))[0]) + 20.0
+    K.cilindro(sc, "Poste", 0.18, 10.0, (652.0, -200.0, zs), verts=12, mat=K.mat_pintura("poste", (0.3, 0.3, 0.3), sucio=0.5))
+    K.caja(sc, "Bocina", (1.4, 0.9, 0.9), (652.0, -200.0, zs + 9.6), mat=K.mat_pintura("bocina", (0.85, 0.85, 0.82), sucio=0.3))
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.55, location=(652.0, -200.0, zs + 10.6))
+    luz = bpy.context.object; luz.name = "Baliza"
+    K.asignar(luz, K.mat_emision("baliza", (1.0, 0.08, 0.04), 0.0))
     flechas = []
     for i, x in enumerate((-520.0, -330.0, -150.0, 250.0, 450.0)):
         yy = 30.0 * math.sin(x / 400.0)
         flechas.append(flecha_plana(sc, f"Flecha{i}", (x, yy, 20.0 + RIO_NORMAL + 0.6)))
-    return {"agua": ag, "casas": casas, "flechas": flechas, "sol": sol}
+    hielo, borb = hocico(sc, detalle)
+    return {"agua": ag, "casas": casas, "flechas": flechas, "sol": sol, "hocico": hielo, "borbollon": borb}
 
 
 def estado_rio(R, nivel, arriba, abajo):
     R["agua"].location.z = 20.0 + nivel
+    R["borbollon"].location.z = 20.0 + nivel
+    R["borbollon"].hide_render = abajo < -500.0
     nt = bpy.data.materials["agua_rio"].node_tree
     nt.nodes["arriba"].outputs[0].default_value = arriba
     nt.nodes["abajo"].outputs[0].default_value = abajo
