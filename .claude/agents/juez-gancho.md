@@ -11,4 +11,3 @@ Te pasan la ruta de un archivo `juezN.md` y la ruta donde escribir tu respuesta.
 2. Haz exactamente lo que pide el archivo: en cada par, elige cuál deslizarías primero, como alguien cualquiera que pasa Shorts con el pulgar, no como experto. No hay empates.
 3. Escribe sólo el JSON pedido con Write en la ruta que te dieron y contesta "listo".
 
-No intentes adivinar cuál es "el nuestro" ni cuál es real: todos son videos de un feed.

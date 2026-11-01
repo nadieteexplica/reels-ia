@@ -2,9 +2,8 @@
 
 **Versión 1.0 (1-nov-2026).** Guion escrito por el agente guionista (`docs/GUIONISTA.md` §4, pasos 1–6). Trabajo previo en `guionista/`: `premisa.md`, `ganchos.md`, `guiones.md` y `candidatos*.json`. Va a la puerta 1 del auditor.
 **Pruebas:**
-- **Duelo de ganchos (`guionista/duelo/duelo.md`):** g4 ganó el 91 % de sus duelos (40/44), venció a 5 de las 6 anclas y empató 3–1 con el Ep. 3.
-- **Cazadores de fugas (`guionista/prueba/puntaje.md`):** s4 quedó 1.º de 9. El 100 % pasa los 2 s, el 75 % lo vería entero y el 100 % lo mandaría (Ep. 3 real: 35 % y 83 %). La única fuga fue el final flojo ("flota y la remolca una lancha"). Por eso el pago se rehízo: ahora es la casa saliendo del mar, chorreando, tirada por otros bueyes.
-- Esa corrida del simulador no reprodujo bien los resultados reales: sus números orientan, no deciden.
+- **Duelo de ganchos entre sí (`guionista/duelo/duelo.md`):** g4 le ganó a todos los demás ganchos menos a g5 (empate) y ganó el 91 % de sus duelos. (Contra las anclas, con texto, los 6 ganchos ganaron casi todo: ese umbral no filtra y no cuenta; el filtro contra las anclas se hace con el plano 1 renderizado, `GUIONISTA.md` §4 paso 8.)
+- **Cazadores de fugas (`guionista/prueba/puntaje.md`, 2 espectadores por guion):** con s4 nadie se fue antes del final. La única fuga anotada, en los tres guiones, fue el final flojo ("flota y la remolca una lancha"); por eso el pago se rehízo: ahora es la casa saliendo del mar, chorreando, tirada por otros bueyes. Los porcentajes de esa prueba no se comparan con las anclas (duran el doble y el simulador no es real).
 
 **Idea:** Ficha 1 de la ronda 7, "Chile bizarro" (`studio/caza/ronda07-chile.md`, 41/45, 👍 Tomás).
 **Voz:** Fernando Martínez · job pendiente (se crea en la etapa de voz).

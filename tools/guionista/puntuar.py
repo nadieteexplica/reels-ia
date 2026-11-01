@@ -48,7 +48,7 @@ def spearman(a, b):
 def main():
     ep = sys.argv[1]
     sub = "prueba_img" if "--imagenes" in sys.argv else "prueba"
-    base = (Path(ep) if Path(ep).is_dir() else RAIZ / "studio/episodios" / ep / "guionista") / sub
+    base = next((p.resolve() for p in (Path(ep), RAIZ / ep) if p.is_dir()), RAIZ / "studio/episodios" / ep / "guionista") / sub
     clave = json.load(open(base / "clave.json"))
     anclas = {a["id"]: a for a in json.load(open(RAIZ / "tools/guionista/calibracion/anclas.json"))["anclas"]}
     acc = {}
@@ -58,16 +58,21 @@ def main():
         if not f.exists():
             print(f"falta {f.name}")
             continue
-        r = json.load(open(f))
+        try:
+            r = json.load(open(f))
+        except Exception as e:
+            print(f"{f.name} no se pudo leer ({e}); se salta")
+            continue
         paneles += 1
         orden = r.get("orden", [])
         for v in r["videos"]:
-            m = mapa.get(v["codigo"])
+            m = mapa.get(v.get("codigo"))
             if not m:
+                print(f"{panel}: código inválido {v.get('codigo')!r}")
                 continue
             d = acc.setdefault(m["id"], {"tipo": m["tipo"], "q": [], "e": [], "m": [], "b": [], "se_va": [], "por_que": []})
             d["q"].append(1 if v.get("se_queda_2s") else 0)
-            d["e"].append(float(v.get("lo_ve_entero_pct", 0)) if v.get("se_queda_2s") else 0.0)
+            d["e"].append(float(v.get("lo_ve_entero_pct") or 0) if v.get("se_queda_2s") else 0.0)
             d["m"].append(1 if v.get("lo_manda") else 0)
             d["se_va"].append(v.get("se_va_en", ""))
             d["por_que"].append(v.get("por_que_2s", ""))
@@ -93,6 +98,10 @@ def main():
         orden_q = sorted(ids, key=lambda i: tabla[i]["quedan_2s"])
         cal["peor_real"] = peor_real
         cal["peor_real_en_ultimo_tercio"] = orden_q.index(peor_real) < max(1, len(ids) // 3)
+        sin5 = [i for i in ids if i != peor_real]
+        if len(sin5) >= 4:  # ¿la correlación depende sólo del peor real? (revisión del 1-nov)
+            cal["rho_quedan_vs_yt_se_quedo_sin_el_peor"] = round(spearman([tabla[i]["quedan_2s"] for i in sin5],
+                                                                          [anclas[i]["real"]["yt_se_quedo"] for i in sin5]), 2)
         cal["se_puede_usar_para_descartar"] = (cal["rho_quedan_vs_ig_pasa_3s"] >= 0.5 and
                                                cal["rho_borda_vs_yt_vistas"] >= 0.5 and
                                                cal["peor_real_en_ultimo_tercio"])

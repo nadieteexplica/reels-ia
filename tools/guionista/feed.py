@@ -2,7 +2,7 @@
 
   python3 tools/guionista/feed.py <ep | carpeta> [--paneles 5] [--semilla N]
 
-Lee studio/episodios/<ep>/guionista/candidatos.json (paquetes de gancho del guionista) y
+Lee studio/episodios/<ep>/guionista/guiones.json (o candidatos.json; los guiones completos del guionista) y
 tools/guionista/calibracion/anclas.json (los videos publicados, con su resultado real, que NUNCA se muestra).
 Escribe en studio/episodios/<ep>/guionista/prueba/:
   panel<N>.md   un feed por espectador: anclas + candidatos mezclados, cada uno con un código al azar,
@@ -24,7 +24,7 @@ CAMPOS = ("cuadro0", "0_3s", "texto_pantalla_0_3s", "voz_0_3s", "resto")
 INSTRUCCIONES = """# Tu feed de Shorts
 
 Estás pasando YouTube Shorts con el pulgar, como cualquier noche. Te van a aparecer {n} videos, uno tras otro, en el orden de abajo.
-Ninguno es de una cuenta que sigas. De cada uno tienes lo que se ve y se oye en los primeros 3 segundos (descrito cuadro a cuadro)
+Ninguno es de una cuenta que sigas. De cada uno tienes lo que se ve y se oye en los primeros 3 segundos (descrito o en imagen)
 y, si decides quedarte, el resto de lo que dice la voz.
 
 Eres: **{perfil}**
@@ -32,7 +32,6 @@ Eres: **{perfil}**
 Reglas para contestar:
 - Decide como de verdad decides en un feed: en menos de 2 segundos y con flojera. Lo normal es deslizar; quedarse se gana.
 - Primero mira SOLO lo de los primeros 3 s ("Cuadro 0" y "0–3 s", o la imagen si la hay, más "Texto en pantalla" y "Voz 0–3 s"). Decide si deslizas ANTES de leer "Si te quedas".
-- Si en el cuadro 0 no entiendes qué estás mirando, o se ve falso, genérico, de IA, o como una clase, deslizas.
 - No premies lo "inteligente": premia lo que te haría quedarte, reírte o mandárselo a alguien.
 - Si te quedas, lee "Si te quedas" y di en qué frase te irías (si te vas) y por qué, en tus palabras.
 
@@ -57,7 +56,7 @@ def bloque(codigo, p, img=None):
            if img else "")
     desc = "" if img else (f"- **Cuadro 0:** {p['cuadro0']}\n"
                            f"- **0–3 s:** {p['0_3s']}\n")
-    return (f"## Video {codigo} ({p.get('dur_s', '?')} s)\n" + ver + desc +
+    return (f"## Video {codigo}\n" + ver + desc +
             f"- **Texto en pantalla:** {p.get('texto_pantalla_0_3s') or 'subtítulos palabra por palabra'}\n"
             f"- **Voz 0–3 s:** \"{p['voz_0_3s']}\"\n"
             f"- **Si te quedas:** {p['resto']}\n")
@@ -66,7 +65,7 @@ def bloque(codigo, p, img=None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("ep")
-    ap.add_argument("--paneles", type=int, default=5)
+    ap.add_argument("--paneles", type=int, default=6)
     ap.add_argument("--semilla", type=int, default=None)
     ap.add_argument("--juntos", action="store_true",
                     help="todos los candidatos en cada panel (sólo si son ideas DISTINTAS; con guiones de la misma idea el "
@@ -75,9 +74,11 @@ def main():
                     help="usar la tira de cuadros reales de 0–3 s ('tira' en el paquete; anclas: calibracion/<id>_0-3s.jpg)")
     a = ap.parse_args()
     rnd = random.Random(a.semilla)
-    base = Path(a.ep).resolve() if Path(a.ep).is_dir() else RAIZ / "studio/episodios" / a.ep / "guionista"
-    fc = base / "candidatos.json"
-    cand = json.load(open(fc))["candidatos"] if fc.exists() else []
+    base = next((p.resolve() for p in (Path(a.ep), RAIZ / a.ep) if p.is_dir()), RAIZ / "studio/episodios" / a.ep / "guionista")
+    fc = next((base / n for n in ("guiones.json", "candidatos.json") if (base / n).exists()), None)
+    cand = json.load(open(fc))["candidatos"] if fc else []
+    if cand and not a.juntos and a.paneles % len(cand):
+        print(f"ojo: --paneles {a.paneles} no es múltiplo de {len(cand)} guiones: no todos se ven las mismas veces")
     anclas = json.load(open(ANCLAS))["anclas"]
     perfiles = json.load(open(RAIZ / "tools/guionista/perfiles.json"))["perfiles"]
     for p in cand + anclas:
@@ -96,6 +97,7 @@ def main():
     clave = {}
     usados = set()
     anclas_items = [("A", p) for p in anclas]
+    desfase = rnd.randrange(len(perfiles))
     for n in range(1, a.paneles + 1):
         if a.juntos or not cand:
             orden = items[:]
@@ -121,7 +123,7 @@ def main():
                 img = out / "img" / f"{cod}.jpg"
                 shutil.copy(src, img)
             texto.append(bloque(cod, p, img))
-        perfil = perfiles[(n - 1) % len(perfiles)]
+        perfil = perfiles[(n - 1 + desfase) % len(perfiles)]
         md = INSTRUCCIONES.format(n=len(orden), perfil=perfil) + "\n" + "\n".join(texto)
         (out / f"panel{n}.md").write_text(md)
     (out / "clave.json").write_text(json.dumps(clave, ensure_ascii=False, indent=1))
