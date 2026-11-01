@@ -14,6 +14,7 @@ import argparse, itertools, json, random, shutil, string
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
+MAX_PALABRAS = {"cuadro0": 45, "0_3s": 40}  # como las anclas: si el candidato se describe más lindo, gana por la prosa
 ANCLAS = RAIZ / "tools/guionista/calibracion/anclas.json"
 
 ENUNCIADO = """# Duelo de Shorts
@@ -50,11 +51,18 @@ def preparar(a):
     items = json.load(open(fc))["candidatos"] if fc.exists() else []
     if a.con_anclas:
         items += [dict(x, _ancla=True) for x in json.load(open(ANCLAS))["anclas"]]
+    for x in items:
+        for campo, tope in MAX_PALABRAS.items():
+            if len(str(x.get(campo, "")).split()) > tope:
+                raise SystemExit(f"{x['id']}: '{campo}' tiene más de {tope} palabras; descríbelo seco, como las anclas")
     if len(items) < 2:
         raise SystemExit("hacen falta 2 o más paquetes")
     out = base / ("duelo_img" if a.imagenes else "duelo")
     (out / "resultados").mkdir(parents=True, exist_ok=True)
-    pares = list(itertools.combinations(range(len(items)), 2))
+    pares = [(x, y) for x, y in itertools.combinations(range(len(items)), 2)
+             if not (items[x].get("_ancla") and items[y].get("_ancla"))]  # anclas entre sí ya están calibradas
+    if not pares:
+        pares = list(itertools.combinations(range(len(items)), 2))
     clave = {"items": [x["id"] for x in items], "jueces": {}}
     for j in range(1, a.jueces + 1):
         orden_pares = pares[:]
@@ -118,10 +126,26 @@ def contar(a):
             d = por_par.setdefault(k, {"votos": {k[0]: 0, k[1]: 0}, "por_orden": {}})
             d["votos"][ganador] += 1
             d["por_orden"].setdefault(a_id, []).append(ganador)
+    anclas_ids = {x["id"] for x in json.load(open(ANCLAS))["anclas"]}
+    contra = {}
+    for (x, y), d in por_par.items():
+        for c, an in ((x, y), (y, x)):
+            if c not in anclas_ids and an in anclas_ids:
+                v = contra.setdefault(c, {"gana": 0, "anclas_vencidas": 0, "anclas": 0})
+                tot = d["votos"][c] + d["votos"][an]
+                v["gana"] += d["votos"][c]
+                v["anclas"] += 1
+                if tot and d["votos"][c] * 2 > tot:
+                    v["anclas_vencidas"] += 1
     filas = sorted(ids, key=lambda i: -(gana[i] / juega[i] if juega[i] else 0))
     md = ["# Duelo de deslizamiento", "", "| Video | Gana (no lo deslizan) | % |", "|---|---|---|"]
     for i in filas:
         md.append(f"| {i} | {gana[i]}/{juega[i]} | {round(100 * gana[i] / juega[i]) if juega[i] else '—'} % |")
+    if contra:
+        md += ["", "**Contra los ganchos reales del canal** (sigue si le gana a la mayoría; con 4 o más anclas perdidas, no sigue):", "",
+               "| Candidato | Anclas vencidas | Sigue |", "|---|---|---|"]
+        for c, v in sorted(contra.items(), key=lambda kv: -kv[1]["anclas_vencidas"]):
+            md.append(f"| {c} | {v['anclas_vencidas']}/{v['anclas']} | {'sí' if v['anclas'] - v['anclas_vencidas'] < 4 else 'no'} |")
     md += ["", "| Par | Votos | Decisión |", "|---|---|---|"]
     decisiones = {}
     for (x, y), d in sorted(por_par.items()):
@@ -131,7 +155,7 @@ def contar(a):
         dec = lider if tot and d["votos"][lider] / tot >= 0.75 and mismo else "empate"
         decisiones[f"{x} vs {y}"] = dec
         md.append(f"| {x} vs {y} | {d['votos'][x]}–{d['votos'][y]} | {dec} |")
-    (out / "duelo.json").write_text(json.dumps({"gana": gana, "juega": juega, "decisiones": decisiones}, ensure_ascii=False, indent=1))
+    (out / "duelo.json").write_text(json.dumps({"gana": gana, "juega": juega, "decisiones": decisiones, "contra_anclas": contra}, ensure_ascii=False, indent=1))
     (out / "duelo.md").write_text("\n".join(md) + "\n")
     print("\n".join(md))
 

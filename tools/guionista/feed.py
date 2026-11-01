@@ -15,6 +15,7 @@ import argparse, json, random, string
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
+MAX_PALABRAS = {"cuadro0": 45, "0_3s": 40}  # como las anclas: si el candidato se describe más lindo, gana por la prosa
 ANCLAS = RAIZ / "tools/guionista/calibracion/anclas.json"
 CAMPOS = ("cuadro0", "0_3s", "texto_pantalla_0_3s", "voz_0_3s", "resto")
 
@@ -78,6 +79,9 @@ def main():
         falta = [c for c in CAMPOS if not p.get(c)]
         if falta:
             raise SystemExit(f"{p.get('id')}: faltan {falta}")
+        for campo, tope in MAX_PALABRAS.items():
+            if len(str(p.get(campo, "")).split()) > tope:
+                raise SystemExit(f"{p['id']}: '{campo}' tiene más de {tope} palabras; descríbelo seco, como las anclas")
     items = [("C", p) for p in cand] + [("A", p) for p in anclas]
     out = base / ("prueba_img" if a.imagenes else "prueba")
     out.mkdir(parents=True, exist_ok=True)

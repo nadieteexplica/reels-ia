@@ -1,0 +1,60 @@
+{
+ "ep": "ep08-casa-que-navega",
+ "nota": "6 ganchos para el duelo (paso 3). Formato de anclas.json sin 'real'. 'resto' = borrador de una línea del guion desde los ~3 s.",
+ "candidatos": [
+  {
+   "id": "g1",
+   "dur_s": 34,
+   "cuadro0": "3D realista (no foto): una casa de madera de un piso, con tejuelas rojas desteñidas, chorreados y musgo, flotando en un canal de mar calmo. El agua le llega hasta las primeras tejuelas. Se ve de tres cuartos y casi a ras del agua, ocupa más de la mitad del ancho y queda al centro. Una cuerda gruesa y tensa sale de su esquina hacia la derecha, hasta la popa de una lancha de madera que entra cortada por el borde, con un hombre chico al timón. Detrás hay cerros verdes bajos con bruma y el sol bajo de costado.",
+   "0_3s": "Desde el cuadro 0 la casa avanza: ondas en la base, una estela corta y la cuerda que vibra. La cámara la acompaña de costado. A los ~2 s se corta a un plano más cerrado de la puerta, con el agua golpeando el zócalo.",
+   "texto_pantalla_0_3s": "Píldora 'SE MUDA POR EL MAR' (desde el cuadro 0) + subtítulos palabra a palabra",
+   "voz_0_3s": "Esta casa está cruzando el mar. Es una mudanza…",
+   "resto": "…en unas islas del sur de Chile: aquí te llevas la casa entera. Los vecinos la montan sobre troncos que ruedan, y sus bueyes la arrastran hasta la orilla. Pero el terreno nuevo está al otro lado del agua… por eso la casa sigue sola: es de madera, y flota. Una lancha la remolca, hasta que otros bueyes la sacan en la otra orilla. Al final, comida y baile para todos los que ayudaron. Así que aquí, en día de mudanza… [loop] esta casa está cruzando el mar."
+  },
+  {
+   "id": "g2",
+   "dur_s": 35,
+   "cuadro0": "3D realista: una casa de madera de un piso, con tejuelas amarillas gastadas y musgo, flotando en el mar. La cámara está baja, a un palmo del agua, y la casa llena dos tercios del ancho. El agua lame las tejuelas de abajo y le escurren gotas por el zócalo. A la derecha, más chica, una lancha de madera la tira con una cuerda tensa. Detrás hay cerros con bruma y el sol bajo de costado.",
+   "0_3s": "Una ola chica le pega en el costado: la casa se mece y no se hunde. La cuerda se tensa y la casa avanza. A los ~2,5 s se corta a la lancha tirando, de frente, con la casa detrás.",
+   "texto_pantalla_0_3s": "Píldora 'NO SE HUNDE: SE MUDA' + subtítulos",
+   "voz_0_3s": "Esta casa no se hunde: se está mudando.",
+   "resto": "En unas islas del sur de Chile, cuando te mudas, te llevas la casa. Los vecinos la montan sobre troncos que ruedan, y sus bueyes la arrastran hasta la orilla. Pero el terreno nuevo queda al otro lado del agua… por eso la casa entra al mar: es de madera, y flota. Una lancha la remolca, hasta que otros bueyes la sacan en la otra orilla. Al final, comida y baile para todos los que ayudaron. Así que si ves una casa en el mar, tranquilo: [loop] esta casa no se hunde, se está mudando."
+  },
+  {
+   "id": "g3",
+   "dur_s": 34,
+   "cuadro0": "3D realista: una orilla de piedras y algas en marea baja, con la cámara baja desde la playa. La casa de madera de un piso está a medio salir del agua hacia la cámara, con chorros de agua cayéndole por las tejuelas y el zócalo y unos troncos asomando abajo. La casa va al centro, a media pantalla de ancho. En primer plano, abajo y cortados por el cuadro, dos bueyes con yugo tiran de cadenas tensas, con la cabeza gacha. El sol bajo a contraluz de costado hace brillar los chorros.",
+   "0_3s": "Los bueyes dan un paso y la casa avanza unos centímetros, chorreando. A los ~1,5 s se corta a un primer plano de un buey resoplando, y a los ~2,5 s, a las tejuelas mojadas.",
+   "texto_pantalla_0_3s": "Píldora 'LLEGÓ POR EL MAR' + subtítulos",
+   "voz_0_3s": "Esta casa está saliendo del mar. Y entró…",
+   "resto": "…a propósito: es una mudanza, en unas islas del sur de Chile. Los vecinos la montaron sobre troncos que ruedan, y sus bueyes la arrastraron hasta la orilla. Pero el terreno nuevo estaba al otro lado del agua… por eso la casa entró al mar: es de madera, y flota. Una lancha la remolcó hasta aquí, y estos bueyes la sacan. Al final, comida y baile para todos los que ayudaron. Así que si ves una casa en el mar, espera un poco: [loop] esta casa está saliendo del mar."
+  },
+  {
+   "id": "g4",
+   "dur_s": 33,
+   "cuadro0": "3D realista: una playa de arena oscura en bajada. Una casa de madera de un piso va montada sobre troncos, tirada por dos yuntas de bueyes con yugo y cadenas tensas, vista de tres cuartos. La casa ocupa casi la mitad del ancho y los bueyes, un cuarto del alto en primer plano. Dos hombres con ropa de trabajo empujan atrás. El mar está unos metros delante, hacia donde van. Hay cerros con bruma y el sol bajo de costado.",
+   "0_3s": "Los bueyes tiran y un tronco rueda y sale por atrás de la casa; se levanta arena. A los ~2 s se corta a la vista desde el agua: la casa viene de frente, directo hacia la cámara.",
+   "texto_pantalla_0_3s": "Píldora 'DIRECTO AL MAR' + subtítulos",
+   "voz_0_3s": "Bueyes arrastrando una casa… al mar. No es broma:",
+   "resto": "es una mudanza, en unas islas del sur de Chile. Los vecinos ponen sus bueyes, y la casa rueda sobre troncos hasta la orilla. Pero el terreno nuevo está al otro lado del agua… por eso la casa sigue sola: es de madera, y flota. Una lancha la remolca, hasta que otros bueyes la sacan en la otra orilla. Al final, comida y baile para todos los que ayudaron. Así que si ves bueyes en la playa, ya sabes: [loop] están arrastrando una casa al mar."
+  },
+  {
+   "id": "g5",
+   "dur_s": 34,
+   "cuadro0": "3D realista, vista desde dentro de una lancha que mira hacia atrás. Abajo, en primer plano, están la popa de madera, el motor fuera de borda y la estela blanca. Una cuerda tensa sube en diagonal hasta una casa de madera de un piso que viene detrás, flotando, centrada y de frente. Su puerta y sus dos ventanas parecen una cara, y ocupa la mitad del ancho. Detrás hay mar calmo, cerros con bruma y el sol bajo de costado.",
+   "0_3s": "La cámara se mece suave con el bote, la estela corre y la casa avanza detrás, siguiéndote. A los ~2 s se corta a un plano lateral: la lancha chica tirando de la casa grande.",
+   "texto_pantalla_0_3s": "Píldora 'MUDANZA POR EL MAR' + subtítulos",
+   "voz_0_3s": "Tu casa te sigue… por el mar.",
+   "resto": "En unas islas del sur de Chile no mudas tus cosas: mudas la casa entera. Tus vecinos traen sus bueyes, y la casa rueda sobre troncos hasta la orilla. Pero tu terreno nuevo está al otro lado del agua… por eso la casa entra al mar: es de madera, y flota. Una lancha la remolca, hasta que otros bueyes la sacan en la otra orilla. Al final, comida y baile para todos los que ayudaron. Así que si te mudas aquí, no mires atrás: [loop] tu casa te sigue por el mar."
+  },
+  {
+   "id": "g6",
+   "dur_s": 32,
+   "cuadro0": "3D realista: una casa de madera de un piso, con tejuelas rojas desteñidas y musgo, en medio del mar, en un plano cerrado. La casa ocupa dos tercios del ancho y la cámara está baja, cerca del agua. La lancha queda fuera de cuadro: sólo se ve una cuerda tensa que sale por el borde derecho. Detrás hay cerros con bruma y el sol bajo de costado.",
+   "0_3s": "Una ola chica pega en el costado y la casa se mece y avanza, dejando una estela. A los ~2 s se abre el plano: aparece la lancha que la tira.",
+   "texto_pantalla_0_3s": "Píldora 'LA CASA QUE NADA' + subtítulos",
+   "voz_0_3s": "Esta casa sabe nadar. Bueno, flota: es de madera…",
+   "resto": "…y una lancha la remolca. Es una mudanza, en unas islas del sur de Chile. Los vecinos la montan sobre troncos que ruedan, y sus bueyes la arrastran hasta la orilla. Pero el terreno nuevo está al otro lado del agua… por eso la casa se mete al mar. En la otra orilla, otros bueyes la sacan del agua. Al final, comida y baile para todos los que ayudaron. Así que en el sur de Chile, hasta… [loop] esta casa sabe nadar."
+  }
+ ]
+}
