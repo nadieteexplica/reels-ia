@@ -862,7 +862,7 @@ def tempano_corte(sc, y0=38.0, y1=78.0, alto=26.0, nivel=NIVEL_LLENO):
 
 # ================================================================ E4: el río de abajo (la junta con el río grande)
 RIO_NORMAL = -1.6
-RIO_CRECIDA = 0.5
+RIO_CRECIDA = 1.2
 
 
 Y_HOCICO = -760.0               # el frente del glaciar Colonia en E4: de ahí sale el río que trae el agua del lago
@@ -1264,9 +1264,9 @@ def rio(sc, detalle=1.0, sol_elev=15.0, sol_rot=78.0):     # sol a lo largo del 
     cerca(sc, (612.0, -196.0), (700.0, -206.0), zfn)
     arboles(sc, detalle)
     flechas = []
-    for i, x in enumerate((-520.0, -330.0, -150.0, 250.0, 450.0)):
+    for i, x in enumerate((-290.0, -215.0, -130.0, -50.0, 45.0, 125.0)):        # dentro del cuadro de los planos 11 y 12
         yy = 30.0 * math.sin(x / 400.0)
-        flechas.append(flecha_plana(sc, f"Flecha{i}", (x, yy, 20.0 + RIO_NORMAL + 0.6)))
+        flechas.append(flecha_plana(sc, f"Flecha{i}", (x, yy, 20.0 + RIO_NORMAL + 0.6), largo=55.0, ancho=16.0))
     hielo, borb = hocico(sc, detalle)
     return {"agua": ag, "casas": casas, "flechas": flechas, "sol": sol, "hocico": hielo, "borbollon": borb}
 

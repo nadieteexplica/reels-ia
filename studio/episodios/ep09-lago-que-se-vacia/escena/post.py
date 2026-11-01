@@ -523,7 +523,7 @@ def graficos(im, f, k):
     elif k == 6:
         t_ll, t_lv = tw("llena", a0), tw("levanta", a0)
         apunta(im, f, 6, "llena", "SE LLENA", t_ll, "lago", hasta=t_lv)
-        apunta(im, f, 6, "lev", "↑ SE LEVANTA", t_lv, "pie")
+        apunta(im, f, 6, "lev", "SE LEVANTA", t_lv, "pie")
     elif k == 7:
         apunta(im, f, 7, "abajo", "POR ABAJO", tw("cuela", a0), "lengua", fondo=AZUL, tinta=(255, 255, 255))
     elif k == 8:
@@ -533,9 +533,9 @@ def graficos(im, f, k):
     elif k == 11:
         t_rio = tw("río", a0)
         apunta(im, f, 11, "sale", "SALE BAJO EL GLACIAR", tw("Sale", a0), "boca", hasta=t_rio - 0.1, tam=44)
-        pild(im, f, 11, "x3", "EL RÍO × 3", tw("triplica", a0), P)       # puerta 4: la flecha salía del cuadro
+        apunta(im, f, 11, "x3", "EL RÍO × 3", tw("triplica", a0), "rio")
     elif k == 12:
-        apunta(im, f, 12, "atras", "← RÍO ARRIBA", tw("atrás", a0), "atras")
+        apunta(im, f, 12, "atras", "RÍO ARRIBA", tw("atrás", a0), "atras")
     elif k == 13:
         t_al = tw("alarma", a0)
         if t >= t_al:

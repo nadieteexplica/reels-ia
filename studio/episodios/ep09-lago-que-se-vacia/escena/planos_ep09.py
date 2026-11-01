@@ -158,8 +158,8 @@ def p4(sc, a, b):
 # ---------------------------------------------------------------- E2: el corte
 CAMS_CORTE = {   # (posición, mira): un poco de arriba y de costado (se ve el lago y el glaciar de verdad detrás del corte);
     # el contacto hielo-roca queda al ~70 % de alto (bajo los subtítulos) y la roca no se come el cuadro
-    "lejos": (Vector((L.XC + 200, 80, 45)), Vector((L.XC, -5, 10))),
-    "cerca": (Vector((L.XC + 110, 40, 20)), Vector((L.XC, -2, -5))),
+    "lejos": (Vector((L.XC + 200, 80, 45)), Vector((L.XC, -5, -45))),
+    "cerca": (Vector((L.XC + 110, 40, 20)), Vector((L.XC, -2, -40))),
 }
 
 
@@ -174,7 +174,7 @@ def armar_corte(sc, nivel):
 def cam_corte(S, modo="lejos", x=0.0, lente=30):
     """modo = "lejos" | "cerca"; x = avance del dolly (0–1)."""
     p, m = CAMS_CORTE[modo]
-    p = p + (m - p) * 0.06 * x
+    p = p + (m - p) * x            # x = fracción del camino hacia la mira
     mirar(S["cam"], p, m, lente=lente)
 
 
@@ -188,19 +188,19 @@ def meta_corte(sc, S, C, extra=None):
 
 def p5(sc, a, b):
     # "Por eso, cuando el lago se llena, levanta el borde del glaciar.": el agua sube contra el hielo y el pie se despega
-    S, C = armar_corte(sc, -8.0)
+    S, C = armar_corte(sc, -26.0)
     t_ll, t_lv = TW("llena", a / FPS - 0.3), TW("levanta", a / FPS - 0.3)
 
     def act(f):
         t = tf(f)
-        nivel = -8.0 + 8.0 * sale(lin(t, a / FPS, t_ll + 0.25))
+        nivel = -26.0 + 26.0 * sale(lin(t, a / FPS, t_ll + 0.35))
         lift = 7.0 * suave(lin(t, t_lv, t_lv + 0.9))
         C.estado(nivel, lift=lift, fase=0.0)
         fase_agua(S, f)
         if t < t_lv - 0.05:                     # puerta 3: en "levanta", corte seco a la cámara cercana (4 m de lejos no se ven)
-            cam_corte(S, "lejos", suave(lin(t, a / FPS, t_lv)))
+            cam_corte(S, "lejos", 0.06 * suave(lin(t, a / FPS, t_lv)))
         else:
-            cam_corte(S, "cerca", suave(lin(t, t_lv, b / FPS)))
+            cam_corte(S, "cerca", 0.1 * suave(lin(t, t_lv, b / FPS)))
         return meta_corte(sc, S, C, {"lift": round(lift, 2)})
     return {"actualizar": act}
 
@@ -215,7 +215,7 @@ def p6(sc, a, b):
         len_ = L.Y_FRENTE + L.TOE - (L.TOE + 420.0) * sale(lin(t, t0 - 0.2, b / FPS - 0.2))
         C.estado(0.0, lift=7.0, lengua=len_, fase=-0.02 * f)
         fase_agua(S, f)
-        cam_corte(S, "cerca", suave(lin(f, a, b - 1)))
+        cam_corte(S, "cerca", 0.1 + 0.12 * suave(lin(f, a, b - 1)))
         return meta_corte(sc, S, C, {"lengua": pantalla(sc, S["cam"], Vector(C.contacto(max(len_ * 0.06, -22))) + Vector((0, 0, 1)))})
     return {"actualizar": act}
 
@@ -230,7 +230,7 @@ def p7(sc, a, b):
         r = 0.5 + 8.0 * suave(lin(t, t0, b / FPS - 0.15))
         C.estado(0.0, lift=7.0 - 4.0 * lin(t, t0, b / FPS), lengua=-420.0, radio=r, fase=-0.035 * f)
         fase_agua(S, f)
-        cam_corte(S, "cerca", 1.0 - 0.6 * suave(lin(f, a, b - 1)))
+        cam_corte(S, "cerca", 0.22 + 0.16 * suave(lin(f, a, b - 1)))
         return meta_corte(sc, S, C, {"radio": round(r, 2)})
     return {"actualizar": act}
 
@@ -244,7 +244,7 @@ def p8(sc, a, b):
         nivel = -14.0 * x
         C.estado(nivel, lift=3.0 * (1 - x), lengua=-420.0, radio=8.5 + 1.0 * x, fase=-0.07 * f)
         fase_agua(S, f)
-        cam_corte(S, "lejos", -0.5 * suave(x))
+        cam_corte(S, "lejos", -0.04 * suave(x))
         return meta_corte(sc, S, C)
     return {"actualizar": act}
 
@@ -275,7 +275,7 @@ def p10(sc, a, b):
         r = 9.5 * (1 - sale(lin(t, t0, b / FPS - 0.25)))
         C.estado(L.NIVEL_VACIO, lift=0.0, lengua=-420.0 if r > 0.3 else 0.0, radio=r, fase=-0.02 * f)
         fase_agua(S, f)
-        cam_corte(S, "cerca", suave(lin(f, a, b - 1)))
+        cam_corte(S, "cerca", 0.2 + 0.12 * suave(lin(f, a, b - 1)))
         return meta_corte(sc, S, C, {"radio": round(r, 2)})
     return {"actualizar": act}
 
@@ -380,10 +380,10 @@ def flechas_rio(R, nivel, atras=0.0, f=0):
         fl.rotation_euler = (0, 0, math.pi * suave(gira))
         fl.location.x = fl.get("x0", fl.location.x)
         fl["x0"] = fl.get("x0", fl.location.x)
-        fl.location.x = fl["x0"] + (12.0 if gira < 0.5 else -12.0) * math.sin(f * 0.12)
+        fl.location.x = fl["x0"] + (6.0 if gira < 0.5 else -6.0) * math.sin(f * 0.12)
 
 
-CAM_RIO = (Vector((-330, 480, 480)), Vector((60, -300, 12)))      # el glaciar (y la boca) queda arriba a la derecha
+CAM_RIO = (Vector((0, 300, 220)), Vector((0, 50, 20)))            # puerta 6: el río cruza el cuadro en y≈770–1000 y el glaciar queda arriba
 CAM_BOCA = (Vector((75, -600, 34)), Vector((40, -770, 30)))         # al pie del glaciar, mirando la boca
 
 
@@ -409,8 +409,8 @@ def p_rio1(sc, a, b):
         L.estado_rio(R, nivel, 0.0 - 50 * k, -400.0 + 2900.0 * sale(lin(t, t_rio - 0.1, t_rio + 1.2)))
         flechas_rio(R, nivel, 0.0, f)
         p, m = CAM_RIO
-        mirar(R["cam"], p + (m - p) * 0.08 * suave(lin(t, t_rio, b / FPS)), m, lente=26)
-        return {"rio": pantalla(sc, R["cam"], Vector((150, 0, 20 + nivel))), "junta": pantalla(sc, R["cam"], Vector((0, -80, 20 + nivel))),
+        mirar(R["cam"], p + (m - p) * 0.08 * suave(lin(t, t_rio, b / FPS)), m, lente=20)
+        return {"rio": pantalla(sc, R["cam"], Vector((70, 30 * math.sin(70 / 400), 20 + nivel))), "junta": pantalla(sc, R["cam"], Vector((0, -80, 20 + nivel))),
                 "glaciar": pantalla(sc, R["cam"], Vector((40, L.Y_HOCICO - 40, 60)))}
     return {"actualizar": act}
 
@@ -419,7 +419,7 @@ def p_rio2(sc, a, b):
     # "Es tanta agua que frena al río y lo empuja hacia atrás.": las flechas de río arriba se dan vuelta y el café sube
     R = armar_rio(sc)
     t_at = TW("atrás", a / FPS - 0.3)
-    p0, m0 = Vector((-560, 360, 420)), Vector((-150, -60, 14))
+    p0, m0 = Vector((-150, 300, 220)), Vector((-150, 50, 20))     # río arriba de la junta, a la misma altura que el plano 11
 
     def act(f):
         t = tf(f)
@@ -427,8 +427,8 @@ def p_rio2(sc, a, b):
         L.estado_rio(R, L.RIO_CRECIDA, -60.0 - 700.0 * k, 2500.0)
         flechas_rio(R, L.RIO_CRECIDA, k, f)
         fase_rio(f)
-        mirar(R["cam"], p0 + (m0 - p0) * 0.08 * suave(lin(f, a, b - 1)), m0, lente=26)
-        return {"atras": pantalla(sc, R["cam"], Vector((-330, 0, 20 + L.RIO_CRECIDA)))}
+        mirar(R["cam"], p0 + (m0 - p0) * 0.08 * suave(lin(f, a, b - 1)), m0, lente=20)
+        return {"atras": pantalla(sc, R["cam"], Vector((-200, 30 * math.sin(-0.5), 20 + L.RIO_CRECIDA)))}
     return {"actualizar": act}
 
 
@@ -446,7 +446,11 @@ def p_rio3(sc, a, b):
         fase_rio(f)
         em.inputs[1].default_value = 0.8 if t < t_al - 0.1 else (14.0 if (f // 6) % 2 == 0 else 2.0)   # más fuerte se ve blanca
         x = suave(lin(f, a, b - 1))
-        mirar(R["cam"], p0 + (m0 - p0) * 0.1 * x, m0, lente=42)
+        if t < TW("avisa", a / FPS - 0.3) - 0.05:
+            mirar(R["cam"], p0 + (m0 - p0) * 0.1 * x, m0, lente=42)
+        else:
+            q = suave(lin(t, TW("avisa", a / FPS - 0.3), b / FPS))
+            mirar(R["cam"], Vector((668, -150 - 8 * q, 23)), Vector((654, -204, 29)), lente=50)
         return {"casas": pantalla(sc, R["cam"], R["casas"][0].matrix_world.translation + Vector((0, 0, 6))),
                 "sirena": pantalla(sc, R["cam"], Vector((654.0, -204.0, R["casas"][0].matrix_world.translation.z + 9.0)))}
     return {"actualizar": act}
