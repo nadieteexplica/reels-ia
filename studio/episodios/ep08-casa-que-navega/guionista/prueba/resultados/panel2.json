@@ -1,0 +1,96 @@
+{
+  "perfil": "Valentina, 19, Buenos Aires (Argentina)",
+  "videos": [
+    {
+      "codigo": "WU",
+      "se_queda_2s": false,
+      "por_que_2s": "Un hombre diminuto flotando sobre un cilindro enorme con cartel de SIMULACIÓN: no entiendo qué estoy mirando y parece CGI de clase.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 2,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "CJ",
+      "se_queda_2s": true,
+      "por_que_2s": "Una casa de madera arrastrada por bueyes hacia el mar: es absurdo y se entiende al toque.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 55,
+      "lo_manda": true,
+      "a_quien": "a mi amiga del grupo de memes",
+      "pregunta_que_te_dejo": "¿Por qué llevan una casa al mar?"
+    },
+    {
+      "codigo": "NC",
+      "se_queda_2s": false,
+      "por_que_2s": "Un edificio chiquito en una ciudad con tres carteles y números que bajan; no sé dónde mirar y parece noticiero.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 2,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "QP",
+      "se_queda_2s": false,
+      "por_que_2s": "Otra casa flotando, ya la vi recién y la lancha ya muestra el truco: no hay nada que averiguar.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "UT",
+      "se_queda_2s": true,
+      "por_que_2s": "Un viejo con shampoo en el pelo y la cortina que se le pega a la espalda: me pasa todos los días.",
+      "se_va_en": "En el centro del remolino, la presión baja.",
+      "lo_ve_entero_pct": 35,
+      "lo_manda": true,
+      "a_quien": "a mi amiga que siempre dice que la cortina la ataca",
+      "pregunta_que_te_dejo": "¿Por qué se me pega la cortina? ¿Es un fantasma?"
+    },
+    {
+      "codigo": "EV",
+      "se_queda_2s": true,
+      "por_que_2s": "Un ratón rosa tirando fuego por la boca en un dibujito de desierto: absurdo y gracioso.",
+      "se_va_en": "Para el ají, tú y este ratón son lo mismo: mamíferos.",
+      "lo_ve_entero_pct": 8,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué al ratón le quema y al pájaro no?"
+    },
+    {
+      "codigo": "ZN",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio de ladrillo con patitas mecánicas que camina: absurdo, parece un meme.",
+      "se_va_en": "Pesa más de siete mil seiscientas toneladas.",
+      "lo_ve_entero_pct": 12,
+      "lo_manda": true,
+      "a_quien": "al amigo que sube cosas raras al grupo",
+      "pregunta_que_te_dejo": "¿Cómo camina un edificio?"
+    },
+    {
+      "codigo": "QK",
+      "se_queda_2s": true,
+      "por_que_2s": "Una casa en medio del mar sin ninguna lancha, 'esta casa sabe nadar': quiero ver cómo se mueve, aunque ya vi una casa en el mar antes.",
+      "se_va_en": "Los vecinos la montaron sobre troncos, y sus bueyes la arrastraron hasta la orilla.",
+      "lo_ve_entero_pct": 25,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo nada una casa?"
+    },
+    {
+      "codigo": "AN",
+      "se_queda_2s": true,
+      "por_que_2s": "Un chico con helado que se agarra la cabeza con escarcha saliéndole de la frente: me pasa y está bueno.",
+      "se_va_en": "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara.",
+      "lo_ve_entero_pct": 8,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué duele la frente con el helado?"
+    }
+  ],
+  "orden": ["UT", "CJ", "ZN", "QK", "EV", "AN", "QP", "NC", "WU"]
+}

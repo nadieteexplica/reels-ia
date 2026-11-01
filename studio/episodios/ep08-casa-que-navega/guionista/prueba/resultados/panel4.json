@@ -1,0 +1,96 @@
+{
+  "perfil": "Ximena",
+  "videos": [
+    {
+      "codigo": "KD",
+      "se_queda_2s": true,
+      "por_que_2s": "Un chavo comiendo helado que de repente se agarra la cabeza; eso me pasa y lo entendí al instante, además se ve chistoso lo de la escarcha.",
+      "se_va_en": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+      "lo_ve_entero_pct": 20,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "Si el frío nunca tocó mi cerebro, ¿por qué me duele la frente?"
+    },
+    {
+      "codigo": "SS",
+      "se_queda_2s": true,
+      "por_que_2s": "Una casa de madera arrastrada por bueyes hacia el mar; no sé qué onda pero quiero ver cómo la meten al agua.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 55,
+      "lo_manda": true,
+      "a_quien": "mi pareja, tipo 'mira cómo se mudan en Chile'",
+      "pregunta_que_te_dejo": "¿Cómo meten una casa entera al mar con bueyes?"
+    },
+    {
+      "codigo": "KA",
+      "se_queda_2s": false,
+      "por_que_2s": "Otra vez la casa flotando en el mar, ya la vi en el video de hace rato; deslizo.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "BY",
+      "se_queda_2s": true,
+      "por_que_2s": "Un ratón escupiendo fuego y un pájaro tranquilísimo con el chile en el pico; me dio risa y soy de México, el chile me importa.",
+      "se_va_en": "El ají trae capsaicina, una molécula que las hace sonar.",
+      "lo_ve_entero_pct": 25,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante y el ratón sí?"
+    },
+    {
+      "codigo": "LA",
+      "se_queda_2s": true,
+      "por_que_2s": "El señor con espuma en la cabeza y la cortina que se le pega por la espalda; me pasa siempre y me dio risa.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 70,
+      "lo_manda": true,
+      "a_quien": "mi pareja, que siempre pelea con la cortina del baño",
+      "pregunta_que_te_dejo": "¿Por qué siempre se me pega la cortina cuando me baño?"
+    },
+    {
+      "codigo": "OX",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio de ladrillo con patitas mecánicas que camina; nunca había visto algo así, quiero ver cómo.",
+      "se_va_en": "¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados.",
+      "lo_ve_entero_pct": 40,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo puede caminar un edificio entero?"
+    },
+    {
+      "codigo": "IP",
+      "se_queda_2s": false,
+      "por_que_2s": "No entiendo qué veo: un cilindro enorme y un hombrecito chiquito allá lejos, quieto, y dice 'simulación'; se siente falso y aburrido.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 2,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "UB",
+      "se_queda_2s": false,
+      "por_que_2s": "Otra casa en el mar, es la tercera vez que veo lo mismo; ya me la sé.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "XG",
+      "se_queda_2s": false,
+      "por_que_2s": "Mil etiquetas con letras chiquitas y el edificio se ve diminuto; parece clase o infografía, además no sé si 'botado' es tirado a la basura.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    }
+  ],
+  "orden": ["LA", "BY", "OX", "SS", "KD", "KA", "UB", "XG", "IP"]
+}
