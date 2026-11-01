@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 4188,
+ "creditos_usados": 4357,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -49,5 +49,8 @@
  },
  "0016-ep09-lago-que-se-vacia.json": {
   "tts": "ep09-lago-que-se-vacia"
+ },
+ "0017-ep09-lago-que-se-vacia-v2.json": {
+  "tts": "ep09-lago-que-se-vacia-v2"
  }
 }
