@@ -522,6 +522,8 @@ def graficos(im, f, k):
     elif k == 9:
         pild(im, f, 9, "noche", "EN UNA NOCHE", tw("noche", a0), P)
     elif k == 11:
+        t_rio = tw("río", a0)
+        apunta(im, f, 11, "sale", "SALE BAJO EL GLACIAR", tw("Sale", a0), "boca", hasta=t_rio - 0.1, tam=44)
         apunta(im, f, 11, "x3", "EL RÍO × 3", tw("triplica", a0), "rio")
     elif k == 12:
         apunta(im, f, 12, "atras", "← RÍO ARRIBA", tw("atrás", a0), "atras")
@@ -530,7 +532,7 @@ def graficos(im, f, k):
         if t >= t_al:
             late = 0.5 + 0.5 * math.sin((t - t_al) * 9.0)
             col = tuple(int(ROJO[i] * (0.75 + 0.25 * late)) for i in range(3))
-            apunta(im, f, 13, "alerta", "⚠ ALERTA", t_al, "casas", fondo=col, tinta=(255, 255, 255))
+            apunta(im, f, 13, "alerta", "⚠ ALERTA", t_al, "sirena", fondo=col, tinta=(255, 255, 255))
     elif k == 14:
         apunta(im, f, 14, "cierra", "SE CIERRA", tw("cierra", a0), "tunel")
     elif k == 16:
