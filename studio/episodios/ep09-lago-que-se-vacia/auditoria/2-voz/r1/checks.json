@@ -1,0 +1,20 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ritmo de 4.1 palabras/s en '¿Por dónde se fue el agua?'",
+   "evidencia": "5.70 s"
+  },
+  {
+   "que": "ritmo de 4.2 palabras/s en 'Así que en una sola noche, el lago entero se va por ahí.'",
+   "evidencia": "18.65 s"
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 26.24,
+  "palabras_por_s": 3.28,
+  "creditos_restantes": 35812,
+  "asr_coincidencia": 1.0,
+  "asr_diferencias": []
+ }
+}

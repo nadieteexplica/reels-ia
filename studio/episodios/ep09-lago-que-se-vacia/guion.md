@@ -36,7 +36,7 @@ El hielo se cierra, el lago se llena… y otra vez:
 
 | t (s) | % | Frase | Imagen |
 |---|---|---|---|
-| 0,0–2,0 | 0–6 | Anoche, aquí había un lago. | E1: fondo seco al amanecer, témpanos del tamaño de una casa varados en el barro, charcos, el muro de hielo detrás; Pete chico entre los témpanos mira hacia el glaciar. Píldora ANOCHE AQUÍ HABÍA UN LAGO |
+| 0,0–2,0 | 0–6 | Anoche, aquí había un lago. | E1: fondo seco al amanecer, témpanos del tamaño de una casa varados en el barro, charcos, el muro de hielo detrás. Píldora ANOCHE AQUÍ HABÍA UN LAGO |
 | 2,0–6,0 | 6–19 | En la Patagonia chilena, un glaciar lo tapaba como una represa. | E1 general alto: el mismo valle con el lago lleno (corte seco al "antes"), el glaciar cruzando el valle de lado a lado como un muro. Píldoras ANTES · ≈ 80.000 PISCINAS OLÍMPICAS (la escala, sugerencia 3) |
 | 6,0–8,2 | 19–26 | ¿Por dónde se fue el agua? | E1 a ras del agua llena: la cámara avanza hacia el pie del muro de hielo |
 | 8,2–10,8 | 26–35 | El hielo flota, como el de tu vaso. | E3: el vaso en una roca de la orilla, el cubo de hielo flotando y girando apenas; el glaciar desenfocado detrás |
@@ -49,8 +49,8 @@ El hielo se cierra, el lago se llena… y otra vez:
 ## Paquete de gancho
 - **Cuadro 0:**
   - **Qué se ve:** el fondo de un lago vacío al amanecer: barro café brillante con charcos, témpanos azules del tamaño de una casa varados (el más cercano ocupa ~35 % del cuadro), y detrás el muro de hielo del glaciar con la marca del nivel del agua en las laderas.
-  - **Tamaño:** el témpano cercano ~35 % del alto; el muro de hielo cruza el fondo a ~1/3 de la altura; Pete (1,79 m) chico junto al témpano, para la escala.
-  - **Movimiento:** la cámara avanza entre los témpanos; agua que gotea y corre de un témpano a un charco; Pete gira la cabeza hacia el glaciar.
+  - **Tamaño:** el témpano cercano ~35 % del ancho; el muro de hielo cruza el fondo a ~1/3 de la altura. Sin personas (storyboard: en el plano 12 el lago lleno taparía a Pete y el loop no cerraría).
+  - **Movimiento:** la cámara avanza entre los trozos de hielo hacia el témpano.
   - **Luz:** sol bajo de costado (amanecer), bruma en los cerros.
 - **Texto en pantalla (0–3 s):** ANOCHE AQUÍ HABÍA UN LAGO (una píldora, 5 palabras; sugerencia 1 de la puerta 1). Sin SIMULACIÓN: es real.
 - **Voz 0–2 s:** "Anoche, aquí había un lago." (5 palabras; "había" a ~0,8 s y "lago" a ~1,4 s)
@@ -83,7 +83,7 @@ El hielo se cierra, el lago se llena… y otra vez:
 - **"El lago entero":** USGS dice "toda el agua"; el CECS, "casi completamente" (quedan charcos). La imagen deja charcos.
 - **"Levanta el borde del glaciar":** es el mecanismo general de los lagos represados por hielo (Björnsson, NOAA) y el que describe Pelto para el Cachet 2; la otra vía que da NOAA es una grieta en el hielo. En el corte, el levantamiento es de centímetros a metros y se exagera un poco para que se vea (capa de explicación).
 - **Lo que no va en la voz:** el nombre del lago y del glaciar (Cachet 2, Colonia), los años, el río Baker que se triplica, los 200 millones de m³ y los científicos. Van al post y al comentario fijado.
-- **Seguridad:** el valle es remoto; nadie aparece en riesgo. Pete está en el fondo seco **después** del vaciamiento (como los investigadores que vieron el valle vacío), lejos del muro de hielo. Nada imitable.
+- **Seguridad:** el valle es remoto y no aparece nadie. Nada imitable.
 - **Clima:** las fuentes (AFP, CECS) relacionan los vaciamientos con el calentamiento; la voz no lo dice para no afirmar una causa que el paper no cierra para este lago.
 
 ## Fuentes
@@ -108,4 +108,4 @@ El hielo se cierra, el lago se llena… y otra vez:
 - Infraestructura Pública (DGA, Casassa): https://www.infraestructurapublica.cl/chile-tendra-primer-inventario-lagos-glaciares-mapa-riesgos-crecidas/
 
 ## Plan de Kling
-**0 clips.** Pete no sostiene nada: sólo actúa con gestos de Mixamo (mira, se encoge de hombros). El vaso está apoyado en una roca, sin manos.
+**0 clips.** No hay personajes; el vaso está apoyado en una roca, sin manos.

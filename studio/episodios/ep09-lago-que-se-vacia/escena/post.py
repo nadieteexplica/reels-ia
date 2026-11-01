@@ -1,4 +1,4 @@
-"""Post del Ep. 7 (sobre el del Ep. 5): arma los cuadros finales (1080x1920) desde los renders de plano.py.
+"""Post del Ep. 9 (sobre el del Ep. 7): arma los cuadros finales (1080x1920) desde los renders de plano.py.
 
 Uso: python3 post.py <carpeta_render> <salida>   (OUT=carpeta de datos, LISTA=cuadros opcionales, MUESTRAS=1 en pruebas)
 - Gradación común (grado.py), píldoras (v3: ESTO SÍ PASÓ, SIN HILOS, IMÁN, AGUA, HASTA 60 % AGUA, UN POQUITO, ≈ 16 TESLAS,
@@ -6,7 +6,7 @@ Uso: python3 post.py <carpeta_render> <salida>   (OUT=carpeta de datos, LISTA=cu
   lado de la rana (gris = gravedad, naranja = imán), la cota de 3 cm, el contorno de una mano real, las barras 16 T
   contra 40 T y los subtítulos palabra por palabra (franja y 1000–1250). Las posiciones salen del meta de cada cuadro
   (pantalla() de la escena) y las píldoras se ubican sin tapar ojos (graficos.lugar_libre).
-- Escribe subs_log.json, graficos.json y ep07_planos.json en OUT.
+- Escribe subs_log.json, graficos.json y ep09_planos.json en OUT.
 """
 import glob, json, math, os, sys
 import numpy as np
@@ -15,7 +15,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.abspath(os.path.join(HERE, "../../../plantilla")))
-import ep07 as E
+import ep09 as E
 import graficos as G
 from grado import grado
 
@@ -35,7 +35,7 @@ AZUL = (60, 140, 255)              # agua
 CIAN = (40, 205, 255)              # líneas del imán
 NARANJO = (255, 140, 30)           # el empujón del imán
 GRIS = (150, 156, 166)             # la gravedad
-CLAVE = {"SOMBRERO": NARANJO, "ELECTRICIDAD": (255, 190, 40), "EXPLOSIÓN": (255, 140, 30), "NADIE": (255, 140, 30)}
+CLAVE = {"AGUA": AZUL, "TÚNEL": AZUL}
 BOX = (120, 888, 1000, 1250)
 META = {}
 for p in sorted(glob.glob(os.path.join(src, "meta", "*.json"))):
@@ -145,7 +145,7 @@ def suave(x):
     return x * x * (3 - 2 * x)
 
 # ---------------- subtítulos (palabra por palabra; cifras juntas) ----------------
-NUMEROS = [("diez", "10"), ("dos", "2"), ("quince", "15"), ("siete", "7"), ("cuarenta", "40")]
+NUMEROS = []
 
 
 def limpiar(w):
@@ -344,8 +344,8 @@ def texto_sombra(d, xy, texto, fnt, col=(255, 255, 255), a=255, ancla="mm"):
 
 
 DORADO = (255, 190, 40)            # la electricidad
-RAPIDO = {1, 2, 3, 8, 9, 11, 14, 15}      # tomas en cámara rápida (la torre real baja ~2 pisos cada 10 días)
-CONTADOR = {1, 2, 11, 14, 15}
+RAPIDO = {8, 9, 11, 12}      # el lago bajando o subiendo (el vaciamiento real dura horas; el llenado, semanas)
+CONTADOR = set()
 
 
 def camara_rapida(im):
@@ -474,71 +474,51 @@ def capa_luces(im, f, t):
     _pegar(im, c, 12)
 
 
+def apunta(im, f, k, clave, texto, t0, punto, fondo=(250, 250, 248), tinta=(24, 24, 28), tam=50, hasta=None, col=(255, 255, 255)):
+    """Píldora con flecha fina hacia lo que nombra (posición de la escena en el meta del cuadro)."""
+    t = t_de(f)
+    if t < t0 or (hasta is not None and t >= hasta):
+        return
+    px, py = meta(k, f, punto, None) or (540, 700)
+    cy = max(470, min(800, py - 230))
+    cx = max(330, min(750, px))
+    s = pop(t - t0)
+    if py - cy > 120 and s > 0.5:
+        flecha(im, cx, cy + 46, px, py - 14, col, ancho=8)
+    pildora(im, texto, cx, cy, fondo=fondo, tinta=tinta, s=s, tam=tam)
+
+
 def graficos(im, f, k):
     t = t_de(f)
     if k in RAPIDO:
         camara_rapida(im)
-    if k in CONTADOR:
-        contador(im, f, k)
     P = [(540, 560), (540, 640)]
     if k == 1:
-        pild(im, f, 1, "alto", "EL MÁS ALTO QUE JAPÓN HA BOTADO", tw("alto", 1.0), P, tam=44)
+        pild(im, f, 1, "anoche", "ANOCHE AQUÍ HABÍA UN LAGO", T0(1), P, tam=48)
     elif k == 2:
-        pild(im, f, 2, "sinex", "SIN EXPLOSIONES", tw("sin", 5.3), P)
+        pildora(im, "ANTES", 250, 330, fondo=(30, 32, 36), tinta=(255, 255, 255), tam=40)
+        t_gl, t_re = tw("glaciar", 3.0), tw("represa", 4.5)
+        pild(im, f, 2, "pisc", "≈ 80.000 PISCINAS OLÍMPICAS", tw("Patagonia", 1.9), P, tam=44, hasta=t_gl)
+        apunta(im, f, 2, "gl", "GLACIAR", t_gl, "glaciar", hasta=t_re)
+        apunta(im, f, 2, "rep", "REPRESA DE HIELO", t_re, "glaciar")
     elif k == 3:
-        pild(im, f, 3, "sinex", "SIN EXPLOSIONES", T0(3), [(740, 330), (740, 420)])
+        pild(im, f, 3, "donde", "¿POR DÓNDE?", tw("dónde", 5.5), P)
     elif k == 4:
-        contorno_techo(im, f)
-        pild(im, f, 4, "techo", "EL TECHO QUEDA ENTERO", tw("techo", 8.0), P, fondo=NARANJO, tinta=(255, 255, 255))
+        pild(im, f, 4, "flota", "EL HIELO FLOTA", tw("flota", 7.0), P)
     elif k == 5:
-        t_co, t_ga = tw("columnas", 10.5), tw("gatos", 12.5)
-        pild(im, f, 5, "p1", "PASO 1 · COLUMNAS DE ACERO", tw("Primero", 9.5), P, tam=46, hasta=t_ga)
-        if t >= t_ga:
-            gx, gy = meta(5, f, "gata", (540, 900))
-            py = max(520, min(760, gy - 230))
-            px = max(350, min(730, gx))
-            if gy - py > 90:
-                flecha(im, px, py + 45, gx, gy - 20, AMARILLO, ancho=9)
-            pildora(im, "15 GATOS HIDRÁULICOS", px, py, fondo=AMARILLO, tinta=(24, 24, 28), s=pop(t - t_ga), tam=46)
+        t_ll, t_lv = tw("llena", 9.4), tw("levanta", 9.4)
+        apunta(im, f, 5, "llena", "SE LLENA", t_ll, "lago", hasta=t_lv)
+        apunta(im, f, 5, "lev", "↑ SE LEVANTA", t_lv, "pie")
     elif k == 6:
-        t_me = tw("dos", 16.8)
-        dias = int(min(60, 60 * (t - T0(6)) / max(0.3, t_me - T0(6))))
-        pildora(im, f"DÍA {dias}", 540, 560, s=pop(t - T0(6)), tam=56)
-        pild(im, f, 6, "meses", "SOLO ARMARLO: 2 MESES", t_me, [(540, 650)], tam=46)
+        apunta(im, f, 6, "abajo", "POR ABAJO", tw("cuela", 13.0), "lengua", fondo=AZUL, tinta=(255, 255, 255))
     elif k == 7:
-        t_ve = tw("ventanas", 19.3)
-        pild(im, f, 7, "pan", "PANELES", tw("paneles", 18.8), P, hasta=t_ve)
-        if t >= t_ve:
-            vx, vy = meta(7, f, "ventana", (400, 800))
-            px, py = max(330, min(750, vx)), max(540, min(820, vy - 170))
-            flecha(im, px, py + 40, vx, vy - 10, (255, 255, 255), ancho=8)
-            pildora(im, "VENTANAS A LA MISMA ALTURA", px, py, s=pop(t - t_ve), tam=42)
+        apunta(im, f, 7, "tunel", "TÚNEL", tw("túnel", 16.5), "tunel", fondo=AZUL, tinta=(255, 255, 255))
     elif k == 8:
-        pild(im, f, 8, "mas", "PARECE UN PISO MÁS", tw("parece", 22.5), P)
-    elif k == 9:
-        capa_pieza(im, f)
-        pild(im, f, 9, "p2", "PASO 2 · DESARMAN", tw("adentro", 23.5), P, tam=50)
+        pild(im, f, 8, "noche", "EN UNA NOCHE", tw("noche", 18.7), P)
     elif k == 10:
-        t_pi = tw("piso", 29.2)
-        pild(im, f, 10, "p3", "PASO 3 · BAJAN", tw("Cuando", 26.5), P, tam=50, hasta=t_pi)
-        pild(im, f, 10, "menos1", "−1 PISO", t_pi, P, tam=58)
-    elif k == 11:
-        pild(im, f, 11, "rev", "EN REVERSA", tw("reversa", 32.4), P)
+        apunta(im, f, 10, "cierra", "SE CIERRA", tw("cierra", 22.3), "tunel")
     elif k == 12:
-        capa_electricidad(im, f, t)
-        pild(im, f, 12, "elec", "ELECTRICIDAD", tw("electricidad", 36.0), P, fondo=DORADO, tinta=(24, 24, 28))
-    elif k == 13:
-        capa_luces(im, f, t)
-        pild(im, f, 13, "luces", "LUCES DE LA OBRA", tw("luces", 38.0), P, fondo=DORADO, tinta=(24, 24, 28))
-    elif k == 14:
-        pild(im, f, 14, "diez", "−2 PISOS · CADA 10 DÍAS", tw("Dos", 39.0), P, tam=50)
-    elif k == 15:
-        pild(im, f, 15, "siete", "≈ 7 MESES", tw("Siete", 40.6), P, tam=56)
-        if t >= tw("nada", 44.8):
-            bx, by = meta(15, f, "base", (540, 1000))
-            pildora(im, "NADA", 540, max(700, min(960, by - 60)), fondo=(30, 32, 36), tinta=(255, 255, 255), s=pop(t - tw("nada", 44.8)), tam=56)
-    elif k == 16:
-        pild(im, f, 16, "nadie", "NADIE LO VIO CAER", T0(16) + 0.1, P, fondo=(30, 32, 36), tinta=(255, 255, 255), tam=50)
+        pild(im, f, 12, "veces", "MÁS DE 20 VECES", tw("otra", 25.0), P)
 
 
 def procesar(f):
@@ -564,5 +544,5 @@ if __name__ == "__main__":
     json.dump(SUB_LOG, open(os.path.join(OUT, "subs_log.json"), "w"))
     G.guardar(os.path.join(OUT, "graficos.json"))
     json.dump({"T": {str(k): list(v) for k, v in E.T.items()}, "FR": {str(k): list(v) for k, v in FR.items()}, "END": END},
-              open(os.path.join(OUT, "ep07_planos.json"), "w"))
+              open(os.path.join(OUT, "ep09_planos.json"), "w"))
     print("ok post", len(list(cuadros)) - len(faltan), "cuadros; faltan", len(faltan), faltan[:20])
