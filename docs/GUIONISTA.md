@@ -187,7 +187,7 @@ Se corrió a ciegas sobre los 6 videos publicados, mezclados y con códigos al a
 ## 7. La predicción (se anota antes de publicar y se revisa a las 48 h)
 En `guion.md` → "Predicción", y la misma línea en `PUBLICADOS.md`:
 - **Se quedó (YouTube):** sobre o bajo el promedio del canal (72,6 % al 1-nov).
-- **Segundos vistos en promedio:** sobre o bajo 35 s.
+- **% visto (YouTube):** sobre o bajo 75 % (los dos que se abrieron: 74 y 89 %; los que no: 43–76 %). Con videos de distinto largo, el % compara mejor que los segundos.
 - **Envíos en IG por cada mil de alcance:** sobre o bajo 5.
 - **Dónde se va la gente:** la frase que el guionista cree que es el punto débil.
 
