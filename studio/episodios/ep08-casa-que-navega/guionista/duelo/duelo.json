@@ -82,34 +82,34 @@
  },
  "contra_anclas": {
   "g3": {
-   "gana": 20,
-   "anclas_vencidas": 5,
-   "anclas": 6
+   "vence": 5,
+   "empata": 0,
+   "pierde": 1
   },
   "g6": {
-   "gana": 21,
-   "anclas_vencidas": 5,
-   "anclas": 6
+   "vence": 5,
+   "empata": 0,
+   "pierde": 1
   },
   "g2": {
-   "gana": 20,
-   "anclas_vencidas": 5,
-   "anclas": 6
+   "vence": 5,
+   "empata": 0,
+   "pierde": 1
   },
   "g1": {
-   "gana": 19,
-   "anclas_vencidas": 5,
-   "anclas": 6
+   "vence": 5,
+   "empata": 0,
+   "pierde": 1
   },
   "g4": {
-   "gana": 21,
-   "anclas_vencidas": 5,
-   "anclas": 6
+   "vence": 5,
+   "empata": 0,
+   "pierde": 1
   },
   "g5": {
-   "gana": 20,
-   "anclas_vencidas": 5,
-   "anclas": 6
+   "vence": 5,
+   "empata": 0,
+   "pierde": 1
   }
  }
 }

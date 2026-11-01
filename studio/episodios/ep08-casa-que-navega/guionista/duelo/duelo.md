@@ -15,16 +15,16 @@
 | ep05 | 0/24 | 0 % |
 | ep07 | 0/24 | 0 % |
 
-**Contra los ganchos reales del canal** (sigue si le gana a la mayoría; con 4 o más anclas perdidas, no sigue):
+**Contra los ganchos reales del canal** (no sigue si pierde contra más de la mitad de las anclas; un empate no es derrota). Sólo vale con cuadros reales (`--imagenes`); con texto, orienta:
 
-| Candidato | Anclas vencidas | Sigue |
-|---|---|---|
-| g3 | 5/6 | sí |
-| g6 | 5/6 | sí |
-| g2 | 5/6 | sí |
-| g1 | 5/6 | sí |
-| g4 | 5/6 | sí |
-| g5 | 5/6 | sí |
+| Candidato | Vence | Empata | Pierde | Sigue |
+|---|---|---|---|---|
+| g3 | 5 | 0 | 1 | sí |
+| g6 | 5 | 0 | 1 | sí |
+| g2 | 5 | 0 | 1 | sí |
+| g1 | 5 | 0 | 1 | sí |
+| g4 | 5 | 0 | 1 | sí |
+| g5 | 5 | 0 | 1 | sí |
 
 | Par | Votos | Decisión |
 |---|---|---|

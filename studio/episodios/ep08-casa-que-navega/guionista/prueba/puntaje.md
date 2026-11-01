@@ -20,6 +20,7 @@
  "rho_borda_vs_yt_vistas": 0.32,
  "peor_real": "ep05",
  "peor_real_en_ultimo_tercio": true,
+ "rho_quedan_vs_yt_se_quedo_sin_el_peor": 0.36,
  "se_puede_usar_para_descartar": false
 }
 ```
