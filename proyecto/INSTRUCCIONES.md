@@ -30,6 +30,7 @@ Tomás no quiere estar encima de cada paso. Decide lo importante y aprueba lo qu
 6. Revisa **`docs/PUBLICADOS.md`**: qué ya salió y cómo le fue.
 7. Lee **`docs/LECCIONES.md`**: errores pasados, cómo se solucionaron y la regla que queda. No repetirlos.
 8. Lee **`docs/AUDITOR.md`**: las puertas que revisa el auditor en cada etapa. Nada avanza ni le llega a Tomás sin su APROBADO.
+9. Lee **`docs/GUIONISTA.md`**: el guion de cada video lo escribe el agente guionista con su método (premisa, ganchos, duelo ciego, 3 guiones, cazadores de fugas). Nada pasa a la voz sin su "Paquete de gancho".
 
 Los archivos del repo mandan sobre los adjuntos del proyecto, porque el repo es la versión viva. Si algo choca entre documentos, manda el más reciente, y avísale a Tomás. **Excepción:** las secciones *Seguridad* y *Publicación* de estas instrucciones nunca se pisan con nada.
 

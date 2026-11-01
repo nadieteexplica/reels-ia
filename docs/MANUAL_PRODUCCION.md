@@ -33,15 +33,19 @@ studio/episodios/epNN-slug/
 ### Antes de escribir: ¿para qué acción?
 Cada video se diseña para que lo **envíen** (tiene destinatario: humor, dato sorpresa, "esto es para ti") o para que lo **guarden** (sirve después: cómo se hace, algo que enseña). Si no se puede responder *¿a quién se lo mandan?* o *¿por qué lo guardarían?*, la idea no sale. Base: `docs/REFERENCIAS.md` §3.
 
-### Estructura de la línea datos (tiempos aproximados; los tramos del medio se estiran o se encogen con el largo del video)
-| Tramo | Qué pasa | Ejemplo (Ep. 1) |
+### Estructura de la línea datos (desde el 1-nov-2026: la del guionista, `docs/GUIONISTA.md` §6)
+El guion lo escribe el **agente guionista** con su método (premisa → 12+ ganchos → duelo ciego → 3 guiones → cazadores de fugas). Resumen de la estructura:
+
+| Tramo | Qué pasa | Ejemplo |
 |---|---|---|
-| **0–2 s · Gancho** | Situación cotidiana o pregunta imposible, con una imagen fuerte desde el cuadro 0 | "Te comes un helado muy rápido… y de repente: ¡zas! Te duele la frente." |
-| **2–5 s · Giro** | Contradice la intuición y abre la pregunta | "Pero el frío nunca tocó tu cerebro. Entonces, ¿qué pasó?" |
-| **Hasta ~60 % · Mecanismo** | 2 a 3 pasos (2 en un video de 25–30 s), cada uno con su imagen | Paladar → vasos → trigémino → confusión |
-| **~60–75 % · "Y lo más loco"** | Un segundo dato sorpresa: casi nunca cabe en 25–40 s; va sólo si sobra tiempo | "Tu cerebro no siente dolor." |
-| **Último ~20 % · Enseñanza** | Una frase: qué hacer, cómo usarlo o cómo explicárselo a alguien | "Aprieta la lengua contra el paladar…" |
-| **Cierre en loop** | Frase que conecta con el inicio y deja ganas de verlo otra vez | "…nadie come helado lento." |
+| **0–2 s · Gancho** | El paquete: cuadro 0 con lo imposible ya pasando, ≤ 1 píldora, voz ≤ 10 palabras con el objeto concreto y lo raro (receta G1–G14) | "Este edificio de cinco pisos se fue caminando." (Ep. 3) |
+| **2–6 s · Lo que está en juego** | Quién, cuánto o por qué importa; queda abierta la pregunta "¿cómo?" | "Pesa más de siete mil seiscientas toneladas." |
+| **6–20 s · Mecánica** | 2–3 pasos unidos con "pero" / "por eso", cada uno un cambio que se ve, con un "tú" | El hoyo → las patas → cómo caminan |
+| **20–30 s · El pago** | La imagen que responde la pregunta del gancho, después del 60 % | El edificio caminando entero |
+| **Últimos 3–5 s · Cierre en el pico** | Consecuencia o chiste; empalma con la primera frase (loop). Nada después del pico | "…por fin aprendió a caminar." |
+
+- **"Y lo más loco"** ya no va después del pago: va a la mitad como segundo gancho, sólo si es más grande que todo lo anterior.
+- **La enseñanza** es entender la mecánica; una frase de "qué hacer" sólo si es parte del remate (pendiente de Tomás, `GUIONISTA.md` §8).
 
 - **Con cifras:** dejar adivinar antes de revelar (opciones o pregunta en pantalla y después la respuesta).
 

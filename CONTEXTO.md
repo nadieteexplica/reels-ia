@@ -114,7 +114,10 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - No crear cuentas ni usar contraseñas por Tomás.
 - **Publicar en redes solo con su OK explícito, post por post.**
 
-## Estado actual (23-oct-2026)
+## Estado actual (1-nov-2026)
+- **Guionista (1-nov-2026, pedido de Tomás):** el guion lo escribe un agente propio con método e investigación: **`docs/GUIONISTA.md`** (números del canal, investigación en `docs/estudios/guionista-*.md`, receta del gancho G1–G14, estructura y 12 reglas, simulador calibrado, predicción) y `.claude/agents/guionista.md`, `juez-gancho.md`, `espectador.md`. Herramientas en `tools/guionista/`. **Lo que dicen los números (1-nov):** el gancho mató al Ep. 5 (39,7 % se quedó) y debilitó al Ep. 7 (70,7 %); lo que hizo que el Ep. 3 y el Ep. 7 se abrieran (13–14 mil en YouTube; el Ep. 3, 901 mil en Instagram) fue la retención (42–47 s vistos) y la premisa "algo gigante que hace algo imposible + mecánica a la vista". El simulador sirve para filtrar ganchos (0,49–0,77 con "se quedó"), no para predecir vistas (0). Decisiones pendientes en `GUIONISTA.md` §8 (techo de 45 s, la enseñanza al final, Trial Reels). Primera corrida real: Ep. 8 "la casa que navega" (Chiloé), sólo el guion, en `studio/episodios/ep08-casa-que-navega/guionista/`.
+
+## Estado al 23-oct-2026
 - **YouTube primero (21-oct-2026, noche):** Tomás decidió concentrar el proyecto en YouTube. Se investigó el algoritmo de Shorts, el YPP 2027, la frecuencia y la duración (`docs/YOUTUBE.md`, 27 fuentes en la prerelease `yt-fuentes`). Decidió: **videos de 25–40 s (techo 45)**, **5 por semana y diario cuando un video tome ≤ 2,5 h** (2 por sesión), **IG y TikTok siguen con el mismo video** y **compilaciones largas muy de vez en cuando**. Ajustado en el código (`presupuesto.json`: 25–45,5 s, 70–128 palabras, 6 escenas, tope 4 h y meta 2,5 h), el manual, el auditor, las ideas y las instrucciones. **Métrica principal en YouTube:** visto vs. deslizado, % visto y vistas comprometidas (se leen en YouTube Studio con el Chrome de Tomás; Metricool no las trae). Tomás calcula que el Ep. 3 (63 s, 5,5 h) gastó **~7 % de su uso semanal de Claude**: a 25–40 s se estima ~4–5 % por video, o sea ~30–35 % a la semana con uno diario. Le cabe (21:15).
 **Fase actual: 0, puesta a punto.** Ver la checklist en `docs/AUTOMATIZACION.md`.
 
@@ -205,6 +208,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - `docs/BIBLIOTECA.md`: biblioteca de assets del estilo realista (fuentes gratis, licencias, qué baja Claude y qué baja Tomás, lista de Mixamo).
 - `docs/YOUTUBE.md`: YouTube primero (21-oct-2026): algoritmo de Shorts, YPP 2027, frecuencia, duración, política de contenido no auténtico y plan.
 - `docs/LECCIONES.md`: errores de producción, cómo se solucionaron y la regla que queda (leer antes de cada video).
+- `docs/GUIONISTA.md`: el agente guionista (1-nov-2026): números del canal, investigación, método, receta del gancho y del guion, simulador calibrado y predicción. Agentes en `.claude/agents/`, herramientas en `tools/guionista/`.
 - `docs/AUDITOR.md`: el auditor independiente por etapas (puertas, chequeos, bloqueantes, formato del veredicto, bitácora del proceso). Código y prompts en `tools/auditor/`.
 - `docs/AUDITOR_CALIBRACION.md`: el auditor corrido a ciegas sobre las versiones del Ep. 1 y qué errores detectó.
 - `docs/MANUAL_PRODUCCION.md`: estándar de cada video (guion, verificación, voz, storyboard, look, subtítulos, audio, render, QA, entrega, publicación).
