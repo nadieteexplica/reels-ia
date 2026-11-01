@@ -8,3 +8,4 @@
 | 3-storyboard | r1 | APROBADO | 0 | 8 |
 | 3-storyboard | r2 | NO APROBADO | 1 | 5 |
 | 3-storyboard | r3 | APROBADO | 0 | 0 |
+| 4-cuadros | r1 | NO APROBADO | 2 | 8 |
