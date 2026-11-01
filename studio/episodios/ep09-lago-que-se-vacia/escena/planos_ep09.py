@@ -116,7 +116,7 @@ def p2(sc, a, b):
 def p3(sc, a, b):
     # "¿Por dónde se fue el agua?": a ras del agua llena, avanzando hacia el pie del muro de hielo
     S = armar_valle(sc, L.NIVEL_LLENO)
-    pa, pb = Vector((48, 330, 2.2)), Vector((40, 250, 1.6))
+    pa, pb = Vector((46, 300, 2.0)), Vector((44, 285, 1.8))      # puerta 3 A2: 15 m en 1,9 s (antes 80 m)
 
     def act(f):
         fase_agua(S, f)
@@ -157,7 +157,7 @@ def p4(sc, a, b):
 # ---------------------------------------------------------------- E2: el corte
 CAMS_CORTE = {   # (posición, mira): el contacto hielo-roca queda bajo los subtítulos (~60 % desde arriba) y la roca no se come el cuadro
     "lejos": (Vector((L.XC + 200, 30, 25)), Vector((L.XC, -5, -15))),
-    "cerca": (Vector((L.XC + 105, 10, 2)), Vector((L.XC, 0, -22))),
+    "cerca": (Vector((L.XC + 75, 8, -8)), Vector((L.XC, 0, -24))),
 }
 
 
@@ -192,7 +192,7 @@ def p5(sc, a, b):
     def act(f):
         t = tf(f)
         nivel = -8.0 + 8.0 * sale(lin(t, a / FPS, t_ll + 0.25))
-        lift = 4.0 * suave(lin(t, t_lv, t_lv + 0.9))
+        lift = 5.0 * suave(lin(t, t_lv, t_lv + 0.9))
         C.estado(nivel, lift=lift, fase=0.0)
         fase_agua(S, f)
         if t < t_lv - 0.05:                     # puerta 3: en "levanta", corte seco a la cámara cercana (4 m de lejos no se ven)
@@ -211,7 +211,7 @@ def p6(sc, a, b):
     def act(f):
         t = tf(f)
         len_ = L.Y_FRENTE + L.TOE - (L.TOE + 420.0) * sale(lin(t, t0 - 0.2, b / FPS - 0.2))
-        C.estado(0.0, lift=4.0, lengua=len_, fase=-0.02 * f)
+        C.estado(0.0, lift=5.0, lengua=len_, fase=-0.02 * f)
         fase_agua(S, f)
         cam_corte(S, "cerca", suave(lin(f, a, b - 1)))
         return meta_corte(sc, S, C, {"lengua": pantalla(sc, S["cam"], Vector(C.contacto(max(len_ * 0.06, -22))) + Vector((0, 0, 1)))})
@@ -226,7 +226,7 @@ def p7(sc, a, b):
     def act(f):
         t = tf(f)
         r = 0.5 + 5.5 * suave(lin(t, t0, b / FPS - 0.15))
-        C.estado(0.0, lift=4.0 - 2.5 * lin(t, t0, b / FPS), lengua=-420.0, radio=r, fase=-0.035 * f)
+        C.estado(0.0, lift=5.0 - 3.0 * lin(t, t0, b / FPS), lengua=-420.0, radio=r, fase=-0.035 * f)
         fase_agua(S, f)
         cam_corte(S, "cerca", 1.0 - 0.6 * suave(lin(f, a, b - 1)))
         return meta_corte(sc, S, C, {"radio": round(r, 2)})
@@ -240,7 +240,7 @@ def p8(sc, a, b):
     def act(f):
         x = lin(f, a, b - 1)
         nivel = -14.0 * x
-        C.estado(nivel, lift=1.5 * (1 - x), lengua=-420.0, radio=6.0 + 1.5 * x, fase=-0.07 * f)
+        C.estado(nivel, lift=2.0 * (1 - x), lengua=-420.0, radio=6.0 + 1.5 * x, fase=-0.07 * f)
         fase_agua(S, f)
         cam_corte(S, "lejos", -0.5 * suave(x))
         return meta_corte(sc, S, C)
