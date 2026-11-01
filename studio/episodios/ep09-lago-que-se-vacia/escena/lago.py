@@ -200,15 +200,19 @@ def mat_valle(nombre="valle"):
     nt.links.new(c5a.outputs[2], c5b.inputs[6])
     cg2 = nt.nodes.new("ShaderNodeCombineColor"); nt.links.new(kao, cg2.inputs[0]); nt.links.new(kao, cg2.inputs[1]); nt.links.new(kao, cg2.inputs[2])
     nt.links.new(cg2.outputs[0], c5b.inputs[7])
-    alto_n = rango(zz, 640, 760)                                                      # nieve arriba, en lo menos empinado
-    plano_n = rango(pend.outputs["Z"], 0.45, 0.7)
+    alto_n = rango(zz, 600, 760)                                                      # nieve arriba, en lo menos empinado
+    plano_n = rango(pend.outputs["Z"], 0.62, 0.82)
+    kn0 = nt.nodes.new("ShaderNodeMath"); kn0.operation = "MULTIPLY"; kn0.use_clamp = True
+    nt.links.new(alto_n, kn0.inputs[0]); nt.links.new(plano_n, kn0.inputs[1])
+    aflo = K._ruido(nt, escala=0.012, detalle=10, estirar=(1.0, 1.0, 0.22))            # roca en la nieve: vetas que bajan por la pendiente
+    kaf = rango(aflo.outputs["Fac"], 0.56, 0.5)
     kn = nt.nodes.new("ShaderNodeMath"); kn.operation = "MULTIPLY"; kn.use_clamp = True
-    nt.links.new(alto_n, kn.inputs[0]); nt.links.new(plano_n, kn.inputs[1])
+    nt.links.new(kn0.outputs[0], kn.inputs[0]); nt.links.new(kaf, kn.inputs[1])
     c6 = mezclar(kn.outputs[0], c5b.outputs[2], nieve.outputs[0])
     nt.links.new(c6, b.inputs["Base Color"])
     camd = nt.nodes.new("ShaderNodeCameraData")
-    kh = rango(camd.outputs["View Distance"], 250.0, 5000.0, 0.0, 0.55)
-    em = nt.nodes.new("ShaderNodeEmission"); em.inputs[0].default_value = (0.52, 0.62, 0.78, 1); em.inputs[1].default_value = 0.42
+    kh = rango(camd.outputs["View Distance"], 300.0, 3800.0, 0.0, 0.62)
+    em = nt.nodes.new("ShaderNodeEmission"); em.inputs[0].default_value = (0.5, 0.6, 0.76, 1); em.inputs[1].default_value = 0.45
     mxs = nt.nodes.new("ShaderNodeMixShader"); nt.links.new(kh, mxs.inputs[0])
     nt.links.new(b.outputs[0], mxs.inputs[1]); nt.links.new(em.outputs[0], mxs.inputs[2])
     nt.links.new(mxs.outputs[0], nt.nodes["Material Output"].inputs[0])
@@ -293,7 +297,7 @@ def mat_agua_glaciar(nombre="agua_lago"):
     on2 = K._ruido(nt, escala=1.6, detalle=4)
     s = nt.nodes.new("ShaderNodeMath"); s.operation = "ADD"
     nt.links.new(on.outputs["Fac"], s.inputs[0]); nt.links.new(on2.outputs["Fac"], s.inputs[1])
-    K._bump(nt, b, s.outputs[0], 0.12, 0.06)
+    K._bump(nt, b, s.outputs[0], 0.22, 0.09)
     m["fase"] = 0.0
     return m
 
@@ -306,7 +310,7 @@ def terreno(sc, detalle=1.0, xmax=None):
     fx1 = 1600 if xmax is None else xmax
     fondo = malla_altura("Fondo", -1600, fx1, -260, 2200, int(n * 1.5 * (fx1 + 1600) / 3200), int(n * 1.1), altura_terreno, mv)
     vx1 = 6000 if xmax is None else xmax
-    lejos = malla_altura("Valle", -6000, vx1, -14000, 9000, int(300 * detalle * (vx1 + 6000) / 12000), int(560 * detalle),
+    lejos = malla_altura("Valle", -6000, vx1, -14000, 9000, int(500 * detalle * (vx1 + 6000) / 12000), int(920 * detalle),
                          lambda x, y: np.where((np.abs(x) < 1580) & (y > -250) & (y < 2180), -60.0, altura_terreno(x, y)), mv)
     # cerros lejanos con bruma (formas grandes que llegan al suelo; ESTILO_REALISTA §4.3)
     def picos(x, y):
@@ -316,9 +320,23 @@ def terreno(sc, detalle=1.0, xmax=None):
         z = np.where(x > 0, z * 0.35, z)              # al este, cerros bajos: por ahí entra el sol de la mañana
         k = suave((d - 5200) / 1500)                  # adentro lo cubre el valle; sube de a poco (sin muro en el borde)
         return -300.0 + (z + 300.0) * k
-    cer = malla_altura("Cerros", -20000, 20000, -14000, 26000, 260, 260, picos,
+    cer = malla_altura("Cerros", -20000, 20000, -14000, 26000, 420, 420, picos,
                        K.mat_lejano("cerros_bruma", (0.32, 0.33, 0.36), neblina=(0.55, 0.6, 0.7), k=0.5, color2=(0.75, 0.78, 0.84)))
     return fondo, lejos, cer
+
+
+def sup_glaciar(x, y):
+    """Altura de la superficie del glaciar (la misma de la malla "Glaciar")."""
+    x = np.asarray(x, np.float32); y = np.asarray(y, np.float32)
+    base = altura_terreno(x, y)
+    frente = suave((-y - 18.0) / 6.0)
+    transv = np.abs(np.sin((y + 18.0 * fbm(x, y, 49, 180.0, 3)) / 9.0)) ** 0.3
+    serac = (14.0 * (cresta(x, y, 43, 55.0, 4) - 0.45) + 4.0 * fbm(x, y, 47, 12.0, 3)
+             + 11.0 * (transv - 0.8) * (1 - 0.5 * suave((-y) / 1500.0)))
+    zi = NIVEL_LLENO + 38.0 + 0.035 * (-y) + serac * (1 - 0.6 * suave((-y - 3000) / 3000))
+    k = suave((ancho(y) * 1.35 - np.abs(x - eje_x(y))) / (ancho(y) * 0.35))
+    z = np.where(zi > base, base + (zi - base) * k - 45.0 * (1 - k) ** 2, base - 45.0)
+    return np.where(-y > 18.0, base + (z - base) * frente, base - 45.0)
 
 
 def glaciar(sc, detalle=1.0, xmax=None):
@@ -506,7 +524,7 @@ def _perfil_hielo(y):
     x = np.full_like(g, XC)
     base = altura_terreno(x, g)
     serac = 14.0 * (cresta(x, g, 43, 55.0, 4) - 0.45) + 4.0 * fbm(x, g, 47, 12.0, 3)
-    zi = NIVEL_LLENO + 38.0 + 0.035 * np.maximum(-g, 20.0) + serac
+    zi = sup_glaciar(x, np.minimum(g, -24.0)) + 0.5                      # la superficie real del glaciar en el plano del corte
     r = random.Random(17)
     grietas = np.zeros_like(g)
     yc = Y_FRENTE - 14.0
@@ -747,8 +765,12 @@ class Corte:
         self.lado_lago = y > Y_FRENTE
         yl = y[self.lado_lago]
         self.lago = _franja("CorteLago", yl, self.bed[self.lado_lago], self.bed[self.lado_lago], mat_agua_corte())
-        self.linea = _franja("CorteLinea", y, self.bed, self.bed, K.mat_emision("linea_corte", (1.0, 0.82, 0.55), 2.2), x=XC + 0.12)
-        self.linea.visible_shadow = False
+        ml = K.mat_emision("linea_corte", (1.0, 0.82, 0.55), 2.2)
+        self.sel_h = y <= Y_FRENTE - 0.5
+        self.sel_l = y > Y_FRENTE + 0.5
+        self.linea = _franja("CorteLinea", y[self.sel_h], self.bed[self.sel_h], self.bed[self.sel_h], ml, x=XC + 0.12)
+        self.linea_l = _franja("CorteLineaLago", y[self.sel_l], self.bed[self.sel_l], self.bed[self.sel_l], ml, x=XC + 0.12)
+        self.linea.visible_shadow = False; self.linea_l.visible_shadow = False
 
     def estado(self, nivel, lift=0.0, lengua=0.0, radio=0.0, fase=0.0):
         y, bed = self.ys, self.bed
@@ -765,8 +787,10 @@ class Corte:
         _mover_franja(self.hueco, bed - 1.0, np.where(hueco > 0.05, abajo + 1.5, bed - 1.0))
         fondo_lago = np.where(h, np.maximum(arriba, bed), bed)[self.lado_lago]
         _mover_franja(self.lago, fondo_lago, np.maximum(nivel, fondo_lago))
-        tope = np.where(h & (y <= Y_FRENTE), arriba, np.maximum(bed, np.where(self.lado_lago, np.maximum(nivel, np.where(h, arriba, bed)), bed)))
-        _mover_franja(self.linea, tope - 0.55, tope + 0.05)
+        _mover_franja(self.linea, arriba[self.sel_h] - 0.55, arriba[self.sel_h] + 0.05)
+        tl = np.maximum(bed, nivel)[self.sel_l]
+        _mover_franja(self.linea_l, tl - 0.55, tl + 0.05)
+        self.linea_l.hide_render = nivel < float(np.min(bed[self.sel_l])) + 1.0
         self.S["agua"].location.z = nivel
         ubicar_tempanos(self.S["tempanos"], nivel)
         mt = bpy.data.materials["agua_tunel"].node_tree
@@ -853,14 +877,14 @@ def altura_rio(x, y):
     cauce = -6.0 * np.exp(-(lado / 75.0) ** 2)                                         # el río grande
     dx = xx - xt_rio(yy)
     an = 50.0 + 45.0 * suave((-yy - 450.0) / 250.0)
-    trib = -8.0 * np.exp(-(dx / an) ** 2) * suave((-yy + 20.0) / 80.0)                 # el afluente
+    trib = -8.0 * np.exp(-(dx / an) ** 2) * suave((-yy + 20.0) / 80.0) * suave((yy - Y_HOCICO + 40.0) / 30.0)   # el afluente
     trenzas = -1.2 * (cresta(xx * 0.5, yy, 65, 50.0, 3) > 0.62) * suave((-yy - 60.0) / 200.0) * (np.abs(xx) < 260)
     V = np.exp(-(dx / 260.0) ** 2) * suave((-yy - 250.0) / 300.0)                      # el valle lateral del glaciar
     terraza = 3.0 * suave((lado - 380.0) / 60.0) * (1 - V)
     ladera = 520.0 * suave((lado - 650.0) / 900.0) ** 1.3 + 90.0 * (cresta(xx, yy, 67, 300.0, 5) - 0.4) * suave((lado - 650.0) / 200.0)
     ladera = ladera * (1 - 0.9 * V)
     loma = 2.6 * np.exp(-(((xx - 655.0) / 70.0) ** 2 + ((yy + 222.0) / 45.0) ** 2))       # la lomita de las casas
-    brazo = -3.6 * np.exp(-((yy + 150.0 - 0.1 * (xx - 650.0)) / 32.0) ** 2) * np.exp(-((xx - 650.0) / 420.0) ** 2)   # un brazo del río junto a las casas
+    brazo = -3.6 * np.exp(-((yy + 150.0 - 0.1 * (xx - 650.0) + 14.0 * fbm(xx, yy, 103, 60.0, 3)) / 32.0) ** 2) * np.exp(-((xx - 650.0) / 420.0) ** 2)   # un brazo del río junto a las casas
     return loma + brazo + llanura + np.minimum(0.0, cauce + trib) + trenzas + terraza + ladera
 
 
@@ -876,7 +900,7 @@ def hocico(sc, detalle=1.0):
     base = altura_rio(X, Y) + 20.0
     serac = 7.0 * (cresta(X, Y, 81, 40.0, 4) - 0.45) + 2.5 * fbm(X, Y, 83, 9.0, 3)
     transv = np.abs(np.sin((Y + 14.0 * fbm(X, Y, 85, 150.0, 3)) / 8.0)) ** 0.3
-    serac = serac + 6.0 * (transv - 0.8)
+    serac = serac + 3.0 * (transv - 0.8)
     H = -6.0 + 40.0 * suave((Dd + 2.0) / 9.0) + 0.05 * np.maximum(Dd, 0) + serac * suave(Dd / 12.0)
     lado = np.abs(X - xt_rio(Y))
     k = suave((520.0 - lado) / 220.0)
@@ -906,7 +930,7 @@ def hocico(sc, detalle=1.0):
     zs3 = np.linspace(10.0, 70.0, int(90 * detalle) + 2, dtype=np.float32)
     Xm, Zm = np.meshgrid(xs3, zs3)
     yfr = Y_HOCICO - 0.0022 * (Xm - 40.0) ** 2
-    Ym = (yfr + 1.5 - 6.0 * (cresta(Xm, Zm * 0.3, 91, 14.0, 4) - 0.45) - 1.6 * fbm(Xm, Zm, 93, 6.0, 4))
+    Ym = (yfr + 1.5 - 3.5 * (cresta(Xm, Zm * 0.12, 91, 11.0, 4) - 0.45) - 0.9 * fbm(Xm, Zm, 93, 6.0, 4))   # columnas verticales
     def sup_en(x, dd):
         yy = Y_HOCICO - dd - 0.0022 * (x - 40.0) ** 2
         bb = altura_rio(x, yy) + 20.0
@@ -930,7 +954,7 @@ def hocico(sc, detalle=1.0):
     # los vértices del borde del hueco se llevan al óvalo (si no, el borde queda en escalera)
     vx, vz = verts[:, 0], verts[:, 2]
     e = ((vx - xb) / R) ** 2 + ((vz - 17.0) / Hb) ** 2
-    dentro = (e < 1.0) & (vz > 12.0)
+    dentro = (e < 1.35) & (vz > 12.0)
     s_ = 1.0 / np.sqrt(np.maximum(e, 1e-4))
     verts[dentro, 0] = xb + (vx[dentro] - xb) * s_[dentro]
     verts[dentro, 2] = 17.0 + (vz[dentro] - 17.0) * s_[dentro]
@@ -968,6 +992,8 @@ def hocico(sc, detalle=1.0):
     pr = K._mapa(nt, sp.outputs["Y"], 0.0, 1.0); pr.inputs["From Min"].default_value = yb - P; pr.inputs["From Max"].default_value = yb - 2.0
     cc = K._rampa(nt, pr.outputs[0], (0.0, 0.004, 0.012), (0.05, 0.2, 0.36), (0.5, 0.97))
     nt.links.new(cc.outputs[0], bs.inputs["Base Color"])
+    bs.inputs["Emission Color"].default_value = (0.05, 0.3, 0.6, 1)               # luz azul que pasa por el hielo, al fondo
+    ke = K._mapa(nt, pr.outputs[0], 0.1, 0.0); nt.links.new(ke.outputs[0], bs.inputs["Emission Strength"])
     bs.inputs["Roughness"].default_value = 0.15
     est = K._ruido(nt, escala=0.3, detalle=6, estirar=(1.0, 1.0, 0.2))
     K._bump(nt, bs, est.outputs["Fac"], 0.6, 0.5)
@@ -1180,7 +1206,7 @@ def arboles(sc, detalle=1.0, n=26000, semilla=11):
     y = (np.repeat(cy, m_) + r.normal(0, 32, len(cy) * m_)).astype(np.float32)
     h = altura_rio(x, y)
     hielo = (y < Y_HOCICO + 20) & (np.abs(x - xt_rio(y)) < 520)
-    casas = np.hypot(x - 655, y + 220) < 70
+    casas = np.hypot(x - 655, y + 220) < 40
     ok = (h > 3.0) & (h < 380) & ~hielo & ~casas
     x, y, h = x[ok][:n], y[ok][:n], h[ok][:n]
     alto = r.uniform(9, 18, len(x)).astype(np.float32); rad = alto * r.uniform(0.22, 0.32, len(x)).astype(np.float32)
