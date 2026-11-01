@@ -441,7 +441,7 @@ def p_rio3(sc, a, b):
         L.estado_rio(R, L.RIO_CRECIDA, -760.0, 2500.0)
         flechas_rio(R, L.RIO_CRECIDA, 1.0, f)
         fase_rio(f)
-        em.inputs[1].default_value = 0.6 if t < t_al - 0.1 else (60.0 if (f // 6) % 2 == 0 else 4.0)
+        em.inputs[1].default_value = 0.8 if t < t_al - 0.1 else (14.0 if (f // 6) % 2 == 0 else 2.0)   # más fuerte se ve blanca
         x = suave(lin(f, a, b - 1))
         mirar(R["cam"], p0 + (m0 - p0) * 0.1 * x, m0, lente=42)
         return {"casas": pantalla(sc, R["cam"], R["casas"][0].matrix_world.translation + Vector((0, 0, 6))),
