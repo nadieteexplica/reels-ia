@@ -1,0 +1,196 @@
+{
+ "paneles": 6,
+ "calibracion": {
+  "rho_quedan_vs_yt_se_quedo": 0.64,
+  "rho_quedan_vs_ig_pasa_3s": 0.64,
+  "rho_borda_vs_yt_vistas": 0.32,
+  "peor_real": "ep05",
+  "peor_real_en_ultimo_tercio": true,
+  "se_puede_usar_para_descartar": false
+ },
+ "videos": {
+  "ep03": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 35.0,
+   "manda": 83.3,
+   "borda": 0.167,
+   "se_va_en": [
+    "¿Y por qué no usaron rieles?",
+    "¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados.",
+    "Y lo más loco: Shanghái ya tenía práctica.",
+    "Las patas van en dos grupos. Uno aguanta el peso.",
+    "Las patas van en dos grupos. Uno aguanta el peso.",
+    "final"
+   ],
+   "por_que_2s": [
+    "Un edificio de ladrillo con patas mecánicas que camina y la voz dice que se fue caminando: qué es esto, quiero ver cómo.",
+    "Un edificio de ladrillo de cinco pisos parado sobre patitas mecánicas, y se mueve. Qué locura, tengo que ver esto.",
+    "Un edificio de ladrillo sobre patas mecánicas que camina; se entiende al instante y es puro tema de ingeniería.",
+    "Un edificio de ladrillo con patas de robot que se va caminando, no entiendo cómo y eso me da curiosidad.",
+    "Un edificio entero con patas de robot caminando, eso esta loco, quiero ver como lo hacen.",
+    "Un edificio con patitas que se camina solo, nunca había visto eso y quiero saber cómo."
+   ]
+  },
+  "ep01": {
+   "tipo": "ancla",
+   "quedan_2s": 33.3,
+   "entero": 5.0,
+   "manda": 0.0,
+   "borda": 0.778,
+   "se_va_en": [
+    "cuadro0",
+    "Los vasos sanguíneos de ahí se encogen... y de repente se abren para mandar sangre caliente.",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0",
+    "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara."
+   ],
+   "por_que_2s": [
+    "Un niño de caricatura comiéndose un helado; ya sé lo del dolor de cabeza del helado y se ve genérico.",
+    "El chabón comiendo helado que de golpe se agarra la cabeza con escarcha saliéndole de la frente: me pasa siempre, me hizo reír.",
+    "Un muñeco 3D comiendo helado y agarrándose la cabeza; el congelamiento de cerebro ya me lo sé y se ve genérico, como clase para niños.",
+    "Otro muñeco 3D comiendo helado y 'te duele la frente'; eso ya me lo sé, es dato curioso de los mil que he visto.",
+    "Es el dolor de cabeza del helado, eso ya lo sabe todo el mundo, no me dice nada nuevo.",
+    "Un muchacho comiendo helado y se agarra la cabeza, ese dolor de frente me ha pasado a mí."
+   ]
+  },
+  "ep05": {
+   "tipo": "ancla",
+   "quedan_2s": 0.0,
+   "entero": 0.0,
+   "manda": 0.0,
+   "borda": 0.778,
+   "se_va_en": [
+    "cuadro0",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "El tipo está chiquito y lejísimos, no entiendo qué es el cilindro, y dice SIMULACIÓN, o sea que ni es real.",
+    "Un cilindro oscuro gigante y un tipito diminuto flotando lejos; no entendí qué era y el cartel dice SIMULACIÓN, o sea que es falso.",
+    "Un cilindro gigante y un tipito diminuto flotando lejos, no entiendo qué estoy mirando; lo de 'simulación' me dice que no es mecánica real y lo de la rana y el imán ya lo conozco.",
+    "Un cilindro enorme y un señor diminuto flotando allá lejos con letrero de SIMULACIÓN; no entiendo qué es y se ve falso.",
+    "Un cilindro enorme y un tipo diminuto lejos, no entiendo que miro, y la voz empieza como profe de fisica.",
+    "Un tubo enorme y un señor chiquito allá lejos flotando, y dice simulación; no entendí nada."
+   ]
+  },
+  "ep07": {
+   "tipo": "ancla",
+   "quedan_2s": 33.3,
+   "entero": 16.7,
+   "manda": 0.0,
+   "borda": 0.667,
+   "se_va_en": [
+    "Solo armar eso toma dos meses.",
+    "cuadro0",
+    "final",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Un rascacielos que se va encogiendo con el contador de pisos bajando, no entiendo cómo y quiero ver; aunque tanta etiqueta chiquita me marea y 'botado' yo diría 'tirado'.",
+    "Una ciudad con un edificio chiquito, un contador bajando y tres textitos que no se leen sin sonido; no entendí qué estaba mirando y parece clase de ingeniería.",
+    "Un rascacielos que se va acortando con el contador de pisos bajando: quiero ver cómo se tumba un edificio de 40 pisos.",
+    "Una ciudad chiquita y tres letreritos con letra mínima, no entiendo qué estoy mirando; parece infografía de clase.",
+    "Edificio chiquito en el fondo y tres letreros con letra chica, no se que mirar y la voz suena a noticiero.",
+    "Una ciudad chiquita con un montón de letreritos y números, no entendí qué estaba mirando."
+   ]
+  },
+  "ep02": {
+   "tipo": "ancla",
+   "quedan_2s": 66.7,
+   "entero": 7.5,
+   "manda": 0.0,
+   "borda": 0.611,
+   "se_va_en": [
+    "Tu lengua tiene sensores de calor, como alarmas de incendio.",
+    "Tu lengua tiene sensores de calor, como alarmas de incendio.",
+    "cuadro0",
+    "Tu lengua tiene sensores de calor, como alarmas de incendio.",
+    "Tu lengua tiene sensores de calor, como alarmas de incendio.",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Un ratón echando fuego y un pájaro tranquilo comiéndose el mismo chile, me dio risa; y lo del picante me late (aunque aquí le decimos chile, no ají).",
+    "Un ratón rosa escupiendo fuego al lado de un pájaro tranquilo con un ají en el pico: absurdo y gracioso, me quedo a ver qué onda.",
+    "Dibujito de un ratón rosado echando fuego, se ve infantil y como de IA; 75 segundos de eso no los aguanto.",
+    "Un ratón de caricatura escupiendo fuego junto a un pájaro con un chile en el pico me da risa; aunque empieza con otro 'Este...' y aquí se dice chile, no ají.",
+    "Un raton rosado botando fuego por la boca y el pajaro tranquilo comiendo el aji, me dio risa.",
+    "Un dibujito de un ratón echando fuego y un pájaro, no entendí qué era y parece cosa de niños."
+   ]
+  },
+  "s4": {
+   "tipo": "candidato",
+   "quedan_2s": 100.0,
+   "entero": 75.0,
+   "manda": 100.0,
+   "borda": 0.083,
+   "se_va_en": [
+    "final",
+    "final"
+   ],
+   "por_que_2s": [
+    "Una casa de madera jalada por bueyes directo al mar: no entiendo qué pasa y quiero ver cómo la meten al agua.",
+    "Bueyes jalando una casa de madera hacia el mar, rarísimo y se entiende al tiro; quiero ver cómo termina."
+   ]
+  },
+  "ep04": {
+   "tipo": "ancla",
+   "quedan_2s": 83.3,
+   "entero": 53.3,
+   "manda": 50.0,
+   "borda": 0.333,
+   "se_va_en": [
+    "final",
+    "En el centro del remolino, la presión baja.",
+    "final",
+    "final",
+    "cuadro0",
+    "final"
+   ],
+   "por_que_2s": [
+    "Me pasa en la regadera todo el tiempo, la cortina se me pega; quiero saber por qué.",
+    "El viejo con shampoo en el pelo y la cortina de la ducha que se le pega: me pasa todos los días, quiero ver por qué.",
+    "A todo el mundo le ha pasado que la cortina se pega en la ducha, y nunca me han explicado bien por qué.",
+    "Un señor con bigote y espuma en el pelo, tranquilo en la regadera, y yo ya sé lo que le va a pasar a la cortina; me da risa porque me pasa a mí.",
+    "Un viejito con shampoo en la ducha, cosa de todos los dias, no hay nada gigante ni imposible, parece clase de fisica del hogar.",
+    "Un señor en la ducha y la cortina se le pega, eso me pasa todos los días."
+   ]
+  },
+  "s5": {
+   "tipo": "candidato",
+   "quedan_2s": 100.0,
+   "entero": 70.0,
+   "manda": 100.0,
+   "borda": 0.083,
+   "se_va_en": [
+    "final",
+    "final"
+   ],
+   "por_que_2s": [
+    "Una casa entera flotando detrás de una lancha como si nada. Absurdo total, quiero saber cómo es eso.",
+    "Una casa flotando detras de una lancha como si nada, raro y corto, quiero ver como termina."
+   ]
+  },
+  "s6": {
+   "tipo": "candidato",
+   "quedan_2s": 100.0,
+   "entero": 72.5,
+   "manda": 50.0,
+   "borda": 0.333,
+   "se_va_en": [
+    "final",
+    "final"
+   ],
+   "por_que_2s": [
+    "Una casa de madera avanzando sola en el mar, atada a una cuerda: quiero saber cómo es que flota y adónde va.",
+    "Una casa en pleno mar que avanza sola, ¿cómo así que nada?"
+   ]
+  }
+ }
+}
