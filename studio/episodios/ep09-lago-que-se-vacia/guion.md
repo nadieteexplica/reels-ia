@@ -1,6 +1,6 @@
 # Ep. 9 — El lago que se vacía solo
 
-**Versión 2.0 (1-nov-2026, 14:45: Tomás pidió 45 s y más datos relacionados).** La v1.0 (86 palabras, 26,5 s de voz) pasó la puerta 1 r1; la v2 agrega el tamaño (80.000 piscinas), el río que se triplica y se frena, la alarma río abajo y las más de 20 veces, con 2 o más fuentes cada uno. Guion del método del guionista (`docs/GUIONISTA.md` §4, pasos 1–6). Trabajo previo en `guionista/`: `premisa.md`, `ganchos.md` (14 paquetes), `duelo/duelo.md`, `guiones.md` (3 guiones) y `prueba/puntaje.md`. Va a la puerta 1 del auditor.
+**Versión 2.1 (1-nov-2026; en la v2.0 la transcripción oyó "tubazo" en "como el de tu vaso": ahora "igual que en tu vaso"). Versión 2.0 (14:45: Tomás pidió 45 s y más datos relacionados).** La v1.0 (86 palabras, 26,5 s de voz) pasó la puerta 1 r1; la v2 agrega el tamaño (80.000 piscinas), el río que se triplica y se frena, la alarma río abajo y las más de 20 veces, con 2 o más fuentes cada uno. Guion del método del guionista (`docs/GUIONISTA.md` §4, pasos 1–6). Trabajo previo en `guionista/`: `premisa.md`, `ganchos.md` (14 paquetes), `duelo/duelo.md`, `guiones.md` (3 guiones) y `prueba/puntaje.md`. Va a la puerta 1 del auditor.
 **Pruebas:**
 - **Duelo de ganchos entre sí (`guionista/duelo/duelo.md`, 4 jueces ciegos, cada par en los dos órdenes):** g4 "Anoche, aquí había un lago" ganó 18 de 20 (90 %); g7 "Este glaciar se está tragando un lago entero", 80 %; g5 "Acampas junto a un lago…", 60 %. **La propuesta de Tomás ("¿Sabías que en Chile hay un lago que se vacía solo?", g6) quedó última con 0 de 20:** perdió 4–0 incluso contra el g1, que tenía exactamente la misma imagen; los 4 jueces dijeron lo mismo con otras palabras ("suena a clase", "el gancho más gastado del feed", "largo y de manual"). Además la palabra que crea la tensión ("vacía") cae a ~2,9 s (receta G12) y la frase tiene 11 palabras (regla 2). Chile no se pierde: va en la segunda frase.
 - **Cazadores de fugas (`guionista/prueba/puntaje.md`, un guion por panel, 2 espectadores por guion):** con s1 nadie se fue antes del pago; uno se fue en la última frase ("Más de veinte veces, y otra vez"), por eso se acortó el cierre y la cifra pasó a la pantalla. Los dos que vieron s1 lo mandarían. (s3 retuvo igual y también se mandaba; s2 retuvo pero nadie lo mandaba.) El simulador no reprodujo los resultados reales en esta corrida: es orientación, no veredicto.
@@ -24,7 +24,7 @@
 Anoche, aquí había un lago.
 En la Patagonia chilena, un glaciar lo tapaba como una represa.
 Ochenta mil piscinas olímpicas de agua. ¿Por dónde se fueron?
-El hielo flota, como el de tu vaso.
+El hielo flota, igual que en tu vaso.
 Por eso, cuando el lago se llena, levanta el borde del glaciar.
 Y el agua se cuela por abajo.
 Al pasar, derrite el hielo y abre un túnel cada vez más ancho.
@@ -43,7 +43,7 @@ Ya van más de veinte veces, y otra vez…
 | Anoche, aquí había un lago. | E1: fondo seco, témpano varado del tamaño de una casa, un trozo de hielo cae al barro; el muro de hielo atrás. Píldora ANOCHE AQUÍ HABÍA UN LAGO |
 | En la Patagonia chilena, un glaciar lo tapaba como una represa. | E1 general alto: el lago lleno contra el glaciar (ANTES); GLACIAR → REPRESA DE HIELO sobre el frente |
 | Ochenta mil piscinas olímpicas de agua. ¿Por dónde se fueron? | E1 a ras del agua hacia el pie del muro; píldora ≈ 80.000 PISCINAS OLÍMPICAS → ¿POR DÓNDE? |
-| El hielo flota, como el de tu vaso. | E2 corte: un témpano cortado flota en el lago con casi todo bajo el agua (línea del agua marcada). EL HIELO FLOTA |
+| El hielo flota, igual que en tu vaso. | E2 corte: un témpano cortado flota en el lago con casi todo bajo el agua (línea del agua marcada). EL HIELO FLOTA |
 | Por eso, cuando el lago se llena, levanta el borde del glaciar. | E2 corte: el lago sube contra la represa; en "levanta", corte cercano: el pie de hielo se despega de la roca ↑ |
 | Y el agua se cuela por abajo. | E2 corte: una lengua de agua azul entra bajo el hielo |
 | Al pasar, derrite el hielo y abre un túnel cada vez más ancho. | E2 corte: el túnel crece; estelas que corren. TÚNEL |
