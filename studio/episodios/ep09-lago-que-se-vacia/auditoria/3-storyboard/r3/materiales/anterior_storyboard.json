@@ -1,0 +1,13 @@
+[
+ {
+  "id": "A1",
+  "bloqueante": true,
+  "tipo": "B14",
+  "plano": 11,
+  "segundo": "26.75",
+  "que": "La voz dice 'Sale por el otro lado' y se pasa del lago bajando (E1, plano 10) a la junta de dos ríos vista a 520 m (E4), un lugar nuevo que no tiene ni glaciar ni lago. Ningún plano muestra el agua saliendo bajo el hielo por el otro lado. Sin sonido, el agua café que entra al río turquesa no se conecta con el lago, así que E4 queda pegado sin un espacio que lo una (también es B13: lo que dice la voz no se ve).",
+  "arreglo": "Mantener la misma escena E4 con un solo movimiento de cámara. Entre 26.75 y ~28.2, que el cuadro parta arriba con el frente del glaciar de E1 (de fondo, con neblina) y el agua café saliendo con fuerza de un arco en su base hacia el afluente. Después, la cámara baja siguiendo el afluente hasta la junta para 'se triplica'. El agua del túnel en los planos 9-10 tiene que ser del mismo café, así se lee como la misma agua.",
+  "de": "storyboard",
+  "asignado": "storyboard"
+ }
+]

@@ -1,0 +1,55 @@
+{
+ "etapa": "3-storyboard",
+ "ronda": 3,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": 8.0,
+ "notas": {
+  "foco": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Cada frase tiene su imagen y una idea por plano; el plano 11 ahora separa las dos ideas con el corte en 'río' (26.75-28.3 el agua sale bajo el glaciar, 28.3-30.97 el río grande se triplica) en vez de pegar la junta sin contexto.",
+   "de": "storyboard"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "16 planos en 45 s con píldoras que entran en la palabra y cambios marcados en cada plano largo (plano 8, 4,6 s: el túnel crece de forma continua + TÚNEL + la cámara se aleja; plano 11: avance hacia la boca + corte en 'río' + el nivel sube); cambio de escala G/M/D cada pocos segundos.",
+   "de": "storyboard"
+  },
+  "viabilidad": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "3 escenas a medida de un solo generador (lago.py), 0 Kling y ningún personaje ni mano, que era el mayor riesgo realista; cada ficha dice sol, lo que flota, micro-movimiento y lo que no se tapa. El riesgo que queda es el agua revuelta con espuma saliendo de la boca en el plano 11 (26.75) y el río que sube en E4: es agua procedural y puede verse plana; la propia ficha ya lo lista como delator a revisar en los cuadros.",
+   "de": "storyboard"
+  },
+  "gancho_visual": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Cuadro 0 de situación fuerte (fondo de lago vacío, témpano del tamaño de una casa, un trozo de hielo cae en 0,1-0,7 s, sin fundido) y el plano 16 baja con el agua hasta la cámara exacta del cuadro 0, así el loop cierra; el nivel del lago es el símbolo que se repite.",
+   "de": "storyboard"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "En 26.75-28.3 el plano 11 ahora parte al pie del glaciar con la boca oscura y el agua café saliendo con SALE BAJO EL GLACIAR (flecha a la boca), así que 'Sale por el otro lado' se ve (B13 resuelto); en 28.3 el plano general pone en un mismo cuadro el glaciar con su boca arriba a la derecha y el afluente café que baja hasta el río grande, que es el espacio que une el lago con la junta (B14 resuelto). Queda sin aplicar la parte chica del arreglo (el agua del túnel en los planos 7-9 sigue en azul por el código de color y la que sale es café), pero no rompe la lectura: agua que corre bajo el hielo y luego sale bajo el hielo. En el animatic hay que confirmar que la boca se lea a ~180 m con 32 mm (ocupa ~15 % del ancho).",
+   "de": "storyboard"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "ronda 3 abierta con --forzar: Tomás eligió 'Rehacer corte y río' (1-nov, 15:30) tras el NO de la r2: la r3 verifica el bloqueante del plano 11 (boca del glaciar) y A2/A3/A5",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [],
+ "solo_bloqueantes": true,
+ "parar_y_preguntar": false
+}

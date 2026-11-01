@@ -7,3 +7,4 @@
 | 2-voz | r2 | APROBADO | 0 | 3 |
 | 3-storyboard | r1 | APROBADO | 0 | 8 |
 | 3-storyboard | r2 | NO APROBADO | 1 | 5 |
+| 3-storyboard | r3 | APROBADO | 0 | 0 |

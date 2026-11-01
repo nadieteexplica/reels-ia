@@ -1,0 +1,15 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "ronda 3 abierta con --forzar: Tomás eligió 'Rehacer corte y río' (1-nov, 15:30) tras el NO de la r2: la r3 verifica el bloqueante del plano 11 (boca del glaciar) y A2/A3/A5",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "planos": 16,
+  "escenas": 3,
+  "planos_kling": [],
+  "estilo": "realista"
+ }
+}

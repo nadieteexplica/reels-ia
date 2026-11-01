@@ -166,7 +166,17 @@ def mat_valle(nombre="valle"):
     nt.links.new(grande.outputs["Fac"], nz.inputs[0]); nt.links.new(z, zr.inputs[0]); nt.links.new(nz.outputs[0], zr.inputs[1])
     zz = zr.outputs[0]
     c1 = mezclar(rango(zz, -26, -14), barro.outputs[0], limo.outputs[0])            # fondo: barro → limo en las lomas
-    c2a = mezclar(rango(zz, 0.5, 3.0), c1, lavada.outputs[0])                         # sobre el nivel lleno: franja lavada
+    # puerta 3 A1: la marca del nivel lleno es una línea nítida (por z casi sin ruido) con una franja oscura de restos
+    zl = nt.nodes.new("ShaderNodeMath"); zl.operation = "MULTIPLY_ADD"; zl.inputs[1].default_value = 0.5
+    nt.links.new(grande.outputs["Fac"], zl.inputs[0]); nt.links.new(z, zl.inputs[2])
+    c2l = mezclar(rango(zl.outputs[0], 0.55, 0.85), c1, lavada.outputs[0])            # sobre el nivel lleno: franja lavada
+    mk = nt.nodes.new("ShaderNodeMath"); mk.operation = "MULTIPLY"
+    nt.links.new(rango(zl.outputs[0], 0.05, 0.3), mk.inputs[0]); nt.links.new(rango(zl.outputs[0], 1.1, 0.75), mk.inputs[1])
+    mk2 = nt.nodes.new("ShaderNodeMath"); mk2.operation = "MULTIPLY"; mk2.inputs[1].default_value = 0.75
+    nt.links.new(mk.outputs[0], mk2.inputs[0])
+    marca = nt.nodes.new("ShaderNodeMix"); marca.data_type = "RGBA"
+    nt.links.new(mk2.outputs[0], marca.inputs[0]); nt.links.new(c2l, marca.inputs[6]); marca.inputs[7].default_value = (0.045, 0.04, 0.036, 1)
+    c2a = marca.outputs[2]
     c2 = mezclar(rango(zz, 8.0, 18.0), c2a, roca.outputs[0])                           # más arriba, roca y pasto ralo
     manchas_b = K._ruido(nt, escala=0.02, detalle=14)
     kb1 = rango(zz, 14.0, 26.0); kb3 = rango(zz, 330.0, 200.0); kb2 = rango(manchas_b.outputs["Fac"], 0.44, 0.47)
