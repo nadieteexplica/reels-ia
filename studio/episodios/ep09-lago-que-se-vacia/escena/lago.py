@@ -553,8 +553,8 @@ def mat_roca_corte():
     """Roca cortada: estratos ondulados grises y cafés con vetas claras y fracturas finas."""
     m, nt, b = K._nodos("roca_corte")
     m["corte"] = 1
-    capas = K._ruido(nt, escala=0.09, detalle=8, estirar=(0.04, 0.04, 1.0))
-    capas.inputs["Distortion"].default_value = 1.4
+    capas = K._ruido(nt, escala=0.09, detalle=8, estirar=(0.14, 0.14, 1.0))
+    capas.inputs["Distortion"].default_value = 2.2
     r = nt.nodes.new("ShaderNodeValToRGB")
     els = r.color_ramp.elements
     els[0].position, els[0].color = 0.3, (0.05, 0.045, 0.04, 1)
@@ -568,8 +568,8 @@ def mat_roca_corte():
     k2 = nt.nodes.new("ShaderNodeMath"); k2.operation = "MULTIPLY"; k2.inputs[1].default_value = 0.6
     nt.links.new(kv.outputs[0], k2.inputs[0]); nt.links.new(k2.outputs[0], mx.inputs[0])
     nt.links.new(r.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (0.5, 0.48, 0.44, 1)
-    gr = K._ruido(nt, escala=0.8, detalle=10)
-    kg = K._mapa(nt, gr.outputs["Fac"], 0.7, 1.15)
+    gr = K._ruido(nt, escala=0.35, detalle=10)
+    kg = K._mapa(nt, gr.outputs["Fac"], 0.55, 1.3)
     cg = nt.nodes.new("ShaderNodeCombineColor"); [nt.links.new(kg.outputs[0], cg.inputs[i]) for i in range(3)]
     mm = nt.nodes.new("ShaderNodeMix"); mm.data_type = "RGBA"; mm.blend_type = "MULTIPLY"; mm.inputs[0].default_value = 1.0
     nt.links.new(mx.outputs[2], mm.inputs[6]); nt.links.new(cg.outputs[0], mm.inputs[7])
@@ -593,33 +593,43 @@ def mat_till_corte():
 
 
 def mat_hielo_corte():
-    """La cara del hielo cortado: blanca arriba, celeste al medio y azul profunda abajo (el hielo viejo y apretado es azul),
-    con capas finas de polvo (años de nieve), burbujas y grietas que se ven azul oscuro."""
+    """La cara del hielo cortado: blanco celeste arriba y azul cada vez más hondo hacia abajo (el hielo viejo y apretado es
+    azul), moteado, con capas finas de polvo (años de nieve) y fracturas verticales finas."""
     m, nt, b = K._nodos("hielo_corte")
     m["corte"] = 1
     tc = nt.nodes.new("ShaderNodeTexCoord")
     sp = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Object"], sp.inputs[0])
-    prof = K._mapa(nt, sp.outputs["Z"], 0.0, 1.0); prof.inputs["From Min"].default_value = -34; prof.inputs["From Max"].default_value = 55
+    prof = K._mapa(nt, sp.outputs["Z"], 0.0, 1.0); prof.inputs["From Min"].default_value = -36; prof.inputs["From Max"].default_value = 50
     r = nt.nodes.new("ShaderNodeValToRGB")
     els = r.color_ramp.elements
-    els[0].position, els[0].color = 0.0, (0.02, 0.1, 0.26, 1)
-    els[1].position, els[1].color = 1.0, (0.62, 0.72, 0.8, 1)
-    e = els.new(0.4); e.color = (0.1, 0.3, 0.52, 1)
-    e = els.new(0.75); e.color = (0.32, 0.53, 0.7, 1)
+    els[0].position, els[0].color = 0.0, (0.04, 0.16, 0.32, 1)
+    els[1].position, els[1].color = 1.0, (0.74, 0.81, 0.86, 1)
+    e = els.new(0.3); e.color = (0.18, 0.38, 0.58, 1)
+    e = els.new(0.65); e.color = (0.5, 0.66, 0.78, 1)
     nt.links.new(prof.outputs[0], r.inputs[0])
-    capas = K._ruido(nt, escala=0.3, detalle=6, estirar=(0.02, 0.02, 1.0))
-    capas.inputs["Distortion"].default_value = 0.8
-    kc = K._mapa(nt, capas.outputs["Fac"], 0.0, 1.0); kc.inputs["From Min"].default_value = 0.56; kc.inputs["From Max"].default_value = 0.64
-    mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"; mx.blend_type = "MULTIPLY"
-    f = nt.nodes.new("ShaderNodeMath"); f.operation = "MULTIPLY"; f.inputs[1].default_value = 0.55
-    nt.links.new(kc.outputs[0], f.inputs[0]); nt.links.new(f.outputs[0], mx.inputs[0])
-    nt.links.new(r.outputs[0], mx.inputs[6]); mx.inputs[7].default_value = (0.42, 0.38, 0.34, 1)
-    nt.links.new(mx.outputs[2], b.inputs["Base Color"])
-    b.inputs["Roughness"].default_value = 0.55
-    bub = K._ruido(nt, escala=4.0, detalle=4)
-    est = K._ruido(nt, escala=0.6, detalle=6, estirar=(1.0, 1.0, 0.15))
-    s = nt.nodes.new("ShaderNodeMath"); s.operation = "ADD"; nt.links.new(bub.outputs["Fac"], s.inputs[0]); nt.links.new(est.outputs["Fac"], s.inputs[1])
-    K._bump(nt, b, s.outputs[0], 0.35, 0.15)
+    mot = K._ruido(nt, escala=0.12, detalle=6)
+    km = K._mapa(nt, mot.outputs["Fac"], 0.72, 1.25)
+    cg = nt.nodes.new("ShaderNodeCombineColor"); [nt.links.new(km.outputs[0], cg.inputs[i]) for i in range(3)]
+    m1 = nt.nodes.new("ShaderNodeMix"); m1.data_type = "RGBA"; m1.blend_type = "MULTIPLY"; m1.inputs[0].default_value = 1.0
+    nt.links.new(r.outputs[0], m1.inputs[6]); nt.links.new(cg.outputs[0], m1.inputs[7])
+    capas = K._ruido(nt, escala=0.45, detalle=6, estirar=(0.02, 0.02, 1.0))
+    capas.inputs["Distortion"].default_value = 0.6
+    kc = K._mapa(nt, capas.outputs["Fac"], 0.0, 1.0); kc.inputs["From Min"].default_value = 0.6; kc.inputs["From Max"].default_value = 0.66
+    m2 = nt.nodes.new("ShaderNodeMix"); m2.data_type = "RGBA"
+    f = nt.nodes.new("ShaderNodeMath"); f.operation = "MULTIPLY"; f.inputs[1].default_value = 0.7
+    nt.links.new(kc.outputs[0], f.inputs[0]); nt.links.new(f.outputs[0], m2.inputs[0])
+    nt.links.new(m1.outputs[2], m2.inputs[6]); m2.inputs[7].default_value = (0.2, 0.19, 0.18, 1)
+    fr = K._ruido(nt, escala=0.35, detalle=4, estirar=(1.0, 1.0, 0.06))
+    kf = K._mapa(nt, fr.outputs["Fac"], 0.0, 1.0); kf.inputs["From Min"].default_value = 0.68; kf.inputs["From Max"].default_value = 0.72
+    m3 = nt.nodes.new("ShaderNodeMix"); m3.data_type = "RGBA"
+    f2 = nt.nodes.new("ShaderNodeMath"); f2.operation = "MULTIPLY"; f2.inputs[1].default_value = 0.55
+    nt.links.new(kf.outputs[0], f2.inputs[0]); nt.links.new(f2.outputs[0], m3.inputs[0])
+    nt.links.new(m2.outputs[2], m3.inputs[6]); m3.inputs[7].default_value = (0.03, 0.12, 0.25, 1)
+    nt.links.new(m3.outputs[2], b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.35
+    bub = K._ruido(nt, escala=3.0, detalle=4)
+    s = nt.nodes.new("ShaderNodeMath"); s.operation = "ADD"; nt.links.new(bub.outputs["Fac"], s.inputs[0]); nt.links.new(fr.outputs["Fac"], s.inputs[1])
+    K._bump(nt, b, s.outputs[0], 0.45, 0.25)
     return m
 
 
@@ -636,9 +646,9 @@ def mat_agua_corte(nombre="agua_corte", brillo=0.0):
     m["mapping"] = mp.name
     sp = nt.nodes.new("ShaderNodeSeparateXYZ"); nt.links.new(tc.outputs["Object"], sp.inputs[0])
     prof = K._mapa(nt, sp.outputs["Z"], 0.0, 1.0); prof.inputs["From Min"].default_value = -36; prof.inputs["From Max"].default_value = 1
-    c = K._rampa(nt, prof.outputs[0], (0.015, 0.07, 0.1), (0.1, 0.36, 0.4), (0.0, 1.0))
-    limo = K._ruido(nt, escala=0.12, detalle=5)
-    kl = K._mapa(nt, limo.outputs["Fac"], 0.85, 1.15)
+    c = K._rampa(nt, prof.outputs[0], (0.006, 0.03, 0.05), (0.09, 0.34, 0.37), (0.05, 1.0))
+    limo = K._ruido(nt, escala=0.08, detalle=6)
+    kl = K._mapa(nt, limo.outputs["Fac"], 0.65, 1.35)
     rayos = K._ruido(nt, escala=0.05, detalle=2, estirar=(1.0, 1.0, 0.04))
     kr = K._mapa(nt, rayos.outputs["Fac"], 0.0, 1.0); kr.inputs["From Min"].default_value = 0.55; kr.inputs["From Max"].default_value = 0.75
     luz = nt.nodes.new("ShaderNodeMath"); luz.operation = "MULTIPLY"; nt.links.new(kr.outputs[0], luz.inputs[0]); nt.links.new(prof.outputs[0], luz.inputs[1])
@@ -647,7 +657,7 @@ def mat_agua_corte(nombre="agua_corte", brillo=0.0):
     cg = nt.nodes.new("ShaderNodeCombineColor"); [nt.links.new(kl.outputs[0], cg.inputs[i]) for i in range(3)]
     nt.links.new(cg.outputs[0], c2.inputs[7])
     c3 = nt.nodes.new("ShaderNodeMix"); c3.data_type = "RGBA"; c3.blend_type = "ADD"
-    k3 = nt.nodes.new("ShaderNodeMath"); k3.operation = "MULTIPLY"; k3.inputs[1].default_value = 0.12
+    k3 = nt.nodes.new("ShaderNodeMath"); k3.operation = "MULTIPLY"; k3.inputs[1].default_value = 0.22
     nt.links.new(luz.outputs[0], k3.inputs[0]); nt.links.new(k3.outputs[0], c3.inputs[0])
     nt.links.new(c2.outputs[2], c3.inputs[6]); c3.inputs[7].default_value = (0.6, 0.9, 0.95, 1)
     est = K._mapa(nt, st.outputs["Fac"], 0.0, 1.0); est.inputs["From Min"].default_value = 0.52; est.inputs["From Max"].default_value = 0.75
@@ -725,7 +735,7 @@ class Corte:
         self.roca = _franja("CorteRoca", y, z0, till, mat_roca_corte())
         self.till = _franja("CorteTill", y, till, self.bed, mat_till_corte(), x=XC + 0.02)
         self.hielo = _franja("CorteHielo", y, self.bed, self.techo, mat_hielo_corte())
-        self.hueco = _franja("CorteHueco", y, self.bed, self.bed, mat_hueco_tunel(), x=XC - 2.0)
+        self.hueco = _franja("CorteHueco", y, self.bed, self.bed, mat_hueco_tunel(), x=XC - 0.6)
         self.tunel = _franja("CorteTunel", y, self.bed, self.bed, mat_agua_corte("agua_tunel", brillo=1), x=XC + 0.04)
         self.lado_lago = y > Y_FRENTE
         yl = y[self.lado_lago]
@@ -738,14 +748,14 @@ class Corte:
         h = self.hay_hielo
         lev = lift * suave((y + 110.0) / 105.0) * h
         hl = np.where((y >= lengua) & h, 1.6, 0.0) * (lengua < 0)
-        tun = radio * 2.0 * (0.85 + 0.15 * suave((y + 300) / 300)) * (y <= Y_FRENTE + TOE * 0.5)
+        tun = radio * 2.0 * (0.85 + 0.15 * suave((y + 300) / 300)) * suave((Y_FRENTE + TOE * 0.6 - y) / 14.0)
         hueco = (lev + hl + tun) * h
         abajo = bed + hueco
         arriba = np.where(h, self.techo + lev * np.where(y > Y_FRENTE, 1.0, 0.3), bed)
         _mover_franja(self.hielo, abajo, arriba)
         agua_t = np.where(hueco > 0.05, bed + np.where(tun > 0.5, 0.62 * hueco, hueco), bed)
         _mover_franja(self.tunel, bed, agua_t)
-        _mover_franja(self.hueco, bed, np.where(hueco > 0.05, abajo + 0.3, bed))
+        _mover_franja(self.hueco, bed - 1.0, np.where(hueco > 0.05, abajo + 1.5, bed - 1.0))
         fondo_lago = np.where(h, np.maximum(arriba, bed), bed)[self.lado_lago]
         _mover_franja(self.lago, fondo_lago, np.maximum(nivel, fondo_lago))
         tope = np.where(h & (y <= Y_FRENTE), arriba, np.maximum(bed, np.where(self.lado_lago, np.maximum(nivel, np.where(h, arriba, bed)), bed)))
@@ -1020,16 +1030,19 @@ def mat_agua_rio():
     en_trib = op("MULTIPLY", op("LESS_THAN", op("ABSOLUTE", op("SUBTRACT", sp.outputs["X"], xt), 0), 70.0), op("LESS_THAN", sp.outputs["Y"], -60.0))
     # al pie del glaciar el agua sale revuelta: espuma que se apaga a ~250 m
     dy = op("SUBTRACT", sp.outputs["Y"], -760.0)
-    cerca = op("SUBTRACT", 1.0, op("MINIMUM", op("DIVIDE", op("ABSOLUTE", dy, 0), 180.0), 1.0))
+    cerca = op("SUBTRACT", 1.0, op("MINIMUM", op("DIVIDE", op("ABSOLUTE", dy, 0), 300.0), 1.0))
     sp_ = op("ADD", op("MULTIPLY", ks, en_trib), op("MULTIPLY", op("MULTIPLY", cerca, cerca), op("MULTIPLY", en_trib, op("MINIMUM", op("MAXIMUM", op("DIVIDE", op("SUBTRACT", ns.outputs["Fac"], 0.42), 0.15), 0.0), 1.0))))
     esp = op("MULTIPLY", op("MINIMUM", sp_, 1.0), op("GREATER_THAN", v_ab.outputs[0], -500.0))
     mxe = nt.nodes.new("ShaderNodeMix"); mxe.data_type = "RGBA"
     nt.links.new(esp, mxe.inputs[0]); nt.links.new(mx.outputs[2], mxe.inputs[6]); mxe.inputs[7].default_value = (0.62, 0.58, 0.52, 1)
     nt.links.new(mxe.outputs[2], b.inputs["Base Color"])
-    rg = nt.nodes.new("ShaderNodeMapRange"); nt.links.new(k, rg.inputs["Value"]); rg.inputs["To Min"].default_value = 0.12; rg.inputs["To Max"].default_value = 0.55
+    rg = nt.nodes.new("ShaderNodeMapRange"); nt.links.new(k, rg.inputs["Value"]); rg.inputs["To Min"].default_value = 0.12; rg.inputs["To Max"].default_value = 0.36
     nt.links.new(rg.outputs[0], b.inputs["Roughness"])
     on = K._ruido(nt, escala=0.08, detalle=6, estirar=(0.35, 1.0, 1.0))
-    K._bump(nt, b, on.outputs["Fac"], 0.25, 0.25)
+    ch = K._ruido(nt, escala=0.6, detalle=8)
+    so = nt.nodes.new("ShaderNodeMath"); so.operation = "MULTIPLY_ADD"; so.inputs[1].default_value = 0.6
+    nt.links.new(ch.outputs["Fac"], so.inputs[0]); nt.links.new(on.outputs["Fac"], so.inputs[2])
+    K._bump(nt, b, so.outputs[0], 0.45, 0.35)
     return m
 
 
