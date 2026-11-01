@@ -1,0 +1,758 @@
+{
+ "etapa": "4-cuadros",
+ "ronda": 2,
+ "estilo": "realista",
+ "veredicto": "NO APROBADO",
+ "promedio": 6.5,
+ "notas": {
+  "belleza": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "Mejoró la luz en 00803, 00929, 00991 y 01106 (sombras con dirección, p5 de 10 a 29) y el agua llena de 01296 tiene reflejo y oleaje, pero los planos de apertura y cierre (00030 y 01296) siguen con luz alta y pareja (p5 40 y 42) y cerros con ruido; además quedan líneas sueltas a la vista (00349, 00693, 00929 y 00991) y la pared de malla estirada en 00116.",
+   "de": "cuadros"
+  },
+  "personaje": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "manos": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "anatomia": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "realismo": {
+   "nota": 6.0,
+   "min": 6,
+   "por_que": "Lo que se ve real: el frente del glaciar con vetas azules, el lecho con piedras y charcos de 00030 y el agua con reflejo de 01296. Lo que delata el videojuego: cerros con nieve de manchas de ruido y sin bruma en todos los planos, la pared de malla estirada en 00116, glaciar de plástico de burbujas (00116 y 00736), pared de merengue con túnel de domo liso en 00803, ríos de un solo color con bordes recortados en 00929 y 00991, árboles cónicos idénticos (pino, no lenga) y orilla recta con agua lisa en 01106. Para llegar a 8 faltan el relieve real con bruma y sol bajo en los cerros, y agua con sombreador y orillas de barro en las aéreas.",
+   "de": "cuadros"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "id": "A3",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": null,
+   "que": "[A3 sin arreglar] Las aéreas son lo que más delata el videojuego: luz plana con neblina gris (p5 en 47 en 00991), ríos café y celeste de un solo color con bordes duros recortados, tierra con manchas de ruido gris y verde sin árboles (no se lee la escala) y el glaciar como tapa de empanada con borde de serrucho.",
+   "arreglo": "Poner sol bajo de costado para que el relieve dé sombras. Darle al agua un sombreador con oleaje y espuma (más blanca donde el agua corre rápido), con orillas de barro y grava en vez de un recorte limpio. Repartir bosque de lenga en las laderas y dejar el glaciar más grande, con grietas, en vez del borde dentado repetido.",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "A5",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": null,
+   "que": "[A5 sin arreglar] Los cerros son el fondo de todo el video y delatan la maqueta. La nieve de la cumbre es una mancha blanca lisa con ruido estirado (00030 y 01296 arriba). En 00116, el cerro izquierdo tiene una pared vertical con la textura estirada (el borde de la malla). En 00803 los cerros son bultos lisos de un solo color. Además falta bruma de distancia y el sol está alto (p5 en 45 y 43 en 00030 y 01296).",
+   "arreglo": "Usar un relieve real (un DEM de Aysén o roca escaneada) con nieve sólo en las quebradas y las cumbres, bruma de distancia en el fondo y sol bajo de costado, que deje caras en sombra de verdad. En 00116, mover la cámara para que no se vea el borde del terreno.",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "A6",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": null,
+   "que": "[A6 sin arreglar] Las casas son cajas con techo de pirámide: sin aleros, con ventanas y puertas planas y estuco uniforme (la roja parece de plástico). La 'sirena' es una esfera blanca sobre una caja en un cilindro perfecto, y se lee como farol, no como sirena. La orilla del agua es una recta perfecta de lado a lado, y el agua café cubre un 45 % del cuadro sin detalle.",
+   "arreglo": "Hacer casas de Patagonia, con techo de zinc acanalado de dos aguas, aleros, tejuela o tabla y marcos de ventana, más una cerca o leña para dar escala. Para la sirena, poner bocinas de alarma (2 a 4 conos) en el poste, con una luz roja que gire. Para la orilla del agua, usar un borde irregular con espuma y bajar la cámara para que el agua ocupe menos del cuadro.",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "A7",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": null,
+   "segundo": null,
+   "que": "[A7 sin arreglar] Sin sonido no se lee 'el lago se vació': el lecho vacío (40 % de abajo) es una superficie lisa de raso, sin piedras, sin grietas de barro y sin témpanos varados. El túnel es negro puro, con el borde del arco escalonado como serrucho, y la pared del glaciar parece merengue.",
+   "arreglo": "Dejar 3 a 6 témpanos varados en el lecho (es la imagen típica del lago vacío) y agregar barro agrietado con charcos que reflejen. Para el túnel, alisar el borde del booleano y meter agua corriendo hacia adentro con un poco de luz azul en el fondo.",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D1",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00030",
+   "segundo": null,
+   "que": "[D1 sin arreglar] [delator · arriba] La nieve de la cumbre del cerro grande es una mancha blanca lisa con ruido estirado en diagonal, sin quebradas ni roca asomando",
+   "arreglo": "Nieve que siga la forma del relieve (quebradas y crestas), con roca escaneada debajo",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D2",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00030",
+   "segundo": null,
+   "que": "[D2 sin arreglar] [delator · arriba] No hay bruma de distancia: el cerro está tan nítido y contrastado como el glaciar, y el cielo es un degradado liso",
+   "arreglo": "Bruma volumétrica suave que aclare y azule lo lejano; algo de nube o calima en el horizonte",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D3",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00030",
+   "segundo": null,
+   "que": "[D3 sin arreglar] [delator · medio] El cerro chico de la izquierda está facetado (aristas de pocos polígonos)",
+   "arreglo": "Subdividir o cambiarlo por relieve real, con bruma",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D4",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00030",
+   "segundo": null,
+   "que": "[D4 sin arreglar] [delator · medio] Luz alta y pareja (p5 en 45): el cerro está iluminado casi entero y no hay cara en sombra",
+   "arreglo": "Sol bajo de costado que deje una ladera en sombra con negros de verdad",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D5",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00116",
+   "segundo": null,
+   "que": "[D5 sin arreglar] [delator · arriba] El cerro izquierdo tiene una pared vertical recta con la textura estirada en vertical (x≈60–90, y≈380–580 en 720): es el borde de la malla del terreno",
+   "arreglo": "Mover la cámara para que no se vea, o agregar faldón o cerros detrás",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D6",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00116",
+   "segundo": null,
+   "que": "[D6 sin arreglar] [delator · arriba] La ladera derecha tiene la textura estirada en rayas a lo largo de la pendiente",
+   "arreglo": "Proyección triplanar en las pendientes fuertes",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D7",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00116",
+   "segundo": null,
+   "que": "[D7 sin arreglar] [delator · medio] La superficie del glaciar es un patrón regular de bultos iguales, como plástico de burbujas",
+   "arreglo": "Grietas y seracs con variación de tamaño, y morrena oscura en franjas",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D8",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00116",
+   "segundo": null,
+   "que": "[D8 sin arreglar] [delator · abajo] El 40 % de abajo es agua azul oscura lisa, sin ondas ni detalle",
+   "arreglo": "Oleaje fino, témpanos chicos y el reflejo del glaciar más marcado, o bajar el horizonte",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D9",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00349",
+   "segundo": null,
+   "que": "[D9 sin arreglar] [delator · arriba] Las manchas de nieve del cerro son bultos redondeados parecidos entre sí, como camuflaje, y no siguen las quebradas (se repite en 00493, 00693 y 00736)",
+   "arreglo": "Máscara de nieve según pendiente y altura (nieve en lo plano y en las canaletas), con bosque abajo",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D10",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00349",
+   "segundo": null,
+   "que": "[D10 sin arreglar] [delator · arriba] Una línea oscura horizontal flota sobre la niebla a la derecha (x≈447–720, y≈497 en 720): parece el borde de un plano o de la caja del corte",
+   "arreglo": "Esconder ese borde detrás de la niebla, o alinearlo con la línea del corte",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D13",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00693",
+   "segundo": null,
+   "que": "[D13 sin arreglar] [delator · medio] Una línea vertical color crema queda suelta en el agua oscura bajo el hielo (x≈160, y≈800–870 en 720): es un resto del contorno del corte",
+   "arreglo": "Borrar esa arista o cerrarla con la cara del hielo",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D16",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00736",
+   "segundo": null,
+   "que": "[D16 sin arreglar] [delator · medio] La misma línea crema vertical suelta en el agua bajo el hielo (x≈270, y≈830–870 en 720)",
+   "arreglo": "Borrar esa arista",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D18",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00803",
+   "segundo": null,
+   "que": "[D18 sin arreglar] [delator · arriba] Los cerros son bultos lisos de un solo color (uno gris y otro verde) con ruido uniforme: sin roca, sin quebradas, sin bruma",
+   "arreglo": "Relieve real con roca y vegetación, y bruma de distancia",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D19",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00803",
+   "segundo": null,
+   "que": "[D19 sin arreglar] [delator · medio] La pared del glaciar parece merengue o papel arrugado con bultos redondos, sin grietas verticales ni azul profundo",
+   "arreglo": "Frente de glaciar con seracs, grietas verticales y azul en las sombras (como el frente de 00030)",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D22",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00803",
+   "segundo": null,
+   "que": "[D22 sin arreglar] [delator · medio] La franja de manchas blancas y café en la base del glaciar se lee como patrón de camuflaje",
+   "arreglo": "Grava y bloques de hielo caídos, con forma y tamaño variados",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D23",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00803",
+   "segundo": null,
+   "que": "[D23 sin arreglar] [delator · abajo] El lecho del lago vacío es una superficie lisa como raso, sin piedras, sin grietas ni témpanos: no da escala",
+   "arreglo": "Témpanos varados, barro agrietado, charcos y bloques de roca",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D24",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00929",
+   "segundo": null,
+   "que": "[D24 sin arreglar] [delator · arriba] Una línea azul delgada cortada en tramos flota sobre la ladera (x≈390–420, y≈480–560 en 720)",
+   "arreglo": "Si es un estero, que sea continuo, con espuma y que llegue al valle; si no, borrarla",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D25",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00929",
+   "segundo": null,
+   "que": "[D25 sin arreglar] [delator · arriba] El glaciar se ve como una tapa de empanada chica con borde de serrucho repetido: no da la escala de un campo de hielo",
+   "arreglo": "Glaciar más grande que entre por el fondo del valle, con grietas y morrena, sin el borde dentado",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D26",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00929",
+   "segundo": null,
+   "que": "[D26 sin arreglar] [delator · medio] La crecida café es de un solo color, con bordes duros recortados contra el verde",
+   "arreglo": "Sombreador de agua con turbulencia y espuma, y orillas de barro húmedo",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D27",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00929",
+   "segundo": null,
+   "que": "[D27 sin arreglar] [delator · abajo] El río celeste es de color plano, sin oleaje ni reflejo (agua que no refracta)",
+   "arreglo": "Oleaje y reflejo del cielo; el celeste del Baker se queda, pero con variación",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D28",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00929",
+   "segundo": null,
+   "que": "[D28 sin arreglar] [delator · medio] La tierra es ruido verde con manchas grises, sin árboles ni arbustos: no hay escala y todo está igual de blando",
+   "arreglo": "Bosque de lenga y matorral repartidos, con sombra; profundidad de campo marcada",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D30",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00991",
+   "segundo": null,
+   "que": "[D30 sin arreglar] [delator · arriba] La misma línea azul suelta cortada en tramos (x≈625, y≈0–105 en 720)",
+   "arreglo": "Igual que en 00929",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D31",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00991",
+   "segundo": null,
+   "que": "[D31 sin arreglar] [delator · arriba] El glaciar arriba a la derecha parece papel arrugado",
+   "arreglo": "Frente de glaciar con seracs y grietas",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D32",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00991",
+   "segundo": null,
+   "que": "[D32 sin arreglar] [delator · abajo] La tierra gris y verde moteada se ve como moho o niebla pegada al suelo, sin árboles",
+   "arreglo": "Vegetación real repartida y bruma sólo en la distancia",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D34",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "00991",
+   "segundo": null,
+   "que": "[D34 sin arreglar] [delator · medio] El agua café es plana, con bordes duros recortados",
+   "arreglo": "Igual que en 00929",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D37",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "01106_crudo",
+   "segundo": null,
+   "que": "[D37 sin arreglar] [delator · medio] El suelo es un plano verde liso, sin pasto, cercas, caminos ni piedras",
+   "arreglo": "Pasto con variación, un camino de ripio y una cerca de palos",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D38",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "01106_crudo",
+   "segundo": null,
+   "que": "[D38 sin arreglar] [delator · abajo] La orilla del agua es una recta perfecta de lado a lado, y el agua café es lisa en un 45 % del cuadro",
+   "arreglo": "Orilla irregular con espuma y escombros flotando, o bajar la cámara",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D41",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "01296",
+   "segundo": null,
+   "que": "[D41 sin arreglar] [delator · arriba] Los mismos cerros que en 00030: nieve como mancha estirada, cerro chico facetado, sin bruma",
+   "arreglo": "Igual que en 00030",
+   "de": "verificación",
+   "asignado": "cuadros"
+  },
+  {
+   "id": "D42",
+   "bloqueante": false,
+   "tipo": null,
+   "plano": "01296",
+   "segundo": null,
+   "que": "[D42 sin arreglar] [delator · medio] Luz alta y pareja (p5 en 43), sin cara en sombra en el cerro",
+   "arreglo": "Sol bajo de costado",
+   "de": "verificación",
+   "asignado": "cuadros"
+  }
+ ],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "En 01296 el cielo arriba al centro está limpio (zoom a 2,5x en y 0–80): ya no hay piedra flotando. Hay un bloque turquesa redondeado nuevo sobre la masa de hielo derecha (no está en 00030); se lee como hielo y no como error.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "La píldora 'EL RÍO × 3' con su línea fuera de cuadro ya no está. En 00929 dos flechas blancas quedan dentro del cuadro y sobre el río celeste.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A3",
+   "arreglado": false,
+   "por_que": "Se arregló a medias: hay bosque con sombras y la luz tiene dirección (p5 de 47 a 29 en 00991). Pero los ríos café y celeste siguen siendo de un solo color con bordes recortados, el glaciar sigue siendo una tapa arrugada chica y la mitad de abajo es moho y niebla sin árboles.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A4",
+   "arreglado": true,
+   "por_que": "En 00349, 00493 y 00693 el suelo del corte ya no tiene rayas estiradas: ahora es una textura de grava proyectada bien.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A5",
+   "arreglado": false,
+   "por_que": "La nieve sigue en manchas de ruido en 00030, 01296 y 00349. La pared de malla estirada sigue en el borde izquierdo de 00116, los cerros de 00803 siguen siendo bultos de un solo color, no hay bruma y la luz es alta (p5 40 y 42 en 00030 y 01296).",
+   "de": "cuadros"
+  },
+  {
+   "id": "A6",
+   "arreglado": false,
+   "por_que": "Las casas (de dos aguas, con alero, chimenea y marcos) y la sirena (con bocinas y baliza roja) quedaron bien en 01106. Pero la orilla sigue siendo una recta perfecta de lado a lado y el agua café lisa sigue ocupando el ~40 % de abajo.",
+   "de": "cuadros"
+  },
+  {
+   "id": "A7",
+   "arreglado": false,
+   "por_que": "En 00803 el lecho vacío sigue siendo raso liso, sin piedras, sin grietas y sin témpanos varados, y la pared sigue pareciendo merengue. Sí se arreglaron el borde del túnel (ya no es serrucho) y su interior (ya no es negro puro).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D1",
+   "arreglado": false,
+   "por_que": "00030 arriba: la nieve sigue en manchas de ruido sobre roca gris, sin seguir quebradas.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D2",
+   "arreglado": false,
+   "por_que": "00030 arriba: el cerro está igual de nítido que el glaciar, sin bruma, y el cielo es un degradado liso.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D3",
+   "arreglado": false,
+   "por_que": "00030 arriba, abajo a la izquierda: el cerro chico sigue con aristas facetadas.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D4",
+   "arreglado": false,
+   "por_que": "00030: la ladera sigue iluminada pareja, sin una cara en sombra (p5 en 40).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D5",
+   "arreglado": false,
+   "por_que": "00116 arriba a la izquierda: sigue la pared vertical con la textura estirada en rayas (el borde de la malla).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D6",
+   "arreglado": false,
+   "por_que": "00116: la ladera derecha sigue con el ruido estirado a lo largo de la pendiente.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D7",
+   "arreglado": false,
+   "por_que": "00116 medio (y lo mismo en 00736): el glaciar sigue siendo un patrón de bultos iguales, como plástico de burbujas.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D8",
+   "arreglado": false,
+   "por_que": "00116 abajo: el agua azul sigue lisa, con sólo dos o tres témpanos chicos y sin oleaje.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D9",
+   "arreglado": false,
+   "por_que": "00349 y 00693 arriba: la nieve sigue en manchas redondeadas de camuflaje que no siguen las quebradas.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D10",
+   "arreglado": false,
+   "por_que": "00349: sigue la línea oscura horizontal sobre la niebla a la derecha (y≈496 en 720, zoom a 2,5x).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D11",
+   "arreglado": true,
+   "por_que": "00349 abajo: ya no hay rayas horizontales estiradas; ahora es una grava proyectada sin estirar.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D12",
+   "arreglado": true,
+   "por_que": "00493 abajo: el suelo del corte ya no está estirado.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D13",
+   "arreglado": false,
+   "por_que": "00693: la línea crema vertical sigue en la franja azul oscura bajo el hielo (y≈800–870 en 720, zoom a 2,5x).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D14",
+   "arreglado": true,
+   "por_que": "00693 abajo: el suelo del corte ya no está estirado.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D15",
+   "arreglado": true,
+   "por_que": "00736 ahora es la aérea del glaciar y el corte ya no sale. En el corte de 00493 y 00693, lo oscuro detrás del borde son grietas en V de azul oscuro, no huecos negros de la malla.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D16",
+   "arreglado": false,
+   "por_que": "00736 ya muestra otro plano, pero la misma línea crema sigue en el corte (00693, ver D13). No se borró.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D17",
+   "arreglado": true,
+   "por_que": "El suelo del corte ya no está estirado en ningún cuadro donde aparece (00349, 00493 y 00693).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D18",
+   "arreglado": false,
+   "por_que": "00803 arriba: ahora hay sombra proyectada, pero los cerros siguen siendo bultos de un solo color (gris y verde) con ruido, sin roca ni bruma.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D19",
+   "arreglado": false,
+   "por_que": "00803 medio: la pared sigue pareciendo papel arrugado o merengue. Hay manchas azules, pero no grietas verticales ni seracs.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D20",
+   "arreglado": true,
+   "por_que": "00803: el borde del arco ya es liso, sin escalones.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D21",
+   "arreglado": true,
+   "por_que": "00803: el interior ya no es negro puro: es azul profundo, con la pared interior más clara a la derecha. Falta el agua entrando.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D22",
+   "arreglado": false,
+   "por_que": "00803 medio: sigue la franja de manchas blancas y café de camuflaje en la base.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D23",
+   "arreglado": false,
+   "por_que": "00803 abajo: el lecho sigue liso como raso, sin piedras, grietas ni témpanos.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D24",
+   "arreglado": false,
+   "por_que": "00929 arriba a la derecha: sigue la línea azul delgada cortada en tramos que termina a media ladera (zoom a 2,5x).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D25",
+   "arreglado": false,
+   "por_que": "00929 arriba a la derecha: el glaciar sigue siendo una tapa blanca arrugada chica con borde dentado.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D26",
+   "arreglado": false,
+   "por_que": "00929 medio: la crecida café tiene algo de rayado, pero sigue con bordes duros recortados contra el verde y sin orillas de barro.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D27",
+   "arreglado": false,
+   "por_que": "00929 abajo: el río celeste sigue siendo de un color plano, sin oleaje ni reflejo.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D28",
+   "arreglado": false,
+   "por_que": "00929: se agregó bosque en el tercio de arriba (ahora hay escala ahí), pero la tierra del medio y de abajo sigue siendo ruido verde y gris sin árboles.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D29",
+   "arreglado": true,
+   "por_que": "00929: los árboles y el relieve de arriba proyectan sombras largas. La luz ya tiene dirección (p5 en 25).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D30",
+   "arreglado": false,
+   "por_que": "00991 arriba a la derecha: sigue la misma línea azul suelta cortada en tramos (zoom a 2,5x).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D31",
+   "arreglado": false,
+   "por_que": "00991 arriba a la derecha: el glaciar sigue pareciendo papel arrugado.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D32",
+   "arreglado": false,
+   "por_que": "00991 abajo: la tierra sigue gris y verde moteada, como moho o niebla pegada al suelo, sin árboles.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D33",
+   "arreglado": true,
+   "por_que": "00991: p5 de 47 a 29, con sombras de árboles y relieve arriba. La mitad de abajo todavía tiene algo de niebla gris.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D34",
+   "arreglado": false,
+   "por_que": "00991 medio: el agua café sigue plana, con bordes duros recortados.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D35",
+   "arreglado": true,
+   "por_que": "01106: las casas ahora son de dos aguas, con alero, chimenea, marcos y textura en los muros. Los techos siguen lisos, no de zinc.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D36",
+   "arreglado": true,
+   "por_que": "01106: el poste ahora lleva dos bocinas y una baliza roja encendida, y se lee como sirena.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D37",
+   "arreglado": false,
+   "por_que": "01106: se agregó una cerca de postes, pero el suelo sigue siendo un plano verde liso, sin pasto, camino ni piedras.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D38",
+   "arreglado": false,
+   "por_que": "01106 abajo: la orilla sigue siendo una recta perfecta de lado a lado y el agua café lisa ocupa el ~40 % de abajo.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D39",
+   "arreglado": true,
+   "por_que": "01106 arriba: el cerro de fondo ahora tiene bosque y relieve con sombras.",
+   "de": "cuadros"
+  },
+  {
+   "id": "D40",
+   "arreglado": true,
+   "por_que": "01296: no hay nada flotando en el cielo (ver A1).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D41",
+   "arreglado": false,
+   "por_que": "01296 arriba: los mismos cerros que en 00030 (nieve en manchas de ruido, cerro chico facetado, sin bruma).",
+   "de": "cuadros"
+  },
+  {
+   "id": "D42",
+   "arreglado": false,
+   "por_que": "01296: la luz sigue alta y pareja, sin cara en sombra (p5 en 42, el aviso automático lo confirma).",
+   "de": "cuadros"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "01296: pocos negros (percentil 5 en 42.0; los cuadros realistas aprobados quedaron en 5–22): que el revisor diga si la luz se ve plana",
+   "evidencia": ""
+  },
+  {
+   "que": "estilo.json: la referencia 'referencias/*.jpg' no encontró archivos en la carpeta del episodio",
+   "evidencia": "estilo.json"
+  },
+  {
+   "que": "estilo realista sin referencias (fotos reales en estilo.json → referencias): el revisor juzga el realismo sin poder comparar",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": true,
+ "delatores": [
+  {
+   "cuadro": "00929",
+   "plano": null,
+   "segundo": null,
+   "zona": "arriba",
+   "que": "Lo nuevo que trajo el arreglo: los árboles son conos idénticos repetidos, con forma de pino o abeto; el bosque de Aysén es de lenga y coigüe, de copa irregular (se repite en 00991 y 01106)",
+   "arreglo": "2 o 3 modelos de árbol de copa irregular, con variación de escala y rotación",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "00349",
+   "plano": null,
+   "segundo": null,
+   "zona": "abajo",
+   "que": "Lo nuevo que trajo el arreglo: el suelo del corte ahora es un patrón regular de celdas con manchas café de camuflaje, no estratos (se repite en 00493 y 00693)",
+   "arreglo": "Estratos horizontales de grava y limo con piedras de varios tamaños",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "00803",
+   "plano": null,
+   "segundo": null,
+   "zona": "medio",
+   "que": "El túnel es un medio domo liso con borde perfecto y sombreado de bulto convexo; puede leerse como una tapa y no como un hueco",
+   "arreglo": "Borde irregular con desgaste e interior que se oscurezca hacia adentro, con agua entrando",
+   "de": "cuadros"
+  },
+  {
+   "cuadro": "01106",
+   "plano": null,
+   "segundo": null,
+   "zona": "medio",
+   "que": "Techos lisos de un solo azul-gris (no de zinc acanalado) y una cerca de postes sin alambre",
+   "arreglo": "Normal de zinc acanalado en los techos y 2 o 3 hilos de alambre entre los postes",
+   "de": "cuadros"
+  }
+ ],
+ "solo_bloqueantes": false,
+ "parar_y_preguntar": true
+}

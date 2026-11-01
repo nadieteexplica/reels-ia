@@ -1,0 +1,156 @@
+[
+ {
+  "cuadro": "00030",
+  "archivo": "00030.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.52,
+  "brillo": 92.5,
+  "saturacion": 73.0,
+  "negros_p5": 40.0,
+  "recortes": [
+   "00030_recorte_arriba.jpg",
+   "00030_recorte_medio.jpg",
+   "00030_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "00116",
+  "archivo": "00116.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.82,
+  "brillo": 84.3,
+  "saturacion": 125.7,
+  "negros_p5": 34.0,
+  "recortes": [
+   "00116_recorte_arriba.jpg",
+   "00116_recorte_medio.jpg",
+   "00116_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "00349",
+  "archivo": "00349.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.59,
+  "brillo": 82.3,
+  "saturacion": 79.3,
+  "negros_p5": 28.0,
+  "recortes": [
+   "00349_recorte_arriba.jpg",
+   "00349_recorte_medio.jpg",
+   "00349_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "00493",
+  "archivo": "00493.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.85,
+  "brillo": 107.0,
+  "saturacion": 90.6,
+  "negros_p5": 27.0,
+  "recortes": [
+   "00493_recorte_arriba.jpg",
+   "00493_recorte_medio.jpg",
+   "00493_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "00693",
+  "archivo": "00693.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.25,
+  "brillo": 90.0,
+  "saturacion": 73.1,
+  "negros_p5": 30.0,
+  "recortes": [
+   "00693_recorte_arriba.jpg",
+   "00693_recorte_medio.jpg",
+   "00693_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "00736",
+  "archivo": "00736.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.93,
+  "brillo": 71.8,
+  "saturacion": 143.5,
+  "negros_p5": 33.0,
+  "recortes": [
+   "00736_recorte_arriba.jpg",
+   "00736_recorte_medio.jpg",
+   "00736_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "00803",
+  "archivo": "00803.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.26,
+  "brillo": 103.0,
+  "saturacion": 66.6,
+  "negros_p5": 13.0,
+  "recortes": [
+   "00803_recorte_arriba.jpg",
+   "00803_recorte_medio.jpg",
+   "00803_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "00929",
+  "archivo": "00929.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 1.44,
+  "brillo": 72.4,
+  "saturacion": 75.9,
+  "negros_p5": 25.0,
+  "recortes": [
+   "00929_recorte_arriba.jpg",
+   "00929_recorte_medio.jpg",
+   "00929_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "00991",
+  "archivo": "00991.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.58,
+  "brillo": 71.8,
+  "saturacion": 48.6,
+  "negros_p5": 29.0,
+  "recortes": [
+   "00991_recorte_arriba.jpg",
+   "00991_recorte_medio.jpg",
+   "00991_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "01106",
+  "archivo": "01106.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.61,
+  "brillo": 52.8,
+  "saturacion": 89.5,
+  "negros_p5": 10.0,
+  "recortes": [
+   "01106_recorte_arriba.jpg",
+   "01106_recorte_medio.jpg",
+   "01106_recorte_abajo.jpg"
+  ]
+ },
+ {
+  "cuadro": "01296",
+  "archivo": "01296.jpg",
+  "res": "1080x1920",
+  "quemados_pct": 0.91,
+  "brillo": 95.1,
+  "saturacion": 100.9,
+  "negros_p5": 42.0,
+  "recortes": [
+   "01296_recorte_arriba.jpg",
+   "01296_recorte_medio.jpg",
+   "01296_recorte_abajo.jpg"
+  ]
+ }
+]

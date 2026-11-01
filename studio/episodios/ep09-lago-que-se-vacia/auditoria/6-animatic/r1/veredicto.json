@@ -1,0 +1,881 @@
+{
+ "etapa": "6-animatic",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "NO APROBADO",
+ "promedio": 7.31,
+ "notas": {
+  "belleza": {
+   "nota": 6.3,
+   "min": 6,
+   "por_que": "P1 (0.57) y P4 (9.27) se ven bien: muro con estrías, reflejo del agua, arena oscura con charco. Pero P5–P9 (10.35–24.54, la mitad del tramo) son un corte plano: bloque celeste liso, grieta negra pura, cerro con textura de camuflaje, suelo de ruido café y luz pareja. P10 (25.38) queda gris y con neblina.",
+   "de": "planos1"
+  },
+  "animacion": {
+   "nota": 7.3,
+   "min": 7,
+   "por_que": "No hay seres vivos y la cámara se mueve en todos los planos (quieto_max_s ≤ 0,53). El vaciado de P10 (24.58→26.71) se lee bien. Pero en P6 el lago no sube (la línea del agua está igual en 12.92 y en 14.49) y el despegue y el túnel (P6 14.81→16.38, P8 21.02→23.06) son movimientos chicos.",
+   "de": "planos1"
+  },
+  "claridad": {
+   "nota": 6.8,
+   "min": 6,
+   "por_que": "P1, P4 y P10 se entienden sin sonido. La mecánica, que es el corazón del video, queda abajo y chica: el despegue, el agua por abajo y el túnel están en y≈1300–1600, bajo la interfaz. Además 'se llena' no se ve (P6 14.49) y en 'igual que en tu vaso' no aparece ningún vaso (P5 12.02).",
+   "de": "planos1"
+  },
+  "ritmo": {
+   "nota": 6.7,
+   "min": 6,
+   "por_que": "P6 (cerca), P7 y P8 son la misma cámara durante 8,4 s (14.67–23.10): sólo cambian píldoras y detalles al pie del cuadro. P2+P3 (1.95–8.45) son 6,5 s del mismo plano general casi quieto, y lo único que cambia son las píldoras.",
+   "de": "planos1"
+  },
+  "realismo": {
+   "nota": 6.3,
+   "min": 6,
+   "por_que": "P1 y P4 rozan el 7–8: arena, muro de hielo y agua que refleja. P5–P9 se ven de videojuego viejo o maqueta: cerro de camuflaje con manchas repetidas, roca de ruido procedural, hielo sin textura, bordes perfectos y negro puro. En P2, P3 y P10 el glaciar es una grilla de bloques iguales, y el cerro de P2–P4 tiene una cara vertical recta, como extruido.",
+   "de": "planos1"
+  },
+  "comprension": {
+   "nota": 7.2,
+   "min": 6,
+   "por_que": "Sin sonido, en P6–P8 se ve una pared celeste quieta y lo que pasa (el despegue, el agua que se cuela, el túnel) queda bajo los textos de la app. En P6 la píldora SE LLENA dice algo que la imagen no muestra.",
+   "de": "planos1"
+  },
+  "gancho": {
+   "nota": 7.5,
+   "min": 7,
+   "por_que": "El cuadro 0 (lecho seco con un témpano varado y charcos frente al glaciar) es buena imagen, pero en 0.0–1.7 no se ve ninguna acción a 3 cuadros/s y que 'había un lago' sólo se sabe leyendo la píldora: no se ve la marca del nivel del agua en las laderas. El contraste llega recién a los 2.0 s, y sin leer 'ANTES' el orden seco→lleno se puede leer como 'un lago que se llena'.",
+   "de": "espectador"
+  },
+  "subtitulos": {
+   "nota": 9.0,
+   "min": 9,
+   "por_que": "135 de 135 palabras, desfase 0, ninguna fuera de la zona y tildes correctas (AQUÍ, HABÍA, OLÍMPICAS, DÓNDE, TÚNEL, RÍO, ATRÁS). Sólo en 27 s 'OTRO LADO' tapa la base del arco del túnel.",
+   "de": "global"
+  },
+  "audio": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "No lo puedo escuchar; juzgo por las cifras: −14,0 LUFS y −3,3 dBTP están en rango. La voz queda 6,1 dB sobre las pausas (es un mínimo, por el ducking), así que no se puede confirmar que la música vaya 15–20 dB bajo la voz.",
+   "de": "global"
+  },
+  "precision": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "≈80.000 piscinas (200 M m³ / 2.500 m³), EL RÍO × 3 (de 1.200 a 3.570 m³/s), MÁS DE 20 VECES (21 hasta 2017) y EN UNA NOCHE calzan con las fuentes del guion. Lo único que choca es la píldora '← RÍO ARRIBA' (34 s), que apunta a la izquierda mientras las flechas del río apuntan abajo a la derecha.",
+   "de": "global"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B11",
+   "plano": 6,
+   "segundo": "15.12",
+   "que": "En 'levanta el borde del glaciar', el pie del hielo despegándose de la roca (la franja oscura en y≈1360–1510) y la píldora '↑ SE LEVANTA' (y≈1600) quedan bajo la interfaz de la app justo cuando la voz lo nombra. Además, la flecha sobre la píldora desaparece en 15.40 y la píldora sigue (E14).",
+   "arreglo": "En la escena del corte, bajar la mira de la cámara (o subir el set) hasta que el contacto hielo–roca quede en y≈750–950. El suelo café de abajo es relleno y puede salir del cuadro. Las píldoras van sobre los subtítulos, en y≈600–950, y la flecha dura lo mismo que su píldora. El mismo encuadre arregla P7 y P8.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B11",
+   "plano": 7,
+   "segundo": "17.33",
+   "que": "En 'se cuela por abajo', el agua que entra bajo el hielo (las estelas en y≈1360–1560) y la píldora 'POR ABAJO' (y≈1600) están bajo la interfaz de la app.",
+   "arreglo": "El mismo reencuadre del corte: las estelas bajo el hielo en y≈800–950 y la píldora arriba de los subtítulos, con la flecha hacia abajo.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B11",
+   "plano": 8,
+   "segundo": "21.43",
+   "que": "En 'abre un túnel cada vez más ancho', el túnel que crece (y≈1260–1500) y la píldora 'TÚNEL' (y≈1600) quedan bajo la interfaz de la app.",
+   "arreglo": "El mismo reencuadre: el túnel en el centro bajo, en y≈700–950, y la píldora TÚNEL sobre los subtítulos.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": true,
+   "tipo": "B13",
+   "plano": 6,
+   "segundo": "14.49",
+   "que": "En 'cuando el lago se llena', el nivel del lago no sube: la línea blanca del agua en el corte está a la misma altura en 12.92 y en 14.49, y sólo la píldora 'SE LLENA' lo dice. Se pierde la causa del despegue (el agua que empuja al hielo hacia arriba).",
+   "arreglo": "Animar el nivel del agua (ya es un parámetro del set) para que suba unos 10–15 % del alto del cuadro entre 13.2 y 14.6 s, con la píldora CÁMARA RÁPIDA ya en pantalla, y que en el corte cercano (14.67) el nivel siga alto.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B11",
+   "plano": 11,
+   "segundo": "29.80",
+   "que": "De 28.30 a 30.93, mientras la voz dice 'y el río más caudaloso de Chile se triplica', el río celeste y su flecha quedan en y≈1260–1900 (~94 % del río bajo y 1250): bajo el subtítulo y bajo la interfaz de la app. Además el río no se ensancha: el ×3 sólo lo dice la píldora (y≈560, lejos del río). Lo mismo arrastra P12 (31.01–35.00): la frontera café/celeste que 'empuja hacia atrás' se va por abajo del cuadro (y 1250–1730).",
+   "arreglo": "Reencuadrar la cámara del E4 (sirve para P11 y P12): bajarla o inclinarla para que la junta quede en y≈550–1000, con el glaciar arriba a la derecha y el río cruzando el centro del cuadro; animar el río ensanchándose (subir el nivel del agua para que la franja crezca a ~3 veces su ancho entre 29.0 y 30.5) y dejar la píldora EL RÍO × 3 junto al río.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B11",
+   "plano": 14,
+   "segundo": "39.43",
+   "que": "Cuando la voz dice 'el hielo se cierra' (38.92–39.95), lo que se cierra (el túnel, banda azul oscura con estelas) está en y≈1290–1560 y la píldora SE CIERRA en y≈1600: todo bajo la interfaz de la app; arriba sólo se ve la cara lisa del corte.",
+   "arreglo": "Subir el encuadre ~450 px (bajar la cámara o inclinarla hacia abajo) para que la base del glaciar y el túnel queden en y≈750–1000, y poner SE CIERRA arriba del túnel en y≈650–700.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B11",
+   "plano": 8,
+   "segundo": "21.10",
+   "que": "La mecánica central queda bajo la interfaz de la app. En los planos 6–8 y 14, la base del hielo, el agua que se cuela y el túnel están en y≈1290–1560, y las píldoras ↑ SE LEVANTA (15 s), POR ABAJO (17–18 s), TÚNEL (21–22 s) y SE CIERRA (39 s) están en y≈1600, justo cuando la voz dice 'levanta', 'por abajo', 'túnel' y 'se cierra'. En Shorts, Reels y TikTok eso queda debajo del título y del nombre del canal.",
+   "arreglo": "Bajar la cámara (pedestal) o inclinarla para que la base del glaciar y el túnel queden en y≈750–1000 y la roca ocupe sólo el 20 % inferior. Subir las píldoras a y 600–950, con la flecha bajando a la base. Un acercamiento lento al túnel entre 18,5 y 23 s da además el cambio que le falta a ese tramo de 7 s con el mismo encuadre.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B11",
+   "plano": 11,
+   "segundo": "28.40",
+   "que": "Entre 28,4 y 30,8 s, cuando la voz dice 'el río… se triplica', el río azul que se ensancha está en y≈1230–1920 (en 30 s, en y≈1330–1920), bajo la interfaz. En 34 s la píldora ← RÍO ARRIBA también queda bajo la interfaz (y≈1470), y su flecha apunta al revés que las flechas del río.",
+   "arreglo": "Inclinar hacia abajo la cámara aérea para que la junta del agua café con el río y el ensanche queden en y 500–1000. Subir RÍO ARRIBA a y≈850 y cambiar su ← por ↘, en la misma dirección que las flechas blancas.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B11",
+   "plano": null,
+   "segundo": "14.60–23.00 y 38.70–40.00",
+   "que": "Toda la mecánica en corte queda bajo la interfaz de la app: la base del glaciar, el agua que se cuela, el túnel y sus píldoras '↑ SE LEVANTA', 'POR ABAJO', 'TÚNEL' y 'SE CIERRA' están en y≈1260–1640 (medido en las hojas, 15.0/17.3/21.3/23.0/39.7) justo cuando la voz dice 'levanta', 'por abajo', 'túnel' y 'se cierra'. Arriba de y=1250 sólo hay un bloque celeste liso y agua quieta.",
+   "arreglo": "Inclinar o subir la cámara del corte para que la base del glaciar y el túnel queden en y≈650–1000 (sobre los subtítulos, que están en 1026–1213), y poner las píldoras a la altura del sujeto, sobre y=1000. Es mover la cámara: no hay que reanimar nada.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B11",
+   "plano": null,
+   "segundo": "28.30–30.90 y 33.00–35.00",
+   "que": "El río grande con su flecha está en y≈1250–1700 cuando la voz dice 'el río más caudaloso de Chile se triplica'. En 'lo empuja hacia atrás' (33.8–34.3), las flechas dadas vuelta y la píldora '← RÍO ARRIBA' quedan en y≈1340–1530: lo que muestra el dato queda bajo la interfaz.",
+   "arreglo": "Encuadrar la junta más arriba, con el río en y≈600–1000 (como en 31.0–32.7, que sí lo centra), y aprovechar el mismo plano para que el río se vea ensancharse durante 'triplica' (orillas que se inundan), no sólo con el '× 3'.",
+   "de": "espectador"
+  }
+ ],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "13.50–22.70",
+   "que": "En el corte casi no cambia nada en 10 s: a 3 cuadros/s no se ve subir el lago, ni despegarse el hielo de la roca, ni crecer el túnel. El túnel se lee como una franja oscura, no como un túnel (material insuficiente para verificar movimientos chicos).",
+   "arreglo": "Exagerar las tres cosas, que son capa de explicación: el nivel del agua sube un ~5 % del alto del cuadro en 'se llena', se abre una ranura visible entre el hielo y la roca en 'levanta', y en 21.1–22.7 el túnel tiene la boca en arco (como el de 27.0) y crece al doble o al triple.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "26.79",
+   "que": "'Sale por el otro lado' (26.75–28.10): el túnel está seco, el interior es un hueco azul marino plano y el primer plano (y 1050–1920, ~45 % del cuadro) es una superficie gris-café lisa que no se lee ni como agua ni como roca. No se ve salir el agua hasta la vista aérea de 28.30.",
+   "arreglo": "Un torrente café con espuma y salpicaduras saliendo del túnel hacia la cámara (el mismo material de agua café del E4, con estelas), o cortar este plano y entrar directo a la vista aérea con el agua café saliendo del glaciar a 26.75.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "31.37",
+   "que": "El tramo aéreo (P11 28.30 a P12 35.00, ~7 s) es lo que más delata la maqueta: río celeste de un solo color sin reflejo ni rugosidad, con bordes dentados de calcomanía; suelo de ruido moteado sin relieve; árboles = el mismo cono oscuro repetido; luz pareja sin dirección ni sombras; agua café plana con rayas de desenfoque. Baja la nota de realismo a 6.",
+   "arreglo": "Material de agua con reflejo del cielo, rugosidad y turbidez (turquesa lechoso en el río grande, café con espuma en el frente de la crecida); sol bajo de costado para que los árboles y las orillas tiren sombra; bruma de distancia hacia el glaciar; variar escala y rotación de los árboles.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "31.00",
+   "que": "El tramo del río y el pueblo (28–38,6 s) se ve de videojuego viejo: el río es un cian plano sin reflejos ni corriente, el pasto tiene manchas repetidas, los árboles parecen sellos oscuros, las casas son cajas limpias y el agua café de 35–38 s es un plano liso que no se lee como agua. Es lo que deja realismo en 7.",
+   "arreglo": "Darle al agua reflejos, vetas de corriente y degradé de profundidad (el turquesa del Baker se mantiene), y al agua café turbulencia y espuma en el frente. En el pueblo: ondas en el agua y reflejo de las casas, tejuelas gastadas, barro, humo de chimenea y bruma entre el cerro y las casas.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 13,
+   "segundo": "35.04",
+   "que": "El pueblo dura 3,6 s con el mismo encuadre: sólo cambian los subtítulos y aparece ALERTA. Es justo donde el guion predice que se va la gente (~36 s).",
+   "arreglo": "Hacer tres cortes baratos de la misma escena: en 35,0 s el plano general con el agua; en 36,2 s un primer plano de la sirena, con la luz roja girando y ALERTA latiendo; en 37,4 s el agua café subiendo hasta la cerca.",
+   "de": "global"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 6,
+   "segundo": "12.92",
+   "que": "El mundo del corte (P5–P9) se ve de maqueta: el cerro del fondo es una textura de camuflaje verde con manchas grises repetidas, la roca es ruido café, la cara cortada del glaciar es un plano celeste liso con bordes perfectos y la grieta es un triángulo negro puro. La luz es pareja, sin dirección.",
+   "arreglo": "Lo más barato: desenfocar el cerro con profundidad de campo y meterle bruma, poner un sol de costado con sombras y darle a la cara del hielo un degradé a azul profundo con capas, burbujas y bandas sucias. La grieta, en azul oscuro en vez de negro. La roca con estratos y piedras (en un corte se puede estilizar, pero con textura de roca).",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 7,
+   "segundo": "17.33",
+   "que": "P6 cerca, P7 y P8 son la misma cámara casi quieta durante 8,4 s (14.67–23.10): una pared celeste con cambios chicos al pie.",
+   "arreglo": "Aprovechar el reencuadre para cortar la escena en 3 cámaras baratas: un plano medio del pie del hielo en 'levanta' (P6), un empuje hacia el hueco con las estelas en 'se cuela' (P7) y un desplazamiento lateral a lo largo del túnel mientras se ensancha (P8).",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "0.00–2.00",
+   "que": "Gancho sin acción visible y sin pista de que había agua: no se ve el trozo de hielo que cae ni la marca del nivel en las laderas que promete el guion. Sin leer, es un paisaje de glaciar con hielo en la arena.",
+   "arreglo": "Pintar la marca del nivel del agua (una franja más clara y lavada en los cerros, a la altura del lago lleno) y hacer que el trozo de hielo caiga al barro antes de 0.8 s, en el centro del cuadro.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "33.00–35.00",
+   "que": "La píldora '← RÍO ARRIBA' apunta a la izquierda (más o menos río abajo), su línea guía apunta arriba a la derecha y las flechas grandes apuntan abajo a la derecha: tres direcciones distintas para decir 'hacia atrás'.",
+   "arreglo": "Quitar el '←' de la píldora (o cambiarlo por '→' en el mismo sentido de las flechas grandes) y dejarla junto a una flecha, sobre y=1250.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "2.00–8.60 y 40.00–41.00",
+   "que": "Arriba a la izquierda (y a la derecha en 6.0–8.6) hay una pared vertical pálida, de cara plana y textura estirada, que parece una torre o un corte del escenario: es lo primero que uno se pregunta en el 'ANTES'.",
+   "arreglo": "Correr la cámara o extender el terreno para que no se vea el borde, o taparlo con un cerro con bruma.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "Sin texto, el cuadro 0 se lee como 'témpano en una playa'. Falta la marca del nivel del agua (una franja mojada u oscura en las laderas y en el muro) que promete el paquete del gancho, y la luz es pareja de mediodía, no el sol bajo de amanecer con bruma.",
+   "arreglo": "Pintar una franja húmeda horizontal en las laderas y en el muro de hielo a la altura del lago lleno (la de 40–42 s) y poner el sol bajo de costado con bruma. Repetirlo en el plano 16 para que el loop siga calzando.",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 11,
+   "segundo": "27.00",
+   "que": "La boca del túnel es un arco semicircular perfecto, negro por dentro, y no se ve agua saliendo. La mitad de abajo es un borrón gris y blanco que no se reconoce, y el subtítulo OTRO LADO tapa la base del arco (dura ~1,2 s).",
+   "arreglo": "Hacer salir del arco un chorro de agua café turbulenta, con espuma y rocío. Dejar el arco irregular, con hielo azul por dentro, y subirlo a y≈650–950 para que el subtítulo quede debajo.",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 12,
+   "segundo": "33.91",
+   "que": "La píldora '← RÍO ARRIBA' está en y≈1440–1500 (bajo la interfaz) y su flecha ← apunta al revés de las flechas grandes que van ↘ (río arriba); su flechita guía va ↗: tres direcciones distintas. Además la flecha de 33.19 atraviesa 'EMPUJA' y la de 34.27 toca 'HACIA'.",
+   "arreglo": "Quitar el '←' de la píldora (o usar ↘), subirla a y≈600–700 junto a la flecha de arriba, y correr las flechas fuera de la franja del subtítulo (y≈1050–1200).",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 13,
+   "segundo": "36.67",
+   "que": "3,6 s (35.08–38.58) del mismo plano general: casas chicas en y≈700–950, sólo cambian la baliza y la píldora ALERTA; la mitad de abajo (y 1150–1920) es agua café lisa sin corriente. Es el tramo donde la predicción dice que se va la gente.",
+   "arreglo": "A ~36.6 ('avisa') corte a un plano cerrado de la sirena con la baliza girando, y a ~37.6 ('río abajo') un plano a ras del agua con la crecida café corriendo frente a las casas; o una dolly lenta hacia las casas, con luz en una ventana y humo de chimenea para darle vida.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 16,
+   "segundo": "43.33",
+   "que": "El lago pasa de lleno (43.14) a vacío (43.34) en 0,2 s: se lee como un salto, no como 'se va otra vez'; el guion pide que se vea irse y que la cámara baje con el agua al cuadro 0. Lo mismo en P15: se llena entre 40.03 y 40.28, antes de que la voz diga 'llena' (40.79).",
+   "arreglo": "En P16, bajar el nivel del agua en ~0,8 s (43.0–43.8) con la cámara bajando junto con él hasta el encuadre del cuadro 0; en P15, alargar la subida hasta ~40.8 para que el agua termine de llenar con 'llena'.",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "2.00",
+   "que": "A la izquierda (2–5 s) y a la derecha (3.er plano, 6–7 s) hay un bloque gris de cara vertical recta y cima plana que parece el borde del terreno; vuelve a verse en 40 s.",
+   "arreglo": "Extender el terreno fuera del cuadro o taparlo con un cerro con bruma, y romper la arista recta.",
+   "de": "global"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 3,
+   "segundo": "7.36",
+   "que": "P2+P3 son 6,5 s (1.95–8.45) del mismo plano general del glaciar con la cámara casi quieta, y lo único que cambia son las píldoras. Además, la superficie del glaciar es una grilla de bloques iguales y el cerro de la derecha tiene una cara vertical recta, como extruido.",
+   "arreglo": "En P3, hacer el avance a ras del agua hacia el pie del muro que pedía el storyboard, con un movimiento que se note. Variar la escala y la rotación de los bloques y agregar grietas y morrenas oscuras. Reemplazar el cerro de cara recta o sacarlo del cuadro.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "12.02",
+   "que": "La voz dice 'igual que en tu vaso' y no hay vaso. El hielo bajo el agua es medio óvalo perfecto que queda bajo el frente del glaciar y bajo el trozo flotante a la vez, y se lee como un bol: no se distingue qué flota.",
+   "arreglo": "Un corte de ~1 s a un vaso con un cubo de hielo (el set del vaso ya estaba planeado) o un recuadro en la esquina superior. El témpano en corte, separado del frente del glaciar, con forma irregular y la punta visible (~1/10) sobre la línea del agua.",
+   "de": "planos1"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "11.40–12.90",
+   "que": "'Igual que en tu vaso': no aparece ningún vaso. La comparación que hace entendible la mecánica queda sólo en la voz.",
+   "arreglo": "Un recuadro de 0.8 s con un vaso y un cubo de hielo flotando, con la línea del agua marcada igual que en el témpano, o el vaso al costado del témpano en el mismo corte.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "35.30–38.40",
+   "que": "La mitad de abajo del cuadro de las casas es una superficie café lisa que no se lee como río: no se entiende que esa gente vive 'río abajo' ni que el agua viene hacia ellos. Además, en 40.0→40.3 el lago pasa de vacío a lleno en un cuadro y se lee como corte, no como 'se llena'.",
+   "arreglo": "Darle al agua café estelas de corriente y reflejo, con la orilla bajo las casas (o bajar la cámara para que las casas queden en la orilla), y repartir el llenado del lago en 40.1–41.2, mientras la voz dice 'llena'.",
+   "de": "espectador"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 15,
+   "segundo": "40.53",
+   "que": "Arriba, la montaña gris es un ruido uniforme sin bruma que la separe del glaciar, y a la izquierda un cerro tiene un borde vertical recto como una placa cortada (también en P16 41.70 la montaña con el mismo ruido).",
+   "arreglo": "Bruma de distancia entre el glaciar y la montaña, variar la textura de roca con nieve en las quebradas, y tapar o redondear el borde recto del cerro de la izquierda (mover la cámara unos grados a la derecha basta).",
+   "de": "planos2"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 5,
+   "segundo": "12.14",
+   "que": "La voz dice 'igual que en tu vaso' y no hay ningún vaso a la vista. En el borde izquierdo, en 10–12 s, hay una mancha azul cortada (y≈1180–1260) que podría ser el vaso; el material no alcanza para verificarlo.",
+   "arreglo": "Si el vaso está, meterlo entero en cuadro (x 150–400, y 600–950) en 11,4–12,6 s. Si no está, agregar un vaso con un cubo de hielo flotando, en un corte de 0,8 s.",
+   "de": "global"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "sin datos de ojos en el meta: no se pudo comprobar 'cara tapada' (plano.py + studio/plantilla/caras.py)",
+   "evidencia": ""
+  },
+  {
+   "que": "estilo.json: la referencia 'referencias/*.jpg' no encontró archivos en la carpeta del episodio",
+   "evidencia": "estilo.json"
+  },
+  {
+   "que": "estilo realista sin referencias (fotos reales en estilo.json → referencias): el revisor juzga el realismo sin poder comparar",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [
+  {
+   "plano": 1,
+   "segundo": "0.57",
+   "zona": "arriba",
+   "que": "Cerro con una textura gris de ruido pareja (parece gravilla esparcida), borde duro contra el cielo y sin bruma; los cerros lejanos de la izquierda tienen el mismo tono que el cercano.",
+   "arreglo": "Bruma de distancia que aclare y desature lo lejano, y variación en el cerro: roca, nieve en quebradas, matorral bajo.",
+   "de": "planos1"
+  },
+  {
+   "plano": 1,
+   "segundo": "1.11",
+   "zona": "arriba",
+   "que": "Luz alta de mediodía y cielo de un solo azul, sin nubes ni degradé: no es el sol bajo de costado del amanecer que pide el cuadro 0.",
+   "arreglo": "Sol bajo de costado, cálido, con sombras largas de los témpanos sobre la arena, y cielo con degradé.",
+   "de": "planos1"
+  },
+  {
+   "plano": 2,
+   "segundo": "3.34",
+   "zona": "medio",
+   "que": "La superficie del glaciar es una grilla de bloques del mismo tamaño en filas regulares (repetición).",
+   "arreglo": "Escala y rotación al azar en los bloques, grietas transversales y bandas de morrena oscura.",
+   "de": "planos1"
+  },
+  {
+   "plano": 2,
+   "segundo": "2.33",
+   "zona": "arriba",
+   "que": "Arriba a la izquierda hay una torre o cerro con una cara vertical lisa y canto recto, como un bloque extruido.",
+   "arreglo": "Reemplazarlo por un cerro con pendiente y quebradas, o sacarlo del cuadro.",
+   "de": "planos1"
+  },
+  {
+   "plano": 2,
+   "segundo": "4.36",
+   "zona": "abajo",
+   "que": "La mitad de abajo es un lago de degradé liso, sin oleaje ni reflejos lejanos (fondo_liso 0,47), con unos puntitos blancos sueltos.",
+   "arreglo": "Ondas de viento suaves y reflejo del glaciar y del cerro en la superficie.",
+   "de": "planos1"
+  },
+  {
+   "plano": 3,
+   "segundo": "6.58",
+   "zona": "arriba",
+   "que": "El mismo peñón de cara vertical recta a la derecha y un horizonte de lomas grises de un solo tono.",
+   "arreglo": "Formas grandes con quebradas y bruma de distancia que toquen el suelo.",
+   "de": "planos1"
+  },
+  {
+   "plano": 4,
+   "segundo": "9.27",
+   "zona": "arriba",
+   "que": "El cerro detrás del muro tiene el costado izquierdo cortado en vertical (canto recto de malla) y no tiene bruma.",
+   "arreglo": "Encuadrar sin ese canto o darle pendiente; agregar bruma.",
+   "de": "planos1"
+  },
+  {
+   "plano": 5,
+   "segundo": "10.39",
+   "zona": "arriba",
+   "que": "El fondo es verde oscuro con manchas grises repetidas, como textura de camuflaje: se lee como papel mural, no como cerro.",
+   "arreglo": "Desenfocarlo por profundidad de campo, ponerle bruma y una textura de bosque y roca con variación.",
+   "de": "planos1"
+  },
+  {
+   "plano": 5,
+   "segundo": "10.39",
+   "zona": "abajo",
+   "que": "Mancha azul sólida sin explicación en el borde izquierdo (y≈1150–1240).",
+   "arreglo": "Sacarla o hacer que se lea qué es (por ejemplo, el agua del otro lado con su textura).",
+   "de": "planos1"
+  },
+  {
+   "plano": 5,
+   "segundo": "11.48",
+   "zona": "medio",
+   "que": "El hielo bajo el agua es medio óvalo geométrico perfecto, liso y translúcido.",
+   "arreglo": "Témpano irregular, con facetas y burbujas.",
+   "de": "planos1"
+  },
+  {
+   "plano": 6,
+   "segundo": "12.92",
+   "zona": "abajo",
+   "que": "Roca bajo el lago con ruido café de manchas en remolino, iguales en todo el cuadro, sin piedras ni estratos.",
+   "arreglo": "Material de roca con estratos, gravilla y piedras de distinto tamaño.",
+   "de": "planos1"
+  },
+  {
+   "plano": 6,
+   "segundo": "14.81",
+   "zona": "medio",
+   "que": "La cara cortada del glaciar es un plano celeste liso, sin capas ni burbujas, con aristas perfectas.",
+   "arreglo": "Degradé a azul profundo hacia adentro, bandas de capas y suciedad, aristas algo irregulares.",
+   "de": "planos1"
+  },
+  {
+   "plano": 6,
+   "segundo": "13.23",
+   "zona": "arriba",
+   "que": "La grieta del glaciar es un triángulo negro puro, sin fondo ni textura (señal 10).",
+   "arreglo": "Azul oscuro con degradé y paredes con textura de hielo.",
+   "de": "planos1"
+  },
+  {
+   "plano": 6,
+   "segundo": "12.92",
+   "zona": "arriba",
+   "que": "El borde superior del glaciar tiene una línea clara fina, como un contorno dibujado, y los picos son regulares.",
+   "arreglo": "Quitar el contorno y hacer irregulares los seracs.",
+   "de": "planos1"
+  },
+  {
+   "plano": 7,
+   "segundo": "17.62",
+   "zona": "medio",
+   "que": "La luz del corte es pareja, sin dirección ni sombras de contacto (luz de maqueta).",
+   "arreglo": "Sol de costado, con sombra del glaciar sobre el agua y la roca.",
+   "de": "planos1"
+  },
+  {
+   "plano": 9,
+   "segundo": "23.14",
+   "zona": "abajo",
+   "que": "La salida del túnel a la derecha del bloque se lee como una canoa o pieza azul suelta (y≈1320–1440).",
+   "arreglo": "Que el túnel se lea como un hueco continuo bajo el hielo, sin una pieza aparte.",
+   "de": "planos1"
+  },
+  {
+   "plano": 10,
+   "segundo": "24.58",
+   "zona": "arriba",
+   "que": "Arriba a la izquierda hay una mancha pálida difusa (un pico nevado entre la niebla) que parece un objeto o una cara.",
+   "arreglo": "Sacarla del encuadre o bajar la niebla para que se lea como cerro.",
+   "de": "planos1"
+  },
+  {
+   "plano": 10,
+   "segundo": "25.91",
+   "zona": "abajo",
+   "que": "El fondo del lago vaciado es un plano gris oscuro parejo, sin ondas, charcos ni brillo de barro mojado. No calza con el fondo de P1, que tiene ondas y charcos.",
+   "arreglo": "Usar el material del lecho de P1 (ondas, charcos, brillo húmedo) en la vista aérea.",
+   "de": "planos1"
+  },
+  {
+   "plano": 10,
+   "segundo": "25.38",
+   "zona": "arriba",
+   "que": "Neblina gris sobre toda la mitad de arriba, de bajo contraste (se acerca al lavado).",
+   "arreglo": "Bajar la densidad de la niebla y que el sol de costado deje negros en las sombras.",
+   "de": "planos1"
+  },
+  {
+   "plano": 10,
+   "segundo": "26.18",
+   "zona": "medio",
+   "que": "Los mismos bloques repetidos del glaciar que en P2.",
+   "arreglo": "Variar los bloques, igual que en P2.",
+   "de": "planos1"
+  },
+  {
+   "plano": 11,
+   "segundo": "26.79",
+   "zona": "arriba",
+   "que": "cerro del fondo verde oscuro liso, sin textura ni bruma, con una sombra negra enorme y de borde blando: se lee como greda",
+   "arreglo": "roca con textura y nieve en las quebradas, bruma de distancia y sol bajo de costado",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "26.79",
+   "zona": "medio",
+   "que": "túnel de medio círculo perfecto con el interior azul marino plano (hueco sin fondo ni brillo de agua)",
+   "arreglo": "boca irregular con hielo derretido y goteando, interior con brillo húmedo y el agua saliendo",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "27.54",
+   "zona": "medio",
+   "que": "muro de hielo con manchas azules verticales borrosas, como pintadas, sin grietas ni volumen",
+   "arreglo": "grietas con relieve, bandas de hielo sucio y escombros al pie",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "26.79",
+   "zona": "abajo",
+   "que": "primer plano gris-café liso que ocupa ~45 % del cuadro, sin textura: no es ni agua ni roca",
+   "arreglo": "agua café con espuma y salpicaduras, o grava mojada con charcos",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "30.18",
+   "zona": "abajo",
+   "que": "río celeste de un solo color, sin reflejo ni rugosidad, con bordes dentados de calcomanía",
+   "arreglo": "material de agua con reflejo del cielo, rugosidad y turbidez lechosa; orillas con piedras y arena mojada",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "28.67",
+   "zona": "medio",
+   "que": "suelo del valle con ruido moteado gris-verde uniforme, sin relieve, y luz pareja sin dirección ni negros",
+   "arreglo": "relieve del terreno, sol bajo de costado con sombras largas, variación de color (pasto, roca, barro)",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "29.42",
+   "zona": "arriba",
+   "que": "árboles: el mismo cono oscuro repetido en manchones, sin sombra en el suelo",
+   "arreglo": "variar especie, escala y rotación; que proyecten sombra",
+   "de": "planos2"
+  },
+  {
+   "plano": 11,
+   "segundo": "30.18",
+   "zona": "arriba",
+   "que": "lengua del glaciar como placa blanca grumosa con borde recto, sin morrena ni transición a la roca",
+   "arreglo": "frente con grietas azules, morrena oscura en el borde y hielo sucio donde toca el valle",
+   "de": "planos2"
+  },
+  {
+   "plano": 12,
+   "segundo": "34.27",
+   "zona": "medio",
+   "que": "la crecida café es un plano liso con rayas de desenfoque, sin espuma, olas ni reflejo; el río deja de leerse como río",
+   "arreglo": "agua café con espuma en el frente, olas y troncos o ramas arrastrados; orillas que se inundan",
+   "de": "planos2"
+  },
+  {
+   "plano": 13,
+   "segundo": "35.08",
+   "zona": "arriba",
+   "que": "cerro con conos de árbol idénticos repartidos casi en filas",
+   "arreglo": "variar escala, forma y densidad; agrupar como bosque real",
+   "de": "planos2"
+  },
+  {
+   "plano": 13,
+   "segundo": "36.67",
+   "zona": "medio",
+   "que": "casas de caja con aristas perfectas, sin desgaste ni sombra de contacto visible; luz pareja de crepúsculo",
+   "arreglo": "luz en ventanas, óxido y manchas en techos y muros, sombra de contacto; una luz cálida contra el cielo frío",
+   "de": "planos2"
+  },
+  {
+   "plano": 13,
+   "segundo": "37.63",
+   "zona": "abajo",
+   "que": "mitad de abajo agua café lisa sin corriente ni reflejo de las casas",
+   "arreglo": "corriente visible (estelas, espuma) y reflejo de las luces de las casas",
+   "de": "planos2"
+  },
+  {
+   "plano": 14,
+   "segundo": "38.66",
+   "zona": "abajo",
+   "que": "el túnel es un tubo azul marino brillante de bordes duros, como plástico; líneas verticales rectas (costuras) en la cara del corte",
+   "arreglo": "paredes del túnel con hielo derretido irregular y brillo húmedo; borrar las costuras",
+   "de": "planos2"
+  },
+  {
+   "plano": 14,
+   "segundo": "38.66",
+   "zona": "arriba",
+   "que": "grieta como cuña negra plana en la cara del corte (material negro puro)",
+   "arreglo": "grieta con fondo azul profundo y bordes de hielo, no negro plano",
+   "de": "planos2"
+  },
+  {
+   "plano": 15,
+   "segundo": "40.53",
+   "zona": "arriba",
+   "que": "cerro gris del fondo a la izquierda con un borde vertical recto, como una placa cortada",
+   "arreglo": "redondear o tapar ese borde, o girar la cámara unos grados a la derecha",
+   "de": "planos2"
+  },
+  {
+   "plano": 15,
+   "segundo": "40.53",
+   "zona": "arriba",
+   "que": "montaña grande con el mismo ruido gris uniforme en toda la ladera y sin bruma que la separe del glaciar",
+   "arreglo": "variar la roca (quebradas, nieve, vegetación baja) y bruma de distancia",
+   "de": "planos2"
+  },
+  {
+   "plano": 16,
+   "segundo": "41.70",
+   "zona": "medio",
+   "que": "frente del glaciar con columnas verticales repetidas a intervalo regular (textura que se repite)",
+   "arreglo": "variar el ancho de las columnas y meter grietas y bloques caídos irregulares",
+   "de": "planos2"
+  },
+  {
+   "plano": 16,
+   "segundo": "44.96",
+   "zona": "abajo",
+   "que": "lecho del lago gris oscuro y liso con pocas piedras; el guion pide barro café brillante con charcos",
+   "arreglo": "barro café húmedo con brillo, grietas y más charcos que reflejen el cielo",
+   "de": "planos2"
+  },
+  {
+   "plano": 2,
+   "segundo": "2.00–5.70",
+   "zona": "arriba",
+   "que": "Un cerro gris de cara vertical recta y cima plana a la izquierda, como el borde de una baldosa de terreno; en el plano 3 (6–7 s) está a la derecha y vuelve en 40 s",
+   "arreglo": "Extender el terreno o taparlo con un cerro con bruma; romper la arista",
+   "de": "global"
+  },
+  {
+   "plano": 1,
+   "segundo": "0.00–1.95",
+   "zona": "arriba",
+   "que": "Los cerros tienen una textura de ruido fino y parejo (como lija), sin grandes formas (quebradas, estratos) y sin bruma entre planos; el cielo es un azul parejo y la luz, de mediodía",
+   "arreglo": "Sol bajo de costado, bruma entre los cerros y formas grandes de roca con canaletas de nieve; lo mismo en el plano 16",
+   "de": "global"
+  },
+  {
+   "plano": 2,
+   "segundo": "2.00–7.60",
+   "zona": "medio",
+   "que": "La superficie del glaciar es un campo uniforme de grumos blancos iguales (tipo cabritas), sin grietas largas ni franjas de morrena",
+   "arreglo": "Variar el tamaño de los seracs, agregar grietas transversales y franjas grises de morrena",
+   "de": "global"
+  },
+  {
+   "plano": 5,
+   "segundo": "10.35–12.88",
+   "zona": "arriba",
+   "que": "El cerro del fondo del corte tiene manchas grises sobre verde que se repiten, como tela de camuflaje (también en los planos 6–10 y 14)",
+   "arreglo": "Desenfocarlo fuerte (profundidad de campo) o usar el cerro de los planos 1–3 con bruma",
+   "de": "global"
+  },
+  {
+   "plano": 6,
+   "segundo": "12.88–16.42",
+   "zona": "abajo",
+   "que": "La roca bajo el corte tiene manchas café que se repiten, como piel de leopardo, plana y sin piedras (también en los planos 5, 7, 8, 10 y 14)",
+   "arreglo": "Lecho de roca y grava con piedras sueltas, variación de color y sombras de contacto",
+   "de": "global"
+  },
+  {
+   "plano": 7,
+   "segundo": "16.42–18.53",
+   "zona": "medio",
+   "que": "La grieta del hielo es un triángulo negro puro, y el bloque de hielo tiene caras planas y bordes perfectos (también en los planos 6, 8 y 14)",
+   "arreglo": "Darle a la grieta por dentro un degradé de azul profundo a celeste y biselar y desgastar las aristas; la cara cortada puede quedar estilizada (es capa de explicación)",
+   "de": "global"
+  },
+  {
+   "plano": 11,
+   "segundo": "26.75–27.90",
+   "zona": "medio",
+   "que": "La boca del túnel es un arco semicircular perfecto y negro, como un túnel de tren",
+   "arreglo": "Arco irregular con hielo azul translúcido por dentro y agua saliendo",
+   "de": "global"
+  },
+  {
+   "plano": 11,
+   "segundo": "26.75–27.90",
+   "zona": "abajo",
+   "que": "La mitad de abajo es un plano liso gris y blanco que no se reconoce como agua ni como hielo",
+   "arreglo": "Agua café turbulenta con espuma y rocío",
+   "de": "global"
+  },
+  {
+   "plano": 11,
+   "segundo": "26.75–27.90",
+   "zona": "arriba",
+   "que": "Los cerros del fondo son bultos redondos y lisos, de borde duro (un domo verde oscuro), como de greda",
+   "arreglo": "Los mismos cerros de roca del plano 1, con bruma de distancia",
+   "de": "global"
+  },
+  {
+   "plano": 11,
+   "segundo": "27.90–30.97",
+   "zona": "medio",
+   "que": "El río es un relleno cian plano, sin reflejos, corriente ni profundidad (también en el plano 12)",
+   "arreglo": "Shader de agua con reflejo del cielo, vetas de corriente y orillas más oscuras",
+   "de": "global"
+  },
+  {
+   "plano": 12,
+   "segundo": "30.97–35.04",
+   "zona": "medio",
+   "que": "El pasto tiene manchas repetidas y los bosques son grupos de árboles iguales, como sellos (también en el plano 11)",
+   "arreglo": "Variar la escala y el color del pasto, sumar rocas y matorrales y variar el tamaño y la rotación de los árboles",
+   "de": "global"
+  },
+  {
+   "plano": 12,
+   "segundo": "30.97–35.04",
+   "zona": "medio",
+   "que": "La pluma de agua café es una mancha borrosa, sin bordes de turbulencia ni espuma en el frente",
+   "arreglo": "Frente de sedimento con remolinos y una línea de espuma donde choca con el agua azul",
+   "de": "global"
+  },
+  {
+   "plano": 13,
+   "segundo": "35.04–38.62",
+   "zona": "abajo",
+   "que": "El 45 % de abajo es un plano café liso, sin ondas ni reflejos, que no se lee como agua",
+   "arreglo": "Agua con corriente, ondas, reflejos de las casas y palos flotando",
+   "de": "global"
+  },
+  {
+   "plano": 13,
+   "segundo": "35.04–38.62",
+   "zona": "medio",
+   "que": "Las casas son cajas de aristas perfectas con pintura pareja; la cerca y el poste de la sirena se ven nuevos y limpios",
+   "arreglo": "Tejuelas de madera gastadas, manchas de humedad, barro al pie de las casas y humo de chimenea",
+   "de": "global"
+  },
+  {
+   "plano": 13,
+   "segundo": "35.04–38.62",
+   "zona": "arriba",
+   "que": "El cerro tiene árboles de cono separados a distancias iguales, con poco contraste",
+   "arreglo": "Bosque de lenga con variación de tamaño y color, y bruma entre el cerro y el pueblo",
+   "de": "global"
+  },
+  {
+   "plano": null,
+   "segundo": "2.00–8.60, 40.00–41.00",
+   "zona": "arriba",
+   "que": "pared vertical pálida con textura estirada (borde del terreno o torre sin sentido) al lado del cerro",
+   "arreglo": "extender el terreno o cambiar el encuadre para que el borde no entre; si queda, bruma de distancia encima",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "0.00–2.00, 41.30–45.00",
+   "zona": "arriba",
+   "que": "el cerro grande de la derecha es un gris moteado con el mismo ruido en toda la ladera, sin bandas de roca, sin nieve en las quebradas ni bruma entre él y el glaciar",
+   "arreglo": "variación de roca y nieve por altura y bruma de distancia en la base del cerro",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "10.30–24.30, 38.70–39.70",
+   "zona": "abajo",
+   "que": "el piso de roca del corte repite el mismo dibujo de remolinos grandes en S, que se nota como textura repetida",
+   "arreglo": "textura de roca o morrena a otra escala, sin patrón visible, con piedras sueltas",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "24.70–26.70",
+   "zona": "arriba",
+   "que": "mancha pálida suelta sobre el cerro de arriba a la izquierda, que parece un objeto o una cara",
+   "arreglo": "quitarla o convertirla en una capa de bruma ancha y pareja",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "27.00–28.00",
+   "zona": "medio",
+   "que": "la boca del túnel es un semicírculo perfecto de bordes lisos, con el interior celeste parejo, y el primer plano es una superficie gris pálida y lavada sin agua reconocible",
+   "arreglo": "un arco irregular con interior oscuro y agua café saliendo con espuma hacia la cámara",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "28.30–33.00",
+   "zona": "abajo",
+   "que": "el río grande es un plano celeste saturado y parejo, sin reflejos ni variación de color en las orillas: agua de caramelo",
+   "arreglo": "agua glaciar verde grisácea, más oscura, con reflejos del cielo y espuma donde entra el agua café",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "35.30–38.40",
+   "zona": "abajo",
+   "que": "la mitad inferior del cuadro es una superficie café lisa y de un solo color, sin textura ni reflejo",
+   "arreglo": "agua con corriente y reflejos, o bajar la cámara para que entren pasto, cerco y orilla",
+   "de": "espectador"
+  },
+  {
+   "plano": null,
+   "segundo": "35.30–38.40",
+   "zona": "medio",
+   "que": "casas y poste de la sirena limpios, de aristas perfectas, sin desgaste, sin barro y sin nada alrededor (autos, leña, gente de espaldas)",
+   "arreglo": "suciedad y desgaste en muros y techos y un par de objetos de uso alrededor",
+   "de": "espectador"
+  }
+ ],
+ "solo_bloqueantes": false,
+ "parar_y_preguntar": false
+}

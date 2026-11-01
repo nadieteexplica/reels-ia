@@ -1,0 +1,311 @@
+{
+ "encargo": "cuadros",
+ "completo": true,
+ "veredicto": "NO APROBADO",
+ "notas": {
+  "belleza": {
+   "nota": 7,
+   "por_que": "Mejoró la luz en 00803, 00929, 00991 y 01106 (sombras con dirección, p5 de 10 a 29) y el agua llena de 01296 tiene reflejo y oleaje, pero los planos de apertura y cierre (00030 y 01296) siguen con luz alta y pareja (p5 40 y 42) y cerros con ruido; además quedan líneas sueltas a la vista (00349, 00693, 00929 y 00991) y la pared de malla estirada en 00116."
+  },
+  "personaje": {
+   "nota": null,
+   "por_que": "no aplica: ningún personaje en los 11 cuadros"
+  },
+  "manos": {
+   "nota": null,
+   "por_que": "no aplica: no se ven manos"
+  },
+  "anatomia": {
+   "nota": null,
+   "por_que": "no aplica: no hay interior del cuerpo"
+  },
+  "realismo": {
+   "nota": 6,
+   "por_que": "Lo que se ve real: el frente del glaciar con vetas azules, el lecho con piedras y charcos de 00030 y el agua con reflejo de 01296. Lo que delata el videojuego: cerros con nieve de manchas de ruido y sin bruma en todos los planos, la pared de malla estirada en 00116, glaciar de plástico de burbujas (00116 y 00736), pared de merengue con túnel de domo liso en 00803, ríos de un solo color con bordes recortados en 00929 y 00991, árboles cónicos idénticos (pino, no lenga) y orilla recta con agua lisa en 01106. Para llegar a 8 faltan el relieve real con bruma y sol bajo en los cerros, y agua con sombreador y orillas de barro en las aéreas."
+  }
+ },
+ "problemas": [],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "En 01296 el cielo arriba al centro está limpio (zoom a 2,5x en y 0–80): ya no hay piedra flotando. Hay un bloque turquesa redondeado nuevo sobre la masa de hielo derecha (no está en 00030); se lee como hielo y no como error."
+  },
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "La píldora 'EL RÍO × 3' con su línea fuera de cuadro ya no está. En 00929 dos flechas blancas quedan dentro del cuadro y sobre el río celeste."
+  },
+  {
+   "id": "A3",
+   "arreglado": false,
+   "por_que": "Se arregló a medias: hay bosque con sombras y la luz tiene dirección (p5 de 47 a 29 en 00991). Pero los ríos café y celeste siguen siendo de un solo color con bordes recortados, el glaciar sigue siendo una tapa arrugada chica y la mitad de abajo es moho y niebla sin árboles."
+  },
+  {
+   "id": "A4",
+   "arreglado": true,
+   "por_que": "En 00349, 00493 y 00693 el suelo del corte ya no tiene rayas estiradas: ahora es una textura de grava proyectada bien."
+  },
+  {
+   "id": "A5",
+   "arreglado": false,
+   "por_que": "La nieve sigue en manchas de ruido en 00030, 01296 y 00349. La pared de malla estirada sigue en el borde izquierdo de 00116, los cerros de 00803 siguen siendo bultos de un solo color, no hay bruma y la luz es alta (p5 40 y 42 en 00030 y 01296)."
+  },
+  {
+   "id": "A6",
+   "arreglado": false,
+   "por_que": "Las casas (de dos aguas, con alero, chimenea y marcos) y la sirena (con bocinas y baliza roja) quedaron bien en 01106. Pero la orilla sigue siendo una recta perfecta de lado a lado y el agua café lisa sigue ocupando el ~40 % de abajo."
+  },
+  {
+   "id": "A7",
+   "arreglado": false,
+   "por_que": "En 00803 el lecho vacío sigue siendo raso liso, sin piedras, sin grietas y sin témpanos varados, y la pared sigue pareciendo merengue. Sí se arreglaron el borde del túnel (ya no es serrucho) y su interior (ya no es negro puro)."
+  },
+  {
+   "id": "D1",
+   "arreglado": false,
+   "por_que": "00030 arriba: la nieve sigue en manchas de ruido sobre roca gris, sin seguir quebradas."
+  },
+  {
+   "id": "D2",
+   "arreglado": false,
+   "por_que": "00030 arriba: el cerro está igual de nítido que el glaciar, sin bruma, y el cielo es un degradado liso."
+  },
+  {
+   "id": "D3",
+   "arreglado": false,
+   "por_que": "00030 arriba, abajo a la izquierda: el cerro chico sigue con aristas facetadas."
+  },
+  {
+   "id": "D4",
+   "arreglado": false,
+   "por_que": "00030: la ladera sigue iluminada pareja, sin una cara en sombra (p5 en 40)."
+  },
+  {
+   "id": "D5",
+   "arreglado": false,
+   "por_que": "00116 arriba a la izquierda: sigue la pared vertical con la textura estirada en rayas (el borde de la malla)."
+  },
+  {
+   "id": "D6",
+   "arreglado": false,
+   "por_que": "00116: la ladera derecha sigue con el ruido estirado a lo largo de la pendiente."
+  },
+  {
+   "id": "D7",
+   "arreglado": false,
+   "por_que": "00116 medio (y lo mismo en 00736): el glaciar sigue siendo un patrón de bultos iguales, como plástico de burbujas."
+  },
+  {
+   "id": "D8",
+   "arreglado": false,
+   "por_que": "00116 abajo: el agua azul sigue lisa, con sólo dos o tres témpanos chicos y sin oleaje."
+  },
+  {
+   "id": "D9",
+   "arreglado": false,
+   "por_que": "00349 y 00693 arriba: la nieve sigue en manchas redondeadas de camuflaje que no siguen las quebradas."
+  },
+  {
+   "id": "D10",
+   "arreglado": false,
+   "por_que": "00349: sigue la línea oscura horizontal sobre la niebla a la derecha (y≈496 en 720, zoom a 2,5x)."
+  },
+  {
+   "id": "D11",
+   "arreglado": true,
+   "por_que": "00349 abajo: ya no hay rayas horizontales estiradas; ahora es una grava proyectada sin estirar."
+  },
+  {
+   "id": "D12",
+   "arreglado": true,
+   "por_que": "00493 abajo: el suelo del corte ya no está estirado."
+  },
+  {
+   "id": "D13",
+   "arreglado": false,
+   "por_que": "00693: la línea crema vertical sigue en la franja azul oscura bajo el hielo (y≈800–870 en 720, zoom a 2,5x)."
+  },
+  {
+   "id": "D14",
+   "arreglado": true,
+   "por_que": "00693 abajo: el suelo del corte ya no está estirado."
+  },
+  {
+   "id": "D15",
+   "arreglado": true,
+   "por_que": "00736 ahora es la aérea del glaciar y el corte ya no sale. En el corte de 00493 y 00693, lo oscuro detrás del borde son grietas en V de azul oscuro, no huecos negros de la malla."
+  },
+  {
+   "id": "D16",
+   "arreglado": false,
+   "por_que": "00736 ya muestra otro plano, pero la misma línea crema sigue en el corte (00693, ver D13). No se borró."
+  },
+  {
+   "id": "D17",
+   "arreglado": true,
+   "por_que": "El suelo del corte ya no está estirado en ningún cuadro donde aparece (00349, 00493 y 00693)."
+  },
+  {
+   "id": "D18",
+   "arreglado": false,
+   "por_que": "00803 arriba: ahora hay sombra proyectada, pero los cerros siguen siendo bultos de un solo color (gris y verde) con ruido, sin roca ni bruma."
+  },
+  {
+   "id": "D19",
+   "arreglado": false,
+   "por_que": "00803 medio: la pared sigue pareciendo papel arrugado o merengue. Hay manchas azules, pero no grietas verticales ni seracs."
+  },
+  {
+   "id": "D20",
+   "arreglado": true,
+   "por_que": "00803: el borde del arco ya es liso, sin escalones."
+  },
+  {
+   "id": "D21",
+   "arreglado": true,
+   "por_que": "00803: el interior ya no es negro puro: es azul profundo, con la pared interior más clara a la derecha. Falta el agua entrando."
+  },
+  {
+   "id": "D22",
+   "arreglado": false,
+   "por_que": "00803 medio: sigue la franja de manchas blancas y café de camuflaje en la base."
+  },
+  {
+   "id": "D23",
+   "arreglado": false,
+   "por_que": "00803 abajo: el lecho sigue liso como raso, sin piedras, grietas ni témpanos."
+  },
+  {
+   "id": "D24",
+   "arreglado": false,
+   "por_que": "00929 arriba a la derecha: sigue la línea azul delgada cortada en tramos que termina a media ladera (zoom a 2,5x)."
+  },
+  {
+   "id": "D25",
+   "arreglado": false,
+   "por_que": "00929 arriba a la derecha: el glaciar sigue siendo una tapa blanca arrugada chica con borde dentado."
+  },
+  {
+   "id": "D26",
+   "arreglado": false,
+   "por_que": "00929 medio: la crecida café tiene algo de rayado, pero sigue con bordes duros recortados contra el verde y sin orillas de barro."
+  },
+  {
+   "id": "D27",
+   "arreglado": false,
+   "por_que": "00929 abajo: el río celeste sigue siendo de un color plano, sin oleaje ni reflejo."
+  },
+  {
+   "id": "D28",
+   "arreglado": false,
+   "por_que": "00929: se agregó bosque en el tercio de arriba (ahora hay escala ahí), pero la tierra del medio y de abajo sigue siendo ruido verde y gris sin árboles."
+  },
+  {
+   "id": "D29",
+   "arreglado": true,
+   "por_que": "00929: los árboles y el relieve de arriba proyectan sombras largas. La luz ya tiene dirección (p5 en 25)."
+  },
+  {
+   "id": "D30",
+   "arreglado": false,
+   "por_que": "00991 arriba a la derecha: sigue la misma línea azul suelta cortada en tramos (zoom a 2,5x)."
+  },
+  {
+   "id": "D31",
+   "arreglado": false,
+   "por_que": "00991 arriba a la derecha: el glaciar sigue pareciendo papel arrugado."
+  },
+  {
+   "id": "D32",
+   "arreglado": false,
+   "por_que": "00991 abajo: la tierra sigue gris y verde moteada, como moho o niebla pegada al suelo, sin árboles."
+  },
+  {
+   "id": "D33",
+   "arreglado": true,
+   "por_que": "00991: p5 de 47 a 29, con sombras de árboles y relieve arriba. La mitad de abajo todavía tiene algo de niebla gris."
+  },
+  {
+   "id": "D34",
+   "arreglado": false,
+   "por_que": "00991 medio: el agua café sigue plana, con bordes duros recortados."
+  },
+  {
+   "id": "D35",
+   "arreglado": true,
+   "por_que": "01106: las casas ahora son de dos aguas, con alero, chimenea, marcos y textura en los muros. Los techos siguen lisos, no de zinc."
+  },
+  {
+   "id": "D36",
+   "arreglado": true,
+   "por_que": "01106: el poste ahora lleva dos bocinas y una baliza roja encendida, y se lee como sirena."
+  },
+  {
+   "id": "D37",
+   "arreglado": false,
+   "por_que": "01106: se agregó una cerca de postes, pero el suelo sigue siendo un plano verde liso, sin pasto, camino ni piedras."
+  },
+  {
+   "id": "D38",
+   "arreglado": false,
+   "por_que": "01106 abajo: la orilla sigue siendo una recta perfecta de lado a lado y el agua café lisa ocupa el ~40 % de abajo."
+  },
+  {
+   "id": "D39",
+   "arreglado": true,
+   "por_que": "01106 arriba: el cerro de fondo ahora tiene bosque y relieve con sombras."
+  },
+  {
+   "id": "D40",
+   "arreglado": true,
+   "por_que": "01296: no hay nada flotando en el cielo (ver A1)."
+  },
+  {
+   "id": "D41",
+   "arreglado": false,
+   "por_que": "01296 arriba: los mismos cerros que en 00030 (nieve en manchas de ruido, cerro chico facetado, sin bruma)."
+  },
+  {
+   "id": "D42",
+   "arreglado": false,
+   "por_que": "01296: la luz sigue alta y pareja, sin cara en sombra (p5 en 42, el aviso automático lo confirma)."
+  }
+ ],
+ "eventos": [],
+ "delatores": [
+  {
+   "cuadro": "00929",
+   "plano": null,
+   "segundo": null,
+   "zona": "arriba",
+   "que": "Lo nuevo que trajo el arreglo: los árboles son conos idénticos repetidos, con forma de pino o abeto; el bosque de Aysén es de lenga y coigüe, de copa irregular (se repite en 00991 y 01106)",
+   "arreglo": "2 o 3 modelos de árbol de copa irregular, con variación de escala y rotación"
+  },
+  {
+   "cuadro": "00349",
+   "plano": null,
+   "segundo": null,
+   "zona": "abajo",
+   "que": "Lo nuevo que trajo el arreglo: el suelo del corte ahora es un patrón regular de celdas con manchas café de camuflaje, no estratos (se repite en 00493 y 00693)",
+   "arreglo": "Estratos horizontales de grava y limo con piedras de varios tamaños"
+  },
+  {
+   "cuadro": "00803",
+   "plano": null,
+   "segundo": null,
+   "zona": "medio",
+   "que": "El túnel es un medio domo liso con borde perfecto y sombreado de bulto convexo; puede leerse como una tapa y no como un hueco",
+   "arreglo": "Borde irregular con desgaste e interior que se oscurezca hacia adentro, con agua entrando"
+  },
+  {
+   "cuadro": "01106",
+   "plano": null,
+   "segundo": null,
+   "zona": "medio",
+   "que": "Techos lisos de un solo azul-gris (no de zinc acanalado) y una cerca de postes sin alambre",
+   "arreglo": "Normal de zinc acanalado en los techos y 2 o 3 hilos de alambre entre los postes"
+  }
+ ],
+ "resumen": "Sin bloqueantes: A1 (la piedra en el cielo) y A2 (la línea de la píldora) quedaron arreglados. De lo demás se arreglaron A4 y 13 de 42 delatores: casas, sirena, luz con dirección en las aéreas, suelo del corte y túnel. El realismo sigue en 6 porque los cerros, el glaciar, los ríos de las aéreas y el lecho de 00803 todavía se ven de videojuego."
+}
