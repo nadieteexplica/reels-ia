@@ -1,0 +1,36 @@
+{
+ "gana": {
+  "ep01": 19,
+  "ep02": 6,
+  "ep03": 5,
+  "ep04": 14,
+  "ep05": 1,
+  "ep07": 15
+ },
+ "juega": {
+  "ep01": 20,
+  "ep02": 20,
+  "ep03": 20,
+  "ep04": 20,
+  "ep05": 20,
+  "ep07": 20
+ },
+ "decisiones": {
+  "ep01 vs ep02": "ep01",
+  "ep01 vs ep03": "ep01",
+  "ep01 vs ep04": "ep01",
+  "ep01 vs ep05": "ep01",
+  "ep01 vs ep07": "empate",
+  "ep02 vs ep03": "empate",
+  "ep02 vs ep04": "ep04",
+  "ep02 vs ep05": "ep02",
+  "ep02 vs ep07": "ep07",
+  "ep03 vs ep04": "ep04",
+  "ep03 vs ep05": "empate",
+  "ep03 vs ep07": "ep07",
+  "ep04 vs ep05": "ep04",
+  "ep04 vs ep07": "empate",
+  "ep05 vs ep07": "ep07"
+ },
+ "contra_anclas": {}
+}
