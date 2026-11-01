@@ -1,0 +1,76 @@
+{
+  "perfil": "Ximena, 28, Ciudad de México",
+  "videos": [
+    {
+      "codigo": "QI",
+      "se_queda_2s": true,
+      "por_que_2s": "Veo una torre que se va achicando con un contador de pisos y quiero saber cómo se tira un edificio así sin que se caiga, aunque tanto texto en pantalla me cansa.",
+      "se_va_en": "Solo armar eso toma dos meses.",
+      "lo_ve_entero_pct": 35,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo se demuele un rascacielos piso por piso sin explotarlo?"
+    },
+    {
+      "codigo": "FP",
+      "se_queda_2s": true,
+      "por_que_2s": "'Se fue caminando' me da risa y el edificio con patas azules y amarillas se ve raro; quiero saber cómo.",
+      "se_va_en": "¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados.",
+      "lo_ve_entero_pct": 45,
+      "lo_manda": true,
+      "a_quien": "mi pareja (por lo de las muletas y que la escuela 'aprendió a caminar')",
+      "pregunta_que_te_dejo": "¿Cómo camina un edificio entero?"
+    },
+    {
+      "codigo": "VH",
+      "se_queda_2s": true,
+      "por_que_2s": "Acampar, despertar y que no haya lago es una situación rara y la entiendo al instante; el barrial con hielo se ve increíble.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 75,
+      "lo_manda": true,
+      "a_quien": "mi pareja",
+      "pregunta_que_te_dejo": "¿A dónde se fue el lago? (el final queda colgado en 'y la próxima:' y me deja con ganas de saber qué)"
+    },
+    {
+      "codigo": "LI",
+      "se_queda_2s": true,
+      "por_que_2s": "Un pájaro con un chile y un ratón echando fuego se ve chistoso, y en México el picante nos importa.",
+      "se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+      "lo_ve_entero_pct": 40,
+      "lo_manda": true,
+      "a_quien": "mi pareja o al amigo que presume que no le pica nada",
+      "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"
+    },
+    {
+      "codigo": "DJ",
+      "se_queda_2s": false,
+      "por_que_2s": "Es un dato de ciencia más ('tu cuerpo repele imanes'); el señor se ve chiquito en el cielo y no entiendo qué estoy mirando.",
+      "se_va_en": "Tu cuerpo repele los imanes.",
+      "lo_ve_entero_pct": 10,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "ND",
+      "se_queda_2s": true,
+      "por_que_2s": "Me sé el dolor de frente del helado y la cara exagerada del personaje es graciosa, pero creo que ya sé la respuesta.",
+      "se_va_en": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+      "lo_ve_entero_pct": 20,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "DM",
+      "se_queda_2s": true,
+      "por_que_2s": "Todos hemos vivido la cortina pegándose al cuerpo en la ducha; me río y quiero saber por qué pasa.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 80,
+      "lo_manda": true,
+      "a_quien": "mi pareja ('esto nos pasa a diario')",
+      "pregunta_que_te_dejo": "¿Por qué la cortina de la ducha siempre se me pega?"
+    }
+  ],
+  "orden": ["DM", "VH", "FP", "LI", "QI", "ND", "DJ"]
+}

@@ -1,0 +1,26 @@
+{
+ "fallas": [],
+ "avisos": [],
+ "datos": {
+  "palabras": 95,
+  "duracion_estimada_s": 32.6,
+  "pausas": 2,
+  "fuentes": [
+   "boku.ac.at",
+   "cambridge.org",
+   "cooperativa.cl",
+   "emol.com",
+   "glacierchange.blog",
+   "glaciologia.cl",
+   "infraestructurapublica.cl",
+   "laestrella.com.pa",
+   "meetingorganizer.copernicus.org",
+   "ncse.ngo",
+   "pubs.usgs.gov",
+   "solardaily.com",
+   "usgs.gov",
+   "weather.gov"
+  ],
+  "afirmaciones_verificadas": 9
+ }
+}

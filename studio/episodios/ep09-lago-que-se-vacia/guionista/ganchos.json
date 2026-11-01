@@ -1,0 +1,58 @@
+{
+ "candidatos": [
+  {
+   "id": "g1",
+   "dur_s": 34,
+   "cuadro0": "Valle de montaña al amanecer, 3D realista. Lago gris verdoso en la mitad baja del cuadro; al fondo, un muro de hielo azulado de lado a lado (~30 % del alto). El agua baja y deja franjas de barro mojado.",
+   "0_3s": "En cámara rápida el nivel del lago baja visiblemente; al pie del muro de hielo se forma un remolino. La cámara avanza lento sobre el agua.",
+   "texto_pantalla_0_3s": "SE VACÍA EN UNA NOCHE",
+   "voz_0_3s": "Este lago se está vaciando… por debajo del hielo.",
+   "resto": "Pasa en la Patagonia: un glaciar tapa el valle y atrapa el lago. Pero el hielo flota. Cuando el lago se llena, levanta el borde del glaciar y el agua se cuela por abajo. Al pasar, derrite un túnel bajo el hielo. Así que en una noche el lago entero se va por ahí, y el río de abajo se triplica. Hasta que el hielo, con su peso, aplasta el túnel y lo cierra. El lago se vuelve a llenar… y otra vez."
+  },
+  {
+   "id": "g3",
+   "dur_s": 36,
+   "cuadro0": "Valle de montaña al amanecer, 3D realista. Lago lleno gris verdoso (~50 % del cuadro) contra un muro de hielo azulado al fondo (~30 % del alto).",
+   "0_3s": "A los 1,5 s corte seco al mismo encuadre: el lago ya no está; queda un barrial café con charcos y bloques de hielo varados. Cámara con leve avance.",
+   "texto_pantalla_0_3s": "SE VACÍA Y SE LLENA",
+   "voz_0_3s": "Este lago se vacía en una noche… y se vuelve a llenar.",
+   "resto": "Pasa en la Patagonia: un glaciar tapa el valle y atrapa el lago. Pero el hielo flota. Cuando el lago se llena, levanta el borde del glaciar y el agua se cuela por abajo. Al pasar, derrite un túnel bajo el hielo. Así que en una noche el lago entero se va por ahí, y el río de abajo se triplica. Hasta que el hielo, con su peso, aplasta el túnel y lo cierra. El lago se vuelve a llenar… y otra vez."
+  },
+  {
+   "id": "g4",
+   "dur_s": 35,
+   "cuadro0": "Fondo de lago vacío al amanecer, 3D realista: barro café con charcos y bloques de hielo del tamaño de casas varados (el más cercano ~35 % del cuadro). Detrás, un muro de hielo. Un hombre pequeño camina entre ellos.",
+   "0_3s": "La cámara avanza entre los bloques de hielo varados; gotea agua de uno de ellos; el hombre se detiene y mira hacia el muro de hielo.",
+   "texto_pantalla_0_3s": "AQUÍ HABÍA UN LAGO",
+   "voz_0_3s": "Anoche, aquí había un lago.",
+   "resto": "Pasa en la Patagonia: un glaciar tapa el valle y atrapa el lago. Pero el hielo flota. Cuando el lago se llena, levanta el borde del glaciar y el agua se cuela por abajo. Al pasar, derrite un túnel bajo el hielo. Así que en una noche el lago entero se va por ahí, y el río de abajo se triplica. Hasta que el hielo, con su peso, aplasta el túnel y lo cierra. El lago se vuelve a llenar… y otra vez."
+  },
+  {
+   "id": "g5",
+   "dur_s": 36,
+   "cuadro0": "Orilla de un barrial al amanecer, 3D realista: una carpa naranja en primer plano (~25 % del cuadro); detrás, barro con charcos y bloques de hielo varados hasta un muro de hielo lejano.",
+   "0_3s": "Se abre la carpa y sale un hombre; se queda mirando el barrial donde no hay agua. La cámara se eleva lento por detrás de él.",
+   "texto_pantalla_0_3s": "",
+   "voz_0_3s": "Acampas junto a un lago. Despiertas… y no está.",
+   "resto": "Pasa en la Patagonia: un glaciar tapa el valle y atrapa el lago. Pero el hielo flota. Cuando el lago se llena, levanta el borde del glaciar y el agua se cuela por abajo. Al pasar, derrite un túnel bajo el hielo. Así que en una noche el lago entero se va por ahí, y el río de abajo se triplica. Hasta que el hielo, con su peso, aplasta el túnel y lo cierra. El lago se vuelve a llenar… y otra vez."
+  },
+  {
+   "id": "g6",
+   "dur_s": 36,
+   "cuadro0": "Valle de montaña al amanecer, 3D realista. Lago gris verdoso en la mitad baja del cuadro; al fondo, un muro de hielo azulado de lado a lado (~30 % del alto). El agua baja y deja franjas de barro mojado.",
+   "0_3s": "En cámara rápida el nivel del lago baja visiblemente; al pie del muro de hielo se forma un remolino. La cámara avanza lento sobre el agua.",
+   "texto_pantalla_0_3s": "UN LAGO QUE SE VACÍA",
+   "voz_0_3s": "¿Sabías que en Chile hay un lago que se vacía solo?",
+   "resto": "Pasa en la Patagonia: un glaciar tapa el valle y atrapa el lago. Pero el hielo flota. Cuando el lago se llena, levanta el borde del glaciar y el agua se cuela por abajo. Al pasar, derrite un túnel bajo el hielo. Así que en una noche el lago entero se va por ahí, y el río de abajo se triplica. Hasta que el hielo, con su peso, aplasta el túnel y lo cierra. El lago se vuelve a llenar… y otra vez."
+  },
+  {
+   "id": "g7",
+   "dur_s": 34,
+   "cuadro0": "Muro de hielo azulado de frente, 3D realista, ocupa ~45 % del alto. A su pie, el agua gris del lago se hunde en un remolino ancho (~25 % del ancho); el nivel del lago está bajando.",
+   "0_3s": "El remolino gira y crece; trozos de hielo flotando son arrastrados hacia él y desaparecen bajo el muro. La cámara baja despacio hacia el remolino.",
+   "texto_pantalla_0_3s": "SE TRAGA UN LAGO",
+   "voz_0_3s": "Este glaciar se está tragando un lago entero.",
+   "resto": "Pasa en la Patagonia: un glaciar tapa el valle y atrapa el lago. Pero el hielo flota. Cuando el lago se llena, levanta el borde del glaciar y el agua se cuela por abajo. Al pasar, derrite un túnel bajo el hielo. Así que en una noche el lago entero se va por ahí, y el río de abajo se triplica. Hasta que el hielo, con su peso, aplasta el túnel y lo cierra. El lago se vuelve a llenar… y otra vez."
+  }
+ ]
+}

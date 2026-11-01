@@ -1,0 +1,76 @@
+{
+  "perfil": "Andrea, 41, Guatemala",
+  "videos": [
+    {
+      "codigo": "ZM",
+      "se_queda_2s": true,
+      "por_que_2s": "Dice que un edificio se fue caminando y se ve un edificio sobre patas azules y amarillas, me dio curiosidad cómo es eso.",
+      "se_va_en": "¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados.",
+      "lo_ve_entero_pct": 30,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo se va caminando un edificio?"
+    },
+    {
+      "codigo": "PJ",
+      "se_queda_2s": true,
+      "por_que_2s": "Me pasa a mí y a mis hijos con el helado, y el muñeco con la cara de dolor y la frente roja me hizo reír.",
+      "se_va_en": "Su nombre científico es ganglioneuralgia esfenopalatina.",
+      "lo_ve_entero_pct": 70,
+      "lo_manda": true,
+      "a_quien": "A mis hijos y al grupo de WhatsApp de la familia, por el truco de la lengua en el paladar",
+      "pregunta_que_te_dejo": "¿Por qué duele la cabeza si el frío nunca tocó el cerebro?"
+    },
+    {
+      "codigo": "AX",
+      "se_queda_2s": true,
+      "por_que_2s": "Es la cortina del baño pegándose, me pasa todos los días en mi casa, entendí al instante.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 88,
+      "lo_manda": true,
+      "a_quien": "A mi esposo y a mi hermana, con un 'a mí me pasa siempre', y para saber qué cortina comprar",
+      "pregunta_que_te_dejo": "¿Un fantasma? ¿Por qué se me pega la cortina?"
+    },
+    {
+      "codigo": "CM",
+      "se_queda_2s": true,
+      "por_que_2s": "El remolino tragándose el hielo se ve impresionante, y el texto dice 'se traga un lago', quise ver qué pasaba.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 50,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo se traga un glaciar a un lago entero?"
+    },
+    {
+      "codigo": "ED",
+      "se_queda_2s": true,
+      "por_que_2s": "Un pájaro con un chile en el pico y un ratón echando fuego, el chile lo conozco de mi cocina y me dio risa.",
+      "se_va_en": "Y lo más loco: hay un mamífero que casi no lo siente. La tupaya, de China.",
+      "lo_ve_entero_pct": 30,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"
+    },
+    {
+      "codigo": "WA",
+      "se_queda_2s": false,
+      "por_que_2s": "Un señor chiquito con casco flotando en el aire y una etiqueta que dice SIMULACIÓN, no entendí qué era ni qué me querían mostrar.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "CY",
+      "se_queda_2s": false,
+      "por_que_2s": "Muchos letreros y números cambiando (pisos, cámara rápida, el más alto) y es un edificio de Japón, no tiene nada que ver conmigo.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 7,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    }
+  ],
+  "orden": ["AX", "PJ", "ZM", "ED", "CM", "WA", "CY"]
+}

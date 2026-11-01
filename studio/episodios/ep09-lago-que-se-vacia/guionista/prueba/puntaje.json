@@ -1,0 +1,197 @@
+{
+ "paneles": 6,
+ "calibracion": {
+  "rho_quedan_vs_yt_se_quedo": 0.59,
+  "rho_quedan_vs_ig_pasa_3s": 0.53,
+  "rho_borda_vs_yt_vistas": 0.43,
+  "peor_real": "ep05",
+  "peor_real_en_ultimo_tercio": true,
+  "rho_quedan_vs_yt_se_quedo_sin_el_peor": 0.26,
+  "se_puede_usar_para_descartar": false
+ },
+ "videos": {
+  "ep07": {
+   "tipo": "ancla",
+   "quedan_2s": 66.7,
+   "entero": 34.5,
+   "manda": 33.3,
+   "borda": 0.5,
+   "se_va_en": [
+    "cuadro0",
+    "final",
+    "Solo armar eso toma dos meses.",
+    "Solo armar eso toma dos meses.",
+    "cuadro0",
+    "final"
+   ],
+   "por_que_2s": [
+    "Una torre gris con tres carteles y un contador que baja; no sé qué miro ni por qué me importa, y 'el edificio más alto que Japón ha botado' suena a noticiero.",
+    "Veo la torre achicarse y el contador bajar de 36 a 30 pisos mientras dicen 'el más alto que Japón ha botado'; quiero ver cómo se tumba un rascacielos así.",
+    "Veo una torre que se va achicando con un contador de pisos y quiero saber cómo se tira un edificio así sin que se caiga, aunque tanto texto en pantalla me cansa.",
+    "Veo la torre achicándose y el contador de pisos bajando 36, 34, 33... ¿cómo lo bajan sin explotarlo? Es destrucción en vivo y me llama.",
+    "Muchos letreros y números cambiando (pisos, cámara rápida, el más alto) y es un edificio de Japón, no tiene nada que ver conmigo.",
+    "Veo una torre que va bajando y el contador de pisos cambia; como mecánico quiero saber cómo bajan un edificio sin tirarlo."
+   ]
+  },
+  "s1": {
+   "tipo": "candidato",
+   "quedan_2s": 100.0,
+   "entero": 52.5,
+   "manda": 100.0,
+   "borda": 0.167,
+   "se_va_en": [
+    "Más de veinte veces, y otra vez:",
+    "final"
+   ],
+   "por_que_2s": [
+    "Bloques de hielo enormes tirados en el barro y el cartel 'AQUÍ HABÍA UN LAGO': quiero saber adónde se fue un lago entero.",
+    "Bloques de hielo del tamaño de casas en pleno barro y el tipo diciendo 'anoche aquí había un lago'... ¿cómo así, un lago desapareció en una noche? Quiero saber qué pasó."
+   ]
+  },
+  "ep05": {
+   "tipo": "ancla",
+   "quedan_2s": 16.7,
+   "entero": 7.5,
+   "manda": 16.7,
+   "borda": 0.75,
+   "se_va_en": [
+    "cuadro0",
+    "cuadro0",
+    "Tu cuerpo repele los imanes.",
+    "cuadro0",
+    "cuadro0",
+    "final"
+   ],
+   "por_que_2s": [
+    "Un tipo chiquito con casco en el aire y un cartel amarillo que dice SIMULACIÓN: parece render de clase de física y no hay nada que me haga reír.",
+    "Un hombrecito diminuto flotando en el cielo con letrero de 'SIMULACIÓN'; no se entiende qué miro y lo del diamagnetismo y la rana ya lo conozco.",
+    "Es un dato de ciencia más ('tu cuerpo repele imanes'); el señor se ve chiquito en el cielo y no entiendo qué estoy mirando.",
+    "La voz arranca como clase de física ('tu cuerpo repele los imanes'), dice SIMULACIÓN y el tipo del casco es un puntito en el cielo. No se siente épico.",
+    "Un señor chiquito con casco flotando en el aire y una etiqueta que dice SIMULACIÓN, no entendí qué era ni qué me querían mostrar.",
+    "Un wey flotando en el aire y la voz dice que mi cuerpo repele imanes; suena a mentira pero quiero ver cómo lo arman."
+   ]
+  },
+  "ep03": {
+   "tipo": "ancla",
+   "quedan_2s": 83.3,
+   "entero": 29.2,
+   "manda": 50.0,
+   "borda": 0.361,
+   "se_va_en": [
+    "Las patas van en dos grupos.",
+    "Y lo más loco: Shanghái ya tenía práctica.",
+    "¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados.",
+    "Las patas van en dos grupos. Uno aguanta el peso.",
+    "¿Y por qué no usaron rieles? Los rieles no doblan, y había que girarla veintiún grados.",
+    "Este edificio de cinco pisos se fue caminando."
+   ],
+   "por_que_2s": [
+    "Un edificio de ladrillo sobre patas azules y amarillas y dice que 'se fue caminando': absurdo, quiero ver cómo camina.",
+    "Un edificio de ladrillo con patas y la voz diciendo que 'se fue caminando'; suena imposible y soy ingeniero, quiero ver el mecanismo (aunque el primer segundo es un plano quieto aburrido).",
+    "'Se fue caminando' me da risa y el edificio con patas azules y amarillas se ve raro; quiero saber cómo.",
+    "'Este edificio de cinco pisos se fue caminando', eso es imposible y suena a broma. Quiero ver cómo camina un edificio.",
+    "Dice que un edificio se fue caminando y se ve un edificio sobre patas azules y amarillas, me dio curiosidad cómo es eso.",
+    "Dice que el edificio camina pero lo único que veo es un edificio quieto con unos tubos; promete y no muestra, y en 2 segundos no se mueve nada."
+   ]
+  },
+  "ep02": {
+   "tipo": "ancla",
+   "quedan_2s": 66.7,
+   "entero": 18.8,
+   "manda": 33.3,
+   "borda": 0.583,
+   "se_va_en": [
+    "El ají trae capsaicina, una molécula que las hace sonar.",
+    "cuadro0",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+    "cuadro0",
+    "Y lo más loco: hay un mamífero que casi no lo siente. La tupaya, de China.",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre."
+   ],
+   "por_que_2s": [
+    "Un pájaro con un ají y un ratón tirando fuego como dragón, medio caricatura; y acá nadie aguanta el picante, me da curiosidad lo de 'ni lo siente'.",
+    "Un ratón echando una llama de dibujo animado y un pájaro con un ají; se ve barato, y lo de que las aves no sienten el picante ya lo sabía.",
+    "Un pájaro con un chile y un ratón echando fuego se ve chistoso, y en México el picante nos importa.",
+    "Un pájaro quieto con un ají en el pico, plano fijo y no pasa nada. El ratón con fuego de fondo es chiquito y no lo pillé. La voz suena a dato de documental de animales.",
+    "Un pájaro con un chile en el pico y un ratón echando fuego, el chile lo conozco de mi cocina y me dio risa.",
+    "Chile y pájaro que no siente el picante; aquí en México eso es tema de todos los días y el ratón echando fuego me dio risa."
+   ]
+  },
+  "ep01": {
+   "tipo": "ancla",
+   "quedan_2s": 50.0,
+   "entero": 18.3,
+   "manda": 16.7,
+   "borda": 0.722,
+   "se_va_en": [
+    "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara.",
+    "cuadro0",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+    "cuadro0",
+    "Su nombre científico es ganglioneuralgia esfenopalatina.",
+    "Te comes un helado rápido y... ¡zas! Te duele la frente."
+   ],
+   "por_que_2s": [
+    "Me pasó mil veces: el helado rápido y el dolor en la frente, y el personaje con las manos en la cabeza me hizo reír.",
+    "Muñeco 3D comiendo helado y agarrándose la frente: ya sé qué es, el 'congelamiento cerebral'. Nada nuevo y se ve caricatura.",
+    "Me sé el dolor de frente del helado y la cara exagerada del personaje es graciosa, pero creo que ya sé la respuesta.",
+    "Todos sabemos que el helado te duele la frente, es de conocimiento básico. El muñequito de manos en la cabeza es medio gracioso pero ya sé de qué va.",
+    "Me pasa a mí y a mis hijos con el helado, y el muñeco con la cara de dolor y la frente roja me hizo reír.",
+    "Es el dolor de cabeza del helado, eso ya lo sé todo el mundo; un muñeco comiendo helado no me dice nada nuevo."
+   ]
+  },
+  "ep04": {
+   "tipo": "ancla",
+   "quedan_2s": 83.3,
+   "entero": 62.2,
+   "manda": 66.7,
+   "borda": 0.278,
+   "se_va_en": [
+    "final",
+    "final",
+    "final",
+    "cuadro0",
+    "final",
+    "final"
+   ],
+   "por_que_2s": [
+    "La cortina de la ducha que se te pega, re conocido; el tipo con espuma y la cortina doblándose es gracioso y se entiende sin sonido.",
+    "Me pasa todos los días: la cortina de la ducha que se pega. Y nunca me han explicado bien por qué; el tipo con espuma en la cabeza hasta da risa.",
+    "Todos hemos vivido la cortina pegándose al cuerpo en la ducha; me río y quiero saber por qué pasa.",
+    "Un señor con bigote lleno de espuma en la ducha. Eso ya me pasó mil veces, no me dice nada nuevo y no hay nada gigante ni loco.",
+    "Es la cortina del baño pegándose, me pasa todos los días en mi casa, entendí al instante.",
+    "Me pasa todos los días: la cortina se te pega. El wey con bigote y espuma me hizo reír y quiero saber por qué pasa."
+   ]
+  },
+  "s2": {
+   "tipo": "candidato",
+   "quedan_2s": 100.0,
+   "entero": 60.0,
+   "manda": 0.0,
+   "borda": 0.417,
+   "se_va_en": [
+    "final",
+    "final"
+   ],
+   "por_que_2s": [
+    "Veo un remolino enorme al pie de un muro de hielo que se traga los trozos de hielo y oigo 'un glaciar se está tragando un lago': quiero ver cómo es posible.",
+    "El remolino tragándose el hielo se ve impresionante, y el texto dice 'se traga un lago', quise ver qué pasaba."
+   ]
+  },
+  "s3": {
+   "tipo": "candidato",
+   "quedan_2s": 100.0,
+   "entero": 65.0,
+   "manda": 100.0,
+   "borda": 0.333,
+   "se_va_en": [
+    "final",
+    "final"
+   ],
+   "por_que_2s": [
+    "Acampar, despertar y que no haya lago es una situación rara y la entiendo al instante; el barrial con hielo se ve increíble.",
+    "Veo un barrial con hielo y una carpa, y la voz dice que despertó y el lago no está; quiero saber a dónde se fue tanta agua."
+   ]
+  }
+ }
+}

@@ -1,0 +1,76 @@
+{
+  "perfil": "Matías, 31, Monterrey (México). Mecánico, CON sonido.",
+  "videos": [
+    {
+      "codigo": "GS",
+      "se_queda_2s": true,
+      "por_que_2s": "Veo un barrial con hielo y una carpa, y la voz dice que despertó y el lago no está; quiero saber a dónde se fue tanta agua.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 55,
+      "lo_manda": true,
+      "a_quien": "a mi primo que se va de campamento",
+      "pregunta_que_te_dejo": "¿A dónde se va un lago entero en una noche?"
+    },
+    {
+      "codigo": "JX",
+      "se_queda_2s": true,
+      "por_que_2s": "Un wey flotando en el aire y la voz dice que mi cuerpo repele imanes; suena a mentira pero quiero ver cómo lo arman.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 45,
+      "lo_manda": true,
+      "a_quien": "a mi compa del taller, por lo del reactor nuclear para flotar",
+      "pregunta_que_te_dejo": "¿De verdad un imán me puede hacer flotar?"
+    },
+    {
+      "codigo": "UR",
+      "se_queda_2s": true,
+      "por_que_2s": "Me pasa todos los días: la cortina se te pega. El wey con bigote y espuma me hizo reír y quiero saber por qué pasa.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 65,
+      "lo_manda": true,
+      "a_quien": "a mi esposa, que siempre se queja de la cortina",
+      "pregunta_que_te_dejo": "¿Por qué la cortina se me pega aunque el agua esté fría?"
+    },
+    {
+      "codigo": "SI",
+      "se_queda_2s": true,
+      "por_que_2s": "Chile y pájaro que no siente el picante; aquí en México eso es tema de todos los días y el ratón echando fuego me dio risa.",
+      "se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+      "lo_ve_entero_pct": 35,
+      "lo_manda": true,
+      "a_quien": "al compa que presume que no le pica nada",
+      "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante y yo sí?"
+    },
+    {
+      "codigo": "MG",
+      "se_queda_2s": true,
+      "por_que_2s": "Veo una torre que va bajando y el contador de pisos cambia; como mecánico quiero saber cómo bajan un edificio sin tirarlo.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 70,
+      "lo_manda": true,
+      "a_quien": "a mi cuñado que trabaja en construcción",
+      "pregunta_que_te_dejo": "¿Cómo demuelen un edificio de 40 pisos sin explosión?"
+    },
+    {
+      "codigo": "HQ",
+      "se_queda_2s": false,
+      "por_que_2s": "Es el dolor de cabeza del helado, eso ya lo sé todo el mundo; un muñeco comiendo helado no me dice nada nuevo.",
+      "se_va_en": "Te comes un helado rápido y... ¡zas! Te duele la frente.",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "HX",
+      "se_queda_2s": false,
+      "por_que_2s": "Dice que el edificio camina pero lo único que veo es un edificio quieto con unos tubos; promete y no muestra, y en 2 segundos no se mueve nada.",
+      "se_va_en": "Este edificio de cinco pisos se fue caminando.",
+      "lo_ve_entero_pct": 20,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo va a caminar un edificio?"
+    }
+  ],
+  "orden": ["MG", "UR", "SI", "GS", "JX", "HX", "HQ"]
+}

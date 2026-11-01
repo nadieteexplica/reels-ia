@@ -1,0 +1,3 @@
+privados PETE*
+pose *happy*idle*.fbx
+gestos mixamo

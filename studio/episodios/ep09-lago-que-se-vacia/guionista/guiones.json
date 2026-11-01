@@ -1,0 +1,31 @@
+{
+ "candidatos": [
+  {
+   "id": "s1",
+   "dur_s": 33,
+   "cuadro0": "Fondo de lago vacío al amanecer, 3D realista: barro café con charcos y bloques de hielo del tamaño de casas varados (el más cercano ~35 % del cuadro). Detrás, un muro de hielo. Un hombre pequeño camina entre ellos.",
+   "0_3s": "La cámara avanza entre los bloques de hielo varados; gotea agua de uno de ellos; el hombre se detiene y mira hacia el muro de hielo.",
+   "texto_pantalla_0_3s": "AQUÍ HABÍA UN LAGO",
+   "voz_0_3s": "Anoche, aquí había un lago.",
+   "resto": "En la Patagonia chilena, un glaciar lo tapaba como una represa. ¿Por dónde se fue el agua? El hielo flota, como el de tu vaso. Por eso, cuando el lago se llena, levanta el borde del glaciar… …y el agua se cuela por abajo. Al pasar, derrite el hielo y abre un túnel cada vez más ancho. Así que en una sola noche, el lago entero se va por ahí. Hasta que el hielo se cierra… y el lago se vuelve a llenar. Más de veinte veces, y otra vez:"
+  },
+  {
+   "id": "s2",
+   "dur_s": 32,
+   "cuadro0": "Muro de hielo azulado de frente, 3D realista, ocupa ~45 % del alto. A su pie, el agua gris del lago se hunde en un remolino ancho (~25 % del ancho); el nivel del lago está bajando.",
+   "0_3s": "El remolino gira y crece; trozos de hielo flotando son arrastrados hacia él y desaparecen bajo el muro. La cámara baja despacio hacia el remolino.",
+   "texto_pantalla_0_3s": "SE TRAGA UN LAGO",
+   "voz_0_3s": "Este glaciar se está tragando un lago entero.",
+   "resto": "Pasa en la Patagonia chilena: el hielo tapa el valle como una represa. Pero una represa de hielo tiene un problema. Flota, como el hielo de tu vaso. Por eso, cuando el lago se llena, levanta el glaciar… …y el agua se mete por abajo. Al pasar, la va derritiendo: abre un túnel cada vez más grande. Así que en una noche, ochenta mil piscinas olímpicas se van por ahí. Hasta que el hielo se vuelve a cerrar, y el lago se llena… …y otra vez:"
+  },
+  {
+   "id": "s3",
+   "dur_s": 35,
+   "cuadro0": "Orilla de un barrial al amanecer, 3D realista: una carpa naranja en primer plano (~25 % del cuadro); detrás, barro con charcos y bloques de hielo varados hasta un muro de hielo lejano.",
+   "0_3s": "Se abre la carpa y sale un hombre; se queda mirando el barrial donde no hay agua. La cámara se eleva lento por detrás de él.",
+   "texto_pantalla_0_3s": "¿Y EL LAGO?",
+   "voz_0_3s": "Acampas junto a un lago. Despiertas… y no está.",
+   "resto": "No se secó: se fue por debajo de un glaciar. El glaciar lo tapa como una represa… pero el hielo flota. Cuando el lago se llena, levanta el borde del hielo… …el agua se cuela por abajo, y al pasar lo derrite. Así abre un túnel que crece y crece. En una noche, el lago entero sale por el otro lado… …y el río más grande de Chile se triplica. Hasta que el hielo se cierra, y el lago se vuelve a llenar. Ya van más de veinte veces, y la próxima:"
+  }
+ ]
+}

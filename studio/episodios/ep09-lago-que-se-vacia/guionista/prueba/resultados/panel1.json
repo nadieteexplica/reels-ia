@@ -1,0 +1,76 @@
+{
+  "perfil": "Valentina, 19, Buenos Aires (sin sonido, solo imagen y subtítulos)",
+  "videos": [
+    {
+      "codigo": "LA",
+      "se_queda_2s": false,
+      "por_que_2s": "Una torre gris con tres carteles y un contador que baja; no sé qué miro ni por qué me importa, y 'el edificio más alto que Japón ha botado' suena a noticiero.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 2,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "VQ",
+      "se_queda_2s": true,
+      "por_que_2s": "Bloques de hielo enormes tirados en el barro y el cartel 'AQUÍ HABÍA UN LAGO': quiero saber adónde se fue un lago entero.",
+      "se_va_en": "Más de veinte veces, y otra vez:",
+      "lo_ve_entero_pct": 45,
+      "lo_manda": true,
+      "a_quien": "a un amigo que anda con ganas de viajar a la Patagonia",
+      "pregunta_que_te_dejo": "¿Adónde se fue el agua de un lago entero en una noche?"
+    },
+    {
+      "codigo": "IO",
+      "se_queda_2s": false,
+      "por_que_2s": "Un tipo chiquito con casco en el aire y un cartel amarillo que dice SIMULACIÓN: parece render de clase de física y no hay nada que me haga reír.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 3,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "UJ",
+      "se_queda_2s": true,
+      "por_que_2s": "Un edificio de ladrillo sobre patas azules y amarillas y dice que 'se fue caminando': absurdo, quiero ver cómo camina.",
+      "se_va_en": "Las patas van en dos grupos.",
+      "lo_ve_entero_pct": 30,
+      "lo_manda": true,
+      "a_quien": "al grupo de amigos que pasa cosas raras y memes",
+      "pregunta_que_te_dejo": "¿Cómo hace un edificio de cinco pisos para caminar?"
+    },
+    {
+      "codigo": "IE",
+      "se_queda_2s": true,
+      "por_que_2s": "Un pájaro con un ají y un ratón tirando fuego como dragón, medio caricatura; y acá nadie aguanta el picante, me da curiosidad lo de 'ni lo siente'.",
+      "se_va_en": "El ají trae capsaicina, una molécula que las hace sonar.",
+      "lo_ve_entero_pct": 8,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"
+    },
+    {
+      "codigo": "WC",
+      "se_queda_2s": true,
+      "por_que_2s": "Me pasó mil veces: el helado rápido y el dolor en la frente, y el personaje con las manos en la cabeza me hizo reír.",
+      "se_va_en": "Ese cambio brusco lo detecta el trigémino, el nervio que siente toda tu cara.",
+      "lo_ve_entero_pct": 20,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Por qué duele la frente si el frío está en la boca?"
+    },
+    {
+      "codigo": "SA",
+      "se_queda_2s": true,
+      "por_que_2s": "La cortina de la ducha que se te pega, re conocido; el tipo con espuma y la cortina doblándose es gracioso y se entiende sin sonido.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 60,
+      "lo_manda": true,
+      "a_quien": "a mi grupo de amigas, que siempre se quejan de la cortina",
+      "pregunta_que_te_dejo": "¿Por qué la cortina se me viene encima si el agua es fría?"
+    }
+  ],
+  "orden": ["UJ", "SA", "VQ", "WC", "IE", "IO", "LA"]
+}

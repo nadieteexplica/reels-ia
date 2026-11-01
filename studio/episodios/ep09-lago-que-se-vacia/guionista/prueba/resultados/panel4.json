@@ -1,0 +1,76 @@
+{
+  "perfil": "Luis, 16, Lima (Perú). Gamer, con sonido, desliza a la primera que se aburre o si la voz suena a documental.",
+  "videos": [
+    {
+      "codigo": "KX",
+      "se_queda_2s": true,
+      "por_que_2s": "Bloques de hielo del tamaño de casas en pleno barro y el tipo diciendo 'anoche aquí había un lago'... ¿cómo así, un lago desapareció en una noche? Quiero saber qué pasó.",
+      "se_va_en": "final",
+      "lo_ve_entero_pct": 60,
+      "lo_manda": true,
+      "a_quien": "a mi pata del cole que ve cosas de naturaleza rara, con un 'mira esta locura, se les fue un lago entero'",
+      "pregunta_que_te_dejo": "¿Adónde se fue el agua de un lago entero en una sola noche?"
+    },
+    {
+      "codigo": "ET",
+      "se_queda_2s": false,
+      "por_que_2s": "Un pájaro quieto con un ají en el pico, plano fijo y no pasa nada. El ratón con fuego de fondo es chiquito y no lo pillé. La voz suena a dato de documental de animales.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 5,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "HG",
+      "se_queda_2s": false,
+      "por_que_2s": "Un señor con bigote lleno de espuma en la ducha. Eso ya me pasó mil veces, no me dice nada nuevo y no hay nada gigante ni loco.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 3,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "OG",
+      "se_queda_2s": true,
+      "por_que_2s": "'Este edificio de cinco pisos se fue caminando', eso es imposible y suena a broma. Quiero ver cómo camina un edificio.",
+      "se_va_en": "Las patas van en dos grupos. Uno aguanta el peso.",
+      "lo_ve_entero_pct": 30,
+      "lo_manda": true,
+      "a_quien": "a mi primo que le gustan los robots y las cosas gigantes, con 'brother, mueven edificios con patas'",
+      "pregunta_que_te_dejo": "¿Cómo así que un edificio camina? ¿Con qué patas?"
+    },
+    {
+      "codigo": "BI",
+      "se_queda_2s": false,
+      "por_que_2s": "La voz arranca como clase de física ('tu cuerpo repele los imanes'), dice SIMULACIÓN y el tipo del casco es un puntito en el cielo. No se siente épico.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 8,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "HN",
+      "se_queda_2s": false,
+      "por_que_2s": "Todos sabemos que el helado te duele la frente, es de conocimiento básico. El muñequito de manos en la cabeza es medio gracioso pero ya sé de qué va.",
+      "se_va_en": "cuadro0",
+      "lo_ve_entero_pct": 6,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": ""
+    },
+    {
+      "codigo": "AM",
+      "se_queda_2s": true,
+      "por_que_2s": "Veo la torre achicándose y el contador de pisos bajando 36, 34, 33... ¿cómo lo bajan sin explotarlo? Es destrucción en vivo y me llama.",
+      "se_va_en": "Solo armar eso toma dos meses.",
+      "lo_ve_entero_pct": 30,
+      "lo_manda": false,
+      "a_quien": "",
+      "pregunta_que_te_dejo": "¿Cómo botas un rascacielos de 40 pisos sin explosión?"
+    }
+  ],
+  "orden": ["KX", "OG", "AM", "BI", "ET", "HN", "HG"]
+}

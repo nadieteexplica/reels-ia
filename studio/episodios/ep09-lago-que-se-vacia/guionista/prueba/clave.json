@@ -1,0 +1,182 @@
+{
+ "panel1": {
+  "LA": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "VQ": {
+   "id": "s1",
+   "tipo": "candidato"
+  },
+  "IO": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "UJ": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "IE": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "WC": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "SA": {
+   "id": "ep04",
+   "tipo": "ancla"
+  }
+ },
+ "panel2": {
+  "QX": {
+   "id": "s2",
+   "tipo": "candidato"
+  },
+  "IY": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "SH": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "UB": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "UV": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "DH": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "KE": {
+   "id": "ep05",
+   "tipo": "ancla"
+  }
+ },
+ "panel3": {
+  "QI": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "FP": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "VH": {
+   "id": "s3",
+   "tipo": "candidato"
+  },
+  "LI": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "DJ": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "ND": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "DM": {
+   "id": "ep04",
+   "tipo": "ancla"
+  }
+ },
+ "panel4": {
+  "KX": {
+   "id": "s1",
+   "tipo": "candidato"
+  },
+  "ET": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "HG": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "OG": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "BI": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "HN": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "AM": {
+   "id": "ep07",
+   "tipo": "ancla"
+  }
+ },
+ "panel5": {
+  "ZM": {
+   "id": "ep03",
+   "tipo": "ancla"
+  },
+  "PJ": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "AX": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "CM": {
+   "id": "s2",
+   "tipo": "candidato"
+  },
+  "ED": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "WA": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "CY": {
+   "id": "ep07",
+   "tipo": "ancla"
+  }
+ },
+ "panel6": {
+  "GS": {
+   "id": "s3",
+   "tipo": "candidato"
+  },
+  "JX": {
+   "id": "ep05",
+   "tipo": "ancla"
+  },
+  "UR": {
+   "id": "ep04",
+   "tipo": "ancla"
+  },
+  "SI": {
+   "id": "ep02",
+   "tipo": "ancla"
+  },
+  "MG": {
+   "id": "ep07",
+   "tipo": "ancla"
+  },
+  "HQ": {
+   "id": "ep01",
+   "tipo": "ancla"
+  },
+  "HX": {
+   "id": "ep03",
+   "tipo": "ancla"
+  }
+ }
+}
