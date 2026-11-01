@@ -69,22 +69,25 @@ Los primeros 3 s de cada uno, cuadro a cuadro: `tools/guionista/calibracion/prim
 
 ---
 
-## 3. Nuestro simulador, calibrado (1-nov-2026)
-Se corrió a ciegas sobre los 6 videos publicados, mezclados y con códigos al azar, sin decir cuáles eran reales ni cómo les fue (`tools/guionista/calibracion/corrida-2026-11-01/`):
+## 3. Nuestro simulador, calibrado (1-nov-2026; corregido tras la revisión independiente)
+Se corrió a ciegas sobre los 6 videos publicados (las "anclas"), con códigos al azar y sin decir cuáles eran reales ni cómo les fue. Los resultados reales nunca se le muestran a un juez.
 
-| Prueba | Jueces | Correlación con "se quedó" de YouTube | Con vistas de YouTube | ¿Los 2 peores reales (Ep. 5 y 7) quedaron abajo? |
+**La corrida que vale (`calibracion/corrida-2026-11-01b/`):** las anclas las describió un **descriptor ciego** que sólo vio las tiras de 0–3 s con nombres al azar, sin saber los resultados; el enunciado de los jueces es neutro; cada par se vio 2 veces en cada orden.
+
+| Prueba (4 jueces × 15 pares) | Correlación con "se quedó" de YouTube | Sin el Ep. 5 | Con vistas de YouTube | Los 2 peores reales (Ep. 5 y 7) |
 |---|---|---|---|---|
-| Feed con perfiles, texto | 6 | **0,77** | 0,00 | Sí (5.º y 4.º) |
-| Feed con perfiles, cuadros reales | 6 | 0,68 | −0,17 | Sí (5.º y 6.º) |
-| Duelo de a pares sin perfil, cuadros reales | 4 × 15 pares | 0,66 | — | Sí (5.º y 6.º) |
-| Duelo de a pares sin perfil, texto | 4 × 15 pares | 0,49 | — | Sí (5.º y 6.º); el Ep. 3 salió 1.º con 20 de 20 |
+| **Duelo con cuadros reales** | **0,66** | 0,50 | −0,31 | **5.º y 6.º** |
+| Duelo con descripción de texto | 0,49 | 0,10 | 0,26 | Ep. 5 último; Ep. 7 2.º |
 
-**Qué quiere decir:**
-- **Sirve para el gancho:** en las cuatro pruebas los dos peores ganchos reales quedaron en los dos últimos lugares, y el orden se parece al real (0,49–0,77; con 6 videos esto es un indicio, no una prueba). El duelo de texto, que es el que se puede correr antes de animar, puso al Ep. 3 (el viral) primero en los 20 duelos.
-- **No sirve para predecir vistas:** la correlación es cero. Los jueces premian lo cotidiano que "me pasa" (el Ep. 4 salió 1.º, y en la vida real se frenó) y castigan las mecánicas largas que en la vida real retuvieron (el Ep. 7 salió último y tiene el mejor % visto del canal).
-- **No ve magnitudes:** puso al Ep. 7 tan mal como al Ep. 5, y en la realidad el Ep. 5 fue un desastre (39,7 %) y el Ep. 7 sólo flojo (70,7 %).
-- **Uso decidido:** el simulador es un **filtro de ganchos** (si un candidato queda con los peores, se reescribe) y un **buscador de fugas** (dónde dice cada espectador que se iría y por qué). Nunca elige al ganador por sí solo, y nunca juzga si algo va a ser viral.
-- Cada video publicado se suma a `anclas.json` y la calibración se vuelve a correr cada 4 videos (`puntuar.py` la calcula sola). Si en 10 videos la predicción anotada acierta menos del 60 %, el simulador pierde el voto.
+**La primera corrida (`corrida-2026-11-01/`) está contaminada y no cuenta:** las descripciones de las anclas las escribió quien ya conocía los resultados (por ejemplo, el edificio del Ep. 7 quedó como "chico" y el descriptor ciego lo midió en ~47 % del alto), y el enunciado castigaba "letreros, falso, como una clase", justo lo que ya sabíamos que había fallado. Daba 0,49–0,77; el criterio fijado de antemano en `puntuar.py` dijo que no pasaba, y la primera versión de este documento no lo dijo.
+
+**Qué quiere decir (con 6 videos, todo esto es un indicio, no una prueba):**
+- **Con cuadros reales sirve para el gancho:** los dos peores ganchos reales quedaron últimos y el orden se parece al real (0,66; 0,50 sin el desastre). Por eso el filtro contra las anclas se hace con el plano 1 ya renderizado (§4, paso 8).
+- **Con texto, sólo atrapa el desastre:** el Ep. 5 queda último, pero el resto es ruido (0,10 sin él). Antes de animar, el simulador no puede decir si un gancho es mejor que los nuestros; sólo ordena candidatos entre sí (y eso tampoco está validado todavía).
+- **No predice vistas** (−0,31 a 0,26). Nadie las predice (Salganik et al. 2006).
+- **Sesgo visible:** los jueces premian las caras en primer plano (el Ep. 1 ganó 19 de 20 en las dos pruebas; en la vida real quedó 2.º en "se quedó" y 3.º en vistas).
+- **Uso decidido:** el simulador es un **filtro de ganchos con cuadros reales** y un **buscador de fugas**. Nunca elige al ganador por sí solo ni juzga si algo va a ser viral.
+- Cada video publicado se suma a `anclas.json` (tira con `tira.py`, descripción de un descriptor ciego) y la calibración se repite cada 4 videos. Si en 10 videos la predicción del simulador (§7) acierta menos del 60 %, pierde el voto.
 
 ---
 
