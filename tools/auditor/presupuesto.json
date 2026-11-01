@@ -71,5 +71,15 @@
    "exterior_persona_flotando": 17
   },
   "negros_p5_max": 40
+ },
+ "guionista": {
+  "nota": "Topes del guionista (docs/GUIONISTA.md §4, 1-nov-2026). Medido en el Ep. 8: el guionista ~45 min en 4 vueltas y ~20 jueces Sonnet chicos (4 del duelo + 6 cazadores, más 6 de una corrida descartada). Si se va a pasar, se para y se avisa a Tomás.",
+  "minutos_guionista": 45,
+  "jueces_duelo": 4,
+  "cazadores_fugas": 6,
+  "jueces_mudo": 5,
+  "jueces_duelo_imagenes": 4,
+  "subagentes_max_por_video": 24,
+  "webfetch_max": 2
  }
 }
