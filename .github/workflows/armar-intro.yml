@@ -26,7 +26,7 @@ jobs:
           mkdir -p _w
           gh release download ep09-borrador -R "$GITHUB_REPOSITORY" -p "ep09-lago-que-se-vacia.mp4" -D _w
           W=$PWD/_w VIDEO=$PWD/_w/ep09-lago-que-se-vacia.mp4 bash studio/episodios/ep09-lago-que-se-vacia/escena/intro_armar.sh
-          mv _w/ep09-lago-que-se-vacia-v4.mp4 "_w/${{ github.event.inputs.nombre }}"
+          [ "${{ github.event.inputs.nombre }}" = "ep09-lago-que-se-vacia-v4.mp4" ] || mv _w/ep09-lago-que-se-vacia-v4.mp4 "_w/${{ github.event.inputs.nombre }}"
           python3 tools/qa.py "_w/${{ github.event.inputs.nombre }}" || true
           gh release upload ep09 "_w/${{ github.event.inputs.nombre }}" -R "$GITHUB_REPOSITORY" --clobber
           echo "URL: https://github.com/$GITHUB_REPOSITORY/releases/download/ep09/${{ github.event.inputs.nombre }}"
