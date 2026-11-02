@@ -228,8 +228,8 @@ K = [  # t (s), lat, lon, altura (km), inclinación (°, la cámara se va al sur
     (-0.8, -12.0, -36.0, 22000.0, 0.0),
     (0.0, -19.0, -55.0, 17500.0, 0.0),
     (1.0, -37.5, -71.0, 5000.0, 4.0),
-    (1.62, -44.6, -72.6, 1500.0, 12.0),
-    (2.55, -47.05, -73.2, 720.0, 20.0),
+    (1.62, -46.3, -72.9, 1500.0, 12.0),
+    (2.55, -47.15, -73.22, 720.0, 20.0),
     (DUR + 0.2, -47.2, -73.25, 600.0, 23.0),
 ]
 
@@ -255,6 +255,10 @@ def pose(t):
     lo = pchip(ts, [k[2] for k in K], t)
     alt = math.exp(pchip(ts, [math.log(k[3]) for k in K], t)) / 1000.0
     inc = math.radians(pchip(ts, [k[4] for k in K], t))
+    # desde Chile hacia el lago, el punto que se sigue queda arriba del centro (~23 % del alto): el lago y su zona roja
+    # terminan sobre los subtítulos (la mira se corre al sur lo que mide ese 23 % a esa altura)
+    w_ = suave((t - 1.15) / 0.7)
+    la = la - w_ * 0.23 * 1.03 * alt * 1000.0 / 111.0
     T = xyz(la, lo); nn = T.normalized(); N_ = norte(la, lo)
     pos = T + (nn * math.cos(inc) - N_ * math.sin(inc)) * (alt / max(math.cos(inc), 0.3))
     f = (T - pos).normalized(); r_ = f.cross(N_).normalized(); u = r_.cross(f)
@@ -286,6 +290,7 @@ def actualizar(f):
     t = (f - 1) / FPS
     pos, q, alt = pose(t)
     cam.location = pos; cam.rotation_quaternion = q
+    bpy.context.view_layer.update()
     # contorno: se dibuja en "Chile" y queda fino (grosor constante en pantalla)
     cu.bevel_depth = 0.00085 * alt
     cu.bevel_factor_end = suave((t - (T_CHILE - 0.25)) / 0.55)
