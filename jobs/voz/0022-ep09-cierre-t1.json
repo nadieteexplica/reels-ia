@@ -1,0 +1,14 @@
+{
+ "mode": "tts",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "id": "ep09-cierre-t1",
+ "text": "Ya van más de veinte veces. ¿Tú acamparías aquí?",
+ "previous_text": "Es tanta agua que frena al río y lo empuja hacia atrás. Por eso hay una alarma que avisa a los que viven río abajo. El hielo se cierra, el lago se llena...",
+ "voice_settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.32,
+  "use_speaker_boost": true
+ }
+}
