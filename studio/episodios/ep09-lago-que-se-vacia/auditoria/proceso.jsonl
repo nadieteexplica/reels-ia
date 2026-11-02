@@ -36,3 +36,4 @@
 {"tipo": "cumplida", "id": "29", "n": 36, "ts": "2026-11-01T21:29:37-03:00"}
 {"tipo": "chequeo", "id": "puerta 6 r2", "estado": "0 bloqueantes, promedio 7,97, realismo 6,7: NO sólo por realismo; Tomás eligió verlo y decidir él (19:45)", "n": 37, "ts": "2026-11-01T21:29:37-03:00"}
 {"tipo": "chequeo", "id": "publicación", "estado": "OK de Tomás 06:41 ('Todo 10 am'); Release ep09; Metricool 413738604 / 413738620 / 413738655 para el 2-nov 10:00", "n": 38, "ts": "2026-11-02T06:43:37-03:00"}
+{"tipo": "trabajo", "que": "v4: plano 0 del mapa (render-mapa en Actions, intro_post, intro_audio, armar-intro → Release ep09); puerta 7 r1 APROBADO", "nota": "pedido de Tomás 2-nov 07:57; MP4 de Actions = revisado (PSNR 49 dB, 48,02 s, −14,0 LUFS)", "n": 39, "ts": "2026-11-02T09:18:24-03:00"}
