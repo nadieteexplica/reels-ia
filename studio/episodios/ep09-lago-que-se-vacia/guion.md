@@ -35,10 +35,10 @@ Sale por el otro lado, y el río más caudaloso de Chile se triplica.
 Es tanta agua que frena al río y lo empuja hacia atrás.
 Por eso hay una alarma que avisa a los que viven río abajo.
 El hielo se cierra, el lago se llena.
-Ya van más de veinte veces, y otra vez…
+Ya van más de veinte veces. ¿Tú acamparías aquí?
 
 ## Una frase, una imagen (tiempos reales en `storyboard.md`)
-*Loop: "…y otra vez: anoche, aquí había un lago."*
+*v5 (2-nov 09:25, pedido de Tomás: "nuevamente no tiene un cierre"): con el mapa al inicio el loop a "Anoche, aquí había un lago" se rompió; el cierre pasa a ser una pregunta al público. Antes: "Ya van más de veinte veces, y otra vez…" (loop).*
 
 | Frase | Imagen |
 |---|---|
@@ -54,7 +54,7 @@ Ya van más de veinte veces, y otra vez…
 | Es tanta agua que frena al río y lo empuja hacia atrás. | E4: las flechas del río grande se dan vuelta y el agua café sube río arriba. RÍO ARRIBA |
 | Por eso hay una alarma que avisa a los que viven río abajo. | E4: casas chicas en la orilla; la píldora ALERTA late en rojo |
 | El hielo se cierra, el lago se llena… | E2 corte: el túnel se cierra; E1: el lago vuelve a subir. SE CIERRA |
-| Ya van más de veinte veces, y otra vez… | E1: el lago se vuelve a ir y la cámara baja con el agua hasta el cuadro 0 (loop). MÁS DE 20 VECES |
+| Ya van más de veinte veces. ¿Tú acamparías aquí? | E1: el lago se vuelve a ir y la cámara baja con el agua hasta el cuadro 0 (loop). MÁS DE 20 VECES |
 
 ## Paquete de gancho
 - **Cuadro 0:**
