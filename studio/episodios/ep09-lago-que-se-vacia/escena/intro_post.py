@@ -14,11 +14,17 @@ os.makedirs(dst, exist_ok=True)
 META = json.load(open(meta_p))
 words = [{"w": p["w"], "s": round(p["s"] + VOZ0, 3), "e": round(p["e"] + VOZ0, 3)} for p in json.load(open(asr_p))["palabras"]]
 
-ns = {"Image": Image, "ImageDraw": ImageDraw, "ImageFont": ImageFont, "math": math, "os": os, "words": words, "NUMEROS": []}
+class _G:                         # registro de gráficos de post.py (aquí no hace falta)
+    @staticmethod
+    def registrar(*a, **k):
+        pass
+
+
+ns = {"Image": Image, "ImageDraw": ImageDraw, "ImageFont": ImageFont, "math": math, "os": os, "words": words, "NUMEROS": [], "G": _G}
 # constantes y funciones de post.py (mismas fuentes, colores, caja de subtítulos y píldoras)
 for nodo in arbol.body:
     if isinstance(nodo, ast.Assign) and any(isinstance(t_, ast.Name) and t_.id in
-                                            ("HERE", "FONTS", "FONT", "FONT_B", "AMARILLO", "AZUL", "BOX", "CLAVE") for t_ in nodo.targets):
+                                            ("AMARILLO", "AZUL", "BOX", "CLAVE") for t_ in nodo.targets):
         exec(compile(ast.Module([nodo], []), "post.py", "exec"), ns)
 ns["HERE"] = HERE
 ns["FONTS"] = os.path.abspath(os.path.join(HERE, "../../../plantilla/fonts"))
