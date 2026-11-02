@@ -16,8 +16,8 @@ done
 for z in "$W"/zips/*.zip; do unzip -q -o "$z" -d "$W/crudo"; done
 echo "cuadros del mapa: $(ls "$W"/crudo/*.png | wc -l)"
 # el meta de pantalla se calcula aquí (no hace falta renderizar)
-SOLO_META=1 MAPAS="${MAPAS:-$W}" DIR="$W/meta" DUR="$DUR" python3 "$HERE/mapa.py" >/dev/null 2>&1 || true
-python3 "$HERE/intro_post.py" "$W/crudo" "$W/meta/mapa_meta.json" "$REPO/out/asr/ep09-intro-t1.json" "$W/post"
+# (mapa_meta.json queda en el repo: SOLO_META=1 python3 mapa.py lo rehace si cambia la cámara)
+python3 "$HERE/intro_post.py" "$W/crudo" "$HERE/mapa_meta.json" "$REPO/out/asr/ep09-intro-t1.json" "$W/post"
 python3 "$HERE/intro_audio.py" "$REPO/out/tts/ep09-intro-t1.mp3" "$REPO/out/asr/ep09-intro-t1.json" "$W/intro_mix.wav" "$DUR"
 ffmpeg -y -v error -framerate 30 -i "$W/post/%05d.png" -i "$W/intro_mix.wav" -c:v libx264 -preset slow -crf 16 -pix_fmt yuv420p \
        -c:a aac -b:a 192k -ar 48000 -ac 1 -shortest "$W/intro.mp4"

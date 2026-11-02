@@ -1,0 +1,32 @@
+name: armar-intro
+# Ep. 9 v4 (pedido de Tomás, 2-nov): pega el plano 0 del mapa (prerelease ep09-mapa) delante del video de la prerelease
+# ep09-borrador con escena/intro_armar.sh y sube el resultado al Release ep09 (URL pública para Metricool).
+on:
+  workflow_dispatch:
+    inputs:
+      nombre:
+        default: "ep09-lago-que-se-vacia-v4.mp4"
+permissions:
+  contents: write
+jobs:
+  armar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core >/dev/null
+          pip install -q numpy scipy pillow
+      - name: Armar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _w
+          gh release download ep09-borrador -R "$GITHUB_REPOSITORY" -p "ep09-lago-que-se-vacia.mp4" -D _w
+          W=$PWD/_w VIDEO=$PWD/_w/ep09-lago-que-se-vacia.mp4 bash studio/episodios/ep09-lago-que-se-vacia/escena/intro_armar.sh
+          mv _w/ep09-lago-que-se-vacia-v4.mp4 "_w/${{ github.event.inputs.nombre }}"
+          python3 tools/qa.py "_w/${{ github.event.inputs.nombre }}" || true
+          gh release upload ep09 "_w/${{ github.event.inputs.nombre }}" -R "$GITHUB_REPOSITORY" --clobber
+          echo "URL: https://github.com/$GITHUB_REPOSITORY/releases/download/ep09/${{ github.event.inputs.nombre }}"
