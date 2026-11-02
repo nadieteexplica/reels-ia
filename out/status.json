@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 4893,
+ "creditos_usados": 4933,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -61,5 +61,11 @@
  },
  "0020-ep09-intro-t2.json": {
   "tts": "ep09-intro-t2"
+ },
+ "0022-ep09-cierre-t1.json": {
+  "tts": "ep09-cierre-t1"
+ },
+ "0023-ep09-cierre-t2.json": {
+  "tts": "ep09-cierre-t2"
  }
 }
