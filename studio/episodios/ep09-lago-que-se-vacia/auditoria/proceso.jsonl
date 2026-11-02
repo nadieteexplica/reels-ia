@@ -35,3 +35,4 @@
 {"tipo": "trabajo", "id": "parche 14 piezas (run 41362838244)", "estado": "fin", "n": 35, "ts": "2026-11-01T21:29:37-03:00"}
 {"tipo": "cumplida", "id": "29", "n": 36, "ts": "2026-11-01T21:29:37-03:00"}
 {"tipo": "chequeo", "id": "puerta 6 r2", "estado": "0 bloqueantes, promedio 7,97, realismo 6,7: NO sólo por realismo; Tomás eligió verlo y decidir él (19:45)", "n": 37, "ts": "2026-11-01T21:29:37-03:00"}
+{"tipo": "chequeo", "id": "publicación", "estado": "OK de Tomás 06:41 ('Todo 10 am'); Release ep09; Metricool 413738604 / 413738620 / 413738655 para el 2-nov 10:00", "n": 38, "ts": "2026-11-02T06:43:37-03:00"}
