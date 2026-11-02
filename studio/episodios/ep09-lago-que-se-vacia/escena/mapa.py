@@ -294,7 +294,7 @@ def actualizar(f):
     # contorno: se dibuja en "Chile" y queda fino (grosor constante en pantalla)
     cu.bevel_depth = 0.00085 * alt
     cu.bevel_factor_end = suave((t - (T_CHILE - 0.25)) / 0.55)
-    alfa_c = 1.0 - suave((t - 1.8) / 0.55)          # cerca de Aysén el contorno de los fiordos ensucia: se va
+    alfa_c = 1.0 - suave((t - 1.45) / 0.4)          # cerca de Aysén el contorno de los fiordos ensucia: se va al aparecer el lago
     bpy.data.materials["contorno"].node_tree.nodes["alfa"].inputs[0].default_value = alfa_c
     contorno.hide_render = cu.bevel_factor_end <= 0.001 or alfa_c <= 0.01
     # zona roja: aparece en "lago" con un rebote y el anillo late
