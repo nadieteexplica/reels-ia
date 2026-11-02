@@ -46,7 +46,7 @@ Fuentes: USGS, Dussaillant 2010, Casassa 2009, Bertrand 2021, NOAA (lista en You
 
 ## Datos para Metricool
 - Portada: el fondo vacío con el témpano varado (3,5 s, justo después del mapa), `videoCoverMilliseconds: 3500`.
-- Video v4 (2-nov, pedido de Tomás): 3,0 s de mapa al inicio (el globo de la NASA → Chile → la zona roja en Aysén) + el video aprobado tal cual; 48,0 s.
+- Video v5 (2-nov, pedido de Tomás): cierre "Ya van más de veinte veces. ¿Tú acamparías aquí?" (`ep09-lago-que-se-vacia-v5.mp4`). Antes, v4: 3,0 s de mapa al inicio (el globo de la NASA → Chile → la zona roja en Aysén) + el video aprobado tal cual; 48,0 s.
 - Instagram: `instagramData.type: "REEL"`, `isAiGenerated: true` (voz sintética).
 - TikTok: `tiktokData.isAigc: true`, `title` arriba.
 - YouTube: `type: "short"`, `category: "EDUCATION"`, `madeForKids: false` (Tomás, 19-oct), `isAiGeneratedContent: true` (estilo realista).
