@@ -1,7 +1,7 @@
 # Ep. 9 — Textos por red
 
 ## Instagram (Reel) y TikTok
-Anoche, aquí había un lago 🧊
+¿Sabías que en Chile hay un lago que se vacía solo? 🧊
 En la Patagonia chilena, el lago Cachet 2 se vacía en una noche por un túnel que el agua abre bajo el glaciar Colonia: ~200 millones de m³ (unas 80.000 piscinas olímpicas). El río Baker se triplica, se frena y se devuelve río arriba… y el lago se vuelve a llenar. Ya lo hizo más de 20 veces desde 2008.
 ¿Te atreverías a acampar al lado de este lago? 👇
 #curiosidades #patagonia #chile #glaciares #elviejodeldato
@@ -28,7 +28,7 @@ Fuentes:
 • Pelto, From a Glacier's Perspective: https://glacierchange.blog/2011/03/24/colonia-glacier-retreat-and-glacier-lake-outburst-floods/
 • Codexverde, alertas del lago Cachet: https://codexverde.cl/tag/lago-cachet
 • Piscina olímpica 50 × 25 × 2 m (FINA/World Aquatics): https://resources.fina.org/fina/document/2023/04/18/59a9d18e-7d76-448f-ae5d-6e9871a29c3f/fina_swimming_pool_certificate_for_og_wc_february_2020_1.pdf
-Animación 3D propia: el valle, el glaciar y el río son una recreación, no el lugar exacto. El corte de la represa exagera el levantamiento del hielo y el tamaño del túnel para que se vean. Las tomas del lago y del río van en cámara rápida.
+Mapa del inicio: NASA Earth Observatory, Blue Marble Next Generation (R. Stöckli); límites de Natural Earth. Animación 3D propia: el valle, el glaciar y el río son una recreación, no el lugar exacto. El corte de la represa exagera el levantamiento del hielo y el tamaño del túnel para que se vean. Las tomas del lago y del río van en cámara rápida.
 El viejo del dato 🧓: datos raros y reales, explicados en un minuto.
 
 ## Primer comentario (firstCommentText) — Instagram y YouTube
@@ -45,7 +45,8 @@ El valle del video es una recreación en 3D y va en cámara rápida. ¿Qué dato
 Fuentes: USGS, Dussaillant 2010, Casassa 2009, Bertrand 2021, NOAA (lista en YouTube). Recreación 3D en cámara rápida 🧓
 
 ## Datos para Metricool
-- Portada: el cuadro 0 (el témpano varado en el fondo vacío, con el glaciar atrás), `videoCoverMilliseconds: 500`, `entrega/portada.jpg`.
+- Portada: el fondo vacío con el témpano varado (3,5 s, justo después del mapa), `videoCoverMilliseconds: 3500`.
+- Video v4 (2-nov, pedido de Tomás): 3,0 s de mapa al inicio (el globo de la NASA → Chile → la zona roja en Aysén) + el video aprobado tal cual; 48,0 s.
 - Instagram: `instagramData.type: "REEL"`, `isAiGenerated: true` (voz sintética).
 - TikTok: `tiktokData.isAigc: true`, `title` arriba.
 - YouTube: `type: "short"`, `category: "EDUCATION"`, `madeForKids: false` (Tomás, 19-oct), `isAiGeneratedContent: true` (estilo realista).
