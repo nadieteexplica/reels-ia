@@ -1,0 +1,72 @@
+{
+ "encargo": "espectador",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "comprension": {"nota": 8, "por_que": "Sin sonido se entiende todo de principio a fin gracias a que cada paso tiene su imagen y su píldora (lago seco → antes → flota → se levanta → túnel → se vacía → río × 3 → río arriba → alerta → se cierra → otra vez); los tramos flojos son 18.7–21.0 (macro de bloques planos sin píldora) y 27.0–28.1 (sale por el túnel pero no se ve agua saliendo)."},
+  "gancho": {"nota": 8, "por_que": "0.0–2.0: témpanos varados en el barro frente al muro de hielo, con charcos y la píldora ANOCHE AQUÍ HABÍA UN LAGO; se entiende y es raro, pero la cámara casi no se mueve y que ahí había un lago lo dicen el texto y los charcos más que la imagen."},
+  "claridad": {"nota": 8, "por_que": "Cada línea tiene su imagen en el segundo en que se dice (SE LLENA 14.3, SE LEVANTA 14.7, POR ABAJO 17.3, TÚNEL 21.3, EL RÍO × 3 30.3, RÍO ARRIBA 34.0, SE CIERRA 39.7); faltan el vaso en 11.4–12.6 y el agua saliendo del túnel en 26.9–28.1."},
+  "ritmo": {"nota": null, "por_que": "no aplica"},
+  "belleza": {"nota": null, "por_que": "no aplica"},
+  "animacion": {"nota": null, "por_que": "no aplica"},
+  "subtitulos": {"nota": null, "por_que": "no aplica"},
+  "audio": {"nota": null, "por_que": "no aplica"},
+  "precision": {"nota": null, "por_que": "no aplica"}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A9", "arreglado": true, "por_que": "La mecánica del corte quedó sobre los subtítulos: en 15.0 la base del hielo y SE LEVANTA están en y≈620–880, en 17.3 POR ABAJO en y≈560, en 21.3–23.0 TÚNEL y la cavidad en y≈120–840 y en 39.7 SE CIERRA en y≈540–920; nada clave bajo y=1000."},
+  {"id": "A10", "arreglado": true, "por_que": "En 28.3–30.7 el río con sus flechas está en y≈740–1000 y EL RÍO × 3 en y≈590; el azul se ensancha de 30.0 a 31.0; en 34.0–35.0 RÍO ARRIBA y las flechas dadas vuelta están en y≈540–770."},
+  {"id": "A11", "arreglado": true, "por_que": "Ahora cambia a 3 cuadros/s: el agua sube con SE LLENA (13.0→14.7), se abre una ranura oscura bajo el hielo en SE LEVANTA (15.0–16.3) y la cavidad del túnel crece unas 4 veces de 18.7 a 22.7; no tiene boca en arco, pero se lee como un hueco que se agranda."},
+  {"id": "D54", "arreglado": false, "por_que": "Sigue la pared vertical pálida tipo torre: arriba a la izquierda en 2.0–5.7 y 40.0–41.0, y muy visible arriba a la derecha en 6.0–8.3."},
+  {"id": "D55", "arreglado": false, "por_que": "En 0.0–2.0 y 41.3–45.0 el cerro grande sigue siendo el mismo gris moteado en toda la ladera; hay nieve en la cresta y verde en la base, pero sin bandas de roca, sin nieve en las quebradas y sin bruma entre el cerro y el glaciar."},
+  {"id": "D56", "arreglado": false, "por_que": "El piso del corte sigue con los mismos remolinos y manchas oscuras repetidas en 13.0–24.3 y 38.7–39.7 (muy marcado en 24.0–24.3)."},
+  {"id": "D57", "arreglado": false, "por_que": "En 24.7–26.7 sigue la mancha pálida en la esquina de arriba a la izquierda, junto a la píldora CÁMARA RÁPIDA (es el borde de la misma pared de D54 vista desde arriba)."},
+  {"id": "D58", "arreglado": false, "por_que": "A medias: en 27.0–28.0 el interior del túnel ya es oscuro, pero la boca sigue siendo un semicírculo perfecto de bordes lisos y el primer plano es una superficie gris pálida con estelas, sin agua café ni espuma reconocibles; además el subtítulo tapa la base de la boca."},
+  {"id": "D59", "arreglado": false, "por_que": "En 28.3–32.3 el río sigue siendo una franja celeste saturada y pareja (con manchas cafés que se mezclan), sin reflejos ni el verde grisáceo del agua glaciar."},
+  {"id": "D60", "arreglado": false, "por_que": "A medias: desde 36.7 la cámara baja y entran pasto, cerco y agua con reflejo de la casa roja; pero en 35.3–36.6 la mitad de abajo sigue siendo una superficie café lisa, apenas con un reflejo rojizo a la derecha."},
+  {"id": "D61", "arreglado": false, "por_que": "A medias: los muros ya tienen textura (piedra en la casa gris, ladrillo en la roja) y hay cerco, pero las aristas siguen perfectas, sin barro ni desgaste, y no hay nada de uso alrededor en 35.3–38.4."}
+ ],
+ "eventos": [],
+ "delatores": [],
+ "tramos": [
+  {"desde": 0.0, "hasta": 3.0, "veo": "el fondo seco de un lago con témpanos varados en el barro y charcos frente al muro de un glaciar; luego, desde arriba, el mismo valle con el lago lleno (ANTES)", "entiendo": "ahí había un lago que desapareció; antes estaba lleno contra el glaciar", "se_entiende": "si"},
+  {"desde": 3.0, "hasta": 6.0, "veo": "la lengua del glaciar baja del cerro y corta el lago; flecha GLACIAR que pasa a REPRESA DE HIELO", "entiendo": "el glaciar cierra el lago como una represa", "se_entiende": "si"},
+  {"desde": 6.0, "hasta": 9.0, "veo": "el lago lleno a ras del agua hacia el glaciar con ≈ 80.000 PISCINAS OLÍMPICAS; la cámara se acerca al muro de hielo", "entiendo": "el lago tenía muchísima agua", "se_entiende": "si"},
+  {"desde": 9.0, "hasta": 12.0, "veo": "el muro de hielo con ¿POR DÓNDE?; corte bajo el agua: un bloque de hielo translúcido que cuelga bajo la línea del agua, EL HIELO FLOTA", "entiendo": "la pregunta es por dónde se fue el agua; el hielo flota con casi todo bajo el agua", "se_entiende": "si"},
+  {"desde": 12.0, "hasta": 15.0, "veo": "corte más cerca: el bloque de hielo a la izquierda, el lago a la derecha que sube (SE LLENA), CÁMARA RÁPIDA, flecha SE LEVANTA a la base del hielo", "entiendo": "cuando el lago sube, levanta el hielo", "se_entiende": "si"},
+  {"desde": 15.0, "hasta": 18.0, "veo": "se abre una ranura oscura bajo el hielo con estelas de agua; POR ABAJO", "entiendo": "el agua se mete por debajo del glaciar", "se_entiende": "si"},
+  {"desde": 18.0, "hasta": 21.0, "veo": "macro de la base del hielo: bloques planos celestes y una franja oscura con estelas que se agranda; sin píldora entre 18.7 y 21.0", "entiendo": "el hueco bajo el hielo crece (se entiende porque antes se vio el corte entero)", "se_entiende": "a_medias"},
+  {"desde": 21.0, "hasta": 24.0, "veo": "TÚNEL: la cavidad oscura bajo el hielo se hace grande; la cámara se aleja al corte entero", "entiendo": "el agua abrió un túnel cada vez más grande", "se_entiende": "si"},
+  {"desde": 24.0, "hasta": 27.0, "veo": "EN UNA NOCHE; desde arriba el lago se encoge rápido hacia el frente del glaciar y quedan barro y trozos de hielo", "entiendo": "el lago entero se vacía en una noche", "se_entiende": "si"},
+  {"desde": 27.0, "hasta": 30.0, "veo": "el frente del glaciar con la boca de un túnel (SALE BAJO EL GLACIAR) y un suelo pálido delante; luego, desde arriba, la crecida baja del glaciar hasta un río celeste con flechas", "entiendo": "el agua sale por el túnel al otro lado y llega a un río; que salga agua del túnel no se ve", "se_entiende": "a_medias"},
+  {"desde": 30.0, "hasta": 33.0, "veo": "EL RÍO × 3: la franja celeste se ensancha; después se vuelve café y las flechas giran", "entiendo": "el río crece mucho y algo lo frena", "se_entiende": "a_medias"},
+  {"desde": 33.0, "hasta": 36.0, "veo": "las flechas apuntan al revés sobre el río café (RÍO ARRIBA); un pueblito con dos casas y un poste con sirena", "entiendo": "el río se devuelve; hay gente viviendo abajo", "se_entiende": "si"},
+  {"desde": 36.0, "hasta": 39.0, "veo": "la sirena con ALERTA y luz que parpadea, casas, cerco y río; corte de vuelta al túnel", "entiendo": "una alarma avisa a los vecinos", "se_entiende": "si"},
+  {"desde": 39.0, "hasta": 42.0, "veo": "el túnel se aplasta (SE CIERRA); desde arriba el lago se vuelve a llenar; el frente del glaciar con el lago lleno", "entiendo": "el hielo se cierra y el lago se llena de nuevo", "se_entiende": "si"},
+  {"desde": 42.0, "hasta": 45.0, "veo": "MÁS DE 20 VECES sobre el lago lleno; el agua se va y vuelve el fondo seco con témpanos del principio", "entiendo": "ya pasó más de 20 veces y vuelve a pasar (loop)", "se_entiende": "si"}
+ ],
+ "sin_guion": {
+  "de_que_trata": "Un lago de la Patagonia chilena tapado por un glaciar se vacía en una noche: el agua levanta el hielo, se cuela por abajo y abre un túnel; el río de abajo crece, se devuelve y hay una alarma; el hielo se cierra y se repite.",
+  "quien_y_donde": "Sin personajes. Un valle glaciar (lago, glaciar, cerros), un corte del glaciar bajo el agua, el río de abajo visto desde arriba y un pueblito con sirena; cada lugar se reconoce y el corte se une al valle con el plano ancho de 23.3.",
+  "primeros_3s": "El fondo seco de un lago con témpanos varados frente al muro de hielo y ANOCHE AQUÍ HABÍA UN LAGO. Me quedaría: témpanos en el barro es raro. Lo flojo: la cámara casi quieta.",
+  "remate": "El lago se vuelve a llenar, MÁS DE 20 VECES, y se vacía otra vez hasta el primer cuadro (loop). Se ve.",
+  "saltos": "Ninguno en que uno se pierda. Lo más débil: 18.7–21.0 (macro abstracto sin píldora), 27.0–28.1 (túnel sin agua saliendo) y 32.7–33.3 (el río azul pasa a café de golpe; se lee como la crecida, pero cuesta)."
+ },
+ "lineas": [
+  {"linea": "Anoche, aquí había un lago.", "se_ve": true, "segundo": "0.0–1.9", "por_que": "fondo seco con témpanos varados y charcos frente al glaciar"},
+  {"linea": "En la Patagonia chilena, un glaciar lo tapaba como una represa.", "se_ve": true, "segundo": "2.0–5.6", "por_que": "ANTES: el lago lleno contra la lengua del glaciar, GLACIAR → REPRESA DE HIELO"},
+  {"linea": "Ochenta mil piscinas olímpicas de agua. ¿Por dónde se fueron?", "se_ve": true, "segundo": "5.9–9.9", "por_que": "el lago lleno con ≈ 80.000 PISCINAS OLÍMPICAS y luego el muro de hielo con ¿POR DÓNDE?"},
+  {"linea": "El hielo flota, igual que en tu vaso.", "se_ve": true, "segundo": "10.4–12.6", "por_que": "el corte muestra el hielo con casi todo bajo la línea del agua (EL HIELO FLOTA); el vaso no aparece, pero es sólo la comparación"},
+  {"linea": "Por eso, cuando el lago se llena, levanta el borde del glaciar.", "se_ve": true, "segundo": "13.0–16.3", "por_que": "el agua sube con SE LLENA y se abre una ranura bajo el hielo con SE LEVANTA"},
+  {"linea": "Y el agua se cuela por abajo.", "se_ve": true, "segundo": "16.5–18.3", "por_que": "estelas de agua oscura corriendo bajo el hielo, POR ABAJO"},
+  {"linea": "Al pasar, derrite el hielo y abre un túnel cada vez más ancho.", "se_ve": true, "segundo": "18.6–22.7", "por_que": "la cavidad bajo el hielo crece unas 4 veces, TÚNEL"},
+  {"linea": "Así que en una sola noche, el lago entero se va por ahí.", "se_ve": true, "segundo": "23.2–26.3", "por_que": "EN UNA NOCHE y, desde arriba, el lago se encoge rápido hasta el barro; no hay flecha a 'ahí', pero se vacía hacia el glaciar"},
+  {"linea": "Sale por el otro lado, y el río más caudaloso de Chile se triplica.", "se_ve": true, "segundo": "26.9–30.8", "por_que": "la boca del túnel con SALE BAJO EL GLACIAR (sin agua visible saliendo) y el río celeste que se ensancha con EL RÍO × 3"},
+  {"linea": "Es tanta agua que frena al río y lo empuja hacia atrás.", "se_ve": true, "segundo": "31.1–34.3", "por_que": "las flechas del río giran hasta apuntar al revés, RÍO ARRIBA"},
+  {"linea": "Por eso hay una alarma que avisa a los que viven río abajo.", "se_ve": true, "segundo": "35.1–38.4", "por_que": "poste con sirena y luz parpadeando, ALERTA, casas junto al río"},
+  {"linea": "El hielo se cierra, el lago se llena…", "se_ve": true, "segundo": "38.7–41.2", "por_que": "el túnel se aplasta con SE CIERRA y el lago vuelve a subir desde arriba"},
+  {"linea": "Ya van más de veinte veces, y otra vez…", "se_ve": true, "segundo": "41.4–44.6", "por_que": "MÁS DE 20 VECES sobre el lago lleno y el agua se va hasta el fondo seco del primer cuadro"}
+ ],
+ "resumen": "A9, A10 y A11 quedaron arreglados: la mecánica del corte y el río ya están sobre los subtítulos, y el agua que sube, la ranura y el túnel que crece se ven. Sin bloqueantes; de los 8 delatores (D54–D61), ninguno quedó resuelto del todo (D58, D60 y D61 a medias), y eso le toca a la nota de realismo de los otros revisores."
+}

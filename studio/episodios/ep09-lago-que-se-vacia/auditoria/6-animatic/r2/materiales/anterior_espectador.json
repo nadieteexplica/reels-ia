@@ -1,0 +1,123 @@
+[
+ {
+  "id": "A9",
+  "bloqueante": true,
+  "tipo": "B11",
+  "plano": null,
+  "segundo": "14.60–23.00 y 38.70–40.00",
+  "que": "Toda la mecánica en corte queda bajo la interfaz de la app: la base del glaciar, el agua que se cuela, el túnel y sus píldoras '↑ SE LEVANTA', 'POR ABAJO', 'TÚNEL' y 'SE CIERRA' están en y≈1260–1640 (medido en las hojas, 15.0/17.3/21.3/23.0/39.7) justo cuando la voz dice 'levanta', 'por abajo', 'túnel' y 'se cierra'. Arriba de y=1250 sólo hay un bloque celeste liso y agua quieta.",
+  "arreglo": "Inclinar o subir la cámara del corte para que la base del glaciar y el túnel queden en y≈650–1000 (sobre los subtítulos, que están en 1026–1213), y poner las píldoras a la altura del sujeto, sobre y=1000. Es mover la cámara: no hay que reanimar nada.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "A10",
+  "bloqueante": true,
+  "tipo": "B11",
+  "plano": null,
+  "segundo": "28.30–30.90 y 33.00–35.00",
+  "que": "El río grande con su flecha está en y≈1250–1700 cuando la voz dice 'el río más caudaloso de Chile se triplica'. En 'lo empuja hacia atrás' (33.8–34.3), las flechas dadas vuelta y la píldora '← RÍO ARRIBA' quedan en y≈1340–1530: lo que muestra el dato queda bajo la interfaz.",
+  "arreglo": "Encuadrar la junta más arriba, con el río en y≈600–1000 (como en 31.0–32.7, que sí lo centra), y aprovechar el mismo plano para que el río se vea ensancharse durante 'triplica' (orillas que se inundan), no sólo con el '× 3'.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "A11",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "13.50–22.70",
+  "que": "En el corte casi no cambia nada en 10 s: a 3 cuadros/s no se ve subir el lago, ni despegarse el hielo de la roca, ni crecer el túnel. El túnel se lee como una franja oscura, no como un túnel (material insuficiente para verificar movimientos chicos).",
+  "arreglo": "Exagerar las tres cosas, que son capa de explicación: el nivel del agua sube un ~5 % del alto del cuadro en 'se llena', se abre una ranura visible entre el hielo y la roca en 'levanta', y en 21.1–22.7 el túnel tiene la boca en arco (como el de 27.0) y crece al doble o al triple.",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D54",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "2.00–8.60, 40.00–41.00",
+  "que": "[delator · arriba] pared vertical pálida con textura estirada (borde del terreno o torre sin sentido) al lado del cerro",
+  "arreglo": "extender el terreno o cambiar el encuadre para que el borde no entre; si queda, bruma de distancia encima",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D55",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "0.00–2.00, 41.30–45.00",
+  "que": "[delator · arriba] el cerro grande de la derecha es un gris moteado con el mismo ruido en toda la ladera, sin bandas de roca, sin nieve en las quebradas ni bruma entre él y el glaciar",
+  "arreglo": "variación de roca y nieve por altura y bruma de distancia en la base del cerro",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D56",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "10.30–24.30, 38.70–39.70",
+  "que": "[delator · abajo] el piso de roca del corte repite el mismo dibujo de remolinos grandes en S, que se nota como textura repetida",
+  "arreglo": "textura de roca o morrena a otra escala, sin patrón visible, con piedras sueltas",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D57",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "24.70–26.70",
+  "que": "[delator · arriba] mancha pálida suelta sobre el cerro de arriba a la izquierda, que parece un objeto o una cara",
+  "arreglo": "quitarla o convertirla en una capa de bruma ancha y pareja",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D58",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "27.00–28.00",
+  "que": "[delator · medio] la boca del túnel es un semicírculo perfecto de bordes lisos, con el interior celeste parejo, y el primer plano es una superficie gris pálida y lavada sin agua reconocible",
+  "arreglo": "un arco irregular con interior oscuro y agua café saliendo con espuma hacia la cámara",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D59",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "28.30–33.00",
+  "que": "[delator · abajo] el río grande es un plano celeste saturado y parejo, sin reflejos ni variación de color en las orillas: agua de caramelo",
+  "arreglo": "agua glaciar verde grisácea, más oscura, con reflejos del cielo y espuma donde entra el agua café",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D60",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "35.30–38.40",
+  "que": "[delator · abajo] la mitad inferior del cuadro es una superficie café lisa y de un solo color, sin textura ni reflejo",
+  "arreglo": "agua con corriente y reflejos, o bajar la cámara para que entren pasto, cerco y orilla",
+  "de": "espectador",
+  "asignado": "espectador"
+ },
+ {
+  "id": "D61",
+  "bloqueante": false,
+  "tipo": null,
+  "plano": null,
+  "segundo": "35.30–38.40",
+  "que": "[delator · medio] casas y poste de la sirena limpios, de aristas perfectas, sin desgaste, sin barro y sin nada alrededor (autos, leña, gente de espaldas)",
+  "arreglo": "suciedad y desgaste en muros y techos y un par de objetos de uso alrededor",
+  "de": "espectador",
+  "asignado": "espectador"
+ }
+]

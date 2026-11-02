@@ -26,3 +26,12 @@
 {"tipo": "trabajo", "id": "parche 8 piezas", "estado": "fin", "n": 26, "ts": "2026-11-01T19:29:46-03:00"}
 {"tipo": "chequeo", "id": "revisión propia del final parchado a 5 cps", "estado": "tierra negra arreglada, cuadro 0 se lee como barro con charcos, el final llega moviéndose al cuadro 0; QA PASA; puertas 4 r2 y 6 r1 lanzadas", "n": 27, "ts": "2026-11-01T19:29:46-03:00"}
 {"tipo": "aviso", "que": "puerta 4 r2 NO (realismo 6, 2 rondas: el video no sigue) y puerta 6 r1 NO (B11: la mecánica bajo la interfaz). Se para y se le pregunta a Tomás con opciones", "n": 28, "ts": "2026-11-01T19:38:42-03:00"}
+{"tipo": "promesa", "hora": "21:35", "que": "versión con encuadres arreglados (puerta 6 r2)", "dato": "parche anterior de 8 piezas: 58 min de lanzado a borrador", "n": 29, "ts": "2026-11-01T20:35:38-03:00"}
+{"tipo": "trabajo", "id": "parche 14 piezas (run 41362838244)", "estado": "inicio", "n": 30, "ts": "2026-11-01T20:35:38-03:00"}
+{"tipo": "chequeo", "id": "render-planos 41362838244", "estado": "in_progress completed=1,in_progress=14", "n": 31, "ts": "2026-11-01T20:45:04-03:00"}
+{"tipo": "chequeo", "id": "render-planos 41362838244", "estado": "in_progress completed=4,in_progress=11", "n": 32, "ts": "2026-11-01T20:54:41-03:00"}
+{"tipo": "chequeo", "id": "render-planos 41362838244", "estado": "in_progress completed=9,in_progress=6", "n": 33, "ts": "2026-11-01T21:04:19-03:00"}
+{"tipo": "chequeo", "id": "render-planos 41362838244", "estado": "in_progress completed=15,in_progress=1", "n": 34, "ts": "2026-11-01T21:13:59-03:00"}
+{"tipo": "trabajo", "id": "parche 14 piezas (run 41362838244)", "estado": "fin", "n": 35, "ts": "2026-11-01T21:29:37-03:00"}
+{"tipo": "cumplida", "id": "29", "n": 36, "ts": "2026-11-01T21:29:37-03:00"}
+{"tipo": "chequeo", "id": "puerta 6 r2", "estado": "0 bloqueantes, promedio 7,97, realismo 6,7: NO sólo por realismo; Tomás eligió verlo y decidir él (19:45)", "n": 37, "ts": "2026-11-01T21:29:37-03:00"}
