@@ -39,7 +39,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p _mapas
-          gh release download mapas -R "$GITHUB_REPOSITORY" -D _mapas -p "world.topo.bathy.200412.3x5400x2700.jpg" -p "L1_sudamerica.jpg" -p "L2_aysen.jpg"
+          gh release download mapas -R "$GITHUB_REPOSITORY" -D _mapas -p "world.topo.bathy.200412.3x5400x2700.jpg" -p "world.topo.bathy.200412.3x21600x10800.jpg" -p "world.topo.bathy.200412.3x21600x21600.B2.jpg"
+          python "studio/episodios/$EP/escena/mapa_recortes.py" _mapas
           ls -la _mapas
       - name: Render
         env:
