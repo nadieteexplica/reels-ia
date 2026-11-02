@@ -1,0 +1,226 @@
+{
+ "encargo": "final",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {},
+ "problemas": [],
+ "verificacion": [],
+ "eventos": [
+  {
+   "id": "E1",
+   "es_defecto": false,
+   "por_que": "zoom del globo a Aysén: el brillo sube porque el negro del espacio sale del cuadro; buscado"
+  },
+  {
+   "id": "E2",
+   "es_defecto": false,
+   "por_que": "plano del mapa de 3 s: el zoom y la píldora cambian todo el tiempo (0,8 Chile, 1,6 Cachet 2)"
+  },
+  {
+   "id": "E3",
+   "es_defecto": false,
+   "por_que": "cambio de subtítulo SABÍAS QUE EN → CHILE HAY UN más el zoom; buscado"
+  },
+  {
+   "id": "E4",
+   "es_defecto": false,
+   "por_que": "entra la píldora LAGO CACHET 2 · AYSÉN y el zoom al Campo de Hielo; buscado"
+  },
+  {
+   "id": "E5",
+   "es_defecto": false,
+   "por_que": "entra la píldora ANOCHE AQUÍ HABÍA UN LAGO con su animación; buscado"
+  },
+  {
+   "id": "E6",
+   "es_defecto": false,
+   "por_que": "plano de 3,8 s: entra GLACIAR (6,6) y cambia a REPRESA DE HIELO (8,0); algo cambia cada 1–2 s"
+  },
+  {
+   "id": "E7",
+   "es_defecto": false,
+   "por_que": "entra la píldora GLACIAR con su flecha; buscado"
+  },
+  {
+   "id": "E8",
+   "es_defecto": false,
+   "por_que": "cambio de subtítulo y la píldora pasa a REPRESA DE HIELO; buscado"
+  },
+  {
+   "id": "E9",
+   "es_defecto": false,
+   "por_que": "plano de 2,7 s: entra ≈ 80.000 PISCINAS OLÍMPICAS y cambian los subtítulos"
+  },
+  {
+   "id": "E10",
+   "es_defecto": false,
+   "por_que": "entra la píldora ≈ 80.000 PISCINAS OLÍMPICAS; buscado"
+  },
+  {
+   "id": "E11",
+   "es_defecto": false,
+   "por_que": "es el cambio de subtítulo PISCINAS → OLÍMPICAS DE AGUA; no es defecto"
+  },
+  {
+   "id": "E12",
+   "es_defecto": false,
+   "por_que": "corte de plano P3→P4 con cambio de subtítulo; buscado"
+  },
+  {
+   "id": "E13",
+   "es_defecto": false,
+   "por_que": "entra la píldora ¿POR DÓNDE?; buscado"
+  },
+  {
+   "id": "E14",
+   "es_defecto": false,
+   "por_que": "plano de 2,5 s: entra EL HIELO FLOTA y cambian los subtítulos"
+  },
+  {
+   "id": "E15",
+   "es_defecto": false,
+   "por_que": "entra la píldora EL HIELO FLOTA con flecha; buscado"
+  },
+  {
+   "id": "E16",
+   "es_defecto": false,
+   "por_que": "plano de 3,5 s con corte interno a 17,6 y píldoras SE LLENA / SE LEVANTA"
+  },
+  {
+   "id": "E17",
+   "es_defecto": false,
+   "por_que": "corte interno de cámara dentro de la escena del corte (SE LLENA → SE LEVANTA); buscado"
+  },
+  {
+   "id": "E18",
+   "es_defecto": false,
+   "por_que": "corte de plano P6→P7 y sale la píldora SE LEVANTA; buscado"
+  },
+  {
+   "id": "E19",
+   "es_defecto": false,
+   "por_que": "entra la píldora POR ABAJO; buscado"
+  },
+  {
+   "id": "E20",
+   "es_defecto": false,
+   "por_que": "plano de 4,6 s: el túnel crece, estelas y píldora TÚNEL a 24,1; se mueve todo el plano (quieto_max 0)"
+  },
+  {
+   "id": "E21",
+   "es_defecto": false,
+   "por_que": "cambio de subtítulo sobre la roca; no es defecto"
+  },
+  {
+   "id": "E22",
+   "es_defecto": false,
+   "por_que": "entra la píldora TÚNEL; buscado"
+  },
+  {
+   "id": "E23",
+   "es_defecto": false,
+   "por_que": "cambio de subtítulo VEZ → MÁS ANCHO; no es defecto"
+  },
+  {
+   "id": "E24",
+   "es_defecto": false,
+   "por_que": "cambio de subtítulo QUE → NOCHE; no es defecto"
+  },
+  {
+   "id": "E25",
+   "es_defecto": false,
+   "por_que": "entra la píldora EN UNA NOCHE; buscado"
+  },
+  {
+   "id": "E26",
+   "es_defecto": false,
+   "por_que": "cambio de subtítulo ENTERO → SE VA POR; el lago bajando es la acción del plano"
+  },
+  {
+   "id": "E27",
+   "es_defecto": false,
+   "por_que": "cambio de luz por el paso de la boca del túnel al río (cámara que avanza); buscado"
+  },
+  {
+   "id": "E28",
+   "es_defecto": false,
+   "por_que": "plano de 4,2 s: entra SALE BAJO EL GLACIAR, la cámara viaja al río y entra EL RÍO × 3"
+  },
+  {
+   "id": "E29",
+   "es_defecto": false,
+   "por_que": "entra la píldora SALE BAJO EL GLACIAR; buscado"
+  },
+  {
+   "id": "E30",
+   "es_defecto": false,
+   "por_que": "entra la píldora EL RÍO × 3; buscado"
+  },
+  {
+   "id": "E31",
+   "es_defecto": false,
+   "por_que": "plano de 4,1 s: las flechas se dan vuelta (35,8–36,2) y entra RÍO ARRIBA (36,9); cambia cada ~1 s"
+  },
+  {
+   "id": "E32",
+   "es_defecto": false,
+   "por_que": "cambio de subtítulo AGUA → QUE FRENA; no es defecto"
+  },
+  {
+   "id": "E33",
+   "es_defecto": false,
+   "por_que": "entra la píldora RÍO ARRIBA; buscado"
+  },
+  {
+   "id": "E34",
+   "es_defecto": false,
+   "por_que": "plano de 3,6 s con corte interno a 39,3, píldora ALERTA y baliza que parpadea"
+  },
+  {
+   "id": "E35",
+   "es_defecto": false,
+   "por_que": "entra la píldora ALERTA; buscado"
+  },
+  {
+   "id": "E36",
+   "es_defecto": false,
+   "por_que": "la baliza de la sirena parpadea rojo/blanco; buscado (alarma)"
+  },
+  {
+   "id": "E37",
+   "es_defecto": false,
+   "por_que": "la baliza de la sirena parpadea; buscado"
+  },
+  {
+   "id": "E38",
+   "es_defecto": false,
+   "por_que": "la baliza de la sirena parpadea; buscado"
+  },
+  {
+   "id": "E39",
+   "es_defecto": false,
+   "por_que": "cámara rápida: el túnel se cierra (la bóveda baja); buscado"
+  },
+  {
+   "id": "E40",
+   "es_defecto": false,
+   "por_que": "entra la píldora SE CIERRA; buscado"
+  },
+  {
+   "id": "E41",
+   "es_defecto": false,
+   "por_que": "plano de 3,7 s: entra MÁS DE 20 VECES (45,3), el lago se vacía (46,3) y entra la pregunta (46,4)"
+  },
+  {
+   "id": "E42",
+   "es_defecto": false,
+   "por_que": "entra la píldora MÁS DE 20 VECES justo cuando la voz dice 'veinte' (45,19–45,41); buscado"
+  },
+  {
+   "id": "E43",
+   "es_defecto": false,
+   "por_que": "en cámara rápida el último tramo de agua baja bajo el lecho plano y queda el fondo seco con el témpano varado, justo cuando entra '¿Tú acamparías aquí?'; es el vaciamiento buscado (mismo encuadre, el témpano no cambia), no un objeto que salta"
+  }
+ ],
+ "resumen": "Sin bloqueantes. El cierre nuevo funciona: 'Ya van más de veinte veces' (44,43–46,13) va sobre el lago lleno con la píldora MÁS DE 20 VECES entrando en 'veinte', y '¿Tú acamparías aquí?' (46,40–47,63, voz 46,41–47,23) cae justo sobre el lecho seco con el témpano varado, que repite la imagen de 'Anoche, aquí había un lago' (3 s), así que el 'aquí' se entiende sin sonido; subtítulos en sincronía (desfase 0, faltan 0), dentro de zona (y 1040–1200), tildes bien (TÚ, ACAMPARÍAS, AQUÍ) y legibles sobre el hielo; la cifra está respaldada (21 vaciamientos 2008–2017, Bertrand; más de 25–28 según DGA y glaciologia.cl). Para el próximo: el subtítulo de la pregunta sale sin ¿ ? como todo el video (estilo coherente, no es falta), y el vaciamiento del final ocurre en un solo cuadro (46,14→46,34); 0,3–0,5 s de agua retirándose se leería más suave."
+}
