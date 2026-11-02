@@ -63,8 +63,10 @@ def job_tts(job):
     out = ROOT / "out" / "tts"; out.mkdir(parents=True, exist_ok=True)
     res = req("POST", f"/text-to-speech/{job['voice_id']}/with-timestamps",
               {"output_format": job.get("output_format", "mp3_44100_128")},
-              {"text": job["text"], "model_id": job.get("model_id", "eleven_multilingual_v2"),
-               "voice_settings": job.get("voice_settings", {"stability": 0.45, "similarity_boost": 0.8, "style": 0.25, "use_speaker_boost": True})})
+              dict({"text": job["text"], "model_id": job.get("model_id", "eleven_multilingual_v2"),
+                    "voice_settings": job.get("voice_settings", {"stability": 0.45, "similarity_boost": 0.8, "style": 0.25, "use_speaker_boost": True})},
+                   # continuidad con una toma ya grabada (entonación que sigue a la frase de antes o lleva a la de después)
+                   **{k: job[k] for k in ("previous_text", "next_text", "seed") if k in job}))
     (out / f"{job['id']}.mp3").write_bytes(base64.b64decode(res["audio_base64"]))
     (out / f"{job['id']}.json").write_text(json.dumps({"alignment": res.get("alignment"), "normalized_alignment": res.get("normalized_alignment")}, ensure_ascii=False))
     return {"tts": job["id"]}
