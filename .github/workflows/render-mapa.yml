@@ -1,0 +1,68 @@
+name: render-mapa
+# Plano 0 del Ep. 9 (el globo de la NASA que hace zoom a Chile): escena/mapa.py repartido en máquinas, con las imágenes de la
+# prerelease "mapas" (NASA Blue Marble Next Generation, dominio público). Los cuadros quedan en la prerelease <epNN>-mapa.
+on:
+  workflow_dispatch:
+    inputs:
+      episodio:
+        default: "ep09-lago-que-se-vacia"
+      cuadros:
+        description: "Total de cuadros (30 por segundo)"
+        default: "90"
+      dur:
+        description: "Duración del plano (s)"
+        default: "3.0"
+      samples:
+        default: "8"
+      res:
+        default: "1080x1920"
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        parte: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    env:
+      EP: ${{ github.event.inputs.episodio }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -q bpy==5.2.0 numpy pillow
+      - name: Imágenes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _mapas
+          gh release download mapas -R "$GITHUB_REPOSITORY" -D _mapas -p "world.topo.bathy.200412.3x5400x2700.jpg" -p "L1_sudamerica.jpg" -p "L2_aysen.jpg"
+          ls -la _mapas
+      - name: Render
+        env:
+          MAPAS: ${{ github.workspace }}/_mapas
+          DIR: ${{ github.workspace }}/_r
+          RES: ${{ github.event.inputs.res }}
+          SAMPLES: ${{ github.event.inputs.samples }}
+          DUR: ${{ github.event.inputs.dur }}
+        run: |
+          N=${{ github.event.inputs.cuadros }}
+          P=${{ matrix.parte }}
+          A=$(( P * (N + 14) / 15 + 1 )); B=$(( (P + 1) * (N + 14) / 15 ))
+          [ $B -gt $N ] && B=$N
+          echo "cuadros $A-$B"
+          mkdir -p "$DIR"
+          cd "studio/episodios/$EP/escena"
+          CUADROS="$A-$B" python mapa.py 2>&1 | grep -viE "deprecat|use_nodes|Fra:|Saved:" | tail -20
+          ls "$DIR" | wc -l
+      - name: Subir
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="$(echo "$EP" | cut -d- -f1)-mapa"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$TAG" --notes "Cuadros del plano 0 (mapa). No publicar." || true
+          cd _r && zip -q -r "../mapa_parte_$(printf %02d ${{ matrix.parte }}).zip" .
+          cd .. && gh release upload "$TAG" mapa_parte_*.zip --clobber
