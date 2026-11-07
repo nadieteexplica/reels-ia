@@ -541,7 +541,7 @@ def graficos(im, f, k):
     elif k == 17:
         pild(im, f, 17, "oki", "OKINAWA, 1945", T0(17) + 0.15, [(270, 330), (540, 330), (270, 420)], fondo=ACERO, tinta=(255, 255, 255), tam=50)
     elif k == 18:
-        etiqueta(im, "OKINAWA", _lug(18, f, "okinawa"), tam=44, dy=-60)
+        punto_isla(im, _lug(18, f, "okinawa"), ROJO, r=10)
         barras(im, f, 18)
     elif k == 19:
         u = max(0.0, t - T0(19))

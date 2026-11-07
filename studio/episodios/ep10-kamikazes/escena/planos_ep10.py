@@ -487,38 +487,30 @@ def p12(sc, a, b):
 
 
 def p13(sc, a, b):
-    # "Llenan el cielo de balas": el Oerlikon de 20 mm dispara hacia arriba (fogonazo, trazadoras); el artillero de espalda
+    # "Llenan el cielo de balas": desde la cubierta, decenas de trazadoras suben desde los cañones de la borda y el cielo
+    # se llena de nubecitas negras (el cañón de cerca y su artillero se veían de juguete: muestras 2)
     pa, cam = armar_mar(sc)
-    gpos = Vector((12.0, 22.0, DECK))
-    mira = Vector((60, -220, 300))
-    g, boca, dirf = S.oerlikon(sc, gpos, mira)
-    art = G.persona(sc, MARINEROS[1], "marinero", (12.25, 23.35, DECK), rot_z=math.radians(172), pose="Happy Idle", frame=12)
-    base = G.guardar_pose(art)
-    fog = S.fogonazo(sc, "Fogonazo")
-    luz = bpy.data.lights.new("LuzFogonazo", "POINT"); luz.energy = 0.0; luz.color = (1.0, 0.72, 0.4); luz.shadow_soft_size = 0.1
-    lz = bpy.data.objects.new("LuzFogonazo", luz); sc.collection.objects.link(lz)
-    traz = [S.trazadora(sc, f"Traz{i}") for i in range(8)]
-    fl = flak(sc, (60, -260, 330), n=16, r=170, semilla=8)
+    random.seed(13)
+    blanco = Vector((-40, -300, 330))
+    traz = []
+    for i in range(34):
+        o0 = Vector((19.5 + random.uniform(-1, 1), random.uniform(-60, 90), DECK + random.uniform(0.5, 2.0)))
+        d = (blanco + Vector((random.uniform(-160, 160), random.uniform(-120, 120), random.uniform(-90, 120))) - o0).normalized()
+        tr = S.trazadora(sc, f"Traz{i}")
+        tr.scale = (2.4, 2.4, 1.8)
+        traz.append((tr, o0, d, random.uniform(0, 1), random.uniform(1.6, 2.6)))
+    fl = flak(sc, (-30, -320, 330), n=26, r=220, semilla=8)
 
     def act(f):
         t = tf(f)
-        G.respirar(art, base, t)
-        G.mirar_arriba(art, base, 0.8)
-        k = int(t * 12) % 2 == 0
-        fog.hide_render = not k
-        fog.location = boca + dirf * 0.25
-        lz.location = boca + dirf * 0.3
-        luz.energy = 350.0 if k else 0.0
-        orientar(fog, dirf)
-        fog.rotation_quaternion = fog.rotation_quaternion @ Quaternion((1, 0, 0), math.radians(-90))
-        for i, tr in enumerate(traz):
-            u = (t * 6 + i / 8.0) % 1.0
-            tr.location = boca + dirf * (8 + 320 * u)
-            orientar(tr, dirf)
+        for tr, o0, d, fase, vel in traz:
+            u = (t * vel + fase) % 1.0
+            tr.location = o0 + d * (30 + 520 * u)
+            orientar(tr, d)
             tr.rotation_quaternion = tr.rotation_quaternion @ Quaternion((1, 0, 0), math.radians(90))
-        flak_vivo(fl, t, T[13][0] - 1.2)
+        flak_vivo(fl, t, T[13][0] - 1.4)
         x = lin(f, a, b - 1)
-        mirar(cam, Vector((13.9 - 0.15 * x, 27.4, DECK + 1.55)), Vector((11.4, 18.0, DECK + 4.2)), lente=32, foco=Vector((12.2, 23.3, DECK + 1.5)))
+        mirar(cam, Vector((12.0, 34.0 - 2 * x, DECK + 1.6)), Vector((-25, -260, 230)), lente=28)
         return {}
     return {"actualizar": act}
 
@@ -529,8 +521,8 @@ def p14(sc, a, b):
     avs = [zero_vuelo(sc, f"Cae{i}", bomba=False) for i in range(2)]
     humos = [estela(sc, f"HumoCae{i}", 14) for i in range(2)]
     golpe = [T[14][0] + 0.75, T[14][0] + 1.35]
-    ini = [Vector((-75, -230, 105)), Vector((95, -360, 150))]
-    fin = [Vector((-42, -205, 0)), Vector((118, -330, 0))]
+    ini = [Vector((-32, -230, 105)), Vector((58, -360, 150))]
+    fin = [Vector((-10, -205, 0)), Vector((80, -330, 0))]
     spl = [S.salpicadura(sc, f"Salp{i}", (fin[i].x, fin[i].y, 0), alto=20 - 4 * i) for i in range(2)]
     fl = flak(sc, (0, -500, 260), n=16, r=220, semilla=11)
 
@@ -558,7 +550,7 @@ def p14(sc, a, b):
             sp.scale = (h * 0.28 * (0.6 + 0.4 * k), h * 0.28 * (0.6 + 0.4 * k), h * 0.55 * k)
             sp.location.z = h * 0.55 * k * 0.8
         flak_vivo(fl, t, T[14][0] - 1.5)
-        mirar(cam, Vector((14.0, 30.0, DECK + 1.6)), Vector((20, -260, 45)), lente=45)
+        mirar(cam, Vector((14.0, 30.0, DECK + 1.6)), Vector((20, -270, 40)), lente=40)
         return {}
     return {"actualizar": act}
 

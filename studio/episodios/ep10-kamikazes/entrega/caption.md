@@ -5,7 +5,7 @@ Este kamikaze tenía 17 años. 🕯️
 La foto es del 26 de mayo de 1945, el día antes de su misión. Japón, perdiendo la guerra, mandó a sus pilotos a chocar contra los barcos de EE.UU. En Okinawa murieron más marineros que soldados del ejército en tierra, y el miedo a invadir Japón fue una de las razones de la bomba atómica.
 ¿Qué otra historia de la guerra quieres que te cuente? 👇
 #historia #segundaguerramundial #kamikaze #japon #elviejodeldato
-Foto real (1945, dominio público). Lo demás es una recreación en 3D.
+Fotos reales (1944–45, dominio público). Lo demás es una recreación en 3D.
 
 **Título de TikTok:** La historia real detrás de esta foto de 1945 🕯️
 
@@ -30,7 +30,7 @@ Fuentes:
 • Air & Space Forces Magazine, The Kamikaze (Correll, 2015): https://www.airandspaceforces.com/PDF/MagazineArchive/Magazine%20Documents/2015/August%202015/0815kamikaze.pdf
 • Universidad Keio (2025), testamento de Uehara Ryōji: https://www.keio.ac.jp/en/press-release/20250523-1/
 • Pacific Wrecks, Matome Ugaki: https://pacificwrecks.com/people/veterans/ugaki
-Foto: 72.ª Escuadrilla Shinbu, 26 de mayo de 1945 (dominio público, Wikimedia Commons). Mapa: NASA Earth Observatory, Blue Marble Next Generation (R. Stöckli). Modelos 3D CC-BY de Sketchfab/Objaverse (créditos abajo). La carta, la base, los barcos y los ataques son una recreación; no muestran un lugar ni un avión exactos.
+Fotos reales (dominio público, Wikimedia Commons): 72.ª Escuadrilla Shinbu, 26 de mayo de 1945; despedida de la unidad Shikishima, 25 de octubre de 1944; pilotos kamikaze en Chōshi, 1944; un teniente de la Armada al recibir la orden de salida. Mapa: NASA Earth Observatory, Blue Marble Next Generation (R. Stöckli). Modelos 3D CC-BY de Sketchfab/Objaverse (créditos abajo). La carta, la base, los barcos y los ataques son una recreación; no muestran un lugar ni un avión exactos.
 Modelos 3D (CC-BY 4.0, Sketchfab): "Mitsubishi A6M Zero (Free Model)" de Aidan6604; "U.S. Navy Aircraft Carrier USS Hornet (CV-8)" de lxyun_2; "uss Essex class" de tonkermansreal; "fletcher" de Eringi_n7d62; "20mm Oerlikon Rifle" de Memorie; "M1 Helmet" de MelvinEbbuts; "Aviator Helmet With Goggles" de enaphets. Cielos de Poly Haven (CC0).
 El viejo del dato 🧓: historia real, explicada en un minuto.
 
@@ -42,10 +42,10 @@ Fuentes:
 • NHHC (unos 12.700 aviones para los ataques): https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-057/h-057-1.html
 • FRUS (Truman, 18-jun-1945: "otro Okinawa"): https://history.state.gov/historicaldocuments/frus1945Berlinv01/d598
 • Truman Library (la decisión de la bomba): https://www.trumanlibrary.gov/museum/presidential-years/decision-to-drop-the-bomb
-La foto es real; lo demás, una recreación en 3D. ¿Qué historia quieres que te cuente el viejo la próxima? 🧓
+Las fotos son reales; lo demás, una recreación en 3D. ¿Qué historia quieres que te cuente el viejo la próxima? 🧓
 
 ## Primer comentario de TikTok (150 caracteres)
-Fuentes: Santa Clara Univ., US Navy 1945, NHHC, FRUS, Truman Library (lista en YouTube). Foto real; el resto, recreación 3D 🧓
+Fuentes: Santa Clara Univ., US Navy 1945, NHHC, FRUS, Truman Library (lista en YouTube). Fotos reales; el resto, recreación 3D 🧓
 
 ## Datos para Metricool
 - Portada: la foto real con KAMIKAZE · 17 AÑOS (cuadro 0,8 s), `videoCoverMilliseconds: 800`.

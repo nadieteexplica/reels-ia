@@ -649,7 +649,7 @@ def bocanada(sc, nombre, pos, r, mat=None):
 
 
 def trazadora(sc, nombre):
-    m = bpy.data.materials.get("trazadora") or mat_emision("trazadora", (1.0, 0.42, 0.12), 40)
+    m = bpy.data.materials.get("trazadora") or mat_emision("trazadora", (1.0, 0.45, 0.12), 9)
     bpy.ops.mesh.primitive_cylinder_add(vertices=8, radius=0.025, depth=6.0, location=(0, 0, 0))
     o = bpy.context.object; o.name = nombre; asignar(o, m); o.visible_shadow = False
     return o
