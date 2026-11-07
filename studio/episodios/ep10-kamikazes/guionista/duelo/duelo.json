@@ -1,0 +1,36 @@
+{
+ "gana": {
+  "g1": 13,
+  "g2": 7,
+  "g4": 10,
+  "g6": 19,
+  "g8": 11,
+  "g12": 0
+ },
+ "juega": {
+  "g1": 20,
+  "g2": 20,
+  "g4": 20,
+  "g6": 20,
+  "g8": 20,
+  "g12": 20
+ },
+ "decisiones": {
+  "g1 vs g12": "g1",
+  "g1 vs g2": "g1",
+  "g1 vs g4": "empate",
+  "g1 vs g6": "g6",
+  "g1 vs g8": "empate",
+  "g12 vs g2": "g2",
+  "g12 vs g4": "g4",
+  "g12 vs g6": "g6",
+  "g12 vs g8": "g8",
+  "g2 vs g4": "empate",
+  "g2 vs g6": "g6",
+  "g2 vs g8": "empate",
+  "g4 vs g6": "g6",
+  "g4 vs g8": "empate",
+  "g6 vs g8": "empate"
+ },
+ "contra_anclas": {}
+}
