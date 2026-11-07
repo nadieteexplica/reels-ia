@@ -575,6 +575,7 @@ def graficos(im, f, k):
             if u >= t1 + 0.1 and p:
                 etiqueta(im, txt, p, tam=42, dy=-70 if n == "hiroshima" else 70)
     elif k == 26:
+        pild(im, f, 26, "real", "FOTO REAL", T0(26) + 0.1, [(190, 250), (890, 250)], fondo=(28, 30, 34), tinta=(255, 255, 255), tam=34)
         pild(im, f, 26, "fecha", "15 DE AGOSTO DE 1945", T0(26) + 0.1, [(540, 330), (540, 420)], tam=50)
         pild(im, f, 26, "rinde", "JAPÓN SE RINDE", tw("rinde", a0), [(540, 560), (540, 640)], fondo=AMBAR, tam=64)
 
@@ -584,12 +585,17 @@ _yy, _xx = np.mgrid[0:H, 0:W]
 _VIN = (1 - 0.22 * np.clip((np.sqrt(((_xx - W / 2) / (W * 0.62)) ** 2 + ((_yy - H / 2) / (H * 0.62)) ** 2) - 0.55) / 0.6, 0, 1)).astype(np.float32)
 
 
+CIELO = {12, 13, 14, 15, 16}
+
+
 def epoca(im, f, k):
     """Gradación de 1945: un poco menos de color, contraste, viñeta y grano (el mapa de la NASA va limpio)."""
     if E2_ESCENA.get(k) == "E4":
         return grado(im, color=1.05, contraste=1.04, calido=1.0)
     im = grado(im, color=0.86, contraste=1.10, calido=1.035)
     a = np.asarray(im).astype(np.float32)
+    if k in CIELO:                       # tomas contra el cielo: punto negro más abajo (si no, "luz plana, sin negros")
+        a = (a - 55.0) * (255.0 / 200.0)
     a *= _VIN[..., None]
     a += _GRANO[f % 4][..., None] * 4.5
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))

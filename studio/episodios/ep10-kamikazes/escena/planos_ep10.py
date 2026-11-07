@@ -129,21 +129,21 @@ def p10(sc, a, b):
 
 
 def p26(sc, a, b):
-    # "Y el día que Japón se rinde…": la radio de madera encendida junto a la foto y la carta
+    # "Y el día que Japón se rinde…": foto real (15-ago-1945) de civiles japoneses escuchando por radio el mensaje del
+    # emperador, impresa en la mesa; la radio 3D se lee desenfocada atrás con el dial encendido (puerta 4: no se reconocía)
     Mx, cam = armar_mesa(sc)
-    r = bpy.data.objects["Radio"].matrix_world.translation
+    o, pt = foto_mesa(sc, Mx, "rendicion")
 
     def act(f):
         t = tf(f)
         S.mesa_viva(Mx, t)
-        S.radio_dial(Mx, 0.8 * suave(lin(f, a, a + 18)) * (1 + 0.05 * math.sin(t * 40)))
+        S.radio_dial(Mx, 0.8 * suave(lin(f, a, a + 18)))
         x = suave(lin(f, a, b - 1))
-        fp = Mx["foto"].matrix_world.translation
-        mirar(cam, Vector((0.10 - 0.03 * x, -0.50 + 0.06 * x, 0.90)), fp.lerp(r, 0.55) + Vector((0, 0, 0.02)), lente=50)
-        cam.data.dof.use_dof = True; cam.data.dof.focus_object = None
-        cam.data.dof.focus_distance = (cam.location - fp).length
-        cam.data.dof.aperture_fstop = 2.4
-        return {"radio": pantalla(sc, cam, r)}
+        tgt = pt(0.45 + 0.1 * x, 0.5)
+        d = 0.30 - 0.04 * x
+        mirar(cam, tgt + Vector((0, -0.04 * d / 0.3, d)), tgt, lente=50, foco=pt(0.5, 0.45))
+        cam.data.dof.aperture_fstop = 5.6
+        return {}
     return {"actualizar": act}
 
 
@@ -151,7 +151,7 @@ def p26(sc, a, b):
 def armar_pista(sc, hora="amanecer", pasto_en=None):
     P = S.pista(sc, hora=hora, pasto_en=pasto_en)
     cam = E.camara(sc, (0, 0, 2), (0, -10, 2), lente=35, fstop=None)
-    sc.view_settings.exposure = -0.35
+    sc.view_settings.exposure = -0.1
     return P, cam
 
 
@@ -188,7 +188,7 @@ def p3(sc, a, b):
         t = tf(f)
         x = lin(f, a, b - 1)
         pos = Vector((-20.5, 23.0, 1.45)).lerp(Vector((-20.0, 20.0, 1.4)), x)
-        mirar(cam, pos, Vector((-33, -60, 3.5)), lente=24, foco=Vector((-28, 10, 1.5)))
+        mirar(cam, pos, Vector((-46, -60, 3.0)), lente=24, foco=Vector((-28, 10, 1.5)))
         manga.rotation_euler = (math.radians(-84 + 3 * math.sin(t * 2.3)), 0, math.radians(8 * math.sin(t * 1.1)))
         return {}
     return {"actualizar": act}
@@ -234,7 +234,7 @@ def campo_redes(sc, filas=10, cols=8, x0=-160, y0=-40, dx=20, dy=22):
             inst = bpy.data.objects.new(f"R{i}_{j}", None)
             inst.instance_type = "COLLECTION"; inst.instance_collection = col
             sc.collection.objects.link(inst)
-            inst.location = (x, y, 0); inst.rotation_euler.z = math.pi + random.uniform(-0.15, 0.15)
+            inst.location = (x, y, 0); inst.rotation_euler.z = math.pi + random.uniform(-0.4, 0.4)
     base.location = (0, 0, -50)
     col.instance_offset = (0, 0, -50)          # las copias no se van bajo tierra con el original
 
@@ -273,6 +273,7 @@ FOTOS = {
     "201": ("foto_201.jpg", 1998 / 1529),            # 25-oct-1944: la unidad Shikishima (201.º Grupo Aéreo) recibe la copa de despedida
     "choshi": ("foto_choshi.jpg", 2442 / 1753),      # 1944: 18 pilotos kamikaze en Chōshi (sólo uno sobrevivió)
     "teniente": ("foto_teniente.jpg", 2664 / 1920),  # un teniente de la Armada saluda al recibir la orden de salida
+    "rendicion": ("foto_rendicion.jpg", 2442 / 1789),  # 15-ago-1945: civiles japoneses escuchan por radio el mensaje de rendición
 }
 CARAS_201 = [(0.17, 0.20), (0.335, 0.25), (0.52, 0.26), (0.69, 0.27), (0.82, 0.25), (0.96, 0.29)]   # (u, v) en el original
 
@@ -357,10 +358,6 @@ def p8(sc, a, b):
 def p27(sc, a, b):
     # "todavía despegan kamikazes.": tres aviones despegan uno tras otro contra el cielo naranjo
     P, cam = armar_pista(sc, hora="atardecer")
-    sol = P["sol"]
-    sol.rotation_euler = (-Vector((math.sin(math.radians(165)) * 0.999, math.cos(math.radians(165)) * 0.999, math.sin(math.radians(1.5))))).to_track_quat("-Z", "Y").to_euler()
-    sky = next(n for n in bpy.context.scene.world.node_tree.nodes if n.type == "TEX_SKY")
-    sky.sun_rotation = math.radians(165); sky.sun_elevation = math.radians(1.5)
     avs = [S.avion(sc, con_bomba=True, vuelo=False, nombre=f"Sale{i}") for i in range(3)]
     for av in avs:
         av.rotation_euler.z = math.pi
@@ -399,7 +396,7 @@ def flak(sc, centro, n=10, r=180.0, semilla=3):
     out = []
     for i in range(n):
         p = Vector(centro) + Vector((random.uniform(-r, r), random.uniform(-r, r), random.uniform(-r * 0.4, r * 0.4)))
-        o = S.bocanada(sc, f"Flak{i}", p, 0.01, S.humo_mat("flak", (0.045, 0.043, 0.04), densidad=0.35, escala=2.2))
+        o = S.bocanada(sc, f"Flak{i}", p, 0.01, S.humo_mat("flak", (0.03, 0.029, 0.027), densidad=0.6, escala=2.2))
         out.append((o, p, random.uniform(0, 1.6), random.uniform(5, 9)))
     return out
 
@@ -440,21 +437,21 @@ def orientar(av, d):
 
 
 def p11(sc, a, b):
-    # "Los estadounidenses no saben cómo frenar": un marinero con casco mira al cielo desde la cubierta
+    # "Los estadounidenses no saben cómo frenar": la cubierta del portaaviones en zafarrancho; la cámara sube de los cañones
+    # de la borda al cielo, donde empiezan las nubecitas negras (sin personaje: el marinero de Mixamo salió hueco, puerta 4)
     pa, cam = armar_mar(sc)
-    mar_arm = G.persona(sc, MARINEROS[0], "marinero", (7.0, 32.0, DECK), rot_z=math.radians(150), pose="Happy Idle", frame=30)
-    base = G.guardar_pose(mar_arm)
-    fl = flak(sc, (-120, -300, 420), n=8, r=160)
-    cam.data.dof.use_dof = True; cam.data.dof.aperture_fstop = 2.8
+    fl = flak(sc, (-120, -300, 380), n=12, r=180)
+    rel = bpy.data.lights.new("RellenoIsla", "AREA"); rel.energy = 9000.0; rel.size = 30.0; rel.color = (0.8, 0.86, 1.0)
+    ro = bpy.data.objects.new("RellenoIsla", rel); sc.collection.objects.link(ro)
+    ro.location = (40, 40, DECK + 20); ro.rotation_euler = (Vector((10, 0, DECK + 15)) - ro.location).to_track_quat("-Z", "Y").to_euler()
 
     def act(f):
         t = tf(f)
-        G.respirar(mar_arm, base, t)
-        G.mirar_arriba(mar_arm, base, suave(clamp((t - T[11][0] - 0.2) / 0.6)))
-        flak_vivo(fl, t, T[11][0] - 1.0)
-        x = lin(f, a, b - 1)
-        mirar(cam, Vector((10.5 + 0.4 * x, 36.5, DECK + 1.0)), Vector((6.2, 31.0, DECK + 1.9)), lente=50, foco=Vector((7.0, 32.0, DECK + 1.6)))
-        return {"marinero": pantalla(sc, cam, Vector((7.0, 32.0, DECK + 1.65)))}
+        flak_vivo(fl, t, T[11][0] - 0.6)
+        x = suave(lin(f, a, b - 1))
+        tgt = Vector((12, -10, DECK + 4)).lerp(Vector((-40, -260, 260)), x)
+        mirar(cam, Vector((17.5, 46.0, DECK + 1.5)), tgt, lente=32)
+        return {}
     return {"actualizar": act}
 
 
@@ -556,24 +553,30 @@ def p14(sc, a, b):
 
 
 def p15(sc, a, b):
-    # "Pero el que pasa…": un avión sale entero de una nube de humo negro y sigue bajando
+    # "Pero el que pasa…": un avión sale entero de una nube de humo gris y sigue bajando (de tres cuartos, grande)
     pa, cam = armar_mar(sc)
     random.seed(15)
-    mn = S.humo_mat("nube_flak", (0.04, 0.04, 0.04), densidad=0.16, escala=1.3)
-    nube = [S.bocanada(sc, f"Nube{i}", (random.uniform(-25, 25), -260 + random.uniform(-20, 20), 230 + random.uniform(-15, 15)), random.uniform(16, 26), mn) for i in range(7)]
+    gris = S.humo_mat("humo_gris", (0.22, 0.21, 0.2), densidad=0.09, escala=1.6)
+    c0 = Vector((0, -150, 150))
+    nube = [S.bocanada(sc, f"Nube{i}", c0 + Vector((random.uniform(-14, 14), random.uniform(-10, 10), random.uniform(-8, 8))), random.uniform(10, 16), gris) for i in range(8)]
     av = zero_vuelo(sc)
-    d0 = Vector((0, -300, 268)); d1 = Vector((10, -190, 170))
+    humo = estela(sc, "EstelaP15", 10)
+    d0 = c0 + Vector((-4, -6, 4)); d1 = Vector((34, -96, 108))
+
+    def camino(t):
+        u = clamp((t - T[15][0] + 0.15) / (T[15][1] - T[15][0] + 0.2))
+        return d0.lerp(d1, u)
 
     def act(f):
         t = tf(f)
-        u = clamp((t - T[15][0] - 0.2) / (T[15][1] - T[15][0]))
-        p = d0.lerp(d1, u)
+        p = camino(t)
         av.location = p
-        orientar(av, CAM_CUB - p)
+        orientar(av, (d1 - d0))
         S.girar_helice(av, t * 45)
+        estela_viva(humo, camino, t - 0.06, paso=0.06, r0=1.0, crece=2.5)
         for i, o in enumerate(nube):
-            o.location.x += 0.02 * math.sin(t + i)
-        mirar(cam, CAM_CUB, Vector((4, -230, 215)), lente=50)
+            o.location.x += 0.015 * math.sin(t + i)
+        mirar(cam, CAM_CUB, Vector((12, -130, 108)), lente=70)
         return {"avion": pantalla(sc, cam, p)}
     return {"actualizar": act}
 

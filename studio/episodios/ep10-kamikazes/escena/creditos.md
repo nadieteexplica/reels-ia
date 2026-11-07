@@ -14,7 +14,8 @@
 - Despedida de la unidad Shikishima (201.º Grupo Aéreo), 25 de octubre de 1944 (autor desconocido; dominio público), Wikimedia Commons: "19441025 pilots of japanese 201 naval air corps farewell.jpg" (plano 6).
 - Pilotos kamikaze en el aeródromo de Chōshi, 1944 (autor desconocido; dominio público), Wikimedia Commons: "Japanese Kamikaze pilots.jpg" (plano 7).
 - Teniente kamikaze de la Armada que recibe la orden de salida (dominio público), Wikimedia Commons: "Navy Kamikaze Lieutenant.jpg" (plano 8).
-- Las cuatro fotos van "impresas" sobre la mesa (borde, tono y grano agregados con `imprimir_foto.py`); no se cambió lo que muestran.
+- Civiles japoneses escuchan por radio el mensaje de rendición del emperador, 15 de agosto de 1945 (dominio público), Wikimedia Commons: "Japanese civilians listening to the surrender broadcast.jpg" (plano 26).
+- Las cinco fotos van "impresas" sobre la mesa (borde, tono y grano agregados con `imprimir_foto.py`); no se cambió lo que muestran.
 - NASA Earth Observatory, Blue Marble Next Generation con relieve y batimetría, diciembre de 2004 (R. Stöckli; dominio público).
 - Cielos HDRI de Poly Haven (CC0).
 

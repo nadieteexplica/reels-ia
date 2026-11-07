@@ -277,20 +277,20 @@ def mat_pasto_tierra(nombre="pista"):
     suma = nt.nodes.new("ShaderNodeMath"); suma.operation = "SUBTRACT"; nt.links.new(ab.outputs[0], suma.inputs[0]); nt.links.new(ofs.outputs[0], suma.inputs[1])
     mk = _mapa(nt, suma.outputs[0], 1.0, 0.0); mk.inputs["From Min"].default_value = 16.0; mk.inputs["From Max"].default_value = 22.0
     pasto_n = _ruido(nt, escala=0.6, detalle=10)
-    pasto = _rampa(nt, pasto_n.outputs["Fac"], (0.055, 0.075, 0.022), (0.17, 0.19, 0.07))
+    pasto = _rampa(nt, pasto_n.outputs["Fac"], (0.08, 0.1, 0.035), (0.22, 0.24, 0.1))
     seco = _ruido(nt, escala=0.05, detalle=6)
     ks = _mapa(nt, seco.outputs["Fac"], 0.0, 1.0); ks.inputs["From Min"].default_value = 0.5; ks.inputs["From Max"].default_value = 0.68
     pasto2 = nt.nodes.new("ShaderNodeMix"); pasto2.data_type = "RGBA"
     nt.links.new(ks.outputs[0], pasto2.inputs[0]); nt.links.new(pasto.outputs[0], pasto2.inputs[6]); pasto2.inputs[7].default_value = (0.26, 0.22, 0.11, 1)
     huella = _ruido(nt, escala=0.8, detalle=8, estirar=(1.0, 0.04, 1.0))
-    tierra = _rampa(nt, huella.outputs["Fac"], (0.16, 0.115, 0.075), (0.31, 0.24, 0.16))
+    tierra = _rampa(nt, huella.outputs["Fac"], (0.2, 0.15, 0.1), (0.36, 0.29, 0.2))
     mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"
     nt.links.new(mk.outputs[0], mx.inputs[0]); nt.links.new(pasto2.outputs[2], mx.inputs[6]); nt.links.new(tierra.outputs[0], mx.inputs[7])
     nt.links.new(mx.outputs[2], b.inputs["Base Color"])
     b.inputs["Roughness"].default_value = 0.95
     b.inputs["Specular IOR Level"].default_value = 0.2
     fino = _ruido(nt, escala=40, detalle=6)
-    _bump(nt, b, fino.outputs["Fac"], 0.35, 0.02)
+    # sin bump: a ras del suelo hacía rayas (moiré) lejos (puerta 4); de cerca manda el pasto con pelo
     return m
 
 
@@ -320,15 +320,17 @@ def pasto_pelos(sc, centro, lado=60.0, n=90000, semilla=3, hueco_x=18.0):
 def cerros_kagoshima(sc, semilla=5):
     """Lomas verdes (1–5 km) y, al sur con bruma, un volcán de cono de ~920 m a 14 km (como el Kaimondake de Chiran)."""
     random.seed(semilla)
-    lejos = E.mat_lejano("lomas", (0.07, 0.1, 0.05), neblina=(0.62, 0.62, 0.66), k=0.38, color2=(0.09, 0.11, 0.07))
-    bpy.ops.mesh.primitive_grid_add(x_subdivisions=220, y_subdivisions=220, size=16000, location=(0, 0, 0))
+    lejos = E.mat_lejano("lomas", (0.035, 0.055, 0.025), neblina=(0.5, 0.46, 0.47), k=0.24, color2=(0.075, 0.085, 0.04))
+    bpy.ops.mesh.primitive_grid_add(x_subdivisions=420, y_subdivisions=420, size=16000, location=(0, 0, 0))
     lo = bpy.context.object; lo.name = "Lomas"
     for v in lo.data.vertices:
         x, y = v.co.x, v.co.y
         r = math.hypot(x, y)
         k = max(0.0, min(1.0, (r - 900) / 1400)) * max(0.0, min(1.0, (7600 - r) / 1200))
         h = 70 * (math.sin(x / 610 + 1.3) * math.cos(y / 520) + 0.6 * math.sin(x / 260 + y / 330) + 0.3 * math.sin(x / 95 - y / 120))
+        h += 14 * math.sin(x / 61 + y / 47) * math.cos(y / 83 - x / 39) + 7 * math.sin(x / 29 - y / 23)   # quebradas
         v.co.z = k * max(0.0, 55 + h)
+    lo.location.z = -0.8          # la parte plana de las lomas peleaba con el piso (z-fighting: suelo negro)
     asignar(lo, lejos); liso(lo, 180)
     volc = E.mat_lejano("volcan", (0.09, 0.1, 0.08), neblina=(0.72, 0.7, 0.75), k=0.62, color2=(0.12, 0.12, 0.1))
     bpy.ops.mesh.primitive_cone_add(vertices=128, radius1=3600, radius2=120, depth=920, location=(-2000, -14000, 460))
@@ -494,6 +496,28 @@ def manga(sc, pos):
     return m
 
 
+HDR_SOL_ANG = 142.6        # cielo_atardecer.hdr: el sol (u = 0,604, 1,9° de altura) mira a (−0,79, 0,61) sin rotar
+
+
+def mundo_hdri(sc, sol, az, elev_lamp, fuerza=0.6, energia=3.6, archivo="cielo_atardecer.hdr", color=(1.0, 0.72, 0.5)):
+    """Cielo real (HDRI de Poly Haven, CC0, con nubes y el resplandor del sol) en vez del cielo físico liso (puerta 4:
+    "cielo en degradado sin sol ni nubes"). az: de dónde viene el sol, en grados desde +y hacia +x (como cielo_atardecer)."""
+    w = sc.world; nt = w.node_tree
+    for n in [n for n in nt.nodes if n.type not in ("OUTPUT_WORLD", "BACKGROUND")]:
+        nt.nodes.remove(n)
+    bg = next(n for n in nt.nodes if n.type == "BACKGROUND")
+    env = nt.nodes.new("ShaderNodeTexEnvironment"); env.image = bpy.data.images.load(asset(archivo))
+    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping")
+    objetivo = 90.0 - az
+    mp.inputs["Rotation"].default_value = (0, 0, math.radians(HDR_SOL_ANG - objetivo))
+    nt.links.new(tc.outputs["Generated"], mp.inputs["Vector"]); nt.links.new(mp.outputs[0], env.inputs["Vector"])
+    nt.links.new(env.outputs[0], bg.inputs[0]); bg.inputs[1].default_value = fuerza
+    a, e = math.radians(az), math.radians(elev_lamp)
+    d = Vector((math.sin(a) * math.cos(e), math.cos(a) * math.cos(e), math.sin(e)))
+    sol.rotation_euler = (-d).to_track_quat("-Z", "Y").to_euler()
+    sol.data.energy = energia; sol.data.color = color; sol.data.angle = math.radians(0.8)
+
+
 def pista(sc, hora="amanecer", pasto_en=None):
     """E1: la pista (franja de tierra a lo largo de y), lomas, volcán, barracas, manga de viento, cerezos y cielo físico.
     hora: 'amanecer' (sol de la mañana, cálido) o 'atardecer' (15 de agosto, naranjo y bajo)."""
@@ -502,10 +526,11 @@ def pista(sc, hora="amanecer", pasto_en=None):
         w, sol, d = E.cielo_atardecer(sc, elev=5.0, rot=110.0, fuerza=0.28, sol=3.2, color_sol=(1.0, 0.7, 0.48))
     else:
         w, sol, d = E.cielo_atardecer(sc, elev=2.2, rot=20.0, fuerza=0.24, sol=2.6, color_sol=(1.0, 0.5, 0.26))
-    sky = next(n for n in w.node_tree.nodes if n.type == "TEX_SKY")
-    sky.sun_disc = False                    # lección 122: cielo físico + lámpara sol → sin disco
-    sky.altitude = 50; sky.aerosol_density = 3.0
     S["sol"] = sol
+    if hora == "amanecer":
+        mundo_hdri(sc, sol, 110.0, 12.0, fuerza=1.0, energia=5.5)
+    else:
+        mundo_hdri(sc, sol, 207.0, 3.0, fuerza=0.9, energia=3.2, color=(1.0, 0.52, 0.28))
     mat_pasto_tierra("pista")
     bpy.ops.mesh.primitive_plane_add(size=6000, location=(0, 0, 0))
     piso = bpy.context.object; piso.name = "Pista"; asignar(piso, bpy.data.materials["pista"])
