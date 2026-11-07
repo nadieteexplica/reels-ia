@@ -373,7 +373,8 @@ def p27(sc, a, b):
             av.location = (-3 + 6 * (i % 2), y, 1.5 * sube * sube)
             av.rotation_euler.x = -math.radians(min(10, 12 * sube))
             S.girar_helice(av, t * 40)
-        mirar(cam, Vector((24, 14, 1.4)), Vector((-6, -45, 7)), lente=28)
+        centro = sum((av.location for av in avs), Vector()) / len(avs)      # la cámara sigue a los aviones (antes se iban de cuadro)
+        mirar(cam, Vector((24, 14, 1.4)), centro + Vector((0, -12, 3.0)), lente=28)
         return {}
     return {"actualizar": act}
 
@@ -448,7 +449,7 @@ def p11(sc, a, b):
     def act(f):
         t = tf(f)
         flak_vivo(fl, t, T[11][0] - 0.6)
-        x = suave(lin(f, a, b - 1))
+        x = suave(lin(f, a, b - 1)) ** 2          # casi todo el plano en el barco (el mundo de EE.UU.); sube al cielo al final
         tgt = Vector((12, -10, DECK + 4)).lerp(Vector((-40, -260, 260)), x)
         mirar(cam, Vector((17.5, 46.0, DECK + 1.5)), tgt, lente=32)
         return {}
