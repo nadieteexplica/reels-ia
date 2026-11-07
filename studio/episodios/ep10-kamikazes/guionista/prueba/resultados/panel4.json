@@ -1,0 +1,11 @@
+{"perfil": "Andrea, 41, Guatemala",
+  "videos": [
+    {"codigo": "UI", "se_queda_2s": false, "por_que_2s": "Guerra, aviones y barcos de 1944; historia militar, no es de mi casa ni de mi vida.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 5, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "EA", "se_queda_2s": true, "por_que_2s": "Un pajarito con un chile en el pico y un ratón echando fuego, me dio risa y quise ver qué pasaba.", "se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.", "lo_ve_entero_pct": 40, "lo_manda": true, "a_quien": "A mi esposo, que se cree que aguanta todo el picante", "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"},
+    {"codigo": "UR", "se_queda_2s": false, "por_que_2s": "Un edificio de Japón con números bajando, mucho texto y no entiendo qué me importa a mí.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 8, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "RX", "se_queda_2s": true, "por_que_2s": "Dijo que un edificio se fue caminando, me dio curiosidad cómo puede ser.", "se_va_en": "¿Y por qué no usaron rieles?", "lo_ve_entero_pct": 35, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Cómo camina un edificio?"},
+    {"codigo": "YP", "se_queda_2s": true, "por_que_2s": "Helado y dolor de frente, eso me pasa a mí y a mis hijos, lo entendí al instante sin sonido.", "se_va_en": "final", "lo_ve_entero_pct": 75, "lo_manda": true, "a_quien": "Al grupo de WhatsApp de la familia y a mis hijos", "pregunta_que_te_dejo": "¿Por qué me duele la frente si el frío está en la boca?"},
+    {"codigo": "KM", "se_queda_2s": false, "por_que_2s": "Un señor flotando con letrero de simulación, no entiendo qué es ni para qué me sirve; parece ciencia rara.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 10, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "TJ", "se_queda_2s": true, "por_que_2s": "La cortina de la ducha pegándose, a todos nos pasa, me reí y quise saber por qué.", "se_va_en": "final", "lo_ve_entero_pct": 80, "lo_manda": true, "a_quien": "A mi hermana y al grupo de la familia", "pregunta_que_te_dejo": "¿Por qué la cortina se me pega cuando me ducho?"}
+  ],
+  "orden": ["TJ", "YP", "EA", "RX", "KM", "UR", "UI"]}

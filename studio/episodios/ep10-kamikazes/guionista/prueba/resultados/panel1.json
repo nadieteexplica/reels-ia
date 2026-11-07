@@ -1,0 +1,11 @@
+{"perfil": "Carlos, 35, Bogotá, ingeniero escéptico",
+  "videos": [
+    {"codigo": "AL", "se_queda_2s": true, "por_que_2s": "Un tipo flotando y 'puedes flotar con un imán', raro y me pica el lado ingeniero, aunque el cartel SIMULACIÓN me hace sospechar.", "se_va_en": "Después, bobinas y más bobinas, hasta cuarenta teslas o más.", "lo_ve_entero_pct": 50, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Cómo se podría flotar con un imán?"},
+    {"codigo": "IS", "se_queda_2s": false, "por_que_2s": "Otro video de guerra con animación tipo IA y arranque de documental genérico: 'Japón está perdiendo la guerra'. Deslizo.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 5, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "MU", "se_queda_2s": true, "por_que_2s": "Un rascacielos bajando de piso en piso con contador y sin explosión, quiero saber cómo lo hacen.", "se_va_en": "final", "lo_ve_entero_pct": 72, "lo_manda": true, "a_quien": "Un colega ingeniero civil", "pregunta_que_te_dejo": "¿Cómo tumban un edificio de 40 pisos sin explosivos?"},
+    {"codigo": "EV", "se_queda_2s": false, "por_que_2s": "Muñeco 3D comiendo helado y dolor de frente, eso ya lo sé y se ve caricatura de IA. Deslizo.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 4, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "JZ", "se_queda_2s": true, "por_que_2s": "Me ha pasado mil veces con la cortina y nunca supe por qué, la situación me es familiar.", "se_va_en": "final", "lo_ve_entero_pct": 55, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Por qué la cortina se va hacia uno?"},
+    {"codigo": "TP", "se_queda_2s": false, "por_que_2s": "Pájaro y ratón echando fuego, se siente infantil y el hook de pájaro con ají no me convence. Deslizo.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 12, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "MF", "se_queda_2s": true, "por_que_2s": "Un edificio de cinco pisos sobre patas que se fue caminando, quiero ver cómo es eso mecánicamente.", "se_va_en": "final", "lo_ve_entero_pct": 70, "lo_manda": true, "a_quien": "Un amigo ingeniero", "pregunta_que_te_dejo": "¿Cómo camina un edificio entero?"}
+  ],
+  "orden": ["MF", "MU", "AL", "JZ", "TP", "EV", "IS"]}

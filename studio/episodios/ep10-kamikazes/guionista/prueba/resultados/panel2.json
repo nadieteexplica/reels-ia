@@ -1,0 +1,11 @@
+{"perfil": "Ximena, 28, Ciudad de México",
+  "videos": [
+    {"codigo": "WF", "se_queda_2s": true, "por_que_2s": "Me pasa en la regadera, la cortina que se pega, y el señor con espuma me da risa.", "se_va_en": "final", "lo_ve_entero_pct": 60, "lo_manda": true, "a_quien": "mi pareja, porque siempre se queja de la cortina", "pregunta_que_te_dejo": "¿Por qué se me pega la cortina?"},
+    {"codigo": "UP", "se_queda_2s": true, "por_que_2s": "Un edificio que se fue caminando, quiero ver cómo.", "se_va_en": "Las patas van en dos grupos.", "lo_ve_entero_pct": 30, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Cómo camina un edificio?"},
+    {"codigo": "VM", "se_queda_2s": true, "por_que_2s": "Todos hemos tenido ese dolor de helado, y el personaje con la frente roja es chistoso.", "se_va_en": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.", "lo_ve_entero_pct": 35, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Qué es lo que pasa en mi cabeza?"},
+    {"codigo": "CG", "se_queda_2s": false, "por_que_2s": "Dice SIMULACIÓN y el hombre se ve diminuto, parece algo técnico y aburrido.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 5, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "YG", "se_queda_2s": true, "por_que_2s": "Pájaro con chile y un ratón echando fuego, soy mexicana, el picante me llama.", "se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.", "lo_ve_entero_pct": 30, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"},
+    {"codigo": "YM", "se_queda_2s": false, "por_que_2s": "Demasiado texto y contadores en pantalla, no entendí qué mirar.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 8, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "WI", "se_queda_2s": false, "por_que_2s": "Guerra, 1944, historia triste; estoy cansada y no quiero algo pesado antes de dormir.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 5, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""}
+  ],
+  "orden": ["WF", "UP", "VM", "YG", "YM", "CG", "WI"]}

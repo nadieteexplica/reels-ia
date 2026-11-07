@@ -1,0 +1,11 @@
+{"perfil": "Luis, 16, Lima (Perú)",
+  "videos": [
+    {"codigo": "IW", "se_queda_2s": true, "por_que_2s": "Vi una torre gigante bajando y el contador de pisos cayendo, quiero ver cómo la botan", "se_va_en": "Primero, meten columnas de acero y lo paran sobre quince gatos hidráulicos, como un sombrero gigante.", "lo_ve_entero_pct": 35, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Cómo botan un edificio sin explosión?"},
+    {"codigo": "IK", "se_queda_2s": true, "por_que_2s": "Un tipo flotando en el aire, 'podrías flotar' suena a poder de videojuego", "se_va_en": "Después: bobinas y más bobinas, hasta cuarenta teslas o más.", "lo_ve_entero_pct": 40, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Podría flotar yo?"},
+    {"codigo": "JB", "se_queda_2s": false, "por_que_2s": "Voz de documental de historia, 'Japón está perdiendo la guerra', es clase, deslizo", "se_va_en": "cuadro0", "lo_ve_entero_pct": 5, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "DJ", "se_queda_2s": true, "por_que_2s": "Un edificio que se fue caminando, tiene patas, eso es imposible y exagerado", "se_va_en": "final", "lo_ve_entero_pct": 50, "lo_manda": true, "a_quien": "a mi pata del colegio que le gustan las cosas locas de China", "pregunta_que_te_dejo": "¿Cómo camina un edificio entero?"},
+    {"codigo": "IL", "se_queda_2s": false, "por_que_2s": "Ya sé qué es, el dolor de cabeza del helado, todos lo sabemos, deslizo", "se_va_en": "cuadro0", "lo_ve_entero_pct": 8, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+    {"codigo": "HN", "se_queda_2s": true, "por_que_2s": "Ratón echando fuego y pájaro con ají, me dio risa", "se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.", "lo_ve_entero_pct": 30, "lo_manda": true, "a_quien": "a mi primo que se cree que aguanta todo el picante", "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"},
+    {"codigo": "XU", "se_queda_2s": false, "por_que_2s": "Un señor en la ducha con espuma, mucho bigote y nada que pase, deslizo", "se_va_en": "cuadro0", "lo_ve_entero_pct": 5, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""}
+  ],
+  "orden": ["DJ", "HN", "IW", "IK", "IL", "XU", "JB"]}
