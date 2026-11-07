@@ -3,3 +3,4 @@
 {"tipo": "trabajo", "id": "render-planos 42403195434 (final 720x1280/10)", "estado": "inicio", "n": 3, "ts": "2026-11-07T16:09:22-03:00"}
 {"tipo": "trabajo", "id": "render-planos parche puerta 4 r1 (22 piezas, base 42403195434)", "estado": "inicio", "n": 4, "ts": "2026-11-07T16:09:22-03:00"}
 {"tipo": "aviso", "que": "a Tomás 15:5x: cambio de la fila de pilotos a fotos reales y del cañón a cielo con trazadoras; el video llega después de las revisiones", "n": 5, "ts": "2026-11-07T16:09:22-03:00"}
+{"tipo": "trabajo", "id": "render-planos re-armado (9@1, base final+parche) con el post nuevo", "estado": "inicio", "n": 6, "ts": "2026-11-07T16:10:38-03:00"}
