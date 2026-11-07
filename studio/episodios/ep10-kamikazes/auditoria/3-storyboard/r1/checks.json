@@ -1,0 +1,19 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "27 planos: más de 16 en un video corto se vio como 'escenas pegadas' (Ep. 6). Los cambios cada 1–2 s salen de la acción y la cámara dentro de cada plano, no de cortar a otro lugar",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 6: el gráfico (y 540–560) comparte franja con la cara (y 480–700): ubicarlo con graficos.lugar_libre y confirmarlo con tools/prueba.py",
+   "evidencia": ""
+  }
+ ],
+ "datos": {
+  "planos": 27,
+  "escenas": 4,
+  "planos_kling": [],
+  "estilo": "realista"
+ }
+}

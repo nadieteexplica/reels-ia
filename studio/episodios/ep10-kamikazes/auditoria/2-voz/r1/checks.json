@@ -1,0 +1,28 @@
+{
+ "fallas": [],
+ "avisos": [
+  {
+   "que": "pausa de 1.12 s después de '(silencio)'",
+   "evidencia": "15.35 s"
+  },
+  {
+   "que": "pausa de 1.07 s después de '(silencio)'",
+   "evidencia": "20.10 s"
+  },
+  {
+   "que": "ritmo de 3.9 palabras/s en 'y manda a sus pilotos a no volver.'",
+   "evidencia": "8.39 s"
+  },
+  {
+   "que": "ritmo de 4.2 palabras/s en 'Y el día que Japón se rinde...'",
+   "evidencia": "49.75 s"
+  }
+ ],
+ "datos": {
+  "duracion_voz_s": 53.31,
+  "palabras_por_s": 2.7,
+  "creditos_restantes": 35029,
+  "asr_coincidencia": 1.0,
+  "asr_diferencias": []
+ }
+}

@@ -185,7 +185,8 @@ def voz(ep_d, words_path, status_path=None, job=None, asr_path=None):
         corta = dur + 0.4 < DURACION[0]
         _f(r, f"la voz dura {dur:.1f} s (+0,4 de cola) fuera de {DURACION[0]:g}–{DURACION[1]:g} s"
            + (" → alargar pausas con tools/pausas.py (0 créditos) antes de regenerar" if corta else ""), bloqueante=True)
-    largas = [(w["w"], round(w["e"] - w["s"], 2), w["s"]) for w in words[:-1] if w["e"] - w["s"] > 1.2 and "..." not in w["w"]]
+    largas = [(w["w"], round(w["e"] - w["s"], 2), w["s"]) for w in words[:-1] if w["e"] - w["s"] > 1.2 and "..." not in w["w"]
+              and not re.fullmatch(r"\d[\d.,]*", w["w"].strip(".,;:"))]   # un año en cifras se dice en varias palabras (Ep. 10: "1945" = 5)
     for w, d, s in largas:
         _f(r, f"la palabra '{w}' dura {d} s (máx. 1,2)", f"{s:.2f} s")
     mp3 = os.path.join(comun.RAIZ, "out", "tts", os.path.basename(ep_d) + ".mp3")
