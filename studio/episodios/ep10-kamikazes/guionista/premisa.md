@@ -29,3 +29,7 @@ Serio y respetuoso: ni glorificar ni burlarse. Nada de muertes a la vista, nada 
 - **La bomba atómica:** los kamikazes no fueron "la" causa ni la bomba fue "para demostrar". Lo que dice la historia seria: Okinawa y los kamikazes mostraron cuánto costaría invadir Japón, y ese miedo fue una de las razones de la decisión (cuánto pesó se sigue debatiendo). El guion lo dice así.
 - **Voluntarios:** oficialmente sí; muchos no tuvieron cómo negarse. Se dice con esa precisión.
 - **Mito del combustible "sólo de ida":** no se usa.
+
+## Decisión de Tomás (7-nov-2026, 12:08)
+- **"Quiero que partas con la palabra kamikaze"**: la primera palabra de la voz es "Kamikaze". El gancho ganador del duelo (g6, 19/20) se adapta: "Kamikaze. Este piloto no quiere sobrevivir… quiere chocar." La píldora del cuadro 0 pasa a KAMIKAZE. (Su apertura g12 "Esto es lo que de verdad significaba ser kamikaze" sacó 0/20; lo que pide ahora es otra cosa: la palabra primero, no esa frase.)
+- **"Que el video esté bien ambientado a como era la guerra"**: todo de época y verificado (Pacífico 1944–45): aviones, barcos, cañones, uniformes, insignias y bases correctos para cada lado; nada genérico ni anacrónico. Lista de época en el storyboard, con fuentes.
