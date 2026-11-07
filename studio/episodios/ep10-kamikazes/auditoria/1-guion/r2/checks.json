@@ -1,0 +1,25 @@
+{
+ "fallas": [],
+ "avisos": [],
+ "datos": {
+  "palabras": 144,
+  "duracion_estimada_s": 49.5,
+  "pausas": 4,
+  "fuentes": [
+   "ahf.nuclearmuseum.org",
+   "airandspaceforces.com",
+   "britannica.com",
+   "dh.scu.edu",
+   "history.navy.mil",
+   "history.state.gov",
+   "ibiblio.org",
+   "keio.ac.jp",
+   "nationalww2museum.org",
+   "pacificwrecks.com",
+   "press.uchicago.edu",
+   "teachingamericanhistory.org",
+   "trumanlibrary.gov"
+  ],
+  "afirmaciones_verificadas": 13
+ }
+}

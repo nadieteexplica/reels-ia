@@ -1,0 +1,27 @@
+[
+ {
+  "id": "guion",
+  "prompt": "tools/auditor/prompts/1-guion.md",
+  "alcance": "guion completo",
+  "materiales": [
+   "studio/episodios/ep10-kamikazes/guion.md",
+   "studio/episodios/ep10-kamikazes/auditoria/1-guion/r2/materiales/fuentes.md",
+   "studio/episodios/ep10-kamikazes/auditoria/1-guion/r2/materiales/anterior_guion.json"
+  ],
+  "contexto": [
+   "docs/AUDITOR.md",
+   "docs/MANUAL_PRODUCCION.md",
+   "docs/IDEAS.md",
+   "docs/PUBLICADOS.md"
+  ],
+  "salida": "guion.json",
+  "verificar_ids": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5"
+  ],
+  "modo": "verificacion"
+ }
+]
