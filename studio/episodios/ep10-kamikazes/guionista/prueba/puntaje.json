@@ -1,0 +1,197 @@
+{
+ "paneles": 6,
+ "calibracion": {
+  "rho_quedan_vs_yt_se_quedo": 0.7,
+  "rho_quedan_vs_ig_pasa_3s": 0.58,
+  "rho_borda_vs_yt_vistas": 0.14,
+  "peor_real": "ep05",
+  "peor_real_en_ultimo_tercio": true,
+  "rho_quedan_vs_yt_se_quedo_sin_el_peor": 0.45,
+  "se_puede_usar_para_descartar": false
+ },
+ "videos": {
+  "ep05": {
+   "tipo": "ancla",
+   "quedan_2s": 33.3,
+   "entero": 15.0,
+   "manda": 0.0,
+   "borda": 0.694,
+   "se_va_en": [
+    "Después, bobinas y más bobinas, hasta cuarenta teslas o más.",
+    "cuadro0",
+    "Después: bobinas y más bobinas, hasta cuarenta teslas o más.",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Un tipo flotando y 'puedes flotar con un imán', raro y me pica el lado ingeniero, aunque el cartel SIMULACIÓN me hace sospechar.",
+    "Dice SIMULACIÓN y el hombre se ve diminuto, parece algo técnico y aburrido.",
+    "Un tipo flotando en el aire, 'podrías flotar' suena a poder de videojuego",
+    "Un señor flotando con letrero de simulación, no entiendo qué es ni para qué me sirve; parece ciencia rara.",
+    "Dice 'podrías flotar' pero solo veo un tipo en el aire con letrero de SIMULACIÓN; pura promesa, no entiendo qué es.",
+    "Un monito chiquito en el aire y dice SIMULACIÓN, no entendí qué era."
+   ]
+  },
+  "s1": {
+   "tipo": "candidato",
+   "quedan_2s": 0.0,
+   "entero": 0.0,
+   "manda": 0.0,
+   "borda": 1.0,
+   "se_va_en": [
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Otro video de guerra con animación tipo IA y arranque de documental genérico: 'Japón está perdiendo la guerra'. Deslizo.",
+    "Guerra, aviones y barcos de 1944; historia militar, no es de mi casa ni de mi vida."
+   ]
+  },
+  "ep07": {
+   "tipo": "ancla",
+   "quedan_2s": 50.0,
+   "entero": 27.8,
+   "manda": 33.3,
+   "borda": 0.5,
+   "se_va_en": [
+    "final",
+    "cuadro0",
+    "Primero, meten columnas de acero y lo paran sobre quince gatos hidráulicos, como un sombrero gigante.",
+    "cuadro0",
+    "Y adentro, escondidos, desarman el piso de abajo.",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Un rascacielos bajando de piso en piso con contador y sin explosión, quiero saber cómo lo hacen.",
+    "Demasiado texto y contadores en pantalla, no entendí qué mirar.",
+    "Vi una torre gigante bajando y el contador de pisos cayendo, quiero ver cómo la botan",
+    "Un edificio de Japón con números bajando, mucho texto y no entiendo qué me importa a mí.",
+    "El contador de pisos bajando y la torre achicándose; quiero ver cómo tumban un edificio sin explosión.",
+    "Muchos textos y números juntos, se ve cargado y no entendí qué miraba."
+   ]
+  },
+  "ep01": {
+   "tipo": "ancla",
+   "quedan_2s": 66.7,
+   "entero": 34.2,
+   "manda": 33.3,
+   "borda": 0.472,
+   "se_va_en": [
+    "cuadro0",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+    "cuadro0",
+    "final",
+    "Su nombre científico es ganglioneuralgia esfenopalatina.",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada."
+   ],
+   "por_que_2s": [
+    "Muñeco 3D comiendo helado y dolor de frente, eso ya lo sé y se ve caricatura de IA. Deslizo.",
+    "Todos hemos tenido ese dolor de helado, y el personaje con la frente roja es chistoso.",
+    "Ya sé qué es, el dolor de cabeza del helado, todos lo sabemos, deslizo",
+    "Helado y dolor de frente, eso me pasa a mí y a mis hijos, lo entendí al instante sin sonido.",
+    "Muñeco comiendo helado y agarrándose la frente, cara graciosa, todos conocemos ese dolor.",
+    "Personaje 3D lindo comiendo helado y agarrándose la frente, me pasa y se ve bonito."
+   ]
+  },
+  "ep04": {
+   "tipo": "ancla",
+   "quedan_2s": 83.3,
+   "entero": 55.3,
+   "manda": 66.7,
+   "borda": 0.222,
+   "se_va_en": [
+    "final",
+    "final",
+    "cuadro0",
+    "final",
+    "final",
+    "Mira la ducha por dentro."
+   ],
+   "por_que_2s": [
+    "Me ha pasado mil veces con la cortina y nunca supe por qué, la situación me es familiar.",
+    "Me pasa en la regadera, la cortina que se pega, y el señor con espuma me da risa.",
+    "Un señor en la ducha con espuma, mucho bigote y nada que pase, deslizo",
+    "La cortina de la ducha pegándose, a todos nos pasa, me reí y quise saber por qué.",
+    "Me ha pasado mil veces, la cortina pegándose; quiero saber por qué.",
+    "Me pasa siempre lo de la cortina, el señor con espuma es gracioso y se entiende de una."
+   ]
+  },
+  "ep02": {
+   "tipo": "ancla",
+   "quedan_2s": 83.3,
+   "entero": 33.7,
+   "manda": 66.7,
+   "borda": 0.361,
+   "se_va_en": [
+    "cuadro0",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+    "Y lo más loco: hay un mamífero que casi no lo siente. La tupaya, de China.",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre."
+   ],
+   "por_que_2s": [
+    "Pájaro y ratón echando fuego, se siente infantil y el hook de pájaro con ají no me convence. Deslizo.",
+    "Pájaro con chile y un ratón echando fuego, soy mexicana, el picante me llama.",
+    "Ratón echando fuego y pájaro con ají, me dio risa",
+    "Un pajarito con un chile en el pico y un ratón echando fuego, me dio risa y quise ver qué pasaba.",
+    "Ratón echando fuego y un pájaro con chile; soy de Monterrey, el chile me importa y se ve chistoso.",
+    "Pajarito con ají y un ratón echando fuego, se ve tierno y chistoso."
+   ]
+  },
+  "ep03": {
+   "tipo": "ancla",
+   "quedan_2s": 83.3,
+   "entero": 35.8,
+   "manda": 33.3,
+   "borda": 0.333,
+   "se_va_en": [
+    "final",
+    "Las patas van en dos grupos.",
+    "final",
+    "¿Y por qué no usaron rieles?",
+    "cuadro0",
+    "Las patas van en dos grupos."
+   ],
+   "por_que_2s": [
+    "Un edificio de cinco pisos sobre patas que se fue caminando, quiero ver cómo es eso mecánicamente.",
+    "Un edificio que se fue caminando, quiero ver cómo.",
+    "Un edificio que se fue caminando, tiene patas, eso es imposible y exagerado",
+    "Dijo que un edificio se fue caminando, me dio curiosidad cómo puede ser.",
+    "Dicen que el edificio camina pero solo veo un edificio parado con unos postes; no pasa nada.",
+    "Un edificio que camina, me dio curiosidad de cómo es posible, aunque el plano es medio quieto."
+   ]
+  },
+  "s2": {
+   "tipo": "candidato",
+   "quedan_2s": 50.0,
+   "entero": 25.0,
+   "manda": 0.0,
+   "borda": 0.75,
+   "se_va_en": [
+    "cuadro0",
+    "Las últimas cartas dicen casi lo mismo: gracias, perdón… y no lloren."
+   ],
+   "por_que_2s": [
+    "Guerra, 1944, historia triste; estoy cansada y no quiero algo pesado antes de dormir.",
+    "Avión en picada contra barcos con balas, algo pasa de entrada; parece peli de guerra."
+   ]
+  },
+  "s3": {
+   "tipo": "candidato",
+   "quedan_2s": 0.0,
+   "entero": 0.0,
+   "manda": 0.0,
+   "borda": 1.0,
+   "se_va_en": [
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Voz de documental de historia, 'Japón está perdiendo la guerra', es clase, deslizo",
+    "Guerra, aviones y barcos, otra vez historia pesada; no es lo mío y se ve oscuro."
+   ]
+  }
+ }
+}
