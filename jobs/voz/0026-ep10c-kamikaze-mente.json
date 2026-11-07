@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "id": "ep10c-kamikaze-mente",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.42,
+  "similarity_boost": 0.8,
+  "style": 0.3,
+  "use_speaker_boost": true
+ },
+ "text": "Este piloto tiene veintiún años. Mañana sale en una misión kamikaze... y su esposa, embarazada, está orgullosa de él. ¿Cómo se llega a pensar así? En el Japón de esa época, dar la vida por el país no era un pecado: era un honor, el de los samuráis. Y en mil novecientos cuarenta y cuatro, Japón está perdiendo la guerra. Entonces les pide a sus pilotos lo máximo: estrellar su avión, con una bomba, contra los barcos de Estados Unidos. Les dicen voluntarios... pero hay jefes que ofrecen escuadrones enteros. Antes de despegar, unas alumnas se cortan los dedos para pintar con su sangre el sol de su cinta. Él escribe su última carta, y le pide perdón a su esposa. Años después, ella lo explicó así: Habría sido una vergüenza que siguiera vivo. Solo en Okinawa murieron más de dos mil así. Pero no todos pensaban igual. Uno de ellos, estudiante, escribió la noche antes: Mañana, un liberal se va de este mundo."
+}
