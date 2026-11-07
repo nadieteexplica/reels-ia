@@ -78,13 +78,29 @@ def cargar(path):
     return im.resize((W, H), Image.LANCZOS) if im.size != (W, H) else im
 
 
+_CAND = []
+
+
+def relleno(f):
+    """Vista previa con planos que todavía se renderizan: cuadro oscuro con el aviso (RELLENO=1)."""
+    im = Image.new("RGB", (W, H), (18, 20, 24))
+    d = ImageDraw.Draw(im)
+    fnt = ImageFont.truetype(FONT, 64)
+    d.text((W / 2, H / 2 - 60), f"PLANO {plano_de(f)}", font=fnt, fill=(235, 235, 235), anchor="mm")
+    d.text((W / 2, H / 2 + 30), "TODAVÍA SE RENDERIZA", font=ImageFont.truetype(FONT, 46), fill=(255, 190, 60), anchor="mm")
+    return im
+
+
 def cuadro(f, a, b):
     im = cargar(os.path.join(src, f"{f:05d}.png"))
     if im is not None or not os.environ.get("MUESTRAS"):
-        return im
-    cand = [int(os.path.basename(q)[:5]) for q in glob.glob(os.path.join(src, "[0-9]" * 5 + ".png"))]
-    cand = [c for c in cand if a <= c < b]
-    return cargar(os.path.join(src, f"{min(cand, key=lambda c: abs(c - f)):05d}.png")) if cand else None
+        return im if im is not None or not os.environ.get("RELLENO") else relleno(f)
+    if not _CAND:
+        _CAND.extend(int(os.path.basename(q)[:5]) for q in glob.glob(os.path.join(src, "[0-9]" * 5 + ".png")))
+    cand = [c for c in _CAND if a <= c < b]
+    if cand:
+        return cargar(os.path.join(src, f"{min(cand, key=lambda c: abs(c - f)):05d}.png"))
+    return relleno(f) if os.environ.get("RELLENO") else None
 
 
 def bloom(im, umbral=0.82, fuerza=0.45):
