@@ -1,0 +1,272 @@
+{
+ "etapa": "1-guion",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "NO APROBADO",
+ "promedio": 6.5,
+ "notas": {
+  "precision": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "El dato central tiene 2 fuentes independientes: SCU (foto del 26-may-1945, Araki de 17 años, el día antes de la misión) y CNN (sindicado en localnews8: 'the five youths in that puppy photo died on May 27, 1945'). Casi todas las cifras se confirman en los extractos: AAA Summary ('more than 50 percent', 'almost inevitably will hit'), NWWIIM ('more than 2,000', 4.907, 'Please forgive me' leído con WebFetch), NHHC (4.675 y 12.700) y la frase de Truman en FRUS (confirmada por búsqueda en history.state.gov). Hay un hueco: ninguna fuente citada respalda 'un avión por un barco'. Además, la voz dice 'esta foto' sobre una recreación que no copia bien la foto real.",
+   "de": "guion"
+  },
+  "gancho": {
+   "nota": 5.0,
+   "min": 5,
+   "por_que": "La voz de 0–2 s ('Esta foto es de 1945') y la píldora MAYO DE 1945 sólo dan contexto. En mudo se ve un chico que sonríe con un cachorro y no pasa nada raro (fallan G1 y G2). 'Kamikaze' suena recién a los ~5,6 s, así que el centro llega después de los 2 s (falla G12). Abrir con el año es el mismo arranque de documental que los cazadores castigaron ('1944. Japón está perdiendo…').",
+   "de": "guion"
+  },
+  "claridad": {
+   "nota": 6.0,
+   "min": 6,
+   "por_que": "Todas las frases tienen 14 palabras o menos y casi todas se pueden filmar. El problema es la cantidad: 15 frases, unos 12 pasos y 6 cifras en la voz en 58 s. Además, 'más marineros que soldados del ejército en la isla' no tiene verbo (no dice que son muertos), y 'la invasión' y 'Truman' llegan sin explicar para un niño de 12 años de Latam.",
+   "de": "guion"
+  },
+  "compartible": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "Tiene destinatario claro: 'mira, tenía 17 años y al día siguiente murió', con la foto del cachorro, para el amigo al que le gusta la historia. El cierre 'todavía despegan kamikazes' también es un dato que se cuenta.",
+   "de": "guion"
+  },
+  "G1": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G2": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G3": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G4": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G5": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G6": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G7": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G8": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G9": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G10": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G11": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G12": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G13": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "G14": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R1": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R2": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R3": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R4": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R5": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R6": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R7": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R8": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R9": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R10": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R11": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  },
+  "R12": {
+   "nota": null,
+   "min": null,
+   "por_que": "no aplica",
+   "de": ""
+  }
+ },
+ "problemas": [],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Esta foto es de 1945.",
+   "que": "El centro (este chico de 17 con un cachorro es kamikaze y muere al día siguiente) llega a los 3,5–5,6 s. La voz de 0–2 s y la píldora MAYO DE 1945 sólo dan contexto. Fallan G1 (mudo), G2 (imposible visible), G12 (tensión antes de 1,5 s) y la regla 12 (año en la voz).",
+   "arreglo": "Que la voz de 0–2 s y la píldora del cuadro 0 digan lo raro (es kamikaze / muere al día siguiente) y que la palabra de tensión suene antes de 1,5 s. El año queda sólo en la descripción o en una píldora posterior. La foto del chico se mantiene como cuadro 0 (decisión de Tomás). Lo reescribe el guionista.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Con pilotos novatos, la cuenta es fría: un avión por un barco.",
+   "que": "No se pudo verificar 'un avión por un barco'. De Correll, el extracto sólo da los ≤ 30 h de vuelo y los < 100 aviones; NWWIIM sólo dice que el plan era hundir barcos. Ninguna fuente citada habla de uno por uno. Además, se puede entender como resultado y no como apuesta: el propio AAA Summary calcula 60 salidas para 12 impactos, y la imagen pone un avión contra un portaaviones entero.",
+   "arreglo": "Agregar en la tabla una fuente que diga esa lógica con esas palabras (por ejemplo, la propuesta de Ōnishi de que cada avión se estrelle contra un portaaviones, en Inoguchi y Nakajima, The Divine Wind) y marcarlo como la apuesta japonesa. Si no aparece una fuente, sacar la proporción.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Y del otro lado, más marineros que soldados del ejército en la isla.",
+   "que": "La frase no tiene verbo, así que no dice que son muertos. Compara Armada contra Ejército, una distinción que el espectador no tiene, y es la quinta cifra de la voz en un guion con unos 12 pasos (regla 7: máximo 2 cifras). Se puede sacar sin perder la idea, porque el costo de Okinawa ya está en la frase anterior.",
+   "arreglo": "Cortar la frase (~4 s) y llevar las barras de marineros contra ejército al post o al comentario fijado. Pasar 'más de dos mil' a una píldora sobre la pared de retratos, para que la voz quede con 'diecisiete' y 'trece mil'.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Del otro lado, los estadounidenses no lo pueden creer: el enemigo no quiere volver.",
+   "que": "La pregunta del gancho (¿cómo un chico así termina kamikaze?) queda contestada a los 22 s (39 %). Desde ahí, la mitad estadounidense y la bomba corren sin una pregunta abierta, y el pago del 82–89 % contesta algo que nadie preguntó en los primeros 5 s (regla 3). Ahí es donde el video puede perder a la gente en la segunda mitad.",
+   "arreglo": "Sembrar en los primeros 6 s que esto cambió el final de la guerra, o que la frase del giro de los 22 s abra la segunda pregunta en vez de sólo cambiar de lado. Lo decide el guionista.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Esta foto es de 1945.",
+   "que": "La voz dice 'esta foto' sobre una recreación 3D. Además, la ficha la describe con 'otros 4 pilotos detrás', pero SCU dice 3 adelante (Hayakawa, Araki al centro, Senda) y 2 atrás. La foto real es famosa, y si la copia no es fiel, los comentarios la van a llamar falsa (riesgo G13).",
+   "arreglo": "Copiar la composición real (3 adelante con Araki y el cachorro al centro, 2 atrás) contra la foto de SCU en el storyboard. En la descripción y el primer comentario, decir que es una recreación de la foto real y dar el enlace de SCU.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Para la invasión, Japón junta casi trece mil aviones: todos, para chocar. / Para Truman, invadir sería repetir Okinawa, pero en Japón.",
+   "que": "'La invasión' aparece por primera vez sin decir quién invade a quién, y 'Truman' llega sin explicar quién es. Un niño de 12 años de Latam no sabe ninguna de las dos cosas.",
+   "arreglo": "Lo más barato: una píldora 'TRUMAN · PRESIDENTE DE EE.UU.' y que las flechas de EE.UU. hacia la costa estén desde 'invasión' (ya están en la ficha E4). Otra opción: poner la frase de Truman antes de la de los aviones.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Ese miedo es una de las razones para lanzar la bomba atómica.",
+   "que": "Las dos fuentes leídas del pago (H-Gram 079 y 044) son de la misma institución (NHHC), no independientes, y Walker no se leyó. Las barras de pantalla mezclan fuentes: 4.907 es de NWWIIM y 4.675 es de NHHC (el equivalente de NWWIIM es 4.412). Y 'el día que Japón se rinde' es el anuncio del 15-ago; la firma fue el 2-sep.",
+   "arreglo": "Sumar una fuente independiente de NHHC para el vínculo con la bomba (por ejemplo Britannica, 'The decision to use the atomic bomb', o Truman Library). Si las barras se quedan, usar el par de una sola fuente (NHHC: 'más de 4.900' contra 4.675). En la descripción, decir 'el día del anuncio de la rendición'.",
+   "de": "guion"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": null,
+   "segundo": "Y el día que Japón se rinde… todavía despegan kamikazes.",
+   "que": "El loop es sólo visual: '…despegan kamikazes. Esta foto es de 1945.' no suena a una sola frase (regla 10).",
+   "arreglo": "Cuando el guionista reescriba la primera frase (problema 1), que la última empalme con ella.",
+   "de": "guion"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [],
+ "solo_bloqueantes": false,
+ "parar_y_preguntar": false
+}
