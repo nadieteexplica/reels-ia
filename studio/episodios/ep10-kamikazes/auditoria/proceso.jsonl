@@ -9,3 +9,5 @@
 {"tipo": "aviso", "que": "16:59 a Tomás: se atrasa a ~18:00. Las tomas del mar (humo y flak volumétricos) cuestan el doble de lo que estimó reparto.py: 4 trabajos del final llevan 69 min (estimados ~30) y los del parche con E3 van en 40+ min", "n": 9, "ts": "2026-11-07T17:00:03-03:00"}
 {"tipo": "trabajo", "id": "render-planos parche2 42410027173 (11 y 27; base final+parche; armado final)", "estado": "inicio", "n": 10, "ts": "2026-11-07T17:14:07-03:00"}
 {"tipo": "trabajo", "id": "render-gpu 42410131645 (RunPod, piezas 14@1,14@2; primera vez en producción)", "estado": "inicio", "n": 11, "ts": "2026-11-07T17:15:43-03:00"}
+{"tipo": "gasto", "servicio": "runpod", "monto": 0.1, "nota": "render-gpu 42410131645: RTX 4090, USD 0,34/h, 18 min (plano 14 en 15 min); saldo antes USD 9,56", "n": 12, "ts": "2026-11-07T17:35:52-03:00"}
+{"tipo": "aviso", "que": "17:36 a Tomás: GPU medida (14 en 15 min vs >60 en GitHub), se cortan los CPU pegados, 20@1 a la GPU, video ~17:55", "n": 13, "ts": "2026-11-07T17:35:52-03:00"}
