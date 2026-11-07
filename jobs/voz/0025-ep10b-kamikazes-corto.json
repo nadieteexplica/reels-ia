@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "id": "ep10b-kamikazes-corto",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.32,
+  "use_speaker_boost": true
+ },
+ "text": "Kamikaze no significa suicida. Significa viento divino. Así llamaron a los tifones que salvaron a Japón de una invasión mongola, hace setecientos cincuenta años. En mil novecientos cuarenta y cuatro, Japón está perdiendo la guerra. Y crea unidades con ese nombre: pilotos que estrellan su avión, cargado con una bomba, contra los barcos de Estados Unidos. Oficialmente son voluntarios... pero decir que no es casi imposible. Algunos tienen diecisiete años y, antes de despegar, le escriben una última carta a su familia. Estados Unidos derriba a la mayoría... pero el que pasa, casi siempre pega. Okinawa es tan sangrienta que el miedo a invadir Japón se vuelve una de las razones de la bomba atómica. El viento divino... nunca llegó."
+}
