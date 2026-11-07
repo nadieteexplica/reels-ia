@@ -11,7 +11,17 @@ L2 = (122, 24, 146, 42)
 w = Image.open(os.path.join(d, "world.topo.bathy.200412.3x21600x10800.jpg"))
 px = lambda lon: int((lon + 180) * 60); py = lambda lat: int((90 - lat) * 60)
 w.crop((px(L1[0]), py(L1[3]), px(L1[2]), py(L1[1]))).save(os.path.join(d, "L1_pacifico.jpg"), quality=95)
-c = Image.open(os.path.join(d, "world.topo.bathy.200412.3x21600x21600.D1.jpg"))
-px2 = lambda lon: int((lon - 90) * 240); py2 = lambda lat: int((90 - lat) * 240)
-c.crop((px2(L2[0]), py2(L2[3]), px2(L2[2]), py2(L2[1]))).save(os.path.join(d, "L2_japon.jpg"), quality=95)
+d1 = os.path.join(d, "world.topo.bathy.200412.3x21600x21600.D1.jpg")
+if os.path.exists(d1):
+    c = Image.open(d1)
+    px2 = lambda lon: int((lon - 90) * 240); py2 = lambda lat: int((90 - lat) * 240)
+    c.crop((px2(L2[0]), py2(L2[3]), px2(L2[2]), py2(L2[1]))).save(os.path.join(d, "L2_japon.jpg"), quality=95)
+else:
+    # sin el mosaico de 500 m (la NASA no siempre responde a las máquinas de GitHub): el mismo recorte del mundo de 1,85 km,
+    # agrandado ×2 con Lanczos y un enfoque suave (se ve igual de nítido desde 1.400 km o más)
+    from PIL import ImageFilter
+    r = w.crop((px(L2[0]), py(L2[3]), px(L2[2]), py(L2[1])))
+    r = r.resize((r.width * 2, r.height * 2), Image.LANCZOS).filter(ImageFilter.UnsharpMask(radius=2, percent=60, threshold=2))
+    r.save(os.path.join(d, "L2_japon.jpg"), quality=95)
+    print("aviso: sin D1, L2 sale del mundo 21600")
 print("ok recortes")

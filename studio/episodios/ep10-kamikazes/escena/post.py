@@ -1,12 +1,14 @@
-"""Post del Ep. 9 (sobre el del Ep. 7): arma los cuadros finales (1080x1920) desde los renders de plano.py.
+"""Post del Ep. 10 (kamikazes; sobre el del Ep. 9): arma los cuadros finales (1080x1920) desde los renders de plano.py.
 
 Uso: python3 post.py <carpeta_render> <salida>   (OUT=carpeta de datos, LISTA=cuadros opcionales, MUESTRAS=1 en pruebas)
-- Gradación común (grado.py), píldoras (v3: ESTO SÍ PASÓ, SIN HILOS, IMÁN, AGUA, HASTA 60 % AGUA, UN POQUITO, ≈ 16 TESLAS,
-  PASO 1/2/3, NO CABE, ≈ 40 TESLAS O MÁS, ≈ 1 GIGAVATIO y SIMULACIÓN fija en todo lo hipotético), flechas de fuerza al
-  lado de la rana (gris = gravedad, naranja = imán), la cota de 3 cm, el contorno de una mano real, las barras 16 T
-  contra 40 T y los subtítulos palabra por palabra (franja y 1000–1250). Las posiciones salen del meta de cada cuadro
-  (pantalla() de la escena) y las píldoras se ubican sin tapar ojos (graficos.lugar_libre).
-- Escribe subs_log.json, graficos.json y ep09_planos.json en OUT.
+- Gradación de época (grado.py: menos color, más contraste, un poco cálida) con grano fino y viñeta; el mapa va limpio.
+- Píldoras del storyboard v2: KAMIKAZE · 17 AÑOS con flecha, 26 DE MAYO DE 1945 + FOTO REAL, VOLUNTARIOS, ÚLTIMA CARTA y
+  PERDÓN (+ RECREACIÓN), OKINAWA 1945, INVASIÓN · 1 DE NOVIEMBRE, PRESIDENTE TRUMAN, 15 DE AGOSTO DE 1945 / JAPÓN SE RINDE.
+- Mapa: islas perdidas (rojo → gris), flechas de EE.UU., barras MARINEROS/EJÉRCITO, flechas de la invasión, la mancha roja
+  de Okinawa que se copia a Japón y los dos destellos (Hiroshima, Nagasaki). Contador 0 → 12.700. Blanco al final del 16.
+- Loop: desde 53,40 s vuelve la foto del cuadro 0 (cuadros del plano 1).
+- Las posiciones salen del meta de cada cuadro (pantalla() de la escena); las caras de la foto van como "ojos".
+- Escribe subs_log.json, graficos.json y ep10_planos.json en OUT.
 """
 import glob, json, math, os, sys
 import numpy as np
@@ -15,9 +17,12 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.abspath(os.path.join(HERE, "../../../plantilla")))
-import ep09 as E
+import ep10 as E
 import graficos as G
 from grado import grado
+E2_ESCENA = {1: "E5", 2: "E5", 3: "E1", 4: "E4", 5: "E1", 6: "E1", 7: "E1", 8: "E1", 9: "E5", 10: "E5", 11: "E3", 12: "E3", 13: "E3",
+             14: "E3", 15: "E3", 16: "E3", 17: "E3", 18: "E4", 19: "E4", 20: "E1", 21: "E1", 22: "E4", 23: "E4", 24: "E4", 25: "E4",
+             26: "E5", 27: "E1"}      # = planos_ep10.ESCENA (sin importar bpy)
 
 OUT = os.environ.get("OUT", os.path.join(HERE, "out"))
 src, dst = sys.argv[1], sys.argv[2]
@@ -30,12 +35,14 @@ END = E.FIN
 FONTS = os.path.abspath(os.path.join(HERE, "../../../plantilla/fonts"))
 FONT = os.path.join(FONTS, "Inter-Black.otf")
 FONT_B = os.path.join(FONTS, "Inter-ExtraBold.otf")
-AMARILLO = (255, 210, 63)          # palabra activa (manual §6) y SIMULACIÓN
-AZUL = (60, 140, 255)              # agua
-CIAN = (40, 205, 255)              # líneas del imán
-NARANJO = (255, 140, 30)           # el empujón del imán
-GRIS = (150, 156, 166)             # la gravedad
-CLAVE = {"AGUA": AZUL, "TÚNEL": AZUL}
+AMARILLO = (255, 210, 63)          # palabra activa (manual §6)
+AMBAR = (255, 186, 52)             # píldoras de la historia japonesa
+ACERO = (64, 104, 146)             # píldoras de EE.UU.
+AZUL = (70, 150, 255)              # flechas y barra de EE.UU.
+VERDE = (96, 170, 90)              # el ejército en tierra
+GRIS = (150, 156, 166)
+ROJO = (225, 45, 40)
+CLAVE = {"KAMIKAZE": (240, 80, 64), "KAMIKAZES": (240, 80, 64)}
 BOX = (120, 888, 1000, 1250)
 META = {}
 for p in sorted(glob.glob(os.path.join(src, "meta", "*.json"))):
@@ -145,7 +152,7 @@ def suave(x):
     return x * x * (3 - 2 * x)
 
 # ---------------- subtítulos (palabra por palabra; cifras juntas) ----------------
-NUMEROS = []
+NUMEROS = [("diecisiete", "17"), ("trece mil", "13.000")]
 
 
 def limpiar(w):
@@ -198,18 +205,6 @@ for g in grupos:
     else:
         g2.append(g)
 grupos = g2
-# "Es más que nada agua": cortado en "NADA AGUA" se leía "nada de agua" (puerta 6 v3) → ES MÁS QUE NADA / AGUA, / COMO TÚ
-_i = next((i for i, w in enumerate(words) if limpiar(w["w"]) == "NADA"), None)
-if _i is not None:
-    _js = [j for j, (tx, idx, fin) in enumerate(TOK) if idx[0] in range(_i - 3, _i + 1)]
-    g3 = []
-    for g in grupos:
-        resto = [j for j in g if j not in _js]
-        if any(j in _js for j in g) and _js[0] in g:
-            g3.append(_js)
-        if resto and resto != g or not any(j in _js for j in g):
-            g3.append(resto)
-    grupos = [g for g in g3 if g]
 SIN_SUBS = set()
 SUB_LOG = []
 
@@ -311,10 +306,6 @@ def T0(k):
     return E.T[k][0]
 
 
-def simulacion(im):
-    pildora(im, "SIMULACIÓN", 250, 330, fondo=AMARILLO, tinta=(24, 24, 28), tam=44)
-
-
 _LUGAR = {}
 
 
@@ -343,137 +334,6 @@ def texto_sombra(d, xy, texto, fnt, col=(255, 255, 255), a=255, ancla="mm"):
     d.text((x, y), texto, font=fnt, fill=(*col, a), stroke_width=5, stroke_fill=(0, 0, 0, int(0.8 * a)), anchor=ancla)
 
 
-DORADO = (255, 190, 40)            # la electricidad
-RAPIDO = {6, 9, 10, 11, 12, 14, 15, 16}      # el lago bajando o subiendo (el vaciamiento real dura horas; el llenado, semanas)
-CONTADOR = set()
-
-
-def camara_rapida(im):
-    pildora(im, "CÁMARA RÁPIDA", 250, 330, fondo=(30, 32, 36), tinta=(255, 255, 255), tam=40)
-
-
-def contador(im, f, k):
-    n = meta(k, f, "pisos", None)
-    if n is None:
-        return
-    pildora(im, f"QUEDAN {n} PISOS", 760, 330, fondo=(250, 250, 248), tinta=(24, 24, 28), tam=46)
-    fx, fy = meta(k, f, "fant", (540, 300))
-    if 380 < fy < 900:
-        pildora(im, "ANTES: 40 PISOS", max(260, min(860, fx + 340)), max(440, fy + 60), fondo=(30, 32, 36), tinta=(255, 255, 255), tam=38)
-
-
-def _envolvente(pts):
-    pts = sorted(set(map(tuple, pts)))
-    if len(pts) < 3:
-        return pts
-    def cruz(o, a, b):
-        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
-    abajo, arriba = [], []
-    for p in pts:
-        while len(abajo) >= 2 and cruz(abajo[-2], abajo[-1], p) <= 0:
-            abajo.pop()
-        abajo.append(p)
-    for p in reversed(pts):
-        while len(arriba) >= 2 and cruz(arriba[-2], arriba[-1], p) <= 0:
-            arriba.pop()
-        arriba.append(p)
-    return abajo[:-1] + arriba[:-1]
-
-
-def contorno_techo(im, f):
-    """Plano 4: contorno naranja que late alrededor de todo el sombrero (el último piso y su techo), desde "nunca"."""
-    esq = meta(4, f, "techo", None)
-    late = meta(4, f, "late", 0.0) or 0.0
-    if not esq or late <= 0.01:
-        return
-    poli = _envolvente(esq)
-    capa = Image.new("RGBA", im.size, (0, 0, 0, 0))
-    d = ImageDraw.Draw(capa)
-    a = int(255 * min(1.0, late))
-    d.line(poli + [poli[0]], fill=(*NARANJO, a), width=12, joint="curve")
-    glow = capa.filter(ImageFilter.GaussianBlur(10))
-    im.paste(glow, (0, 0), glow)
-    im.paste(capa, (0, 0), capa)
-
-
-def _capa():
-    return Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
-
-
-def _pegar(im, capa, glow=8):
-    if glow:
-        g = capa.filter(ImageFilter.GaussianBlur(glow))
-        im.paste(g, (0, 0), g)
-    im.paste(capa, (0, 0), capa)
-
-
-def _trazo(pts, u):
-    """El tramo de la polilínea pts recorrido hasta la fracción u (0–1) de su largo."""
-    L = [math.dist(a, b) for a, b in zip(pts, pts[1:])]
-    tot = sum(L) or 1
-    obj = u * tot
-    out = [tuple(pts[0])]
-    for (a, b), l in zip(zip(pts, pts[1:]), L):
-        if obj >= l:
-            out.append(tuple(b)); obj -= l
-        else:
-            r = obj / l if l else 0
-            out.append((a[0] + (b[0] - a[0]) * r, a[1] + (b[1] - a[1]) * r)); break
-    return out
-
-
-def capa_pieza(im, f):
-    """Plano 6: contorno blanco de la losa que la grúa está sacando y flecha hacia el pozo y hacia abajo."""
-    esq = meta(9, f, "pieza", None)
-    if not esq or str(f) not in META.get("9", {}).get("cuadros", {}) or "pieza" not in META["9"]["cuadros"][str(f)]:
-        return
-    poli = _envolvente(esq)
-    c = _capa(); d = ImageDraw.Draw(c)
-    d.line(poli + [poli[0]], fill=(255, 255, 255, 235), width=7, joint="curve")
-    _pegar(im, c, 6)
-    cx = sum(p[0] for p in poli) / len(poli); cy = sum(p[1] for p in poli) / len(poli)
-    px, py = meta(9, f, "pozo", (540, 900)); qx, qy = meta(9, f, "pozo_abajo", (540, 1100))
-    flecha(im, cx, cy, px, py, (255, 255, 255), ancho=8)
-    flecha(im, px, py, qx, min(qy, 1000), (255, 255, 255), ancho=8)
-
-
-def capa_electricidad(im, f, t):
-    """Plano 9: la electricidad sale del generador y corre dorada por el cable hacia las lámparas (desde "genera")."""
-    t_ge = tw("genera", 35.5)
-    c = _capa(); d = ImageDraw.Draw(c)
-    bx, by = meta(12, f, "bulto", (540, 900)); kx, ky = meta(12, f, "carro", (540, 700))
-    if t < t_ge + 0.6:
-        flecha(im, kx + 60, ky + 40, bx + 60, by, (255, 255, 255), ancho=8)          # el bulto baja
-    if t >= t_ge:
-        u = min(1.0, (t - t_ge) / 1.0)
-        for clave in ("cable", "cable2"):
-            pts = meta(12, f, clave, None)
-            if pts:
-                tr = _trazo(pts, u)
-                if len(tr) > 1:
-                    d.line(tr, fill=(*DORADO, 255), width=12, joint="curve")
-                    hx, hy = tr[-1]
-                    d.ellipse((hx - 16, hy - 16, hx + 16, hy + 16), fill=(255, 245, 200, 255))
-        _pegar(im, c, 10)
-
-
-def capa_luces(im, f, t):
-    """Plano 10: cada lámpara se prende con su resplandor y su cono de luz hacia el piso."""
-    t_pr = tw("prenden", 37.3)
-    lam = meta(13, f, "lamparas", None); pis = meta(13, f, "piso", None)
-    if not lam or not pis:
-        return
-    c = _capa(); d = ImageDraw.Draw(c)
-    for k, ((lx, ly), (fx, fy)) in enumerate(zip(lam, pis)):
-        on = min(1.0, max(0.0, (t - (t_pr + 0.2 * k)) / 0.1))
-        if on <= 0 or not (0 < lx < 1080 and 0 < ly < 1920):
-            continue
-        w = max(30, abs(fy - ly) * 0.55)
-        d.polygon([(lx - 18, ly), (lx + 18, ly), (fx + w, fy), (fx - w, fy)], fill=(255, 214, 140, int(70 * on)))
-        d.ellipse((lx - 26, ly - 14, lx + 26, ly + 14), fill=(255, 236, 190, int(255 * on)))
-    _pegar(im, c, 12)
-
-
 def apunta(im, f, k, clave, texto, t0, punto, fondo=(250, 250, 248), tinta=(24, 24, 28), tam=50, hasta=None, col=(255, 255, 255)):
     """Píldora con flecha fina hacia lo que nombra (posición de la escena en el meta del cuadro)."""
     t = t_de(f)
@@ -497,66 +357,244 @@ def apunta(im, f, k, clave, texto, t0, punto, fondo=(250, 250, 248), tinta=(24, 
     pildora(im, texto, cx, cy, fondo=fondo, tinta=tinta, s=s, tam=tam)
 
 
-ROJO = (225, 45, 40)
+def _lug(k, f, nombre):
+    L = meta(k, f, "lugares", {}) or {}
+    p = L.get(nombre)
+    return tuple(p) if p else None
+
+
+def _capa_rgba(im):
+    return Image.new("RGBA", im.size, (0, 0, 0, 0))
+
+
+def _componer(im, capa):
+    im.paste(capa, (0, 0), capa)
+
+
+def mancha(im, centro, r, alfa, col=ROJO):
+    """Mancha roja difusa sobre el mapa (lo que pasó en Okinawa)."""
+    if not centro or alfa <= 0.01 or r < 2:
+        return
+    lay = Image.new("L", im.size, 0)
+    d = ImageDraw.Draw(lay)
+    x, y = centro
+    d.ellipse((x - r, y - r * 0.8, x + r, y + r * 0.8), fill=int(255 * alfa))
+    lay = lay.filter(ImageFilter.GaussianBlur(max(2, r * 0.35)))
+    rojo = Image.new("RGB", im.size, col)
+    im.paste(rojo, (0, 0), lay.point(lambda v: int(v * 0.75)))
+
+
+def destello(im, centro, u):
+    """Destello blanco de una bomba vista desde el espacio (u: 0 → 1 en 0,7 s)."""
+    if not centro or u <= 0 or u >= 1:
+        return
+    x, y = centro
+    a = math.exp(-u * 4.0)
+    r = 40 + 260 * sale(u)
+    lay = Image.new("L", im.size, 0)
+    d = ImageDraw.Draw(lay)
+    d.ellipse((x - r, y - r, x + r, y + r), fill=int(255 * a))
+    lay = lay.filter(ImageFilter.GaussianBlur(r * 0.45))
+    im.paste(Image.new("RGB", im.size, (255, 250, 235)), (0, 0), lay)
+    d2 = ImageDraw.Draw(im)
+    rr = 10 + 26 * (1 - u)
+    d2.ellipse((x - rr, y - rr, x + rr, y + rr), fill=(255, 255, 250))
+
+
+def punto_isla(im, xy, col, r=13):
+    if not xy:
+        return
+    d = ImageDraw.Draw(im)
+    x, y = xy
+    d.ellipse((x - r - 4, y - r - 4, x + r + 4, y + r + 4), fill=(10, 10, 12))
+    d.ellipse((x - r, y - r, x + r, y + r), fill=col)
+
+
+def flecha_parcial(im, p0, p1, u, col=AZUL, ancho=12):
+    if not p0 or not p1 or u <= 0.02:
+        return
+    x0, y0 = p0
+    x1 = x0 + (p1[0] - x0) * u
+    y1 = y0 + (p1[1] - y0) * u
+    d = ImageDraw.Draw(im)
+    d.line((x0, y0, x1, y1), fill=(10, 14, 24), width=ancho + 8)
+    flecha(im, x0, y0, x1, y1, col, ancho=ancho)
+
+
+def etiqueta(im, texto, xy, tam=46, col=(255, 255, 255), a=255, dy=-48):
+    if not xy:
+        return
+    d = ImageDraw.Draw(im, "RGBA")
+    fnt = ImageFont.truetype(FONT, tam)
+    x = max(40 + fnt.getlength(texto) / 2, min(1040 - fnt.getlength(texto) / 2, xy[0]))
+    y = max(260, min(940, xy[1] + dy))
+    texto_sombra(d, (x, y), texto, fnt, col=col, a=a)
+    G.registrar("etiqueta", (x - fnt.getlength(texto) / 2, y - tam / 2, x + fnt.getlength(texto) / 2, y + tam / 2))
+
+
+def foco_en(im, xy, r=360, fuerza=0.38):
+    """Oscurece suave todo lo que no es el chico (lleva el ojo sin poner nada encima de su cara)."""
+    if not xy:
+        return
+    yy, xx = np.mgrid[0:H, 0:W]
+    dd = np.sqrt((xx - xy[0]) ** 2 + ((yy - xy[1]) * 0.85) ** 2) / r
+    m = 1 - fuerza * np.clip((dd - 0.55) / 0.9, 0, 1)
+    a = np.asarray(im).astype(np.float32) * m[..., None]
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+
+
+ISLAS = ["guadalcanal", "nueva_guinea", "saipan", "guam", "leyte", "luzon", "iwo_jima"]
+
+
+def contador(im, f, k, t0, hasta=12700, dur=1.6):
+    t = t_de(f)
+    if t < t0:
+        return
+    u = sale((t - t0) / dur)
+    n = int(round(hasta * u / 100.0)) * 100
+    txt = f"{n:,}".replace(",", ".") + " AVIONES"
+    cx, cy = libre(k, "cont", "12.700 AVIONES", [(540, 560), (540, 480)], tam=72)
+    pildora(im, txt, cx, cy, fondo=AMBAR, tinta=(24, 24, 28), s=pop(t - t0), tam=72)
+
+
+def barras(im, f, k):
+    """MARINEROS 4.907 (azul, desde el mar) contra EJÉRCITO 4.675 (verde): crecen en 1,2 s; la azul pasa a la verde."""
+    t = t_de(f) - T0(k) - 0.15
+    if t <= 0:
+        return
+    base_y, alto_max = 900, 400
+    lay = _capa_rgba(im)
+    d = ImageDraw.Draw(lay)
+    fnt = ImageFont.truetype(FONT, 46)
+    fnum = ImageFont.truetype(FONT, 58)
+    for i, (nombre, val, col, x) in enumerate((("MARINEROS", 4907, AZUL, 380), ("EJÉRCITO", 4675, VERDE, 700))):
+        u = sale(min(1.0, t / (1.4 if i == 0 else 1.2)))
+        h = alto_max * val / 4907 * u
+        d.rounded_rectangle((x - 95 + 5, base_y - h + 7, x + 95 + 5, base_y + 7), radius=10, fill=(0, 0, 0, 110))
+        d.rounded_rectangle((x - 95, base_y - h, x + 95, base_y), radius=10, fill=(*col, 240))
+        num = f"{int(val * u):,}".replace(",", ".")
+        texto_sombra(d, (x, base_y - h - 40), num, fnum)
+        texto_sombra(d, (x, base_y + 40), nombre, fnt)
+    _componer(im, lay)
+    G.registrar("barras", (285, base_y - alto_max - 80, 795, base_y + 70))
 
 
 def graficos(im, f, k):
     t = t_de(f)
     a0 = T0(k) - 0.3
-    if k in RAPIDO:
-        camara_rapida(im)
-    P = [(540, 560), (540, 640)]
+    P = [(540, 560), (540, 640), (540, 480)]
     if k == 1:
-        pild(im, f, 1, "anoche", "ANOCHE AQUÍ HABÍA UN LAGO", T0(1), P, tam=48)
+        t0 = T0(1) + 0.25
+        pild(im, f, 1, "kami", "KAMIKAZE · 17 AÑOS", t0, [(540, 455), (540, 400), (540, 500)], tam=54)
+        cx, cy = libre(1, "kami", "KAMIKAZE · 17 AÑOS", [(540, 455)], 54)
+        pc = meta(1, f, "casco")
+        if pc and t >= t0 + 0.25 and pc[1] - cy > 110:
+            flecha(im, cx + 30, cy + 48, pc[0], pc[1] - 22, (255, 255, 255), ancho=7)
     elif k == 2:
-        pildora(im, "ANTES", 250, 330, fondo=(30, 32, 36), tinta=(255, 255, 255), tam=40)
-        t_gl, t_re = tw("glaciar", a0), tw("represa", a0)
-        apunta(im, f, 2, "gl", "GLACIAR", t_gl, "glaciar", hasta=t_re)
-        apunta(im, f, 2, "rep", "REPRESA DE HIELO", t_re, "glaciar")
-    elif k == 3:
-        pildora(im, "ANTES", 250, 330, fondo=(30, 32, 36), tinta=(255, 255, 255), tam=40)
-        pild(im, f, 3, "pisc", "≈ 80.000 PISCINAS OLÍMPICAS", tw("Ochenta", a0), P, tam=44)
+        pild(im, f, 2, "fecha", "26 DE MAYO DE 1945", tw("1945", a0) - 0.05, [(540, 300), (420, 300), (540, 420)], tam=50)
+        pild(im, f, 2, "real", "FOTO REAL", T0(2) + 0.2, [(860, 300), (200, 300), (860, 420)], fondo=(28, 30, 34), tinta=(255, 255, 255), tam=38)
     elif k == 4:
-        pild(im, f, 4, "donde", "¿POR DÓNDE?", tw("dónde", a0), P)
-    elif k == 5:
-        apunta(im, f, 5, "flota", "EL HIELO FLOTA", tw("flota", a0), "tempano")
+        u = max(0.0, t - T0(4))
+        for i, n in enumerate(ISLAS):
+            ti = 0.15 + 0.22 * i
+            col = ROJO if u < ti else GRIS
+            punto_isla(im, _lug(4, f, n), col, r=11)
+        etiqueta(im, "JAPÓN", _lug(4, f, "japon"), tam=50, dy=-50)
+        pj = _lug(4, f, "kyushu")
+        flecha_parcial(im, _lug(4, f, "saipan"), _lug(4, f, "iwo_jima"), sale((u - 0.3) / 0.8))
+        flecha_parcial(im, _lug(4, f, "leyte"), _lug(4, f, "okinawa"), sale((u - 0.7) / 0.9))
     elif k == 6:
-        t_ll, t_lv = tw("llena", a0), tw("levanta", a0)
-        apunta(im, f, 6, "llena", "SE LLENA", t_ll, "lago", hasta=t_lv)
-        apunta(im, f, 6, "lev", "SE LEVANTA", t_lv, "pie")
-    elif k == 7:
-        apunta(im, f, 7, "abajo", "POR ABAJO", tw("cuela", a0), "lengua", fondo=AZUL, tinta=(255, 255, 255))
-    elif k == 8:
-        apunta(im, f, 8, "tunel", "TÚNEL", tw("túnel", a0), "tunel", fondo=AZUL, tinta=(255, 255, 255))
+        pild(im, f, 6, "vol", "VOLUNTARIOS", tw("voluntarios", a0), [(540, 880), (540, 820), (540, 940)], fondo=AMBAR, tam=60)
     elif k == 9:
-        pild(im, f, 9, "noche", "EN UNA NOCHE", tw("noche", a0), P)
-    elif k == 11:
-        t_rio = tw("río", a0)
-        apunta(im, f, 11, "sale", "SALE BAJO EL GLACIAR", tw("Sale", a0), "boca", hasta=t_rio - 0.1, tam=44)
-        apunta(im, f, 11, "x3", "EL RÍO × 3", tw("triplica", a0), "rio")
-    elif k == 12:
-        apunta(im, f, 12, "atras", "RÍO ARRIBA", tw("atrás", a0), "atras")
-    elif k == 13:
-        t_al = tw("alarma", a0)
-        if t >= t_al:
-            late = 0.5 + 0.5 * math.sin((t - t_al) * 9.0)
-            col = tuple(int(ROJO[i] * (0.75 + 0.25 * late)) for i in range(3))
-            apunta(im, f, 13, "alerta", "⚠ ALERTA", t_al, "sirena", fondo=col, tinta=(255, 255, 255))
-    elif k == 14:
-        apunta(im, f, 14, "cierra", "SE CIERRA", tw("cierra", a0), "tunel")
+        pild(im, f, 9, "carta", "ÚLTIMA CARTA", T0(9) + 0.3, P, fondo=AMBAR, tam=60)
+        pild(im, f, 9, "recr", "RECREACIÓN", T0(9), [(860, 300), (200, 300)], fondo=(28, 30, 34), tinta=(255, 255, 255), tam=34)
+    elif k == 10:
+        pild(im, f, 10, "perdon", "PERDÓN", tw("perdón", a0), P, fondo=AMBAR, tam=72)
+        pild(im, f, 10, "recr", "RECREACIÓN", T0(10), [(860, 300), (200, 300)], fondo=(28, 30, 34), tinta=(255, 255, 255), tam=34)
     elif k == 16:
-        pild(im, f, 16, "veces", "MÁS DE 20 VECES", tw("veinte", a0), P)
+        tb = E.T[16][1] - 0.2
+        if t >= tb:
+            u = min(1.0, (t - tb) / 0.08)
+            blanco = Image.new("RGB", im.size, (255, 255, 255))
+            im.paste(Image.blend(im, blanco, u))
+    elif k == 17:
+        pild(im, f, 17, "oki", "OKINAWA, 1945", T0(17) + 0.15, [(270, 330), (540, 330), (270, 420)], fondo=ACERO, tinta=(255, 255, 255), tam=50)
+    elif k == 18:
+        etiqueta(im, "OKINAWA", _lug(18, f, "okinawa"), tam=44, dy=-60)
+        barras(im, f, 18)
+    elif k == 19:
+        u = max(0.0, t - T0(19))
+        po, pk = _lug(19, f, "okinawa"), _lug(19, f, "kyushu")
+        if po and pk:
+            for dx in (-40, 0, 40):
+                flecha_parcial(im, (po[0] + dx, po[1]), (pk[0] + dx * 0.4, pk[1] + 30), sale((u - 0.1 - 0.15 * abs(dx) / 40) / 1.6))
+        punto_isla(im, po, AZUL, r=10)
+        pild(im, f, 19, "inv", "INVASIÓN · 1 DE NOVIEMBRE", tw("invadir", a0) - 0.1, P, fondo=ACERO, tinta=(255, 255, 255), tam=50)
+    elif k == 20:
+        contador(im, f, 20, tw("junta", a0))
+    elif k == 22:
+        u = t - T0(22)
+        late = 0.55 + 0.45 * abs(math.sin(u * math.pi * 1.1))
+        mancha(im, _lug(22, f, "okinawa"), 70, late)
+        etiqueta(im, "OKINAWA", _lug(22, f, "okinawa"), tam=44, dy=-80)
+        pild(im, f, 22, "tru", "PRESIDENTE TRUMAN", T0(22) + 0.1, P, fondo=ACERO, tinta=(255, 255, 255), tam=54)
+    elif k in (23, 24):
+        u = t - T0(23)
+        apaga = 1.0 if k == 23 else max(0.0, 1 - (t - T0(24)) / 1.4)
+        late = (0.6 + 0.4 * abs(math.sin(u * math.pi * 1.3))) * apaga
+        mancha(im, _lug(k, f, "okinawa"), 40, late)
+        for i, n in enumerate(("kyushu", "hiroshima", "japon", "tokio")):
+            v = sale((u - 0.2 - 0.35 * i) / 0.5) if k == 23 else 1.0
+            mancha(im, _lug(k, f, n), 70 * v, late * v)
+    elif k == 25:
+        u = t - T0(25)
+        for n, t1, txt in (("hiroshima", 0.1, "6 DE AGOSTO"), ("nagasaki", 0.8, "9 DE AGOSTO")):
+            p = _lug(25, f, n)
+            destello(im, p, (u - t1) / 0.8)
+            if u >= t1 + 0.1 and p:
+                etiqueta(im, txt, p, tam=42, dy=-70 if n == "hiroshima" else 70)
+    elif k == 26:
+        pild(im, f, 26, "fecha", "15 DE AGOSTO DE 1945", T0(26) + 0.1, [(540, 330), (540, 420)], tam=50)
+        pild(im, f, 26, "rinde", "JAPÓN SE RINDE", tw("rinde", a0), [(540, 560), (540, 640)], fondo=AMBAR, tam=64)
+
+
+_GRANO = np.random.default_rng(10).standard_normal((4, H, W)).astype(np.float32)
+_yy, _xx = np.mgrid[0:H, 0:W]
+_VIN = (1 - 0.22 * np.clip((np.sqrt(((_xx - W / 2) / (W * 0.62)) ** 2 + ((_yy - H / 2) / (H * 0.62)) ** 2) - 0.55) / 0.6, 0, 1)).astype(np.float32)
+
+
+def epoca(im, f, k):
+    """Gradación de 1945: un poco menos de color, contraste, viñeta y grano (el mapa de la NASA va limpio)."""
+    if E2_ESCENA.get(k) == "E4":
+        return grado(im, color=1.05, contraste=1.04, calido=1.0)
+    im = grado(im, color=0.86, contraste=1.10, calido=1.035)
+    a = np.asarray(im).astype(np.float32)
+    a *= _VIN[..., None]
+    a += _GRANO[f % 4][..., None] * 4.5
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+
+
+LOOP0 = E.F(E.T[27][1] - 0.30)          # 53,40 s: vuelve la foto (cuadros del principio del plano 1)
 
 
 def procesar(f):
     G.cuadro(f)
     k = plano_de(f)
     a, b = FR[k]
-    im = cuadro(f, a, b)
+    if f >= LOOP0:
+        a1, b1 = FR[1]
+        im = cuadro(a1 + (f - LOOP0), a1, b1)
+        k_img = 1
+    else:
+        im = cuadro(f, a, b)
+        k_img = k
     if im is None:
         return False
-    im = grado(im)                                            # la misma gradación de los cuadros de estilo (grado.py)
-    graficos(im, f, k)
+    im = epoca(im, f, k_img)
+    if k_img in (1, 2):
+        im = foco_en(im, meta(k_img, a if k_img == 2 and f >= LOOP0 else f, "chico"), r=380 if k_img == 1 else 460, fuerza=0.34 if k_img == 1 else 0.28) or im
+    if f < LOOP0:
+        graficos(im, f, k)
     subtitulos(im, f)
     im.save(os.path.join(dst, f"{f:05d}.png"), compress_level=1)
     return True
@@ -571,5 +609,5 @@ if __name__ == "__main__":
     json.dump(SUB_LOG, open(os.path.join(OUT, "subs_log.json"), "w"))
     G.guardar(os.path.join(OUT, "graficos.json"))
     json.dump({"T": {str(k): list(v) for k, v in E.T.items()}, "FR": {str(k): list(v) for k, v in FR.items()}, "END": END},
-              open(os.path.join(OUT, "ep09_planos.json"), "w"))
+              open(os.path.join(OUT, "ep10_planos.json"), "w"))
     print("ok post", len(list(cuadros)) - len(faltan), "cuadros; faltan", len(faltan), faltan[:20])

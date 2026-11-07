@@ -41,7 +41,7 @@ def TW(prefijo, desde=0.0):
 def armar_mesa(sc):
     Mx = S.mesa(sc)
     cam = E.camara(sc, (0, 0, 1.5), (0, 0, 0.76), lente=50, fstop=4.0)
-    sc.view_settings.exposure = -0.2
+    sc.view_settings.exposure = 0.35
     return Mx, cam
 
 
@@ -52,35 +52,48 @@ def foto_punto(Mx, u, v):
     return f.matrix_world @ Vector(((u - 0.5) * w, (0.5 - v) * h, 0.001))
 
 
+CARAS_FOTO = [(0.265, 0.103), (0.68, 0.14), (0.87, 0.37), (0.20, 0.52), (0.54, 0.47)]   # (u, v) de las 5 caras en foto_impresa.jpg
+
+
+def ojos_foto(sc, cam, Mx):
+    out = []
+    for i, (u, v) in enumerate(CARAS_FOTO):
+        for du in (-0.028, 0.028):
+            x, y = pantalla(sc, cam, foto_punto(Mx, u + du, v - 0.01))
+            out.append([x, y, 14, f"cara{i}"])
+    return out
+
+
 def p1(sc, a, b):
     # CUADRO 0 · "Este kamikaze tiene diecisiete años.": la foto real llena el cuadro; el chico del centro en y ≈ 640
     Mx, cam = armar_mesa(sc)
-    tgt0 = foto_punto(Mx, 0.5, 0.70)
+    tgt0 = foto_punto(Mx, 0.5, 0.78)
 
     def act(f):
         t = tf(f)
         S.mesa_viva(Mx, t)
         x = sale(lin(f, a, b - 1))
-        d = 0.52 - 0.03 * x
+        d = 0.56 - 0.025 * x
         mirar(cam, tgt0 + Vector((0, -0.07, d)), tgt0, lente=50, foco=foto_punto(Mx, 0.52, 0.45))
-        return {"chico": pantalla(sc, cam, foto_punto(Mx, 0.53, 0.43)), "cachorro": pantalla(sc, cam, foto_punto(Mx, 0.6, 0.66)),
-                "foto_top": pantalla(sc, cam, foto_punto(Mx, 0.5, 0.0))}
+        return {"chico": pantalla(sc, cam, foto_punto(Mx, 0.54, 0.47)), "casco": pantalla(sc, cam, foto_punto(Mx, 0.54, 0.38)),
+                "cachorro": pantalla(sc, cam, foto_punto(Mx, 0.635, 0.705)), "foto_top": pantalla(sc, cam, foto_punto(Mx, 0.5, 0.0)),
+                "ojos": ojos_foto(sc, cam, Mx)}
     return {"actualizar": act}
 
 
 def p2(sc, a, b):
     # "La foto es de 1945,": la cámara entra hasta el chico y el cachorro
     Mx, cam = armar_mesa(sc)
-    t0 = foto_punto(Mx, 0.5, 0.70); t1 = foto_punto(Mx, 0.555, 0.56)
+    t0 = foto_punto(Mx, 0.5, 0.78); t1 = foto_punto(Mx, 0.58, 0.72)
 
     def act(f):
         S.mesa_viva(Mx, tf(f))
         x = suave(lin(f, a, b - 1))
         tgt = t0.lerp(t1, x)
-        d = 0.49 - 0.29 * x
+        d = 0.535 - 0.175 * x
         mirar(cam, tgt + Vector((0, -0.06 * d / 0.5, d)), tgt, lente=50, foco=foto_punto(Mx, 0.53, 0.45))
         cam.data.dof.aperture_fstop = 4.0 + 2.0 * x
-        return {"chico": pantalla(sc, cam, foto_punto(Mx, 0.53, 0.43))}
+        return {"chico": pantalla(sc, cam, foto_punto(Mx, 0.54, 0.47)), "ojos": ojos_foto(sc, cam, Mx)}
     return {"actualizar": act}
 
 
@@ -123,10 +136,11 @@ def p26(sc, a, b):
     def act(f):
         t = tf(f)
         S.mesa_viva(Mx, t)
-        S.radio_dial(Mx, 2.5 * suave(lin(f, a, a + 18)) * (1 + 0.05 * math.sin(t * 40)))
+        S.radio_dial(Mx, 0.8 * suave(lin(f, a, a + 18)) * (1 + 0.05 * math.sin(t * 40)))
         x = suave(lin(f, a, b - 1))
-        mirar(cam, Vector((-0.05, -0.62 + 0.12 * x, 0.98)), r + Vector((0.08, -0.05, 0.0)), lente=50, foco=r + Vector((0, -0.1, 0)))
-        cam.data.dof.aperture_fstop = 2.8
+        fp = Mx["foto"].matrix_world.translation
+        mirar(cam, Vector((0.10 - 0.03 * x, -0.50 + 0.06 * x, 0.90)), fp.lerp(r, 0.55) + Vector((0, 0, 0.02)), lente=50, foco=fp)
+        cam.data.dof.aperture_fstop = 1.8
         return {"radio": pantalla(sc, cam, r)}
     return {"actualizar": act}
 
@@ -171,8 +185,8 @@ def p3(sc, a, b):
     def act(f):
         t = tf(f)
         x = lin(f, a, b - 1)
-        pos = Vector((6, 46, 1.5)).lerp(Vector((5, 38, 1.4)), x)
-        mirar(cam, pos, Vector((-16, -70, 6)), lente=35, foco=Vector((-28, 0, 1)))
+        pos = Vector((-19.5, 33.0, 1.7)).lerp(Vector((-19.0, 29.5, 1.6)), x)
+        mirar(cam, pos, Vector((-31, -60, 3.5)), lente=24, foco=Vector((-28, 10, 1.5)))
         manga.rotation_euler = (math.radians(-84 + 3 * math.sin(t * 2.3)), 0, math.radians(8 * math.sin(t * 1.1)))
         return {}
     return {"actualizar": act}
@@ -181,8 +195,6 @@ def p3(sc, a, b):
 def p5(sc, a, b):
     # "y manda a sus pilotos a no volver.": detrás de las ramas del cerezo, un avión corre por la pista y despega
     P, cam = armar_pista(sc, pasto_en=(22, -18))
-    random.seed(2)
-    S.cerezos(sc, [(23.5, -15.0, 0)], escala=1.0)
     av = S.avion(sc, con_bomba=True, vuelo=False, nombre="Despega")
     av.rotation_euler.z = math.pi           # nariz hacia −y (despega hacia el sur)
     tren = [o for o in S.mallas_de(av) if o.name in S.TREN]
@@ -199,12 +211,12 @@ def p5(sc, a, b):
         for o in tren:
             o.hide_render = sube > 0.8
         S.girar_helice(av, t * 40)
-        mirar(cam, Vector((27, -21, 1.6)), Vector((0, 8, 3.0)), lente=35, foco=Vector((0, 10, 2)))
+        mirar(cam, Vector((23, -26, 1.3)), Vector((0, 6 + 0.25 * min(40, max(-40, y)), 3.0 + 0.5 * av.location.z)), lente=35, foco=av.location)
         return {"avion": pantalla(sc, cam, av.location)}
     return {"actualizar": act}
 
 
-def campo_redes(sc, filas=6, cols=8, x0=-160, y0=-40, dx=22, dy=24):
+def campo_redes(sc, filas=10, cols=8, x0=-160, y0=-40, dx=20, dy=22):
     """Plano 20: filas de aviones bajo redes de camuflaje en un campo junto a la pista."""
     base = S.avion(sc, con_bomba=False, vuelo=False, nombre="Red0")
     col = bpy.data.collections.new("RedCol")
@@ -221,8 +233,8 @@ def campo_redes(sc, filas=6, cols=8, x0=-160, y0=-40, dx=22, dy=24):
             inst.instance_type = "COLLECTION"; inst.instance_collection = col
             sc.collection.objects.link(inst)
             inst.location = (x, y, 0); inst.rotation_euler.z = math.pi + random.uniform(-0.15, 0.15)
-            S.red_camuflaje(sc, (x, y, 0))
     base.location = (0, 0, -50)
+    col.instance_offset = (0, 0, -50)          # las copias no se van bajo tierra con el original
 
 
 def p20(sc, a, b):
@@ -232,8 +244,8 @@ def p20(sc, a, b):
 
     def act(f):
         x = lin(f, a, b - 1)
-        pos = Vector((-120, 60, 62)).lerp(Vector((-150, 20, 58)), x)
-        mirar(cam, pos, pos + Vector((-55, -110, -62)), lente=35)
+        pos = Vector((-112, 22, 26)).lerp(Vector((-122, 8, 24)), x)
+        mirar(cam, pos, Vector((-240, -150, 0)), lente=35)
         return {}
     return {"actualizar": act}
 
@@ -245,8 +257,8 @@ def p21(sc, a, b):
 
     def act(f):
         x = lin(f, a, b - 1)
-        pos = Vector((-24.5, 16 - 30 * x, 0.6))
-        mirar(cam, pos, pos + Vector((-6, -3.5, 0.55)), lente=24)
+        pos = Vector((-17.5, 12 - 26 * x, 0.6))
+        mirar(cam, pos, Vector((-31, pos.y - 17, 1.4)), lente=24, foco=Vector((-30, pos.y - 8, 1.0)))
         return {}
     return {"actualizar": act}
 
@@ -349,7 +361,7 @@ def p27(sc, a, b):
             av.location = (-3 + 6 * (i % 2), y, 1.5 * sube * sube)
             av.rotation_euler.x = -math.radians(min(10, 12 * sube))
             S.girar_helice(av, t * 40)
-        mirar(cam, Vector((26, 10, 1.5)), Vector((-8, -70, 12)), lente=35)
+        mirar(cam, Vector((24, 14, 1.4)), Vector((-6, -45, 7)), lente=28)
         return {}
     return {"actualizar": act}
 
@@ -372,7 +384,7 @@ def flak(sc, centro, n=10, r=180.0, semilla=3):
     out = []
     for i in range(n):
         p = Vector(centro) + Vector((random.uniform(-r, r), random.uniform(-r, r), random.uniform(-r * 0.4, r * 0.4)))
-        o = S.bocanada(sc, f"Flak{i}", p, 0.01)
+        o = S.bocanada(sc, f"Flak{i}", p, 0.01, S.humo_mat("flak", (0.045, 0.043, 0.04), densidad=0.35, escala=2.2))
         out.append((o, p, random.uniform(0, 1.6), random.uniform(5, 9)))
     return out
 
@@ -389,7 +401,8 @@ def flak_vivo(lista, t, t0):
 
 def estela(sc, nombre, n=14):
     """Humo detrás de un avión: esferas volumétricas que se quedan atrás y crecen."""
-    return [S.bocanada(sc, f"{nombre}{i}", (0, 0, -1000), 0.01) for i in range(n)]
+    m = S.humo_mat("estela", (0.05, 0.05, 0.05), densidad=0.7, escala=1.8)
+    return [S.bocanada(sc, f"{nombre}{i}", (0, 0, -1000), 0.01, m) for i in range(n)]
 
 
 def estela_viva(bolas, camino, t, paso=0.06, r0=1.2, crece=3.0):
@@ -439,11 +452,11 @@ def p12(sc, a, b):
     av = zero_vuelo(sc)
     humo = estela(sc, "Estela", 12)
     fl = flak(sc, (60, -320, 380), n=10, r=120, semilla=5)
-    d0 = Vector((70, -420, 520)); d1 = Vector((22, -110, 150))
+    d0 = Vector((70, -420, 520)); d1 = Vector((12, -15, 55))
 
     def camino(t):
-        u = clamp((t - T[12][0]) / (T[12][1] - T[12][0] + 0.4))
-        return d0.lerp(d1, u)
+        u = clamp((t - T[12][0]) / (T[12][1] - T[12][0] + 0.15))
+        return d0.lerp(d1, u ** 1.4)
 
     def act(f):
         t = tf(f)
@@ -459,61 +472,53 @@ def p12(sc, a, b):
 
 
 def p13(sc, a, b):
-    # "Llenan el cielo de balas": el Oerlikon de 20 mm dispara hacia arriba (fogonazo, casquillos, trazadoras)
+    # "Llenan el cielo de balas": el Oerlikon de 20 mm dispara hacia arriba (fogonazo, trazadoras); el artillero de espalda
     pa, cam = armar_mar(sc)
-    g = S.oerlikon(sc, (12.0, 22.0, DECK), (40, -200, 300))
-    art = G.persona(sc, MARINEROS[1], "marinero", (12.0, 23.1, DECK), rot_z=math.radians(165), pose="Happy Idle", frame=12)
+    gpos = Vector((12.0, 22.0, DECK))
+    mira = Vector((60, -220, 300))
+    g, boca, dirf = S.oerlikon(sc, gpos, mira)
+    art = G.persona(sc, MARINEROS[1], "marinero", (12.25, 23.35, DECK), rot_z=math.radians(172), pose="Happy Idle", frame=12)
     base = G.guardar_pose(art)
-    boca = Vector((12.3, 20.6, DECK + 2.1))
-    dirf = (Vector((40, -200, 300)) - boca).normalized()
     fog = S.fogonazo(sc, "Fogonazo")
-    traz = [S.trazadora(sc, f"Traz{i}") for i in range(6)]
-    casq = []
-    lat = E.mat_metal_cepillado("laton", (0.62, 0.44, 0.18), rugo=(0.25, 0.4))
-    for i in range(10):
-        c = E.cilindro(sc, f"Casquillo{i}", 0.011, 0.11, (0, 0, -100), verts=12, mat=lat)
-        casq.append(c)
-    fl = flak(sc, (60, -260, 330), n=10, r=140, semilla=8)
+    traz = [S.trazadora(sc, f"Traz{i}") for i in range(8)]
+    fl = flak(sc, (60, -260, 330), n=16, r=170, semilla=8)
 
     def act(f):
         t = tf(f)
         G.respirar(art, base, t)
-        k = int(t * 10) % 2 == 0
+        G.mirar_arriba(art, base, 0.8)
+        k = int(t * 12) % 2 == 0
         fog.hide_render = not k
-        fog.location = boca + dirf * 0.3
+        fog.location = boca + dirf * 0.25
         orientar(fog, dirf)
         fog.rotation_quaternion = fog.rotation_quaternion @ Quaternion((1, 0, 0), math.radians(-90))
         for i, tr in enumerate(traz):
-            u = (t * 10 + i / 6.0) % 1.0
-            tr.location = boca + dirf * (20 + 260 * u)
+            u = (t * 6 + i / 8.0) % 1.0
+            tr.location = boca + dirf * (8 + 320 * u)
             orientar(tr, dirf)
             tr.rotation_quaternion = tr.rotation_quaternion @ Quaternion((1, 0, 0), math.radians(90))
-        for i, c in enumerate(casq):
-            u = (t * 10 + i * 0.37) % 1.2
-            c.location = boca + Vector((0.6 + 0.8 * u, 1.2 + 0.4 * u, -0.3 - 4.9 * u * u + 1.2 * u))
-            c.rotation_euler = (t * 20 + i, t * 13, 0)
         flak_vivo(fl, t, T[13][0] - 1.2)
         x = lin(f, a, b - 1)
-        mirar(cam, Vector((13.6, 27.0 - 0.3 * x, DECK + 1.0)), boca + dirf * 6, lente=35, foco=boca)
+        mirar(cam, Vector((13.9 - 0.15 * x, 27.4, DECK + 1.55)), Vector((11.4, 18.0, DECK + 4.2)), lente=32, foco=Vector((12.2, 23.3, DECK + 1.5)))
         return {}
     return {"actualizar": act}
 
 
 def p14(sc, a, b):
-    # "y derriban a la mayoría.": dos aviones con humo caen lejos al mar y levantan columnas de agua
+    # "y derriban a la mayoría.": dos aviones con humo caen al mar y levantan columnas de agua
     pa, cam = armar_mar(sc)
     avs = [zero_vuelo(sc, f"Cae{i}", bomba=False) for i in range(2)]
-    humos = [estela(sc, f"HumoCae{i}", 12) for i in range(2)]
-    golpe = [T[14][0] + 0.6, T[14][0] + 1.3]
-    ini = [Vector((-420, -900, 260)), Vector((260, -1300, 330))]
-    fin = [Vector((-260, -820, 0)), Vector((380, -1180, 0))]
-    spl = [S.salpicadura(sc, f"Salp{i}", (fin[i].x, fin[i].y, 0)) for i in range(2)]
-    fl = flak(sc, (0, -900, 320), n=14, r=300, semilla=11)
+    humos = [estela(sc, f"HumoCae{i}", 14) for i in range(2)]
+    golpe = [T[14][0] + 0.75, T[14][0] + 1.35]
+    ini = [Vector((-150, -390, 150)), Vector((150, -760, 260))]
+    fin = [Vector((-95, -350, 0)), Vector((205, -700, 0))]
+    spl = [S.salpicadura(sc, f"Salp{i}", (fin[i].x, fin[i].y, 0), alto=26 - 6 * i) for i in range(2)]
+    fl = flak(sc, (0, -500, 260), n=16, r=220, semilla=11)
 
     def camino_i(i):
         def c(t):
-            u = clamp((t - (golpe[i] - 1.6)) / 1.6)
-            return ini[i].lerp(fin[i], u * u)
+            u = clamp((t - (golpe[i] - 1.7)) / 1.7)
+            return ini[i].lerp(fin[i], u) + Vector((0, 0, 40 * (1 - u) * u))
         return c
 
     def act(f):
@@ -523,14 +528,18 @@ def p14(sc, a, b):
             p = c(t)
             av.hide_render = t > golpe[i]
             av.location = p
-            orientar(av, (c(t + 0.05) - p) if (c(t + 0.05) - p).length > 1e-3 else Vector((0, -1, -1)))
-            estela_viva(humos[i], c, min(t, golpe[i]), paso=0.09, r0=3.0, crece=10.0)
+            dv = c(t + 0.05) - p
+            orientar(av, dv if dv.length > 1e-3 else Vector((0, -1, -1)))
+            estela_viva(humos[i], c, min(t, golpe[i]), paso=0.08, r0=2.0, crece=7.0)
             sp = spl[i]
             u = t - golpe[i]
             sp.hide_render = u < 0
-            sp.scale = (1, 1, max(0.01, min(1.0, u * 3.0)) * (1 - 0.3 * max(0, u - 0.6)))
+            h = sp["alto"]
+            k = max(0.02, min(1.0, u * 2.5))
+            sp.scale = (h * 0.28 * (0.6 + 0.4 * k), h * 0.28 * (0.6 + 0.4 * k), h * 0.55 * k)
+            sp.location.z = h * 0.55 * k * 0.8
         flak_vivo(fl, t, T[14][0] - 1.5)
-        mirar(cam, Vector((14.0, 30.0, DECK + 1.6)), Vector((-40, -900, 120)), lente=35)
+        mirar(cam, Vector((14.0, 30.0, DECK + 1.6)), Vector((-10, -400, 70)), lente=50)
         return {}
     return {"actualizar": act}
 
@@ -538,7 +547,9 @@ def p14(sc, a, b):
 def p15(sc, a, b):
     # "Pero el que pasa…": un avión sale entero de una nube de humo negro y sigue bajando
     pa, cam = armar_mar(sc)
-    nube = [S.bocanada(sc, f"Nube{i}", (random.uniform(-25, 25), -260 + random.uniform(-20, 20), 230 + random.uniform(-15, 15)), random.uniform(16, 26)) for i in range(7)]
+    random.seed(15)
+    mn = S.humo_mat("nube_flak", (0.04, 0.04, 0.04), densidad=0.16, escala=1.3)
+    nube = [S.bocanada(sc, f"Nube{i}", (random.uniform(-25, 25), -260 + random.uniform(-20, 20), 230 + random.uniform(-15, 15)), random.uniform(16, 26), mn) for i in range(7)]
     av = zero_vuelo(sc)
     d0 = Vector((0, -300, 268)); d1 = Vector((10, -190, 170))
 
@@ -574,7 +585,7 @@ def p16(sc, a, b):
         orientar(av, CAM_CUB - p)
         S.girar_helice(av, t * 45)
         estela_viva(humo, camino, t - 0.05, paso=0.06)
-        mirar(cam, Vector((6.0, 52.0, DECK + 1.6)), p, lente=35)
+        mirar(cam, Vector((34.0, 50.0, DECK + 2.5)), p.lerp(Vector((8, 20, DECK + 6)), 0.35), lente=50)
         return {"avion": pantalla(sc, cam, p)}
     return {"actualizar": act}
 
@@ -586,7 +597,7 @@ def p17(sc, a, b):
     columna = []
     for i in range(14):
         z = DECK + 4 + i * 9
-        columna.append((S.bocanada(sc, f"Col{i}", (6 + i * 2.6, 18 + i * 3.5, z), 6 + i * 1.6, S.humo_mat()), i))
+        columna.append((S.bocanada(sc, f"Col{i}", (6 + i * 2.6, 18 + i * 3.5, z), 6 + i * 1.6, S.humo_mat("columna", (0.03, 0.03, 0.03), densidad=0.22, escala=1.1)), i))
 
     def act(f):
         t = tf(f)
@@ -627,7 +638,7 @@ def p18(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        M.mirar_latlon(cam, 26.3, 127.9, 950 - 80 * x, incl=10)
+        M.mirar_latlon(cam, 26.6, 128.0, 1350 - 100 * x, incl=10)
         return {"lugares": meta_mapa(sc, cam)}
     return {"actualizar": act}
 
@@ -638,7 +649,7 @@ def p19(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        M.mirar_latlon(cam, 27.0 + 3.6 * x, 128.6 + 1.6 * x, 900 + 600 * x, incl=12)
+        M.mirar_latlon(cam, 27.2 + 3.4 * x, 128.6 + 1.6 * x, 1250 + 550 * x, incl=12)
         return {"lugares": meta_mapa(sc, cam)}
     return {"actualizar": act}
 
@@ -648,7 +659,7 @@ def p22(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        M.mirar_latlon(cam, 26.6, 128.0, 1000 - 60 * x, incl=10)
+        M.mirar_latlon(cam, 26.8, 128.2, 1350 - 80 * x, incl=10)
         return {"lugares": meta_mapa(sc, cam)}
     return {"actualizar": act}
 
@@ -658,7 +669,7 @@ def p23(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        M.mirar_latlon(cam, 29.5 + 3.5 * x, 130.0 + 3.0 * x, 1500 + 900 * x, incl=10)
+        M.mirar_latlon(cam, 29.5 + 3.5 * x, 130.0 + 3.0 * x, 1700 + 800 * x, incl=10)
         return {"lugares": meta_mapa(sc, cam)}
     return {"actualizar": act}
 

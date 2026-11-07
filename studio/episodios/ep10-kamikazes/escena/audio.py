@@ -1,6 +1,7 @@
-"""Audio del Ep. 9 (sobre el del Ep. 5 y el Ep. 7): voz + música sintetizada (v3.1: tensión en Re menor, 96 bpm, con golpes en cada paso) con ducking, viento del salar de
-fondo (lo que amarra el exterior), zumbido grave del imán en los planos de la rana y los efectos de la columna SFX del
-storyboard → OUT/ep09_mix.wav (−14 LUFS, TP ≤ −1,5 dBTP). Todo sintetizado."""
+"""Audio del Ep. 10 (kamikazes; sobre el del Ep. 9): voz + música sintetizada (Re menor lento, 64 bpm: pad oscuro, latido
+grave y golpes en los cortes grandes) con ducking, y los efectos de la columna SFX del storyboard (obturador, lámpara,
+viento, motores radiales, alarma de zafarrancho, cañones de 20 mm, explosiones, agua, estática de radio) →
+OUT/ep10_mix.wav (−14 LUFS, TP ≤ −1,5 dBTP). Todo sintetizado."""
 import glob, json, os, subprocess, sys
 import numpy as np
 from scipy.io import wavfile
@@ -8,7 +9,7 @@ from scipy.signal import butter, sosfilt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import ep09 as E
+import ep10 as E
 
 OUT = os.environ.get("OUT", os.path.join(HERE, "out"))
 REPO = os.environ.get("REPO", os.path.abspath(os.path.join(HERE, "../../../..")))
@@ -27,7 +28,7 @@ def W(prefix, after=0.0):
 
 
 def voz():
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, os.environ.get("VOZ", "out/tts/ep09-lago-que-se-vacia.mp3")), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(REPO, os.environ.get("VOZ", "out/tts/ep10-kamikazes.mp3")), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
                          capture_output=True).stdout
     v = np.frombuffer(raw, np.float32).copy()
     v = np.pad(v, (0, max(0, N - len(v))))[:N]
@@ -62,18 +63,6 @@ def tono(f, d, a=0.003, dec=0.2):
 
 
 # ---------------- efectos ----------------
-def paso(g=1.0):
-    """psshh (hidráulico) + tum (pie que pisa)."""
-    n1 = int(0.28 * SR)
-    ps = filt(ruido(n1), 2500, 9000) * env(n1, 0.01, 0.09) * 0.35
-    tum = tono(np.linspace(85, 48, int(0.35 * SR)), 0.35, 0.002, 0.09) * 0.9 + filt(ruido(int(0.35 * SR)), None, 220) * env(int(0.35 * SR), 0.001, 0.05) * 0.5
-    out = np.zeros(int(0.45 * SR))
-    out[:n1] += ps
-    i = int(0.09 * SR)
-    out[i:i + len(tum)] += tum[: len(out) - i]
-    return out * g
-
-
 def golpe_grave():
     return tono(np.linspace(70, 38, int(0.7 * SR)), 0.7, 0.002, 0.22) * 1.0 + filt(ruido(int(0.7 * SR)), None, 160) * env(int(0.7 * SR), 0.001, 0.08) * 0.7
 
@@ -91,130 +80,144 @@ def whoosh(d=0.45, up=True):
     return out * np.sin(np.linspace(0, np.pi, n)) * 0.6
 
 
-def ding(f=1320, d=0.7):
-    # v3.1: más corto y más bajo (con la música nueva, las campanitas sonaban a infantil)
-    return (tono(f, d, 0.002, 0.12) + 0.3 * tono(f * 2.01, d, 0.002, 0.06)) * 0.3
-
-
-def ducha(d):
-    """Agua de ducha: ruido de banda ancha con un leve chapoteo (lo que amarra el video)."""
-    n = int(d * SR)
-    x = filt(ruido(n), 900, 9000) * 0.10 + filt(ruido(n), 150, 900) * 0.04
-    mod = 1 + 0.15 * np.sin(2 * np.pi * 0.7 * tt(d)) + 0.1 * filt(ruido(n), None, 6) * 4
-    return x * mod
-
-
-def plastico(d=0.35):
-    """La cortina que pega: golpe blando de plástico + crujido."""
-    n = int(d * SR)
-    x = filt(ruido(n), 300, 3500) * env(n, 0.002, 0.06) * 0.9
-    x += tono(np.linspace(180, 90, n), d, 0.001, 0.07) * 0.5
-    return x
-
-
-def chillido():
-    """Patito de goma: chillido que sube y baja."""
-    d = 0.32
-    f = 900 + 500 * np.sin(np.linspace(0, np.pi, int(d * SR)))
-    x = tono(f, d, 0.01, 0.25)
-    x = x + 0.4 * tono(f * 2, d, 0.01, 0.2)
-    return np.tanh(x * 2.5) * 0.35 * np.sin(np.linspace(0, np.pi, len(x)))
-
-
-def fantasma(d=1.3):
-    """Theremin de película de terror (glissando con vibrato), en broma."""
-    t = tt(d)
-    f = 520 + 380 * np.sin(np.linspace(-0.4, 2.2, len(t))) + 18 * np.sin(2 * np.pi * 6 * t)
-    return tono(f, d, 0.08, 9.0) * np.sin(np.linspace(0, np.pi, len(t))) ** 0.6 * 0.45
-
-
-def golpecito(f=1200):
-    return tono(f, 0.12, 0.001, 0.03) * 0.6
-
-
-def zumbido_giro(d):
-    """El remolino girando: zumbido grave con barridos (como una rueda)."""
-    t = tt(d)
-    x = filt(ruido(len(t)), 200, 1400) * (0.6 + 0.4 * np.sin(2 * np.pi * 2.2 * t)) * 0.25
-    x += tono(110 + 10 * np.sin(2 * np.pi * 2.2 * t), d, 0.3, 50) * 0.18
-    return x * np.minimum(1, t / 0.4) * np.minimum(1, (d - t) / 0.3)
-
-
-def wub():
-    return tono(np.linspace(140, 45, int(0.8 * SR)), 0.8, 0.01, 0.3) * 0.9
-
-
-def thud():
-    g = golpe_grave() * 0.9
-    n = int(0.5 * SR)
-    g[:n] += filt(ruido(n), 80, 600) * env(n, 0.002, 0.12) * 0.4
-    return g
-
-
-def perilla():
-    out = np.zeros(int(0.2 * SR))
-    a, b = golpecito(2400), golpecito(1800)
-    out[:len(a)] += a
-    i = int(0.06 * SR)
-    out[i:i + len(b)] += b[: len(out) - i]
-    return out
-
-
-def viento(d):
-    """Viento del salar: ruido grave que respira (amarra todo lo que pasa afuera)."""
-    n = int(d * SR)
-    x = filt(ruido(n), 80, 900) * 0.06 + filt(ruido(n), 900, 4000) * 0.012
-    mod = 0.75 + 0.25 * np.sin(2 * np.pi * 0.13 * tt(d)) + 0.15 * np.sin(2 * np.pi * 0.31 * tt(d) + 1.0)
-    return x * mod
-
-
-def zumbido_iman(d, f0=55):
-    """El electroimán prendido: zumbido grave limpio (con su armónico)."""
-    t = tt(d)
-    x = np.sin(2 * np.pi * f0 * t) * 0.18 + np.sin(2 * np.pi * f0 * 2 * t) * 0.07 + np.sin(2 * np.pi * f0 * 3 * t) * 0.03
-    return x * np.minimum(1, t / 0.25) * np.minimum(1, (d - t) / 0.25)
-
-
-def glup():
-    d = 0.35
-    f = np.linspace(260, 720, int(d * SR))
-    return tono(f, d, 0.004, 0.08) * 0.55
-
-
 def tic(f=2600):
     return tono(f, 0.06, 0.0008, 0.015) * 0.45
 
 
-def clank(f=210):
-    n = int(0.9 * SR)
-    x = (tono(f, 0.9, 0.001, 0.35) + 0.6 * tono(f * 2.76, 0.9, 0.001, 0.2) + 0.35 * tono(f * 5.4, 0.9, 0.001, 0.1)) * 0.5
-    x[: int(0.05 * SR)] += filt(ruido(int(0.05 * SR)), 300, 4000) * 0.5
+def obturador():
+    """Cámara de fotos antigua: clic metálico doble con un resorte."""
+    out = np.zeros(int(0.25 * SR))
+    for at, f, g in ((0.0, 3200, 0.8), (0.07, 2100, 0.6)):
+        n = int(0.05 * SR)
+        k = filt(ruido(n), 1500, 7000) * env(n, 0.0005, 0.008) * g + tono(f, 0.05, 0.0005, 0.01) * 0.3 * g
+        i = int(at * SR)
+        out[i:i + n] += k
+    return out
+
+
+def lampara(d):
+    """Mecha de querosén: siseo suave con chisporroteos."""
+    n = int(d * SR)
+    x = filt(ruido(n), 1500, 6000) * 0.012
+    for _ in range(int(d * 3)):
+        i = rng.integers(0, max(1, n - 800))
+        x[i:i + 800] += filt(ruido(800), 2000, 7000) * np.exp(-np.linspace(0, 8, 800)) * rng.uniform(0.02, 0.06)
     return x
 
 
-def electrico(d):
-    """Zumbido eléctrico que sube (los cables que se encienden)."""
+def viento(d, g=1.0):
+    n = int(d * SR)
+    x = filt(ruido(n), 80, 900) * 0.06 + filt(ruido(n), 900, 4000) * 0.012
+    mod = 0.75 + 0.25 * np.sin(2 * np.pi * 0.13 * tt(d)) + 0.15 * np.sin(2 * np.pi * 0.31 * tt(d) + 1.0)
+    return x * mod * g
+
+
+def mar(d, g=1.0):
+    """Olas contra el casco: ruido grave que sube y baja."""
+    n = int(d * SR)
+    x = filt(ruido(n), 60, 700) * 0.08
+    return x * (0.6 + 0.4 * np.sin(2 * np.pi * 0.18 * tt(d)) ** 2) * g
+
+
+def motor(d, f0=26.0, f1=None, g=1.0, cerca=1.0):
+    """Motor radial de 14 cilindros: pulso grave de explosiones (f0 = vueltas/s · 7) con armónicos y ruido de hélice.
+    f1 cambia el tono a lo largo del sonido (picada / Doppler)."""
     t = tt(d)
-    f = 60 + 40 * t / d
-    x = np.sin(2 * np.pi * np.cumsum(f) / SR) * 0.15 + filt(ruido(len(t)), 2000, 8000) * 0.02 * (t / d)
-    return np.tanh(x * 3) * 0.3 * np.minimum(1, t / 0.2) * np.minimum(1, (d - t) / 0.3)
+    f = np.linspace(f0, f1 or f0, len(t))
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = sum(np.sin(ph * k) / k ** 0.8 for k in range(1, 18)) * 0.25
+    x = np.tanh(x * 1.8) * 0.5
+    x += filt(ruido(len(t)), 200, 2500 + 2500 * cerca) * 0.10 * (0.8 + 0.2 * np.sin(ph * 0.5))
+    return filt(x, 30, 1800 + 4000 * cerca) * g
 
 
-def whoom(d=1.2):
+def alarma(veces=6):
+    """Zafarrancho de combate de la US Navy: bong… bong… metálico, dos por segundo."""
+    out = np.zeros(int((veces * 0.5 + 1.0) * SR))
+    for i in range(veces):
+        b = (tono(560, 0.9, 0.002, 0.35) + 0.6 * tono(560 * 2.4, 0.9, 0.002, 0.2) + 0.3 * tono(560 * 3.9, 0.9, 0.002, 0.1)) * 0.45
+        add_local(out, b, i * 0.5)
+    return out
+
+
+def rafaga(d, cadencia=7.5):
+    """Cañón de 20 mm: disparos secos a ~450 por minuto, con cola grave."""
+    out = np.zeros(int((d + 0.6) * SR))
+    k = 0
+    while k / cadencia < d:
+        n = int(0.35 * SR)
+        s = filt(ruido(n), 150, 6000) * env(n, 0.0005, 0.03) * 0.9 + tono(np.linspace(110, 50, n), 0.35, 0.0005, 0.08) * 0.8
+        add_local(out, s * rng.uniform(0.8, 1.0), k / cadencia + rng.uniform(0, 0.01))
+        k += 1
+    return out
+
+
+def explosion(g=1.0, lejos=0.0):
+    n = int(2.2 * SR)
+    x = filt(ruido(n), 30, 2500 - 1800 * lejos) * env(n, 0.003 + 0.02 * lejos, 0.5)
+    x += tono(np.linspace(60, 28, n), 2.2, 0.002, 0.6) * 1.2
+    return np.tanh(x * 1.5) * g
+
+
+def agua_golpe(g=1.0):
+    n = int(1.6 * SR)
+    return filt(ruido(n), 300, 5000) * env(n, 0.01, 0.4) * 0.6 * g
+
+
+def estatica(d, g=1.0):
+    """Radio de válvulas: estática con silbidos que van y vienen."""
     t = tt(d)
-    return tono(np.linspace(90, 160, len(t)), d, 0.3, 50) * 0.35 * np.sin(np.linspace(0, np.pi, len(t)))
+    x = filt(ruido(len(t)), 800, 6000) * 0.12 * (0.7 + 0.3 * np.sin(2 * np.pi * 0.7 * t))
+    x += np.sin(2 * np.pi * np.cumsum(1800 + 700 * np.sin(2 * np.pi * 0.4 * t)) / SR) * 0.015
+    return x * np.minimum(1, t / 0.2) * g
 
 
-def pfff():
-    n = int(0.5 * SR)
-    return filt(ruido(n), 600, 3000) * env(n, 0.02, 0.15) * 0.4
+def pasos_tierra(n_pasos, cada=0.55):
+    out = np.zeros(int((n_pasos * cada + 0.5) * SR))
+    for i in range(n_pasos):
+        m = int(0.18 * SR)
+        s = filt(ruido(m), 200, 2500) * env(m, 0.004, 0.05) * 0.7 + tono(np.linspace(90, 55, m), 0.18, 0.002, 0.04) * 0.4
+        add_local(out, s, i * cada)
+    return out
 
 
-# ---------------- música v3.1: tensión (Re menor, 96 bpm) ----------------
-# Tomás (24-oct 08:14): la música de pads con campanitas "no llama la atención". Ahora: pulso de bajo en corcheas, pad
-# oscuro, bombo que entra con la rana y va en negras desde "¿Y para ti?", tics en semicorcheas durante la construcción,
-# subidas antes de cada corte grande, golpes en PASO 1/2/3 y un acorde mayor abierto en "Ahí sí… flotarías".
-BPM = 96
+def papel(d=0.6):
+    n = int(d * SR)
+    return filt(ruido(n), 1200, 8000) * (0.4 + 0.6 * np.abs(np.sin(np.linspace(0, 9, n)))) * env(n, 0.05, 0.3) * 0.25
+
+
+def pincel(d=1.2):
+    n = int(d * SR)
+    return filt(ruido(n), 2500, 9000) * 0.06 * (0.5 + 0.5 * np.sin(2 * np.pi * 1.6 * tt(d)) ** 2)
+
+
+def crujido_madera():
+    n = int(0.6 * SR)
+    x = np.zeros(n)
+    for _ in range(6):
+        i = rng.integers(0, n - 1500)
+        x[i:i + 1500] += filt(ruido(1500), 300, 2200) * np.exp(-np.linspace(0, 7, 1500)) * rng.uniform(0.3, 0.8)
+    return x * 0.5
+
+
+def latido(g=1.0):
+    """Lub-dub grave."""
+    out = np.zeros(int(0.8 * SR))
+    for at, gg in ((0.0, 1.0), (0.24, 0.7)):
+        b = tono(np.linspace(65, 40, int(0.3 * SR)), 0.3, 0.003, 0.08) * gg
+        add_local(out, b, at)
+    return out * g
+
+
+def add_local(buf, x, at, g=1.0):
+    i = int(at * SR)
+    j = min(len(buf), i + len(x))
+    if 0 <= i < len(buf):
+        buf[i:j] += g * x[: j - i]
+
+
+# ---------------- música: Re menor lento (64 bpm) ----------------
+BPM = 64
 NEGRA = 60 / BPM
 COMPAS = 4 * NEGRA
 
@@ -313,11 +316,11 @@ def tintineo():
 
 
 def musica():
-    """Ep. 9: la música de tensión del Ep. 5 v3.1 (Re menor, 96 bpm) con la forma de este relato: pulso de bajo desde el
-    cuadro 0, bombo desde la mecánica ("Por eso"), tics en semicorcheas mientras el túnel crece, subida antes del pago
-    ("Así que en una sola noche"), golpe en el pago y un acorde abierto que se queda colgado en "y otra vez" (loop)."""
+    """Ep. 10: Re menor lento (64 bpm). Pad oscuro desde el cuadro 0; latido grave en negras desde el mapa (plano 4);
+    pulso de bajo que se aprieta en el ataque (11–16) y corta a silencio en el blanco del 16; vuelve en el mapa;
+    se apaga en "Ese miedo" (24) y deja un acorde abierto y triste en el remate (26–27)."""
     out = np.zeros(N)
-    t_me, t_tu, t_pa, t_ot = E.T[6][0], W("derrite", E.T[8][0] - 0.3), E.T[9][0], E.T[16][0]
+    t_ma, t_at, t_bl, t_vu, t_mi, t_fi = T(4), T(11), T(16, 1.45), T(17), T(24), T(26)
     prog = [(50, 53, 57), (46, 50, 53), (43, 46, 50), (45, 49, 52)]           # Dm Bb Gm A
     raiz = [38, 34, 31, 33]
     nb = int(DUR / COMPAS) + 2
@@ -325,35 +328,33 @@ def musica():
         i0 = b * COMPAS
         if i0 >= DUR:
             break
-        add(out, pad_oscuro(prog[b % 4], COMPAS + 0.5, 700 + 900 * min(1, i0 / t_pa)), i0, 0.5)
+        if t_bl <= i0 + COMPAS and i0 < t_vu:
+            continue
+        g = 0.5 if i0 < t_mi else 0.25
+        add(out, pad_oscuro(prog[b % 4], COMPAS + 0.5, 600 + 700 * (t_at <= i0 < t_bl)), i0, g)
     k = 0
     while k * NEGRA / 2 < DUR:
         t = k * NEGRA / 2
         b = int(t / COMPAS) % 4
-        corte = 350 + 1400 * min(1.0, t / t_pa)
-        add(out, nota_bajo(hz(raiz[b]), corte), t, 0.75 if k % 2 == 0 else 0.5)
+        if (t_at <= t < t_bl) or (t_vu <= t < t_mi):
+            add(out, nota_bajo(hz(raiz[b]), 900 if t < t_bl else 600), t, 0.7 if k % 2 == 0 else 0.45)
         k += 1
     k = 0
     while k * NEGRA < DUR - 0.3:
         t = k * NEGRA
-        if t >= t_me:
-            add(out, bombo(0.9 if t >= t_tu else 0.6), t)
+        if t_ma <= t < t_at or t_vu <= t < t_mi:
+            add(out, bombo(0.45), t)
+        elif t_at <= t < t_bl:
+            add(out, bombo(0.8), t)
+            add(out, bombo(0.5), t + NEGRA / 2)
         k += 1
-    k = 0
-    while k * NEGRA / 4 < DUR - 0.3:
-        t = k * NEGRA / 4
-        if t_tu <= t < E.T[14][0]:
-            add(out, tic_hat(), t, 0.33 if k % 2 else 0.16)
-        k += 1
-    add(out, golpe(0.7, 1.2), 0.0)
-    add(out, golpe(0.6), E.T[2][0] - 0.02)                                    # corte al "antes"
-    add(out, subida(0.45), t_me - 0.45, 0.35)
-    add(out, golpe(0.8), t_me - 0.02)
-    add(out, subida(1.6), t_pa - 1.6, 0.55)                                    # subida al pago
-    add(out, golpe(1.0, 2.0), t_pa - 0.02)
-    add(out, golpe(0.9, 1.6), E.T[11][0] - 0.02)                               # el río se triplica
-    add(out, golpe(0.8, 1.6), E.T[14][0] - 0.02)                               # el hielo se cierra
-    add(out, pad_oscuro((50, 54, 57, 62), DUR - t_ot + 0.3, 2600), t_ot, 0.7)  # "y otra vez": acorde abierto colgado (loop)
+    add(out, golpe(0.6, 1.4), T(4) - 0.02)                                     # la guerra
+    add(out, golpe(0.5, 1.2), T(6) - 0.02)                                     # voluntarios
+    add(out, subida(1.0), t_at - 1.0, 0.4)
+    add(out, golpe(0.9, 1.6), t_at - 0.02)                                     # los estadounidenses
+    add(out, golpe(0.8, 1.6), T(17) - 0.02)                                    # Okinawa
+    add(out, golpe(0.7, 1.6), T(20) - 0.02)                                    # trece mil aviones
+    add(out, pad_oscuro((50, 57, 62, 65), DUR - t_fi + 0.3, 1800), t_fi, 0.6)   # remate: acorde abierto (loop)
     out = filt(out, 30, 9000)
     return out / (np.abs(out).max() + 1e-9)
 
@@ -384,41 +385,59 @@ def Wk(prefix, k):
     return W(prefix, T(k) - 0.3)
 
 
-add(fx, viento(DUR), 0.0, 0.6)
-add(fx, whoom(1.2), 0.0, 0.6)
-add(fx, thud(), 0.55, 0.7)                                                    # el trozo de hielo cae al barro
-add(fx, ding(1046, 0.7), Wk("lago", 1), 0.35)                                # ANOCHE AQUÍ HABÍA UN LAGO
-add(fx, whoosh(0.5, True), T(2) - 0.25, 0.45)                                  # corte al "antes"
-add(fx, ding(1318, 0.6), Wk("represa", 2), 0.35)
-add(fx, agua_corre(T(5) - T(4), 0.25, 500), T(4), 1.0)                         # a ras del agua
-add(fx, ding(880, 0.6), Wk("Ochenta", 3), 0.3)
-add(fx, ding(1175, 0.5), Wk("dónde", 4), 0.3)
-add(fx, tintineo(), Wk("flota", 5) - 0.1, 0.7)
-add(fx, agua_corre(1.8, 0.35, 500), T(6) + 0.2, 1.0)                         # el lago sube
-add(fx, crujido(1.1), Wk("levanta", 6) - 0.05, 0.9)
-add(fx, agua_corre(2.0, 0.45, 700), Wk("agua", 7), 1.0)                      # se cuela por abajo
-add(fx, agua_corre(T(9) - T(8) + 0.2, 0.55, 1100), Wk("derrite", 8) - 0.3, 1.0)
-add(fx, ding(1175, 0.6), Wk("túnel", 8), 0.35)
-add(fx, agua_corre(T(11) - T(9) + 0.4, 1.0, 1500), T(9), 1.0)                 # el pago: el lago se va
-add(fx, ding(988, 0.6), Wk("noche", 9), 0.35)
-add(fx, agua_corre(T(14) - T(11), 0.8, 900), T(11), 1.0)                      # el río crecido
-add(fx, agua_corre(Wk("río", 11) - T(11) + 0.2, 0.9, 2200), T(11), 0.9)       # la boca del glaciar: el agua sale a presión
-add(fx, ding(1318, 0.6), Wk("triplica", 11), 0.35)
-add(fx, whoosh(1.0, False), Wk("atrás", 12) - 0.5, 0.6)
-for i in range(6):                                                            # la alarma: sirena lejana que sube y baja
-    add(fx, tono(np.linspace(620, 900, int(0.45 * SR)), 0.45, 0.02, 0.3) * 0.5, Wk("alarma", 13) + 0.45 * i, 0.35)
-add(fx, crujido(1.0), Wk("hielo", 14), 0.8)
-add(fx, golpe_grave(), Wk("cierra", 14) + 0.25, 0.8)
-add(fx, agua_corre(T(16) - T(15), 0.4, 600), T(15), 1.0)                      # el lago sube otra vez
-add(fx, agua_corre(DUR - T(16), 0.6, 1200), T(16), 1.0)                       # y otra vez se va
-add(fx, ding(1046, 0.6), Wk("veinte", 16), 0.35)
+add(fx, obturador(), 0.02, 0.9)                                                # la foto
+add(fx, lampara(T(3)), 0.0, 1.0)
+add(fx, papel(0.5), T(2) + 0.1, 0.6)
+add(fx, viento(T(4) - T(3) + 0.3), T(3), 0.9)
+add(fx, motor(1.8, 22, 24, 0.35, 0.2), T(3) + 0.1, 1.0)                       # un motor que arranca a lo lejos
+add(fx, viento(T(9) - T(5)), T(5), 0.7)
+add(fx, motor(T(6) - T(5), 30, 44, 0.9, 0.6), T(5), 1.0)                       # el avión acelera y despega
+add(fx, whoosh(0.6, False), T(5) + 1.2, 0.5)
+add(fx, pasos_tierra(2, 0.5), T(6) + 0.5, 0.5)                                 # el oficial
+add(fx, pasos_tierra(4, 0.08), T(7) + 0.3, 0.8)                                # la fila da el paso
+add(fx, pasos_tierra(1), T(8) + 0.6, 1.0)                                      # el último
+add(fx, lampara(T(11) - T(9)), T(9), 1.0)
+add(fx, pincel(1.4), T(9) + 0.3, 1.0)
+add(fx, crujido_madera(), T(10) + 0.4, 0.8)
+add(fx, alarma(5), T(11) - 0.1, 0.55)                                          # zafarrancho
+add(fx, mar(T(17) - T(11)), T(11), 0.8)
+add(fx, viento(T(17) - T(11), 0.8), T(11), 0.8)
+add(fx, motor(T(13) - T(12) + 0.1, 30, 46, 0.9, 0.5), T(12), 1.0)              # picada: el tono sube
+add(fx, rafaga(T(14) - T(13) + 0.3), T(13), 0.75)
+add(fx, rafaga(T(15) - T(14), 6.0), T(14), 0.35)
+add(fx, explosion(0.6, 0.7), T(14) + 0.75, 1.0)
+add(fx, agua_golpe(0.8), T(14) + 0.8, 1.0)
+add(fx, explosion(0.4, 0.9), T(14) + 1.35, 1.0)
+add(fx, motor(T(16) - T(15), 40, 48, 0.9, 0.8), T(15), 1.0)                    # sale del humo
+add(fx, motor(T(16, 1.45) - T(16), 48, 62, 1.1, 1.0), T(16), 1.0)              # al máximo
+add(fx, explosion(1.2, 0.3), T(16, 1.45), 1.0)                                 # golpe sordo (el blanco) y silencio
+add(fx, mar(T(18) - T(17)), T(17) + 0.4, 0.8)
+for i in range(3):
+    add(fx, tono(np.linspace(500, 760, int(0.9 * SR)), 0.9, 0.2, 0.6) * 0.25, T(17) + 0.3 + 0.95 * i, 0.5)   # sirena lejana
+for i in range(8):
+    add(fx, tic(2400 + 120 * i), T(18) + 0.2 + 0.15 * i, 0.5)                  # las barras
+add(fx, motor(T(21) - T(20), 24, 24, 0.35, 0.3), T(20), 1.0)                    # murmullo de motores
+add(fx, motor(T(21) - T(20), 27, 27, 0.25, 0.3), T(20) + 0.2, 1.0)
+add(fx, viento(T(22) - T(21)), T(21), 1.0)
+add(fx, whoosh(0.8, True), T(21) + 0.3, 0.4)
+add(fx, latido(0.9), T(22) + 0.2, 1.0)
+add(fx, latido(0.9), T(22) + 1.1, 1.0)
+add(fx, latido(1.1), T(23) + 0.1, 1.0)
+add(fx, latido(1.1), T(23) + 0.9, 1.0)
+add(fx, explosion(0.7, 1.0), T(25) + 0.1, 1.0)                                 # Hiroshima (apagado, lejos)
+add(fx, explosion(0.7, 1.0), T(25) + 0.8, 1.0)                                 # Nagasaki
+add(fx, estatica(T(27) - T(26) + 0.2), T(26), 0.9)
+add(fx, lampara(T(27) - T(26)), T(26), 1.0)
+add(fx, viento(DUR - T(27)), T(27), 0.8)
+add(fx, motor(DUR - T(27), 34, 30, 0.7, 0.5) * np.linspace(1, 0.2, int((DUR - T(27)) * SR)), T(27), 1.0)   # se alejan
+add(fx, obturador(), E.T[27][1] - 0.32, 0.9)                                    # loop: vuelve la foto
 mix = v * 1.0 + m * 0.45 + fx * 0.45          # música 1 dB más baja: quedaba a 14,9 dB bajo la voz (meta ≥ 15)
 mix = np.tanh(mix * 1.1) / 1.1
 mix = mix / (np.abs(mix).max() + 1e-9) * 0.9
 os.makedirs(OUT, exist_ok=True)
-tmp = os.path.join(OUT, "ep09_pre.wav")
+tmp = os.path.join(OUT, "ep10_pre.wav")
 wavfile.write(tmp, SR, (mix * 32767).astype(np.int16))
-dst = os.path.join(OUT, "ep09_mix.wav")
+dst = os.path.join(OUT, "ep10_mix.wav")
 subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", tmp, "-af", "alimiter=limit=0.6:level=false,loudnorm=I=-14:TP=-2.5:LRA=11", "-ar", "48000", dst], check=True)
 vr = np.sqrt(np.mean(v[np.abs(v) > 0.02] ** 2))
 mr = np.sqrt(np.mean((m * 0.45)[(m != 0)] ** 2) + 1e-12)

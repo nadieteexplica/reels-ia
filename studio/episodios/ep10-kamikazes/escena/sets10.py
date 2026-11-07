@@ -305,9 +305,9 @@ def pasto_pelos(sc, centro, lado=60.0, n=90000, semilla=3, hueco_x=18.0):
         vg.add([v.index], 0.0 if abs(x) < hueco_x else min(1.0, (abs(x) - hueco_x) / 4.0), "REPLACE")
     ps = g.modifiers.new("pasto", "PARTICLE_SYSTEM").particle_system
     st = ps.settings
-    st.type = "HAIR"; st.count = n; st.hair_length = 0.1; st.vertex_group_density = "pasto"
-    st.use_advanced_hair = True; st.normal_factor = 1.0; st.factor_random = 0.6; st.brownian_factor = 0.0
-    st.child_type = "NONE"; ps.seed = semilla
+    st.type = "HAIR"; st.count = n; st.hair_length = 0.1; ps.vertex_group_density = "pasto"
+    st.use_advanced_hair = True; st.normal_factor = 0.09; st.factor_random = 0.05; st.brownian_factor = 0.0
+    st.child_type = "INTERPOLATED"; st.child_percent = 2; st.rendered_child_count = 14; st.child_radius = 0.25; ps.seed = semilla
     st.root_radius = 0.0012; st.tip_radius = 0.0001; st.radius_scale = 1.0
     hm = _nodos("hebras")[0]; hb = hm.node_tree.nodes["Principled BSDF"]
     nz = _ruido(hm.node_tree, escala=0.5, detalle=4)
@@ -621,7 +621,7 @@ def humo_mat(nombre="humo_negro", color=(0.02, 0.02, 0.02), densidad=2.0, escala
     m = bpy.data.materials.new(nombre); m.use_nodes = True
     nt = m.node_tree
     nt.nodes.remove(nt.nodes["Principled BSDF"])
-    vol = nt.nodes.new("ShaderNodePrincipledVolume")
+    vol = nt.nodes.new("ShaderNodeVolumePrincipled")
     vol.inputs["Color"].default_value = (*color, 1)
     vol.inputs["Anisotropy"].default_value = 0.2
     tc = nt.nodes.new("ShaderNodeTexCoord")
@@ -661,17 +661,50 @@ def fogonazo(sc, nombre):
     return o
 
 
-def oerlikon(sc, pos, mira):
-    """Cañón Oerlikon de 20 mm (modelo CC-BY) en su pedestal, apuntando a `mira`."""
+def oerlikon(sc, pos, mira, elev_max=38.0):
+    """Cañón Oerlikon de 20 mm (modelo CC-BY: el arma sola, cañón en +x) sobre un pedestal y con su escudo curvo,
+    apuntando a `mira` (elevación tope elev_max). Devuelve (raíz del arma, boca del cañón, dirección del tiro)."""
+    gris = mat_pintura_naval() if "mat_pintura_naval" in globals() else None
+    if gris is None:
+        gris = bpy.data.materials.new("gris_naval"); gris.use_nodes = True
+        b = gris.node_tree.nodes["Principled BSDF"]; b.inputs["Base Color"].default_value = (0.16, 0.18, 0.2, 1); b.inputs["Roughness"].default_value = 0.6
+    base = Vector(pos)
+    ped = E.cilindro(sc, "OerlikonPedestal", 0.16, 1.2, tuple(base + Vector((0, 0, 0.6))), verts=24, mat=gris)
+    E.cilindro(sc, "OerlikonPie", 0.42, 0.08, tuple(base + Vector((0, 0, 0.04))), verts=32, mat=gris)
     r = importar("oerlikon", largo=2.2, eje="x", nombre_raiz="Oerlikon")
-    r.location = pos
-    d = Vector(mira) - Vector(pos)
-    r.rotation_euler = (0, -math.atan2(d.z, Vector((d.x, d.y, 0)).length) * 0.0, math.atan2(d.y, d.x))
-    return r
+    piv = base + Vector((0, 0, 1.32))
+    d = Vector(mira) - piv
+    yaw = math.atan2(d.y, d.x)
+    elev = min(math.radians(elev_max), math.atan2(d.z, Vector((d.x, d.y, 0)).length))
+    r.location = piv - Vector((0, 0, r.get("tam", (0, 0, 0.6))[2] * 0.5 if hasattr(r.get("tam", None), "__len__") else 0.3))
+    r.rotation_euler = (0, -elev, yaw)
+    fwd = Vector((math.cos(elev) * math.cos(yaw), math.cos(elev) * math.sin(yaw), math.sin(elev)))
+    # escudo curvo de 6 mm delante del artillero (el de los Oerlikon de la US Navy)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=48, radius=0.9, depth=1.0, end_fill_type="NOTHING")
+    esc = bpy.context.object; esc.name = "OerlikonEscudo"
+    bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.object.mode_set(mode="OBJECT")
+    for v in esc.data.vertices:
+        ang = math.atan2(v.co.y, v.co.x)
+        if abs(ang) > math.radians(48):
+            v.select = True
+    bm_del = [v.index for v in esc.data.vertices if abs(math.atan2(v.co.y, v.co.x)) > math.radians(48)]
+    import bmesh
+    bm = bmesh.new(); bm.from_mesh(esc.data)
+    bm.verts.ensure_lookup_table()
+    bmesh.ops.delete(bm, geom=[bm.verts[i] for i in bm_del], context="VERTS")
+    bm.to_mesh(esc.data); bm.free()
+    sol = esc.modifiers.new("grosor", "SOLIDIFY"); sol.thickness = 0.012
+    esc.location = piv + Vector((math.cos(yaw), math.sin(yaw), 0)) * (-0.62) + Vector((0, 0, -0.05))
+    esc.rotation_euler = (0, 0, yaw)
+    asignar(esc, gris)
+    boca = piv + fwd * 1.1
+    return r, boca, fwd
 
 
 def salpicadura(sc, nombre, pos, alto=14.0):
-    blanco = humo_mat("espuma", (0.85, 0.87, 0.88), densidad=3.0, escala=2.0)
-    bpy.ops.mesh.primitive_cone_add(vertices=24, radius1=5.0, radius2=1.2, depth=alto, location=(pos[0], pos[1], alto / 2))
-    o = bpy.context.object; o.name = nombre; asignar(o, blanco)
+    """Columna de agua: elipsoide volumétrico blanco (coordenadas de objeto normalizadas, el borde se deshace solo)."""
+    blanco = humo_mat("espuma", (0.85, 0.87, 0.88), densidad=0.9, escala=2.6)
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=1.0, location=(pos[0], pos[1], alto * 0.45))
+    o = bpy.context.object; o.name = nombre; o.scale = (alto * 0.28, alto * 0.28, alto * 0.55); asignar(o, blanco)
+    o["alto"] = alto
     return o
