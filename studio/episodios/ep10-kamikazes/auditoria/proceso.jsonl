@@ -1,0 +1,5 @@
+{"tipo": "chequeo", "id": "sesion", "estado": "bitácora empezada tarde (16:10): la sesión partió a las 11:59 con el pedido de Tomás; guion, voz y storyboard aprobados; no se escribió en vivo hasta ahora (lección)", "n": 1, "ts": "2026-11-07T16:09:22-03:00"}
+{"tipo": "gasto", "servicio": "eleven", "monto": 4971.0, "nota": "créditos usados en el mes según out/status.json (4.971 de 40.000; quedan 35.029). Incluye la voz del ep10 (1 toma, 53,3 s); el costo exacto de la toma no quedó medido", "n": 2, "ts": "2026-11-07T16:09:22-03:00"}
+{"tipo": "trabajo", "id": "render-planos 42403195434 (final 720x1280/10)", "estado": "inicio", "n": 3, "ts": "2026-11-07T16:09:22-03:00"}
+{"tipo": "trabajo", "id": "render-planos parche puerta 4 r1 (22 piezas, base 42403195434)", "estado": "inicio", "n": 4, "ts": "2026-11-07T16:09:22-03:00"}
+{"tipo": "aviso", "que": "a Tomás 15:5x: cambio de la fila de pilotos a fotos reales y del cañón a cielo con trazadoras; el video llega después de las revisiones", "n": 5, "ts": "2026-11-07T16:09:22-03:00"}

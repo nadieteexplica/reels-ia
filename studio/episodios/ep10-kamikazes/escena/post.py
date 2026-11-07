@@ -152,7 +152,7 @@ def suave(x):
     return x * x * (3 - 2 * x)
 
 # ---------------- subtítulos (palabra por palabra; cifras juntas) ----------------
-NUMEROS = [("diecisiete", "17"), ("trece mil", "13.000")]
+NUMEROS = [("diecisiete", "17")]          # "trece mil" va en palabras: la píldora dice la cifra exacta (12.700; puerta 4)
 
 
 def limpiar(w):
@@ -211,7 +211,7 @@ Y MANDA | A SUS PILOTOS | A NO VOLVER | OFICIALMENTE | SON VOLUNTARIOS | PERO DE
 ANTES DE DESPEGAR | LE ESCRIBEN | A SU FAMILIA | Y LE PIDEN | PERDÓN | LOS ESTADOUNIDENSES | NO SABEN | CÓMO FRENAR | A ALGUIEN QUE |
 NO QUIERE VOLVER | LLENAN EL CIELO | DE BALAS | Y DERRIBAN | A LA MAYORÍA | PERO EL QUE PASA | CASI SIEMPRE PEGA | EN OKINAWA MUEREN |
 MÁS MARINEROS | QUE SOLDADOS | DEL EJÉRCITO | EN TIERRA | Y A ESTADOS UNIDOS | TODAVÍA LE FALTA | INVADIR JAPÓN | PERO JAPÓN JUNTA |
-CASI 13.000 AVIONES | TODOS | PARA CHOCAR | EL PRESIDENTE TRUMAN | TEME REPETIR OKINAWA | AHORA EN JAPÓN | ESE MIEDO | ES UNA |
+CASI TRECE MIL AVIONES | TODOS | PARA CHOCAR | EL PRESIDENTE TRUMAN | TEME REPETIR OKINAWA | AHORA EN JAPÓN | ESE MIEDO | ES UNA |
 DE LAS RAZONES | PARA LANZAR | LA BOMBA ATÓMICA | Y EL DÍA QUE | JAPÓN SE RINDE | TODAVÍA DESPEGAN | KAMIKAZES"""
 _gm = [g.split() for g in GRUPOS_MANUAL.replace("\n", " ").split("|") if g.strip()]
 _j, _gr = 0, []
@@ -522,6 +522,8 @@ def graficos(im, f, k):
         pj = _lug(4, f, "kyushu")
         flecha_parcial(im, _lug(4, f, "saipan"), _lug(4, f, "iwo_jima"), sale((u - 0.3) / 0.8))
         flecha_parcial(im, _lug(4, f, "leyte"), _lug(4, f, "okinawa"), sale((u - 0.7) / 0.9))
+        if u > 0.9:
+            etiqueta(im, "EE.UU.", _lug(4, f, "saipan"), tam=40, col=(150, 200, 255), dy=60)
     elif k in (6, 7, 8):
         pild(im, f, k, "real", "FOTO REAL", T0(k) + 0.1, [(190, 300), (890, 300), (190, 380)], fondo=(28, 30, 34), tinta=(255, 255, 255), tam=38)
         if k == 6:
@@ -567,6 +569,8 @@ def graficos(im, f, k):
         for i, n in enumerate(("kyushu", "hiroshima", "japon", "tokio")):
             v = sale((u - 0.2 - 0.35 * i) / 0.5) if k == 23 else 1.0
             mancha(im, _lug(k, f, n), 70 * v, late * v)
+        if k == 23:
+            pild(im, f, 23, "otro", "¿OTRO OKINAWA?", T0(23) + 0.2, [(540, 330), (540, 420)], fondo=ACERO, tinta=(255, 255, 255), tam=54)
     elif k == 25:
         u = t - T0(25)
         for n, t1, txt in (("hiroshima", 0.1, "6 DE AGOSTO"), ("nagasaki", 0.8, "9 DE AGOSTO")):
