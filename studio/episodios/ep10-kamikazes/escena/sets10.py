@@ -341,7 +341,7 @@ def cerros_kagoshima(sc, semilla=5):
 
 
 def barraca(sc, nombre, pos, largo=28.0, ancho=7.0, alto=3.2, rot=0.0):
-    tablas = bpy.data.materials.get("tablas_ext") or madera("tablas_ext", (0.16, 0.11, 0.07), oscuro=0.5, escala_veta=(1, 1, 14), escala=1.0)
+    tablas = bpy.data.materials.get("tablas_ext") or madera("tablas_ext", (0.075, 0.063, 0.05), oscuro=0.6, escala_veta=(1, 1, 14), escala=1.0)
     techo = bpy.data.materials.get("calamina") or E.mat_pintura("calamina", (0.13, 0.13, 0.12), rugo=(0.5, 0.85), sucio=0.5, capa=0.0)
     c = caja(sc, nombre, (ancho, largo, alto), (pos[0], pos[1], alto / 2), tablas, bisel=0.02)
     bpy.ops.mesh.primitive_cone_add(vertices=4, radius1=ancho * 0.78, radius2=0, depth=1.6, location=(pos[0], pos[1], alto + 0.8))

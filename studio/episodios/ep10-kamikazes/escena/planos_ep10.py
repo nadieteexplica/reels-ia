@@ -185,8 +185,8 @@ def p3(sc, a, b):
     def act(f):
         t = tf(f)
         x = lin(f, a, b - 1)
-        pos = Vector((-19.5, 33.0, 1.7)).lerp(Vector((-19.0, 29.5, 1.6)), x)
-        mirar(cam, pos, Vector((-31, -60, 3.5)), lente=24, foco=Vector((-28, 10, 1.5)))
+        pos = Vector((-20.5, 23.0, 1.45)).lerp(Vector((-20.0, 20.0, 1.4)), x)
+        mirar(cam, pos, Vector((-33, -60, 3.5)), lente=24, foco=Vector((-28, 10, 1.5)))
         manga.rotation_euler = (math.radians(-84 + 3 * math.sin(t * 2.3)), 0, math.radians(8 * math.sin(t * 1.1)))
         return {}
     return {"actualizar": act}
@@ -204,14 +204,14 @@ def p5(sc, a, b):
     def act(f):
         t = tf(f)
         u = max(0.0, t - T[5][0])
-        y = 70 - (8 * u + 9 * u * u)                 # acelera
+        y = 34 - (9 * u + 8 * u * u)                 # acelera: pasa frente a la cámara a mitad del plano
         sube = max(0.0, t - t_desp)
         av.location = (0, y, 1.2 * sube * sube + 0.0)
         av.rotation_euler.x = -math.radians(min(9, 12 * sube))
         for o in tren:
             o.hide_render = sube > 0.8
         S.girar_helice(av, t * 40)
-        mirar(cam, Vector((23, -26, 1.3)), Vector((0, 6 + 0.25 * min(40, max(-40, y)), 3.0 + 0.5 * av.location.z)), lente=35, foco=av.location)
+        mirar(cam, Vector((23, -26, 1.3)), av.location + Vector((0, -7, 1.8)), lente=35, foco=av.location)
         return {"avion": pantalla(sc, cam, av.location)}
     return {"actualizar": act}
 
@@ -595,15 +595,17 @@ def p17(sc, a, b):
     pa, cam = armar_mar(sc)
     random.seed(17)
     columna = []
-    for i in range(14):
-        z = DECK + 4 + i * 9
-        columna.append((S.bocanada(sc, f"Col{i}", (6 + i * 2.6, 18 + i * 3.5, z), 6 + i * 1.6, S.humo_mat("columna", (0.03, 0.03, 0.03), densidad=0.22, escala=1.1)), i))
+    mcol = S.humo_mat("columna", (0.03, 0.03, 0.03), densidad=0.3, escala=1.1)
+    for i in range(22):
+        columna.append((S.bocanada(sc, f"Col{i}", (0, 0, 0), 5 + i * 0.9, mcol), i))
 
     def act(f):
         t = tf(f)
         for o, i in columna:
-            o.location.z = DECK + 4 + i * 9 + 3.0 * t % 9
-            o.location.x = 6 + i * 2.6 + 0.8 * math.sin(t * 0.6 + i)
+            h = (i * 5.5 + 2.2 * t) % 121           # cada bocanada sube y vuelve a nacer en la cubierta
+            o.location = (2 + 0.18 * h + 0.8 * math.sin(t * 0.6 + i), 8 + 0.12 * h, DECK + 2 + h)
+            k = 4 + 0.16 * h
+            o.scale = (k, k, k * 0.9)
         bob = 0.6 * math.sin(t * 0.9)
         mirar(cam, Vector((300, -160, 12 + bob)), Vector((0, 10, 30 + 0.3 * bob)), lente=85)
         return {}

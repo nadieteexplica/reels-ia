@@ -205,6 +205,25 @@ for g in grupos:
     else:
         g2.append(g)
 grupos = g2
+# Ep. 10: grupos a mano (el corte automático dejaba "SON" o "LOS" solos y partía "ESTADOS | UNIDOS")
+GRUPOS_MANUAL = """ESTE KAMIKAZE | TIENE 17 AÑOS | LA FOTO ES | DE 1945 | EL DÍA ANTES | DE SU MISIÓN | JAPÓN ESTÁ PERDIENDO | LA GUERRA |
+Y MANDA | A SUS PILOTOS | A NO VOLVER | OFICIALMENTE | SON VOLUNTARIOS | PERO DECIRLE QUE NO | A TU ESCUADRÓN | ES CASI IMPOSIBLE |
+ANTES DE DESPEGAR | LE ESCRIBEN | A SU FAMILIA | Y LE PIDEN | PERDÓN | LOS ESTADOUNIDENSES | NO SABEN | CÓMO FRENAR | A ALGUIEN QUE |
+NO QUIERE VOLVER | LLENAN EL CIELO | DE BALAS | Y DERRIBAN | A LA MAYORÍA | PERO EL QUE PASA | CASI SIEMPRE PEGA | EN OKINAWA MUEREN |
+MÁS MARINEROS | QUE SOLDADOS | DEL EJÉRCITO | EN TIERRA | Y A ESTADOS UNIDOS | TODAVÍA LE FALTA | INVADIR JAPÓN | PERO JAPÓN JUNTA |
+CASI 13.000 AVIONES | TODOS | PARA CHOCAR | EL PRESIDENTE TRUMAN | TEME REPETIR OKINAWA | AHORA EN JAPÓN | ESE MIEDO | ES UNA |
+DE LAS RAZONES | PARA LANZAR | LA BOMBA ATÓMICA | Y EL DÍA QUE | JAPÓN SE RINDE | TODAVÍA DESPEGAN | KAMIKAZES"""
+_gm = [g.split() for g in GRUPOS_MANUAL.replace("\n", " ").split("|") if g.strip()]
+_j, _gr = 0, []
+for _g in _gm:
+    _idx = list(range(_j, _j + len(_g)))
+    if [TOK[j][0] for j in _idx] != _g:
+        raise SystemExit(f"GRUPOS_MANUAL no calza en {_g}: {[TOK[j][0] for j in _idx]}")
+    _gr.append(_idx)
+    _j += len(_g)
+if _j != len(TOK):
+    raise SystemExit(f"GRUPOS_MANUAL deja {len(TOK) - _j} palabras fuera")
+grupos = _gr
 SIN_SUBS = set()
 SUB_LOG = []
 
