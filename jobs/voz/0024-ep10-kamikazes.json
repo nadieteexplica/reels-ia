@@ -1,0 +1,13 @@
+{
+ "mode": "tts",
+ "id": "ep10-kamikazes",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.32,
+  "use_speaker_boost": true
+ },
+ "text": "Este kamikaze tiene diecisiete años. La foto es de mil novecientos cuarenta y cinco, el día antes de su misión. Japón está perdiendo la guerra... y manda a sus pilotos a no volver. Oficialmente son voluntarios. Pero decirle que no a tu escuadrón es casi imposible. Antes de despegar, le escriben a su familia... y le piden perdón. Los estadounidenses no saben cómo frenar a alguien que no quiere volver. Llenan el cielo de balas y derriban a la mayoría. Pero el que pasa... casi siempre pega. En Okinawa mueren más marineros que soldados del ejército en tierra. Y a Estados Unidos todavía le falta invadir Japón. Pero Japón junta casi trece mil aviones: todos, para chocar. El presidente Truman teme repetir Okinawa, ahora en Japón. Ese miedo es una de las razones para lanzar la bomba atómica. Y el día que Japón se rinde... todavía despegan kamikazes."
+}
