@@ -393,9 +393,10 @@ add(fx, motor(1.8, 22, 24, 0.35, 0.2), T(3) + 0.1, 1.0)                       # 
 add(fx, viento(T(9) - T(5)), T(5), 0.7)
 add(fx, motor(T(6) - T(5), 30, 44, 0.9, 0.6), T(5), 1.0)                       # el avión acelera y despega
 add(fx, whoosh(0.6, False), T(5) + 1.2, 0.5)
-add(fx, pasos_tierra(2, 0.5), T(6) + 0.5, 0.5)                                 # el oficial
-add(fx, pasos_tierra(4, 0.08), T(7) + 0.3, 0.8)                                # la fila da el paso
-add(fx, pasos_tierra(1), T(8) + 0.6, 1.0)                                      # el último
+add(fx, lampara(T(9) - T(6)), T(6), 1.0)                                       # las fotos de los escuadrones, en la mesa
+for k in (6, 7, 8):
+    add(fx, papel(0.45), T(k) + 0.05, 0.5)
+add(fx, golpe_grave(), T(8) + 0.5, 0.35)                                       # "casi imposible"
 add(fx, lampara(T(11) - T(9)), T(9), 1.0)
 add(fx, pincel(1.4), T(9) + 0.3, 1.0)
 add(fx, crujido_madera(), T(10) + 0.4, 0.8)

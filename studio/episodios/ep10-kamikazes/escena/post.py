@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(HERE, "../../../plantilla")))
 import ep10 as E
 import graficos as G
 from grado import grado
-E2_ESCENA = {1: "E5", 2: "E5", 3: "E1", 4: "E4", 5: "E1", 6: "E1", 7: "E1", 8: "E1", 9: "E5", 10: "E5", 11: "E3", 12: "E3", 13: "E3",
+E2_ESCENA = {1: "E5", 2: "E5", 3: "E1", 4: "E4", 5: "E1", 6: "E5", 7: "E5", 8: "E5", 9: "E5", 10: "E5", 11: "E3", 12: "E3", 13: "E3",
              14: "E3", 15: "E3", 16: "E3", 17: "E3", 18: "E4", 19: "E4", 20: "E1", 21: "E1", 22: "E4", 23: "E4", 24: "E4", 25: "E4",
              26: "E5", 27: "E1"}      # = planos_ep10.ESCENA (sin importar bpy)
 
@@ -408,15 +408,15 @@ def destello(im, centro, u):
     if not centro or u <= 0 or u >= 1:
         return
     x, y = centro
-    a = math.exp(-u * 4.0)
-    r = 40 + 260 * sale(u)
+    a = min(1.0, 1.6 * math.exp(-u * 3.0))
+    r = 70 + 380 * sale(u)
     lay = Image.new("L", im.size, 0)
     d = ImageDraw.Draw(lay)
     d.ellipse((x - r, y - r, x + r, y + r), fill=int(255 * a))
     lay = lay.filter(ImageFilter.GaussianBlur(r * 0.45))
     im.paste(Image.new("RGB", im.size, (255, 250, 235)), (0, 0), lay)
     d2 = ImageDraw.Draw(im)
-    rr = 10 + 26 * (1 - u)
+    rr = 14 + 40 * (1 - u)
     d2.ellipse((x - rr, y - rr, x + rr, y + rr), fill=(255, 255, 250))
 
 
@@ -484,9 +484,9 @@ def barras(im, f, k):
     base_y, alto_max = 900, 400
     lay = _capa_rgba(im)
     d = ImageDraw.Draw(lay)
-    fnt = ImageFont.truetype(FONT, 46)
+    fnt = ImageFont.truetype(FONT, 40)
     fnum = ImageFont.truetype(FONT, 58)
-    for i, (nombre, val, col, x) in enumerate((("MARINEROS", 4907, AZUL, 380), ("EJÉRCITO", 4675, VERDE, 700))):
+    for i, (nombre, val, col, x) in enumerate((("MARINEROS", 4907, AZUL, 330), ("EJÉRCITO", 4675, VERDE, 750))):
         u = sale(min(1.0, t / (1.4 if i == 0 else 1.2)))
         h = alto_max * val / 4907 * u
         d.rounded_rectangle((x - 95 + 5, base_y - h + 7, x + 95 + 5, base_y + 7), radius=10, fill=(0, 0, 0, 110))
@@ -495,7 +495,7 @@ def barras(im, f, k):
         texto_sombra(d, (x, base_y - h - 40), num, fnum)
         texto_sombra(d, (x, base_y + 40), nombre, fnt)
     _componer(im, lay)
-    G.registrar("barras", (285, base_y - alto_max - 80, 795, base_y + 70))
+    G.registrar("barras", (200, base_y - alto_max - 80, 880, base_y + 70))
 
 
 def graficos(im, f, k):
@@ -511,7 +511,7 @@ def graficos(im, f, k):
             flecha(im, cx + 30, cy + 48, pc[0], pc[1] - 22, (255, 255, 255), ancho=7)
     elif k == 2:
         pild(im, f, 2, "fecha", "26 DE MAYO DE 1945", tw("1945", a0) - 0.05, [(540, 300), (420, 300), (540, 420)], tam=50)
-        pild(im, f, 2, "real", "FOTO REAL", T0(2) + 0.2, [(860, 300), (200, 300), (860, 420)], fondo=(28, 30, 34), tinta=(255, 255, 255), tam=38)
+        pild(im, f, 2, "real", "FOTO REAL", T0(2) + 0.2, [(190, 600), (890, 600), (190, 700)], fondo=(28, 30, 34), tinta=(255, 255, 255), tam=38)
     elif k == 4:
         u = max(0.0, t - T0(4))
         for i, n in enumerate(ISLAS):
@@ -522,8 +522,10 @@ def graficos(im, f, k):
         pj = _lug(4, f, "kyushu")
         flecha_parcial(im, _lug(4, f, "saipan"), _lug(4, f, "iwo_jima"), sale((u - 0.3) / 0.8))
         flecha_parcial(im, _lug(4, f, "leyte"), _lug(4, f, "okinawa"), sale((u - 0.7) / 0.9))
-    elif k == 6:
-        pild(im, f, 6, "vol", "VOLUNTARIOS", tw("voluntarios", a0), [(540, 880), (540, 820), (540, 940)], fondo=AMBAR, tam=60)
+    elif k in (6, 7, 8):
+        pild(im, f, k, "real", "FOTO REAL", T0(k) + 0.1, [(190, 300), (890, 300), (190, 380)], fondo=(28, 30, 34), tinta=(255, 255, 255), tam=38)
+        if k == 6:
+            pild(im, f, 6, "vol", "VOLUNTARIOS", tw("voluntarios", a0), [(540, 880), (540, 820), (540, 940)], fondo=AMBAR, tam=60)
     elif k == 9:
         pild(im, f, 9, "carta", "ÚLTIMA CARTA", T0(9) + 0.3, P, fondo=AMBAR, tam=60)
         pild(im, f, 9, "recr", "RECREACIÓN", T0(9), [(860, 300), (200, 300)], fondo=(28, 30, 34), tinta=(255, 255, 255), tam=34)

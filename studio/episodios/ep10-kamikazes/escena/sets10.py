@@ -597,7 +597,8 @@ def cielo_mar(sc, fuerza=0.75, rot=40.0):
 
 def es_b25(o):
     n = o.name.lower() + " " + " ".join(s.material.name.lower() for s in o.material_slots if s.material)
-    return "b-25" in n or "mitchell" in n
+    par = o.parent.name.lower() if o.parent else ""
+    return "b-25" in n or "mitchell" in n or n.startswith("wing_") or par.startswith("wing_")   # alas sueltas de los B-25
 
 
 def portaaviones(sc, largo=251.0):
@@ -655,8 +656,8 @@ def trazadora(sc, nombre):
 
 
 def fogonazo(sc, nombre):
-    m = bpy.data.materials.get("fogonazo") or mat_emision("fogonazo", (1.0, 0.7, 0.3), 80)
-    bpy.ops.mesh.primitive_cone_add(vertices=6, radius1=0.18, radius2=0.0, depth=0.6, location=(0, 0, 0))
+    m = bpy.data.materials.get("fogonazo") or mat_emision("fogonazo", (1.0, 0.62, 0.22), 14)
+    bpy.ops.mesh.primitive_cone_add(vertices=6, radius1=0.2, radius2=0.0, depth=0.42, location=(0, 0, 0))
     o = bpy.context.object; o.name = nombre; asignar(o, m); o.visible_shadow = False
     return o
 
@@ -667,7 +668,7 @@ def oerlikon(sc, pos, mira, elev_max=38.0):
     gris = mat_pintura_naval() if "mat_pintura_naval" in globals() else None
     if gris is None:
         gris = bpy.data.materials.new("gris_naval"); gris.use_nodes = True
-        b = gris.node_tree.nodes["Principled BSDF"]; b.inputs["Base Color"].default_value = (0.16, 0.18, 0.2, 1); b.inputs["Roughness"].default_value = 0.6
+        b = gris.node_tree.nodes["Principled BSDF"]; b.inputs["Base Color"].default_value = (0.035, 0.045, 0.06, 1); b.inputs["Roughness"].default_value = 0.55
     base = Vector(pos)
     ped = E.cilindro(sc, "OerlikonPedestal", 0.16, 1.2, tuple(base + Vector((0, 0, 0.6))), verts=24, mat=gris)
     E.cilindro(sc, "OerlikonPie", 0.42, 0.08, tuple(base + Vector((0, 0, 0.04))), verts=32, mat=gris)

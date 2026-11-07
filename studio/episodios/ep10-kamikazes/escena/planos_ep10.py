@@ -20,7 +20,7 @@ import mapa10 as M
 from ep10 import F, FR, T, lin, suave, sale, tramo, ruido, clamp, mirar, pantalla
 
 FPS = 30
-ESCENA = {1: "E5", 2: "E5", 3: "E1", 4: "E4", 5: "E1", 6: "E1", 7: "E1", 8: "E1", 9: "E5", 10: "E5", 11: "E3", 12: "E3",
+ESCENA = {1: "E5", 2: "E5", 3: "E1", 4: "E4", 5: "E1", 6: "E5", 7: "E5", 8: "E5", 9: "E5", 10: "E5", 11: "E3", 12: "E3",
           13: "E3", 14: "E3", 15: "E3", 16: "E3", 17: "E3", 18: "E4", 19: "E4", 20: "E1", 21: "E1", 22: "E4", 23: "E4",
           24: "E4", 25: "E4", 26: "E5", 27: "E1"}
 PILOTOS = ["joe.fbx", "chad.fbx", "brian.fbx", "DAVID_nonPBR.fbx", "remy.fbx"]
@@ -139,8 +139,10 @@ def p26(sc, a, b):
         S.radio_dial(Mx, 0.8 * suave(lin(f, a, a + 18)) * (1 + 0.05 * math.sin(t * 40)))
         x = suave(lin(f, a, b - 1))
         fp = Mx["foto"].matrix_world.translation
-        mirar(cam, Vector((0.10 - 0.03 * x, -0.50 + 0.06 * x, 0.90)), fp.lerp(r, 0.55) + Vector((0, 0, 0.02)), lente=50, foco=fp)
-        cam.data.dof.aperture_fstop = 1.8
+        mirar(cam, Vector((0.10 - 0.03 * x, -0.50 + 0.06 * x, 0.90)), fp.lerp(r, 0.55) + Vector((0, 0, 0.02)), lente=50)
+        cam.data.dof.use_dof = True; cam.data.dof.focus_object = None
+        cam.data.dof.focus_distance = (cam.location - fp).length
+        cam.data.dof.aperture_fstop = 2.4
         return {"radio": pantalla(sc, cam, r)}
     return {"actualizar": act}
 
@@ -263,77 +265,90 @@ def p21(sc, a, b):
     return {"actualizar": act}
 
 
-# ============================================================ C · la fila de pilotos
-LINEA_Y = 10.0
+# ============================================================ C · fotos reales de los escuadrones (en la mesa)
+# Los personajes de Mixamo se veían modernos (polera, jeans; muestras del 7-nov): la fila, el escuadrón y la orden de salida
+# van con fotos reales de 1944–45 (dominio público, Wikimedia Commons), impresas sobre la misma mesa del cuadro 0.
+FOTOS = {
+    # archivo, ancho/alto del impreso
+    "201": ("foto_201.jpg", 1998 / 1529),            # 25-oct-1944: la unidad Shikishima (201.º Grupo Aéreo) recibe la copa de despedida
+    "choshi": ("foto_choshi.jpg", 2442 / 1753),      # 1944: 18 pilotos kamikaze en Chōshi (sólo uno sobrevivió)
+    "teniente": ("foto_teniente.jpg", 2664 / 1920),  # un teniente de la Armada saluda al recibir la orden de salida
+}
+CARAS_201 = [(0.17, 0.20), (0.335, 0.25), (0.52, 0.26), (0.69, 0.27), (0.82, 0.25), (0.96, 0.29)]   # (u, v) en el original
 
 
-def armar_fila(sc):
-    P, cam = armar_pista(sc, pasto_en=(0, 8))
-    fila_aviones(sc, n=3, x=-14, y0=-6, dy=-20)
-    pil = []
-    for i, arch in enumerate(PILOTOS):
-        x = -2.4 + 1.2 * i
-        arm = G.persona(sc, arch, "piloto", (x, LINEA_Y, 0), rot_z=math.pi, pose="Happy Idle", frame=40 + 7 * i)
-        pil.append((arm, G.guardar_pose(arm), Vector((x, LINEA_Y, 0))))
-    of = G.persona(sc, OFICIAL, "oficial", (0, LINEA_Y - 4.2, 0), rot_z=0.0, pose="Happy Idle", frame=10)
-    return P, cam, pil, (of, G.guardar_pose(of), Vector((0, LINEA_Y - 4.2, 0)))
+def foto_mesa(sc, Mx, clave, ancho=0.18):
+    """Otra foto impresa en el lugar de la del cuadro 0 (que se esconde). Devuelve (objeto, punto(u, v))."""
+    archivo, ar = FOTOS[clave]
+    Mx["foto"].hide_render = True
+    bpy.ops.mesh.primitive_grid_add(x_subdivisions=30, y_subdivisions=24, size=1, location=(0, 0, 0))
+    o = bpy.context.object; o.name = "Foto_" + clave
+    o.scale = (ancho, ancho / ar, 1)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    for v in o.data.vertices:
+        v.co.z = 0.003 * (abs(v.co.y) / (ancho / ar / 2)) ** 2 + 0.0005 * (1 + math.sin(v.co.x * 27))
+    o.location = (-0.12, -0.05, 0.761)
+    S.asignar(o, S.textura("foto_" + clave, archivo, rugo=0.42, especular=0.35))
+    S.liso(o, 180)
+    bpy.context.view_layer.update()          # sin esto el primer cuadro mira al origen (matrix_world vieja)
 
-
-ADELANTE = Vector((0, -1, 0))        # la fila mira al oficial (hacia −y)
-T_PASO = None
-
-
-def pasos(pil, t):
-    """Los cuatro dan el paso al frente juntos (en el 7) y el del extremo, Fila 3, se queda y lo da después (en el 8)."""
-    ta = T[7][0] + 0.3
-    tb = T[8][0] + 0.6
-    for i, (arm, base, p0) in enumerate(pil):
-        t0 = tb if i == 3 else ta
-        x = clamp((t - t0) / 0.55)
-        if x <= 0:
-            G.respirar(arm, base, t, fase=i * 1.3); arm.location = p0
-        else:
-            G.paso(arm, base, p0, ADELANTE, x)
+    def punto(u, v):
+        return o.matrix_world @ Vector(((u - 0.5) * ancho, (0.5 - v) * ancho / ar, 0.002))
+    return o, punto
 
 
 def p6(sc, a, b):
-    # "Oficialmente son voluntarios.": la fila de espalda frente al oficial con las manos atrás
-    P, cam, pil, (of, ofb, ofp) = armar_fila(sc)
-    cam.data.dof.use_dof = True; cam.data.dof.aperture_fstop = 4.0
+    # "Oficialmente son voluntarios.": la foto real de la despedida de la unidad Shikishima (la fila frente a los oficiales)
+    Mx, cam = armar_mesa(sc)
+    o, pt = foto_mesa(sc, Mx, "201")
+    bw, bh = 99 / 1998, 99 / 1529                      # borde del impreso
+
+    def uv(u0, v0):                                    # del original al impreso
+        return bw + u0 * (1 - 2 * bw), bh + v0 * (1 - 2 * bh)
 
     def act(f):
-        t = tf(f)
-        pasos(pil, t)
-        G.paso(of, ofb, ofp, Vector((0, 1, 0)), clamp((t - T[6][0] - 0.5) / 0.7) * 0.6)
+        S.mesa_viva(Mx, tf(f))
         x = suave(lin(f, a, b - 1))
-        mirar(cam, Vector((-3.0 + 2.4 * x, LINEA_Y + 6.0, 1.55)), Vector((0, LINEA_Y - 3.0, 1.3)), lente=50, foco=Vector((0, LINEA_Y, 1.4)))
-        return {"oficial": pantalla(sc, cam, of.location + Vector((0, 0, 1.6)))}
+        tgt = pt(0.36 + 0.26 * x, 0.52)
+        d = 0.30 - 0.02 * x
+        mirar(cam, tgt + Vector((0, -0.04 * d / 0.3, d)), tgt, lente=50, foco=pt(0.5, 0.3))
+        cam.data.dof.aperture_fstop = 5.6
+        ojos = []
+        for i, (u0, v0) in enumerate(CARAS_201):
+            xx, yy = pantalla(sc, cam, pt(*uv(u0, v0)))
+            ojos += [[xx - 12, yy, 12, f"cara{i}"], [xx + 12, yy, 12, f"cara{i}"]]
+        return {"ojos": ojos}
     return {"actualizar": act}
 
 
 def p7(sc, a, b):
-    # "Pero decirle que no a tu escuadrón": las botas en fila, a ras del suelo; cuatro se adelantan y una se queda
-    P, cam, pil, _ = armar_fila(sc)
-    cam.data.dof.use_dof = True; cam.data.dof.aperture_fstop = 2.8
+    # "Pero decirle que no a tu escuadrón": la foto real del escuadrón de Chōshi (18 pilotos frente a sus aviones)
+    Mx, cam = armar_mesa(sc)
+    o, pt = foto_mesa(sc, Mx, "choshi")
 
     def act(f):
-        t = tf(f)
-        pasos(pil, t)
-        mirar(cam, Vector((-6.5, LINEA_Y - 0.5, 0.3)), Vector((2.5, LINEA_Y - 0.3, 0.15)), lente=35, foco=Vector((0.3, LINEA_Y, 0.1)))
+        S.mesa_viva(Mx, tf(f))
+        x = suave(lin(f, a, b - 1))
+        tgt = pt(0.40 + 0.16 * x, 0.44)
+        d = 0.31 - 0.05 * x
+        mirar(cam, tgt + Vector((0, -0.04 * d / 0.3, d)), tgt, lente=50, foco=pt(0.5, 0.4))
+        cam.data.dof.aperture_fstop = 5.6
         return {}
     return {"actualizar": act}
 
 
 def p8(sc, a, b):
-    # "es casi imposible.": la fila ya adelantada; el último también da el paso
-    P, cam, pil, _ = armar_fila(sc)
-    cam.data.dof.use_dof = True; cam.data.dof.aperture_fstop = 4.0
+    # "es casi imposible.": la foto real de un teniente que saluda al recibir la orden; la cámara entra hasta él
+    Mx, cam = armar_mesa(sc)
+    o, pt = foto_mesa(sc, Mx, "teniente")
 
     def act(f):
-        t = tf(f)
-        pasos(pil, t)
-        x = lin(f, a, b - 1)
-        mirar(cam, Vector((-8.5 - 0.8 * x, LINEA_Y - 1.5, 1.5)), Vector((0.5, LINEA_Y - 0.4, 1.0)), lente=50, foco=Vector((0, LINEA_Y - 0.3, 1.2)))
+        S.mesa_viva(Mx, tf(f))
+        x = suave(lin(f, a, b - 1))
+        tgt = pt(0.50, 0.50).lerp(pt(0.49, 0.33), x)
+        d = 0.30 - 0.13 * x
+        mirar(cam, tgt + Vector((0, -0.04 * d / 0.3, d)), tgt, lente=50, foco=pt(0.49, 0.27))
+        cam.data.dof.aperture_fstop = 5.6
         return {}
     return {"actualizar": act}
 
@@ -480,6 +495,8 @@ def p13(sc, a, b):
     art = G.persona(sc, MARINEROS[1], "marinero", (12.25, 23.35, DECK), rot_z=math.radians(172), pose="Happy Idle", frame=12)
     base = G.guardar_pose(art)
     fog = S.fogonazo(sc, "Fogonazo")
+    luz = bpy.data.lights.new("LuzFogonazo", "POINT"); luz.energy = 0.0; luz.color = (1.0, 0.72, 0.4); luz.shadow_soft_size = 0.1
+    lz = bpy.data.objects.new("LuzFogonazo", luz); sc.collection.objects.link(lz)
     traz = [S.trazadora(sc, f"Traz{i}") for i in range(8)]
     fl = flak(sc, (60, -260, 330), n=16, r=170, semilla=8)
 
@@ -490,6 +507,8 @@ def p13(sc, a, b):
         k = int(t * 12) % 2 == 0
         fog.hide_render = not k
         fog.location = boca + dirf * 0.25
+        lz.location = boca + dirf * 0.3
+        luz.energy = 350.0 if k else 0.0
         orientar(fog, dirf)
         fog.rotation_quaternion = fog.rotation_quaternion @ Quaternion((1, 0, 0), math.radians(-90))
         for i, tr in enumerate(traz):
@@ -510,9 +529,9 @@ def p14(sc, a, b):
     avs = [zero_vuelo(sc, f"Cae{i}", bomba=False) for i in range(2)]
     humos = [estela(sc, f"HumoCae{i}", 14) for i in range(2)]
     golpe = [T[14][0] + 0.75, T[14][0] + 1.35]
-    ini = [Vector((-150, -390, 150)), Vector((150, -760, 260))]
-    fin = [Vector((-95, -350, 0)), Vector((205, -700, 0))]
-    spl = [S.salpicadura(sc, f"Salp{i}", (fin[i].x, fin[i].y, 0), alto=26 - 6 * i) for i in range(2)]
+    ini = [Vector((-75, -230, 105)), Vector((95, -360, 150))]
+    fin = [Vector((-42, -205, 0)), Vector((118, -330, 0))]
+    spl = [S.salpicadura(sc, f"Salp{i}", (fin[i].x, fin[i].y, 0), alto=20 - 4 * i) for i in range(2)]
     fl = flak(sc, (0, -500, 260), n=16, r=220, semilla=11)
 
     def camino_i(i):
@@ -539,7 +558,7 @@ def p14(sc, a, b):
             sp.scale = (h * 0.28 * (0.6 + 0.4 * k), h * 0.28 * (0.6 + 0.4 * k), h * 0.55 * k)
             sp.location.z = h * 0.55 * k * 0.8
         flak_vivo(fl, t, T[14][0] - 1.5)
-        mirar(cam, Vector((14.0, 30.0, DECK + 1.6)), Vector((-10, -400, 70)), lente=50)
+        mirar(cam, Vector((14.0, 30.0, DECK + 1.6)), Vector((20, -260, 45)), lente=45)
         return {}
     return {"actualizar": act}
 
@@ -640,7 +659,7 @@ def p18(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        M.mirar_latlon(cam, 26.6, 128.0, 1350 - 100 * x, incl=10)
+        M.mirar_latlon(cam, 27.2, 128.6, 2300 - 150 * x, incl=8)
         return {"lugares": meta_mapa(sc, cam)}
     return {"actualizar": act}
 
@@ -651,7 +670,7 @@ def p19(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        M.mirar_latlon(cam, 27.2 + 3.4 * x, 128.6 + 1.6 * x, 1250 + 550 * x, incl=12)
+        M.mirar_latlon(cam, 27.6 + 3.0 * x, 128.9 + 1.4 * x, 2200 + 300 * x, incl=10)
         return {"lugares": meta_mapa(sc, cam)}
     return {"actualizar": act}
 
@@ -661,7 +680,7 @@ def p22(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        M.mirar_latlon(cam, 26.8, 128.2, 1350 - 80 * x, incl=10)
+        M.mirar_latlon(cam, 27.4, 128.8, 2300 - 120 * x, incl=8)
         return {"lugares": meta_mapa(sc, cam)}
     return {"actualizar": act}
 
@@ -671,7 +690,7 @@ def p23(sc, a, b):
 
     def act(f):
         x = suave(lin(f, a, b - 1))
-        M.mirar_latlon(cam, 29.5 + 3.5 * x, 130.0 + 3.0 * x, 1700 + 800 * x, incl=10)
+        M.mirar_latlon(cam, 29.5 + 3.5 * x, 130.0 + 3.0 * x, 2300 + 400 * x, incl=10)
         return {"lugares": meta_mapa(sc, cam)}
     return {"actualizar": act}
 
