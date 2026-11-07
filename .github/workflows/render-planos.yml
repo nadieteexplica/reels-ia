@@ -23,6 +23,9 @@ on:
       base_run:
         description: "Runs anteriores cuyos cuadros se reutilizan, separados por coma, del más viejo al más nuevo (cada uno pisa al anterior y las piezas de este run pisan a todos)"
         default: ""
+      gpu_runs:
+        description: "Runs de render-gpu (RunPod) cuyos cuadros-gpu.zip se suman después de los runs base"
+        default: ""
 permissions:
   contents: write
   actions: read
@@ -148,6 +151,18 @@ jobs:
             for a in _b_$id/*/; do cp -r "$a". _r/; done
             rm -rf "_b_$id"
             echo "base $id: $(ls _r/*.png | wc -l) cuadros, $(ls _r/aux/*.png 2>/dev/null | wc -l) auxiliares"
+          done
+      - name: Cuadros renderizados en GPU (RunPod)
+        if: github.event.inputs.gpu_runs != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          mkdir -p _r
+          for id in $(echo "${{ github.event.inputs.gpu_runs }}" | tr ',' ' '); do
+            until [ "$(gh run view "$id" --json status -q .status)" = "completed" ]; do echo "esperando GPU $id"; sleep 60; done
+            gh release download "gpu-$id" -p cuadros-gpu.zip -D "_g_$id" && unzip -q -o "_g_$id/cuadros-gpu.zip" -d _r && rm -rf "_g_$id"
+            echo "gpu $id: $(ls _r/*.png | wc -l) cuadros"
           done
       - uses: actions/download-artifact@v4
         with:

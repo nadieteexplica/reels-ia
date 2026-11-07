@@ -3,6 +3,7 @@
   python runpod_pod.py crear      → imprime el id del pod (env: RUNPOD_API_KEY y las variables que necesita runpod_render.sh)
   python runpod_pod.py esperar ID → espera el estado.txt en la prerelease del run; borra el pod si se pasa del tiempo
   python runpod_pod.py borrar ID  → borra el pod (si ya no existe, no pasa nada)
+  python runpod_pod.py saldo      → imprime el saldo de la cuenta en USD (API GraphQL de RunPod)
 La clave sólo se lee del entorno y nunca se imprime.
 """
 import json, os, sys, time, urllib.request, urllib.error
@@ -24,13 +25,15 @@ def req(method, path, body=None):
 
 def crear():
     e = os.environ
-    sh = (f"https://raw.githubusercontent.com/{e['REPO']}/{e['SHA']}/studio/plantilla/runpod_render.sh")
+    script = e.get("SCRIPT", "runpod_render.sh")     # runpod_planos.sh para los episodios plano por plano (escena/plano.py)
+    sh = (f"https://raw.githubusercontent.com/{e['REPO']}/{e['SHA']}/studio/plantilla/{script}")
     cmd = ("apt-get update -qq && apt-get install -y -qq curl ca-certificates > /dev/null && "
            f"curl -fsSL {sh} -o /r.sh && bash /r.sh; "
            # si algo falla antes de que el script tome el control, el pod igual se borra
            "curl -s -X DELETE https://rest.runpod.io/v1/pods/$RUNPOD_POD_ID -H \"Authorization: Bearer $RUNPOD_API_KEY\"; sleep 600")
     env = {k: e[k] for k in ("REPO", "SHA", "EP", "RES", "SAMPLES", "UPLOAD_URL", "GH_TOKEN", "ASSETS_TOKEN", "RUNPOD_API_KEY")}
     env["CUADROS"] = e.get("CUADROS", "")
+    env["PIEZAS"] = e.get("PIEZAS", "")
     gpus = [g.strip() for g in e.get("GPUS", "NVIDIA GeForce RTX 4090").split(",") if g.strip()]
     body = {"name": f"reels-{e['EP'][:20]}-{e.get('GITHUB_RUN_ID', '')}", "imageName": "nvidia/cuda:12.4.1-base-ubuntu22.04",
             "cloudType": e.get("NUBE", "COMMUNITY"), "computeType": "GPU", "gpuTypeIds": gpus, "gpuTypePriority": "custom",
@@ -77,8 +80,25 @@ def esperar(pid, tag, repo, limite_min=110):
     return 1
 
 
+def saldo():
+    q = json.dumps({"query": "query { myself { clientBalance currentSpendPerHr } }"}).encode()
+    r = urllib.request.Request("https://api.runpod.io/graphql", data=q, method="POST",
+                               headers={"Authorization": f"Bearer {os.environ['RUNPOD_API_KEY']}", "Content-Type": "application/json",
+                                        "User-Agent": "reels-ia-render/1.0"})
+    try:
+        with urllib.request.urlopen(r, timeout=60) as resp:
+            d = json.load(resp).get("data", {}).get("myself", {}) or {}
+        print(f"saldo RunPod: USD {d.get('clientBalance')} · gasto actual USD {d.get('currentSpendPerHr')}/h")
+        return 0
+    except Exception as ex:
+        print(f"no se pudo leer el saldo: {type(ex).__name__}")
+        return 0
+
+
 if __name__ == "__main__":
     c = sys.argv[1]
+    if c == "saldo":
+        sys.exit(saldo())
     if c == "crear":
         sys.exit(crear())
     if c == "borrar":

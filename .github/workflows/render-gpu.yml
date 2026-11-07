@@ -20,6 +20,12 @@ on:
       nube:
         description: "COMMUNITY (más barata) o SECURE"
         default: "COMMUNITY"
+      piezas:
+        description: "Episodios plano por plano: piezas a renderizar (vacío = todas). Los cuadros quedan en cuadros-gpu.zip"
+        default: ""
+      solo_saldo:
+        description: "true = sólo muestra el saldo de RunPod y no crea pod"
+        default: "false"
 permissions:
   contents: write
 concurrency: render-gpu-${{ github.event.inputs.episodio }}
@@ -31,7 +37,15 @@ jobs:
     timeout-minutes: 130
     steps:
       - uses: actions/checkout@v4
+      - name: Saldo de RunPod
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+        run: python studio/plantilla/runpod_pod.py saldo
+      - name: Sólo saldo
+        if: github.event.inputs.solo_saldo == 'true'
+        run: exit 0
       - name: Prerelease del run
+        if: github.event.inputs.solo_saldo != 'true'
         id: rel
         env:
           GH_TOKEN: ${{ github.token }}
@@ -43,8 +57,10 @@ jobs:
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "up=$UP" >> "$GITHUB_OUTPUT"
       - name: Crear pod
+        if: github.event.inputs.solo_saldo != 'true'
         id: pod
         env:
+          PIEZAS: ${{ github.event.inputs.piezas }}
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
           ASSETS_TOKEN: ${{ secrets.TOKEN }}
           GH_TOKEN: ${{ github.token }}
@@ -58,6 +74,8 @@ jobs:
           UPLOAD_URL: ${{ steps.rel.outputs.up }}
         run: |
           set +e
+          [ -f "studio/episodios/$EP/escena/plano.py" ] && export SCRIPT=runpod_planos.sh
+          echo "script del pod: ${SCRIPT:-runpod_render.sh} · piezas: ${PIEZAS:-todas}"
           ID=$(python studio/plantilla/runpod_pod.py crear 2> crear.log)
           RC=$?
           cat crear.log
@@ -65,6 +83,7 @@ jobs:
           [ $RC -eq 0 ] || exit $RC
           echo "id=$ID" >> "$GITHUB_OUTPUT"
       - name: Esperar al pod
+        if: github.event.inputs.solo_saldo != 'true'
         env:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
           GH_TOKEN: ${{ github.token }}
@@ -75,7 +94,7 @@ jobs:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: python studio/plantilla/runpod_pod.py borrar "${{ steps.pod.outputs.id }}"
       - name: Resultado
-        if: always()
+        if: always() && github.event.inputs.solo_saldo != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
@@ -87,7 +106,7 @@ jobs:
           echo "--- qa ---"; cat qa.txt 2>/dev/null || true
           test "$(cat estado.txt 2>/dev/null)" = "0"
       - name: Borrador para revisión
-        if: success() && github.event.inputs.cuadros == ''
+        if: success() && github.event.inputs.cuadros == '' && github.event.inputs.solo_saldo != 'true' && hashFiles(format('studio/episodios/{0}/escena/plano.py', github.event.inputs.episodio)) == ''
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
