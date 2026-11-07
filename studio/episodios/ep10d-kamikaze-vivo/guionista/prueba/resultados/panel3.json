@@ -1,0 +1,11 @@
+{"perfil": "Luis, 16, Lima",
+"videos": [
+{"codigo": "VX", "se_queda_2s": false, "por_que_2s": "Un tipo flotando con etiqueta SIMULACION, suena a clase de ciencia.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 8, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+{"codigo": "RB", "se_queda_2s": true, "por_que_2s": "Kamikaze castigado por seguir vivo, no entiendo como y quiero saber.", "se_va_en": "Japón, 1944: está perdiendo la guerra.", "lo_ve_entero_pct": 35, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "Por que castigan a alguien por seguir vivo?"},
+{"codigo": "OV", "se_queda_2s": true, "por_que_2s": "Edificio gigante bajando piso por piso, contador, se ve brutal.", "se_va_en": "Solo armar eso toma dos meses.", "lo_ve_entero_pct": 45, "lo_manda": true, "a_quien": "un pata que le gustan las cosas gigantes", "pregunta_que_te_dejo": "Como botan un edificio sin explosion?"},
+{"codigo": "IS", "se_queda_2s": true, "por_que_2s": "Raton echando fuego por un aji, es gracioso y tiene cara de meme.", "se_va_en": "Los científicos creen que el picante es un guardia.", "lo_ve_entero_pct": 55, "lo_manda": true, "a_quien": "al amigo que se cree inmune al picante", "pregunta_que_te_dejo": "Por que el pajaro no siente el picante?"},
+{"codigo": "UF", "se_queda_2s": true, "por_que_2s": "Me paso mil veces lo del helado, la cara del personaje es chistosa.", "se_va_en": "En 2012, científicos de Harvard lo midieron", "lo_ve_entero_pct": 30, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "Por que duele la frente si el frio no toca el cerebro?"},
+{"codigo": "HR", "se_queda_2s": false, "por_que_2s": "Cortina de ducha, tema aburrido y cotidiano.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 10, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+{"codigo": "BP", "se_queda_2s": true, "por_que_2s": "Edificio que camina con patas suena imposible y raro.", "se_va_en": "final", "lo_ve_entero_pct": 60, "lo_manda": true, "a_quien": "a mis amigos del grupo, es una locura", "pregunta_que_te_dejo": "Como camina un edificio de 7600 toneladas?"}
+],
+"orden": ["BP", "IS", "OV", "RB", "UF", "HR", "VX"]}

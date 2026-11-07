@@ -1,0 +1,147 @@
+{
+ "paneles": 4,
+ "calibracion": {
+  "rho_quedan_vs_yt_se_quedo": 0.35,
+  "rho_quedan_vs_ig_pasa_3s": 0.88,
+  "rho_borda_vs_yt_vistas": 0.2,
+  "peor_real": "ep05",
+  "peor_real_en_ultimo_tercio": true,
+  "rho_quedan_vs_yt_se_quedo_sin_el_peor": -0.16,
+  "se_puede_usar_para_descartar": false
+ },
+ "videos": {
+  "ep02": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 45.0,
+   "manda": 75.0,
+   "borda": 0.292,
+   "se_va_en": [
+    "Este ratón lo prueba... y echa fuego.",
+    "Los científicos creen que el picante es un guardia.",
+    "Los científicos creen que el picante es un guardia.",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre"
+   ],
+   "por_que_2s": [
+    "Pájaro con ají y ratón echando fuego, suena a algo curioso; pero se ve como animación IA",
+    "Pájaro con ají y ratón echando fuego, yo soy mexicana y el chile me importa",
+    "Raton echando fuego por un aji, es gracioso y tiene cara de meme.",
+    "Pájaro con ají y un ratón echando fuego, me da curiosidad y me da risa"
+   ]
+  },
+  "ep03": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 57.5,
+   "manda": 75.0,
+   "borda": 0.25,
+   "se_va_en": [
+    "final",
+    "Las patas van en dos grupos.",
+    "final",
+    "final"
+   ],
+   "por_que_2s": [
+    "Un edificio con patas que camina, mecánica real, me interesa la ingeniería",
+    "Un edificio que camina suena raro y quiero ver cómo",
+    "Edificio que camina con patas suena imposible y raro.",
+    "Un edificio con patas que se va caminando, raro y llama la atención aunque no tenga sonido"
+   ]
+  },
+  "ep04": {
+   "tipo": "ancla",
+   "quedan_2s": 50.0,
+   "entero": 38.8,
+   "manda": 50.0,
+   "borda": 0.375,
+   "se_va_en": [
+    "cuadro0",
+    "final",
+    "cuadro0",
+    "final"
+   ],
+   "por_que_2s": [
+    "Hombre con espuma, cortina; algo cotidiano y cartoon, ya sé la respuesta y se ve IA",
+    "La cortina de la ducha, todos lo hemos sufrido, es corto",
+    "Cortina de ducha, tema aburrido y cotidiano.",
+    "Me pasa todos los días en la ducha, la cortina pegada al cuerpo"
+   ]
+  },
+  "d1": {
+   "tipo": "candidato",
+   "quedan_2s": 50.0,
+   "entero": 20.0,
+   "manda": 0.0,
+   "borda": 0.667,
+   "se_va_en": [
+    "cuadro0",
+    "Pero Kenichiro Oonuki tenía miedo.",
+    "Japón, 1944: está perdiendo la guerra.",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Ilustración 2D de kamikaze con sello rojo, tema pesado y se ve genérico de IA",
+    "Castigado por seguir vivo suena absurdo y fuerte, quiero saber por qué",
+    "Kamikaze castigado por seguir vivo, no entiendo como y quiero saber.",
+    "Dibujo triste de guerra y castigo, no me da ganas de ver eso"
+   ]
+  },
+  "ep05": {
+   "tipo": "ancla",
+   "quedan_2s": 0.0,
+   "entero": 0.0,
+   "manda": 0.0,
+   "borda": 0.875,
+   "se_va_en": [
+    "cuadro0",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Etiqueta SIMULACIÓN y un tipo flotando, se ve falso, no hay nada real",
+    "Texto de simulación y un señor flotando, parece de ciencia seria, no me dice nada",
+    "Un tipo flotando con etiqueta SIMULACION, suena a clase de ciencia.",
+    "Señor flotando con etiqueta simulación, confuso, no es de mi vida"
+   ]
+  },
+  "ep07": {
+   "tipo": "ancla",
+   "quedan_2s": 50.0,
+   "entero": 28.8,
+   "manda": 50.0,
+   "borda": 0.625,
+   "se_va_en": [
+    "final",
+    "cuadro0",
+    "Solo armar eso toma dos meses.",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Torre bajando con contador de pisos, quiero saber cómo demuelen sin explosión",
+    "Mucho texto y contador, y demolición de edificios no me interesa",
+    "Edificio gigante bajando piso por piso, contador, se ve brutal.",
+    "Mucho texto y números, no entiendo qué miro, edificio de Japón que no me importa"
+   ]
+  },
+  "ep01": {
+   "tipo": "ancla",
+   "quedan_2s": 75.0,
+   "entero": 37.5,
+   "manda": 25.0,
+   "borda": 0.417,
+   "se_va_en": [
+    "cuadro0",
+    "Su nombre científico es ganglioneuralgia esfenopalatina.",
+    "En 2012, científicos de Harvard lo midieron",
+    "Su nombre científico es ganglioneuralgia esfenopalatina"
+   ],
+   "por_que_2s": [
+    "Personaje 3D de helado y dolor de frente, ya lo sé y es muy visto",
+    "Cara de dolor con helado, me pasa siempre y me da risa; la frente roja es graciosa",
+    "Me paso mil veces lo del helado, la cara del personaje es chistosa.",
+    "El dolor de frente con el helado, todos lo hemos sentido, se ve gracioso"
+   ]
+  }
+ }
+}

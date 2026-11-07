@@ -1,0 +1,11 @@
+{"perfil": "Ximena",
+"videos": [
+{"codigo": "QY", "se_queda_2s": true, "por_que_2s": "Cara de dolor con helado, me pasa siempre y me da risa; la frente roja es graciosa", "se_va_en": "Su nombre científico es ganglioneuralgia esfenopalatina.", "lo_ve_entero_pct": 55, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Por qué me duele la frente si el frío no toca el cerebro?"},
+{"codigo": "UQ", "se_queda_2s": true, "por_que_2s": "Pájaro con ají y ratón echando fuego, yo soy mexicana y el chile me importa", "se_va_en": "Los científicos creen que el picante es un guardia.", "lo_ve_entero_pct": 50, "lo_manda": true, "a_quien": "mi pareja, que dice que aguanta todo el picante", "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"},
+{"codigo": "LT", "se_queda_2s": true, "por_que_2s": "Castigado por seguir vivo suena absurdo y fuerte, quiero saber por qué", "se_va_en": "Pero Kenichiro Oonuki tenía miedo.", "lo_ve_entero_pct": 45, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Cómo castigas a alguien por no morirse?"},
+{"codigo": "IU", "se_queda_2s": true, "por_que_2s": "La cortina de la ducha, todos lo hemos sufrido, es corto", "se_va_en": "final", "lo_ve_entero_pct": 75, "lo_manda": true, "a_quien": "mi pareja, con quien peleo por la cortina", "pregunta_que_te_dejo": "¿Por qué se pega la cortina?"},
+{"codigo": "FA", "se_queda_2s": false, "por_que_2s": "Texto de simulación y un señor flotando, parece de ciencia seria, no me dice nada", "se_va_en": "cuadro0", "lo_ve_entero_pct": 15, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+{"codigo": "RJ", "se_queda_2s": true, "por_que_2s": "Un edificio que camina suena raro y quiero ver cómo", "se_va_en": "Las patas van en dos grupos.", "lo_ve_entero_pct": 40, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Cómo se camina un edificio?"},
+{"codigo": "UU", "se_queda_2s": false, "por_que_2s": "Mucho texto y contador, y demolición de edificios no me interesa", "se_va_en": "cuadro0", "lo_ve_entero_pct": 10, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""}
+],
+"orden": ["IU", "UQ", "QY", "LT", "RJ", "FA", "UU"]}
