@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 5606,
+ "creditos_usados": 5970,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -76,5 +76,8 @@
  },
  "0026-ep10c-kamikaze-mente.json": {
   "tts": "ep10c-kamikaze-mente"
+ },
+ "0027-ep10d-kamikaze-vivo.json": {
+  "tts": "ep10d-kamikaze-vivo"
  }
 }
