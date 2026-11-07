@@ -1,0 +1,119 @@
+{
+ "etapa": "3-storyboard",
+ "ronda": 2,
+ "estilo": "realista",
+ "veredicto": "APROBADO",
+ "promedio": 8.0,
+ "notas": {
+  "foco": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "cada frase tiene su imagen y la columna 'sin sonido' cuenta la historia entera hasta el remate: la rendición ya se ve en el 26 (49.85, radio + JAPÓN SE RINDE) y el perdón en el 10 (18.75, PERDÓN sobre la carta); lo más abstracto es el 24 (46.45, 'ese miedo'), que sólo aleja el mapa y apaga la mancha",
+   "de": "storyboard"
+  },
+  "ritmo": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "27 cortes en 53,7 s y cada plano largo trae su cambio escrito (el más largo, el 19 de 3,25 s, con flechas que avanzan todo el plano y la cámara que sube); la escala cambia cada pocos segundos y hay una sola transición especial (el blanco del 16); el tramo más lento son los ~7 s de mapa del 22 al 25",
+   "de": "storyboard"
+  },
+  "viabilidad": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "6 actuaciones filmadas con varias cámaras, 3 sets a medida, el mapa del kit del Ep. 9, 0 clips de Kling y ninguna ficha con manos agarrando; la foto real resuelve lo más difícil (cara y cachorro). Lo más pesado es D: columnas de agua (14, 26.70), el portaaviones con humo desde un destructor (17, 31.70) y el marinero de Mixamo de tres cuartos en el 11 (21.05), que se mide en el cuadro de estilo de la puerta 4",
+   "de": "storyboard"
+  },
+  "gancho_visual": {
+   "nota": 8.0,
+   "min": 8,
+   "por_que": "cuadro 0 fuerte y honesto: la foto real del chico con el cachorro bajo KAMIKAZE · 17 AÑOS con flecha hacia él; la foto vuelve en el 26 junto a la radio y el 27 corta a ella (loop). El primer segundo se mueve poco (llama que respira y empuje de 6 %)",
+   "de": "storyboard"
+  }
+ },
+ "problemas": [],
+ "sugerencias": [],
+ "verificacion": [
+  {
+   "id": "A1",
+   "arreglado": true,
+   "por_que": "en 1, 2 y el loop (0.00, 2.25, 53.40) el chico y el cachorro son la foto real impresa apoyada en la mesa: no hay manos ni cachorro en 3D",
+   "de": "storyboard"
+  },
+  {
+   "id": "A2",
+   "arreglado": true,
+   "por_que": "el 3 (4.75) es la pista al amanecer con aviones a lo lejos, la barraca y la manga de viento: no hay mecánico ni hélice tocada",
+   "de": "storyboard"
+  },
+  {
+   "id": "A3",
+   "arreglado": true,
+   "por_que": "el 5 (8.45) es el cerezo escaneado desenfocado en primer plano con el avión que despega detrás: sin alumnas ni ramas en la mano",
+   "de": "storyboard"
+  },
+  {
+   "id": "A4",
+   "arreglado": true,
+   "por_que": "en el 6 (10.70) el oficial tiene las manos atrás y la acción visible es su paso hacia la fila: no hay hoja",
+   "de": "storyboard"
+  },
+  {
+   "id": "A5",
+   "arreglado": true,
+   "por_que": "VOLUNTARIOS pasó a (540, 880), sobre los torsos de los pilotos de espalda; la única cara del plano es la del oficial en y 520–640, sin cruce (el aviso del checks lee '540–880' como franja, pero 540 es la x)",
+   "de": "storyboard"
+  },
+  {
+   "id": "A6",
+   "arreglado": true,
+   "por_que": "ninguna ficha atribuye un avión a la unidad del chico: el 3 muestra 'aviones del Ejército en fila a lo lejos' sin decir que son los suyos y el 1 es la foto real, que es la alternativa que se pidió",
+   "de": "storyboard"
+  },
+  {
+   "id": "A7",
+   "arreglado": true,
+   "por_que": "las fichas se agrupan en 6 actuaciones (A mesa, B pista al amanecer, C fila, D un solo ataque con una línea de tiempo, E mapa, F atardecer) con 3 sets a medida; se mantuvo el destructor del 17, que era parte de la sugerencia y no cuenta como falla",
+   "de": "storyboard"
+  },
+  {
+   "id": "A8",
+   "arreglado": true,
+   "por_que": "en el 1 la foto llena el cuadro (y 200–1350), el chico queda en y 640–760 con la flecha de la píldora hacia él, y el 2 entra de 45 a 18 cm hasta él y el cachorro",
+   "de": "storyboard"
+  },
+  {
+   "id": "A9",
+   "arreglado": true,
+   "por_que": "ya no hay cara de MakeHuman ni Shiba: el chico y el cachorro son la foto real en blanco y negro, sin paso a color; el 7 son sólo las botas y los pilotos van de espalda o de perfil a 6–7 m",
+   "de": "storyboard"
+  },
+  {
+   "id": "A10",
+   "arreglado": true,
+   "por_que": "todas las fichas dicen la luz (sol bajo a la izquierda o de costado en la pista, tapado por nubes en el mar, recién puesto a ~35° del eje en el 27; el 26 pasó a la barraca con lámpara), qué hay detrás de lo que vuela en 5, 14, 15 y 16, y la respiración de la fila del 6; sólo el 16 no repite el sol, pero es la misma escena D con el sol tapado",
+   "de": "storyboard"
+  },
+  {
+   "id": "A11",
+   "arreglado": true,
+   "por_que": "el 26 muestra la radio con 15 DE AGOSTO DE 1945 y JAPÓN SE RINDE; en el 10 entra PERDÓN a los 0,8 s; en el 9 el gorro de cuero con antiparras une la carta con los pilotos, y la mesa ya se presentó en el cuadro 0",
+   "de": "storyboard"
+  }
+ ],
+ "avisos": [
+  {
+   "que": "27 planos: más de 16 en un video corto se vio como 'escenas pegadas' (Ep. 6). Los cambios cada 1–2 s salen de la acción y la cámara dentro de cada plano, no de cortar a otro lugar",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 6: el gráfico (y 540–880) comparte franja con la cara (y 520–640): ubicarlo con graficos.lugar_libre y confirmarlo con tools/prueba.py",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [],
+ "solo_bloqueantes": true,
+ "parar_y_preguntar": false
+}

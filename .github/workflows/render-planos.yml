@@ -77,7 +77,7 @@ jobs:
             while read -r tipo valor; do
               case "$tipo" in
                 modelos) gh release download "$valor" -R "$GITHUB_REPOSITORY" -D _assets -p "*.glb" -p "*.hdr" -p "*.jpg" -p "*.png" || true ;;
-                mapas) gh release download mapas -R "$GITHUB_REPOSITORY" -D _assets/mapas -p "world.topo.bathy.200412.3x5400x2700.jpg" -p "world.topo.bathy.200412.3x21600x10800.jpg" -p "world.topo.bathy.200412.3x21600x21600.C1.jpg" && python "studio/episodios/$EP/escena/$valor" _assets/mapas ;;
+                mapas) gh release download mapas -R "$GITHUB_REPOSITORY" -D _assets/mapas -p "world.topo.bathy.200412.3x5400x2700.jpg" -p "world.topo.bathy.200412.3x21600x10800.jpg" -p "world.topo.bathy.200412.3x21600x21600.D1.jpg" && python "studio/episodios/$EP/escena/$valor" _assets/mapas ;;
                 privados) GH_TOKEN="$GH_PRIV" gh release download Personajes -R nadieteexplica/assets -p "$valor" -D _assets ;;
                 pose) p=$(find priv_assets -iname "$valor" 2>/dev/null | head -1)
                       if [ -z "$p" ]; then GH_TOKEN="$GH_PRIV" gh release download Personajes -R nadieteexplica/assets -p "$valor" -D _assets/poses 2>/dev/null || true; p=$(find _assets/poses -iname "$valor" 2>/dev/null | head -1); fi

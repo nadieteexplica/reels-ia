@@ -12,3 +12,5 @@ studio/**/materiales/fuentes*.md
 # fotos reales de referencia del estilo realista: son de otros, sólo para comparar (docs/AUDITOR.md)
 studio/episodios/*/referencias/
 studio/episodios/*/auditoria/**/ref_*.jpg
+studio/**/escena/_assets/
+studio/**/escena/out*/

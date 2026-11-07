@@ -1,0 +1,10 @@
+modelos ep10-modelos
+mapas mapa_recortes.py
+privados joe.fbx
+privados chad.fbx
+privados brian.fbx
+privados DAVID_nonPBR.fbx
+privados remy.fbx
+privados STEVE_nonPBR.fbx
+privados PETE_nonPBR.fbx
+gestos mixamo

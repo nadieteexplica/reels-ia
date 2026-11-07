@@ -1,0 +1,186 @@
+{
+ "etapa": "3-storyboard",
+ "ronda": 1,
+ "estilo": "realista",
+ "veredicto": "NO APROBADO",
+ "promedio": 6.5,
+ "notas": {
+  "foco": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "casi todas las frases tienen su imagen (el paso al frente del 8, el picado del 12, las barras del 18), pero 'y le piden perdón' (plano 10, 18.75) no tiene imagen, la rendición del remate (plano 26, 49.85) es sólo una fecha y en el plano 1 nada dice cuál de los cinco es 'este kamikaze'",
+   "de": "storyboard"
+  },
+  "ritmo": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "27 planos de ~2 s, cada uno con su cambio y la escala que varía, pero el ritmo sale de ~15 montajes distintos (E1 y E3 esconden 7 cada una) en vez de cortar dentro de pocas escenas, y los planos 9–10 (16.35–21.05) son 4,7 s de naturaleza muerta donde lo único que cambia es una cámara lenta",
+   "de": "storyboard"
+  },
+  "viabilidad": {
+   "nota": 5.0,
+   "min": 5,
+   "por_que": "0 clips de Kling con manos agarrando en render en los planos 1, 2, 3, 5 y 6; el gancho depende de caras de MakeHuman en primer plano de 85 mm (2, 7) y de un Shiba adulto reescalado al que hay que riggear la cabeza; E3 pide mar, columnas de agua y humo volumétrico en 7 montajes; diez fichas realistas no dicen dónde está el sol y el 26 lo pone de frente; no hay ficha.jpg",
+   "de": "storyboard"
+  },
+  "gancho_visual": {
+   "nota": 7.0,
+   "min": 7,
+   "por_que": "la idea del cuadro 0 es fuerte (KAMIKAZE · 17 AÑOS sobre un chico que sonríe con un cachorro) y el final vuelve a la foto, pero el plano 1 es un G a 4,5 m: el chico y el cachorro quedan chicos en el celular, la sonrisa no se lee y nada marca cuál es el de 17",
+   "de": "storyboard"
+  }
+ },
+ "problemas": [
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B1",
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "el chico del centro tiene el cachorro en los brazos con Origen render, y sigue igual en el plano 2 (2.25) y en el corte final a la foto (53.40): manos agarrando un animal en Blender",
+   "arreglo": "planos 1 y 2 con Kling partiendo de nuestro render, con el cachorro apoyado en el antebrazo en el cuadro de partida (2 de los 3 clips); el corte final del 27 usa el primer cuadro del clip del 1",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B1",
+   "plano": 3,
+   "segundo": "4.75",
+   "que": "un mecánico hace girar la hélice con las manos, con Origen render",
+   "arreglo": "sacar al mecánico: la hélice arranca sola con el motor (humo del escape y polvo que vuela hacia atrás), o el mecánico de espalda alejándose del avión sin tocarlo",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B1",
+   "plano": 5,
+   "segundo": "8.45",
+   "que": "tres alumnas en primer plano agitan ramas de cerezo, con Origen render: manos con objeto en primer plano",
+   "arreglo": "que agiten la mano abierta, sin rama, y que el cerezo sea una rama de árbol desenfocada en primer plano al borde de la pista (se mantiene el símbolo sin contacto de manos)",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B1",
+   "plano": 6,
+   "segundo": "10.70",
+   "que": "el oficial levanta una hoja, con Origen render: mano con papel",
+   "arreglo": "el oficial sin hoja, con las manos atrás, y la acción visible pasa a ser él dando un paso hacia la fila; o la orden clavada en un tablero de madera a su lado",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B5",
+   "plano": 6,
+   "segundo": "10.70",
+   "que": "la píldora VOLUNTARIOS va en (540, 560): misma x e y que las caras de la fila (y 480–700), que cruza el cuadro de lado a lado, así que cae sobre la cara del piloto del centro",
+   "arreglo": "píldora en (540, 880), sobre los torsos, ubicada con graficos.lugar_libre y comprobada con tools/prueba.py",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": true,
+   "tipo": "B6",
+   "plano": 3,
+   "segundo": "4.75",
+   "que": "'el avión que lo va a llevar' es un Ki-43 (y el avión detrás de la foto del plano 1 sale de la misma pista) sin ninguna fuente: el guion pide confirmar el avión de la 72.ª Shinbu antes de modelarlo y el storyboard no lo confirma; por lo que se sabe, esa unidad del Ejército volaba Mitsubishi Ki-51 'Sonia' (tren fijo) desde Bansei, no Ki-43",
+   "arreglo": "confirmar el tipo con una fuente (la ficha de Santa Clara University u otra) y anotarla en la ficha; si es Ki-51, usar ese modelo en los planos 1 y 3; si no se puede confirmar, que en el 1 no se vea el avión y que el 3 sea la pista con un avión del Ejército sin que la ficha diga que es el suyo",
+   "de": "storyboard"
+  }
+ ],
+ "sugerencias": [
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "el checks cuenta 4 escenas, pero E1 y E3 esconden ~15 actuaciones distintas: la foto, el avión con el mecánico (3), el despegue con las alumnas (5), la fila (6–8), la pista aérea con redes (20), la fila de ruedas (21), el atardecer (26–27) y, en E3, el marinero (11), el picado (12), el cañón (13), los derribados (14), la salida del humo (15), el choque (16) y el barco en llamas visto desde un destructor (17). Con 53,7 s y un tope de 4 h, es el error del Ep. 2",
+   "arreglo": "dejar 6 actuaciones con varias cámaras: A foto (1, 2, loop); B pista al amanecer con un solo avión que despega (3 dolly + 5 desde atrás de las alumnas + 6–8 la fila con ese avión detrás); C pista al atardecer con las filas bajo redes (20, 21, 26 y 27 con la misma luz); D cubierta (11, 13, 14 con los derribados al fondo del mismo set, y 17 como esa misma cubierta con humo y mangueras, sin el destructor a 300 m); E un solo picado del Zero entre las nubecitas, filmado con 3 cámaras (12, 15, 16); F la mesa (9, 10). El mapa es kit",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 1,
+   "segundo": "0.00",
+   "que": "el cuadro 0 es un G a 4,5 m con 50 mm (~3 m de alto en cuadro): cinco cuerpos enteros, el chico y el cachorro quedan del tamaño de un pulgar, la sonrisa no se lee y la píldora KAMIKAZE · 17 AÑOS no dice cuál es. El paquete de gancho del guion pide al chico y al cachorro en ~45 % del alto",
+   "arreglo": "50 mm a ~2,5 m: los 3 de adelante de las rodillas arriba, el chico al centro con el cachorro en y 500–900, las cabezas de los 2 de atrás y la nariz del avión con el hinomaru detrás como 'dónde'; foco en el chico y los otros apenas blandos, o una flecha fina de la píldora a él",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 2,
+   "segundo": "2.25",
+   "que": "el gancho depende de una cara de MakeHuman a 85 mm f/2,8 con foco en los ojos, sonriendo, que se pasa a color en ese mismo plano (en color se va a ver de muñeco; también el 7, P a 85 mm de otra cara), y de un Shiba adulto de Objaverse reescalado, que se va a leer como un perro adulto en miniatura y al que hay que riggearle la cabeza para que se mueva a los 0,2 s",
+   "arreglo": "Kling para 1 y 2 (lo mismo que resuelve el B1) con un cachorro de proporciones de cachorro en el cuadro de partida; si Kling no lo logra, el 2 sigue en blanco y negro con grano y el color entra recién en el plano 3 (sin caras); el 7 a 50 mm, de tres cuartos, a contraluz, con el gorro de cuero y las antiparras puestas",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 26,
+   "segundo": "49.85",
+   "que": "fichas realistas incompletas: no dicen dónde está el sol los planos 2, 7, 8, 13, 14, 15, 16, 17, 21 y 27; el 26 lo pone 'de frente, tapado por un avión' (la regla es nunca de frente, y cuando la cámara se acerque el sol va a quedar a la vista y quemar); no dicen qué hay detrás de lo que vuela en 5, 14, 15 y 16, ni el micro-movimiento de los 5 pilotos parados en el 6 ni del chico en el 2",
+   "arreglo": "anotar el sol en cada ficha: la pista del amanecer con el sol bajo a la izquierda, la del atardecer con el sol a 30–40° del eje (o recién puesto, con el cielo encendido) y los aviones con borde de luz; el 5 con la cámara baja para que el avión se levante contra el cielo y no contra los cerros; respiración y peso que cambia en la fila del 6 y en el chico del 2",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 1,
+   "bloqueante": false,
+   "plano": 26,
+   "segundo": "49.85",
+   "que": "en el remate, la rendición no se ve: el 26 sólo muestra 15 DE AGOSTO DE 1945, y quien no sabe la fecha no entiende por qué es raro que despeguen. En el 10 (18.75), 'y le piden perdón' no tiene imagen, y la mesa del 9–10 no se conecta con los pilotos (es un detalle sin un plano antes que diga de dónde sale)",
+   "arreglo": "en el 26, la píldora JAPÓN SE RINDE junto a la fecha; en el 10, una píldora con la frase real traducida de la carta del museo (PERDÓNAME) que entra sobre la carta doblada a los 0,8 s (le da el cambio que le falta); en el 9, el gorro de cuero con las antiparras sobre la mesa y por la ventana, desenfocada, la pista con el avión",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 14,
+   "segundo": "26.70",
+   "que": "E3 es lo más caro y lo menos legible: en el 14 los aviones caen 'lejos' a 35 mm (van a ser puntos, riesgo B12) y levantan columnas de agua (simulación de fluido); en el 15 un Zero verde oscuro sale de humo negro (oscuro sobre oscuro); en el 13 no se dice dónde quedan las manos del artillero",
+   "arreglo": "14 a 85 mm desde la borda, los aviones a ~1 km con una estela larga de humo contra el cielo y el horizonte en y≈700; los chorros, sprites o partículas, no fluido; 15 con el avión saliendo hacia el lado claro del cielo gris y el humo enmarcándolo; 13 con el artillero de espalda, con las manos tapadas por su cuerpo",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 2,
+   "bloqueante": false,
+   "plano": 16,
+   "segundo": "30.10",
+   "que": "el plano dura 1,6 s, pero la ficha suma 1,0 s de avión que crece y 0,2 s a blanco: quedan 0,4 s sin definir que, si siguen en blanco, son pantalla vacía (B3) y fallan el quemado automático (> 3 % sobre 250)",
+   "arreglo": "el avión empieza a crecer a los 0,4 s y el blanco son los últimos 0,2 s, registrado como efecto en graficos.json (o un destello que deja ver la silueta), con el corte al 17 justo en 31.70",
+   "de": "storyboard"
+  },
+  {
+   "prioridad": 3,
+   "bloqueante": false,
+   "plano": 26,
+   "segundo": "49.85",
+   "que": "detalles: no hay ficha.jpg (material insuficiente para verificar B4; las puertas 4–7 fallan sin ella); el 15-ago despegaron D4Y 'Judy' de la Armada desde Ōita (Ugaki, fuente del guion), no Ki-43 desde la pista del volcán; en el 4 las islas japonesas van en rojo (el rojo es para Okinawa y la invasión) y en el 18 la barra del Ejército de EE.UU. va en verde, y 4.907 (NWWIIM) se compara con 4.675 (NHHC); en el 22, PRESIDENTE TRUMAN (540, 560) y OKINAWA sobre la isla quedan los dos al centro",
+   "arreglo": "hacer la ficha.jpg antes de los cuadros de estilo (el chico idéntico en 1, 2 y el loop; el piloto que duda en el 7–8, que no sea el chico, para no atribuirle a una persona real algo que no está documentado); 26–27 en silueta sin tipo de avión reconocible o con el D4Y; islas en ámbar → gris; barra del Ejército en azul acero claro y las dos cifras de la misma fuente (NWWIIM 4.907 contra 4.412, o NHHC 'más de 4.900' contra 4.675); TRUMAN en (540, 400)",
+   "de": "storyboard"
+  }
+ ],
+ "verificacion": [],
+ "avisos": [
+  {
+   "que": "27 planos: más de 16 en un video corto se vio como 'escenas pegadas' (Ep. 6). Los cambios cada 1–2 s salen de la acción y la cámara dentro de cada plano, no de cortar a otro lugar",
+   "evidencia": ""
+  },
+  {
+   "que": "plano 6: el gráfico (y 540–560) comparte franja con la cara (y 480–700): ubicarlo con graficos.lugar_libre y confirmarlo con tools/prueba.py",
+   "evidencia": ""
+  }
+ ],
+ "criterios_sin_nota": [],
+ "planos_dos_veces": [],
+ "reemplazo": false,
+ "delatores": [],
+ "solo_bloqueantes": false,
+ "parar_y_preguntar": false
+}
