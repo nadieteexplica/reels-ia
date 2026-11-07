@@ -1,5 +1,7 @@
 # Ep. 10 — Kamikazes
 
+**Puntaje:** 38,5 de 45 (`IDEAS.md` §2: curiosidad 5, universalidad 4, sorpresa 4, visual 3D 4, enseñanza 4, verificable 5, compartible 4).
+
 **Versión 1.2 (7-nov-2026; 1.1 y 1.2 corrigen cifras con los extractos de `fuentes.yml` y dos lecturas de NHHC).** Guion hecho con el método del guionista (`docs/GUIONISTA.md` §4; receta de `.claude/agents/guionista.md`). Trabajo previo en `guionista/`: `premisa.md`, `ganchos.md`, `guiones.md`, el duelo (`duelo/duelo.md`) y los cazadores (`prueba/puntaje.md`). Investigación en `investigacion/japon.md` y `investigacion/eeuu.md`. Va a la puerta 1 del auditor.
 
 **Pedido de Tomás (7-nov, 11:59):** explicar en un minuto qué significó de verdad ser kamikaze, con los dos mundos (Japón y EE.UU.), lo que impresionó a los estadounidenses y su relación con la bomba atómica; todo real y bien ambientado.
@@ -32,14 +34,13 @@ Pero el que pasa… casi siempre pega.
 En Okinawa mueren más de dos mil kamikazes.
 Y del otro lado, más marineros que soldados del ejército en la isla.
 Para la invasión, Japón junta casi trece mil aviones: todos, para chocar.
-Para Truman, invadir sería repetir Okinawa… pero en Japón.
+Para Truman, invadir sería repetir Okinawa, pero en Japón.
 Ese miedo es una de las razones para lanzar la bomba atómica.
 Y el día que Japón se rinde… todavía despegan kamikazes.
 
-*(Cierre en el pico: el último despegue. Vuelve a la foto del cuadro 0 como loop visual.)*
-*(Para la voz: "1945" se escribe "mil novecientos cuarenta y cinco" en el texto de ElevenLabs; en pantalla, 1945.)*
+## Una frase, una imagen
+**Cierre en el pico:** el último despegue; vuelve a la foto del cuadro 0 como loop visual. **Para la voz:** "1945" se escribe "mil novecientos cuarenta y cinco" en el texto de ElevenLabs; en pantalla, 1945.
 
-### Una frase, una imagen
 | t (s) | % | Frase | Imagen |
 |---|---|---|---|
 | 0,0–1,8 | 0–3 | Esta foto es de 1945. | E1: foto en blanco y negro con borde de papel gastado: un chico con uniforme de piloto, gorro de vuelo y cinta en la frente, sonriendo con un cachorro en los brazos; otros 4 pilotos detrás. El cachorro mueve la cabeza y la foto empieza a tomar color. Píldora MAYO DE 1945 |
@@ -54,7 +55,7 @@ Y el día que Japón se rinde… todavía despegan kamikazes.
 | 32,8–35,4 | 57–61 | En Okinawa mueren más de dos mil kamikazes. | E1: la foto del cuadro 0 se aleja y se vuelve una pared de cientos de retratos de pilotos (como el museo de Chiran); píldora OKINAWA, 1945 |
 | 35,4–39,6 | 61–68 | Y del otro lado, más marineros que soldados del ejército en la isla. | E4 mapa de Okinawa: dos barras crecen, MARINEROS 4.907 (azul) y EJÉRCITO 4.675 (verde); la de los marineros pasa. Corte a E3: cubierta con humo y marineros apagando el fuego (sin cuerpos) |
 | 39,6–44,2 | 68–76 | Para la invasión, Japón junta casi trece mil aviones: todos, para chocar. | E4 mapa de Japón: Kyushu se llena de puntitos de aviones escondidos; contador hasta 12.700; flechas de la invasión de EE.UU. hacia la costa |
-| 44,2–47,6 | 76–82 | Para Truman, invadir sería repetir Okinawa… pero en Japón. | E4: la mancha roja de Okinawa se copia sobre Kyushu |
+| 44,2–47,6 | 76–82 | Para Truman, invadir sería repetir Okinawa, pero en Japón. | E4: la mancha roja de Okinawa se copia sobre Kyushu |
 | 47,6–51,8 | 82–89 | Ese miedo es una de las razones para lanzar la bomba atómica. | E4: el mapa se aleja; dos destellos blancos en Hiroshima y Nagasaki con sus fechas (6 y 9 de agosto). Sin hongo, sin ciudad, sin víctimas (**pago**) |
 | 51,8–57,8 | 89–100 | Y el día que Japón se rinde… todavía despegan kamikazes. | E2: atardecer; una fila de aviones despega de una pista y se pierde en el cielo. Píldora 15 DE AGOSTO DE 1945. Corte a la foto del cuadro 0 (loop) |
 

@@ -1,0 +1,23 @@
+{
+ "fallas": [],
+ "avisos": [],
+ "datos": {
+  "palabras": 163,
+  "duracion_estimada_s": 56.0,
+  "pausas": 4,
+  "fuentes": [
+   "airandspaceforces.com",
+   "britannica.com",
+   "dh.scu.edu",
+   "history.navy.mil",
+   "history.state.gov",
+   "ibiblio.org",
+   "keio.ac.jp",
+   "nationalww2museum.org",
+   "pacificwrecks.com",
+   "press.uchicago.edu",
+   "teachingamericanhistory.org"
+  ],
+  "afirmaciones_verificadas": 14
+ }
+}
