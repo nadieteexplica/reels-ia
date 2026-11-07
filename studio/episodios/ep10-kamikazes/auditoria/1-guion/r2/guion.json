@@ -1,0 +1,21 @@
+{
+ "encargo": "guion",
+ "completo": true,
+ "veredicto": "APROBADO",
+ "notas": {
+  "precision": {"nota": 9, "por_que": "Cada frase de la voz cuadra con su fuente: SCU (foto del 26-may-1945, Araki 17, 'el día antes de su misión tokkō'); AAA Summary cap. 1 (leído: 'more than 50 percent' derribados, 'almost inevitably will hit', 'by far the most difficult antiaircraft problem', voluntarios -> escuadrones 'volunteered' -> drafted); NHHC 044 + NWWIIM (4.900+/4.907 marineros contra 4.675/4.412 del Ejército); NHHC 057-1 (leído: 'probably about 12,700 aircraft of all types', 'throw every aircraft that could fly into kamikaze attacks'); FRUS/TAH (1 de noviembre, 'another Okinawa', confirmado en history.state.gov d598 por búsqueda); Truman Library + Stimson (miedo al costo de invadir), dicho como 'una de las razones'; Pacific Wrecks (Ugaki, 15-ago-1945). Detalle sólo de la tabla, no de la voz: el '2 de cada 3 contra portaaviones' no aparece en el cap. 1 (el cap. 1 da 12 impactos en 24 aviones, 50 %)."},
+  "gancho": {"nota": 8, "por_que": "La voz 0-2 s es 'Este kamikaze tiene diecisiete años' ('kamikaze' a ~0,4 s, G12 sí) sobre un chico que sonríe con un cachorro y la píldora KAMIKAZE · 17 AÑOS: G1 mudo sí, G2 imposible visible sí (el kamikaze es un niño con un perrito), G3 concreto sí (edad, foto), G11 sí (el cachorro se mueve antes de 0,5 s), G8 y G13 cubiertos con la composición fiel a SCU, la píldora RECREACIÓN desde 3 s y el enlace en la descripción. El giro 'el día antes de su misión' llega a los 2,6-6,6 s."},
+  "claridad": {"nota": 8, "por_que": "13 frases de ≤ 13 palabras, una idea cada una y todas con una acción filmable (la fila que da el paso, la carta, la picada, las barras mar/isla, las flechas a Kyushu, el contador); la cadena se une con 'pero' (no saben frenarlos -> derriban la mayoría -> pero el que pasa pega -> falta invadir -> pero 13 mil aviones -> miedo -> bomba). Regla 3: la 2.ª pregunta (19 s) la contesta la segunda mitad. Regla 7: la voz quedó con diecisiete, 1945 y trece mil; el año en la 2.ª frase es pedido de Tomás. Largo ≈ 50-52 s, dentro del techo de 62 s de este episodio (checks sin fallas)."},
+  "compartible": {"nota": 8, "por_que": "Se manda con 'mira, tenía 17 años y posó con un cachorro el día antes' y lo guardan los de historia por el hilo kamikazes -> miedo a otra Okinawa -> bomba atómica, que pocos conocen."}
+ },
+ "problemas": [],
+ "verificacion": [
+  {"id": "A1", "arreglado": true, "por_que": "La primera frase ahora es 'Este kamikaze tiene diecisiete años' (6 palabras, 'kamikaze' a ~0,4 s) y el cuadro 0 lleva KAMIKAZE · 17 AÑOS: el centro está en los primeros 2 s, en voz y en mudo; el año salió del arranque y quedó en la 2.ª frase (2,6 s) por pedido explícito de Tomás."},
+  {"id": "A2", "arreglado": true, "por_que": "'Un avión por un barco' ya no está en la voz ni en la imagen; los Matices lo dan por sacado por falta de fuente."},
+  {"id": "A3", "arreglado": true, "por_que": "Se arregló de otra forma que el corte: la frase ahora tiene verbo ('En Okinawa mueren más marineros que soldados del ejército en tierra'), es la única línea del costo de Okinawa y la necesita 'Truman teme repetir Okinawa'; 'más de dos mil' salió de la voz y las cifras quedan sólo en las barras (4.907 y 4.675, consistentes con NHHC 'over 4,900' y 4,675)."},
+  {"id": "A4", "arreglado": true, "por_que": "El giro de los 19,4 s ('Los estadounidenses no saben cómo frenar a alguien que no quiere volver') abre la 2.ª pregunta en vez de sólo cambiar de lado; la contestan 23-29 s y su consecuencia (invasión, 13 mil aviones, Truman, bomba) se encadena con 'pero' hasta el pago del 82-90 %."},
+  {"id": "A5", "arreglado": true, "por_que": "La voz ya no dice 'esta foto' sobre el 3D en el cuadro 0 (dice 'La foto es de 1945' a los 2,6 s), con píldora RECREACIÓN desde los 3 s y la descripción y el primer comentario lo declaran con el enlace de SCU; la ficha copia la composición real: 3 adelante con Araki y el cachorro al centro y 2 atrás."}
+ ],
+ "eventos": [],
+ "resumen": "Los 5 puntos de la r1 quedaron arreglados (A3 por otra vía que el corte, pero resuelve el problema) y no hay bloqueantes nuevos: todas las afirmaciones de la voz cuadran con sus fuentes, sin faltas en pantalla y sin temas de la lista negra."
+}

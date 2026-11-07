@@ -51,6 +51,13 @@ El método completo para encontrar datos (pruebas, familias, métodos de caza, d
 - Firmas de otras cuentas contadas igual: los megaproyectos narrados en imperativo de Zack D. Films, la casa con patio de `hiddenhome.3d`, las frutas humanizadas.
 
 ## 4. Banco de ideas
+
+### Historia (Tomás, 7-nov-2026: quiere especializarse en historia — datos del pasado, guerras, de todo)
+| Estado | Gancho | Dato central (verificar) | Imagen 3D clave | Enseñanza |
+|---|---|---|---|---|
+| en curso (Ep. 10) | "Este kamikaze tiene diecisiete años." | Los kamikazes: chicos bajo presión; EE.UU. no sabía cómo frenarlos; el miedo a invadir Japón fue una de las razones de la bomba | La foto del cachorro que cobra vida, la cubierta con antiaéreos, el mapa | Lo que significó ser kamikaze, contado de los dos lados |
+| pendiente | (del Ep. 10, no usados) | El plan japonés: olas de 300–400 aviones por hora, "más kamikazes en 3 horas que en los 3 meses de Okinawa" (NHHC H-Gram 057) · las ~495.000 medallas Purple Heart de la invasión que se siguieron entregando 50+ años · el Ohka, "flor de cerezo", que EE.UU. llamó "Baka" · el piloto que salió 9 veces y volvió las 9 | | |
+
 Todos los datos están por **verificar** al producir; acá solo van como pista.
 
 **Estados:** `usada`, `siguiente`, `pendiente`.
