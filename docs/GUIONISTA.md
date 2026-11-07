@@ -155,6 +155,7 @@ Se corrió a ciegas sobre los 6 videos publicados (las "anclas"), con códigos a
 | "Este es el edificio más alto que Japón ha botado." + ciudad lejos y 4 píldoras (Ep. 7, 70,7 %) | Superlativo abstracto; edificio chico; letreros; "botado" | "Nadie vio caer este rascacielos de cuarenta pisos": el edificio grande achicándose en el cuadro 0, una píldora |
 | "Te estás duchando..." + señor tranquilo con los ojos cerrados (Ep. 4) | El primer segundo es la calma | La cortina ya pegada en la cara en el cuadro 0 |
 | "Te comes un helado rápido y..." (Ep. 1) | Buen gancho, pero el video repetía y se alargaba (40 s vistos de 73) | Gancho igual, guion de 35 s |
+| "Este piloto tiene veintiún años. Mañana sale en una misión kamikaze..." (Ep. 10c, 7-nov) | Sin paradoja ni pregunta; 4 protagonistas; "..." lentos; terminaba con la cita de otro piloto ("un liberal se va de este mundo") que no contestaba nada. Tomás: "pésimo" | "A este piloto kamikaze lo castigaron por seguir vivo." Un protagonista, la pregunta se paga en la última frase (reglas 13–20) |
 
 ---
 
@@ -185,6 +186,31 @@ Se corrió a ciegas sobre los 6 videos publicados (las "anclas"), con códigos a
 10. ¿La última frase, seguida de la primera, suena a una sola frase (loop)?
 11. ¿70–105 palabras (techo 128) y 25–40 s de voz estimada (techo 45 s)?
 12. ¿Sin presentaciones ("en este video", "hoy te cuento"), sin años, nombres de científicos ni "un estudio dijo" en la voz (regla de Tomás del 21-oct), y sin chilenismos?
+
+**Reglas 13–20 (Tomás, 7-nov-2026, después del guion "pésimo" del Ep. 10c: "hay corte, hay lentitud, no hay explicaciones buenas, fíjate cómo termina"). Valen para todo guion, de datos o de historia. Si una falla, el guion no sale de la mesa del guionista.**
+
+13. **Un solo protagonista, del gancho al cierre.** El "este piloto" de la primera frase es el mismo de la última. Los demás (la esposa, los compañeros, los jefes) entran sólo en relación a él. El Ep. 10c saltaba piloto → esposa → alumnas → otro piloto con una cita: eso es lo que se siente como "cortes".
+14. **Después del gancho, la frase siguiente sigue con el protagonista.** El contexto entra por él ("Su misión: estrellar su avión…"), nunca como clase de historia ("Japón, 1944, está perdiendo la guerra" fue justo donde se fueron los espectadores del Ep. 10d). Nombres difíciles o extranjeros van en pantalla, no en la voz (otro espectador se fue en "Kenichiro Oonuki tenía miedo").
+15. **Un re-gancho cada 5–7 s, marcado en el guion.** Sirve una pregunta corta ("¿Por qué?", "¿Cómo aceptas eso?"), un "pero" que da vuelta lo anterior ("Pero él tenía miedo. Y no era el único.") o un dato que sube la apuesta. Se anota en `guion.md` el segundo de cada uno; si hay un tramo de más de 7 s sin uno, se reescribe.
+16. **Cada "por qué" se contesta con una causa concreta que se puede imaginar,** no con una abstracción. Mal: "era su cultura". Bien: "si decías que no, te iban a llamar cobarde, y se lo iban a contar a tu familia". Una explicación sin escena no explica.
+17. **Las explicaciones van en cadena: la versión oficial, el "pero" con la verdad de adentro y la consecuencia.** (Ep. 10d: era un honor → pero tenía miedo → por qué igual dijo que sí → qué le pasó por no morir.)
+18. **El cierre es la frase más fuerte del video:** contesta la pregunta del tema, tiene ≤ 12 palabras y empalma con la primera. Después no va nada. Prohibido terminar con una cita de un personaje nuevo, con un dato de contexto o con un "pero no todos pensaban igual" (el Ep. 10c terminó así y no cerraba nada).
+19. **Cero "…" en el texto de la voz.** En ElevenLabs cada puntos suspensivos es un silencio de casi un segundo: en el Ep. 10c sumaban la lentitud. Sólo puntos y comas; las citas, sin comillas ("y uno le dijo: Me adelanto").
+20. **Voz con energía:** `voice_settings` con `speed` 1.12, `style` 0.45 y `stability` 0.38 (antes 1.0 / 0.30 / 0.42). Meta medida en el `words.json`: **≥ 3,1 palabras por segundo** y ningún silencio de más de 0,5 s entre frases. Si sale más lento, se recorta el texto, no se acelera el audio.
+
+### 6.3 Historias de ~1 minuto (Tomás, 7-nov-2026: "algo de un minuto, pero que no te demores en contar la historia")
+Para historias reales con un protagonista (historia, personajes, "qué pensaba alguien que…"), el largo es 50–60 s y **150–190 palabras** con la voz rápida de la regla 20. La estructura:
+
+| Tramo | Qué va | Ejemplo (Ep. 10d) |
+|---|---|---|
+| **0–3 s · Gancho** | Paradoja con el protagonista; deja la pregunta que se paga al final | "A este piloto kamikaze lo castigaron por seguir vivo." |
+| **3–10 s · Lo que está en juego** | El contexto contado a través de él, en 2 frases | "Su misión: estrellar su avión con una bomba contra un barco…" |
+| **10–20 s · La explicación oficial** | Re-gancho con pregunta + la respuesta que todos creen | "¿Cómo aceptas morir así? … era el mayor honor" |
+| **20–35 s · El "pero"** | La verdad de adentro, con causa concreta y una cita corta del protagonista (el pico del medio) | "Pero él tenía miedo… todos escribieron: Sí, con todo mi corazón. ¿Por qué? Si decías que no…" |
+| **35–50 s · La escena** | Un momento de la historia que se ve (objeto, gesto, frase) + el giro que lleva al pago | Las azaleas, "Me adelanto", el motor que falla |
+| **50–58 s · Pago y cierre** | Se paga el gancho y la última frase contesta la pregunta del tema y empalma con la primera | "Volvió vivo… le pegaron… Pero le tenían más miedo a volver vivos." |
+
+Antes de mandar la voz: **leer el guion en voz alta con cronómetro** y marcar en cada frase qué trabajo hace (gancho, contexto, re-gancho, causa, escena, pago). La que no hace ninguno, se saca. Y **cazadores de fugas (§4, paso 5) siempre, aunque haya apuro**: con 4 espectadores son 15 segundos; toda frase donde se fue alguien se reescribe antes de gastar créditos de voz.
 
 ---
 
