@@ -198,6 +198,13 @@ Se corrió a ciegas sobre los 6 videos publicados (las "anclas"), con códigos a
 19. **Cero "…" en el texto de la voz.** En ElevenLabs cada puntos suspensivos es un silencio de casi un segundo: en el Ep. 10c sumaban la lentitud. Sólo puntos y comas; las citas, sin comillas ("y uno le dijo: Me adelanto").
 20. **Voz con energía:** `voice_settings` con `speed` 1.12, `style` 0.45 y `stability` 0.38 (antes 1.0 / 0.30 / 0.42). Meta medida en el `words.json`: **≥ 3,1 palabras por segundo** y ningún silencio de más de 0,5 s entre frases. Si sale más lento, se recorta el texto, no se acelera el audio.
 
+**Regla 0 — la idea central va antes que todo (Tomás, 8-nov-2026, sobre el Ep. 10d: "el guion sigue siendo muy malo… piensa la idea central, ¿qué chucha es?").** Antes de escribir una línea, la idea central se escribe en **una frase** en `guion.md`, y el video cuelga de **un solo objeto o imagen** que vuelve en el gancho, en el medio y en el cierre (Ep. 10e: la flor de cerezo y la foto real de Chiran). Prueba: si una frase del guion no hace avanzar ese objeto o esa idea, se saca, aunque sea un dato bueno. El Ep. 10d metió castigo, honor, miedo, vergüenza, azaleas y un motor que falla: seis ideas, ninguna central. Un protagonista no alcanza si la idea no está clara.
+
+21. **¿Cuál es la idea central en una frase y cuál es el objeto que la carga?** Si no se puede decir sin "y además", hay dos videos.
+22. **El cierre cierra el objeto del gancho** (Ep. 10e: empieza con flores y termina "lo escondían detrás de una flor").
+23. **Respiros donde la historia gira:** con voz rápida, se agregan en la edición 0,4–0,6 s de silencio antes del giro y antes de la frase final (no con "…" en el texto, regla 19).
+24. **Imagen sin bombeo de zoom (Tomás, 8-nov: "esos zoom que hacemos cada dos segundos, pésimos").** Lo que cambia cada 1–2 s es el contenido (un corte a un detalle, algo que cae, un texto que aparece, la acción del dibujo), no la cámara entrando y saliendo. Fotos quietas; el movimiento lo dan elementos en cuadro (pétalos, brasas, humo) y los cortes.
+
 ### 6.3 Historias de ~1 minuto (Tomás, 7-nov-2026: "algo de un minuto, pero que no te demores en contar la historia")
 Para historias reales con un protagonista (historia, personajes, "qué pensaba alguien que…"), el largo es 50–60 s y **150–190 palabras** con la voz rápida de la regla 20. La estructura:
 
