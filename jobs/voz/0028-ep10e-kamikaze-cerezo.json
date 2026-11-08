@@ -1,0 +1,14 @@
+{
+ "mode": "tts",
+ "id": "ep10e-kamikaze-cerezo",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.4,
+  "similarity_boost": 0.8,
+  "style": 0.4,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "text": "Estas chicas despiden a un piloto kamikaze que va a morir. Y lo despiden con flores. Esas flores explican por qué los kamikazes parecían no tenerle miedo a la muerte. Son ramas de cerezo, una flor que se cae cuando está más linda. Y Japón les enseñó a sus soldados que ellos eran esa flor. Que lo más hermoso era caer jóvenes, por su país. Hasta pintaban flores de cerezo en sus bombas. Y a una bomba con piloto la llamaron así: Flor de cerezo. Y les prometieron un premio: al morir, se convertirían en dioses. Por eso subían a sus aviones sonriendo. Pero estas mismas chicas les lavaban la ropa. Y sus fundas de almohada estaban empapadas de lágrimas. El piloto de esta foto tenía veintitrés años. Antes de despegar, quemó sus cartas. Las últimas eran de su novia. Y escribió: mientras ardían, se me estremeció el corazón. No es que no tuvieran miedo. Lo escondían detrás de una flor."
+}

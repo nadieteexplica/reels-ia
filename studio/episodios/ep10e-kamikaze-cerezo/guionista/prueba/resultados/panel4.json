@@ -1,0 +1,11 @@
+{"perfil": "Diego, 24, Guadalajara (México)",
+ "videos": [
+  {"codigo": "CY", "se_queda_2s": true, "por_que_2s": "Todos hemos vivido lo de la cortina pegándose, lo entendí al toque.", "se_va_en": "final", "lo_ve_entero_pct": 60, "lo_manda": true, "a_quien": "grupo de amigos, como meme de 'te pasó'", "pregunta_que_te_dejo": "¿Por qué la cortina se te pega?"},
+  {"codigo": "DC", "se_queda_2s": true, "por_que_2s": "Foto vieja con chicas y avión, y 'piloto kamikaze que va a morir' con flores; raro y fuerte.", "se_va_en": "Y en las fotos, sonreían.", "lo_ve_entero_pct": 40, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Por qué los despedían con flores?"},
+  {"codigo": "OK", "se_queda_2s": false, "por_que_2s": "Un tipo flotando con etiqueta SIMULACIÓN, no se entiende qué es; deslizo.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 8, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+  {"codigo": "BP", "se_queda_2s": true, "por_que_2s": "Un edificio que se fue caminando, quiero ver cómo hicieron eso.", "se_va_en": "final", "lo_ve_entero_pct": 50, "lo_manda": true, "a_quien": "amigo ingeniero o de arquitectura", "pregunta_que_te_dejo": "¿Cómo se mueve un edificio entero?"},
+  {"codigo": "TH", "se_queda_2s": true, "por_que_2s": "Pájaro con ají y ratón echando fuego, gracioso y se entiende.", "se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.", "lo_ve_entero_pct": 35, "lo_manda": true, "a_quien": "al amigo que presume que aguanta el picante", "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"},
+  {"codigo": "CZ", "se_queda_2s": true, "por_que_2s": "El edificio baja con contador, se ve raro y quiero saber cómo.", "se_va_en": "Dos pisos cada diez días.", "lo_ve_entero_pct": 45, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Cómo lo demolieron sin explosión?"},
+  {"codigo": "FZ", "se_queda_2s": false, "por_que_2s": "Dibujo 3D de alguien comiendo helado con dolor de cabeza, ya sé la respuesta y es tipo caricatura; deslizo.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 12, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""}
+ ],
+ "orden": ["BP", "CY", "TH", "DC", "CZ", "FZ", "OK"]}

@@ -1,0 +1,11 @@
+{"perfil": "Andrea, 41, Guatemala",
+"videos": [
+{"codigo": "QL", "se_queda_2s": true, "por_que_2s": "Foto vieja de niñas con flores y un avión con bomba, me dio curiosidad y tristeza, y dice 'foto real'.", "se_va_en": "final", "lo_ve_entero_pct": 70, "lo_manda": true, "a_quien": "a mi hermana y al grupo de la familia, es fuerte", "pregunta_que_te_dejo": "¿Por qué despiden con flores a alguien que va a morir?"},
+{"codigo": "TL", "se_queda_2s": true, "por_que_2s": "Un pajarito comiendo ají y un ratón echando fuego, me dio risa y quise saber por qué no le pica.", "se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.", "lo_ve_entero_pct": 45, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"},
+{"codigo": "WF", "se_queda_2s": true, "por_que_2s": "Un edificio que se fue caminando suena raro, quise ver cómo.", "se_va_en": "Y lo más loco: Shanghái ya tenía práctica.", "lo_ve_entero_pct": 50, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": "¿Cómo se camina un edificio?"},
+{"codigo": "KN", "se_queda_2s": true, "por_que_2s": "Me pasa con el helado, el muñeco con la frente roja me dio risa y es de la vida diaria.", "se_va_en": "final", "lo_ve_entero_pct": 75, "lo_manda": true, "a_quien": "a mis hijos y a mi esposo, que se comen el helado a mordidas", "pregunta_que_te_dejo": "¿Por qué duele la frente si el frío está en la boca?"},
+{"codigo": "LL", "se_queda_2s": true, "por_que_2s": "A mí me pasa siempre, la cortina pegada al cuerpo; quiero saber por qué.", "se_va_en": "final", "lo_ve_entero_pct": 90, "lo_manda": true, "a_quien": "al grupo de WhatsApp de la familia y a mi mamá", "pregunta_que_te_dejo": "¿Por qué la cortina se me viene encima?"},
+{"codigo": "WI", "se_queda_2s": false, "por_que_2s": "Un hombre con casco flotando y dice simulación, no entendí qué era ni me toca.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 8, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""},
+{"codigo": "VO", "se_queda_2s": false, "por_que_2s": "Mucho texto y números, un edificio demolido en Japón, no me dice nada de mi vida.", "se_va_en": "cuadro0", "lo_ve_entero_pct": 10, "lo_manda": false, "a_quien": "", "pregunta_que_te_dejo": ""}
+],
+"orden": ["LL", "KN", "QL", "TL", "WF", "VO", "WI"]}
