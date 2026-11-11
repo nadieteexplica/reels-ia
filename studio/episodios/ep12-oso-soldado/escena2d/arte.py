@@ -557,7 +557,7 @@ def montes(L, horizonte, t=0.0, nieve=True, c1=None, c2=None):
 
 def iran(L, horizonte=1200, t=0.0):
     K.cielo_bandas(L, [(255, 214, 150), (255, 226, 176), (255, 238, 204)], 0, horizonte)
-    K.circulo(L, 200, 320, 110, (255, 244, 200), TINTA, 6)
+    K.circulo(L, 930, 520, 90, (255, 244, 200), TINTA, 6)
     montes(L, horizonte, t)
     L.d.rectangle((0, L.S(horizonte), L.S(W), L.S(H)), fill=C["arena"])
     L.d.line([L.pt(0, horizonte), L.pt(W, horizonte)], fill=TINTA, width=int(L.S(7)))
@@ -656,8 +656,8 @@ def libreta(L, cx, cy, s=1.0, rot=0.0, foto=True, t=0.0):
     fx0, fy0 = cx - w / 2 + 40 * s, cy - h / 2 + 130 * s
     K.caja_red(L, fx0, fy0, fx0 + 260 * s, fy0 + 330 * s, 10 * s, (200, 220, 230), TINTA, 6)
     if foto:
-        oso(L, fx0 + 130 * s, fy0 + 560 * s, alto=520 * s, t=0, gorra=True)
-        K.caja_red(L, fx0 - 6 * s, fy0 + 330 * s, fx0 + 270 * s, fy0 + 600 * s, 0, C["papel"])
+        oso(L, fx0 + 130 * s, fy0 + 384 * s, alto=300 * s, t=0, gorra=True, cabezon=1.5)
+        K.caja_red(L, fx0 - 6 * s, fy0 + 333 * s, fx0 + 270 * s, fy0 + 386 * s, 0, C["papel"])
         K.caja_red(L, fx0, fy0, fx0 + 260 * s, fy0 + 330 * s, 10 * s, None, TINTA, 6)
     return (cx + 40 * s, cy - h / 2 + 130 * s)      # esquina donde van los renglones
 
