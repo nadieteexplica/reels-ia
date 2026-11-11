@@ -1,0 +1,14 @@
+{
+ "mode": "tts",
+ "id": "ep11-guerra-emus",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.8,
+  "style": 0.45,
+  "use_speaker_boost": true,
+  "speed": 1.12
+ },
+ "text": "Este pájaro le ganó una guerra al ejército de Australia. Es un emú: enorme, y no vuela. Unos veinte mil se estaban comiendo el trigo de los granjeros. Así que el gobierno mandó tres soldados con ametralladoras. Fácil, ¿no? Pero el emú corre a casi cincuenta kilómetros por hora. Les prepararon una emboscada, y una ametralladora se trabó. Subieron otra a un camión. En ese terreno, los emús eran más rápidos. Según los soldados, cada grupo tenía un vigía que avisaba. El comandante dijo que aguantaban las balas como tanques. Imagínate explicarle eso a tu jefe. En poco más de un mes, el ejército se retiró. Y los emús siguieron comiendo trigo. ¿Y la única defensa que quedó? Una cerca. Marcador final: ejército, cero. Emús, uno."
+}
