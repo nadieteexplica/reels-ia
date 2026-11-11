@@ -21,6 +21,12 @@ Este pájaro le ganó una guerra al ejército de Australia. Es un emú: enorme, 
 ## Puerta 1 (auditor independiente, 11-nov)
 v1: CAMBIOS (141 palabras, 6 cifras, "reja" no se entiende igual en México/Argentina, "los frenaron con una reja" decía más que las fuentes, faltaba "una" ametralladora y atribuir el vigía a los soldados; el gancho pasó en 4 de 4 espectadores). v2 = la reescritura del auditor (125 palabras, 3 cifras). Condición: mantener en pantalla "cayeron menos de 1.000 de 20.000".
 
+## Puertas 6 y 7 (auditor independiente, 11-nov)
+r1: NO APROBADO (8,0; 2 bloqueantes: cabeza del emú-tanque tapada por el casco y "¡PING!"; "50 km/h" sin "casi"). r2: **APROBADO, 8,6** (gancho 9, claridad 9, ritmo 9, belleza 8, animación 8, subtítulos 8, precisión 9; audio −14,2 LUFS, pico −3,6 dBTP). Menores que quedan: a los 9,0 s un soldado cruza el subtítulo al caer; a los 33,5 s las cabezas pasan detrás de "COMIENDO".
+
+## Predicción
+Se quedó sobre 72,6 %; % visto sobre 75 %; envíos en IG sobre 10,6 por mil. Punto débil: 5–11 s (cifras antes de "Fácil, ¿no?").
+
 ## Fuentes (leídas en el párrafo, 11-nov-2026)
 1. Encyclopaedia Britannica, "Emu War": https://www.britannica.com/topic/Emu-War — nov–dic 1932; 3 artilleros (Meredith, McMurray, O'Halloran) contra ~20.000 emús; 2 ametralladoras Lewis y 10.000 balas; granjeros veteranos de la 1.ª Guerra; 4-nov emboscada en una aguada y una ametralladora se trabó; desde un camión no podían apuntar y los emús corrían más rápido en terreno disparejo; los emús tenían un vigía; retiro el 8-nov, vuelta el 12-nov; Meredith informó 986 muertos al 10-dic (cifra discutida); "face machine guns with the invulnerability of tanks"; los emús, "vencedores"; después recompensas y, como única defensa permanente, cercos de larga distancia.
 2. Popular Science, "Emus once faced down the Australian army—and won": https://www.popsci.com/?p=734965 — 3 soldados, 2 Lewis, 10.000 balas (.303); una ametralladora se trabó; la ametralladora montada en un vehículo falló por el terreno; emú: 2.ª ave más grande, > 6 pies (1,8 m), ~30 mph (48 km/h); cita de los tanques; 986 informados con 9.860 balas; al final, cerco (hoy ~850 millas).
