@@ -21,6 +21,12 @@ Este oso fue soldado. Con rango, número y libreta militar. Era un cachorro hué
 ## Puerta 1 (auditor independiente, 11-nov)
 v1: CAMBIOS (nada falso, pero "en plena batalla" exageraba: el Museo dice antes de la batalla, unas tres semanas, de noche; faltaba atribuir los 40 kg y "en dos patas"; "jugaba a las luchas" suena raro en México/Argentina; cierre largo y flojo con las estatuas; pidió decir que no disparaba). v2 = la reescritura del auditor, con una diferencia: se mantiene "Lo ascendieron a cabo" porque está en las dos fuentes (BBC Wildlife: ascendido a cabo; el Museo lo titula "el cabo más famoso"). Sin estatuas en la voz.
 
+## Puertas 6 y 7 (auditor independiente, 11-nov)
+r1: NO APROBADO (8,4; 1 bloqueante: el humo del barco tapaba la cara del oso en 13,3–14,4 s). r2: **APROBADO, 8,4** (gancho 8, claridad 9, ritmo 9, belleza 8, animación 8, subtítulos 8, precisión 9; audio −14,2 LUFS). Condición del auditor: `madeForKids:false` y sin la jarra en miniatura ni título (cumplido).
+
+## Predicción
+Se quedó sobre 72,6 %; % visto sobre 75 %; envíos en IG sobre el Ep. 11. Punto débil: 28–34 s.
+
 (Para la voz se escribe "Vóitek"; en pantalla y subtítulos va "WOJTEK".)
 
 ## Fuentes (leídas en el párrafo, 11-nov-2026)
