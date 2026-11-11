@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 6719,
+ "creditos_usados": 7011,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -85,5 +85,8 @@
  },
  "0029-ep11-guerra-emus.json": {
   "tts": "ep11-guerra-emus"
+ },
+ "0030-ep12-oso-soldado.json": {
+  "tts": "ep12-oso-soldado"
  }
 }
