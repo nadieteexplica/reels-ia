@@ -115,7 +115,7 @@ def arbusto(L, x, y, s=1.0, c=None):
         K.circulo(L, x + dx * s, y + dy * s - 40 * s, r * s + 6, TINTA)
     for dx, dy, r in pts:
         K.circulo(L, x + dx * s, y + dy * s - 40 * s, r * s, c)
-    L.d.rectangle((L.S(x - 190 * s), L.S(y - 8 * s), L.S(x + 190 * s), L.S(y + 60 * s)), fill=c)
+    L.d.rectangle((L.S(x - 172 * s), L.S(y - 30 * s), L.S(x + 172 * s), L.S(H + 10)), fill=c)
 
 
 def polvo(L, x, y, t, n=7, s=1.0, dir_x=-1, semilla=1):
@@ -177,8 +177,10 @@ def emu(L, x, y, alto=700, t=0.0, mira=1, corre=0.0, ojos="normal", casco=False,
         L.d.arc((L.S(px - 34 * k), L.S(py - 20 * k), L.S(px + 34 * k), L.S(py + 30 * k)), 20, 160, fill=C["pluma2"], width=int(L.S(7 * k)))
     # alita ridícula
     aw = math.sin(t * 34) * 38 * alas
-    K.poligono(L, [(cx - s * 30 * k, cy - 30 * k), (cx - s * 150 * k, cy - (10 + aw) * k - 60 * k * alas), (cx - s * 120 * k, cy + 50 * k - aw * k), (cx - s * 20 * k, cy + 40 * k)],
-               C["pluma3"], TINTA, 6)
+    wy = cy + 6 * k - (70 * k + aw * k) * alas
+    K.elipse(L, cx - s * 50 * k, wy, 118 * k, (58 + 10 * alas) * k, C["pluma3"], TINTA, 6)
+    for i in range(3):
+        L.d.arc((L.S(cx - s * 50 * k - (90 - i * 30) * k), L.S(wy - 30 * k), L.S(cx - s * 50 * k + (90 - i * 30) * k), L.S(wy + 40 * k)), 30, 150, fill=C["pluma2"], width=int(L.S(6 * k)))
     # cuello y cabeza
     base = (cx + s * 150 * k * (1 - 0.3 * squash), cy - 70 * k)
     largo = 330 * k * cuello_u
