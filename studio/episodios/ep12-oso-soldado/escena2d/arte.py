@@ -574,7 +574,7 @@ def campamento(L, horizonte=1200, t=0.0):
         K.poligono(L, [(x - 50 * s, horizonte + 40), (x, horizonte - 120 * s), (x + 50 * s, horizonte + 40)], C["oliva2"], TINTA, 5)
 
 
-def barco(L, x, y, s=1.0, t=0.0):
+def barco(L, x, y, s=1.0, t=0.0, humo=True):
     """Barco de transporte de costado; (x, y) = centro de la línea de flotación."""
     by = y + math.sin(t * 2) * 8 * s
     K.poligono(L, [(x - 520 * s, by - 190 * s), (x + 560 * s, by - 190 * s), (x + 450 * s, by + 40 * s), (x - 440 * s, by + 40 * s)], C["casco_b"], TINTA, 8)
@@ -585,7 +585,7 @@ def barco(L, x, y, s=1.0, t=0.0):
     for dx in (-110, 90):
         K.caja_red(L, x + dx * s - 50 * s, by - 500 * s, x + dx * s + 50 * s, by - 330 * s, 8 * s, C["amarillo"], TINTA, 7)
         K.caja_red(L, x + dx * s - 50 * s, by - 500 * s, x + dx * s + 50 * s, by - 456 * s, 8 * s, TINTA)
-        for j in range(3):
+        for j in range(3 if humo else 0):
             u = (t * 0.5 + j / 3) % 1.0
             K.circulo(L, x + dx * s - u * 200 * s, by - 540 * s - u * 240 * s, (30 + 60 * u) * s, (255, 255, 255, int(220 * (1 - u))))
 
@@ -608,7 +608,7 @@ def muelle(L, y=1500):
         L.d.line([L.pt(i * 160 + 40, y), L.pt(i * 160 + 40, H)], fill=(146, 128, 108), width=int(L.S(7)))
 
 
-def batalla(L, horizonte=1220, t=0.0):
+def batalla(L, horizonte=1220, t=0.0, fogonazos=False):
     K.cielo_bandas(L, [C["ocaso3"], C["ocaso2"], C["ocaso"], (255, 206, 130)], 0, horizonte)
     # cerro con el monasterio en ruinas
     K.poligono(L, [(380, horizonte), (640, horizonte - 520), (860, horizonte - 560), (1180, horizonte)], (96, 70, 92), TINTA, 7)
@@ -623,7 +623,7 @@ def batalla(L, horizonte=1220, t=0.0):
             K.circulo(L, 300 + i * 300 + math.sin(u * 5 + i) * 40, horizonte - 250 - i * 90 - u * 420, 40 + 70 * u, (70, 58, 76, int(170 * (1 - u))))
     for i in range(3):                              # fogonazos lejanos
         u = (t * 1.3 + i * 0.37) % 1.0
-        if u < 0.12:
+        if fogonazos and u < 0.12:
             estrella_golpe(L, 180 + i * 330, horizonte - 120 - i * 60, 70 + 200 * u, (255, 236, 150), 8)
     L.d.rectangle((0, L.S(horizonte), L.S(W), L.S(H)), fill=C["campo"])
     L.d.line([L.pt(0, horizonte), L.pt(W, horizonte)], fill=TINTA, width=int(L.S(7)))

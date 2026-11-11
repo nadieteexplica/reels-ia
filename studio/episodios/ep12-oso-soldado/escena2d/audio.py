@@ -241,7 +241,7 @@ add(fx, pop_(), V.tw("municiones") - 0.05, 0.5)
 add(fx, pop_(500, 900, 0.1), T[15][0] + 0.05, 0.4)
 for i in range(5):
     add(fx, golpe(0.18, 55), T[15][0] + 0.3 + i * 0.58, 0.6)
-add(fx, golpe(0.35, 60), V.T_CUAR - 0.05, 0.9); add(fx, pop_(600, 1500, 0.14), V.T_CUAR - 0.05, 0.6); add(fx, pop_(), V.T_DOS - 0.05, 0.5)
+add(fx, golpe(0.35, 60), V.T_CUAR - 0.05, 0.9); add(fx, pop_(600, 1500, 0.14), V.T_CUAR - 0.05, 0.6); add(fx, golpe(0.18, 55), V.T_DOS - 0.05, 0.6)
 add(fx, ding(79, 0.8), T[16][0], 0.6)
 add(fx, whoosh(0.3), T[17][0] - 0.1, 0.5); add(fx, pop_(), T[17][0] + 0.05, 0.4)
 for i in range(3):

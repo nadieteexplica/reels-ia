@@ -74,7 +74,7 @@ T_SE = tw("Se", 33.8)
 T_NOMBRE = tw("Vóitek")
 
 CORTES = [0.0, T_CON - 0.06, T_ERA - 0.08, T_UNOS - 0.05, T_DICEN - 0.06, T_YQUE - 0.04, T_PERO - 0.08, T_YEL - 0.06, T_LO - 0.08, T_YSE - 0.04,
-          T_RASO_S - 0.1, T_YEN - 0.08, T_NO - 0.1, T_CARG - 0.05, T_SEGUN - 0.08, T_IMAG - 0.06, tw("y", 25.2) - 0.04, T_ASC - 0.06, T_YSU - 0.06, T_AL - 0.1,
+          T_RASO_S - 0.1, T_YEN - 0.08, T_NO - 0.02, T_CARG - 0.05, T_SEGUN - 0.08, T_IMAG - 0.06, tw("y", 25.2) - 0.04, T_ASC - 0.06, T_YSU - 0.06, T_AL - 0.1,
           T_SE - 0.08, DUR]
 T = {i + 1: (CORTES[i], CORTES[i + 1]) for i in range(len(CORTES) - 1)}
 NP = len(T)
@@ -318,7 +318,7 @@ def p10(L, t, a, b):
     bx = 620 + e * 120
     by = 1720
     A.oso(L, bx - 390, 1560 + math.sin(t * 2) * 10, alto=900, t=t, ojos="feliz", brazo_der=150 + 25 * math.sin(t * 9), boca=0.5)
-    A.barco(L, bx, by, 1.3, t)
+    A.barco(L, bx, by, 1.3, t, humo=False)
     L.d.rectangle((0, L.S(1790), L.S(W), L.S(H)), fill=C["mar"])
     for i in range(3):
         y = 1800 + i * 44
@@ -354,11 +354,11 @@ def p12(L, t, a, b):
         K.pildora(L, "ANTES DE LA BATALLA", 540, 400, 54, C["blanco"], TINTA, pop(t - T_ANTES + 0.05))
     dos_con_caja(L, 300 + e * 70, 1850, t)
     tra = t >= T_SEPUSO
-    ox = W + 300 - sale((t - T_ANTES) / 0.6) * 560
+    ox = W + 300 - sale((t - T_ANTES) / 0.6) * 470
     A.oso(L, ox, 1860, alto=600, t=t, ojos="serio" if tra else "normal", camina=1.0 if t < T_ANTES + 0.6 else 0, mira=-1,
           brazo_der=10 + (120 * abs(math.sin((t - T_SEPUSO) * 10)) if tra else 0), brazo_izq=10 + (120 * abs(math.cos((t - T_SEPUSO) * 10)) if tra else 0))
     if tra:
-        K.pildora(L, "¡YO PUEDO!", 800, 1360 - 620, 60, C["amarillo"], TINTA, pop(t - T_SEPUSO))
+        K.pildora(L, "¡YO PUEDO!", 860, 1360 - 620, 60, C["amarillo"], TINTA, pop(t - T_SEPUSO))
 
 
 def fusil(L, x, y, s=1.0):
@@ -373,9 +373,9 @@ def p13(L, t, a, b):
     # "No disparaba:"
     rayos(L, t, (240, 214, 150), (248, 226, 172), 540, 760)
     e = t - a
-    fusil(L, 540, 620, 1.3)
-    u = pop(e - 0.08)
+    u = pop(e + 0.12)
     if u > 0:
+        fusil(L, 540, 620, 1.3 * u)
         K.circulo(L, 540, 620, 330 * u, None, TINTA, 62)
         K.circulo(L, 540, 620, 330 * u, None, C["rojo"], 44)
         K.linea(L, [(540 - 232 * u, 620 - 232 * u), (540 + 232 * u, 620 + 232 * u)], TINTA, 62)
@@ -412,29 +412,25 @@ def p15(L, t, a, b):
     o = A.oso(L, 300 + math.sin(t * 2) * 10, 1860, alto=1300, t=t, brazo_der=88, brazo_izq=88, camina=0.55, ojos="serio")
     cx, cy = o["mano"][0] - 70, o["mano"][1] - 90
     A.caja_muni(L, cx, cy, 1.25, math.sin(t * 5) * 0.03)
-    K.pildora(L, "SEGÚN EL MUSEO DE HISTORIA DE POLONIA", 540, 250, 38, C["blanco"], TINTA, pop(e - 0.05))
+    K.pildora(L, "SEGÚN EL MUSEO DE HISTORIA DE POLONIA", 540, 250, 46, C["blanco"], TINTA, pop(e - 0.05))
     if t >= T_CUAR - 0.05:
         K.pildora(L, "40 kg", 800, 560, 130, C["rojo"], C["blanco"], pop(t - T_CUAR + 0.05))
-    if t >= T_DOS - 0.05:
-        u = pop(t - T_DOS + 0.05)
-        K.pildora(L, "EN DOS PATAS", 700, 1540, 66, C["amarillo"], TINTA, u)
-        for px in (200, 400):
-            K.linea(L, [(px + 190, 1620), (px + 60, 1760)], TINTA, 16 * u)
-            K.linea(L, [(px + 190, 1620), (px + 60, 1760)], C["amarillo"], 8 * u)
-
 
 @dib
 def p16(L, t, a, b):
     # "Imagínate" — el viejo
     rayos(L, t, C["amarillo"], (255, 226, 110))
-    K.viejo(L, 540, 2280, alto=1000, boca=boca(t), t=t, gesto="tazon", mira=1)
-    txt(L, "IMAGÍNATE…", 540, 360, 130 * pop(t - a - 0.03), C["rojo"], borde=9, color_borde=TINTA)
+    K.viejo(L, 540, 1290, alto=760, boca=boca(t), t=t, gesto="tazon", mira=1)
+    L.d.rectangle((0, L.S(1280), L.S(W), L.S(H)), fill=C["madera"])            # mesón: el viejo queda detrás
+    L.d.line([L.pt(0, 1280), L.pt(W, 1280)], fill=TINTA, width=int(L.S(8)))
+    L.d.rectangle((0, L.S(1340), L.S(W), L.S(H)), fill=(150, 104, 60))
+    txt(L, "IMAGÍNATE…", 540, 300, 130 * pop(t - a - 0.03), C["rojo"], borde=9, color_borde=TINTA)
 
 
 @dib
 def p17(L, t, a, b):
     # "estar en la guerra y que tu compañero sea un oso."
-    A.batalla(L, 1100, t)
+    A.batalla(L, 1100, t, fogonazos=True)
     e = t - a
     ve = t >= T_COMP
     # trinchera: sacos de arena adelante
