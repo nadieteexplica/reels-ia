@@ -1,0 +1,72 @@
+name: render-2d-b
+# Videos 2D por código (kit2d): renderiza el episodio entero en una máquina (minutos, sin GPU) y sube el MP4 a un Release.
+# Se dispara al subir un JSON a jobs/render2d/: {"episodio": "ep11-guerra-emus", "tag": "ep11", "prerelease": false, "sufijo": ""}
+# tag = epNN-borrador (prerelease, para revisar) o epNN (URL pública estable para Metricool; sólo con el video aprobado).
+on:
+  push:
+    paths: ["jobs/render2d-b/**.json"]
+  workflow_dispatch:
+    inputs:
+      trabajo:
+        description: "Ruta del JSON en jobs/render2d/"
+        required: true
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Dependencias
+        run: |
+          timeout 120 sudo apt-get -qq update && timeout 180 sudo apt-get -qq install -y --no-install-recommends ffmpeg > /dev/null || { pip install -q imageio-ffmpeg; sudo ln -sf "$(python -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" /usr/local/bin/ffmpeg; }
+          pip install -q numpy scipy pillow==12.3.0
+      - name: Trabajo
+        id: t
+        run: |
+          J="${{ github.event.inputs.trabajo }}"
+          if [ -z "$J" ]; then J=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'jobs/render2d-b/*.json' | tail -1); fi
+          echo "trabajo: $J"; test -n "$J"
+          python - "$J" <<'PY' >> "$GITHUB_OUTPUT"
+          import json, sys
+          j = json.load(open(sys.argv[1]))
+          print("ep=" + j["episodio"]); print("tag=" + j["tag"]); print("pre=" + ("1" if j.get("prerelease") else "0")); print("suf=" + j.get("sufijo", ""))
+          PY
+      - name: Render (cuadros en paralelo), audio y MP4
+        env:
+          EP: ${{ steps.t.outputs.ep }}
+        run: |
+          cd "studio/episodios/$EP/escena2d"
+          test -f prep.py && python prep.py
+          FIN=$(python -c "import video; print(video.FIN)")
+          N=$(nproc); mkdir -p "$RUNNER_TEMP/f" "$RUNNER_TEMP/a"
+          for i in $(seq 0 $((N-1))); do
+            A=$(( FIN * i / N + 1 )); B=$(( FIN * (i+1) / N ))
+            python video.py "$RUNNER_TEMP/f" $A $B &
+          done
+          wait
+          test "$(ls "$RUNNER_TEMP/f" | wc -l)" = "$FIN"
+          python audio.py "$RUNNER_TEMP/a"
+          ffmpeg -y -v error -framerate 30 -start_number 1 -i "$RUNNER_TEMP/f/%05d.png" -i "$RUNNER_TEMP/a/mix.wav" -c:v libx264 -preset medium -crf 17 \
+            -pix_fmt yuv420p -r 30 -c:a aac -b:a 192k -shortest -movflags +faststart "$RUNNER_TEMP/$EP${{ steps.t.outputs.suf }}.mp4"
+          ffmpeg -y -v error -i "$RUNNER_TEMP/f/$(printf %05d ${PORTADA:-1}).png" -q:v 2 "$RUNNER_TEMP/portada${{ steps.t.outputs.suf }}.jpg"
+          ffprobe -v error -show_entries format=duration,size -of default=nw=1 "$RUNNER_TEMP/$EP${{ steps.t.outputs.suf }}.mp4"
+      - name: Subir al Release
+        env:
+          EP: ${{ steps.t.outputs.ep }}
+          TAG: ${{ steps.t.outputs.tag }}
+        run: |
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            if [ "${{ steps.t.outputs.pre }}" = "1" ]; then gh release create "$TAG" --prerelease --title "$EP (borrador)" --notes "Borrador interno. No publicar.";
+            else gh release create "$TAG" --title "$EP" --notes "Video final de $EP"; fi
+          fi
+          gh release upload "$TAG" "$RUNNER_TEMP/$EP${{ steps.t.outputs.suf }}.mp4" "$RUNNER_TEMP/portada${{ steps.t.outputs.suf }}.jpg" --clobber
+          echo "URL: https://github.com/$GH_REPO/releases/download/$TAG/$EP${{ steps.t.outputs.suf }}.mp4"
