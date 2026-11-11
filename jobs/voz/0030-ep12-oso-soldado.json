@@ -1,0 +1,14 @@
+{
+ "mode": "tts",
+ "id": "ep12-oso-soldado",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.8,
+  "style": 0.45,
+  "use_speaker_boost": true,
+  "speed": 1.12
+ },
+ "text": "Este oso fue soldado. Con rango, número y libreta militar. Era un cachorro huérfano, y unos soldados polacos lo adoptaron en Irán. Dicen que jugaba a luchar con ellos y que le gustaba la cerveza. Pero a los soldados los mandaron a pelear a Italia. ¿Y el oso? Lo enlistaron, y se fue con ellos. Soldado raso. Y en Italia, antes de una gran batalla, se puso a trabajar. No disparaba: cargaba cajas de municiones. Según un museo de Polonia, de cuarenta kilos, y en dos patas. Imagínate estar en la guerra y que tu compañero sea un oso. Lo ascendieron a cabo. Y su compañía cambió su insignia: un oso cargando un proyectil. Al terminar la guerra, se retiró a un zoológico de Escocia. Se llamaba Vóitek."
+}
