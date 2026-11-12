@@ -197,7 +197,7 @@ def p2(L, t, a, b):
     k = sum(1 for g in golpes if t >= g)
     ult = max([g for g in golpes if t >= g], default=None)
     e = (t - ult) if ult is not None else 9
-    c = A.celular(L, 400, 900, 540, 1060, cara="susto" if e < 0.25 else "enojo", t=t, temblor=1.0 if e < 0.12 else 0, n=(NX, NY))
+    c = A.celular(L, 400, 900, 540, 1060, cara="susto" if e < 0.22 else "normal", t=t, temblor=1.0 if e < 0.12 else 0, n=(NX, NY))
     toque = (575, 800)
     atras = (760, 700)
     u = clamp(e / 0.12) if ult is not None else 1
@@ -207,14 +207,16 @@ def p2(L, t, a, b):
         ee = t - g
         if ee < 0:
             continue
-        uu = clamp(ee / 0.45)
-        x = lerp(toque[0], 860 + (i % 2) * 70, uu)
-        y = lerp(toque[1], 330 + (i // 2) * 90, uu) - math.sin(uu * math.pi) * 220
-        A.electron(L, x, y, 44, t, "susto", fase=i)
+        uu = clamp(ee / 0.4)
+        if uu >= 1:
+            continue
+        x = lerp(toque[0], 880, uu)
+        y = lerp(toque[1], 420, uu) - math.sin(uu * math.pi) * 160
+        A.electron(L, x, y, 44 * (1 - uu * 0.7), t, "susto", fase=i)
         if ee < 0.14:
             A.estrella_golpe(L, toque[0], toque[1], 120 * pop(ee, 0.14), C["elec"], 8)
-    if k:
-        K.pildora(L, f"−{k}", 400, 230, 120, C["coral"], C["blanco"], pop(e, 0.2))
+    if k and e < 0.36:
+        K.pildora(L, "−1", 400, 230, 120, C["coral"], C["blanco"], pop(e, 0.2))
 
 
 @dib
@@ -223,16 +225,16 @@ def p3(L, t, a, b):
     A.fondo_puntos(L, C["menta"], C["menta2"], t)
     e = t - a
     sal = t >= T_YESO
-    c = A.celular(L, 400, 900, 540, 1060, cara="feliz" if not sal else "normal", t=t, n=(NX, NY), mira=(60, 0) if sal else (0, 0))
-    K.pildora(L, "ASÍ FUNCIONA", 420, 230, 84, C["morado"], C["blanco"], pop(e - 0.05))
+    c = A.celular(L, 440, 1000, 640, 1260, cara="feliz" if not sal else "normal", t=t, n=(NX, NY), mira=(60, 0) if sal else (0, 0))
+    K.pildora(L, "ASÍ FUNCIONA", 440, 220, 84, C["morado"], C["blanco"], pop(e - 0.05))
     if sal:
         u = sale((t - T_YESO) / 0.35)
         x = W + 300 - u * 500
-        A.dedo(L, x, 620 + math.sin(t * 8) * 16, ang=76 + math.sin(t * 8) * 5, largo=1500, tipo="salchicha", cara="feliz", t=t)
+        A.dedo(L, x + 40, 640 + math.sin(t * 8) * 16, ang=80 + math.sin(t * 8) * 5, largo=1500, tipo="salchicha", cara="feliz", t=t)
         if t >= T_SALCH - 0.05:
             ee = t - T_SALCH + 0.05
-            A.estrella_golpe(L, 900, 380, 150 * pop(ee), C["elec"], 10, rot=0.2)
-            txt(L, "¿?", 900, 380, 120 * pop(ee), C["coral"], borde=7, color_borde=TINTA)
+            A.estrella_golpe(L, 910, 420, 140 * pop(ee), C["elec"], 10, rot=0.2)
+            txt(L, "¿?", 910, 420, 120 * pop(ee), C["coral"], borde=7, color_borde=TINTA)
 
 
 @dib
@@ -334,23 +336,27 @@ def p7(L, t, a, b):
 
 @dib
 def p8(L, t, a, b):
-    # "No importa cuánto aprietes."
+    # "No importa cuánto aprietes." — un toque suave y uno fuerte dan lo mismo
     A.fondo_puntos(L, (255, 196, 170), (250, 172, 146), t)
     e = t - a
-    aprieta = 14 * math.sin(t * 46)
-    c = A.celular(L, 540, 1000 + abs(aprieta) * 0.6, 640, 1260, cara="dormido", t=t, n=(NX, NY), mira=(-120, 0))
-    for i in range(3):                                     # Zzz
-        u = (e * 0.7 + i / 3) % 1.0
-        txt(L, "z", 150 - i * 30 - u * 30, 520 - i * 70 - u * 80, 70 + i * 26, C["blanco"], borde=5, color_borde=TINTA)
-    A.dedo(L, 690 + aprieta * 0.4, 930 + abs(aprieta), ang=-58, largo=1300, s=1.15, cara="susto", t=t)
-    for i in range(6):                                     # líneas de esfuerzo
-        an = math.radians(200 + i * 28)
-        r0, r1 = 130, 200 + 30 * math.sin(t * 30 + i)
-        K.linea(L, [(680 + math.cos(an + 2.6) * r0, 960 + math.sin(an + 2.6) * r0), (680 + math.cos(an + 2.6) * r1, 960 + math.sin(an + 2.6) * r1)], TINTA, 12)
-    for i in range(2):                                     # gotas de sudor
-        u = (e * 1.6 + i * 0.5) % 1.0
-        K.circulo(L, 900 + i * 90, 520 + u * 160, 20, (150, 214, 240), TINTA, 4)
-    K.pildora(L, "APRETAR NO SIRVE", 540, 1400, 80, C["coral"], C["blanco"], pop(e - 0.05))
+    mitad = T_APR - 0.25
+    fuerte = t >= mitad
+    ee = (t - mitad) if fuerte else e
+    toca = ee >= 0.3
+    aprieta = 12 * math.sin(t * 46) if (fuerte and toca) else 0
+    c = A.celular(L, 540, 1000 + abs(aprieta) * 0.5, 640, 1260, cara="feliz" if toca else "normal", t=t, n=(NX, NY), mira=(-120, 0))
+    u = sale(clamp(ee / 0.3))
+    tip = lp((860, 700), (690, 930), u)
+    A.dedo(L, tip[0] + aprieta * 0.4, tip[1] + abs(aprieta), ang=-58, largo=1300, s=1.15, cara="susto" if fuerte else "feliz", t=t)
+    if fuerte and toca:
+        for i in range(6):                                 # líneas de esfuerzo
+            an = math.radians(100 + i * 32)
+            r0, r1 = 120, 190 + 30 * math.sin(t * 30 + i)
+            K.linea(L, [(660 + math.cos(an) * r0, 960 + math.sin(an) * r0), (660 + math.cos(an) * r1, 960 + math.sin(an) * r1)], TINTA, 12)
+    K.pildora(L, "FUERTE" if fuerte else "SUAVE", 300, 220, 100, C["coral"] if fuerte else C["blanco"], C["blanco"] if fuerte else TINTA, pop(ee - 0.02))
+    if toca:
+        visto(L, 300, 1440, 90, pop(ee - 0.3))
+        K.pildora(L, "FUNCIONA", 620, 1440, 84, C["verde2"], C["blanco"], pop(ee - 0.3))
 
 
 def equis(L, x, y, r, u=1.0):
@@ -438,6 +444,7 @@ def mano_guante(L, x, y, s=1.0):
 def escena_corea(L, t, e, toca=True):
     A.invierno(L, 1380, t)
     c = A.celular(L, 360, 760, 460, 900, cara="feliz", t=t, n=(NX, NY))
+    mano_guante(L, 360, 1290, 1.1)
     px, py = 470, 700
     golpe = (t * 2.6) % 1.0
     u = suave(clamp(golpe / 0.2)) if toca else 1
@@ -478,17 +485,17 @@ def p14(L, t, a, b):
     A.fondo_puntos(L, C["menta"], C["menta2"], t)
     e = t - a
     igual = t >= T_SON - 0.05
-    c = A.celular(L, 540, 520, 380, 720, cara="amor" if igual else "feliz", t=t, n=(NX, NY))
     us = sale((t - T_UNA + 0.1) / 0.3) if t >= T_UNA - 0.1 else 0
     ud = sale((t - T_YTU2 + 0.1) / 0.3) if t >= T_YTU2 - 0.1 else 0
     bail = math.sin(t * 6) * 5
     if us > 0:
-        A.dedo(L, 260, 1290 + (1 - us) * 900 + bail, ang=90 + bail * 0.4, largo=900, s=1.1, tipo="salchicha", cara="feliz", t=t)
+        A.dedo(L, 230, 640 + (1 - us) * 1500 + bail, ang=90 + bail * 0.3, largo=1600, s=1.1, tipo="salchicha", cara="feliz", t=t)
     if ud > 0:
-        A.dedo(L, 820, 1290 + (1 - ud) * 900 - bail, ang=90 - bail * 0.4, largo=900, s=1.1, cara="feliz", t=t, mira=-1)
+        A.dedo(L, 850, 640 + (1 - ud) * 1500 - bail, ang=90 - bail * 0.3, largo=1600, s=1.1, cara="feliz", t=t, mira=-1)
+    c = A.celular(L, 540, 350, 250, 460, cara="amor" if igual else "feliz", t=t, n=(NX, NY))
     if igual:
         ee = t - T_SON + 0.05
-        txt(L, "=", 540, 1520, 330 * pop(ee), C["blanco"], borde=14, color_borde=TINTA)
+        txt(L, "=", 540, 800, 300 * pop(ee), C["blanco"], borde=14, color_borde=TINTA)
     if t >= T_MISMO:
         confeti(L, t, T_MISMO)
 

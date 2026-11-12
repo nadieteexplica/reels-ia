@@ -217,7 +217,7 @@ fx = np.zeros(N)
 T = V.T
 add(fx, zap(), 0.02, 0.8); add(fx, zap(0.12, 2400, 900), 0.22, 0.5); add(fx, pop_(500, 1400, 0.12), V.T_ROBA, 0.7); add(fx, whoosh(0.5), 2.3, 0.6)
 for i, g in enumerate((0.12, 0.55, 0.98, 1.38)):
-    add(fx, zap(0.1, 2000, 800), T[2][0] + g, 0.6); add(fx, blip(79 + i * 2), T[2][0] + g + 0.05, 0.6)
+    add(fx, zap(0.1, 2000, 800), T[2][0] + g, 0.6); add(fx, blip(84), T[2][0] + g + 0.05, 0.6)
 add(fx, whoosh(0.25), T[3][0] - 0.08, 0.5); add(fx, ding(84, 0.6), T[3][0] + 0.05, 0.5); add(fx, boing(0.4), V.T_YESO, 0.6); add(fx, pop_(600, 1300, 0.12), V.T_SALCH - 0.05, 0.6)
 add(fx, whoosh(0.4), T[4][0] - 0.05, 0.6); add(fx, whoosh(0.6), T[4][0] + 0.25, 0.5); add(fx, pop_(), V.T_REJ - 0.05, 0.5)
 for i in range(8):
@@ -234,10 +234,12 @@ add(fx, whoosh(0.3), T[7][0] - 0.08, 0.5); add(fx, pop_(), T[7][0] + 0.05, 0.4)
 for i in range(9):
     add(fx, blip(88 + (i % 3) * 2, 0.04), T[7][0] + 0.15 + i * (V.T_FALTA - T[7][0] - 0.15) / 9, 0.3)   # el chip escanea
 add(fx, ding(91, 0.5), V.T_FALTA, 0.5); add(fx, ding(84, 1.0), V.T_AHI - 0.05, 0.7); add(fx, ding(88, 1.0), V.T_AHI + 0.07, 0.6); add(fx, pop_(500, 1300, 0.12), V.T_AHI - 0.05, 0.6)
-add(fx, whoosh(0.3), T[8][0] - 0.08, 0.5); add(fx, roncar(0.8), T[8][0] + 0.15, 0.6); add(fx, roncar(0.7), T[8][0] + 1.0, 0.6)
-for i in range(10):
-    add(fx, golpe(0.06, 150), T[8][0] + 0.1 + i * 0.14, 0.3)
-add(fx, pop_(), T[8][0] + 0.05, 0.4)
+add(fx, whoosh(0.3), T[8][0] - 0.08, 0.5); add(fx, pop_(), T[8][0] + 0.02, 0.4)
+add(fx, blip(88, 0.08), T[8][0] + 0.3, 0.5); add(fx, ding(84, 0.5), T[8][0] + 0.32, 0.5)
+_m = V.T_APR - 0.25
+add(fx, pop_(), _m + 0.02, 0.4); add(fx, golpe(0.3, 60), _m + 0.3, 0.9); add(fx, ding(84, 0.5), _m + 0.34, 0.5)
+for i in range(4):
+    add(fx, golpe(0.06, 150), _m + 0.4 + i * 0.12, 0.3)
 add(fx, whoosh(0.3), T[9][0] - 0.08, 0.5); add(fx, pop_(), T[9][0] + 0.05, 0.4)
 for g in (V.T_FALLA - 0.1, V.T_FALLA + 0.45, V.T_FALLA + 1.0, V.T_LANA2 + 0.2, V.T_LANA2 + 0.7):
     add(fx, golpe(0.12, 90), g + 0.14, 0.5)                    # el guante golpea en sordo

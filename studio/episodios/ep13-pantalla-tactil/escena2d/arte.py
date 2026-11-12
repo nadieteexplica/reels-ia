@@ -731,7 +731,7 @@ def celular(L, cx, cy, w=560, h=1100, cara="normal", t=0.0, rejilla=0.0, n=(5, 9
     px0, py0, px1, py1 = x0 + m, y0 + m * 1.6, x1 - m, y1 - m * 1.6
     col = pantalla or (C["cel2"] if apagada else C["pant"])
     if loca > 0:
-        col = [(255, 122, 100), (255, 214, 60), (110, 220, 140), (150, 110, 240)][int(t * 5) % 4]
+        col = [(255, 122, 100), (255, 214, 60), (110, 220, 140), (150, 110, 240)][int(t * 3) % 4]
     K.caja_red(L, px0, py0, px1, py1, w * 0.08, col, TINTA, 6)
     K.caja_red(L, cx - w * 0.1, y0 + m * 0.55, cx + w * 0.1, y0 + m * 1.0, m * 0.2, C["cel2"])
     nx, ny = n
