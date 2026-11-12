@@ -21,6 +21,12 @@ Tu dedo le roba un poquito de electricidad a tu pantalla. Cada vez que la tocas.
 ## Puerta 1 (auditor independiente, 12-nov)
 v1: CAMBIOS menores (nada falso; "a tu celular" sugería que gasta batería → "un poquito… a tu pantalla"; "no funciona con guantes" era absoluto → "falla con guantes de lana"; la gota "puede activarla sola" como dice Cosmos; "rejilla que no ves"; "hubo gente que usó"; "quitarse" en vez de "sacarse"; se anuncia la salchicha en el segundo 5 para abrir la pregunta; "carga" y "conduce" no se entendían → "deja pasar", "se lleva un poquito", "aísla"). v2 = la reescritura del auditor (119 palabras). Frescura: tema distinto a los Ep. 11–12; el mecanismo está visto en divulgación, lo propio es el dedo ladrón y la salchicha.
 
+## Puertas 6 y 7 (auditor independiente, 12-nov)
+r1: NO APROBADO (8,1; 2 bloqueantes: "APRETAR NO SIRVE" con el celular dormido bajo un dedo; el remate salchicha = dedo bajo la interfaz). r2 (auditor nuevo, video completo): **APROBADO, 8,2** (gancho 8,5, claridad 8,5, ritmo 8, belleza 8, animación 7,5, subtítulos 8, precisión 9; audio −14,0 LUFS). Menores que quedan: el ✓ de Corea sale 0,7 s antes del toque; el cartel "¿LO MÁS RARO?" repite el subtítulo; la gota entra medio tapada por el cartel.
+
+## Predicción
+Se quedó sobre 72,6 %; % visto sobre 75 %; guardados y envíos sobre los Ep. 11–12. Punto débil: 8–13 s.
+
 ## Fuentes (leídas en el párrafo, 12-nov-2026)
 1. Cosmos Magazine, "Swipe, tap, scroll: how touchscreens follow your finger": https://cosmosmagazine.com/technology/swipe-tap-scroll-how-touchscreens-follow-your-finger — los teléfonos usan pantallas capacitivas, que dependen de la carga eléctrica y no de la presión física; la capa conductora va entre el vidrio y una capa protectora; una gota de agua también lleva carga y puede activar la pantalla; con guantes de lana aislantes no funciona.
 2. ScienceAlert, "How does a touchscreen actually work": https://www.sciencealert.com/how-does-a-touchscreen-actually-work — la piel humana conduce electricidad; el dedo disminuye la carga en la intersección de la rejilla donde está el condensador y el microprocesador calcula qué puntos de contacto se activaron; las capacitivas no responden a la presión.
