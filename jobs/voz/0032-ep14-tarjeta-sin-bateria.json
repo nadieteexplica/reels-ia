@@ -1,0 +1,14 @@
+{
+ "mode": "tts",
+ "id": "ep14-tarjeta-sin-bateria",
+ "voice_id": "dlGxemPxFMTY7iXagmOj",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.8,
+  "style": 0.45,
+  "use_speaker_boost": true,
+  "speed": 1.1
+ },
+ "text": "Tu tarjeta paga sin batería. Ni pila, ni nada. La acercas y paga igual. ¿De dónde saca la energía? Se la presta la máquina. Dentro del plástico hay un alambre enrollado. Es una antena. Cuando te van a cobrar, la máquina se activa. Crea a su alrededor un campo invisible de energía. Tú acercas la tarjeta y el alambre atrapa parte de esa energía. Pero solo funciona muy cerca: a unos pocos centímetros. Con esa energía se prende el chip. En un segundo o dos, despierta y le manda un código a la máquina. Ese código sirve una sola vez. La alejas, y el chip se queda sin energía. Tu tarjeta pasa la vida apagada. Solo despierta cuando la acercas."
+}
