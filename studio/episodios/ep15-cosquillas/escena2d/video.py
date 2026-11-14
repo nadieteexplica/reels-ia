@@ -242,8 +242,8 @@ def p3(L, t, a, b):
     K.linea(L, [(540, 0), (540, H)], TINTA, 10)
     mini(L, t, 270, "aburrido", False)
     mini(L, t, 810, "risa", True)
-    K.pildora(L, "TU MANO", 270, 900, 60, C["polera"], C["blanco"], pp(t, a + 0.05))
-    K.pildora(L, "LA DE OTRO", 810, 900, 60, C["otro"], C["blanco"], pp(t, a + 0.15))
+    K.pildora(L, "TU MANO", 270, 975, 56, C["polera"], C["blanco"], pp(t, a + 0.05))
+    K.pildora(L, "LA DE OTRO", 810, 975, 56, C["otro"], C["blanco"], pp(t, a + 0.15))
     if t >= T_DOS - 0.1:                                    # en los dos: "¡AHÍ VIENE!" con ✓
         for i, cx in enumerate((270, 810)):
             e = t - T_DOS + 0.1 - i * 0.12
@@ -501,7 +501,7 @@ def subtitulos(im, t):
         return
     toks = [TOK[j] for j in g]
     maxw = BOX[2] - BOX[0] - 40
-    for size in range(88, 59, -4):
+    for size in range(80, 59, -4):
         f = ImageFont.truetype(FONT, size)
         if ancho_toks(f, toks) <= maxw:
             break

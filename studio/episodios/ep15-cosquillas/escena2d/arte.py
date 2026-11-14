@@ -1467,4 +1467,4 @@ def bola(L, cx, cy, r, t=0.0, brillo=1.0):
     for i in range(5):
         an = t * 1.6 + i * 1.256
         x, y = cx + math.cos(an) * r * 1.25, cy + math.sin(an) * r * 1.05
-        K.texto(L, "✦", x, y, 40 + 16 * math.sin(t * 6 + i), C["amarillo"], borde=4, color_borde=TINTA)
+        estrella_golpe(L, x, y, 22 + 8 * math.sin(t * 6 + i), C["amarillo"], 4, rot=t * 2 + i)
