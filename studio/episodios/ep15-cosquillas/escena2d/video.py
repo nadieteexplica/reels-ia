@@ -180,7 +180,7 @@ def auto_cosquillas(L, t, cara="aburrido", pild=1.0, cx=540, cy=520, r=190):
 def p1(L, t, a, b):
     # "Hazte cosquillas. No pasa nada."
     fondo_tipo(L, t)
-    auto_cosquillas(L, t, "aburrido", pild=pp(t, T_NO - 0.05))
+    auto_cosquillas(L, t, "aburrido", pild=1.0)
     if t >= T_NADA:                                        # grillos: "cri cri"
         e = t - T_NADA
         txt(L, "cri cri", 900, 360 - (e * 20 % 30), 46 * pop(e), C["blanco"], borde=5, color_borde=TINTA)
@@ -242,8 +242,8 @@ def p3(L, t, a, b):
     K.linea(L, [(540, 0), (540, H)], TINTA, 10)
     mini(L, t, 270, "aburrido", False)
     mini(L, t, 810, "risa", True)
-    K.pildora(L, "TU MANO", 270, 1440, 64, C["polera"], C["blanco"], pp(t, a + 0.05))
-    K.pildora(L, "LA DE OTRO", 810, 1440, 64, C["otro"], C["blanco"], pp(t, a + 0.15))
+    K.pildora(L, "TU MANO", 270, 900, 60, C["polera"], C["blanco"], pp(t, a + 0.05))
+    K.pildora(L, "LA DE OTRO", 810, 900, 60, C["otro"], C["blanco"], pp(t, a + 0.15))
     if t >= T_DOS - 0.1:                                    # en los dos: "¡AHÍ VIENE!" con ✓
         for i, cx in enumerate((270, 810)):
             e = t - T_DOS + 0.1 - i * 0.12
@@ -253,15 +253,15 @@ def p3(L, t, a, b):
                 txt(L, "¡AHÍ VIENE!", cx, 280, 58 * u, TINTA)
                 visto(L, cx + 215, 210, 42, pop(e - 0.1))
     if t >= T_SABES - 0.05:
-        txt(L, "¿?", 540, 1640, 220 * pp(t, T_SABES - 0.05), C["rojo"], borde=12, color_borde=TINTA)
+        txt(L, "¿?", 540, 820, 150 * pp(t, T_SABES - 0.05), C["rojo"], borde=10, color_borde=TINTA)
 
 
-def cabeza_nervio(L, t, cb=(540, 430), hand=(680, 1400), mueve=0.0, cara="normal"):
+def cabeza_nervio(L, t, cb=(500, 420), hand=(790, 860), mueve=0.0, cara="normal"):
     fondo_cabeza(L, t)
-    path = [(cb[0], cb[1] + 200), (430, 760), (500, 1050), (hand[0] - 60, hand[1] - 90)]
+    path = [(cb[0] + 60, cb[1] + 200), (500, 700), (600, 800), (hand[0] - 60, hand[1] - 60)]
     K.linea(L, path, (255, 214, 60, 110), 22)
     A.cerebro(L, cb[0], cb[1], 230, t, cara)
-    K.miembro(L, [(1200, hand[1] + 220), (hand[0] + 80, hand[1] + 40)], C["polera"], 90)
+    K.miembro(L, [(1200, hand[1] + 160), (hand[0] + 80, hand[1] + 40)], C["polera"], 90)
     A.manga(L, (hand[0] + 70, hand[1] + 30), math.radians(220), 1.3, C["polera2"])
     A.mano_cosq(L, hand[0], hand[1], math.radians(220), 1.3, t, mueve)
     return path
@@ -272,7 +272,7 @@ def p4(L, t, a, b):
     # "Para mover la mano, tu cerebro manda una orden."
     mueve = clamp((t - T_ORDEN - 0.35) / 0.15)
     path = cabeza_nervio(L, t, mueve=mueve, cara="normal")
-    K.pildora(L, "TU MANO", 330, 1430, 64, C["polera"], C["blanco"], pp(t, a + 0.05))
+    K.pildora(L, "TU MANO", 360, 880, 64, C["polera"], C["blanco"], pp(t, a + 0.05))
     if t >= T_ORDEN - 0.15:                                  # la ORDEN baja por el nervio
         u = suave((t - T_ORDEN + 0.15) / 0.5)
         seg = u * 3
@@ -293,7 +293,7 @@ def p5(L, t, a, b):
     A.hoja(L, 850, 330, 0.8, "ORDEN", "MOVER MANO", pop(e - 0.05), sello=clamp((t - T_COPIA + 0.05) / 0.15) if t >= T_COPIA - 0.05 else 0)
     K.flecha(L, 730, 410, 790, 370, C["amarillo"], 14, sale((e - 0.1) / 0.3))
     if t >= T_COPIA - 0.05:
-        K.pildora(L, "SE GUARDA UNA COPIA", 540, 900 - 140, 64, C["rojo"], C["blanco"], pp(t, T_COPIA))
+        K.pildora(L, "SE GUARDA UNA COPIA", 520, 95, 64, C["rojo"], C["blanco"], pp(t, T_COPIA))
 
 
 @dib
@@ -309,9 +309,6 @@ def p6(L, t, a, b):
             x = 300 + i * 480
             A.icono(L, que, x, 780, 110 * pop(e))
             visto(L, x + 110, 680, 44, pop(e - 0.15))
-    if t >= T_TOCAR - 0.1:                                   # dónde te vas a tocar: la axila marcada
-        e = t - T_TOCAR + 0.1
-        K.pildora(L, "AHORA, EN LA AXILA", 540, 1420, 64, C["blanco"], TINTA, pop(e))
 
 
 @dib
@@ -338,13 +335,13 @@ def p8(L, t, a, b):
         equis(L, 885, 600, 56, pp(t, T_NOHAY - 0.1))
         K.pildora(L, "SIN COPIA", 540, 150, 88, C["rojo"], C["blanco"], pp(t, T_NOHAY))
     u = sale((t - a) / 0.4)
-    for i, (x0, y0, ang) in enumerate(((-200, 1180, -0.3), (1280, 1500, math.pi + 0.3))):
-        p = lp((x0, y0), (300 if i == 0 else 780, 1050 if i == 0 else 1420), u)
+    for i, (x0, y0, ang) in enumerate(((-200, 900, -0.2), (1280, 960, math.pi + 0.2))):
+        p = lp((x0, y0), (250 if i == 0 else 830, 860 if i == 0 else 880), u)
         far = (x0 - 200 if i == 0 else x0 + 200, p[1] + 60)
         K.miembro(L, [far, (p[0] - 60 * math.cos(ang), p[1] - 60 * math.sin(ang))], C["otro"], 84)
         A.manga(L, (p[0] - 70 * math.cos(ang), p[1] - 70 * math.sin(ang)), ang, 1.1, C["otro2"])
         A.mano_cosq(L, p[0], p[1], ang, 1.15, t, 1.0, fase=i * 2)
-    K.pildora(L, "LA MANO DE OTRO", 540, 1720 - 300, 64, C["otro"], C["blanco"], pp(t, T_OTRO2 - 0.05))
+    K.pildora(L, "LA MANO DE OTRO", 540, 770, 58, C["otro"], C["blanco"], pp(t, T_OTRO2 - 0.05))
 
 
 @dib
@@ -360,14 +357,14 @@ def p9(L, t, a, b):
     dx = math.sin(t * 50) * 8 if u > 0.97 else 0
     A.volumen(L, 540 + dx, 330, 1.0, u, t)
     if u > 0.97:
-        A.estrella_golpe(L, 940, 170, 100 * pop(t - a - 0.3), C["rojo"], 10)
-        txt(L, "MÁX", 940, 170, 50 * pop(t - a - 0.3), C["blanco"], borde=5, color_borde=TINTA)
         A.jaja(L, 540, 820, t, a + 0.3, 300, 5, 70)
 
 
 def robot_escena(L, t, retraso=0.0, cara=None, risa=False, palanca_u=None):
     A.fondo_puntos(L, C["menta"], C["menta2"], t)
     cx, cy, r = 680, 600, 150
+    for col, an in ((TINTA, 26), (C["robot2"], 16)):        # cable de la palanca al robot (por detrás del tipo)
+        K.linea(L, [(975, 930), (1010, 1120), (700, 1180), (330, 1150), (200, 560)], col, an)
     pts = A.tipo(L, cx, cy, r, t, "risa" if risa else (cara or "normal"), temblor=0.9 if risa else 0, mira=-1)
     palma = (330, 880)                                        # palma derecha abierta hacia arriba, a la izquierda
     A.brazo(L, pts["hom_i"], (palma[0] + 40, palma[1] + 30), C["polera"], 56, 0.18, -1)
@@ -393,7 +390,7 @@ def p10(L, t, a, b):
     if t >= T_ROBOT - 0.05:
         A.estrella_golpe(L, 70, 160, 60 * pp(t, T_ROBOT - 0.05), C["amarillo"], 8)
     if t >= T_MUEVES - 0.05:
-        K.pildora(L, "TÚ LO MUEVES", 860, 770 - 380, 56, C["polera"], C["blanco"], pp(t, T_MUEVES - 0.05))
+        K.pildora(L, "TÚ LO MUEVES", 680, 390, 50, C["polera"], C["blanco"], pp(t, T_MUEVES - 0.05))
 
 
 @dib
@@ -416,9 +413,6 @@ def p12(L, t, a, b):
         K.pildora(L, "+0,2 s", 745, 250, 60, C["coral"], C["blanco"], pop(e - 0.05))
     if dan:
         A.jaja(L, 680, 600, t, T_SITE, 215, 5, 62)
-        K.pildora(L, "¡SÍ TE DAN!", 540, 1440, 80, C["verde2"], C["blanco"], pp(t, T_SITE))
-    elif atr:
-        K.pildora(L, "SE ATRASA", 540, 1440, 72, C["coral"], C["blanco"], pop(t - T_ATRASA + 0.1))
 
 
 @dib
@@ -459,7 +453,7 @@ assert len(FUN) == len(T)
 FONT = K.FONT
 AMARILLO = (255, 210, 63)
 CLAVE = {"COSQUILLAS": (255, 150, 170), "CEREBRO": (255, 170, 190), "ROBOT": (150, 230, 200), "COPIA": (255, 120, 100)}
-BOX = (120, 960, 1000, 1250)
+BOX = (120, 960, 888, 1250)
 
 
 def limpiar(w):
@@ -507,13 +501,13 @@ def subtitulos(im, t):
         return
     toks = [TOK[j] for j in g]
     maxw = BOX[2] - BOX[0] - 40
-    for size in range(92, 59, -4):
+    for size in range(88, 59, -4):
         f = ImageFont.truetype(FONT, size)
         if ancho_toks(f, toks) <= maxw:
             break
     d = ImageDraw.Draw(im, "RGBA")
     y = (BOX[1] + BOX[3]) / 2 - f.size * 0.56
-    x = W / 2 - ancho_toks(f, toks) / 2
+    x = (BOX[0] + BOX[2]) / 2 - ancho_toks(f, toks) / 2
     for j, tok in zip(g, toks):
         activo = words[j]["s"] - 0.02 <= t < max(words[j]["e"], words[j]["s"] + 0.12)
         col = CLAVE.get(tok.strip("¿?"), AMARILLO if activo else (255, 255, 255))
