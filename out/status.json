@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 7543,
+ "creditos_usados": 7800,
  "creditos_limite": 40000,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -94,5 +94,8 @@
  },
  "0032-ep14-tarjeta-sin-bateria.json": {
   "tts": "ep14-tarjeta-sin-bateria"
+ },
+ "0033-ep15-cosquillas.json": {
+  "tts": "ep15-cosquillas"
  }
 }
