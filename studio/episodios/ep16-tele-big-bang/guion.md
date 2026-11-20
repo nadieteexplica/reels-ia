@@ -1,0 +1,52 @@
+# Ep. 16 — "La tele de antes captaba el Big Bang" (la lluvia de la tele y la luz más antigua del universo)
+
+Pedido de Tomás (20-nov-2026, 10:29): "Hazte un video. Quiero que apuntes a una información interesante para un rango etario de mayor de 65 años. ¿Qué puede ser interesante para ellos? Piensa en la época, piensa en todo y genera un video, el video que viste, y 2D, interesante, bonito, con un buen diálogo, y súbelo, sin preguntarme." → **OK previo para publicar este video** (lección 166). "El video que viste" = el reel de @lynxstudiosbcn que Tomás mandó el 18-nov (personajes simples con patas, subtítulo palabra por palabra, píldoras con línea, contadores que suben, timbre "SIGUE"); se toma el lenguaje, no el formato ni la marca.
+Línea: datos ("¿Sabías que…?", espacio + nostalgia). Estilo: 2D de comedia por código. Cambia de área (espacio; los 3 últimos: cuerpo, tecnología cotidiana, historia), de gancho (objeto de época + lo imposible) y de protagonista (la tele de los 60 con cara y patas).
+
+## Por qué este tema para mayores de 65
+- Crecieron con la tele de antena (en Latinoamérica llega masivamente en los 60) y todos vieron la "lluvia" o "nieve" cuando no había señal, le movieron la antena y le pegaron a la tele. Hoy, con la tele digital, eso ya no existe: es nostalgia pura.
+- El descubrimiento es de su época (1964–65; Nobel en 1978): pasó mientras ellos eran jóvenes.
+- Es un dato que se comparte con los nietos ("mira, mi tele captaba el Big Bang"): sirve para dos generaciones.
+- Para la vista: subtítulos grandes, colores con contraste, un solo sujeto grande por plano, sin letras chicas.
+
+## Idea central (regla 0)
+Esos puntitos de la tele cuando no había señal eran, en una pequeña parte, la luz más antigua del universo.
+**Objeto que carga la idea:** la tele de antes con su lluvia (gancho, medio y cierre), con un Big Bang chiquito escondido en la lluvia como símbolo que se repite.
+
+## Paquete de gancho
+- **Cuadro 0:** la tele de los 60 (madera, antena de conejo, patitas) grande y centrada, con lluvia en la pantalla y un Big Bang chiquito brillando adentro.
+- **Texto en pantalla:** EL BIG BANG EN TU TELE
+- **Voz 0–2 s:** "La tele de antes captaba el Big Bang."
+- **Pregunta que abre:** ¿cómo, si era una tele?
+- **Se paga:** la antena con palomas (~20 %), la luz más antigua (~55 %) y "uno de cada cien puntitos" (~80 %).
+- **Momento para mandarlo:** "cuando le pegabas a la tele, le estabas pegando al Big Bang".
+
+## Voz (v1)
+La tele de antes captaba el Big Bang. ¿Te acuerdas de los puntitos cuando no había señal? Ahí venía, escondido. Una antena gigante captaba un ruido que no se iba con nada. Los científicos culparon a unas palomas que anidaban adentro. Las sacaron, limpiaron la caca, y el ruido seguía. Venía de todo el cielo. Era la luz más antigua del universo. Lleva casi trece mil ochocientos millones de años viajando. Les dieron el Nobel. Y tu tele también la captaba: más o menos uno de cada cien puntitos. Así que cuando le pegabas a la tele, le estabas pegando al Big Bang.
+
+Re-ganchos: "¿Te acuerdas…?" (~2 s) · "Los científicos culparon a unas palomas" (~9 s) · "y el ruido seguía" (~14 s) · "Era la luz más antigua" (~17 s) · "Y tu tele también la captaba" (~23 s). Pago: "uno de cada cien puntitos" (~80 %). Cierre (14 palabras) empalma con "La tele de antes captaba el Big Bang."
+
+En pantalla (no en la voz, regla 12): 1964 · NOBEL 1978 · 13.800 MILLONES DE AÑOS · 1 DE CADA 100.
+
+## Puerta 1 (auditor independiente, 20-nov)
+v1: **CAMBIOS** (gancho 8, claridad 7, ritmo 7, precisión 6, compartible 9). Bloqueantes: "captaba el Big Bang" dice más que la fuente (la tele captaba en parte la radiación que quedó, emitida 380.000 años después: → "el eco del Big Bang"); la tele desaparecía de la frase 4 a la 10 (reglas 0/13), faltaba el porqué de que la tele también la captara (regla 16) y el cierre tenía 14 palabras (regla 18); "Les dieron el Nobel" con sujeto ambiguo ("¿a las palomas?", espectadora de 71). Sugerencias aplicadas: "uno por ciento de esa lluvia" en vez de "uno de cada cien puntitos" (ningún puntito es "el del Big Bang"); puente "una antena como la de la tele, pero gigante"; Nobel y 13.800 millones fuera de la voz (13.800 sólo en pantalla; el Nobel va al texto del post); "Pero el ruido seguía" y "Por eso tu tele también la captaba" (reglas 16–17); respiros antes de "Ese ruido era…" y del cierre (regla 23). Espectadores: la de 71 se iba en la antena (se perdía la tele), el de 68 en el número largo + Nobel, la de 45 dudaba de "captaba el Big Bang"; el de 16 se va en la frase 2 (nunca vio una tele sin señal: aceptable, el público es 65+). v2 = la reescritura del auditor, sin cambios.
+
+## Voz (v2, la que se genera; 104 palabras)
+La tele de antes captaba el eco del Big Bang. ¿Te acuerdas de la lluvia de puntitos cuando no había señal? Ahí venía escondido. Unos científicos tenían una antena como la de la tele, pero gigante. Captaba un ruido que no se quitaba con nada. Culparon a unas palomas que anidaban adentro. Las sacaron y limpiaron la caca. Pero el ruido seguía. Ese ruido era la luz más antigua del universo. Y llega de todo el cielo. Por eso tu tele también la captaba. Era más o menos el uno por ciento de esa lluvia. Cuando le pegabas a la tele, le pegabas al Big Bang.
+
+Re-ganchos: "¿Te acuerdas…?" (~3 s) · "palomas" (~10 s) · "Pero el ruido seguía" (~14 s) · "luz más antigua" (~16 s) · "Por eso tu tele" (~22 s). Pago "uno por ciento" (~80 %). Cierre de 11 palabras que empalma con la primera frase.
+En pantalla: 1964 · SIN SEÑAL · ¿LAS PALOMAS? · SIGUE · LA LUZ MÁS ANTIGUA + CASI 13.800 MILLONES DE AÑOS · MÁS O MENOS 1 % (grilla de 100 con uno encendido). El Nobel de 1978 va en el texto del post.
+
+## Fuentes (leídas en el párrafo, 20-nov-2026)
+1. **La antena, el ruido y las palomas:** Smithsonian Magazine, "How Two Pigeons Helped Scientists Confirm the Big Bang Theory": https://www.smithsonianmag.com/smithsonian-institution/how-scientists-confirmed-big-bang-theory-owe-it-all-to-a-pigeon-trap-180949741/ — en 1964 Wilson y Penzias oyeron señales de radio que no podían explicar; dos palomas se habían instalado dentro de la antena; sospecharon que el excremento causaba el ruido, atraparon a las aves y limpiaron el equipo, pero las señales siguieron; Nobel de Física en 1978.
+2. **Mismo hecho, otra fuente:** APS News (American Physical Society), "Discovery of the Cosmic Microwave Background": https://www.aps.org/publications/apsnews/200207/history.cfm — encontraron un "ruido" de fondo molesto, como estática de radio, uniforme y que parecía venir de todas direcciones; revisaron todo; pensaron que podía ser el excremento de las palomas que anidaban en la antena de cuerno, las sacaron y pasaron horas limpiando. También Bell Labs (https://bell-labs.com/node/159528): antena de cuerno de 20 pies, 20-may-1964, Nobel 1978; e IEEE Spectrum (https://spectrum.ieee.org/big-bang-theory-discovery): lavaron la antena de los excrementos de un par de palomas.
+3. **La luz más antigua, 13.800 millones de años:** NASA Science, "Planck": https://science.nasa.gov/resource/planck/ — el fondo cósmico de microondas es la luz más antigua del universo, emitida 380.000 años después del Big Bang, que ocurrió hace 13.800 millones de años. ESA, "Planck reveals an almost perfect Universe" (2013): la luz más antigua del universo, de cuando tenía 380.000 años, estirada hasta las microondas.
+4. **La tele la captaba (~1 %):** Departamento de Física de la Universidad Nacional de Singapur: https://physics.nus.edu.sg/cosmic-microwave-background — el fondo cósmico de microondas contribuye con cerca del 1 % de la estática de la tele. Caltech/IPAC Cool Cosmos (Universidad de Toronto, Dunlap): https://dunlap.utoronto.ca/coolcosmos/bigbang.php — una pequeña fracción de la estática de una tele vieja con antena viene del resplandor de microondas del origen del universo. (Douglas Scott, UBC, dice "unos pocos por ciento": por eso la voz dice "más o menos".)
+- No se dice: nombres de los científicos ni años en la voz (regla 12); que las palomas volvieron ni qué pasó con ellas; que todo el ruido era el Big Bang (es una parte chica; el resto es la electrónica de la tele, el Sol, la galaxia y aparatos cercanos); "el mismo ruido" (la antena oía microondas y la tele otras frecuencias: es la misma luz, no el mismo ruido).
+- "Comienzo del universo": la luz salió 380.000 años después del Big Bang; en la voz va como "la luz más antigua del universo" (NASA y ESA usan esas palabras).
+
+## Predicción
+- **Se quedó (YouTube):** sobre el promedio del canal (gancho de objeto conocido + imposible, G1–G3).
+- **% visto:** sobre 75 % (32 s, re-gancho cada ~4 s).
+- **Envíos en IG:** sobre la mediana (10,6 por mil): se manda a los papás, abuelos y nietos.
+- **Dónde se va la gente:** 6–9 s (la antena: cambio de escenario lejos de la tele).
