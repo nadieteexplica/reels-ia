@@ -323,9 +323,9 @@ while tk < T[10][1] - 0.2:
     add(fx, clac(), tk, 0.1); tk += 0.08
 add(fx, golpe(0.5, 50), T[10][1] - 0.3, 0.7)
 # P11: la sopa ardiente
-add(fx, whoosh(0.3), T[11][0] - 0.05, 0.4)
+add(fx, whoosh(0.3), T[11][0] + 0.05, 0.3)
 for i in range(8):
-    add(fx, blip(60 + (i * 5) % 12, 0.08), T[11][0] + 0.1 + i * 0.17, 0.25)
+    add(fx, blip(60 + (i * 5) % 12, 0.08), T[11][0] + 0.25 + i * 0.17, 0.25)
 # P12: la luz choca con todo
 add(fx, whoosh(0.3), T[12][0] - 0.05, 0.4)
 tk = V.T_CHOCA - 0.2

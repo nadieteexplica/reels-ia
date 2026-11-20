@@ -355,7 +355,7 @@ def p12(L, t, a, b):
     for j, (qx, qy) in enumerate(pts):                                                    # electrones sueltos en cada rebote
         B.particula(L, qx + 34, qy + 30, 26, "e", t, cara=False)
     if f < 0.18 and t >= T_CHOCA - 0.2:
-        A.estrella_golpe(L, pts[i][0] + 34, pts[i][1] + 30, 60, C["blanco"], 8, "TOC", 34)
+        A.estrella_golpe(L, pts[i][0] + 110, pts[i][1] + 80, 60, C["blanco"], 8, "TOC", 34)
     B.foton(L, x, y, 64, t, "mareado" if t >= T_NIEB else "sorpresa")
     K.pildora(L, "LA LUZ", x, y - 120, 50, AMA, TINTA, pp(t, a + 0.05) if t < T_CHOCA else 0)
 
@@ -460,7 +460,7 @@ def p19(L, t, a, b):
     B.living(L, t)
     B.tele(L, 700, 560, 640, t, carpeta=True, pantalla=pantalla_bang(t, 100, "feliz", chupe=True))
     B.sillon_atras(L, 250, 1160, 0.95)
-    K.viejo(L, 250, 1110, 560, 0.0, t, "apunta" if t >= T_LIVING - 0.3 else "tazon", 1)
+    K.viejo(L, 250, 1110, 560, 0.0, t, "apunta", 1)                                    # ya apunta desde el corte (sin salto de brazo)
     B.sillon_frente(L, 250, 1190, 0.95)
     if t >= T_LIVING - 0.2:
         u = pp(t, T_LIVING - 0.2)
