@@ -566,3 +566,142 @@ def grilla100(L, x0, y0, x1, y1, t, u=1.0, especial=(6, 3), brillo=1.0):
         for k in range(3):
             K.circulo(L, cx, cy, rr * (0.75 + k * 0.28) * (1 + 0.1 * math.sin(t * 6)), (255, 200, 90, 60 - k * 15))
         bang(L, cx, cy, rr * 0.44 * (1 + 0.08 * math.sin(t * 7)), t, "feliz", brillo, chispas_n=0)
+
+
+# ------------------------------------------------------------------ v3: la sopa del principio, los átomos y la luz que se estira
+def sopa(L, t=0.0, niebla=1.0, enfria=0.0):
+    """El universo recién nacido: sopa ardiente (naranja) que se enfría (rojo oscuro → azul noche) con neblina encima."""
+    c0 = (255, 150, 60); c1 = (40, 30, 70)
+    mezcla = lambda a, b, u: tuple(int(a[i] + (b[i] - a[i]) * u) for i in range(3))
+    top = mezcla((255, 190, 90), c1, enfria); bot = mezcla((220, 70, 40), (20, 16, 50), enfria)
+    K.cielo_bandas(L, [top, mezcla(top, bot, 0.33), mezcla(top, bot, 0.66), bot], 0, H)
+    rnd = random.Random(12)
+    for i in range(26):                                                                    # burbujas de la sopa
+        x = rnd.uniform(0, W); y0 = rnd.uniform(0, H); v = rnd.uniform(40, 120)
+        y = (y0 - t * v) % (H + 200) - 100
+        r = rnd.uniform(14, 40) * (1 - 0.6 * enfria)
+        K.circulo(L, x, y, r, (255, 230, 170, int(70 * (1 - enfria))))
+    if niebla > 0.02:
+        for i in range(14):
+            x = (rnd.uniform(0, W) + t * 30 * (1 if i % 2 else -1)) % (W + 400) - 200
+            y = rnd.uniform(60, 1250)
+            K.elipse(L, x, y, rnd.uniform(160, 300), rnd.uniform(60, 110), (255, 245, 230, int(90 * niebla)))
+
+
+def particula(L, x, y, r, tipo="p", t=0.0, cara=True):
+    """Protón (rojo, +) o electrón (celeste, −) con carita."""
+    col = (232, 80, 70) if tipo == "p" else (90, 170, 255)
+    K.circulo(L, x, y, r, col, TINTA, max(3, r * 0.14))
+    k = r / 30
+    if cara:
+        for sg in (-1, 1):
+            K.circulo(L, x + sg * 9 * k, y - 4 * k, 3.4 * k, TINTA)
+        K.linea(L, [(x - 6 * k, y + 8 * k), (x + 6 * k, y + 8 * k)], TINTA, 2.6 * k)
+    sx = x + r * 0.62; sy = y - r * 0.62
+    K.linea(L, [(sx - 7 * k, sy), (sx + 7 * k, sy)], C["blanco"], 3.2 * k)
+    if tipo == "p":
+        K.linea(L, [(sx, sy - 7 * k), (sx, sy + 7 * k)], C["blanco"], 3.2 * k)
+
+
+def particulas(L, t, n=22, enjambre=1.0, semilla=2, area=(40, 120, 1040, 940), atomos=0.0, rp=44, re_=26):
+    """Protones y electrones sueltos zumbando; con atomos→1 cada electrón se va a orbitar su protón."""
+    rnd = random.Random(semilla)
+    x0, y0, x1, y1 = area
+    for i in range(n):
+        px = rnd.uniform(x0 + 60, x1 - 60); py = rnd.uniform(y0 + 60, y1 - 60)
+        fx, fy = rnd.uniform(0.6, 1.4), rnd.uniform(0.6, 1.4)
+        # protón: tiembla en su lugar
+        pxx = px + math.sin(t * 7 * fx + i) * 26 * enjambre
+        pyy = py + math.cos(t * 6 * fy + i) * 26 * enjambre
+        # electrón: suelto, rápido; con átomos, en órbita
+        ex_l = (rnd.uniform(x0, x1) + t * 260 * (fx - 1.0) * 3) % (x1 - x0) + x0
+        ey_l = (rnd.uniform(y0, y1) + t * 200 * (fy - 1.0) * 3) % (y1 - y0) + y0
+        an = t * 5 + i
+        ex_o, ey_o = pxx + math.cos(an) * rp * 2.1, pyy + math.sin(an) * rp
+        u = suave(atomos)
+        ex, ey = ex_l + (ex_o - ex_l) * u, ey_l + (ey_o - ey_l) * u
+        if u > 0.6:
+            L.d.ellipse((L.S(pxx - rp * 2.1), L.S(pyy - rp), L.S(pxx + rp * 2.1), L.S(pyy + rp)), outline=(255, 255, 255, int(170 * (u - 0.6) / 0.4)), width=int(L.S(4)))
+        particula(L, pxx, pyy, rp, "p", t)
+        particula(L, ex, ey, re_, "e", t, cara=False)
+
+
+def foton(L, x, y, r=46, t=0.0, cara="feliz", estela=None, color=None):
+    """La luz: una bolita brillante con cara (y una estela de velocidad opcional, ángulo en radianes)."""
+    col = color or C16["luz"]
+    if estela is not None:
+        for k in range(5):
+            d = 40 + k * 46
+            K.linea(L, [(x - math.cos(estela) * d, y - math.sin(estela) * d + (k - 2) * 14),
+                        (x - math.cos(estela) * (d + 70), y - math.sin(estela) * (d + 70) + (k - 2) * 14)], (255, 255, 255, 200 - k * 30), 8)
+    for k in range(3, 0, -1):
+        K.circulo(L, x, y, r * (1 + k * 0.28), (col[0], col[1], col[2], 50))
+    K.circulo(L, x, y, r, col, TINTA, 6)
+    k = r / 46
+    if cara == "mareado":
+        for sg in (-1, 1):
+            ex, ey = x + sg * 15 * k, y - 6 * k
+            K.linea(L, [(ex - 7 * k, ey - 7 * k), (ex + 7 * k, ey + 7 * k)], TINTA, 4 * k)
+            K.linea(L, [(ex - 7 * k, ey + 7 * k), (ex + 7 * k, ey - 7 * k)], TINTA, 4 * k)
+        K.elipse(L, x, y + 16 * k, 8 * k, 10 * k, (140, 50, 40), TINTA, 3)
+        return
+    for sg in (-1, 1):
+        K.elipse(L, x + sg * 15 * k, y - 6 * k, 6 * k, 9 * k, TINTA)
+    if cara == "feliz":
+        L.d.chord((L.S(x - 14 * k), L.S(y + 2 * k), L.S(x + 14 * k), L.S(y + 24 * k)), 0, 180, fill=(140, 50, 40), outline=TINTA, width=int(L.S(3)))
+    else:
+        K.elipse(L, x, y + 14 * k, 7 * k, 9 * k, (140, 50, 40), TINTA, 3)
+
+
+def onda_estirada(L, x0, x1, y, t, lam=60, amp=40, color=None, grosor=14, cara=True, nombre=None):
+    """Onda horizontal con longitud de onda lam (se estira al subir lam), con carita en la punta derecha."""
+    n = max(40, int((x1 - x0) / 6))
+    pts = [(x0 + (x1 - x0) * i / n, y + math.sin(((x1 - x0) * i / n - t * 220) / lam * math.tau) * amp) for i in range(n + 1)]
+    K.linea(L, pts, TINTA, grosor + 9)
+    K.linea(L, pts, color or C16["luz"], grosor)
+    if cara:
+        hx, hy = pts[-1]
+        K.circulo(L, hx, hy, 34, color or C16["luz"], TINTA, 6)
+        for sg in (-1, 1):
+            K.elipse(L, hx + sg * 11, hy - 5, 4.5, 7, TINTA)
+        L.d.chord((L.S(hx - 10), L.S(hy + 2), L.S(hx + 10), L.S(hy + 18)), 0, 180, fill=(140, 50, 40), outline=TINTA, width=int(L.S(3)))
+
+
+def grilla_espacio(L, estira=0.0, color=(120, 110, 200, 90), cy=600):
+    """Cuadrícula del espacio que se estira hacia los lados (estira 0..1)."""
+    paso = 90 * (1 + 1.6 * estira)
+    n = int(W / paso) + 3
+    for i in range(-n, n + 1):
+        x = W / 2 + i * paso
+        K.linea(L, [(x, 0), (x, 1300)], color, 3)
+    for j in range(0, 16):
+        y = j * 90
+        K.linea(L, [(0, y), (W, y)], color, 3)
+
+
+def bombilla(L, x, y, s=1.0, u=1.0):
+    if u <= 0.02:
+        return
+    s = s * u
+    for k in range(3, 0, -1):
+        K.circulo(L, x, y, 60 * s * (1 + k * 0.3), (255, 240, 150, 50))
+    K.circulo(L, x, y, 60 * s, (255, 236, 130), TINTA, 6)
+    K.caja_red(L, x - 28 * s, y + 50 * s, x + 28 * s, y + 92 * s, 8 * s, (170, 170, 180), TINTA, 5)
+    K.linea(L, [(x - 18 * s, y + 10 * s), (x, y - 14 * s), (x + 18 * s, y + 10 * s)], (220, 150, 40), 6 * s)
+
+
+def chupete(L, x, y, r):
+    """Chupete para el Big Bang guagua."""
+    k = r / 100
+    K.elipse(L, x, y + 30 * k, 34 * k, 20 * k, (120, 200, 255), TINTA, 4)
+    K.circulo(L, x, y + 30 * k, 12 * k, (255, 170, 190), TINTA, 3)
+    L.d.arc((L.S(x - 20 * k), L.S(y + 34 * k), L.S(x + 20 * k), L.S(y + 74 * k)), 20, 160, fill=TINTA, width=int(L.S(5 * k)))
+
+
+def termometro(L, x, y, h=360, nivel=1.0):
+    K.caja_red(L, x - 30, y - h, x + 30, y, 30, C["blanco"], TINTA, 6)
+    K.circulo(L, x, y + 20, 50, C["rojo"], TINTA, 6)
+    hh = (h - 40) * clamp(nivel)
+    K.caja_red(L, x - 16, y - hh, x + 16, y + 10, 16, C["rojo"])
+    for k in range(5):
+        K.linea(L, [(x + 30, y - 40 - k * 60), (x + 50, y - 40 - k * 60)], TINTA, 5)
