@@ -549,7 +549,7 @@ def onda(L, x0, y0, x1, y1, t, u=1.0, amp=26, lam=70, color=None, grosor=12, cab
         K.circulo(L, pts[-1][0], pts[-1][1], grosor * 1.4, color or C16["luz"], TINTA, 5)
 
 
-def grilla100(L, x0, y0, x1, y1, t, u=1.0, especial=(6, 3), brillo=1.0):
+def grilla100(L, x0, y0, x1, y1, t, u=1.0, especial=(6, 3), brillo=1.0, apaga=0.0):
     """10×10 puntitos grises (la lluvia ordenada) y uno dorado."""
     cw, ch = (x1 - x0) / 10, (y1 - y0) / 10
     n = int(100 * clamp(u))
@@ -558,14 +558,14 @@ def grilla100(L, x0, y0, x1, y1, t, u=1.0, especial=(6, 3), brillo=1.0):
         cx, cy = x0 + (i + 0.5) * cw, y0 + (j + 0.5) * ch
         if (i, j) == especial:
             continue
-        g = 120 + int(80 * ((idx * 37) % 11) / 10)
+        g = int((120 + int(80 * ((idx * 37) % 11) / 10)) * (1 - 0.55 * apaga))
         K.circulo(L, cx, cy, min(cw, ch) * 0.3, (g, g, g), (30, 30, 34), 3)
     if n > especial[1] * 10 + especial[0]:
         cx, cy = x0 + (especial[0] + 0.5) * cw, y0 + (especial[1] + 0.5) * ch
         rr = min(cw, ch)
         for k in range(3):
-            K.circulo(L, cx, cy, rr * (0.75 + k * 0.28) * (1 + 0.1 * math.sin(t * 6)), (255, 200, 90, 60 - k * 15))
-        bang(L, cx, cy, rr * 0.44 * (1 + 0.08 * math.sin(t * 7)), t, "feliz", brillo, chispas_n=0)
+            K.circulo(L, cx, cy, rr * (0.75 + k * 0.28) * (1 + 0.1 * math.sin(t * 6)) * (1 + 0.6 * apaga), (255, 200, 90, 60 - k * 15))
+        bang(L, cx, cy, rr * 0.44 * (1 + 0.08 * math.sin(t * 7)) * (1 + 0.7 * apaga), t, "feliz", brillo, chispas_n=0)
 
 
 # ------------------------------------------------------------------ v3: la sopa del principio, los átomos y la luz que se estira
@@ -585,7 +585,7 @@ def sopa(L, t=0.0, niebla=1.0, enfria=0.0):
         for i in range(14):
             x = (rnd.uniform(0, W) + t * 30 * (1 if i % 2 else -1)) % (W + 400) - 200
             y = rnd.uniform(60, 1250)
-            K.elipse(L, x, y, rnd.uniform(160, 300), rnd.uniform(60, 110), (255, 245, 230, int(90 * niebla)))
+            K.elipse(L, x, y, rnd.uniform(160, 300), rnd.uniform(60, 110), (255, 245, 230, int(150 * niebla)))
 
 
 def particula(L, x, y, r, tipo="p", t=0.0, cara=True):

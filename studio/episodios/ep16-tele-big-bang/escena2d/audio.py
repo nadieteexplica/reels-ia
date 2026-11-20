@@ -178,7 +178,7 @@ NEG = 60 / BPM
 ACORDES = [(48, (60, 64, 67)), (45, (57, 60, 64)), (41, (53, 57, 60)), (43, (55, 59, 62))]       # Do · La m · Fa · Sol (doo-wop)
 CAMINA = {48: (48, 52, 55, 57), 45: (45, 48, 52, 50), 41: (41, 45, 48, 50), 43: (43, 47, 50, 47)}
 m = np.zeros(N)
-silencios = [(V.T_PERO - 0.05, V.T_SEGUIA + 0.25), (V.T_LE2 - 0.25, V.T_BANG2 + 0.2)]
+silencios = [(V.T_PERO - 0.05, V.T_SEGUIA + 0.25), (V.T_ERA - 0.3, V.T_ERA + 0.1)]
 comp = 0
 t = 0.0
 while t < DUR - 0.3:
@@ -288,58 +288,88 @@ def brillito():
 
 fx = np.zeros(N)
 T = V.T
-# estática de la tele donde se ve la lluvia
-for k in (1, 2, 3, 13, 14, 15):
+# estática de la tele donde se ve la lluvia (baja mientras habla la voz)
+for k in (1, 2, 3, 17, 18, 19, 20):
     a_, b_ = T[k]
-    add(fx, estatica(b_ - a_ + 0.05, 0.6 if k != 3 else 1.0), a_)
-# P1: el Big Bang en la tele
-add(fx, pop_(400, 900), 0.02, 0.5); add(fx, brillito(), V.T_BANG - 0.05, 0.6); add(fx, boing(0.4), V.T_BANG - 0.05, 0.4)
-# P2: el viejo y la tele sin señal
-add(fx, whoosh(0.35), T[2][0] - 0.06, 0.5); add(fx, pop_(), V.T_LLUVIA - 0.05, 0.35); add(fx, ding(84, 0.6), V.T_SENAL - 0.1, 0.5); add(fx, pop_(600, 1200), V.T_SENAL - 0.12, 0.4)
-# P3: el puntito escondido
-add(fx, whoosh(0.3), T[3][0] - 0.05, 0.5); add(fx, brillito(), T[3][0] + 0.25, 0.6); add(fx, pop_(700, 1500), V.T_ESC, 0.4)
+    add(fx, estatica(b_ - a_ + 0.05, 0.45), a_)
+# P1: el golpe a la tele (ya está pasando) y el Big Bang dice ay
+add(fx, golpe(0.4, 90), 0.0, 0.6); add(fx, clac(), 0.01, 0.4); add(fx, whoosh(0.25), V.T_PEG2 - 0.3, 0.35); add(fx, golpe(0.4, 90), V.T_PEG2 - 0.05, 0.5); add(fx, boing(0.5), 0.08, 0.6); add(fx, pop_(800, 1600), V.T_BANG - 0.1, 0.4)
+# P2: bueno, a su eco
+add(fx, whoosh(0.3), T[2][0] - 0.05, 0.4); add(fx, sube(0.5, 900, 300), T[2][0] + 0.05, 0.35)
+for i in range(3):
+    add(fx, ding(84, 0.5), V.T_ECO + i * 0.18, 0.4 * (0.6 ** i))
+# P3: el viejo y la tele sin señal
+add(fx, whoosh(0.35), T[3][0] - 0.06, 0.5); add(fx, pop_(), V.T_LLUVIA - 0.05, 0.35); add(fx, ding(84, 0.6), V.T_SENAL - 0.1, 0.5)
 # P4: la antena gigante
 add(fx, whoosh(0.4), T[4][0] - 0.06, 0.5); add(fx, pop_(), T[4][0] + 0.15, 0.5); add(fx, pop_(650, 1300), V.T_COMO - 0.1, 0.5)
 add(fx, sube(0.35, 150, 500), V.T_GIG - 0.12, 0.6); add(fx, golpe(0.4, 55), V.T_GIG + 0.2, 0.8)
-# P5: el ruido que no se va
-add(fx, whoosh(0.3), T[5][0] - 0.05, 0.4); add(fx, estatica(T[5][1] - V.T_RUIDO + 0.1, 0.7), V.T_RUIDO - 0.1)
-add(fx, zap(0.2, 900, 300), V.T_NADA - 0.12, 0.7)
+# P5: el ruido que no se iba
+add(fx, whoosh(0.3), T[5][0] - 0.05, 0.4); add(fx, estatica(T[5][1] - V.T_RUIDO + 0.1, 0.35), V.T_RUIDO - 0.1); add(fx, zap(0.2, 900, 300), V.T_IBA - 0.12, 0.45)
 # P6: las palomas
-add(fx, whoosh(0.35), T[6][0] - 0.06, 0.5); add(fx, arrullo(0.6), T[6][0] + 0.2, 0.7); add(fx, arrullo(0.5), V.T_PALOMAS + 0.15, 0.6)
-add(fx, pop_(), V.T_PALOMAS - 0.12, 0.5)
+add(fx, whoosh(0.35), T[6][0] - 0.06, 0.5); add(fx, arrullo(0.6), T[6][0] + 0.2, 0.7); add(fx, arrullo(0.5), V.T_PALOMAS + 0.15, 0.6); add(fx, pop_(), V.T_PALOMAS - 0.12, 0.5)
 # P7: se van volando y la escoba
 add(fx, whoosh(0.3), T[7][0] - 0.05, 0.4); add(fx, aleteo(0.9), T[7][0], 0.7)
 tk = V.T_LIMP
 while tk < T[7][1] - 0.2:
-    add(fx, escobazo(0.3), tk, 0.6); tk += 0.36
+    add(fx, escobazo(0.3), tk, 0.3); tk += 0.36
 # P8: pero el ruido seguía
-add(fx, estatica(T[8][1] - T[8][0], 0.75), T[8][0]); add(fx, golpe(0.35, 70), V.T_SEGUIA - 0.05, 0.9); add(fx, clac(), V.T_SEGUIA - 0.03, 0.6)
-# P9: la luz más antigua (y el contador)
-add(fx, whoosh(0.5), T[9][0] - 0.08, 0.6); add(fx, sube(0.9, 200, 1400), T[9][0], 0.45); add(fx, brillito(), V.T_LUZ - 0.1, 0.6)
-tk = V.T_ANTIGUA - 0.1
-while tk < V.T_ANTIGUA + 0.7:
-    add(fx, clac(), tk, 0.25); tk += 0.07
-add(fx, ding(89, 0.8), V.T_ANTIGUA + 0.72, 0.5)
-# P10: llega de todo el cielo
-add(fx, whoosh(0.4), T[10][0] - 0.06, 0.5); add(fx, sube(0.8, 300, 900), T[10][0] + 0.05, 0.35); add(fx, ding(84, 0.8), V.T_CIELO, 0.4)
-# P11: por eso tu tele también la captaba
-add(fx, whoosh(0.35), T[11][0] - 0.05, 0.5); add(fx, sube(0.6, 400, 1200), T[11][0] + 0.1, 0.35); add(fx, boing(0.45), V.T_CAPT2 - 0.1, 0.6); add(fx, brillito(), V.T_CAPT2, 0.4)
-# P12: la grilla y el uno por ciento
+add(fx, estatica(T[8][1] - T[8][0], 0.35), T[8][0]); add(fx, golpe(0.35, 70), V.T_SEGUIA - 0.12, 0.55); add(fx, clac(), V.T_SEGUIA - 0.1, 0.35)
+# P9: las palomas eran inocentes
+add(fx, whoosh(0.3), T[9][0] - 0.05, 0.4); add(fx, arrullo(0.5), T[9][0] + 0.1, 0.5); add(fx, brillito(), V.T_INOC - 0.15, 0.6); add(fx, golpe(0.3, 80), V.T_INOC - 0.12, 0.5)
+# P10: rebobinar hasta el Big Bang
+add(fx, whoosh(0.5), T[10][0] - 0.08, 0.45); add(fx, sube(T[10][1] - T[10][0], 1500, 200), T[10][0], 0.25)
+tk = T[10][0] + 0.05
+while tk < T[10][1] - 0.2:
+    add(fx, clac(), tk, 0.1); tk += 0.08
+add(fx, golpe(0.5, 50), T[10][1] - 0.3, 0.7)
+# P11: la sopa ardiente
+add(fx, whoosh(0.3), T[11][0] - 0.05, 0.4)
+for i in range(8):
+    add(fx, blip(60 + (i * 5) % 12, 0.08), T[11][0] + 0.1 + i * 0.17, 0.25)
+# P12: la luz choca con todo
 add(fx, whoosh(0.3), T[12][0] - 0.05, 0.4)
+tk = V.T_CHOCA - 0.2
+while tk < T[12][1] - 0.2:
+    add(fx, pop_(900, 400), tk, 0.45); tk += 1 / 2.6
+# P13: se enfría, átomos, la luz sale disparada
+add(fx, sube(0.8, 1200, 300), T[13][0], 0.35); add(fx, ding(86, 0.6), V.T_ATOMOS - 0.4, 0.45); add(fx, ding(90, 0.6), V.T_ATOMOS - 0.2, 0.4)
+add(fx, whoosh(0.5), V.T_DISP - 0.15, 0.8); add(fx, sube(0.4, 400, 1600), V.T_DISP - 0.1, 0.5)
+# P14: el universo se estira, como un chicle
+add(fx, whoosh(0.4), T[14][0] - 0.06, 0.5); add(fx, sube(T[14][1] - T[14][0] - 0.2, 900, 160), T[14][0] + 0.1, 0.35); add(fx, boing(0.6), V.T_CHICLE - 0.1, 0.35)
+# P15: ondas de radio, primas de las de la tele
+add(fx, whoosh(0.35), T[15][0] - 0.05, 0.5); add(fx, pop_(), V.T_RADIO - 0.25, 0.5); add(fx, pop_(650, 1300), V.T_PRIMAS - 0.2, 0.5); add(fx, ding(88, 0.7), V.T_PRIMAS, 0.45)
+# P16: llena todo el universo
+add(fx, whoosh(0.4), T[16][0] - 0.06, 0.5); add(fx, sube(0.8, 300, 900), T[16][0] + 0.05, 0.35)
+# P17: llega hasta tu antena, por eso tu tele también la captaba
+add(fx, whoosh(0.35), T[17][0] - 0.05, 0.5); add(fx, sube(0.6, 400, 1200), T[17][0] + 0.1, 0.35); add(fx, boing(0.45), V.T_CAPT2 - 0.1, 0.6); add(fx, brillito(), V.T_CAPT2, 0.4)
+# P18: la grilla y el uno por ciento
+add(fx, whoosh(0.3), T[18][0] - 0.05, 0.4)
 for i in range(10):
-    add(fx, blip(76 + i, 0.06), T[12][0] + i * 0.07, 0.35)
+    add(fx, blip(76 + i, 0.06), T[18][0] + i * 0.07, 0.35)
 add(fx, ding(91, 0.9), V.T_UNO - 0.1, 0.6); add(fx, pop_(), V.T_UNO - 0.15, 0.5)
-# P13: le pegabas a la tele
-add(fx, whoosh(0.35), T[13][0] - 0.06, 0.5); add(fx, whoosh(0.25), V.T_PEGABAS - 0.25, 0.6); add(fx, golpe(0.4, 90), V.T_PEGABAS - 0.2, 1.0)
-add(fx, clac(), V.T_PEGABAS - 0.19, 0.7); add(fx, boing(0.6), V.T_PEGABAS + 0.05, 0.7)
-# P14: le pegabas al Big Bang (¡ay!)
-add(fx, pop_(500, 1000), T[14][0] + 0.02, 0.4); add(fx, trombon_triste()[: int(0.75 * SR)], V.T_BANG2 - 0.1, 0.45); add(fx, pop_(800, 1600), V.T_BANG2 - 0.1, 0.5)
-# P15: vuelta al cuadro 0
-add(fx, whoosh(0.3), T[15][0] - 0.05, 0.4); add(fx, brillito(), T[15][0] + 0.05, 0.4)
+# P19: el universo recién nacido en el living
+add(fx, whoosh(0.35), T[19][0] - 0.06, 0.45); add(fx, brillito(), T[19][0] + 0.1, 0.4); add(fx, ding(84, 1.0), V.T_LIVING - 0.2, 0.25); add(fx, ding(88, 1.0), V.T_LIVING, 0.2)
+# P20: vuelta al cuadro 0 (la mano llega)
+add(fx, whoosh(0.3), T[20][0] + 0.1, 0.3); add(fx, whoosh(0.25), T[20][1] - 0.3, 0.5)
 
 fr = np.sqrt(np.mean(fx[np.abs(fx) > 1e-3] ** 2))
 fx *= (vr / 10 ** (12.5 / 20)) / fr
-mix = v * (0.25 / vr) + (m + fx) * (0.25 / vr)
+# colchón (música + efectos) bajo la voz: se agacha ~9 dB mientras habla (lección 168: ≥ 15 dB para este público)
+envv2 = np.convolve(np.abs(v), np.ones(int(0.12 * SR)) / int(0.12 * SR), mode="same")
+hablando = np.clip(envv2 / 0.05, 0, 1)
+hablando = np.convolve(hablando, np.ones(int(0.08 * SR)) / int(0.08 * SR), mode="same")
+cama = m * (1.0 - (1 - 10 ** (-12 / 20)) * hablando) + fx * (1.0 - (1 - 10 ** (-16 / 20)) * hablando)
+# medida (lección 168): por cada segundo, voz vs. colchón sólo en las muestras donde habla la voz
+peores = []
+for i in range(int(DUR) + 1):
+    sl = slice(i * SR, min(N, (i + 1) * SR))
+    msk = hablando[sl] > 0.5
+    if msk.sum() > SR * 0.2:
+        rv = np.sqrt(np.mean(v[sl][msk] ** 2)); rc = np.sqrt(np.mean(cama[sl][msk] ** 2)) + 1e-9
+        peores.append((round(20 * np.log10(rv / rc), 1), i))
+peores.sort()
+print("voz/colchón dB por segundo hablando (peores 6):", peores[:6], "· mediana", sorted(x for x, _ in peores)[len(peores) // 2])
+mix = v * (0.25 / vr) + cama * (0.25 / vr)
 mix = np.tanh(mix * 1.2) / 1.2
 mix[-int(0.15 * SR):] *= np.linspace(1, 0, int(0.15 * SR))
 os.makedirs(OUT, exist_ok=True)
