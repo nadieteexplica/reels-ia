@@ -1,7 +1,7 @@
 {
  "elevenlabs": "OK",
  "plan": "starter",
- "creditos_usados": 0,
+ "creditos_usados": 221,
  "creditos_limite": 61979,
  "0001-buscar-voces.json": {
   "voces_encontradas": 150,
@@ -100,5 +100,8 @@
  },
  "0034-ep16-tele-big-bang.json": {
   "tts": "ep16-tele-big-bang"
+ },
+ "0035-ep16-tele-big-bang-v5.json": {
+  "tts": "ep16-tele-big-bang-v5"
  }
 }
