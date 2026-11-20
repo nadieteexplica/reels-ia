@@ -54,39 +54,42 @@ def ts(frase, desde=0.0):
     raise KeyError(frase)
 
 
+T_ECO = tw("eco")
 T_BANG = tw("bang")
 T_TE = ts("te acuerdas")
-T_PUNT = tw("puntitos")
+T_LLUVIA = tw("lluvia")
 T_SENAL = tw("señal")
 T_AHI = tw("ahí")
 T_ESC = tw("escondido")
-T_UNA = ts("una antena")
-T_RUIDO = tw("ruido")
+T_UNOS = ts("unos científicos")
+T_COMO = ts("como la de")
+T_GIG = tw("gigante")
+T_CAPTABA = ts("captaba un ruido")
+T_RUIDO = tw("ruido", T_CAPTABA)
 T_NADA = tw("nada")
-T_LOS = ts("los científicos")
+T_CULP = tw("culparon")
 T_PALOMAS = tw("palomas")
 T_LAS = ts("las sacaron")
 T_LIMP = tw("limpiaron")
 T_CACA = tw("caca")
+T_PERO = ts("pero el ruido")
 T_SEGUIA = tw("seguía")
-T_VENIA = ts("venía de todo")
-T_CIELO = tw("cielo")
-T_ERA = ts("era la luz")
+T_ESE = ts("ese ruido")
+T_LUZ = tw("luz", T_ESE)
 T_ANTIGUA = tw("antigua")
-T_LLEVA = tw("lleva")
-T_VIAJ = tw("viajando")
-T_LES = ts("les dieron")
-T_NOBEL = tw("nobel")
-T_YTU = ts("y tu tele")
-T_MAS = ts("más o menos")
-T_CIEN = tw("cien")
-T_ASI = ts("así que")
+T_YLLEGA = ts("y llega")
+T_CIELO = tw("cielo")
+T_POR = ts("por eso")
+T_CAPT2 = tw("captaba", T_POR)
+T_ERA = ts("era más")
+T_UNO = ts("uno por ciento")
+T_CUANDO = ts("cuando le pegabas")
 T_PEGABAS = tw("pegabas")
-T_LE2 = ts("le estabas")
+T_LE2 = ts("le pegabas al")
 T_BANG2 = tw("bang", T_LE2)
 
-CORTES = [0.0, T_TE - 0.08, T_AHI - 0.06, T_UNA - 0.08, T_LOS - 0.08, T_LAS - 0.06, T_VENIA - 0.08, T_ERA - 0.06, T_LLEVA - 0.06,
-          T_LES - 0.06, T_YTU - 0.08, T_MAS - 0.06, T_ASI - 0.08, T_LE2 - 0.06, FIN_VOZ + 0.3, DUR]
+CORTES = [0.0, T_TE - 0.08, T_AHI - 0.06, T_UNOS - 0.08, T_CAPTABA - 0.06, T_CULP - 0.08, T_LAS - 0.06, T_PERO - 0.06, T_ESE - 0.08,
+          T_YLLEGA - 0.06, T_POR - 0.06, T_ERA - 0.06, T_CUANDO - 0.08, T_LE2 - 0.06, FIN_VOZ + 0.3, DUR]
 T = {i + 1: (CORTES[i], CORTES[i + 1]) for i in range(len(CORTES) - 1)}
 NP = len(T)
 for _k, (_a, _b) in T.items():
@@ -137,180 +140,212 @@ def pantalla_bang(t, r=120, cara="feliz"):
 
 def portada(L, t, r=120, pild=1.0):
     B.living(L, t)
-    B.tele(L, 540, 600, 820, t, carpeta=True, pantalla=pantalla_bang(t, r))
+    B.tele(L, 540, 650, 820, t, carpeta=True, pantalla=pantalla_bang(t, r))
     if pild > 0:
-        K.pildora(L, "EL BIG BANG EN TU TELE", 540, 130, 70, AMA, TINTA, pild)
+        K.pildora(L, "EL ECO DEL BIG BANG", 540, 110, 68, AMA, TINTA, pild)
+        K.pildora(L, "EN TU TELE", 540, 212, 54, C["blanco"], TINTA, pild)
 
 
 @dib
 def p1(L, t, a, b):
-    # "La tele de antes captaba el Big Bang."
+    # "La tele de antes captaba el eco del Big Bang."
     portada(L, t, 110 + 22 * pp(t, T_BANG - 0.05))
 
 
 @dib
 def p2(L, t, a, b):
-    # "¿Te acuerdas de los puntitos cuando no había señal?"
+    # "¿Te acuerdas de la lluvia de puntitos cuando no había señal?"
     B.living(L, t)
-    B.tele(L, 700, 560, 640, t, "aburrido" if t < T_PUNT else "normal", carpeta=True, mira=(-0.6, 0))
+    B.tele(L, 700, 560, 640, t, "aburrido" if t < T_LLUVIA else "normal", carpeta=True, mira=(-0.6, 0))
     B.sillon_atras(L, 250, 1160, 0.95)
-    K.viejo(L, 250, 1110, 560, boca(t), t, "tazon", 1)
+    K.viejo(L, 250, 1110, 560, 0.0, t, "tazon", 1)
     B.sillon_frente(L, 250, 1190, 0.95)
-    if t >= T_PUNT - 0.1:
-        u = pp(t, T_PUNT - 0.1)
-        K.flecha(L, 700, 170, 700, 310, AMA, 20, u)
+    if t >= T_SENAL - 0.15:
+        u = pp(t, T_SENAL - 0.15)
+        K.flecha(L, 700, 175, 700, 300, AMA, 20, u)
         K.pildora(L, "SIN SEÑAL", 700, 120, 66, C["blanco"], TINTA, u)
 
 
 @dib
 def p3(L, t, a, b):
-    # "Ahí venía, escondido." → la lluvia de cerca y un puntito que brilla
+    # "Ahí venía escondido." → la lluvia de cerca y un puntito que brilla
     L.d.rectangle((0, 0, L.S(W), L.S(H)), fill=C16["madera"])
     K.caja_red(L, 40, 120, 1040, 980, 70, C16["bisel"], TINTA, 9)
     B._lluvia(L, 80, 160, 1000, 940, t, radio=60, grano=13, oscuro=0.85)
-    u = pp(t, a + 0.25)
-    if u > 0:
-        r = 10 + 60 * suave((t - a - 0.25) / 0.6)
+    if t >= a + 0.2:
+        r = 10 + 66 * suave((t - a - 0.2) / 0.6)
         B.bang(L, 640, 520, r, t, "sorpresa" if t >= T_ESC else "feliz", chispas_n=6)
         B.chispas(L, 640, 520, r * 2.2, t, 5)
 
 
 @dib
 def p4(L, t, a, b):
-    # "Una antena gigante captaba un ruido que no se iba con nada."
+    # "Unos científicos tenían una antena como la de la tele, pero gigante."
     B.noche(L, t)
-    B.cuerno(L, 700, 600, 0.95, t)
-    nada = t >= T_NADA - 0.1
-    B.cientifico(L, 250, 960, 330, t, "molesto" if t >= T_RUIDO else "normal", 1, "oreja" if t >= T_RUIDO else None, audifonos=True)
-    B.cientifico(L, 900, 960, 330, t, "molesto" if nada else "normal", -1, "arriba" if nada else None, pelo="pelado")
-    if t >= T_RUIDO - 0.1:
-        B.ruido_txt(L, 760, 420, t, 1.1)
+    gig = t >= T_GIG - 0.1
+    s_ = 0.62 + 0.33 * sale((t - T_GIG + 0.1) / 0.35) if gig else 0.62
+    B.cuerno(L, 700, 600, s_, t)
+    T_CIEN_ = tw("científicos")
+    for i, (x_, m_, pelo_) in enumerate(((250, 1, "corto"), (900, -1, "pelado"))):            # entran al decir "científicos"
+        u_ = sale((t - T_CIEN_ + 0.1 - 0.12 * i) / 0.35) if t >= T_CIEN_ - 0.1 + 0.12 * i else 0.0
+        if u_ > 0:
+            B.cientifico(L, x_ - m_ * 300 * (1 - u_), 960, 330, t, "sorpresa" if gig and i == 0 else "normal", m_,
+                         "arriba" if gig and i == 0 else None, pelo=pelo_)
+    if t >= T_COMO - 0.1:                                                                  # la tele chica, para comparar
+        u = pp(t, T_COMO - 0.1)
+        B.tele(L, 180, 300, 220 * u + 1, t, "sorpresa" if gig else "normal", ojos=True)
     K.pildora(L, "1964", 540, 130, 70, C["blanco"], TINTA, pp(t, a + 0.15))
 
 
 @dib
 def p5(L, t, a, b):
-    # "Los científicos culparon a unas palomas que anidaban adentro."
+    # "Captaba un ruido que no se quitaba con nada."
+    B.noche(L, t)
+    B.cuerno(L, 860, 470, 0.6, t)
+    nada = t >= T_NADA - 0.15
+    B.cientifico(L, 430, 1000, 620, t, "molesto" if t >= T_RUIDO else "normal", 1, "oreja" if t >= T_RUIDO else None, audifonos=True)
+    if t >= T_RUIDO - 0.1:
+        B.ruido_txt(L, 620, 300, t, 1.1)
+    if nada:                                                                               # una X roja sobre el ruido: no se quita
+        r = 70 * pp(t, T_NADA - 0.15)
+        for sg in (-1, 1):
+            K.linea(L, [(780 - r, 640 - sg * r), (780 + r, 640 + sg * r)], TINTA, 34 * r / 70 + 1)
+            K.linea(L, [(780 - r, 640 - sg * r), (780 + r, 640 + sg * r)], C["rojo"], 22 * r / 70 + 1)
+
+
+@dib
+def p6(L, t, a, b):
+    # "Culparon a unas palomas que anidaban adentro."
     L.d.rectangle((0, 0, L.S(W), L.S(H)), fill=(20, 22, 30))
-    for k in range(7):                                                                     # adentro del cuerno: paredes que se juntan
+    for k in range(7):
         u = k / 7
         K.poligono(L, [(0, 0), (W, 0), (W - 160 - 40 * u, 140 + 40 * u), (160 + 40 * u, 140 + 40 * u)], (60 + 18 * k, 66 + 18 * k, 78 + 18 * k))
     K.poligono(L, [(0, 0), (190, 180), (190, 980), (0, 1150)], C16["metal2"], TINTA, 6)
     K.poligono(L, [(W, 0), (W - 190, 180), (W - 190, 980), (W, 1150)], C16["metal3"], TINTA, 6)
     K.poligono(L, [(0, 1150), (190, 980), (W - 190, 980), (W, 1150)], C16["metal3"], TINTA, 6)
     L.d.rectangle((0, L.S(1150), L.S(W), L.S(H)), fill=C16["metal3"])
+    for (x0, y0, x1, y1) in ((0, 0, W, 46), (0, 0, 46, 1150), (W - 46, 0, W, 1150)):         # el borde de la boca de la antena
+        L.d.rectangle((L.S(x0), L.S(y0), L.S(x1), L.S(y1)), fill=C16["metal"], outline=TINTA, width=int(L.S(6)))
+    for k in range(9):
+        K.circulo(L, 23, 60 + k * 125, 9, C16["metal3"], TINTA, 3)
+        K.circulo(L, W - 23, 60 + k * 125, 9, C16["metal3"], TINTA, 3)
+    K.pildora(L, "DENTRO DE LA ANTENA", 540, 120, 50, C["blanco"], TINTA, pp(t, a + 0.05) if t < T_PALOMAS - 0.15 else 0)
     pal = t >= T_PALOMAS - 0.15
-    B.nido(L, 640, 880, 1.25)
-    B.paloma(L, 560, 870, 1.5, t, -1 if not pal else 1, "inocente" if pal else "normal")
-    B.paloma(L, 750, 870, 1.5, t + 0.7, -1, "inocente" if pal else "normal")
+    B.nido(L, 660, 880, 1.25)
+    B.paloma(L, 580, 870, 1.5, t, -1 if not pal else 1, "inocente" if pal else "normal")
+    B.paloma(L, 770, 870, 1.5, t + 0.7, -1, "inocente" if pal else "normal")
     B.cientifico(L, 230, 1240, 660, t, "molesto", 1, "apunta" if pal else None)
+    for i, (x_, y_) in enumerate(((480, 930), (860, 940))):
+        B.caca(L, x_, y_, 24, pp(t, a + 0.3 + 0.2 * i))
     if pal:
-        K.pildora(L, "¿LAS PALOMAS?", 640, 560, 66, C["blanco"], TINTA, pp(t, T_PALOMAS - 0.15))
-
-
-@dib
-def p6(L, t, a, b):
-    # "Las sacaron, limpiaron la caca, y el ruido seguía."
-    B.noche(L, t)
-    B.cuerno(L, 820, 520, 0.7, t)
-    e = t - a
-    for i, (x0, y0) in enumerate(((560, 640), (720, 650))):                               # se van volando
-        u = sale(e / 1.1)
-        B.paloma(L, x0 + 500 * u * (1 if i else 0.8), y0 - 640 * u, 1.1, t + i, 1, vuela=1.0)
-    limp = clamp((t - T_LIMP) / max(0.3, T_SEGUIA - T_LIMP - 0.2)) if t >= T_LIMP else 0.0
-    for i, (cx_, cy_) in enumerate(((430, 920), (560, 940), (680, 915))):
-        B.caca(L, cx_, cy_, 30, 1.0 - clamp(limp * 3 - i))
-    B.cientifico(L, 300, 960, 420, t, "molesto" if t >= T_SEGUIA else "normal", 1, "escoba" if t >= T_LIMP - 0.2 else None)
-    if t >= T_SEGUIA - 0.1:
-        B.ruido_txt(L, 700, 400, t, 1.1)
-        A.sello(L, 720, 230, "SIGUE", 1.0, -0.12, sale((t - T_SEGUIA + 0.1) / 0.18))
+        K.pildora(L, "¿LAS PALOMAS?", 660, 560, 66, C["blanco"], TINTA, pp(t, T_PALOMAS - 0.15))
 
 
 @dib
 def p7(L, t, a, b):
-    # "Venía de todo el cielo."
-    B.cosmos(L, t)
-    B.tierra(L, 540, 600, 170, t)
-    u = sale((t - a) / 0.9)
-    for k in range(8):
-        an = k * math.pi / 4 + 0.2
-        B.onda(L, 540 + math.cos(an) * 640, 600 + math.sin(an) * 640, 540 + math.cos(an) * 230, 600 + math.sin(an) * 230, t, u, 20, 60, None, 11)
+    # "Las sacaron y limpiaron la caca."
+    B.noche(L, t)
+    B.cuerno(L, 820, 520, 0.7, t)
+    e = t - a
+    for i, (x0, y0) in enumerate(((560, 640), (720, 650))):                               # se van volando
+        u = sale(e / 1.0)
+        B.paloma(L, x0 + 500 * u * (1 if i else 0.8), y0 - 640 * u, 1.1, t + i, 1, vuela=1.0)
+    limp = clamp((t - T_LIMP) / max(0.3, b - T_LIMP - 0.15)) if t >= T_LIMP else 0.0
+    for i, (cx_, cy_) in enumerate(((430, 920), (560, 940), (680, 915))):
+        B.caca(L, cx_, cy_, 30, 1.0 - clamp(limp * 3 - i))
+    B.cientifico(L, 300, 960, 420, t, "normal", 1, "escoba" if t >= T_LIMP - 0.2 else None)
 
 
 @dib
 def p8(L, t, a, b):
-    # "Era la luz más antigua del universo."
+    # "Pero el ruido seguía."
+    B.noche(L, t)
+    B.cuerno(L, 820, 520, 0.7, t)
+    B.cientifico(L, 300, 960, 420, t, "molesto", 1, "oreja")
+    if not (T_SEGUIA - 0.12 <= t < T_SEGUIA + 0.25):                                       # no se encima con el timbre grande
+        B.ruido_txt(L, 520, 440, t, 1.1)
+    if t >= T_SEGUIA - 0.12:
+        A.sello(L, 640, 250, "SIGUE", 1.0, -0.12, sale((t - T_SEGUIA + 0.12) / 0.18))
+
+
+def contador(L, t, y=262):
+    t0 = T_ESE + 0.15
+    if t < t0:
+        return
+    u = clamp((t - t0) / 0.6)
+    n = int(round(13800 * sale(u) / 100.0)) * 100
+    s_ = f"{n:,}".replace(",", ".") + " MILLONES DE AÑOS"
+    K.pildora(L, ("CASI " if u >= 1 else "") + s_, 540, y, 54, C["blanco"], TINTA, pp(t, t0))
+
+
+@dib
+def p9(L, t, a, b):
+    # "Ese ruido era la luz más antigua del universo."
     B.cosmos(L, t, galaxias=False)
     e = t - a
     for i in range(4):
         f = (e * 0.7 + i / 4) % 1.0
         r = 180 + 520 * f
         al = int(170 * (1 - f))
-        L.d.ellipse((L.S(540 - r), L.S(560 - r), L.S(540 + r), L.S(560 + r)), outline=(255, 220, 130, al), width=int(L.S(14)))
-    B.bang(L, 540, 560, 170 * pp(t, a + 0.02), t, "feliz", chispas_n=14)
-    K.pildora(L, "LA LUZ MÁS ANTIGUA", 540, 150, 68, AMA, TINTA, pp(t, T_ANTIGUA - 0.1))
-
-
-@dib
-def p9(L, t, a, b):
-    # "Lleva casi trece mil ochocientos millones de años viajando."
-    B.cosmos(L, t, semilla=9)
-    B.bang(L, 200, 400, 80, t, "feliz", chispas_n=6)
-    B.tierra(L, 840, 820, 110, t)
-    u = clamp((t - a - 0.1) / max(0.5, b - a - 0.4))
-    B.onda(L, 270, 450, 760, 760, t, sale(u), 18, 55, None, 11)
-    n = int(13800 * sale(u))
-    s = f"{n:,}".replace(",", ".")
-    K.pildora(L, f"{s} MILLONES DE AÑOS", 540, 150, 64, C["blanco"], TINTA, pp(t, a + 0.05))
+        L.d.ellipse((L.S(540 - r), L.S(600 - r), L.S(540 + r), L.S(600 + r)), outline=(255, 220, 130, al), width=int(L.S(14)))
+    B.bang(L, 540, 600, 160 * pp(t, a + 0.02), t, "feliz", chispas_n=14)
+    contador(L, t, 262)
+    K.pildora(L, "LA LUZ MÁS ANTIGUA", 540, 140, 68, AMA, TINTA, pp(t, T_LUZ - 0.1))
 
 
 @dib
 def p10(L, t, a, b):
-    # "Les dieron el Nobel."
-    A.fondo_puntos(L, C["crema"], C["crema2"], t)
-    e = t - T_NOBEL + 0.1
-    B.cientifico(L, 330, 1000, 560, t, "feliz", 1, "arriba" if e > 0.3 else None, medalla=sale(e / 0.4) if e > 0 else 0.0)
-    B.cientifico(L, 760, 1000, 560, t, "feliz", -1, None, pelo="pelado", medalla=sale((e - 0.15) / 0.4) if e > 0.15 else 0.0)
-    K.pildora(L, "NOBEL 1978", 540, 150, 76, AMA, TINTA, pp(t, T_NOBEL - 0.1))
-    B.confeti(L, t, T_NOBEL - 0.05, 40)
+    # "Y llega de todo el cielo."
+    B.cosmos(L, t)
+    B.tierra(L, 540, 560, 170, t)
+    u = sale((t - a) / 0.9)
+    for k in range(8):
+        an = k * math.pi / 4 + 0.2
+        B.onda(L, 540 + math.cos(an) * 620, 560 + math.sin(an) * 340, 540 + math.cos(an) * 230, 560 + math.sin(an) * 230, t, u, 20, 60, None, 11)
+    if t < T_YLLEGA + 0.9:                                                                 # la cifra se queda para leerla
+        contador(L, t, 150)
 
 
 @dib
 def p11(L, t, a, b):
-    # "Y tu tele también la captaba:"
+    # "Por eso tu tele también la captaba."
     B.living(L, t)
-    B.tele(L, 540, 600, 820, t, "orgullo", carpeta=True, salto=0.5)
-    B.chispas(L, 540, 560, 460, t, 7, semilla=4)
+    capt = t >= T_CAPT2 - 0.1
+    B.tele(L, 540, 640, 760, t, "orgullo" if capt else "normal", carpeta=True, salto=0.5 if capt else 0.0)
+    u = sale((t - a) / 0.8)
+    for k, (x0, y0) in enumerate(((60, -40), (540, -120), (1020, -40))):
+        B.onda(L, x0, y0, 400 + k * 140, 220, t, u, 16, 50, None, 9)
+    if capt:
+        B.chispas(L, 540, 600, 450, t, 7, semilla=4)
 
 
 def pantalla_grilla(t, u):
     def f(L, x0, y0, x1, y1):
         L.d.rounded_rectangle((L.S(x0), L.S(y0), L.S(x1), L.S(y1)), L.S(50), fill=(28, 28, 32))
         m = 46
-        B.grilla100(L, x0 + m, y0 + m * 0.7, x1 - m, y1 - m * 0.7, t, u)
+        B.grilla100(L, x0 + m, y0 + m * 0.7, x1 - m, y1 - m * 0.7, t, u, especial=(6, 4))
     return f
 
 
 @dib
 def p12(L, t, a, b):
-    # "más o menos uno de cada cien puntitos."
+    # "Era más o menos el uno por ciento de esa lluvia."
     L.d.rectangle((0, 0, L.S(W), L.S(H)), fill=C16["madera"])
-    K.caja_red(L, 30, 200, 1050, 1000, 70, C16["bisel"], TINTA, 9)
+    K.caja_red(L, 30, 220, 1050, 1000, 70, C16["bisel"], TINTA, 9)
     u = clamp((t - a) / 0.7)
-    pantalla_grilla(t, u)(L, 70, 240, 1010, 960)
-    if t >= T_CIEN - 0.15:
-        K.pildora(L, "1 DE CADA 100", 540, 120, 76, AMA, TINTA, pp(t, T_CIEN - 0.15))
+    pantalla_grilla(t, u)(L, 70, 260, 1010, 960)
+    if t >= T_UNO - 0.15:
+        K.pildora(L, "MÁS O MENOS 1 %", 540, 120, 76, AMA, TINTA, pp(t, T_UNO - 0.15))
 
 
 @dib
 def p13(L, t, a, b):
-    # "Así que cuando le pegabas a la tele,"
+    # "Cuando le pegabas a la tele,"
     B.living(L, t)
-    gol = t >= T_PEGABAS - 0.05
+    gol = t >= T_PEGABAS - 0.2
     B.tele(L, 620, 600, 760, t, "mareado" if gol else "normal", carpeta=True, temblor=1.0 if gol else 0.0)
-    e = t - T_PEGABAS + 0.05
     if gol:
-        A.estrella_golpe(L, 400, 300, 110 * pp(t, T_PEGABAS - 0.05), None, 10, "PAF", 60 * pp(t, T_PEGABAS - 0.05))
+        A.estrella_golpe(L, 400, 300, 110 * pp(t, T_PEGABAS - 0.2), None, 10, "PAF", 60 * pp(t, T_PEGABAS - 0.2))
         B.palma(L, 300, 300, 1.05, -0.35, manga=(200, 186, 160))
     else:
         u = clamp((t - a) / max(0.3, T_PEGABAS - a))
@@ -319,7 +354,7 @@ def p13(L, t, a, b):
 
 @dib
 def p14(L, t, a, b):
-    # "le estabas pegando al Big Bang."
+    # "le pegabas al Big Bang."
     B.living(L, t)
     B.tele(L, 540, 600, 820, t, carpeta=True, temblor=0.3, pantalla=pantalla_bang(t, 130, "ay"))
     if t >= T_BANG2 - 0.1:
@@ -340,7 +375,7 @@ assert len(FUN) == len(T)
 # ------------------------------------------------------------------ subtítulos (palabra por palabra, 1–3 palabras)
 FONT = K.FONT
 AMARILLO = (255, 210, 63)
-CLAVE = {"BIG": (255, 170, 80), "BANG": (255, 170, 80), "PALOMAS": (190, 200, 230), "CIEN": (255, 170, 80), "NOBEL": (255, 210, 63)}
+CLAVE = {"BIG": (255, 170, 80), "BANG": (255, 170, 80), "ECO": (255, 170, 80), "CIENTO": (255, 170, 80)}
 BOX = (120, 960, 888, 1250)
 
 

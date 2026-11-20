@@ -19,7 +19,7 @@ C16 = {
     "metal": (196, 204, 212), "metal2": (150, 160, 172), "metal3": (110, 120, 134), "camisa": (250, 250, 246), "corbata": (52, 70, 120),
     "pantalon": (92, 92, 104), "pelo": (60, 44, 36), "pelo2": (110, 96, 86), "paloma": (150, 156, 170), "paloma2": (112, 118, 134),
     "cuello_v": (96, 170, 130), "cuello_m": (150, 110, 180), "cosmos": (14, 12, 40), "cosmos2": (34, 22, 74), "cosmos3": (70, 40, 120),
-    "bang": (255, 236, 150), "bang2": (255, 196, 70), "bang3": (255, 140, 60), "luz": (255, 230, 120), "tierra_m": (70, 150, 220),
+    "bang": (255, 246, 200), "bang2": (255, 170, 60), "bang3": (236, 74, 52), "luz": (255, 230, 120), "tierra_m": (70, 150, 220),
     "tierra_v": (110, 180, 100), "cinta": (200, 60, 60), "cinta2": (40, 80, 160), "carpeta": (252, 248, 236),
 }
 
@@ -54,7 +54,7 @@ def _lluvia(L, x0, y0, x1, y1, t, radio=40, grano=7, oscuro=1.0, semilla=0):
 
 def ojos_cara(L, cx, cy, s, cara="normal", t=0.0, mira=(0.0, 0.0)):
     """Ojos grandes y boca de dibujo animado (para la pantalla de la tele)."""
-    parp = (t % 3.7) < 0.12 and cara in ("normal", "orgullo", "feliz")
+    parp = ((t + 1.7) % 3.7) < 0.12 and cara in ("normal", "orgullo", "feliz")
     for sg in (-1, 1):
         ex, ey = cx + sg * 105 * s, cy - 30 * s
         K.elipse(L, ex, ey, 62 * s, 70 * s, (0, 0, 0, 110))                                  # halo para despegarlo de la lluvia
@@ -171,7 +171,7 @@ def bang(L, x, y, r, t=0.0, cara="feliz", brillo=1.0, rot=None, chispas_n=10):
     for k in range(4, 0, -1):
         K.circulo(L, x, y, r * (1 + k * 0.3 * brillo), (255, 200, 110, int(30 * brillo)))
     rnd = random.Random(31)
-    largos = [rnd.uniform(1.25, 1.95) for _ in range(18)]
+    largos = [rnd.uniform(1.2, 2.25) for _ in range(18)]
     for capa, (col, esc) in enumerate(((C16["bang3"], 1.0), (C16["bang2"], 0.78))):
         pts = []
         for i in range(36):
@@ -198,7 +198,7 @@ def bang(L, x, y, r, t=0.0, cara="feliz", brillo=1.0, rot=None, chispas_n=10):
             K.linea(L, [(ex - 12 * k, ey + 12 * k), (ex + 12 * k, ey - 12 * k)], TINTA, 7 * k)
         K.elipse(L, x, y + 32 * k, 15 * k, 19 * k, (140, 50, 40), TINTA, 5 * k)
         return
-    parp = (t % 2.9) < 0.1
+    parp = ((t + 1.4) % 2.9) < 0.1
     for sg in (-1, 1):
         ex, ey = x + sg * 30 * k, y - 12 * k
         if parp:
@@ -341,16 +341,16 @@ def cuerno(L, x, y, s=1.0, t=0.0, boca=True):
         K.poligono(L, [(x - 20 * s, y - 250 * s), (x + 60 * s, y - 210 * s), (x + 60 * s, y + 210 * s), (x - 20 * s, y + 230 * s)], (20, 22, 30), TINTA, 7)
 
 
-def ruido_txt(L, x, y, t, s=1.0, n=3, color=None, tam=70, ang=-0.2):
-    """'SHHH' que sale en ondas (el ruido)."""
+def ruido_txt(L, x, y, t, s=1.0, n=2, color=None, tam=66, ang=-0.15):
+    """'KSSSHH' (la estática) que sale en ondas, sin encimarse y dentro del cuadro."""
     for i in range(n):
-        f = (t * 0.8 + i / n) % 1.0
+        f = (t * 0.7 + i / n) % 1.0
         a = int(255 * math.sin(math.pi * f))
-        xx = x + math.cos(ang) * 260 * f * s
-        yy = y + math.sin(ang) * 260 * f * s - 30 * i
+        xx = min(x + math.cos(ang) * 150 * f * s, 700)
+        yy = y + 120 * i + math.sin(ang) * 150 * f * s
         if a > 10:
             col = color or (255, 255, 255)
-            K.texto(L, "SHHH", xx, yy, tam * s * (0.8 + 0.4 * f), (col[0], col[1], col[2], a), borde=6, color_borde=(30, 30, 40, a))
+            K.texto(L, "KSSSHH", xx, yy, tam * s * (0.85 + 0.3 * f), (col[0], col[1], col[2], a), borde=6, color_borde=(30, 30, 40, a))
 
 
 # ------------------------------------------------------------------ científicos de los 60
@@ -562,4 +562,7 @@ def grilla100(L, x0, y0, x1, y1, t, u=1.0, especial=(6, 3), brillo=1.0):
         K.circulo(L, cx, cy, min(cw, ch) * 0.3, (g, g, g), (30, 30, 34), 3)
     if n > especial[1] * 10 + especial[0]:
         cx, cy = x0 + (especial[0] + 0.5) * cw, y0 + (especial[1] + 0.5) * ch
-        bang(L, cx, cy, min(cw, ch) * 0.34 * (1 + 0.08 * math.sin(t * 7)), t, "feliz", brillo)
+        rr = min(cw, ch)
+        for k in range(3):
+            K.circulo(L, cx, cy, rr * (0.75 + k * 0.28) * (1 + 0.1 * math.sin(t * 6)), (255, 200, 90, 60 - k * 15))
+        bang(L, cx, cy, rr * 0.44 * (1 + 0.08 * math.sin(t * 7)), t, "feliz", brillo, chispas_n=0)

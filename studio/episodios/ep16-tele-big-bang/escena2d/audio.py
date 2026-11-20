@@ -1,4 +1,4 @@
-"""Audio del Ep. 15: música sintetizada (electrónica de juguete con marimba) + un efecto por evento + voz. Sale mix.wav a −14 LUFS."""
+"""Audio del Ep. 16: música sintetizada de los 50–60 (progresión doo-wop Do–La m–Fa–Sol con vibráfono, bajo caminante y escobillas) + un efecto por evento + voz. Sale mix.wav a −14 LUFS."""
 import os, subprocess, sys
 import numpy as np
 from scipy.io import wavfile
@@ -156,35 +156,54 @@ def bajo_s(m_, d):
 
 
 
-BPM = 108
+def vibra(m_, d=0.6):
+    t = tt(d); f = hz(m_)
+    x = (np.sin(2 * np.pi * f * t) + 0.25 * np.sin(2 * np.pi * 4 * f * t) * np.exp(-t / 0.05)) * np.exp(-t / 0.45)
+    return x * (0.8 + 0.2 * np.sin(2 * np.pi * 5.5 * t)) * np.minimum(1, t / 0.004)
+
+
+def contrabajo(m_, d):
+    t = tt(d); f = hz(m_)
+    x = np.sin(2 * np.pi * f * t) + 0.35 * np.sin(2 * np.pi * 2 * f * t)
+    return filt(x, None, 700) * np.minimum(1, t / 0.008) * np.exp(-t / (d * 0.7)) * 0.6
+
+
+def escobilla(d=0.18, g=1.0):
+    n = int(d * SR)
+    return filt(rng.standard_normal(n), 2500, 9000) * np.exp(-np.arange(n) / SR / 0.06) * g * 0.5
+
+
+BPM = 112
 NEG = 60 / BPM
-ACORDES = [(48, (60, 64, 67, 72)), (45, (57, 60, 64, 69)), (41, (53, 57, 60, 65)), (43, (55, 59, 62, 67))]    # Do · La m · Fa · Sol
+ACORDES = [(48, (60, 64, 67)), (45, (57, 60, 64)), (41, (53, 57, 60)), (43, (55, 59, 62))]       # Do · La m · Fa · Sol (doo-wop)
+CAMINA = {48: (48, 52, 55, 57), 45: (45, 48, 52, 50), 41: (41, 45, 48, 50), 43: (43, 47, 50, 47)}
 m = np.zeros(N)
-silencios = [(V.T[1][0], V.T_NO - 0.05), (V.T_NO2 - 0.1, V.T_PERO3), (V.T_NOBASTA - 0.5, V.T_NOBASTA)]
+silencios = [(V.T_PERO - 0.05, V.T_SEGUIA + 0.25), (V.T_LE2 - 0.25, V.T_BANG2 + 0.2)]
 comp = 0
 t = 0.0
 while t < DUR - 0.3:
     bajo, ac = ACORDES[comp % 4]
     for neg in range(4):
         tn = t + neg * NEG
-        if any(a <= tn < b for a, b in silencios) or tn > DUR - 0.4:
+        if any(a_ <= tn < b_ for a_, b_ in silencios) or tn > DUR - 0.4:
             continue
+        add(m, contrabajo(CAMINA[bajo][neg], NEG * 0.95), tn, 0.9)
+        add(m, escobilla(0.16, 0.6 if neg % 2 else 0.3), tn)
+        if neg in (1, 3):
+            add(m, escobilla(0.1, 0.3), tn + NEG * 0.66)
         if neg in (0, 2):
-            add(m, bombo(0.6), tn); add(m, bajo_s(bajo, NEG * 0.8), tn, 0.8)
-        else:
-            add(m, chas(0.05, 0.2), tn); add(m, bajo_s(bajo + 7, NEG * 0.4), tn + NEG / 2, 0.45)
-        for nn in ac[:3]:
-            add(m, marimba(nn + 12, 0.25), tn + NEG / 2, 0.14)                   # contratiempo
-        mel = (ac[0], ac[2], ac[1], ac[3], ac[2], ac[1], ac[2], ac[0])
-        if comp % 2 == 0 or neg < 2:
-            add(m, marimba(mel[(neg * 2) % 8] + 24, 0.3), tn, 0.26); add(m, marimba(mel[(neg * 2 + 1) % 8] + 24, 0.2), tn + NEG * 0.75, 0.18)
+            for nn in ac:
+                add(m, vibra(nn + 12, 0.7), tn + NEG * 0.5, 0.10)
+        mel = (ac[2] + 12, ac[1] + 12, ac[0] + 12, ac[1] + 12)
+        if comp % 2 == 1:
+            add(m, vibra(mel[neg] + 12, 0.5), tn, 0.16)
     t += 4 * NEG
     comp += 1
-m = filt(m, 45, 9000)
+m = filt(m, 40, 9000)
 envv = np.convolve(np.abs(v), np.ones(int(0.1 * SR)) / int(0.1 * SR), mode="same")
 m *= 1.0 - 0.5 * np.clip(envv / 0.12, 0, 1)
 vr = np.sqrt(np.mean(v[np.abs(v) > 0.02] ** 2)); mr = np.sqrt(np.mean(m[np.abs(m) > 1e-4] ** 2) + 1e-12)
-m *= (vr / 10 ** (15.0 / 20)) / mr
+m *= (vr / 10 ** (20.0 / 20)) / mr
 
 
 def zap(d=0.16, f0=1800, f1=500):
@@ -233,76 +252,93 @@ def sube(d, f0=200, f1=1200):
 
 
 # ---------------------------------------------------------------- efectos (uno por evento)
-def grillo(d=0.9):
+def estatica(d, g=1.0):
+    n = int(d * SR); t_ = tt(d)
+    x = filt(rng.standard_normal(n), 1200, 9000) * (0.8 + 0.2 * np.sin(2 * np.pi * 60 * t_))
+    return x * np.minimum(1, t_ / 0.08) * np.minimum(1, (d - t_) / 0.12) * 0.3 * g
+
+
+def arrullo(d=0.6):
+    """Cucurrú de paloma: grave, con vibrato que sube y baja."""
+    t_ = tt(d)
+    f = 330 + 60 * np.sin(np.pi * t_ / d) + 18 * np.sin(2 * np.pi * 22 * t_)
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR) + 0.3 * np.sin(2 * np.pi * np.cumsum(f * 2) / SR)
+    return filt(x, 200, 1500) * np.sin(np.pi * t_ / d) ** 2 * (0.6 + 0.4 * np.sign(np.sin(2 * np.pi * 7 * t_))) * 0.5
+
+
+def aleteo(d=0.8, fps=12):
     x = np.zeros(int(d * SR))
-    for k in range(3):
-        for j in range(4):
-            t0 = k * 0.3 + j * 0.035
-            tt_ = tt(0.025)
-            add(x, np.sin(2 * np.pi * 4400 * tt_) * np.sin(np.pi * tt_ / 0.025), t0)
-    return x * 0.5
+    for i in range(int(d * fps)):
+        n = int(0.05 * SR)
+        add(x, filt(rng.standard_normal(n), 300, 2500) * np.exp(-np.arange(n) / SR / 0.015) * 0.6, i / fps)
+    return x
 
 
-def brrr(d=1.0, cps=26):
-    d = max(d, 0.06)
-    """Dedos que hacen cosquillas: tableteo rápido y suave."""
-    x = np.zeros(int(d * SR))
-    for i in range(int(d * cps)):
-        add(x, clac() * (0.25 + 0.15 * (i % 3 == 0)), i / cps)
-    return filt(x, 900, 6000) * np.minimum(1, tt(d) / 0.05)[: len(x)] * 0.7
+def escobazo(d=0.35):
+    t_ = tt(d)
+    return filt(rng.standard_normal(len(t_)), 1500, 7000) * np.sin(np.pi * t_ / d) ** 2 * 0.5
 
 
-def risitas(d=1.2, f0=78):
-    """'Ja ja ja' de juguete: marimbas que suben y bajan rápido."""
-    x = np.zeros(int(d * SR))
-    for i in range(int(d / 0.11)):
-        add(x, marimba(f0 + (i % 4) * 2 + (3 if i % 2 else 0), 0.12), i * 0.11, 0.6)
+def brillito():
+    x = np.zeros(int(0.9 * SR))
+    for i, m_ in enumerate((88, 91, 95, 100)):
+        add(x, ding(m_, 0.6), i * 0.07, 0.5)
     return x
 
 
 fx = np.zeros(N)
 T = V.T
-# P1: se hace cosquillas: nada (grillos)
-add(fx, brrr(T[1][1] - 0.1), 0.05, 0.45); add(fx, pop_(), V.T_NO - 0.05, 0.5); add(fx, grillo(0.9), V.T_NADA + 0.1, 0.5)
-# P2: las manos de otro → risa
-add(fx, whoosh(0.4), T[2][0] - 0.05, 0.5); add(fx, pop_(500, 1100), T[2][0] + 0.05, 0.4)
-add(fx, whoosh(0.35), V.T_OTRO - 0.3, 0.6); add(fx, brrr(T[2][1] - V.T_OTRO), V.T_OTRO, 0.55)
-add(fx, boing(0.5), V.T_RETUER - 0.05, 0.8); add(fx, risitas(T[2][1] - V.T_RETUER + 0.1), V.T_RETUER, 0.6)
-# P3: los dos lo saben
-add(fx, whoosh(0.3), T[3][0] - 0.08, 0.5); add(fx, pop_(), T[3][0] + 0.05, 0.4); add(fx, pop_(650, 1300), T[3][0] + 0.15, 0.4)
-add(fx, ding(84, 0.6), V.T_DOS, 0.5); add(fx, ding(88, 0.6), V.T_DOS + 0.12, 0.45); add(fx, boing(0.4), V.T_SABES - 0.05, 0.6)
-# P4–P5: la orden baja y se guarda la copia
-add(fx, whoosh(0.3), T[4][0] - 0.08, 0.5); add(fx, pop_(), V.T_CEREBRO - 0.1, 0.4)
-add(fx, sube(0.65, 1100, 300), V.T_ORDEN - 0.15, 0.5); add(fx, pop_(), V.T_ORDEN - 0.1, 0.5); add(fx, brrr(T[4][1] - V.T_ORDEN - 0.5), V.T_ORDEN + 0.5, 0.35)
-add(fx, whoosh(0.25), T[5][0] - 0.05, 0.4); add(fx, pop_(700, 1400), T[5][0] + 0.05, 0.5); add(fx, golpe(0.3, 65), V.T_COPIA - 0.03, 0.8); add(fx, clac(), V.T_COPIA, 0.5)
-# P6: calcula cuándo y dónde
-add(fx, whoosh(0.3), T[6][0] - 0.08, 0.5); add(fx, sube(0.3, 400, 1200), T[6][0] + 0.15, 0.4)
-add(fx, pop_(), V.T_CUANDO - 0.08, 0.5); add(fx, ding(86, 0.5), V.T_CUANDO + 0.1, 0.4)
-add(fx, pop_(650, 1300), V.T_DONDE - 0.08, 0.5); add(fx, ding(89, 0.5), V.T_DONDE + 0.1, 0.4); add(fx, pop_(), V.T_TOCAR - 0.1, 0.4)
-# P7: baja el volumen
-add(fx, whoosh(0.3), T[7][0] - 0.08, 0.5); add(fx, pop_(), T[7][0] + 0.05, 0.4); add(fx, sube(0.6, 1200, 200), V.T_BAJA, 0.7)
-# P8: la mano de otro, sin copia
-add(fx, whoosh(0.4), T[8][0] - 0.05, 0.6); add(fx, brrr(T[8][1] - T[8][0]), T[8][0] + 0.1, 0.45)
-add(fx, trombon_triste()[: int(0.7 * SR)], V.T_NOHAY + 0.05, 0.5); add(fx, zap(0.18, 1500, 500), V.T_NOHAY, 0.5)
-# P9: volumen al máximo
-add(fx, sube(0.3, 300, 1500), T[9][0], 0.7); add(fx, boing(0.5), T[9][0] + 0.3, 0.7); add(fx, risitas(T[9][1] - T[9][0] - 0.3), T[9][0] + 0.3, 0.6)
-# P10–P13: el robot
-add(fx, whoosh(0.4), T[10][0] - 0.08, 0.5); add(fx, bip(0.12, 91), T[10][0] + 0.1, 0.6); add(fx, bip(0.12, 96), T[10][0] + 0.25, 0.5)
-add(fx, motor(T[13][1] - V.T_MUEVES), V.T_MUEVES, 0.4); add(fx, pop_(), V.T_MUEVES - 0.05, 0.4)
-add(fx, pop_(), T[11][0] + 0.05, 0.5); add(fx, grillo(0.6), T[11][0] + 0.25, 0.5)
-add(fx, whoosh(0.3), T[12][0] - 0.06, 0.4); tk = V.T_ATRASA - 0.1
-while tk < V.T_SITE - 0.1:
-    add(fx, clac(), tk, 0.3); tk += 0.2                                       # el cronómetro
-add(fx, ding(84, 0.6), V.T_ATRASA + 0.4, 0.4)
-add(fx, boing(0.5), V.T_SITE - 0.05, 0.8); add(fx, risitas(T[13][1] - V.T_SITE), V.T_SITE, 0.6); add(fx, brrr(T[13][1] - V.T_SITE), V.T_SITE, 0.35)
-add(fx, pop_(600, 1300), T[13][0] + 0.02, 0.5); add(fx, ding(88, 0.5), V.T_SEPAS, 0.4)
-# P14: saberlo no basta → predecirlas (y vuelta al cuadro 0)
-add(fx, whoosh(0.4), T[14][0] - 0.08, 0.5); add(fx, pop_(), T[14][0] + 0.05, 0.4); add(fx, zap(0.2, 2400, 600), V.T_TU2 - 0.05, 0.6)
-add(fx, ding(84, 1.0), V.T_PREDIC - 0.1, 0.6); add(fx, ding(91, 1.0), V.T_PREDIC + 0.05, 0.5); add(fx, sube(0.5, 400, 1600), V.T_PREDIC - 0.1, 0.4)
-add(fx, whoosh(0.3), T[15][0] - 0.05, 0.4); add(fx, brrr(T[15][1] - T[15][0]), T[15][0], 0.4)
+# estática de la tele donde se ve la lluvia
+for k in (1, 2, 3, 13, 14, 15):
+    a_, b_ = T[k]
+    add(fx, estatica(b_ - a_ + 0.05, 0.6 if k != 3 else 1.0), a_)
+# P1: el Big Bang en la tele
+add(fx, pop_(400, 900), 0.02, 0.5); add(fx, brillito(), V.T_BANG - 0.05, 0.6); add(fx, boing(0.4), V.T_BANG - 0.05, 0.4)
+# P2: el viejo y la tele sin señal
+add(fx, whoosh(0.35), T[2][0] - 0.06, 0.5); add(fx, pop_(), V.T_LLUVIA - 0.05, 0.35); add(fx, ding(84, 0.6), V.T_SENAL - 0.1, 0.5); add(fx, pop_(600, 1200), V.T_SENAL - 0.12, 0.4)
+# P3: el puntito escondido
+add(fx, whoosh(0.3), T[3][0] - 0.05, 0.5); add(fx, brillito(), T[3][0] + 0.25, 0.6); add(fx, pop_(700, 1500), V.T_ESC, 0.4)
+# P4: la antena gigante
+add(fx, whoosh(0.4), T[4][0] - 0.06, 0.5); add(fx, pop_(), T[4][0] + 0.15, 0.5); add(fx, pop_(650, 1300), V.T_COMO - 0.1, 0.5)
+add(fx, sube(0.35, 150, 500), V.T_GIG - 0.12, 0.6); add(fx, golpe(0.4, 55), V.T_GIG + 0.2, 0.8)
+# P5: el ruido que no se va
+add(fx, whoosh(0.3), T[5][0] - 0.05, 0.4); add(fx, estatica(T[5][1] - V.T_RUIDO + 0.1, 0.7), V.T_RUIDO - 0.1)
+add(fx, zap(0.2, 900, 300), V.T_NADA - 0.12, 0.7)
+# P6: las palomas
+add(fx, whoosh(0.35), T[6][0] - 0.06, 0.5); add(fx, arrullo(0.6), T[6][0] + 0.2, 0.7); add(fx, arrullo(0.5), V.T_PALOMAS + 0.15, 0.6)
+add(fx, pop_(), V.T_PALOMAS - 0.12, 0.5)
+# P7: se van volando y la escoba
+add(fx, whoosh(0.3), T[7][0] - 0.05, 0.4); add(fx, aleteo(0.9), T[7][0], 0.7)
+tk = V.T_LIMP
+while tk < T[7][1] - 0.2:
+    add(fx, escobazo(0.3), tk, 0.6); tk += 0.36
+# P8: pero el ruido seguía
+add(fx, estatica(T[8][1] - T[8][0], 0.75), T[8][0]); add(fx, golpe(0.35, 70), V.T_SEGUIA - 0.05, 0.9); add(fx, clac(), V.T_SEGUIA - 0.03, 0.6)
+# P9: la luz más antigua (y el contador)
+add(fx, whoosh(0.5), T[9][0] - 0.08, 0.6); add(fx, sube(0.9, 200, 1400), T[9][0], 0.45); add(fx, brillito(), V.T_LUZ - 0.1, 0.6)
+tk = V.T_ANTIGUA - 0.1
+while tk < V.T_ANTIGUA + 0.7:
+    add(fx, clac(), tk, 0.25); tk += 0.07
+add(fx, ding(89, 0.8), V.T_ANTIGUA + 0.72, 0.5)
+# P10: llega de todo el cielo
+add(fx, whoosh(0.4), T[10][0] - 0.06, 0.5); add(fx, sube(0.8, 300, 900), T[10][0] + 0.05, 0.35); add(fx, ding(84, 0.8), V.T_CIELO, 0.4)
+# P11: por eso tu tele también la captaba
+add(fx, whoosh(0.35), T[11][0] - 0.05, 0.5); add(fx, sube(0.6, 400, 1200), T[11][0] + 0.1, 0.35); add(fx, boing(0.45), V.T_CAPT2 - 0.1, 0.6); add(fx, brillito(), V.T_CAPT2, 0.4)
+# P12: la grilla y el uno por ciento
+add(fx, whoosh(0.3), T[12][0] - 0.05, 0.4)
+for i in range(10):
+    add(fx, blip(76 + i, 0.06), T[12][0] + i * 0.07, 0.35)
+add(fx, ding(91, 0.9), V.T_UNO - 0.1, 0.6); add(fx, pop_(), V.T_UNO - 0.15, 0.5)
+# P13: le pegabas a la tele
+add(fx, whoosh(0.35), T[13][0] - 0.06, 0.5); add(fx, whoosh(0.25), V.T_PEGABAS - 0.25, 0.6); add(fx, golpe(0.4, 90), V.T_PEGABAS - 0.2, 1.0)
+add(fx, clac(), V.T_PEGABAS - 0.19, 0.7); add(fx, boing(0.6), V.T_PEGABAS + 0.05, 0.7)
+# P14: le pegabas al Big Bang (¡ay!)
+add(fx, pop_(500, 1000), T[14][0] + 0.02, 0.4); add(fx, trombon_triste()[: int(0.75 * SR)], V.T_BANG2 - 0.1, 0.45); add(fx, pop_(800, 1600), V.T_BANG2 - 0.1, 0.5)
+# P15: vuelta al cuadro 0
+add(fx, whoosh(0.3), T[15][0] - 0.05, 0.4); add(fx, brillito(), T[15][0] + 0.05, 0.4)
 
 fr = np.sqrt(np.mean(fx[np.abs(fx) > 1e-3] ** 2))
-fx *= (vr / 10 ** (9.0 / 20)) / fr
+fx *= (vr / 10 ** (12.5 / 20)) / fr
 mix = v * (0.25 / vr) + (m + fx) * (0.25 / vr)
 mix = np.tanh(mix * 1.2) / 1.2
 mix[-int(0.15 * SR):] *= np.linspace(1, 0, int(0.15 * SR))
