@@ -117,6 +117,7 @@ Todos los datos están por **verificar** al producir; acá solo van como pista.
 ### ¿Sabías que…? (planeta, naturaleza, espacio, Chile)
 | Estado | Gancho | Dato central (verificar) | Imagen 3D clave | Enseñanza |
 |---|---|---|---|---|
+| usada (Ep. 16) | La tele de antes captaba el eco del Big Bang | ~1 % de la lluvia de la tele analógica era el fondo cósmico de microondas; Penzias y Wilson culparon a unas palomas (1964), Nobel 1978 | La tele de los 60 con lluvia y un Big Bang chiquito adentro | Qué es la luz más antigua y por qué llega de todo el cielo |
 | en producción (Ep. 2, ficha abajo) | Los pájaros no sienten el picante | El receptor que nos hace arder con la capsaicina no reacciona en las aves; el ají "eligió" a quién quemar | Pájaro tranquilo comiendo ají al lado del protagonista que llora con el mismo ají | Si te pica: leche (aunque sea descremada); las bebidas con gas, peor |
 | usada (Ep. 9, sale el 2-nov 10:00) | Anoche, aquí había un lago (lago Cachet II, Aysén) | Represado por el glaciar Colonia, se vacía de golpe por un túnel bajo el hielo: ~200 millones de m³ en una noche, el Baker se triplica y se devuelve río arriba; más de 20 veces desde 2008 (USGS, Dussaillant 2010, Bertrand 2021) | El fondo vacío con témpanos varados al pie del glaciar; la represa en corte | El hielo flota: por eso el lago lleno levanta el glaciar y se abre el túnel |
 | pendiente | ¿Por qué Chile tiembla tanto? | La placa de Nazca se mete bajo Sudamérica varios cm por año | Placas chocando bajo Chile | Qué hacer en un temblor |
