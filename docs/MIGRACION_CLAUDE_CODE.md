@@ -36,3 +36,6 @@ Base de la decisión: `docs/estudios/investigacion-2026-11-23-formatos.md` y `in
 - Seguridad y Publicación de `proyecto/INSTRUCCIONES.md`: nunca se publica sin el OK de Tomás por post; la API key nunca se escribe; nada con derechos de autor.
 - Verdad con 2 fuentes, salud sólo general, temas prohibidos.
 - Después de cada sesión: actualizar `CONTEXTO.md`, `docs/PUBLICADOS.md`, `docs/IDEAS.md`, commit y push.
+
+## Estado al cierre del 23-nov-2026
+Pasos 1–6 hechos y probados con casos reales (voz, cazador, guion con jueces, director visual, kit visual en 3 vueltas con el beat v5 aprobado por Tomás, sonido, QA, hooks). El marco de decisión quedó en `docs/REGLAS.md`. Falta: el video de prueba completo del guion D y después el primer video real con la ronda 09 (ver `CONTEXTO.md` → "Cómo partir la próxima sesión").

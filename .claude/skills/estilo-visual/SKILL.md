@@ -26,6 +26,7 @@ Marco: `docs/REGLAS.md`. Aquí todo es **criterio** (punto de partida, se puede 
   2. Ningún plano ni destello < ~0,3 s, salvo un impacto sin información.
   3. Un solo foco a la vez: lo nuevo aparece donde está el ojo o el movimiento lo lleva ahí.
   4. Ni frenético ni muerto: ni tramos > ~1,5 s sin ningún cambio, ni ráfagas de varios cambios en < 1 s.
+  **Rango que funcionó [PROBABLE, 1 caso aprobado por Tomás: beat v5, `docs/referencias/virales/propio-beat-clavo-v5.md`]:** cámara rápida ≤ ~5 % del tiempo · ≤ ~0,3 s de cámara rápida o corte con texto encima · cambios dentro del plano ≥ ~1/s · cortes duros sólo al cambiar la idea (≤ 1 cada ~4 s) · tramo quieto ≤ ~1 s. La v4 (20 % de cámara rápida, 0,39 cambios/s) no le gustó.
   Se mide con `tools/ritmo.py` contra la banda de los virales de la biblioteca y con la prueba de primera vista (skill `qa-video`); decide el ojo de Tomás.
 - **[HIPÓTESIS]** Revelaciones de escala con un movimiento de cámara lento (no crash zoom ni barrido); viñeta + grano quieto (el grano animado pesa 6 veces más: [MEDIDA]).
 
