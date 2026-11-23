@@ -1,27 +1,42 @@
-# Guionista — el agente que se preocupa sólo del guion (1-nov-2026)
+# Guionista — el agente que se preocupa sólo del guion (1-nov-2026; reordenado el 23-nov-2026)
 
-**Pedido de Tomás (1-nov-2026, 01:04):** "los videos han estado fallando porque el hook es muy malo… el guion entero es bastante malo. Quiero una investigación increíble y un agente dentro del proyecto que se preocupe solo del guion: lo necesario y perfecto para el tema, que el hook sea increíble, que sepa qué es lo mejor para el algoritmo de hoy, con simulaciones si sirven."
+> **Cómo leer este documento**
+> - **Dos niveles.** Las **reglas duras [DURA]** no se rompen nunca (lista justo abajo). **Todo lo demás es criterio:** puntos de partida, no leyes. Un criterio se rompe cuando el resultado le gana a los virales, anotando por qué en `guion.md`.
+> - **Cada criterio lleva su evidencia:** **[MEDIDA]** sale de nuestros números (`PUBLICADOS.md`, YouTube Studio) o se revisa objetivamente (un texto ilegible); **[PROBABLE]** lo respalda un principio conocido (`docs/estudios/`) o varios virales de `docs/referencias/virales/`; **[HIPÓTESIS]** es una opinión, de Tomás o de Claude, sin probar.
+> - **Las hipótesis nunca bloquean:** se anotan y se prueban con datos reales, alternando entre videos (`docs/ROTACION.md`) y revisando cada 4–6 videos. Cada 5 videos, una limpieza baja de nivel o borra lo que los datos no confirmaron.
+> - **Qué decide si algo está bueno, en orden:** (1) las métricas reales (YouTube visto vs. deslizado y % visto; envíos en IG) mandan; (2) el ojo de Tomás en el celular; (3) los jueces ciegos, sólo como orientación.
 
-## §0 · Regla del guion (Tomás, 23-nov-2026 — máxima prioridad, manda sobre todo lo demás de este documento)
-**Ningún guion le llega a Tomás si no le gana a los virales de la biblioteca** (`docs/referencias/virales/`) según `juez-viral`.
-1. **3 guionistas en paralelo**, cada uno con una estructura distinta (A inventaste X · B mecanismo con contradicción · C escalera de micro-datos · D mito + analogía), rotando según `docs/ROTACION.md` (la estructura del video anterior no se repite).
-2. **Gancho:** 12 ganchos (4 de cada guionista) en **duelo ciego** (`tools/guionista/duelo.py`, 4 `juez-gancho`); gana uno, y **además tiene que ganarle a los ganchos virales** (`duelo.py preparar … --anclas virales`): si pierde contra más de la mitad, no hay gancho.
-3. **Medio:** algo nuevo cada 4–6 s (dato, paso, número, falla nueva), cero relleno, "pero"/"por eso".
-4. **Final:** **remate** (la frase más fuerte, ≤ 12 palabras) **+ loop** con la primera frase **+ "mándaselo a…" ligado al contenido**: una persona concreta que sale del tema ("mándaselo a quien siempre culpa al semáforo"), nunca genérico ("a un amigo", "a alguien que le guste la ciencia"). El CTA va en la voz, después del remate, y no puede pasar de ~2 s.
-5. **juez-viral** compara cada guion contra la biblioteca, parte por parte (gancho, medio, final). Pasa sólo con 3 GANA o 2 GANA + 1 EMPATA **y ningún tramo sin novedad** (si juez-viral marca `segundos_sin_novedad`, no pasa aunque gane gancho y final; Tomás, 23-nov-2026). Después, los **espectadores** (`feed.py`) buscan fugas en el que pasó.
-6. **Máximo 2 reescrituras** (sólo lo que señalan los jueces). Si no llega, **la idea se descarta y se cambia por otra de la ronda del cazador, sin pedirle correcciones a Tomás.**
-7. **Apertura (Tomás, 23-nov-2026):** ni "lo raro primero" ni "lo normal que escala antes de 3 s" está probado como mejor. Cada guion anota cuál usa (`docs/ROTACION.md`), y con 4–6 videos se compara contra "visto vs. deslizado" de YouTube. **Nunca se copia la frase de apertura de un viral** (ni traducida: "Esto es un clavo" del martinete, "Tu pantalla reacciona…" del touchscreen, etc.); juez-viral la marca como PIERDE en gancho.
-El paso a paso está en la skill `guion` (`.claude/skills/guion/SKILL.md`).
+**Pedido de Tomás (1-nov-2026):** "los videos han estado fallando porque el hook es muy malo… el guion entero es bastante malo. Quiero un agente que se preocupe solo del guion: lo necesario y perfecto para el tema, que el hook sea increíble, que sepa qué es lo mejor para el algoritmo de hoy, con simulaciones si sirven."
+
+## Reglas duras [DURA]
+1. Lo que se presenta como real es real, con **2 fuentes confiables**.
+2. **Nada se publica ni se programa sin el OK de Tomás para ese post.**
+3. Nunca escribir, pedir ni subir **API keys**.
+4. **No copiar un video ajeno entero** (mismo tema + misma secuencia + mismos visuales). Reusar una fórmula de gancho o una estructura con otro tema sí se puede.
+5. **Nada con derechos de autor** (los assets con licencia restringida viven sólo en `nadieteexplica/assets`).
+6. **Temas prohibidos:** los de `proyecto/INSTRUCCIONES.md`.
+
+---
+
+## §0 · El proceso del guion (Tomás, 23-nov-2026)
+**La meta: que cada guion le gane a los virales de la biblioteca** (`docs/referencias/virales/`). Éste es el proceso por defecto. Sus jueces orientan, no deciden: Claude puede pasar por encima de un juez escribiendo la razón en `guion.md`. El paso a paso está en la skill `guion` (`.claude/skills/guion/SKILL.md`).
+1. **3 guionistas en paralelo**, cada uno con una estructura distinta (A inventaste X · B mecanismo con contradicción · C escalera de micro-datos · D mito + analogía), rotando según `docs/ROTACION.md`: la del video anterior no se repite. [PROBABLE] (las 4 salen de los virales de `investigacion-2026-11-23-formatos.md`; YouTube 2026 castiga lo "de plantilla").
+2. **Gancho:** 12 ganchos (4 por guionista) en **duelo ciego** (`tools/guionista/duelo.py`, 4 `juez-gancho`). El ganador se mide además contra los ganchos virales (`duelo.py preparar … --anclas virales`); si pierde contra más de la mitad, por defecto se busca otro. Ojo: en texto, una escena imaginada tiende a ganarle a un video real (Ep. 8: nuestros 6 ganchos les ganaron a 5 de 6 anclas), así que este duelo orienta; el filtro fuerte es con el video del plano 1 (§4, paso 9). **Las fórmulas de apertura de los virales se pueden reusar con otro tema** y compiten en el duelo como cualquier gancho.
+3. **Medio: algo nuevo cada 4–6 s** (dato, paso, número, falla nueva), cero relleno, unido con "pero"/"por eso". Si `juez-viral` marca `segundos_sin_novedad`, por defecto no pasa. [PROBABLE] (varios virales: falla nueva cada 3–5 s en "inventaste X", algo nuevo en pantalla cada 2–3 s; investigación de retención. El intervalo exacto no lo fija ningún estudio.)
+4. **Final:** remate + loop + **"mándaselo a…" ligado al contenido** (detalle en §6.2, regla 11). [PROBABLE] (virales: "envíaselo a ese amigo que…"; Mosseri: los envíos llevan a no seguidores.)
+5. **`juez-viral`** compara cada guion contra la biblioteca, parte por parte (gancho, medio, final). Por defecto pasa con 3 GANA, o 2 GANA + 1 EMPATA. Después, los **espectadores** (`feed.py`) buscan fugas en el que pasó.
+6. **Máximo 2 reescrituras** (sólo lo que señalan los jueces). Si no llega, la idea se cambia por otra de la ronda del cazador, **sin pedirle correcciones a Tomás**.
+7. **Tipo de apertura:** "lo raro primero" o "lo normal que escala antes de 3 s". [HIPÓTESIS] Ninguna está probada: se alternan, cada guion anota cuál usa en `docs/ROTACION.md`, y cada 4–6 videos se compara con visto vs. deslizado de YouTube.
+
+**Cómo se usa a los jueces:** comparan **de forma relativa** contra el viral del mismo tramo ("¿cuál se ve más profesional?", "¿cuál deslizarías?"), nunca con nota absoluta. Cuando ya hay video, lo ven **en video**, no en láminas de cuadros quietos. **Si un juez le pone menos de 6 a un viral de millones, el mal calibrado es el juez, no el viral.**
 
 **Qué hay:**
-- **Este documento:** lo que dicen nuestros números, la investigación, el método, la receta del gancho y del guion, y las pruebas.
-- **El agente `guionista`** (`.claude/agents/guionista.md`): escribe la premisa, 12 o más ganchos, 3 guiones distintos y el `guion.md` final. **No se pone nota a sí mismo:** lo juzgan otros.
-- **Los jueces** (`.claude/agents/juez-gancho.md` y `.claude/agents/espectador.md`): agentes ciegos que no escribieron nada, sin acceso a los resultados reales.
-- **Las herramientas** (`tools/guionista/`): `duelo.py` y `feed.py` arman las pruebas ciegas, `duelo.py contar` y `puntuar.py` las cuentan, `tira.py` saca los cuadros de 0–3 s de un video, y `calibracion/anclas.json` guarda los videos publicados con su resultado real (nunca se le muestra a un juez).
-- **Revisión independiente (1-nov, 05:00):** un revisor que no hizo nada de esto encontró que la primera versión de este documento exageraba lo que probó el simulador, que la calibración estaba contaminada y que el duelo contra las anclas no filtraba. Lo que sigue ya está corregido; el detalle, en la lección 118.
-- **La investigación completa:** `docs/estudios/guionista-a-algoritmo.md`, `-b-ganchos.md`, `-c-estructura.md` y `-d-simulacion.md`.
+- **El agente `guionista`** (`.claude/agents/guionista.md`): premisa, ganchos, guiones y el `guion.md` final. No se pone nota a sí mismo.
+- **Los jueces** (`.claude/agents/juez-gancho.md`, `juez-viral.md` y `espectador.md`): ciegos, no escribieron nada y nunca ven los resultados reales.
+- **Las herramientas** (`tools/guionista/`): `duelo.py` y `feed.py` arman las pruebas; `duelo.py contar` y `puntuar.py` las cuentan; `tira.py` saca los cuadros de 0–3 s; `calibracion/anclas.json` guarda los publicados con su resultado real (nunca se le muestra a un juez).
+- **La investigación:** `docs/estudios/guionista-a-algoritmo.md`, `-b-ganchos.md`, `-c-estructura.md`, `-d-simulacion.md` y `investigacion-2026-11-23-*.md`. Una revisión independiente (1-nov) corrigió exageraciones de la primera versión (lección 118).
 
-Si en una sesión no aparecen los tipos `guionista`, `juez-gancho` o `espectador` en el Agent tool, se lanza un `general-purpose` con el contenido del `.md` del agente como prompt (misma receta, mismos límites).
+Si en una sesión no aparecen los tipos `guionista`, `juez-gancho` o `espectador` en el Agent tool, se lanza un `general-purpose` con el `.md` del agente como prompt.
 
 ---
 
@@ -35,217 +50,197 @@ Si en una sesión no aparecen los tipos `guionista`, `juez-gancho` o `espectador
 | 5 imán | 40 s | 1.626 | **39,7 %** | 63,7 % | 25 s | **58,1 %** | 50 |
 | **7 rascacielos** | 48 s | **13.595** | 70,7 % | **89,3 %** | **42 s** | 76,7 % | 11 |
 
-Los primeros 3 s de cada uno, cuadro a cuadro: `tools/guionista/calibracion/primeros3s_ep01-07.jpg`.
+Los primeros 3 s de cada uno: `tools/guionista/calibracion/primeros3s_ep01-07.jpg`. Con 6 videos, todo lo que sigue es indicio.
+1. **El gancho mata cuando es malo, pero no hace viral a nadie.** [MEDIDA] Al Ep. 5 se quedó el 39,7 % (Galloway, 5.400 Shorts: bajo 60 % casi nunca rinden). El Ep. 7 fue el 2.º peor (70,7 %) y aun así se abrió. Los demás, 73–80 %. Las causas que creemos (en el Ep. 5: sujeto chico, píldora **SIMULACIÓN**, frase abstracta; en el Ep. 7: edificio chico, 3–4 píldoras, superlativo) son [HIPÓTESIS]: YouTube no dice en qué segundo se fueron.
+2. **Lo que separa a los que se abrieron (13–14 mil) de los demás (1–4 mil) son los segundos vistos:** 42–47 s contra 25–40 s. [MEDIDA] El % visto solo no separa (el Ep. 4 tuvo 75,8 % y el mejor "se quedó" del canal, pero dura 37 s y se frenó).
+3. **La premisa pesa más que la frase:** los dos que se abrieron son *algo gigante que hace algo imposible, con la mecánica a la vista*; los otros cuatro son cosas chicas del cuerpo o la casa, o una promesa abstracta. [MEDIDA] (2 de 6). Que YouTube empareje por tema en un canal nuevo es lectura de OutlierKit, no de YouTube.
+4. **Envíos: sin patrón todavía.** [MEDIDA] Por cada mil vistas: Ep. 3 10,8; Ep. 5 11,2; Ep. 1 24,2; Ep. 7 0,6 (bajo). Que se comparte el asombro (Berger y Milkman) no lo podemos confirmar con 6.
+5. **Nadie predijo nada:** el Ep. 3 no destacó en nuestras revisiones y el panel del Ep. 6 eligió el peor video del canal. [MEDIDA] Ningún revisor ni simulador predice un viral (Salganik et al. 2006). **El sistema tiene que:** no dejar salir un gancho desastre, construir la retención con criterios revisables, elegir premisas del tipo que ya funcionó y medir cada video.
 
-**Lectura (Tomás tiene razón a medias):**
-1. **El gancho mata cuando es malo, pero no hace viral a nadie.** Al Ep. 5 lo deslizó el 60 % (39,7 % se quedó; YouTube no dice en qué segundo exacto; Galloway, 5.400 Shorts: bajo 60 % casi nunca rinden): un hombre chico y lejos, un cilindro oscuro que ocupa media pantalla, la píldora **SIMULACIÓN** (que dice "esto es falso") y una frase abstracta ("Tu cuerpo repele los imanes"). El Ep. 7 fue el 2.º peor (70,7 %): ciudad lejos, edificio chico, 3–4 píldoras de letra chica y un superlativo abstracto ("el más alto que Japón ha botado"; "botar" no se entiende igual en México). Los demás quedaron en 73–80 %: aceptables, no buenos.
-2. **Lo que separa a los que se abrieron (13–14 mil) de los que no (1–4 mil) son los segundos que la gente se queda:** 42–47 s vistos en promedio contra 25–40 s en los otros. El % visto solo no separa (el Ep. 4 tuvo 75,8 %, más que el Ep. 3, pero dura 37 s y en promedio se veían 28 s). El Ep. 4 tuvo además el mejor "se quedó" del canal (79,9 %) y se frenó igual.
-3. **La premisa pesa más que la frase:** los dos que se abrieron son *algo gigante que hace algo imposible, con la mecánica a la vista* (un edificio que camina, un rascacielos que se achica). Los cuatro que no, son cosas chicas del cuerpo o de la casa (helado, ají, cortina) o una promesa abstracta (imán). Beaupré (Creator Insider, sep-2026) dijo que un canal nuevo no tiene espectadores con historial; que entonces se empareja por tema es una lectura de OutlierKit, no de YouTube. Aun así, insistir en el tema que abrió es la apuesta más razonable con lo que hay.
-4. **Envíos: no hay patrón claro todavía.** El Ep. 3 tuvo 9.776 envíos en IG porque tuvo 901 mil vistas; por cada mil vistas tuvo 10,8, casi lo mismo que el Ep. 5 (11,2) y menos que el Ep. 1 (24,2). El Ep. 7 tuvo 0,6 por mil: ése sí es bajo. La investigación (Berger y Milkman) dice que se comparte el asombro; con 6 videos no lo podemos confirmar.
-5. **Nadie predijo nada:** el Ep. 3 no destacó en nuestras revisiones y el panel del Ep. 6 eligió el peor video del canal. Ningún revisor ni simulador predice un viral (Salganik et al. 2006: lo mejor rara vez fracasa y lo peor rara vez triunfa; el resto es lotería). **El sistema tiene que:** (a) no dejar salir un gancho desastre, (b) construir la retención con reglas que se pueden revisar, (c) elegir premisas del tipo que ya funcionó, y (d) medir cada video y aprender.
-
-**Y el guion entero tenía problemas:** en el Ep. 7, cero "tú" (el Ep. 3 tenía tres), dos etiquetas "lo más…", datos laterales después del pico (la grúa, "dos pisos cada diez días"), el mejor gancho guardado para el final ("nadie lo vio caer") y 146 palabras en 47 s. (Ojo: el Ep. 3, el que más rindió, sí tenía años y nombres en la voz —1935, 2020, Shanghái—; la regla de no decirlos es de Tomás, no sale de los números.) Crítica frase por frase y reescritura en `docs/estudios/guionista-c-estructura.md` §4–5.
+**El guion del Ep. 7** tenía cero "tú", dos "lo más…", datos laterales después del pico, el mejor gancho al final y 146 palabras en 47 s; crítica en `docs/estudios/guionista-c-estructura.md` §4–5. [HIPÓTESIS] Igual se abrió, y el Ep. 3 sí decía años y nombres (1935, 2020, Shanghái).
 
 ---
 
-## 2. Lo que dice la investigación (resumen; fuentes en `docs/estudios/guionista-*.md`)
-**El algoritmo (A):**
-- YouTube prueba cada Short con una audiencia semilla: la puerta es **visto vs. deslizado**; después pesan el tiempo visto, las repeticiones, los likes y los compartidos. Las vistas llegan en olas y un Short puede volver semanas después (el Ep. 3 pasó de 1.483 a 13.894). Paga lo comprometido.
-- Instagram: las 3 señales top son **tiempo visto, likes por alcance y envíos por alcance**; los envíos son los que llevan a no seguidores (Mosseri, ene-2025).
-- TikTok: terminar el video es la señal fuerte.
-- Los deslizamientos se concentran **al principio y al final**, casi nunca al medio (Dashlet): el guion se juega en los primeros 2 s y en no avisar que se acaba.
-- YouTube 2026 castiga lo "genérico, repetitivo o de plantilla" y lo resubido: cada video, distinto de verdad.
-- **Prueba real que viene:** YouTube anunció (23-sep-2026) que se podrán **probar hasta 3 cortes del mismo video** con su retención; ppc.land dice que incluye Shorts. Mientras, **Trial Reels de Instagram** muestra un Reel primero sólo a no seguidores.
+## 2. Lo que dice la investigación (resumen; fuentes en `docs/estudios/`)
+Ésta es la evidencia detrás de los [PROBABLE] de este documento.
 
-**El gancho (B y C):**
-- **"Trata tu intro como una miniatura"** (Galloway): el feed de Shorts no muestra miniatura; el cuadro 0 lo es.
-- **Tiene que entenderse en mudo** (Hoyos): no porque la gente mire sin sonido (en Shorts casi todos tienen audio), sino porque la imagen se entiende antes que la voz: cuando la persona decide, ya vio todo el cuadro y escuchó ~4 palabras.
-- **Curiosidad = brecha de información** (Loewenstein 1994); es máxima cuando uno *casi* sabe la respuesta (Kang et al. 2009): la pregunta del gancho tiene que ser una que el espectador cree que podría responder.
-- **Se comparte el asombro** (Berger y Milkman 2012, ~7.000 artículos: el asombro encabeza lo compartido).
-- **Texto en pantalla:** aparece en 67 % de los TikToks virales contra 30 % de los que no (Ling et al.); TikTok (2020): más del 63 % de los avisos con mayor CTR muestran el mensaje clave en los primeros 3 s.
-- **Hay ~1 s, no 3:** el sentido de una imagen se capta en 13 ms (Potter, MIT 2014) y en el celular se pasa ~1,7 s por contenido (Facebook IQ). Cuando la gente decide, ya vio toda la imagen y escuchó ~4 palabras de Fernando: **manda la imagen**, y la palabra de la tensión tiene que sonar antes de 1,5 s.
-- **El movimiento captura la atención solo** (Abrams y Christ 2003): el cuadro 0 no puede ser un plano quieto.
-- **Da el qué, nunca el porqué** (Loewenstein): explicar en el gancho cierra la brecha.
+**El algoritmo:**
+- YouTube prueba cada Short con una audiencia semilla: la puerta es **visto vs. deslizado**; después pesan tiempo visto, repeticiones, likes y compartidos. Las vistas llegan en olas (el Ep. 3 pasó de 1.483 a 13.894).
+- Instagram: las 3 señales top son **tiempo visto, likes por alcance y envíos por alcance**; los envíos llevan a no seguidores (Mosseri, ene-2025). TikTok: terminar el video.
+- Los deslizamientos se concentran **al principio y al final** (Dashlet).
+- YouTube 2026 castiga lo "genérico, repetitivo o de plantilla" y lo resubido.
+- **Duración:** quso.ai (108 mil Shorts) ve más vistas en 11–20 s (correlación); en los virales la gente mira ~30–47 s aunque duren 80–127 (`investigacion-2026-11-23-automatizacion.md`); en YouTube cuenta el % visto.
+- **Pruebas reales:** YouTube anunció (23-sep-2026) que se podrán probar hasta 3 cortes del mismo video; Instagram tiene Trial Reels (sólo a no seguidores).
 
-**El guion (C):**
-- Conflicto → resolución → conflicto nuevo, unidos con **"pero" / "por eso"**, nunca "y después" (Hoyos; Parker y Stone).
-- **Regla pico-final:** la gente recuerda lo mejor y el final; **cortar justo en el pico**.
-- Una frase, una imagen; cada dato lateral cuesta (Mayer).
-- Cifras: sólo si cambian la imagen o vienen con una comparación conocida (Barrio et al. 2016).
+**El gancho:**
+- El feed de Shorts no muestra miniatura: **el cuadro 0 lo es** (Galloway).
+- **Hay ~1 s, no 3:** el sentido de una imagen se capta en 13 ms (Potter 2014) y en el celular se pasa ~1,7 s por contenido (Facebook IQ). Cuando la persona decide, vio todo el cuadro y escuchó ~4 palabras: **manda la imagen** (Hoyos: tiene que entenderse en mudo).
+- **Curiosidad = brecha de información** (Loewenstein 1994), máxima cuando uno *casi* sabe la respuesta (Kang et al. 2009). Explicar en el gancho cierra la brecha.
+- **El movimiento captura la atención solo** (Abrams y Christ 2003).
+- **Texto en pantalla:** en 67 % de los TikToks virales contra 30 % de los que no (Ling et al.).
+- **Se comparte el asombro** (Berger y Milkman 2012).
 
-**La simulación (D):**
-- Simular audiencias con IA tiene poca evidencia: **sirve para filtrar perdedores claros y problemas de comprensión, no para elegir virales.**
-- Lo que peor rinde es justo lo que hicimos en el Ep. 6: personas demográficas, nota absoluta, juzgar texto en vez de imagen, y decidir por el chiste. En 399 tests reales de titulares, un panel de 10 personas acertó 34,6 % (azar 30,4 %) y un solo "lector típico" sin persona, 49,2 % (Maiorano 2026; un solo autor, sin revisión de pares y con conflicto de interés: indicio, no prueba).
-- Lo que sirve: comparaciones de a pares con los dos órdenes, jueces ciegos e independientes, imágenes reales cuando existen, calibrar con resultados reales y **anotar la predicción antes de publicar para ver si acierta**.
+**El guion:**
+- Conflicto → resolución → conflicto nuevo, con **"pero" / "por eso"**, nunca "y después" (Hoyos; Parker y Stone).
+- **Pico-final:** se recuerda lo mejor y el final; cortar en el pico.
+- Una frase, una imagen; cada dato lateral cuesta (Mayer, coherencia).
+- Cifras sólo si cambian la imagen o traen una comparación conocida (Barrio et al. 2016).
+- **Los virales con /watch** (`docs/referencias/virales/README.md`): 186–230 palabras/min, algo nuevo en pantalla cada 2–3 s y casi nunca un zoom de cámara, un ancla que aparece temprano y vuelve al 60–90 %, y se entienden sin sonido.
+
+**La simulación:**
+- Simular audiencias con IA **sirve para filtrar perdedores claros y problemas de comprensión, no para elegir virales.**
+- Lo que peor rinde: personas demográficas, nota absoluta, juzgar texto en vez de imagen. Lo que sirve: pares en los dos órdenes, jueces ciegos e independientes, imagen real, calibrar con resultados reales y **anotar la predicción antes de publicar** (Maiorano 2026 es indicio, no prueba).
 
 ---
 
-## 3. Nuestro simulador, calibrado (1-nov-2026; corregido tras la revisión independiente)
-Se corrió a ciegas sobre los 6 videos publicados (las "anclas"), con códigos al azar y sin decir cuáles eran reales ni cómo les fue. Los resultados reales nunca se le muestran a un juez.
+## 3. Nuestro simulador, calibrado (1-nov-2026)
+Se corrió a ciegas sobre los 6 publicados (las "anclas"), con códigos al azar. **La corrida que vale** (`calibracion/corrida-2026-11-01b/`): un descriptor ciego describió las tiras de 0–3 s, enunciado neutro, cada par 2 veces en cada orden.
 
-**La corrida que vale (`calibracion/corrida-2026-11-01b/`):** las anclas las describió un **descriptor ciego** que sólo vio las tiras de 0–3 s con nombres al azar, sin saber los resultados; el enunciado de los jueces es neutro; cada par se vio 2 veces en cada orden.
-
-| Prueba (4 jueces × 15 pares) | Correlación con "se quedó" de YouTube | Sin el Ep. 5 | Con vistas de YouTube | Los 2 peores reales (Ep. 5 y 7) |
+| Prueba (4 jueces × 15 pares) | Correlación con "se quedó" | Sin el Ep. 5 | Con vistas | Los 2 peores reales (Ep. 5 y 7) |
 |---|---|---|---|---|
 | **Duelo con cuadros reales** | **0,66** | 0,50 | −0,31 | **5.º y 6.º** |
 | Duelo con descripción de texto | 0,49 | 0,10 | 0,26 | Ep. 5 último; Ep. 7 2.º |
 
-**La primera corrida (`corrida-2026-11-01/`) está contaminada y no cuenta:** las descripciones de las anclas las escribió quien ya conocía los resultados (por ejemplo, el edificio del Ep. 7 quedó como "chico" y el descriptor ciego lo midió en ~47 % del alto), y el enunciado castigaba "letreros, falso, como una clase", justo lo que ya sabíamos que había fallado. Daba 0,49–0,77; el criterio fijado de antemano en `puntuar.py` dijo que no pasaba, y la primera versión de este documento no lo dijo.
+La primera corrida (`corrida-2026-11-01/`) **está contaminada y no cuenta** (las descripciones las escribió quien conocía los resultados).
 
-**Qué quiere decir (con 6 videos, todo esto es un indicio, no una prueba):**
-- **Con cuadros reales sirve para el gancho:** los dos peores ganchos reales quedaron últimos y el orden se parece al real (0,66; 0,50 sin el desastre). Por eso el filtro contra las anclas se hace con el plano 1 ya renderizado (§4, paso 8).
-- **Con texto, sólo atrapa el desastre:** el Ep. 5 queda último, pero el resto es ruido (0,10 sin él). Antes de animar, el simulador no puede decir si un gancho es mejor que los nuestros; sólo ordena candidatos entre sí (y eso tampoco está validado todavía).
-- **No predice vistas** (−0,31 a 0,26). Nadie las predice (Salganik et al. 2006).
-- **Sesgo visible:** los jueces premian las caras en primer plano (el Ep. 1 ganó 19 de 20 en las dos pruebas; en la vida real quedó 2.º en "se quedó" y 3.º en vistas).
-- **Uso decidido:** el simulador es un **filtro de ganchos con cuadros reales** y un **buscador de fugas**. Nunca elige al ganador por sí solo ni juzga si algo va a ser viral.
-- Cada video publicado se suma a `anclas.json` (tira con `tira.py`, descripción de un descriptor ciego) y la calibración se repite cada 4 videos. Si en 10 videos la predicción del simulador (§7) acierta menos del 60 %, pierde el voto.
+**Qué quiere decir** [MEDIDA] (6 videos, indicio):
+- **Con imagen real sirve para el gancho:** los dos peores quedaron últimos. Con texto sólo atrapa el desastre (0,10 sin el Ep. 5).
+- **No predice vistas** (−0,31 a 0,26).
+- **Sesgo:** premia las caras en primer plano (el Ep. 1 ganó 19 de 20; en la vida real, 2.º en "se quedó").
+- **Uso:** filtro de ganchos con imagen real y buscador de fugas; nunca elige al ganador solo. La calibración se hizo con tiras de cuadros; la versión en video (§0) está por calibrar.
+- Cada publicado entra a `anclas.json` (tira con `tira.py`, descriptor ciego) y la calibración se repite cada 4 videos. Si en 10 videos la predicción del simulador (§7) acierta menos del 60 %, pierde el voto.
 
 ---
 
-## 4. El método del guionista, paso a paso (tope: 45 min de trabajo del guionista; ~15–20 subagentes chicos de jueces por video)
-**Entrada:** la ficha de la idea (de `IDEAS.md` o de la caza de datos) con sus fuentes, `PUBLICADOS.md` y este documento.
-**Salida:** `studio/episodios/<ep>/guion.md` (formato del manual §1–2) + `studio/episodios/<ep>/guionista/` con la premisa, los ganchos, los 3 guiones, las pruebas y la predicción.
+## 4. El método, paso a paso (tope: 45 min del guionista; ~15–20 subagentes de jueces por video)
+**Entrada:** la ficha de la idea (`IDEAS.md` o caza de datos) con sus fuentes, `PUBLICADOS.md` y este documento.
+**Salida:** `studio/episodios/<ep>/guion.md` (formato del manual §1–2) + `studio/episodios/<ep>/guionista/` con premisa, ganchos, guiones, pruebas y predicción.
 
-1. **La premisa (10 min).** En una frase: *¿qué es lo imposible que se VE?* Sale de la pregunta "¿qué le contaría alguien a un amigo en una frase para que diga 'no te creo'?". Se pasa por las 5 preguntas de §4.1. Si la idea no tiene un imposible visible, se le dice a Tomás antes de escribir nada: el guion no la salva.
-2. **12 o más paquetes de gancho (10 min)**, de al menos 4 tipos de §5.3. Cada paquete trae las 3 capas: **cuadro 0** (qué se ve, dónde, de qué tamaño), **texto en pantalla** (≤ 5 palabras) y **voz de 0–2 s** (≤ 10 palabras). Se descartan los que fallan la receta de §5.2 (G1–G14); quedan 6.
-3. **Duelo de ganchos entre ellos (los jueces, 10 min).** Los 6 ganchos van a `duelo.py preparar <ep>` (sin anclas: todos son escenas imaginadas del mismo tema, descritas igual) y 4 `juez-gancho` ciegos los comparan de a pares, cada par en los dos órdenes. Pasan los 3 con más victorias; un empate se resuelve por la receta G1–G14. **No se compara contra las anclas con texto:** una escena imaginada contra videos reales con sus defectos gana casi siempre (en el Ep. 8, los 6 ganchos les ganaron a 5 de las 6 anclas, casi todo 4–0), así que ese umbral no filtra. El filtro contra las anclas es con cuadros reales, en el paso 8.
-4. **3 guiones distintos de verdad (10 min)**, cada uno con un gancho finalista y una estructura distinta de §6 (no 3 versiones del mismo). 70–105 palabras, con la receta de §6.2.
-5. **Cazadores de fugas (los jueces, 5 min).** `feed.py <ep>` (6 paneles por defecto): **un solo guion por panel** (rotando, con perfiles distintos), mezclado con las anclas, y 6 `espectador` dicen en qué frase se irían y por qué. (Con los 3 guiones de la misma idea en un mismo feed, los espectadores castigan la repetición — "otra vez la casa en el mar" — y la prueba no sirve: Ep. 8, 1-nov.) **Sirve para encontrar fugas, no para elegir:** cada guion lo ven sólo 2 espectadores con perfil, y la investigación dice que los perfiles empeoran la predicción. Toda frase donde se fueron 2 o más, se reescribe o se saca. "Lo ve entero" depende mucho del largo: no se compara con las anclas, que duran el doble.
-6. **Elegir y entregar.** Gana el guion cuyo gancho tuvo más victorias en el duelo del paso 3, siempre que (a) en los cazadores nadie se haya ido antes del pago y (b) pase las 12 reglas. Si no, el siguiente. Se escribe `guion.md` con la sección **"Paquete de gancho"** (cuadro 0, texto en pantalla, voz, pregunta que abre, segundo en que se paga, momento para mandarlo; es "el centro" que pide la puerta 1) y **"Predicción"** (§7).
-7. **Puerta 1 del auditor** como siempre. Si el auditor pide cambios en el gancho, el guionista los hace; el gancho no lo reescribe el auditor.
-8. **Con el plano 1 ya renderizado (antes de la puerta 6): el filtro de verdad.** (a) **Prueba de mudo:** la tira de 0–1,5 s (`tools/guionista/tira.py`) va a 5 jueces que no vieron nada, que contestan "¿qué está pasando y qué te prometen?" en 10 palabras; pasa con 4 de 5 que coinciden con la promesa del paquete. (b) **Duelo con cuadros reales contra las anclas:** `duelo.py preparar <ep> --imagenes --con-anclas` (el candidato con `tira` en `ganchos.json`; todas las tiras a 360 px, así el animatic no pierde por resolución) y 4 `juez-gancho`; **si pierde contra más de la mitad de las anclas, se cambia el plano 1** (no el guion). Ésta es la única comparación contra las anclas que vale: imagen real contra imagen real.
-9. **A las 48 h de publicado:** se compara con las dos predicciones (§7: la del guionista y la del duelo del paso 8), se anota en `PUBLICADOS.md` si acertaron, y el video entra a `anclas.json` con sus números y su tira (`tira.py`), descrito por un descriptor ciego que no conoce sus resultados (§3).
+1. **La premisa** (§4.1). Si la idea no tiene un imposible visible, se dice antes de escribir.
+2. **12 paquetes de gancho** (4 por guionista, de al menos 4 tipos de §5.3), cada uno con sus 3 capas (§5.1). La receta de §5.2 sirve para mejorarlos y desempatar, no para botarlos antes del duelo.
+3. **Duelo de ganchos** (§0.2): los 12 entre ellos con `duelo.py preparar <ep>`, cada par en los dos órdenes, y el ganador contra los ganchos virales.
+4. **3 guiones distintos de verdad**, uno por guionista, cada uno con su estructura (§0.1) y los criterios de §6.
+5. **`juez-viral`** (§0.5), con máximo 2 reescrituras (§0.6).
+6. **Cazadores de fugas:** `feed.py <ep>` (6 paneles): **un solo guion por panel**, mezclado con las anclas, y 6 `espectador` dicen en qué frase se irían. (Con los 3 guiones de la misma idea en un feed, castigan la repetición: Ep. 8.) Sirve para encontrar fugas, no para elegir. Por defecto, la frase donde se fueron 2 o más se reescribe o se saca. "Lo ve entero" no se compara con las anclas, que duran el doble.
+7. **Elegir y entregar.** Claude elige el que pasó `juez-viral` con menos fugas; si se aparta de lo que dijeron los jueces, anota por qué. `guion.md` lleva **"Paquete de gancho"** (cuadro 0, texto, voz, pregunta que abre, segundo en que se paga, momento para mandarlo) y **"Predicción"** (§7).
+8. **Puerta 1 del auditor.** Si pide cambios en el gancho, los hace el guionista.
+9. **Con el plano 1 renderizado (antes de la puerta 6), el filtro fuerte:** (a) **prueba de mudo:** el clip de 0–1,5 s a 5 jueces que no vieron nada ("¿qué está pasando y qué te prometen?", 10 palabras); pasa con 4 de 5 que coinciden con la promesa. (b) **Duelo contra las anclas y los virales** con imagen real (`duelo.py preparar <ep> --imagenes --con-anclas`, todo a 360 px), relativo y en video cuando se pueda (§0). Si pierde contra más de la mitad, por defecto se cambia el plano 1, no el guion.
+10. **A las 48 h:** se compara con las predicciones (§7), se anota en `PUBLICADOS.md` si acertaron y el video entra a `anclas.json`.
 
-### 4.1 Las 5 preguntas de la premisa (todas sí, o no se escribe)
-1. **¿Hay un imposible que se ve en un cuadro?** (un edificio con patas sí; "tu cuerpo repele los imanes", no).
-2. **¿Es grande o se puede hacer grande?** (escala: un edificio, un lago entero, una casa en el mar).
-3. **¿La pregunta que deja es una que el espectador cree que podría contestar?** ("¿cómo mueves una casa sin camión?" sí; "¿qué es el diamagnetismo?", no).
-4. **¿La respuesta es una mecánica que se puede mostrar en 2–3 pasos visibles?**
-5. **¿Hay un momento de "mira esta weá"?** (lo absurdo, el chiste o el detalle que dan ganas de mandarlo).
+### 4.1 La premisa
+1. **¿Hay un imposible que se ve en un cuadro?** (un edificio con patas sí; "tu cuerpo repele los imanes", no). [MEDIDA] (los 2 de 6 que se abrieron).
+2. **¿Es grande o se puede hacer grande?** [MEDIDA] (los mismos 2 de 6).
+3. **¿La pregunta que deja es una que el espectador cree que podría contestar?** ("¿cómo mueves una casa sin camión?" sí; "¿qué es el diamagnetismo?" no). [PROBABLE] (Kang et al. 2009).
+4. **¿La respuesta es una mecánica que se muestra en 2–3 pasos visibles?** [PROBABLE] (virales "inventaste X").
+5. **¿Hay un momento de "mira esta weá"** que dé ganas de mandarlo? [PROBABLE] (Berger y Milkman).
+6. **¿La idea central cabe en una frase, sin "y además", y la carga un solo objeto o imagen que vuelve en el gancho, el medio y el cierre?** (Ep. 10e: la flor de cerezo; el Ep. 10d metió seis ideas y ninguna central). Si no, hay dos videos. [PROBABLE] (los virales usan un ancla que vuelve al 60–90 %; Mayer, coherencia.)
 
 ---
 
 ## 5. El gancho
 ### 5.1 El paquete: tres capas que dicen lo mismo
-| Capa | Qué es | Regla |
+| Capa | Qué es | Punto de partida |
 |---|---|---|
-| **Cuadro 0** | La miniatura del feed | Un solo sujeto, grande (más de un tercio del cuadro), centrado, recortado contra el fondo, **ya haciendo lo imposible**. Nada de calma antes del conflicto |
-| **Texto en pantalla** | Para el que mira en mudo | 1 píldora como máximo, ≤ 5 palabras, que nombre lo raro ("UNA CASA CRUZANDO EL MAR"). Nunca "SIMULACIÓN" ni contadores en el cuadro 0 |
-| **Voz 0–2 s** | La frase | ≤ 10 palabras: el objeto concreto + lo raro. Sin contexto, sin superlativos, sin años ni nombres |
+| **Cuadro 0** | La miniatura del feed | Un solo sujeto, grande, centrado, recortado contra el fondo, **ya haciendo lo imposible** |
+| **Texto en pantalla** | Para el que mira en mudo | 1 píldora, ≤ 5 palabras, que nombre lo raro ("UNA CASA CRUZANDO EL MAR") |
+| **Voz 0–2 s** | La frase | ≤ 10 palabras: el objeto concreto + lo raro |
 
-### 5.2 La receta (cada punto se contesta sí o no)
-- **G1 · Mudo:** ¿se entiende qué pasa con sólo el cuadro 0 y el texto en pantalla, sin voz?
-- **G2 · Imposible visible:** ¿el cuadro 0 muestra algo que en la vida real no debería pasar, *ya pasando*?
-- **G3 · Concreto:** ¿la primera frase nombra un objeto que se puede dibujar ("este edificio", "esta casa") y no una categoría o una propiedad ("tu cuerpo", "el magnetismo")?
-- **G4 · Sin superlativo abstracto:** ¿la frase evita "el más alto/grande/impresionante" como gancho? (el superlativo puede ir segundo, a los 4–8 s, si suma).
-- **G5 · Pregunta abierta:** ¿queda una pregunta que el espectador cree que podría contestar ("¿cómo?"), sin dar la respuesta en el gancho?
-- **G6 · Coinciden:** ¿la imagen, el texto y la voz dicen lo mismo, en el mismo segundo?
-- **G7 · Tamaño:** ¿el sujeto ocupa más de un tercio del cuadro y se lee en un teléfono a un brazo de distancia?
-- **G8 · Sin señal de falso:** ¿nada en el cuadro 0 dice "esto no es real" (píldora SIMULACIÓN, "imagina que…", cara de maqueta)? Si hace falta avisar que es simulación, se avisa a los 3 s o más y chico.
-- **G9 · Una sola cosa:** ¿hay una sola idea y una sola píldora en los primeros 2 s?
-- **G10 · Para Latam:** ¿se entiende igual en México, Argentina y Colombia? (nada de "botar", "weá", "polola" en la voz).
-- **G11 · Se mueve:** ¿algo se mueve en el cuadro antes de los 0,5 s? (el movimiento captura la atención solo; un cuadro 0 quieto pierde).
-- **G12 · La tensión, temprano:** ¿la palabra que crea la tensión ("caminando", "achicó", "flota") suena antes de 1,5 s, o sea dentro de las primeras ~5 palabras? (Fernando dice ~4 palabras en lo que la gente decide).
-- **G13 · Prueba a la vista:** si la frase suena increíble, ¿el cuadro 0 muestra la prueba real? (el Ep. 5 prometió algo increíble y mostró una simulación).
-- **G14 · El qué, no el porqué:** ¿el gancho dice qué pasa sin explicar por qué? (explicar cierra la brecha y el espectador ya no necesita quedarse).
+### 5.2 La receta (sí o no; la revisa también el auditor en la puerta 1)
+- **G1 · Mudo:** ¿se entiende qué pasa con el cuadro 0 y el texto, sin voz? [PROBABLE] (Potter; Hoyos; virales).
+- **G2 · Imposible ya pasando:** ¿el cuadro 0 muestra lo raro *pasando*, sin calma antes? [PROBABLE] (Galloway; virales).
+- **G3 · Concreto:** ¿la primera frase nombra un objeto que se puede dibujar ("este edificio") y no una propiedad ("tu cuerpo", "el magnetismo")? [PROBABLE] (Ep. 5 + virales).
+- **G4 · Sin superlativo abstracto** como gancho ("el más alto…"); puede ir a los 4–8 s si suma. [HIPÓTESIS] (el Ep. 7 lo tenía y se abrió).
+- **G5 · El qué, no el porqué:** ¿queda una pregunta abierta, sin explicar la respuesta? [PROBABLE] (Loewenstein; Kang).
+- **G6 · Coinciden:** ¿imagen, texto y voz dicen lo mismo en el mismo segundo? [PROBABLE] (Mayer, contigüidad).
+- **G7 · Legible:** ¿el sujeto y el texto se leen en un teléfono a un brazo de distancia? [MEDIDA] (se revisa en el cuadro). Que el sujeto ocupe más de un tercio del cuadro: [PROBABLE] (Ep. 5 y 7 + virales).
+- **G8 · Sin señal de falso:** nada en el cuadro 0 dice "esto no es real" (píldora SIMULACIÓN, "imagina que…", cara de maqueta); si hay que avisar, chico y desde los 3 s. Si la frase suena increíble, el cuadro 0 muestra la prueba real. [PROBABLE] (Ep. 5; los virales avisan "ilustrativo" en letra chica).
+- **G9 · Una sola cosa:** una idea y una píldora en los primeros 2 s. [PROBABLE] (Mayer; Ep. 7).
+- **G10 · Se mueve** algo antes de los 0,5 s. [PROBABLE] (Abrams y Christ).
+- **G11 · La tensión, temprano:** la palabra que crea la tensión ("caminando", "achicó") suena antes de 1,5 s, dentro de las primeras ~5 palabras. [PROBABLE] (Facebook IQ; Potter).
+- **G12 · Para Latam y sin datos de archivo en la voz:** nada de "botar", "weá", "polola"; sin años, nombres ni contexto en la frase del gancho. [HIPÓTESIS] (regla de Tomás; el Ep. 3 decía años y fue el mejor).
 
-### 5.3 Tipos de gancho (con lo que ya sabemos)
-| Tipo | Ejemplo | Cuándo |
+### 5.3 Tipos de gancho
+| Tipo | Ejemplo | Cuándo | Evidencia |
+|---|---|---|---|
+| **Objeto imposible en acción** | "Este edificio de cinco pisos se fue caminando." (Ep. 3) | Lo imposible se ve. Primera opción | [MEDIDA] (1 video) |
+| **Paradoja con escala** | "Nadie vio caer este rascacielos de cuarenta pisos." | El resultado contradice lo que se ve | [HIPÓTESIS] |
+| **El clímax primero** | Cuadro 0 = el final (la casa en medio del mar) y la voz pregunta cómo llegó ahí | Procesos largos con final visual fuerte | [HIPÓTESIS] |
+| **"Tú" en la escena** | "Si te metes a este lago, en dos días caminas por el fondo." | El espectador puede ponerse ahí (nada imitable) | [HIPÓTESIS] |
+| **Mito al revés** | "En Chiloé no te mudas de casa. Te mudas CON la casa." | Una frase de sentido común que se da vuelta | [PROBABLE] (virales D) |
+| **Conflicto que ya está pasando** | La cortina ya pegada en la cara | Lo cotidiano | [PROBABLE] (G2) |
+
+### 5.4 Lo que ya nos falló
+| Gancho | Qué pasó | Qué probar |
 |---|---|---|
-| **Objeto imposible en acción** | "Este edificio de cinco pisos se fue caminando." (Ep. 3, el que más rindió) | Lo imposible se ve. **Primera opción siempre** |
-| **Paradoja con escala** | "Nadie vio caer este rascacielos de cuarenta pisos." (reescritura del Ep. 7) | Cuando el resultado contradice lo que se ve |
-| **El clímax primero (in medias res)** | El cuadro 0 es el final (la casa en medio del mar) y la voz pregunta cómo llegó ahí | Procesos largos con un final visual fuerte |
-| **"Tú" en la escena** | "Si te metes a este lago, en dos días caminas por el fondo." | Cuando el espectador puede ponerse ahí (con cuidado: nada que se pueda imitar) |
-| **Mito al revés** | "En Chiloé no te mudas de casa. Te mudas CON la casa." | Cuando hay una frase de sentido común que se da vuelta |
-| **Conflicto que ya está pasando** | La cortina ya pegada en la cara (no el señor tranquilo antes) | Lo cotidiano: el conflicto en el cuadro 0 |
-
-### 5.4 Lo que ya nos falló (no se repite)
-| Gancho | Qué falló | Cómo se hace |
-|---|---|---|
-| "Tu cuerpo repele los imanes." + hombre chico flotando con píldora SIMULACIÓN (Ep. 5, 39,7 %) | Propiedad abstracta; sujeto chico; la píldora dice "falso" | El imposible grande y real primero (la rana flotando, cerca) y la promesa sobre ti después |
-| "Este es el edificio más alto que Japón ha botado." + ciudad lejos y 4 píldoras (Ep. 7, 70,7 %) | Superlativo abstracto; edificio chico; letreros; "botado" | "Nadie vio caer este rascacielos de cuarenta pisos": el edificio grande achicándose en el cuadro 0, una píldora |
-| "Te estás duchando..." + señor tranquilo con los ojos cerrados (Ep. 4) | El primer segundo es la calma | La cortina ya pegada en la cara en el cuadro 0 |
-| "Te comes un helado rápido y..." (Ep. 1) | Buen gancho, pero el video repetía y se alargaba (40 s vistos de 73) | Gancho igual, guion de 35 s |
-| "Este piloto tiene veintiún años. Mañana sale en una misión kamikaze..." (Ep. 10c, 7-nov) | Sin paradoja ni pregunta; 4 protagonistas; "..." lentos; terminaba con la cita de otro piloto ("un liberal se va de este mundo") que no contestaba nada. Tomás: "pésimo" | "A este piloto kamikaze lo castigaron por seguir vivo." Un protagonista, la pregunta se paga en la última frase (reglas 13–20) |
+| "Tu cuerpo repele los imanes." + hombre chico flotando con píldora SIMULACIÓN (Ep. 5) | [MEDIDA] 39,7 % se quedó, el peor. Causa [HIPÓTESIS]: propiedad abstracta, sujeto chico, píldora que dice "falso" | El imposible grande y real primero (la rana flotando, cerca) y la promesa sobre ti después |
+| "Este es el edificio más alto que Japón ha botado." + ciudad lejos y 4 píldoras (Ep. 7) | [MEDIDA] 70,7 % se quedó, 2.º peor, pero se abrió. Causa [HIPÓTESIS]: superlativo, edificio chico, letreros, "botado" | "Nadie vio caer este rascacielos de cuarenta pisos": el edificio grande achicándose, una píldora |
+| "Te estás duchando..." + señor tranquilo (Ep. 4) | [HIPÓTESIS] "El primer segundo es la calma"; ojo: tuvo el mejor "se quedó" del canal (79,9 %) | La cortina ya pegada en la cara |
+| "Te comes un helado rápido y..." (Ep. 1) | [MEDIDA] 40 s vistos de 73: el video se alargaba | Gancho igual, guion más corto |
+| "Este piloto tiene veintiún años. Mañana sale en una misión kamikaze..." (Ep. 10c) | [HIPÓTESIS] Tomás: "pésimo". Sin paradoja ni pregunta; 4 protagonistas; "..." lentos; cierre con una cita que no contestaba nada | "A este piloto kamikaze lo castigaron por seguir vivo." |
 
 ---
 
 ## 6. El guion entero
-### 6.1 Estructura segundo a segundo (25–40 s, 70–105 palabras)
+### 6.1 Estructura (para un video de ~45 s)
 | Tramo | Qué va | Prueba |
 |---|---|---|
 | **0–2 s · Gancho** | El paquete de §5 | ¿Se entiende en mudo? |
-| **2–6 s · Lo que está en juego** | Una frase: quién, cuánto o por qué importa. Queda abierta la pregunta "¿cómo?" | ¿Quedó una pregunta? |
-| **6–20 s · Mecánica** | 2–3 pasos unidos con "pero" / "por eso"; cada paso, un cambio que se ve; uno mete al espectador con un "tú" | ¿Quedó algún "y después"? |
-| **20–30 s · El pago** | La imagen que responde la pregunta del gancho; el tramo más rápido | ¿Se paga después del 60 % del video? |
-| **Últimos 3–5 s · Cierre en el pico** | Remate (consecuencia o chiste) que empalma con la primera frase (loop) + "mándaselo a…" ligado al contenido (§0.4) | ¿Quedan ≤ 2 frases después del pago, contando el CTA? ¿El CTA nombra a una persona que sale del tema? |
+| **2–6 s · Lo que está en juego** | Una frase: quién, cuánto o por qué importa; queda abierto el "¿cómo?" | ¿Quedó una pregunta? |
+| **6–30 s · Mecánica** | Pasos unidos con "pero" / "por eso", algo nuevo cada 4–6 s | ¿Quedó algún "y después"? |
+| **30–40 s · El pago** | La imagen que responde la pregunta del gancho; el tramo más rápido | ¿Se paga después del 60 % del video? |
+| **Últimos 3–5 s · Cierre en el pico** | Remate + loop + "mándaselo a…" | ¿Quedan ≤ 2 frases después del pago? |
 
-- **"Y lo más loco"** ya no va después del pago: va a la mitad, como segundo gancho, sólo si es más grande que todo lo anterior. Si no, va al comentario fijado.
-- **La enseñanza útil** (línea datos; regla del proyecto): el espectador termina sabiendo cómo funciona. Si además hay una frase de "qué hacer", que sea corta y parte del remate. Sacarla del todo es una propuesta pendiente de Tomás (§8).
-- **El "momento para mandarlo"** se marca en el guion: la frase o imagen por la que alguien lo mandaría ("mira, una casa en el mar con bueyes adentro").
+### 6.2 Criterios del guion (sí o no; los revisa el auditor en la puerta 1)
+1. **Duración: 35–50 s de voz, ~110–150 palabras a ~3,1 pal/s** (techo 52 s; meta de YouTube primero, Tomás 23-nov-2026). Si no cabe, se sacan pasos, no se acelera. [PROBABLE] (en los virales la gente mira ~30–47 s aunque duren más; nuestro Ep. 7 tuvo 89 % visto con 48 s). Reemplaza los números viejos (25–40 s, 70–105 palabras, techo de 45 s). Una versión larga sólo para IG es [HIPÓTESIS] por probar.
+2. **Pregunta abierta en los primeros 5 s, pagada con imagen después del 60 % del video.** [PROBABLE] (Loewenstein; Dashlet).
+3. **Algo nuevo cada 4–6 s** (§0.3), marcado en `guion.md` con su segundo: un dato que sube la apuesta, una pregunta corta ("¿Por qué?") o un "pero" que da vuelta lo anterior. [PROBABLE]
+4. **Cero "y después", "después" o "luego" entre pasos;** las transiciones son "pero", "por eso", "así que", "hasta que". [PROBABLE] (Hoyos; Parker y Stone).
+5. **Cada frase ≤ 14 palabras y una sola imagen que se puede dibujar;** la frase que no hace avanzar la idea central (§4.1.6) se saca, aunque sea un dato bueno. [PROBABLE] (Mayer).
+6. **Cifras:** cambian la imagen o traen una comparación conocida; máximo 2 en la voz (el resto, a la pantalla o al post). [PROBABLE] (Barrio et al.).
+7. **Etiquetas de emoción** ("lo más loco", "increíble"): cero, o una sola seguida de algo más grande que todo lo anterior. "Y lo más loco" va a la mitad como segundo gancho, nunca después del pago. [HIPÓTESIS]
+8. **Al menos un "tú"** que ponga al espectador en la escena. [HIPÓTESIS] (el Ep. 3 tenía tres y el Ep. 7 cero, y los dos se abrieron).
+9. **Historias: un solo protagonista, del gancho al cierre;** el contexto entra por él ("Su misión: estrellar su avión…"), nunca como clase ("Japón, 1944…"); nombres difíciles, en pantalla. [HIPÓTESIS] (Tomás 7-nov; espectadores del Ep. 10d).
+10. **Cada "por qué" se contesta con una causa concreta que se puede imaginar** ("si decías que no, te iban a llamar cobarde"), no con una abstracción ("era su cultura"), y en cadena: versión oficial → "pero" con la verdad de adentro → consecuencia. [HIPÓTESIS] (Tomás 7-nov).
+11. **Cierre:** el remate es la frase más fuerte, contesta la pregunta del tema y cierra el objeto del gancho, y empalma con la primera frase (loop). Después del pago quedan ≤ 2 frases y ≤ 5 s. Prohibido terminar con una cita de un personaje nuevo, un dato de contexto o un "pero no todos pensaban igual". [PROBABLE] (pico-final; Dashlet; las repeticiones cuentan en YouTube). Que el remate tenga ≤ 12 palabras: [HIPÓTESIS].
+12. **El CTA "mándaselo a…" ligado al contenido:** una persona concreta que sale del tema ("mándaselo a quien siempre culpa al semáforo"), nunca genérico ("a un amigo"); en la voz, después del remate, ≤ ~2 s. [PROBABLE] (virales; Mosseri). Que dure ≤ 2 s: [HIPÓTESIS].
+13. **El "momento para mandarlo"** se marca en el guion ("mira, una casa en el mar con bueyes adentro"). [PROBABLE] (Berger y Milkman).
+14. **Sin presentaciones** ("en este video", "hoy te cuento"). [PROBABLE] (los deslizamientos se concentran al principio). **Sin años, nombres de científicos ni "un estudio dijo" en la voz, y sin chilenismos:** [HIPÓTESIS] (regla de Tomás del 21-oct; ver G12).
+15. **La enseñanza útil** (regla de `proyecto/INSTRUCCIONES.md`): el espectador termina sabiendo cómo funciona; si hay una frase de "qué hacer", corta y dentro del remate. [HIPÓTESIS] (sacarla está pendiente, §8).
+16. **Cero "…" en el texto de la voz:** en ElevenLabs cada uno es un silencio de casi un segundo. Sólo puntos y comas; citas sin comillas. [MEDIDA]
+17. **Voz con energía:** `voice_settings` `speed` 1.12, `style` 0.45, `stability` 0.38; en el `words.json`, ≥ 3,1 pal/s y ningún silencio de más de 0,5 s entre frases, salvo los respiros de 0,4–0,6 s que se agregan en la edición antes del giro y antes de la frase final. Si sale lento, se recorta el texto. [MEDIDA] la velocidad se mide; que rinda mejor es [HIPÓTESIS] (Tomás 7-nov), aunque los virales hablan a 186–230 pal/min.
+18. **Imagen sin bombeo de zoom:** lo que cambia cada 1–2 s es el contenido (un corte a un detalle, algo que cae, un texto), no la cámara entrando y saliendo; el movimiento lo dan elementos en cuadro y los cortes. [PROBABLE] (los virales con /watch casi nunca usan zoom; Tomás 8-nov).
 
-### 6.2 Las 12 reglas (sí o no; las revisa el auditor en la puerta 1)
-1. ¿El cuadro 0, en mudo, muestra algo imposible o raro? (= G1–G2)
-2. ¿La primera frase tiene ≤ 10 palabras y nombra el objeto concreto y lo raro?
-3. ¿Se abre una pregunta en los primeros 5 s y se paga con imagen después del 60 % del video?
-4. ¿Cero "y después", "después" o "luego" entre pasos? (las transiciones son "pero", "por eso", "así que", "hasta que")
-5. ¿Cada frase tiene ≤ 14 palabras (como el manual) y una sola imagen que se puede dibujar?
-6. ¿Cero etiquetas de emoción ("lo más impresionante", "lo más loco", "increíble"), o una sola seguida de algo más grande que todo lo anterior?
-7. ¿Toda cifra dicha cambia la imagen o trae una comparación conocida, con un máximo de 2 en la voz? (el resto, a la pantalla o al post)
-8. ¿Hay al menos un "tú" que ponga al espectador en la escena?
-9. ¿Después del pago quedan ≤ 2 frases y ≤ 5 s?
-10. ¿La última frase, seguida de la primera, suena a una sola frase (loop)?
-11. ¿110–150 palabras y 35–50 s de voz estimada a ~3,1 pal/s (techo 52 s; meta de YouTube primero, 23-nov-2026)? Si no cabe, se sacan pasos, no se acelera.
-12. ¿Sin presentaciones ("en este video", "hoy te cuento"), sin años, nombres de científicos ni "un estudio dijo" en la voz (regla de Tomás del 21-oct), y sin chilenismos?
-
-**Reglas 13–20 (Tomás, 7-nov-2026, después del guion "pésimo" del Ep. 10c: "hay corte, hay lentitud, no hay explicaciones buenas, fíjate cómo termina"). Valen para todo guion, de datos o de historia. Si una falla, el guion no sale de la mesa del guionista.**
-
-13. **Un solo protagonista, del gancho al cierre.** El "este piloto" de la primera frase es el mismo de la última. Los demás (la esposa, los compañeros, los jefes) entran sólo en relación a él. El Ep. 10c saltaba piloto → esposa → alumnas → otro piloto con una cita: eso es lo que se siente como "cortes".
-14. **Después del gancho, la frase siguiente sigue con el protagonista.** El contexto entra por él ("Su misión: estrellar su avión…"), nunca como clase de historia ("Japón, 1944, está perdiendo la guerra" fue justo donde se fueron los espectadores del Ep. 10d). Nombres difíciles o extranjeros van en pantalla, no en la voz (otro espectador se fue en "Kenichiro Oonuki tenía miedo").
-15. **Un re-gancho cada 5–7 s, marcado en el guion.** Sirve una pregunta corta ("¿Por qué?", "¿Cómo aceptas eso?"), un "pero" que da vuelta lo anterior ("Pero él tenía miedo. Y no era el único.") o un dato que sube la apuesta. Se anota en `guion.md` el segundo de cada uno; si hay un tramo de más de 7 s sin uno, se reescribe.
-16. **Cada "por qué" se contesta con una causa concreta que se puede imaginar,** no con una abstracción. Mal: "era su cultura". Bien: "si decías que no, te iban a llamar cobarde, y se lo iban a contar a tu familia". Una explicación sin escena no explica.
-17. **Las explicaciones van en cadena: la versión oficial, el "pero" con la verdad de adentro y la consecuencia.** (Ep. 10d: era un honor → pero tenía miedo → por qué igual dijo que sí → qué le pasó por no morir.)
-18. **El cierre es la frase más fuerte del video:** contesta la pregunta del tema, tiene ≤ 12 palabras y empalma con la primera. Después sólo va el "mándaselo a…" ligado al contenido (§0.4, Tomás 23-nov-2026), nada más. Prohibido terminar con una cita de un personaje nuevo, con un dato de contexto o con un "pero no todos pensaban igual" (el Ep. 10c terminó así y no cerraba nada).
-19. **Cero "…" en el texto de la voz.** En ElevenLabs cada puntos suspensivos es un silencio de casi un segundo: en el Ep. 10c sumaban la lentitud. Sólo puntos y comas; las citas, sin comillas ("y uno le dijo: Me adelanto").
-20. **Voz con energía:** `voice_settings` con `speed` 1.12, `style` 0.45 y `stability` 0.38 (antes 1.0 / 0.30 / 0.42). Meta medida en el `words.json`: **≥ 3,1 palabras por segundo** y ningún silencio de más de 0,5 s entre frases. Si sale más lento, se recorta el texto, no se acelera el audio.
-
-**Regla 0 — la idea central va antes que todo (Tomás, 8-nov-2026, sobre el Ep. 10d: "el guion sigue siendo muy malo… piensa la idea central, ¿qué chucha es?").** Antes de escribir una línea, la idea central se escribe en **una frase** en `guion.md`, y el video cuelga de **un solo objeto o imagen** que vuelve en el gancho, en el medio y en el cierre (Ep. 10e: la flor de cerezo y la foto real de Chiran). Prueba: si una frase del guion no hace avanzar ese objeto o esa idea, se saca, aunque sea un dato bueno. El Ep. 10d metió castigo, honor, miedo, vergüenza, azaleas y un motor que falla: seis ideas, ninguna central. Un protagonista no alcanza si la idea no está clara.
-
-21. **¿Cuál es la idea central en una frase y cuál es el objeto que la carga?** Si no se puede decir sin "y además", hay dos videos.
-22. **El cierre cierra el objeto del gancho** (Ep. 10e: empieza con flores y termina "lo escondían detrás de una flor").
-23. **Respiros donde la historia gira:** con voz rápida, se agregan en la edición 0,4–0,6 s de silencio antes del giro y antes de la frase final (no con "…" en el texto, regla 19).
-24. **Imagen sin bombeo de zoom (Tomás, 8-nov: "esos zoom que hacemos cada dos segundos, pésimos").** Lo que cambia cada 1–2 s es el contenido (un corte a un detalle, algo que cae, un texto que aparece, la acción del dibujo), no la cámara entrando y saliendo. Fotos quietas; el movimiento lo dan elementos en cuadro (pétalos, brasas, humo) y los cortes.
-
-### 6.3 Historias de ~1 minuto (Tomás, 7-nov-2026: "algo de un minuto, pero que no te demores en contar la historia")
-Para historias reales con un protagonista (historia, personajes, "qué pensaba alguien que…"), el largo es 50–60 s y **150–190 palabras** con la voz rápida de la regla 20. La estructura:
+### 6.3 Historias (Tomás, 7-nov-2026: "que no te demores en contar la historia")
+Para historias reales con un protagonista. Caben en la duración de §6.2.1: el largo de 50–60 s y 150–190 palabras del 7-nov queda reemplazado. El orden [HIPÓTESIS]:
 
 | Tramo | Qué va | Ejemplo (Ep. 10d) |
 |---|---|---|
-| **0–3 s · Gancho** | Paradoja con el protagonista; deja la pregunta que se paga al final | "A este piloto kamikaze lo castigaron por seguir vivo." |
-| **3–10 s · Lo que está en juego** | El contexto contado a través de él, en 2 frases | "Su misión: estrellar su avión con una bomba contra un barco…" |
-| **10–20 s · La explicación oficial** | Re-gancho con pregunta + la respuesta que todos creen | "¿Cómo aceptas morir así? … era el mayor honor" |
-| **20–35 s · El "pero"** | La verdad de adentro, con causa concreta y una cita corta del protagonista (el pico del medio) | "Pero él tenía miedo… todos escribieron: Sí, con todo mi corazón. ¿Por qué? Si decías que no…" |
-| **35–50 s · La escena** | Un momento de la historia que se ve (objeto, gesto, frase) + el giro que lleva al pago | Las azaleas, "Me adelanto", el motor que falla |
-| **50–58 s · Pago y cierre** | Se paga el gancho y la última frase contesta la pregunta del tema y empalma con la primera | "Volvió vivo… le pegaron… Pero le tenían más miedo a volver vivos." |
+| **0–3 s · Gancho** | Paradoja con el protagonista; la pregunta se paga al final | "A este piloto kamikaze lo castigaron por seguir vivo." |
+| **Lo que está en juego** | El contexto contado a través de él, en 2 frases | "Su misión: estrellar su avión con una bomba contra un barco…" |
+| **La explicación oficial** | Re-gancho con pregunta + la respuesta que todos creen | "¿Cómo aceptas morir así? … era el mayor honor" |
+| **El "pero"** | La verdad de adentro, con causa concreta y una cita corta del protagonista (el pico del medio) | "Pero él tenía miedo… ¿Por qué? Si decías que no…" |
+| **La escena** | Un momento que se ve (objeto, gesto, frase) + el giro hacia el pago | Las azaleas, "Me adelanto", el motor que falla |
+| **Pago y cierre** | Se paga el gancho; la última frase contesta y empalma con la primera | "Volvió vivo… Pero le tenían más miedo a volver vivos." |
 
-Antes de mandar la voz: **leer el guion en voz alta con cronómetro** y marcar en cada frase qué trabajo hace (gancho, contexto, re-gancho, causa, escena, pago). La que no hace ninguno, se saca. Y **cazadores de fugas (§4, paso 5) siempre, aunque haya apuro**: con 4 espectadores son 15 segundos; toda frase donde se fue alguien se reescribe antes de gastar créditos de voz.
+Antes de mandar la voz: **leer el guion en voz alta con cronómetro** y marcar qué trabajo hace cada frase (gancho, contexto, re-gancho, causa, escena, pago); la que no hace ninguno, se saca. Y cazadores de fugas (§4, paso 6) aunque haya apuro, antes de gastar créditos de voz.
 
 ---
 
 ## 7. La predicción (se anota antes de publicar y se revisa a las 48 h)
 En `guion.md` → "Predicción", y la misma línea en `PUBLICADOS.md`:
 - **Se quedó (YouTube):** sobre o bajo el promedio del canal (72,6 % al 1-nov).
-- **% visto (YouTube):** sobre o bajo 75 % (los dos que se abrieron: 74 y 89 %; los que no: 43–76 %). Con videos de distinto largo, el % compara mejor que los segundos.
-- **Envíos en IG por cada mil vistas:** sobre o bajo la mediana del canal (10,6 por mil al 1-nov: Ep. 1 24,2 · Ep. 2 10,5 · Ep. 3 10,8 · Ep. 4 4,8 · Ep. 5 11,2 · Ep. 7 0,6).
-- **Dónde se va la gente:** la frase que el guionista cree que es el punto débil (en Studio: dónde cae la curva de retención).
-- **La predicción del simulador, aparte:** del duelo con cuadros reales del paso 8, si el gancho les gana a la mayoría de las anclas → predice "se quedó" sobre el promedio del canal; si no, bajo.
+- **% visto (YouTube):** sobre o bajo 75 % (los dos que se abrieron: 74 y 89 %; los demás: 43–76 %).
+- **Envíos en IG por cada mil vistas:** sobre o bajo la mediana del canal (10,6 al 1-nov).
+- **Dónde se va la gente:** la frase que el guionista cree que es el punto débil (en Studio: dónde cae la curva).
+- **La del simulador, aparte:** si el gancho les gana a la mayoría de las anclas en el paso 9 → "se quedó" sobre el promedio; si no, bajo.
 
-A las 48 h se anota si acertó cada una. **El simulador pierde el voto si en 10 videos su predicción acierta menos del 60 %**; la del guionista se mide igual, para saber si el método sirve.
+A las 48 h se anota si acertó cada una. El simulador pierde el voto si en 10 videos acierta menos del 60 %; la del guionista se mide igual. Estos resultados alimentan la limpieza de cada 5 videos (las hipótesis que no se confirman bajan o se borran).
 
 ---
 
 ## 8. Decisiones pendientes de Tomás
-1. **El techo de 45 s.** Los dos videos que se abrieron duran 48 y 64 s, y en promedio se vieron 42–47 s. La investigación dice que más corto rinde más en general, pero lo que cuenta es retener. Propuesta: meta 30–40 s igual, y hasta **50 s** sólo para una mecánica en pasos cuyos cazadores de fugas no encuentren dónde se va la gente.
-2. **"Termina enseñando algo útil" (regla de las instrucciones del proyecto).** Choca con cortar en el pico. Propuesta: la enseñanza es entender la mecánica; la frase de "qué hacer" sale de la cola. **Mientras Tomás no decida, la regla del proyecto manda:** el guion tiene que dejar algo útil (si es una frase al final, que sea corta y sea parte del remate), y la puerta 1 no lo castiga.
-3. **Probar ganchos con gente real.** Instagram Trial Reels (cada prueba es un post: necesita tu OK) y, cuando aparezca en tu Studio, la prueba de 3 cortes de YouTube. Propuesta: probarlo en el próximo video con 2 ganchos (los primeros 3 s distintos, el resto igual).
-4. **Insistir en "gigante imposible + mecánica"** por un tiempo (ingeniería, construcción, naturaleza a escala), porque es lo único que se abrió.
+1. **"Termina enseñando algo útil" (regla de las instrucciones del proyecto)** choca con cortar en el pico. Propuesta: la enseñanza es entender la mecánica; la frase de "qué hacer" sale. Mientras no decida, vale §6.2.15 y la puerta 1 no lo castiga.
+2. **Probar ganchos con gente real:** Instagram Trial Reels (cada prueba es un post: necesita tu OK) y la prueba de 3 cortes de YouTube cuando aparezca en tu Studio. Propuesta: el próximo video con 2 ganchos (los primeros 3 s distintos, el resto igual).
+3. **Insistir en "gigante imposible + mecánica"** por un tiempo (ingeniería, construcción, naturaleza a escala): es lo único que se abrió y es el carril que más rompe en los virales.
+
+(El techo de 45 s quedó resuelto el 23-nov: 35–50 s, techo 52, §6.2.1.)
