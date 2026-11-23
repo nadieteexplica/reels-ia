@@ -135,14 +135,16 @@ def preparar(a):
                 "codigos": dict(zip(cods, [items[i]["id"] for i in (primero, segundo)])),
                 "orden": [items[primero]["id"], items[segundo]["id"]]}
         (out / f"juez{j}.md").write_text(ENUNCIADO.format(n=len(pares)) + "\n" + "\n".join(bloques))
-    (out / "clave.json").write_text(json.dumps(clave, ensure_ascii=False, indent=1))
+    (base / "_claves").mkdir(exist_ok=True)  # fuera de la carpeta que leen los jueces (revisión independiente)
+    (base / "_claves" / f"{out.name}.json").write_text(json.dumps(clave, ensure_ascii=False, indent=1))
     print(f"{a.jueces} jueces en {out}")
 
 
 def contar(a):
     base = base_de(a.ep)
     out = base / (("duelo_img" if a.imagenes else "duelo") + ("_virales" if a.anclas == "virales" else ""))
-    clave = json.load(open(out / "clave.json"))
+    k = base / "_claves" / f"{out.name}.json"
+    clave = json.load(open(k if k.exists() else out / "clave.json"))
     ids = clave["items"]
     gana = {i: 0 for i in ids}
     juega = {i: 0 for i in ids}

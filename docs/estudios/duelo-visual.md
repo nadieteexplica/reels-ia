@@ -24,7 +24,7 @@
 - **Vuelta 0 (kit del duelo):** 2 jueces ciegos → nuestro beat **5/10**; touchscreen 8–8,5; buceo 7–7,5. Brechas: encuadre y escala, variedad de tomas, luz y profundidad, materiales, golpe, tipografía arriba con píldora, información visual (recuadro de zoom, regla, pictogramas). Ojo de método: a los virales se los muestreó en 45–90 s y a nosotros en 7 s (castiga la variedad); desde la vuelta 1, misma ventana.
 - **Regla:** el kit tiene **3 vueltas** para llegar a **≥ 8 contra los virales**. Si no llega, no se sigue parchando: se prueba el mismo beat en **three.js renderizado en GitHub Actions** y se compara con la misma vara.
 
-**Ojo:** el beat de prueba abre con "Esto es un clavo", casi la frase de apertura del martinete. Es sólo para medir lo visual y no se publica: ninguna frase de apertura de un viral va a un video real (regla del guion §0.7).
+**Gancho del beat de prueba:** abre con lo normal que escala ("Esto es un clavo", fórmula del martinete con texto propio). No está probado que falle: queda como [HIPÓTESIS] (docs/REGLAS.md); las fórmulas se pueden reutilizar con otro tema.
 
 ## Vara relativa (Tomás, 23-nov-2026): la vara de notas absolutas estaba descalibrada
 "Si los jueces le ponen 4 y 5,5 a dos virales de 2 M y 13 M, no mide lo que importa." Desde ahora:

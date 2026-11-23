@@ -49,7 +49,8 @@ def main():
     ep = sys.argv[1]
     sub = "prueba_img" if "--imagenes" in sys.argv else "prueba"
     base = next((p.resolve() for p in (Path(ep), RAIZ / ep) if p.is_dir()), RAIZ / "studio/episodios" / ep / "guionista") / sub
-    clave = json.load(open(base / "clave.json"))
+    k = base.parent / "_claves" / f"{base.name}.json"
+    clave = json.load(open(k if k.exists() else base / "clave.json"))
     anclas = {a["id"]: a for a in json.load(open(RAIZ / "tools/guionista/calibracion/anclas.json"))["anclas"]}
     acc = {}
     paneles = 0

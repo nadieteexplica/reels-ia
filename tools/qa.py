@@ -26,7 +26,7 @@ try:  # mismos límites que el auditor (presupuesto.json → proceso_v2.duracion
     DUR = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "auditor", "presupuesto.json")))["proceso_v2"]["duracion_s"]
 except Exception:
     DUR = [25.0, 45.5]
-check(f"duración {DUR[0]:g}–{DUR[1]:g} s (meta 25–40 s, techo 45 s)", DUR[0] <= dur <= DUR[1], f"{dur:.2f} s")
+check(f"duración {DUR[0]:g}–{DUR[1]:g} s", DUR[0] <= dur <= DUR[1], f"{dur:.2f} s")
 check("1080×1920", (v["width"], v["height"]) == (1080, 1920), f"{v['width']}×{v['height']}")
 check("30 fps", abs(fps - 30) < 0.01, f"{fps:.2f}")
 check("H.264 yuv420p", v["codec_name"] == "h264" and v["pix_fmt"] == "yuv420p", f"{v['codec_name']} {v['pix_fmt']}")
@@ -52,7 +52,7 @@ if raw_dir:
     check("quemados < 3 % (sin subtítulos)", worst < 0.03, f"peor cuadro {worst * 100:.2f} %")
 if subs:
     log = json.load(open(subs))
-    bad = [r for r in log if r[2] < 115 or r[4] > 893 or r[3] < 995 or r[5] > 1255]
-    check("subtítulos dentro de x 120–888 · y 1000–1250", not bad, f"{len(bad)} cajas fuera" if bad else f"{len(log)} cajas")
+    bad = [r for r in log if r[2] < 55 or r[4] > 1025 or r[3] < 245 or r[5] > 605]  # zona de arriba (23-nov-2026)
+    check("subtítulos dentro de x 60–1020 · y 250–600 (zona de arriba, kit_explica)", not bad, f"{len(bad)} cajas fuera" if bad else f"{len(log)} cajas")
 print("RESULTADO:", "PASA" if ok else "NO PASA")
 sys.exit(0 if ok else 1)

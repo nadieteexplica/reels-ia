@@ -21,8 +21,9 @@ from PIL import Image, ImageDraw, ImageFont
 RAIZ = Path(__file__).resolve().parents[1]
 FUENTE = RAIZ / "studio/plantilla/fonts/Inter-ExtraBold.otf"
 TW, TH = 405, 720  # tamaño celular (≈ el ancho real en pantalla de un teléfono)
-# lo que define el video: si cambia algo de esto después del QA, hay que volver a pasarlo
-PATRONES_FUENTE = ["escena2d/*.py", "escena/*.py", "words*.json", "guion.md", "storyboard.*", "sfx-plan.json", "voz/*", "*.wav"]
+# Lo que define el video. Sólo archivos COMMITEADOS (así la huella da lo mismo en el Mac y en GitHub Actions) más el
+# kit, la mezcla y la voz de out/voz-libre/<ep>/. Si cambia algo de esto después del QA, hay que volver a pasarlo.
+EXTRA_FUENTES = ["studio/plantilla/kit_explica.py", "studio/plantilla/kit2d.py", "tools/sonido/mezclar.py"]
 
 
 def ep_dir(ep):
@@ -34,12 +35,15 @@ def ep_dir(ep):
 
 def huella(ep):
     d = ep_dir(ep)
+    rel = lambda p: str(p.relative_to(RAIZ))
+    trackeados = subprocess.run(["git", "ls-files", str(d), f"out/voz-libre/{ep}"], cwd=RAIZ, capture_output=True,
+                                text=True).stdout.split()
+    archivos = sorted({RAIZ / f for f in trackeados if "/qa/" not in f} | {RAIZ / f for f in EXTRA_FUENTES if (RAIZ / f).exists()})
     h = hashlib.sha256()
-    archivos = sorted({p for pat in PATRONES_FUENTE for p in d.glob(pat) if p.is_file() and "/qa/" not in str(p)})
     for p in archivos:
-        h.update(str(p.relative_to(d)).encode())
+        h.update(rel(p).encode())
         h.update(p.read_bytes())
-    return h.hexdigest(), [str(p.relative_to(d)) for p in archivos]
+    return h.hexdigest(), [rel(p) for p in archivos]
 
 
 def cuadro(video, t):
@@ -88,6 +92,23 @@ def preparar(ep, video):
     for n in range(0, len(ts), 6):
         ims = [rotular(cuadro(video, min(t, dur - 0.05)), f"{t:.0f}s") for t in ts[n:n + 6]]
         hoja(ims, 3, 2).save(q / "hojas" / f"hoja-{n // 6 + 1:02d}.jpg", quality=80)
+    sb = d / "storyboard.json"
+    if sb.exists():  # sincronía: un cuadro 0,15 s después de cada cambio del storyboard (con la palabra que lo gatilla)
+        planos = json.load(open(sb))
+        planos = planos.get("planos", planos) if isinstance(planos, dict) else planos
+        marcas = []
+        for p in planos if isinstance(planos, list) else []:
+            for k in ("t_gatillo", "inicio_s", "desde_s", "segundos_inicio"):
+                if isinstance(p, dict) and isinstance(p.get(k), (int, float)):
+                    marcas.append((float(p[k]), str(p.get("palabra_gatillo") or p.get("gatillo") or p.get("id", ""))))
+                    break
+        if marcas:
+            (q / "sincronia").mkdir(exist_ok=True)
+            for f in (q / "sincronia").glob("*.jpg"):
+                f.unlink()
+            ims = [rotular(cuadro(video, min(t + 0.15, dur - 0.05)), f"{t + 0.15:.2f}s {w[:10]}") for t, w in marcas]
+            for n in range(0, len(ims), 6):
+                hoja(ims[n:n + 6], 3, 2).save(q / "sincronia" / f"sinc-{n // 6 + 1:02d}.jpg", quality=80)
     words = next((p for p in [d / "words.json", *sorted(d.glob("words*.json"))] if p.exists()), None)
     lineas = ["# Qué dice la voz en cada segundo", ""]
     if words:
@@ -125,6 +146,12 @@ if __name__ == "__main__":
         preparar(sys.argv[2], Path(sys.argv[3]))
     elif len(sys.argv) == 3 and sys.argv[1] == "cerrar":
         cerrar(sys.argv[2])
+    elif len(sys.argv) == 3 and sys.argv[1] == "verificar":  # lo corre Actions antes de un render final o un release
+        q = ep_dir(sys.argv[2]) / "qa" / "qa.json"
+        d = json.load(open(q)) if q.exists() else {}
+        ok = bool(d.get("aprobado")) and d.get("huella_fuentes") == huella(sys.argv[2])[0]
+        print("QA OK" if ok else f"QA NO: falta qa.json aprobado o las fuentes cambiaron ({q})")
+        sys.exit(0 if ok else 1)
     elif len(sys.argv) == 3 and sys.argv[1] == "huella":
         print(huella(sys.argv[2])[0])
     else:

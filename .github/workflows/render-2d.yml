@@ -41,6 +41,9 @@ jobs:
           j = json.load(open(sys.argv[1]))
           print("ep=" + j["episodio"]); print("tag=" + j["tag"]); print("pre=" + ("1" if j.get("prerelease") else "0")); print("suf=" + j.get("sufijo", ""))
           PY
+      - name: Puerta de QA (sólo render final, no borradores)
+        if: steps.t.outputs.pre == '0' && !endsWith(steps.t.outputs.tag, '-borrador')
+        run: python3 tools/qa_video.py verificar "${{ steps.t.outputs.ep }}"
       - name: Render (cuadros en paralelo), audio y MP4
         env:
           EP: ${{ steps.t.outputs.ep }}

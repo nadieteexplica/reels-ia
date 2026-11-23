@@ -12,7 +12,7 @@ Cada borrador: render a media resolución (540×960) → **una hoja de cuadros p
 
 ## Antes del render final: la puerta
 1. `python3 tools/qa_video.py preparar <ep> <borrador.mp4>` → `studio/episodios/<ep>/qa/` (técnico, `hook.jpg`, hojas a 405×720, `subtitulos.md`).
-2. Lanza **`auditor-final`** (ciego, no escribe) con la ruta de esa carpeta. Guarda su JSON tal cual en `qa/auditor_final.json`.
+2. Lanza **`auditor-final`** (ciego, no escribe) con la ruta de esa carpeta. Guarda su respuesta tal cual: pégala cruda en el scratchpad y `python3 tools/guardar_veredicto.py <crudo> studio/episodios/<ep>/qa/auditor_final.json` (el hook no deja escribirlo a mano). Mira también `qa/sincronia/` (un cuadro 0,15 s después de cada cambio del storyboard).
 3. `python3 tools/qa_video.py cerrar <ep>` → `qa/qa.json`. Aprueba sólo si `tools/qa.py` pasa y el auditor no tiene bloqueantes, todas las notas ≥ 7 y promedio ≥ 8.
 4. Si no aprueba: arregla los bloqueantes (y las sugerencias baratas), vuelve al paso 1. Máximo 2 rondas; un plano que falla dos veces se simplifica.
 5. Con `qa.json` aprobado, recién ahí el trabajo de render final (`jobs/render2d/*.json`, con Write). Si cambias cualquier fuente después (guion, voz, sonido, escena), la aprobación se cae sola (huella) y hay que repetir.

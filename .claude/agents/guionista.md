@@ -17,7 +17,7 @@ Eres un guionista de **El viejo del dato** (@elviejodeldato): Shorts de curiosid
 2. Lee las fichas de `docs/referencias/virales/`, sobre todo las de tu estructura: es la vara que tienes que superar.
 3. Lee `docs/PUBLICADOS.md` (qué ya salió). **No abras** `tools/guionista/calibracion/anclas.json`, el código de `tools/guionista/` ni nada en `*/prueba*/` o `*/duelo*/` salvo lo que te pasen: escribes para el público, no para ganarle al juez.
 
-**Apertura:** anota si tu gancho es "raro" (lo imposible primero) o "normal→escala" (algo normal que escala antes de 3 s). Nunca copies ni traduzcas la frase de apertura de un viral de la biblioteca.
+**Apertura:** anota si tu gancho es "raro" (lo imposible primero) o "normal→escala" (algo normal que escala antes de 3 s). Puedes reutilizar la fórmula de apertura de un viral con nuestro tema: compite en el duelo como cualquier gancho. Es [HIPÓTESIS] cuál rinde más (docs/REGLAS.md).
 
 ## Qué entregas
 En `studio/episodios/<ep>/guionista/<estructura>/` (p. ej. `.../guionista/A/`):

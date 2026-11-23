@@ -126,7 +126,8 @@ def main():
         perfil = perfiles[(n - 1 + desfase) % len(perfiles)]
         md = INSTRUCCIONES.format(n=len(orden), perfil=perfil) + "\n" + "\n".join(texto)
         (out / f"panel{n}.md").write_text(md)
-    (out / "clave.json").write_text(json.dumps(clave, ensure_ascii=False, indent=1))
+    (out.parent / "_claves").mkdir(exist_ok=True)  # fuera de la carpeta que leen los espectadores
+    (out.parent / "_claves" / f"{out.name}.json").write_text(json.dumps(clave, ensure_ascii=False, indent=1))
     print(f"{a.paneles} paneles con {len(cand)} candidatos + {len(anclas)} anclas en {out}")
 
 

@@ -35,12 +35,12 @@
   "planos_por_revisor": 10,
   "cambio_max_s": 2.0,
   "palabras": [
-   70,
-   175
+   110,
+   160
   ],
   "duracion_s": [
-   25.0,
-   62.0
+   35.0,
+   52.0
   ],
   "promedio_min": 8.0,
   "nota_min_revisor": 7,
@@ -48,7 +48,8 @@
   "nota_duracion": "YouTube primero (Tomás, 21-oct-2026): meta 25–40 s, techo 45 s (en 108 mil Shorts la mediana de vistas es máxima en 11–20 s y cae fuerte sobre 30 s; el promedio visto por Short es ~16 s). Palabras: 25 s ≈ 72, 35 s ≈ 101, 40 s ≈ 115; techo 128 = voz de 45,1 s a la velocidad más lenta medida (Ep. 3: 181 palabras en 63,4 s = 2,855 palabras/s). Ep. 7 v2 (27-oct-2026): Tomás autorizó pasar de 45 s para sumar mecánica; techo temporal 50 s / 145 palabras. Ep. 10 kamikazes (7-nov-2026): Tomás pidió 'la historia de los kamikazes en un minuto' (lección 119); techo temporal 62 s / 175 palabras para este episodio, se vuelve a 52 s / 150 después.",
   "horas_meta": 2.5,
   "comprension_min": 8,
-  "nota_comprension": "Ep. 6 (24-oct-2026, 'vergüenza máxima' de Tomás): el video pasó plano por plano y corrido no se entendía. Encargo 'espectador' en la puerta 6 (mira el video entero a 3 cuadros/s sin guion primero), criterio 'comprension' con mínimo 8, bloqueantes B12–B14, y la puerta 8 no empaqueta sin la 6 y la 7 aprobadas."
+  "nota_comprension": "Ep. 6 (24-oct-2026, 'vergüenza máxima' de Tomás): el video pasó plano por plano y corrido no se entendía. Encargo 'espectador' en la puerta 6 (mira el video entero a 3 cuadros/s sin guion primero), criterio 'comprension' con mínimo 8, bloqueantes B12–B14, y la puerta 8 no empaqueta sin la 6 y la 7 aprobadas.",
+  "_nota_duracion": "23-nov-2026: 35–50 s (techo 52) y 110–160 palabras para YouTube primero; criterio [HIPÓTESIS] que se revisa con visto vs. deslizado cada 4–6 videos (docs/REGLAS.md)."
  },
  "realista": {
   "nota": "Línea de la cuenta desde el Ep. 5 (Tomás, 23-oct-2026, docs/ESTILO_REALISTA.md). Medido en el Ep. 5: cuadros de estilo 1080x1920/64 en 5–17 min cada uno; animatic 540x960/8 50 min (casi lo mismo que el final) → en realista NO hay animatic: muestras (render-planos, muestras=3, 540x960, ~10 min) + revisión de la hoja → final 720x1280/8 en 16 máquinas (~60 min) → puerta 6 sobre el final + puerta 7 → parches por plano (piezas + base_run). Los topes de horas de proceso_v2 no cambian (los decide Tomás): con el kit del Ep. 5 se estiman ~4 h por video; el Ep. 5 tomó ~9 h (kit desde cero, 3 rondas de realismo y armados colgados).",
