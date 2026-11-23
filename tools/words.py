@@ -1,4 +1,5 @@
 """Arma words.json (lista de {w, s, e}) desde la alineación de ElevenLabs.
+Con la voz libre (Qwen3-TTS) se usa tools/voz_palabras.py, que saca los tiempos con Whisper.
 
 Uso:
   python3 tools/words.py out/tts/<id>.json <salida/words.json> [guion_pantalla.txt]
