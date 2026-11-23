@@ -1,6 +1,10 @@
 {
- "_que_es": "v3 del beat del clavo (23-nov-2026), ronda contra virales de referencia. Misma voz y mismos words.json que storyboard.json; los planos se reestructuran: una composición nueva cada 0,7–1,6 s, cortes en la palabra, cortes por coincidencia (la cabeza del clavo en el mismo lugar de la pantalla) y loop perfecto (el cuadro 0 ES el último cuadro). Render: studio/duelo-visual/python/render.py con studio/plantilla/kit_explica.py.",
- "formato": {"ancho": 1080, "alto": 1920, "fps": 30},
+ "_que_es": "v4 del beat del clavo (23-nov-2026, ronda 2 contra virales). Misma voz (normalizada a −14 LUFS en el mux) y mismos words.json. Una composición nueva cada 0,4–1,9 s, continuidad de cámara entre planos (cortes por coincidencia, crash zoom A→B y E→F, barridos 'whip pan' en el resto), empujes lentos en cada plano y loop perfecto (el cuadro 0 ES el último cuadro). Render: studio/duelo-visual/python/render.py con studio/plantilla/kit_explica.py.",
+ "formato": {
+  "ancho": 1080,
+  "alto": 1920,
+  "fps": 30
+ },
  "voz": "out/voz-libre/duelo-visual/beat.wav",
  "words": "out/voz-libre/duelo-visual/beat.words.json",
  "estilo": {
@@ -9,41 +13,117 @@
   "profundidad": "3 capas en los planos de exterior: cielo de atardecer con resplandor en el horizonte, ciudad en silueta con bruma (baja opacidad) y primer plano de tierra con piedras desenfocadas; viñeta radial",
   "energia": "#F5B82E con brillo: lo activo, el golpe, los números, la cinta métrica, la píldora de la palabra clave",
   "peligro": "#E5484D sólo en la ✗ del martillo normal",
-  "subtitulos": "ARRIBA (tope de las mayúsculas en y=292, bajo la barra de la app), Inter Black 112 px (≈6 % del alto) en MAYÚSCULAS, contorno grueso + sombra suave; la palabra clave en una píldora llena color energía con letra oscura que entra con pop",
+  "subtitulos": "ARRIBA: tope de las mayúsculas de la 1.ª línea en y=300 y el bloque crece hacia abajo; nada sobre y=250 (assert en el kit). Inter Black 112 px en MAYÚSCULAS, contorno grueso + sombra suave; la palabra clave en píldora llena color energía con letra oscura, una píldora por línea medida sobre la tinta real, con hueco extra para no pisar la palabra blanca. En planos con el clavo a la derecha la columna de texto se corre a la izquierda.",
   "numero_heroe": "Inter Black 350–380 px (14–15 % del alto), unidad al 50 %, con brillo; aparece entero EN la palabra que lo dice (nunca congelado a medio contar)",
-  "zona_segura": "nada importante bajo y=1517 ni a la derecha de x=940; todo funde a oscuro desde y=1560"
+  "zona_segura": "nada importante bajo y=1517 ni a la derecha de x=940; todo funde a oscuro desde y=1560",
+  "etiquetas": "mínimo 44 px, Inter Black con contorno oscuro de 4–6 px"
  },
- "palabras_clave_con_recuadro": ["clavo", "martillazo", "veinte metros", "cincuenta toneladas", "pegas"],
+ "palabras_clave_con_recuadro": [
+  "clavo",
+  "martillazo",
+  "veinte metros",
+  "cincuenta toneladas",
+  "pegas"
+ ],
  "planos": [
-  {"id": "gancho", "desde": 0.0, "hasta_palabra": "Esto",
-   "se_ve": "El último cuadro del video (plano G terminado): clavo gigante al centro con la cabeza en (500, 525), martillo gigante listo arriba a la derecha, martillo normal con ✗, bus de dos pisos y edificio de 6 pisos para la escala, etiqueta 20 M · 50 T.",
-   "cambia": "corte por coincidencia en 'Esto' al clavo chico (cabeza y martillo en el mismo lugar)"},
-  {"id": "A", "desde_palabra": "Esto", "hasta_palabra": "Un",
-   "se_ve": "Clavo de acero cromado de 8 cm (41 % del alto, cabeza en y=525) clavado de punta en un tablón con el frente en testa (anillos de crecimiento y grietas); martillo de carpintero listo a la derecha; fondo de estudio con charco de luz cálida.",
-   "etiquetas": [{"texto": "CLAVO · 8 CM", "apunta_a": "la cabeza", "entra_en_palabra": "clavo"}],
-   "cambia": "en 'clavo' crece una cinta métrica 0–8 cm y entra la etiqueta; empujón lento de cámara; el martillo respira y se echa atrás justo antes de 'Un' (anticipación)"},
-  {"id": "B", "desde_palabra": "Un", "hasta_palabra": "y",
-   "se_ve": "Plano cerrado: la cabeza de acero del martillo (uña, cuello, cara, mango de madera) baja sobre la cabeza del clavo.",
-   "cambia": "contacto en el cuadro de 'martillazo' con rebote (la única curva de aterrizaje del video), 2 cuadros de estela, 1 cuadro de flash blanco, 3 anillos de onda, 12 chispas, polvo, temblor de 8 cuadros"},
-  {"id": "C", "desde_palabra": "y", "hasta_palabra": "Pero",
-   "se_ve": "El tablón visto en corte de costado: la cabeza queda quieta en y=525 y la madera sube y se traga el clavo; las fibras se doblan hacia abajo junto a la caña y se comprimen bajo la punta; astillas en la entrada.",
-   "etiquetas": [{"texto": "8 CM → 0", "apunta_a": "placa a la izquierda", "entra_en_palabra": "entra", "numero_en_vivo": "8 CM baja a 0 CM con el hundimiento"}],
-   "cambia": "hundimiento en 'entra' (0,42 s)"},
-  {"id": "D", "desde_palabra": "Pero", "hasta_palabra": "veinte",
-   "se_ve": "Corte por coincidencia: la cabeza del clavo gigante (20 m) en el mismo lugar y tamaño que la del chico; atardecer, ciudad, bus de dos pisos. La cámara baja a ras de suelo con un 'dolly zoom' detrás de una persona de espaldas que mira hacia arriba: el clavo se afina hacia arriba y la cabeza se sale por el borde.",
-   "etiquetas": [{"texto": "×250 · EL REAL · 8 CM", "apunta_a": "tarjeta arriba a la derecha con una mano que sostiene el clavo real", "entra_en_palabra": "este"}],
-   "cambia": "cámara entre 2,91 y 3,53 s; tarjeta en 'este'"},
-  {"id": "E", "desde_palabra": "veinte", "hasta_palabra": "pesa",
-   "se_ve": "Alzado lateral: clavo a la derecha, bus y persona al pie, cinta métrica color energía que crece del suelo a la cabeza (marcas cada metro, 5/10/15/20).",
-   "etiquetas": [{"texto": "20 M", "estilo": "número héroe", "entra_en_palabra": "veinte"}, {"texto": "DE ALTO · 250 VECES EL REAL", "entra_en_palabra": "veinte"}],
-   "cambia": "número entero en 'veinte'; la cinta crece 0,5 s"},
-  {"id": "F", "desde_palabra": "pesa", "hasta_palabra": "¿Con",
-   "se_ve": "A ras de suelo con el suelo en corte (humus, arcilla, piedras): la punta de diamante enterrada; grietas que salen de la punta y, en el suelo, desde la base; penacho de polvo.",
-   "etiquetas": [{"texto": "50 T", "estilo": "número héroe", "entra_en_palabra": "cincuenta"}, {"texto": "1 ELEFANTE ≈ 5 T", "pictogramas": "10 elefantes que se llenan uno a uno"}],
-   "cambia": "grietas, polvo y temblor en 'pesa'; 50 T en 'cincuenta'; elefantes cada 0,075 s"},
-  {"id": "G", "desde_palabra": "¿Con", "hasta_palabra": "(fin)",
-   "se_ve": "Vuelve el plano ancho del gancho. Un martillo normal (dibujo real) entra y queda chico junto al clavo; ✗ roja en 'qué'. En 'pegas' baja el martillo gigante a la misma posición que el martillo del plano A. El último cuadro es el cuadro 0.",
-   "etiquetas": [{"texto": "20 M · 50 T", "apunta_a": "la caña", "entra_en_palabra": "¿Con"}],
-   "cambia": "martillo normal en '¿Con', ✗ en 'qué', martillo gigante en 'pegas'"}
+  {
+   "id": "gancho/final",
+   "desde": "7,29 s (y el cuadro 0)",
+   "se_ve": "Plano ancho al atardecer: clavo de 20 m (cabeza en 500,580), martillo gigante arriba a la derecha, persona de 1,8 m al pie con cota, bus de dos pisos, ciudad en 3 capas. Titular en píldora 'CLAVO DE 20 M'.",
+   "cambia": "desde 7,29 la cámara se aleja y el martillo se asienta; el último cuadro es idéntico al cuadro 0"
+  },
+  {
+   "id": "A",
+   "desde_palabra": "Esto",
+   "hasta_palabra": "Un",
+   "se_ve": "Clavo cromado de 8 cm en tablón de testa, martillo listo, cinta métrica 0–8 cm en 'clavo'.",
+   "etiquetas": [
+    {
+     "texto": "CLAVO · 8 CM",
+     "entra_en_palabra": "clavo"
+    }
+   ],
+   "cambia": "empuje 1,0→1,08; anticipación del martillo; crash zoom a la cabeza en los últimos 0,1 s"
+  },
+  {
+   "id": "B",
+   "desde_palabra": "Un",
+   "hasta_palabra": "y",
+   "se_ve": "Plano cerrado: martillo contra la cabeza.",
+   "cambia": "llega acercándose (continúa el crash zoom); contacto en 'martillazo' con rebote, estela 2 cuadros, flash 1 cuadro, 3 ondas, 12 chispas, polvo, temblor 8 cuadros"
+  },
+  {
+   "id": "C",
+   "desde_palabra": "y",
+   "hasta_palabra": "Pero",
+   "se_ve": "Tablón en corte; la madera sube y se traga el clavo; placa '8 CM' + barra que se llena con lo que entra.",
+   "cambia": "barrido de entrada; golpe en 'entra' (flash 1 cuadro, temblor 6 cuadros, astillas con estela)"
+  },
+  {
+   "id": "D1",
+   "desde_palabra": "Pero",
+   "hasta_palabra": "clavo",
+   "se_ve": "Corte por coincidencia al clavo de 20 m (cabeza en el mismo lugar).",
+   "cambia": "empuje de cámara 3D (parallax de la ciudad)"
+  },
+  {
+   "id": "D2",
+   "desde_palabra": "clavo",
+   "hasta_palabra": "veinte",
+   "se_ve": "Pantalla partida: a la izquierda el clavo real de 8 cm en la mano (estudio), a la derecha el gigante; píldora '×250' en la línea divisoria.",
+   "etiquetas": [
+    {
+     "texto": "8 CM"
+    },
+    {
+     "texto": "×250"
+    }
+   ],
+   "cambia": "barrido de entrada; empuje en las dos mitades"
+  },
+  {
+   "id": "E",
+   "desde_palabra": "veinte",
+   "hasta_palabra": "y (pesa)",
+   "se_ve": "Alzado: cinta métrica 20 m a la derecha del clavo, persona con cota 1,8 M, bus; número héroe sobre el cielo (no tapa objetos).",
+   "etiquetas": [
+    {
+     "texto": "20 M",
+     "estilo": "número héroe",
+     "entra_en_palabra": "veinte"
+    },
+    {
+     "texto": "DE ALTO"
+    },
+    {
+     "texto": "1,8 M"
+    }
+   ],
+   "cambia": "barrido de entrada; empuje 3D; crash zoom a la base del clavo al final"
+  },
+  {
+   "id": "F",
+   "desde_palabra": "y (pesa)",
+   "hasta_palabra": "¿Con",
+   "se_ve": "A ras de suelo con el suelo en corte; 10 elefantes (112 px) que saltan uno a uno con contador '×N ELEFANTES' (el 10.º en 'cincuenta'); 50 T héroe.",
+   "etiquetas": [
+    {
+     "texto": "×10 ELEFANTES"
+    },
+    {
+     "texto": "50 T",
+     "estilo": "número héroe",
+     "entra_en_palabra": "cincuenta"
+    }
+   ],
+   "cambia": "llega del crash zoom; golpe en 'pesa' (flash, temblor 6 cuadros, polvo, escombros con estela, grietas)"
+  },
+  {
+   "id": "G",
+   "desde_palabra": "¿Con",
+   "hasta": "7,29 s",
+   "se_ve": "A ras de suelo mirando hacia arriba: el clavo se afina y se sale por arriba; la persona de espaldas levanta un martillo normal (a escala); ✗ en 'qué'; en 'pegas' asoma el martillo gigante arriba a la derecha.",
+   "cambia": "barrido de entrada; empuje 3D; columna de texto a la izquierda"
+  }
  ]
 }

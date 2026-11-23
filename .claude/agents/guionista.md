@@ -34,7 +34,7 @@ En `studio/episodios/<ep>/guionista/<estructura>/` (p. ej. `.../guionista/A/`):
 - **Una frase, una imagen.** Si una línea no se puede dibujar en el set que propones, se cambia o se saca.
 - **Nada de** "en este video", "sígueme", años, nombres de científicos o "un estudio dijo" en la voz (van al post y al comentario fijado), chilenismos en la voz, etiquetas "lo más loco/impresionante" de relleno, ni datos laterales después del pago.
 - **Temas prohibidos** (`proyecto/INSTRUCCIONES.md`): retos peligrosos, tragedias recientes, política, cualquier cosa que alguien pueda imitar y salir herido; salud sólo como información general.
-- **Originalidad:** guion propio. Nunca copies la estructura o las frases de un video de otra cuenta (ni de Zack D. Films).
+- **Originalidad [DURA]:** guion propio. Nunca copies un video ajeno entero (mismo tema + misma secuencia + mismos visuales). Fórmulas, estructuras y tipos de gancho sí se reutilizan con otro tema (docs/REGLAS.md).
 - **No te pongas nota.** No digas "este gancho es un 9". Di qué hace y deja que los jueces decidan.
 
 ## Tiempo y web

@@ -417,10 +417,16 @@ def relleno_gradiente(L, pts, stops, p0, p1, alpha=1.0, cam=True):
     L.im.paste(img, (x0, y0), mask)
 
 
-def texto(L, x, y, s, tam, color=(255, 255, 255), peso="black", anchor="ls", capa="base", alpha=1.0, cam=False):
+def texto(L, x, y, s, tam, color=(255, 255, 255), peso="black", anchor="ls", capa="base", alpha=1.0, cam=False,
+          trazo=0):
+    """Texto; trazo = contorno oscuro en px (≥4 para que se lea en el celular sobre cualquier fondo)."""
     X, Y = L.P(x, y, cam)
     f = fuente(L.S(tam, cam), peso)
     if alpha < 0.004:                    # ojo: PIL dibuja OPACO el texto con tinta de alfa 0
+        return f.getlength(s) / L.S(1, cam)
+    if trazo and capa == "base":
+        L.d.text((X, Y), s, font=f, fill=_c(color, capa, alpha), anchor=anchor, stroke_width=int(round(L.S(trazo, cam))),
+                 stroke_fill=(8, 9, 12, int(255 * alpha)))
         return f.getlength(s) / L.S(1, cam)
     L.dib(capa).text((X, Y), s, font=f, fill=_c(color, capa, alpha), anchor=anchor)
     return f.getlength(s) / L.S(1, cam)
@@ -548,10 +554,10 @@ def etiqueta(L, texto_, punto, pos, t, t0, t1=None, tam=50, lado="izq", caption=
     if p_txt > 0:
         a = p_txt * a_out
         if numero is None:
-            texto(L, x, base1, texto_, tam, tinta, "xbold", alpha=a, cam=cam)
+            texto(L, x, base1, texto_, tam, tinta, "black", alpha=a, cam=cam, trazo=5)
         else:
             if caption:
-                texto(L, x, base_c, caption, tc, gris, "xbold", alpha=a, cam=cam)
+                texto(L, x, base_c, caption, tc, gris, "black", alpha=a, cam=cam, trazo=4)
             contador(L, numero["valor"], x, base_n, tn, numero.get("digitos", 1), numero.get("unidad", ""),
                      capa="energia", alpha=a, cam=cam)
 
@@ -587,8 +593,11 @@ def _vis(w):
     return w.upper().rstrip(".,;:")
 
 
-def preparar_subtitulos(words, claves, tam=112, ancho_max=860, x_centro=490, y_centro=None, y_arriba=292,
-                        max_pal=3, pausa=0.32, achica_min=0.85):
+Y_MIN_SUB = 250          # nada de los subtítulos sobre esta línea: la barra de la app tapa los ~230 px de arriba
+
+
+def preparar_subtitulos(words, claves, tam=112, ancho_max=860, x_centro=490, y_centro=None, y_arriba=300,
+                        max_pal=3, pausa=0.32, achica_min=0.85, hueco_clave=0.3):
     """Arma los grupos de 1–3 palabras (sin partir una frase clave, cortando en puntuación y pausas)
     y fija la posición de cada palabra: el grupo no se mueve mientras se lee.
     Zona por defecto: ARRIBA (y_arriba = tope de las mayúsculas de la 1.ª línea, bajo la barra de la app),
@@ -629,27 +638,34 @@ def preparar_subtitulos(words, claves, tam=112, ancho_max=860, x_centro=490, y_c
                 k += 1
             grupos.append(g)
     salida = []
+
+    def largo(ln, f, esp, tam_g):
+        # ancho de una línea: palabras + espacios; entre una palabra clave y una que no lo es va un hueco extra
+        # (la píldora necesita aire: así nunca pisa a la palabra blanca de al lado)
+        tot = sum(f.getlength(_vis(words[i]["w"])) for i in ln)
+        for a, b in zip(ln, ln[1:]):
+            tot += esp + (hueco_clave * tam_g if (span[a] is None) != (span[b] is None) else 0)
+        return tot
+
     for gi, g in enumerate(grupos):
         # si no cabe, primero se achica (hasta achica_min) y sólo después se parte en dos líneas
         tam_g = tam
         f = fuente(tam_g, "black")
         esp = f.getlength(" ")
-        total = sum(f.getlength(_vis(words[i]["w"])) for i in g) + esp * (len(g) - 1)
+        total = largo(g, f, esp, tam_g)
         if total > ancho_max:
             tam_g = max(tam * achica_min, math.floor(tam * ancho_max / total * 0.99))
             f = fuente(tam_g, "black")
             esp = f.getlength(" ")
-        anchos = [f.getlength(_vis(words[i]["w"])) for i in g]
-        total = sum(anchos) + esp * (len(g) - 1)
+        total = largo(g, f, esp, tam_g)
         if total <= ancho_max or len(g) == 1:
             lineas = [g]
         else:                                        # dos líneas: el corte más parejo
             mejor = None
             for c in range(1, len(g)):
-                a = sum(anchos[:c]) + esp * (c - 1)
-                b = sum(anchos[c:]) + esp * (len(g) - c - 1)
-                if mejor is None or max(a, b) < mejor[0]:
-                    mejor = (max(a, b), c)
+                m_ = max(largo(g[:c], f, esp, tam_g), largo(g[c:], f, esp, tam_g))
+                if mejor is None or m_ < mejor[0]:
+                    mejor = (m_, c)
             lineas = [g[:mejor[1]], g[mejor[1]:]]
         alto_l = tam_g * 1.06
         pos = {}
@@ -658,11 +674,18 @@ def preparar_subtitulos(words, claves, tam=112, ancho_max=860, x_centro=490, y_c
                 base = y_centro + CAP * tam_g / 2 + (li - (len(lineas) - 1) / 2) * alto_l
             else:
                 base = y_arriba + CAP * tam_g + li * alto_l
-            ws = [f.getlength(_vis(words[i]["w"])) for i in ln]
-            x = x_centro - (sum(ws) + esp * (len(ln) - 1)) / 2
-            for i, wv in zip(ln, ws):
+            x = x_centro - largo(ln, f, esp, tam_g) / 2
+            for k_, i in enumerate(ln):
+                wv = f.getlength(_vis(words[i]["w"]))
                 pos[i] = (x, base, wv)
-                x += wv + esp
+                if k_ + 1 < len(ln):
+                    x += wv + esp + (hueco_clave * tam_g if (span[i] is None) != (span[ln[k_ + 1]] is None) else 0)
+        # la 1.ª línea queda anclada arriba y el bloque crece hacia ABAJO; si algo (contorno, píldora) pasara sobre
+        # Y_MIN_SUB, se baja el grupo entero
+        tope = min(b for _, b, _ in pos.values()) - CAP * tam_g - max(0.17 * tam_g, 9) - 2
+        if tope < Y_MIN_SUB:
+            pos = {i: (x, b + Y_MIN_SUB - tope, w) for i, (x, b, w) in pos.items()}
+        assert min(b for _, b, _ in pos.values()) - CAP * tam_g - max(0.17 * tam_g, 9) - 2 >= Y_MIN_SUB - 0.5
         miembros = {}
         for i in g:
             if span[i] is not None:
@@ -682,10 +705,12 @@ def _caja_clave(g, dichas, pad_x, arriba, abajo):
     return x0, filas[0] - CAP * g["tam"] - arriba, x1, filas[-1] + abajo
 
 
-def subtitulos(L, words, t, claves, tam=112, estilo_clave="pildora", **kw):
+def subtitulos(L, words, t, claves, tam=112, estilo_clave="pildora", ocultar=(), **kw):
     """Subtítulos palabra por palabra, 1–3 palabras, Inter Black en MAYÚSCULAS, arriba (bajo la barra de la app).
     Blanco con contorno grueso y sombra suave. La palabra clave va en una PÍLDORA llena del color de energía con
-    letra oscura (entra con un pop) — estilo_clave='recuadro' vuelve al recuadro con manillas del duelo."""
+    letra oscura (entra con un pop) — estilo_clave='recuadro' vuelve al recuadro con manillas del duelo.
+    ocultar = palabras (normalizadas) que NO se muestran: cuando un número héroe ya dice "20 M", el subtítulo no lo
+    repite al mismo tiempo (el resto del grupo queda en su lugar)."""
     clave_cache = (id(words), tuple(claves), tam, tuple(sorted(kw.items())))
     if clave_cache not in _CACHE_SUB:
         _CACHE_SUB[clave_cache] = preparar_subtitulos(words, claves, tam, **kw)
@@ -696,7 +721,7 @@ def subtitulos(L, words, t, claves, tam=112, estilo_clave="pildora", **kw):
     dicha = {}
     for i in g["idx"]:
         ts = 0.0 if (g["t0"] == 0.0 and i == g["idx"][0]) else words[i]["s"] - 0.04
-        if t >= ts:
+        if t >= ts and _norm(words[i]["w"]) not in ocultar:
             dicha[i] = ease_entrada(tramo(t, ts, 0.16))
     en_clave = set()
     for i0, mm in g["miembros"].items():
@@ -706,19 +731,26 @@ def subtitulos(L, words, t, claves, tam=112, estilo_clave="pildora", **kw):
         en_clave.update(mm)
         ts = 0.0 if (g["t0"] == 0.0 and i0 == g["idx"][0]) else words[i0]["s"] - 0.04
         a = ease_entrada(tramo(t, ts, 0.2))
+        m, d = L.temporal()
         if estilo_clave == "pildora":
-            x0, y0, x1, y1 = _caja_clave(g, dichas, 24, 18, 20)
+            # una píldora por línea, medida sobre la tinta real de las letras (misma línea base que el blanco)
             sc = 0.82 + 0.18 * a                                  # pop
+            ft, tg = fuente(g["tam"], "black"), g["tam"]
+            for b in sorted({g["pos"][i][1] for i in dichas}):
+                fila = [i for i in dichas if g["pos"][i][1] == b]
+                x0 = min(g["pos"][i][0] + ft.getbbox(_vis(words[i]["w"]), anchor="ls")[0] for i in fila) - 0.2 * tg
+                x1 = max(g["pos"][i][0] + ft.getbbox(_vis(words[i]["w"]), anchor="ls")[2] for i in fila) + 0.2 * tg
+                y0, y1 = b - CAP * tg - 0.17 * tg, b + 0.17 * tg
+                cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+                X0, Y0 = L.P(cx + (x0 - cx) * sc, cy + (y0 - cy) * sc, False)
+                X1, Y1 = L.P(cx + (x1 - cx) * sc, cy + (y1 - cy) * sc, False)
+                d.rounded_rectangle([X0, Y0, X1, Y1], radius=L.S(0.18 * tg, False), fill=255)
         else:
             x0, y0, x1, y1 = _caja_clave(g, dichas, 20, 16, 0.2 * g["tam"] + 6)
             sc = 1.10 - 0.10 * a
-        cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-        X0, Y0 = L.P(cx + (x0 - cx) * sc, cy + (y0 - cy) * sc, False)
-        X1, Y1 = L.P(cx + (x1 - cx) * sc, cy + (y1 - cy) * sc, False)
-        m, d = L.temporal()
-        if estilo_clave == "pildora":
-            d.rounded_rectangle([X0, Y0, X1, Y1], radius=L.S(20, False), fill=255)
-        else:
+            cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+            X0, Y0 = L.P(cx + (x0 - cx) * sc, cy + (y0 - cy) * sc, False)
+            X1, Y1 = L.P(cx + (x1 - cx) * sc, cy + (y1 - cy) * sc, False)
             d.rectangle([X0, Y0, X1, Y1], fill=28)
             d.rectangle([X0, Y0, X1, Y1], outline=255, width=int(round(L.S(6, False))))
             h = L.S(7, False)
@@ -743,7 +775,7 @@ def subtitulos(L, words, t, claves, tam=112, estilo_clave="pildora", **kw):
             if pildora and i in en_clave:
                 continue
             x, b, _ = g["pos"][i]
-            dm.text((x, b - y0 + 10 * (1 - a) + 8), _vis(words[i]["w"]), font=f, fill=int(255 * a), anchor="ls",
+            dm.text((x, b - y0 + 8), _vis(words[i]["w"]), font=f, fill=int(255 * a), anchor="ls",
                     stroke_width=9, stroke_fill=int(255 * a))
         m = m.filter(ImageFilter.GaussianBlur(9)).point(lambda v: int(v * 0.7))
         img.paste((0, 0, 0), (0, y0), m)
@@ -756,7 +788,7 @@ def subtitulos(L, words, t, claves, tam=112, estilo_clave="pildora", **kw):
             if pildora and i in en_clave:
                 d.text((x, b), _vis(words[i]["w"]), font=f, fill=oscuro + (al,), anchor="ls")
             else:
-                d.text((x, b + 10 * (1 - a)), _vis(words[i]["w"]), font=f, fill=(255, 255, 255, al), anchor="ls",
+                d.text((x, b), _vis(words[i]["w"]), font=f, fill=(255, 255, 255, al), anchor="ls",
                        stroke_width=9, stroke_fill=(9, 10, 13, al))
     L.post.append(dibujar)
 
@@ -1067,8 +1099,8 @@ def fondo_estudio(estilo, luz=(0.22, 0.2), w=ANCHO, h=ALTO):
 
 
 _CIELOS = {}
-CIELO = [(-4000, (16, 15, 18)), (-260, (30, 26, 28)), (-30, (120, 80, 56)), (0, (240, 156, 86)), (34, (206, 118, 74)), (150, (110, 70, 72)), (480, (44, 40, 64)),
-         (1050, (20, 24, 42)), (2600, (10, 12, 24))]
+CIELO = [(-4000, (14, 12, 18)), (-260, (28, 22, 30)), (-30, (150, 84, 50)), (0, (255, 164, 74)), (40, (250, 120, 66)),
+         (140, (214, 84, 92)), (300, (128, 56, 112)), (560, (58, 40, 104)), (1050, (22, 24, 64)), (2600, (8, 10, 28))]
 
 
 def fondo_capas(estilo, horizonte, sol_x=0.16, w=ANCHO, h=ALTO):
@@ -1084,7 +1116,7 @@ def fondo_capas(estilo, horizonte, sol_x=0.16, w=ANCHO, h=ALTO):
     cols = np.array([c[1] for c in CIELO], np.float32)
     arr = np.stack([np.interp(d, pos, cols[:, k]) for k in range(3)], -1)
     r = np.hypot((xx - sol_x * w) / h, (yy - horizonte) / h * 1.6)
-    arr += np.array((120, 62, 20), np.float32) * np.exp(-(r / 0.38) ** 2)[..., None]
+    arr += np.array((130, 70, 16), np.float32) * np.exp(-(r / 0.38) ** 2)[..., None]
     im = _acabar(arr, estilo, w, h)
     if len(_CIELOS) > 40:
         _CIELOS.clear()
@@ -1403,14 +1435,26 @@ _CR_U = np.array([c[0] for c in CROMO], np.float32)
 _CR_C = np.array([c[1] for c in CROMO], np.float32)
 
 
-def cromo(u, brillo=1.0):
+# cromo "foto de producto" al atardecer: borde cálido del lado del sol, franja especular dura, brillo secundario
+# suave, núcleo oscuro y relleno frío del cielo a la derecha
+CROMO_ATARDECER = [(-1.0, (255, 150, 80)), (-0.93, (196, 104, 64)), (-0.84, (70, 52, 50)), (-0.7, (150, 132, 124)),
+                   (-0.63, (255, 252, 244)), (-0.53, (255, 252, 244)), (-0.46, (126, 112, 112)), (-0.3, (176, 170, 176)),
+                   (-0.12, (200, 196, 204)), (0.06, (84, 84, 96)), (0.3, (30, 32, 42)), (0.55, (56, 72, 104)),
+                   (0.78, (132, 162, 208)), (0.9, (176, 204, 240)), (1.0, (44, 56, 84))]
+
+
+def cromo(u, brillo=1.0, stops=None):
     """Color del acero cromado según la posición u∈[-1,1] a lo ancho del cilindro: 2–3 brillos duros (cálido a la
-    izquierda, frío a la derecha) y un núcleo oscuro."""
+    izquierda, frío a la derecha) y un núcleo oscuro. stops=CROMO_ATARDECER para los planos de exterior."""
+    if stops is not None:
+        su = np.array([c[0] for c in stops], np.float32)
+        sc = np.array([c[1] for c in stops], np.float32)
+        return tuple(int(clamp(float(np.interp(u, su, sc[:, k])) * brillo, 0, 255)) for k in range(3))
     c = [float(np.interp(u, _CR_U, _CR_C[:, k])) * brillo for k in range(3)]
     return tuple(int(clamp(v, 0, 255)) for v in c)
 
 
-def clavo3d(L, pr, X, Y, largo, z0=0.0, recorte=None, cam=True, estrias=True, semilla=7, ns=56):
+def clavo3d(L, pr, X, Y, largo, z0=0.0, recorte=None, cam=True, estrias=True, semilla=7, ns=56, stops=None):
     """Clavo de acero cromado de verdad, para cualquier proyector pr(X, Y, Z) (oblicuo o cámara 3D):
     caña con bandas de cromo y estrías de acero cepillado, punta de diamante facetada, cabeza plana con bisel.
     La punta toca Z=z0 y la tapa queda en Z=z0+largo. recorte = Z mínima visible."""
@@ -1435,7 +1479,7 @@ def clavo3d(L, pr, X, Y, largo, z0=0.0, recorte=None, cam=True, estrias=True, se
     def cana():
         za = max(zs1, zc)
         if za < zh0:
-            bandas(R, R, za, zh0, cromo)
+            bandas(R, R, za, zh0, lambda u: cromo(u, 1.0, stops))
             if estrias:
                 rng = np.random.default_rng(semilla)
                 for _ in range(22):
@@ -1467,7 +1511,7 @@ def clavo3d(L, pr, X, Y, largo, z0=0.0, recorte=None, cam=True, estrias=True, se
         bandas(ra, R, za, zs1, cara)
 
     def cabeza():
-        bandas(Rh, Rh, zh0, zh1, lambda u: cromo(u, 1.08))
+        bandas(Rh, Rh, zh0, zh1, lambda u: cromo(u, 1.08, stops))
         if arriba:
             tapa = [pr(X + Rh * math.cos(a), Y + Rh * math.sin(a), zh1) for a in np.linspace(0, 2 * math.pi, 72)]
             relleno_gradiente(L, tapa, [(0, (246, 238, 226)), (0.35, (198, 196, 196)), (0.62, (110, 116, 128)),
@@ -1566,37 +1610,50 @@ def madera_corte(L, x0, x1, ys, yb, cx, hundido, R, semilla=4, cam=True):
     linea(L, [(x0, ys), (x1, ys)], (250, 214, 160), 3, cam=cam)
 
 
-def edificios3d(L, cam3, semilla=9, alpha=0.6, cam=True):
-    """Siluetas de ciudad en el medio (bruma, baja opacidad) + un edificio de 6 pisos más cerca, para la escala."""
+@lru_cache(maxsize=4)
+def _ciudad(semilla):
+    """Geometría fija de la ciudad (no depende de la cámara: nada titila cuando la cámara se mueve)."""
     rng = np.random.default_rng(semilla)
-    h_y = cam3.horizonte()
-    for capa_i, (yb, a) in enumerate(((420.0, 0.35), (240.0, 0.5))):
-        X = -260.0
-        while X < 260:
-            w = rng.uniform(12, 34)
-            alto = rng.uniform(10, 46) * (1.2 if capa_i == 0 else 1)
-            pts = [cam3.pr(X, yb, 0), cam3.pr(X + w, yb, 0), cam3.pr(X + w, yb, alto), cam3.pr(X, yb, alto)]
-            col = mezcla((26, 30, 48), (120, 78, 70), 0.35 if capa_i == 0 else 0.18)
-            poligono(L, pts, col, alpha=a * alpha / 0.6, cam=cam)
-            for _ in range(int(w * alto / 60)):
-                wx, wz = X + rng.uniform(1, w - 1), rng.uniform(2, alto - 2)
-                p = cam3.pr(wx, yb, wz)
-                s = max(0.6, cam3.escala(wx, yb, wz) * 0.6)
-                if rng.uniform() < 0.45:
-                    poligono(L, [(p[0] - s, p[1] - s), (p[0] + s, p[1] - s), (p[0] + s, p[1] + s), (p[0] - s, p[1] + s)],
-                             (255, 196, 120), alpha=0.35 * alpha / 0.6, cam=cam)
+    capas = []
+    for yb, a, k_bruma, alto_x in ((620.0, 0.55, 0.62, 1.5), (330.0, 0.7, 0.4, 1.15), (170.0, 0.85, 0.2, 0.9)):
+        edif, X = [], -420.0
+        while X < 420:
+            w, alto = rng.uniform(12, 34), rng.uniform(10, 44) * alto_x
+            ventanas = [(X + rng.uniform(1, w - 1), rng.uniform(2, alto - 2)) for _ in range(int(w * alto / 40))]
+            ventanas = [v for v in ventanas if rng.uniform() < 0.5]
+            edif.append((X, w, alto, ventanas))
             X += w + rng.uniform(1, 8)
-    # edificio de 6 pisos (≈ 19 m), más cerca y más nítido
+        capas.append((yb, a, k_bruma, edif))
+    return capas
+
+
+def edificios3d(L, cam3, semilla=9, alpha=0.6, cam=True):
+    """Ciudad en 3 capas (parallax real con la cámara 3D): la más lejana casi disuelta en la bruma cálida del
+    horizonte, la del medio más oscura, y un edificio de 6 pisos (≈19 m) cerca, con ventanas encendidas."""
+    bruma = (236, 150, 110)
+    for yb, a, k_bruma, edif in _ciudad(semilla):
+        col = mezcla((24, 26, 52), bruma, k_bruma)
+        cv = mezcla((255, 200, 120), bruma, k_bruma * 0.6)
+        for X, w, alto, ventanas in edif:
+            pts = [cam3.pr(X, yb, 0), cam3.pr(X + w, yb, 0), cam3.pr(X + w, yb, alto), cam3.pr(X, yb, alto)]
+            if pts[1][0] < -60 or pts[0][0] > 1140:
+                continue
+            poligono(L, pts, col, alpha=a * alpha / 0.6, cam=cam)
+            sz = max(0.7, cam3.escala(X, yb, 0) * 0.7)
+            for wx, wz in ventanas:
+                q = cam3.pr(wx, yb, wz)
+                poligono(L, [(q[0] - sz, q[1] - sz), (q[0] + sz, q[1] - sz), (q[0] + sz, q[1] + sz), (q[0] - sz, q[1] + sz)],
+                         cv, alpha=(0.75 - k_bruma * 0.6) * alpha / 0.6, cam=cam)
     X0, X1, Yb, Hb = 7.0, 23.0, 90.0, 19.0
     cuerpo = [cam3.pr(X0, Yb, 0), cam3.pr(X1, Yb, 0), cam3.pr(X1, Yb, Hb), cam3.pr(X0, Yb, Hb)]
-    relleno_gradiente(L, cuerpo, [(0, (58, 54, 66)), (1, (34, 38, 56))], cam3.pr(X0, Yb, Hb), cam3.pr(X1, Yb, 0), alpha=alpha, cam=cam)
+    relleno_gradiente(L, cuerpo, [(0, (92, 62, 70)), (0.5, (44, 40, 64)), (1, (28, 30, 52))], cam3.pr(X0, Yb, Hb), cam3.pr(X1, Yb, 0), alpha=alpha, cam=cam)
     for piso in range(6):
         for col in range(7):
-            wx = X0 + 1.2 + col * 2.1
-            wz = 1.2 + piso * 3.0
+            wx, wz = X0 + 1.2 + col * 2.1, 1.2 + piso * 3.0
             q = [cam3.pr(wx, Yb, wz), cam3.pr(wx + 1.2, Yb, wz), cam3.pr(wx + 1.2, Yb, wz + 1.6), cam3.pr(wx, Yb, wz + 1.6)]
             encendida = (piso * 7 + col * 3 + semilla) % 5 < 2
-            poligono(L, q, (255, 200, 130) if encendida else (20, 24, 36), alpha=(0.55 if encendida else 0.6) * alpha / 0.6, cam=cam)
+            poligono(L, q, (255, 204, 130) if encendida else (22, 24, 40), alpha=(0.85 if encendida else 0.6) * alpha / 0.6, cam=cam)
+    linea(L, [cam3.pr(X0, Yb, Hb), cam3.pr(X0, Yb, 0)], (255, 170, 110), 2, alpha=0.5 * alpha / 0.6, cam=cam)
     borde_frio(L, [cam3.pr(X1, Yb, 0), cam3.pr(X1, Yb, Hb)], 2, alpha=0.4 * alpha / 0.6, cam=cam)
 
 
@@ -1682,9 +1739,14 @@ def persona_espalda(L, pr, X, Y, alto=1.75, mira_arriba=1.0, cam=True):
     poligono(L, elipse_pts(hc[0], hc[1], rx, ry, n=36), pelo, cam=cam)
     for s in (-1, 1):
         poligono(L, elipse_pts(hc[0] + s * rx * 0.98, hc[1] + ry * 0.12, rx * 0.16, ry * 0.24, n=12), (130, 92, 76), cam=cam)
-    linea(L, elipse_pts(hc[0], hc[1], rx, ry, -80, 20, 16), FRIO, max(1.0, rx * 0.09), alpha=0.75, cam=cam)
-    borde_frio(L, P([(0.24, 1.44), (0.21, 0.9)]), max(1.0, rx * 0.07), cam=cam)
-    linea(L, P([(-0.24, 1.43), (-0.06, 1.47)]), CALIDO, max(1.0, rx * 0.06), alpha=0.5, cam=cam)
+    linea(L, elipse_pts(hc[0], hc[1], rx, ry, -80, 20, 16), FRIO, max(1.5, rx * 0.14), alpha=0.95, cam=cam)
+    linea(L, elipse_pts(hc[0], hc[1], rx, ry, 160, 250, 12), (255, 170, 100), max(1.5, rx * 0.12), alpha=0.9, cam=cam)
+    borde_frio(L, P([(0.24, 1.44), (0.21, 0.9)]), max(1.5, rx * 0.1), alpha=0.95, cam=cam)
+    linea(L, P([(-0.24, 1.43), (-0.21, 0.9)]), (255, 170, 100), max(1.5, rx * 0.1), alpha=0.85, cam=cam)
+    for s_ in (-1, 1):
+        linea(L, P([(0.1 * s_ + 0.07 * s_, 0.92), (0.12 * s_ + 0.07 * s_, 0.08)]), FRIO if s_ > 0 else (255, 170, 100),
+              max(1.2, rx * 0.08), alpha=0.8, cam=cam)
+    linea(L, P([(-0.24, 1.43), (-0.06, 1.47)]), CALIDO, max(1.0, rx * 0.06), alpha=0.7, cam=cam)
 
 
 def mano_pinza(L, x, y, s=1.0, alpha=1.0, cam=False, nail=None):
@@ -1694,6 +1756,10 @@ def mano_pinza(L, x, y, s=1.0, alpha=1.0, cam=False, nail=None):
     Q = lambda u, v: (x + u * s, y + v * s)
     linea(L, [Q(126, -50), Q(70, -40), Q(14, -26)], sombra, 30 * s, alpha=alpha, cam=cam)
     linea(L, [Q(126, -52), Q(70, -42), Q(16, -29)], piel, 25 * s, alpha=alpha, cam=cam)
+    linea(L, [Q(120, -60), Q(70, -50), Q(22, -37)], luz, 6 * s, alpha=0.8 * alpha, cam=cam)
+    poligono(L, elipse_pts(*Q(20, -28), 8 * s, 6 * s, n=12, rot=-10), (250, 222, 204), alpha=0.8 * alpha, cam=cam)
+    for u in (62, 82):
+        linea(L, [Q(u, -52), Q(u + 3, -34)], sombra, 2.5 * s, alpha=0.5 * alpha, cam=cam)
     c = Q(146, 22)
     palma = elipse_pts(c[0], c[1], 64 * s, 80 * s, n=40, rot=-18)
     relleno_gradiente(L, palma, [(0, luz), (0.5, piel), (1, sombra)], Q(80, -60), Q(210, 110), alpha=alpha, cam=cam)
@@ -1704,4 +1770,210 @@ def mano_pinza(L, x, y, s=1.0, alpha=1.0, cam=False, nail=None):
         nail()
     linea(L, [Q(104, 70), Q(54, 40), Q(8, 6)], sombra, 31 * s, alpha=alpha, cam=cam)
     linea(L, [Q(104, 66), Q(54, 36), Q(10, 2)], luz, 25 * s, alpha=alpha, cam=cam)
+    linea(L, [Q(96, 58), Q(52, 30), Q(14, -2)], (255, 236, 214), 6 * s, alpha=0.7 * alpha, cam=cam)
+    linea(L, [Q(60, 46), Q(66, 38)], sombra, 3 * s, alpha=0.6 * alpha, cam=cam)
     poligono(L, elipse_pts(*Q(12, 0), 9 * s, 7 * s, n=14, rot=35), (250, 226, 210), alpha=0.8 * alpha, cam=cam)
+
+
+
+# ==================================================================================================================
+# v4 (23-nov-2026, ronda 2 contra virales): titular, pictogramas con pop, barrido, cota de persona, grietas, brillo
+# ==================================================================================================================
+def titular(L, s, y=300, tam=104, x_centro=490, alpha=1.0):
+    """Titular de 2–4 palabras en píldora llena del color de energía con letra oscura (el gancho del cuadro 0)."""
+    if alpha <= 0.003:
+        return
+    f = fuente(tam, "black")
+    bb = f.getbbox(s, anchor="ls")
+    w = bb[2] - bb[0]
+    x = x_centro - w / 2 - bb[0]
+    b = y + CAP * tam
+    m, d = L.temporal()
+    d.rounded_rectangle([L.P(x + bb[0] - 0.24 * tam, b - CAP * tam - 0.2 * tam, False),
+                         L.P(x + bb[2] + 0.24 * tam, b + 0.2 * tam, False)], radius=L.S(0.2 * tam, False), fill=255)
+    L.fundir(m, alpha=alpha, capa="energia")
+    oscuro = rgb(L.e["fondo"])
+
+    def letra(img, a=int(255 * alpha)):
+        if a >= 1:
+            ImageDraw.Draw(img, "RGBA").text((x, b), s, font=f, fill=oscuro + (a,), anchor="ls")
+    L.post.append(letra)
+
+
+def pictogramas_pop(L, x, y, n, h, t, t0, paso=2 / FPS, cols=5, forma=elefante, gx=None, gy=None, cam=False):
+    """Pictogramas que aparecen uno a uno con pop (escala 0 → 1,1 → 1,0), brillantes en el color de energía.
+    Devuelve cuántos ya aparecieron (para el contador)."""
+    gx, gy = gx or h * 1.42, gy or h * 1.18
+    k = 0
+    for i in range(n):
+        te = t0 + i * paso
+        if t < te:
+            continue
+        k += 1
+        p = tramo(t, te, 0.16)
+        sc = 1.1 * ease_entrada(p / 0.6) if p < 0.6 else 1.1 - 0.1 * ease_estado((p - 0.6) / 0.4)
+        hh = h * sc
+        px, py = x + (i % cols) * gx, y + (i // cols) * gy
+        if hh > 1:
+            forma(L, px + (h - hh) * 0.64, py, hh, "energia", alpha=1.0, cam=cam)
+    return k
+
+
+def barrido(L, k, sentido=-1):
+    """Transición 'whip pan': desenfoque de movimiento horizontal + corrimiento (k∈[0,1], 2–3 cuadros por corte).
+    Se aplica al cuadro entero (llamar después de dibujar todo, subtítulos incluidos)."""
+    if k <= 0.01:
+        return
+
+    def f(img, k=k):
+        arr = np.asarray(img, np.float32)
+        largo = int(20 + 110 * k)
+        n = 9
+        acc = np.zeros_like(arr)
+        for i in range(n):
+            acc += np.roll(arr, int(sentido * largo * i / (n - 1)), axis=1)
+        acc /= n
+        acc = np.roll(acc, int(sentido * 140 * k), axis=1)
+        img.paste(Image.fromarray(np.clip(acc, 0, 255).astype(np.uint8), "RGB"))
+    L.post.append(f)                     # al final: todo el cuadro se barre junto (píldora y letra no se separan)
+
+
+def cota_persona(L, x_linea, y_pies, y_cabeza, texto_="1,8 M", lado="der", alpha=1.0):
+    """Cota suelo → cabeza al lado de una persona, con la medida en letra grande (44 px, contorno)."""
+    if alpha <= 0.003:
+        return
+    tinta = rgb(L.e["tinta"])
+    m, d = L.temporal()
+    linea(L, [(x_linea, y_pies), (x_linea, y_cabeza)], ancho=4, capa=d, cam=False)
+    for yy in (y_pies, y_cabeza):
+        linea(L, [(x_linea - 12, yy), (x_linea + 12, yy)], ancho=4, capa=d, cam=False)
+    L.fundir(m, tinta, alpha)
+    xm = x_linea + (18 if lado == "der" else -18)
+    texto(L, xm, (y_pies + y_cabeza) / 2 + 16, texto_, 44, tinta, "black", anchor="ls" if lado == "der" else "rs",
+          alpha=alpha, trazo=5)
+
+
+def grietas_suelo(L, cam3, X=0.0, Y=0.0, p=1.0, n=9, largo=7.0, semilla=6, cam=True):
+    """Grietas radiales y escombros en el suelo alrededor de la base de algo muy pesado (en el plano del suelo)."""
+    if p <= 0:
+        return
+    rng = np.random.default_rng(semilla)
+    for i in range(n):
+        a = math.radians(rng.uniform(0, 360))
+        pts, x, y = [cam3.pr(X + math.cos(a) * 0.7, Y + math.sin(a) * 0.7, 0)], X + math.cos(a) * 0.7, Y + math.sin(a) * 0.7
+        for k in range(7):
+            a += rng.uniform(-0.35, 0.35)
+            paso = largo / 7 * p * rng.uniform(0.6, 1.3)
+            x, y = x + math.cos(a) * paso, y + math.sin(a) * paso
+            if y < cam3.Y + 3:
+                break
+            pts.append(cam3.pr(x, y, 0))
+        if len(pts) > 1:
+            linea(L, pts, (16, 12, 12), max(1.2, cam3.escala(X, Y, 0) * 0.06), alpha=0.85, cam=cam)
+    for _ in range(16):
+        a, r = rng.uniform(0, 6.283), rng.uniform(0.9, 3.2)
+        x, y = X + math.cos(a) * r, Y + math.sin(a) * r
+        if y < cam3.Y + 3:
+            continue
+        c, e = cam3.pr(x, y, 0), cam3.escala(x, y, 0)
+        rr = e * rng.uniform(0.12, 0.3) * p
+        poligono(L, [(c[0] - rr, c[1]), (c[0] - rr * 0.3, c[1] - rr * 0.8), (c[0] + rr, c[1] - rr * 0.3), (c[0] + rr * 0.7, c[1])],
+                 (110, 82, 62), cam=cam)
+        linea(L, [(c[0] - rr * 0.3, c[1] - rr * 0.8), (c[0] + rr, c[1] - rr * 0.3)], (220, 160, 110), max(1, rr * 0.2), alpha=0.7, cam=cam)
+
+
+def brillo_suave(L, x, y, rx, ry, color=(255, 236, 210), alpha=0.35, radio=10, cam=True):
+    """Mancha de luz (o de sombra, con color negro) desenfocada: bloom en la cabeza, sombra de contacto blanda."""
+    with desenfoque(L, radio) as d:
+        poligono(L, elipse_pts(x, y, rx, ry, n=48), color, capa=d, alpha=alpha, cam=cam)
+
+
+def esquirlas(L, x, y, edad, n=10, color=(236, 196, 140), semilla=13, vel=900, dur=0.45, cam=True):
+    """Astillas o escombros que salen disparados con desenfoque de movimiento (trazo del cuadro anterior a este)."""
+    if edad < 0 or edad > dur:
+        return
+    rng = np.random.default_rng(semilla)
+    for _ in range(n):
+        a = math.radians(rng.uniform(-170, -10))
+        v = vel * rng.uniform(0.5, 1.2)
+
+        def pos(e):
+            return (x + math.cos(a) * v * e, y + math.sin(a) * v * e + 1600 * e * e)
+        p1, p0 = pos(edad), pos(max(0.0, edad - 1.4 / FPS))
+        linea(L, [p0, p1], color, rng.uniform(3, 6), alpha=1 - edad / dur, cam=cam)
+
+
+
+def zoom_rapido(L, k, centro, sentido=1):
+    """Transición 'crash zoom': desenfoque radial (copias escaladas alrededor de 'centro') para unir dos planos de
+    escala distinta sin salto. k∈[0,1]; sentido=1 acerca, -1 aleja. Se aplica al cuadro entero."""
+    if k <= 0.01:
+        return
+
+    def f(img, k=k):
+        w, h = img.size
+        cx, cy = centro
+        acc = np.zeros((h, w, 3), np.float32)
+        n = 6
+        for i in range(n):
+            z = 1 + 0.16 * k * i / (n - 1)
+            nw, nh = int(w * z), int(h * z)
+            big = img.resize((nw, nh), Image.BILINEAR)
+            x0, y0 = int(cx * z - cx), int(cy * z - cy)
+            acc += np.asarray(big.crop((x0, y0, x0 + w, y0 + h)), np.float32)
+        img.paste(Image.fromarray(np.clip(acc / n, 0, 255).astype(np.uint8), "RGB"))
+    L.post.append(f)
+
+
+
+def rellenar_mascara(L, m, stops, p0, p1, alpha=1.0):
+    """Pinta a través de una máscara (de L.temporal) con un degradado lineal de p0 a p1 (coordenadas de pantalla)."""
+    bb = m.getbbox()
+    if not bb:
+        return
+    x0, y0, x1, y1 = bb
+    a, b = L.P(*p0, False), L.P(*p1, False)
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    n2 = dx * dx + dy * dy or 1.0
+    gx = (np.arange(x0, x1, dtype=np.float32) + 0.5 - a[0]) * (dx / n2)
+    gy = (np.arange(y0, y1, dtype=np.float32) + 0.5 - a[1]) * (dy / n2)
+    tt = np.clip(gy[:, None] + gx[None, :], 0, 1)
+    pos = np.array([q[0] for q in stops], np.float32)
+    cols = np.array([q[1] for q in stops], np.float32)
+    img = Image.fromarray(np.stack([np.interp(tt, pos, cols[:, k]) for k in range(3)], -1).astype(np.uint8), "RGB")
+    mk = m.crop(bb)
+    if alpha < 1:
+        mk = mk.point(lambda v: int(v * alpha))
+    L.im.paste(img, (x0, y0), mk)
+
+
+def elefante_3d(L, x, y, h, capa=None, color=None, alpha=1.0, cam=False):
+    """Elefante con volumen (no un ícono plano): piel gris con degradado de la luz clave, patas del fondo más oscuras,
+    oreja con sombra, colmillo, brillo cálido en el lomo, borde frío y sombra de contacto. Misma firma que elefante()."""
+    if h < 2 or alpha <= 0.003:
+        return
+    E = lambda u, v: (x + u * h, y - v * h)
+    sombra_contacto(L, x + 0.62 * h, y + 0.01 * h, 0.62 * h, 0.07 * h, 0.6 * alpha, cam=cam)
+    m, d = L.temporal()                                     # patas del fondo
+    for lx in (0.32, 0.78):
+        poligono(L, [E(lx, 0.45), E(lx + 0.15, 0.45), E(lx + 0.14, 0.0), E(lx + 0.01, 0.0)], capa=d, cam=cam)
+    rellenar_mascara(L, m, [(0, (110, 104, 106)), (1, (52, 50, 58))], E(0, 0.5), E(0, 0), alpha)
+    m, d = L.temporal()                                     # cuerpo, cabeza, trompa y patas de adelante
+    poligono(L, elipse_pts(*E(0.52, 0.6), 0.46 * h, 0.31 * h, n=40), capa=d, cam=cam)
+    for lx in (0.14, 0.6):
+        poligono(L, [E(lx, 0.45), E(lx + 0.15, 0.45), E(lx + 0.14, 0.0), E(lx + 0.01, 0.0)], capa=d, cam=cam)
+    poligono(L, elipse_pts(*E(1.0, 0.74), 0.22 * h, 0.21 * h, n=32), capa=d, cam=cam)
+    linea(L, [E(1.14, 0.66), E(1.24, 0.42), E(1.22, 0.16), E(1.27, 0.08)], ancho=0.1 * h, capa=d, cam=cam)
+    linea(L, [E(0.07, 0.68), E(0.0, 0.42)], ancho=0.035 * h, capa=d, cam=cam)
+    rellenar_mascara(L, m, [(0, (214, 204, 196)), (0.35, (158, 152, 154)), (0.75, (104, 100, 108)), (1, (70, 68, 78))],
+                     E(0.2, 0.95), E(0.6, 0.0), alpha)
+    m, d = L.temporal()                                     # oreja
+    poligono(L, elipse_pts(*E(0.86, 0.72), 0.14 * h, 0.2 * h, n=28), capa=d, cam=cam)
+    rellenar_mascara(L, m, [(0, (150, 140, 142)), (1, (84, 80, 90))], E(0.74, 0.9), E(0.98, 0.52), alpha)
+    linea(L, elipse_pts(*E(0.86, 0.72), 0.14 * h, 0.2 * h, 100, 260, 14), (56, 52, 60), 0.02 * h, alpha=0.8 * alpha, cam=cam)
+    linea(L, elipse_pts(*E(0.5, 0.6), 0.44 * h, 0.29 * h, 205, 300, 18), (255, 214, 170), 0.035 * h, alpha=0.75 * alpha, cam=cam)
+    linea(L, elipse_pts(*E(1.0, 0.74), 0.2 * h, 0.19 * h, -70, 30, 12), FRIO, 0.03 * h, alpha=0.7 * alpha, cam=cam)
+    linea(L, [E(1.1, 0.6), E(1.2, 0.5), E(1.26, 0.52)], (246, 236, 214), 0.035 * h, alpha=alpha, cam=cam)
+    for v in (0.5, 0.36, 0.24):
+        linea(L, [E(1.18, v), E(1.26, v - 0.02)], (150, 144, 150), 0.012 * h, alpha=0.6 * alpha, cam=cam)
+    circulo(L, *E(1.07, 0.8), 0.025 * h, (24, 22, 28), alpha=alpha, cam=cam)
