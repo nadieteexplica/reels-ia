@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Write|Edit|MultiEdit|NotebookEdit|mcp__.*__(createScheduledPost|updateScheduledPost|createScheduledPostForReview|sendScheduledPostForReview|vidiq_instagram_publish_reel|vidiq_social_post_publish)",
+        "hooks": [
+          { "type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR/tools/hooks/puertas.py\"" }
+        ]
+      }
+    ]
+  }
+}
