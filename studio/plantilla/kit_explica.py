@@ -181,13 +181,25 @@ def _fondo_base(clave, w, h, luz):
     return img
 
 
+GRANO_VIVO = False  # grano distinto en cada cuadro = archivo enorme (79,6 MB por 7,6 s en el duelo): por defecto, quieto
+_FONDOS = {}
+
+
 def fondo(estilo, semilla=0, w=ANCHO, h=ALTO, luz=(0.46, 0.40), grano=None):
-    """Fondo del estilo: color con luz central, viñeta suave, retícula HUD y grano (cambia con la semilla)."""
-    base = _fondo_base(estilo["clave"], w, h, tuple(luz))
+    """Fondo del estilo: color con luz central, viñeta suave, retícula HUD y grano. El grano es QUIETO por
+    defecto (se ve igual de "papel fotográfico" y el video comprime ~10 veces mejor); GRANO_VIVO=True lo anima."""
     g = estilo["grano"] if grano is None else grano
+    semilla = semilla if GRANO_VIVO else 0
+    clave = (estilo["clave"], semilla, w, h, tuple(luz), g)
+    if clave in _FONDOS:
+        return _FONDOS[clave].copy()
+    base = _fondo_base(estilo["clave"], w, h, tuple(luz))
     rng = np.random.default_rng(semilla)
     n = rng.standard_normal((h, w), dtype=np.float32) * g
-    return Image.fromarray(np.clip(base + n[..., None], 0, 255).astype(np.uint8), "RGB")
+    im = Image.fromarray(np.clip(base + n[..., None], 0, 255).astype(np.uint8), "RGB")
+    if not GRANO_VIVO:
+        _FONDOS[clave] = im.copy()
+    return im
 
 
 # ------------------------------------------------------------------ brillo
