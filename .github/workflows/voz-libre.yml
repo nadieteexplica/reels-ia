@@ -39,7 +39,21 @@ jobs:
           j = json.load(open(sys.argv[1]))
           for n, g in j["textos"].items(): print(n, g, "out/voz-libre/" + j["id"])
           PY
-            while read N G D; do .venv-voz/bin/python tools/voz_comparar.py "$G" "$D" --prefijo "$N"; done < pares.txt
+            while read N G D; do
+              .venv-voz/bin/python tools/voz_comparar.py "$G" "$D" --prefijo "$N"
+              .venv-voz/bin/python tools/voz_palabras.py "$D/$N.wav" "$G" "$D/$N.words.json"
+            done < pares.txt
+          elif python3 -c "import json,sys; sys.exit(0 if 'palabras' in json.load(open(sys.argv[1])) else 1)" "$J"; then
+            # subtítulos por palabra con Whisper (y error contra una verdad conocida, si la hay)
+            python3 - "$J" <<'PY' > pares.txt
+          import json, sys
+          for p in json.load(open(sys.argv[1]))["palabras"]:
+              print(p["audio"], p["guion"], p["salida"], p.get("modelo", "medium"), p.get("verdad", ""))
+          PY
+            while read A G S M V; do
+              mkdir -p "$(dirname "$S")"
+              .venv-voz/bin/python tools/voz_palabras.py "$A" "$G" "$S" --modelo "$M" ${V:+--verdad "$V"}
+            done < pares.txt
           else
             # prueba ciega de voces diseñadas contra ElevenLabs
             .venv-voz/bin/python tools/voz_prueba_ciega.py "$J"
