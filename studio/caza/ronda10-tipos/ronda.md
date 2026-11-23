@@ -1,3 +1,5 @@
+> **DESCARTADA por Tomás (23-nov-2026): sesgada, los 4 temas eran "mover o levantar una estructura gigante" (lección 179). No usar; los descartados por quemado siguen valiendo como datos del filtro.**
+
 # Ronda 10 — tipos de tema calientes y lo que nadie ha contado (23-nov-2026)
 
 Skill `cazar-ideas` (versión del 23-nov). **Ronda cortada a pedido de Tomás:** se entregan sólo los temas que ya habían pasado el filtro. Quedaron **4 de las 33 candidatas probadas**, no 15. vidIQ no se usó porque tiene 0 créditos hasta el 18-dic. Tampoco se usó Reddit.

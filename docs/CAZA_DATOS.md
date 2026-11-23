@@ -162,4 +162,6 @@ El chat agrega a esta lista los que encuentre repetidos en muchas cuentas.
 - (21-oct) Gastar horas verificando antes de que él reaccione: primero ronda ancha y rápida, y la verificación a fondo solo para los 👍.
 - (21-oct, noche, ronda 4 entera 👎) **Casos puntuales que pasaron una vez** (un volcán de 1943, un granizo de 2018) cuando pidió **procesos**: cómo se genera algo, cómo se hace algo, qué pasa si (física real, muy poco probable). Sus ejemplos (el socavón, soplar hasta hacer una tormenta, cómo se hace un baño) son el estilo, no el tema: no meterse en ellos.
 
+- (23-nov, ronda 10 entera 👎, "sesgada") Cuatro temas con la misma idea de fondo ("mover o levantar una estructura gigante", lo del Ep. 3). Desde ahí: sin categorías, criterio 3 de 4 (pregunta abierta, emoción fuerte, te toca a ti, ganas de contarlo) y nunca dos temas con la misma idea de fondo (lección 179).
+
 (El chat suma acá lo que aprenda de cada ronda.)
