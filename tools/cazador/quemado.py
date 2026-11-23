@@ -12,6 +12,10 @@ Veredicto: QUEMADO (video del tema, en español, > 500 mil, < 6 meses) · REVISA
 español cuyo título no calza con las palabras de la búsqueda: lee los títulos y decide tú; las palabras solas se
 equivocan en los dos sentidos) · LIBRE. Además avisa si el tema está saturado (> 5 M en 12 meses) y descarta lo que no
 está en español (inglés, portugués).
+
+Regla nueva de Tomás (23-nov-2026, ronda de temas calientes): `--estricto` = fuera si hay un video del tema exacto
+con más de 100 mil vistas, en español O en inglés, de cualquier fecha (pásale consultas en los dos idiomas).
+  python3 tools/cazador/quemado.py --estricto "cómo bajan un rascacielos" "how they demolish a skyscraper from the top"
 """
 import argparse, datetime as dt, json, re, sys, time, unicodedata, urllib.parse, urllib.request
 
@@ -43,6 +47,14 @@ NO_ES = set("the and of to is how why what this that with you your from é não 
 def norm(t):
     t = unicodedata.normalize("NFKD", t.lower())
     return [w for w in re.findall(r"[a-zñ0-9]+", "".join(c for c in t if not unicodedata.combining(c))) if w not in VACIAS]
+
+
+IDIOMAS = {"es"}
+
+
+def idioma_ok(titulo):
+    """En modo estricto cuentan español e inglés; si no, sólo español."""
+    return True if "en" in IDIOMAS else es_espanol(titulo)
 
 
 def es_espanol(titulo):
@@ -121,7 +133,7 @@ def revisar(consultas):
             vistos.setdefault(r["id"], r)
         time.sleep(1.5)
     for r in vistos.values():
-        r["espanol"] = es_espanol(r["titulo"])
+        r["espanol"] = idioma_ok(r["titulo"])
         r["del_tema"] = del_tema(r["titulo"], consultas)
     # todo lo grande en español, del tema o no: el tema lo confirma quien lee (las palabras solas se equivocan)
     grandes = sorted((r for r in vistos.values() if r["espanol"] and r["vistas"] >= UMBRAL), key=lambda r: -r["vistas"])[:10]
@@ -129,7 +141,7 @@ def revisar(consultas):
     for r in grandes:
         f = fecha(r["id"])
         r["fecha"] = f.isoformat() if f else None
-        r["reciente"] = bool(f and (hoy - f).days <= DIAS)
+        r["reciente"] = True if DIAS <= 0 else bool(f and (hoy - f).days <= DIAS)
         time.sleep(1)
     quemado = [r for r in grandes if r["reciente"] and r["del_tema"]]
     revisar_ = [r for r in grandes if r["reciente"] and not r["del_tema"]]
@@ -144,14 +156,19 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("consultas", nargs="+")
     ap.add_argument("--json")
+    ap.add_argument("--estricto", action="store_true", help="> 100 mil, español o inglés, cualquier fecha")
     a = ap.parse_args()
+    global UMBRAL, DIAS, IDIOMAS
+    if a.estricto:
+        UMBRAL, DIAS, IDIOMAS = 100_000, 0, {"es", "en"}
     r = revisar(a.consultas)
     linea = lambda x: f"{x['vistas']:,} · {x.get('fecha') or '?'} · {x['titulo'][:85]} · youtu.be/{x['id']}"
+    reg = "> 100 mil, es/en, cualquier fecha" if a.estricto else "< 6 meses"
     print(f"{r['veredicto']}: {a.consultas[0]}")
     for x in r["quemado_por"]:
-        print("  QUEMA (del tema, < 6 meses): " + linea(x))
+        print(f"  QUEMA (del tema, {reg}): " + linea(x))
     for x in r["revisar_a_mano"]:
-        print("  REVISAR ¿es del tema? (< 6 meses): " + linea(x))
+        print(f"  REVISAR ¿es del tema? ({reg}): " + linea(x))
     for x in r["aviso_saturado"]:
         print("  AVISO saturado (> 5 M en 12 meses): " + linea(x))
     for x in r["grandes_viejos"]:

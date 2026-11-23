@@ -1,31 +1,45 @@
 ---
 name: cazar-ideas
-description: Encuentra ideas para El viejo del dato desde demanda real (outliers recientes en inglés sin versión en español, comentarios del nicho, búsqueda web), las pasa por el filtro de quemado y entrega 10 ganchos de una línea con su evidencia para que Tomás elija uno. Usar al empezar /nuevo-video o cuando Tomás pida ideas.
+description: Encuentra temas para El viejo del dato en dos pasos: primero agrupa lo que ya está pegando (outliers guardados en studio/caza/ y los estudios del 23-nov) en 4–6 TIPOS de tema con virales de ejemplo, y después busca dentro de cada tipo historias, máquinas o fenómenos específicos que nadie haya contado (filtro estricto: nada con un video del tema exacto sobre 100 mil vistas en YouTube, español o inglés; TikTok/IG por búsqueda web). Entrega hasta 15 temas en tabla para que Tomás elija uno. Usar al empezar /nuevo-video o cuando Tomás pida ideas.
 ---
 
-# Cazar ideas
+# Cazar ideas (enfoque de Tomás, 23-nov-2026)
 
-Lo corre el subagente `cazador` (o tú, si no está). Tomás elige 1 de 10; no hay puntaje /45.
+Lo corre el subagente `cazador` (o tú, si no está). Pasada **rápida y ancha**: se verifica a fondo sólo el tema que Tomás elija (CAZA_DATOS §9: no gastar horas antes de que él reaccione).
 
-## 1. Juntar candidatas (40+), en este orden
-1. **Lo ya cazado:** `studio/caza/*/README.md` y `ronda.md` (outliers guardados de rondas anteriores, con vistas y fecha). Lo que tenga más de 60 días se vuelve a revisar.
-2. **Búsqueda web (gratis):** WebSearch de temas "how it works / why does / what happens if" recientes; listas de virales de la semana; preguntas que la gente hace (Google "Otras preguntas"). Reddit NO (bloquea lecturas automáticas).
-3. **YouTube público:** `tools/cazador/quemado.py` también sirve para mirar qué hay en español de un tema.
-4. **vidIQ (sólo si hace falta):** `vidiq_balance` primero. Hasta el 18-dic-2026 quedan 0 créditos. Con créditos: `vidiq_outliers` (Shorts, en, 30–60 días, ≥300 mil, engagement ≥0,02), `vidiq_instagram_tiktok_outlier_search` (en, 60 días). Máx. 10 créditos por ronda sin avisar.
-5. **Comentarios:** preguntas repetidas en comentarios de virales del nicho ("¿y cómo funciona X?") y lo que pide la gente en nuestros propios videos (`docs/IDEAS.md` §5).
+## 1. Temas calientes: desde lo que ya tenemos, no desde cero
+No se buscan tendencias desde cero. Se sacan de:
+- `studio/caza/ronda08-demanda/` (outliers sep–nov: `README.md`, `vidiq_ig_tiktok.md`, comentarios) y `studio/caza/ronda09-demanda/ronda.md`.
+- `docs/estudios/investigacion-2026-11-23-*.md` (formatos y automatización) y las fichas de `docs/referencias/virales/`.
 
-**Demanda real = evidencia:** un outlier (vistas, veces sobre su canal, fecha, link), un hilo de comentarios que lo pide, o búsquedas. Sin evidencia no entra.
+Con eso, agrupa los virales en **4–6 TIPOS de tema que están pegando** (ej.: máquinas gigantes por dentro · objetos cotidianos por dentro · tu cuerpo al revés · qué pasaría si). Cada tipo lleva **2–3 virales de ejemplo** sacados de esos archivos (título, link, vistas, fecha). Un tipo sin virales de ejemplo en nuestros archivos no entra. La búsqueda web sólo completa un link o una cifra que falte; no inventa tipos nuevos.
 
-## 2. Filtrar
-- **Quemado (regla de Tomás):** `python3 tools/cazador/quemado.py "<como lo buscaría la gente en español>" "<otra forma>" "<otra>"`. Si hay un video en español con más de 500 mil vistas en los últimos 6 meses → fuera. **De a una idea, nunca en paralelo** (YouTube corta). Veredictos: QUEMADO · **REVISAR** (hay videos grandes y recientes cuyo título no calza con la búsqueda: léelos y decide si son del tema; anota tu decisión) · LIBRE. Si sale **AVISO saturado** (> 5 M en 12 meses), dilo en la ronda: Tomás decide (propuesta pendiente: tratarlo como quemado). Ojo: sólo mira YouTube. Pregúntate siempre si fue viral en TikTok o IG en español (búscalo en la web: "<tema> tiktok"); si sí, también fuera (lección 174: la pistola de bencina pasó el filtro de YouTube y ya había sido viral).
-- **Ya hecho o prohibido:** `docs/PUBLICADOS.md`, `docs/IDEAS.md` §3 (lista negra), `docs/CAZA_DATOS.md` §6 (quemados) y §9 (gustos de Tomás: mecánica a la vista, "qué weá", procesos; no fallas de la NASA ni física de nerd; no el pulpo).
-- **Verdad posible:** que existan 2 fuentes serias (instituciones, universidades, papers, medios de ciencia). Sólo ubicarlas, no verificar a fondo todavía.
-- **Variedad:** que la ronda permita las 4 estructuras (A inventaste X · B contradicción · C escalera · D mito + analogía) y al menos 5 familias; nada de la misma familia que el último video (`docs/ROTACION.md`).
+## 2. Dentro de esos tipos: lo que nadie ha contado
+Por cada tipo, busca **historias, máquinas o fenómenos específicos** que calcen en él y que no tengan un video grande. **Da lo mismo de qué año sea el dato.** Pistas para buscar: "how does X work inside", "largest X ever built", "the machine that…", archivos de museos, ingeniería, patentes, Atlas Obscura, IEEE Spectrum, Smithsonian, Wikipedia (sólo para llegar a la fuente).
 
-## 3. Entregar
-`studio/caza/rondaNN-<tema>/ronda.md` y la misma tabla en el chat:
+Con los gustos de Tomás (`docs/CAZA_DATOS.md` §9): mecánica a la vista, procesos y "cómo se hace", "qué pasa si", cosas que pasan siempre y nadie se cuestiona, "qué weá" que se entiende sola, objetos, máquinas y lugares de protagonistas. **No:** fallas de la NASA, física de nerd, el pulpo, casos sueltos sin mecánica.
 
-| # | Gancho (la primera frase del video, ≤ 12 palabras) | Evidencia | Quemado | Estructura | Fuentes candidatas |
-|---|---|---|---|---|---|
+Fuera también lo ya hecho o prohibido: `docs/PUBLICADOS.md`, `docs/IDEAS.md` §3 (lista negra), `docs/CAZA_DATOS.md` §6 y los temas prohibidos de `proyecto/INSTRUCCIONES.md`.
 
-Ordenadas por fuerza de la evidencia. Tomás elige una; la elegida pasa a la skill `guion` con su ficha (`studio/episodios/<ep>/ficha.md`: gancho, dato, mecánica en pasos, 2 fuentes).
+## 3. Filtro de quemado (estricto)
+- **Fuera si hay un video del tema EXACTO con más de 100 mil vistas**, en YouTube español o inglés, de cualquier fecha:
+  `python3 tools/cazador/quemado.py --estricto "<como lo buscaría alguien en español>" "<en inglés>" "<otra forma>"`
+  De a un tema, nunca en paralelo (YouTube corta). Si sale REVISAR, lee los títulos y decide si son del tema exacto (anótalo). Un video del tipo de tema pero de otra cosa no quema.
+- **TikTok / IG:** búsqueda web ("<tema> tiktok", "<tema> instagram reel", en los dos idiomas). Si encuentras un video del tema exacto sobre 100 mil → fuera. Si no puedes confirmarlo, escribe **"TikTok/IG sin confirmar"**; nunca supongas que está libre.
+- **Verdad posible:** que exista al menos 1 fuente seria con link (institución, museo, universidad, paper, medio de ciencia o ingeniería). La segunda fuente se busca sólo para el tema elegido.
+- vidIQ sólo si hace falta (0 créditos hasta el 18-dic-2026; revisa `vidiq_balance` y no gastes más de 10 sin avisar). Reddit no (bloquea lecturas automáticas).
+
+## 4. Entrega
+`studio/caza/rondaNN-<nombre>/ronda.md` y la misma tabla en el chat. Primero los tipos:
+
+| Tipo de tema | Virales de ejemplo (link · vistas · fecha) |
+|---|---|
+
+Después **hasta 15 temas** (si no hay 15 buenos, menos; nunca relleno):
+
+| # | Tipo | Gancho (≤ 12 palabras, como la 1.ª frase del video) | Qué es (1 línea) | Por qué sorprende | Fuente (link) | Video más visto del tema exacto (o "nada") | Riesgo |
+|---|---|---|---|---|---|---|---|
+
+- "Video más visto" = el más grande que encontró el filtro en YouTube (es/en), con vistas y link, más el estado de TikTok/IG ("nada" / link / "TikTok/IG sin confirmar").
+- "Riesgo" = lo que podría tumbarlo: fuente única, dato difícil de verificar, poca mecánica para animar, tema sensible, cercano a algo ya publicado.
+- Ordena por fuerza (lo más sorprendente con el camino más limpio primero). Tomás elige uno; ese pasa a la skill `guion` con su ficha verificada (2 fuentes).
