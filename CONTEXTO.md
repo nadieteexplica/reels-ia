@@ -49,11 +49,11 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
   - **R8** (gancho del metro): objetos en primer plano. Render tipo producto, fondo oscuro cálido con partículas desenfocadas.
 
 ## Voz
-- **ElevenLabs**, plan Starter (pagado), con **40.000 créditos al mes**. Cada toma gasta unos 1.200 créditos (hay que presupuestar ~1,3 tomas por video), y el saldo se ve en `out/status.json`.
-- La voz elegida es **Fernando Martínez**: `voice_id dlGxemPxFMTY7iXagmOj`. Habla a 2,89–2,94 palabras por segundo contando las pausas (Ep. 1 y Ep. 2).
-- Modelo `eleven_multilingual_v2`.
-- Settings: stability 0.4, similarity 0.8, style 0.32, speaker boost activado.
-- Se genera **con timestamps por carácter** para armar subtítulos palabra por palabra.
+- **Desde el 23-nov-2026: Qwen3-TTS, gratis y local (Apache-2.0).** Tomás canceló ElevenLabs ese día, después de elegir a ciegas esta voz por sobre la de ElevenLabs.
+- La voz es el **"narrador"**, diseñada desde texto: hombre de mediana edad, voz grave y segura, español latino neutro, rápido y con énfasis. Está fija como clon de `voz/narrador.wav` (11 s, con su texto en `voz/narrador.json`): suena igual en todos los videos (huella 0,99).
+- **Cómo se genera:** trabajo en `jobs/voz-libre/` con `"voz": "narrador"` y los guiones. `voz-libre.yml` lo corre en una Mac de Actions (`macos-15`, gratis) con `tools/voz_fija.py` y deja en `out/voz-libre/<id>/`: `<texto>.wav` (pausas ≤ 0,3 s y hasta 1,2×, con `tools/voz_ajustar.py`), `<texto>.words.json` (subtítulos por palabra con Whisper, `tools/voz_palabras.py`) y `metricas_<texto>.json` (pronunciación contra el guion). ~4 min por locución de 50 s. En el Mac de Tomás también corre (`.venv-voz`), pero usa ~7 de sus 8 GB.
+- Habla a ~3,1 palabras/s ya ajustada (Ep. 7: 146 palabras en 47 s). Para algo de ~45 s: ~135–140 palabras.
+- Lo de ElevenLabs (`tools/eleven.py`, `voz.yml`, `out/tts/`) queda como histórico: ya no hay créditos.
 
 ## Reglas de edición (del estudio de formatos virales y de `docs/REFERENCIAS.md`)
 - **Gancho** en los primeros 0–2 s. El cuadro 0 es una imagen absurda o una pregunta: algo que todavía no tiene sentido.
@@ -103,7 +103,7 @@ Leer esto entero antes de trabajar, junto con `proyecto/INSTRUCCIONES.md`: sus s
 - **vidIQ (plan gratis):** pocos créditos. Ver un video cuesta 10 y una búsqueda de outliers cuesta 5.
 
 ## Presupuesto
-- **Tope: 10.000 CLP al mes.** ElevenLabs Starter ya está pagado.
+- **Tope: 10.000 CLP al mes.** ElevenLabs se canceló el 23-nov-2026: la voz ahora es gratis (Qwen3-TTS).
 - **Octubre 2026 (excepción aprobada por Tomás el 19-oct):** compró el paquete Trial de la **API de Kling** (USD 9,80 = 100 unidades, vence a los 30 días) y cargó **USD 10 en RunPod** (sin Auto-Pay). ~19.400 CLP extra este mes.
   - Kling: 4 unidades por clip de 5 s a 1080p. Después del Trial, el paquete oficial más barato cuesta USD 700: si se sigue usando, hay que evaluar un intermediario con pago por clip (decisión de Tomás).
   - RunPod: ~USD 0,22–0,30 la hora (RTX A5000/A4000, community/secure); un video completo ~USD 0,3–0,5.

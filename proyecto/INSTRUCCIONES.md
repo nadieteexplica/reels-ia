@@ -48,7 +48,7 @@ Los archivos del repo mandan sobre los adjuntos del proyecto, porque el repo es 
 - **Temas:** de todo el mundo (cuerpo, tecnología cotidiana, planeta, espacio, naturaleza, Chile y Latam). Nada de un solo nicho.
 - **Animación 3D obligatoria**, en el estilo vigente de `CONTEXTO.md`.
 - **Estilos rechazados:** low-poly, rayos X o neón 2D, y look lavado o sobreexpuesto.
-- **Voz:** Fernando Martínez (ElevenLabs), generada con GitHub Actions.
+- **Voz:** el "narrador" de Qwen3-TTS (gratis; clon fijo de `voz/narrador.wav`), generada con GitHub Actions (`voz-libre.yml`). ElevenLabs se canceló el 23-nov-2026; detalle en `CONTEXTO.md` → Voz.
 - **Originalidad:** guion propio, personaje propio y formato propio. Nunca copiar el video de otro, resubir contenido ni imitar marcas. TikTok quita la monetización por "contenido no original".
 
 ## Estándar de calidad: "extraordinario" o no sale
@@ -111,8 +111,7 @@ Resumen; el detalle está en `docs/AUTOMATIZACION.md`.
 - **Comunidad:** cuando un video responde la pregunta de un seguidor, en los primeros segundos aparece "Pregunta de @usuario".
 
 ## Presupuesto y recursos
-- **Máximo 10.000 CLP al mes**, con ElevenLabs Starter incluido. Ese plan ya está pagado y da 40.000 créditos al mes. Cada toma de voz gasta unos 1.200 créditos, y hay que presupuestar ~1,3 tomas por video.
-- **Créditos:** se controlan en `out/status.json`. Si quedan menos de 8.000, avisa a Tomás.
+- **Máximo 10.000 CLP al mes.** La voz ya no cuesta (Qwen3-TTS en Actions); ElevenLabs se canceló el 23-nov-2026.
 - **Herramientas gratis primero:**
   - Blender,
   - GitHub Actions (gratis porque el repo es público),
