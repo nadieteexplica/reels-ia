@@ -1,0 +1,35 @@
+{
+ "ep16.wav": {
+  "duracion_s": 53.2,
+  "pal_por_s": 3.1,
+  "wer_%": 2.4,
+  "diferencias": [
+   "las → la",
+   "uno por ciento → 1"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": [
+   "y"
+  ]
+ },
+ "ep16_original.wav": {
+  "duracion_s": 60.7,
+  "pal_por_s": 2.72,
+  "wer_%": 3.6,
+  "diferencias": [
+   "las → la",
+   "ardiente → ∅",
+   "uno por ciento → 1",
+   "universo → ∅"
+  ],
+  "pausas_largas": [
+   0.74
+  ],
+  "estiradas": [],
+  "dudosas": [
+   "la",
+   "y"
+  ]
+ }
+}

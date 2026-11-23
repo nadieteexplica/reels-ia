@@ -1,0 +1,30 @@
+{
+ "referencia": "/Users/runner/work/reels-ia/reels-ia/voz/narrador.wav",
+ "trozos": {
+  "ep07": [
+   0.995,
+   0.993,
+   0.993,
+   0.993,
+   0.994
+  ],
+  "ep16": [
+   0.992,
+   0.992,
+   0.994,
+   0.994,
+   0.992
+  ]
+ },
+ "comparar_con": {
+  "ep07_disenada": [
+   0.999,
+   0.975,
+   0.977,
+   0.975,
+   0.97,
+   0.963,
+   0.926
+  ]
+ }
+}

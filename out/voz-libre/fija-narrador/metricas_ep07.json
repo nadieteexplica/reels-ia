@@ -1,0 +1,34 @@
+{
+ "ep07.wav": {
+  "duracion_s": 47.1,
+  "pal_por_s": 3.1,
+  "wer_%": 1.4,
+  "diferencias": [
+   "quince → 15",
+   "cuarenta → 40"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": [
+   "Un"
+  ]
+ },
+ "ep07_original.wav": {
+  "duracion_s": 56.0,
+  "pal_por_s": 2.61,
+  "wer_%": 2.1,
+  "diferencias": [
+   "quince → 15",
+   "lo → los",
+   "cuarenta → 40"
+  ],
+  "pausas_largas": [
+   0.78
+  ],
+  "estiradas": [],
+  "dudosas": [
+   "los",
+   "y"
+  ]
+ }
+}
