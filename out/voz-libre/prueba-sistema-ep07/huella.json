@@ -1,0 +1,12 @@
+{
+ "referencia": "/Users/runner/work/reels-ia/reels-ia/voz/narrador.wav",
+ "trozos": {
+  "prueba-sistema-ep07": [
+   0.994,
+   0.994,
+   0.992,
+   0.995
+  ]
+ },
+ "comparar_con": {}
+}

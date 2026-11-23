@@ -1,0 +1,39 @@
+{
+ "prueba-sistema-ep07.wav": {
+  "duracion_s": 45.8,
+  "pal_por_s": 3.1,
+  "wer_%": 2.1,
+  "diferencias": [
+   "rascacielos → rascacielo",
+   "quince → 15",
+   "quince → 15"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": [
+   "diez",
+   "un"
+  ]
+ },
+ "prueba-sistema-ep07_original.wav": {
+  "duracion_s": 54.9,
+  "pal_por_s": 2.59,
+  "wer_%": 3.5,
+  "diferencias": [
+   "rascacielos → rascacielo",
+   "quince → 15",
+   "diez → 10",
+   "quince → 15",
+   "∅ → a"
+  ],
+  "pausas_largas": [
+   0.8,
+   0.86,
+   0.8
+  ],
+  "estiradas": [],
+  "dudosas": [
+   "10"
+  ]
+ }
+}
