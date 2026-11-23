@@ -68,7 +68,7 @@ El guion lo escribe el **agente guionista** con su método (premisa → 12+ ganc
 - **Pausas:** los `...` marcan pausas dramáticas, y ElevenLabs las respeta. Úsalos 2 a 4 veces por guion, no más.
 - **Prohibido en el guion:** "en este video", "sígueme", "dale like", "no vas a creer", promesas falsas o exageración sin respaldo.
 - **Cierre con envío (en prueba):** en algunos videos, la última frase pide el envío con un destinatario concreto ("mándaselo a ese amigo que siempre…"). Se marca en `PUBLICADOS.md` para comparar.
-- **Palabras difíciles:** si la voz pronuncia mal un nombre raro, escríbelo fonéticamente en el texto que va a ElevenLabs (no en los subtítulos).
+- **Palabras difíciles:** si la voz pronuncia mal un nombre raro, escríbelo fonéticamente en `voz.txt` (el texto del narrador), no en los subtítulos.
 - **Ciencia incierta:** si la ciencia no está segura, dilo: "los científicos creen que…".
 
 ---
@@ -182,7 +182,7 @@ El storyboard es **la receta del editor**: cada fila es la ficha de un plano y t
 - **Tipografía:** Inter 900, en mayúsculas, a 76–88 px, blanca con borde negro de unos 5 px y sombra suave.
 - **Palabra activa:** amarilla `#FFD23F`, con un pop de escala de 1,12 que dura 0,12 s.
 - **Palabra clave:** 1–3 por video (la cifra, el objeto, el giro), en el color de su idea según el código de color y un 10 % más grande. Cuando se dice, hace el mismo pop.
-- **Posición:** una o dos líneas, con la caja completa dentro de **x 120–888 · y 1000–1250**. Si una palabra no cabe (por ejemplo, GANGLIONEURALGIA), la fuente baja hasta 60 px. Nunca encima de la cara del personaje ni en el 35% inferior.
+- **Posición (desde el 23-nov-2026, kit_explica):** arriba, primera línea anclada en y≈300 y creciendo hacia abajo, dentro de x 60–1020 · y 250–600 (skill `estilo-visual`, criterio [PROBABLE]). Lo que sigue de este punto es del kit viejo: una o dos líneas, con la caja completa dentro de **x 120–888 · y 1000–1250**. Si una palabra no cabe (por ejemplo, GANGLIONEURALGIA), la fuente baja hasta 60 px. Nunca encima de la cara del personaje ni en el 35% inferior.
 - **Excepción de posición:** si el protagonista del plano es un objeto centrado (formato objeto, R8), los subtítulos pueden ir arriba, en y 280–480, bajo la barra de Instagram.
 - **Limpieza:** sin puntos suspensivos ni signos de puntuación en pantalla, y con tildes correctas.
 - **Silencio del título:** los subtítulos se ocultan cuando aparece un texto grande en pantalla, como un nombre científico.

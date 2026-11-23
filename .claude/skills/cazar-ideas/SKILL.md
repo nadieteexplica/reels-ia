@@ -11,7 +11,7 @@ Lo corre el subagente `cazador` (o tú, si no está). Tomás elige 1 de 10; no h
 1. **Lo ya cazado:** `studio/caza/*/README.md` y `ronda.md` (outliers guardados de rondas anteriores, con vistas y fecha). Lo que tenga más de 60 días se vuelve a revisar.
 2. **Búsqueda web (gratis):** WebSearch de temas "how it works / why does / what happens if" recientes; listas de virales de la semana; preguntas que la gente hace (Google "Otras preguntas"). Reddit NO (bloquea lecturas automáticas).
 3. **YouTube público:** `tools/cazador/quemado.py` también sirve para mirar qué hay en español de un tema.
-4. **vidIQ (sólo si hace falta):** `vidiq_balance` primero. Hasta el 18-dic-2026 quedan 0 créditos. Con créditos: `vidiq_outliers` (Shorts, en, 30–90 días, ≥300 mil, engagement ≥0,02), `vidiq_instagram_tiktok_outlier_search` (en, 60 días). Máx. 10 créditos por ronda sin avisar.
+4. **vidIQ (sólo si hace falta):** `vidiq_balance` primero. Hasta el 18-dic-2026 quedan 0 créditos. Con créditos: `vidiq_outliers` (Shorts, en, 30–60 días, ≥300 mil, engagement ≥0,02), `vidiq_instagram_tiktok_outlier_search` (en, 60 días). Máx. 10 créditos por ronda sin avisar.
 5. **Comentarios:** preguntas repetidas en comentarios de virales del nicho ("¿y cómo funciona X?") y lo que pide la gente en nuestros propios videos (`docs/IDEAS.md` §5).
 
 **Demanda real = evidencia:** un outlier (vistas, veces sobre su canal, fecha, link), un hilo de comentarios que lo pide, o búsquedas. Sin evidencia no entra.

@@ -81,7 +81,7 @@ Resumen; el detalle está en `docs/AUTOMATIZACION.md`.
   - Cada video distinto: YouTube no monetiza contenido "de plantilla con poca variación".
   - Compilaciones largas en YouTube, muy de vez en cuando.
 - **Producción a pedido (decisión de Tomás, 21-oct-2026):** no hay tarea programada de producción. Cuando Tomás quiere un video, lo pide en el chat y se hacen **uno o dos videos por sesión**: ideas (si no trae una), guion, voz, fichas de plano, animación, control de calidad y paquete. El detalle está en `docs/AUTOMATIZACION.md` → "Cómo se hace un video".
-- **Aprobación:** a Tomás le llega un mensaje con el video, los textos y los horarios. Él responde OK y recién entonces se programa en Metricool. Sin OK, nada se programa.
+- **Aprobación:** a Tomás le llega un mensaje con el video, los textos y los horarios. Su OK por post es el archivo que él crea con `tools/ok.sh <epNN> <redes>` (el hook de Claude Code no deja programar sin ese archivo y lo gasta al usarlo). Sin OK, nada se programa.
 - **Métricas:** se revisan al empezar cada video (y en una revisión aparte sólo si Tomás la pide). Las preguntas de la gente van al banco de ideas.
 
 ## Publicación
