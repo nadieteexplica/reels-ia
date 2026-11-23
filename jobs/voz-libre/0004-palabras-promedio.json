@@ -1,0 +1,24 @@
+{
+ "id": "palabras",
+ "palabras": [
+  {
+   "audio": "out/tts/ep07-rascacielos-encoge-v2.mp3",
+   "guion": "studio/voz-prueba/ep07.txt",
+   "salida": "out/voz-libre/palabras/ep07_elevenlabs_promedio.words.json",
+   "modelo": "medium,large-v3-turbo",
+   "verdad": "studio/voz-prueba/verdad/ep07_elevenlabs.words.json"
+  },
+  {
+   "audio": "out/voz-libre/fija-narrador/ep07.wav",
+   "guion": "studio/voz-prueba/ep07.txt",
+   "salida": "out/voz-libre/fija-narrador/ep07.words.json",
+   "modelo": "medium,large-v3-turbo"
+  },
+  {
+   "audio": "out/voz-libre/fija-narrador/ep16.wav",
+   "guion": "studio/voz-prueba/ep16.txt",
+   "salida": "out/voz-libre/fija-narrador/ep16.words.json",
+   "modelo": "medium,large-v3-turbo"
+  }
+ ]
+}

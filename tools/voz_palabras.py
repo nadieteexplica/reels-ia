@@ -119,18 +119,25 @@ def main():
     ap.add_argument("audio")
     ap.add_argument("guion")
     ap.add_argument("salida")
-    ap.add_argument("--modelo", default="medium")
+    # Medido el 23-nov contra los tiempos de ElevenLabs del Ep. 7: medium llega ~40 ms tarde y large-v3-turbo
+    # ~59 ms temprano; el promedio de los dos queda sin sesgo (inicio: media 38 ms, p90 82, peor 167).
+    ap.add_argument("--modelo", default="medium,large-v3-turbo", help="uno o varios separados por coma (se promedian)")
     ap.add_argument("--verdad")
     a = ap.parse_args()
     from faster_whisper import WhisperModel
 
     guion = open(a.guion, encoding="utf-8").read().split()
     x = leer(a.audio)
-    m = WhisperModel(a.modelo, device="cpu", compute_type="int8")
-    segs, _ = m.transcribe(x, language="es", word_timestamps=True, beam_size=5, vad_filter=False,
-                           condition_on_previous_text=False)
-    hyp = [(w.word.strip(), w.start, w.end) for s in segs for w in (s.words or []) if w.word.strip()]
-    crudo = alinear(guion, hyp)
+    por_modelo = []
+    for nombre in a.modelo.split(","):
+        m = WhisperModel(nombre, device="cpu", compute_type="int8")
+        segs, _ = m.transcribe(x, language="es", word_timestamps=True, beam_size=5, vad_filter=False,
+                               condition_on_previous_text=False)
+        hyp = [(w.word.strip(), w.start, w.end) for s in segs for w in (s.words or []) if w.word.strip()]
+        por_modelo.append(alinear(guion, hyp))
+        del m
+    crudo = [{"w": ws[0]["w"], "s": float(np.mean([w["s"] for w in ws])), "e": float(np.mean([w["e"] for w in ws]))}
+             for ws in zip(*por_modelo)]
     words = ajustar_bordes([dict(w) for w in crudo], silencios(x))
     json.dump(words, open(a.salida, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     largas = [w["w"] for w in words if w["e"] - w["s"] > 1.2]
