@@ -1,0 +1,31 @@
+{
+ "guion": "B/guion_B2.md",
+ "comparado_con": "touchscreen",
+ "gancho": {
+  "veredicto": "EMPATA"
+ },
+ "medio": {
+  "veredicto": "EMPATA",
+  "segundos_sin_novedad": []
+ },
+ "final": {
+  "veredicto": "GANA",
+  "cta_ligado_al_contenido": true
+ },
+ "frases_debiles": [
+  {
+   "segundo": "0,0",
+   "frase": "Este rascacielos ya perdió la mitad, y sin una explosión."
+  },
+  {
+   "segundo": "37,2",
+   "frase": "Y la grúa, al bajar pedazos, genera la luz de la obra."
+  },
+  {
+   "segundo": "24,5",
+   "frase": "Y otra vez."
+  }
+ ],
+ "pasa": false,
+ "_nota": "resumen; el cambio de gancho lo hice yo a mano y dejé el texto TTS y el loop con el gancho viejo (error de la prueba, lección)"
+}

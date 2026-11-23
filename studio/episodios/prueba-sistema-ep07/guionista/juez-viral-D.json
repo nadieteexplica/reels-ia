@@ -1,0 +1,40 @@
+{
+ "guion": "D/guion.md",
+ "comparado_con": "buceo",
+ "gancho": {
+  "veredicto": "GANA"
+ },
+ "medio": {
+  "veredicto": "EMPATA",
+  "segundos_sin_novedad": [
+   [
+    "9.4",
+    "13.9"
+   ],
+   [
+    "32.3",
+    "38.6"
+   ]
+  ]
+ },
+ "final": {
+  "veredicto": "GANA",
+  "cta_ligado_al_contenido": true
+ },
+ "frases_debiles": [
+  {
+   "segundo": "9.4",
+   "frase": "Lo normal: dinamita."
+  },
+  {
+   "segundo": "1.6",
+   "frase": "Lo raro no es que no haya explosiones."
+  },
+  {
+   "segundo": "32.8",
+   "frase": "¿Y cómo baja el techo?"
+  }
+ ],
+ "pasa": true,
+ "_nota": "resumen del JSON de juez-viral; razones completas en la sesión del 23-nov"
+}

@@ -1,0 +1,31 @@
+{
+ "guion": "A/guion.md",
+ "comparado_con": "martinete",
+ "gancho": {
+  "veredicto": "GANA"
+ },
+ "medio": {
+  "veredicto": "EMPATA",
+  "segundos_sin_novedad": []
+ },
+ "final": {
+  "veredicto": "EMPATA",
+  "cta_ligado_al_contenido": true
+ },
+ "frases_debiles": [
+  {
+   "segundo": "19.4",
+   "frase": "Pero el techo queda parado sobre un piso vacío."
+  },
+  {
+   "segundo": "41.0",
+   "frase": "El truco para hacerlo desaparecer: nunca sacarle el techo."
+  },
+  {
+   "segundo": "14.3",
+   "frase": "Lo apoyas sobre gatos hidráulicos y lo rodeas de paneles."
+  }
+ ],
+ "pasa": false,
+ "_nota": "resumen del JSON de juez-viral; razones completas en la sesión del 23-nov"
+}

@@ -22,7 +22,7 @@ description: Escribe el guion de un video de El viejo del dato con la regla del 
 3. **Contra los virales:** deja sólo el ganador (y el 2.º) en un `ganchos.json` aparte, `duelo.py preparar <carpeta> --anclas virales --jueces 4`, 4 jueces, guarda, `duelo.py contar <carpeta> --anclas virales`. Si el ganador pierde contra más de la mitad de los virales, prueba el 2.º; si los dos pierden → los guionistas reescriben ganchos (cuenta como reescritura 1).
 
 ## 3. juez-viral, parte por parte
-- Pon el gancho ganador en el guion de su estructura (y, si encaja, en los otros dos) y lanza 3 `juez-viral` en paralelo, uno por guion (ruta del guion + `docs/referencias/virales/`). Guarda cada JSON en `studio/episodios/<ep>/guionista/juez-viral-<X>.json`.
+- El **guionista de esa estructura** pone el gancho ganador en su guion (paquete de gancho, primera frase, texto de la voz y loop: los 4; lección 176), y si encaja también los otros dos guionistas en los suyos. Después lanza 3 `juez-viral` en paralelo, uno por guion (ruta del guion + `docs/referencias/virales/`). Guarda cada JSON en `studio/episodios/<ep>/guionista/juez-viral-<X>.json`.
 - Pasa el guion con `"pasa": true`. Si pasan varios, el de más GANA; empate → el más corto.
 - Si ninguno pasa: el guionista del mejor corrige **sólo** lo que señaló el juez (frases débiles con su segundo) → `guion_v2.md` → otro `juez-viral` (uno nuevo, ciego). Máximo 2 reescrituras en total. Si no pasa: **idea descartada**, anótalo en `docs/IDEAS.md` con el porqué y vuelve a la ronda del cazador por la siguiente.
 

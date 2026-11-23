@@ -188,7 +188,7 @@ def contar(a):
     for i in filas:
         md.append(f"| {i} | {gana[i]}/{juega[i]} | {round(100 * gana[i] / juega[i]) if juega[i] else '—'} % |")
     if contra:
-        md += ["", "**Contra los ganchos reales del canal** (no sigue si pierde contra más de la mitad de las anclas; "
+        md += ["", ("**Contra los ganchos virales de la biblioteca**" if cual == "virales" else "**Contra los ganchos reales del canal**") + " (no sigue si pierde contra más de la mitad de las anclas; "
                    "un empate no es derrota). Sólo vale con cuadros reales (`--imagenes`); con texto, orienta:", "",
                "| Candidato | Vence | Empata | Pierde | Sigue |", "|---|---|---|---|---|"]
         for c, v in sorted(contra.items(), key=lambda kv: (-kv[1]["vence"], kv[1]["pierde"])):

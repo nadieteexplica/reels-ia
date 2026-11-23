@@ -1,0 +1,13 @@
+{
+ "candidatos": [
+  {
+   "id": "s1",
+   "dur_s": 47,
+   "cuadro0": "Fondo azul noche casi negro. Torre blanca de 40 pisos, fachada en zigzag, centrada, ~75 % del alto y ~30 % del ancho. El último piso, marcado en naranja, ya va bajando: la torre se acorta.",
+   "0_3s": "La torre pierde pisos de arriba en cámara rápida; el techo naranja baja con ella, entero. A los 2,5 s, píldora chica CÁMARA RÁPIDA en una esquina.",
+   "texto_pantalla_0_3s": "SE ENCOGE CON EL TECHO",
+   "voz_0_3s": "Este rascacielos se está encogiendo. Lo raro no es que no haya explosiones.",
+   "resto": "Lo raro no es que no haya explosiones. Es que nunca le sacan el techo. Y para entenderlo sólo necesitas un gato de auto. Lo normal: dinamita. Pero en plena ciudad, eso es polvo y ruido sobre todos. Así que convierten el último piso en una tapa gigante. La paran sobre quince gatos hidráulicos. Bajo esa tapa, escondidos, desarman el piso de abajo. ¿Escondidos de quién? De ti, en la calle. La rodean paneles con ventanas, alineadas con las del edificio. Desde abajo, parece un piso más. Pero cada diez días, son dos pisos menos. ¿Y cómo baja el techo? Como tu auto al cambiar una rueda: aflojas el gato y baja despacio. Aquí, quince gatos bajan el techo un piso. Se quedó el techo. Se fue el edificio. Mándaselo a quien vive junto a una obra."
+  }
+ ]
+}
