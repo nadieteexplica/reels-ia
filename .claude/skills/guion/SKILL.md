@@ -7,6 +7,8 @@ description: Escribe el guion de un video de El viejo del dato con la regla del 
 
 **Regla (máxima prioridad):** ningún guion le llega a Tomás si no le gana a los virales de `docs/referencias/virales/` según `juez-viral`. Si no llega en 2 reescrituras, se descarta la idea y se toma la siguiente de la ronda, sin pedirle correcciones a Tomás.
 
+**Lo que tienen los virales con /watch** (`docs/referencias/virales/README.md`): un **ancla** concreta presentada en los primeros 5 s que vuelve al 60–90 %; un **re-gancho** explícito a mitad; si el guion no cabe en ~45 s a ~3,1–3,4 pal/s, se **sacan pasos**, no se acelera.
+
 ## 0. Ficha y verdad (tú)
 `studio/episodios/<ep>/ficha.md`: el dato central con **2 fuentes independientes leídas** (no Wikipedia), la mecánica en pasos, cifras exactas, lo que no se sabe. Sin ficha verificada no se escribe nada.
 

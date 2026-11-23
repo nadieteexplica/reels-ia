@@ -15,4 +15,4 @@ Entrega `studio/episodios/<ep>/storyboard.md` y `storyboard.json`. Por plano:
 - **sonido**: el efecto que pide la acción (lo usa la skill `sonido` para `sfx-plan.json`).
 - **zona segura**: nada importante abajo de 1580 px ni en los 160 px de la derecha; subtítulos en su banda.
 
-Reglas: el cuadro 0 ya muestra el gancho completo (nunca negro, nunca fundido); el último cuadro empalma con el primero (loop); máx. 6 escenas, los cortes dentro de una escena son baratos. Revisa al final, plano por plano, que ninguna imagen tenga dos ideas ni quede quieta mientras la voz habla de otra cosa.
+Reglas: **algo nuevo en pantalla cada 2–3 s** (otro objeto, etiqueta o número en vivo; no zooms de relleno) y **el video se entiende sin sonido** (etiquetas en recuadro o pegadas al objeto, ✗ rojo / ✓ verde, contadores; biblioteca de virales, 23-nov). El cuadro 0 ya muestra el gancho completo (nunca negro, nunca fundido); el último cuadro empalma con el primero (loop); máx. 6 escenas, los cortes dentro de una escena son baratos. Revisa al final, plano por plano, que ninguna imagen tenga dos ideas ni quede quieta mientras la voz habla de otra cosa.

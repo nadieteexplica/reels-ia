@@ -3,12 +3,12 @@
  "anclas": [
   {
    "id": "v-martinete",
-   "dur_s": 60,
-   "cuadro0": "Render 3D limpio con buena luz: un martillo golpea un clavo sobre madera; el clavo ocupa ~40 % del alto. Texto arriba: \"Esto es un clavo\".",
-   "0_3s": "El martillo baja y hunde el clavo con un golpe metálico seco; la cámara empieza a alejarse.",
-   "texto_pantalla_0_3s": "Esto es un clavo",
-   "voz_0_3s": "Esto es un clavo.",
-   "resto": "Ahora hay que clavar uno de cincuenta toneladas: cada solución obvia falla y se agrega una pieza, hasta llegar al martinete real."
+   "dur_s": 113,
+   "cuadro0": "Render 3D con luz cálida y fondo oscuro: primer plano desenfocado de un clavo vertical sobre madera, al centro. Subtítulo en caja oscura a media altura: \"Esto es un clavo\".",
+   "0_3s": "La cámara se aleja y enfoca el clavo entero; en 1,5 s baja un martillo y le da golpecitos; a los 3 s el clavo ya entró en la madera.",
+   "texto_pantalla_0_3s": "Esto es un clavo / Toma un martillo / dale unos golpecitos",
+   "voz_0_3s": "Esto es un clavo. Toma un martillo, unos golpecitos y entra.",
+   "resto": "Agrándalo cien veces (contador ×100): pilote de decenas de toneladas; cada solución falla y suma una pieza (bloque, explosivo, guías, gasolina) hasta el martinete diésel; remate: lo inventaste tú."
   },
   {
    "id": "v-monedero",
@@ -22,11 +22,11 @@
   {
    "id": "v-touchscreen",
    "dur_s": 84,
-   "cuadro0": "Fondo oscuro. Un dedo toca la pantalla de un celular y la pantalla responde con un brillo cian; al lado, la punta de un lápiz aprieta fuerte y no pasa nada (marca roja).",
-   "0_3s": "Se repiten los dos toques; aparece el contraste dedo sí / lápiz no.",
-   "texto_pantalla_0_3s": "sólo subtítulos",
-   "voz_0_3s": "Tu dedo funciona. Este lápiz, aunque apriete fuerte, no.",
-   "resto": "Guantes en invierno, por dentro la grilla con carga, por qué el dedo la roba, lluvia y guantes táctiles; cierre poético en loop."
+   "cuadro0": "Fondo casi negro, corte del vidrio con arcos de carga dorados. A la izquierda un dedo a punto de rozar; arriba a la derecha la punta dorada de un lápiz. Etiquetas chicas: vidrio, cables.",
+   "0_3s": "El dedo roza y la carga dorada se junta bajo la yema; a los 3 s entra el lápiz apretando fuerte y no pasa nada. Subtítulo cambia cada medio segundo.",
+   "texto_pantalla_0_3s": "sólo subtítulos palabra a palabra; recuadro en teléfono, más leve, dedo",
+   "voz_0_3s": "Tu pantalla reacciona al roce más leve de tu dedo.",
+   "resto": "…e ignora un lápiz apretado; no mide presión sino tu electricidad: guantes en invierno, grilla de cables, el dedo roba carga, multitouch, lluvia, guantes táctiles."
   },
   {
    "id": "v-gruas",
@@ -63,6 +63,24 @@
    "texto_pantalla_0_3s": "No cuenta los minutos",
    "voz_0_3s": "Una arrocera simple no cuenta los minutos.",
    "resto": "Espera que se acabe el agua: mientras hay agua no pasa de 100 °C; cuando se acaba, sube y un imán se suelta y la apaga."
+  },
+  {
+   "id": "v-buceo",
+   "dur_s": 110,
+   "cuadro0": "Ilustración 2D plana de noche: luna, línea del mar a media altura y un buzo con tanque entrando de cabeza al agua. Subtítulo arriba: \"¿Sabías que\".",
+   "0_3s": "El buzo baja y un contador de profundidad sube de 13 a 33 m; en 'peligroso' aparece un check verde. A los 3,5 s el fondo se tiñe morado: PELIGRO, flecha roja arriba.",
+   "texto_pantalla_0_3s": "¿Sabías que bajar al fondo del mar no es lo más peligroso?",
+   "voz_0_3s": "¿Sabías que bajar al fondo del mar no es lo más peligroso?",
+   "resto": "Lo peligroso es subir; una gaseosa lo explica: el nitrógeno se esconde en la sangre y al subir rápido hace burbujas; subir lento; dato del avión y pregunta a comentarios."
+  },
+  {
+   "id": "v-ojos",
+   "dur_s": 57,
+   "cuadro0": "Primerísimo plano ilustrado de un ojo azul abierto, con ceja y pestañas, ocupa todo el ancho sobre piel cálida. Subtítulo blanco arriba: \"Cada\".",
+   "0_3s": "Subtítulo palabra a palabra; el ojo parpadea en el s 1 y en 'blanco' (s 3) el párpado se vuelve transparente y sólo se ve lo blanco del ojo.",
+   "texto_pantalla_0_3s": "Cada noche cuando te duermes tus ojos se ponen en blanco",
+   "voz_0_3s": "Cada noche, cuando te duermes, tus ojos se ponen en blanco.",
+   "resto": "Escalera: pupilas arriba, la córnea roba oxígeno al párpado, legañas; 'y aquí viene lo bueno': en REM miran hacia donde vas en el sueño; 1 de cada 20 duerme con ojos abiertos; envíaselo al amigo que da miedo."
   }
  ]
 }
