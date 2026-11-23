@@ -24,7 +24,11 @@ UMBRAL = 500_000
 DIAS = 183
 
 
-def get(url, intentos=4):
+INTENTOS = 4
+
+
+def get(url, intentos=None):
+    intentos = intentos or INTENTOS
     """Con reintentos: en paralelo YouTube corta conexiones (SSL, página vacía). Correr de a una consulta."""
     for k in range(intentos):
         try:
@@ -35,7 +39,7 @@ def get(url, intentos=4):
                 return h
         except Exception:
             pass
-        time.sleep(2 * (k + 1))
+        time.sleep(1 if INTENTOS <= 2 else 2 * (k + 1))
     raise RuntimeError(f"YouTube no respondió tras {intentos} intentos: {url[:80]}")
 
 
@@ -131,7 +135,7 @@ def revisar(consultas):
     for q in consultas:
         for r in buscar(q):
             vistos.setdefault(r["id"], r)
-        time.sleep(1.5)
+        time.sleep(0.5 if INTENTOS <= 2 else 1.5)
     for r in vistos.values():
         r["espanol"] = idioma_ok(r["titulo"])
         r["del_tema"] = del_tema(r["titulo"], consultas)
@@ -139,6 +143,9 @@ def revisar(consultas):
     grandes = sorted((r for r in vistos.values() if r["espanol"] and r["vistas"] >= UMBRAL), key=lambda r: -r["vistas"])[:10]
     hoy = dt.date.today()
     for r in grandes:
+        if DIAS <= 0:                          # cualquier fecha: no hace falta abrir cada video (más rápido)
+            r["fecha"], r["reciente"] = None, True
+            continue
         f = fecha(r["id"])
         r["fecha"] = f.isoformat() if f else None
         r["reciente"] = True if DIAS <= 0 else bool(f and (hoy - f).days <= DIAS)
@@ -158,9 +165,9 @@ def main():
     ap.add_argument("--json")
     ap.add_argument("--estricto", action="store_true", help="> 100 mil, español o inglés, cualquier fecha")
     a = ap.parse_args()
-    global UMBRAL, DIAS, IDIOMAS
-    if a.estricto:
-        UMBRAL, DIAS, IDIOMAS = 100_000, 0, {"es", "en"}
+    global UMBRAL, DIAS, IDIOMAS, INTENTOS
+    if a.estricto:                             # una búsqueda por idioma, reintentos cortos (skill cazar-ideas)
+        UMBRAL, DIAS, IDIOMAS, INTENTOS = 100_000, 0, {"es", "en"}, 2
     r = revisar(a.consultas)
     linea = lambda x: f"{x['vistas']:,} · {x.get('fecha') or '?'} · {x['titulo'][:85]} · youtu.be/{x['id']}"
     reg = "> 100 mil, es/en, cualquier fecha" if a.estricto else "< 6 meses"

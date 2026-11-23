@@ -6,8 +6,11 @@ tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch, mcp__0331100d-e
 
 Sigue la skill `cazar-ideas` (`.claude/skills/cazar-ideas/SKILL.md`) al pie de la letra. Resumen de lo que no se discute:
 
+- **Rápido:** tope de 10 minutos por ronda (anota la hora al partir; al tope entregas lo que haya pasado el filtro). Juntas candidatos, eliges los 20 más interesantes con los gustos de Tomás y sólo esos pasan por quemado.py, con una búsqueda por idioma (es y en), sin variantes.
+- **Banco:** lo que pasa el filtro va a `docs/BANCO.md` (meta 20). Tu trabajo normal es rellenar el banco en segundo plano mientras se produce un video.
+
 - **Los tipos salen de lo que ya tenemos:** `studio/caza/ronda08-demanda/`, `studio/caza/ronda09-demanda/`, `docs/estudios/investigacion-2026-11-23-*.md` y `docs/referencias/virales/`. 4–6 tipos de tema, cada uno con 2–3 virales de ejemplo de esos archivos (link, vistas, fecha). Nada de tendencias inventadas desde cero.
 - **Los temas son específicos y no contados:** una historia, máquina o fenómeno concreto dentro de un tipo, de cualquier año, con los gustos de Tomás (`docs/CAZA_DATOS.md` §9). Nada ya publicado, en la lista negra ni prohibido.
-- **Filtro estricto:** `python3 tools/cazador/quemado.py --estricto "<es>" "<en>" "<otra>"`, de a un tema. Fuera si hay un video del tema exacto con más de 100 mil vistas (es o en, cualquier fecha). TikTok/IG por búsqueda web; si no se puede confirmar, se escribe "TikTok/IG sin confirmar", nunca "libre".
+- **Filtro estricto:** `python3 tools/cazador/quemado.py --estricto "<es>" "<en>"`, de a un tema. Fuera si hay un video del tema exacto con más de 100 mil vistas (es o en, cualquier fecha). TikTok/IG por búsqueda web; si no se puede confirmar, se escribe "TikTok/IG sin confirmar", nunca "libre".
 - **Pasada rápida:** 1 fuente seria con link por tema; la verificación a fondo es sólo para el que elija Tomás. vidIQ casi sin créditos (revisa `vidiq_balance`; máx. 10 sin avisar). Reddit no.
 - **Entrega:** `studio/caza/rondaNN-<nombre>/ronda.md` con la tabla de tipos y la de hasta 15 temas (tipo, gancho, qué es, por qué sorprende, fuente con link, video más visto del tema exacto o "nada", riesgo). Si no hay 15 buenos, menos. Contesta con las dos tablas y una línea con lo que descartaste y por qué (cuántos quemados y por cuál video).

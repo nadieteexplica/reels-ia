@@ -7,7 +7,7 @@ description: Hace un video completo de El viejo del dato de punta a punta, en or
 
 Antes: `git pull`, lee `CLAUDE.md`, `proyecto/INSTRUCCIONES.md` (Seguridad y Publicación mandan), `CONTEXTO.md` → Estado actual, `docs/ROTACION.md` y las últimas 10 filas de `docs/LECCIONES.md`. Métricas de los videos anteriores a las 48 h → `docs/PUBLICADOS.md`.
 
-1. **Cazar** — skill `cazar-ideas` (subagente `cazador`) → 10 ganchos con evidencia. **Parar: Tomás elige 1.** (Si trae su propia idea, se salta, pero igual pasa por el filtro de quemado.)
+1. **Temas** — se le muestran a Tomás los temas de **`docs/BANCO.md` al instante, sin buscar**. **Parar: Tomás elige 1.** (Si trae su propia idea, igual pasa por `quemado.py --estricto`.) Apenas elige, se lanza el subagente `cazador` **en segundo plano** para rellenar el banco hasta 20 (skill `cazar-ideas`, tope 10 min) mientras se hace el video.
 2. **Ficha + guion** — skill `guion`: ficha verificada (2 fuentes) → 3 `guionista` en paralelo (estructuras distintas a la anterior) → duelo de 12 ganchos + contra virales → `juez-viral` → espectadores. Máx. 2 reescrituras; si no pasa, siguiente idea de la ronda sin preguntarle a Tomás.
 3. **Voz** — skill `voz` (Actions) → `voz.wav` + `words.json`; duración 35–50 s.
 4. **Storyboard** — subagente `director-visual` con el único estilo aprobado: laboratorio nocturno del beat v5 (rotación de estilos apagada) → `storyboard.md/json`.

@@ -7,6 +7,11 @@ description: Encuentra temas para El viejo del dato en dos pasos: primero agrupa
 
 Lo corre el subagente `cazador` (o tú, si no está). Pasada **rápida y ancha**: se verifica a fondo sólo el tema que Tomás elija (CAZA_DATOS §9: no gastar horas antes de que él reaccione).
 
+## 0. Reglas de velocidad (Tomás, 23-nov-2026) — mandan sobre todo lo demás
+1. **Tope: 10 minutos por ronda.** Anota la hora al partir (`date +%H:%M`). Al llegar a los 10 min se para y se entrega lo que ya pasó el filtro, aunque sean pocos.
+2. **Filtra menos, elige mejor:** primero se juntan candidatos (sin filtrar) y se eligen **los 20 más interesantes** con los gustos de Tomás (§9). **Sólo esos 20** pasan por `quemado.py`. **Una búsqueda por idioma** (una en español y una en inglés), sin variantes; el script ya hace reintentos cortos en modo `--estricto` (~10 s por tema).
+3. **Banco siempre lleno:** lo que pasa el filtro se guarda en **`docs/BANCO.md`** (meta: 20 temas). Cada vez que se produce un video, el cazador **rellena el banco en paralelo** (en segundo plano, mientras se hace el video). **Cuando Tomás pide temas, se le muestra el banco al instante, sin buscar**; la caza sólo rellena.
+
 ## 1. Temas calientes: desde lo que ya tenemos, no desde cero
 No se buscan tendencias desde cero. Se sacan de:
 - `studio/caza/ronda08-demanda/` (outliers sep–nov: `README.md`, `vidiq_ig_tiktok.md`, comentarios) y `studio/caza/ronda09-demanda/ronda.md`.
@@ -21,16 +26,16 @@ Con los gustos de Tomás (`docs/CAZA_DATOS.md` §9): mecánica a la vista, proce
 
 Fuera también lo ya hecho o prohibido: `docs/PUBLICADOS.md`, `docs/IDEAS.md` §3 (lista negra), `docs/CAZA_DATOS.md` §6 y los temas prohibidos de `proyecto/INSTRUCCIONES.md`.
 
-## 3. Filtro de quemado (estricto)
+## 3. Filtro de quemado (estricto, sólo los 20 elegidos)
 - **Fuera si hay un video del tema EXACTO con más de 100 mil vistas**, en YouTube español o inglés, de cualquier fecha:
-  `python3 tools/cazador/quemado.py --estricto "<como lo buscaría alguien en español>" "<en inglés>" "<otra forma>"`
+  `python3 tools/cazador/quemado.py --estricto "<como lo buscaría alguien en español>" "<en inglés>"` (una consulta por idioma, sin variantes)
   De a un tema, nunca en paralelo (YouTube corta). Si sale REVISAR, lee los títulos y decide si son del tema exacto (anótalo). Un video del tipo de tema pero de otra cosa no quema.
 - **TikTok / IG:** búsqueda web ("<tema> tiktok", "<tema> instagram reel", en los dos idiomas). Si encuentras un video del tema exacto sobre 100 mil → fuera. Si no puedes confirmarlo, escribe **"TikTok/IG sin confirmar"**; nunca supongas que está libre.
 - **Verdad posible:** que exista al menos 1 fuente seria con link (institución, museo, universidad, paper, medio de ciencia o ingeniería). La segunda fuente se busca sólo para el tema elegido.
 - vidIQ sólo si hace falta (0 créditos hasta el 18-dic-2026; revisa `vidiq_balance` y no gastes más de 10 sin avisar). Reddit no (bloquea lecturas automáticas).
 
 ## 4. Entrega
-`studio/caza/rondaNN-<nombre>/ronda.md` y la misma tabla en el chat. Primero los tipos:
+Los temas que pasan el filtro se **agregan a `docs/BANCO.md`** (misma tabla; con la fecha de la ronda) y el detalle de la ronda queda en `studio/caza/rondaNN-<nombre>/ronda.md`. Al usar un tema en un video, se saca del banco (pasa a `docs/PUBLICADOS.md`). Primero los tipos:
 
 | Tipo de tema | Virales de ejemplo (link · vistas · fecha) |
 |---|---|
