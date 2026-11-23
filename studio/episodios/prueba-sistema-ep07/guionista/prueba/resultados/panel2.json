@@ -1,0 +1,84 @@
+{
+"perfil": "Andrea",
+"videos": [
+{
+"codigo": "YZ",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "final",
+"lo_ve_entero_pct": 70,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "CE",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "La paran sobre quince gatos hidráulicos.",
+"lo_ve_entero_pct": 30,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "TT",
+"se_queda_2s": false,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "cuadro0",
+"lo_ve_entero_pct": 5,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "OE",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "Primero, meten columnas de acero y lo paran sobre quince gatos hidráulicos, como un sombrero gigante.",
+"lo_ve_entero_pct": 15,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "EA",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+"lo_ve_entero_pct": 35,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "AG",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "Las patas van en dos grupos.",
+"lo_ve_entero_pct": 45,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "YG",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+"lo_ve_entero_pct": 35,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+}
+],
+"orden": [
+"AG",
+"YZ",
+"YG",
+"EA",
+"CE",
+"OE",
+"TT"
+]
+}

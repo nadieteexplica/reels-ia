@@ -1,0 +1,84 @@
+{
+"perfil": "Diego",
+"videos": [
+{
+"codigo": "LM",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "y arma un remolino acostado, que gira como una rueda.",
+"lo_ve_entero_pct": 35,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "SA",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+"lo_ve_entero_pct": 15,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "OB",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "final",
+"lo_ve_entero_pct": 75,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "TG",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "Y lo más loco: Shanghái ya tenía práctica.",
+"lo_ve_entero_pct": 55,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "DY",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+"lo_ve_entero_pct": 30,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "HO",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "Después: bobinas y más bobinas, hasta cuarenta teslas o más.",
+"lo_ve_entero_pct": 40,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "LQ",
+"se_queda_2s": false,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "cuadro0",
+"lo_ve_entero_pct": 5,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+}
+],
+"orden": [
+"OB",
+"TG",
+"DY",
+"LM",
+"HO",
+"SA",
+"LQ"
+]
+}

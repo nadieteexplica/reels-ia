@@ -1,0 +1,84 @@
+{
+"perfil": "Valentina",
+"videos": [
+{
+"codigo": "JB",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "Después: bobinas y más bobinas, hasta cuarenta teslas o más.",
+"lo_ve_entero_pct": 20,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "NC",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+"lo_ve_entero_pct": 15,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "GK",
+"se_queda_2s": false,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "cuadro0",
+"lo_ve_entero_pct": 3,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "QT",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "Las patas van en dos grupos.",
+"lo_ve_entero_pct": 35,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "LE",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "Solo armar eso toma dos meses.",
+"lo_ve_entero_pct": 10,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "KI",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "final",
+"lo_ve_entero_pct": 55,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "WR",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "El ají trae capsaicina, una molécula que las hace sonar.",
+"lo_ve_entero_pct": 15,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+}
+],
+"orden": [
+"QT",
+"KI",
+"NC",
+"WR",
+"JB",
+"LE",
+"GK"
+]
+}

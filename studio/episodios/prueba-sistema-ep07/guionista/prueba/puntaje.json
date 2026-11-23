@@ -1,0 +1,175 @@
+{
+ "paneles": 6,
+ "calibracion": {
+  "rho_quedan_vs_yt_se_quedo": 0.48,
+  "rho_quedan_vs_ig_pasa_3s": 0.72,
+  "rho_borda_vs_yt_vistas": 0.32,
+  "peor_real": "ep05",
+  "peor_real_en_ultimo_tercio": true,
+  "rho_quedan_vs_yt_se_quedo_sin_el_peor": 0.11,
+  "se_puede_usar_para_descartar": false
+ },
+ "videos": {
+  "ep07": {
+   "tipo": "ancla",
+   "quedan_2s": 66.7,
+   "entero": 21.7,
+   "manda": 16.7,
+   "borda": 0.639,
+   "se_va_en": [
+    "Solo armar eso toma dos meses.",
+    "Primero, meten columnas de acero y lo paran sobre quince gatos hidráulicos, como un sombrero gigante.",
+    "cuadro0",
+    "cuadro0",
+    "final",
+    "Solo armar eso toma dos meses."
+   ],
+   "por_que_2s": [
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)"
+   ]
+  },
+  "ep03": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 49.2,
+   "manda": 100.0,
+   "borda": 0.139,
+   "se_va_en": [
+    "Según el jefe técnico, es como ponerle muletas para que se pare y camine.",
+    "Las patas van en dos grupos.",
+    "Y lo más loco: Shanghái ya tenía práctica.",
+    "Y lo más loco: Shanghái ya tenía práctica.",
+    "Y lo más loco: Shanghái ya tenía práctica.",
+    "Las patas van en dos grupos."
+   ],
+   "por_que_2s": [
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)"
+   ]
+  },
+  "ep01": {
+   "tipo": "ancla",
+   "quedan_2s": 83.3,
+   "entero": 20.8,
+   "manda": 16.7,
+   "borda": 0.667,
+   "se_va_en": [
+    "cuadro0",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada.",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada."
+   ],
+   "por_que_2s": [
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)"
+   ]
+  },
+  "s1": {
+   "tipo": "candidato",
+   "quedan_2s": 50.0,
+   "entero": 29.2,
+   "manda": 33.3,
+   "borda": 0.583,
+   "se_va_en": [
+    "cuadro0",
+    "La paran sobre quince gatos hidráulicos.",
+    "final",
+    "final",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)"
+   ]
+  },
+  "ep04": {
+   "tipo": "ancla",
+   "quedan_2s": 83.3,
+   "entero": 49.2,
+   "manda": 33.3,
+   "borda": 0.361,
+   "se_va_en": [
+    "cuadro0",
+    "final",
+    "final",
+    "final",
+    "y arma un remolino acostado, que gira como una rueda.",
+    "final"
+   ],
+   "por_que_2s": [
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)"
+   ]
+  },
+  "ep02": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 30.0,
+   "manda": 66.7,
+   "borda": 0.444,
+   "se_va_en": [
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+    "Y lo más loco: hay un mamífero que casi no lo siente.",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+    "El ají trae capsaicina, una molécula que las hace sonar."
+   ],
+   "por_que_2s": [
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)"
+   ]
+  },
+  "ep05": {
+   "tipo": "ancla",
+   "quedan_2s": 66.7,
+   "entero": 26.7,
+   "manda": 16.7,
+   "borda": 0.667,
+   "se_va_en": [
+    "final",
+    "cuadro0",
+    "cuadro0",
+    "Después: bobinas y más bobinas, hasta cuarenta teslas o más.",
+    "Después: bobinas y más bobinas, hasta cuarenta teslas o más.",
+    "Después: bobinas y más bobinas, hasta cuarenta teslas o más."
+   ],
+   "por_que_2s": [
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)",
+    "(en la respuesta)"
+   ]
+  }
+ }
+}

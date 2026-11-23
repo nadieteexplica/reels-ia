@@ -1,0 +1,84 @@
+{
+"perfil": "Luis",
+"videos": [
+{
+"codigo": "UB",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "Solo armar eso toma dos meses.",
+"lo_ve_entero_pct": 30,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "FD",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "Según el jefe técnico, es como ponerle muletas para que se pare y camine.",
+"lo_ve_entero_pct": 40,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "LP",
+"se_queda_2s": false,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "cuadro0",
+"lo_ve_entero_pct": 3,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "HM",
+"se_queda_2s": false,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "cuadro0",
+"lo_ve_entero_pct": 8,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "RD",
+"se_queda_2s": false,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "cuadro0",
+"lo_ve_entero_pct": 5,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "SH",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+"lo_ve_entero_pct": 20,
+"lo_manda": false,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+},
+{
+"codigo": "AX",
+"se_queda_2s": true,
+"por_que_2s": "(en la respuesta)",
+"se_va_en": "final",
+"lo_ve_entero_pct": 65,
+"lo_manda": true,
+"a_quien": "",
+"pregunta_que_te_dejo": ""
+}
+],
+"orden": [
+"AX",
+"FD",
+"UB",
+"SH",
+"HM",
+"RD",
+"LP"
+]
+}
