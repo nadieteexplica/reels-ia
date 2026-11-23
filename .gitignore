@@ -19,3 +19,4 @@ studio/**/escena/out*/
 # prueba de voz: los wav pesan; lo que vale queda en el informe
 studio/voz-prueba/*.wav
 studio/voz-prueba/ciega/
+.DS_Store
