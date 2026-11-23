@@ -1,0 +1,72 @@
+{
+ "con_bordes": {
+  "inicio_ms": {
+   "media": 66,
+   "p90": 110,
+   "max": 259
+  },
+  "fin_ms": {
+   "media": 55,
+   "p90": 143,
+   "max": 265
+  },
+  "inicios_a_mas_de_1_cuadro": 124,
+  "peores_inicios": [
+   [
+    "Cuando",
+    259
+   ],
+   [
+    "se",
+    143
+   ],
+   [
+    "que",
+    138
+   ],
+   [
+    "pisos...",
+    136
+   ],
+   [
+    "después,",
+    132
+   ]
+  ]
+ },
+ "sin_bordes": {
+  "inicio_ms": {
+   "media": 74,
+   "p90": 115,
+   "max": 259
+  },
+  "fin_ms": {
+   "media": 55,
+   "p90": 143,
+   "max": 265
+  },
+  "inicios_a_mas_de_1_cuadro": 134,
+  "peores_inicios": [
+   [
+    "Cuando",
+    259
+   ],
+   [
+    "El",
+    257
+   ],
+   [
+    "el",
+    256
+   ],
+   [
+    "Primero,",
+    164
+   ],
+   [
+    "y",
+    157
+   ]
+  ]
+ }
+}
