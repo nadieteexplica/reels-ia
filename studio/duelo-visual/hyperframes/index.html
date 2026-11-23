@@ -305,7 +305,7 @@
       <g id="s3-mpos">
         <g id="s3-mflota">
           <g filter="url(#sombra)">
-            <g transform="translate(694 318) rotate(30) scale(.28)"><use href="#martilloDib"/></g>
+            <g transform="translate(700 296) rotate(30) scale(.28)"><use href="#martilloDib"/></g>
           </g>
         </g>
       </g>
@@ -426,7 +426,7 @@
   tl.fromTo("#s3-et50-sub", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.8, ease: ENTRA, immediateRender: false }, 4.90);
 
   // ---------- PLANO 4: "¿Con" (6,21 s) entra el martillo chico; "pegas" (6,67 s) el signo ----------
-  tl.to(["#s3-cota", "#s3-et50-txt", "#s3-et50-sub", "#s3-et50-linea", "#s3-et50-punto"], { opacity: 0, duration: 0.4, ease: SALE }, 6.21);
+  tl.to(["#s3-cota", "#s3-et50-txt", "#s3-et50-sub", "#s3-et50-linea", "#s3-et50-punto"], { opacity: 0, duration: 0.35, ease: SALE }, 6.21);
   gsap.set("#s3-mpos", { x: 460 });
   tl.fromTo("#s3-mpos", { x: 460 }, { x: 0, duration: 0.8, ease: ENTRA, immediateRender: false }, 6.21);
   tl.to("#s3-mflota", { y: -8, duration: 0.6, ease: "sine.inOut" }, 7.0);
