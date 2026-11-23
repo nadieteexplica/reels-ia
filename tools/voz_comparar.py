@@ -18,6 +18,14 @@ def norm(t):
     return re.findall(r"[a-zñ0-9]+", t)
 
 
+def audio16k(p):
+    """Decodifica con ffmpeg a 16 kHz mono (así no depende de la versión de PyAV que traiga faster-whisper)."""
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(p), "-f", "f32le", "-ac", "1", "-ar", "16000", "-"],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.float32)
+
+
 def duracion(p):
     return float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(p)]))
 
@@ -36,7 +44,7 @@ def main():
     for f in sorted(pathlib.Path(a.carpeta).iterdir()):
         if f.suffix.lower() not in (".wav", ".mp3", ".m4a"):
             continue
-        segs, _ = m.transcribe(str(f), language="es", word_timestamps=True, beam_size=5, vad_filter=False,
+        segs, _ = m.transcribe(audio16k(f), language="es", word_timestamps=True, beam_size=5, vad_filter=False,
                                condition_on_previous_text=False)
         pal = [w for s in segs for w in (s.words or [])]
         hyp = norm(" ".join(w.word for w in pal))
