@@ -9,12 +9,13 @@ Trabajo (JSON):
    "clon": {"ref": "...wav", "ref_texto": "..."}}          # opcional: la voz de Tomás
 
 Deja en out/voz-libre/<id>/:
-  originales/<nombre>.wav     (con nombre, para usar después)
+  originales/<nombre>.wav     (con nombre, tal como sale de Qwen)
+  ajustadas/<nombre>.wav      (pausas > 0,3 s acortadas y hasta 1,2× más rápida: tools/voz_ajustar.py; así se usaría en un video)
   ciega/A.mp3, B.mp3, ...     (mismo volumen, orden al azar: para escuchar sin saber cuál es cuál)
   clave.json                  (qué letra es cuál: NO abrir antes de votar)
   ciega/metricas.json         (Whisper contra el guion, por letra; ver tools/voz_comparar.py)
 """
-import json, pathlib, random, shutil, subprocess, sys
+import json, pathlib, random, re, shutil, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 PY = sys.executable
@@ -44,11 +45,19 @@ def main():
             sh(PY, "tools/voz_libre.py", "clon", "--texto", job["guion"], "--ref", c["ref"], "--ref-texto", c["ref_texto"], "--out", destino)
     shutil.copy(ROOT / job["referencia"], orig / ("elevenlabs" + pathlib.Path(job["referencia"]).suffix))
 
+    # Qwen deja pausas de hasta 1,4 s: se aprietan como en producción (ElevenLabs va tal como se publicó).
+    ajust = out / "ajustadas"
+    ajust.mkdir(exist_ok=True)
+    palabras = len(re.findall(r"\w+", (ROOT / job["guion"]).read_text()))
+    for f in sorted(orig.glob("*.wav")):
+        sh(PY, "tools/voz_ajustar.py", f, ajust / f.name, "--palabras", palabras)
+    shutil.copy(orig / ("elevenlabs" + pathlib.Path(job["referencia"]).suffix), ajust)
+
     # Orden al azar y mismo volumen percibido (-16 LUFS), para que nadie gane por sonar más fuerte.
     for f in ciega.glob("*.mp3"):
         f.unlink()
-    fuentes = sorted(orig.iterdir())
-    random.shuffle(fuentes)
+    fuentes = sorted(ajust.iterdir())
+    random.Random(job["id"]).shuffle(fuentes)  # mismo orden si se vuelve a correr
     clave = {}
     for letra, f in zip("ABCDEFGH", fuentes):
         sh("ffmpeg", "-y", "-v", "error", "-i", f, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-b:a", "192k", ciega / f"{letra}.mp3")

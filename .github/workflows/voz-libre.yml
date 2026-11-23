@@ -25,7 +25,7 @@ jobs:
         run: |
           brew install ffmpeg >/dev/null
           uv venv -q --python 3.12 .venv-voz
-          VIRTUAL_ENV=.venv-voz uv pip install -q mlx-audio soundfile faster-whisper==1.1.1
+          VIRTUAL_ENV=.venv-voz uv pip install -q mlx-audio soundfile "faster-whisper>=1.2"
       - name: Voces
         run: |
           J="${{ github.event.inputs.trabajo }}"
