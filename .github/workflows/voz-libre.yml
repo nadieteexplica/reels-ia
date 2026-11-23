@@ -1,0 +1,45 @@
+name: voz-libre
+# Prueba de voz gratis: Qwen3-TTS (MLX) en una máquina Mac M1 de GitHub (gratis en repo público), contra ElevenLabs a ciegas.
+# Se dispara al subir un JSON a jobs/voz-libre/ (formato en tools/voz_prueba_ciega.py). Resultados en out/voz-libre/<id>/.
+on:
+  push:
+    paths: ["jobs/voz-libre/**.json"]
+  workflow_dispatch:
+    inputs:
+      trabajo:
+        description: "Ruta del JSON en jobs/voz-libre/"
+        required: true
+permissions:
+  contents: write
+concurrency: voz-libre
+jobs:
+  voz:
+    runs-on: macos-14
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: astral-sh/setup-uv@v6
+      - name: Dependencias
+        run: |
+          brew install ffmpeg >/dev/null
+          uv venv -q --python 3.12 .venv-voz
+          VIRTUAL_ENV=.venv-voz uv pip install -q mlx-audio soundfile faster-whisper==1.1.1
+      - name: Voces
+        run: |
+          J="${{ github.event.inputs.trabajo }}"
+          if [ -z "$J" ]; then J=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'jobs/voz-libre/*.json' | tail -1); fi
+          echo "trabajo: $J"; test -n "$J"
+          .venv-voz/bin/python tools/voz_prueba_ciega.py "$J"
+          ID=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['id'])" "$J")
+          .venv-voz/bin/python tools/voz_comparar.py "$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['guion'])" "$J")" "out/voz-libre/$ID/ciega"
+      - name: Guardar
+        if: always()
+        run: |
+          git config user.name "reels-bot"
+          git config user.email "reels-bot@users.noreply.github.com"
+          git add out/voz-libre
+          git commit -m "voz-libre: resultados" || { echo "nada que guardar"; exit 0; }
+          for i in 1 2 3; do git pull --rebase -q origin main && git push && exit 0; sleep 5; done
+          exit 1

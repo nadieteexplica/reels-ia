@@ -1,0 +1,6 @@
+{
+ "id": "ep07",
+ "guion": "studio/voz-prueba/ep07.txt",
+ "voces": "studio/voz-prueba/voces.json",
+ "referencia": "out/tts/ep07-rascacielos-encoge-v2.mp3"
+}

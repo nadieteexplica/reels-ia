@@ -14,3 +14,8 @@ studio/episodios/*/referencias/
 studio/episodios/*/auditoria/**/ref_*.jpg
 studio/**/escena/_assets/
 studio/**/escena/out*/
+.venv/
+.venv-voz/
+# prueba de voz: los wav pesan; lo que vale queda en el informe
+studio/voz-prueba/*.wav
+studio/voz-prueba/ciega/
