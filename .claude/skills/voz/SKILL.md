@@ -9,7 +9,7 @@ description: Genera la locución de un guion de El viejo del dato con el narrado
 - **Dónde corre:** GitHub Actions (`voz-libre.yml`, Mac `macos-15`, gratis). En el Mac de Tomás también corre, pero usa ~7 de 8 GB: no lo hagas ahí salvo que lo pida, y los modelos no se bajan por adelantado.
 
 ## Pasos
-1. Texto de la voz en `studio/episodios/<ep>/voz.txt` (sólo lo que se dice, con la puntuación que marca las pausas; números en palabras si se leen raro: "cuarenta" y no "40").
+1. Texto de la voz en `studio/episodios/<ep>/voz.txt`: **se copia tal cual la sección `## Texto para la voz` del `guion.md`** (nunca se arma pegando el gancho y el resto: en la prueba del 23-nov eso duplicó una frase). Sólo lo que se dice, con la puntuación que marca las pausas; números en palabras si se leen raro: "cuarenta" y no "40").
 2. Trabajo `jobs/voz-libre/NNNN-<ep>.json`: `{"id": "<ep>", "voz": "narrador", "textos": {"<ep>": "studio/episodios/<ep>/voz.txt"}}` → commit y push (se dispara solo). ~4 min por 50 s.
 3. `git pull` → en `out/voz-libre/<ep>/`: `<ep>.wav` (pausas ≤ 0,3 s y hasta 1,2× con `tools/voz_ajustar.py`), `<ep>.words.json` (Whisper medium + large-v3-turbo promediados; 36 ms de error medio) y `metricas_<ep>.json`.
 4. **Chequeo** (puerta 2 del auditor, automática):
