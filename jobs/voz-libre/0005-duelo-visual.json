@@ -1,0 +1,7 @@
+{
+ "id": "duelo-visual",
+ "voz": "narrador",
+ "textos": {
+  "beat": "studio/duelo-visual/voz.txt"
+ }
+}
