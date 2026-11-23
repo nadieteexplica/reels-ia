@@ -21,7 +21,13 @@ Marco: `docs/REGLAS.md`. Aquí todo es **criterio** (punto de partida, se puede 
 - **[PROBABLE] Una idea por imagen y el cambio cae en la palabra que la nombra** (inicio en `words.json`, ±2 cuadros); algo nuevo cada 2–3 s; nada quieto > 2 s mientras la voz habla.
 - **[PROBABLE] Fondo oscuro + un solo color de energía** con brillo según el estado; rojo sólo para peligro.
 - **[PROBABLE] Cuadro 0 ya compuesto** (nunca negro ni fundido) y **loop**: el último cuadro calza con el primero.
-- **[HIPÓTESIS]** Las revelaciones de escala con movimiento de cámara (alejarse, crash zoom) en vez de corte seco; empujes lentos en cada pausa; viñeta + grano quieto (el grano animado pesa 6 veces más: [MEDIDA]).
+- **[PROBABLE] Ritmo: el cambio pasa DENTRO del plano** (aparece una etiqueta, corre un número, se mueve una pieza), donde el ojo ya está. Cortes y movimientos de cámara cuestan comprensión: sólo cuando cambia la idea, nunca para meter energía (lección 177: Tomás "no caché nada" con 4 cortes en 1,4 s y barridos bajo el texto). Guías:
+  1. Sin barridos ni movimientos rápidos de cámara mientras hay texto en pantalla; el texto se lee quieto (≥ largo/17 s: ~17 caracteres por segundo, estándar de subtítulos).
+  2. Ningún plano ni destello < ~0,3 s, salvo un impacto sin información.
+  3. Un solo foco a la vez: lo nuevo aparece donde está el ojo o el movimiento lo lleva ahí.
+  4. Ni frenético ni muerto: ni tramos > ~1,5 s sin ningún cambio, ni ráfagas de varios cambios en < 1 s.
+  Se mide con `tools/ritmo.py` contra la banda de los virales de la biblioteca y con la prueba de primera vista (skill `qa-video`); decide el ojo de Tomás.
+- **[HIPÓTESIS]** Revelaciones de escala con un movimiento de cámara lento (no crash zoom ni barrido); viñeta + grano quieto (el grano animado pesa 6 veces más: [MEDIDA]).
 
 ## Movimiento (claude-motion, MIT) [PROBABLE]
 - Todo en función del tiempo; nada al azar sin semilla.
