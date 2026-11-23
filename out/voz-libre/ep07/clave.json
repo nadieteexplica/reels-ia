@@ -1,6 +1,6 @@
 {
- "A": "elevenlabs",
- "B": "B_narrador_doc",
- "C": "C_viejo_chileno",
- "D": "A_abuelo_calido"
+ "A": "A_abuelo_calido",
+ "B": "C_viejo_chileno",
+ "C": "B_narrador_doc",
+ "D": "elevenlabs"
 }
