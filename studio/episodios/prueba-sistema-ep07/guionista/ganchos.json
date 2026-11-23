@@ -1,0 +1,112 @@
+{
+ "candidatos": [
+  {
+   "id": "A1",
+   "dur_s": 46,
+   "cuadro0": "Fondo azul noche. Rascacielos de 40 pisos al centro, ~80 % del alto, ~35 % del ancho, techo en ámbar. El piso bajo el techo ya se está borrando. Píldora: SIN UNA EXPLOSIÓN.",
+   "0_3s": "En 0,3 s se borra un piso bajo el techo y el techo baja un escalón; en 1,8 s, otro. En 2,4 s entra una dinamita y se tacha con ✗ rojo.",
+   "texto_pantalla_0_3s": "SIN UNA EXPLOSIÓN",
+   "voz_0_3s": "Tienes que hacer desaparecer este rascacielos. Sin una explosión.",
+   "resto": "Cuarenta pisos en medio de Tokio. Fácil: lo desarmas desde arriba como una torre de bloques; pero arriba queda abierto y el ruido y el polvo caen a la calle. Así que nunca le sacas el techo: lo apoyas en gatos hidráulicos, lo rodeas de paneles y adentro desarmas un piso; pero el techo queda sobre un piso vacío, así que los gatos lo bajan y vuelta a empezar. Pero la caja de paneles se vería rara, así que le pones ventanas a la altura de las de verdad: parece un piso más. Acabas de inventar un rascacielos que se achica; existe, dos pisos cada diez días. El truco para hacerlo desaparecer: nunca sacarle el techo."
+  },
+  {
+   "id": "A2",
+   "dur_s": 46,
+   "cuadro0": "Fondo oscuro. Una torre de 40 bloques de madera al centro, ~75 % del alto; una mano saca el bloque de arriba. Contador grande ×1 arriba a la derecha, en ámbar.",
+   "0_3s": "En 0,3 s la mano levanta el bloque de arriba. En 1,5 s el contador sube a ×100 y la torre se vuelve un rascacielos de 40 pisos, mismo tamaño en cuadro.",
+   "texto_pantalla_0_3s": "×1 → ×100",
+   "voz_0_3s": "Desarmar una torre es fácil: sacas el de arriba. Ahora hazlo con esta.",
+   "resto": "El mismo guion de A1 desde 'Cuarenta pisos en medio de Tokio': desde arriba falla por ruido y polvo; se deja el techo sobre gatos hidráulicos con paneles; se baja un piso y se repite; ventanas en los paneles para que parezca un piso más; acabas de inventar un rascacielos que se achica; existe; remate: nunca sacarle el techo."
+  },
+  {
+   "id": "A3",
+   "dur_s": 46,
+   "cuadro0": "Fondo oscuro. Rascacielos de 40 pisos al centro, ~80 % del alto; el techo en ámbar. Una grúa chica intenta levantar el techo y aparece un ✗ rojo grande encima. Píldora: NO LE SAQUES EL TECHO.",
+   "0_3s": "En 0,3 s la grúa levanta un poco el techo; en 1,2 s el ✗ rojo la frena y el techo vuelve a su lugar. En 2,5 s se borra el piso bajo el techo.",
+   "texto_pantalla_0_3s": "NO LE SAQUES EL TECHO",
+   "voz_0_3s": "Para desarmar este rascacielos, nunca le saques el techo.",
+   "resto": "Cuarenta pisos en medio de Tokio. Desde arriba, como torre de bloques, falla: el ruido y el polvo caen a la calle. Por eso el techo se queda, apoyado en gatos hidráulicos y rodeado de paneles; adentro desarmas un piso, los gatos lo bajan y vuelta a empezar; ventanas en los paneles para que parezca un piso más. Acabas de inventar un rascacielos que se achica; existe, dos pisos cada diez días. Remate: se achicó entero sin que le sacaran el techo."
+  },
+  {
+   "id": "A4",
+   "dur_s": 46,
+   "cuadro0": "Fondo oscuro. Rascacielos de 40 pisos al centro, ~80 % del alto, con edificios vecinos pegados a los lados (~15 % cada uno). Cartuchos de dinamita en la base, tachados con ✗ rojo. Píldora: SIN RUIDO. SIN POLVO.",
+   "0_3s": "En 0,2 s caen cartuchos de dinamita junto a la base; en 0,8 s se tachan con ✗ rojo. En 1,8 s el techo ámbar baja un piso y la torre queda más corta.",
+   "texto_pantalla_0_3s": "SIN RUIDO. SIN POLVO.",
+   "voz_0_3s": "Dinamita no. Este rascacielos tiene que desaparecer sin hacer ruido.",
+   "resto": "El mismo guion de A1 desde 'Cuarenta pisos en medio de Tokio' (sin repetir la dinamita): desde arriba falla; el techo se queda sobre gatos hidráulicos con paneles; se baja un piso y se repite; ventanas en los paneles; acabas de inventar un rascacielos que se achica; existe, dos pisos cada diez días; remate: nunca sacarle el techo."
+  },
+  {
+   "id": "B1",
+   "dur_s": 47,
+   "cuadro0": "Fondo azul casi negro. Torre blanca de 40 pisos, centrada, ~75 % del alto. El último piso, en ámbar, intacto. Sobre él, una línea punteada marca la altura original, varios pisos más arriba. Camión con escombros saliendo por la base.",
+   "0_3s": "En 0,3 s la fachada se hunde un piso bajo el techo ámbar, que no cambia de forma; la punteada queda más lejos. A los 2,5 s el techo se ilumina.",
+   "texto_pantalla_0_3s": "LO ESTÁN DEMOLIENDO",
+   "voz_0_3s": "Demuelen este rascacielos y no le sacan el techo.",
+   "resto": "¿Cómo le quitas cuarenta pisos sin destaparlo? Si tuviste una obra al lado, sabes: ruido y polvo; por eso, en pleno Tokio, nada de explosivos. El truco es el techo: lo refuerzan y lo apoyan en quince gatos hidráulicos, una tapa. Bajo esa tapa desarman el piso de abajo; una grúa colgada del techo baja los pedazos; cuando el piso queda vacío, los gatos bajan la tapa. Y otra vez. Lo lógico sería sacarle el techo primero, pero el techo y sus paneles encierran el ruido y el polvo. Esos paneles tienen ventanas alineadas con las de verdad: desde la calle parece un piso más. Y la grúa, al bajar pedazos, genera la luz de la obra. El techo nunca se fue. Bajó, mientras el rascacielos desaparecía debajo. Mándaselo a quien tiene una obra al lado."
+  },
+  {
+   "id": "B2",
+   "dur_s": 47,
+   "cuadro0": "Fondo oscuro, pantalla partida. Izquierda (~45 % del ancho): una torre implosionando en una nube de polvo gris, ✗ rojo. Derecha (~45 %): torre blanca de 40 pisos con el techo ámbar intacto, sin polvo.",
+   "0_3s": "A la izquierda la torre cae en polvo; a la derecha la torre baja un piso entero, limpia, con el techo igual. A los 2 s la izquierda se apaga y queda la derecha.",
+   "texto_pantalla_0_3s": "SIN UNA EXPLOSIÓN",
+   "voz_0_3s": "Este rascacielos ya perdió la mitad, y sin una explosión.",
+   "resto": "¿Cómo le quitas cuarenta pisos sin dinamita? Una obra al lado ya es ruido y polvo; en pleno Tokio, explosivos ni pensarlo. El truco es el techo: reforzado y apoyado en quince gatos hidráulicos, es una tapa. Bajo la tapa desarman el piso de abajo, una grúa colgada del techo baja los pedazos y los gatos bajan la tapa un piso. Los paneles encierran ruido y polvo y tienen ventanas alineadas con las reales; la grúa genera la luz de la obra. Remate: el techo nunca se fue, bajó mientras el rascacielos desaparecía debajo."
+  },
+  {
+   "id": "B3",
+   "dur_s": 47,
+   "cuadro0": "Fondo oscuro. Torre blanca de 40 pisos, centrada, ~75 % del alto, techo ámbar. Una franja vertical de la fachada está cortada: adentro, el piso bajo el techo está vacío, sólo columnas. Afuera, la fachada se ve entera.",
+   "0_3s": "Una franja de corte baja por la torre: por fuera, entera; por dentro, el piso bajo el techo vacío y un obrero con casco sacando una viga. En 1,5 s la torre baja un piso.",
+   "texto_pantalla_0_3s": "POR FUERA, ENTERO",
+   "voz_0_3s": "Este rascacielos se achica y casi nadie lo nota.",
+   "resto": "¿Cómo le quitas cuarenta pisos sin que se vea? Una obra al lado es ruido y polvo; en pleno Tokio, nada de explosivos. El truco es el techo: reforzado sobre quince gatos hidráulicos, es una tapa. Bajo la tapa desarman el piso de abajo, una grúa colgada del techo baja los pedazos y los gatos bajan la tapa. Los paneles tienen ventanas alineadas con las reales: desde la calle parece un piso más. La grúa genera la luz de la obra. Remate: el techo nunca se fue, bajó mientras el rascacielos desaparecía debajo."
+  },
+  {
+   "id": "B4",
+   "dur_s": 47,
+   "cuadro0": "Fondo oscuro. Corte lateral de la punta de una torre blanca, ~70 % del cuadro: el techo ámbar arriba, debajo un piso totalmente vacío y, entre los dos, columnas de acero con gatos hidráulicos sosteniéndolo.",
+   "0_3s": "Los gatos se encogen y el techo ámbar baja despacio hacia el piso vacío; una viga cae fuera de cuadro. A los 2,5 s la cámara corta a la torre entera: el techo sigue arriba.",
+   "texto_pantalla_0_3s": "SIN PISO DEBAJO",
+   "voz_0_3s": "A este rascacielos le sacaron el piso bajo el techo.",
+   "resto": "¿Y el techo no se cae? Lo refuerzan y lo apoyan en quince gatos hidráulicos: es una tapa. Una obra al lado es ruido y polvo; en pleno Tokio, nada de explosivos. Bajo la tapa desarman el piso de abajo, una grúa colgada del techo baja los pedazos y los gatos bajan la tapa un piso, y otra vez. Los paneles encierran ruido y polvo, con ventanas alineadas con las reales; la grúa genera la luz de la obra. Remate: el techo nunca se fue, bajó mientras el rascacielos desaparecía debajo."
+  },
+  {
+   "id": "D1",
+   "dur_s": 47,
+   "cuadro0": "Fondo azul noche casi negro. Torre blanca de 40 pisos, fachada en zigzag, centrada, ~75 % del alto y ~30 % del ancho. El último piso, marcado en naranja, ya va bajando: la torre se acorta.",
+   "0_3s": "La torre pierde pisos de arriba en cámara rápida; el techo naranja baja con ella, entero. A los 2,5 s, píldora chica CÁMARA RÁPIDA en una esquina.",
+   "texto_pantalla_0_3s": "SE ENCOGE CON EL TECHO",
+   "voz_0_3s": "Este rascacielos se está encogiendo. Lo raro no es que no haya explosiones.",
+   "resto": "Es que nunca le sacan el techo; para entenderlo sólo necesitas un gato de auto. Lo normal es dinamita, pero en plena ciudad es polvo y ruido sobre todos; así que el último piso se vuelve una tapa sobre quince gatos hidráulicos, y bajo ella, escondidos de ti, desarman el piso de abajo; paneles con ventanas alineadas lo hacen parecer un piso más, pero cada diez días son dos pisos menos. ¿Cómo baja el techo? Como tu auto al cambiar una rueda: aflojas el gato y baja; aquí, quince gatos bajan el techo un piso. Remate: se quedó el techo, se fue el edificio. Mándaselo a quien vive junto a una obra."
+  },
+  {
+   "id": "D2",
+   "dur_s": 47,
+   "cuadro0": "Fondo azul noche. Torre blanca de 40 pisos centrada, ~75 % del alto. A su pie, un cartucho de dinamita rojo tachado con una X naranja; la torre ya empieza a acortarse desde arriba.",
+   "0_3s": "La X tacha la dinamita en 0,3 s; la torre se acorta en cámara rápida con el techo naranja bajando entero. Píldora chica CÁMARA RÁPIDA en una esquina desde los 2,5 s.",
+   "texto_pantalla_0_3s": "SIN DINAMITA",
+   "voz_0_3s": "A este rascacielos no lo dinamitaron. Lo encogieron.",
+   "resto": "Lo raro es que nunca le sacan el techo; para entenderlo sólo necesitas un gato de auto. En plena ciudad, la dinamita es polvo y ruido sobre todos; así que el último piso se vuelve una tapa sobre quince gatos hidráulicos y bajo ella, escondidos de ti, desarman el piso de abajo; desde la calle parece un piso más, pero cada diez días son dos pisos menos. ¿Cómo baja el techo? Como tu auto al cambiar una rueda: aflojas el gato y baja; aquí, quince gatos bajan el techo un piso. Remate: se quedó el techo, se fue el edificio. Mándaselo a quien vive junto a una obra."
+  },
+  {
+   "id": "D3",
+   "dur_s": 47,
+   "cuadro0": "Fondo azul noche. Torre blanca de 40 pisos, ~75 % del alto. Los 2 pisos de arriba en corte: adentro, una grúa naranja levanta una viga del piso; afuera, paneles con ventanas tapan todo.",
+   "0_3s": "La viga sube en 0,4 s; el corte se cierra y la torre se ve entera e igual; vuelve a abrirse y falta un piso. Una sola píldora.",
+   "texto_pantalla_0_3s": "LO DESARMAN A ESCONDIDAS",
+   "voz_0_3s": "A este rascacielos lo desarman a escondidas. Por arriba.",
+   "resto": "Lo raro es que nunca le sacan el techo; para entenderlo sólo necesitas un gato de auto. En plena ciudad, la dinamita es polvo y ruido sobre todos; así que el último piso se vuelve una tapa sobre quince gatos hidráulicos y bajo ella desarman el piso de abajo; los paneles tienen ventanas alineadas con las del edificio y desde la calle parece un piso más, pero cada diez días son dos pisos menos. ¿Cómo baja el techo? Como tu auto al cambiar una rueda: aflojas el gato y baja; aquí, quince gatos bajan el techo un piso. Remate: se quedó el techo, se fue el edificio. Mándaselo a quien vive junto a una obra."
+  },
+  {
+   "id": "D4",
+   "dur_s": 47,
+   "cuadro0": "Fondo azul noche. Torre blanca de 40 pisos centrada, ~75 % del alto; al lado, un calendario naranja (~15 % del cuadro) pasa hojas; con cada hoja la torre baja dos pisos, techo naranja entero.",
+   "0_3s": "El calendario pasa diez hojas en 1 s y la torre se acorta dos pisos; se repite una vez. Píldora chica CÁMARA RÁPIDA en una esquina desde los 2,5 s.",
+   "texto_pantalla_0_3s": "−2 PISOS CADA 10 DÍAS",
+   "voz_0_3s": "Este rascacielos pierde dos pisos cada diez días.",
+   "resto": "Lo raro no es que no haya explosiones: es que nunca le sacan el techo; para entenderlo sólo necesitas un gato de auto. En plena ciudad, la dinamita es polvo y ruido sobre todos; así que el último piso se vuelve una tapa sobre quince gatos hidráulicos y bajo ella, escondidos de ti, desarman el piso de abajo; paneles con ventanas alineadas lo hacen parecer un piso más. ¿Cómo baja el techo? Como tu auto al cambiar una rueda: aflojas el gato y baja; aquí, quince gatos bajan el techo un piso. Remate: se quedó el techo, se fue el edificio. Mándaselo a quien vive junto a una obra."
+  }
+ ]
+}

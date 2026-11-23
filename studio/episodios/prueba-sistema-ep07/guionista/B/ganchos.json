@@ -1,0 +1,40 @@
+{
+ "candidatos": [
+  {
+   "id": "B1",
+   "dur_s": 47,
+   "cuadro0": "Fondo azul casi negro. Torre blanca de 40 pisos, centrada, ~75 % del alto. El último piso, en ámbar, intacto. Sobre él, una línea punteada marca la altura original, varios pisos más arriba. Camión con escombros saliendo por la base.",
+   "0_3s": "En 0,3 s la fachada se hunde un piso bajo el techo ámbar, que no cambia de forma; la punteada queda más lejos. A los 2,5 s el techo se ilumina.",
+   "texto_pantalla_0_3s": "LO ESTÁN DEMOLIENDO",
+   "voz_0_3s": "Demuelen este rascacielos y no le sacan el techo.",
+   "resto": "¿Cómo le quitas cuarenta pisos sin destaparlo? Si tuviste una obra al lado, sabes: ruido y polvo; por eso, en pleno Tokio, nada de explosivos. El truco es el techo: lo refuerzan y lo apoyan en quince gatos hidráulicos, una tapa. Bajo esa tapa desarman el piso de abajo; una grúa colgada del techo baja los pedazos; cuando el piso queda vacío, los gatos bajan la tapa. Y otra vez. Lo lógico sería sacarle el techo primero, pero el techo y sus paneles encierran el ruido y el polvo. Esos paneles tienen ventanas alineadas con las de verdad: desde la calle parece un piso más. Y la grúa, al bajar pedazos, genera la luz de la obra. El techo nunca se fue. Bajó, mientras el rascacielos desaparecía debajo. Mándaselo a quien tiene una obra al lado."
+  },
+  {
+   "id": "B2",
+   "dur_s": 47,
+   "cuadro0": "Fondo oscuro, pantalla partida. Izquierda (~45 % del ancho): una torre implosionando en una nube de polvo gris, ✗ rojo. Derecha (~45 %): torre blanca de 40 pisos con el techo ámbar intacto, sin polvo.",
+   "0_3s": "A la izquierda la torre cae en polvo; a la derecha la torre baja un piso entero, limpia, con el techo igual. A los 2 s la izquierda se apaga y queda la derecha.",
+   "texto_pantalla_0_3s": "SIN UNA EXPLOSIÓN",
+   "voz_0_3s": "Este rascacielos ya perdió la mitad, y sin una explosión.",
+   "resto": "¿Cómo le quitas cuarenta pisos sin dinamita? Una obra al lado ya es ruido y polvo; en pleno Tokio, explosivos ni pensarlo. El truco es el techo: reforzado y apoyado en quince gatos hidráulicos, es una tapa. Bajo la tapa desarman el piso de abajo, una grúa colgada del techo baja los pedazos y los gatos bajan la tapa un piso. Los paneles encierran ruido y polvo y tienen ventanas alineadas con las reales; la grúa genera la luz de la obra. Remate: el techo nunca se fue, bajó mientras el rascacielos desaparecía debajo."
+  },
+  {
+   "id": "B3",
+   "dur_s": 47,
+   "cuadro0": "Fondo oscuro. Torre blanca de 40 pisos, centrada, ~75 % del alto, techo ámbar. Una franja vertical de la fachada está cortada: adentro, el piso bajo el techo está vacío, sólo columnas. Afuera, la fachada se ve entera.",
+   "0_3s": "Una franja de corte baja por la torre: por fuera, entera; por dentro, el piso bajo el techo vacío y un obrero con casco sacando una viga. En 1,5 s la torre baja un piso.",
+   "texto_pantalla_0_3s": "POR FUERA, ENTERO",
+   "voz_0_3s": "Este rascacielos se achica y casi nadie lo nota.",
+   "resto": "¿Cómo le quitas cuarenta pisos sin que se vea? Una obra al lado es ruido y polvo; en pleno Tokio, nada de explosivos. El truco es el techo: reforzado sobre quince gatos hidráulicos, es una tapa. Bajo la tapa desarman el piso de abajo, una grúa colgada del techo baja los pedazos y los gatos bajan la tapa. Los paneles tienen ventanas alineadas con las reales: desde la calle parece un piso más. La grúa genera la luz de la obra. Remate: el techo nunca se fue, bajó mientras el rascacielos desaparecía debajo."
+  },
+  {
+   "id": "B4",
+   "dur_s": 47,
+   "cuadro0": "Fondo oscuro. Corte lateral de la punta de una torre blanca, ~70 % del cuadro: el techo ámbar arriba, debajo un piso totalmente vacío y, entre los dos, columnas de acero con gatos hidráulicos sosteniéndolo.",
+   "0_3s": "Los gatos se encogen y el techo ámbar baja despacio hacia el piso vacío; una viga cae fuera de cuadro. A los 2,5 s la cámara corta a la torre entera: el techo sigue arriba.",
+   "texto_pantalla_0_3s": "SIN PISO DEBAJO",
+   "voz_0_3s": "A este rascacielos le sacaron el piso bajo el techo.",
+   "resto": "¿Y el techo no se cae? Lo refuerzan y lo apoyan en quince gatos hidráulicos: es una tapa. Una obra al lado es ruido y polvo; en pleno Tokio, nada de explosivos. Bajo la tapa desarman el piso de abajo, una grúa colgada del techo baja los pedazos y los gatos bajan la tapa un piso, y otra vez. Los paneles encierran ruido y polvo, con ventanas alineadas con las reales; la grúa genera la luz de la obra. Remate: el techo nunca se fue, bajó mientras el rascacielos desaparecía debajo."
+  }
+ ]
+}

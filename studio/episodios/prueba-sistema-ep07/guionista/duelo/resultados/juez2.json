@@ -1,0 +1,334 @@
+{
+"pares": [
+{
+"par": "P1",
+"desliza_primero": "DR",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P2",
+"desliza_primero": "GI",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P3",
+"desliza_primero": "DQ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P4",
+"desliza_primero": "OR",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P5",
+"desliza_primero": "KT",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P6",
+"desliza_primero": "QT",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P7",
+"desliza_primero": "OQ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P8",
+"desliza_primero": "RZ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P9",
+"desliza_primero": "QI",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P10",
+"desliza_primero": "OE",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P11",
+"desliza_primero": "ND",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P12",
+"desliza_primero": "KC",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P13",
+"desliza_primero": "GV",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P14",
+"desliza_primero": "JZ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P15",
+"desliza_primero": "UV",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P16",
+"desliza_primero": "LE",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P17",
+"desliza_primero": "OH",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P18",
+"desliza_primero": "FV",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P19",
+"desliza_primero": "WN",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P20",
+"desliza_primero": "QM",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P21",
+"desliza_primero": "GL",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P22",
+"desliza_primero": "RO",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P23",
+"desliza_primero": "AM",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P24",
+"desliza_primero": "KQ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P25",
+"desliza_primero": "DZ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P26",
+"desliza_primero": "CI",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P27",
+"desliza_primero": "YF",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P28",
+"desliza_primero": "EN",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P29",
+"desliza_primero": "VI",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P30",
+"desliza_primero": "SP",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P31",
+"desliza_primero": "BZ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P32",
+"desliza_primero": "WF",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P33",
+"desliza_primero": "UC",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P34",
+"desliza_primero": "HC",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P35",
+"desliza_primero": "ID",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P36",
+"desliza_primero": "KR",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P37",
+"desliza_primero": "TE",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P38",
+"desliza_primero": "WH",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P39",
+"desliza_primero": "FG",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P40",
+"desliza_primero": "JQ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P41",
+"desliza_primero": "QV",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P42",
+"desliza_primero": "FI",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P43",
+"desliza_primero": "BA",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P44",
+"desliza_primero": "AX",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P45",
+"desliza_primero": "GQ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P46",
+"desliza_primero": "VU",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P47",
+"desliza_primero": "PR",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P48",
+"desliza_primero": "MQ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P49",
+"desliza_primero": "GH",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P50",
+"desliza_primero": "UE",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P51",
+"desliza_primero": "ML",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P52",
+"desliza_primero": "UX",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P53",
+"desliza_primero": "IN",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P54",
+"desliza_primero": "VJ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P55",
+"desliza_primero": "WJ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P56",
+"desliza_primero": "FF",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P57",
+"desliza_primero": "IO",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P58",
+"desliza_primero": "HB",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P59",
+"desliza_primero": "LF",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P60",
+"desliza_primero": "MC",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P61",
+"desliza_primero": "QY",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P62",
+"desliza_primero": "EM",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P63",
+"desliza_primero": "SB",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P64",
+"desliza_primero": "UH",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P65",
+"desliza_primero": "EV",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+},
+{
+"par": "P66",
+"desliza_primero": "WZ",
+"razon": "(ver respuesta del juez 2 en la sesión)"
+}
+]
+}

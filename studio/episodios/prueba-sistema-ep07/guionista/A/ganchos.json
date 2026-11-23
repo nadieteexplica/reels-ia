@@ -1,0 +1,41 @@
+{
+ "_que_es": "Prueba del sistema (tema del Ep. 7). Guionista A · Inventaste X. 4 ganchos para el mismo guion; A1 es el que va en guion.md.",
+ "candidatos": [
+  {
+   "id": "A1",
+   "dur_s": 46,
+   "cuadro0": "Fondo azul noche. Rascacielos de 40 pisos al centro, ~80 % del alto, ~35 % del ancho, techo en ámbar. El piso bajo el techo ya se está borrando. Píldora: SIN UNA EXPLOSIÓN.",
+   "0_3s": "En 0,3 s se borra un piso bajo el techo y el techo baja un escalón; en 1,8 s, otro. En 2,4 s entra una dinamita y se tacha con ✗ rojo.",
+   "texto_pantalla_0_3s": "SIN UNA EXPLOSIÓN",
+   "voz_0_3s": "Tienes que hacer desaparecer este rascacielos. Sin una explosión.",
+   "resto": "Cuarenta pisos en medio de Tokio. Fácil: lo desarmas desde arriba como una torre de bloques; pero arriba queda abierto y el ruido y el polvo caen a la calle. Así que nunca le sacas el techo: lo apoyas en gatos hidráulicos, lo rodeas de paneles y adentro desarmas un piso; pero el techo queda sobre un piso vacío, así que los gatos lo bajan y vuelta a empezar. Pero la caja de paneles se vería rara, así que le pones ventanas a la altura de las de verdad: parece un piso más. Acabas de inventar un rascacielos que se achica; existe, dos pisos cada diez días. El truco para hacerlo desaparecer: nunca sacarle el techo."
+  },
+  {
+   "id": "A2",
+   "dur_s": 46,
+   "cuadro0": "Fondo oscuro. Una torre de 40 bloques de madera al centro, ~75 % del alto; una mano saca el bloque de arriba. Contador grande ×1 arriba a la derecha, en ámbar.",
+   "0_3s": "En 0,3 s la mano levanta el bloque de arriba. En 1,5 s el contador sube a ×100 y la torre se vuelve un rascacielos de 40 pisos, mismo tamaño en cuadro.",
+   "texto_pantalla_0_3s": "×1 → ×100",
+   "voz_0_3s": "Desarmar una torre es fácil: sacas el de arriba. Ahora hazlo con esta.",
+   "resto": "El mismo guion de A1 desde 'Cuarenta pisos en medio de Tokio': desde arriba falla por ruido y polvo; se deja el techo sobre gatos hidráulicos con paneles; se baja un piso y se repite; ventanas en los paneles para que parezca un piso más; acabas de inventar un rascacielos que se achica; existe; remate: nunca sacarle el techo."
+  },
+  {
+   "id": "A3",
+   "dur_s": 46,
+   "cuadro0": "Fondo oscuro. Rascacielos de 40 pisos al centro, ~80 % del alto; el techo en ámbar. Una grúa chica intenta levantar el techo y aparece un ✗ rojo grande encima. Píldora: NO LE SAQUES EL TECHO.",
+   "0_3s": "En 0,3 s la grúa levanta un poco el techo; en 1,2 s el ✗ rojo la frena y el techo vuelve a su lugar. En 2,5 s se borra el piso bajo el techo.",
+   "texto_pantalla_0_3s": "NO LE SAQUES EL TECHO",
+   "voz_0_3s": "Para desarmar este rascacielos, nunca le saques el techo.",
+   "resto": "Cuarenta pisos en medio de Tokio. Desde arriba, como torre de bloques, falla: el ruido y el polvo caen a la calle. Por eso el techo se queda, apoyado en gatos hidráulicos y rodeado de paneles; adentro desarmas un piso, los gatos lo bajan y vuelta a empezar; ventanas en los paneles para que parezca un piso más. Acabas de inventar un rascacielos que se achica; existe, dos pisos cada diez días. Remate: se achicó entero sin que le sacaran el techo."
+  },
+  {
+   "id": "A4",
+   "dur_s": 46,
+   "cuadro0": "Fondo oscuro. Rascacielos de 40 pisos al centro, ~80 % del alto, con edificios vecinos pegados a los lados (~15 % cada uno). Cartuchos de dinamita en la base, tachados con ✗ rojo. Píldora: SIN RUIDO. SIN POLVO.",
+   "0_3s": "En 0,2 s caen cartuchos de dinamita junto a la base; en 0,8 s se tachan con ✗ rojo. En 1,8 s el techo ámbar baja un piso y la torre queda más corta.",
+   "texto_pantalla_0_3s": "SIN RUIDO. SIN POLVO.",
+   "voz_0_3s": "Dinamita no. Este rascacielos tiene que desaparecer sin hacer ruido.",
+   "resto": "El mismo guion de A1 desde 'Cuarenta pisos en medio de Tokio' (sin repetir la dinamita): desde arriba falla; el techo se queda sobre gatos hidráulicos con paneles; se baja un piso y se repite; ventanas en los paneles; acabas de inventar un rascacielos que se achica; existe, dos pisos cada diez días; remate: nunca sacarle el techo."
+  }
+ ]
+}

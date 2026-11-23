@@ -18,3 +18,8 @@
 **Arreglado en el kit después del duelo:** contador sin medio dígito por defecto (`rueda=False`), subtítulos en MAYÚSCULAS sin puntuación final, el recuadro crece con las palabras ya dichas (también en dos líneas).
 
 **Reglas que quedan (skill `estilo-visual`):** la etiqueta dice exactamente lo del storyboard; el último cuadro tiene que calzar de verdad con el primero; el objeto del remate es un objeto real, nunca un ícono en un círculo; las revelaciones de escala con movimiento de cámara, no con corte seco.
+
+## Vara viral (Tomás, 23-nov-2026): ganarle al otro motor no basta
+- "7,7 está bajo nuestro piso de 8". El beat se pone al lado de cuadros de virales con /watch (touchscreen y buceo), mismo recorte, letras al azar (`studio/duelo-visual/vara_viral.py`; los cuadros de terceros quedan sólo en el scratchpad).
+- **Vuelta 0 (kit del duelo):** 2 jueces ciegos → nuestro beat **5/10**; touchscreen 8–8,5; buceo 7–7,5. Brechas: encuadre y escala, variedad de tomas, luz y profundidad, materiales, golpe, tipografía arriba con píldora, información visual (recuadro de zoom, regla, pictogramas). Ojo de método: a los virales se los muestreó en 45–90 s y a nosotros en 7 s (castiga la variedad); desde la vuelta 1, misma ventana.
+- **Regla:** el kit tiene **3 vueltas** para llegar a **≥ 8 contra los virales**. Si no llega, no se sigue parchando: se prueba el mismo beat en **three.js renderizado en GitHub Actions** y se compara con la misma vara.

@@ -1,0 +1,2667 @@
+{
+ "items": [
+  "A1",
+  "A2",
+  "A3",
+  "A4",
+  "B1",
+  "B2",
+  "B3",
+  "B4",
+  "D1",
+  "D2",
+  "D3",
+  "D4"
+ ],
+ "jueces": {
+  "juez1": {
+   "P1": {
+    "codigos": {
+     "LJ": "A1",
+     "HZ": "D4"
+    },
+    "orden": [
+     "A1",
+     "D4"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "FW": "B4",
+     "YH": "D1"
+    },
+    "orden": [
+     "B4",
+     "D1"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "CS": "A2",
+     "JQ": "A4"
+    },
+    "orden": [
+     "A2",
+     "A4"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "PK": "B3",
+     "XO": "D2"
+    },
+    "orden": [
+     "B3",
+     "D2"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "JT": "A4",
+     "CD": "B4"
+    },
+    "orden": [
+     "A4",
+     "B4"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "QN": "A3",
+     "FY": "D3"
+    },
+    "orden": [
+     "A3",
+     "D3"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "KE": "A3",
+     "PN": "B1"
+    },
+    "orden": [
+     "A3",
+     "B1"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "BV": "B1",
+     "CY": "B4"
+    },
+    "orden": [
+     "B1",
+     "B4"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "RS": "B2",
+     "ZK": "B4"
+    },
+    "orden": [
+     "B2",
+     "B4"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "KW": "A3",
+     "LT": "D4"
+    },
+    "orden": [
+     "A3",
+     "D4"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "PS": "A1",
+     "ZO": "A2"
+    },
+    "orden": [
+     "A1",
+     "A2"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "CC": "A3",
+     "IP": "B3"
+    },
+    "orden": [
+     "A3",
+     "B3"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "WV": "A1",
+     "CB": "A3"
+    },
+    "orden": [
+     "A1",
+     "A3"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "XW": "A2",
+     "JU": "B4"
+    },
+    "orden": [
+     "A2",
+     "B4"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "SV": "A4",
+     "OJ": "B2"
+    },
+    "orden": [
+     "A4",
+     "B2"
+    ]
+   },
+   "P16": {
+    "codigos": {
+     "WM": "A2",
+     "VL": "D4"
+    },
+    "orden": [
+     "A2",
+     "D4"
+    ]
+   },
+   "P17": {
+    "codigos": {
+     "AO": "A2",
+     "LF": "A3"
+    },
+    "orden": [
+     "A2",
+     "A3"
+    ]
+   },
+   "P18": {
+    "codigos": {
+     "TD": "B4",
+     "PB": "D2"
+    },
+    "orden": [
+     "B4",
+     "D2"
+    ]
+   },
+   "P19": {
+    "codigos": {
+     "GY": "D2",
+     "JE": "D4"
+    },
+    "orden": [
+     "D2",
+     "D4"
+    ]
+   },
+   "P20": {
+    "codigos": {
+     "XH": "B1",
+     "MM": "D4"
+    },
+    "orden": [
+     "B1",
+     "D4"
+    ]
+   },
+   "P21": {
+    "codigos": {
+     "PC": "B2",
+     "FO": "D2"
+    },
+    "orden": [
+     "B2",
+     "D2"
+    ]
+   },
+   "P22": {
+    "codigos": {
+     "MR": "B2",
+     "IE": "B3"
+    },
+    "orden": [
+     "B2",
+     "B3"
+    ]
+   },
+   "P23": {
+    "codigos": {
+     "NR": "A3",
+     "IW": "A4"
+    },
+    "orden": [
+     "A3",
+     "A4"
+    ]
+   },
+   "P24": {
+    "codigos": {
+     "NL": "B1",
+     "VM": "D3"
+    },
+    "orden": [
+     "B1",
+     "D3"
+    ]
+   },
+   "P25": {
+    "codigos": {
+     "HE": "A4",
+     "CF": "B1"
+    },
+    "orden": [
+     "A4",
+     "B1"
+    ]
+   },
+   "P26": {
+    "codigos": {
+     "EH": "A2",
+     "VH": "D2"
+    },
+    "orden": [
+     "A2",
+     "D2"
+    ]
+   },
+   "P27": {
+    "codigos": {
+     "AP": "B4",
+     "SF": "D3"
+    },
+    "orden": [
+     "B4",
+     "D3"
+    ]
+   },
+   "P28": {
+    "codigos": {
+     "IJ": "A2",
+     "AE": "D1"
+    },
+    "orden": [
+     "A2",
+     "D1"
+    ]
+   },
+   "P29": {
+    "codigos": {
+     "SK": "B2",
+     "EW": "D1"
+    },
+    "orden": [
+     "B2",
+     "D1"
+    ]
+   },
+   "P30": {
+    "codigos": {
+     "QT": "B4",
+     "UV": "D4"
+    },
+    "orden": [
+     "B4",
+     "D4"
+    ]
+   },
+   "P31": {
+    "codigos": {
+     "XB": "A1",
+     "OY": "D3"
+    },
+    "orden": [
+     "A1",
+     "D3"
+    ]
+   },
+   "P32": {
+    "codigos": {
+     "VZ": "A1",
+     "RM": "D2"
+    },
+    "orden": [
+     "A1",
+     "D2"
+    ]
+   },
+   "P33": {
+    "codigos": {
+     "MD": "B3",
+     "PU": "B4"
+    },
+    "orden": [
+     "B3",
+     "B4"
+    ]
+   },
+   "P34": {
+    "codigos": {
+     "MB": "B1",
+     "GC": "B3"
+    },
+    "orden": [
+     "B1",
+     "B3"
+    ]
+   },
+   "P35": {
+    "codigos": {
+     "GO": "B1",
+     "FD": "B2"
+    },
+    "orden": [
+     "B1",
+     "B2"
+    ]
+   },
+   "P36": {
+    "codigos": {
+     "KT": "A3",
+     "BD": "B4"
+    },
+    "orden": [
+     "A3",
+     "B4"
+    ]
+   },
+   "P37": {
+    "codigos": {
+     "AS": "D1",
+     "ER": "D4"
+    },
+    "orden": [
+     "D1",
+     "D4"
+    ]
+   },
+   "P38": {
+    "codigos": {
+     "DL": "B1",
+     "TA": "D2"
+    },
+    "orden": [
+     "B1",
+     "D2"
+    ]
+   },
+   "P39": {
+    "codigos": {
+     "CG": "B3",
+     "TM": "D4"
+    },
+    "orden": [
+     "B3",
+     "D4"
+    ]
+   },
+   "P40": {
+    "codigos": {
+     "EU": "A2",
+     "IL": "B2"
+    },
+    "orden": [
+     "A2",
+     "B2"
+    ]
+   },
+   "P41": {
+    "codigos": {
+     "TL": "A1",
+     "PD": "D1"
+    },
+    "orden": [
+     "A1",
+     "D1"
+    ]
+   },
+   "P42": {
+    "codigos": {
+     "DP": "A4",
+     "OP": "D3"
+    },
+    "orden": [
+     "A4",
+     "D3"
+    ]
+   },
+   "P43": {
+    "codigos": {
+     "PJ": "B3",
+     "CE": "D3"
+    },
+    "orden": [
+     "B3",
+     "D3"
+    ]
+   },
+   "P44": {
+    "codigos": {
+     "DX": "B2",
+     "KX": "D3"
+    },
+    "orden": [
+     "B2",
+     "D3"
+    ]
+   },
+   "P45": {
+    "codigos": {
+     "WF": "A4",
+     "QA": "D2"
+    },
+    "orden": [
+     "A4",
+     "D2"
+    ]
+   },
+   "P46": {
+    "codigos": {
+     "GQ": "D2",
+     "LE": "D3"
+    },
+    "orden": [
+     "D2",
+     "D3"
+    ]
+   },
+   "P47": {
+    "codigos": {
+     "WR": "A2",
+     "AY": "B3"
+    },
+    "orden": [
+     "A2",
+     "B3"
+    ]
+   },
+   "P48": {
+    "codigos": {
+     "QJ": "D1",
+     "UC": "D2"
+    },
+    "orden": [
+     "D1",
+     "D2"
+    ]
+   },
+   "P49": {
+    "codigos": {
+     "WI": "A3",
+     "QL": "D1"
+    },
+    "orden": [
+     "A3",
+     "D1"
+    ]
+   },
+   "P50": {
+    "codigos": {
+     "FL": "A3",
+     "RR": "D2"
+    },
+    "orden": [
+     "A3",
+     "D2"
+    ]
+   },
+   "P51": {
+    "codigos": {
+     "YQ": "A1",
+     "KU": "B3"
+    },
+    "orden": [
+     "A1",
+     "B3"
+    ]
+   },
+   "P52": {
+    "codigos": {
+     "HT": "A1",
+     "ZZ": "A4"
+    },
+    "orden": [
+     "A1",
+     "A4"
+    ]
+   },
+   "P53": {
+    "codigos": {
+     "YG": "A2",
+     "ZH": "B1"
+    },
+    "orden": [
+     "A2",
+     "B1"
+    ]
+   },
+   "P54": {
+    "codigos": {
+     "MX": "A4",
+     "PL": "B3"
+    },
+    "orden": [
+     "A4",
+     "B3"
+    ]
+   },
+   "P55": {
+    "codigos": {
+     "XA": "D1",
+     "AZ": "D3"
+    },
+    "orden": [
+     "D1",
+     "D3"
+    ]
+   },
+   "P56": {
+    "codigos": {
+     "IG": "A4",
+     "WT": "D4"
+    },
+    "orden": [
+     "A4",
+     "D4"
+    ]
+   },
+   "P57": {
+    "codigos": {
+     "LO": "A3",
+     "ZX": "B2"
+    },
+    "orden": [
+     "A3",
+     "B2"
+    ]
+   },
+   "P58": {
+    "codigos": {
+     "LL": "A1",
+     "CH": "B4"
+    },
+    "orden": [
+     "A1",
+     "B4"
+    ]
+   },
+   "P59": {
+    "codigos": {
+     "DH": "A4",
+     "PG": "D1"
+    },
+    "orden": [
+     "A4",
+     "D1"
+    ]
+   },
+   "P60": {
+    "codigos": {
+     "KG": "B3",
+     "PT": "D1"
+    },
+    "orden": [
+     "B3",
+     "D1"
+    ]
+   },
+   "P61": {
+    "codigos": {
+     "LZ": "A1",
+     "VD": "B2"
+    },
+    "orden": [
+     "A1",
+     "B2"
+    ]
+   },
+   "P62": {
+    "codigos": {
+     "MZ": "A1",
+     "WY": "B1"
+    },
+    "orden": [
+     "A1",
+     "B1"
+    ]
+   },
+   "P63": {
+    "codigos": {
+     "GP": "D3",
+     "FN": "D4"
+    },
+    "orden": [
+     "D3",
+     "D4"
+    ]
+   },
+   "P64": {
+    "codigos": {
+     "ZU": "B2",
+     "KC": "D4"
+    },
+    "orden": [
+     "B2",
+     "D4"
+    ]
+   },
+   "P65": {
+    "codigos": {
+     "MO": "A2",
+     "CX": "D3"
+    },
+    "orden": [
+     "A2",
+     "D3"
+    ]
+   },
+   "P66": {
+    "codigos": {
+     "FF": "B1",
+     "EA": "D1"
+    },
+    "orden": [
+     "B1",
+     "D1"
+    ]
+   }
+  },
+  "juez2": {
+   "P1": {
+    "codigos": {
+     "ZY": "B2",
+     "DR": "A4"
+    },
+    "orden": [
+     "B2",
+     "A4"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "BH": "D2",
+     "GI": "D1"
+    },
+    "orden": [
+     "D2",
+     "D1"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "BY": "D3",
+     "DQ": "B4"
+    },
+    "orden": [
+     "D3",
+     "B4"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "OR": "D2",
+     "AY": "B2"
+    },
+    "orden": [
+     "D2",
+     "B2"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "CO": "D3",
+     "KT": "A3"
+    },
+    "orden": [
+     "D3",
+     "A3"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "QT": "B3",
+     "QG": "A1"
+    },
+    "orden": [
+     "B3",
+     "A1"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "WI": "D4",
+     "OQ": "D3"
+    },
+    "orden": [
+     "D4",
+     "D3"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "RZ": "D1",
+     "PQ": "A1"
+    },
+    "orden": [
+     "D1",
+     "A1"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "HW": "D4",
+     "QI": "A4"
+    },
+    "orden": [
+     "D4",
+     "A4"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "RG": "D4",
+     "OE": "A1"
+    },
+    "orden": [
+     "D4",
+     "A1"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "ND": "D4",
+     "MO": "D2"
+    },
+    "orden": [
+     "D4",
+     "D2"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "KC": "D3",
+     "VH": "A4"
+    },
+    "orden": [
+     "D3",
+     "A4"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "NC": "D1",
+     "GV": "B4"
+    },
+    "orden": [
+     "D1",
+     "B4"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "JZ": "A4",
+     "DY": "A1"
+    },
+    "orden": [
+     "A4",
+     "A1"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "EW": "D4",
+     "UV": "B1"
+    },
+    "orden": [
+     "D4",
+     "B1"
+    ]
+   },
+   "P16": {
+    "codigos": {
+     "LE": "B3",
+     "IE": "B2"
+    },
+    "orden": [
+     "B3",
+     "B2"
+    ]
+   },
+   "P17": {
+    "codigos": {
+     "OH": "B4",
+     "XD": "B3"
+    },
+    "orden": [
+     "B4",
+     "B3"
+    ]
+   },
+   "P18": {
+    "codigos": {
+     "MP": "B4",
+     "FV": "A3"
+    },
+    "orden": [
+     "B4",
+     "A3"
+    ]
+   },
+   "P19": {
+    "codigos": {
+     "HF": "D2",
+     "WN": "B4"
+    },
+    "orden": [
+     "D2",
+     "B4"
+    ]
+   },
+   "P20": {
+    "codigos": {
+     "QM": "D1",
+     "KN": "B2"
+    },
+    "orden": [
+     "D1",
+     "B2"
+    ]
+   },
+   "P21": {
+    "codigos": {
+     "GL": "D1",
+     "XL": "A2"
+    },
+    "orden": [
+     "D1",
+     "A2"
+    ]
+   },
+   "P22": {
+    "codigos": {
+     "AK": "B2",
+     "RO": "A1"
+    },
+    "orden": [
+     "B2",
+     "A1"
+    ]
+   },
+   "P23": {
+    "codigos": {
+     "OW": "B3",
+     "AM": "A3"
+    },
+    "orden": [
+     "B3",
+     "A3"
+    ]
+   },
+   "P24": {
+    "codigos": {
+     "KQ": "B4",
+     "TJ": "B1"
+    },
+    "orden": [
+     "B4",
+     "B1"
+    ]
+   },
+   "P25": {
+    "codigos": {
+     "QC": "D3",
+     "DZ": "B3"
+    },
+    "orden": [
+     "D3",
+     "B3"
+    ]
+   },
+   "P26": {
+    "codigos": {
+     "HD": "D4",
+     "CI": "D1"
+    },
+    "orden": [
+     "D4",
+     "D1"
+    ]
+   },
+   "P27": {
+    "codigos": {
+     "IB": "A4",
+     "YF": "A3"
+    },
+    "orden": [
+     "A4",
+     "A3"
+    ]
+   },
+   "P28": {
+    "codigos": {
+     "IY": "B2",
+     "EN": "A2"
+    },
+    "orden": [
+     "B2",
+     "A2"
+    ]
+   },
+   "P29": {
+    "codigos": {
+     "VI": "A3",
+     "ME": "A2"
+    },
+    "orden": [
+     "A3",
+     "A2"
+    ]
+   },
+   "P30": {
+    "codigos": {
+     "RQ": "B2",
+     "SP": "A3"
+    },
+    "orden": [
+     "B2",
+     "A3"
+    ]
+   },
+   "P31": {
+    "codigos": {
+     "WK": "D4",
+     "BZ": "A3"
+    },
+    "orden": [
+     "D4",
+     "A3"
+    ]
+   },
+   "P32": {
+    "codigos": {
+     "WF": "B1",
+     "IA": "A1"
+    },
+    "orden": [
+     "B1",
+     "A1"
+    ]
+   },
+   "P33": {
+    "codigos": {
+     "UC": "D4",
+     "ZI": "B2"
+    },
+    "orden": [
+     "D4",
+     "B2"
+    ]
+   },
+   "P34": {
+    "codigos": {
+     "CT": "D1",
+     "HC": "A3"
+    },
+    "orden": [
+     "D1",
+     "A3"
+    ]
+   },
+   "P35": {
+    "codigos": {
+     "ID": "D1",
+     "OA": "A4"
+    },
+    "orden": [
+     "D1",
+     "A4"
+    ]
+   },
+   "P36": {
+    "codigos": {
+     "KR": "D3",
+     "NI": "B2"
+    },
+    "orden": [
+     "D3",
+     "B2"
+    ]
+   },
+   "P37": {
+    "codigos": {
+     "TE": "D4",
+     "BQ": "A2"
+    },
+    "orden": [
+     "D4",
+     "A2"
+    ]
+   },
+   "P38": {
+    "codigos": {
+     "WH": "B3",
+     "DF": "A2"
+    },
+    "orden": [
+     "B3",
+     "A2"
+    ]
+   },
+   "P39": {
+    "codigos": {
+     "FG": "B3",
+     "JU": "A4"
+    },
+    "orden": [
+     "B3",
+     "A4"
+    ]
+   },
+   "P40": {
+    "codigos": {
+     "JQ": "D3",
+     "YG": "D2"
+    },
+    "orden": [
+     "D3",
+     "D2"
+    ]
+   },
+   "P41": {
+    "codigos": {
+     "JO": "D3",
+     "QV": "B1"
+    },
+    "orden": [
+     "D3",
+     "B1"
+    ]
+   },
+   "P42": {
+    "codigos": {
+     "FI": "B4",
+     "LZ": "A2"
+    },
+    "orden": [
+     "B4",
+     "A2"
+    ]
+   },
+   "P43": {
+    "codigos": {
+     "AI": "D3",
+     "BA": "D1"
+    },
+    "orden": [
+     "D3",
+     "D1"
+    ]
+   },
+   "P44": {
+    "codigos": {
+     "AX": "B1",
+     "QR": "A2"
+    },
+    "orden": [
+     "B1",
+     "A2"
+    ]
+   },
+   "P45": {
+    "codigos": {
+     "GQ": "A4",
+     "PH": "A2"
+    },
+    "orden": [
+     "A4",
+     "A2"
+    ]
+   },
+   "P46": {
+    "codigos": {
+     "OD": "D2",
+     "VU": "A3"
+    },
+    "orden": [
+     "D2",
+     "A3"
+    ]
+   },
+   "P47": {
+    "codigos": {
+     "NV": "D2",
+     "PR": "B3"
+    },
+    "orden": [
+     "D2",
+     "B3"
+    ]
+   },
+   "P48": {
+    "codigos": {
+     "MQ": "B4",
+     "JW": "A4"
+    },
+    "orden": [
+     "B4",
+     "A4"
+    ]
+   },
+   "P49": {
+    "codigos": {
+     "GH": "B4",
+     "KG": "A1"
+    },
+    "orden": [
+     "B4",
+     "A1"
+    ]
+   },
+   "P50": {
+    "codigos": {
+     "WX": "D1",
+     "UE": "B1"
+    },
+    "orden": [
+     "D1",
+     "B1"
+    ]
+   },
+   "P51": {
+    "codigos": {
+     "ML": "B4",
+     "BE": "B2"
+    },
+    "orden": [
+     "B4",
+     "B2"
+    ]
+   },
+   "P52": {
+    "codigos": {
+     "AC": "A2",
+     "UX": "A1"
+    },
+    "orden": [
+     "A2",
+     "A1"
+    ]
+   },
+   "P53": {
+    "codigos": {
+     "IN": "A3",
+     "FB": "A1"
+    },
+    "orden": [
+     "A3",
+     "A1"
+    ]
+   },
+   "P54": {
+    "codigos": {
+     "CV": "D2",
+     "VJ": "A1"
+    },
+    "orden": [
+     "D2",
+     "A1"
+    ]
+   },
+   "P55": {
+    "codigos": {
+     "TH": "D4",
+     "WJ": "B3"
+    },
+    "orden": [
+     "D4",
+     "B3"
+    ]
+   },
+   "P56": {
+    "codigos": {
+     "BO": "D2",
+     "FF": "A4"
+    },
+    "orden": [
+     "D2",
+     "A4"
+    ]
+   },
+   "P57": {
+    "codigos": {
+     "IO": "D3",
+     "LK": "A1"
+    },
+    "orden": [
+     "D3",
+     "A1"
+    ]
+   },
+   "P58": {
+    "codigos": {
+     "RK": "B1",
+     "HB": "A3"
+    },
+    "orden": [
+     "B1",
+     "A3"
+    ]
+   },
+   "P59": {
+    "codigos": {
+     "JG": "D2",
+     "LF": "B1"
+    },
+    "orden": [
+     "D2",
+     "B1"
+    ]
+   },
+   "P60": {
+    "codigos": {
+     "MC": "B1",
+     "PI": "A4"
+    },
+    "orden": [
+     "B1",
+     "A4"
+    ]
+   },
+   "P61": {
+    "codigos": {
+     "QU": "B2",
+     "QY": "B1"
+    },
+    "orden": [
+     "B2",
+     "B1"
+    ]
+   },
+   "P62": {
+    "codigos": {
+     "IC": "D1",
+     "EM": "B3"
+    },
+    "orden": [
+     "D1",
+     "B3"
+    ]
+   },
+   "P63": {
+    "codigos": {
+     "SB": "B3",
+     "MA": "B1"
+    },
+    "orden": [
+     "B3",
+     "B1"
+    ]
+   },
+   "P64": {
+    "codigos": {
+     "JJ": "D2",
+     "UH": "A2"
+    },
+    "orden": [
+     "D2",
+     "A2"
+    ]
+   },
+   "P65": {
+    "codigos": {
+     "CS": "D4",
+     "EV": "B4"
+    },
+    "orden": [
+     "D4",
+     "B4"
+    ]
+   },
+   "P66": {
+    "codigos": {
+     "WZ": "D3",
+     "TM": "A2"
+    },
+    "orden": [
+     "D3",
+     "A2"
+    ]
+   }
+  },
+  "juez3": {
+   "P1": {
+    "codigos": {
+     "PV": "B2",
+     "JY": "D4"
+    },
+    "orden": [
+     "B2",
+     "D4"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "BT": "A3",
+     "UU": "B1"
+    },
+    "orden": [
+     "A3",
+     "B1"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "GC": "A4",
+     "TE": "D1"
+    },
+    "orden": [
+     "A4",
+     "D1"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "KI": "B4",
+     "UX": "D3"
+    },
+    "orden": [
+     "B4",
+     "D3"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "WJ": "A2",
+     "TS": "A4"
+    },
+    "orden": [
+     "A2",
+     "A4"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "EA": "D1",
+     "PB": "D2"
+    },
+    "orden": [
+     "D1",
+     "D2"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "PI": "A1",
+     "VD": "D4"
+    },
+    "orden": [
+     "A1",
+     "D4"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "WG": "A4",
+     "VP": "D2"
+    },
+    "orden": [
+     "A4",
+     "D2"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "JW": "A4",
+     "QJ": "B2"
+    },
+    "orden": [
+     "A4",
+     "B2"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "OO": "A2",
+     "OY": "B1"
+    },
+    "orden": [
+     "A2",
+     "B1"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "DR": "B1",
+     "GJ": "B2"
+    },
+    "orden": [
+     "B1",
+     "B2"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "CP": "A1",
+     "AJ": "B2"
+    },
+    "orden": [
+     "A1",
+     "B2"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "OC": "A3",
+     "QO": "B4"
+    },
+    "orden": [
+     "A3",
+     "B4"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "IM": "A3",
+     "GG": "D1"
+    },
+    "orden": [
+     "A3",
+     "D1"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "CS": "A2",
+     "CE": "A3"
+    },
+    "orden": [
+     "A2",
+     "A3"
+    ]
+   },
+   "P16": {
+    "codigos": {
+     "XQ": "D1",
+     "IL": "D4"
+    },
+    "orden": [
+     "D1",
+     "D4"
+    ]
+   },
+   "P17": {
+    "codigos": {
+     "ET": "D2",
+     "UQ": "D4"
+    },
+    "orden": [
+     "D2",
+     "D4"
+    ]
+   },
+   "P18": {
+    "codigos": {
+     "ID": "B3",
+     "WL": "D3"
+    },
+    "orden": [
+     "B3",
+     "D3"
+    ]
+   },
+   "P19": {
+    "codigos": {
+     "HP": "B3",
+     "PM": "B4"
+    },
+    "orden": [
+     "B3",
+     "B4"
+    ]
+   },
+   "P20": {
+    "codigos": {
+     "AF": "A2",
+     "AP": "B4"
+    },
+    "orden": [
+     "A2",
+     "B4"
+    ]
+   },
+   "P21": {
+    "codigos": {
+     "VO": "B1",
+     "MJ": "D2"
+    },
+    "orden": [
+     "B1",
+     "D2"
+    ]
+   },
+   "P22": {
+    "codigos": {
+     "XE": "B4",
+     "NL": "D1"
+    },
+    "orden": [
+     "B4",
+     "D1"
+    ]
+   },
+   "P23": {
+    "codigos": {
+     "MK": "A3",
+     "DK": "D4"
+    },
+    "orden": [
+     "A3",
+     "D4"
+    ]
+   },
+   "P24": {
+    "codigos": {
+     "AK": "B2",
+     "YK": "D3"
+    },
+    "orden": [
+     "B2",
+     "D3"
+    ]
+   },
+   "P25": {
+    "codigos": {
+     "MD": "A2",
+     "GW": "B3"
+    },
+    "orden": [
+     "A2",
+     "B3"
+    ]
+   },
+   "P26": {
+    "codigos": {
+     "AX": "A1",
+     "JI": "D1"
+    },
+    "orden": [
+     "A1",
+     "D1"
+    ]
+   },
+   "P27": {
+    "codigos": {
+     "LC": "A3",
+     "MM": "A4"
+    },
+    "orden": [
+     "A3",
+     "A4"
+    ]
+   },
+   "P28": {
+    "codigos": {
+     "SC": "A2",
+     "LN": "D1"
+    },
+    "orden": [
+     "A2",
+     "D1"
+    ]
+   },
+   "P29": {
+    "codigos": {
+     "YI": "A4",
+     "BI": "B1"
+    },
+    "orden": [
+     "A4",
+     "B1"
+    ]
+   },
+   "P30": {
+    "codigos": {
+     "DB": "A1",
+     "VJ": "A2"
+    },
+    "orden": [
+     "A1",
+     "A2"
+    ]
+   },
+   "P31": {
+    "codigos": {
+     "UE": "A2",
+     "HI": "D4"
+    },
+    "orden": [
+     "A2",
+     "D4"
+    ]
+   },
+   "P32": {
+    "codigos": {
+     "NQ": "A1",
+     "KG": "B1"
+    },
+    "orden": [
+     "A1",
+     "B1"
+    ]
+   },
+   "P33": {
+    "codigos": {
+     "YL": "A3",
+     "ZN": "D3"
+    },
+    "orden": [
+     "A3",
+     "D3"
+    ]
+   },
+   "P34": {
+    "codigos": {
+     "AZ": "A3",
+     "YU": "B3"
+    },
+    "orden": [
+     "A3",
+     "B3"
+    ]
+   },
+   "P35": {
+    "codigos": {
+     "MR": "A1",
+     "RG": "B4"
+    },
+    "orden": [
+     "A1",
+     "B4"
+    ]
+   },
+   "P36": {
+    "codigos": {
+     "XC": "A3",
+     "BX": "B2"
+    },
+    "orden": [
+     "A3",
+     "B2"
+    ]
+   },
+   "P37": {
+    "codigos": {
+     "NO": "B2",
+     "TY": "D1"
+    },
+    "orden": [
+     "B2",
+     "D1"
+    ]
+   },
+   "P38": {
+    "codigos": {
+     "EU": "B4",
+     "JP": "D2"
+    },
+    "orden": [
+     "B4",
+     "D2"
+    ]
+   },
+   "P39": {
+    "codigos": {
+     "BR": "B1",
+     "EF": "D3"
+    },
+    "orden": [
+     "B1",
+     "D3"
+    ]
+   },
+   "P40": {
+    "codigos": {
+     "PN": "A1",
+     "KJ": "B3"
+    },
+    "orden": [
+     "A1",
+     "B3"
+    ]
+   },
+   "P41": {
+    "codigos": {
+     "XX": "A2",
+     "UI": "B2"
+    },
+    "orden": [
+     "A2",
+     "B2"
+    ]
+   },
+   "P42": {
+    "codigos": {
+     "MU": "B4",
+     "HJ": "D4"
+    },
+    "orden": [
+     "B4",
+     "D4"
+    ]
+   },
+   "P43": {
+    "codigos": {
+     "PR": "A4",
+     "VM": "D4"
+    },
+    "orden": [
+     "A4",
+     "D4"
+    ]
+   },
+   "P44": {
+    "codigos": {
+     "DF": "A1",
+     "UF": "A3"
+    },
+    "orden": [
+     "A1",
+     "A3"
+    ]
+   },
+   "P45": {
+    "codigos": {
+     "CG": "A4",
+     "QZ": "D3"
+    },
+    "orden": [
+     "A4",
+     "D3"
+    ]
+   },
+   "P46": {
+    "codigos": {
+     "HO": "B2",
+     "KY": "D2"
+    },
+    "orden": [
+     "B2",
+     "D2"
+    ]
+   },
+   "P47": {
+    "codigos": {
+     "ON": "A4",
+     "ER": "B4"
+    },
+    "orden": [
+     "A4",
+     "B4"
+    ]
+   },
+   "P48": {
+    "codigos": {
+     "GH": "A1",
+     "CF": "D2"
+    },
+    "orden": [
+     "A1",
+     "D2"
+    ]
+   },
+   "P49": {
+    "codigos": {
+     "KR": "B3",
+     "CK": "D4"
+    },
+    "orden": [
+     "B3",
+     "D4"
+    ]
+   },
+   "P50": {
+    "codigos": {
+     "HL": "B1",
+     "IZ": "D4"
+    },
+    "orden": [
+     "B1",
+     "D4"
+    ]
+   },
+   "P51": {
+    "codigos": {
+     "SG": "D1",
+     "NM": "D3"
+    },
+    "orden": [
+     "D1",
+     "D3"
+    ]
+   },
+   "P52": {
+    "codigos": {
+     "NX": "A3",
+     "QG": "D2"
+    },
+    "orden": [
+     "A3",
+     "D2"
+    ]
+   },
+   "P53": {
+    "codigos": {
+     "MI": "B1",
+     "BP": "B4"
+    },
+    "orden": [
+     "B1",
+     "B4"
+    ]
+   },
+   "P54": {
+    "codigos": {
+     "IS": "A4",
+     "LE": "B3"
+    },
+    "orden": [
+     "A4",
+     "B3"
+    ]
+   },
+   "P55": {
+    "codigos": {
+     "VQ": "B2",
+     "QU": "B3"
+    },
+    "orden": [
+     "B2",
+     "B3"
+    ]
+   },
+   "P56": {
+    "codigos": {
+     "ZG": "B3",
+     "CI": "D2"
+    },
+    "orden": [
+     "B3",
+     "D2"
+    ]
+   },
+   "P57": {
+    "codigos": {
+     "HM": "B3",
+     "JA": "D1"
+    },
+    "orden": [
+     "B3",
+     "D1"
+    ]
+   },
+   "P58": {
+    "codigos": {
+     "EB": "A1",
+     "NW": "A4"
+    },
+    "orden": [
+     "A1",
+     "A4"
+    ]
+   },
+   "P59": {
+    "codigos": {
+     "YZ": "A1",
+     "PS": "D3"
+    },
+    "orden": [
+     "A1",
+     "D3"
+    ]
+   },
+   "P60": {
+    "codigos": {
+     "PA": "D3",
+     "CM": "D4"
+    },
+    "orden": [
+     "D3",
+     "D4"
+    ]
+   },
+   "P61": {
+    "codigos": {
+     "OH": "B1",
+     "ZD": "B3"
+    },
+    "orden": [
+     "B1",
+     "B3"
+    ]
+   },
+   "P62": {
+    "codigos": {
+     "HE": "B2",
+     "EQ": "B4"
+    },
+    "orden": [
+     "B2",
+     "B4"
+    ]
+   },
+   "P63": {
+    "codigos": {
+     "XW": "A2",
+     "UY": "D2"
+    },
+    "orden": [
+     "A2",
+     "D2"
+    ]
+   },
+   "P64": {
+    "codigos": {
+     "RY": "A2",
+     "BA": "D3"
+    },
+    "orden": [
+     "A2",
+     "D3"
+    ]
+   },
+   "P65": {
+    "codigos": {
+     "ZE": "D2",
+     "HS": "D3"
+    },
+    "orden": [
+     "D2",
+     "D3"
+    ]
+   },
+   "P66": {
+    "codigos": {
+     "BU": "B1",
+     "IQ": "D1"
+    },
+    "orden": [
+     "B1",
+     "D1"
+    ]
+   }
+  },
+  "juez4": {
+   "P1": {
+    "codigos": {
+     "YJ": "D3",
+     "DT": "B1"
+    },
+    "orden": [
+     "D3",
+     "B1"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "PT": "B2",
+     "FH": "A3"
+    },
+    "orden": [
+     "B2",
+     "A3"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "PN": "D1",
+     "VB": "B4"
+    },
+    "orden": [
+     "D1",
+     "B4"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "TE": "D2",
+     "MB": "A2"
+    },
+    "orden": [
+     "D2",
+     "A2"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "GA": "B3",
+     "NB": "A1"
+    },
+    "orden": [
+     "B3",
+     "A1"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "WB": "D4",
+     "FM": "D3"
+    },
+    "orden": [
+     "D4",
+     "D3"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "OW": "D1",
+     "KX": "B2"
+    },
+    "orden": [
+     "D1",
+     "B2"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "DC": "D4",
+     "FK": "D1"
+    },
+    "orden": [
+     "D4",
+     "D1"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "GF": "D2",
+     "UQ": "A3"
+    },
+    "orden": [
+     "D2",
+     "A3"
+    ]
+   },
+   "P10": {
+    "codigos": {
+     "XO": "D2",
+     "BJ": "B4"
+    },
+    "orden": [
+     "D2",
+     "B4"
+    ]
+   },
+   "P11": {
+    "codigos": {
+     "VX": "B4",
+     "ML": "B1"
+    },
+    "orden": [
+     "B4",
+     "B1"
+    ]
+   },
+   "P12": {
+    "codigos": {
+     "KO": "B1",
+     "FD": "A3"
+    },
+    "orden": [
+     "B1",
+     "A3"
+    ]
+   },
+   "P13": {
+    "codigos": {
+     "AC": "D2",
+     "IC": "B2"
+    },
+    "orden": [
+     "D2",
+     "B2"
+    ]
+   },
+   "P14": {
+    "codigos": {
+     "LN": "B4",
+     "DR": "B2"
+    },
+    "orden": [
+     "B4",
+     "B2"
+    ]
+   },
+   "P15": {
+    "codigos": {
+     "YG": "D3",
+     "ZN": "A4"
+    },
+    "orden": [
+     "D3",
+     "A4"
+    ]
+   },
+   "P16": {
+    "codigos": {
+     "CB": "D3",
+     "WP": "A1"
+    },
+    "orden": [
+     "D3",
+     "A1"
+    ]
+   },
+   "P17": {
+    "codigos": {
+     "GL": "B4",
+     "RO": "B3"
+    },
+    "orden": [
+     "B4",
+     "B3"
+    ]
+   },
+   "P18": {
+    "codigos": {
+     "GK": "B4",
+     "LX": "A1"
+    },
+    "orden": [
+     "B4",
+     "A1"
+    ]
+   },
+   "P19": {
+    "codigos": {
+     "PA": "D2",
+     "UN": "B1"
+    },
+    "orden": [
+     "D2",
+     "B1"
+    ]
+   },
+   "P20": {
+    "codigos": {
+     "HZ": "B4",
+     "UY": "A3"
+    },
+    "orden": [
+     "B4",
+     "A3"
+    ]
+   },
+   "P21": {
+    "codigos": {
+     "OC": "B3",
+     "ZB": "A4"
+    },
+    "orden": [
+     "B3",
+     "A4"
+    ]
+   },
+   "P22": {
+    "codigos": {
+     "IG": "D4",
+     "XC": "A1"
+    },
+    "orden": [
+     "D4",
+     "A1"
+    ]
+   },
+   "P23": {
+    "codigos": {
+     "TK": "D3",
+     "LI": "B3"
+    },
+    "orden": [
+     "D3",
+     "B3"
+    ]
+   },
+   "P24": {
+    "codigos": {
+     "KT": "B3",
+     "BI": "B1"
+    },
+    "orden": [
+     "B3",
+     "B1"
+    ]
+   },
+   "P25": {
+    "codigos": {
+     "XW": "D3",
+     "WK": "A3"
+    },
+    "orden": [
+     "D3",
+     "A3"
+    ]
+   },
+   "P26": {
+    "codigos": {
+     "IJ": "A3",
+     "AX": "A2"
+    },
+    "orden": [
+     "A3",
+     "A2"
+    ]
+   },
+   "P27": {
+    "codigos": {
+     "YT": "B1",
+     "ZU": "A2"
+    },
+    "orden": [
+     "B1",
+     "A2"
+    ]
+   },
+   "P28": {
+    "codigos": {
+     "CA": "A4",
+     "HD": "A3"
+    },
+    "orden": [
+     "A4",
+     "A3"
+    ]
+   },
+   "P29": {
+    "codigos": {
+     "PW": "D1",
+     "OY": "A1"
+    },
+    "orden": [
+     "D1",
+     "A1"
+    ]
+   },
+   "P30": {
+    "codigos": {
+     "MZ": "D2",
+     "IN": "A1"
+    },
+    "orden": [
+     "D2",
+     "A1"
+    ]
+   },
+   "P31": {
+    "codigos": {
+     "PE": "A4",
+     "PF": "A1"
+    },
+    "orden": [
+     "A4",
+     "A1"
+    ]
+   },
+   "P32": {
+    "codigos": {
+     "AZ": "D4",
+     "XJ": "B4"
+    },
+    "orden": [
+     "D4",
+     "B4"
+    ]
+   },
+   "P33": {
+    "codigos": {
+     "WY": "B2",
+     "ET": "A4"
+    },
+    "orden": [
+     "B2",
+     "A4"
+    ]
+   },
+   "P34": {
+    "codigos": {
+     "HK": "D3",
+     "LZ": "B4"
+    },
+    "orden": [
+     "D3",
+     "B4"
+    ]
+   },
+   "P35": {
+    "codigos": {
+     "ZT": "D2",
+     "CQ": "B3"
+    },
+    "orden": [
+     "D2",
+     "B3"
+    ]
+   },
+   "P36": {
+    "codigos": {
+     "GM": "B1",
+     "YF": "A1"
+    },
+    "orden": [
+     "B1",
+     "A1"
+    ]
+   },
+   "P37": {
+    "codigos": {
+     "HN": "D3",
+     "CU": "B2"
+    },
+    "orden": [
+     "D3",
+     "B2"
+    ]
+   },
+   "P38": {
+    "codigos": {
+     "BP": "D1",
+     "RR": "A3"
+    },
+    "orden": [
+     "D1",
+     "A3"
+    ]
+   },
+   "P39": {
+    "codigos": {
+     "KF": "A3",
+     "ND": "A1"
+    },
+    "orden": [
+     "A3",
+     "A1"
+    ]
+   },
+   "P40": {
+    "codigos": {
+     "CI": "B3",
+     "TC": "B2"
+    },
+    "orden": [
+     "B3",
+     "B2"
+    ]
+   },
+   "P41": {
+    "codigos": {
+     "GD": "D2",
+     "NP": "A4"
+    },
+    "orden": [
+     "D2",
+     "A4"
+    ]
+   },
+   "P42": {
+    "codigos": {
+     "WO": "D4",
+     "EN": "B1"
+    },
+    "orden": [
+     "D4",
+     "B1"
+    ]
+   },
+   "P43": {
+    "codigos": {
+     "OT": "D2",
+     "VH": "D1"
+    },
+    "orden": [
+     "D2",
+     "D1"
+    ]
+   },
+   "P44": {
+    "codigos": {
+     "XR": "B1",
+     "YV": "A4"
+    },
+    "orden": [
+     "B1",
+     "A4"
+    ]
+   },
+   "P45": {
+    "codigos": {
+     "YD": "B3",
+     "JI": "A2"
+    },
+    "orden": [
+     "B3",
+     "A2"
+    ]
+   },
+   "P46": {
+    "codigos": {
+     "SI": "D1",
+     "XI": "B1"
+    },
+    "orden": [
+     "D1",
+     "B1"
+    ]
+   },
+   "P47": {
+    "codigos": {
+     "GO": "D4",
+     "HF": "A2"
+    },
+    "orden": [
+     "D4",
+     "A2"
+    ]
+   },
+   "P48": {
+    "codigos": {
+     "HH": "D1",
+     "EJ": "A2"
+    },
+    "orden": [
+     "D1",
+     "A2"
+    ]
+   },
+   "P49": {
+    "codigos": {
+     "SG": "D4",
+     "KC": "A3"
+    },
+    "orden": [
+     "D4",
+     "A3"
+    ]
+   },
+   "P50": {
+    "codigos": {
+     "MI": "D3",
+     "HQ": "D1"
+    },
+    "orden": [
+     "D3",
+     "D1"
+    ]
+   },
+   "P51": {
+    "codigos": {
+     "QH": "D1",
+     "UZ": "A4"
+    },
+    "orden": [
+     "D1",
+     "A4"
+    ]
+   },
+   "P52": {
+    "codigos": {
+     "DU": "D1",
+     "OB": "B3"
+    },
+    "orden": [
+     "D1",
+     "B3"
+    ]
+   },
+   "P53": {
+    "codigos": {
+     "DA": "A2",
+     "PH": "A1"
+    },
+    "orden": [
+     "A2",
+     "A1"
+    ]
+   },
+   "P54": {
+    "codigos": {
+     "OL": "B2",
+     "BG": "B1"
+    },
+    "orden": [
+     "B2",
+     "B1"
+    ]
+   },
+   "P55": {
+    "codigos": {
+     "TS": "D4",
+     "GC": "B2"
+    },
+    "orden": [
+     "D4",
+     "B2"
+    ]
+   },
+   "P56": {
+    "codigos": {
+     "LQ": "D4",
+     "FO": "D2"
+    },
+    "orden": [
+     "D4",
+     "D2"
+    ]
+   },
+   "P57": {
+    "codigos": {
+     "TI": "B4",
+     "YY": "A2"
+    },
+    "orden": [
+     "B4",
+     "A2"
+    ]
+   },
+   "P58": {
+    "codigos": {
+     "VA": "B3",
+     "TW": "A3"
+    },
+    "orden": [
+     "B3",
+     "A3"
+    ]
+   },
+   "P59": {
+    "codigos": {
+     "TL": "D3",
+     "GB": "D2"
+    },
+    "orden": [
+     "D3",
+     "D2"
+    ]
+   },
+   "P60": {
+    "codigos": {
+     "LK": "D4",
+     "EB": "A4"
+    },
+    "orden": [
+     "D4",
+     "A4"
+    ]
+   },
+   "P61": {
+    "codigos": {
+     "GI": "B4",
+     "BT": "A4"
+    },
+    "orden": [
+     "B4",
+     "A4"
+    ]
+   },
+   "P62": {
+    "codigos": {
+     "XU": "D3",
+     "KN": "A2"
+    },
+    "orden": [
+     "D3",
+     "A2"
+    ]
+   },
+   "P63": {
+    "codigos": {
+     "VL": "B2",
+     "FT": "A1"
+    },
+    "orden": [
+     "B2",
+     "A1"
+    ]
+   },
+   "P64": {
+    "codigos": {
+     "JC": "A4",
+     "ZP": "A2"
+    },
+    "orden": [
+     "A4",
+     "A2"
+    ]
+   },
+   "P65": {
+    "codigos": {
+     "RP": "B2",
+     "CN": "A2"
+    },
+    "orden": [
+     "B2",
+     "A2"
+    ]
+   },
+   "P66": {
+    "codigos": {
+     "DZ": "D4",
+     "MV": "B3"
+    },
+    "orden": [
+     "D4",
+     "B3"
+    ]
+   }
+  }
+ },
+ "anclas": null
+}

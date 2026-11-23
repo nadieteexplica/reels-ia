@@ -1,0 +1,22 @@
+{
+ "candidatos": [
+  {
+   "id": "A2",
+   "dur_s": 46,
+   "cuadro0": "Fondo oscuro. Una torre de 40 bloques de madera al centro, ~75 % del alto; una mano saca el bloque de arriba. Contador grande ×1 arriba a la derecha, en ámbar.",
+   "0_3s": "En 0,3 s la mano levanta el bloque de arriba. En 1,5 s el contador sube a ×100 y la torre se vuelve un rascacielos de 40 pisos, mismo tamaño en cuadro.",
+   "texto_pantalla_0_3s": "×1 → ×100",
+   "voz_0_3s": "Desarmar una torre es fácil: sacas el de arriba. Ahora hazlo con esta.",
+   "resto": "El mismo guion de A1 desde 'Cuarenta pisos en medio de Tokio': desde arriba falla por ruido y polvo; se deja el techo sobre gatos hidráulicos con paneles; se baja un piso y se repite; ventanas en los paneles para que parezca un piso más; acabas de inventar un rascacielos que se achica; existe; remate: nunca sacarle el techo."
+  },
+  {
+   "id": "B2",
+   "dur_s": 47,
+   "cuadro0": "Fondo oscuro, pantalla partida. Izquierda (~45 % del ancho): una torre implosionando en una nube de polvo gris, ✗ rojo. Derecha (~45 %): torre blanca de 40 pisos con el techo ámbar intacto, sin polvo.",
+   "0_3s": "A la izquierda la torre cae en polvo; a la derecha la torre baja un piso entero, limpia, con el techo igual. A los 2 s la izquierda se apaga y queda la derecha.",
+   "texto_pantalla_0_3s": "SIN UNA EXPLOSIÓN",
+   "voz_0_3s": "Este rascacielos ya perdió la mitad, y sin una explosión.",
+   "resto": "¿Cómo le quitas cuarenta pisos sin dinamita? Una obra al lado ya es ruido y polvo; en pleno Tokio, explosivos ni pensarlo. El truco es el techo: reforzado y apoyado en quince gatos hidráulicos, es una tapa. Bajo la tapa desarman el piso de abajo, una grúa colgada del techo baja los pedazos y los gatos bajan la tapa un piso. Los paneles encierran ruido y polvo y tienen ventanas alineadas con las reales; la grúa genera la luz de la obra. Remate: el techo nunca se fue, bajó mientras el rascacielos desaparecía debajo."
+  }
+ ]
+}

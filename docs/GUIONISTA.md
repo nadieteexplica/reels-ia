@@ -194,7 +194,7 @@ Se corrió a ciegas sobre los 6 videos publicados (las "anclas"), con códigos a
 8. ¿Hay al menos un "tú" que ponga al espectador en la escena?
 9. ¿Después del pago quedan ≤ 2 frases y ≤ 5 s?
 10. ¿La última frase, seguida de la primera, suena a una sola frase (loop)?
-11. ¿70–105 palabras (techo 128) y 25–40 s de voz estimada (techo 45 s)?
+11. ¿110–150 palabras y 35–50 s de voz estimada a ~3,1 pal/s (techo 52 s; meta de YouTube primero, 23-nov-2026)? Si no cabe, se sacan pasos, no se acelera.
 12. ¿Sin presentaciones ("en este video", "hoy te cuento"), sin años, nombres de científicos ni "un estudio dijo" en la voz (regla de Tomás del 21-oct), y sin chilenismos?
 
 **Reglas 13–20 (Tomás, 7-nov-2026, después del guion "pésimo" del Ep. 10c: "hay corte, hay lentitud, no hay explicaciones buenas, fíjate cómo termina"). Valen para todo guion, de datos o de historia. Si una falla, el guion no sale de la mesa del guionista.**
