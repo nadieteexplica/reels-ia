@@ -5,7 +5,9 @@ description: Kit y reglas visuales de El viejo del dato para animar por código:
 
 # Estilo visual
 
-**Motor:** se decide con el duelo visual a ciegas del 23-nov-2026 (kit Python vs HyperFrames en Actions; resultado en `docs/estudios/duelo-visual.md`). Hasta entonces, el kit Python (`studio/plantilla/kit_explica.py`).
+**Motor: kit Python** (`studio/plantilla/kit_explica.py`), ganador del duelo visual a ciegas del 23-nov-2026 contra HyperFrames, 2 a 1 (`docs/estudios/duelo-visual.md`). Render en el Mac (~40 s por 8 s de video con 6 procesos) o en Actions (`render-2d.yml`). HyperFrames queda de respaldo (`render-hyperframes.yml`).
+
+**Lo que dejó el duelo (no repetir):** la etiqueta dice exactamente lo del storyboard · el último cuadro calza de verdad con el primero (loop) · el objeto del remate es real, nunca un ícono en un círculo · las revelaciones de escala van con movimiento de cámara (alejarse), no con corte seco · volumen leve en los objetos (cara superior, sombra) y viñeta + grano ganan · contadores sin medio dígito (`contador(..., rueda=False)`, por defecto).
 
 ## La base (todos los estilos)
 - **Fondo oscuro** (#0B101D–#16181F, con grano leve) y **un solo color de energía** que significa algo (lo activo, lo que lleva la energía o el dato). Brillo (glow) sólo en ese color y según el estado, no decorativo. Rojo sólo para peligro o error.

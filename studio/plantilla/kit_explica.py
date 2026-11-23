@@ -427,7 +427,9 @@ def ancho_contador(tam, digitos=1, unidad="", peso="black"):
 
 
 def contador(L, valor, x, y, tam, digitos=1, unidad="", capa="energia", color=None, alpha=1.0,
-             peso="black", cam=False, alin="izq"):
+             peso="black", cam=False, alin="izq", rueda=False):
+    # rueda=False (por defecto): salta de cifra en cifra; congelado nunca muestra medio digito
+    # (duelo visual 23-nov: los jueces lo vieron como falla). rueda=True: odometro.
     """Número que rueda como odómetro (las cifras suben o bajan según cambie 'valor', con la curva que
     traiga 'valor'). (x, y) = línea base. Las cifras tienen ancho fijo: el número no baila mientras se lee."""
     if alpha <= 0.003:
@@ -443,7 +445,7 @@ def contador(L, valor, x, y, tam, digitos=1, unidad="", capa="energia", color=No
         X -= total
     elif alin == "centro":
         X -= total / 2
-    v = round(float(valor), 5)
+    v = round(float(valor), 5) if rueda else float(round(float(valor)))
     # ventana justa (alto de cifra + margen): la cifra que entra queda fuera hasta que rueda
     margen = px * 0.13
     alto = int(math.ceil(px * CAP + 2 * margen))
@@ -561,6 +563,11 @@ def _norm(w):
 _CACHE_SUB = {}
 
 
+def _vis(w):
+    """Como se ve la palabra en pantalla: MAYUSCULAS y sin puntuacion final (mas legible en el celular)."""
+    return w.upper().rstrip(".,;:")
+
+
 def preparar_subtitulos(words, claves, tam=84, ancho_max=850, x_centro=490, y_centro=1460,
                         max_pal=3, pausa=0.32):
     """Arma los grupos de 1–3 palabras (sin partir una frase clave, cortando en puntuación y pausas)
@@ -607,12 +614,12 @@ def preparar_subtitulos(words, claves, tam=84, ancho_max=850, x_centro=490, y_ce
         tam_g = tam
         f = fuente(tam_g, "black")
         esp = f.getlength(" ")
-        total = sum(f.getlength(words[i]["w"]) for i in g) + esp * (len(g) - 1)
+        total = sum(f.getlength(_vis(words[i]["w"])) for i in g) + esp * (len(g) - 1)
         if total > ancho_max:
             tam_g = max(tam * 0.84, math.floor(tam * ancho_max / total * 0.99))
             f = fuente(tam_g, "black")
             esp = f.getlength(" ")
-        anchos = [f.getlength(words[i]["w"]) for i in g]
+        anchos = [f.getlength(_vis(words[i]["w"])) for i in g]
         total = sum(anchos) + esp * (len(g) - 1)
         if total <= ancho_max or len(g) == 1:
             lineas = [g]
@@ -628,7 +635,7 @@ def preparar_subtitulos(words, claves, tam=84, ancho_max=850, x_centro=490, y_ce
         pos = {}
         for li, ln in enumerate(lineas):
             base = y_centro + CAP * tam_g / 2 + (li - (len(lineas) - 1) / 2) * alto_l
-            ws = [f.getlength(words[i]["w"]) for i in ln]
+            ws = [f.getlength(_vis(words[i]["w"])) for i in ln]
             x = x_centro - (sum(ws) + esp * (len(ln) - 1)) / 2
             for i, wv in zip(ln, ws):
                 pos[i] = (x, base, wv)
@@ -642,7 +649,11 @@ def preparar_subtitulos(words, claves, tam=84, ancho_max=850, x_centro=490, y_ce
                 cajas[span[i]] = (x - 20, top, x + wv + 20, bot) if caja is None else (
                     min(caja[0], x - 20), min(caja[1], top), max(caja[2], x + wv + 20), max(caja[3], bot))
         t_ini = 0.0 if gi == 0 else words[g[0]]["s"] - 0.03
-        salida.append(dict(idx=g, pos=pos, cajas=cajas, t0=t_ini, tam=tam_g))
+        miembros = {}
+        for i in g:
+            if span[i] is not None:
+                miembros.setdefault(span[i], []).append(i)
+        salida.append(dict(idx=g, pos=pos, cajas=cajas, miembros=miembros, t0=t_ini, tam=tam_g))
     for gi in range(len(salida)):
         salida[gi]["t1"] = salida[gi + 1]["t0"] if gi + 1 < len(salida) else 1e9
     return salida
@@ -663,6 +674,14 @@ def subtitulos(L, words, t, claves, tam=84, **kw):
         ts = words[i0]["s"] - 0.03 if g["idx"][0] != i0 or g["t0"] > 0 else 0.0
         if t < ts:
             continue
+        dichas = [i for i in g["miembros"].get(i0, [i0]) if i == i0 or words[i]["s"] - 0.04 <= t]
+        if len(dichas) < len(g["miembros"].get(i0, [i0])):   # crece palabra a palabra (misma linea)
+            fila = [i for i in dichas if abs(g["pos"][i][1] - g["pos"][dichas[-1]][1]) < 1e-6]
+            x0 = min(g["pos"][i][0] for i in fila) - 20
+            x1 = max(g["pos"][i][0] + g["pos"][i][2] for i in fila) + 20
+            filas_y = sorted({g["pos"][i][1] for i in dichas})
+            y0 = filas_y[0] - CAP * g["tam"] - 16
+            y1 = filas_y[-1] + 0.2 * g["tam"] + 6
         a = ease_entrada(tramo(t, ts, 0.22))
         sc = 1.10 - 0.10 * a
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
@@ -690,7 +709,7 @@ def subtitulos(L, words, t, claves, tam=84, **kw):
         for i, a in vis:
             x, b, _ = g["pos"][i]
             al = int(255 * a)
-            d.text((x, b + 10 * (1 - a)), words[i]["w"], font=f, fill=(255, 255, 255, al), anchor="ls",
+            d.text((x, b + 10 * (1 - a)), _vis(words[i]["w"]), font=f, fill=(255, 255, 255, al), anchor="ls",
                    stroke_width=7, stroke_fill=(9, 10, 13, al))
     L.post.append(dibujar)
 
