@@ -15,7 +15,8 @@ description: Kit y reglas visuales de El viejo del dato para animar por código:
 - **Una idea por imagen.** Un foco por cuadro.
 - **El cambio cae en la palabra que lo nombra** (inicio de la palabra en `words.json`, ±2 cuadros). Nada quieto > 2 s; nada que se mueva sin que la voz lo nombre.
 - **Etiquetas:** MAYÚSCULAS, cortas (≤ 3 palabras), con **línea guía** al punto exacto; números que cambian en vivo (contador, ×10, 100 → 0 %).
-- **Subtítulos** palabra por palabra, 1–3 palabras a la vez, centrados en la banda de y≈1380–1560, la palabra clave dentro de un **recuadro** del color de energía (con manillas en las esquinas, como una selección). Nunca tapan el foco.
+- **Subtítulos ARRIBA** (vara viral, 23-nov-2026: los virales y los jueces ciegos los piden en la zona superior): palabra por palabra, 1–3 palabras a la vez, Inter Black ~112 px en MAYÚSCULAS con contorno oscuro y sombra suave, centrados en y≈290–420 (bajo la barra de la plataforma), la palabra clave en una **píldora rellena** del color de energía con texto oscuro (`subtitulos(...)` por defecto; `estilo_clave="recuadro"` para el recuadro con manillas). Nunca tapan el foco: el sujeto se corre o la columna de texto se mueve. Lo demás importante (píldoras de gancho, avisos) va a y ≥ 430 para no chocar.
+- **Texto secundario** (etiquetas, unidades, avisos) mínimo **44 px**, bold, con contorno de 4 px o placa oscura; si no cabe, se saca. Números protagonistas enormes (14–18 % del alto) y completos en la palabra que los dice.
 - **Zona segura:** nada importante bajo 1580 px ni en los 160 px de la derecha; márgenes de 60 px.
 - **Cuadro 0** ya muestra el gancho completo (nunca negro ni fundido). **Último cuadro empalma con el primero** (loop).
 
