@@ -20,3 +20,4 @@ studio/**/escena/out*/
 studio/voz-prueba/*.wav
 studio/voz-prueba/ciega/
 .DS_Store
+docs/referencias/virales/img/

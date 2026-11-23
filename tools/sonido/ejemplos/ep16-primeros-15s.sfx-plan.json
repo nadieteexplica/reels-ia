@@ -1,0 +1,21 @@
+{
+  "_nota": "Prueba de mezclar.py con la voz publicada del Ep. 16 (primeros 15 s). words_voz.json calza con el mp3 crudo (words.json es el de la voz ya recortada por prep.py).",
+  "voz": "out/tts/ep16-tele-big-bang-v5.mp3",
+  "musica": null,
+  "catalogo": "tools/sonido/biblioteca/catalog.json",
+  "words": "studio/episodios/ep16-tele-big-bang/words_voz.json",
+  "salida": "tools/sonido/ejemplos/salida/ep16-15s-mix.wav",
+  "duracion_s": 15.0,
+  "ducking": true,
+  "eventos": [
+    {"sfx": "pop-grave", "gain_db": -6, "palabra": "tele", "cue": "aparece la tele con patitas", "opcional": true},
+    {"sfx": "thud-metal", "gain_db": 3, "palabra": "pegarle", "despues_de_s": 1.0, "desfase_s": -0.04, "cue": "la mano le pega a la tele", "opcional": false},
+    {"sfx": "riser-1s", "gain_db": 1, "palabra": "Bueno", "desfase_s": -0.38, "alinear": "fin", "cue": "la pantalla se llena de luz antes del Big Bang", "opcional": false},
+    {"sfx": "impacto-pesado", "gain_db": 2, "palabra": "Bueno", "desfase_s": -0.38, "cue": "explota el Big Bang chiquito en la pantalla", "opcional": false},
+    {"sfx": "ping", "gain_db": -4, "palabra": "eco", "cue": "píldora SU ECO", "opcional": true},
+    {"sfx": "estatica-tv", "gain_db": -10, "palabra": "lluvia", "cue": "lluvia de puntitos en la pantalla", "opcional": true},
+    {"sfx": "glitch-corto", "gain_db": 0, "palabra": "Ahí", "desfase_s": -0.38, "cue": "se corta la señal (SIN SEÑAL)", "opcional": false},
+    {"sfx": "whoosh-suave", "gain_db": -3, "palabra": "Unos", "desfase_s": -0.35, "cue": "cambio a la antena gigante de 1964", "opcional": false},
+    {"sfx": "whomp", "gain_db": 0, "palabra": "Captaba", "desfase_s": -0.28, "cue": "la antena crece a GIGANTE", "opcional": false}
+  ]
+}

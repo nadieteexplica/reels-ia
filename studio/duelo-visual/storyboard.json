@@ -1,0 +1,37 @@
+{
+ "_que_es": "Beat de prueba para el duelo visual (kit Python vs HyperFrames). El mismo storyboard, la misma voz y los mismos tiempos para los dos motores. NO se publica. Estructura A (inventaste X), tipo martinete, con texto propio.",
+ "formato": {"ancho": 1080, "alto": 1920, "fps": 30},
+ "voz": "out/voz-libre/duelo-visual/beat.wav",
+ "words": "out/voz-libre/duelo-visual/beat.words.json",
+ "estilo": {
+  "nombre": "laboratorio nocturno",
+  "fondo": "#12141A con grano leve (fuerza ~6/255) y viñeta suave",
+  "energia": "#F5B82E (oro): lo activo, el golpe, los números que cambian; con brillo (glow) sólo en ese color",
+  "tinta": "#E9E6DF para contornos y etiquetas; gris #8A8F99 para lo secundario",
+  "peligro": "#E5484D sólo si algo falla (no se usa en este beat)",
+  "etiquetas": "MAYÚSCULAS, Inter ExtraBold 44–56 px, con línea guía de 4 px del color de tinta que termina en un punto en el objeto",
+  "subtitulos": "palabra por palabra (1–3 palabras), Inter Black 84 px, blanco con contorno oscuro, centrados en y≈1460; la palabra clave dentro de un recuadro del color de energía de 6 px con manillas cuadradas de 14 px en las 4 esquinas",
+  "movimiento": "entradas bezier(0.16,1,0.3,1) ~0.8 s; salidas bezier(0.6,0,0.9,0.35) ~0.4 s; cambio de estado bezier(0.65,0,0.35,1); aterrizaje con rebote bezier(0.55,0,0.2,1.12) sólo en el martillazo; el texto no se mueve mientras se lee",
+  "zona_segura": "nada importante bajo y=1580 ni en los 160 px de la derecha; márgenes de 60 px"
+ },
+ "palabras_clave_con_recuadro": ["clavo", "martillazo", "veinte metros", "cincuenta toneladas", "pegas"],
+ "planos": [
+  {"id": 1, "desde_palabra": "Esto", "hasta_palabra": "Un",
+   "se_ve": "Un clavo de acero REAL (cabeza plana circular, caña lisa, punta en diamante; gris metálico con un brillo lineal) vertical, apoyado con la punta sobre una tabla de madera vista en corte (vetas a la vista), centrado, ocupando ~35 % del alto. Arriba a la derecha, un martillo de carpintero real (cabeza de acero con oreja, mango de madera) levantado, listo. Cuadro 0 ya compuesto (nada aparece desde negro).",
+   "etiquetas": [{"texto": "CLAVO · 8 CM", "apunta_a": "la cabeza del clavo", "entra_en_palabra": "clavo"}],
+   "cambia": "en 'clavo' entra la etiqueta (0,8 s); el martillo respira apenas (sube 6 px) para que nada quede muerto"},
+  {"id": 2, "desde_palabra": "Un", "hasta_palabra": "Pero",
+   "se_ve": "El martillo baja y golpea la cabeza del clavo en el inicio de 'martillazo' (aterrizaje con rebote). Destello oro en el punto de impacto + 3 líneas de impacto cortas. En 'entra' el clavo se hunde en la madera (0,4 s) y queda sólo la cabeza.",
+   "etiquetas": [{"texto": "8 CM → 0", "apunta_a": "la madera donde entró el clavo", "entra_en_palabra": "entra", "numero_en_vivo": "8 baja a 0 mientras se hunde"}],
+   "cambia": "golpe en 'martillazo', hundimiento en 'entra'"},
+  {"id": 3, "desde_palabra": "Pero", "hasta_palabra": "¿Con",
+   "se_ve": "Corte a la escala gigante: el mismo clavo (mismo dibujo, misma luz) ahora enorme, clavado de punta sobre suelo de tierra en corte, con una persona en silueta gris a sus pies (≈1/11 del alto del clavo) como referencia de escala. Una cota vertical (línea con topes) crece al lado del clavo desde el suelo hasta la cabeza en 'veinte metros', con el número contando 0 → 20 M. En 'cincuenta toneladas' aparece una etiqueta-contador junto a la caña que cuenta 0 → 50 T con brillo oro.",
+   "etiquetas": [{"texto": "20 M", "apunta_a": "la cota vertical", "entra_en_palabra": "veinte", "numero_en_vivo": "0 → 20"},
+                 {"texto": "50 T", "apunta_a": "la caña del clavo", "entra_en_palabra": "cincuenta", "numero_en_vivo": "0 → 50"}],
+   "cambia": "corte en 'Pero', cota en 'veinte', contador en 'cincuenta'"},
+  {"id": 4, "desde_palabra": "¿Con", "hasta_palabra": "(fin)",
+   "se_ve": "El martillo de carpintero normal entra desde la derecha y queda flotando junto a la cabeza del clavo gigante: ridículamente chico (≈ del tamaño de la cabeza de la persona). Un signo de pregunta grande del color de energía aparece sobre la cabeza del clavo en 'pegas'. Se sostiene ≥ 2 s. Para el loop, el último cuadro deja el martillo arriba a la derecha y el clavo al centro, como el cuadro 0.",
+   "etiquetas": [],
+   "cambia": "entra el martillo en '¿Con', el signo en 'pegas'"}
+ ]
+}

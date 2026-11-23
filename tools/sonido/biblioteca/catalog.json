@@ -1,0 +1,713 @@
+{
+  "descripcion": "Biblioteca propia de SFX de El viejo del dato. Ver tools/sonido/generar.py.",
+  "sr": 48000,
+  "objetivo_lufs": -20.0,
+  "techo_dbtp": -1.5,
+  "medida": "loudness BS.1770-4 propio (tools/sonido/medir.py); clips < 0,4 s medidos como un solo bloque",
+  "clips": [
+    {
+      "id": "whoosh-suave",
+      "archivo": "whoosh-suave.wav",
+      "categoria": "motion",
+      "tags": [
+        "whoosh",
+        "transicion",
+        "entra",
+        "cambio de plano"
+      ],
+      "descripcion": "soplido suave de 0,75 s, de izquierda a derecha",
+      "canales": 2,
+      "duracion_s": 0.941,
+      "peak_dbfs": -4.28,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "whoosh-rapido",
+      "archivo": "whoosh-rapido.wav",
+      "categoria": "motion",
+      "tags": [
+        "whoosh",
+        "rapido",
+        "corte",
+        "zoom"
+      ],
+      "descripcion": "pasada corta y brillante de 0,32 s",
+      "canales": 2,
+      "duracion_s": 0.487,
+      "peak_dbfs": -3.69,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "whoosh-reverso",
+      "archivo": "whoosh-reverso.wav",
+      "categoria": "motion",
+      "tags": [
+        "whoosh",
+        "reverso",
+        "aspira",
+        "antes de un golpe"
+      ],
+      "descripcion": "aire que se aspira y corta seco al final (0,9 s); se alinea por el final",
+      "canales": 2,
+      "duracion_s": 1.408,
+      "peak_dbfs": -3.63,
+      "loudness_lufs": -20.91,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "swoosh-sube",
+      "archivo": "swoosh-sube.wav",
+      "categoria": "motion",
+      "tags": [
+        "swoosh",
+        "sube",
+        "aparece",
+        "crece"
+      ],
+      "descripcion": "pasada que sube de tono (0,5 s), con un leve silbido tonal",
+      "canales": 2,
+      "duracion_s": 0.738,
+      "peak_dbfs": -7.77,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "swoosh-baja",
+      "archivo": "swoosh-baja.wav",
+      "categoria": "motion",
+      "tags": [
+        "swoosh",
+        "baja",
+        "sale",
+        "cae"
+      ],
+      "descripcion": "pasada que baja de tono (0,5 s)",
+      "canales": 2,
+      "duracion_s": 0.641,
+      "peak_dbfs": -6.75,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "papel",
+      "archivo": "papel.wav",
+      "categoria": "motion",
+      "tags": [
+        "papel",
+        "desliza",
+        "hoja",
+        "carta",
+        "entra un papel"
+      ],
+      "descripcion": "hoja que se desliza sobre una mesa (0,6 s)",
+      "canales": 2,
+      "duracion_s": 0.6,
+      "peak_dbfs": -10.6,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "pop",
+      "archivo": "pop.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "pop",
+        "aparece",
+        "burbuja",
+        "reveal"
+      ],
+      "descripcion": "pop redondo (tono que cae 950→300 Hz)",
+      "canales": 1,
+      "duracion_s": 0.261,
+      "peak_dbfs": -3.13,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "pop-grave",
+      "archivo": "pop-grave.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "pop",
+        "grave",
+        "aparece algo grande"
+      ],
+      "descripcion": "pop grave y gordo",
+      "canales": 1,
+      "duracion_s": 0.349,
+      "peak_dbfs": -3.95,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "pop-agudo",
+      "archivo": "pop-agudo.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "pop",
+        "agudo",
+        "chico",
+        "pildora",
+        "texto"
+      ],
+      "descripcion": "pop chico y agudo",
+      "canales": 1,
+      "duracion_s": 0.251,
+      "peak_dbfs": -3.86,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "reveal-brillo",
+      "archivo": "reveal-brillo.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "reveal",
+        "brillo",
+        "magia",
+        "aparece",
+        "dato"
+      ],
+      "descripcion": "pop agudo + arpegio de brillitos (0,9 s)",
+      "canales": 1,
+      "duracion_s": 1.071,
+      "peak_dbfs": -8.15,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "click-ui",
+      "archivo": "click-ui.wav",
+      "categoria": "ui",
+      "tags": [
+        "click",
+        "boton",
+        "interfaz",
+        "toca"
+      ],
+      "descripcion": "click limpio de interfaz",
+      "canales": 1,
+      "duracion_s": 0.096,
+      "peak_dbfs": -1.79,
+      "loudness_lufs": -20.23,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "click-mecanico",
+      "archivo": "click-mecanico.wav",
+      "categoria": "snap",
+      "tags": [
+        "click",
+        "mecanico",
+        "interruptor",
+        "perilla",
+        "clac"
+      ],
+      "descripcion": "click-clac de interruptor (dos golpes de plástico)",
+      "canales": 1,
+      "duracion_s": 0.161,
+      "peak_dbfs": -1.63,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "tick-contador",
+      "archivo": "tick-contador.wav",
+      "categoria": "ui",
+      "tags": [
+        "tick",
+        "contador",
+        "numero sube",
+        "reloj"
+      ],
+      "descripcion": "tick agudo y cortito para contadores",
+      "canales": 1,
+      "duracion_s": 0.03,
+      "peak_dbfs": -6.84,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "tick-grave",
+      "archivo": "tick-grave.wav",
+      "categoria": "ui",
+      "tags": [
+        "tick",
+        "madera",
+        "contador",
+        "segundero"
+      ],
+      "descripcion": "tick de madera, más grave",
+      "canales": 1,
+      "duracion_s": 0.05,
+      "peak_dbfs": -3.78,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "ding",
+      "archivo": "ding.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "ding",
+        "campana",
+        "acierto",
+        "dato",
+        "listo"
+      ],
+      "descripcion": "campanita brillante (Mi6) con cola larga",
+      "canales": 1,
+      "duracion_s": 3.17,
+      "peak_dbfs": -7.65,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "ding-grave",
+      "archivo": "ding-grave.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "ding",
+        "campana",
+        "timbre",
+        "grave"
+      ],
+      "descripcion": "campana más grave (La5)",
+      "canales": 1,
+      "duracion_s": 3.686,
+      "peak_dbfs": -5.51,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "ping",
+      "archivo": "ping.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "ping",
+        "radar",
+        "señal",
+        "espacio",
+        "senal"
+      ],
+      "descripcion": "ping puro y espacial (Do7) con eco de sala",
+      "canales": 1,
+      "duracion_s": 1.839,
+      "peak_dbfs": -10.07,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "thud-suave",
+      "archivo": "thud-suave.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "thud",
+        "golpe",
+        "suave",
+        "cae",
+        "aterriza"
+      ],
+      "descripcion": "golpe sordo y blando",
+      "canales": 1,
+      "duracion_s": 0.803,
+      "peak_dbfs": -1.58,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "impacto-pesado",
+      "archivo": "impacto-pesado.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "impacto",
+        "golpe",
+        "pesado",
+        "boom",
+        "hit"
+      ],
+      "descripcion": "impacto grave con crujido y sala",
+      "canales": 2,
+      "duracion_s": 2.262,
+      "peak_dbfs": -4.6,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "thud-metal",
+      "archivo": "thud-metal.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "metal",
+        "clank",
+        "golpe",
+        "martillo",
+        "fierro"
+      ],
+      "descripcion": "golpe metálico (clank) con parciales inarmónicos",
+      "canales": 1,
+      "duracion_s": 2.064,
+      "peak_dbfs": -1.55,
+      "loudness_lufs": -20.07,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "riser-1s",
+      "archivo": "riser-1s.wav",
+      "categoria": "tension",
+      "tags": [
+        "riser",
+        "tension",
+        "sube",
+        "suspenso",
+        "antes del golpe"
+      ],
+      "descripcion": "subida de tensión de 1 s que corta en el clímax; se alinea por el final",
+      "canales": 2,
+      "duracion_s": 1.0,
+      "peak_dbfs": -5.35,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "riser-2s",
+      "archivo": "riser-2s.wav",
+      "categoria": "tension",
+      "tags": [
+        "riser",
+        "tension",
+        "sube",
+        "suspenso",
+        "largo"
+      ],
+      "descripcion": "subida de tensión de 2 s; se alinea por el final",
+      "canales": 2,
+      "duracion_s": 2.0,
+      "peak_dbfs": -6.87,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "snap",
+      "archivo": "snap.wav",
+      "categoria": "snap",
+      "tags": [
+        "snap",
+        "chasquido",
+        "dedos",
+        "corte",
+        "aparece"
+      ],
+      "descripcion": "chasquido de dedos",
+      "canales": 1,
+      "duracion_s": 0.248,
+      "peak_dbfs": -1.54,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "glitch",
+      "archivo": "glitch.wav",
+      "categoria": "ui",
+      "tags": [
+        "glitch",
+        "error",
+        "digital",
+        "falla",
+        "interferencia"
+      ],
+      "descripcion": "falla digital cortada (0,45 s)",
+      "canales": 1,
+      "duracion_s": 0.45,
+      "peak_dbfs": -9.08,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "glitch-corto",
+      "archivo": "glitch-corto.wav",
+      "categoria": "ui",
+      "tags": [
+        "glitch",
+        "corte",
+        "digital",
+        "transicion"
+      ],
+      "descripcion": "glitch de 0,2 s para cortes",
+      "canales": 1,
+      "duracion_s": 0.2,
+      "peak_dbfs": -6.3,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "beep",
+      "archivo": "beep.wav",
+      "categoria": "ui",
+      "tags": [
+        "beep",
+        "pitido",
+        "aviso",
+        "aparato"
+      ],
+      "descripcion": "pitido simple de aparato (Si5, 0,16 s)",
+      "canales": 1,
+      "duracion_s": 0.288,
+      "peak_dbfs": -13.74,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "beep-doble",
+      "archivo": "beep-doble.wav",
+      "categoria": "ui",
+      "tags": [
+        "beep",
+        "doble",
+        "confirmacion",
+        "aparato"
+      ],
+      "descripcion": "dos pitidos cortos (Re6)",
+      "canales": 1,
+      "duracion_s": 0.366,
+      "peak_dbfs": -12.91,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "buzz-error",
+      "archivo": "buzz-error.wav",
+      "categoria": "ui",
+      "tags": [
+        "error",
+        "buzz",
+        "incorrecto",
+        "falso",
+        "mito"
+      ],
+      "descripcion": "zumbido de error 'eh-eh'",
+      "canales": 1,
+      "duracion_s": 0.4,
+      "peak_dbfs": -15.0,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "whomp",
+      "archivo": "whomp.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "whomp",
+        "bajo",
+        "drop",
+        "caida",
+        "grave",
+        "revelacion"
+      ],
+      "descripcion": "caída de bajo (170→38 Hz) con barrido",
+      "canales": 1,
+      "duracion_s": 1.918,
+      "peak_dbfs": -8.46,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "obturador",
+      "archivo": "obturador.wav",
+      "categoria": "snap",
+      "tags": [
+        "camara",
+        "foto",
+        "obturador",
+        "flash",
+        "captura"
+      ],
+      "descripcion": "obturador de cámara (clic-clac)",
+      "canales": 1,
+      "duracion_s": 0.199,
+      "peak_dbfs": -2.23,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "tecla",
+      "archivo": "tecla.wav",
+      "categoria": "snap",
+      "tags": [
+        "tecla",
+        "teclado",
+        "escribe",
+        "tipeo",
+        "texto"
+      ],
+      "descripcion": "una tecla de teclado",
+      "canales": 1,
+      "duracion_s": 0.114,
+      "peak_dbfs": -1.98,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "tecla-b",
+      "archivo": "tecla-b.wav",
+      "categoria": "snap",
+      "tags": [
+        "tecla",
+        "teclado",
+        "escribe",
+        "variante"
+      ],
+      "descripcion": "tecla, variante más aguda",
+      "canales": 1,
+      "duracion_s": 0.108,
+      "peak_dbfs": -1.89,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "tecleo",
+      "archivo": "tecleo.wav",
+      "categoria": "snap",
+      "tags": [
+        "teclado",
+        "escribe",
+        "tipeo",
+        "texto que se escribe"
+      ],
+      "descripcion": "7 teclas seguidas con ritmo humano (1,2 s)",
+      "canales": 1,
+      "duracion_s": 0.911,
+      "peak_dbfs": -1.55,
+      "loudness_lufs": -20.07,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "gota",
+      "archivo": "gota.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "gota",
+        "agua",
+        "plip",
+        "liquido"
+      ],
+      "descripcion": "gota de agua (plip que sube de tono)",
+      "canales": 1,
+      "duracion_s": 0.401,
+      "peak_dbfs": -6.53,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "resorte",
+      "archivo": "resorte.wav",
+      "categoria": "emphasis",
+      "tags": [
+        "resorte",
+        "boing",
+        "rebota",
+        "salta",
+        "chiste"
+      ],
+      "descripcion": "boing de resorte",
+      "canales": 1,
+      "duracion_s": 1.638,
+      "peak_dbfs": -5.36,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    },
+    {
+      "id": "estatica-tv",
+      "archivo": "estatica-tv.wav",
+      "categoria": "ambience",
+      "tags": [
+        "estatica",
+        "tele",
+        "nieve",
+        "sin señal",
+        "ruido",
+        "kssshh"
+      ],
+      "descripcion": "lluvia de tele sin señal (2 s, con zumbido de 50 Hz muy bajo)",
+      "canales": 2,
+      "duracion_s": 2.0,
+      "peak_dbfs": -12.19,
+      "loudness_lufs": -20.0,
+      "fuente": "sintetizado por tools/sonido/generar.py",
+      "licencia": "CC0 1.0 — propio",
+      "usado_en": []
+    }
+  ]
+}

@@ -103,21 +103,14 @@ Cómo termina: loop al inicio, pregunta, remate, "sígueme". Segundo en que empi
 Fuentes de esta ficha: /watch del <fecha> sobre <qué archivo>, más los estudios citados.
 ```
 
-### Imágenes (opcional, máximo dos)
+### Videos de otros: nada al repo (regla de Tomás, 23-nov-2026)
 
-Sólo `hook.jpg` y **una** hoja (la más representativa), comprimidas a ≤ 300 KB cada una, en
-`docs/referencias/virales/img/<slug>/`:
-
-```sh
-.venv/bin/python tools/watch/comprimir.py <scratchpad>/watch-<slug>/hook.jpg docs/referencias/virales/img/<slug>/hook.jpg
-```
-
-```sh
-.venv/bin/python tools/watch/comprimir.py <scratchpad>/watch-<slug>/hoja-2.jpg docs/referencias/virales/img/<slug>/hoja.jpg
-```
-
-Enlázalas desde la ficha (`![hook](img/<slug>/hook.jpg)`). **Nunca** se commitea el video
-fuente ni la carpeta completa de /watch.
+Los videos de referencia son de otros creadores. **Nunca** se suben al repo ni a GitHub: ni el
+video, ni cuadros, ni hojas, ni el audio, ni la transcripción completa. Viven donde los dejó Tomás
+(`~/Desktop/Proyecto/referencias/`) y la salida de /watch va al scratchpad. Al repo sólo va la
+ficha, **escrita con nuestras palabras**: se describe lo que pasa, no se transcribe el guion (como
+mucho una cita de menos de 15 palabras por ficha, entre comillas). `tools/watch/comprimir.py`
+queda sólo para imágenes de NUESTROS videos.
 
 ### Al final
 - Actualiza la fila de la ficha en `docs/referencias/virales/README.md` (estructura, vistas,
