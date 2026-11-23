@@ -25,3 +25,10 @@
 - **Regla:** el kit tiene **3 vueltas** para llegar a **≥ 8 contra los virales**. Si no llega, no se sigue parchando: se prueba el mismo beat en **three.js renderizado en GitHub Actions** y se compara con la misma vara.
 
 **Ojo:** el beat de prueba abre con "Esto es un clavo", casi la frase de apertura del martinete. Es sólo para medir lo visual y no se publica: ninguna frase de apertura de un viral va a un video real (regla del guion §0.7).
+
+## Vara relativa (Tomás, 23-nov-2026): la vara de notas absolutas estaba descalibrada
+"Si los jueces le ponen 4 y 5,5 a dos virales de 2 M y 13 M, no mide lo que importa." Desde ahora:
+- Los jueces ven **video**: cuadros cada 0,25 s del **mismo tramo** de los dos, y la **pista de audio descrita** (qué se dice y cuándo, subidas bruscas que pueden ser efectos, si hay colchón de fondo). Herramienta: `studio/duelo-visual/vara_relativa.py` (salida sólo en el scratchpad).
+- **Comparación de a pares, a ciegas:** nuestro beat contra cada viral. Dos preguntas: ¿cuál se ve más profesional? ¿cuál deslizarías primero?
+- **Piso: ganar o empatar contra los virales** (mayoría de jueces en cada par). Ya no hay 8 absoluto.
+- Nuestro beat se juzga **con su sonido** (skill `sonido`), igual que los virales traen el suyo.

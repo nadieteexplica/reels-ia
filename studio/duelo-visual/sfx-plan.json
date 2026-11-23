@@ -1,0 +1,22 @@
+{
+  "_nota": "Sonido del beat del duelo visual (prueba real de la skill sonido). Sin música: sólo voz + efectos.",
+  "voz": "out/voz-libre/duelo-visual/beat.wav",
+  "musica": null,
+  "catalogo": "tools/sonido/biblioteca/catalog.json",
+  "words": "out/voz-libre/duelo-visual/beat.words.json",
+  "salida": "/private/tmp/claude-501/-Users-tomas-Desktop-Proyecto/d4cb7467-771f-4533-993e-f4f18f1ccbe0/scratchpad/duelo/beat-mix.wav",
+  "duracion_s": 7.6,
+  "ducking": true,
+  "eventos": [
+    {"sfx": "whomp", "gain_db": -2, "en_s": 0.0, "cue": "cuadro 0: el clavo gigante", "opcional": false},
+    {"sfx": "pop-grave", "gain_db": -6, "palabra": "clavo.", "cue": "corte al clavo normal", "opcional": true},
+    {"sfx": "thud-metal", "gain_db": 3, "palabra": "martillazo,", "desfase_s": -0.02, "cue": "el martillo golpea la cabeza", "opcional": false},
+    {"sfx": "thud-suave", "gain_db": -2, "palabra": "entra.", "cue": "el clavo se hunde", "opcional": true},
+    {"sfx": "whoosh-rapido", "gain_db": 2, "palabra": "Pero", "desfase_s": -0.3, "cue": "corte al clavo gigante", "opcional": false},
+    {"sfx": "reveal-brillo", "gain_db": -3, "palabra": "veinte", "cue": "aparece 20 M", "opcional": true},
+    {"sfx": "pop-agudo", "gain_db": -5, "palabra": "cincuenta", "cue": "elefantes", "opcional": true},
+    {"sfx": "impacto-pesado", "gain_db": 1, "palabra": "toneladas.", "cue": "50 T", "opcional": false},
+    {"sfx": "whoosh-suave", "gain_db": -4, "palabra": "¿Con", "cue": "corte a la pregunta", "opcional": true},
+    {"sfx": "ding", "gain_db": -5, "palabra": "pegas?", "cue": "signo de pregunta", "opcional": true}
+  ]
+}
