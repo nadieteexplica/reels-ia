@@ -720,7 +720,7 @@ def subtitulos(L, words, t, claves, tam=112, estilo_clave="pildora", ocultar=(),
         return
     dicha = {}
     for i in g["idx"]:
-        ts = 0.0 if (g["t0"] == 0.0 and i == g["idx"][0]) else words[i]["s"] - 0.04
+        ts = -1.0 if (g["t0"] == 0.0 and i == g["idx"][0]) else words[i]["s"] - 0.04   # el cuadro 0 ya la muestra
         if t >= ts and _norm(words[i]["w"]) not in ocultar:
             dicha[i] = ease_entrada(tramo(t, ts, 0.16))
     en_clave = set()
@@ -1223,7 +1223,8 @@ def temblor(edad, amp=12, cuadros=8, fps=FPS):
 
 
 def flash_blanco(L, alpha=0.8):
-    """Un cuadro blanco encima de todo (el golpe)."""
+    """Un cuadro blanco encima de todo. OJO (ritmo, v5): 1–2 cuadros blancos se leen como falla; para un golpe usar
+    brillo_golpe() (brillo suave de 4 cuadros)."""
     def f(img, a=alpha):
         img.paste(Image.blend(img, Image.new("RGB", img.size, (255, 250, 240)), a))
     L.post.insert(0, f)
@@ -1820,6 +1821,7 @@ def pictogramas_pop(L, x, y, n, h, t, t0, paso=2 / FPS, cols=5, forma=elefante, 
 
 
 def barrido(L, k, sentido=-1):
+    # OJO (ritmo, v5): no usar con texto en pantalla; los cortes sólo cuando cambia la idea (RITMO)
     """Transición 'whip pan': desenfoque de movimiento horizontal + corrimiento (k∈[0,1], 2–3 cuadros por corte).
     Se aplica al cuadro entero (llamar después de dibujar todo, subtítulos incluidos)."""
     if k <= 0.01:
@@ -1905,6 +1907,7 @@ def esquirlas(L, x, y, edad, n=10, color=(236, 196, 140), semilla=13, vel=900, d
 
 
 def zoom_rapido(L, k, centro, sentido=1):
+    # OJO (ritmo, v5): igual que barrido(): nunca con texto en pantalla
     """Transición 'crash zoom': desenfoque radial (copias escaladas alrededor de 'centro') para unir dos planos de
     escala distinta sin salto. k∈[0,1]; sentido=1 acerca, -1 aleja. Se aplica al cuadro entero."""
     if k <= 0.01:
@@ -1977,3 +1980,32 @@ def elefante_3d(L, x, y, h, capa=None, color=None, alpha=1.0, cam=False):
     for v in (0.5, 0.36, 0.24):
         linea(L, [E(1.18, v), E(1.26, v - 0.02)], (150, 144, 150), 0.012 * h, alpha=0.6 * alpha, cam=cam)
     circulo(L, *E(1.07, 0.8), 0.025 * h, (24, 22, 28), alpha=alpha, cam=cam)
+
+
+
+# ==================================================================================================================
+# Ritmo (v5, nota del dueño: "pasan las cosas muy rápido"). Guías por defecto, no leyes:
+#   1. nada de barridos ni movimientos rápidos de cámara con texto en pantalla; el texto se lee quieto
+#      (~17 caracteres por segundo: un subtítulo dura al menos len/17 s);
+#   2. ningún plano ni destello de menos de ~0,3 s, salvo un efecto de golpe sin información (brillo de 4 cuadros);
+#   3. un foco a la vez: lo nuevo aparece donde ya está el ojo, o el movimiento lleva el ojo hasta ahí;
+#   4. ni frenético ni muerto: nada quieto más de ~1,5 s y no más de 2–3 cambios en menos de 1 s.
+# Los cambios van DENTRO del plano (aparece una etiqueta, corre un número, se mueve una pieza); se corta sólo cuando
+# cambia la idea. Medir con tools/ritmo.py: cámara rápida ≤ 6 %, cambios dentro ≥ 0,7/s, tramo quieto ≤ 1,5 s.
+# ==================================================================================================================
+RITMO = dict(caracteres_por_s=17, plano_min_s=0.3, quieto_max_s=1.5, rafaga_s=1.0, camara_rapida_max=0.06,
+             cambios_por_s_min=0.7)
+
+
+def lectura_min_s(texto_):
+    """Lo mínimo que un texto tiene que quedarse quieto en pantalla para leerse (≥ 0,5 s)."""
+    return max(0.5, len(texto_) / RITMO["caracteres_por_s"])
+
+
+def brillo_golpe(L, x, y, edad, rx=150, ry=60, cuadros=4):
+    """El golpe sin flash blanco: brillo suave que se apaga en 'cuadros' cuadros + más glow en la energía."""
+    if edad < 0 or edad >= cuadros / FPS:
+        return
+    k = 1 - edad * FPS / cuadros
+    L.brillo = max(L.brillo, 1 + 1.8 * k)
+    brillo_suave(L, x, y, rx, ry, (255, 240, 210), 0.55 * k, 14)

@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Beat del clavo, v4 (23-nov-2026, ronda 2 contra virales), con kit_explica (laboratorio nocturno).
+"""Beat del clavo, v5 (23-nov-2026, ritmo), con kit_explica (laboratorio nocturno).
 
-Planos (storyboard_v2.json). Cortes en la palabra; los marcados con ~ llevan barrido (whip pan, 2–3 cuadros).
-  0     GANCHO  = último cuadro: clavo de 20 m, martillo gigante, persona con cota 1,8 M y titular "CLAVO DE 20 M"
-  0,18  A  "Esto es un clavo"      clavo chico de héroe en tablón de testa, martillo listo, cinta 8 cm
-  1,28  B  "Un martillazo"         plano cerrado del golpe (anticipación, estela, flash, ondas, chispas, temblor)
-  1,97~ C  "y entra"               tablón en corte: la madera sube y se traga el clavo + golpe en "entra"
-  2,75  D1 "Pero este"             corte por coincidencia al clavo de 20 m (cabeza en el mismo lugar)
-  3,15~ D2 "clavo mide"            pantalla partida ×250: el clavo real en la mano | el gigante
-  3,69~ E  "veinte metros"         alzado: cinta 20 M, número héroe, persona con cota, bus, edificio de 6 pisos
-  4,35~ F  "y pesa 50 toneladas"   suelo en corte, golpe en "pesa", 10 elefantes que saltan uno a uno → 50 T
-  6,21~ G  "¿Con qué le pegas?"    a ras de suelo mirando arriba: la persona con un martillo normal ✗; en "pegas"
-                                    entra el martillo gigante
-  7,29~ FINAL = el cuadro 0 (loop)
+Nota del dueño sobre v4: "pasan las cosas muy rápido". v5: los cambios pasan DENTRO del plano, donde ya está el ojo.
+  0–2,75     un plano: clavo de 8 cm con cinta; martillazo con rebote y brillo suave; en "entra" se hunde y la cinta
+             se recoge con él (8 cm → 0 sin texto extra)
+  2,75–6,21  corte por coincidencia al clavo de 20 m (la cabeza en el mismo lugar); desplazamiento lento; en el mismo
+             lugar de la izquierda se reemplazan: tarjeta ×250 (el real en la mano) → 20 M → 10 elefantes → 50 T;
+             en "toneladas" se raja el suelo
+  6,21–fin   a ras de suelo: la persona con un martillo normal (✗) y en "pegas" llega el martillo gigante
+Sin barridos, sin crash zoom, sin flashes blancos; el texto se lee quieto.
 
 Uso:  .venv/bin/python studio/duelo-visual/python/render.py [salida.mp4]
       .venv/bin/python studio/duelo-visual/python/render.py --cuadros 0,1.5,3 carpeta/
@@ -44,7 +40,8 @@ EST = K.ESTILOS["laboratorio_nocturno"]
 CLAVES = SB["palabras_clave_con_recuadro"]
 TINTA, GRIS = K.rgb(EST["tinta"]), K.rgb(EST["gris"])
 SCRATCH = "/private/tmp/claude-501/-Users-tomas-Desktop-Proyecto/d4cb7467-771f-4533-993e-f4f18f1ccbe0/scratchpad/duelo"
-SALIDA = os.path.join(SCRATCH, "python-v4.mp4")
+SALIDA = os.path.join(SCRATCH, "python-v5.mp4")
+MEZCLA = os.path.join(SCRATCH, "beat-mix.wav")         # voz + efectos (tools/sonido/mezclar.py studio/duelo-visual/sfx-plan.json)
 
 
 def t_palabra(txt, vez=1):
@@ -65,8 +62,6 @@ T = dict(esto=t_palabra("esto"), clavo=t_palabra("clavo"), un=t_palabra("un", 2)
 cuadro_de = lambda t: round(t * FPS) / FPS
 T_GOLPE = cuadro_de(T["martillazo"])
 T_FINAL = DUR - 0.3                                   # los últimos ~0,3 s vuelven al cuadro 0
-BARRIDOS = [T["y"], T["clavo2"], T["veinte"], T["con"], T_FINAL]
-ZOOM_IN = 0.1                                        # A→B y E→F: crash zoom (sin salto de escala)
 
 # ------------------------------------------------------------------ composición común (loop y cortes por
 # coincidencia: la cabeza del clavo y el martillo caen siempre en el mismo lugar de la pantalla)
@@ -139,324 +134,216 @@ def lienzo_cielo(cam3, semilla):
     return K.Lienzo(EST, semilla=semilla, fondo_img=K.fondo_capas(EST, cam3.horizonte()))
 
 
-# ------------------------------------------------------------------ cuadro 0 / final
-def plano_final(t, sem):
-    k = 1 - K.anim(t, T_FINAL, DUR - 1 / FPS - T_FINAL, K.ease_entrada)   # 1 → 0: al final es el cuadro 0 exacto
-    cam3 = K.Cam3D(Y=S1.Y + 4.5 * k, Z=S1.Z, pitch=S1.pitch, F=S1.F, cx=S1.cx, cy=S1.cy)
-    L = lienzo_cielo(cam3, sem)
-    mundo_gigante(L, cam3, t)
-    K.martillo(L, MART_POS[0] + 40 * k, MART_POS[1] - 60 * k, H1, MART_ANG - 14 * k)
-    K.titular(L, "CLAVO DE 20 M", alpha=1 - k)
-    L.fundido_abajo(1560, 1720)
-    return L
-
-
-# ------------------------------------------------------------------ A: el clavo chico
-def plano_a(t, sem):
-    L = K.Lienzo(EST, semilla=sem, fondo_img=K.fondo_estudio(EST))
-    zi = K.anim(t, T["un"] - ZOOM_IN, ZOOM_IN, lambda p: p * p)
-    L.camara(s=(1.0 + 0.08 * K.anim(t, T["esto"], 1.1, K.ease_estado)) * (1 + 1.6 * zi), ancla=(CX, Y_TAPA + 20))
-    K.tabla_testa(L, 110, 890, Y_SUP + 23, 460, prof=46)
-    K.sombra_contacto(L, CX + 10, Y_SUP + 2, 40, 7, 0.7)
-    K.ao(L, CX - 30, CX + 40, Y_SUP + 3, 8, 0.4)
-    K.clavo3d(L, PR_A, 0, 0, N1)
-    ant = K.anim(t, T["un"] - 0.16, 0.16, K.ease_estado)        # anticipación justo antes de "Un"
-    ang = MART_ANG + 1.2 * math.sin(t * 3.4) + 9 * ant
-    K.martillo(L, MART_POS[0] + 18 * ant, MART_POS[1] - 26 * ant, H1, ang)
-    marcas = [(i / 80, 15 if i % 10 == 0 else (10 if i % 5 == 0 else 6), None) for i in range(81)]
-    K.regla(L, 330, Y_SUP, Y_TAPA, K.anim(t, T["clavo"], 0.6, K.ease_entrada), marcas, ancho=34, cam=True)
-    L.camara()
-    K.etiqueta(L, "CLAVO · 8 CM", (CX - 52, Y_TAPA + 18), (66, 505), t, T["clavo"], tam=48, dur=0.6, texto_desde=0.3,
-               t1=T["un"] - ZOOM_IN)
-    L.fundido_abajo(1560, 1720)
-    sub(L, t)
-    K.zoom_rapido(L, zi, (CX, Y_TAPA + 20))
-    return L
-
-
-# ------------------------------------------------------------------ B: el golpe
-NB, HB = 1600, 1650
-Y_TAPA_B = 1080
-PR_B = K.proyector_oblicuo(480, Y_TAPA_B + NB, 1.0, 0.30)
-P_TOQUE = next(i / 2000 for i in range(2001) if K.ease_aterriza(i / 2000) >= 1.0)
+# ==================================================================================================================
+# v5 (ritmo): los cambios pasan DENTRO del plano, donde ya está el ojo. Sólo 2 cortes (cuando cambia la idea), sin
+# barridos ni crash zoom, sin flashes blancos de 1–2 cuadros (el golpe es un brillo suave de 4 cuadros), el texto se lee
+# quieto, y nunca más de ~1,5 s sin un cambio.
+# ==================================================================================================================
+P_TOQUE = next(i / 2000 for i in range(2001) if K.ease_aterriza(i / 2000) >= 1.0)   # primer contacto de la curva
 P_PICO, Y_PICO = K.pico_aterriza()
-D_SWING = (T_GOLPE - T["un"]) / P_TOQUE
+D_SWING = (T_GOLPE - T["un"]) / P_TOQUE              # el contacto cae justo en "martillazo"
+T_ENTRA = cuadro_de(T["entra"])
+ELEF_T0, ELEF_PASO = T["y2"] + 0.05, 0.12                 # 10 elefantes en ~1,1 s (se pueden contar)
+REPOSO = (742.0, 695.0, 75.0)                         # martillo listo (cabeza x, y, ángulo)
+ATRAS = (790.0, 610.0, 96.0)                          # anticipación
+TOQUE = (CX, Y_TAPA - 0.287 * H1, 0.0)               # la cara sobre la cabeza del clavo
+CTRL = (600.0, 330.0)                                 # el arco del golpe pasa por arriba
 
 
-def y_martillo_b(t):
+def pose_martillo(t):
+    """Martillo del plano A: reposo → anticipación → golpe con rebote en 'martillazo' → vuelve al reposo en 'entra'."""
+    ant = K.anim(t, T["un"] - 0.2, 0.2, K.ease_estado)
+    if t < T["un"]:
+        return tuple(r + (a - r) * ant for r, a in zip(REPOSO, ATRAS))
     p = K.tramo(t, T["un"], D_SWING)
     y = K.ease_aterriza(p)
     if p < P_TOQUE:
-        return -330 * (1 - y)
-    return -22 * (y - 1) / (Y_PICO - 1)          # rebote: lo que la curva pasa de 1
+        u = y                                                     # arco cuadrático ATRÁS → TOQUE
+        x = (1 - u) ** 2 * ATRAS[0] + 2 * (1 - u) * u * CTRL[0] + u * u * TOQUE[0]
+        yy = (1 - u) ** 2 * ATRAS[1] + 2 * (1 - u) * u * CTRL[1] + u * u * TOQUE[1]
+        return (x, yy, ATRAS[2] + (TOQUE[2] - ATRAS[2]) * u)
+    reb = (y - 1) / (Y_PICO - 1)                                  # rebote: lo que la curva pasa de 1
+    x, yy, ang = TOQUE[0] + 10 * reb, TOQUE[1] - 26 * reb, TOQUE[2] + 3 * reb
+    v = K.anim(t, T_ENTRA + 0.1, 0.55, K.ease_estado)             # en "entra" vuelve al reposo
+    return (x + (REPOSO[0] - x) * v, yy + (REPOSO[1] - yy) * v, ang + (REPOSO[2] - ang) * v)
 
 
-def plano_b(t, sem):
-    L = K.Lienzo(EST, semilla=sem, fondo_img=K.fondo_estudio(EST, luz=(0.3, 0.32)))
-    e = t - T_GOLPE
-    tx, ty = K.temblor(e, 16, 8)
-    llegada = 1 - K.anim(t, T["un"], 0.1, K.ease_entrada)          # sigue el crash zoom del plano A
-    zoom = (1.0 + 0.05 * (1 - K.anim(t, T_GOLPE, 0.5, K.ease_entrada)) if e >= 0 else 1.05) * (1 - 0.18 * llegada)
-    L.camara(s=zoom, ancla=(480, Y_TAPA_B), temblor=(tx, ty))
-    K.clavo3d(L, PR_B, 0, 0, NB)
-    cy0 = Y_TAPA_B - 0.287 * HB
-    if -2.5 / FPS < e < 0:                       # estela de 2 cuadros
-        ya, yb = cy0 + y_martillo_b(t - 1 / FPS) + 0.2 * HB, cy0 + y_martillo_b(t) + 0.287 * HB
-        K.relleno_gradiente(L, [(480 - 0.055 * HB, ya), (480 + 0.055 * HB, ya), (480 + 0.055 * HB, yb), (480 - 0.055 * HB, yb)],
-                            [(0, (200, 206, 216, 0)), (1, (200, 206, 216, 150))], (0, ya), (0, yb))
-        for dx in (-0.075, -0.068, 0.068, 0.075):
-            K.linea(L, [(480 + dx * HB, ya + 40), (480 + dx * HB, yb - 30)], (230, 234, 240), 2.5, alpha=0.5)
-    K.martillo(L, 480, cy0 + y_martillo_b(t), HB, 0, sombra=False)
-    K.impacto(L, 480, Y_TAPA_B, e, escala=1.0, ry=0.3, chispas=12)
-    K.nube_polvo(L, 480, Y_TAPA_B + 10, e, ancho=150, n=10, semilla=12, color=(150, 140, 130), dur=0.6, alpha=0.5)
-    if 0 <= e < 0.25:
-        L.brillo = 1 + 1.6 * math.exp(-e * 12)
-    L.camara()
-    if 0 <= e < 1 / FPS:
-        K.flash_blanco(L, 0.78)
-    L.fundido_abajo(1560, 1720)
-    sub(L, t)
-    K.zoom_rapido(L, llegada * 0.9, (480, Y_TAPA_B))
-    return L
-
-
-# ------------------------------------------------------------------ C: el corte de la madera
-T_ENTRA = cuadro_de(T["entra"])
-
-
-def plano_c(t, sem):
+def plano_clavo(t, sem):
+    """0–2,75 s, un solo plano: el clavo, la cinta de 8 cm, el martillazo y el hundimiento pasan adentro."""
     L = K.Lienzo(EST, semilla=sem, fondo_img=K.fondo_estudio(EST))
-    p = K.anim(t, T_ENTRA, 0.42, K.ease_estado)
-    ys = Y_SUP - (N1 - 0.03 * N1) * p
-    e = t - T_ENTRA
-    tx, ty = K.temblor(e, 9, 6)
-    L.camara(s=1.0 + 0.06 * K.anim(t, T["y"], 0.8, K.ease_estado), ancla=(CX, Y_TAPA + 60), temblor=(tx, ty))
-    K.madera_corte(L, -60, 1140, ys, 1800, CX, Y_SUP - ys, 0.0275 * N1)
-    K.clavo3d(L, PR_A, 0, 0, N1)
-    K.esquirlas(L, CX, ys, e, n=12)
-    K.polvo(L, CX, ys, e - 0.04, n=12)
+    e = t - T_GOLPE
+    tx, ty = K.temblor(e, 6, 6)
+    L.camara(s=1.0 + 0.09 * K.anim(t, 0.0, T["pero"], K.ease_estado), ancla=(CX, 980), temblor=(tx, ty))
+    K.tabla_testa(L, 110, 890, Y_SUP + 23, 460, prof=46)
+    hunde = K.anim(t, T_ENTRA, 0.45, K.ease_estado) * (N1 - 0.03 * N1)
+    K.sombra_contacto(L, CX + 10, Y_SUP + 2, 40 + 30 * hunde / N1, 7, 0.7)
+    K.ao(L, CX - 30, CX + 40, Y_SUP + 3, 8, 0.4)
+    K.clavo3d(L, PR_A, 0, 0, N1, z0=-hunde, recorte=0.0)
+    # la cinta mide lo que queda afuera: 8 cm y se recoge con el clavo
+    marcas = [(i / 80, 15 if i % 10 == 0 else (10 if i % 5 == 0 else 6), None) for i in range(81)]
+    p_cinta = K.anim(t, T["clavo"], 0.6, K.ease_entrada) * (1 - hunde / N1)
+    K.regla(L, 330, Y_SUP, Y_TAPA, p_cinta, marcas, ancho=34, cam=True)
+    x, y, ang = pose_martillo(t)
+    K.martillo(L, x, y, H1, ang)
+    K.impacto(L, CX, Y_TAPA + 8, e, escala=0.62, ry=0.3, chispas=10)
+    if 0 <= e < 4 / FPS:                                          # brillo suave de 4 cuadros (no un flash blanco)
+        k = 1 - e * FPS / 4
+        L.brillo = 1 + 1.8 * k
+        K.brillo_suave(L, CX, Y_TAPA + 8, 150, 60, (255, 240, 210), 0.55 * k, 14)
+    ee = t - T_ENTRA
+    K.esquirlas(L, CX, Y_SUP, ee, n=12)
+    K.polvo(L, CX, Y_SUP, ee - 0.04, n=12)
     L.camara()
-    if 0 <= e < 1 / FPS:
-        K.flash_blanco(L, 0.5)
-    # un solo valor claro: 8 CM, y una barra que muestra cuánto ya entró
-    a = K.anim(t, T["y"] + 0.05, 0.25)
-    if a > 0:
-        b = (60, 690, 400, 900)
-        L.d.rounded_rectangle([L.P(b[0], b[1], False), L.P(b[2], b[3], False)], radius=L.S(26, False),
-                              fill=(14, 16, 22, int(230 * a)))
-        K.numero_heroe(L, "8", "CM", 88, 830, 120, t, T["y"] + 0.05)
-        m, d = L.temporal()
-        d.rounded_rectangle([L.P(88, 856, False), L.P(372, 878, False)], radius=L.S(11, False), outline=255, width=int(L.S(3, False)))
-        if p > 0.01:
-            d.rounded_rectangle([L.P(88, 856, False), L.P(88 + 284 * p, 878, False)], radius=L.S(11, False), fill=255)
-        L.fundir(m, alpha=a, capa="energia")
+    a8 = K.anim(t, T["clavo"] + 0.1, 0.3) * (1 - K.anim(t, T_ENTRA, 0.15))
+    if a8 > 0:
+        K.numero_heroe(L, "8", "CM", 56, Y_TAPA + 140, 126, t, T["clavo"] + 0.1, alpha=a8)
     L.fundido_abajo(1560, 1720)
     sub(L, t)
     return L
 
 
-# ------------------------------------------------------------------ D1: corte por coincidencia al gigante
-def plano_d1(t, sem):
-    cam3 = dolly(S1, t, T["pero"], 0.6, 2.5)
-    L = lienzo_cielo(cam3, sem)
-    mundo_gigante(L, cam3, t)
-    L.fundido_abajo(1560, 1720)
-    sub(L, t)
-    return L
+S3V = K.Cam3D(Y=-60, Z=4, pitch=0, F=2340, cx=780, cy=1264)
 
 
-# ------------------------------------------------------------------ D2: pantalla partida ×250
-def plano_d2(t, sem):
-    cam3 = dolly(K.Cam3D(Y=-60, Z=4, pitch=0, F=2340, cx=790, cy=1204), t, T["clavo2"], 0.6, 3)
-    L = lienzo_cielo(cam3, sem)
-    mundo_gigante(L, cam3, t, cota=False)
-    # mitad izquierda: el clavo real en la mano, en el estudio
-    I = K.Lienzo(EST, semilla=sem, fondo_img=K.fondo_estudio(EST, luz=(0.2, 0.35)))
-    zi = 1.0 + 0.05 * K.anim(t, T["clavo2"], 0.6, K.ease_estado)
-    I.camara(s=zi, ancla=(270, 1000))
-    largo, cx, yb = 560, 250, 1330
-    pr = K.proyector_oblicuo(cx, yb, 1.0, 0.3)
-    K.mano_pinza(I, cx - 12, yb - largo * 0.6, 1.25, cam=True, nail=lambda: K.clavo3d(I, pr, 0, 0, largo, ns=60))
-    corte = int(540 * L.ss)
-    L.im.paste(I.im.crop((0, 0, corte, L.im.size[1])), (0, 0))
-    L.en.paste(I.en.crop((0, 0, corte, L.en.size[1])), (0, 0))
+def cam_gigante(t):
+    """Plano del gigante: corte por coincidencia en 'Pero' (la cabeza donde estaba la del clavo chico) y un
+    desplazamiento LENTO (0,7 s) para dejarle lugar a la tarjeta y a los números; después, empuje lento."""
+    k = K.anim(t, T["pero"] + 0.2, 0.7, K.ease_estado)
+    c = K.Cam3D.mezcla(S1, S3V, k)
+    return dolly(c, t, T["pero"] + 0.9, T["con"] - T["pero"] - 0.9, 3.0)
+
+
+def tarjeta_real(L, t):
+    """×250: el clavo real en la mano entra deslizándose a la izquierda (donde está el ojo) y sale en 'veinte'."""
+    p_in = K.anim(t, T["pero"] + 0.2, 0.5, K.ease_entrada)
+    p_out = K.anim(t, T["y2"] - 0.05, 0.35, K.ease_salida)
+    if p_in <= 0 or p_out >= 1:
+        return
+    dx = -560 * (1 - p_in) - 560 * p_out
+    b = (40 + dx, 1030, 470 + dx, 1470)
+    L.d.rounded_rectangle([L.P(b[0] + 8, b[1] + 14, False), L.P(b[2] + 8, b[3] + 14, False)], radius=L.S(30, False), fill=(0, 0, 0, 110))
+    L.d.rounded_rectangle([L.P(b[0], b[1], False), L.P(b[2], b[3], False)], radius=L.S(30, False), fill=(20, 19, 22, 245))
     m, d = L.temporal()
-    K.linea(L, [(540, 560), (540, 1560)], ancho=6, capa=d, cam=False)
+    d.rounded_rectangle([L.P(b[0], b[1], False), L.P(b[2], b[3], False)], radius=L.S(30, False), outline=255, width=int(L.S(4, False)))
     L.fundir(m, alpha=1.0, capa="energia")
-    K.texto(L, 70, 1440, "8 CM", 72, TINTA, "black", trazo=6)
-    pop = K.anim(t, T["clavo2"] + 0.08, 0.25)
-    K.pildora_energia(L, "×250", 540, 690, 84, alpha=min(1, pop * 2), pop=0.8 + 0.2 * pop)
-    L.fundido_abajo(1560, 1720)
-    sub(L, t)
-    return L
+    largo, cx, yb = 330, b[0] + 150, b[3] - 40
+    pr = K.proyector_oblicuo(cx, yb, 1.0, 0.3)
+    K.mano_pinza(L, cx - 9, yb - largo * 0.6, 0.85, cam=False, nail=lambda: K.clavo3d(L, pr, 0, 0, largo, ns=60, cam=False))
+    K.texto(L, b[0] + 30, b[1] + 80, "8 CM", 64, TINTA, "black", trazo=6)
+    pop = K.anim(t, T["pero"] + 0.45, 0.25)
+    K.pildora_energia(L, "×250", b[2] - 20, b[1] + 6, 76, alpha=min(1, pop * 2) * (1 - p_out), pop=0.8 + 0.2 * pop)
 
 
-# ------------------------------------------------------------------ E: alzado con la cinta de 20 m
-def plano_e(t, sem):
-    cam3 = dolly(S3, t, T["veinte"], 0.66, 3)
+def plano_gigante(t, sem):
+    """2,75–6,21 s, un solo plano: ×250, 20 M, los elefantes y 50 T se reemplazan en el MISMO lugar de la izquierda."""
+    cam3 = cam_gigante(t)
     L = lienzo_cielo(cam3, sem)
-    zi = K.anim(t, T["y2"] - ZOOM_IN, ZOOM_IN, lambda p: p * p)
-    base_e = cam3.pr(0, 0, 0)
-    L.camara(s=1 + 1.4 * zi, ancla=base_e)
+    e_t = t - T["cincuenta"] - 0.37                               # "toneladas": el peso se siente en la base
+    tx, ty = K.temblor(e_t, 6, 6)
+    L.camara(temblor=(tx, ty))
     mundo_gigante(L, cam3, t, persona=False, bus=BUS_E)
+    base = cam3.pr(0, 0, 0)
+    K.grietas_suelo(L, cam3, 0, 0, K.anim(t, T["cincuenta"] + 0.37, 0.6, K.ease_entrada), n=12, largo=10, semilla=9)
+    K.nube_polvo(L, base[0], base[1], e_t, ancho=260, n=16, dur=1.2)
+    K.esquirlas(L, base[0], base[1], e_t, n=12, color=(170, 130, 96), semilla=5, vel=900)
     X, Y = -1.6, PERSONA[1]
     K.persona_espalda(L, cam3.pr, X, Y)
-    pies, cab = cam3.pr(X, Y, 0), cam3.pr(X, Y, 1.72)
-    K.cota_persona(L, cam3.pr(X - 0.55, Y, 0)[0], pies[1], cab[1], "1,8 M", "izq")
-    y_suelo, y_tapa = cam3.pr(0, 0, 0)[1], cam3.pr(0, 0, 20)[1]
-    marcas = [(i / 20, 18 if i % 5 == 0 else 9, None) for i in range(21)]
-    K.regla(L, cam3.pr(1.9, 0, 0)[0], y_suelo, y_tapa, K.anim(t, T["veinte"], 0.5, K.ease_entrada), marcas, ancho=36)
-    K.numero_heroe(L, "20", "M", 60, 920, 320, t, T["veinte"])
-    K.texto(L, 68, 990, "DE ALTO", 52, TINTA, "black", alpha=K.anim(t, T["veinte"] + 0.1, 0.25), trazo=5)
     L.camara()
+    tarjeta_real(L, t)
+    # 20 M: cinta y número (salen en "y pesa")
+    sale20 = K.anim(t, T["y2"], 0.35, K.ease_salida)
+    if t >= T["veinte"] and sale20 < 1:
+        y_suelo, y_tapa = cam3.pr(0, 0, 0)[1], cam3.pr(0, 0, 20)[1]
+        marcas = [(i / 20, 18 if i % 5 == 0 else 9, None) for i in range(21)]
+        K.regla(L, cam3.pr(1.9, 0, 0)[0], y_suelo, y_tapa, K.anim(t, T["veinte"], 0.5, K.ease_entrada), marcas,
+                ancho=36, alpha=1 - sale20)
+        K.numero_heroe(L, "20", "M", 60, 900, 320, t, T["veinte"], alpha=1 - sale20)
+        K.texto(L, 68, 970, "DE ALTO", 52, TINTA, "black", alpha=K.anim(t, T["veinte"] + 0.1, 0.25) * (1 - sale20), trazo=5)
+    # el peso: 10 elefantes que saltan en el mismo lugar, y 50 T donde estaba el 20 M
+    sale50 = K.anim(t, T["con"] - 0.35, 0.35, K.ease_salida)
+    if t >= T["y2"] and sale50 < 1:
+        a_pl = K.anim(t, ELEF_T0 - 0.04, 0.2) * (1 - sale50)
+        L.d.rounded_rectangle([L.P(36, 930, False), L.P(712, 1236, False)], radius=L.S(30, False), fill=(12, 14, 22, int(170 * a_pl)))
+        if sale50 < 0.5:
+            k = K.pictogramas_pop(L, 52, 1100, 10, 94, t, ELEF_T0, paso=ELEF_PASO, gx=132, gy=114, forma=K.elefante_3d)
+            if k:
+                K.texto(L, 60, 990, f"×{k} ELEFANTES", 60, TINTA, "black", trazo=6, alpha=1 - 2 * sale50)
+        K.numero_heroe(L, "50", "T", 60, 900, 320, t, T["cincuenta"], alpha=1 - sale50)
     L.fundido_abajo(1560, 1720)
-    sub(L, t, ocultar={"veinte", "metros"})
-    K.zoom_rapido(L, zi, base_e)
+    ocultar = set()
+    if t >= T["veinte"]:
+        ocultar |= {"veinte", "metros"}
+    if t >= T["cincuenta"]:
+        ocultar |= {"cincuenta", "toneladas"}
+    sub(L, t, ocultar=ocultar)
     return L
 
 
-# ------------------------------------------------------------------ F: el peso
-T_PESA = cuadro_de(T["pesa"])
-ELEF_T0, ELEF_PASO = T["y2"] + 0.02, (T["cincuenta"] - 0.05 - T["y2"] - 0.02) / 9   # el 10.º cae justo en "cincuenta"
+SQ = K.Cam3D(Y=-14, Z=0.7, pitch=30, F=760, cx=650, cy=1000)     # desde abajo, la cabeza del clavo a la vista
+SQ2 = K.Cam3D(Y=-12.8, Z=0.7, pitch=30.5, F=760, cx=650, cy=1000)
+HG = 640                                                           # martillo gigante (px)
 
 
-def suelo_en_corte(L, cam3, t):
-    pr = cam3.pr
-    capas = [(0.0, -0.35, (70, 50, 38), (58, 42, 32)), (-0.35, -1.7, (118, 84, 58), (96, 68, 48)),
-             (-1.7, -3.3, (142, 108, 76), (118, 88, 62)), (-3.3, -7.0, (88, 64, 48), (52, 38, 30))]
-    xs = np.linspace(-30, 30, 90)
-    for za, zb, c0, c1 in capas:
-        q = [pr(-30, 0, za), pr(30, 0, za), pr(30, 0, zb), pr(-30, 0, zb)]
-        K.relleno_gradiente(L, q, [(0, c0), (1, c1)], pr(0, 0, za), pr(0, 0, zb))
-        K.linea(L, [pr(x, 0, za + 0.06 * math.sin(x * 0.9 + za * 3)) for x in xs], (48, 34, 26), 3, alpha=0.7, puntas=False)
-    rng = np.random.default_rng(8)
-    for _ in range(70):
-        X, Z = rng.uniform(-9, 9), rng.uniform(-6, -0.2)
-        p, s = pr(X, 0, Z), cam3.escala(X, 0, Z)
-        r = rng.uniform(0.05, 0.22) * s
-        col = [(150, 124, 96), (86, 66, 50), (176, 150, 120)][rng.integers(0, 3)]
-        K.poligono(L, K.elipse_pts(p[0], p[1], r * 1.3, r, n=14, rot=rng.uniform(0, 180)), col, alpha=0.9)
-        K.poligono(L, K.elipse_pts(p[0] - r * 0.3, p[1] - r * 0.3, r * 0.5, r * 0.25, n=10), (220, 196, 160), alpha=0.35)
-    pg = K.anim(t, T_PESA, 0.6, K.ease_entrada)
-    if pg > 0:
-        rng = np.random.default_rng(4)
-        for ang in (-160, -128, -100, -70, -40, -15, 200):
-            a = math.radians(ang)
-            pts, x, z = [], 0.0, Z0G + 0.4
-            for k in range(7):
-                x += math.cos(a) * 0.45 * pg + rng.uniform(-0.12, 0.12)
-                z += math.sin(a) * 0.45 * pg * 0.7 + rng.uniform(-0.1, 0.1)
-                pts.append(pr(x, 0, min(-0.05, z)))
-            K.linea(L, [pr(0, 0, Z0G + 0.4)] + pts, (30, 20, 14), 3.2, alpha=0.85)
-        for ang in (15, 40, 65, 95, 120, 150, 170):
-            a = math.radians(ang)
-            pts, x, y = [], 0.0, 0.0
-            for k in range(8):
-                x += math.cos(a) * 0.55 * pg + rng.uniform(-0.12, 0.12)
-                y += math.sin(a) * 0.55 * pg
-                pts.append(pr(x, max(0.05, y), 0))
-            K.linea(L, [pr(0, 0.3, 0)] + pts, (22, 16, 12), 3, alpha=0.8)
-    K.linea(L, [pr(-30, 0, 0), pr(30, 0, 0)], (196, 150, 104), 3)
-
-
-def plano_f(t, sem):
-    L = lienzo_cielo(S4, sem)
-    e = t - T_PESA
-    tx, ty = K.temblor(e, 9, 6)
-    llegada = 1 - K.anim(t, T["y2"], 0.1, K.ease_entrada)
-    L.camara(s=(1.0 + 0.08 * K.anim(t, T["y2"], 1.8, K.ease_estado)) * (1 - 0.2 * llegada), ancla=(880, 1230), temblor=(tx, ty))
-    K.edificios3d(L, S4, alpha=0.5)
-    K.suelo3d(L, S4)
-    suelo_en_corte(L, S4, t)
-    K.clavo3d(L, S4.pr, 0, 0, LG, z0=Z0G, stops=K.CROMO_ATARDECER)
-    base = S4.pr(0, 0, 0)
-    K.nube_polvo(L, base[0], base[1], e, ancho=300, n=18, dur=1.4)
-    K.esquirlas(L, base[0] - 60, base[1], e, n=14, color=(170, 130, 96), semilla=5, vel=1100)
-    L.camara()
-    if 0 <= e < 1 / FPS:
-        K.flash_blanco(L, 0.55)
-    # 10 elefantes que saltan uno a uno (pop 0 → 1,1 → 1) y el contador; el 10.º cae en "cincuenta"
-    a_pl = K.anim(t, ELEF_T0 - 0.04, 0.2)
-    if a_pl > 0:
-        L.d.rounded_rectangle([L.P(36, 856, False), L.P(800, 1196, False)], radius=L.S(30, False), fill=(12, 14, 22, int(170 * a_pl)))
-    k = K.pictogramas_pop(L, 58, 1040, 10, 108, t, ELEF_T0, paso=ELEF_PASO, gx=146, gy=134, forma=K.elefante_3d)
-    if k:
-        K.texto(L, 62, 912, f"×{k} ELEFANTES", 54, TINTA, "black", trazo=5)
-    K.numero_heroe(L, "50", "T", 60, 830, 330, t, T["cincuenta"])
-    L.fundido_abajo(1560, 1720)
-    sub(L, t, x_centro=420, ancho_max=700, ocultar={"cincuenta", "toneladas"})
-    K.zoom_rapido(L, llegada * 0.9, (880, 1230))
-    return L
-
-
-# ------------------------------------------------------------------ G: ¿con qué le pegas? (mirando hacia arriba)
-def plano_g(t, sem):
-    cam3 = K.Cam3D.mezcla(SG, K.Cam3D(Y=-8.3, Z=0.7, pitch=25, F=980, cx=720, cy=900), K.anim(t, T["con"], 1.1, K.ease_estado))
+def plano_pregunta(t, sem):
+    """6,21 s → fin: la persona con un martillo normal (✗ en 'qué'); en 'pegas' el martillo gigante entra entero
+    desde la derecha y golpea la cabeza (brillo suave, ondas, chispas, polvo). Cámara: sólo empuje lento."""
+    cam3 = K.Cam3D.mezcla(SQ, SQ2, K.anim(t, T["con"], DUR - T["con"], K.ease_estado))
     L = lienzo_cielo(cam3, sem)
+    t_golpe = cuadro_de(T["pegas"] + 0.05)
+    e = t - t_golpe
+    tx, ty = K.temblor(e, 8, 6)
+    L.camara(temblor=(tx, ty))
     K.edificios3d(L, cam3)
     K.suelo3d(L, cam3)
     K.grietas_suelo(L, cam3, 0, 0, 1.0)
     base = cam3.pr(0, 0, 0)
-    K.brillo_suave(L, base[0] + 20, base[1] + 4, 200, 30, (0, 0, 0), 0.7, 6)
+    K.brillo_suave(L, base[0] + 20, base[1] + 4, 160, 24, (0, 0, 0), 0.7, 6)
     K.bus3d(L, cam3.pr, BUS[0], BUS[1])
     K.clavo3d(L, cam3.pr, 0, 0, LG, z0=Z0G, recorte=0.0, stops=K.CROMO_ATARDECER)
-    # la persona (de espaldas, grande) levanta un martillo normal: de verdad, a escala
-    X, Y = -1.0, -6.8
+    tapa = cam3.pr(0, 0, LG + Z0G)
+    X, Y = -1.7, -10.2
     K.persona_espalda(L, cam3.pr, X, Y)
     hombro, mano = cam3.pr(X + 0.24, Y, 1.42), cam3.pr(X + 0.52, Y, 1.92)
     esc = cam3.escala(X, Y, 1.7)
     K.linea(L, [hombro, mano], (52, 58, 76), 0.11 * esc)
     K.linea(L, [hombro, mano], K.FRIO, 0.02 * esc, alpha=0.7)
-    Hm = 0.3 * esc
+    Hm = 0.33 * esc
     a = math.radians(100)
     K.martillo(L, mano[0] - math.cos(a) * 0.9 * Hm, mano[1] - math.sin(a) * 0.9 * Hm, Hm, 100)
     K.circulo(L, mano[0], mano[1], 0.045 * esc, (150, 112, 90))
-    K.x_roja(L, mano[0] + 0.95 * Hm, mano[1] - 0.45 * Hm, 0.75 * Hm, K.tramo(t, T["que"], 0.25))
-    # en "pegas" entra el martillo gigante desde arriba a la derecha (visto desde abajo, enorme)
-    q = K.anim(t, T["pegas"], 0.5, K.ease_entrada)
-    if q > 0:
-        x0, y0, x1, y1 = 1350, -420, 840, 170
-        hx, hy = x0 + (x1 - x0) * q, y0 + (y1 - y0) * q
-        if q < 0.97:                                   # estela del arco
-            m, d = L.temporal()
-            for k in range(1, 5):
-                qq = max(0.0, q - 0.07 * k)
-                K.linea(L, [(x0 + (x1 - x0) * qq - 150, y0 + (y1 - y0) * qq + 210), (hx - 150, hy + 210)],
-                        ancho=12 - 2 * k, capa=d, cam=True)
-            L.fundir(m, alpha=0.8 * (1 - q), capa="energia")
-        K.martillo(L, hx, hy, 780, 22 + 25 * (1 - q))
+    K.x_roja(L, mano[0] + 0.9 * Hm, mano[1] - 0.5 * Hm, 0.8 * Hm, K.tramo(t, T["que"], 0.3))
+    # el martillo gigante: entra entero por la derecha (0,35 s) y cae sobre la cabeza en "pegas"
+    ang_t = 18.0
+    ca, sa = math.cos(math.radians(ang_t)), math.sin(math.radians(ang_t))
+    toque = (tapa[0] + sa * 0.287 * HG, tapa[1] - 6 - ca * 0.287 * HG)          # centro de la cabeza al tocar
+    alto = (toque[0] + 190, toque[1] - 330, 55.0)
+    entra = K.anim(t, T["que"], 0.3, K.ease_entrada)
+    baja = K.tramo(t, t_golpe - 0.18, 0.18) ** 2                                 # cae acelerando
+    if entra > 0:
+        x0, y0 = 1250, -200
+        hx = x0 + (alto[0] - x0) * entra + (toque[0] - alto[0]) * baja
+        hy = y0 + (alto[1] - y0) * entra + (toque[1] - alto[1]) * baja
+        ang = 120 + (alto[2] - 120) * entra + (ang_t - alto[2]) * baja
+        K.martillo(L, hx, hy, HG, ang)
+    K.impacto(L, tapa[0], tapa[1], e, escala=0.8, ry=0.32, chispas=12)
+    K.nube_polvo(L, tapa[0], tapa[1] + 10, e, ancho=180, n=12, semilla=4, color=(170, 150, 130), dur=0.7, alpha=0.5)
+    if 0 <= e < 4 / FPS:
+        k = 1 - e * FPS / 4
+        L.brillo = 1 + 1.8 * k
+        K.brillo_suave(L, tapa[0], tapa[1], 160, 60, (255, 240, 210), 0.5 * k, 14)
+    L.camara()
     L.fundido_abajo(1560, 1720)
     sub(L, t, x_centro=360, ancho_max=600)
     return L
 
 
 def cuadro(t, semilla=0):
-    if t < T["esto"]:
-        L = plano_final(DUR - 1 / FPS, semilla)      # cuadro 0 = último cuadro (loop perfecto)
-    elif t >= T_FINAL:
-        L = plano_final(t, semilla)
-    elif t < T["un"]:
-        L = plano_a(t, semilla)
-    elif t < T["y"]:
-        L = plano_b(t, semilla)
-    elif t < T["pero"]:
-        L = plano_c(t, semilla)
-    elif t < T["clavo2"]:
-        L = plano_d1(t, semilla)
-    elif t < T["veinte"]:
-        L = plano_d2(t, semilla)
-    elif t < T["y2"]:
-        L = plano_e(t, semilla)
+    if t < T["pero"]:
+        L = plano_clavo(t, semilla)
     elif t < T["con"]:
-        L = plano_f(t, semilla)
+        L = plano_gigante(t, semilla)
     else:
-        L = plano_g(t, semilla)
-    for tc in BARRIDOS:                                # whip pan: 2 cuadros antes y 3 después del corte
-        d = t - tc
-        if -2.5 / FPS < d < 0:
-            K.barrido(L, 0.45 + 0.45 * (1 + d * FPS / 2.5))
-        elif 0 <= d < 2.5 / FPS:
-            K.barrido(L, 0.9 * (1 - d * FPS / 2.5))
+        L = plano_pregunta(t, semilla)
     return L.salida()
 
 
@@ -479,7 +366,7 @@ def voz_normalizada():
 def render(salida):
     os.makedirs(os.path.dirname(salida), exist_ok=True)
     t0 = time.time()
-    voz = voz_normalizada()
+    voz = MEZCLA if os.path.exists(MEZCLA) else voz_normalizada()
     cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", "1080x1920",
            "-r", str(FPS), "-i", "-", "-i", voz, "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium",
            "-crf", "19", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", salida]
