@@ -32,3 +32,13 @@
 - **Comparación de a pares, a ciegas:** nuestro beat contra cada viral. Dos preguntas: ¿cuál se ve más profesional? ¿cuál deslizarías primero?
 - **Piso: ganar o empatar contra los virales** (mayoría de jueces en cada par). Ya no hay 8 absoluto.
 - Nuestro beat se juzga **con su sonido** (skill `sonido`), igual que los virales traen el suyo.
+
+## Resultado con la vara relativa (23-nov-2026)
+| Versión | vs buceo (más profesional · deslizan primero) | vs touchscreen | ¿Pasa el piso? |
+|---|---|---|---|
+| v3 + sonido (vuelta 1) | nuestro 2/2 claro · buceo 2/2 | 1–1 · touchscreen 2/2 | sí (empata) |
+| **v4 + sonido (vuelta 2)** | **nuestro 2/2 claro · buceo 2/2** | **nuestro 2/2 leve · touchscreen 2/2** | **sí (gana)** |
+- **El kit queda cerrado en la vuelta 2**: no hace falta three.js.
+- Lo que todavía le reconocen a touchscreen: un render "macro" continuo, más premium que el nuestro. [HIPÓTESIS] para próximos estilos.
+- "Subtítulo cortado arriba": es un efecto del recorte de la comparación (se le quitan 211 px de arriba); en el cuadro completo no se corta. Se revisa en el celular.
+- Los virales se compararon en sus primeros 7,6 s, no en el video entero: esto mide el oficio del tramo, no el video completo. Mandan las métricas (docs/REGLAS.md §3).
