@@ -1,0 +1,63 @@
+{
+ "A.mp3": {
+  "duracion_s": 47.1,
+  "pal_por_s": 3.1,
+  "wer_%": 1.4,
+  "diferencias": [
+   "quince → 15",
+   "cuarenta → 40"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": [
+   "lo"
+  ]
+ },
+ "B.mp3": {
+  "duracion_s": 58.1,
+  "pal_por_s": 2.51,
+  "wer_%": 0.7,
+  "diferencias": [
+   "quince → 15"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": [
+   "sin",
+   "Desde"
+  ]
+ },
+ "C.mp3": {
+  "duracion_s": 49.6,
+  "pal_por_s": 2.94,
+  "wer_%": 2.1,
+  "diferencias": [
+   "quince → 15",
+   "lo → los",
+   "cuarenta → 40"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": [
+   "y",
+   "el",
+   "solo",
+   "después",
+   "los",
+   "y"
+  ]
+ },
+ "D.mp3": {
+  "duracion_s": 46.6,
+  "pal_por_s": 3.13,
+  "wer_%": 0.7,
+  "diferencias": [
+   "quince → 15"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": [
+   "Un"
+  ]
+ }
+}
