@@ -60,7 +60,7 @@ jobs:
           test "$(ls "$RUNNER_TEMP/f" | wc -l)" = "$FIN"
           python audio.py "$RUNNER_TEMP/a"
           ffmpeg -y -v error -framerate 30 -start_number 1 -i "$RUNNER_TEMP/f/%05d.png" -i "$RUNNER_TEMP/a/mix.wav" -c:v libx264 -preset medium -crf 17 \
-            -pix_fmt yuv420p -r 30 -c:a aac -b:a 192k -shortest -movflags +faststart "$RUNNER_TEMP/$EP${{ steps.t.outputs.suf }}.mp4"
+            -pix_fmt yuv420p -r 30 -c:a aac -b:a 256k -shortest -movflags +faststart "$RUNNER_TEMP/$EP${{ steps.t.outputs.suf }}.mp4"
           ffmpeg -y -v error -i "$RUNNER_TEMP/f/$(printf %05d ${PORTADA:-1}).png" -q:v 2 "$RUNNER_TEMP/portada${{ steps.t.outputs.suf }}.jpg"
           ffprobe -v error -show_entries format=duration,size -of default=nw=1 "$RUNNER_TEMP/$EP${{ steps.t.outputs.suf }}.mp4"
       - name: Subir al Release

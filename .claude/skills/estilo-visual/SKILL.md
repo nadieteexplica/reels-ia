@@ -1,6 +1,6 @@
 ---
 name: estilo-visual
-description: Kit y criterios visuales de El viejo del dato para animar por código (fondo oscuro, un color de energía, objeto real con volumen, etiquetas con línea guía, subtítulos arriba con píldora, curvas de movimiento, loop, 5 estilos que rotan), cada uno con su nivel de evidencia. Usar al hacer el storyboard y al animar.
+description: Kit y criterios visuales de El viejo del dato para animar por código (fondo oscuro, un color de energía, objeto real con volumen, etiquetas con línea guía, subtítulos arriba con píldora, curvas de movimiento, loop; un solo estilo aprobado: laboratorio nocturno del beat v5), cada uno con su nivel de evidencia. Usar al hacer el storyboard y al animar.
 ---
 
 # Estilo visual
@@ -35,8 +35,10 @@ Marco: `docs/REGLAS.md`. Aquí todo es **criterio** (punto de partida, se puede 
 - Curvas: entradas `bezier(0.16,1,0.3,1)` · salidas `bezier(0.6,0,0.9,0.35)` · cambio de estado `bezier(0.65,0,0.35,1)` · aterrizaje con rebote `bezier(0.55,0,0.2,1.12)` · lineal sólo para movimiento continuo (`kit_explica.ease_*`).
 - Salidas en la mitad del tiempo de las entradas; escenas que se traslapan (nunca corte a vacío); el texto no se mueve mientras se lee (≥ 1 s por frase corta + 0,25 s por palabra sobre 3; ≥ 2 s en el remate). Un solo rebote elástico por video.
 
-## Los 5 estilos (propios; rotan) [HIPÓTESIS: variar ayuda contra "contenido inauténtico" y no sabemos cuál rinde más]
-Escritos por nosotros (la idea de un menú viene de lemo-opuscar; sus textos no se copian: licencia no comercial). Están en `kit_explica.ESTILOS`.
+## Estilo: uno solo aprobado (Tomás, 23-nov-2026) — la rotación está APAGADA
+**Se usa sólo laboratorio nocturno, el del beat v5 aprobado** (`docs/referencias/virales/propio-beat-clavo-v5.md`): carbón, objetos con volumen, luz y sombra corta, etiquetas HUD, energía oro. Los otros 4 de `kit_explica.ESTILOS` quedan en pausa: no se usan sin un OK nuevo de Tomás. (La prueba con Plano técnico del 23-nov perdió contra un viral 3D en el gancho: "plano, de bajo presupuesto".)
+
+Referencia de los 4 en pausa (no usar):
 1. **Plano técnico:** líneas blancas sobre azul de Prusia; se dibuja en orden de dibujante; energía amarillo tiza. Máquinas y "cómo se hace".
 2. **Rayos X:** fondo negro, objeto translúcido; energía cian. "Qué hay adentro de".
 3. **Laboratorio nocturno:** carbón, objetos con volumen y sombra corta, etiquetas HUD; energía oro. Mecanismos cotidianos (base).

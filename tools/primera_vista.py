@@ -38,7 +38,7 @@ def main():
     for s in range(n_seg):
         ims = []
         for k in range(10):
-            t = min(s + k / 10, dur - 0.04)
+            t = min(s + k / 10, dur - 0.12)
             im = cuadro(video, t)
             d = ImageDraw.Draw(im)
             d.rectangle([0, 0, 44, 20], fill=(0, 0, 0))

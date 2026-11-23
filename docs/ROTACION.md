@@ -1,10 +1,10 @@
 # Rotación de estructura y estilo (variación obligatoria)
 
-YouTube no paga contenido "inauténtico": producido en masa, de plantilla, con poca variación entre videos (`docs/estudios/investigacion-2026-11-23-automatizacion.md` §2). Por eso cada video cambia **estructura** y **estilo visual** respecto del anterior.
+YouTube no paga contenido "inauténtico": producido en masa, de plantilla, con poca variación entre videos (`docs/estudios/investigacion-2026-11-23-automatizacion.md` §2). Por eso cada video cambia **estructura** respecto del anterior (el estilo visual es uno solo: ver abajo).
 
 **Reglas**
 - La estructura del video anterior no se repite (A inventaste X · B contradicción · C escalera · D mito + analogía). Los 3 guionistas del video nuevo usan las otras tres.
-- El estilo visual (skill `estilo-visual`) no se repite en dos videos seguidos, y ninguno se usa más de 2 veces en los últimos 5.
+- **Estilo visual: rotación APAGADA (Tomás, 23-nov-2026).** Todos los videos usan el único estilo aprobado, laboratorio nocturno del beat v5 (skill `estilo-visual`). La variación sale de la estructura, el tema y la apertura.
 - Tampoco se repite la familia del tema (cuerpo, máquinas, planeta, historia…) en dos videos seguidos (`docs/IDEAS.md` §2).
 - Se anota cada video aquí al publicarlo (lo hace la skill `publicar`).
 - **Tipo de apertura (Tomás, 23-nov-2026):** no está probado si abrir con lo normal falla. Cada video anota su apertura: **raro** (lo raro/imposible primero) o **normal→escala** (algo normal que escala antes de 3 s). [HIPÓTESIS] Se alterna entre videos y, al juntar 4–6, se compara con "visto vs. deslizado" de YouTube (`docs/PUBLICADOS.md`); mientras tanto ninguna se da por mejor. Las fórmulas de apertura de los virales se pueden reutilizar con otro tema (docs/REGLAS.md).
