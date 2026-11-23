@@ -23,7 +23,7 @@ description: Escribe el guion de un video de El viejo del dato con la regla del 
 
 ## 3. juez-viral, parte por parte
 - El **guionista de esa estructura** pone el gancho ganador en su guion (paquete de gancho, primera frase, texto de la voz y loop: los 4; lección 176), y si encaja también los otros dos guionistas en los suyos. Después lanza 3 `juez-viral` en paralelo, uno por guion (ruta del guion + `docs/referencias/virales/`). Guarda cada JSON en `studio/episodios/<ep>/guionista/juez-viral-<X>.json`.
-- Pasa el guion con `"pasa": true`. Si pasan varios, el de más GANA; empate → el más corto.
+- Pasa el guion con `"pasa": true`. **Si `medio.segundos_sin_novedad` trae algún tramo, NO pasa** aunque gane gancho y final (Tomás, 23-nov-2026): esos tramos se reescriben con algo nuevo cada 4–6 s y cuenta como reescritura. Si pasan varios, el de más GANA; empate → el más corto.
 - Si ninguno pasa: el guionista del mejor corrige **sólo** lo que señaló el juez (frases débiles con su segundo) → `guion_v2.md` → otro `juez-viral` (uno nuevo, ciego). Máximo 2 reescrituras en total. Si no pasa: **idea descartada**, anótalo en `docs/IDEAS.md` con el porqué y vuelve a la ronda del cazador por la siguiente.
 
 ## 4. Espectadores (fugas)

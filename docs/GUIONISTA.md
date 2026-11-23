@@ -8,7 +8,7 @@
 2. **Gancho:** 12 ganchos (4 de cada guionista) en **duelo ciego** (`tools/guionista/duelo.py`, 4 `juez-gancho`); gana uno, y **además tiene que ganarle a los ganchos virales** (`duelo.py preparar … --anclas virales`): si pierde contra más de la mitad, no hay gancho.
 3. **Medio:** algo nuevo cada 4–6 s (dato, paso, número, falla nueva), cero relleno, "pero"/"por eso".
 4. **Final:** **remate** (la frase más fuerte, ≤ 12 palabras) **+ loop** con la primera frase **+ "mándaselo a…" ligado al contenido**: una persona concreta que sale del tema ("mándaselo a quien siempre culpa al semáforo"), nunca genérico ("a un amigo", "a alguien que le guste la ciencia"). El CTA va en la voz, después del remate, y no puede pasar de ~2 s.
-5. **juez-viral** compara cada guion contra la biblioteca, parte por parte (gancho, medio, final). Pasa sólo con 3 GANA o 2 GANA + 1 EMPATA. Después, los **espectadores** (`feed.py`) buscan fugas en el que pasó.
+5. **juez-viral** compara cada guion contra la biblioteca, parte por parte (gancho, medio, final). Pasa sólo con 3 GANA o 2 GANA + 1 EMPATA **y ningún tramo sin novedad** (si juez-viral marca `segundos_sin_novedad`, no pasa aunque gane gancho y final; Tomás, 23-nov-2026). Después, los **espectadores** (`feed.py`) buscan fugas en el que pasó.
 6. **Máximo 2 reescrituras** (sólo lo que señalan los jueces). Si no llega, **la idea se descarta y se cambia por otra de la ronda del cazador, sin pedirle correcciones a Tomás.**
 El paso a paso está en la skill `guion` (`.claude/skills/guion/SKILL.md`).
 

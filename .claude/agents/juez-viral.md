@@ -26,4 +26,4 @@ Tu respuesta final es **sólo este JSON** (no escribes archivos):
  "frases_debiles": [{"segundo": "…", "frase": "…", "arreglo": "…"}],
  "pasa": true}
 ```
-`pasa` es true sólo si las tres partes son GANA, o dos GANA y una EMPATA. Sé duro: un guion correcto que no le gana a un viral, no pasa.
+`pasa` es true sólo si las tres partes son GANA, o dos GANA y una EMPATA, **y además `segundos_sin_novedad` está vacío**: un solo tramo sin novedad (más de ~4–6 s sin un dato, paso, número o falla nueva) y el guion NO pasa, aunque gane gancho y final (Tomás, 23-nov-2026). Revisa el guion segundo a segundo antes de dejar esa lista vacía. Sé duro: un guion correcto que no le gana a un viral, no pasa.
