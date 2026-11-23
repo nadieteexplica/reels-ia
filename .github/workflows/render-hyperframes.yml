@@ -1,0 +1,72 @@
+name: render-hyperframes
+# Duelo visual: renderiza una composición HyperFrames (HTML + GSAP → MP4, Apache-2.0) en una máquina de Actions
+# y sube el MP4 al prerelease "duelo-visual" (prueba, no se publica).
+# Uso: gh workflow run render-hyperframes.yml -f carpeta=studio/duelo-visual/hyperframes
+on:
+  workflow_dispatch:
+    inputs:
+      carpeta:
+        description: "Carpeta de la composición (con index.html y preparar.sh)"
+        required: true
+        default: "studio/duelo-visual/hyperframes"
+permissions:
+  contents: write
+concurrency: render-hyperframes
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      CARPETA: ${{ github.event.inputs.carpeta }}
+      HF_VERSION: "0.9.84"      # versión exacta de HyperFrames (no flota)
+      GSAP_VERSION: "3.13.0"    # versión exacta de GSAP
+      HYPERFRAMES_NO_TELEMETRY: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Máquina (antes)
+        run: |
+          echo "CPU: $(nproc)"; free -h; df -h / "$RUNNER_TEMP" | cat
+      - name: FFmpeg
+        run: |
+          timeout 300 sudo apt-get -qq update
+          timeout 300 sudo apt-get -qq install -y --no-install-recommends ffmpeg > /dev/null
+          ffmpeg -version | head -1
+      - name: HyperFrames y GSAP (versiones fijas)
+        run: |
+          mkdir -p "$RUNNER_TEMP/hf" && cd "$RUNNER_TEMP/hf"
+          npm init -y > /dev/null
+          npm i --no-audit --no-fund "hyperframes@$HF_VERSION" "gsap@$GSAP_VERSION"
+          echo "$RUNNER_TEMP/hf/node_modules/.bin" >> "$GITHUB_PATH"
+      - name: Navegador
+        run: |
+          hyperframes --version || true
+          hyperframes browser ensure
+          hyperframes doctor --json > "$RUNNER_TEMP/doctor.json" || true
+          node -e 'const d=require(process.argv[1]); for (const c of (d.checks||[])) console.log((c.ok?"ok  ":"MAL ")+c.name+": "+(c.message||c.detail||""))' "$RUNNER_TEMP/doctor.json" || cat "$RUNNER_TEMP/doctor.json"
+      - name: Preparar (fuentes, voz, GSAP)
+        run: bash "$CARPETA/preparar.sh" "$RUNNER_TEMP/hf/node_modules/gsap/dist/gsap.min.js"
+      - name: Lint
+        run: cd "$CARPETA" && hyperframes lint || true
+      - name: Render
+        run: |
+          cd "$CARPETA"
+          # memoria disponible mínima durante el render (muestra cada 1 s)
+          ( while true; do free -m | awk '/Mem:/{print $7}' >> "$RUNNER_TEMP/mem.txt"; sleep 1; done ) &
+          MON=$!
+          T0=$(date +%s.%N)
+          hyperframes render --quality delivery --fps 30 -o "$RUNNER_TEMP/hyperframes.mp4"
+          T1=$(date +%s.%N)
+          kill $MON || true
+          echo "TIEMPO_RENDER_S=$(echo "$T1 - $T0" | bc)"
+          echo "MEM_DISPONIBLE_MIN_MB=$(sort -n "$RUNNER_TEMP/mem.txt" | head -1)"
+          ffprobe -v error -show_entries format=duration,size:stream=codec_name,width,height,r_frame_rate -of default=nw=1 "$RUNNER_TEMP/hyperframes.mp4"
+          df -h / | cat
+      - name: Subir al prerelease duelo-visual
+        run: |
+          gh release view duelo-visual > /dev/null 2>&1 || gh release create duelo-visual --prerelease --title duelo-visual --notes "prueba, no se publica"
+          gh release upload duelo-visual "$RUNNER_TEMP/hyperframes.mp4" --clobber

@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>Duelo visual · clavo gigante</title>
+<!-- GSAP local (lo copia preparar.sh desde el paquete npm): nada se pide a la red al renderizar -->
+<script src="assets/gsap.min.js"></script>
+<style>
+  /* Inter del repo, con un nombre propio para que HyperFrames no la cambie por su Inter de Google Fonts */
+  @font-face { font-family: "ViejoInter"; src: url("assets/fonts/Inter-Black.otf") format("opentype"); font-weight: 900; font-style: normal; }
+  @font-face { font-family: "ViejoInter"; src: url("assets/fonts/Inter-ExtraBold.otf") format("opentype"); font-weight: 800; font-style: normal; }
+  :root {
+    --fondo: #12141A;
+    --oro: #F5B82E;
+    --tinta: #E9E6DF;
+    --gris: #8A8F99;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--fondo); }
+  #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--fondo); font-family: "ViejoInter", sans-serif; }
+  .lienzo { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+  .escena { z-index: 1; }
+  #vineta { position: absolute; inset: 0; z-index: 5; pointer-events: none;
+    background: radial-gradient(ellipse 78% 62% at 46% 44%, rgba(0,0,0,0) 58%, rgba(0,0,0,.50) 100%); }
+  #grano { position: absolute; left: -60px; top: -60px; width: 1200px; height: 2040px; z-index: 6; opacity: .07; pointer-events: none; }
+  svg text { font-family: "ViejoInter", sans-serif; font-feature-settings: "tnum" 1; }
+
+  /* Subtítulos palabra por palabra: Inter Black 84 px, blanco con contorno oscuro, centrados en y≈1460 */
+  .cap { z-index: 10; }
+  .linea { position: absolute; left: 70px; width: 860px; top: 1310px; height: 300px;
+    display: flex; align-items: center; justify-content: center; gap: 0 26px; flex-wrap: wrap; }
+  .w { display: inline-block; opacity: 0; font-weight: 900; font-size: 84px; line-height: 1; color: #FFFFFF;
+    letter-spacing: -0.01em; -webkit-text-stroke: 14px #07080B; paint-order: stroke fill;
+    text-shadow: 0 6px 0 rgba(0,0,0,.45); transform-origin: 50% 80%; white-space: nowrap; }
+  .kw { position: relative; display: inline-flex; flex-direction: column; align-items: center; padding: 12px 24px 10px; }
+  .kw .w + .w { margin-top: 6px; }
+  .caja { position: absolute; inset: 0; opacity: 0; border: 6px solid var(--oro); background: rgba(245,184,46,.10);
+    box-shadow: 0 0 26px rgba(245,184,46,.55), inset 0 0 16px rgba(245,184,46,.22); }
+  .m { position: absolute; width: 14px; height: 14px; background: #12141A; border: 4px solid var(--oro); }
+  .m.a { left: -10px; top: -10px; } .m.b { right: -10px; top: -10px; }
+  .m.c { left: -10px; bottom: -10px; } .m.d { right: -10px; bottom: -10px; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="7.6" data-width="1080" data-height="1920" data-fps="30">
+
+  <!-- Dibujos compartidos: el mismo clavo y el mismo martillo en las dos escalas (misma luz) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- acero: brillo lineal vertical, un poco a la izquierda del centro (luz desde arriba a la izquierda) -->
+      <linearGradient id="gAcero" gradientUnits="userSpaceOnUse" x1="-20" y1="0" x2="20" y2="0">
+        <stop offset="0" stop-color="#363B43"/><stop offset=".16" stop-color="#77808B"/>
+        <stop offset=".33" stop-color="#D5DAE0"/><stop offset=".41" stop-color="#F6F8FA"/>
+        <stop offset=".52" stop-color="#A9B1BA"/><stop offset=".8" stop-color="#5D646E"/><stop offset="1" stop-color="#30353C"/>
+      </linearGradient>
+      <linearGradient id="gCabeza" gradientUnits="userSpaceOnUse" x1="-54" y1="0" x2="54" y2="0">
+        <stop offset="0" stop-color="#3A4048"/><stop offset=".2" stop-color="#8C949E"/>
+        <stop offset=".36" stop-color="#E8ECEF"/><stop offset=".46" stop-color="#C3C9D0"/>
+        <stop offset=".75" stop-color="#6A717B"/><stop offset="1" stop-color="#343940"/>
+      </linearGradient>
+      <linearGradient id="gBajoCabeza" gradientUnits="userSpaceOnUse" x1="0" y1="18" x2="0" y2="32">
+        <stop offset="0" stop-color="#5A616B"/><stop offset="1" stop-color="#2E333A"/>
+      </linearGradient>
+      <linearGradient id="gPuntaIzq" gradientUnits="userSpaceOnUse" x1="0" y1="600" x2="0" y2="670">
+        <stop offset="0" stop-color="#6E7680"/><stop offset="1" stop-color="#3C4148"/>
+      </linearGradient>
+      <linearGradient id="gPuntaDer" gradientUnits="userSpaceOnUse" x1="0" y1="600" x2="0" y2="670">
+        <stop offset="0" stop-color="#D2D8DE"/><stop offset="1" stop-color="#8E96A0"/>
+      </linearGradient>
+      <!-- martillo: acero pavonado oscuro con cara pulida, mango de fresno -->
+      <linearGradient id="gAceroM" gradientUnits="userSpaceOnUse" x1="-40" y1="0" x2="40" y2="0">
+        <stop offset="0" stop-color="#2A2E34"/><stop offset=".2" stop-color="#5C636D"/>
+        <stop offset=".34" stop-color="#C9CFD6"/><stop offset=".42" stop-color="#EEF1F4"/>
+        <stop offset=".55" stop-color="#7D858F"/><stop offset=".85" stop-color="#3B4047"/><stop offset="1" stop-color="#24282D"/>
+      </linearGradient>
+      <linearGradient id="gGarra" gradientUnits="userSpaceOnUse" x1="-36" y1="-60" x2="76" y2="-150">
+        <stop offset="0" stop-color="#2C3036"/><stop offset=".3" stop-color="#8E96A0"/>
+        <stop offset=".45" stop-color="#D9DEE3"/><stop offset=".7" stop-color="#555C65"/><stop offset="1" stop-color="#2A2E34"/>
+      </linearGradient>
+      <linearGradient id="gCara" gradientUnits="userSpaceOnUse" x1="-40" y1="0" x2="40" y2="0">
+        <stop offset="0" stop-color="#8D959F"/><stop offset=".4" stop-color="#F7F9FB"/><stop offset="1" stop-color="#9AA2AC"/>
+      </linearGradient>
+      <linearGradient id="gMango" gradientUnits="userSpaceOnUse" x1="0" y1="-24" x2="0" y2="24">
+        <stop offset="0" stop-color="#7A4C25"/><stop offset=".22" stop-color="#C48D57"/>
+        <stop offset=".36" stop-color="#E2B07A"/><stop offset=".6" stop-color="#A8743F"/><stop offset="1" stop-color="#5A3719"/>
+      </linearGradient>
+      <!-- madera en corte -->
+      <linearGradient id="gMadera" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#7A5131"/><stop offset=".35" stop-color="#694428"/><stop offset="1" stop-color="#3A2514"/>
+      </linearGradient>
+      <!-- tierra en corte -->
+      <linearGradient id="gTierra" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#46372A"/><stop offset=".25" stop-color="#35291F"/><stop offset="1" stop-color="#1C1612"/>
+      </linearGradient>
+      <radialGradient id="gDestello">
+        <stop offset="0" stop-color="#FFF3CF" stop-opacity="1"/><stop offset=".25" stop-color="#F5B82E" stop-opacity=".95"/>
+        <stop offset="1" stop-color="#F5B82E" stop-opacity="0"/>
+      </radialGradient>
+
+      <!-- sombra corta y dura (estilo laboratorio nocturno) -->
+      <filter id="sombra" x="-30%" y="-30%" width="170%" height="170%">
+        <feDropShadow dx="9" dy="11" stdDeviation="0" flood-color="#000" flood-opacity=".42"/>
+      </filter>
+      <!-- brillo: sólo para lo que es oro -->
+      <filter id="brillo" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+
+      <!-- CLAVO de 8 cm (escala real 1:21 entre largo y caña): origen = centro de la cara superior de la cabeza; largo 670 -->
+      <g id="clavoDib">
+        <!-- caña lisa -->
+        <rect x="-20" y="24" width="40" height="580" fill="url(#gAcero)" stroke="#07080B" stroke-width="3"/>
+        <!-- estrías de agarre bajo la cabeza -->
+        <path d="M-19 40 L19 46 M-19 49 L19 55 M-19 58 L19 64 M-19 67 L19 73 M-19 76 L19 82" stroke="#20242A" stroke-opacity=".55" stroke-width="2.5" fill="none"/>
+        <!-- punta en diamante: dos facetas, una en luz y otra en sombra -->
+        <path d="M-20 600 L0 606 L0 670 Z" fill="url(#gPuntaIzq)"/>
+        <path d="M20 600 L0 606 L0 670 Z" fill="url(#gPuntaDer)"/>
+        <path d="M-20 600 L0 670 L20 600" fill="none" stroke="#07080B" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M-20 600 L0 606 L20 600" fill="none" stroke="#2A2E34" stroke-width="2"/>
+        <!-- bajo la cabeza -->
+        <path d="M-50 18 L50 18 L22 32 L-22 32 Z" fill="url(#gBajoCabeza)" stroke="#07080B" stroke-width="3" stroke-linejoin="round"/>
+        <!-- cabeza plana circular (de canto) -->
+        <rect x="-54" y="0" width="108" height="20" rx="5" fill="url(#gCabeza)" stroke="#07080B" stroke-width="3"/>
+        <rect x="-48" y="3" width="96" height="3" rx="1.5" fill="#FFFFFF" opacity=".55"/>
+      </g>
+      <!-- silueta del clavo, para el borde dorado -->
+      <path id="clavoContorno" d="M-54 0 H54 V20 L20 32 V600 L0 670 L-20 600 V32 L-54 20 Z"/>
+
+      <!-- MARTILLO de carpintero: origen = centro de la cabeza; la cara golpea hacia +y (abajo), mango hacia +x -->
+      <g id="martilloDib">
+        <!-- mango de madera -->
+        <path d="M26 -15 C120 -16 230 -19 330 -22 C380 -23 418 -24 430 -14 C438 -6 438 6 430 14 C418 24 380 23 330 22 C230 19 120 16 26 15 Z"
+              fill="url(#gMango)" stroke="#07080B" stroke-width="3"/>
+        <path d="M44 -7 C150 -9 260 -11 412 -13 M50 6 C170 7 290 9 404 11 M120 -1 C200 -2 280 -2 360 -3" stroke="#5A3418" stroke-width="2" opacity=".5" fill="none"/>
+        <!-- garra curva hacia el mango -->
+        <path d="M-30 -44 C-36 -88 -22 -128 14 -154 C34 -168 58 -174 78 -170 C62 -156 44 -134 33 -108 C26 -88 25 -64 30 -44 Z"
+              fill="url(#gGarra)" stroke="#07080B" stroke-width="3" stroke-linejoin="round"/>
+        <!-- ojo (donde entra el mango) -->
+        <rect x="-36" y="-50" width="72" height="64" rx="8" fill="url(#gAceroM)" stroke="#07080B" stroke-width="3"/>
+        <rect x="-4" y="-40" width="34" height="44" rx="3" fill="#1B1E22" opacity=".35"/>
+        <!-- cuello -->
+        <path d="M-26 12 L26 12 L31 42 L-31 42 Z" fill="url(#gAceroM)" stroke="#07080B" stroke-width="3" stroke-linejoin="round"/>
+        <!-- cara de golpe (cilindro) -->
+        <rect x="-40" y="40" width="80" height="46" rx="5" fill="url(#gAceroM)" stroke="#07080B" stroke-width="3"/>
+        <path d="M-40 84 L40 84 L37 91 Q0 95 -37 91 Z" fill="url(#gCara)" stroke="#07080B" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="-16" y="-44" width="5" height="128" fill="#FFFFFF" opacity=".35"/>
+      </g>
+
+      <!-- persona en silueta (180 de alto, pies en el origen) -->
+      <path id="persona" d="M0 -180 a15 15 0 1 1 -0.1 0 Z
+        M-21 -144 Q0 -151 21 -144 Q30 -140 32 -126 L38 -76 Q38 -70 32 -70 Q27 -70 26 -76 L21 -116 L20 -84 L21 -2 Q21 4 14 4 L8 4 Q3 4 3 -2 L1 -78 L-1 -78 L-3 -2 Q-3 4 -8 4 L-14 4 Q-21 4 -21 -2 L-20 -84 L-21 -116 L-26 -76 Q-27 -70 -32 -70 Q-38 -70 -38 -76 L-32 -126 Q-30 -140 -21 -144 Z"/>
+
+      <clipPath id="sobreMadera" clipPathUnits="userSpaceOnUse"><rect x="0" y="0" width="1080" height="1146"/></clipPath>
+      <clipPath id="dentroMadera" clipPathUnits="userSpaceOnUse"><rect x="0" y="1146" width="1080" height="800"/></clipPath>
+      <clipPath id="sobreTierra" clipPathUnits="userSpaceOnUse"><rect x="0" y="0" width="1080" height="1332"/></clipPath>
+      <clipPath id="dentroTierra" clipPathUnits="userSpaceOnUse"><rect x="0" y="1332" width="1080" height="600"/></clipPath>
+    </defs>
+  </svg>
+
+  <!-- ===================== PLANOS 1 y 2: clavo real sobre la tabla ===================== -->
+  <div id="esc1" class="clip escena" data-start="0" data-duration="2.75" data-track-index="1">
+    <svg class="lienzo" viewBox="0 0 1080 1920" width="1080" height="1920">
+      <g id="mundo1">
+        <!-- tabla de madera en corte: cara superior + frente con vetas -->
+        <rect x="-40" y="1138" width="1160" height="840" fill="url(#gMadera)"/>
+        <g fill="none" stroke-linecap="round">
+          <path d="M-40 1196 C200 1188 380 1206 600 1196 S960 1186 1120 1194" stroke="#4E3119" stroke-width="3" opacity=".7"/>
+          <path d="M-40 1232 C120 1226 170 1262 236 1262 C300 1262 330 1230 560 1236 S900 1244 1120 1230" stroke="#8A5E3A" stroke-width="2.5" opacity=".55"/>
+          <path d="M-40 1270 C110 1268 150 1300 236 1302 C322 1304 352 1270 600 1276 S940 1286 1120 1272" stroke="#4E3119" stroke-width="3.5" opacity=".7"/>
+          <path d="M-40 1342 C120 1346 160 1318 236 1318 C312 1318 360 1346 620 1340 S940 1330 1120 1342" stroke="#4E3119" stroke-width="3" opacity=".65"/>
+          <path d="M-40 1380 C200 1388 420 1372 640 1384 S960 1394 1120 1380" stroke="#8A5E3A" stroke-width="2.5" opacity=".45"/>
+          <path d="M-40 1430 C240 1422 460 1440 700 1430 S980 1420 1120 1432" stroke="#4E3119" stroke-width="3.5" opacity=".6"/>
+          <path d="M-40 1500 C260 1508 480 1490 720 1502 S1000 1512 1120 1498" stroke="#4E3119" stroke-width="3" opacity=".5"/>
+          <path d="M-40 1580 C240 1572 520 1590 760 1578 S1000 1570 1120 1582" stroke="#4E3119" stroke-width="3" opacity=".45"/>
+          <path d="M-40 1680 C260 1688 540 1670 800 1684 S1020 1690 1120 1680" stroke="#3A2312" stroke-width="3" opacity=".5"/>
+          <!-- nudo -->
+          <ellipse cx="236" cy="1290" rx="44" ry="15" stroke="#4A2D16" stroke-width="4" opacity=".85"/>
+          <ellipse cx="236" cy="1290" rx="26" ry="8" stroke="#4A2D16" stroke-width="3" opacity=".8"/>
+          <ellipse cx="236" cy="1290" rx="10" ry="3.5" fill="#3E2511" stroke="none"/>
+          <path d="M760 1226 C820 1222 880 1236 940 1230" stroke="#8A5E3A" stroke-width="2" opacity=".5"/>
+        </g>
+        <!-- cara superior de la tabla, en leve perspectiva -->
+        <rect x="-40" y="1132" width="1160" height="18" fill="#A0744A"/>
+        <path d="M-40 1132 H1120" stroke="#07080B" stroke-width="3"/>
+        <path d="M-40 1150 H1120" stroke="#4A2F1A" stroke-width="3"/>
+        <!-- hoyo que deja el clavo (aparece con el golpe) -->
+        <ellipse id="s1-hoyo" cx="500" cy="1146" rx="30" ry="6" fill="#24170C" opacity="0"/>
+
+        <!-- el clavo dentro de la madera (vista en corte, translúcido) -->
+        <g clip-path="url(#dentroMadera)" opacity=".30">
+          <g id="s1-fantasma"><use href="#clavoDib" transform="translate(500 480)"/></g>
+        </g>
+        <!-- el clavo visible, recortado en la superficie -->
+        <g clip-path="url(#sobreMadera)">
+          <g filter="url(#sombra)">
+            <g id="s1-clavo"><use href="#clavoDib" transform="translate(500 480)"/></g>
+          </g>
+        </g>
+
+        <!-- destello y líneas de impacto (en el punto de contacto martillo-cabeza) -->
+        <g id="s1-impacto">
+          <circle id="s1-destello" cx="500" cy="484" r="120" fill="url(#gDestello)" opacity="0"/>
+          <g transform="translate(500 486)" stroke="#F5B82E" stroke-width="9" stroke-linecap="round" filter="url(#brillo)">
+            <g transform="rotate(188)"><line id="s1-l1" x1="72" y1="0" x2="72" y2="0" opacity="0"/></g>
+            <g transform="rotate(220)"><line id="s1-l2" x1="72" y1="0" x2="72" y2="0" opacity="0"/></g>
+            <g transform="rotate(154)"><line id="s1-l3" x1="72" y1="0" x2="72" y2="0" opacity="0"/></g>
+          </g>
+        </g>
+
+        <!-- martillo: s1-mpos baja con el clavo, s1-mrot gira desde el puño (900,388) -->
+        <g filter="url(#sombra)">
+          <g id="s1-mpos">
+            <g id="s1-mrot">
+              <use href="#martilloDib" transform="translate(500 388)"/>
+            </g>
+          </g>
+        </g>
+      </g>
+
+      <!-- etiqueta 1: CLAVO · 8 CM, línea guía a la cabeza -->
+      <g id="s1-et1">
+        <text id="s1-et1-txt" x="80" y="640" font-size="52" font-weight="800" fill="#E9E6DF" letter-spacing="2" opacity="0">CLAVO · 8 CM</text>
+        <path id="s1-et1-linea" d="M80 662 L444 662 L451 498" pathLength="1" fill="none" stroke="#E9E6DF" stroke-width="4" stroke-linejoin="round" style="stroke-dasharray:1 1; stroke-dashoffset:1"/>
+        <circle id="s1-et1-punto" cx="452" cy="491" r="9" fill="#E9E6DF" stroke="#07080B" stroke-width="3" opacity="0"/>
+      </g>
+      <!-- etiqueta 2: 8 CM → 0, número en vivo, línea guía a la madera donde entró -->
+      <g id="s1-et2">
+        <text id="s1-et2-txt" x="80" y="1032" font-size="52" font-weight="800" fill="#E9E6DF" letter-spacing="2" opacity="0">8 CM → <tspan id="s1-n8" fill="#F5B82E" font-weight="900" filter="url(#brillo)">8</tspan></text>
+        <path id="s1-et2-linea" d="M80 1054 L340 1054 L424 1140" pathLength="1" fill="none" stroke="#E9E6DF" stroke-width="4" stroke-linejoin="round" style="stroke-dasharray:1 1; stroke-dashoffset:1"/>
+        <circle id="s1-et2-punto" cx="426" cy="1143" r="9" fill="#E9E6DF" stroke="#07080B" stroke-width="3" opacity="0"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ===================== PLANOS 3 y 4: el mismo clavo, de 20 metros ===================== -->
+  <div id="esc3" class="clip escena" data-start="2.75" data-duration="4.85" data-track-index="1">
+    <svg class="lienzo" viewBox="0 0 1080 1920" width="1080" height="1920">
+      <g id="mundo3">
+        <!-- suelo de tierra en corte -->
+        <rect x="-60" y="1330" width="1200" height="640" fill="url(#gTierra)"/>
+        <g fill="none" stroke-linecap="round">
+          <path d="M-60 1404 C160 1396 360 1414 600 1402 S960 1394 1140 1406" stroke="#2A2019" stroke-width="5" opacity=".8"/>
+          <path d="M-60 1500 C200 1510 420 1490 660 1504 S980 1512 1140 1498" stroke="#55442F" stroke-width="3" opacity=".35"/>
+          <path d="M-60 1610 C220 1600 460 1620 700 1606 S1000 1598 1140 1612" stroke="#2A2019" stroke-width="5" opacity=".7"/>
+          <path d="M-60 1740 C240 1750 500 1730 760 1744 S1020 1752 1140 1738" stroke="#2A2019" stroke-width="5" opacity=".6"/>
+        </g>
+        <g fill="#5E5246" stroke="#07080B" stroke-width="2.5">
+          <ellipse cx="120" cy="1440" rx="22" ry="12"/><ellipse cx="300" cy="1520" rx="14" ry="8"/>
+          <ellipse cx="760" cy="1450" rx="26" ry="13"/><ellipse cx="880" cy="1560" rx="16" ry="9"/>
+          <ellipse cx="200" cy="1660" rx="28" ry="14"/><ellipse cx="640" cy="1690" rx="18" ry="10"/>
+          <ellipse cx="960" cy="1700" rx="24" ry="12"/><ellipse cx="420" cy="1800" rx="20" ry="11"/>
+          <ellipse cx="60" cy="1560" rx="12" ry="7"/><ellipse cx="820" cy="1830" rx="22" ry="12"/>
+        </g>
+        <!-- borde del suelo -->
+        <path d="M-60 1332 H1140" stroke="#07080B" stroke-width="4"/>
+        <path d="M-60 1338 H1140" stroke="#6A5440" stroke-width="4" opacity=".7"/>
+
+        <!-- el clavo gigante dentro de la tierra (translúcido) y fuera -->
+        <g clip-path="url(#dentroTierra)" opacity=".30">
+          <use href="#clavoDib" transform="translate(500 380) scale(1.4925)"/>
+        </g>
+        <!-- sombra de contacto -->
+        <ellipse cx="520" cy="1336" rx="70" ry="9" fill="#000" opacity=".45"/>
+        <g clip-path="url(#sobreTierra)">
+          <g filter="url(#sombra)"><use href="#clavoDib" transform="translate(500 380) scale(1.4925)"/></g>
+        </g>
+        <!-- tierra levantada donde entró -->
+        <path d="M440 1334 Q458 1318 474 1326 L470 1334 Z M526 1334 L530 1324 Q548 1316 566 1334 Z" fill="#5A4636" stroke="#07080B" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- borde dorado del clavo cuando la voz dice "clavo" -->
+        <use id="s3-borde" href="#clavoContorno" transform="translate(500 380) scale(1.4925)" fill="none" stroke="#F5B82E" stroke-width="4" filter="url(#brillo)" opacity="0"/>
+
+        <!-- persona de 1,8 m para la escala (1/11 del clavo) -->
+        <ellipse cx="364" cy="1336" rx="26" ry="5" fill="#000" opacity=".45"/>
+        <use href="#persona" transform="translate(360 1332) scale(.483)" fill="#8A8F99" stroke="#07080B" stroke-width="5"/>
+      </g>
+
+      <!-- cota vertical de 20 M (crece con la voz) -->
+      <g id="s3-cota" opacity="0">
+        <path d="M590 380 H684" stroke="#8A8F99" stroke-width="3" stroke-dasharray="10 8"/>
+        <path d="M560 1332 H684" stroke="#8A8F99" stroke-width="3" stroke-dasharray="10 8"/>
+        <g filter="url(#brillo)" stroke="#F5B82E" stroke-width="5" stroke-linecap="round">
+          <line id="s3-cota-linea" x1="650" y1="1332" x2="650" y2="1332"/>
+          <line x1="628" y1="1332" x2="672" y2="1332"/>
+          <line id="s3-cota-tope" x1="628" y1="1332" x2="672" y2="1332"/>
+        </g>
+        <g id="s3-n20-g">
+          <text x="704" y="-64" font-size="40" font-weight="800" fill="#8A8F99" letter-spacing="3">ALTO</text>
+          <path d="M650 -28 H692" stroke="#E9E6DF" stroke-width="4"/>
+          <circle cx="650" cy="-28" r="8" fill="#E9E6DF" stroke="#07080B" stroke-width="3"/>
+          <text x="704" y="4" font-size="92" font-weight="900" fill="#F5B82E" filter="url(#brillo)"><tspan id="s3-n20">0</tspan> M</text>
+        </g>
+      </g>
+
+      <!-- etiqueta-contador de 50 T junto a la caña -->
+      <g id="s3-et50">
+        <text id="s3-et50-sub" x="380" y="760" text-anchor="end" font-size="40" font-weight="800" fill="#8A8F99" letter-spacing="3" opacity="0">PESO</text>
+        <text id="s3-et50-txt" x="380" y="850" text-anchor="end" font-size="92" font-weight="900" fill="#F5B82E" filter="url(#brillo)" opacity="0"><tspan id="s3-n50">0</tspan> T</text>
+        <path id="s3-et50-linea" d="M120 878 L392 878 L462 830" pathLength="1" fill="none" stroke="#E9E6DF" stroke-width="4" stroke-linejoin="round" style="stroke-dasharray:1 1; stroke-dashoffset:1"/>
+        <circle id="s3-et50-punto" cx="466" cy="828" r="9" fill="#E9E6DF" stroke="#07080B" stroke-width="3" opacity="0"/>
+      </g>
+
+      <!-- plano 4: el martillo de siempre, ridículamente chico, junto a la cabeza -->
+      <g id="s3-mpos">
+        <g id="s3-mflota">
+          <g filter="url(#sombra)">
+            <g transform="translate(694 318) rotate(30) scale(.28)"><use href="#martilloDib"/></g>
+          </g>
+        </g>
+      </g>
+      <!-- signo de pregunta sobre la cabeza del clavo -->
+      <g id="s3-preg" opacity="0">
+        <text x="500" y="336" text-anchor="middle" font-size="250" font-weight="900" fill="#F5B82E" stroke="#07080B" stroke-width="8" paint-order="stroke fill" filter="url(#brillo)">?</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- viñeta suave y grano leve -->
+  <div id="vineta"></div>
+  <svg id="grano" viewBox="0 0 1200 2040" width="1200" height="2040" aria-hidden="true">
+    <filter id="fGrano"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <rect width="1200" height="2040" filter="url(#fGrano)"/>
+  </svg>
+
+  <!-- ===================== SUBTÍTULOS (1–3 palabras; la clave en recuadro oro) ===================== -->
+  <div id="c1" class="clip cap" data-start="0.18" data-duration="0.55" data-track-index="2"><div class="linea">
+    <span class="w" data-s="0.18">ESTO</span><span class="w" data-s="0.42">ES</span><span class="w" data-s="0.58">UN</span></div></div>
+  <div id="c2" class="clip cap" data-start="0.73" data-duration="0.55" data-track-index="2"><div class="linea">
+    <span class="kw" data-s="0.73"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="0.73">CLAVO</span></span></div></div>
+  <div id="c3" class="clip cap" data-start="1.28" data-duration="0.69" data-track-index="2"><div class="linea">
+    <span class="w" data-s="1.28">UN</span><span class="kw" data-s="1.44"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="1.44">MARTILLAZO</span></span></div></div>
+  <div id="c4" class="clip cap" data-start="1.97" data-duration="0.78" data-track-index="2"><div class="linea">
+    <span class="w" data-s="1.97">Y</span><span class="w" data-s="2.18">ENTRA</span></div></div>
+  <div id="c5" class="clip cap" data-start="2.75" data-duration="0.40" data-track-index="2"><div class="linea">
+    <span class="w" data-s="2.75">PERO</span><span class="w" data-s="2.90">ESTE</span></div></div>
+  <div id="c6" class="clip cap" data-start="3.15" data-duration="0.54" data-track-index="2"><div class="linea">
+    <span class="kw" data-s="3.15"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="3.15">CLAVO</span></span><span class="w" data-s="3.45">MIDE</span></div></div>
+  <div id="c7" class="clip cap" data-start="3.69" data-duration="0.66" data-track-index="2"><div class="linea">
+    <span class="kw" data-s="3.69"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="3.69">VEINTE</span><span class="w" data-s="4.01">METROS</span></span></div></div>
+  <div id="c8" class="clip cap" data-start="4.35" data-duration="0.55" data-track-index="2"><div class="linea">
+    <span class="w" data-s="4.35">Y</span><span class="w" data-s="4.59">PESA</span></div></div>
+  <div id="c9" class="clip cap" data-start="4.90" data-duration="1.31" data-track-index="2"><div class="linea">
+    <span class="kw" data-s="4.90"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="4.90">CINCUENTA</span><span class="w" data-s="5.27">TONELADAS</span></span></div></div>
+  <div id="c10" class="clip cap" data-start="6.21" data-duration="0.46" data-track-index="2"><div class="linea">
+    <span class="w" data-s="6.21">¿CON</span><span class="w" data-s="6.36">QUÉ</span><span class="w" data-s="6.53">LE</span></div></div>
+  <div id="c11" class="clip cap" data-start="6.67" data-duration="0.93" data-track-index="2"><div class="linea">
+    <span class="kw" data-s="6.67"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="6.67">PEGAS?</span></span></div></div>
+
+  <!-- voz del beat -->
+  <audio id="voz" class="clip" data-start="0" data-duration="7.09" data-track-index="3" data-volume="1" src="assets/beat.wav"></audio>
+</div>
+
+<script>
+  // ---------- curvas de movimiento de la casa (cubic-bezier exactas) ----------
+  function bezier(x1, y1, x2, y2) {
+    const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+    const cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+    const sx = (t) => ((ax * t + bx) * t + cx) * t;
+    const sy = (t) => ((ay * t + by) * t + cy) * t;
+    return (p) => {
+      if (p <= 0) return 0;
+      if (p >= 1) return 1;
+      let lo = 0, hi = 1, t = p;
+      for (let i = 0; i < 40; i++) { const v = sx(t); if (Math.abs(v - p) < 1e-7) break; if (v < p) lo = t; else hi = t; t = (lo + hi) / 2; }
+      return sy(t);
+    };
+  }
+  const ENTRA = bezier(0.16, 1, 0.3, 1);      // entradas ~0,8 s
+  const SALE = bezier(0.6, 0, 0.9, 0.35);     // salidas ~0,4 s
+  const CAMBIA = bezier(0.65, 0, 0.35, 1);    // de un estado a otro
+  const ATERRIZA = bezier(0.55, 0, 0.2, 1.12); // un solo rebote: el martillazo
+  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+
+  // sin "lazy": cada seek escribe sus valores al tiro (el render salta de cuadro en cuadro)
+  gsap.defaults({ lazy: false });
+  const tl = gsap.timeline({ paused: true });
+  const $ = (s) => document.querySelector(s);
+
+  // ---------- PLANO 1: el martillo respira 6 px; la etiqueta entra en "clavo" ----------
+  const PUNO = "900 388"; // el puño del martillo: centro del giro
+  gsap.set("#s1-mrot", { rotation: 30, svgOrigin: PUNO });
+  tl.to("#s1-mpos", { y: -6, duration: 0.85, ease: "sine.inOut" }, 0);
+  tl.to("#s1-mpos", { y: 0, duration: 0.35, ease: CAMBIA }, 0.85);
+
+  function etiqueta(pre, t0, dur) {
+    dur = dur || 0.8;
+    tl.fromTo(pre + "-txt", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: dur, ease: ENTRA, immediateRender: false }, t0);
+    tl.fromTo(pre + "-linea", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: dur * 0.6, ease: ENTRA, immediateRender: false }, t0 + dur * 0.1);
+    tl.fromTo(pre + "-punto", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: dur * 0.4, ease: ENTRA, immediateRender: false }, t0 + dur * 0.55);
+  }
+  etiqueta("#s1-et1", 0.73);
+
+  // ---------- PLANO 2: martillazo en 1,44 s (inicio de "martillazo"), se hunde en "entra" (2,18 s) ----------
+  tl.to("#s1-mrot", { rotation: 44, duration: 0.14, ease: CAMBIA, svgOrigin: PUNO }, 1.20);  // toma impulso en "Un"
+  tl.to("#s1-mrot", { rotation: 0, duration: 0.10, ease: "power3.in", svgOrigin: PUNO }, 1.34); // baja y pega justo en 1,44
+  const GOLPE = 1.44;
+  tl.to(["#s1-clavo", "#s1-fantasma", "#s1-mpos"], { y: 36, duration: 0.32, ease: ATERRIZA }, GOLPE); // aterrizaje con rebote
+  tl.set("#s1-hoyo", { opacity: 1 }, GOLPE);
+  // la línea guía sigue a la cabeza del clavo cuando baja con el golpe
+  tl.to("#s1-et1-linea", { attr: { d: "M80 662 L444 662 L451 534" }, duration: 0.32, ease: ATERRIZA }, GOLPE);
+  tl.to("#s1-et1-punto", { y: 36, duration: 0.32, ease: ATERRIZA }, GOLPE);
+  tl.to("#mundo1", { keyframes: [ { x: -12, y: 9, duration: 0.04 }, { x: 9, y: -7, duration: 0.05 }, { x: -6, y: 4, duration: 0.05 }, { x: 3, y: -2, duration: 0.05 }, { x: 0, y: 0, duration: 0.06 } ], ease: "none" }, GOLPE);
+  tl.fromTo("#s1-destello", { opacity: 1, scale: 0.25, transformOrigin: "50% 50%" }, { opacity: 0, scale: 1.5, duration: 0.42, ease: ENTRA, immediateRender: false }, GOLPE);
+  ["#s1-l1", "#s1-l2", "#s1-l3"].forEach((l, i) => {
+    tl.fromTo(l, { opacity: 1, attr: { x1: 70, x2: 70 } }, { attr: { x2: 150 - i * 12 }, duration: 0.14, ease: ENTRA, immediateRender: false }, GOLPE);
+    tl.to(l, { opacity: 0, attr: { x1: 150 - i * 12 }, duration: 0.22, ease: SALE }, GOLPE + 0.14);
+  });
+  // "entra": el clavo se hunde (0,4 s) y el martillo lo acompaña; queda sólo la cabeza
+  const ENTRA_T = 2.18, HUNDE = 646;
+  tl.to(["#s1-clavo", "#s1-fantasma", "#s1-mpos"], { y: HUNDE, duration: 0.4, ease: ENTRA }, ENTRA_T);
+  // la etiqueta 1 apuntaba a la cabeza: sale; entra la 2 (rápida, el corte llega en 2,75)
+  tl.to(["#s1-et1-txt", "#s1-et1-linea", "#s1-et1-punto"], { opacity: 0, duration: 0.2, ease: SALE }, ENTRA_T);
+  etiqueta("#s1-et2", ENTRA_T, 0.36);
+
+  // ---------- PLANO 3: corte a la escala gigante en "Pero" (2,75 s) ----------
+  tl.fromTo("#mundo3", { scale: 1.1, svgOrigin: "500 1332" }, { scale: 1, svgOrigin: "500 1332", duration: 0.8, ease: ENTRA, immediateRender: false }, 2.75);
+  // "clavo" (3,15 s): borde dorado que se enciende y se apaga
+  tl.fromTo("#s3-borde", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: ENTRA, immediateRender: false }, 3.15);
+  tl.to("#s3-borde", { opacity: 0, duration: 0.4, ease: SALE }, 3.5);
+  // "veinte" (3,69 s): la cota crece 0 → 20 M (la mueve el reloj de abajo)
+  tl.fromTo("#s3-cota", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: ENTRA, immediateRender: false }, 3.69);
+  // "cincuenta" (4,90 s): contador 0 → 50 T
+  etiqueta("#s3-et50", 4.90);
+  tl.fromTo("#s3-et50-sub", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.8, ease: ENTRA, immediateRender: false }, 4.90);
+
+  // ---------- PLANO 4: "¿Con" (6,21 s) entra el martillo chico; "pegas" (6,67 s) el signo ----------
+  tl.to(["#s3-cota", "#s3-et50-txt", "#s3-et50-sub", "#s3-et50-linea", "#s3-et50-punto"], { opacity: 0, duration: 0.4, ease: SALE }, 6.21);
+  gsap.set("#s3-mpos", { x: 460 });
+  tl.fromTo("#s3-mpos", { x: 460 }, { x: 0, duration: 0.8, ease: ENTRA, immediateRender: false }, 6.21);
+  tl.to("#s3-mflota", { y: -8, duration: 0.6, ease: "sine.inOut" }, 7.0);
+  tl.fromTo("#s3-preg", { opacity: 0, scale: 0.45, rotation: -10, svgOrigin: "500 260" }, { opacity: 1, scale: 1, rotation: 0, svgOrigin: "500 260", duration: 0.5, ease: ENTRA, immediateRender: false }, 6.67);
+
+  // ---------- SUBTÍTULOS: cada palabra en su inicio; el recuadro con la palabra clave ----------
+  document.querySelectorAll(".cap .w").forEach((w) => {
+    const s = parseFloat(w.dataset.s);
+    tl.fromTo(w, { opacity: 0, scale: 0.86, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: ENTRA, immediateRender: false }, s);
+  });
+  document.querySelectorAll(".cap .kw").forEach((k) => {
+    const s = parseFloat(k.dataset.s);
+    tl.fromTo(k.querySelector(".caja"), { opacity: 0, scale: 1.18 }, { opacity: 1, scale: 1, duration: 0.22, ease: ENTRA, immediateRender: false }, s);
+  });
+
+  // ---------- RELOJ: números en vivo, cota y grano, como función pura del tiempo ----------
+  const n8 = $("#s1-n8"), n20 = $("#s3-n20"), n50 = $("#s3-n50");
+  const cotaLinea = $("#s3-cota-linea"), cotaTope = $("#s3-cota-tope"), n20g = $("#s3-n20-g");
+  const grano = $("#grano");
+  const ALTO_SUELO = 1332, ALTO_CABEZA = 380;
+  function hash(n) { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); }
+  function actualizar(t) {
+    // 8 → 0 cm de clavo afuera, al ritmo del hundimiento
+    const h = ENTRA(clamp01((t - ENTRA_T) / 0.4));
+    n8.textContent = String(Math.round(8 * (1 - h)));
+    // cota 0 → 20 M en 0,8 s desde "veinte"; el número sube con el tope
+    const c = ENTRA(clamp01((t - 3.69) / 0.8));
+    const yTope = ALTO_SUELO - (ALTO_SUELO - ALTO_CABEZA) * c;
+    cotaLinea.setAttribute("y2", yTope.toFixed(1));
+    cotaTope.setAttribute("y1", yTope.toFixed(1));
+    cotaTope.setAttribute("y2", yTope.toFixed(1));
+    n20g.setAttribute("transform", "translate(0 " + Math.min(yTope + 84, 1240).toFixed(1) + ")");
+    n20.textContent = String(Math.round(20 * c));
+    // 0 → 50 T en 0,8 s desde "cincuenta"
+    n50.textContent = String(Math.round(50 * ENTRA(clamp01((t - 4.9) / 0.8))));
+    // grano que cambia en cada cuadro (semilla fija)
+    const f = Math.floor(t * 30 + 1e-6);
+    grano.style.transform = "translate(" + Math.round(hash(f) * 60 - 30) + "px," + Math.round(hash(f + 999) * 60 - 30) + "px)";
+  }
+  // GSAP llama al setter en cada render (también al saltar con seek), sin depender de callbacks
+  const reloj = { _t: 0, t(v) { if (v === undefined) return this._t; this._t = v; actualizar(v); } };
+  tl.fromTo(reloj, { t: 0 }, { t: 7.6, duration: 7.6, ease: "none" }, 0);
+  actualizar(0);
+
+  window.__timelines = window.__timelines || {};
+  window.__timelines["main"] = tl;
+  tl.seek(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# Se copian en cada render (preparar.sh) o los genera HyperFrames
+assets/
+renders/
+.hyperframes/
