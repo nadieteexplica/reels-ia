@@ -1,0 +1,72 @@
+{
+ "con_bordes": {
+  "inicio_ms": {
+   "media": 36,
+   "p90": 79,
+   "max": 167
+  },
+  "fin_ms": {
+   "media": 51,
+   "p90": 107,
+   "max": 235
+  },
+  "inicios_a_mas_de_1_cuadro": 57,
+  "peores_inicios": [
+   [
+    "donde",
+    167
+   ],
+   [
+    "desarman",
+    128
+   ],
+   [
+    "meten",
+    123
+   ],
+   [
+    "Después,",
+    120
+   ],
+   [
+    "escondidos,",
+    119
+   ]
+  ]
+ },
+ "sin_bordes": {
+  "inicio_ms": {
+   "media": 37,
+   "p90": 82,
+   "max": 167
+  },
+  "fin_ms": {
+   "media": 49,
+   "p90": 103,
+   "max": 235
+  },
+  "inicios_a_mas_de_1_cuadro": 59,
+  "peores_inicios": [
+   [
+    "donde",
+    167
+   ],
+   [
+    "desarman",
+    128
+   ],
+   [
+    "el",
+    126
+   ],
+   [
+    "meten",
+    123
+   ],
+   [
+    "Después,",
+    120
+   ]
+  ]
+ }
+}
