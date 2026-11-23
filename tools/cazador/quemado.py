@@ -33,7 +33,7 @@ def get(url, intentos=None):
     for k in range(intentos):
         try:
             r = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "es-419,es;q=0.9"})
-            with urllib.request.urlopen(r, timeout=30) as f:
+            with urllib.request.urlopen(r, timeout=30 if INTENTOS > 2 else 12) as f:
                 h = f.read().decode("utf-8", "replace")
             if "ytInitialData" in h or "/watch" not in url and len(h) > 50000 or "/watch" in url:
                 return h
