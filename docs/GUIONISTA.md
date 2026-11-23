@@ -10,6 +10,7 @@
 4. **Final:** **remate** (la frase más fuerte, ≤ 12 palabras) **+ loop** con la primera frase **+ "mándaselo a…" ligado al contenido**: una persona concreta que sale del tema ("mándaselo a quien siempre culpa al semáforo"), nunca genérico ("a un amigo", "a alguien que le guste la ciencia"). El CTA va en la voz, después del remate, y no puede pasar de ~2 s.
 5. **juez-viral** compara cada guion contra la biblioteca, parte por parte (gancho, medio, final). Pasa sólo con 3 GANA o 2 GANA + 1 EMPATA **y ningún tramo sin novedad** (si juez-viral marca `segundos_sin_novedad`, no pasa aunque gane gancho y final; Tomás, 23-nov-2026). Después, los **espectadores** (`feed.py`) buscan fugas en el que pasó.
 6. **Máximo 2 reescrituras** (sólo lo que señalan los jueces). Si no llega, **la idea se descarta y se cambia por otra de la ronda del cazador, sin pedirle correcciones a Tomás.**
+7. **Apertura (Tomás, 23-nov-2026):** ni "lo raro primero" ni "lo normal que escala antes de 3 s" está probado como mejor. Cada guion anota cuál usa (`docs/ROTACION.md`), y con 4–6 videos se compara contra "visto vs. deslizado" de YouTube. **Nunca se copia la frase de apertura de un viral** (ni traducida: "Esto es un clavo" del martinete, "Tu pantalla reacciona…" del touchscreen, etc.); juez-viral la marca como PIERDE en gancho.
 El paso a paso está en la skill `guion` (`.claude/skills/guion/SKILL.md`).
 
 **Qué hay:**

@@ -10,7 +10,8 @@ Te pasan la ruta de **un** guion (un `.md` con el texto de la voz por segundos, 
 ## Qué haces
 1. Lee las fichas de la biblioteca (todas las `.md` de esa carpeta salvo el README) y el guion. Nada más: no abras otros archivos del repo, no busques en la web, no mires resultados reales.
 2. Compara el guion contra **la mejor ficha de su mismo tipo de estructura** (A inventaste X, B contradicción, C escalera, D mito + analogía; si no hay del mismo tipo, contra la mejor en general) y contra el promedio de la biblioteca, en tres partes:
-   - **Gancho (0–3 s):** ¿el cuadro 0 ya se mueve y muestra algo imposible o una contradicción visible? ¿la primera sílaba ya es el gancho? ¿deja una pregunta que el espectador cree poder contestar, sin responderla?
+   - **Gancho (0–3 s):** si la primera frase copia (o traduce) la apertura de un viral de la biblioteca, es PIERDE automático.
+   - **Gancho, lo demás:** ¿el cuadro 0 ya se mueve y muestra algo imposible o una contradicción visible? ¿la primera sílaba ya es el gancho? ¿deja una pregunta que el espectador cree poder contestar, sin responderla?
    - **Medio:** ¿algo nuevo cada 4–6 s (dato, paso de la mecánica, número, falla nueva)? ¿cero relleno (frases que no hacen avanzar la idea central)? ¿"pero"/"por eso" en vez de "y después"? ¿hay un re-gancho a mitad?
    - **Final:** ¿remate fuerte (la frase más fuerte), loop que empalma con la primera frase y un "mándaselo a…" **ligado al contenido** (una persona concreta sacada del tema, nunca genérico como "a un amigo")?
 3. En cada parte decide **GANA**, **EMPATA** o **PIERDE** contra la ficha y explica en una frase con el segundo exacto. Si algo de la ficha dice "por ver", no lo uses como vara: compara contra lo que sí está escrito.
