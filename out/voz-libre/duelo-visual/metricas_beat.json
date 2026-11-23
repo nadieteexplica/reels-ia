@@ -1,0 +1,26 @@
+{
+ "beat.wav": {
+  "duracion_s": 7.1,
+  "pal_por_s": 3.1,
+  "wer_%": 9.1,
+  "diferencias": [
+   "veinte → 20",
+   "cincuenta → 50"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": []
+ },
+ "beat_original.wav": {
+  "duracion_s": 8.2,
+  "pal_por_s": 2.67,
+  "wer_%": 9.1,
+  "diferencias": [
+   "veinte → 20",
+   "cincuenta → 50"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": []
+ }
+}
