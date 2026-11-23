@@ -2,6 +2,16 @@
 
 **Pedido de Tomás (1-nov-2026, 01:04):** "los videos han estado fallando porque el hook es muy malo… el guion entero es bastante malo. Quiero una investigación increíble y un agente dentro del proyecto que se preocupe solo del guion: lo necesario y perfecto para el tema, que el hook sea increíble, que sepa qué es lo mejor para el algoritmo de hoy, con simulaciones si sirven."
 
+## §0 · Regla del guion (Tomás, 23-nov-2026 — máxima prioridad, manda sobre todo lo demás de este documento)
+**Ningún guion le llega a Tomás si no le gana a los virales de la biblioteca** (`docs/referencias/virales/`) según `juez-viral`.
+1. **3 guionistas en paralelo**, cada uno con una estructura distinta (A inventaste X · B mecanismo con contradicción · C escalera de micro-datos · D mito + analogía), rotando según `docs/ROTACION.md` (la estructura del video anterior no se repite).
+2. **Gancho:** 12 ganchos (4 de cada guionista) en **duelo ciego** (`tools/guionista/duelo.py`, 4 `juez-gancho`); gana uno, y **además tiene que ganarle a los ganchos virales** (`duelo.py preparar … --anclas virales`): si pierde contra más de la mitad, no hay gancho.
+3. **Medio:** algo nuevo cada 4–6 s (dato, paso, número, falla nueva), cero relleno, "pero"/"por eso".
+4. **Final:** **remate** (la frase más fuerte, ≤ 12 palabras) **+ loop** con la primera frase **+ "mándaselo a…" ligado al contenido**: una persona concreta que sale del tema ("mándaselo a quien siempre culpa al semáforo"), nunca genérico ("a un amigo", "a alguien que le guste la ciencia"). El CTA va en la voz, después del remate, y no puede pasar de ~2 s.
+5. **juez-viral** compara cada guion contra la biblioteca, parte por parte (gancho, medio, final). Pasa sólo con 3 GANA o 2 GANA + 1 EMPATA. Después, los **espectadores** (`feed.py`) buscan fugas en el que pasó.
+6. **Máximo 2 reescrituras** (sólo lo que señalan los jueces). Si no llega, **la idea se descarta y se cambia por otra de la ronda del cazador, sin pedirle correcciones a Tomás.**
+El paso a paso está en la skill `guion` (`.claude/skills/guion/SKILL.md`).
+
 **Qué hay:**
 - **Este documento:** lo que dicen nuestros números, la investigación, el método, la receta del gancho y del guion, y las pruebas.
 - **El agente `guionista`** (`.claude/agents/guionista.md`): escribe la premisa, 12 o más ganchos, 3 guiones distintos y el `guion.md` final. **No se pone nota a sí mismo:** lo juzgan otros.
@@ -167,7 +177,7 @@ Se corrió a ciegas sobre los 6 videos publicados (las "anclas"), con códigos a
 | **2–6 s · Lo que está en juego** | Una frase: quién, cuánto o por qué importa. Queda abierta la pregunta "¿cómo?" | ¿Quedó una pregunta? |
 | **6–20 s · Mecánica** | 2–3 pasos unidos con "pero" / "por eso"; cada paso, un cambio que se ve; uno mete al espectador con un "tú" | ¿Quedó algún "y después"? |
 | **20–30 s · El pago** | La imagen que responde la pregunta del gancho; el tramo más rápido | ¿Se paga después del 60 % del video? |
-| **Últimos 3–5 s · Cierre en el pico** | Una consecuencia o el chiste, y la última frase empalma con la primera (loop) | ¿Quedan ≤ 2 frases después del pago? |
+| **Últimos 3–5 s · Cierre en el pico** | Remate (consecuencia o chiste) que empalma con la primera frase (loop) + "mándaselo a…" ligado al contenido (§0.4) | ¿Quedan ≤ 2 frases después del pago, contando el CTA? ¿El CTA nombra a una persona que sale del tema? |
 
 - **"Y lo más loco"** ya no va después del pago: va a la mitad, como segundo gancho, sólo si es más grande que todo lo anterior. Si no, va al comentario fijado.
 - **La enseñanza útil** (línea datos; regla del proyecto): el espectador termina sabiendo cómo funciona. Si además hay una frase de "qué hacer", que sea corta y parte del remate. Sacarla del todo es una propuesta pendiente de Tomás (§8).
@@ -194,7 +204,7 @@ Se corrió a ciegas sobre los 6 videos publicados (las "anclas"), con códigos a
 15. **Un re-gancho cada 5–7 s, marcado en el guion.** Sirve una pregunta corta ("¿Por qué?", "¿Cómo aceptas eso?"), un "pero" que da vuelta lo anterior ("Pero él tenía miedo. Y no era el único.") o un dato que sube la apuesta. Se anota en `guion.md` el segundo de cada uno; si hay un tramo de más de 7 s sin uno, se reescribe.
 16. **Cada "por qué" se contesta con una causa concreta que se puede imaginar,** no con una abstracción. Mal: "era su cultura". Bien: "si decías que no, te iban a llamar cobarde, y se lo iban a contar a tu familia". Una explicación sin escena no explica.
 17. **Las explicaciones van en cadena: la versión oficial, el "pero" con la verdad de adentro y la consecuencia.** (Ep. 10d: era un honor → pero tenía miedo → por qué igual dijo que sí → qué le pasó por no morir.)
-18. **El cierre es la frase más fuerte del video:** contesta la pregunta del tema, tiene ≤ 12 palabras y empalma con la primera. Después no va nada. Prohibido terminar con una cita de un personaje nuevo, con un dato de contexto o con un "pero no todos pensaban igual" (el Ep. 10c terminó así y no cerraba nada).
+18. **El cierre es la frase más fuerte del video:** contesta la pregunta del tema, tiene ≤ 12 palabras y empalma con la primera. Después sólo va el "mándaselo a…" ligado al contenido (§0.4, Tomás 23-nov-2026), nada más. Prohibido terminar con una cita de un personaje nuevo, con un dato de contexto o con un "pero no todos pensaban igual" (el Ep. 10c terminó así y no cerraba nada).
 19. **Cero "…" en el texto de la voz.** En ElevenLabs cada puntos suspensivos es un silencio de casi un segundo: en el Ep. 10c sumaban la lentitud. Sólo puntos y comas; las citas, sin comillas ("y uno le dijo: Me adelanto").
 20. **Voz con energía:** `voice_settings` con `speed` 1.12, `style` 0.45 y `stability` 0.38 (antes 1.0 / 0.30 / 0.42). Meta medida en el `words.json`: **≥ 3,1 palabras por segundo** y ningún silencio de más de 0,5 s entre frases. Si sale más lento, se recorta el texto, no se acelera el audio.
 

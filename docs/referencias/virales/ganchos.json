@@ -1,0 +1,68 @@
+{
+ "_que_es": "Los primeros 3 s de los virales de la biblioteca, descritos secos (como las anclas del canal), para el duelo de ganchos contra virales (duelo.py --anclas virales). Fuente: fichas de esta carpeta y vidIQ (23-nov-2026). OJO: sin /watch no conocemos la voz exacta; en esos casos `voz_0_3s` es la traducción del texto en pantalla o de la descripción del post (aproximada). Al pasar cada video por /watch se reemplaza por la voz real.",
+ "anclas": [
+  {
+   "id": "v-martinete",
+   "dur_s": 60,
+   "cuadro0": "Render 3D limpio con buena luz: un martillo golpea un clavo sobre madera; el clavo ocupa ~40 % del alto. Texto arriba: \"Esto es un clavo\".",
+   "0_3s": "El martillo baja y hunde el clavo con un golpe metálico seco; la cámara empieza a alejarse.",
+   "texto_pantalla_0_3s": "Esto es un clavo",
+   "voz_0_3s": "Esto es un clavo.",
+   "resto": "Ahora hay que clavar uno de cincuenta toneladas: cada solución obvia falla y se agrega una pieza, hasta llegar al martinete real."
+  },
+  {
+   "id": "v-monedero",
+   "dur_s": 45,
+   "cuadro0": "Render 3D de la ranura de monedas de una máquina expendedora en primer plano (~60 % del cuadro). Texto arriba con la pregunta.",
+   "0_3s": "La cámara entra por la ranura y se ve el mecanismo por dentro; música electrónica rítmica desde el primer cuadro.",
+   "texto_pantalla_0_3s": "¿Cómo detecta una moneda falsa?",
+   "voz_0_3s": "¿Cómo sabe una máquina que tu moneda es falsa?",
+   "resto": "Tres pasos: chequeo de tamaño, un imán y un rodar corto; las falsas de acero se quedan pegadas."
+  },
+  {
+   "id": "v-touchscreen",
+   "dur_s": 84,
+   "cuadro0": "Fondo oscuro. Un dedo toca la pantalla de un celular y la pantalla responde con un brillo cian; al lado, la punta de un lápiz aprieta fuerte y no pasa nada (marca roja).",
+   "0_3s": "Se repiten los dos toques; aparece el contraste dedo sí / lápiz no.",
+   "texto_pantalla_0_3s": "sólo subtítulos",
+   "voz_0_3s": "Tu dedo funciona. Este lápiz, aunque apriete fuerte, no.",
+   "resto": "Guantes en invierno, por dentro la grilla con carga, por qué el dedo la roba, lluvia y guantes táctiles; cierre poético en loop."
+  },
+  {
+   "id": "v-gruas",
+   "dur_s": 79,
+   "cuadro0": "Una cuerda pasa sobre la rama de un árbol y levanta un balde; el árbol ocupa ~70 % del alto. Texto: la pregunta de cómo eso se vuelve grúa.",
+   "0_3s": "Alguien tira la cuerda y el balde sube; aparece una carga más pesada que no se puede levantar así.",
+   "texto_pantalla_0_3s": "Cuerda → grúa",
+   "voz_0_3s": "Así empezó la grúa.",
+   "resto": "Cada problema (peso, altura, alcance) agrega una pieza: polea, contrapeso, torre, pluma, hasta la grúa torre."
+  },
+  {
+   "id": "v-porton-super",
+   "dur_s": 60,
+   "cuadro0": "Render 3D de los portones antirrobo a la salida de un supermercado, una flecha apunta a ellos (~50 % del cuadro). Texto con la pregunta.",
+   "0_3s": "La voz empieza de inmediato, tranquila; la cámara se acerca a los portones.",
+   "texto_pantalla_0_3s": "¿Cómo saben que no pagaste?",
+   "voz_0_3s": "¿Cómo saben los portones del súper que no pagaste?",
+   "resto": "La etiqueta por dentro, la señal de los portones y cómo la caja la apaga al pagar."
+  },
+  {
+   "id": "v-ascensor",
+   "dur_s": 50,
+   "cuadro0": "Primer plano de un cable de acero de ascensor que se corta con chispas y trozos de metal; texto grande arriba.",
+   "0_3s": "Snap metálico fuerte; corte a una toma alta del pozo del ascensor; música de sintetizador dramática.",
+   "texto_pantalla_0_3s": "¿Y si se corta el cable?",
+   "voz_0_3s": "¿Qué pasa si se corta el cable de un ascensor?",
+   "resto": "El freno de seguridad que agarra los rieles: cómo se activa solo y por qué existe desde hace más de un siglo."
+  },
+  {
+   "id": "v-arrocera",
+   "dur_s": 45,
+   "cuadro0": "Ilustración 2D en corte de una arrocera simple, con el agua y el arroz a la vista (~70 % del cuadro). Texto arriba.",
+   "0_3s": "La narración empieza de inmediato; el agua burbujea en el corte.",
+   "texto_pantalla_0_3s": "No cuenta los minutos",
+   "voz_0_3s": "Una arrocera simple no cuenta los minutos.",
+   "resto": "Espera que se acabe el agua: mientras hay agua no pasa de 100 °C; cuando se acaba, sube y un imán se suelta y la apaga."
+  }
+ ]
+}

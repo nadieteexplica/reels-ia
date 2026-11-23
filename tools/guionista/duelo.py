@@ -1,7 +1,7 @@
 """Duelo de deslizamiento de a pares (docs/GUIONISTA.md §4–5). Sin personas: un "lector típico" elige cuál desliza
 primero, con cada par en los dos órdenes (los LLM cambian de veredicto si se invierte el orden).
 
-  python3 tools/guionista/duelo.py preparar <ep | carpeta> [--jueces 4] [--imagenes] [--con-anclas] [--semilla N]
+  python3 tools/guionista/duelo.py preparar <ep | carpeta> [--jueces 4] [--imagenes] [--con-anclas | --anclas virales] [--semilla N]
   python3 tools/guionista/duelo.py contar   <ep | carpeta> [--imagenes]
 
 Dos usos (revisión independiente del 1-nov-2026):
@@ -23,6 +23,11 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
 ANCLAS = RAIZ / "tools/guionista/calibracion/anclas.json"
+ANCLAS_VIRALES = RAIZ / "docs/referencias/virales/ganchos.json"  # ganchos de la biblioteca de virales (regla del guion §0.2)
+
+
+def archivo_anclas(cual):
+    return ANCLAS_VIRALES if cual == "virales" else ANCLAS
 MAX_PALABRAS = {"cuadro0": 45, "0_3s": 40}  # objetivo ≤ 40/35: si el candidato se describe más lindo, gana por la prosa
 
 ENUNCIADO = """# Duelo de Shorts
@@ -80,8 +85,10 @@ def preparar(a):
             for campo, tope in MAX_PALABRAS.items():
                 if len(str(x.get(campo, "")).split()) > tope:
                     raise SystemExit(f"{x['id']}: '{campo}' tiene más de {tope} palabras; descríbelo seco, como las anclas")
-    anclas = json.load(open(ANCLAS))["anclas"] if a.con_anclas else []
-    out = base / ("duelo_img" if a.imagenes else "duelo")
+    if a.anclas == "virales":
+        a.con_anclas = True
+    anclas = json.load(open(archivo_anclas(a.anclas)))["anclas"] if a.con_anclas else []
+    out = base / (("duelo_img" if a.imagenes else "duelo") + ("_virales" if a.anclas == "virales" else ""))
     (out / "resultados").mkdir(parents=True, exist_ok=True)
     if a.imagenes:
         (out / "img").mkdir(exist_ok=True)
@@ -99,7 +106,7 @@ def preparar(a):
         if len(items) < 2:
             raise SystemExit("hacen falta 2 o más ganchos")
         juegos = [list(itertools.combinations(range(len(items)), 2))] * a.jueces
-    clave = {"items": [x["id"] for x in items], "jueces": {}}
+    clave = {"items": [x["id"] for x in items], "jueces": {}, "anclas": a.anclas if a.con_anclas else None}
     vistos = {}
     for j in range(1, a.jueces + 1):
         pares = juegos[j - 1][:]
@@ -134,7 +141,7 @@ def preparar(a):
 
 def contar(a):
     base = base_de(a.ep)
-    out = base / ("duelo_img" if a.imagenes else "duelo")
+    out = base / (("duelo_img" if a.imagenes else "duelo") + ("_virales" if a.anclas == "virales" else ""))
     clave = json.load(open(out / "clave.json"))
     ids = clave["items"]
     gana = {i: 0 for i in ids}
@@ -167,7 +174,8 @@ def contar(a):
             d = por_par.setdefault(k, {"votos": {k[0]: 0, k[1]: 0}, "por_orden": {}})
             d["votos"][ganador] += 1
             d["por_orden"].setdefault(a_id, []).append(ganador)
-    anclas_ids = {x["id"] for x in json.load(open(ANCLAS))["anclas"]}
+    cual = clave.get("anclas") or "canal"
+    anclas_ids = {x["id"] for x in json.load(open(archivo_anclas(cual)))["anclas"]}
     contra = {}
     for (x, y), d in por_par.items():
         for c, an in ((x, y), (y, x)):
@@ -209,6 +217,8 @@ def main():
     ap.add_argument("--jueces", type=int, default=4)
     ap.add_argument("--imagenes", action="store_true")
     ap.add_argument("--con-anclas", action="store_true")
+    ap.add_argument("--anclas", choices=["canal", "virales"], default="canal",
+                    help="canal = los ganchos publicados (calibracion/anclas.json); virales = la biblioteca (implica --con-anclas)")
     ap.add_argument("--semilla", type=int, default=None)
     a = ap.parse_args()
     preparar(a) if a.accion == "preparar" else contar(a)
