@@ -17,7 +17,7 @@ Lo corre el subagente `cazador` (o tú, si no está). Tomás elige 1 de 10; no h
 **Demanda real = evidencia:** un outlier (vistas, veces sobre su canal, fecha, link), un hilo de comentarios que lo pide, o búsquedas. Sin evidencia no entra.
 
 ## 2. Filtrar
-- **Quemado (regla de Tomás):** `python3 tools/cazador/quemado.py "<como lo buscaría la gente en español>" "<otra forma>" "<otra>"`. Si hay un video en español con más de 500 mil vistas en los últimos 6 meses → fuera. Ojo: sólo mira YouTube; si sabes que fue viral en TikTok o IG en español, también fuera.
+- **Quemado (regla de Tomás):** `python3 tools/cazador/quemado.py "<como lo buscaría la gente en español>" "<otra forma>" "<otra>"`. Si hay un video en español con más de 500 mil vistas en los últimos 6 meses → fuera. Ojo: sólo mira YouTube. Pregúntate siempre si fue viral en TikTok o IG en español (búscalo en la web: "<tema> tiktok"); si sí, también fuera (lección 174: la pistola de bencina pasó el filtro de YouTube y ya había sido viral).
 - **Ya hecho o prohibido:** `docs/PUBLICADOS.md`, `docs/IDEAS.md` §3 (lista negra), `docs/CAZA_DATOS.md` §6 (quemados) y §9 (gustos de Tomás: mecánica a la vista, "qué weá", procesos; no fallas de la NASA ni física de nerd; no el pulpo).
 - **Verdad posible:** que existan 2 fuentes serias (instituciones, universidades, papers, medios de ciencia). Sólo ubicarlas, no verificar a fondo todavía.
 - **Variedad:** que la ronda permita las 4 estructuras (A inventaste X · B contradicción · C escalera · D mito + analogía) y al menos 5 familias; nada de la misma familia que el último video (`docs/ROTACION.md`).
