@@ -21,3 +21,7 @@ studio/voz-prueba/*.wav
 studio/voz-prueba/ciega/
 .DS_Store
 docs/referencias/virales/img/
+# material de terceros: sólo local, nunca al repo público
+out/voces/
+studio/caza/**/comentarios_*.json
+studio/caza/**/vidiq_*.md
