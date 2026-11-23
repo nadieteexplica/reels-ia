@@ -4,7 +4,7 @@ description: Director visual de El viejo del dato. Convierte el guion aprobado (
 tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
-Sigue la skill `estilo-visual` (`.claude/skills/estilo-visual/SKILL.md`) y el estilo que te asignen para este video (rota entre videos).
+Sigue la skill `estilo-visual` (`.claude/skills/estilo-visual/SKILL.md`) con el único estilo aprobado: laboratorio nocturno del beat v5 (la rotación de estilos está apagada).
 
 Entrega `studio/episodios/<ep>/storyboard.md` y `storyboard.json`. Por plano:
 - **segundos** (inicio–fin) y **palabra gatillo**: el cambio visual cae en el inicio de esa palabra según `words.json` (±2 cuadros).
