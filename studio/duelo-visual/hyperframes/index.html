@@ -221,8 +221,8 @@
 
       <!-- etiqueta 1: CLAVO · 8 CM, línea guía a la cabeza -->
       <g id="s1-et1">
-        <text id="s1-et1-txt" x="80" y="640" font-size="52" font-weight="800" fill="#E9E6DF" letter-spacing="2" opacity="0">CLAVO · 8 CM</text>
-        <path id="s1-et1-linea" d="M80 662 L444 662 L451 498" pathLength="1" fill="none" stroke="#E9E6DF" stroke-width="4" stroke-linejoin="round" style="stroke-dasharray:1 1; stroke-dashoffset:1"/>
+        <text id="s1-et1-txt" x="60" y="640" font-size="50" font-weight="800" fill="#E9E6DF" letter-spacing="0" opacity="0">CLAVO · 8 CM</text>
+        <path id="s1-et1-linea" d="M60 662 L432 662 L451 498" pathLength="1" fill="none" stroke="#E9E6DF" stroke-width="4" stroke-linejoin="round" style="stroke-dasharray:1 1; stroke-dashoffset:1"/>
         <circle id="s1-et1-punto" cx="452" cy="491" r="9" fill="#E9E6DF" stroke="#07080B" stroke-width="3" opacity="0"/>
       </g>
       <!-- etiqueta 2: 8 CM → 0, número en vivo, línea guía a la madera donde entró -->
@@ -323,7 +323,8 @@
     <rect width="1200" height="2040" filter="url(#fGrano)"/>
   </svg>
 
-  <!-- ===================== SUBTÍTULOS (1–3 palabras; la clave en recuadro oro) ===================== -->
+  <!-- ===================== SUBTÍTULOS (1–3 palabras; la clave en recuadro oro) =====================
+       Las claves de dos palabras ("veinte metros", "cincuenta toneladas") entran juntas, escalonadas 0,09 s, para no dejar el recuadro medio vacío. -->
   <div id="c1" class="clip cap" data-start="0.18" data-duration="0.55" data-track-index="2"><div class="linea">
     <span class="w" data-s="0.18">ESTO</span><span class="w" data-s="0.42">ES</span><span class="w" data-s="0.58">UN</span></div></div>
   <div id="c2" class="clip cap" data-start="0.73" data-duration="0.55" data-track-index="2"><div class="linea">
@@ -337,11 +338,11 @@
   <div id="c6" class="clip cap" data-start="3.15" data-duration="0.54" data-track-index="2"><div class="linea">
     <span class="kw" data-s="3.15"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="3.15">CLAVO</span></span><span class="w" data-s="3.45">MIDE</span></div></div>
   <div id="c7" class="clip cap" data-start="3.69" data-duration="0.66" data-track-index="2"><div class="linea">
-    <span class="kw" data-s="3.69"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="3.69">VEINTE</span><span class="w" data-s="4.01">METROS</span></span></div></div>
+    <span class="kw" data-s="3.69"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="3.69">VEINTE</span><span class="w" data-s="3.78">METROS</span></span></div></div>
   <div id="c8" class="clip cap" data-start="4.35" data-duration="0.55" data-track-index="2"><div class="linea">
     <span class="w" data-s="4.35">Y</span><span class="w" data-s="4.59">PESA</span></div></div>
   <div id="c9" class="clip cap" data-start="4.90" data-duration="1.31" data-track-index="2"><div class="linea">
-    <span class="kw" data-s="4.90"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="4.90">CINCUENTA</span><span class="w" data-s="5.27">TONELADAS</span></span></div></div>
+    <span class="kw" data-s="4.90"><span class="caja"><i class="m a"></i><i class="m b"></i><i class="m c"></i><i class="m d"></i></span><span class="w" data-s="4.90">CINCUENTA</span><span class="w" data-s="4.99">TONELADAS</span></span></div></div>
   <div id="c10" class="clip cap" data-start="6.21" data-duration="0.46" data-track-index="2"><div class="linea">
     <span class="w" data-s="6.21">¿CON</span><span class="w" data-s="6.36">QUÉ</span><span class="w" data-s="6.53">LE</span></div></div>
   <div id="c11" class="clip cap" data-start="6.67" data-duration="0.93" data-track-index="2"><div class="linea">
@@ -398,7 +399,7 @@
   tl.to(["#s1-clavo", "#s1-fantasma", "#s1-mpos"], { y: 36, duration: 0.32, ease: ATERRIZA }, GOLPE); // aterrizaje con rebote
   tl.set("#s1-hoyo", { opacity: 1 }, GOLPE);
   // la línea guía sigue a la cabeza del clavo cuando baja con el golpe
-  tl.to("#s1-et1-linea", { attr: { d: "M80 662 L444 662 L451 534" }, duration: 0.32, ease: ATERRIZA }, GOLPE);
+  tl.to("#s1-et1-linea", { attr: { d: "M60 662 L432 662 L451 534" }, duration: 0.32, ease: ATERRIZA }, GOLPE);
   tl.to("#s1-et1-punto", { y: 36, duration: 0.32, ease: ATERRIZA }, GOLPE);
   tl.to("#mundo1", { keyframes: [ { x: -12, y: 9, duration: 0.04 }, { x: 9, y: -7, duration: 0.05 }, { x: -6, y: 4, duration: 0.05 }, { x: 3, y: -2, duration: 0.05 }, { x: 0, y: 0, duration: 0.06 } ], ease: "none" }, GOLPE);
   tl.fromTo("#s1-destello", { opacity: 1, scale: 0.25, transformOrigin: "50% 50%" }, { opacity: 0, scale: 1.5, duration: 0.42, ease: ENTRA, immediateRender: false }, GOLPE);
