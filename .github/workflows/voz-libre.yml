@@ -31,9 +31,21 @@ jobs:
           J="${{ github.event.inputs.trabajo }}"
           if [ -z "$J" ]; then J=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'jobs/voz-libre/*.json' | tail -1); fi
           echo "trabajo: $J"; test -n "$J"
-          .venv-voz/bin/python tools/voz_prueba_ciega.py "$J"
-          ID=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['id'])" "$J")
-          .venv-voz/bin/python tools/voz_comparar.py "$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['guion'])" "$J")" "out/voz-libre/$ID/ciega"
+          if python3 -c "import json,sys; sys.exit(0 if 'voz' in json.load(open(sys.argv[1])) else 1)" "$J"; then
+            # voz fija: clon de voz/<nombre>.wav en varios guiones + huella por trozo + pronunciación por guion
+            .venv-voz/bin/python tools/voz_fija.py "$J"
+            python3 - "$J" <<'PY' > pares.txt
+          import json, sys
+          j = json.load(open(sys.argv[1]))
+          for n, g in j["textos"].items(): print(n, g, "out/voz-libre/" + j["id"])
+          PY
+            while read N G D; do .venv-voz/bin/python tools/voz_comparar.py "$G" "$D" --prefijo "$N"; done < pares.txt
+          else
+            # prueba ciega de voces diseñadas contra ElevenLabs
+            .venv-voz/bin/python tools/voz_prueba_ciega.py "$J"
+            ID=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['id'])" "$J")
+            .venv-voz/bin/python tools/voz_comparar.py "$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['guion'])" "$J")" "out/voz-libre/$ID/ciega"
+          fi
       - name: Guardar
         if: always()
         run: |

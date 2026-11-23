@@ -25,7 +25,8 @@ SR = 24000
 
 def trozos(texto, max_chars=220):
     """Junta oraciones hasta ~max_chars para que cada trozo tenga contexto pero no se desborde."""
-    oraciones = [o.strip() for o in re.split(r"(?<=[.!?…])\s+", texto.strip()) if o.strip()]
+    # corta sólo donde empieza otra oración (mayúscula o ¿¡): "sombrero... un piso" queda junto
+    oraciones = [o.strip() for o in re.split(r"(?<=[.!?…])\s+(?=[¿¡A-ZÁÉÍÓÚÑ])", texto.strip()) if o.strip()]
     out, cur = [], ""
     for o in oraciones:
         if cur and len(cur) + 1 + len(o) > max_chars:
@@ -33,8 +34,44 @@ def trozos(texto, max_chars=220):
         else:
             cur = (cur + " " + o).strip()
     if cur:
-        out.append(cur)
+        if out and len(cur) < 40:  # un remate cortito suelto suena despegado: va con el trozo anterior
+            out[-1] += " " + cur
+        else:
+            out.append(cur)
     return out
+
+
+def cargar(modo, modelo=None):
+    import mlx.core as mx
+    from mlx_audio.tts.utils import load_model
+
+    if not mx.metal.is_available():  # p. ej. una máquina virtual sin GPU: más lento, mismo resultado
+        mx.set_default_device(mx.cpu)
+        print("sin Metal: corre en CPU", file=sys.stderr)
+    t0 = time.time()
+    m = load_model(modelo or MODELOS[modo])
+    print(f"modelo cargado en {time.time() - t0:.1f}s", file=sys.stderr)
+    return m
+
+
+def locutar(model, modo, texto, voz=None, ref=None, ref_texto=None, temperatura=None, pausa=0.18, semilla=7):
+    """Devuelve (wav normalizado a -1 dBFS, lista con el audio de cada trozo)."""
+    import mlx.core as mx
+
+    mx.random.seed(semilla)
+    piezas, sil = [], np.zeros(int(SR * pausa), dtype=np.float32)
+    for i, t in enumerate(trozos(texto)):
+        t1 = time.time()
+        if modo == "diseno":
+            gen = model.generate_voice_design(text=t, instruct=voz, language="spanish", temperature=temperatura)
+        else:
+            gen = model.generate(text=t, ref_audio=ref, ref_text=ref_texto, lang_code="spanish", temperature=temperatura)
+        audio = np.concatenate([np.array(r.audio, dtype=np.float32) for r in gen])
+        piezas.append(audio)
+        print(f"trozo {i + 1}: {len(audio) / SR:.1f}s de audio en {time.time() - t1:.1f}s", file=sys.stderr)
+    wav = np.concatenate([x for a in piezas for x in (a, sil)][:-1])
+    pico = np.abs(wav).max()
+    return (wav / pico * 0.89 if pico > 0 else wav), piezas
 
 
 def main():
@@ -53,33 +90,12 @@ def main():
 
     import mlx.core as mx
     import soundfile as sf
-    from mlx_audio.tts.utils import load_model
 
-    if not mx.metal.is_available():  # p. ej. una máquina virtual sin GPU: más lento, mismo resultado
-        mx.set_default_device(mx.cpu)
-        print("sin Metal: corre en CPU", file=sys.stderr)
     p = pathlib.Path(a.texto)
     texto = p.read_text() if p.exists() else a.texto
-    mx.random.seed(a.semilla)
     t0 = time.time()
-    model = load_model(a.modelo or MODELOS[a.modo])
-    print(f"modelo cargado en {time.time() - t0:.1f}s", file=sys.stderr)
-
-    partes, sil = [], np.zeros(int(SR * a.pausa), dtype=np.float32)
-    for i, t in enumerate(trozos(texto)):
-        t1 = time.time()
-        if a.modo == "diseno":
-            gen = model.generate_voice_design(text=t, instruct=a.voz, language="spanish", temperature=a.temperatura)
-        else:
-            gen = model.generate(text=t, ref_audio=a.ref, ref_text=a.ref_texto, lang_code="spanish", temperature=a.temperatura)
-        audio = np.concatenate([np.array(r.audio, dtype=np.float32) for r in gen])
-        partes += [audio, sil]
-        print(f"trozo {i + 1}: {len(audio) / SR:.1f}s de audio en {time.time() - t1:.1f}s", file=sys.stderr)
-
-    wav = np.concatenate(partes[:-1])
-    pico = np.abs(wav).max()
-    if pico > 0:
-        wav = wav / pico * 0.89  # -1 dBFS
+    model = cargar(a.modo, a.modelo)
+    wav, _ = locutar(model, a.modo, texto, a.voz, a.ref, a.ref_texto, a.temperatura, a.pausa, a.semilla)
     pathlib.Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     sf.write(a.out, wav, SR)
     print(f"{a.out}: {len(wav) / SR:.1f}s, total {time.time() - t0:.0f}s, mem pico {mx.get_peak_memory() / 1e9:.2f} GB", file=sys.stderr)

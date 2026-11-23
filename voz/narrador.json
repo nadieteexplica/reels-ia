@@ -1,0 +1,7 @@
+{
+ "nombre": "narrador",
+ "texto_ref": "Este es el edificio más alto que Japón ha botado. Y lo más impresionante: lo demolieron piso por piso... sin ninguna explosión. El truco: el techo nunca se saca.",
+ "origen": "Diseñada con Qwen3-TTS VoiceDesign (descripción B_narrador_doc de studio/voz-prueba/voces.json), primer trozo del Ep. 7 (out/voz-libre/ep07/originales/B_narrador_doc.wav, 0–11,75 s) con pausas ≤ 0,35 s. Elegida por Tomás el 23-nov-2026 en la prueba ciega contra ElevenLabs.",
+ "descripcion": "A middle-aged male documentary narrator with a rich, low, confident voice. He speaks Spanish with a neutral Latin American accent, fast and energetic like a viral short-video narrator, with crisp articulation and dramatic emphasis on key words.",
+ "licencia": "Voz sintética diseñada desde texto (Qwen3-TTS, Apache-2.0); no es de ninguna persona real."
+}

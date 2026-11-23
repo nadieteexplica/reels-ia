@@ -1,0 +1,11 @@
+{
+ "id": "fija-narrador",
+ "voz": "narrador",
+ "textos": {
+  "ep07": "studio/voz-prueba/ep07.txt",
+  "ep16": "studio/voz-prueba/ep16.txt"
+ },
+ "comparar_con": {
+  "ep07_disenada": "out/voz-libre/ep07/originales/B_narrador_doc.wav"
+ }
+}

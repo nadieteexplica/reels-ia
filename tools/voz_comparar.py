@@ -35,6 +35,7 @@ def main():
     ap.add_argument("guion")
     ap.add_argument("carpeta")
     ap.add_argument("--modelo", default="medium")
+    ap.add_argument("--prefijo", default="", help="sólo los audios cuyo nombre empieza así (varios guiones en una carpeta)")
     a = ap.parse_args()
     from faster_whisper import WhisperModel
 
@@ -42,7 +43,7 @@ def main():
     m = WhisperModel(a.modelo, device="cpu", compute_type="int8")
     res = {}
     for f in sorted(pathlib.Path(a.carpeta).iterdir()):
-        if f.suffix.lower() not in (".wav", ".mp3", ".m4a"):
+        if f.suffix.lower() not in (".wav", ".mp3", ".m4a") or not f.name.startswith(a.prefijo):
             continue
         segs, _ = m.transcribe(audio16k(f), language="es", word_timestamps=True, beam_size=5, vad_filter=False,
                                condition_on_previous_text=False)
@@ -67,7 +68,7 @@ def main():
             "estiradas": estiradas,
             "dudosas": dudosas,
         }
-    out = pathlib.Path(a.carpeta) / "metricas.json"
+    out = pathlib.Path(a.carpeta) / (f"metricas_{a.prefijo}.json" if a.prefijo else "metricas.json")
     out.write_text(json.dumps(res, ensure_ascii=False, indent=1))
     print(f"{'audio':<14}{'dur':>6}{'pal/s':>7}{'WER%':>6}{'pausas>0,7':>11}{'dudosas':>9}")
     for k, v in res.items():
