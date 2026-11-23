@@ -5,9 +5,9 @@
         hook.jpg (0–3 s cada 0,5 s), hojas/hoja-N.jpg (1 cuadro por segundo a 405×720, con su segundo),
         subtitulos.md (qué dice la voz en cada segundo, desde words.json). Eso es lo único que ve auditor-final.
   (se lanza auditor-final con la carpeta qa/; su JSON se guarda en qa/auditor_final.json)
-  python3 tools/qa_video.py cerrar <ep>
-      → qa/qa.json con "aprobado": true sólo si tools/qa.py pasó y auditor-final aprobó (sin bloqueantes,
-        notas ≥ 7, promedio ≥ 8). Guarda la huella (sha256) de las fuentes del episodio: si después se toca
+  python3 tools/qa_video.py cerrar <ep> [--motivo "por qué paso por encima de un bloqueante del auditor"]
+      → qa/qa.json con "aprobado": true sólo si tools/qa.py pasó (técnico, [MEDIDA]) y auditor-final no marcó
+        bloqueantes (o hay un motivo escrito para pasar por encima; queda en qa.json). Las notas sólo informan. Guarda la huella (sha256) de las fuentes del episodio: si después se toca
         el guion, la voz, el sonido o el código de la escena, la aprobación deja de valer y el hook
         (tools/hooks/puertas.py) no deja renderizar el final.
 
@@ -20,7 +20,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 RAIZ = Path(__file__).resolve().parents[1]
 FUENTE = RAIZ / "studio/plantilla/fonts/Inter-ExtraBold.otf"
-TW, TH = 405, 720  # tamaño celular (≈ el ancho real en pantalla de un teléfono)
+TW, TH = 405, 720
+MOTIVO = ""  # tamaño celular (≈ el ancho real en pantalla de un teléfono)
 # Lo que define el video. Sólo archivos COMMITEADOS (así la huella da lo mismo en el Mac y en GitHub Actions) más el
 # kit, la mezcla y la voz de out/voz-libre/<ep>/. Si cambia algo de esto después del QA, hay que volver a pasarlo.
 EXTRA_FUENTES = ["studio/plantilla/kit_explica.py", "studio/plantilla/kit2d.py", "tools/sonido/mezclar.py"]
@@ -130,10 +131,12 @@ def cerrar(ep):
         aud = json.load(open(q / "auditor_final.json"))
     except FileNotFoundError:
         sys.exit("falta qa/auditor_final.json (el veredicto de auditor-final)")
-    notas = list(aud.get("notas", {}).values())
-    aud_ok = bool(aud.get("aprobado")) and not aud.get("bloqueantes") and notas and min(notas) >= 7 and sum(notas) / len(notas) >= 8
+    # docs/REGLAS.md: lo técnico es [MEDIDA] y manda; el auditor orienta. Aprueba sin bloqueantes (errores que un
+    # espectador notaría); las notas son información. Pasar por encima de un bloqueante se puede con --motivo escrito.
+    aud_ok = not aud.get("bloqueantes") or bool(MOTIVO)
     h, archivos = huella(ep)
     res = {"aprobado": bool(tec["pasa"] and aud_ok), "tecnico_pasa": tec["pasa"], "auditor_aprueba": aud_ok,
+           "notas_auditor": aud.get("notas", {}), "motivo_override": MOTIVO or None,
            "bloqueantes": aud.get("bloqueantes", []), "video": tec["video"], "fecha": time.strftime("%Y-%m-%d %H:%M"),
            "huella_fuentes": h, "fuentes": archivos}
     (q / "qa.json").write_text(json.dumps(res, ensure_ascii=False, indent=1))
@@ -144,7 +147,9 @@ def cerrar(ep):
 if __name__ == "__main__":
     if len(sys.argv) >= 3 and sys.argv[1] == "preparar" and len(sys.argv) == 4:
         preparar(sys.argv[2], Path(sys.argv[3]))
-    elif len(sys.argv) == 3 and sys.argv[1] == "cerrar":
+    elif len(sys.argv) in (3, 5) and sys.argv[1] == "cerrar":
+        if len(sys.argv) == 5 and sys.argv[3] == "--motivo":
+            MOTIVO = sys.argv[4]
         cerrar(sys.argv[2])
     elif len(sys.argv) == 3 and sys.argv[1] == "verificar":  # lo corre Actions antes de un render final o un release
         q = ep_dir(sys.argv[2]) / "qa" / "qa.json"
