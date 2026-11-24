@@ -18,7 +18,8 @@ Marco: `docs/REGLAS.md` (reglas duras, criterios con nivel de evidencia y qué d
 ## 2. Duelo ciego de los 12 ganchos (orientación)
 1. Junta los 12 en `studio/episodios/<ep>/guionista/ganchos.json` (`{"candidatos": [...]}`).
 2. `python3 tools/guionista/duelo.py preparar studio/episodios/<ep>/guionista --jueces 4` → 4 `juez-gancho` en paralelo, cada uno con su `duelo/juezN.md` (la clave queda en `_claves/`, fuera de su alcance). Los jueces no escriben: pega cada respuesta cruda en el scratchpad y `python3 tools/guardar_veredicto.py <crudo> duelo/resultados/juezN.json`. `duelo.py contar …` → gana uno.
-3. Contra los virales: el ganador y el 2.º en una carpeta aparte, `duelo.py preparar <carpeta> --anclas virales --jueces 4`, guardar, `contar … --anclas virales`. **Piso: que gane o empate contra la mayoría de los ganchos virales** [PROBABLE como filtro; con texto queda sesgado a favor del candidato, `duelo.py` lo advierte]. Si los dos pierden → los guionistas reescriben ganchos (cuenta como reescritura 1).
+3. **Cruce (lección 180, [HIPÓTESIS]):** antes de ir contra los virales, escribe 2–3 ganchos que mezclen el ganador con el gancho que más "te toca" (la persona o el objeto tuyo como primera palabra: "Dormir con tu pareja…" le ganó en el ojo de Tomás a "Un año en esta cama…") y pásalos por un mini-duelo contra el ganador.
+4. Contra los virales: el ganador y el 2.º en una carpeta aparte, `duelo.py preparar <carpeta> --anclas virales --jueces 4`, guardar, `contar … --anclas virales`. **Piso: que gane o empate contra la mayoría de los ganchos virales** [PROBABLE como filtro; con texto queda sesgado a favor del candidato, `duelo.py` lo advierte]. Si los dos pierden → los guionistas reescriben ganchos (cuenta como reescritura 1).
 
 ## 3. juez-viral, parte por parte (orientación)
 - El guionista de esa estructura pone el gancho ganador en su guion (paquete, primera frase, texto de la voz y loop: los 4; lección 176).
