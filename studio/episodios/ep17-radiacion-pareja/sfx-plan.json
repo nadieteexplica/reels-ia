@@ -184,10 +184,10 @@
    "opcional": true
   },
   {
-   "en_s": 37.45,
+   "en_s": 36.62,
    "sfx": "pop",
    "gain_db": -4,
-   "cue": "la pareja se vuelve plátano",
+   "cue": "'abrazado': la pareja se vuelve plátano",
    "opcional": true
   },
   {
@@ -198,8 +198,8 @@
    "opcional": false
   },
   {
-   "en_s": 38.62,
-   "sfx": "whoosh-rapido",
+   "en_s": 40.92,
+   "sfx": "whoosh-suave",
    "gain_db": -4,
    "cue": "corte a la balanza (loop)",
    "opcional": true
@@ -218,6 +218,13 @@
    "cue": "vuelve al cuadro 0",
    "opcional": true,
    "alinear": "fin"
+  },
+  {
+   "en_s": 39.52,
+   "sfx": "pop-agudo",
+   "gain_db": -5,
+   "cue": "'tóxico': el plátano gigante late",
+   "opcional": true
   }
  ]
 }

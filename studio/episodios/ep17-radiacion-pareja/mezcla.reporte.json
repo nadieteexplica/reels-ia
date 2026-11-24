@@ -420,19 +420,19 @@
     },
     {
       "n": 26,
-      "t": 37.45,
+      "t": 36.62,
       "sfx": "pop",
       "palabra": null,
       "gain_db": -4,
       "opcional": true,
-      "delta_db": 0.5,
+      "delta_db": 1.0,
       "estado": "opcional",
       "avisos": [],
       "ventana": [
-        37.45,
-        37.75
+        36.62,
+        36.92
       ],
-      "cue": "la pareja se vuelve plátano"
+      "cue": "'abrazado': la pareja se vuelve plátano"
     },
     {
       "n": 27,
@@ -453,20 +453,22 @@
       "cue": "remate: plátano gigante (hueco)"
     },
     {
-      "n": 28,
-      "t": 38.62,
-      "sfx": "whoosh-rapido",
+      "n": 31,
+      "t": 39.52,
+      "sfx": "pop-agudo",
       "palabra": null,
-      "gain_db": -4,
+      "gain_db": -5,
       "opcional": true,
-      "delta_db": 0.9,
+      "delta_db": 0.3,
       "estado": "opcional",
-      "avisos": [],
-      "ventana": [
-        38.62,
-        38.92
+      "avisos": [
+        "a 0.03 s del #29"
       ],
-      "cue": "corte a la balanza (loop)"
+      "ventana": [
+        39.52,
+        39.82
+      ],
+      "cue": "'tóxico': el plátano gigante late"
     },
     {
       "n": 29,
@@ -477,12 +479,30 @@
       "opcional": true,
       "delta_db": 0.1,
       "estado": "opcional",
-      "avisos": [],
+      "avisos": [
+        "a 0.03 s del #31"
+      ],
       "ventana": [
         39.55,
         39.85
       ],
       "cue": "'tóxico': la cama destella"
+    },
+    {
+      "n": 28,
+      "t": 40.92,
+      "sfx": "whoosh-suave",
+      "palabra": null,
+      "gain_db": -4,
+      "opcional": true,
+      "delta_db": 9.9,
+      "estado": "ok",
+      "avisos": [],
+      "ventana": [
+        40.92,
+        41.22
+      ],
+      "cue": "corte a la balanza (loop)"
     },
     {
       "n": 30,

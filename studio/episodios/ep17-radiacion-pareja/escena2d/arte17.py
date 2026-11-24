@@ -236,15 +236,13 @@ def balanza(L, cx, cy, inclin=0.12, t=0.0, alpha=1.0, cam=True, brillo_cama=0.0,
         K.poligono(L, K.elipse_pts(px, yp, 150, 22, n=30), (70, 74, 82), alpha=alpha, cam=cam)
         platos.append((px, yp))
     (lx, ly), (rx, ry) = platos
-    if pila > 0:                              # pila de cáscaras sobre el platillo de la cama
-        n = int(4 + 14 * pila)
-        for k in range(n):
-            ang = (k * 47) % 180 - 90
-            platano(L, lx - 90 + (k * 53) % 180, ly - 14 - (k // 5) * 18, 90, ang=ang, pelado=1.0, alpha=alpha, cam=cam,
-                    sombra=False)
     if brillo_cama > 0:
         K.brillo_suave(L, lx, ly - 70, 170, 90, ORO, 0.22 * brillo_cama * alpha, 14, cam=cam)
-    cama_chica(L, lx, ly - 6, 280, alpha=alpha, cam=cam, brillo=brillo_cama)
+    cama_chica(L, lx, ly - 6, 250, alpha=alpha, cam=cam, brillo=brillo_cama)
+    for k in range(int(28 * pila)):            # pila de cáscaras ENCIMA de la cama (se ve y pesa)
+        ang = (k * 47) % 180 - 90
+        platano(L, lx - 95 + (k * 53) % 190, ly - 90 - (k // 6) * 30, 115, ang=ang, pelado=1.0, alpha=alpha, cam=cam,
+                sombra=False)
     if platano_en_cama > 0:
         platano(L, lx + 10, ly - 80, 150, ang=-8, brillo=1.0, alpha=alpha * platano_en_cama, cam=cam, sombra=False)
     torre_enfriamiento(L, rx, ry - 6, 200, alpha=alpha, cam=cam, vapor_t=t)
