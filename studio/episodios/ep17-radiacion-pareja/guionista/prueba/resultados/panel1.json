@@ -1,0 +1,88 @@
+{
+ "perfil": "Luis, 16, Lima (Perú). Gamer, con sonido",
+ "videos": [
+  {
+   "codigo": "RK",
+   "se_queda_2s": true,
+   "por_que_2s": "Dice que podría flotar y el tipo flota en el aire, parece de juego",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 55,
+   "lo_manda": true,
+   "a_quien": "un pata gamer",
+   "pregunta_que_te_dejo": "¿Cómo así flotaría?"
+  },
+  {
+   "codigo": "HA",
+   "se_queda_2s": true,
+   "por_que_2s": "Un edificio de cinco pisos que camina, es gigante e imposible",
+   "se_va_en": "Pesa más de siete mil seiscientas toneladas",
+   "lo_ve_entero_pct": 40,
+   "lo_manda": true,
+   "a_quien": "mi primo",
+   "pregunta_que_te_dejo": "¿Cómo se va caminando un edificio?"
+  },
+  {
+   "codigo": "JE",
+   "se_queda_2s": false,
+   "por_que_2s": "Un señor en la ducha, la cortina, ya sé qué pasa, aburrido",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 5,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "UL",
+   "se_queda_2s": true,
+   "por_que_2s": "Pájaro con ají y un ratón echando fuego, medio gracioso",
+   "se_va_en": "Los científicos creen que el picante es un guardia",
+   "lo_ve_entero_pct": 25,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"
+  },
+  {
+   "codigo": "IH",
+   "se_queda_2s": false,
+   "por_que_2s": "Dolor de cabeza por helado, eso ya lo sé, y es dibujito",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 5,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "PU",
+   "se_queda_2s": true,
+   "por_que_2s": "El edificio se va achicando con el contador, se ve bacán",
+   "se_va_en": "Solo armar eso toma dos meses",
+   "lo_ve_entero_pct": 35,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": "¿Cómo lo botan sin explosión?"
+  },
+  {
+   "codigo": "IM",
+   "se_queda_2s": true,
+   "por_que_2s": "Mi cama es más radiactiva que una central nuclear, suena exagerado y me da curiosidad",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 60,
+   "lo_manda": true,
+   "a_quien": "mi enamorada, para joderla",
+   "pregunta_que_te_dejo": "¿Mi cama irradia más que una central nuclear?"
+  }
+ ],
+ "orden": [
+  "IM",
+  "RK",
+  "HA",
+  "PU",
+  "UL",
+  "IH",
+  "JE"
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:24",
+  "sha256_crudo": "80d000643852e086531cc19e56e157636d8fa947d5f38135d0b66b52da3df689"
+ }
+}

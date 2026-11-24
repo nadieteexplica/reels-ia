@@ -1,0 +1,88 @@
+{
+ "perfil": "Diego, 24, Guadalajara",
+ "videos": [
+  {
+   "codigo": "LR",
+   "se_queda_2s": true,
+   "por_que_2s": "Helado y dolor de frente, todos lo hemos sentido, se entiende al tiro",
+   "se_va_en": "Su nombre científico es ganglioneuralgia esfenopalatina",
+   "lo_ve_entero_pct": 55,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": "¿Por qué duele la frente si el frío está en la boca?"
+  },
+  {
+   "codigo": "DP",
+   "se_queda_2s": true,
+   "por_que_2s": "Pájaro come ají y no siente, curioso y se entiende",
+   "se_va_en": "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+   "lo_ve_entero_pct": 40,
+   "lo_manda": true,
+   "a_quien": "al amigo que presume que aguanta el picante",
+   "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"
+  },
+  {
+   "codigo": "JP",
+   "se_queda_2s": true,
+   "por_que_2s": "La cortina de la ducha, me pasa siempre, es cortito",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 75,
+   "lo_manda": true,
+   "a_quien": "al grupo de amigos, de meme",
+   "pregunta_que_te_dejo": "¿Por qué la cortina se me pega si ni está caliente?"
+  },
+  {
+   "codigo": "PB",
+   "se_queda_2s": true,
+   "por_que_2s": "Cama contra central nuclear, suena a locura y quiero saber",
+   "se_va_en": "Este plátano también es un poquito radiactivo, por su potasio.",
+   "lo_ve_entero_pct": 45,
+   "lo_manda": true,
+   "a_quien": "a mi novia, de broma",
+   "pregunta_que_te_dejo": "¿Cómo mi cama va a irradiar más que una central?"
+  },
+  {
+   "codigo": "IS",
+   "se_queda_2s": false,
+   "por_que_2s": "Texto saturado, contador y cámara rápida, no entendí qué miraba hasta el final de la frase",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 20,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "YD",
+   "se_queda_2s": true,
+   "por_que_2s": "Un edificio que se fue caminando, quiero ver cómo hicieron eso",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 60,
+   "lo_manda": true,
+   "a_quien": "al grupo, a los que les gustan los videos de cómo hicieron esto",
+   "pregunta_que_te_dejo": "¿Cómo camina un edificio?"
+  },
+  {
+   "codigo": "ID",
+   "se_queda_2s": false,
+   "por_que_2s": "Un tipo flotando con etiqueta de simulación, no entendí qué era",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 15,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  }
+ ],
+ "orden": [
+  "YD",
+  "JP",
+  "PB",
+  "DP",
+  "LR",
+  "IS",
+  "ID"
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:24",
+  "sha256_crudo": "25e236ca2bb87010997f8f3321a4f2934d5fe229ee0ae4826df01a9bd3a522dd"
+ }
+}

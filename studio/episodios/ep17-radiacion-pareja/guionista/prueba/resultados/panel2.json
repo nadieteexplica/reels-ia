@@ -1,0 +1,88 @@
+{
+ "perfil": "Andrea, 41, Guatemala",
+ "videos": [
+  {
+   "codigo": "AR",
+   "se_queda_2s": true,
+   "por_que_2s": "Un pájaro con un ají y un ratón echando fuego, me da curiosidad y risa.",
+   "se_va_en": "Los pájaros tienen la misma alarma, pero la capsaicina no la activa.",
+   "lo_ve_entero_pct": 45,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"
+  },
+  {
+   "codigo": "QB",
+   "se_queda_2s": true,
+   "por_que_2s": "Me pasa en mi casa, la cortina pegándose en la ducha, lo conozco.",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 80,
+   "lo_manda": true,
+   "a_quien": "Mi esposo y mi hermana, por WhatsApp",
+   "pregunta_que_te_dejo": "¿Por qué la cortina se me pega?"
+  },
+  {
+   "codigo": "MK",
+   "se_queda_2s": false,
+   "por_que_2s": "Dice simulación y flotar con imanes, no tiene que ver conmigo y no entiendo.",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 8,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "XL",
+   "se_queda_2s": true,
+   "por_que_2s": "Un edificio que se fue caminando, suena raro y quiero ver cómo.",
+   "se_va_en": "Primero cavaron alrededor.",
+   "lo_ve_entero_pct": 35,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": "¿Cómo camina un edificio?"
+  },
+  {
+   "codigo": "GJ",
+   "se_queda_2s": true,
+   "por_que_2s": "El dolor de frente con el helado, a todos nos pasa y a mis hijos también.",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 75,
+   "lo_manda": true,
+   "a_quien": "Mis hijos y mi grupo de mamás",
+   "pregunta_que_te_dejo": "¿Por qué me duele la frente si el frío no llega al cerebro?"
+  },
+  {
+   "codigo": "CW",
+   "se_queda_2s": true,
+   "por_que_2s": "Mi cama más radiactiva que una central nuclear, me asusta y quiero saber.",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 70,
+   "lo_manda": true,
+   "a_quien": "Mi esposo, para molestarlo",
+   "pregunta_que_te_dejo": "¿Mi cama es peligrosa?"
+  },
+  {
+   "codigo": "KO",
+   "se_queda_2s": false,
+   "por_que_2s": "Un edificio japonés con contador y letras, no me dice nada de mi vida.",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 10,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  }
+ ],
+ "orden": [
+  "QB",
+  "GJ",
+  "CW",
+  "AR",
+  "XL",
+  "KO",
+  "MK"
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:24",
+  "sha256_crudo": "81017bde0bdb417a22f6fa5329e73e8975b599dc3120fb405f76e304dc98fec2"
+ }
+}

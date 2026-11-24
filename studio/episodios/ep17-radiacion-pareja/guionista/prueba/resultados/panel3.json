@@ -1,0 +1,88 @@
+{
+ "perfil": "Matías, 31, Monterrey (México). Mecánico, CON sonido",
+ "videos": [
+  {
+   "codigo": "PS",
+   "se_queda_2s": true,
+   "por_que_2s": "Un edificio con patas, quiero ver cómo se mueve una cosa así de pesada.",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 70,
+   "lo_manda": true,
+   "a_quien": "a mi compa ingeniero de la obra",
+   "pregunta_que_te_dejo": "¿Cómo un edificio de cinco pisos se va caminando?"
+  },
+  {
+   "codigo": "KJ",
+   "se_queda_2s": true,
+   "por_que_2s": "Me ha pasado mil veces con la cortina, quiero saber por qué.",
+   "se_va_en": "Y si esa igual se mueve... ahí sí es un fantasma.",
+   "lo_ve_entero_pct": 65,
+   "lo_manda": true,
+   "a_quien": "a mi esposa",
+   "pregunta_que_te_dejo": "¿Por qué la cortina se me pega?"
+  },
+  {
+   "codigo": "RM",
+   "se_queda_2s": false,
+   "por_que_2s": "Dice SIMULACIÓN y un güey flotando, no muestra nada real, puro cuento.",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 10,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "AK",
+   "se_queda_2s": true,
+   "por_que_2s": "Mi cama irradia más que una central nuclear, suena exagerado pero me pica.",
+   "se_va_en": "Este plátano también es un poquito radiactivo, por su potasio.",
+   "lo_ve_entero_pct": 35,
+   "lo_manda": true,
+   "a_quien": "a mi novia, de broma",
+   "pregunta_que_te_dejo": "¿Mi cama es más radiactiva que una central?"
+  },
+  {
+   "codigo": "PP",
+   "se_queda_2s": false,
+   "por_que_2s": "Un pájaro comiendo ají, no pasa nada, no me jala.",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 15,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "DG",
+   "se_queda_2s": false,
+   "por_que_2s": "Caricatura 3D de un helado, ya sé lo que es, el dolor de cabeza del helado.",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 8,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "JR",
+   "se_queda_2s": true,
+   "por_que_2s": "Veo la torre bajando y el contador de pisos, algo está pasando de verdad.",
+   "se_va_en": "Y lo más loco: la grúa que baja los escombros genera electricidad...",
+   "lo_ve_entero_pct": 55,
+   "lo_manda": true,
+   "a_quien": "a mi tío que trabaja en construcción",
+   "pregunta_que_te_dejo": "¿Cómo tumban un edificio de 40 pisos sin explosión?"
+  }
+ ],
+ "orden": [
+  "PS",
+  "JR",
+  "KJ",
+  "AK",
+  "RM",
+  "PP",
+  "DG"
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:24",
+  "sha256_crudo": "c95341b8ecc0858a517e10ce1f465f9e24de7d90496f8d2e8c3d04ffeda456ff"
+ }
+}

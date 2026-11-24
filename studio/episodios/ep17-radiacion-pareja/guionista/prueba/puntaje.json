@@ -1,0 +1,175 @@
+{
+ "paneles": 6,
+ "calibracion": {
+  "rho_quedan_vs_yt_se_quedo": 0.71,
+  "rho_quedan_vs_ig_pasa_3s": 0.6,
+  "rho_borda_vs_yt_vistas": 0.35,
+  "peor_real": "ep05",
+  "peor_real_en_ultimo_tercio": true,
+  "rho_quedan_vs_yt_se_quedo_sin_el_peor": 0.5,
+  "se_puede_usar_para_descartar": false
+ },
+ "videos": {
+  "ep05": {
+   "tipo": "ancla",
+   "quedan_2s": 16.7,
+   "entero": 9.2,
+   "manda": 16.7,
+   "borda": 0.806,
+   "se_va_en": [
+    "final",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Dice que podría flotar y el tipo flota en el aire, parece de juego",
+    "Dice simulación y flotar con imanes, no tiene que ver conmigo y no entiendo.",
+    "Dice SIMULACIÓN y un güey flotando, no muestra nada real, puro cuento.",
+    "Se ve como un video técnico con un tipo diminuto y la palabra 'simulación'. No entiendo qué estoy mirando.",
+    "Un tipo flotando con etiqueta de simulación, no entendí qué era",
+    "Dice SIMULACIÓN y un tipo con casco, no entiendo nada, parece clase de física"
+   ]
+  },
+  "ep03": {
+   "tipo": "ancla",
+   "quedan_2s": 100.0,
+   "entero": 49.2,
+   "manda": 66.7,
+   "borda": 0.25,
+   "se_va_en": [
+    "Pesa más de siete mil seiscientas toneladas",
+    "Primero cavaron alrededor.",
+    "final",
+    "Pesa más de siete mil seiscientas toneladas. Y en dos mil veinte estorbaba",
+    "final",
+    "final"
+   ],
+   "por_que_2s": [
+    "Un edificio de cinco pisos que camina, es gigante e imposible",
+    "Un edificio que se fue caminando, suena raro y quiero ver cómo.",
+    "Un edificio con patas, quiero ver cómo se mueve una cosa así de pesada.",
+    "Un edificio sobre patas raras suena a que no puede ser real. Me da curiosidad, aunque el plano es medio aburrido.",
+    "Un edificio que se fue caminando, quiero ver cómo hicieron eso",
+    "Un edificio que se fue caminando, suena absurdo y quiero ver las patas"
+   ]
+  },
+  "ep04": {
+   "tipo": "ancla",
+   "quedan_2s": 83.3,
+   "entero": 55.0,
+   "manda": 66.7,
+   "borda": 0.361,
+   "se_va_en": [
+    "cuadro0",
+    "final",
+    "Y si esa igual se mueve... ahí sí es un fantasma.",
+    "final",
+    "final",
+    "Mira la ducha por dentro."
+   ],
+   "por_que_2s": [
+    "Un señor en la ducha, la cortina, ya sé qué pasa, aburrido",
+    "Me pasa en mi casa, la cortina pegándose en la ducha, lo conozco.",
+    "Me ha pasado mil veces con la cortina, quiero saber por qué.",
+    "Me pasa siempre con la cortina de la ducha. El corte lateral que la muestra curvándose es claro y me da risa.",
+    "La cortina de la ducha, me pasa siempre, es cortito",
+    "Me pasa todo el tiempo con la cortina de la ducha, me reconozco"
+   ]
+  },
+  "ep02": {
+   "tipo": "ancla",
+   "quedan_2s": 66.7,
+   "entero": 25.0,
+   "manda": 33.3,
+   "borda": 0.583,
+   "se_va_en": [
+    "Los científicos creen que el picante es un guardia",
+    "Los pájaros tienen la misma alarma, pero la capsaicina no la activa.",
+    "cuadro0",
+    "cuadro0",
+    "En Arizona, científicos filmaron un chiltepín, un ají silvestre.",
+    "Los científicos creen que el picante es un guardia."
+   ],
+   "por_que_2s": [
+    "Pájaro con ají y un ratón echando fuego, medio gracioso",
+    "Un pájaro con un ají y un ratón echando fuego, me da curiosidad y risa.",
+    "Un pájaro comiendo ají, no pasa nada, no me jala.",
+    "Un pájaro con un ají en un dibujo raro. No hay texto y no me llama la atención.",
+    "Pájaro come ají y no siente, curioso y se entiende",
+    "Pájaro con ají y un ratón tirando fuego, es absurdo y gracioso"
+   ]
+  },
+  "ep01": {
+   "tipo": "ancla",
+   "quedan_2s": 50.0,
+   "entero": 28.3,
+   "manda": 33.3,
+   "borda": 0.639,
+   "se_va_en": [
+    "cuadro0",
+    "final",
+    "cuadro0",
+    "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada",
+    "Su nombre científico es ganglioneuralgia esfenopalatina",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "Dolor de cabeza por helado, eso ya lo sé, y es dibujito",
+    "El dolor de frente con el helado, a todos nos pasa y a mis hijos también.",
+    "Caricatura 3D de un helado, ya sé lo que es, el dolor de cabeza del helado.",
+    "Todas conocemos el dolor de cabeza por el helado. La cara del personaje es chistosa y se entiende sin sonido.",
+    "Helado y dolor de frente, todos lo hemos sentido, se entiende al tiro",
+    "Ya sé lo del dolor de cabeza con el helado, es un tema visto y tiene pinta de clase"
+   ]
+  },
+  "ep07": {
+   "tipo": "ancla",
+   "quedan_2s": 33.3,
+   "entero": 15.0,
+   "manda": 16.7,
+   "borda": 0.639,
+   "se_va_en": [
+    "Solo armar eso toma dos meses",
+    "cuadro0",
+    "Y lo más loco: la grúa que baja los escombros genera electricidad...",
+    "cuadro0",
+    "cuadro0",
+    "cuadro0"
+   ],
+   "por_que_2s": [
+    "El edificio se va achicando con el contador, se ve bacán",
+    "Un edificio japonés con contador y letras, no me dice nada de mi vida.",
+    "Veo la torre bajando y el contador de pisos, algo está pasando de verdad.",
+    "Hay demasiados textos y números en pantalla y es una torre gris. Me da flojera.",
+    "Texto saturado, contador y cámara rápida, no entendí qué miraba hasta el final de la frase",
+    "Un edificio de Japón bajando, el contador es raro pero no me atrapa"
+   ]
+  },
+  "D-v2": {
+   "tipo": "candidato",
+   "quedan_2s": 100.0,
+   "entero": 52.5,
+   "manda": 100.0,
+   "borda": 0.222,
+   "se_va_en": [
+    "final",
+    "final",
+    "Este plátano también es un poquito radiactivo, por su potasio.",
+    "final",
+    "Este plátano también es un poquito radiactivo, por su potasio.",
+    "Casi todo ese potasio es normal, pero unos pocos átomos son inestables."
+   ],
+   "por_que_2s": [
+    "Mi cama es más radiactiva que una central nuclear, suena exagerado y me da curiosidad",
+    "Mi cama más radiactiva que una central nuclear, me asusta y quiero saber.",
+    "Mi cama irradia más que una central nuclear, suena exagerado pero me pica.",
+    "La balanza con la cama y la torre se entiende sin sonido, se ve bonita y el texto 'TU CAMA > CENTRAL NUCLEAR' me da curiosidad.",
+    "Cama contra central nuclear, suena a locura y quiero saber",
+    "Mi cama te irradia más que una central nuclear, me da un poco de miedo y risa"
+   ]
+  }
+ }
+}

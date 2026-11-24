@@ -1,0 +1,88 @@
+{
+ "perfil": "Camila, 22, Medellín",
+ "videos": [
+  {
+   "codigo": "LW",
+   "se_queda_2s": true,
+   "por_que_2s": "La balanza con la cama y la torre se entiende sin sonido, se ve bonita y el texto 'TU CAMA > CENTRAL NUCLEAR' me da curiosidad.",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 70,
+   "lo_manda": true,
+   "a_quien": "a mi novio, para molestarlo con que es un plátano gigante",
+   "pregunta_que_te_dejo": "¿Cómo así que mi cama irradia más que una central nuclear?"
+  },
+  {
+   "codigo": "BB",
+   "se_queda_2s": true,
+   "por_que_2s": "Un edificio sobre patas raras suena a que no puede ser real. Me da curiosidad, aunque el plano es medio aburrido.",
+   "se_va_en": "Pesa más de siete mil seiscientas toneladas. Y en dos mil veinte estorbaba",
+   "lo_ve_entero_pct": 35,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": "¿Un edificio caminando?"
+  },
+  {
+   "codigo": "JX",
+   "se_queda_2s": false,
+   "por_que_2s": "Se ve como un video técnico con un tipo diminuto y la palabra 'simulación'. No entiendo qué estoy mirando.",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 5,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "GL",
+   "se_queda_2s": false,
+   "por_que_2s": "Un pájaro con un ají en un dibujo raro. No hay texto y no me llama la atención.",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 10,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "LV",
+   "se_queda_2s": false,
+   "por_que_2s": "Hay demasiados textos y números en pantalla y es una torre gris. Me da flojera.",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 8,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "UK",
+   "se_queda_2s": true,
+   "por_que_2s": "Todas conocemos el dolor de cabeza por el helado. La cara del personaje es chistosa y se entiende sin sonido.",
+   "se_va_en": "En 2012, científicos de Harvard lo midieron con trece voluntarios y agua helada",
+   "lo_ve_entero_pct": 40,
+   "lo_manda": true,
+   "a_quien": "a mi hermana, que siempre se queja del helado",
+   "pregunta_que_te_dejo": "¿Por qué duele la frente si el frío es en la boca?"
+  },
+  {
+   "codigo": "EX",
+   "se_queda_2s": true,
+   "por_que_2s": "Me pasa siempre con la cortina de la ducha. El corte lateral que la muestra curvándose es claro y me da risa.",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 65,
+   "lo_manda": true,
+   "a_quien": "a mi roommate, que siempre pelea con la cortina",
+   "pregunta_que_te_dejo": "¿Por qué la cortina se me pega siempre?"
+  }
+ ],
+ "orden": [
+  "LW",
+  "EX",
+  "UK",
+  "BB",
+  "GL",
+  "LV",
+  "JX"
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:24",
+  "sha256_crudo": "c221841c61c1217a4a572cff2c45723e09a5034ba9e9451270f0d7b4a974cc31"
+ }
+}

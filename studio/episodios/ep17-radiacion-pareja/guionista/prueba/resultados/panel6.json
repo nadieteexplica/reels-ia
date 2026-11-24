@@ -1,0 +1,88 @@
+{
+ "perfil": "Valentina, 19, Buenos Aires",
+ "videos": [
+  {
+   "codigo": "BN",
+   "se_queda_2s": true,
+   "por_que_2s": "Un edificio que se fue caminando, suena absurdo y quiero ver las patas",
+   "se_va_en": "final",
+   "lo_ve_entero_pct": 55,
+   "lo_manda": true,
+   "a_quien": "a mi amiga que le gustan las cosas locas",
+   "pregunta_que_te_dejo": "¿Cómo un edificio camina?"
+  },
+  {
+   "codigo": "QA",
+   "se_queda_2s": false,
+   "por_que_2s": "Dice SIMULACIÓN y un tipo con casco, no entiendo nada, parece clase de física",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 8,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "XJ",
+   "se_queda_2s": false,
+   "por_que_2s": "Un edificio de Japón bajando, el contador es raro pero no me atrapa",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 15,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  },
+  {
+   "codigo": "RY",
+   "se_queda_2s": true,
+   "por_que_2s": "Pájaro con ají y un ratón tirando fuego, es absurdo y gracioso",
+   "se_va_en": "Los científicos creen que el picante es un guardia.",
+   "lo_ve_entero_pct": 40,
+   "lo_manda": true,
+   "a_quien": "a mi amigo que se cree inmune al picante",
+   "pregunta_que_te_dejo": "¿Por qué el pájaro no siente el picante?"
+  },
+  {
+   "codigo": "AT",
+   "se_queda_2s": true,
+   "por_que_2s": "Mi cama te irradia más que una central nuclear, me da un poco de miedo y risa",
+   "se_va_en": "Casi todo ese potasio es normal, pero unos pocos átomos son inestables.",
+   "lo_ve_entero_pct": 35,
+   "lo_manda": true,
+   "a_quien": "a mi novio, para joderlo con que duerme con un plátano gigante",
+   "pregunta_que_te_dejo": "¿Mi cama es más radiactiva que una central?"
+  },
+  {
+   "codigo": "PM",
+   "se_queda_2s": true,
+   "por_que_2s": "Me pasa todo el tiempo con la cortina de la ducha, me reconozco",
+   "se_va_en": "Mira la ducha por dentro.",
+   "lo_ve_entero_pct": 45,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": "¿Por qué la cortina se me pega?"
+  },
+  {
+   "codigo": "TT",
+   "se_queda_2s": false,
+   "por_que_2s": "Ya sé lo del dolor de cabeza con el helado, es un tema visto y tiene pinta de clase",
+   "se_va_en": "cuadro0",
+   "lo_ve_entero_pct": 10,
+   "lo_manda": false,
+   "a_quien": "",
+   "pregunta_que_te_dejo": ""
+  }
+ ],
+ "orden": [
+  "BN",
+  "AT",
+  "RY",
+  "PM",
+  "XJ",
+  "TT",
+  "QA"
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:24",
+  "sha256_crudo": "9e599ce133a4a16bcb7874f563a837f649305bf2b2398cc31a2508d4c0973db1"
+ }
+}

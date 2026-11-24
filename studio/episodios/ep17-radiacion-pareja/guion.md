@@ -26,8 +26,8 @@
 | s | Voz | Qué se ve | Trabajo |
 |---|---|---|---|
 | 0,0–3,9 | Un año en esta cama te irradia más que un año junto a una central nuclear. | Cuadro 0: la balanza ya inclinada hacia la cama, HUD `1 AÑO` sobre cada platillo. Clic de contador: el platillo de la cama baja otro poco y destella oro. | Gancho (paradoja con escala / mito al revés) |
-| 3,9–7,1 | Este plátano también es un poquito radiactivo, por su potasio. | Corte a la cama desde arriba; un plátano real cae al velador bajo un foco, con sombra, y brilla oro tenue. Etiqueta HUD `POTASIO` con línea guía. | Ancla + re-gancho 1 (s 3,9: el plátano es radiactivo) |
-| 7,1–11,3 | Tu cuerpo también tiene potasio. Por eso tú también eres un poquito radiactivo. | La persona dormida se ilumina con el mismo brillo oro en todo el contorno; el HUD `POTASIO` se copia del plátano a ella. | Re-gancho 2 (s 7,1: tú también) |
+| 3,9–7,1 | ¿Por qué? Por lo mismo que este plátano: potasio. Una pizca de ese potasio es radiactiva. | Corte a la cama desde arriba; un plátano real cae al velador bajo un foco, con sombra, y brilla oro tenue. Etiqueta HUD `POTASIO` con línea guía. | Ancla + re-gancho 1 (s 3,9: el plátano es radiactivo) |
+| 7,1–11,3 | Y tu cuerpo tiene mucho potasio. Así que tú también eres un poquito radiactivo. | La persona dormida se ilumina con el mismo brillo oro en todo el contorno; el HUD `POTASIO` se copia del plátano a ella. | Re-gancho 2 (s 7,1: tú también) |
 | 11,3–15,2 | Casi todo ese potasio es normal, pero unos pocos átomos son inestables. | Lupa redonda sobre el brazo: grilla de bolitas grises; una sola titila en oro. Texto chico: `1 DE CADA ~8.500`. | Mecánica (pero) |
 | 15,2–18,4 | Cada segundo, unos cuatro mil se desintegran dentro de ti. | Contador HUD en vivo que corre a ~4.000 por segundo; chispitas oro adentro del cuerpo. | Re-gancho 3 (s 15,2: número en vivo) |
 | 18,4–21,9 | Algunos sueltan un rayo gamma que atraviesa tu piel y sale. | Un trazo oro sale de una chispa, cruza la piel (etiqueta `RAYO GAMMA`) y sale del contorno. | Mecánica |
@@ -74,4 +74,8 @@
 - Dónde se va la gente: s 11,3–15,2 ("casi todo ese potasio es normal…"), el tramo más de clase.
 
 ## Texto para la voz
-Un año en esta cama te irradia más que un año junto a una central nuclear. Este plátano también es un poquito radiactivo, por su potasio. Tu cuerpo también tiene potasio. Por eso tú también eres un poquito radiactivo. Casi todo ese potasio es normal, pero unos pocos átomos son inestables. Cada segundo, unos cuatro mil se desintegran dentro de ti. Algunos sueltan un rayo gamma que atraviesa tu piel y sale. Tu pareja duerme pegada a ti, así que parte de esos rayos le llega. ¿Cuánto? Una noche juntos es más o menos como comerte un plátano. Inofensivo. Pero súmale un año de noches. Esa pila de plátanos le gana a la central. Cada noche duermes abrazado a un plátano gigante. Mándaselo a tu tóxico o a tu tóxica.
+Un año en esta cama te irradia más que un año junto a una central nuclear. ¿Por qué? Por lo mismo que este plátano: potasio. Una pizca de ese potasio es radiactiva. Y tu cuerpo tiene mucho potasio. Así que tú también eres un poquito radiactivo. Cada segundo, unos cuatro mil de esos átomos se desintegran dentro de ti. Algunos sueltan un rayo gamma que atraviesa tu piel y sale. Tu pareja duerme pegada a ti, así que parte de esos rayos le llega. ¿Cuánto? Una noche juntos es más o menos como comerte un plátano. Inofensivo. Pero súmale un año de noches. Esa pila de plátanos le gana a la central. Cada noche duermes abrazado a un plátano gigante. Mándaselo a tu tóxico o a tu tóxica.
+
+
+## v3 (23-nov, espectadores)
+Fuga en 'Este plátano también es un poquito radiactivo' (2 de 6) y 'Casi todo ese potasio es normal' (1 de 6): el tramo 4–15 s entra con la pregunta '¿Por qué?', amarra la cama al plátano con el potasio y saca la frase de 'casi todo es normal'. La verdad no cambia (ficha #1–#3: 1 de cada ~8.500 átomos de potasio es radiactivo; unos 4 mil por segundo).
