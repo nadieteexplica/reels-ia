@@ -14,3 +14,4 @@ YouTube no paga contenido "inauténtico": producido en masa, de plantilla, con p
 | 14 | 12-nov-2026 | mecanismo por dentro (≈B) | 2D comedia (kit papel) | tecnología cotidiana | raro | (ver PUBLICADOS) |
 | 15 | 13-nov-2026 | contradicción (≈B) | 2D comedia (kit papel) | cuerpo | raro | (ver PUBLICADOS) |
 | 16 | 20-nov-2026 | escalera del porqué (≈C) | 2D comedia (kit papel) | espacio + nostalgia | raro | (ver PUBLICADOS) |
+| 17 | 24-nov-2026 | mito + analogía (D) | laboratorio nocturno (beat v5) | cuerpo + física cotidiana | raro (escala sobre ti: "dormir con tu pareja… central nuclear") | (ver PUBLICADOS) |
