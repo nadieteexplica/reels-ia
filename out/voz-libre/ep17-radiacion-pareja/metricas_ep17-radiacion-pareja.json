@@ -1,0 +1,30 @@
+{
+ "ep17-radiacion-pareja.wav": {
+  "duracion_s": 41.3,
+  "pal_por_s": 3.1,
+  "wer_%": 1.6,
+  "diferencias": [
+   "radiactiva → radioactiva",
+   "radiactivo → radioactivo"
+  ],
+  "pausas_largas": [],
+  "estiradas": [],
+  "dudosas": [
+   "cuatro",
+   "una"
+  ]
+ },
+ "ep17-radiacion-pareja_original.wav": {
+  "duracion_s": 44.5,
+  "pal_por_s": 2.87,
+  "wer_%": 0.0,
+  "diferencias": [],
+  "pausas_largas": [
+   0.74
+  ],
+  "estiradas": [],
+  "dudosas": [
+   "cuatro"
+  ]
+ }
+}
