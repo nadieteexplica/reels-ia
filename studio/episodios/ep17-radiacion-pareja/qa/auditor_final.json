@@ -1,0 +1,38 @@
+{
+ "aprobado": true,
+ "bloqueantes": [],
+ "sugerencias": [
+  {
+   "segundo": "0",
+   "sugerencia": "El cuadro 0 ya muestra la balanza completa (TU CAMA 1 AÑO contra CENTRAL NUCLEAR 1 AÑO), sin negro ni fundido. Pero la inclinación es leve (unos 8°) y el subtítulo dice sólo 'UN', así que en 0,5 s 'la cama pesa más' no salta a la vista. Conviene inclinar más el brazo hacia la cama o reforzar el brillo del platillo de la cama desde el cuadro 0."
+  },
+  {
+   "segundo": "32-34",
+   "sugerencia": "En 32-33 s se juntan cáscaras junto a la cama, pero en 34 s la balanza aparece con plátanos enteros. Hay que usar el mismo objeto en las dos escenas: que el montón que cae al platillo sea el que se vio, o que en 32-33 s se apilen plátanos enteros en vez de cáscaras."
+  },
+  {
+   "segundo": "12 y 23",
+   "sugerencia": "En 12 s (hacia el cuerpo) y en 23 s (hacia la pareja) aparecen las líneas guía sin su texto, POTASIO y PAREJA, que llegan casi un segundo después. Se ve una línea suelta que no apunta a nada. Mejor que línea y etiqueta entren juntas."
+  },
+  {
+   "segundo": "6-33",
+   "sugerencia": "El velador con el plátano (y después la cáscara, 30-33 s) llega al borde de la franja derecha de la interfaz, a unos 160 px del borde. Moverlo unos 40-60 px a la izquierda para que los botones no tapen la punta del plátano."
+  },
+  {
+   "segundo": "37-40",
+   "sugerencia": "La voz dice 'duermes abrazado a un plátano gigante', pero la persona que brilla (tú) no abraza al plátano, sólo está al lado. Además, la cabeza de la pareja desaparece de golpe. Un brazo sobre el plátano o el plátano con la cabeza de la pareja harían calzar mejor la imagen con la frase."
+  }
+ ],
+ "notas": {
+  "cuadro0": 8,
+  "legibilidad": 8,
+  "sincronia": 8,
+  "una_idea": 8,
+  "subtitulos": 8,
+  "loop": 9
+ },
+ "_registro": {
+  "guardado": "2026-11-23 22:17",
+  "sha256_crudo": "c9eece3636c6ca0adfd1195b5236a3cb1c34d7d4e31cdbd52a52c0b9b9fdf510"
+ }
+}
