@@ -1,25 +1,25 @@
 # Qué dice la voz en cada segundo
 
--  0 s: Un año en esta cama
--  1 s: te irradia más
--  2 s: que un año junto a
--  3 s: una central nuclear.
+-  0 s: Dormir con tu pareja
+-  1 s: un año te irradia
+-  2 s: más que un año junto
+-  3 s: a una central nuclear.
 -  4 s: ¿Por qué?
--  5 s: Por lo mismo que este
--  6 s: plátano: potasio.
--  7 s: Una pizca
--  8 s: de ese potasio
+-  5 s: Por lo mismo que
+-  6 s: este plátano:
+-  7 s: potasio. Una
+-  8 s: pizca de ese potasio
 -  9 s: es radiactiva.
 - 10 s: Y tu cuerpo
 - 11 s: tiene mucho potasio.
-- 12 s: Así que tú
-- 13 s: también eres un poquito
-- 14 s: radiactivo. Cada
-- 15 s: segundo,
-- 16 s: unos cuatro mil de esos
-- 17 s: átomos se desintegran
-- 18 s: dentro de ti.
-- 19 s: Algunos sueltan
+- 12 s: Así que
+- 13 s: tú también eres un poquito
+- 14 s: radiactivo.
+- 15 s: Cada segundo,
+- 16 s: unos cuatro mil de
+- 17 s: esos átomos se desintegran
+- 18 s: dentro de
+- 19 s: ti. Algunos sueltan
 - 20 s: un rayo gamma que
 - 21 s: atraviesa tu piel y
 - 22 s: sale. Tu pareja
@@ -28,16 +28,16 @@
 - 25 s: de esos rayos le
 - 26 s: llega. ¿Cuánto?
 - 27 s: Una noche juntos
-- 28 s: es más o menos como
-- 29 s: comerte un plátano.
-- 30 s: Inofensivo.
-- 31 s: Pero súmale un
-- 32 s: año de noches.
-- 33 s: Esa pila de plátanos
-- 34 s: le gana a la central.
-- 35 s: Cada noche
-- 36 s: duermes abrazado
-- 37 s: a un plátano gigante.
-- 38 s: Mándaselo
-- 39 s: a tu tóxico o
-- 40 s: a tu tóxica.
+- 28 s: es más o
+- 29 s: menos como comerte un
+- 30 s: plátano.
+- 31 s: Inofensivo. Pero
+- 32 s: súmale un año de noches.
+- 33 s: Esa
+- 34 s: pila de plátanos le gana
+- 35 s: a la central.
+- 36 s: Cada noche duermes
+- 37 s: abrazado a un plátano
+- 38 s: gigante.
+- 39 s: Mándaselo a tu tóxico
+- 40 s: o a tu tóxica.

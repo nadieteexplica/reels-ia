@@ -35,7 +35,7 @@ MEZCLA = os.path.join(EP, "mezcla.wav")
 EST = A.EST
 TINTA, ORO, VERDE = A.TINTA, A.ORO, A.VERDE
 CLAVES = ["irradia", "central nuclear", "plátano", "potasio", "radiactiva", "también", "cuatro mil", "rayo gamma",
-          "pareja", "Inofensivo", "un año de noches", "le gana", "plátano gigante", "tóxico", "tóxica"]
+          "pareja", "Inofensivo", "un año de noches", "pila de plátanos", "le gana", "plátano gigante", "tóxico", "tóxica"]
 an, tr, ee, es, eo = K.anim, K.tramo, K.ease_entrada, K.ease_salida, K.ease_estado
 
 
