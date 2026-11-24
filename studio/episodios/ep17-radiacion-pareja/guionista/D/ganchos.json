@@ -1,0 +1,40 @@
+{
+ "candidatos": [
+  {
+   "id": "D1",
+   "dur_s": 46,
+   "cuadro0": "Fondo carbón. Cama doble vista desde arriba (~70 % del cuadro), dos personas durmiendo bajo una frazada con sombra. La de la izquierda con contorno oro tenue; tres trazos oro punteados cruzan hacia la otra. HUD chico: RADIACIÓN.",
+   "0_3s": "Los trazos oro parpadean con cada clic de contador. En 'central nuclear' aparece arriba una torre de enfriamiento gris tachada; en 'tu pareja', una etiqueta HUD oro apunta a la de la izquierda.",
+   "texto_pantalla_0_3s": "TU PAREJA TE IRRADIA",
+   "voz_0_3s": "Para recibir radiación no necesitas una central nuclear. Te basta con tu pareja.",
+   "resto": "Y para entenderlo sólo necesitas un plátano: es un poquito radiactivo por su potasio; tu cuerpo también tiene potasio, así que tú también; unos pocos átomos son inestables y cada segundo unos cuatro mil se desintegran dentro de ti; algunos sueltan un rayo gamma que sale por la piel y le llega a tu pareja; una noche juntos es más o menos como comerte un plátano, inofensivo; pero un año de noches es más radiación que vivir un año al lado de una central nuclear; cada noche duermes abrazado a un plátano gigante; mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "D2",
+   "dur_s": 46,
+   "cuadro0": "Fondo carbón. Cama doble de costado (~60 % del cuadro), dos personas durmiendo. En el velador, un contador Geiger amarillo con aguja (~15 %). La persona de la izquierda ya suelta un destello oro hacia la otra.",
+   "0_3s": "La aguja del contador salta con cada clic y un destello oro sale de la persona dormida hacia la otra; en 'radiación' el contador marca en oro y aparece la etiqueta HUD 'TU PAREJA'.",
+   "texto_pantalla_0_3s": "MIENTRAS DUERMES",
+   "voz_0_3s": "Esta noche, mientras duermes, tu pareja te va a dar radiación.",
+   "resto": "Lo raro no es una central nuclear: es tu cama, y para entenderlo sólo necesitas un plátano; potasio radiactivo en el plátano y en ti; cuatro mil átomos por segundo; rayos gamma que salen por la piel; una noche ≈ un plátano, inofensivo; un año de noches > un año al lado de una central nuclear; duermes abrazado a un plátano gigante; mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "D3",
+   "dur_s": 46,
+   "cuadro0": "Fondo carbón. Almohada doble con dos cabezas dormidas a los lados; entre ellas, un plátano real con volumen y sombra (~45 % del cuadro) que brilla oro. HUD chico junto al plátano: K-40.",
+   "0_3s": "El plátano late en oro y suelta un destello hacia cada cabeza; en 'una noche' aparece la etiqueta HUD '1 NOCHE = 1 PLÁTANO' pegada a la almohada.",
+   "texto_pantalla_0_3s": "1 NOCHE = 1 PLÁTANO",
+   "voz_0_3s": "Dormir una noche con tu pareja es como comerte un plátano.",
+   "resto": "¿Por qué? Porque el plátano es un poquito radiactivo por su potasio y tu pareja también; unos pocos átomos de potasio son inestables, cuatro mil se desintegran por segundo y algunos sueltan rayos gamma que salen por la piel y te llegan; es inofensivo; pero un año de noches es más radiación que vivir un año al lado de una central nuclear; duermes abrazado a un plátano gigante; mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "D4",
+   "dur_s": 46,
+   "cuadro0": "Fondo carbón. Una balanza de platillos (~65 % del cuadro): en un platillo una cama doble con dos personas dormidas, en el otro una torre de enfriamiento de central nuclear. La balanza ya cae hacia la cama.",
+   "0_3s": "El platillo de la cama baja de golpe con un clic de contador y la persona dormida suelta un destello oro; en 'central nuclear' aparece HUD '1 AÑO' sobre cada platillo.",
+   "texto_pantalla_0_3s": "TU CAMA > CENTRAL NUCLEAR",
+   "voz_0_3s": "Un año en esta cama te da más radiación que un año junto a una central nuclear.",
+   "resto": "Y para entenderlo sólo necesitas un plátano: es un poquito radiactivo por su potasio, y tu cuerpo también; unos pocos átomos son inestables, cuatro mil se desintegran por segundo dentro de ti; algunos sueltan rayos gamma que salen por la piel y le llegan a tu pareja; una noche ≈ comerte un plátano, inofensivo; duermes abrazado a un plátano gigante; mándaselo a tu tóxico o a tu tóxica."
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "candidatos": [
+  {
+   "id": "B1",
+   "dur_s": 47,
+   "cuadro0": "Fondo carbón. Cama doble desde arriba en 3/4, ~60 % del cuadro, dos personas durmiendo bajo una cobija. Del cuerpo izquierdo salen puntitos dorados hacia el derecho. En el velador, contador Geiger (~15 %) con aguja oro.",
+   "0_3s": "Los puntitos cruzan de un cuerpo al otro y el contador hace clic con cada uno; en 1,5 s aparece la etiqueta HUD RADIACIÓN con línea guía al de la izquierda.",
+   "texto_pantalla_0_3s": "TE IRRADIA",
+   "voz_0_3s": "Tu pareja te irradia toda la noche.",
+   "resto": "Como si robarte la cobija fuera poco. ¿Cómo, si en tu cama no hay nada nuclear? Lo radiactivo es su cuerpo, y el tuyo también: tienes potasio, el mismo del plátano; unos pocos átomos son inestables y unos cuatro mil se rompen cada segundo dentro de ti; algunos disparan un rayo que atraviesa la piel y le llega al que duerme al lado. Una noche juntos es más o menos comerte un plátano, inofensivo. Pero un año de noches te da más radiación que vivir un año junto a una central nuclear. Remate: en esa cama nadie es inocente, los dos son un poquito radiactivos. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "B2",
+   "dur_s": 47,
+   "cuadro0": "Fondo carbón partido en dos. Izquierda: cama doble, dos personas durmiendo, puntitos dorados entre ellas (~45 % del cuadro). Derecha: torre de central nuclear oscura (~35 %). Al medio, un signo > dorado grande.",
+   "0_3s": "Los puntitos dorados laten entre los dos durmientes; en 1,5 s el signo > se enciende y bajo cada lado aparece la etiqueta HUD 1 AÑO.",
+   "texto_pantalla_0_3s": "1 AÑO DE CAMA > 1 AÑO JUNTO A LA CENTRAL",
+   "voz_0_3s": "Dormir con alguien te irradia más que vivir junto a una central.",
+   "resto": "Un año de noches contra un año de vecino de la central. ¿Cómo, si en tu cama no hay nada nuclear? Lo radiactivo es su cuerpo, y el tuyo: potasio, el mismo del plátano; unos pocos átomos inestables, unos cuatro mil se rompen por segundo; algunos disparan un rayo que sale por la piel y llega al de al lado. Una noche es más o menos comerte un plátano, inofensivo; sumado un año, le gana a la central. Remate: en esa cama nadie es inocente, los dos son un poquito radiactivos. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "B3",
+   "dur_s": 47,
+   "cuadro0": "Fondo carbón. Un plátano en el velador, ~35 % del cuadro, con un contador Geiger pegado haciendo clic y la aguja dorada moviéndose. Detrás, desenfocada, una cama con alguien durmiendo.",
+   "0_3s": "El contador hace clic sobre el plátano; en 1,5 s gira hacia la cama, la persona dormida entra en foco y los clics siguen; etiqueta HUD RADIACTIVA con línea guía a ella.",
+   "texto_pantalla_0_3s": "ÉL TAMBIÉN",
+   "voz_0_3s": "Este plátano es radiactivo. La persona que duerme contigo, también.",
+   "resto": "Y te irradia toda la noche. ¿Cómo, si en tu cama no hay nada nuclear? Es el potasio, el mismo del plátano: tu cuerpo también lo tiene; unos pocos átomos son inestables y unos cuatro mil se rompen por segundo; algunos disparan un rayo que atraviesa la piel y le llega al de al lado. Una noche juntos es más o menos comerte un plátano, inofensivo. Pero un año de noches te da más que vivir un año junto a una central nuclear. Remate: en esa cama nadie es inocente, los dos son un poquito radiactivos. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "B4",
+   "dur_s": 47,
+   "cuadro0": "Fondo carbón. Cama doble desde arriba, ~60 % del cuadro: una persona enrollada en toda la cobija como burrito, la otra destapada. Del burrito salen puntitos dorados hacia la destapada.",
+   "0_3s": "El burrito tira de la cobija y la otra queda tiritando; en 1,5 s los puntitos dorados empiezan a salir del burrito hacia ella y aparece la etiqueta HUD RADIACIÓN.",
+   "texto_pantalla_0_3s": "Y ADEMÁS TE IRRADIA",
+   "voz_0_3s": "Tu pareja te roba la cobija. Y además te irradia.",
+   "resto": "Toda la noche. ¿Cómo, si en tu cama no hay nada nuclear? Lo radiactivo es su cuerpo, y el tuyo: potasio, el mismo del plátano; unos pocos átomos son inestables y unos cuatro mil se rompen cada segundo; algunos disparan un rayo que atraviesa la piel y le llega al de al lado. Una noche juntos es más o menos comerte un plátano, inofensivo. Pero un año de noches te da más radiación que vivir un año junto a una central nuclear. Remate: en esa cama nadie es inocente, los dos son un poquito radiactivos. Mándaselo a tu tóxico o a tu tóxica."
+  }
+ ]
+}
