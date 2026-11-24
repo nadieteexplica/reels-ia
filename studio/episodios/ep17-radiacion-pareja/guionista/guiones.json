@@ -1,0 +1,13 @@
+{
+ "candidatos": [
+  {
+   "id": "D-v2",
+   "dur_s": 41,
+   "cuadro0": "Fondo carbón. Una balanza de platillos (~65 % del cuadro): en un platillo una cama doble con dos personas dormidas, en el otro una torre de enfriamiento de central nuclear. La balanza ya cae hacia la cama.",
+   "0_3s": "El platillo de la cama baja de golpe con un clic de contador y la persona dormida suelta un destello oro; en 'central nuclear' aparece HUD '1 AÑO' sobre cada platillo.",
+   "texto_pantalla_0_3s": "TU CAMA > CENTRAL NUCLEAR",
+   "voz_0_3s": "Un año en esta cama te irradia más que un año junto a una central nuclear.",
+   "resto": "Un año en esta cama te irradia más que un año junto a una central nuclear. Este plátano también es un poquito radiactivo, por su potasio. Tu cuerpo también tiene potasio. Por eso tú también eres un poquito radiactivo. Casi todo ese potasio es normal, pero unos pocos átomos son inestables. Cada segundo, unos cuatro mil se desintegran dentro de ti. Algunos sueltan un rayo gamma que atraviesa tu piel y sale. Tu pareja duerme pegada a ti, así que parte de esos rayos le llega. ¿Cuánto? Una noche juntos es más o menos como comerte un plátano. Inofensivo. Pero súmale un año de noches. Esa pila de plátanos le gana a la central. Cada noche duermes abrazado a un plátano gigante. Mándaselo a tu tóxico o a tu tóxica."
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "pares": [
+  {
+   "par": "P1",
+   "desliza_primero": "SJ",
+   "razon": "Empieza con el típico '¿Sabías que' genérico y una ilustración plana, y la cama radiactiva da más curiosidad."
+  },
+  {
+   "par": "P2",
+   "desliza_primero": "AB",
+   "razon": "Unos portones de súper son algo cotidiano y tranquilo, y 'algo radiactivo en tu cama' llama más la atención."
+  },
+  {
+   "par": "P3",
+   "desliza_primero": "MG",
+   "razon": "Es una explicación técnica de pantalla táctil con subtítulos, y la cama radiactiva me intriga más."
+  },
+  {
+   "par": "P4",
+   "desliza_primero": "RS",
+   "razon": "Una cuerda y un balde con 'Así empezó la grúa' se ve aburrido y no tiene gancho."
+  },
+  {
+   "par": "P5",
+   "desliza_primero": "KK",
+   "razon": "Un clavo y un martillo es obvio y no me da ninguna razón para quedarme."
+  },
+  {
+   "par": "P6",
+   "desliza_primero": "IO",
+   "razon": "Una arrocera que no cuenta los minutos es un dato soso, y la cama radiactiva es más llamativa."
+  },
+  {
+   "par": "P7",
+   "desliza_primero": "VJ",
+   "razon": "La moneda falsa en una máquina es una pregunta tibia, y la cama radiactiva me atrapa más."
+  },
+  {
+   "par": "P8",
+   "desliza_primero": "LY",
+   "razon": "El cable que se corta con chispas y un golpe fuerte da tensión inmediata, así que la cama es la que deslizo primero."
+  },
+  {
+   "par": "P9",
+   "desliza_primero": "GM",
+   "razon": "El ojo en primerísimo plano que se pone en blanco es raro y un poco inquietante, y me retiene más que la cama."
+  }
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:17",
+  "sha256_crudo": "f15395e4541520d89c02266b7319acce6ea86e2bf4b9c34549111dc9405791ab"
+ }
+}

@@ -1,0 +1,116 @@
+{
+ "candidatos": [
+  {
+   "id": "A1",
+   "dur_s": 48,
+   "apertura": "raro",
+   "cuadro0": "Fondo carbón. Cama doble vista desde arriba, ocupa ~70 % del cuadro. Dos siluetas bajo una sábana; la de la izquierda brilla en oro y le salen rayos finos hacia la otra. Etiqueta HUD: RADIACIÓN, contador.",
+   "0_3s": "Desde el cuadro 0 los rayos dorados laten y cruzan a la silueta de la derecha; el contador HUD sube con clics. En 'irradia' la silueta derecha se tiñe un poco de oro.",
+   "texto_pantalla_0_3s": "TU PAREJA TE IRRADIA",
+   "voz_0_3s": "Tu pareja te irradia toda la noche.",
+   "resto": "Inventemos una máquina que haga lo mismo. Paso uno: algo radiactivo del súper, el plátano. Su potasio es radiactivo, pero muy poquito (1 de cada 8.500 átomos, en pantalla). Así que juntas muchísimo potasio en un saco de músculo: adentro se desintegran unos cuatro mil átomos por segundo. Pero la radiación tiene que salir: por suerte algunos sueltan un rayo gamma que atraviesa la piel. Pero sale para todos lados: la pones pegada a ti, ocho horas, bajo la misma sábana. Felicitaciones: acabas de inventar a tu pareja. Una noche así ≈ un plátano de radiación; un año así, más que vivir un año junto a una central nuclear. Inofensivo. Pero ojo: la máquina que irradia a tu pareja eres tú. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "A2",
+   "dur_s": 48,
+   "apertura": "raro",
+   "cuadro0": "Fondo carbón. Cama doble de frente, ~65 % del cuadro, una almohada vacía a la derecha. A la izquierda, un bulto bajo la sábana con brillo oro. Encima, contador HUD oro con clics y etiqueta RADIACTIVO.",
+   "0_3s": "El contador sube de inmediato y el bulto respira (sube y baja). En 'setenta kilos' aparece debajo del bulto una etiqueta HUD de balanza: 70 KG.",
+   "texto_pantalla_0_3s": "ALGO RADIACTIVO EN TU CAMA",
+   "voz_0_3s": "En tu cama hay algo radiactivo. Pesa unos setenta kilos.",
+   "resto": "Inventemos una máquina que te irradie mientras duermes. Paso uno: algo radiactivo del súper, el plátano; su potasio es radiactivo, pero muy poquito. Así que juntas muchísimo en un saco de músculo: cuatro mil átomos se desintegran por segundo. Pero la radiación tiene que salir: algunos sueltan rayos gamma que atraviesan la piel. Pero salen para todos lados: la pones pegada a ti, ocho horas, bajo la misma sábana. Acabas de inventar a tu pareja. Una noche ≈ un plátano; un año, más que vivir un año junto a una central nuclear. Inofensivo. La máquina que irradia a tu pareja eres tú. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "A3",
+   "dur_s": 47,
+   "apertura": "normal→escala",
+   "cuadro0": "Fondo carbón, mesa de laboratorio con sombra. Un plátano real al centro, ~45 % del cuadro, con un leve brillo oro. Al lado, contador HUD oro marcando clics. Etiqueta pegada: POTASIO.",
+   "0_3s": "El contador hace clic desde el cuadro 0. En 'tu pareja' la cámara corta a la cama: al lado del plátano aparece una silueta dormida bajo la sábana y su contador marca mucho más rápido.",
+   "texto_pantalla_0_3s": "ESTE PLÁTANO ES RADIACTIVO",
+   "voz_0_3s": "Este plátano es radiactivo. Tu pareja, también.",
+   "resto": "Inventemos una máquina que te irradie toda la noche. Paso uno ya lo tienes: el potasio del plátano, pero es muy poquito (1 de cada 8.500 átomos). Así que juntas muchísimo en un saco de músculo: cuatro mil átomos se desintegran por segundo. Pero la radiación tiene que salir: algunos sueltan rayos gamma que atraviesan la piel. Pero salen para todos lados: la pones pegada a ti, ocho horas, bajo la misma sábana. Acabas de inventar a tu pareja. Una noche ≈ un plátano; un año, más que vivir un año junto a una central nuclear. Inofensivo. La máquina que irradia a tu pareja eres tú. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "A4",
+   "dur_s": 48,
+   "apertura": "raro",
+   "cuadro0": "Fondo carbón con cuadrícula de plano técnico. Cama vista desde arriba, ~70 % del cuadro: tu silueta dormida a la derecha; a la izquierda, un contorno punteado oro vacío con etiqueta HUD: MÁQUINA ?.",
+   "0_3s": "Desde el cuadro 0 el contorno punteado se dibuja solo, línea por línea; en 'irradie' le sale un primer rayo dorado hacia tu silueta.",
+   "texto_pantalla_0_3s": "UNA MÁQUINA QUE TE IRRADIA",
+   "voz_0_3s": "Inventemos una máquina que te irradie mientras duermes.",
+   "resto": "Paso uno: algo radiactivo del súper, el plátano; su potasio es radiactivo, pero muy poquito. Así que juntas muchísimo en un saco de músculo: cuatro mil átomos se desintegran por segundo. Pero la radiación tiene que salir: algunos sueltan rayos gamma que atraviesan la piel. Pero salen para todos lados: la pones pegada a ti, ocho horas, bajo la misma sábana. El contorno se llena: acabas de inventar a tu pareja. Una noche ≈ un plátano; un año, más que vivir un año junto a una central nuclear. Inofensivo. La máquina que irradia a tu pareja eres tú. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "B1",
+   "dur_s": 47,
+   "cuadro0": "Fondo carbón. Cama doble desde arriba en 3/4, ~60 % del cuadro, dos personas durmiendo bajo una cobija. Del cuerpo izquierdo salen puntitos dorados hacia el derecho. En el velador, contador Geiger (~15 %) con aguja oro.",
+   "0_3s": "Los puntitos cruzan de un cuerpo al otro y el contador hace clic con cada uno; en 1,5 s aparece la etiqueta HUD RADIACIÓN con línea guía al de la izquierda.",
+   "texto_pantalla_0_3s": "TE IRRADIA",
+   "voz_0_3s": "Tu pareja te irradia toda la noche.",
+   "resto": "Como si robarte la cobija fuera poco. ¿Cómo, si en tu cama no hay nada nuclear? Lo radiactivo es su cuerpo, y el tuyo también: tienes potasio, el mismo del plátano; unos pocos átomos son inestables y unos cuatro mil se rompen cada segundo dentro de ti; algunos disparan un rayo que atraviesa la piel y le llega al que duerme al lado. Una noche juntos es más o menos comerte un plátano, inofensivo. Pero un año de noches te da más radiación que vivir un año junto a una central nuclear. Remate: en esa cama nadie es inocente, los dos son un poquito radiactivos. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "B2",
+   "dur_s": 47,
+   "cuadro0": "Fondo carbón partido en dos. Izquierda: cama doble, dos personas durmiendo, puntitos dorados entre ellas (~45 % del cuadro). Derecha: torre de central nuclear oscura (~35 %). Al medio, un signo > dorado grande.",
+   "0_3s": "Los puntitos dorados laten entre los dos durmientes; en 1,5 s el signo > se enciende y bajo cada lado aparece la etiqueta HUD 1 AÑO.",
+   "texto_pantalla_0_3s": "1 AÑO DE CAMA > 1 AÑO JUNTO A LA CENTRAL",
+   "voz_0_3s": "Dormir con alguien te irradia más que vivir junto a una central.",
+   "resto": "Un año de noches contra un año de vecino de la central. ¿Cómo, si en tu cama no hay nada nuclear? Lo radiactivo es su cuerpo, y el tuyo: potasio, el mismo del plátano; unos pocos átomos inestables, unos cuatro mil se rompen por segundo; algunos disparan un rayo que sale por la piel y llega al de al lado. Una noche es más o menos comerte un plátano, inofensivo; sumado un año, le gana a la central. Remate: en esa cama nadie es inocente, los dos son un poquito radiactivos. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "B3",
+   "dur_s": 47,
+   "cuadro0": "Fondo carbón. Un plátano en el velador, ~35 % del cuadro, con un contador Geiger pegado haciendo clic y la aguja dorada moviéndose. Detrás, desenfocada, una cama con alguien durmiendo.",
+   "0_3s": "El contador hace clic sobre el plátano; en 1,5 s gira hacia la cama, la persona dormida entra en foco y los clics siguen; etiqueta HUD RADIACTIVA con línea guía a ella.",
+   "texto_pantalla_0_3s": "ÉL TAMBIÉN",
+   "voz_0_3s": "Este plátano es radiactivo. La persona que duerme contigo, también.",
+   "resto": "Y te irradia toda la noche. ¿Cómo, si en tu cama no hay nada nuclear? Es el potasio, el mismo del plátano: tu cuerpo también lo tiene; unos pocos átomos son inestables y unos cuatro mil se rompen por segundo; algunos disparan un rayo que atraviesa la piel y le llega al de al lado. Una noche juntos es más o menos comerte un plátano, inofensivo. Pero un año de noches te da más que vivir un año junto a una central nuclear. Remate: en esa cama nadie es inocente, los dos son un poquito radiactivos. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "B4",
+   "dur_s": 47,
+   "cuadro0": "Fondo carbón. Cama doble desde arriba, ~60 % del cuadro: una persona enrollada en toda la cobija como burrito, la otra destapada. Del burrito salen puntitos dorados hacia la destapada.",
+   "0_3s": "El burrito tira de la cobija y la otra queda tiritando; en 1,5 s los puntitos dorados empiezan a salir del burrito hacia ella y aparece la etiqueta HUD RADIACIÓN.",
+   "texto_pantalla_0_3s": "Y ADEMÁS TE IRRADIA",
+   "voz_0_3s": "Tu pareja te roba la cobija. Y además te irradia.",
+   "resto": "Toda la noche. ¿Cómo, si en tu cama no hay nada nuclear? Lo radiactivo es su cuerpo, y el tuyo: potasio, el mismo del plátano; unos pocos átomos son inestables y unos cuatro mil se rompen cada segundo; algunos disparan un rayo que atraviesa la piel y le llega al de al lado. Una noche juntos es más o menos comerte un plátano, inofensivo. Pero un año de noches te da más radiación que vivir un año junto a una central nuclear. Remate: en esa cama nadie es inocente, los dos son un poquito radiactivos. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "D1",
+   "dur_s": 46,
+   "cuadro0": "Fondo carbón. Cama doble vista desde arriba (~70 % del cuadro), dos personas durmiendo bajo una frazada con sombra. La de la izquierda con contorno oro tenue; tres trazos oro punteados cruzan hacia la otra. HUD chico: RADIACIÓN.",
+   "0_3s": "Los trazos oro parpadean con cada clic de contador. En 'central nuclear' aparece arriba una torre de enfriamiento gris tachada; en 'tu pareja', una etiqueta HUD oro apunta a la de la izquierda.",
+   "texto_pantalla_0_3s": "TU PAREJA TE IRRADIA",
+   "voz_0_3s": "Para recibir radiación no necesitas una central nuclear. Te basta con tu pareja.",
+   "resto": "Y para entenderlo sólo necesitas un plátano: es un poquito radiactivo por su potasio; tu cuerpo también tiene potasio, así que tú también; unos pocos átomos son inestables y cada segundo unos cuatro mil se desintegran dentro de ti; algunos sueltan un rayo gamma que sale por la piel y le llega a tu pareja; una noche juntos es más o menos como comerte un plátano, inofensivo; pero un año de noches es más radiación que vivir un año al lado de una central nuclear; cada noche duermes abrazado a un plátano gigante; mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "D2",
+   "dur_s": 46,
+   "cuadro0": "Fondo carbón. Cama doble de costado (~60 % del cuadro), dos personas durmiendo. En el velador, un contador Geiger amarillo con aguja (~15 %). La persona de la izquierda ya suelta un destello oro hacia la otra.",
+   "0_3s": "La aguja del contador salta con cada clic y un destello oro sale de la persona dormida hacia la otra; en 'radiación' el contador marca en oro y aparece la etiqueta HUD 'TU PAREJA'.",
+   "texto_pantalla_0_3s": "MIENTRAS DUERMES",
+   "voz_0_3s": "Esta noche, mientras duermes, tu pareja te va a dar radiación.",
+   "resto": "Lo raro no es una central nuclear: es tu cama, y para entenderlo sólo necesitas un plátano; potasio radiactivo en el plátano y en ti; cuatro mil átomos por segundo; rayos gamma que salen por la piel; una noche ≈ un plátano, inofensivo; un año de noches > un año al lado de una central nuclear; duermes abrazado a un plátano gigante; mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "D3",
+   "dur_s": 46,
+   "cuadro0": "Fondo carbón. Almohada doble con dos cabezas dormidas a los lados; entre ellas, un plátano real con volumen y sombra (~45 % del cuadro) que brilla oro. HUD chico junto al plátano: K-40.",
+   "0_3s": "El plátano late en oro y suelta un destello hacia cada cabeza; en 'una noche' aparece la etiqueta HUD '1 NOCHE = 1 PLÁTANO' pegada a la almohada.",
+   "texto_pantalla_0_3s": "1 NOCHE = 1 PLÁTANO",
+   "voz_0_3s": "Dormir una noche con tu pareja es como comerte un plátano.",
+   "resto": "¿Por qué? Porque el plátano es un poquito radiactivo por su potasio y tu pareja también; unos pocos átomos de potasio son inestables, cuatro mil se desintegran por segundo y algunos sueltan rayos gamma que salen por la piel y te llegan; es inofensivo; pero un año de noches es más radiación que vivir un año al lado de una central nuclear; duermes abrazado a un plátano gigante; mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "D4",
+   "dur_s": 46,
+   "cuadro0": "Fondo carbón. Una balanza de platillos (~65 % del cuadro): en un platillo una cama doble con dos personas dormidas, en el otro una torre de enfriamiento de central nuclear. La balanza ya cae hacia la cama.",
+   "0_3s": "El platillo de la cama baja de golpe con un clic de contador y la persona dormida suelta un destello oro; en 'central nuclear' aparece HUD '1 AÑO' sobre cada platillo.",
+   "texto_pantalla_0_3s": "TU CAMA > CENTRAL NUCLEAR",
+   "voz_0_3s": "Un año en esta cama te da más radiación que un año junto a una central nuclear.",
+   "resto": "Y para entenderlo sólo necesitas un plátano: es un poquito radiactivo por su potasio, y tu cuerpo también; unos pocos átomos son inestables, cuatro mil se desintegran por segundo dentro de ti; algunos sueltan rayos gamma que salen por la piel y le llegan a tu pareja; una noche ≈ comerte un plátano, inofensivo; duermes abrazado a un plátano gigante; mándaselo a tu tóxico o a tu tóxica."
+  }
+ ]
+}

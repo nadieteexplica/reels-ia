@@ -1,0 +1,53 @@
+{
+ "pares": [
+  {
+   "par": "P1",
+   "desliza_primero": "JU",
+   "razon": "Una arrocera simple no me dice nada y el dibujo es plano."
+  },
+  {
+   "par": "P2",
+   "desliza_primero": "BH",
+   "razon": "La pregunta del portón es tranquila y no me da urgencia; la cama contra la central me engancha más."
+  },
+  {
+   "par": "P3",
+   "desliza_primero": "DS",
+   "razon": "La máquina expendedora y la moneda falsa me dan igual; lo de la cama y la radiación me inquieta."
+  },
+  {
+   "par": "P4",
+   "desliza_primero": "GM",
+   "razon": "El cable que se corta con chispas y el golpe fuerte me atrapan más que una balanza quieta."
+  },
+  {
+   "par": "P5",
+   "desliza_primero": "DV",
+   "razon": "Una cuerda y un balde es aburrido y no se entiende qué gano."
+  },
+  {
+   "par": "P6",
+   "desliza_primero": "JP",
+   "razon": "El ojo que se pone en blanco es raro y me da curiosidad; la balanza me suena a clickbait."
+  },
+  {
+   "par": "P7",
+   "desliza_primero": "YF",
+   "razon": "Un buzo con muchos textos y un '¿Sabías que' genérico se siente recargado y lo he visto mil veces."
+  },
+  {
+   "par": "P8",
+   "desliza_primero": "DN",
+   "razon": "Pantalla táctil con etiquetas chicas y fondo oscuro es técnico y no me importa."
+  },
+  {
+   "par": "P9",
+   "desliza_primero": "FD",
+   "razon": "'Esto es un clavo' es obvio y aburrido desde el primer segundo."
+  }
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:17",
+  "sha256_crudo": "96b57aa4d89eee111ed23e34fec7039f0ccb7e3bd849d11f760ffcae2989815a"
+ }
+}

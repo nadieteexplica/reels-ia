@@ -1,0 +1,60 @@
+{
+ "gana": {
+  "A2": 14,
+  "D4": 15,
+  "v-martinete": 0,
+  "v-monedero": 0,
+  "v-touchscreen": 0,
+  "v-gruas": 0,
+  "v-porton-super": 0,
+  "v-ascensor": 4,
+  "v-arrocera": 0,
+  "v-buceo": 0,
+  "v-ojos": 3
+ },
+ "juega": {
+  "A2": 18,
+  "D4": 18,
+  "v-martinete": 4,
+  "v-monedero": 4,
+  "v-touchscreen": 4,
+  "v-gruas": 4,
+  "v-porton-super": 4,
+  "v-ascensor": 4,
+  "v-arrocera": 4,
+  "v-buceo": 4,
+  "v-ojos": 4
+ },
+ "decisiones": {
+  "A2 vs v-arrocera": "A2",
+  "A2 vs v-ascensor": "v-ascensor",
+  "A2 vs v-buceo": "A2",
+  "A2 vs v-gruas": "A2",
+  "A2 vs v-martinete": "A2",
+  "A2 vs v-monedero": "A2",
+  "A2 vs v-ojos": "v-ojos",
+  "A2 vs v-porton-super": "A2",
+  "A2 vs v-touchscreen": "A2",
+  "D4 vs v-arrocera": "D4",
+  "D4 vs v-ascensor": "v-ascensor",
+  "D4 vs v-buceo": "D4",
+  "D4 vs v-gruas": "D4",
+  "D4 vs v-martinete": "D4",
+  "D4 vs v-monedero": "D4",
+  "D4 vs v-ojos": "empate",
+  "D4 vs v-porton-super": "D4",
+  "D4 vs v-touchscreen": "D4"
+ },
+ "contra_anclas": {
+  "A2": {
+   "vence": 7,
+   "empata": 0,
+   "pierde": 2
+  },
+  "D4": {
+   "vence": 7,
+   "empata": 1,
+   "pierde": 1
+  }
+ }
+}

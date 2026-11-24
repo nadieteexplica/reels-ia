@@ -1,0 +1,23 @@
+{
+ "candidatos": [
+  {
+   "id": "A2",
+   "dur_s": 48,
+   "apertura": "raro",
+   "cuadro0": "Fondo carbón. Cama doble de frente, ~65 % del cuadro, una almohada vacía a la derecha. A la izquierda, un bulto bajo la sábana con brillo oro. Encima, contador HUD oro con clics y etiqueta RADIACTIVO.",
+   "0_3s": "El contador sube de inmediato y el bulto respira (sube y baja). En 'setenta kilos' aparece debajo del bulto una etiqueta HUD de balanza: 70 KG.",
+   "texto_pantalla_0_3s": "ALGO RADIACTIVO EN TU CAMA",
+   "voz_0_3s": "En tu cama hay algo radiactivo. Pesa unos setenta kilos.",
+   "resto": "Inventemos una máquina que te irradie mientras duermes. Paso uno: algo radiactivo del súper, el plátano; su potasio es radiactivo, pero muy poquito. Así que juntas muchísimo en un saco de músculo: cuatro mil átomos se desintegran por segundo. Pero la radiación tiene que salir: algunos sueltan rayos gamma que atraviesan la piel. Pero salen para todos lados: la pones pegada a ti, ocho horas, bajo la misma sábana. Acabas de inventar a tu pareja. Una noche ≈ un plátano; un año, más que vivir un año junto a una central nuclear. Inofensivo. La máquina que irradia a tu pareja eres tú. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "D4",
+   "dur_s": 46,
+   "cuadro0": "Fondo carbón. Una balanza de platillos (~65 % del cuadro): en un platillo una cama doble con dos personas dormidas, en el otro una torre de enfriamiento de central nuclear. La balanza ya cae hacia la cama.",
+   "0_3s": "El platillo de la cama baja de golpe con un clic de contador y la persona dormida suelta un destello oro; en 'central nuclear' aparece HUD '1 AÑO' sobre cada platillo.",
+   "texto_pantalla_0_3s": "TU CAMA > CENTRAL NUCLEAR",
+   "voz_0_3s": "Un año en esta cama te da más radiación que un año junto a una central nuclear.",
+   "resto": "Y para entenderlo sólo necesitas un plátano: es un poquito radiactivo por su potasio, y tu cuerpo también; unos pocos átomos son inestables, cuatro mil se desintegran por segundo dentro de ti; algunos sueltan rayos gamma que salen por la piel y le llegan a tu pareja; una noche ≈ comerte un plátano, inofensivo; duermes abrazado a un plátano gigante; mándaselo a tu tóxico o a tu tóxica."
+  }
+ ]
+}

@@ -1,0 +1,386 @@
+{
+ "items": [
+  "A2",
+  "D4",
+  "v-martinete",
+  "v-monedero",
+  "v-touchscreen",
+  "v-gruas",
+  "v-porton-super",
+  "v-ascensor",
+  "v-arrocera",
+  "v-buceo",
+  "v-ojos"
+ ],
+ "jueces": {
+  "juez1": {
+   "P1": {
+    "codigos": {
+     "BM": "A2",
+     "XF": "v-buceo"
+    },
+    "orden": [
+     "A2",
+     "v-buceo"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "EG": "A2",
+     "XI": "v-monedero"
+    },
+    "orden": [
+     "A2",
+     "v-monedero"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "UW": "A2",
+     "DY": "v-martinete"
+    },
+    "orden": [
+     "A2",
+     "v-martinete"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "UJ": "A2",
+     "LA": "v-touchscreen"
+    },
+    "orden": [
+     "A2",
+     "v-touchscreen"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "JJ": "A2",
+     "XN": "v-porton-super"
+    },
+    "orden": [
+     "A2",
+     "v-porton-super"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "ED": "A2",
+     "QK": "v-ascensor"
+    },
+    "orden": [
+     "A2",
+     "v-ascensor"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "UD": "A2",
+     "PJ": "v-gruas"
+    },
+    "orden": [
+     "A2",
+     "v-gruas"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "CV": "A2",
+     "ER": "v-arrocera"
+    },
+    "orden": [
+     "A2",
+     "v-arrocera"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "SQ": "A2",
+     "QP": "v-ojos"
+    },
+    "orden": [
+     "A2",
+     "v-ojos"
+    ]
+   }
+  },
+  "juez2": {
+   "P1": {
+    "codigos": {
+     "UA": "D4",
+     "JU": "v-arrocera"
+    },
+    "orden": [
+     "D4",
+     "v-arrocera"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "LU": "D4",
+     "BH": "v-porton-super"
+    },
+    "orden": [
+     "D4",
+     "v-porton-super"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "ZG": "D4",
+     "DS": "v-monedero"
+    },
+    "orden": [
+     "D4",
+     "v-monedero"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "GM": "D4",
+     "MA": "v-ascensor"
+    },
+    "orden": [
+     "D4",
+     "v-ascensor"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "JV": "D4",
+     "DV": "v-gruas"
+    },
+    "orden": [
+     "D4",
+     "v-gruas"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "JP": "D4",
+     "TE": "v-ojos"
+    },
+    "orden": [
+     "D4",
+     "v-ojos"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "SC": "D4",
+     "YF": "v-buceo"
+    },
+    "orden": [
+     "D4",
+     "v-buceo"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "TW": "D4",
+     "DN": "v-touchscreen"
+    },
+    "orden": [
+     "D4",
+     "v-touchscreen"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "HM": "D4",
+     "FD": "v-martinete"
+    },
+    "orden": [
+     "D4",
+     "v-martinete"
+    ]
+   }
+  },
+  "juez3": {
+   "P1": {
+    "codigos": {
+     "SJ": "v-buceo",
+     "EV": "A2"
+    },
+    "orden": [
+     "v-buceo",
+     "A2"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "AB": "v-porton-super",
+     "QF": "A2"
+    },
+    "orden": [
+     "v-porton-super",
+     "A2"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "MG": "v-touchscreen",
+     "UA": "A2"
+    },
+    "orden": [
+     "v-touchscreen",
+     "A2"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "RS": "v-gruas",
+     "PO": "A2"
+    },
+    "orden": [
+     "v-gruas",
+     "A2"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "KK": "v-martinete",
+     "FY": "A2"
+    },
+    "orden": [
+     "v-martinete",
+     "A2"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "IO": "v-arrocera",
+     "ZA": "A2"
+    },
+    "orden": [
+     "v-arrocera",
+     "A2"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "VJ": "v-monedero",
+     "BV": "A2"
+    },
+    "orden": [
+     "v-monedero",
+     "A2"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "RL": "v-ascensor",
+     "LY": "A2"
+    },
+    "orden": [
+     "v-ascensor",
+     "A2"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "YL": "v-ojos",
+     "GM": "A2"
+    },
+    "orden": [
+     "v-ojos",
+     "A2"
+    ]
+   }
+  },
+  "juez4": {
+   "P1": {
+    "codigos": {
+     "BW": "v-martinete",
+     "YD": "D4"
+    },
+    "orden": [
+     "v-martinete",
+     "D4"
+    ]
+   },
+   "P2": {
+    "codigos": {
+     "CC": "v-ojos",
+     "IA": "D4"
+    },
+    "orden": [
+     "v-ojos",
+     "D4"
+    ]
+   },
+   "P3": {
+    "codigos": {
+     "XE": "v-arrocera",
+     "RF": "D4"
+    },
+    "orden": [
+     "v-arrocera",
+     "D4"
+    ]
+   },
+   "P4": {
+    "codigos": {
+     "KF": "v-touchscreen",
+     "YQ": "D4"
+    },
+    "orden": [
+     "v-touchscreen",
+     "D4"
+    ]
+   },
+   "P5": {
+    "codigos": {
+     "GJ": "v-buceo",
+     "NZ": "D4"
+    },
+    "orden": [
+     "v-buceo",
+     "D4"
+    ]
+   },
+   "P6": {
+    "codigos": {
+     "NF": "v-gruas",
+     "LF": "D4"
+    },
+    "orden": [
+     "v-gruas",
+     "D4"
+    ]
+   },
+   "P7": {
+    "codigos": {
+     "WP": "v-ascensor",
+     "NC": "D4"
+    },
+    "orden": [
+     "v-ascensor",
+     "D4"
+    ]
+   },
+   "P8": {
+    "codigos": {
+     "WL": "v-monedero",
+     "IK": "D4"
+    },
+    "orden": [
+     "v-monedero",
+     "D4"
+    ]
+   },
+   "P9": {
+    "codigos": {
+     "XI": "v-porton-super",
+     "KO": "D4"
+    },
+    "orden": [
+     "v-porton-super",
+     "D4"
+    ]
+   }
+  }
+ },
+ "anclas": "virales"
+}

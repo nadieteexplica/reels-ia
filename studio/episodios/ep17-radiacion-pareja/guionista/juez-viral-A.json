@@ -1,0 +1,45 @@
+{
+ "guion": "/private/tmp/claude-501/-Users-tomas-Desktop-Proyecto-reels-ia/ba566151-ba1c-4d6c-89cc-093a0e27203b/scratchpad/ciega-A.md",
+ "comparado_con": "martinete",
+ "gancho": {
+  "veredicto": "GANA",
+  "por_que": "En el s 0,0 el cuadro ya se mueve (el contador hace clic y el bulto respira) y muestra algo imposible: algo radiactivo en tu cama, con la palabra clave a los ~1,4 s. A los ~2,5 s, '70 KG' deja una pregunta que el espectador cree poder contestar (¿es una persona? ¿cómo?) sin responderla. El cuadro 0 del martinete es un clavo quieto donde 'lo raro todavía no está'. Único pero: la primera sílaba ('En tu cama') todavía no es el gancho."
+ },
+ "medio": {
+  "veredicto": "EMPATA",
+  "por_que": "Tiene más novedades que el martinete: una falla o un arreglo cada ~2–5 s entre 6,1 y 28,4, con 'pero' y 'así que', contra una falla cada 10–15 s en el martinete. Pero pierde en lo que hace funcionar la estructura A. Los arreglos no se los gana el espectador: el saco de músculo (11,0) aparece sin razón y 'por suerte' (19,0) deja al azar la pieza clave. Además no hay ninguna pregunta en la voz que sirva de re-gancho (el martinete las tiene en 11, 23,9, 44,2 y 62,2 s). Después de la central nuclear (~38 s) viene un tramo de calma sin dato hasta 'en su cama también…' (~43 s). La voz va a 3,1 pal/s, contra 3,8 del martinete.",
+  "segundos_sin_novedad": [
+   [
+    "38.7",
+    "42.3"
+   ]
+  ]
+ },
+ "final": {
+  "veredicto": "GANA",
+  "por_que": "El remate en 42,3–45,5 ('en su cama también hay algo radiactivo. Tú.') da vuelta la primera frase, y el último cuadro vuelve al cuadro 0, así que el loop empalma de verdad. El CTA en 45,5 nombra a una persona sacada del tema: la pareja con la que duermes. El martinete no tiene CTA y su loop está 'por ver'. Dos peros: 'tóxico' choca con el 'inofensivo' de 3 s antes (radiactivo no es tóxico), y el 'Tú' se ve venir por la simetría.",
+  "cta_ligado_al_contenido": true
+ },
+ "frases_debiles": [
+  {
+   "segundo": "38.7",
+   "frase": "Tranquilo, es inofensivo: tu cuerpo maneja dosis así todos los días.",
+   "arreglo": "Bajarla a ~1,5 s y pegarla a la frase de la central ('…y es inofensivo'), con INOFENSIVO sólo en pantalla. Así se cierra el hueco sin dato y el 'Tú' llega ~2 s antes. Si se deja, que traiga un número concreto, no 'dosis así'."
+  },
+  {
+   "segundo": "19.0",
+   "frase": "Por suerte, algunos sueltan un rayo gamma que atraviesa la piel.",
+   "arreglo": "Cambiar 'por suerte' por una decisión del espectador con 'así que' (por ejemplo, 'así que te quedas con los que sueltan un rayo gamma: ese atraviesa la piel'), para que el 'acabas de inventar' se sienta ganado."
+  },
+  {
+   "segundo": "11.0",
+   "frase": "Así que juntas muchísimo en un saco de músculo.",
+   "arreglo": "Dar el porqué del músculo en la misma frase (es donde el cuerpo guarda el potasio) y cambiar 'muchísimo' por una cantidad que se vea (por ejemplo, el potasio de N plátanos con contador en vivo), sin repetir los 70 kg."
+  }
+ ],
+ "pasa": false,
+ "_registro": {
+  "guardado": "2026-11-23 21:20",
+  "sha256_crudo": "9aeab3d06f4e8661f4f88e45fc5de87e0d30ef0ff7e330af9589a1132645e307"
+ }
+}

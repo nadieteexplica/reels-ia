@@ -1,0 +1,53 @@
+{
+ "pares": [
+  {
+   "par": "P1",
+   "desliza_primero": "XF",
+   "razon": "Empieza con '¿Sabías que' genérico, una ilustración plana y poco llamativa; la cama radiactiva intriga más."
+  },
+  {
+   "par": "P2",
+   "desliza_primero": "XI",
+   "razon": "La máquina expendedora es un tema aburrido y de poco interés; lo radiactivo en mi cama me engancha más."
+  },
+  {
+   "par": "P3",
+   "desliza_primero": "DY",
+   "razon": "Un clavo y un martillo es obvio y aburrido, sin ningún misterio."
+  },
+  {
+   "par": "P4",
+   "desliza_primero": "LA",
+   "razon": "Es confuso y técnico, con muchas etiquetas chicas y subtítulos; la cama radiactiva se entiende al tiro."
+  },
+  {
+   "par": "P5",
+   "desliza_primero": "XN",
+   "razon": "Pregunta cotidiana y calmada, con poca urgencia, frente a algo radiactivo en mi cama."
+  },
+  {
+   "par": "P6",
+   "desliza_primero": "ED",
+   "razon": "El cable cortándose con chispas y el golpe metálico es más impactante que un bulto en una cama."
+  },
+  {
+   "par": "P7",
+   "desliza_primero": "PJ",
+   "razon": "Una cuerda y un balde en un árbol se ve lento y sin gancho."
+  },
+  {
+   "par": "P8",
+   "desliza_primero": "ER",
+   "razon": "La arrocera es un tema plano y poco atractivo; lo radiactivo en mi cama intriga más."
+  },
+  {
+   "par": "P9",
+   "desliza_primero": "SQ",
+   "razon": "El ojo que se pone en blanco es raro y visual, y me haría quedarme más que la cama."
+  }
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:17",
+  "sha256_crudo": "4c0a19ba50d07ed7628a1d4f82a360c02a778c568059c10e78b074600cd3fe64"
+ }
+}

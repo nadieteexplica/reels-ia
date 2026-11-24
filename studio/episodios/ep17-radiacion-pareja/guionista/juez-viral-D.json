@@ -1,0 +1,40 @@
+{
+ "guion": "/private/tmp/claude-501/-Users-tomas-Desktop-Proyecto-reels-ia/ba566151-ba1c-4d6c-89cc-093a0e27203b/scratchpad/ciega-D.md",
+ "comparado_con": "buceo",
+ "gancho": {
+  "veredicto": "GANA",
+  "por_que": "Desde el cuadro 0 (s 0,0) la balanza ya está inclinada hacia la cama, con la píldora TU CAMA > CENTRAL NUCLEAR, y el platillo baja de golpe entre el s 0 y el 3. En buceo lo raro recién aparece en el s 3,5–4,5. La pregunta (¿por qué esta cama? ¿el celular, el colchón?) es de las que uno cree poder contestar, y no se responde hasta el s 25,5. Lo que le resta: la voz no parte con el gancho, porque 'radiación' es la palabra 8 (~2,3 s) y la frase dura 5,5 s con 17 palabras, contra 4,5 s en buceo."
+ },
+ "medio": {
+  "veredicto": "EMPATA",
+  "por_que": "Le gana en densidad a buceo, que mete un dato cada 5–7 s. Aquí entra un paso o número nuevo cada ~3–4 s (7,7 potasio, 10,6 tú también, 14,8 inestables, 18,7 cuatro mil por segundo, 21,9 rayo gamma, 25,5 pareja, 30,0 noche = plátano, 37,1 un año) y las frases se encadenan con 'por eso', 'pero' y 'así que'. Pero pierde en otras cosas. Tiene una frase de relleno que baja la tensión (s 33,9–37,1, 'Es inofensivo…'). Copia casi palabra por palabra el anuncio del ancla de buceo (s 5,5). Al s 23,5 (la mitad del video) no hay re-gancho: el primero es '¿Cuánto?' en el s 30,0 (64 %). Y no tiene ni el mini-mito ni el giro por contraste de buceo: después del pago de la pareja sólo queda sacar la cuenta. Revisé segundo a segundo: el hueco más largo entre novedades es de ~5 s (de 'plátano', s ~33,5, a 'un año de noches', s ~38,5), así que queda al límite pero dentro.",
+  "segundos_sin_novedad": []
+ },
+ "final": {
+  "veredicto": "GANA",
+  "por_que": "Buceo cierra con una pregunta sin responder y un CTA a comentarios, sin envío. Aquí el pago del gancho llega con la balanza en el s 39,0–42,0, después viene un remate visual y gracioso en el s 42,0 ('duermes abrazado a un plátano gigante') y el último plano en el s 44,6 es el cuadro 0, así que 'tóxica' empalma con 'Un año en esta cama… radiación'. El 'mándaselo a tu tóxico o a tu tóxica' nombra a una persona concreta que sale del tema: la pareja que te irradia, con juego entre tóxico y radiactivo. Un roce: choca un poco con el 'es inofensivo' del s 33,9 y dura ~2,5 s.",
+  "cta_ligado_al_contenido": true
+ },
+ "frases_debiles": [
+  {
+   "segundo": "0,0–5,5",
+   "frase": "Un año en esta cama te da más radiación que un año junto a una central nuclear.",
+   "arreglo": "Pasar el 'un año… un año' al HUD `1 AÑO` que ya va sobre cada platillo y dejar en la voz ≤10 palabras que partan con el choque, por ejemplo 'Esta cama te da más radiación que una central nuclear'. Así 'radiación' llega antes del s 1,5 y la comparación se sigue viendo."
+  },
+  {
+   "segundo": "5,5–7,7",
+   "frase": "Y para entenderlo, sólo necesitas un plátano.",
+   "arreglo": "Está calcada de buceo y en 2,2 s no trae ningún dato. Fundirla con la siguiente para que el ancla llegue con el dato puesto, por ejemplo 'Pasa lo mismo con un plátano: es un poquito radiactivo', y recuperar ~2 s."
+  },
+  {
+   "segundo": "33,9–37,1",
+   "frase": "Es inofensivo: tu cuerpo maneja dosis así todos los días.",
+   "arreglo": "Sacarla de la voz y dejar sólo el check verde con la etiqueta `INOFENSIVO` encima del plano de la noche (o decir una sola palabra, 'Inofensivo', en 0,6 s), para que 'Pero súmale un año de noches' entre justo después del plátano y no se pierda la tensión antes del pago."
+  }
+ ],
+ "pasa": true,
+ "_registro": {
+  "guardado": "2026-11-23 21:21",
+  "sha256_crudo": "64cbecf92ebe618301a25fc4ac65e71e9f8a3dee203473cec2e35d314583e587"
+ }
+}

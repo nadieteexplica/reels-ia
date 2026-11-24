@@ -1,0 +1,40 @@
+{
+ "guion": "/private/tmp/claude-501/-Users-tomas-Desktop-Proyecto-reels-ia/ba566151-ba1c-4d6c-89cc-093a0e27203b/scratchpad/ciega-B.md",
+ "comparado_con": "touchscreen",
+ "gancho": {
+  "veredicto": "GANA",
+  "por_que": "El cuadro 0 ya se mueve: el burrito tira de la cobija y los puntitos dorados salen con la píldora Y ADEMÁS TE IRRADIA, así que en mudo lo raro se ve desde el primer cuadro. En la voz, lo raro llega a los ~2,5 s ('Y además te irradia'), antes que en touchscreen, donde la contradicción con el lápiz cae entre los 3 y los 5 s. Además mezcla un dolor de todas las noches con una afirmación absurda en segunda persona, y deja abierta una pregunta que el espectador cree poder contestar (s 4,2–7,1: '¿cómo, si no hay nada nuclear?'). Lo flojo: la primera sílaba no es el gancho, porque 0–1,8 s es puro planteamiento ('Tu pareja te roba la cobija')."
+ },
+ "medio": {
+  "veredicto": "EMPATA",
+  "por_que": "Hay algo nuevo cada ~3 s: potasio y plátano a los 10,0 s, inestables a los 12,6, el contador ~4.000/s a los 15,8, el rayo a los 19,4, la dosis de un plátano a los 26,5 y la central a los 35,5. El ancla (el plátano) vuelve al 58 %, igual que hace touchscreen con su número en vivo y su caso que paga el planteamiento: aquí 'toda la noche' (s 3,2) se paga con 'todas las noches de un año' (s 32,9). No le gana porque tiene relleno: 'Casi todo es tranquilo' (s 12,6), 'tu cuerpo maneja eso todos los días' (s 30,0–32,9) y 'Sale de tu cuerpo' (s 22,6), que repite 'atraviesa tu piel'. Además encadena con 'Y' cuatro veces (s 1,8, 8,5, 15,8 y 24,5) donde iría un 'pero' o un 'por eso'. Revisado segundo a segundo: el tramo más flojo es 22,6–26,5, y cuenta sólo porque muestra un paso (el rayo cruza de un cuerpo al otro) y dura menos de 4 s.",
+  "segundos_sin_novedad": []
+ },
+ "final": {
+  "veredicto": "EMPATA",
+  "por_que": "Uso de vara lo que sí está escrito en la biblioteca, porque el cierre de touchscreen dice 'por ver': el remate de martinete (la frase más fuerte, al 97 %) y el CTA de ojos-al-dormir (una persona sacada del tema, con imagen propia). El loop está bien hecho: a los 43,5–46,1 s el burrito recupera la cobija, igual que en el cuadro 0, y 'tu tóxico' empalma con 'tu pareja'. El CTA está ligado al tema. Pero el remate de los 39,7 s ('nadie es inocente: los dos son un poquito radiactivos') es más débil que el pico de la central (s 35,5) y repite lo que ya se dijo a los 7,1 s ('Y el tuyo también'). Por eso el video baja justo antes de cerrar, en vez de terminar en su frase más fuerte.",
+  "cta_ligado_al_contenido": true
+ },
+ "frases_debiles": [
+  {
+   "segundo": "22.6",
+   "frase": "Sale de tu cuerpo. Y el que duerme al lado lo recibe.",
+   "arreglo": "'Sale de tu cuerpo' es lo mismo que 'atraviesa tu piel', y 'lo recibe' repite el gancho. Fusionarla con la frase del rayo ('...un rayo que atraviesa tu piel y llega al que duerme al lado'). Los ~2 s que se liberan van a un dato nuevo con fuente, o se cortan."
+  },
+  {
+   "segundo": "39.7",
+   "frase": "En esa cama nadie es inocente: los dos son un poquito radiactivos.",
+   "arreglo": "El remate repite el s 7,1 y queda bajo la central. Sacar 'Y el tuyo también' del s 7,1, para que 'los dos' sea una revelación nueva en el remate, o hacer que el remate vuelva a la cobija (te la roba, pero te devuelve algo), para que sea la frase más fuerte y no un resumen."
+  },
+  {
+   "segundo": "30.0",
+   "frase": "Es inofensivo: tu cuerpo maneja eso todos los días.",
+   "arreglo": "Son ~3 s de calma que bajan la tensión justo antes del giro. Dejar sólo 'Inofensivo.' (~0,8 s) con el check verde y pasar directo a 'Pero suma todas las noches de un año'. Hacer lo mismo con 'Casi todo es tranquilo' (s 12,6): sacarlo y entrar directo a 'unos pocos átomos son inestables'."
+  }
+ ],
+ "pasa": false,
+ "_registro": {
+  "guardado": "2026-11-23 21:21",
+  "sha256_crudo": "8b2465e5be58282b7e27ac255fe5a364ccf95eb7232247271984d0b0dcb0ee1f"
+ }
+}

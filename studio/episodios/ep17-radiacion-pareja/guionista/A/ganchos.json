@@ -1,0 +1,45 @@
+{
+ "_que_es": "Ep. 17, guionista A (inventaste X). 4 ganchos para el mismo guion; el 'resto' es el guion en una línea. Apertura: A1, A2 y A4 'raro'; A3 'normal→escala'.",
+ "candidatos": [
+  {
+   "id": "A1",
+   "dur_s": 48,
+   "apertura": "raro",
+   "cuadro0": "Fondo carbón. Cama doble vista desde arriba, ocupa ~70 % del cuadro. Dos siluetas bajo una sábana; la de la izquierda brilla en oro y le salen rayos finos hacia la otra. Etiqueta HUD: RADIACIÓN, contador.",
+   "0_3s": "Desde el cuadro 0 los rayos dorados laten y cruzan a la silueta de la derecha; el contador HUD sube con clics. En 'irradia' la silueta derecha se tiñe un poco de oro.",
+   "texto_pantalla_0_3s": "TU PAREJA TE IRRADIA",
+   "voz_0_3s": "Tu pareja te irradia toda la noche.",
+   "resto": "Inventemos una máquina que haga lo mismo. Paso uno: algo radiactivo del súper, el plátano. Su potasio es radiactivo, pero muy poquito (1 de cada 8.500 átomos, en pantalla). Así que juntas muchísimo potasio en un saco de músculo: adentro se desintegran unos cuatro mil átomos por segundo. Pero la radiación tiene que salir: por suerte algunos sueltan un rayo gamma que atraviesa la piel. Pero sale para todos lados: la pones pegada a ti, ocho horas, bajo la misma sábana. Felicitaciones: acabas de inventar a tu pareja. Una noche así ≈ un plátano de radiación; un año así, más que vivir un año junto a una central nuclear. Inofensivo. Pero ojo: la máquina que irradia a tu pareja eres tú. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "A2",
+   "dur_s": 48,
+   "apertura": "raro",
+   "cuadro0": "Fondo carbón. Cama doble de frente, ~65 % del cuadro, una almohada vacía a la derecha. A la izquierda, un bulto bajo la sábana con brillo oro. Encima, contador HUD oro con clics y etiqueta RADIACTIVO.",
+   "0_3s": "El contador sube de inmediato y el bulto respira (sube y baja). En 'setenta kilos' aparece debajo del bulto una etiqueta HUD de balanza: 70 KG.",
+   "texto_pantalla_0_3s": "ALGO RADIACTIVO EN TU CAMA",
+   "voz_0_3s": "En tu cama hay algo radiactivo. Pesa unos setenta kilos.",
+   "resto": "Inventemos una máquina que te irradie mientras duermes. Paso uno: algo radiactivo del súper, el plátano; su potasio es radiactivo, pero muy poquito. Así que juntas muchísimo en un saco de músculo: cuatro mil átomos se desintegran por segundo. Pero la radiación tiene que salir: algunos sueltan rayos gamma que atraviesan la piel. Pero salen para todos lados: la pones pegada a ti, ocho horas, bajo la misma sábana. Acabas de inventar a tu pareja. Una noche ≈ un plátano; un año, más que vivir un año junto a una central nuclear. Inofensivo. La máquina que irradia a tu pareja eres tú. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "A3",
+   "dur_s": 47,
+   "apertura": "normal→escala",
+   "cuadro0": "Fondo carbón, mesa de laboratorio con sombra. Un plátano real al centro, ~45 % del cuadro, con un leve brillo oro. Al lado, contador HUD oro marcando clics. Etiqueta pegada: POTASIO.",
+   "0_3s": "El contador hace clic desde el cuadro 0. En 'tu pareja' la cámara corta a la cama: al lado del plátano aparece una silueta dormida bajo la sábana y su contador marca mucho más rápido.",
+   "texto_pantalla_0_3s": "ESTE PLÁTANO ES RADIACTIVO",
+   "voz_0_3s": "Este plátano es radiactivo. Tu pareja, también.",
+   "resto": "Inventemos una máquina que te irradie toda la noche. Paso uno ya lo tienes: el potasio del plátano, pero es muy poquito (1 de cada 8.500 átomos). Así que juntas muchísimo en un saco de músculo: cuatro mil átomos se desintegran por segundo. Pero la radiación tiene que salir: algunos sueltan rayos gamma que atraviesan la piel. Pero salen para todos lados: la pones pegada a ti, ocho horas, bajo la misma sábana. Acabas de inventar a tu pareja. Una noche ≈ un plátano; un año, más que vivir un año junto a una central nuclear. Inofensivo. La máquina que irradia a tu pareja eres tú. Mándaselo a tu tóxico o a tu tóxica."
+  },
+  {
+   "id": "A4",
+   "dur_s": 48,
+   "apertura": "raro",
+   "cuadro0": "Fondo carbón con cuadrícula de plano técnico. Cama vista desde arriba, ~70 % del cuadro: tu silueta dormida a la derecha; a la izquierda, un contorno punteado oro vacío con etiqueta HUD: MÁQUINA ?.",
+   "0_3s": "Desde el cuadro 0 el contorno punteado se dibuja solo, línea por línea; en 'irradie' le sale un primer rayo dorado hacia tu silueta.",
+   "texto_pantalla_0_3s": "UNA MÁQUINA QUE TE IRRADIA",
+   "voz_0_3s": "Inventemos una máquina que te irradie mientras duermes.",
+   "resto": "Paso uno: algo radiactivo del súper, el plátano; su potasio es radiactivo, pero muy poquito. Así que juntas muchísimo en un saco de músculo: cuatro mil átomos se desintegran por segundo. Pero la radiación tiene que salir: algunos sueltan rayos gamma que atraviesan la piel. Pero salen para todos lados: la pones pegada a ti, ocho horas, bajo la misma sábana. El contorno se llena: acabas de inventar a tu pareja. Una noche ≈ un plátano; un año, más que vivir un año junto a una central nuclear. Inofensivo. La máquina que irradia a tu pareja eres tú. Mándaselo a tu tóxico o a tu tóxica."
+  }
+ ]
+}

@@ -1,0 +1,338 @@
+{
+ "pares": [
+  {
+   "par": "P1",
+   "desliza_primero": "PK",
+   "razon": "Frase genérica sin gancho."
+  },
+  {
+   "par": "P2",
+   "desliza_primero": "DR",
+   "razon": "La comparación con el plátano me da más curiosidad."
+  },
+  {
+   "par": "P3",
+   "desliza_primero": "YN",
+   "razon": "El plátano radiactivo es más raro y llamativo."
+  },
+  {
+   "par": "P4",
+   "desliza_primero": "YW",
+   "razon": "Frase plana, sin sorpresa."
+  },
+  {
+   "par": "P5",
+   "desliza_primero": "PW",
+   "razon": "La central nuclear atrae más que una frase larga."
+  },
+  {
+   "par": "P6",
+   "desliza_primero": "MG",
+   "razon": "Lo de algo radiactivo en tu cama intriga más."
+  },
+  {
+   "par": "P7",
+   "desliza_primero": "GT",
+   "razon": "El plátano con la persona dormida engancha más."
+  },
+  {
+   "par": "P8",
+   "desliza_primero": "TG",
+   "razon": "La balanza con la central nuclear es más fuerte."
+  },
+  {
+   "par": "P9",
+   "desliza_primero": "BS",
+   "razon": "Un plátano radiactivo llama más la atención."
+  },
+  {
+   "par": "P10",
+   "desliza_primero": "LH",
+   "razon": "El 1 año de cama contra la central es más claro."
+  },
+  {
+   "par": "P11",
+   "desliza_primero": "TO",
+   "razon": "Lo de inventar una máquina es abstracto."
+  },
+  {
+   "par": "P12",
+   "desliza_primero": "QQ",
+   "razon": "La balanza con la central nuclear es más fuerte."
+  },
+  {
+   "par": "P13",
+   "desliza_primero": "YG",
+   "razon": "Lo de la máquina no me dice nada."
+  },
+  {
+   "par": "P14",
+   "desliza_primero": "KB",
+   "razon": "La balanza con la cama contra la central es más fuerte."
+  },
+  {
+   "par": "P15",
+   "desliza_primero": "DH",
+   "razon": "La cobija robada es algo que me pasa a mí."
+  },
+  {
+   "par": "P16",
+   "desliza_primero": "YE",
+   "razon": "Lo de la máquina es abstracto."
+  },
+  {
+   "par": "P17",
+   "desliza_primero": "IP",
+   "razon": "Frase plana, el plátano en la almohada intriga más."
+  },
+  {
+   "par": "P18",
+   "desliza_primero": "YT",
+   "razon": "La comparación con la central nuclear es más llamativa."
+  },
+  {
+   "par": "P19",
+   "desliza_primero": "MT",
+   "razon": "Lo de la máquina es abstracto."
+  },
+  {
+   "par": "P20",
+   "desliza_primero": "JD",
+   "razon": "La central nuclear con la cama es más fuerte."
+  },
+  {
+   "par": "P21",
+   "desliza_primero": "QF",
+   "razon": "Frase genérica, sin gancho."
+  },
+  {
+   "par": "P22",
+   "desliza_primero": "KS",
+   "razon": "Frase genérica, sin gancho."
+  },
+  {
+   "par": "P23",
+   "desliza_primero": "PG",
+   "razon": "El plátano radiactivo engancha más."
+  },
+  {
+   "par": "P24",
+   "desliza_primero": "OC",
+   "razon": "Frase plana sin comparación."
+  },
+  {
+   "par": "P25",
+   "desliza_primero": "KQ",
+   "razon": "Ver el plátano con el contador me atrae más."
+  },
+  {
+   "par": "P26",
+   "desliza_primero": "AS",
+   "razon": "La balanza con la central nuclear es más fuerte."
+  },
+  {
+   "par": "P27",
+   "desliza_primero": "HC",
+   "razon": "El plátano radiactivo es más directo."
+  },
+  {
+   "par": "P28",
+   "desliza_primero": "OW",
+   "razon": "El plátano con el contador da más curiosidad."
+  },
+  {
+   "par": "P29",
+   "desliza_primero": "KE",
+   "razon": "La cobija robada es más cercana."
+  },
+  {
+   "par": "P30",
+   "desliza_primero": "LB",
+   "razon": "La cobija robada me hace sonreír."
+  },
+  {
+   "par": "P31",
+   "desliza_primero": "EU",
+   "razon": "Frase genérica, sin gancho."
+  },
+  {
+   "par": "P32",
+   "desliza_primero": "KA",
+   "razon": "Frase plana sin humor."
+  },
+  {
+   "par": "P33",
+   "desliza_primero": "SE",
+   "razon": "Algo radiactivo en la cama intriga más."
+  },
+  {
+   "par": "P34",
+   "desliza_primero": "NQ",
+   "razon": "Algo radiactivo en tu cama intriga más."
+  },
+  {
+   "par": "P35",
+   "desliza_primero": "MD",
+   "razon": "El plátano con el contador es más inmediato."
+  },
+  {
+   "par": "P36",
+   "desliza_primero": "HE",
+   "razon": "Tu pareja también es más directo."
+  },
+  {
+   "par": "P37",
+   "desliza_primero": "AQ",
+   "razon": "El plátano radiactivo atrae más."
+  },
+  {
+   "par": "P38",
+   "desliza_primero": "UO",
+   "razon": "La cobija robada es más cercana."
+  },
+  {
+   "par": "P39",
+   "desliza_primero": "YX",
+   "razon": "Frase plana, sin gancho."
+  },
+  {
+   "par": "P40",
+   "desliza_primero": "ZB",
+   "razon": "Frase plana, sin gancho."
+  },
+  {
+   "par": "P41",
+   "desliza_primero": "OG",
+   "razon": "El humor de la cobija engancha más."
+  },
+  {
+   "par": "P42",
+   "desliza_primero": "TZ",
+   "razon": "Ambos planos, este tiene menos movimiento."
+  },
+  {
+   "par": "P43",
+   "desliza_primero": "XD",
+   "razon": "La balanza con la central nuclear es más fuerte."
+  },
+  {
+   "par": "P44",
+   "desliza_primero": "YO",
+   "razon": "La máquina es abstracta."
+  },
+  {
+   "par": "P45",
+   "desliza_primero": "SL",
+   "razon": "El plátano en la almohada da más curiosidad."
+  },
+  {
+   "par": "P46",
+   "desliza_primero": "KH",
+   "razon": "Frase genérica, sin gancho."
+  },
+  {
+   "par": "P47",
+   "desliza_primero": "NV",
+   "razon": "La máquina es abstracta."
+  },
+  {
+   "par": "P48",
+   "desliza_primero": "CG",
+   "razon": "Frase genérica, sin gancho."
+  },
+  {
+   "par": "P49",
+   "desliza_primero": "IL",
+   "razon": "La máquina es abstracta."
+  },
+  {
+   "par": "P50",
+   "desliza_primero": "WP",
+   "razon": "Frase genérica, sin gancho."
+  },
+  {
+   "par": "P51",
+   "desliza_primero": "CO",
+   "razon": "La cobija robada es más cercana."
+  },
+  {
+   "par": "P52",
+   "desliza_primero": "MN",
+   "razon": "Algo radiactivo en tu cama intriga más."
+  },
+  {
+   "par": "P53",
+   "desliza_primero": "QB",
+   "razon": "La cama contra la central nuclear llama más."
+  },
+  {
+   "par": "P54",
+   "desliza_primero": "JR",
+   "razon": "La máquina es abstracta."
+  },
+  {
+   "par": "P55",
+   "desliza_primero": "IV",
+   "razon": "Frase genérica, sin gancho."
+  },
+  {
+   "par": "P56",
+   "desliza_primero": "XA",
+   "razon": "La balanza con la central nuclear es más fuerte."
+  },
+  {
+   "par": "P57",
+   "desliza_primero": "NE",
+   "razon": "Frase plana, sin gancho."
+  },
+  {
+   "par": "P58",
+   "desliza_primero": "LY",
+   "razon": "La máquina es abstracta."
+  },
+  {
+   "par": "P59",
+   "desliza_primero": "DN",
+   "razon": "El plátano radiactivo con la persona dormida engancha más."
+  },
+  {
+   "par": "P60",
+   "desliza_primero": "IC",
+   "razon": "Algo radiactivo en tu cama intriga más."
+  },
+  {
+   "par": "P61",
+   "desliza_primero": "EM",
+   "razon": "El plátano radiactivo es más sorprendente."
+  },
+  {
+   "par": "P62",
+   "desliza_primero": "MZ",
+   "razon": "El texto largo cansa."
+  },
+  {
+   "par": "P63",
+   "desliza_primero": "LO",
+   "razon": "El plátano radiactivo atrae más."
+  },
+  {
+   "par": "P64",
+   "desliza_primero": "MJ",
+   "razon": "La máquina es abstracta."
+  },
+  {
+   "par": "P65",
+   "desliza_primero": "JT",
+   "razon": "La máquina es abstracta."
+  },
+  {
+   "par": "P66",
+   "desliza_primero": "HP",
+   "razon": "El plátano radiactivo es más fuerte."
+  }
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:15",
+  "sha256_crudo": "9af0067c6a2bf86ffeb87e04637a2bb1b2d78dab293bef63aa9d4c445fcdca23"
+ }
+}

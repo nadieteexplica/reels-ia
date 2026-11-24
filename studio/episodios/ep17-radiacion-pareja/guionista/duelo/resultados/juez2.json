@@ -1,0 +1,338 @@
+{
+ "pares": [
+  {
+   "par": "P1",
+   "desliza_primero": "QH",
+   "razon": "La balanza con la central nuclear engancha más que el plátano."
+  },
+  {
+   "par": "P2",
+   "desliza_primero": "ZL",
+   "razon": "Frase plana, sin ningún giro que me haga quedarme."
+  },
+  {
+   "par": "P3",
+   "desliza_primero": "LL",
+   "razon": "Es más genérico; el plátano me da curiosidad."
+  },
+  {
+   "par": "P4",
+   "desliza_primero": "XG",
+   "razon": "La comparación con la central nuclear es mucho más fuerte."
+  },
+  {
+   "par": "P5",
+   "desliza_primero": "AC",
+   "razon": "Lo de los setenta kilos me intriga más."
+  },
+  {
+   "par": "P6",
+   "desliza_primero": "ZS",
+   "razon": "El chiste de la cobija me atrapa más que la frase seca."
+  },
+  {
+   "par": "P7",
+   "desliza_primero": "VI",
+   "razon": "El plátano en la cama es más raro y llamativo."
+  },
+  {
+   "par": "P8",
+   "desliza_primero": "MD",
+   "razon": "Lo de inventar una máquina es confuso y aburrido."
+  },
+  {
+   "par": "P9",
+   "desliza_primero": "MT",
+   "razon": "Lo radiactivo en tu cama intriga más que un plátano en una mesa."
+  },
+  {
+   "par": "P10",
+   "desliza_primero": "LE",
+   "razon": "El plátano radiactivo es más curioso que una frase sobre dormir."
+  },
+  {
+   "par": "P11",
+   "desliza_primero": "DK",
+   "razon": "La máquina no se entiende y no me dice nada."
+  },
+  {
+   "par": "P12",
+   "desliza_primero": "SD",
+   "razon": "Lo radiactivo de setenta kilos pica más la curiosidad."
+  },
+  {
+   "par": "P13",
+   "desliza_primero": "SM",
+   "razon": "La balanza es más visual y directa."
+  },
+  {
+   "par": "P14",
+   "desliza_primero": "DZ",
+   "razon": "La máquina es abstracta; el plátano radiactivo engancha más."
+  },
+  {
+   "par": "P15",
+   "desliza_primero": "LM",
+   "razon": "La cobija es relatable y graciosa."
+  },
+  {
+   "par": "P16",
+   "desliza_primero": "HF",
+   "razon": "Es denso y de lectura larga; lo del Geiger se entiende al tiro."
+  },
+  {
+   "par": "P17",
+   "desliza_primero": "RQ",
+   "razon": "Es repetitivo y no sorprende."
+  },
+  {
+   "par": "P18",
+   "desliza_primero": "JS",
+   "razon": "Lo radiactivo que pesa setenta kilos pica más."
+  },
+  {
+   "par": "P19",
+   "desliza_primero": "TF",
+   "razon": "Es largo y se explica mucho; el plátano me llama más."
+  },
+  {
+   "par": "P20",
+   "desliza_primero": "NV",
+   "razon": "La máquina no engancha nada."
+  },
+  {
+   "par": "P21",
+   "desliza_primero": "OS",
+   "razon": "La balanza con la central nuclear gana."
+  },
+  {
+   "par": "P22",
+   "desliza_primero": "VS",
+   "razon": "La máquina me aburre; lo radiactivo en la cama intriga."
+  },
+  {
+   "par": "P23",
+   "desliza_primero": "XZ",
+   "razon": "La cobija es más cercana y divertida."
+  },
+  {
+   "par": "P24",
+   "desliza_primero": "EV",
+   "razon": "La balanza con la central nuclear es más potente."
+  },
+  {
+   "par": "P25",
+   "desliza_primero": "FX",
+   "razon": "El texto largo es denso; el plátano con el Geiger es directo."
+  },
+  {
+   "par": "P26",
+   "desliza_primero": "NX",
+   "razon": "La frase larga me cansa; la comparación con la central es más clara."
+  },
+  {
+   "par": "P27",
+   "desliza_primero": "YJ",
+   "razon": "Es largo y poco visual; el plátano radiactivo es más gancho."
+  },
+  {
+   "par": "P28",
+   "desliza_primero": "ST",
+   "razon": "El plátano en la almohada es más raro y divertido."
+  },
+  {
+   "par": "P29",
+   "desliza_primero": "WH",
+   "razon": "La máquina no se entiende."
+  },
+  {
+   "par": "P30",
+   "desliza_primero": "KF",
+   "razon": "El plátano con el Geiger es más curioso."
+  },
+  {
+   "par": "P31",
+   "desliza_primero": "ZO",
+   "razon": "Es parecido, pero el plátano en la cama es más gracioso."
+  },
+  {
+   "par": "P32",
+   "desliza_primero": "EL",
+   "razon": "La máquina es lo menos interesante."
+  },
+  {
+   "par": "P33",
+   "desliza_primero": "QB",
+   "razon": "La balanza con la central nuclear es más fuerte."
+  },
+  {
+   "par": "P34",
+   "desliza_primero": "DR",
+   "razon": "Es el más simple y plano."
+  },
+  {
+   "par": "P35",
+   "desliza_primero": "QJ",
+   "razon": "Lo de los setenta kilos intriga más."
+  },
+  {
+   "par": "P36",
+   "desliza_primero": "XY",
+   "razon": "El plátano en la almohada es más visual y raro."
+  },
+  {
+   "par": "P37",
+   "desliza_primero": "TD",
+   "razon": "La máquina no engancha."
+  },
+  {
+   "par": "P38",
+   "desliza_primero": "NE",
+   "razon": "La cobija es más divertida y relatable."
+  },
+  {
+   "par": "P39",
+   "desliza_primero": "JO",
+   "razon": "El plátano entre las cabezas me llama más."
+  },
+  {
+   "par": "P40",
+   "desliza_primero": "SR",
+   "razon": "La cobija es más cercana y graciosa."
+  },
+  {
+   "par": "P41",
+   "desliza_primero": "ZZ",
+   "razon": "Lo de los setenta kilos intriga más."
+  },
+  {
+   "par": "P42",
+   "desliza_primero": "XH",
+   "razon": "La balanza con la central nuclear es más fuerte."
+  },
+  {
+   "par": "P43",
+   "desliza_primero": "ES",
+   "razon": "El plátano radiactivo es más curioso."
+  },
+  {
+   "par": "P44",
+   "desliza_primero": "QQ",
+   "razon": "El plátano radiactivo es más gancho."
+  },
+  {
+   "par": "P45",
+   "desliza_primero": "RS",
+   "razon": "La cobija es más gracia y más cercana."
+  },
+  {
+   "par": "P46",
+   "desliza_primero": "MK",
+   "razon": "Es parecido, pero la versión del laboratorio es más directa."
+  },
+  {
+   "par": "P47",
+   "desliza_primero": "WP",
+   "razon": "El plátano radiactivo es más llamativo."
+  },
+  {
+   "par": "P48",
+   "desliza_primero": "XB",
+   "razon": "La balanza con la central nuclear gana."
+  },
+  {
+   "par": "P49",
+   "desliza_primero": "YC",
+   "razon": "Lo radiactivo de setenta kilos pica más."
+  },
+  {
+   "par": "P50",
+   "desliza_primero": "EQ",
+   "razon": "Es repetitivo y plano; los dos se parecen y este es más simple."
+  },
+  {
+   "par": "P51",
+   "desliza_primero": "HZ",
+   "razon": "La cobija es más graciosa."
+  },
+  {
+   "par": "P52",
+   "desliza_primero": "RK",
+   "razon": "La cobija engancha más."
+  },
+  {
+   "par": "P53",
+   "desliza_primero": "AT",
+   "razon": "La balanza con la central nuclear gana."
+  },
+  {
+   "par": "P54",
+   "desliza_primero": "CI",
+   "razon": "La frase sobre la central nuclear intriga un poco más."
+  },
+  {
+   "par": "P55",
+   "desliza_primero": "TU",
+   "razon": "La balanza con la central nuclear es más fuerte."
+  },
+  {
+   "par": "P56",
+   "desliza_primero": "RT",
+   "razon": "Lo radiactivo de setenta kilos intriga más."
+  },
+  {
+   "par": "P57",
+   "desliza_primero": "VJ",
+   "razon": "El plátano en la cama es más divertido."
+  },
+  {
+   "par": "P58",
+   "desliza_primero": "BN",
+   "razon": "Lo radiactivo en tu cama intriga más."
+  },
+  {
+   "par": "P59",
+   "desliza_primero": "WY",
+   "razon": "La balanza con la central nuclear gana."
+  },
+  {
+   "par": "P60",
+   "desliza_primero": "HI",
+   "razon": "El plátano radiactivo con el Geiger es más curioso."
+  },
+  {
+   "par": "P61",
+   "desliza_primero": "CE",
+   "razon": "La comparación con la central es más fuerte."
+  },
+  {
+   "par": "P62",
+   "desliza_primero": "QX",
+   "razon": "El Geiger con la cama es más directo que la frase larga."
+  },
+  {
+   "par": "P63",
+   "desliza_primero": "LD",
+   "razon": "La máquina no engancha."
+  },
+  {
+   "par": "P64",
+   "desliza_primero": "GZ",
+   "razon": "La comparación con la central nuclear es más gancho."
+  },
+  {
+   "par": "P65",
+   "desliza_primero": "UP",
+   "razon": "El plátano radiactivo es más curioso."
+  },
+  {
+   "par": "P66",
+   "desliza_primero": "NM",
+   "razon": "La máquina no se entiende."
+  }
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:17",
+  "sha256_crudo": "2e97ba8d154d788239b5d3c635f51eaa337e20fcc4ba5c5c6eadf073a463664a"
+ }
+}

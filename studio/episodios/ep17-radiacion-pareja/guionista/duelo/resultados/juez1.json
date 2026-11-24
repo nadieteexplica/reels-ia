@@ -1,0 +1,338 @@
+{
+ "pares": [
+  {
+   "par": "P1",
+   "desliza_primero": "OR",
+   "razon": "Una máquina abstracta no me dice nada todavía."
+  },
+  {
+   "par": "P2",
+   "desliza_primero": "IW",
+   "razon": "Sólo dice que mi pareja me irradia, sin gancho ni comparación."
+  },
+  {
+   "par": "P3",
+   "desliza_primero": "BJ",
+   "razon": "Mientras duermes suena flojo y genérico."
+  },
+  {
+   "par": "P4",
+   "desliza_primero": "TM",
+   "razon": "El plátano ya lo vi mil veces; lo de los 70 kilos intriga más."
+  },
+  {
+   "par": "P5",
+   "desliza_primero": "UR",
+   "razon": "El texto largo con signos es más pesado que el plátano."
+  },
+  {
+   "par": "P6",
+   "desliza_primero": "HS",
+   "razon": "El plano técnico con una máquina no engancha."
+  },
+  {
+   "par": "P7",
+   "desliza_primero": "DE",
+   "razon": "Frase simple, la balanza con la central es más llamativa."
+  },
+  {
+   "par": "P8",
+   "desliza_primero": "LI",
+   "razon": "Arranca con una frase larga y la imagen es plana; el plátano brillante llama más."
+  },
+  {
+   "par": "P9",
+   "desliza_primero": "NK",
+   "razon": "Lo de la cobija es cercano y me hace gracia."
+  },
+  {
+   "par": "P10",
+   "desliza_primero": "LV",
+   "razon": "El plátano radiactivo es más raro y curioso."
+  },
+  {
+   "par": "P11",
+   "desliza_primero": "TQ",
+   "razon": "Concepto abstracto, no se entiende rápido."
+  },
+  {
+   "par": "P12",
+   "desliza_primero": "YC",
+   "razon": "La cobija me identifica más que un mensaje genérico."
+  },
+  {
+   "par": "P13",
+   "desliza_primero": "ZI",
+   "razon": "El texto ÉL TAMBIÉN no tiene contexto; el otro dice algo claro."
+  },
+  {
+   "par": "P14",
+   "desliza_primero": "OF",
+   "razon": "La cobija robada me resulta más cercana."
+  },
+  {
+   "par": "P15",
+   "desliza_primero": "DP",
+   "razon": "La comparación con el plátano da más curiosidad."
+  },
+  {
+   "par": "P16",
+   "desliza_primero": "EG",
+   "razon": "La comparación con la central es más fuerte que decir mientras duermes."
+  },
+  {
+   "par": "P17",
+   "desliza_primero": "SO",
+   "razon": "La balanza es más visual e impactante."
+  },
+  {
+   "par": "P18",
+   "desliza_primero": "PD",
+   "razon": "ÉL TAMBIÉN no se entiende; 70 kilos radiactivos intriga."
+  },
+  {
+   "par": "P19",
+   "desliza_primero": "ZY",
+   "razon": "La cobija robada es más identificable."
+  },
+  {
+   "par": "P20",
+   "desliza_primero": "QN",
+   "razon": "La balanza con la central se entiende al tiro."
+  },
+  {
+   "par": "P21",
+   "desliza_primero": "RE",
+   "razon": "Mientras duermes es genérico; el plátano con el contador llama más."
+  },
+  {
+   "par": "P22",
+   "desliza_primero": "XX",
+   "razon": "Plano técnico confuso frente a una cama con radiación."
+  },
+  {
+   "par": "P23",
+   "desliza_primero": "MY",
+   "razon": "Una frase larga y menos directa que la del plátano."
+  },
+  {
+   "par": "P24",
+   "desliza_primero": "QH",
+   "razon": "Lo de los 70 kilos radiactivos es más intrigante."
+  },
+  {
+   "par": "P25",
+   "desliza_primero": "HM",
+   "razon": "La máquina abstracta no me atrapa."
+  },
+  {
+   "par": "P26",
+   "desliza_primero": "CJ",
+   "razon": "Menos claro que tu pareja te irradia."
+  },
+  {
+   "par": "P27",
+   "desliza_primero": "BQ",
+   "razon": "Frase larga y plana frente a algo radiactivo en tu cama."
+  },
+  {
+   "par": "P28",
+   "desliza_primero": "PK",
+   "razon": "Plano técnico, no se entiende rápido."
+  },
+  {
+   "par": "P29",
+   "desliza_primero": "EY",
+   "razon": "La comparación 1 año contra la central es más fuerte."
+  },
+  {
+   "par": "P30",
+   "desliza_primero": "HB",
+   "razon": "Mientras duermes es el más flojo."
+  },
+  {
+   "par": "P31",
+   "desliza_primero": "SA",
+   "razon": "El plátano brillante es más llamativo que la máquina."
+  },
+  {
+   "par": "P32",
+   "desliza_primero": "YI",
+   "razon": "Misma frase pero con texto más pobre."
+  },
+  {
+   "par": "P33",
+   "desliza_primero": "CS",
+   "razon": "El plátano en la almohada es más raro y curioso."
+  },
+  {
+   "par": "P34",
+   "desliza_primero": "WY",
+   "razon": "El plátano radiactivo engancha más."
+  },
+  {
+   "par": "P35",
+   "desliza_primero": "UP",
+   "razon": "Menos contexto que el de la central nuclear."
+  },
+  {
+   "par": "P36",
+   "desliza_primero": "GZ",
+   "razon": "Los 70 kilos radiactivos dan más curiosidad."
+  },
+  {
+   "par": "P37",
+   "desliza_primero": "AR",
+   "razon": "ÉL TAMBIÉN es confuso."
+  },
+  {
+   "par": "P38",
+   "desliza_primero": "YD",
+   "razon": "La comparación con la central pega más que el plátano."
+  },
+  {
+   "par": "P39",
+   "desliza_primero": "AF",
+   "razon": "El burrito de cobija es más cercano y divertido."
+  },
+  {
+   "par": "P40",
+   "desliza_primero": "OX",
+   "razon": "La comparación con la central es más fuerte."
+  },
+  {
+   "par": "P41",
+   "desliza_primero": "LM",
+   "razon": "El plátano radiactivo intriga más."
+  },
+  {
+   "par": "P42",
+   "desliza_primero": "KC",
+   "razon": "El de la cobija es más relatable."
+  },
+  {
+   "par": "P43",
+   "desliza_primero": "SC",
+   "razon": "ÉL TAMBIÉN no dice nada; el otro es más claro."
+  },
+  {
+   "par": "P44",
+   "desliza_primero": "VL",
+   "razon": "La cobija robada me hace gracia más que un plátano más."
+  },
+  {
+   "par": "P45",
+   "desliza_primero": "TR",
+   "razon": "Lo radiactivo de 70 kilos intriga más que el chiste de la cobija."
+  },
+  {
+   "par": "P46",
+   "desliza_primero": "HQ",
+   "razon": "Algo radiactivo en tu cama me da más curiosidad."
+  },
+  {
+   "par": "P47",
+   "desliza_primero": "YX",
+   "razon": "La balanza se entiende mejor que el plano técnico."
+  },
+  {
+   "par": "P48",
+   "desliza_primero": "KZ",
+   "razon": "ÉL TAMBIÉN es confuso."
+  },
+  {
+   "par": "P49",
+   "desliza_primero": "NS",
+   "razon": "Algo radiactivo de 70 kilos intriga más."
+  },
+  {
+   "par": "P50",
+   "desliza_primero": "JV",
+   "razon": "El plátano entre dos cabezas es más curioso."
+  },
+  {
+   "par": "P51",
+   "desliza_primero": "SZ",
+   "razon": "ÉL TAMBIÉN no se entiende."
+  },
+  {
+   "par": "P52",
+   "desliza_primero": "PW",
+   "razon": "La balanza con la central es más impactante."
+  },
+  {
+   "par": "P53",
+   "desliza_primero": "QF",
+   "razon": "El plano técnico no engancha."
+  },
+  {
+   "par": "P54",
+   "desliza_primero": "UU",
+   "razon": "La cobija es más cercana que la balanza."
+  },
+  {
+   "par": "P55",
+   "desliza_primero": "AQ",
+   "razon": "Este plátano es radiactivo suena más impactante."
+  },
+  {
+   "par": "P56",
+   "desliza_primero": "RU",
+   "razon": "La frase larga sobre la cama y la central cansa más."
+  },
+  {
+   "par": "P57",
+   "desliza_primero": "BU",
+   "razon": "Algo radiactivo de 70 kilos intriga más."
+  },
+  {
+   "par": "P58",
+   "desliza_primero": "WD",
+   "razon": "Una cama contra la central nuclear es más fuerte."
+  },
+  {
+   "par": "P59",
+   "desliza_primero": "TT",
+   "razon": "Plano técnico abstracto."
+  },
+  {
+   "par": "P60",
+   "desliza_primero": "YS",
+   "razon": "Es más simple que la comparación con la central."
+  },
+  {
+   "par": "P61",
+   "desliza_primero": "LB",
+   "razon": "Algo radiactivo en tu cama es más intrigante."
+  },
+  {
+   "par": "P62",
+   "desliza_primero": "DO",
+   "razon": "El plátano radiactivo engancha más."
+  },
+  {
+   "par": "P63",
+   "desliza_primero": "FN",
+   "razon": "ÉL TAMBIÉN es confuso."
+  },
+  {
+   "par": "P64",
+   "desliza_primero": "IS",
+   "razon": "Mientras duermes es genérico frente a la balanza."
+  },
+  {
+   "par": "P65",
+   "desliza_primero": "LS",
+   "razon": "El burrito de cobija es más cercano."
+  },
+  {
+   "par": "P66",
+   "desliza_primero": "II",
+   "razon": "La máquina abstracta engancha menos que la cobija robada."
+  }
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:17",
+  "sha256_crudo": "d53e1ae8d9fb457eb06a8cc65123087dbd3e69d184718d2b34064b4cfe8a7edb"
+ }
+}

@@ -1,0 +1,338 @@
+{
+ "pares": [
+  {
+   "par": "P1",
+   "desliza_primero": "VS",
+   "razon": "Rayos dorados genéricos sobre una cama, sin nada que me intrigue."
+  },
+  {
+   "par": "P2",
+   "desliza_primero": "MZ",
+   "razon": "Contorno vacío y una máquina hipotética; se siente abstracto y lento."
+  },
+  {
+   "par": "P3",
+   "desliza_primero": "WU",
+   "razon": "Plano técnico con una máquina vacía; el plátano con Geiger engancha más."
+  },
+  {
+   "par": "P4",
+   "desliza_primero": "PE",
+   "razon": "Comparación con la central es seria y fría; el burrito es más cercano y gracioso."
+  },
+  {
+   "par": "P5",
+   "desliza_primero": "OG",
+   "razon": "Es solo una cama con puntitos; el plátano con Geiger intriga más."
+  },
+  {
+   "par": "P6",
+   "desliza_primero": "FC",
+   "razon": "Una cama con puntitos no me dice nada; lo de los setenta kilos me pica la curiosidad."
+  },
+  {
+   "par": "P7",
+   "desliza_primero": "UM",
+   "razon": "Frase larga y explicativa; el robo de cobija me hace reír."
+  },
+  {
+   "par": "P8",
+   "desliza_primero": "RI",
+   "razon": "Arranca con frase larga y sin gancho; la balanza muestra el contraste de una."
+  },
+  {
+   "par": "P9",
+   "desliza_primero": "XH",
+   "razon": "Rayos dorados sin contexto; la cama contra la central da más curiosidad."
+  },
+  {
+   "par": "P10",
+   "desliza_primero": "XU",
+   "razon": "Visual plano de dos durmiendo; la promesa de 'esta noche' es más directa."
+  },
+  {
+   "par": "P11",
+   "desliza_primero": "CA",
+   "razon": "Escena de cama común; el comparativo con la central es más llamativo."
+  },
+  {
+   "par": "P12",
+   "desliza_primero": "LK",
+   "razon": "Un plátano con Geiger en el velador es raro pero confuso; el burrito es más relatable."
+  },
+  {
+   "par": "P13",
+   "desliza_primero": "PL",
+   "razon": "Cama de costado sin sorpresa; el plátano entre las almohadas es más raro."
+  },
+  {
+   "par": "P14",
+   "desliza_primero": "OX",
+   "razon": "Ya vi el chiste de la cobija; plátano brillante entre cabezas es más llamativo."
+  },
+  {
+   "par": "P15",
+   "desliza_primero": "EN",
+   "razon": "Máquina abstracta de plano técnico, no engancha."
+  },
+  {
+   "par": "P16",
+   "desliza_primero": "KM",
+   "razon": "Puntitos y Geiger repetidos; la torre tachada da un contraste más claro."
+  },
+  {
+   "par": "P17",
+   "desliza_primero": "DZ",
+   "razon": "Algo radiactivo que pesa setenta kilos es más misterioso que la cobija."
+  },
+  {
+   "par": "P18",
+   "desliza_primero": "CP",
+   "razon": "El plátano desenfocado con cama confunde; la cama contra la central es clara."
+  },
+  {
+   "par": "P19",
+   "desliza_primero": "HN",
+   "razon": "Imagen dividida y estática; la balanza que cae se mueve de una."
+  },
+  {
+   "par": "P20",
+   "desliza_primero": "WN",
+   "razon": "Rayos dorados genéricos; plátano radiactivo con pareja es más sorprendente."
+  },
+  {
+   "par": "P21",
+   "desliza_primero": "JM",
+   "razon": "Escena de rayos sin contexto; el plátano brillante entre cabezas es más raro."
+  },
+  {
+   "par": "P22",
+   "desliza_primero": "DT",
+   "razon": "Cama con puntitos sin gancho; la balanza contra una central es más fuerte."
+  },
+  {
+   "par": "P23",
+   "desliza_primero": "JL",
+   "razon": "Mismo visual de puntitos; un plátano entre dos cabezas llama más."
+  },
+  {
+   "par": "P24",
+   "desliza_primero": "CN",
+   "razon": "Rayos dorados sin sorpresa; plátano con Geiger intriga más."
+  },
+  {
+   "par": "P25",
+   "desliza_primero": "NZ",
+   "razon": "Rayos sobre cama, nada novedoso; la balanza contra la central engancha."
+  },
+  {
+   "par": "P26",
+   "desliza_primero": "KH",
+   "razon": "Frase larga sobre central nuclear; lo de los setenta kilos intriga más."
+  },
+  {
+   "par": "P27",
+   "desliza_primero": "GQ",
+   "razon": "Arranque explicativo y largo; plátano radiactivo en laboratorio es directo."
+  },
+  {
+   "par": "P28",
+   "desliza_primero": "YL",
+   "razon": "Frase larga de un año; plátano radiactivo es más corto y rarito."
+  },
+  {
+   "par": "P29",
+   "desliza_primero": "DY",
+   "razon": "Rayos dorados sin gancho propio."
+  },
+  {
+   "par": "P30",
+   "desliza_primero": "QS",
+   "razon": "Escena de cama común; algo radiactivo de setenta kilos intriga."
+  },
+  {
+   "par": "P31",
+   "desliza_primero": "NY",
+   "razon": "Imagen partida seria y estática; el plátano entre las cabezas es más curioso."
+  },
+  {
+   "par": "P32",
+   "desliza_primero": "WW",
+   "razon": "El laboratorio con plátano es más frío; el bulto que respira me intriga."
+  },
+  {
+   "par": "P33",
+   "desliza_primero": "IZ",
+   "razon": "Cama de costado con Geiger, nada nuevo; el burrito es gracioso."
+  },
+  {
+   "par": "P34",
+   "desliza_primero": "MW",
+   "razon": "Cama durmiendo plana; la balanza que cae de golpe se ve mejor."
+  },
+  {
+   "par": "P35",
+   "desliza_primero": "RA",
+   "razon": "Máquina inventada abstracta y lenta."
+  },
+  {
+   "par": "P36",
+   "desliza_primero": "YV",
+   "razon": "Frase larga y vista de cama común; la comparación visual con la central es más clara."
+  },
+  {
+   "par": "P37",
+   "desliza_primero": "ZE",
+   "razon": "Plano técnico vacío sin nada que ver aún."
+  },
+  {
+   "par": "P38",
+   "desliza_primero": "FT",
+   "razon": "Contorno punteado vacío es aburrido; el Geiger y el destello se mueven."
+  },
+  {
+   "par": "P39",
+   "desliza_primero": "XO",
+   "razon": "Dos durmiendo con Geiger es más de lo mismo; plátano con Geiger es más raro."
+  },
+  {
+   "par": "P40",
+   "desliza_primero": "TG",
+   "razon": "Imagen partida y fría; plátano radiactivo con pareja es más sorprendente."
+  },
+  {
+   "par": "P41",
+   "desliza_primero": "ZC",
+   "razon": "Chiste de la cobija ya común; plátano radiactivo engancha más rápido."
+  },
+  {
+   "par": "P42",
+   "desliza_primero": "CB",
+   "razon": "Plátano desenfocado con cama confunde; plátano entre cabezas es más llamativo."
+  },
+  {
+   "par": "P43",
+   "desliza_primero": "GC",
+   "razon": "Pantalla dividida estática; el bulto radiactivo que respira intriga."
+  },
+  {
+   "par": "P44",
+   "desliza_primero": "CR",
+   "razon": "Rayos genéricos sobre cama; algo radiactivo de setenta kilos intriga más."
+  },
+  {
+   "par": "P45",
+   "desliza_primero": "MA",
+   "razon": "Frase larga; un plátano brillante entre dos cabezas es más curioso."
+  },
+  {
+   "par": "P46",
+   "desliza_primero": "VN",
+   "razon": "Frase larga sobre central nuclear; el plátano con Geiger es más raro de entrada."
+  },
+  {
+   "par": "P47",
+   "desliza_primero": "OO",
+   "razon": "Puntitos y Geiger repetidos, poco impacto."
+  },
+  {
+   "par": "P48",
+   "desliza_primero": "BU",
+   "razon": "Máquina vacía abstracta; la comparación con la central es más clara."
+  },
+  {
+   "par": "P49",
+   "desliza_primero": "BP",
+   "razon": "El bulto radiactivo con clics intriga más que el plátano entre cabezas."
+  },
+  {
+   "par": "P50",
+   "desliza_primero": "AS",
+   "razon": "Plátano desenfocado confunde; plátano radiactivo en laboratorio es directo."
+  },
+  {
+   "par": "P51",
+   "desliza_primero": "VI",
+   "razon": "Plano técnico vacío; lo de setenta kilos engancha."
+  },
+  {
+   "par": "P52",
+   "desliza_primero": "QD",
+   "razon": "Cama de costado sin sorpresa; plátano radiactivo llama más."
+  },
+  {
+   "par": "P53",
+   "desliza_primero": "FR",
+   "razon": "Máquina abstracta y vacía; el plátano con contador es más inmediato."
+  },
+  {
+   "par": "P54",
+   "desliza_primero": "LQ",
+   "razon": "Plátano radiactivo en laboratorio con clics es más directo que entre almohadas."
+  },
+  {
+   "par": "P55",
+   "desliza_primero": "TZ",
+   "razon": "Plátano desenfocado; algo radiactivo de setenta kilos es más misterioso."
+  },
+  {
+   "par": "P56",
+   "desliza_primero": "NR",
+   "razon": "Cama de costado plana; la imagen de la central contra la cama es más llamativa."
+  },
+  {
+   "par": "P57",
+   "desliza_primero": "GV",
+   "razon": "Contorno vacío sin nada que ver; arranca lento."
+  },
+  {
+   "par": "P58",
+   "desliza_primero": "RH",
+   "razon": "Cama con puntitos sin gancho; plátano radiactivo engancha."
+  },
+  {
+   "par": "P59",
+   "desliza_primero": "MS",
+   "razon": "Burrito conocido; la balanza que cae de golpe se ve más fuerte."
+  },
+  {
+   "par": "P60",
+   "desliza_primero": "ND",
+   "razon": "Frase larga o cama plana; no me da una razón para quedarme."
+  },
+  {
+   "par": "P61",
+   "desliza_primero": "OK",
+   "razon": "Rayos dorados genéricos; el burrito al menos me hace reír."
+  },
+  {
+   "par": "P62",
+   "desliza_primero": "HH",
+   "razon": "Balanza con frase larga; el bulto radiactivo que respira intriga más."
+  },
+  {
+   "par": "P63",
+   "desliza_primero": "NH",
+   "razon": "Plátano desenfocado; la balanza con la central es clara y visual."
+  },
+  {
+   "par": "P64",
+   "desliza_primero": "QG",
+   "razon": "Máquina vacía abstracta; rayos con cama al menos se mueven."
+  },
+  {
+   "par": "P65",
+   "desliza_primero": "BE",
+   "razon": "Cama con puntitos sin gancho; el burrito es más cercano y gracioso."
+  },
+  {
+   "par": "P66",
+   "desliza_primero": "KR",
+   "razon": "Plátano entre cabezas es raro pero la balanza que cae es más contundente."
+  }
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:17",
+  "sha256_crudo": "0c97af1283ced57e9286f1df8f81f29b57403e53e967385b0e0396e01364776d"
+ }
+}

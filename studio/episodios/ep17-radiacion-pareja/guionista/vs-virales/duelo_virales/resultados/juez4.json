@@ -1,0 +1,53 @@
+{
+ "pares": [
+  {
+   "par": "P1",
+   "desliza_primero": "BW",
+   "razon": "Un clavo y un martillo es aburrido y obvio, no promete nada."
+  },
+  {
+   "par": "P2",
+   "desliza_primero": "CC",
+   "razon": "Arranca con un ojo y una sola palabra suelta, tarda en decir algo; la cama contra la central es más llamativa."
+  },
+  {
+   "par": "P3",
+   "desliza_primero": "XE",
+   "razon": "Una arrocera simple no me interesa nada, no hay gancho."
+  },
+  {
+   "par": "P4",
+   "desliza_primero": "KF",
+   "razon": "La pantalla que reacciona al dedo es un dato técnico flojo y poco intrigante."
+  },
+  {
+   "par": "P5",
+   "desliza_primero": "GJ",
+   "razon": "Arranca con un '¿Sabías que' genérico y una ilustración plana, me da lata."
+  },
+  {
+   "par": "P6",
+   "desliza_primero": "NF",
+   "razon": "Cuerda y balde no dicen nada, el origen de la grúa no me engancha."
+  },
+  {
+   "par": "P7",
+   "desliza_primero": "NC",
+   "razon": "El cable cortándose con chispas y el snap fuerte llaman más la atención que una balanza con texto."
+  },
+  {
+   "par": "P8",
+   "desliza_primero": "WL",
+   "razon": "La moneda falsa en una máquina expendedora me da igual."
+  },
+  {
+   "par": "P9",
+   "desliza_primero": "XI",
+   "razon": "La pregunta de los portones del súper es tranquila y poco urgente; la cama con radiación suena más fuerte."
+  }
+ ],
+ "_registro": {
+  "guardado": "2026-11-23 21:17",
+  "sha256_crudo": "dfe79c712f9407d32c615d7dfe954890d94f9f6bde883473838022214a8b1c5a"
+ }
+}
