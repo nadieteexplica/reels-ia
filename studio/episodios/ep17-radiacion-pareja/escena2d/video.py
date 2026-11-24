@@ -105,11 +105,11 @@ def inclinacion(t):
     if t < C_CAMA:
         vaiven = 0.05 * math.sin(t * 5.5) * (1 - tr(t, w(6) - 0.3, 0.3))        # dudando: sube y baja
         golpe = 0.10 * K.ease_aterriza(tr(t, w(6), 0.45))                    # en 'irradia' la cama cae de golpe
-        return INC0 - 0.04 + vaiven + golpe
+        return INC0 + 0.03 + vaiven * 0.6 + golpe * 0.7
     if t < C_GIGANTE:                            # P7: una noche pesa menos; en 'le gana' la pila da vuelta la balanza
         return -0.14 + 0.40 * K.ease_aterriza(tr(t, w(107), 0.7))
-    fin = INC0 - 0.04 + 0.05 * math.sin(-0.0 * 5.5)                      # = cuadro 0
-    return fin + 0.05 * math.sin((t - C_LOOP) * 5.5) * (1 - tr(t, DUR - 0.45, 0.45))
+    fin = INC0 + 0.03                                                       # = cuadro 0
+    return fin + 0.03 * math.sin((t - C_LOOP) * 5.5) * (1 - tr(t, DUR - 0.45, 0.45))
 
 
 def plano_balanza(t, sem):
@@ -173,7 +173,12 @@ def plano_cama(t, sem):
     # P4: empuje lento al cuerpo de la izquierda mientras se explica por dentro; P5 vuelve
     k = eo(tr(t, w(46), 0.9)) * (1 - eo(tr(t, w(70), 0.9)))
     cuerpo = (CX + CW * 0.24, CY - CH / 2 + 420)          # TÚ (derecha)
-    L.camara(s=1.0 + 0.32 * k, ancla=cuerpo, destino=(cuerpo[0] + 120 * k, cuerpo[1] - 60 * k))
+    if gigante:                                          # el remate y el CTA: acercamiento lento a la pareja-plátano
+        kg = eo(tr(t, w(116), C_LOOP - w(116)))
+        pg_ = (CX, CY - 60)
+        L.camara(s=1.0 + 0.22 * kg, ancla=pg_, destino=(pg_[0] + 40 * kg, pg_[1]))
+    else:
+        L.camara(s=1.0 + 0.32 * k, ancla=cuerpo, destino=(cuerpo[0] + 120 * k, cuerpo[1] - 60 * k))
     izq, der = brillo_personas(t)
     if gigante:
         izq, der = 0.35, 1.0
@@ -210,14 +215,14 @@ def plano_cama(t, sem):
     if w(62) <= t < w(84) + 0.3:
         a_ = 1 - es(tr(t, w(84), 0.3))
         p_sale = ee(tr(t, w(62), 0.9))
-        A.rayo(L, (cuerpo[0] - 10, cuerpo[1] - 40), (cuerpo[0] + 260, cuerpo[1] - 160), p_sale, 9, alpha=a_)
+        A.rayo(L, (cuerpo[0] - 10, cuerpo[1] - 40), (cuerpo[0] + 200, cuerpo[1] - 160), p_sale, 9, alpha=a_)
         piel = (cuerpo[0] + 120, cuerpo[1] - 95)
         K.brillo_golpe(L, piel[0], piel[1], t - w(67), 70, 70, 6)
         if t >= w(67):
             fp = tr(t, w(67), 0.5)
             K.linea(L, K.elipse_pts(piel[0], piel[1], 20 + 60 * fp, 20 + 60 * fp, n=24), capa="energia", ancho=4,
                     alpha=(1 - fp) * a_)
-        K.brillo_golpe(L, cuerpo[0] + 260, cuerpo[1] - 160, t - w(69), 90, 90, 6)
+        K.brillo_golpe(L, cuerpo[0] + 200, cuerpo[1] - 160, t - w(69), 90, 90, 6)
         punta_rayo = _pant(L, (cuerpo[0] + 150, cuerpo[1] - 110))
         if t >= w(76):
             otro = (CX - CW * 0.24, CY - CH / 2 + 380)
@@ -228,6 +233,11 @@ def plano_cama(t, sem):
         pg = (CX - CW * 0.24, CY - CH / 2 + 330)
         for tw in (w(123), w(127)):
             K.brillo_golpe(L, pg[0], pg[1], t - tw, 200, 260, 7)
+        if t >= w(119):                                  # el plátano irradia a TÚ: rayos cada ~0,6 s
+            for j in range(3):
+                f = ((t - w(119)) / 0.9 + j / 3) % 1
+                A.rayo(L, (pg[0] + 40, pg[1] - 160 + 150 * j), (CX + CW * 0.24 - 40, pg[1] - 160 + 150 * j), f, 7,
+                       alpha=(1 - f) * 0.9)
     L.camara()
     # etiquetas (sin cámara)
     if not gigante:
@@ -260,7 +270,7 @@ def plano_cama(t, sem):
                 K.numero_heroe(L, "~4.000", "", 380, 1360, 110, t, w(49), alpha=a_n)
             rotulo(L, 386, 1440, "POR SEGUNDO", 52, alpha=ee(tr(t, w(48), 0.3)) * a_n)
         if w(62) <= t < w(70):
-            K.etiqueta(L, "RAYO GAMMA", punta_rayo, (560, 1180), t, w(62) + 0.2, w(70) - 0.3, tam=50, lado="der")
+            K.etiqueta(L, "RAYO GAMMA", punta_rayo, (500, 1180), t, w(62) + 0.2, w(70) - 0.3, tam=50, lado="der")
         # P6: cuánto — reloj de 8 h y 1 NOCHE ≈ 1 PLÁTANO; P6b inofensivo
         if w(84) <= t < w(97) + 0.2:
             a_h = ee(tr(t, w(84), 0.3)) * (1 - es(tr(t, w(97), 0.2)))
@@ -272,7 +282,7 @@ def plano_cama(t, sem):
         if w(96) <= t < C_PILA:
             a_c = 1 - es(tr(t, w(97) + 0.5, 0.3))
             A.check(L, 210, 1530, 110, tr(t, w(96), 0.3), alpha=a_c)
-            rotulo(L, 280, 1556, "INOFENSIVO", 60, alpha=ee(tr(t, w(96), 0.3)) * a_c)
+
         # P7a: un año de noches — las cáscaras se apilan junto a la cama + contador de noches
         if w(98) + 0.15 <= t < C_PILA:
             n = int(min(365, max(1, (t - w(98)) / (w(102) + 0.3 - w(98)) * 365)))
@@ -280,8 +290,7 @@ def plano_cama(t, sem):
             rotulo(L, 644, 1160, "NOCHES", 44)
             k_p = tr(t, w(98), C_PILA - w(98))
             for j in range(int(3 + 16 * k_p)):
-                A.platano(L, 660 + (j * 37) % 180, 1440 - (j // 6) * 26, 110, ang=(j * 53) % 160 - 80, pelado=1.0,
-                          sombra=False)
+                A.platano(L, 660 + (j * 37) % 170, 1450 - (j // 6) * 30, 120, ang=(j * 53) % 160 - 80, sombra=False)
     sub(L, t)
     return L
 
