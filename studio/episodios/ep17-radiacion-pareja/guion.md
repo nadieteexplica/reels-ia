@@ -25,7 +25,7 @@
 ## Guion con segundos e imagen
 | s | Voz | Qué se ve | Trabajo |
 |---|---|---|---|
-| 0,0–3,9 | Un año en esta cama te irradia más que un año junto a una central nuclear. | Cuadro 0: la balanza ya inclinada hacia la cama, HUD `1 AÑO` sobre cada platillo. Clic de contador: el platillo de la cama baja otro poco y destella oro. | Gancho (paradoja con escala / mito al revés) |
+| 0,0–3,9 | Dormir con tu pareja un año te irradia más que un año junto a una central nuclear. | Cuadro 0: la balanza ya inclinada hacia la cama, HUD `1 AÑO` sobre cada platillo. Clic de contador: el platillo de la cama baja otro poco y destella oro. | Gancho (paradoja con escala / mito al revés) |
 | 3,9–7,1 | ¿Por qué? Por lo mismo que este plátano: potasio. Una pizca de ese potasio es radiactiva. | Corte a la cama desde arriba; un plátano real cae al velador bajo un foco, con sombra, y brilla oro tenue. Etiqueta HUD `POTASIO` con línea guía. | Ancla + re-gancho 1 (s 3,9: el plátano es radiactivo) |
 | 7,1–11,3 | Y tu cuerpo tiene mucho potasio. Así que tú también eres un poquito radiactivo. | La persona dormida se ilumina con el mismo brillo oro en todo el contorno; el HUD `POTASIO` se copia del plátano a ella. | Re-gancho 2 (s 7,1: tú también) |
 | 11,3–15,2 | (v3: frase sacada; la lupa con `1 DE CADA ~8.500` acompaña a "una pizca de ese potasio es radiactiva") | Lupa redonda sobre el brazo: grilla de bolitas grises; una sola titila en oro. Texto chico: `1 DE CADA ~8.500`. | Mecánica (pero) |
@@ -41,7 +41,7 @@
 
 (Los segundos desde el s 30,3 se corren ~0,2–0,5 s: "Inofensivo." con su punto dura más que 1 palabra a 3,1 pal/s.)
 
-**Loop:** "…Mándaselo a tu tóxico o a tu tóxica." → "Un año en esta cama te irradia más que un año junto a una central nuclear." El último plano es el cuadro 0 (la balanza con la cama inclinada contra la torre), así que "esta cama" del gancho apunta a la cama que acaba de salir.
+**Loop:** "…Mándaselo a tu tóxico o a tu tóxica." → "Dormir con tu pareja un año te irradia más que un año junto a una central nuclear." El último plano es el cuadro 0 (la balanza con la cama inclinada contra la torre), así que "esta cama" del gancho apunta a la cama que acaba de salir.
 **Re-ganchos:** s 3,9 · 7,1 · 11,3 · 15,2 · 21,9 · 26,5 · 30,8 · 32,6 · 35,5 (máximo hueco: 6,7 s entre 15,2 y 21,9, con el rayo gamma saliendo a los 18,4).
 **Respiros de edición (0,4–0,6 s):** antes de "Pero súmale un año de noches" (giro) y antes de "Cada noche duermes abrazado…" (frase final).
 
@@ -74,7 +74,7 @@
 - Dónde se va la gente: s 11,3–15,2 ("casi todo ese potasio es normal…"), el tramo más de clase.
 
 ## Texto para la voz
-Un año en esta cama te irradia más que un año junto a una central nuclear. ¿Por qué? Por lo mismo que este plátano: potasio. Una pizca de ese potasio es radiactiva. Y tu cuerpo tiene mucho potasio. Así que tú también eres un poquito radiactivo. Cada segundo, unos cuatro mil de esos átomos se desintegran dentro de ti. Algunos sueltan un rayo gamma que atraviesa tu piel y sale. Tu pareja duerme pegada a ti, así que parte de esos rayos le llega. ¿Cuánto? Una noche juntos es más o menos como comerte un plátano. Inofensivo. Pero súmale un año de noches. Esa pila de plátanos le gana a la central. Cada noche duermes abrazado a un plátano gigante. Mándaselo a tu tóxico o a tu tóxica.
+Dormir con tu pareja un año te irradia más que un año junto a una central nuclear. ¿Por qué? Por lo mismo que este plátano: potasio. Una pizca de ese potasio es radiactiva. Y tu cuerpo tiene mucho potasio. Así que tú también eres un poquito radiactivo. Cada segundo, unos cuatro mil de esos átomos se desintegran dentro de ti. Algunos sueltan un rayo gamma que atraviesa tu piel y sale. Tu pareja duerme pegada a ti, así que parte de esos rayos le llega. ¿Cuánto? Una noche juntos es más o menos como comerte un plátano. Inofensivo. Pero súmale un año de noches. Esa pila de plátanos le gana a la central. Cada noche duermes abrazado a un plátano gigante. Mándaselo a tu tóxico o a tu tóxica.
 
 
 ## v3 (23-nov, espectadores)
@@ -82,3 +82,6 @@ Fuga en 'Este plátano también es un poquito radiactivo' (2 de 6) y 'Casi todo 
 
 ## Decisiones de producción (23-nov)
 - Juez-viral v3: PASA (gancho, medio y final GANA). No se acorta el gancho a 'más que vivir junto a una central' porque pierde el 'un año contra un año' que exige la ficha (verdad > velocidad). 'Esos átomos' se deja: el antecedente es 'una pizca de ese potasio es radiactiva'. 'Plátano gigante' puede leerse con doble sentido: queda como riesgo para el OK de Tomás.
+
+## Cambio de gancho (Tomás, 23-nov, 22:20)
+"Yo creo que es mejor partir con dormir con tu pareja… es un gancho mucho mayor." → 'Dormir con tu pareja un año te irradia más que un año junto a una central nuclear.' (sigue comparando año contra año; ficha #6).
