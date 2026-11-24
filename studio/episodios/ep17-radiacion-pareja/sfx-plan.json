@@ -5,7 +5,7 @@
  "catalogo": "tools/sonido/biblioteca/catalog.json",
  "salida": "studio/episodios/ep17-radiacion-pareja/mezcla.wav",
  "words": "studio/episodios/ep17-radiacion-pareja/words.json",
- "duracion_s": 41.9,
+ "duracion_s": 42.2,
  "ducking": true,
  "eventos": [
   {
@@ -16,56 +16,56 @@
    "opcional": true
   },
   {
-   "en_s": 1.42,
+   "en_s": 1.83,
    "sfx": "tick-contador",
    "gain_db": -2,
    "cue": "'irradia': clic de contador, el platillo de la cama baja y destella",
    "opcional": true
   },
   {
-   "en_s": 2.3,
+   "en_s": 2.76,
    "sfx": "pop",
    "gain_db": -5,
    "cue": "entra 1 AÑO sobre la torre",
    "opcional": true
   },
   {
-   "en_s": 3.62,
+   "en_s": 3.99,
    "sfx": "thud-metal",
    "gain_db": 0,
    "cue": "después de 'nuclear': la balanza asienta hacia la cama (hueco de la voz)",
    "opcional": false
   },
   {
-   "en_s": 4.26,
+   "en_s": 4.63,
    "sfx": "whoosh-rapido",
    "gain_db": -3,
    "cue": "corte a la cama desde arriba",
    "opcional": true
   },
   {
-   "en_s": 6.25,
+   "en_s": 6.48,
    "sfx": "thud-suave",
    "gain_db": -2,
    "cue": "el plátano cae al velador",
    "opcional": true
   },
   {
-   "en_s": 6.95,
+   "en_s": 7.12,
    "sfx": "click-ui",
    "gain_db": -4,
    "cue": "etiqueta POTASIO",
    "opcional": true
   },
   {
-   "en_s": 7.94,
+   "en_s": 8.07,
    "sfx": "swoosh-sube",
    "gain_db": -5,
    "cue": "entra la lupa",
    "opcional": true
   },
   {
-   "en_s": 9.48,
+   "en_s": 9.46,
    "sfx": "ding",
    "gain_db": -3,
    "cue": "un átomo titila oro: radiactiva",
@@ -79,140 +79,140 @@
    "opcional": true
   },
   {
-   "en_s": 14.4,
+   "en_s": 14.48,
    "sfx": "reveal-brillo",
    "gain_db": -1,
    "cue": "'radiactivo': la persona brilla entera (hueco) [acento de movimiento sobre la voz: decorativo]",
    "opcional": true
   },
   {
-   "en_s": 16.28,
+   "en_s": 16.4,
    "sfx": "tick-contador",
    "gain_db": -3,
    "cue": "~4.000 POR SEGUNDO",
    "opcional": true
   },
   {
-   "en_s": 17.82,
+   "en_s": 17.95,
    "sfx": "glitch-corto",
    "gain_db": -8,
    "cue": "chispas adentro del cuerpo",
    "opcional": true
   },
   {
-   "en_s": 20.32,
+   "en_s": 20.5,
    "sfx": "whoosh-rapido",
    "gain_db": -5,
    "cue": "sale el rayo gamma",
    "opcional": true
   },
   {
-   "en_s": 22.15,
+   "en_s": 22.2,
    "sfx": "whoosh-suave",
    "gain_db": -1,
    "cue": "'sale': el rayo cruza la piel (hueco) [acento de movimiento sobre la voz: decorativo]",
    "opcional": true
   },
   {
-   "en_s": 24.84,
+   "en_s": 24.88,
    "sfx": "whoosh-suave",
    "gain_db": -6,
    "cue": "los rayos cruzan a la pareja",
    "opcional": true
   },
   {
-   "en_s": 26.1,
+   "en_s": 26.23,
    "sfx": "ding-grave",
    "gain_db": 0,
    "cue": "'le llega': la pareja se enciende apenas (hueco)",
    "opcional": false
   },
   {
-   "en_s": 26.7,
+   "en_s": 26.8,
    "sfx": "tick-contador",
    "gain_db": -4,
    "cue": "corre el reloj de 8 horas",
    "opcional": true
   },
   {
-   "en_s": 29.3,
+   "en_s": 29.66,
    "sfx": "pop",
    "gain_db": -4,
    "cue": "el plátano se pela",
    "opcional": true
   },
   {
-   "en_s": 31.2,
+   "en_s": 31.78,
    "sfx": "ding",
    "gain_db": 0,
    "cue": "✓ INOFENSIVO (hueco)",
    "opcional": false
   },
   {
-   "en_s": 31.7,
+   "en_s": 32.12,
    "sfx": "tick-contador",
    "gain_db": -4,
    "cue": "corre el contador de noches",
    "opcional": true
   },
   {
-   "en_s": 33.12,
+   "en_s": 33.49,
    "sfx": "whoosh-rapido",
    "gain_db": -2,
    "cue": "corte a la balanza con la pila (hueco) [acento de movimiento sobre la voz: decorativo]",
    "opcional": true
   },
   {
-   "en_s": 34.0,
+   "en_s": 34.48,
    "sfx": "pop-grave",
    "gain_db": -4,
    "cue": "la pila cae al platillo",
    "opcional": true
   },
   {
-   "en_s": 34.98,
+   "en_s": 35.48,
    "sfx": "thud-metal",
    "gain_db": 1,
    "cue": "'le gana': el platillo de la cama baja (hueco)",
    "opcional": false
   },
   {
-   "en_s": 35.5,
+   "en_s": 36.0,
    "sfx": "whoosh-suave",
    "gain_db": -5,
    "cue": "corte a la cama",
    "opcional": true
   },
   {
-   "en_s": 36.62,
+   "en_s": 37.11,
    "sfx": "pop",
    "gain_db": -4,
    "cue": "'abrazado': la pareja se vuelve plátano",
    "opcional": true
   },
   {
-   "en_s": 37.95,
+   "en_s": 38.39,
    "sfx": "resorte",
    "gain_db": -2,
    "cue": "remate: plátano gigante (hueco)",
    "opcional": false
   },
   {
-   "en_s": 40.92,
+   "en_s": 41.24,
    "sfx": "whoosh-suave",
    "gain_db": -4,
    "cue": "corte a la balanza (loop)",
    "opcional": true
   },
   {
-   "en_s": 39.55,
+   "en_s": 39.99,
    "sfx": "tick-grave",
    "gain_db": -5,
    "cue": "'tóxico': la cama destella",
    "opcional": true
   },
   {
-   "en_s": 41.85,
+   "en_s": 42.15,
    "sfx": "whoosh-reverso",
    "gain_db": -6,
    "cue": "vuelve al cuadro 0",
@@ -220,7 +220,7 @@
    "alinear": "fin"
   },
   {
-   "en_s": 39.52,
+   "en_s": 39.96,
    "sfx": "pop-agudo",
    "gain_db": -5,
    "cue": "'tóxico': el plátano gigante late",

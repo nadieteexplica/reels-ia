@@ -27,7 +27,7 @@ import arte17 as A  # noqa: E402
 
 WORDS = json.load(open(os.path.join(EP, "words.json")))
 FPS = 30
-DUR_VOZ = 41.3
+DUR_VOZ = 41.6
 DUR = round(DUR_VOZ + 0.6, 2)
 FIN = int(round(DUR * FPS))
 VOZ = os.path.join(RAIZ, "out/voz-libre/ep17-radiacion-pareja/ep17-radiacion-pareja.wav")
@@ -39,8 +39,12 @@ CLAVES = ["irradia", "central nuclear", "plátano", "potasio", "radiactiva", "ta
 an, tr, ee, es, eo = K.anim, K.tramo, K.ease_entrada, K.ease_salida, K.ease_estado
 
 
+CORRIMIENTO = 1          # gancho de Tomás: "Dormir con tu pareja un año…" tiene una palabra más que "Un año en esta cama…"
+
+
 def w(i):
-    return WORDS[i]["s"]
+    """Índices escritos para el texto original; desde la 6.ª palabra todo se corre CORRIMIENTO lugares."""
+    return WORDS[i + CORRIMIENTO if i >= 5 else i]["s"]
 
 
 # cortes (cambio de idea): balanza | cama+plátano | balanza (pila) | cama (plátano gigante) | balanza (loop)
