@@ -1,0 +1,38 @@
+{
+ "aprobado": true,
+ "bloqueantes": [],
+ "sugerencias": [
+  {
+   "segundo": "0–4,5",
+   "sugerencia": "La balanza del gancho casi no se mueve en 4,5 s; solo cambian los subtítulos. Que el lado de la cama baje un poco más en 'te irradia' y que la central se ilumine o pulse en 'central nuclear' (en 4 s no pasa nada en la imagen)."
+  },
+  {
+   "segundo": "34–35",
+   "sugerencia": "En 34 s ('pila') la balanza vuelve con la central como el lado más pesado, al revés que en el gancho, donde pesaba más la cama. En 35 s ('le gana') queda nivelada y recién se inclina en 36 s. Hacer que el lado de la cama baje justo en 'gana' y no mostrar la central como más pesada."
+  },
+  {
+   "segundo": "21 y 23",
+   "sugerencia": "Aparecen líneas de etiqueta sin texto: la del rayo gamma en 21 s y la de la cabeza de la pareja en 23 s. Las etiquetas 'RAYO GAMMA' y 'PAREJA' llegan un segundo después. Que la línea y el texto entren juntos, en la palabra."
+  },
+  {
+   "segundo": "16–21",
+   "sugerencia": "Con la cama en zoom, el subtítulo pisa la cabecera de madera ('SE DESINTEGRAN', 'ALGUNOS SUELTAN', 'RAYO GAMMA QUE'). Se lee, pero se ve apretado. Bajar la cama unos 40–60 px o subir el subtítulo."
+  },
+  {
+   "segundo": "23 / general",
+   "sugerencia": "En 23 s el velador con el plátano queda cortado en el borde derecho, dentro de los 160 px que tapa la interfaz. Las etiquetas chicas ('1 AÑO', 'DURMIENDO', 'POR SEGUNDO', 'CENTRAL NUCLEAR') se leen justito en el celular; agrandarlas ~20% y alejar del borde derecho 'DURMIENDO' y 'CENTRAL NUCLEAR' (29 y 35 s)."
+  }
+ ],
+ "notas": {
+  "cuadro0": 8,
+  "legibilidad": 8,
+  "sincronia": 8,
+  "una_idea": 9,
+  "subtitulos": 8,
+  "loop": 9
+ },
+ "_registro": {
+  "guardado": "2026-11-23 22:45",
+  "sha256_crudo": "b50b0afe610c2a47be77a9b0c5f977d39bf3b6618b8f57116e94128aa0c6a94a"
+ }
+}
