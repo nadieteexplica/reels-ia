@@ -1,0 +1,40 @@
+{
+ "guion": "/private/tmp/claude-501/-Users-tomas-Desktop-Proyecto-reels-ia/ba566151-ba1c-4d6c-89cc-093a0e27203b/scratchpad/ciega-D3.md",
+ "comparado_con": "buceo",
+ "gancho": {
+  "veredicto": "GANA",
+  "por_que": "Lo imposible ya está en el cuadro 0 (la balanza inclinada hacia la cama contra la torre) y se mueve en el s 0 (el platillo baja con el clic). En buceo el cuadro 0 es sólo un buzo entrando al agua y lo raro recién llega en el s 3,5–4,5. La pregunta (¿cómo una cama le gana a una central?) queda abierta hasta el s ~5 sin responderse. Lo que lo frena: la primera sílaba no es el gancho. Contado sobre el 'Texto para la voz', la frase tiene 16 palabras, no 12. A 3,1 pal/s dura ~5,2 s, no 3,9, e 'irradia' es la palabra 7 (~2,0 s), no la 4 ni la 6 como dicen las notas."
+ },
+ "medio": {
+  "veredicto": "GANA",
+  "por_que": "Según el 'Texto para la voz', entra algo nuevo cada ~2–4,5 s: plátano + potasio (s ~5,8), una pizca radiactiva (s ~8,1), 'tú también' (s ~12,3), 4.000 por segundo (s ~14,8), el rayo gamma (s ~19,0), le llega a tu pareja (s ~22,5), noche = plátano (s ~27,0) y 'pero súmale un año' (s ~31,7). Buceo da un dato cada 5–7 s. El ancla vuelve al ~64–85 %, igual que la gaseosa de buceo. Pierde puntos por dos cosas: no hay re-gancho explícito al ~50 % (el '¿Cuánto?' llega al s ~27, el 64 %), y en el s ~10,3 se encadena con 'Y' en vez de 'así que' o 'pero'. Ojo: la tabla todavía trae 'Casi todo ese potasio es normal, pero unos pocos átomos son inestables' (s 11,3–15,2), que repite 'una pizca de ese potasio es radiactiva' (s 3,9–7,1). Si esa frase llega a la voz, son 3,9 s sin novedad y el guion no pasa. Este veredicto vale para el 'Texto para la voz' de la v3; la tabla hay que ponerla al día con él.",
+  "segundos_sin_novedad": []
+ },
+ "final": {
+  "veredicto": "GANA",
+  "por_que": "Buceo cierra con una pregunta para los comentarios y no tiene CTA de envío. Aquí el cierre tiene pago con el ancla (s ~33,6, la pila de cáscaras hace bajar el platillo, como en el cuadro 0), un remate visual de 8 palabras (s ~37,0, 'abrazado a un plátano gigante'), un loop de imagen y de idea ('tóxico/tóxica' empalma con 'te irradia', y el último plano vuelve al cuadro 0) y un CTA con una persona concreta sacada del tema (la pareja como 'tóxica', que juega con lo radiactivo). Los peros: el CTA dura ~2,5 s (más que la regla de ≤ 2 s) y 'plátano gigante' en la cama puede leerse con doble sentido en Latam, así que Tomás tiene que decidir si lo quiere.",
+  "cta_ligado_al_contenido": true
+ },
+ "frases_debiles": [
+  {
+   "segundo": "0,0–5,2 (la tabla dice 0–3,9)",
+   "frase": "Un año en esta cama te irradia más que un año junto a una central nuclear.",
+   "arreglo": "Tiene 16 palabras e 'irradia' suena recién a los ~2 s. El 'año contra año' lo puede cargar el HUD `1 AÑO` y la voz queda en 'Esta cama te irradia más que vivir junto a una central nuclear' (11 palabras, 'irradia' en la palabra 4, ~1,0 s). Corregir también las notas, que cuentan 12 palabras y 'palabra 4' cuando la frase dice otra cosa."
+  },
+  {
+   "segundo": "~14,8 (tabla 15,2)",
+   "frase": "Cada segundo, unos cuatro mil de esos átomos se desintegran dentro de ti.",
+   "arreglo": "Al cortar en la v3 'unos pocos átomos son inestables', 'esos átomos' se quedó sin antecedente. Nombrarlos: 'Cada segundo, unos cuatro mil átomos de ese potasio estallan dentro de ti' (con el contador en vivo en la misma palabra)."
+  },
+  {
+   "segundo": "~33,6 (tabla 32,6)",
+   "frase": "Esa pila de plátanos le gana a la central.",
+   "arreglo": "La frase cuenta el resultado, pero el espectador nunca oye lo poco que da la central, que es la mitad sorprendente del gancho (¿cómo le gana?). Agregar el contraste con un número de la ficha, si las 2 fuentes lo respaldan, por ejemplo 'La central, en un año, te da menos que un plátano', con la torre sobre el platillo levantado. Si no cabe, cambiar 'Y tu cuerpo tiene mucho potasio' (s ~10,3) por algo con 'así que' para ganar el medio segundo."
+  }
+ ],
+ "pasa": true,
+ "_registro": {
+  "guardado": "2026-11-23 21:26",
+  "sha256_crudo": "05273a1200814cc7c3b8fd42deebb07941120da935ec726aab93ec949a5b3858"
+ }
+}

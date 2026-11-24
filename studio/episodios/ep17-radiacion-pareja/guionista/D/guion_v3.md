@@ -28,7 +28,7 @@
 | 0,0–3,9 | Un año en esta cama te irradia más que un año junto a una central nuclear. | Cuadro 0: la balanza ya inclinada hacia la cama, HUD `1 AÑO` sobre cada platillo. Clic de contador: el platillo de la cama baja otro poco y destella oro. | Gancho (paradoja con escala / mito al revés) |
 | 3,9–7,1 | ¿Por qué? Por lo mismo que este plátano: potasio. Una pizca de ese potasio es radiactiva. | Corte a la cama desde arriba; un plátano real cae al velador bajo un foco, con sombra, y brilla oro tenue. Etiqueta HUD `POTASIO` con línea guía. | Ancla + re-gancho 1 (s 3,9: el plátano es radiactivo) |
 | 7,1–11,3 | Y tu cuerpo tiene mucho potasio. Así que tú también eres un poquito radiactivo. | La persona dormida se ilumina con el mismo brillo oro en todo el contorno; el HUD `POTASIO` se copia del plátano a ella. | Re-gancho 2 (s 7,1: tú también) |
-| 11,3–15,2 | Casi todo ese potasio es normal, pero unos pocos átomos son inestables. | Lupa redonda sobre el brazo: grilla de bolitas grises; una sola titila en oro. Texto chico: `1 DE CADA ~8.500`. | Mecánica (pero) |
+| 11,3–15,2 | (v3: frase sacada; la lupa con `1 DE CADA ~8.500` acompaña a "una pizca de ese potasio es radiactiva") | Lupa redonda sobre el brazo: grilla de bolitas grises; una sola titila en oro. Texto chico: `1 DE CADA ~8.500`. | Mecánica (pero) |
 | 15,2–18,4 | Cada segundo, unos cuatro mil se desintegran dentro de ti. | Contador HUD en vivo que corre a ~4.000 por segundo; chispitas oro adentro del cuerpo. | Re-gancho 3 (s 15,2: número en vivo) |
 | 18,4–21,9 | Algunos sueltan un rayo gamma que atraviesa tu piel y sale. | Un trazo oro sale de una chispa, cruza la piel (etiqueta `RAYO GAMMA`) y sale del contorno. | Mecánica |
 | 21,9–26,5 | Tu pareja duerme pegada a ti, así que parte de esos rayos le llega. | La cama desde arriba: los trazos oro cruzan los ~30 cm y tocan a la otra persona, que se ilumina apenas. | Pago 1 (cómo una persona te da radiación) |
@@ -79,3 +79,6 @@ Un año en esta cama te irradia más que un año junto a una central nuclear. ¿
 
 ## v3 (23-nov, espectadores)
 Fuga en 'Este plátano también es un poquito radiactivo' (2 de 6) y 'Casi todo ese potasio es normal' (1 de 6): el tramo 4–15 s entra con la pregunta '¿Por qué?', amarra la cama al plátano con el potasio y saca la frase de 'casi todo es normal'. La verdad no cambia (ficha #1–#3: 1 de cada ~8.500 átomos de potasio es radiactivo; unos 4 mil por segundo).
+
+## Decisiones de producción (23-nov)
+- Juez-viral v3: PASA (gancho, medio y final GANA). No se acorta el gancho a 'más que vivir junto a una central' porque pierde el 'un año contra un año' que exige la ficha (verdad > velocidad). 'Esos átomos' se deja: el antecedente es 'una pizca de ese potasio es radiactiva'. 'Plátano gigante' puede leerse con doble sentido: queda como riesgo para el OK de Tomás.
